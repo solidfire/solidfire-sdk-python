@@ -6,7 +6,7 @@ KNOWN_CONVERSIONS = {
 }
 
 def serialize(val):
-    if hasattr(value, 'to_json'):
+    if hasattr(val, 'to_json'):
         return val.to_json()
     elif type(val) in KNOWN_CONVERSIONS:
         return KNOWN_CONVERSIONS[type(val)](val)
