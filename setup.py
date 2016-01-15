@@ -4,13 +4,29 @@
 from setuptools import setup, find_packages
 # To use a consistent encoding
 from codecs import open
-from os import path
+import os
+from distutils import dir_util
+from distutils import log
+from distutils.command.clean import clean as _clean
 
-here = path.abspath(path.dirname(__file__))
+here = os.path.abspath(os.path.dirname(__file__))
 
 # Get the long description from the README file
-with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
+with open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
+
+
+class clean(_clean):
+    def remove_dir(self, dir_to_del):
+        if os.path.exists(dir_to_del):
+            dir_util.remove_tree(dir_to_del, dry_run=self.dry_run)
+
+    def run(self):
+        print('custom clean')
+        self.remove_dir('build')
+        self.remove_dir('dist')
+        self.remove_dir('solidfire_sdk_python.egg-info')
+
 
 setup(
     name='solidfire-sdk-python',
