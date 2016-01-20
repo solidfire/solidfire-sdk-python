@@ -5,6 +5,7 @@ KNOWN_CONVERSIONS = {
     type(set): list
 }
 
+
 def serialize(val):
     if hasattr(val, 'to_json'):
         return val.to_json()
@@ -15,11 +16,13 @@ def serialize(val):
     else:
         return val
 
+
 def extract(typ, src):
     if hasattr(typ, 'extract'):
         return typ.extract(src)
     else:
         return src
+
 
 class ModelPropery(object):
     def __init__(self, member_name, member_type, array=False, optional=False, documentation=None):
@@ -44,10 +47,12 @@ class ModelPropery(object):
         else:
             return extract(self._member_type, data)
 
+
 class MetaDataObject(type):
     def __init__(cls, name, bases, classdict):
         super(MetaDataObject, cls).__init__(name, bases, classdict)
         cls._create_properties()
+
 
 class DataObject(metaclass=MetaDataObject):
     _properties = None
@@ -103,6 +108,7 @@ class DataObject(metaclass=MetaDataObject):
                                            )
                                 )
         return cls(**ctor_dict)
+
 
 def property(member_name, member_type, array=False, optional=False, documentation=None):
     documentation = documentation or str.format('Propery of type {typ}{arr}',

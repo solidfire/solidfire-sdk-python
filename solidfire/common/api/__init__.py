@@ -3,14 +3,15 @@
 import json
 from contextlib import closing
 
-from src.solidfire.common.api import model
+from solidfire.common.api import model
+
 
 class ApiError(Exception):
     def __init__(self, method_name, err_json):
         self._method_name = method_name
-        self._err_name    = err_json.get('name',    'Unknown')
-        self._code        = err_json.get('code',    500)
-        self._message     = err_json.get('message', None)
+        self._err_name = err_json.get('name', 'Unknown')
+        self._code = err_json.get('code', 500)
+        self._message = err_json.get('message', None)
 
     def __repr__(self):
         return str.format('\n\tMethod: {_method_name}\n\tCode: {_code}\n\tName: {_err_name}\n\tMessage: {_message}',
@@ -35,12 +36,12 @@ class ApiError(Exception):
         """A user-friendly message returned from the server."""
         return self._message
 
+
 class CurlDispatcher(object):
-    import pycurl
     try:
         from io import BytesIO
     except ImportError:
-        from StringIO import StringIO as BytesIO
+        from io import StringIO as BytesIO
 
     def __init__(self, endpoint, username, password, verify_ssl):
         self._endpoint = endpoint
@@ -67,6 +68,7 @@ class CurlDispatcher(object):
 
             return obuffer.getvalue().decode('utf-8')
 
+
 class ServiceBase(object):
     """The base type for API services. This performs the sending, encoding and decoding of requests."""
 
@@ -76,10 +78,10 @@ class ServiceBase(object):
             dispatcher = CurlDispatcher(endpoint, username, password, verify_ssl)
         self._dispatcher = dispatcher
 
-    def _send_request(self, method_name, result_type, params = {}):
+    def _send_request(self, method_name, result_type, params={}):
         encoded = json.dumps({
             'method': method_name,
-            'id':     1,
+            'id': 1,
             'params': dict((name, model.serialize(val)) for name, val in params.items()),
         }
         )
