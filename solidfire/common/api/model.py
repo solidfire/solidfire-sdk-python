@@ -1,5 +1,5 @@
-
 import json
+from future.utils import with_metaclass
 
 KNOWN_CONVERSIONS = {
     type(set): list
@@ -24,8 +24,9 @@ def extract(typ, src):
         return src
 
 
-class ModelPropery(object):
-    def __init__(self, member_name, member_type, array=False, optional=False, documentation=None):
+class ModelProperty(object):
+    def __init__(self, member_name, member_type, array=False, optional=False,
+                 documentation=None):
         self._member_name = member_name
         self._member_type = member_type
         self._array = array
@@ -43,7 +44,8 @@ class ModelPropery(object):
 
     def extract_from(self, data):
         if self._array:
-            return [] if data is None else [extract(self._member_type, x) for x in data]
+            return [] if data is None else [extract(self._member_type, x) for x
+                                            in data]
         else:
             return extract(self._member_type, data)
 
@@ -54,7 +56,7 @@ class MetaDataObject(type):
         cls._create_properties()
 
 
-class DataObject(metaclass=MetaDataObject):
+class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
     _properties = None
 
     @classmethod
@@ -62,25 +64,31 @@ class DataObject(metaclass=MetaDataObject):
         cls._properties = {}
         for name in dir(cls):
             prop = getattr(cls, name, None)
-            if isinstance(prop, ModelPropery):
+            if isinstance(prop, ModelProperty):
                 cls._properties[name] = prop
 
-    def __init__(self, **kwargs):
+    def __init__(self, name, bases, classdict, **kwargs):
+        super().__init__(name, bases, classdict)
         for k, v in kwargs.items():
             if k not in type(self)._properties:
-                raise TypeError(str.format('Key "{k}" is not a valid property', k=k))
+                raise TypeError(str.format('Key "{k}" '
+                                           'is not a valid property', k=k))
             else:
                 setattr(self, k, v)
 
     def __repr__(self):
         props = []
         for name, prop in sorted(type(self)._properties.items()):
-            if prop._array:
-                r = str.format('[{vals}]', vals=str.join(', ', (repr(x) for x in getattr(self, name))))
+            if prop.array:
+                r = str.format('[{vals}]', vals=str.join(', ',
+                                                         (repr(x) for x in
+                                                          getattr(self,
+                                                                  name))))
             else:
                 r = repr(getattr(self, name))
             props.append(str.format('{name}={repr}', name=name, repr=r))
-        return str.format('{cls}({props})', cls=type(self).__name__, props=str.join(', ', props))
+        return str.format('{cls}({props})', cls=type(self).__name__,
+                          props=str.join(', ', props))
 
     def to_json(self):
         out = {}
@@ -92,30 +100,35 @@ class DataObject(metaclass=MetaDataObject):
     def extract(cls, data, strict=True):
         ctor_dict = {}
         for name, prop in cls._properties.items():
-            if prop._member_name in data:
-                ctor_dict[name] = prop.extract_from(data[prop._member_name])
-            elif prop._optional:
+            if prop.member_name in data:
+                ctor_dict[name] = prop.extract_from(data[prop.member_name])
+            elif prop.optional:
                 ctor_dict[name] = None
-            elif prop._array:
+            elif prop.array:
                 ctor_dict[name] = []
             elif not strict:
                 ctor_dict[name] = None
             else:
-                raise TypeError(str.format('Can not create {typ}: missing required propery "{name}" in {input}',
+                raise TypeError(str.format('Can not create {typ}: '
+                                           'missing required property'
+                                           ' "{name}" in {input}',
                                            typ=cls.__name__,
-                                           name=prop._member_name,
+                                           name=prop.member_name,
                                            input=json.dumps(data)
                                            )
                                 )
         return cls(**ctor_dict)
 
 
-def property(member_name, member_type, array=False, optional=False, documentation=None):
-    documentation = documentation or str.format('Propery of type {typ}{arr}',
+def property(member_name, member_type,
+             array=False, optional=False,
+             documentation=None):
+    documentation = documentation or str.format('Property of type {typ}{arr}',
                                                 typ=member_type,
                                                 arr=('[]' if array else '')
                                                 )
-    typ = type(member_name + 'Property', (ModelPropery,), { '__doc__': documentation })
+    typ = type(member_name + 'Property', (ModelProperty,),
+               {'__doc__': documentation})
     return typ(member_name=member_name,
                member_type=member_type,
                array=array,

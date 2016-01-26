@@ -6,7 +6,7 @@ from contextlib import closing
 from solidfire.common.api import model
 
 
-class ApiError(Exception):
+class ApiServerError(Exception):
     def __init__(self, method_name, err_json):
         self._method_name = method_name
         self._err_name = err_json.get('name', 'Unknown')
@@ -14,7 +14,10 @@ class ApiError(Exception):
         self._message = err_json.get('message', None)
 
     def __repr__(self):
-        return str.format('\n\tMethod: {_method_name}\n\tCode: {_code}\n\tName: {_err_name}\n\tMessage: {_message}',
+        return str.format('\n\tMethod: {_method_name}\n'
+                          '\tCode: {_code}\n'
+                          '\tName: {_err_name}\n'
+                          '\tMessage: {_message}',
                           **self.__dict__
                           )
 
@@ -38,6 +41,8 @@ class ApiError(Exception):
 
 
 class CurlDispatcher(object):
+    import pycurl
+    pycurl.version_info()
     try:
         from io import BytesIO
     except ImportError:
@@ -45,11 +50,14 @@ class CurlDispatcher(object):
 
     def __init__(self, endpoint, username, password, verify_ssl):
         self._endpoint = endpoint
-        self._credentials = str.format('{u}:{p}', u=username, p=password) if (username or password) else None
+        self._credentials = str.format('{u}:{p}', u=username, p=password) \
+            if (username or password) else None
         self._verify_ssl = verify_ssl
 
     def post(self, data):
-        """Post data to the associated endpoint and await the server's response."""
+        """Post data to the associated endpoint
+        and await the server's response.
+        :param data: """
         with closing(CurlDispatcher.pycurl.Curl()) as c:
             c.setopt(c.URL, self._endpoint)
             obuffer = CurlDispatcher.BytesIO()
@@ -70,24 +78,30 @@ class CurlDispatcher(object):
 
 
 class ServiceBase(object):
-    """The base type for API services. This performs the sending, encoding and decoding of requests."""
+    """The base type for API services.
+    This performs the sending, encoding and decoding of requests."""
 
-    def __init__(self, mvip=None, username=None, password=None, api_version='8.0', verify_ssl=True, dispatcher=None):
+    def __init__(self, mvip=None, username=None, password=None,
+                 api_version='8.0', verify_ssl=True, dispatcher=None):
         if not dispatcher:
-            endpoint = str.format('https://{mvip}/json-rpc/{api_version}', mvip=mvip, api_version=api_version)
-            dispatcher = CurlDispatcher(endpoint, username, password, verify_ssl)
+            endpoint = str.format('https://{mvip}/json-rpc/{api_version}',
+                                  mvip=mvip, api_version=api_version)
+            dispatcher = CurlDispatcher(endpoint, username, password,
+                                        verify_ssl)
         self._dispatcher = dispatcher
 
-    def _send_request(self, method_name, result_type, params={}):
+    def _send_request(self, method_name, result_type, params=None):
+        if params is None:
+            params = {}
         encoded = json.dumps({
             'method': method_name,
             'id': 1,
-            'params': dict((name, model.serialize(val)) for name, val in params.items()),
-        }
-        )
+            'params': dict((name, model.serialize(val)) for name, val in
+                           params.items()),
+        })
         response_raw = self._dispatcher.post(encoded)
         response = json.loads(response_raw)
         if 'error' in response:
-            raise ApiError(method_name, response['error'])
+            raise ApiServerError(method_name, response['error'])
         else:
             return model.extract(result_type, response['result'])
