@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 import json
 from future.utils import with_metaclass
 
@@ -123,12 +125,17 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
 def property(member_name, member_type,
              array=False, optional=False,
              documentation=None):
-    documentation = documentation or str.format('Property of type {typ}{arr}',
-                                                typ=member_type,
-                                                arr=('[]' if array else '')
-                                                )
-    typ = type(member_name + 'Property', (ModelProperty,),
+    documentation = documentation or \
+                    str.format('Property of type {typ}{arr}',
+                               typ=member_type,
+                               arr=('[]'.encode('ascii', 'ignore')
+                                    if array
+                                    else ''.encode('ascii', 'ignore'))
+                               )
+    typ = type(str((member_name + 'Property').encode('ascii', 'ignore')),
+               (ModelProperty,),
                {'__doc__': documentation})
+
     return typ(member_name=member_name,
                member_type=member_type,
                array=array,
