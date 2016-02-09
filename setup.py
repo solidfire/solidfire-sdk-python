@@ -94,7 +94,7 @@ setup(
     # $ pip install -e .[dev,test]
     extras_require={
         'dev': ['check-manifest'],
-        'test': ['coverage'],
+        'test': ['coverage', 'pyhamcrest>=1.8.5', 'pytest>=2.8.7'],
     },
 
     # If there are data files included in your packages that need to be

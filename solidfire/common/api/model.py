@@ -82,10 +82,11 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
         props = []
         for name, prop in sorted(type(self)._properties.items()):
             if prop.array:
-                r = str.format('[{vals}]', vals=str.join(', ',
-                                                         (repr(x) for x in
-                                                          getattr(self,
-                                                                  name))))
+                r = str.format(
+                        '[{vals}]', vals=str.join(', ',
+                                                  (repr(x) for x in
+                                                   getattr(self,
+                                                           name))))
             else:
                 r = repr(getattr(self, name))
             props.append(str.format('{name}={repr}', name=name, repr=r))
@@ -111,14 +112,16 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
             elif not strict:
                 ctor_dict[name] = None
             else:
-                raise TypeError(str.format('Can not create {typ}: '
-                                           'missing required property'
-                                           ' "{name}" in {input}',
-                                           typ=cls.__name__,
-                                           name=prop.member_name,
-                                           input=json.dumps(data)
-                                           )
-                                )
+                raise TypeError(
+                        str.format(
+                                'Can not create {typ}: '
+                                'missing required property'
+                                ' "{name}" in {input}',
+                                typ=cls.__name__,
+                                name=prop.member_name,
+                                input=json.dumps(data)
+                        )
+                )
         return cls(**ctor_dict)
 
 
@@ -126,12 +129,13 @@ def property(member_name, member_type,
              array=False, optional=False,
              documentation=None):
     documentation = documentation or \
-                    str.format('Property of type {typ}{arr}',
-                               typ=member_type,
-                               arr=('[]'.encode('ascii', 'ignore')
-                                    if array
-                                    else ''.encode('ascii', 'ignore'))
-                               )
+                    str.format(
+                            'Property of type {typ}{arr}',
+                            typ=member_type,
+                            arr=('[]'.encode('ascii', 'ignore')
+                                 if array
+                                 else ''.encode('ascii', 'ignore'))
+                    )
     typ = type(str((member_name + 'Property').encode('ascii', 'ignore')),
                (ModelProperty,),
                {'__doc__': documentation})

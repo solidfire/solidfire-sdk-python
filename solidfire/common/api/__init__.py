@@ -10,18 +10,22 @@ from solidfire.common.api import model
 
 class ApiServerError(Exception):
     def __init__(self, method_name, err_json):
+        from past.builtins import basestring
+        if err_json is None:
+            err_json = json.loads('{}')
+        if err_json is {}:
+            err_json = json.loads('{}')
+        if isinstance(err_json, basestring) and not err_json.strip():
+            err_json = json.loads('{}')
+
         self._method_name = method_name
-        self._err_name = err_json.get('name', 'Unknown')
-        self._code = err_json.get('code', 500)
-        self._message = err_json.get('message', None)
+        self._err_json = err_json
 
     def __repr__(self):
-        return str.format(
-                '\n\tMethod: {_method_name}\n'
-                '\tCode: {_code}\n'
-                '\tName: {_err_name}\n'
-                '\tMessage: {_message}',
-                **self.__dict__
+        return '%s(method_name="%s", err_json=%s)' % (
+            self.__class__.__name__,
+            self._method_name,
+            self._err_json
         )
 
     def __str__(self):
@@ -30,17 +34,17 @@ class ApiServerError(Exception):
     @property
     def error_name(self):
         """The name of the error."""
-        return self._err_name
+        return self._err_json.get('name', 'Unknown')
 
     @property
     def error_code(self):
         """The numeric code for this error."""
-        return self._code
+        return int(self._err_json.get('code', 500))
 
     @property
     def message(self):
         """A user-friendly message returned from the server."""
-        return self._message
+        return self._err_json.get('message', None)
 
 
 class ApiVersionError(Exception):
@@ -52,40 +56,78 @@ class ApiVersionError(Exception):
                  deprecated=None):
         self._method_name = method_name
         self._api_version = api_version
-        self._params = params
         self._since = since
         self._deprecated = deprecated
-        if self._params is not None:
-            self._violations = []
-            for (name, value, since, deprecated) in self._params:
-                self._violations.append(name + ' (version: ' + str(since) + ')')
+        self._params = params
+        self._violations = []
+        if params is not None:
+            for (name, value, since, deprecated) in params:
+                self._violations.append(
+                    name + ' (version: ' + str(since) + ')'
+                )
 
     def __repr__(self):
+        return '%s(method_name="%s", ' \
+               'api_version=%s, ' \
+               'since=%s, ' \
+               'deprecated=%s, ' \
+               'params=%s)' % (
+                   self.__class__.__name__,
+                   self._method_name,
+                   self._api_version,
+                   self._since,
+                   self._deprecated,
+                   self._params
+               )
+
+    def __str__(self):
         if self._params is not None:
             return str.format(
-                    '\n\tInvalid Parameter:'
-                    '\n\tMethod: {_method_name}\n'
-                    '\tApi Version: {_api_version}\n'
-                    '\tInvalid Parameters: {_violations}\n',
-                    **self.__dict__
+                '\n\tInvalid Parameter:'
+                '\n\tMethod: {_method_name}\n'
+                '\tApi Version: {_api_version}\n'
+                '\tInvalid Parameters: {_violations}\n',
+                **self.__dict__
             )
         else:
             return str.format(
-                    '\n\tInvalid Method:'
-                    '\n\tMethod Name: {_method_name}\n'
-                    '\tService Api Version: {_api_version}\n'
-                    '\tMethod Exists Since: {_since}\n'
-                    '\tMethod Deprecated: {_deprecated}',
-                    **self.__dict__
+                '\n\tInvalid Method:'
+                '\n\tMethod Name: {_method_name}\n'
+                '\tService Api Version: {_api_version}\n'
+                '\tMethod Exists Since: {_since}\n'
+                '\tMethod Deprecated: {_deprecated}',
+                **self.__dict__
             )
-
-    def __str__(self):
-        return repr(self)
 
     @property
     def method_name(self):
         """The name of the service method causing the error."""
         return self._method_name
+
+    @property
+    def api_version(self):
+        """The version of the Element API Service"""
+        return self._api_version
+
+    @property
+    def since(self):
+        """The version a service was introduced"""
+        return self._since
+
+    @property
+    def deprecated(self):
+        """The version a service was deprecated"""
+        return self._deprecated
+
+    @property
+    def params(self):
+        """The parameters checked with a service call"""
+        return self._params
+
+    @property
+    def violations(self):
+        """The parameters violated with the service call"""
+        return self._violations
 
 
 class CurlDispatcher(object):
@@ -153,8 +195,10 @@ class ServiceBase(object):
         encoded = json.dumps({
             'method': method_name,
             'id': 1,
-            'params': dict((name, model.serialize(val)) for name, val in
-                           params.items()),
+            'params': dict(
+                (name, model.serialize(val))
+                for name, val in params.items()
+            ),
         })
         response_raw = self._dispatcher.post(encoded)
         response = json.loads(response_raw)
@@ -163,21 +207,28 @@ class ServiceBase(object):
         else:
             return model.extract(result_type, response['result'])
 
-    def _check_method_version(self, method_name, since, deprecated=None):
-        if since > self._api_version:
+    def _check_method_version(self,
+                              method_name,
+                              since,
+                              deprecated=None):
+        if since is not None and since > self._api_version:
             raise ApiVersionError(method_name,
                                   self._api_version,
                                   params=None,
                                   since=since,
                                   deprecated=deprecated)
 
-    def _check_param_versions(self, method_name,
-                              params):
+    def check_param_versions(self,
+                             method_name,
+                             params):
         invalid = []
+        if params is None:
+            params = []
         for (name, value, since, deprecated) in params:
             if value is not None and since > self._api_version:
                 invalid.append((name, value, since, deprecated))
 
-        raise ApiVersionError(method_name,
-                              self._api_version,
-                              invalid)
+        if len(invalid) > 0:
+            raise ApiVersionError(method_name,
+                                  self._api_version,
+                                  invalid)

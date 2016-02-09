@@ -1,12 +1,10 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
-from solidfire.element import api
+from solidfire.element.api.SolidFireElement import SolidFireElement
 
-mvip = '192.168.133.64'
+mvip = '172.26.64.39'
 username = 'admin'
 password = 'admin'
 apiver = '8.0'
 
-server = api.SolidFireElement.create(mvip, username, password, apiver, False)
-
-print(server.list_services())
+server = SolidFireElement(mvip, username, password, apiver, False)
