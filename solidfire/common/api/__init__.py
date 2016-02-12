@@ -55,7 +55,7 @@ class ApiVersionError(Exception):
                  since=None,
                  deprecated=None):
         self._method_name = method_name
-        self._api_version = api_version
+        self._api_version = float(api_version)
         self._since = since
         self._deprecated = deprecated
         self._params = params
@@ -174,7 +174,7 @@ class ServiceBase(object):
     def __init__(self, mvip=None, username=None, password=None,
                  api_version=8.0, verify_ssl=True, dispatcher=None):
 
-        self._api_version = api_version
+        self._api_version = float(api_version)
         if not dispatcher:
             endpoint = str.format('https://{mvip}/json-rpc/{api_version}',
                                   mvip=mvip, api_version=api_version)
