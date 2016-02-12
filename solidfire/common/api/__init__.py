@@ -56,7 +56,7 @@ class ApiVersionError(Exception):
                  deprecated=None):
         self._method_name = method_name
         self._api_version = float(api_version)
-        self._since = since
+        self._since = float(since) if since is not None else since
         self._deprecated = deprecated
         self._params = params
         self._violations = []
@@ -211,11 +211,11 @@ class ServiceBase(object):
                               method_name,
                               since,
                               deprecated=None):
-        if since is not None and since > self._api_version:
+        if since is not None and float(since) > self._api_version:
             raise ApiVersionError(method_name,
                                   self._api_version,
                                   params=None,
-                                  since=since,
+                                  since=float(since),
                                   deprecated=deprecated)
 
     def check_param_versions(self,
@@ -225,8 +225,8 @@ class ServiceBase(object):
         if params is None:
             params = []
         for (name, value, since, deprecated) in params:
-            if value is not None and since > self._api_version:
-                invalid.append((name, value, since, deprecated))
+            if value is not None and float(since) > self._api_version:
+                invalid.append((name, value, float(since), deprecated))
 
         if len(invalid) > 0:
             raise ApiVersionError(method_name,
