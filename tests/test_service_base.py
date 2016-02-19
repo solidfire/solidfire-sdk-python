@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
 from unittest.case import TestCase
+
 from hamcrest import *
 
-from solidfire.common.api import ServiceBase, ApiVersionError
+from solidfire.common import ServiceBase, ApiVersionError
 
 
 class NoOpDispatcher(object):

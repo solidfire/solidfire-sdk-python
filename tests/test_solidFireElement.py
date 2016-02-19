@@ -3,7 +3,7 @@ from unittest import TestCase
 
 import pytest
 
-from solidfire.element.api.SolidFireElement import SolidFireElement
+from solidfire import Element
 from test_element import server
 
 __author__ = 'ahaid'
@@ -12,6 +12,6 @@ __author__ = 'ahaid'
 @pytest.skip
 class TestSolidFireElement(TestCase):
     def test_list_accounts(self):
-        sfe = SolidFireElement
+        sfe = Element
         accounts = server.list_accounts(1, 1)
 

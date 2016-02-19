@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 
-from unittest.case import TestCase
-from hamcrest import *
 import json
+from unittest.case import TestCase
 
-from solidfire.common.api import ApiServerError
+from hamcrest import *
+
+from solidfire.common import ApiServerError
 
 
 class TestApiServerError(TestCase):

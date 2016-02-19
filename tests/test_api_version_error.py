@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
 from unittest.case import TestCase
+
 from hamcrest import *
 
-from solidfire.common.api import ApiVersionError
+from solidfire.common import ApiVersionError
 
 
 class TestApiVersionError(TestCase):

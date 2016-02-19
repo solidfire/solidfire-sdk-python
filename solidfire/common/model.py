@@ -51,6 +51,21 @@ class ModelProperty(object):
         else:
             return extract(self._member_type, data)
 
+    def member_name(self):
+        return self._member_name
+
+    def member_type(self):
+        return self._member_type
+
+    def array(self):
+        return self._array
+
+    def optional(self):
+        return self._optional
+
+    def documentation(self):
+        return self._documentation
+
 
 class MetaDataObject(type):
     def __init__(cls, name, bases, classdict):
@@ -69,8 +84,7 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
             if isinstance(prop, ModelProperty):
                 cls._properties[name] = prop
 
-    def __init__(self, name, bases, classdict, **kwargs):
-        super().__init__(name, bases, classdict)
+    def __init__(self, **kwargs):
         for k, v in kwargs.items():
             if k not in type(self)._properties:
                 raise TypeError(str.format('Key "{k}" '
@@ -81,12 +95,9 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
     def __repr__(self):
         props = []
         for name, prop in sorted(type(self)._properties.items()):
-            if prop.array:
-                r = str.format(
-                        '[{vals}]', vals=str.join(', ',
-                                                  (repr(x) for x in
-                                                   getattr(self,
-                                                           name))))
+            if prop.array():
+                attrs = (repr(x) for x in getattr(self, name))
+                r = str.format( '[{vals}]', vals=str.join(', ', attrs))
             else:
                 r = repr(getattr(self, name))
             props.append(str.format('{name}={repr}', name=name, repr=r))
@@ -103,11 +114,11 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
     def extract(cls, data, strict=True):
         ctor_dict = {}
         for name, prop in cls._properties.items():
-            if prop.member_name in data:
-                ctor_dict[name] = prop.extract_from(data[prop.member_name])
-            elif prop.optional:
+            if prop.member_name() in data:
+                ctor_dict[name] = prop.extract_from(data[prop.member_name()])
+            elif prop.optional():
                 ctor_dict[name] = None
-            elif prop.array:
+            elif prop.array():
                 ctor_dict[name] = []
             elif not strict:
                 ctor_dict[name] = None

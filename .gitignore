@@ -1,3 +1,6 @@
+/solidfire/__init__.py
+/solidfire/models.py
+/solidfire/results.py
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -56,4 +59,3 @@ docs/_build/
 # PyBuilder
 target/
 *.iml
-solidfire/element/api
