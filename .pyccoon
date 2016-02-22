@@ -1,0 +1,7 @@
+{
+    "project_name": "solidfire-sdk-python 1.0 documentation",
+    "skip_files": [".+\\.pyc", "__pycache__", "\\.travis.yml", "\\.git", "\\.DS_Store", "docs", "tests", "build", "dist", ".cache", "solidfire_sdk_python.*", "setup.py", "setup.cfg", "\\.pyccoon", "\\README.*", "\\MANIFEST.*", "\\LICENSE", ".*\\.*iml"],
+    "copy_files": ["pyccoon.svg", "pyccoon_icon.svg", ".+\\.html", ".+\\.css", "\\.pyccoon"],
+    "mathjax": false,
+    "linebreaking-behavior": "pre-wrap"
+}
