@@ -201,7 +201,6 @@ class ServiceBase(object):
             ),
         })
         response_raw = self._dispatcher.post(encoded)
-        print(response_raw)
         response = json.loads(response_raw)
         if 'error' in response:
             raise ApiServerError(method_name, response['error'])

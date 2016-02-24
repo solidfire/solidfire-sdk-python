@@ -21,7 +21,7 @@ def serialize(val):
 
 def extract(typ, src):
     if hasattr(typ, 'extract'):
-        return typ.extract(src)
+        return typ.extract(src, False)
     else:
         return src
 
@@ -87,8 +87,9 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
     def __init__(self, **kwargs):
         for k, v in kwargs.items():
             if k not in type(self)._properties:
-                raise TypeError(str.format('Key "{k}" '
-                                           'is not a valid property', k=k))
+                msg_fmt = 'Key "{k}" is not a valid property'
+                msg = msg_fmt.format(k)
+                raise TypeError()
             else:
                 setattr(self, k, v)
 
@@ -97,10 +98,13 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
         for name, prop in sorted(type(self)._properties.items()):
             if prop.array():
                 attrs = (repr(x) for x in getattr(self, name))
-                r = str.format( '[{vals}]', vals=str.join(', ', attrs))
+                msg_fmt = '[{arr}]'
+                r = msg_fmt.format(arr=str.join(', ', attrs))
             else:
                 r = repr(getattr(self, name))
-            props.append(str.format('{name}={repr}', name=name, repr=r))
+            msg_fmt = '{name}={repr}'
+            msg = msg_fmt.format(name=name, repr=r)
+            props.append(msg)
         return str.format('{cls}({props})', cls=type(self).__name__,
                           props=str.join(', ', props))
 
@@ -123,33 +127,32 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
             elif not strict:
                 ctor_dict[name] = None
             else:
-                raise TypeError(
-                        str.format(
-                                'Can not create {typ}: '
-                                'missing required property'
-                                ' "{name}" in {input}',
-                                typ=cls.__name__,
-                                name=prop.member_name,
-                                input=json.dumps(data)
-                        )
-                )
+                msg_fmt = 'Can not create {typ}: ' \
+                          'missing required property "{name}" in {data}'
+                msg = msg_fmt.format(typ=cls.__name__,
+                                     name=prop.member_name(),
+                                     data=json.dumps(data)
+                                     )
+                raise TypeError(msg)
         return cls(**ctor_dict)
 
 
 def property(member_name, member_type,
              array=False, optional=False,
              documentation=None):
-    documentation = documentation or \
-                    str.format(
-                            'Property of type {typ}{arr}',
-                            typ=member_type,
-                            arr=('[]'.encode('ascii', 'ignore')
-                                 if array
-                                 else ''.encode('ascii', 'ignore'))
-                    )
-    typ = type(str((member_name + 'Property').encode('ascii', 'ignore')),
+    msg_fmt = 'Property of type {typ}{arr}'
+    msg = msg_fmt.format(
+        typ=member_type,
+        arr='[]'.encode('ascii', 'ignore')
+            if array else ''.encode('ascii', 'ignore')
+    )
+    documentation = documentation or msg
+    typ = type(member_name,
                (ModelProperty,),
-               {'__doc__': documentation})
+               {
+                   '__doc__': documentation,
+                   '__repr__': documentation
+               })
 
     return typ(member_name=member_name,
                member_type=member_type,
