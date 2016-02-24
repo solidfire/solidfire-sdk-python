@@ -1,3 +1,4 @@
+/docs/_build
 /solidfire/__init__.py
 /solidfire/models.py
 /solidfire/results.py
