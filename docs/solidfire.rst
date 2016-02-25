@@ -11,16 +11,16 @@ Subpackages
 Submodules
 ----------
 
-solidfire.models module
------------------------
+Models (solidfire.models)
+-------------------------
 
 .. automodule:: solidfire.models
     :members:
     :undoc-members:
     :show-inheritance:
 
-solidfire.results module
-------------------------
+Results (solidfire.results)
+---------------------------
 
 .. automodule:: solidfire.results
     :members:
@@ -28,8 +28,8 @@ solidfire.results module
     :show-inheritance:
 
 
-Module contents
----------------
+Element Module contents
+-----------------------
 
 .. automodule:: solidfire
     :members:
