@@ -41,6 +41,8 @@ class ModelProperty(object):
                 out[self._member_name] = None
         elif self._array:
             out[self._member_name] = [serialize(x) for x in data]
+        elif self._optional:
+            pass
         else:
             out[self._member_name] = serialize(data)
 
@@ -89,7 +91,7 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
             if k not in type(self)._properties:
                 msg_fmt = 'Key "{k}" is not a valid property'
                 msg = msg_fmt.format(k)
-                raise TypeError()
+                raise TypeError(msg)
             else:
                 setattr(self, k, v)
 
@@ -151,7 +153,7 @@ def property(member_name, member_type,
                (ModelProperty,),
                {
                    '__doc__': documentation,
-                   '__repr__': documentation
+                   '__repr__': repr(msg)
                })
 
     return typ(member_name=member_name,

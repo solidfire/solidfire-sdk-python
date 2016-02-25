@@ -196,8 +196,7 @@ class ServiceBase(object):
             'method': method_name,
             'id': 1,
             'params': dict(
-                (name, model.serialize(val))
-                for name, val in params.items()
+                (name, model.serialize(val)) for name, val in params.items()
             ),
         })
         response_raw = self._dispatcher.post(encoded)
