@@ -1,24 +1,54 @@
-A sample Python project
-=======================
+********************************
+SolidFire Element API Python SDK
+********************************
 
-A sample project that exists as an aid to the `Python Packaging User Guide
-<https://packaging.python.org>`_'s `Tutorial on Packaging and Distributing
-Projects <https://packaging.python.org/en/latest/distributing.html>`_.
+Python SDK library for interacting with the SolidFire Element API.
 
-This projects does not aim to cover best practices for Python project
-development as a whole. For example, it does not provide guidance or tool
-recommendations for version control, documentation, or testing.
 
-----
+Installation
+============
+To install globally with `pip` (if you have pip 1.3 or greater installed globally):::
 
-This is the README file for the project.
+ $ [sudo] pip install solidfire-sdk-python
 
-The file should use UTF-8 encoding and be written using ReStructured Text. It
-will be used to generate the project webpage on PyPI and will be displayed as
-the project homepage on common code-hosting services, and should be written for
-that purpose.
+**From Source**
++++++++++++++++
+.. Note::
+    It is recommended using virtualenv_ for isolating your python environment to the required libraries.
+    .. _virtualenv: https://github.com/pypa/virtualenv
+::
 
-Typical contents for this file would include an overview of the project, basic
-usage examples, etc. Generally, including the project changelog in here is not
-a good idea, although a simple "What's New" section for the most recent version
-may be appropriate.
+    git clone git@github.com:solidfire/solidfire-sdk-python.git
+    cd solidfire-sdk-python
+    pip install -e ".[dev,test, docs, release]"
+    python setup.py install
+
+Then you will need to append the location of this directory to your `PYTHONPATH` environment variable so you can use the
+ SDK in other python scripts.
+
+    export PYTHONPATH=$PYTHONPATH:/path/to/sf-python-sdk/
+
+That's it -- you are ready to start interacting with your SolidFire cluster using Python!
+
+**How To Use**
+
+Using the SolidFire Element API Python SDK is very straightforward.
+Just import the module, instantiate an instance of the `solidfire.Element` class, give it your authentication
+ credentials, and start asking the SolidFire Element API for data.::
+
+    >>> from solidfire import Element
+    >>> sf = Element('<MVIP>', '<YOUR USERNAME>', '<YOUR PASSWORD>', '<API VERSION>')
+    >>> result = sf.list_active_volumes()
+    >>> for volume in result.volumes:
+    ...     print('{id}, ({name}): size={vol_size} - QoS(min={min_iops}, max={max_iops}, burst={burst_iops}, burst_time={burst_time})'.format(
+    ...         id=volume.volume_id, name=volume.name,  vol_size=volume.total_size,
+    ...         min_iops=volume.qos.min_iops, max_iops=volume.qos.max_iops, burst_iops=volume.qos.burst_iops, burst_time=volume.qos.burst_time)
+    ...     )
+    ...
+    1, (VOLUME1): size=1000341504 - QoS(min=50, max=15000, burst=15000, burst_time=60)
+    2, (VOLUME2): size=2000683008 - QoS(min=5000, max=15000, burst=30000, burst_time=60)
+    3, (VOLUME3): size=1000341504 - QoS(min=50, max=15000, burst=15000, burst_time=60)
+    4, (VOLUME4): size=2000683008 - QoS(min=50, max=15000, burst=15000, burst_time=60)
+
+That is it! For a list of available methods (and a bit of documentation), run `help(Element)`.
+priate.
