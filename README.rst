@@ -7,14 +7,14 @@ Python SDK library for interacting with the SolidFire Element API.
 
 Installation
 ============
-To install globally with `pip` (if you have pip 1.3 or greater installed globally):
+To install globally with `pip` (if you have pip 1.3 or greater installed globally)::
 
     $ [sudo] pip install solidfire-sdk-python
 
 **From Source**
 +++++++++++++++
 Note
-It is recommended using `virtualenv`<https://github.com/pypa/virtualenv> for isolating your python environment to the required libraries.:::
+It is recommended using virtualenv <https://github.com/pypa/virtualenv> for isolating your python environment to the required libraries::
 
     $> git clone git@github.com:solidfire/solidfire-sdk-python.git
     $> cd solidfire-sdk-python
@@ -22,7 +22,7 @@ It is recommended using `virtualenv`<https://github.com/pypa/virtualenv> for iso
     $> python setup.py install
 
 Then you will need to append the location of this directory to your `PYTHONPATH` environment
-variable so you can use the SDK in other python scripts.
+variable so you can use the SDK in other python scripts::
 
     export PYTHONPATH=$PYTHONPATH:/path/to/sf-python-sdk/
 
