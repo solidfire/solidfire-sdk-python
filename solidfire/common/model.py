@@ -102,12 +102,21 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
     def __repr__(self):
         props = []
         for name, prop in sorted(type(self)._properties.items()):
-            if prop.array():
-                attrs = (repr(x) for x in getattr(self, name))
+
+            if prop.array() and hasattr(self, name):
+                try:
+                    iterator = iter(getattr(self, name))
+                except TypeError:
+                    attrs = []
+                else:
+                    attrs = (repr(x) for x in getattr(self, name))
                 msg_fmt = '[{arr}]'
                 r = msg_fmt.format(arr=str.join(', ', attrs))
             else:
-                r = repr(getattr(self, name))
+                try:
+                    r = repr(getattr(self, name))
+                except TypeError:
+                    pass
             msg_fmt = '{name}={repr}'
             msg = msg_fmt.format(name=name, repr=r)
             props.append(msg)
@@ -124,7 +133,9 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
     def extract(cls, data, strict=True):
         ctor_dict = {}
         for name, prop in cls._properties.items():
-            if prop.member_name() in data:
+            if data is None:
+                pass
+            elif prop.member_name() in data:
                 ctor_dict[name] = prop.extract_from(data[prop.member_name()])
             elif prop.optional():
                 ctor_dict[name] = None
