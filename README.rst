@@ -7,15 +7,14 @@ Python SDK library for interacting with the SolidFire Element API.
 
 Installation
 ============
-To install globally with `pip` (if you have pip 1.3 or greater installed globally):::
+To install globally with `pip` (if you have pip 1.3 or greater installed globally):
 
- $ [sudo] pip install solidfire-sdk-python
+    $ [sudo] pip install solidfire-sdk-python
 
 **From Source**
 +++++++++++++++
-.. :Note::
-    It is recommended using virtualenv_ for isolating your python environment to the required libraries.
-    https://github.com/pypa/virtualenv
+Note
+It is recommended using `virtualenv`<https://github.com/pypa/virtualenv> for isolating your python environment to the required libraries.:::
 
     $> git clone git@github.com:solidfire/solidfire-sdk-python.git
     $> cd solidfire-sdk-python
@@ -50,4 +49,3 @@ credentials, and start asking the SolidFire Element API for data.
     4, (VOLUME4): size=2000683008 - QoS(min=50, max=15000, burst=15000, burst_time=60)
 
 That is it! For a list of available methods (and a bit of documentation), run `help(Element)`.
-priate.
