@@ -13,8 +13,8 @@ To install globally with `pip` (if you have pip 1.3 or greater installed globall
 
 **From Source**
 +++++++++++++++
-Note
-It is recommended using virtualenv <https://github.com/pypa/virtualenv> for isolating your python environment to the required libraries::
+*Note*:
+It is recommended using virtualenv <https://github.com/pypa/virtualenv> for isolating your python environment to only the required libraries::
 
     $> git clone git@github.com:solidfire/solidfire-sdk-python.git
     $> cd solidfire-sdk-python
