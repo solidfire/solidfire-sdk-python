@@ -13,28 +13,27 @@ To install globally with `pip` (if you have pip 1.3 or greater installed globall
 
 **From Source**
 +++++++++++++++
-.. Note::
+.. :Note::
     It is recommended using virtualenv_ for isolating your python environment to the required libraries.
-    .. _virtualenv: https://github.com/pypa/virtualenv
-::
+    https://github.com/pypa/virtualenv
 
-    git clone git@github.com:solidfire/solidfire-sdk-python.git
-    cd solidfire-sdk-python
-    pip install -e ".[dev,test, docs, release]"
-    python setup.py install
+    $> git clone git@github.com:solidfire/solidfire-sdk-python.git
+    $> cd solidfire-sdk-python
+    $> pip install -e ".[dev,test, docs, release]"
+    $> python setup.py install
 
-Then you will need to append the location of this directory to your `PYTHONPATH` environment variable so you can use the
- SDK in other python scripts.
+Then you will need to append the location of this directory to your `PYTHONPATH` environment
+variable so you can use the SDK in other python scripts.
 
     export PYTHONPATH=$PYTHONPATH:/path/to/sf-python-sdk/
 
 That's it -- you are ready to start interacting with your SolidFire cluster using Python!
 
 **How To Use**
-
+++++++++++++++
 Using the SolidFire Element API Python SDK is very straightforward.
-Just import the module, instantiate an instance of the `solidfire.Element` class, give it your authentication
- credentials, and start asking the SolidFire Element API for data.::
+Just import the module, instantiate an instance of the `solidfire.Element` class, give it your authentication 
+credentials, and start asking the SolidFire Element API for data.
 
     >>> from solidfire import Element
     >>> sf = Element('<MVIP>', '<YOUR USERNAME>', '<YOUR PASSWORD>', '<API VERSION>')
