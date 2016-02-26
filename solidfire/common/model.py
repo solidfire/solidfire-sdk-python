@@ -15,6 +15,8 @@ def serialize(val):
         return KNOWN_CONVERSIONS[type(val)](val)
     elif isinstance(val, dict):
         return dict((k, serialize(v)) for k, v in val.items())
+    elif hasattr(val, '_optional') and val.optional():
+        return None
     else:
         return val
 
@@ -42,7 +44,9 @@ class ModelProperty(object):
         elif self._array:
             out[self._member_name] = [serialize(x) for x in data]
         elif self._optional:
-            pass
+            optional_data = serialize(data)
+            if optional_data is not None:
+                out[self._member_name] = optional_data
         else:
             out[self._member_name] = serialize(data)
 
