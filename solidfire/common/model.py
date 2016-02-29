@@ -55,7 +55,7 @@ class ModelProperty(object):
             return [] if data is None else [extract(self._member_type, x) for x
                                             in data]
         else:
-            return extract(self._member_type, data)
+            return None if data is None else extract(self._member_type, data)
 
     def member_name(self):
         return self._member_name
@@ -71,6 +71,18 @@ class ModelProperty(object):
 
     def documentation(self):
         return self._documentation
+
+    def known_default(self):
+        if self._member_type is int:
+            return 0
+        elif self._member_type is float:
+            return 0.0
+        elif self._member_type is str:
+            return ''
+        elif self._member_type is bool:
+            return False
+        else:
+            pass
 
 
 class MetaDataObject(type):
@@ -113,10 +125,7 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
                 msg_fmt = '[{arr}]'
                 r = msg_fmt.format(arr=str.join(', ', attrs))
             else:
-                try:
-                    r = repr(getattr(self, name))
-                except TypeError:
-                    pass
+                r = repr(getattr(self, name))
             msg_fmt = '{name}={repr}'
             msg = msg_fmt.format(name=name, repr=r)
             props.append(msg)
@@ -136,7 +145,8 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
             if data is None:
                 pass
             elif prop.member_name() in data:
-                ctor_dict[name] = prop.extract_from(data[prop.member_name()])
+                data_val = data[prop.member_name()]
+                ctor_dict[name] = prop.extract_from(data_val)
             elif prop.optional():
                 ctor_dict[name] = None
             elif prop.array():
