@@ -6,14 +6,12 @@ import json
 from contextlib import closing
 
 import pycurl
-from json.decoder import JSONDecodeError
 
 from solidfire.common import model
 
 
 class ApiServerError(Exception):
     def __init__(self, method_name, err_json):
-        from past.builtins import basestring
         if err_json is None:
             err_json = json.loads('{}')
         if err_json is {}:
@@ -181,7 +179,7 @@ class ApiVersionExceededError(Exception):
             '    Provided Api Version: {_api_version}\n'
             '    Max Version: {current_version}\n',
             current_version=self._current_version,
-            **self.__dict__,
+            **self.__dict__
         )
 
     @property
@@ -322,10 +320,10 @@ class ServiceBase(object):
         except pycurl.error as e:
             json_err = json.dumps(
                 {'error':
-                     { 'name': str(e.__class__).split('\'')[1],
-                       'code': 500,
-                       'message': e.args[1]
-                       }
+                     {'name': str(e.__class__).split('\'')[1],
+                      'code': 500,
+                      'message': e.args[1]
+                      }
                  }
             )
         if json_err is not None:
@@ -333,13 +331,13 @@ class ServiceBase(object):
 
         try:
             response = json.loads(response_raw)
-        except JSONDecodeError as e:
+        except Exception as e:
             json_err = json.dumps(
                 {'error':
-                     { 'name': 'JSONDecodeError',
-                       'code': 500,
-                       'message': str(e)
-                       }
+                     {'name': 'JSONDecodeError',
+                      'code': 500,
+                      'message': str(e)
+                      }
                  }
             )
         if json_err is not None:

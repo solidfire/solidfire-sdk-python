@@ -1,11 +1,16 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import json
+from __future__ import unicode_literals
 from future.utils import with_metaclass
+import json
 
 KNOWN_CONVERSIONS = {
     type(set): list
 }
+
+
+def asAscii(val):
+    return str(val.encode('ascii', 'ignore'))
 
 
 def serialize(val):
@@ -123,14 +128,16 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
                 else:
                     attrs = (repr(x) for x in getattr(self, name))
                 msg_fmt = '[{arr}]'
-                r = msg_fmt.format(arr=str.join(', ', attrs))
+                r = msg_fmt.format(
+                    arr=str.join(asAscii(', '), attrs))
             else:
                 r = repr(getattr(self, name))
             msg_fmt = '{name}={repr}'
             msg = msg_fmt.format(name=name, repr=r)
             props.append(msg)
-        return str.format('{cls}({props})', cls=type(self).__name__,
-                          props=str.join(', ', props))
+        return str.format(str('{cls}({props})'),
+                          cls=type(self).__name__,
+                          props=str.join(asAscii(', '), props))
 
     def to_json(self):
         out = {}
@@ -170,15 +177,15 @@ def property(member_name, member_type,
     msg_fmt = 'Property of type {typ}{arr}'
     msg = msg_fmt.format(
         typ=member_type,
-        arr='[]'.encode('ascii', 'ignore')
-            if array else ''.encode('ascii', 'ignore')
+        arr=asAscii('[]')
+            if array else asAscii('')
     )
     documentation = documentation or msg
-    typ = type(member_name,
+    typ = type(asAscii(member_name),
                (ModelProperty,),
                {
                    '__doc__': documentation,
-                   '__repr__': repr(msg)
+                   '__repr__': repr(asAscii(msg))
                })
 
     return typ(member_name=member_name,
