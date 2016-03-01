@@ -177,7 +177,8 @@ def property(member_name, member_type,
     typ = type(member_name,
                (ModelProperty,),
                {
-                   '__doc__': documentation
+                   '__doc__': documentation,
+                   '__repr__': repr(msg)
                })
 
     return typ(member_name=member_name,

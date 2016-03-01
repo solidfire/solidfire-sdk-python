@@ -47,57 +47,39 @@ class ApiServerError(Exception):
         return self._err_json.get('message', None)
 
 
-class ApiVersionError(Exception):
+class ApiMethodVersionError(Exception):
     def __init__(self,
                  method_name,
                  api_version,
-                 params=None,
-                 since=None,
+                 since,
                  deprecated=None):
         self._method_name = method_name
         self._api_version = float(api_version)
         self._since = float(since) if since is not None else since
-        self._deprecated = deprecated
-        self._params = params
-        self._violations = []
-        if params is not None:
-            for (name, value, since, deprecated) in params:
-                self._violations.append(
-                    name + ' (version: ' + str(since) + ')'
-                )
+        self._deprecated = float(deprecated) \
+            if deprecated is not None else deprecated
 
     def __repr__(self):
         return '%s(method_name="%s", ' \
                'api_version=%s, ' \
                'since=%s, ' \
-               'deprecated=%s, ' \
-               'params=%s)' % (
+               'deprecated=%s, ' % (
                    self.__class__.__name__,
                    self._method_name,
                    self._api_version,
                    self._since,
-                   self._deprecated,
-                   self._params
+                   self._deprecated
                )
 
     def __str__(self):
-        if self._params is not None:
-            return str.format(
-                '\n\tInvalid Parameter:'
-                '\n\tMethod: {_method_name}\n'
-                '\tApi Version: {_api_version}\n'
-                '\tInvalid Parameters: {_violations}\n',
-                **self.__dict__
-            )
-        else:
-            return str.format(
-                '\n\tInvalid Method:'
-                '\n\tMethod Name: {_method_name}\n'
-                '\tService Api Version: {_api_version}\n'
-                '\tMethod Exists Since: {_since}\n'
-                '\tMethod Deprecated: {_deprecated}',
-                **self.__dict__
-            )
+        return str.format(
+            '\n    Invalid Method:\n'
+            '    Method Name: {_method_name}\n'
+            '    Service Api Version: {_api_version}\n'
+            '    Method Exists Since: {_since}\n'
+            '    Method Deprecated: {_deprecated}\n',
+            **self.__dict__
+        )
 
     @property
     def method_name(self):
@@ -119,6 +101,51 @@ class ApiVersionError(Exception):
         """The version a service was deprecated"""
         return self._deprecated
 
+
+class ApiParameterVersionError(Exception):
+    def __init__(self,
+                 method_name,
+                 api_version,
+                 params):
+        self._method_name = method_name
+        self._api_version = float(api_version)
+        self._params = params
+        self._violations = []
+        if params is not None:
+            for (name, value, since, deprecated) in params:
+                self._violations.append(
+                    name + ' (version: ' + str(since) + ')'
+                )
+
+    def __repr__(self):
+        return '%s(method_name="%s", ' \
+               'api_version=%s, ' \
+               'params=%s, ' % (
+                   self.__class__.__name__,
+                   self._method_name,
+                   self._api_version,
+                   self._params,
+               )
+
+    def __str__(self):
+        return str.format(
+            '\n    Invalid Parameter:\n'
+            '    Method: {_method_name}\n'
+            '    Api Version: {_api_version}\n'
+            '    Invalid Parameters: {_violations}\n',
+            **self.__dict__
+        )
+
+    @property
+    def method_name(self):
+        """The name of the service method causing the error."""
+        return self._method_name
+
+    @property
+    def api_version(self):
+        """The version of the Element API Service"""
+        return self._api_version
+
     @property
     def params(self):
         """The parameters checked with a service call"""
@@ -128,6 +155,75 @@ class ApiVersionError(Exception):
     def violations(self):
         """The parameters violated with the service call"""
         return self._violations
+
+
+class ApiVersionExceededError(Exception):
+    def __init__(self,
+                 api_version,
+                 current_version):
+        self._api_version = float(api_version)
+        self._current_version = float(current_version)
+
+    def __repr__(self):
+        return '%s(api_version=%s, ' \
+               'current_version=%s, ' % (
+                   self.__class__.__name__,
+                   self._api_version,
+                   self._current_version
+               )
+
+    def __str__(self):
+        return str.format(
+            '\n    Version Exceeded:\n'
+            '    Provided Api Version: {_api_version}\n'
+            '    Max Version: {current_version}\n',
+            current_version=self._current_version,
+            **self.__dict__,
+        )
+
+    @property
+    def api_version(self):
+        """The version of the Element API Service"""
+        return self._api_version
+
+    @property
+    def current_version(self):
+        """The current version of the connected Element OS"""
+        return self._current_version
+
+
+class ApiVersionUnsupportedError(Exception):
+    def __init__(self,
+                 api_version,
+                 supported_versions):
+        self._api_version = float(api_version)
+        self._supported_versions = [float(i) for i in supported_versions]
+
+    def __repr__(self):
+        return '%s(api_version=%s, ' \
+               'supported_versions=%s' % (
+                   self.__class__.__name__,
+                   self._api_version,
+                   self._supported_versions
+               )
+
+    def __str__(self):
+        return str.format(
+            '\n    Version Unsupported:\n'
+            '    Provided Api Version: {_api_version}\n'
+            '    Supported Version: {_supported_versions}\n',
+            **self.__dict__
+        )
+
+    @property
+    def api_version(self):
+        """The version of the Element API Service"""
+        return self._api_version
+
+    @property
+    def supported_versions(self):
+        """The versions supported by the connected Element OS"""
+        return self._supported_versions
 
 
 class CurlDispatcher(object):
@@ -173,6 +269,23 @@ class ServiceBase(object):
 
     def __init__(self, mvip=None, username=None, password=None,
                  api_version=8.0, verify_ssl=True, dispatcher=None):
+        """
+        Constructor for initializing a connection to an instance of Element OS
+
+        :param mvip: the management IP (IP or hostname)
+        :type mvip: str
+        :param username: username use to connect to the Element OS instance.
+        :type username: str
+        :param password: authentication for username
+        :type password: str
+        :param api_version: specific version of Element OS to connect.
+        :type api_version: float
+        :param verify_ssl: disable to avoid ssl connection errors especially
+            when using an IP instead of a hostname
+        :type verify_ssl: bool
+        :param dispatcher: a prebuilt or custom http dispatcher
+        :return: a configured connection to an Element OS instance
+        """
 
         self._api_version = float(api_version)
         if not dispatcher:
@@ -211,11 +324,10 @@ class ServiceBase(object):
                               since,
                               deprecated=None):
         if since is not None and float(since) > self._api_version:
-            raise ApiVersionError(method_name,
-                                  self._api_version,
-                                  params=None,
-                                  since=float(since),
-                                  deprecated=deprecated)
+            raise ApiMethodVersionError(method_name,
+                                        self._api_version,
+                                        since=float(since),
+                                        deprecated=deprecated)
 
     def check_param_versions(self,
                              method_name,
@@ -228,6 +340,6 @@ class ServiceBase(object):
                 invalid.append((name, value, float(since), deprecated))
 
         if len(invalid) > 0:
-            raise ApiVersionError(method_name,
-                                  self._api_version,
-                                  invalid)
+            raise ApiParameterVersionError(method_name,
+                                           self._api_version,
+                                           invalid)
