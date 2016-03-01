@@ -290,7 +290,7 @@ class ServiceBase(object):
         self._api_version = float(api_version)
         if not dispatcher:
             endpoint = str.format('https://{mvip}/json-rpc/{api_version}',
-                                  mvip=mvip, api_version=api_version)
+                                  mvip=mvip, api_version=self._api_version)
             dispatcher = CurlDispatcher(endpoint, username, password,
                                         verify_ssl)
         self._dispatcher = dispatcher
