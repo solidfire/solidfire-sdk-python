@@ -5,6 +5,9 @@
 import json
 from contextlib import closing
 
+import pycurl
+from json.decoder import JSONDecodeError
+
 from solidfire.common import model
 
 
@@ -312,8 +315,36 @@ class ServiceBase(object):
                 (name, model.serialize(val)) for name, val in params.items()
             ),
         })
-        response_raw = self._dispatcher.post(encoded)
-        response = json.loads(response_raw)
+
+        json_err = None
+        try:
+            response_raw = self._dispatcher.post(encoded)
+        except pycurl.error as e:
+            json_err = json.dumps(
+                {'error':
+                     { 'name': str(e.__class__).split('\'')[1],
+                       'code': 500,
+                       'message': e.args[1]
+                       }
+                 }
+            )
+        if json_err is not None:
+            raise ApiServerError('', json_err)
+
+        try:
+            response = json.loads(response_raw)
+        except JSONDecodeError as e:
+            json_err = json.dumps(
+                {'error':
+                     { 'name': 'JSONDecodeError',
+                       'code': 500,
+                       'message': str(e)
+                       }
+                 }
+            )
+        if json_err is not None:
+            raise ApiServerError('', json_err)
+
         if 'error' in response:
             raise ApiServerError(method_name, response['error'])
         else:
