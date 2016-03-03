@@ -16,7 +16,7 @@ class ApiServerError(Exception):
             err_json = json.loads('{}')
         if err_json is {}:
             err_json = json.loads('{}')
-        if isinstance(err_json, basestring) and not err_json.strip():
+        if isinstance(err_json, str) and not err_json.strip():
             err_json = json.loads('{}')
 
         self._method_name = method_name
