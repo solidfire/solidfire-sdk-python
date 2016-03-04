@@ -129,7 +129,7 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
                     attrs = (repr(x) for x in getattr(self, name))
                 msg_fmt = '[{arr}]'
                 r = msg_fmt.format(
-                    arr=str.join(asAscii(', '), attrs))
+                    arr=str.join(str(', '), attrs))
             else:
                 r = repr(getattr(self, name))
             msg_fmt = '{name}={repr}'
@@ -137,7 +137,7 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
             props.append(msg)
         return str.format(str('{cls}({props})'),
                           cls=type(self).__name__,
-                          props=str.join(asAscii(', '), props))
+                          props=str.join(str(', '), props))
 
     def to_json(self):
         out = {}
@@ -177,8 +177,8 @@ def property(member_name, member_type,
     msg_fmt = 'Property of type {typ}{arr}'
     msg = msg_fmt.format(
         typ=member_type,
-        arr=asAscii('[]')
-            if array else asAscii('')
+        arr='[]'
+            if array else ''
     )
     documentation = documentation or msg
     typ = type(asAscii(member_name),

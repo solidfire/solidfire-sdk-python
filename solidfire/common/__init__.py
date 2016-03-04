@@ -6,8 +6,31 @@ import json
 from contextlib import closing
 
 import pycurl
+from logging import Logger
 
+from atomic import AtomicLong
 from solidfire.common import model
+import logging
+
+log = logging.getLogger(__name__)
+log.setLevel(logging.INFO)
+
+ch = logging.StreamHandler()
+ch.setLevel(logging.INFO)
+
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+ch.setFormatter(formatter)
+
+log.addHandler(ch)
+
+atomic_counter = AtomicLong(-1)
+
+
+def setLogLevel(level):
+    log.setLevel(level)
+    for handler in log.handlers:
+        handler.setLevel(level)
 
 
 class ApiServerError(Exception):
@@ -306,16 +329,21 @@ class ServiceBase(object):
 
         if params is None:
             params = {}
+
+        global atomic_counter
+        atomic_counter += 1
+        atomic_id = atomic_counter.value
         encoded = json.dumps({
             'method': method_name,
-            'id': 1,
+            'id': atomic_id if atomic_id > 0 else 0,
             'params': dict(
-                (name, model.serialize(val)) for name, val in params.items()
+                (name, model.serialize(val))
+                for name, val in params.items()
             ),
         })
 
-        json_err = None
         try:
+            log.info(msg=encoded)
             response_raw = self._dispatcher.post(encoded)
         except pycurl.error as e:
             json_err = json.dumps(
@@ -326,11 +354,11 @@ class ServiceBase(object):
                       }
                  }
             )
-        if json_err is not None:
             raise ApiServerError('', json_err)
 
         try:
             response = json.loads(response_raw)
+            log.debug(msg=response)
         except Exception as e:
             json_err = json.dumps(
                 {'error':
@@ -340,7 +368,6 @@ class ServiceBase(object):
                       }
                  }
             )
-        if json_err is not None:
             raise ApiServerError('', json_err)
 
         if 'error' in response:
