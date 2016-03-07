@@ -5,10 +5,10 @@
 import json
 from contextlib import closing
 
+import itertools
 import pycurl
 from logging import Logger
 
-from atomic import AtomicLong
 from solidfire.common import model
 import logging
 
@@ -24,7 +24,7 @@ ch.setFormatter(formatter)
 
 log.addHandler(ch)
 
-atomic_counter = AtomicLong(-1)
+atomic_counter = itertools.count()
 
 
 def setLogLevel(level):
@@ -331,8 +331,7 @@ class ServiceBase(object):
             params = {}
 
         global atomic_counter
-        atomic_counter += 1
-        atomic_id = atomic_counter.value
+        atomic_id = atomic_counter.next()
         encoded = json.dumps({
             'method': method_name,
             'id': atomic_id if atomic_id > 0 else 0,
