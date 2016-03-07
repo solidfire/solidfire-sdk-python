@@ -331,7 +331,10 @@ class ServiceBase(object):
             params = {}
 
         global atomic_counter
-        atomic_id = atomic_counter.next()
+        if hasattr(atomic_counter, 'next'):
+            atomic_id = atomic_counter.next()
+        else:
+            atomic_id = atomic_counter.__next__()
         encoded = json.dumps({
             'method': method_name,
             'id': atomic_id if atomic_id > 0 else 0,
