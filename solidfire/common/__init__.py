@@ -7,27 +7,29 @@ from contextlib import closing
 
 import itertools
 import pycurl
-from logging import Logger
-
-from solidfire.common import model
 import logging
 
-log = logging.getLogger(__name__)
-log.setLevel(logging.INFO)
+from solidfire.common import model
 
+log = logging.getLogger('solidfire.Element')
+log.setLevel(logging.INFO)
 ch = logging.StreamHandler()
 ch.setLevel(logging.INFO)
-
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-
+formatter = logging.Formatter(
+    '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 ch.setFormatter(formatter)
-
 log.addHandler(ch)
 
 atomic_counter = itertools.count()
 
 
 def setLogLevel(level):
+    """
+    Set the logging level of Element logger and all handlers.
+    :param level:  level must be an int or a str.
+    :return:
+    """
     log.setLevel(level)
     for handler in log.handlers:
         handler.setLevel(level)
@@ -263,6 +265,18 @@ class CurlDispatcher(object):
         self._credentials = str.format('{u}:{p}', u=username, p=password) \
             if (username or password) else None
         self._verify_ssl = verify_ssl
+        self._timeout = 300
+        self._connect_timeout = 300
+
+    def timeout(self, timeout_in_sec):
+        self._timeout = int(timeout_in_sec)
+
+    def connect_timeout(self, timeout_in_sec):
+        self._connect_timeout = int(timeout_in_sec)
+
+    def restore_timeout_defaults(self):
+        self._timeout = 300
+        self._connect_timeout = 300
 
     def post(self, data):
         """Post data to the associated endpoint
@@ -273,6 +287,8 @@ class CurlDispatcher(object):
             obuffer = CurlDispatcher.BytesIO()
             c.setopt(c.POSTFIELDS, data)
             c.setopt(c.WRITEFUNCTION, obuffer.write)
+            c.setopt(c.CONNECTTIMEOUT, self._connect_timeout)
+            c.setopt(c.TIMEOUT, self._timeout)
 
             if self._credentials:
                 c.setopt(c.HTTPAUTH, c.HTTPAUTH_BASIC)
@@ -318,6 +334,15 @@ class ServiceBase(object):
             dispatcher = CurlDispatcher(endpoint, username, password,
                                         verify_ssl)
         self._dispatcher = dispatcher
+
+    def timeout(self, timeout_in_sec):
+        self._dispatcher.timeout(timeout_in_sec)
+
+    def connect_timeout(self, timeout_in_sec):
+        self._dispatcher.connect_timeout(timeout_in_sec)
+
+    def restore_timeout_defaults(self):
+        self._dispatcher.restore_timeout_defaults()
 
     def _send_request(self, method_name,
                       result_type,
