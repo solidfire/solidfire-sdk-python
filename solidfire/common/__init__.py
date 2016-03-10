@@ -261,6 +261,14 @@ class CurlDispatcher(object):
         from io import StringIO as BytesIO
 
     def __init__(self, endpoint, username, password, verify_ssl):
+        """
+
+        :param endpoint:
+        :param username:
+        :param password:
+        :param verify_ssl:
+        :return:
+        """
         self._endpoint = endpoint
         self._credentials = str.format('{u}:{p}', u=username, p=password) \
             if (username or password) else None
@@ -269,19 +277,35 @@ class CurlDispatcher(object):
         self._connect_timeout = 300
 
     def timeout(self, timeout_in_sec):
+        """
+
+        :param timeout_in_sec:
+        :return:
+        """
         self._timeout = int(timeout_in_sec)
 
     def connect_timeout(self, timeout_in_sec):
+        """
+
+        :param timeout_in_sec:
+        :return:
+        """
         self._connect_timeout = int(timeout_in_sec)
 
     def restore_timeout_defaults(self):
+        """
+
+        :return:
+        """
         self._timeout = 300
         self._connect_timeout = 300
 
     def post(self, data):
-        """Post data to the associated endpoint
+        """
+        Post data to the associated endpoint
         and await the server's response.
-        :param data: """
+        :param data:
+        """
         with closing(CurlDispatcher.pycurl.Curl()) as c:
             c.setopt(c.URL, self._endpoint)
             obuffer = CurlDispatcher.BytesIO()
@@ -304,8 +328,10 @@ class CurlDispatcher(object):
 
 
 class ServiceBase(object):
-    """The base type for API services.
-    This performs the sending, encoding and decoding of requests."""
+    """
+    The base type for API services.
+    This performs the sending, encoding and decoding of requests.
+    """
 
     def __init__(self, mvip=None, username=None, password=None,
                  api_version=8.0, verify_ssl=True, dispatcher=None):
@@ -336,12 +362,26 @@ class ServiceBase(object):
         self._dispatcher = dispatcher
 
     def timeout(self, timeout_in_sec):
+        """
+
+        :param timeout_in_sec:
+        :return:
+        """
         self._dispatcher.timeout(timeout_in_sec)
 
     def connect_timeout(self, timeout_in_sec):
+        """
+
+        :param timeout_in_sec:
+        :return:
+        """
         self._dispatcher.connect_timeout(timeout_in_sec)
 
     def restore_timeout_defaults(self):
+        """
+
+        :return:
+        """
         self._dispatcher.restore_timeout_defaults()
 
     def _send_request(self, method_name,
@@ -415,6 +455,12 @@ class ServiceBase(object):
     def check_param_versions(self,
                              method_name,
                              params):
+        """
+
+        :param method_name:
+        :param params:
+        :return:
+        """
         invalid = []
         if params is None:
             params = []
