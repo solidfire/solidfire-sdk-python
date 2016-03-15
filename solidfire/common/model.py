@@ -9,7 +9,7 @@ KNOWN_CONVERSIONS = {
 }
 
 
-def asAscii(val):
+def as_ascii(val):
     return str(val.encode('ascii', 'ignore'))
 
 
@@ -95,6 +95,9 @@ class MetaDataObject(type):
         super(MetaDataObject, cls).__init__(name, bases, classdict)
         cls._create_properties()
 
+    def _create_properties(self):
+        pass
+
 
 class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
     _properties = None
@@ -122,7 +125,7 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
 
             if prop.array() and hasattr(self, name):
                 try:
-                    iterator = iter(getattr(self, name))
+                    iter(getattr(self, name))
                 except TypeError:
                     attrs = []
                 else:
@@ -135,9 +138,9 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
             msg_fmt = '{name}={repr}'
             msg = msg_fmt.format(name=name, repr=r)
             props.append(msg)
-        return str.format(str('{cls}({props})'),
-                          cls=type(self).__name__,
-                          props=str.join(str(', '), props))
+            str.format(str('{cls}({props})'),
+                       cls=type(self).__name__,
+                       props=str.join(str(', '), props))
 
     def to_json(self):
         out = {}
@@ -178,14 +181,14 @@ def property(member_name, member_type,
     msg = msg_fmt.format(
         typ=member_type,
         arr='[]'
-            if array else ''
+        if array else ''
     )
     documentation = documentation or msg
-    typ = type(asAscii(member_name),
+    typ = type(as_ascii(member_name),
                (ModelProperty,),
                {
                    '__doc__': documentation,
-                   '__repr__': repr(asAscii(msg))
+                   '__repr__': repr(as_ascii(msg))
                })
 
     return typ(member_name=member_name,

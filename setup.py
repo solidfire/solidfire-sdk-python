@@ -12,7 +12,7 @@ with open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 
-class clean(_clean):
+class Clean(_clean):
     def remove_dir(self, dir_to_del):
         if os.path.exists(dir_to_del):
             dir_util.remove_tree(dir_to_del, dry_run=self.dry_run)
@@ -82,7 +82,6 @@ setup(
     },
 
     cmdclass={
-        'clean': clean,
+        'clean': Clean,
     },
-
 )

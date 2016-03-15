@@ -2,7 +2,7 @@
 
 from unittest.case import TestCase
 
-from hamcrest import *
+from hamcrest import assert_that, equal_to
 
 from solidfire.common import ApiVersionError
 
@@ -31,9 +31,9 @@ class TestApiVersionError(TestCase):
 
     def test_should_map_params_to_violations(self):
         version_err = ApiVersionError(
-                "aMethod",
-                7.0,
-                params=[("aName", "aValue", 8.0, 9.0)]
+            "aMethod",
+            7.0,
+            params=[("aName", "aValue", 8.0, 9.0)]
         )
 
         assert_that(version_err._violations,
@@ -46,9 +46,9 @@ class TestApiVersionError(TestCase):
 
     def test_repr_evals(self):
         version_err = ApiVersionError(
-                "aMethod",
-                7.0,
-                params=[("aName", "aValue", 8.0, 9.0)]
+            "aMethod",
+            7.0,
+            params=[("aName", "aValue", 8.0, 9.0)]
         )
 
         assert_that(eval(repr(version_err)), version_err)

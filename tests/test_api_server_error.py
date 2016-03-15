@@ -3,7 +3,7 @@
 import json
 from unittest.case import TestCase
 
-from hamcrest import *
+from hamcrest import assert_that, equal_to
 
 from solidfire.common import ApiServerError
 
@@ -98,4 +98,3 @@ class TestApiServerError(TestCase):
         )
 
         assert_that(eval(repr(api_error)), api_error)
-

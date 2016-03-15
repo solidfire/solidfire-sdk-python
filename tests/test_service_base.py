@@ -2,7 +2,8 @@
 
 from unittest.case import TestCase
 
-from hamcrest import *
+from hamcrest import \
+    assert_that, equal_to, starts_with, calling, is_, not_, raises, ends_with
 
 from solidfire.common import ServiceBase, ApiVersionError
 
@@ -111,7 +112,8 @@ class ServiceBaseCheckParamVersion(TestCase):
             not_(raises(ApiVersionError))
         )
 
-    def test_should_not_throw_api_version_exception_with_matching_version(self):
+    def test_should_not_throw_api_version_exception_with_matching_version(
+            self):
         service = ServiceBase(api_version=9.0)
         assert_that(
             calling(service.check_param_versions).with_args(
@@ -151,8 +153,8 @@ class ServiceBaseSendRequest(TestCase):
     def test_should_throw_api_version_exception_with_no_params(self):
         service = ServiceBase(api_version=9.0, dispatcher=NoOpDispatcher)
         assert_that(
-            calling(service._send_request)
-                .with_args("aMethod", None, since=10.0),
+            calling(
+                service._send_request
+            ).with_args("aMethod", None, since=10.0),
             raises(ApiVersionError)
         )
-

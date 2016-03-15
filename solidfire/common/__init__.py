@@ -257,6 +257,7 @@ class CurlDispatcher(object):
     pycurl.version_info()
     try:
         from io import BytesIO
+        assert BytesIO
     except ImportError:
         from io import StringIO as BytesIO
 
@@ -414,12 +415,14 @@ class ServiceBase(object):
             response_raw = self._dispatcher.post(encoded)
         except pycurl.error as e:
             json_err = json.dumps(
-                {'error':
-                     {'name': str(e.__class__).split('\'')[1],
-                      'code': 500,
-                      'message': e.args[1]
-                      }
-                 }
+                {
+                    'error':
+                        {
+                            'name': str(e.__class__).split('\'')[1],
+                            'code': 500,
+                            'message': e.args[1]
+                        }
+                }
             )
             raise ApiServerError('', json_err)
 
@@ -428,12 +431,14 @@ class ServiceBase(object):
             log.debug(msg=response)
         except Exception as e:
             json_err = json.dumps(
-                {'error':
-                     {'name': 'JSONDecodeError',
-                      'code': 500,
-                      'message': str(e)
-                      }
-                 }
+                {
+                    'error':
+                        {
+                            'name': 'JSONDecodeError',
+                            'code': 500,
+                            'message': str(e)
+                        }
+                }
             )
             raise ApiServerError('', json_err)
 
