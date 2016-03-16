@@ -9,7 +9,7 @@ Installation
 ============
 To install globally with `pip` (if you have pip 1.3 or greater installed globally)::
 
-    $ [sudo] pip install solidfire-sdk-python
+    $> pip install solidfire-sdk-python
 
 **From Source**
 +++++++++++++++
