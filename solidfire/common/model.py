@@ -138,9 +138,9 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
             msg_fmt = '{name}={repr}'
             msg = msg_fmt.format(name=name, repr=r)
             props.append(msg)
-            str.format(str('{cls}({props})'),
-                       cls=type(self).__name__,
-                       props=str.join(str(', '), props))
+        return str.format(str('{cls}({props})'),
+                          cls=type(self).__name__,
+                          props=str.join(str(', '), props))
 
     def to_json(self):
         out = {}
