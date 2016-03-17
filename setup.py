@@ -62,13 +62,13 @@ setup(
         'Programming Language :: Python :: 3.5',
     ],
 
-    keywords='solidfire nas iscsi fiberchannel storage api sdk',
+    keywords='solidfire nas iscsi fibre channel storage api sdk',
 
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 
-    install_requires=['pycurl>=7.19.0', 'future>=0.15.2'],
+    install_requires=['pycurl>=7.19.0', 'future>=0.15.2', 'sphinx_rtd_theme'],
 
-    # $ pip install -e ".[dev,test, docs, release]"
+    # $> pip install -e ".[dev,test, docs, release]"
     extras_require={
         'dev': ['check-manifest'],
         'test': [
