@@ -62,7 +62,8 @@ setup(
 
     keywords='solidfire nas iscsi fiberchannel storage api sdk',
 
-    packages=find_packages(exclude=['contrib', 'docs', 'tests']),
+    packages=find_packages("src", exclude=['contrib', 'docs', 'tests']),
+    package_dir = {'':'src'},
 
     # Alternatively, if you want to distribute just a my_module.py, uncomment
     # this:
