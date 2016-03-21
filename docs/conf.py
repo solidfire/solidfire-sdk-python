@@ -15,7 +15,7 @@ project = 'solidfire-sdk-python'
 copyright = '2014-2016, NetApp, Inc.  All Rights Reserved.'
 author = 'Jason Ryan Womack'
 version = '1.0'
-release = '1.0.0.dev1'
+release = '1.0.0'
 language = 'en'
 
 exclude_patterns = ['_build']
