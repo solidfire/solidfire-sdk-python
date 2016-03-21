@@ -21,6 +21,8 @@ language = 'en'
 exclude_patterns = ['_build']
 pygments_style = 'sphinx'
 todo_include_todos = True
+autoclass_content = 'both'
+seen_element = False
 
 
 def setup(app):
