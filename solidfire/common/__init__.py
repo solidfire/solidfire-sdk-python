@@ -61,12 +61,8 @@ class ApiServerError(Exception):
         :param err_json: the json formatted error received from the service.
         :type err_json: str
         """
-        if err_json is None:
-            err_json = json.loads('{}')
-        if err_json is {}:
-            err_json = json.loads('{}')
         if isinstance(err_json, str) and not err_json.strip():
-            err_json = json.loads('{}')
+            err_json = '{}'
 
         self._method_name = method_name
         self._err_json = err_json
@@ -89,17 +85,19 @@ class ApiServerError(Exception):
     @property
     def error_name(self):
         """The name of the error."""
-        return json.loads(self._err_json).get('name', 'Unknown')
+        return json.loads(self._err_json)\
+            .get('error', {}).get('name', 'Unknown')
 
     @property
     def error_code(self):
         """The numeric code for this error."""
-        return int(json.loads(self._err_json).get('code', 500))
+        return int(json.loads(self._err_json)
+                   .get('error', {}).get('code', 500))
 
     @property
     def message(self):
         """A user-friendly message returned from the server."""
-        return json.loads(self._err_json).get('message', None)
+        return json.loads(self._err_json).get('error', {}).get('message', None)
 
 
 class ApiMethodVersionError(Exception):
@@ -142,7 +140,7 @@ class ApiMethodVersionError(Exception):
         return '%s(method_name="%s", ' \
                'api_version=%s, ' \
                'since=%s, ' \
-               'deprecated=%s, ' % (
+               'deprecated=%s) ' % (
                    self.__class__.__name__,
                    self._method_name,
                    self._api_version,
@@ -220,7 +218,7 @@ class ApiParameterVersionError(Exception):
     def __repr__(self):
         return '%s(method_name="%s", ' \
                'api_version=%s, ' \
-               'params=%s, ' % (
+               'params=%s) ' % (
                    self.__class__.__name__,
                    self._method_name,
                    self._api_version,
@@ -281,7 +279,7 @@ class ApiVersionExceededError(Exception):
 
     def __repr__(self):
         return '%s(api_version=%s, ' \
-               'current_version=%s, ' % (
+               'current_version=%s) ' % (
                    self.__class__.__name__,
                    self._api_version,
                    self._current_version
@@ -332,7 +330,7 @@ class ApiVersionUnsupportedError(Exception):
 
     def __repr__(self):
         return '%s(api_version=%s, ' \
-               'supported_versions=%s' % (
+               'supported_versions=%s)' % (
                    self.__class__.__name__,
                    self._api_version,
                    self._supported_versions
