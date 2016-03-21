@@ -10,10 +10,8 @@ python:
   - "3.5"
   - "3.5-dev"
 
-
 install:
   - pip install tox
   - pip install -e ".[dev,test, docs, release]"
-  - pip install pytest-flake8
 
 script: tox
