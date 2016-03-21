@@ -89,17 +89,17 @@ class ApiServerError(Exception):
     @property
     def error_name(self):
         """The name of the error."""
-        return self._err_json.get('name', 'Unknown')
+        return json.loads(self._err_json).get('name', 'Unknown')
 
     @property
     def error_code(self):
         """The numeric code for this error."""
-        return int(self._err_json.get('code', 500))
+        return int(json.loads(self._err_json).get('code', 500))
 
     @property
     def message(self):
         """A user-friendly message returned from the server."""
-        return self._err_json.get('message', None)
+        return json.loads(self._err_json).get('message', None)
 
 
 class ApiMethodVersionError(Exception):
