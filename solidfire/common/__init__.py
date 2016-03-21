@@ -567,13 +567,27 @@ class ServiceBase(object):
                         }
                 }
             )
-            raise ApiServerError('', json_err)
+            raise ApiServerError(method_name, json_err)
+
+        if "401 Unauthorized." in response_raw:
+            json_err = json.dumps(
+                {
+                    'error':
+                        {
+                            'name': 'AuthorizationError',
+                            'code': 401,
+                            'message': 'Username or password incorrect.'
+                        }
+                }
+            )
+            raise ApiServerError('login', json_err)
 
         try:
             response = json.loads(response_raw)
             log.debug(msg=response)
         except Exception as e:
-            json_err = json.dumps(
+            log.error(msg=response_raw)
+            response = json.dumps(
                 {
                     'error':
                         {
@@ -583,7 +597,6 @@ class ServiceBase(object):
                         }
                 }
             )
-            raise ApiServerError('', json_err)
 
         if 'error' in response:
             raise ApiServerError(method_name, response['error'])
