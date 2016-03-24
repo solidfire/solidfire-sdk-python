@@ -15,8 +15,13 @@ To install globally with `pip` (if you have pip 1.3 or greater installed globall
 *Note*:
 It is recommended using virtualenv <https://github.com/pypa/virtualenv> for isolating your python environment to only the required libraries::
 
+    $> pip install -e git+https://github.com/solidfire/solidfire-sdk-python.git@develop#egg=solidfire-sdk-python
+
+Alternativly, for development purposes or to inspect the source, the following will work::
+
     $> git clone git@github.com:solidfire/solidfire-sdk-python.git
     $> cd solidfire-sdk-python
+    $> git checkout develop
     $> pip install -e ".[dev,test, docs, release]"
     $> python setup.py install
 
