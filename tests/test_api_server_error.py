@@ -44,7 +44,12 @@ class TestApiServerError(TestCase):
         assert_that(api_error.error_code, equal_to(505))
         assert_that(api_error.message, equal_to('aMessage'))
 
-    def test_should_map_json(self):
+    def test_repr_evals_no_json(self):
+        api_error = ApiServerError('aMethod', json.loads('{}', ))
+
+        assert_that(eval(repr(api_error)), api_error)
+
+    def test_repr_evals(self):
         api_error = ApiServerError(
             'aMethod',
             '{ \
@@ -54,27 +59,6 @@ class TestApiServerError(TestCase):
                     "message": "aMessage" \
                 } \
              }',
-        )
-
-        assert_that(api_error.error_name, equal_to('error_name'))
-        assert_that(api_error.error_code, equal_to(505))
-        assert_that(api_error.message, equal_to('aMessage'))
-
-    def test_repr_evals_no_json(self):
-        api_error = ApiServerError('aMethod', json.loads('{}', ))
-
-        assert_that(eval(repr(api_error)), api_error)
-
-    def test_repr_evals(self):
-        api_error = ApiServerError(
-            'aMethod',
-            json.loads(
-                '{ \
-                    "name": "error_name", \
-                    "code": 505, \
-                    "message": "aMessage" \
-                 }',
-            )
         )
 
         assert_that(eval(repr(api_error)), api_error)
