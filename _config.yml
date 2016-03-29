@@ -1,4 +1,6 @@
 # Site settings
+gems:
+   - jekyll-rst
 
 # Build settings
 markdown: redcarpet
