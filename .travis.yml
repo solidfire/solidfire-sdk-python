@@ -1,5 +1,5 @@
 language: python
-script: "./build.sh"
+script: "./scripts/build.sh"
 branches:
   only:
   - release/1.0.0
