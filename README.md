@@ -1,5 +1,6 @@
 ********************************
 SolidFire Element API Python SDK
+================================
 ********************************
 
 Python SDK library for interacting with the SolidFire Element API.
@@ -11,7 +12,7 @@ To install globally with `pip` (if you have pip 1.3 or greater installed globall
     $> pip install solidfire-sdk-python
 
 **From Source**
-+++++++++++++++
+---------------
 *Note*:
 It is recommended using virtualenv <https://github.com/pypa/virtualenv> for isolating your python environment to only the required libraries::
 
@@ -33,7 +34,7 @@ variable so you can use the SDK in other python scripts::
 That's it -- you are ready to start interacting with your SolidFire cluster using Python!
 
 **How To Use**
-++++++++++++++
+--------------
 Using the SolidFire Element API Python SDK is very straightforward.
 Just import the module, instantiate an instance of the `solidfire.Element` class, give it your authentication 
 credentials, and start asking the SolidFire Element API for data.
@@ -57,7 +58,7 @@ The parameter verify_ssl=False is useful when connecting to an IP or when ssl er
 That is it! For a list of available methods (and a bit of documentation), run `help(Element)`.
 
 **Logging**
-+++++++++++
+-----------
 To configure logging responses, execute the following:
 
     >>> from logging
@@ -70,7 +71,7 @@ To access the logger for the Element instance:
     >>> common.log
 
 **License**
-+++++++++++
+-----------
 Copyright © 2016 NetApp, Inc.  All rights reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
