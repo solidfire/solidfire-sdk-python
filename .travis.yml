@@ -2,32 +2,28 @@ language: python
 branches:
   only:
   - release/1.0.0
-
 matrix:
   include:
-    - os: linux
-      python: 2.7
-      env: TOXENV=py27
-    - os: linux
-      python: 3.3
-      env: TOXENV=py33
-    - os: linux
-      python: 3.4
-      env: TOXENV=py34
-    - os: linux
-      python: 3.5
-      env: TOXENV=py35
-
+  - os: linux
+    python: 2.7
+    env: TOXENV=py27
+  - os: linux
+    python: 3.3
+    env: TOXENV=py33
+  - os: linux
+    python: 3.4
+    env: TOXENV=py34
+  - os: linux
+    python: 3.5
+    env: TOXENV=py35
 install:
-  - pip install -e ".[dev,test, docs, release]"
-  - pip install tox coveralls
-
+- pip install -e ".[dev,test, docs, release]"
+- pip install tox coveralls
 script: tox
-
 after_success:
-  - ./scripts/build.sh
-  - coveralls
-
+- "./scripts/build.sh"
+- coveralls
 env:
   global:
-    secure: H94Flna0rJ0dO48pNcGKF4Z73rBJFPrUaQUs8OlEqpzNhsHSq1lGzpNIl0YPC+VbaKtrIb9c3p0C8hcElOzK9EvOYMzoxMlHj5JQ1F/3WyV20hXVEtNQ8xio9INa+GiBi7/Wf1zaqG8jofV9gP4Xeq198PEXYvXiad9aoqAbunpgSvswEb1a/KGF4FjvIshAnxA6NKNkXI2GeBDI1RnmtiW/vDWngzlxiVUGJ1tlYBhV2KtKnDGrAoYyWU51TobK9OyKLmki8kxRx//kYTENBUKvrpg1607pNproeQbxEA3HXsqNYy7mPgzuIHIkpyECFbHitmWkEIp8i443MqV4cS+PZOE15tJNfvl039ni3bhb2HK002VaFsizWvylwikWpa3erfJ4wc2TDhnUSmKpuw6L1cN3FGvCabN2yJTixFlxmlNKIE0xUQR2QplAcfDC672VgDgmq7oa8ASyrE40JkbMmgtiKzXobtu53M0d/Y3ZuuUgiDF1cszMv5uM8kqxrEuSrIxU/A5M6b2op9aHxosI8PiGBjDzmq5LI3Q+UMeAwugGRATmXuJ+YXuGCbxIVJ6MuAAg5g4xDB8xN9edVxmPYf26hTe5vxWwB+Vy4lc3mRykA4dCdM5Mf2rR5fvA+DSSNeBsn95gZ6Z18ZkVtJBOSGbL+z5GgseUPvAvPB4=
+  - secure: H94Flna0rJ0dO48pNcGKF4Z73rBJFPrUaQUs8OlEqpzNhsHSq1lGzpNIl0YPC+VbaKtrIb9c3p0C8hcElOzK9EvOYMzoxMlHj5JQ1F/3WyV20hXVEtNQ8xio9INa+GiBi7/Wf1zaqG8jofV9gP4Xeq198PEXYvXiad9aoqAbunpgSvswEb1a/KGF4FjvIshAnxA6NKNkXI2GeBDI1RnmtiW/vDWngzlxiVUGJ1tlYBhV2KtKnDGrAoYyWU51TobK9OyKLmki8kxRx//kYTENBUKvrpg1607pNproeQbxEA3HXsqNYy7mPgzuIHIkpyECFbHitmWkEIp8i443MqV4cS+PZOE15tJNfvl039ni3bhb2HK002VaFsizWvylwikWpa3erfJ4wc2TDhnUSmKpuw6L1cN3FGvCabN2yJTixFlxmlNKIE0xUQR2QplAcfDC672VgDgmq7oa8ASyrE40JkbMmgtiKzXobtu53M0d/Y3ZuuUgiDF1cszMv5uM8kqxrEuSrIxU/A5M6b2op9aHxosI8PiGBjDzmq5LI3Q+UMeAwugGRATmXuJ+YXuGCbxIVJ6MuAAg5g4xDB8xN9edVxmPYf26hTe5vxWwB+Vy4lc3mRykA4dCdM5Mf2rR5fvA+DSSNeBsn95gZ6Z18ZkVtJBOSGbL+z5GgseUPvAvPB4=
+  - secure: aJ1UFtreEcmQFzgMIwMy/vEqU39fSkIn0XjlZaGoBLKmkj0FWdoT9DaVvXgokDUoFOxwDeSy/TiHH9NJ4EuH7ioIkFooqAz4s8BS0xAqpTfcEs1tvsSnjOsO5mQ+D/gN2SMqg3UaEwRJitarcAp0Zq5e9RE/Rrv7zGqqN2+WNhCQpVa9tdM4qZTlblk+bVIlOa4njnyOma34HbJrjV9NDcxEFVyoGchpDs1HGHoMtMc5YhSfkC2W9t6vDsoJGtCIamsyydjn+H0YeWH/RSmnkA1bTzFn9Az+eUuPg3Zwk6d3uk5aEIKyK+0T5l+YBxGXh7860TXAkVJFCtVnlqhmbD8qWa19Q2PXjqdjo6mOJylh3Pm517ml/yELC5fFCrDDggMN++EfVRwsCAlgYYGOm/QWRSlsCR/xgMpAbOBdKFk3xoGt1WaKf7IWXpfMzzveBN6WKe34Hfp1lBLfXxDwCqPrXc5wKfPNSI75MI2rVH9ESPeSJNIn5KCYtmhBZ6hyrwtR7RpPvf8mGypFOou2gTy/Ez1Vm1rgExS3MIRz4aCuz0/lOX9/BEGMcOJcfZ69bhJplBTKIBdsAqhT7apcRYbZoL15csNoQHZ25xgy+dIuztoKfVQDbfndfDVXbXzFj40ZhSnGJ/iTYSDifHksNmLx016YURljkm65yUaiiUQ=
