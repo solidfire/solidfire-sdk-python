@@ -1,7 +1,5 @@
-********************************
 SolidFire Element API Python SDK
 ================================
-********************************
 
 Python SDK library for interacting with the SolidFire Element API.
 
