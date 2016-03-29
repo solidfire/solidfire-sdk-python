@@ -25,7 +25,7 @@ install:
 script: tox
 
 after_success:
-  script: "./scripts/build.sh"
+  - "./scripts/build.sh"
   - coveralls
 
 env:
