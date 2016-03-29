@@ -3,8 +3,10 @@
 # enable error reporting to the console
 set -ev
 
+echo $TOXENV
+
 # only proceed script when started not by pull request (PR)
-if [ $TRAVIS_PULL_REQUEST == "true" ]; then
+if [ "$TRAVIS_BRANCH" != release* ] || [ "$TOXENV" != "py35" ]; then
   echo "this is PR, exiting"
   exit 0
 fi
