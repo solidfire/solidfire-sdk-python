@@ -1,5 +1,4 @@
 language: python
-script: "./scripts/build.sh"
 branches:
   only:
   - release/1.0.0
@@ -18,18 +17,6 @@ matrix:
     - os: linux
       python: 3.5
       env: TOXENV=py35
-    - os: osx
-      python: 2.7
-      env: TOXENV=py27
-    - os: osx
-      python: 3.3
-      env: TOXENV=py33
-    - os: osx
-      python: 3.4
-      env: TOXENV=py34
-    - os: osx
-      python: 3.5
-      env: TOXENV=py35
 
 install:
   - pip install -e ".[dev,test, docs, release]"
@@ -38,6 +25,7 @@ install:
 script: tox
 
 after_success:
+  script: "./scripts/build.sh"
   - coveralls
 
 env:
