@@ -4,9 +4,10 @@
 set -ev
 
 echo $TOXENV
+echo $TRAVIS_BRANCH
 
 # only proceed script when started not by pull request (PR)
-if [ "$TRAVIS_BRANCH" != release* ] || [ "$TOXENV" != "py35" ]; then
+if ![[ "$TRAVIS_BRANCH" =~ "^release" ]] || [ "$TOXENV" != "py35" ]; then
   echo "this is PR, exiting"
   exit 0
 fi
@@ -15,6 +16,8 @@ fi
 git clone -b  gh-pages https://${GH_TOKEN}@github.com/solidfire/solidfire-sdk-python.git ../solidfire-sdk-python.gh-pages
 
 # copy generated HTML site to "master" branch
+ls
+cat ../solidfire-sdk-python.gh-pages/front.yml ./README.rst
 cat ../solidfire-sdk-python.gh-pages/front.yml ./README.rst > ../solidfire-sdk-python.gh-pages/index.md
 
 # commit and push generated content to `master' branch
