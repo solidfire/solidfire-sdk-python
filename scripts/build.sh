@@ -25,4 +25,4 @@ git config user.email "jason.womack@solidfire.com"
 git config user.name "Jason Ryan Womack"
 git add -A .
 git commit -a -m "Travis #$TRAVIS_BUILD_NUMBER"
-git push origin gh-pages
+git push --quiet origin gh-pages > /dev/null 2>&1
