@@ -7,7 +7,7 @@ echo $TOXENV
 echo $TRAVIS_BRANCH
 
 # only proceed script when started not by pull request (PR)
-if ![[ "$TRAVIS_BRANCH" =~ "^release" ]] || [ "$TOXENV" != "py35" ]; then
+if [[ "$TRAVIS_BRANCH" == feature* ]] || [[ "$TOXENV" != "py35" ]]; then
   echo "this is PR, exiting"
   exit 0
 fi
