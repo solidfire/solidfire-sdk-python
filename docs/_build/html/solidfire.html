@@ -8,10 +8,12 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>solidfire package &mdash; solidfire-sdk-python 1.0.0.dev1 documentation</title>
+  <title>solidfire package &mdash; SolidFire Python SDK v1.0.0.101</title>
   
 
   
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
   
 
   
@@ -32,7 +34,7 @@
   
 
   
-    <link rel="top" title="solidfire-sdk-python 1.0.0.dev1 documentation" href="index.html"/>
+    <link rel="top" title="SolidFire Python SDK v1.0.0.101" href="index.html"/>
         <link rel="next" title="solidfire.common package" href="solidfire.common.html"/>
         <link rel="prev" title="Welcome to solidfire’s documentation!" href="index.html"/> 
 
@@ -56,13 +58,16 @@
           
 
           
+            
+            <img src="_static/PythonSDK.png" class="logo" />
+          
           </a>
 
           
             
             
               <div class="version">
-                1.0
+                1.0.0
               </div>
             
           
@@ -458,12 +463,12 @@ replicated.</p>
 </li>
 <li><strong>pause_limit</strong> (<em>int</em>) &#8211; [required] The number of occurring write ops before
 auto-pausing, on a per volume pair level.</li>
-<li><strong>remote_service_id</strong> (<em>int</em>) &#8211; [required]</li>
-<li><strong>resume_details</strong> (<em>str</em>) &#8211; [required]</li>
+<li><strong>remote_service_id</strong> (<em>int</em>) &#8211; [required] The remote slice service ID.</li>
+<li><strong>resume_details</strong> (<em>str</em>) &#8211; [required] Reserved for future use.</li>
 <li><strong>snapshot_replication</strong> (<a class="reference internal" href="#solidfire.models.SnapshotReplication" title="solidfire.models.SnapshotReplication"><em>SnapshotReplication</em></a>) &#8211; [required] The details of snapshot
 replication.</li>
-<li><strong>state</strong> (<em>str</em>) &#8211; [required] The state of the remote replication.</li>
-<li><strong>state_details</strong> (<em>str</em>) &#8211; [required] The details of the remote replication.</li>
+<li><strong>state</strong> (<em>str</em>) &#8211; [required] The state of the volume replication.</li>
+<li><strong>state_details</strong> (<em>str</em>) &#8211; [required] Reserved for future use.</li>
 </ul>
 </td>
 </tr>
@@ -657,7 +662,7 @@ is a part of. If not present, this snapshot is not part of a group.</li>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>state</strong> (<em>str</em>) &#8211; [required] The state of the snapshot replication.</li>
-<li><strong>state_details</strong> (<em>str</em>) &#8211; [required] The details of the snapshot replication.</li>
+<li><strong>state_details</strong> (<em>str</em>) &#8211; [required] Reserved for future use.</li>
 </ul>
 </td>
 </tr>
@@ -1924,7 +1929,7 @@ operation set at 100 IOPS.</td>
 <li><strong>mvip</strong> (<em>str</em>) &#8211; the management IP (IP or hostname)</li>
 <li><strong>username</strong> (<em>str</em>) &#8211; username use to connect to the Element OS instance.</li>
 <li><strong>password</strong> (<em>str</em>) &#8211; authentication for username</li>
-<li><strong>api_version</strong> (<em>float</em>) &#8211; specific version of Element OS to connect</li>
+<li><strong>api_version</strong> (<em>float or str</em>) &#8211; specific version of Element OS to connect</li>
 <li><strong>verify_ssl</strong> (<em>bool</em>) &#8211; disable to avoid ssl connection errors especially
 when using an IP instead of a hostname</li>
 <li><strong>dispatcher</strong> &#8211; a prebuilt or custom http dispatcher</li>
@@ -3231,7 +3236,7 @@ format</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0.0.dev1',
+            VERSION:'1.0.0.101',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
