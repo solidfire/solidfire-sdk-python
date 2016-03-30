@@ -44,7 +44,7 @@ Dependencies
 ------------
 **PycURL**
 
-The Solidfire Python SDK depends on the pycurl library which depends on an installed SSL library.  If your installation fails due to pycurl, this is most likely due to a missing SSL dependency. OpenSSL is the recomended SSL backend for all linux flavors. See the pycul installation notes for further information.::
+The Solidfire Python SDK depends on the pycurl library which depends on an installed SSL library.  If your installation fails due to pycurl, this is most likely due to a missing SSL dependency. OpenSSL is the recomended SSL backend for all linux flavors. See the pycul installation notes for further information.
 
 <http://pycurl.io/docs/latest/install.html#a-note-regarding-ssl-backends>
 
