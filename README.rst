@@ -32,7 +32,7 @@ $> python setup.py install
 Then you will need to append the location of this directory to your `PYTHONPATH` environment
 variable so you can use the SDK in other python scripts::
 
-export PYTHONPATH=$PYTHONPATH:/path/to/sf-python-sdk/
+$> export PYTHONPATH=$PYTHONPATH:/path/to/sf-python-sdk/
 
 That's it -- you are ready to start interacting with your SolidFire cluster using Python!
 
