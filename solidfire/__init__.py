@@ -69,7 +69,7 @@ class Element(ServiceBase):
         :param password: authentication for username
         :type password: str
         :param api_version: specific version of Element OS to connect
-        :type api_version: float
+        :type api_version: float or str
         :param verify_ssl: disable to avoid ssl connection errors especially
             when using an IP instead of a hostname
         :type verify_ssl: bool
@@ -88,7 +88,7 @@ class Element(ServiceBase):
                              0.0, verify_ssl, dispatcher)
 
         api = self.get_api()
-        if api_version > float(api.current_version):
+        if float(api_version) > float(api.current_version):
             raise ApiVersionExceededError(api_version, api.current_version)
         elif str(api_version) not in api.supported_versions:
             raise ApiVersionUnsupportedError(api_version,
