@@ -7,6 +7,12 @@ SolidFire Element API Python SDK
 
 Python SDK library for interacting with the SolidFire Element API.
 
+Minimum versions:
+
+    Python 2: 2.7+
+    
+    Python 3: 3.3+
+
 Installation
 ============
 To install globally with `pip` (if you have pip 1.3 or greater installed globally)::
@@ -34,6 +40,14 @@ variable so you can use the SDK in other python scripts::
     export PYTHONPATH=$PYTHONPATH:/path/to/sf-python-sdk/
 
 That's it -- you are ready to start interacting with your SolidFire cluster using Python!
+
+Dependencies
+------------
+**PycURL**
+
+The Solidfire Python SDK depends on the pycurl library which depends on an installed SSL library.  If your installation fails due to pycurl, this is most likely due to a missing SSL dependency. OpenSSL is the recomended SSL backend for all linux flavors. See the pycul installation notes for further information.
+
+    <http://pycurl.io/docs/latest/install.html#a-note-regarding-ssl-backends>
 
 **How To Use**
 --------------
