@@ -63,7 +63,7 @@ That is it! For a list of available methods (and a bit of documentation), run `h
 -----------
 To configure logging responses, execute the following:
 
-    >>> from logging
+    >>> import logging
     >>> from solidfire import common
     >>> common.setLogLevel(logging.DEBUG)
 
