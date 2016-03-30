@@ -118,7 +118,7 @@ class SnapshotReplication(data_model.DataObject):
     :param state: [required] The state of the snapshot replication.
     :type state: str
 
-    :param state_details: [required] The details of the snapshot replication.
+    :param state_details: [required] Reserved for future use.
     :type state_details: str
     """
 
@@ -134,7 +134,7 @@ class SnapshotReplication(data_model.DataObject):
         "stateDetails", str,
         array=False, optional=False,
         documentation="\
-        The details of the snapshot replication.\
+        Reserved for future use.\
         "
     )
 
@@ -263,20 +263,20 @@ class RemoteReplication(data_model.DataObject):
         auto-pausing, on a per volume pair level.
     :type pause_limit: int
 
-    :param remote_service_id: [required]
+    :param remote_service_id: [required] The remote slice service ID.
     :type remote_service_id: int
 
-    :param resume_details: [required]
+    :param resume_details: [required] Reserved for future use.
     :type resume_details: str
 
     :param snapshot_replication: [required] The details of snapshot
         replication.
     :type snapshot_replication: SnapshotReplication
 
-    :param state: [required] The state of the remote replication.
+    :param state: [required] The state of the volume replication.
     :type state: str
 
-    :param state_details: [required] The details of the remote replication.
+    :param state_details: [required] Reserved for future use.
     :type state_details: str
     """
 
@@ -323,13 +323,17 @@ class RemoteReplication(data_model.DataObject):
     remote_service_id = data_model.property(
         "remoteServiceID", int,
         array=False, optional=False,
-        documentation=None
+        documentation="\
+        The remote slice service ID.\
+        "
     )
 
     resume_details = data_model.property(
         "resumeDetails", str,
         array=False, optional=False,
-        documentation=None
+        documentation="\
+        Reserved for future use.\
+        "
     )
 
     snapshot_replication = data_model.property(
@@ -344,7 +348,7 @@ class RemoteReplication(data_model.DataObject):
         "state", str,
         array=False, optional=False,
         documentation="\
-        The state of the remote replication.\
+        The state of the volume replication.\
         "
     )
 
@@ -352,7 +356,7 @@ class RemoteReplication(data_model.DataObject):
         "stateDetails", str,
         array=False, optional=False,
         documentation="\
-        The details of the remote replication.\
+        Reserved for future use.\
         "
     )
 
