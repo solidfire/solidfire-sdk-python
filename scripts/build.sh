@@ -18,7 +18,9 @@ git clone -b  gh-pages https://${GH_TOKEN}@github.com/solidfire/solidfire-sdk-py
 IMAGE_URL=$(sed '4!d' README.rst | sed 's/.. image:: //')
 
 # copy generated HTML site to "master" branch
-head  -n 3 README.rst && printf '<img src="%s">' "$IMAGE_URL"  && tail -n+5 README.rst > ../solidfire-sdk-python.gh-pages/README.md
+head  -n 3 README.rst > ../solidfire-sdk-python.gh-pages/README.md
+printf '<img src="%s">' "$IMAGE_URL"  >> ../solidfire-sdk-python.gh-pages/README.md
+tail -n+5 README.rst >> ../solidfire-sdk-python.gh-pages/README.md
 
 cat ../solidfire-sdk-python.gh-pages/front.yml ../solidfire-sdk-python.gh-pages/README.rst > ../solidfire-sdk-python.gh-pages/index.md
 
