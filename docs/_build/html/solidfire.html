@@ -453,10 +453,11 @@ QoS.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>mode</strong> (<em>str</em>) &#8211; <p>[required] Volume replication mode.</p>
 <p>Possible values:</p>
-<p><strong>Async</strong>: Waits for system to acknowledge that data is stored on
-source before writing to the target.</p>
-<p><strong>Sync</strong>: Does not wait for data transmission acknowledgment from
-source to begin writing data to the target.</p>
+<p><strong>Async</strong>: Writes are acknowledged when they complete locally. The
+cluster does not wait for writes to be replicated to the target
+cluster.</p>
+<p><strong>Sync</strong>: Source acknowledges write when the data is stored locally and
+on the remote cluster.</p>
 <p><strong>SnapshotsOnly</strong>: Only snapshots created on the source cluster will be
 replicated. Active writes from the source volume will not be
 replicated.</p>
