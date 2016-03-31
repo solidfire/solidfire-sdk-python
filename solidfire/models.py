@@ -245,11 +245,12 @@ class RemoteReplication(data_model.DataObject):
 
         Possible values:
 
-        **Async**: Waits for system to acknowledge that data is stored on
-        source before writing to the target.
+        **Async**: Writes are acknowledged when they complete locally. The
+        cluster does not wait for writes to be replicated to the target
+        cluster.
 
-        **Sync**: Does not wait for data transmission acknowledgment from
-        source to begin writing data to the target.
+        **Sync**: Source acknowledges write when the data is stored locally and
+        on the remote cluster.
 
         **SnapshotsOnly**: Only snapshots created on the source cluster will be
         replicated. Active writes from the source volume will not be
@@ -292,13 +293,14 @@ class RemoteReplication(data_model.DataObject):
 \
 \
 \
-        **Async**: Waits for system to acknowledge that data is stored on\
-        source before writing to the target.\
+        **Async**: Writes are acknowledged when they complete locally. The\
+        cluster does not wait for writes to be replicated to the target\
+        cluster.\
 \
 \
 \
-        **Sync**: Does not wait for data transmission acknowledgment from\
-        source to begin writing data to the target.\
+        **Sync**: Source acknowledges write when the data is stored locally\
+        and on the remote cluster.\
 \
 \
 \
