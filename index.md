@@ -26,10 +26,10 @@ It is recommended using virtualenv <https://github.com/pypa/virtualenv> for isol
 
     $> pip install -e git+https://github.com/solidfire/solidfire-sdk-python.git@release/1.0.0#egg=solidfire-sdk-python
 
-Alternativly, for development purposes or to inspect the source, the following will work:
+Alternatively, for development purposes or to inspect the source, the following will work::
 
-    $> git clone git@github.com:solidfire/solidfire-sdk-python.git
-    $> cd solidfire-sdk-python
+    $> git clone git@github.com:solidfire/solidfire-sdk-python.git  
+    $> cd solidfire-sdk-python  
     $> git checkout release/1.0.0
     $> pip install -e ".[dev,test, docs, release]"
     $> python setup.py install
@@ -45,7 +45,7 @@ Dependencies
 ------------
 **PycURL**
 
-The Solidfire Python SDK depends on the pycurl library which depends on an installed SSL library.  If your installation fails due to pycurl, this is most likely due to a missing SSL dependency. OpenSSL is the recomended SSL backend for all linux flavors. See the pycul installation notes for further information.
+The Solidfire Python SDK depends on the PycURL library which depends on an installed SSL library.  If your installation fails due to PycURL, this is most likely due to a missing SSL dependency. OpenSSL is the recomended SSL backend for all linux flavors. See the PycURL installation notes for further information.
 
 <http://pycurl.io/docs/latest/install.html#a-note-regarding-ssl-backends>
 
