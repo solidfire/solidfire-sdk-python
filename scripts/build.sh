@@ -22,7 +22,7 @@ head  -n 3 README.rst > ../solidfire-sdk-python.gh-pages/README.md
 printf '<img src="%s">' "$IMAGE_URL"  >> ../solidfire-sdk-python.gh-pages/README.md
 tail -n+5 README.rst >> ../solidfire-sdk-python.gh-pages/README.md
 
-cat ../solidfire-sdk-python.gh-pages/front.yml ../solidfire-sdk-python.gh-pages/README.rst > ../solidfire-sdk-python.gh-pages/index.md
+cat ../solidfire-sdk-python.gh-pages/front.yml ../solidfire-sdk-python.gh-pages/README.md > ../solidfire-sdk-python.gh-pages/index.md
 
 # commit and push generated content to `master' branch
 # since repository was cloned in write mode with token auth - we can push there
