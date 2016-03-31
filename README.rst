@@ -1,6 +1,8 @@
 SolidFire Element API Python SDK
 ================================
 
+.. image:: https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/gh-pages/_static/PythonSDK-58x58.png 
+
 Python SDK library for interacting with the SolidFire Element API.
 
 Minimum versions:
