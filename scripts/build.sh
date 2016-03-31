@@ -18,7 +18,9 @@ git clone -b  gh-pages https://${GH_TOKEN}@github.com/solidfire/solidfire-sdk-py
 IMAGE_URL=$(sed '4!d' README.rst | sed 's/.. image:: //')
 
 # copy generated HTML site to "master" branch
-cat ../solidfire-sdk-python.gh-pages/front.yml && head  -n 3 README.rst && printf '<img src="%s">' "$IMAGE_URL"  && tail -n+5 README.rst    > ../solidfire-sdk-python.gh-pages/index.md
+head  -n 3 README.rst && printf '<img src="%s">' "$IMAGE_URL"  && tail -n+5 README.rst > ../solidfire-sdk-python.gh-pages/README.md
+
+cat ../solidfire-sdk-python.gh-pages/front.yml ../solidfire-sdk-python.gh-pages/README.rst > ../solidfire-sdk-python.gh-pages/index.md
 
 # commit and push generated content to `master' branch
 # since repository was cloned in write mode with token auth - we can push there
