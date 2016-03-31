@@ -16,7 +16,7 @@ Minimum versions:
 
 Installation
 ============
-To install globally with `pip` (if you have pip 1.3 or greater installed globally):
+To install globally with `pip` (if you have pip 1.3 or greater installed globally)::
 
     $> pip install solidfire-sdk-python
 
@@ -24,7 +24,7 @@ To install globally with `pip` (if you have pip 1.3 or greater installed globall
 ---------------
 *Note*:
 
-It is recommended using virtualenv <https://github.com/pypa/virtualenv> for isolating your python environment to only the required libraries:
+It is recommended using virtualenv <https://github.com/pypa/virtualenv> for isolating your python environment to only the required libraries::
 
     $> pip install -e git+https://github.com/solidfire/solidfire-sdk-python.git@release/1.0.0#egg=solidfire-sdk-python
 
@@ -37,7 +37,7 @@ Alternatively, for development purposes or to inspect the source, the following 
     $> python setup.py install
 
 Then you will need to append the location of this directory to your `PYTHONPATH` environment
-variable so you can use the SDK in other python scripts:
+variable so you can use the SDK in other python scripts::
 
     $> export PYTHONPATH=$PYTHONPATH:/path/to/sf-python-sdk/
 
