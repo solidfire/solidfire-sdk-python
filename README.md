@@ -1,7 +1,3 @@
----
-title: Solidfire Python SDK
-layout: index
----
 SolidFire Element API Python SDK
 ================================
 
