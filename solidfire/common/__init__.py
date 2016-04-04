@@ -385,7 +385,7 @@ class CurlDispatcher(object):
             if (username or password) else None
         self._verify_ssl = verify_ssl
         self._timeout = 300
-        self._connect_timeout = 300
+        self._connect_timeout = 30
 
     def timeout(self, timeout_in_sec):
         """
@@ -418,10 +418,11 @@ class CurlDispatcher(object):
     def restore_timeout_defaults(self):
         """
         Restores the Connection and Read Timeout to their original durations of
-        300 seconds (5 minutes) each.
+        30 seconds for connection timeout and 300 seconds (5 minutes) for read
+        timeout.
         """
         self._timeout = 300
-        self._connect_timeout = 300
+        self._connect_timeout = 30
 
     def post(self, data):
         """
