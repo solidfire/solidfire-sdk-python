@@ -23,7 +23,7 @@ cat ../solidfire-sdk-python.gh-pages/front.yml ../solidfire-sdk-python.gh-pages/
 rm -rf ../solidfire-sdk-python.gh-pages/docs || :
 
 
-mv -f docs/_build/html/* ../solidfire-sdk-python.gh-pages
+mv -f -backup=numbered docs/_build/html/* ../solidfire-sdk-python.gh-pages
 mv ../solidfire-sdk-python.gh-pages/index.html docs-index.html
 
 # commit and push generated content to `master' branch
