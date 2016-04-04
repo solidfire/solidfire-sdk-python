@@ -20,12 +20,11 @@ sed 's/::$/:/' README.rst | tail -n+5 >> ../solidfire-sdk-python.gh-pages/README
 
 cat ../solidfire-sdk-python.gh-pages/front.yml ../solidfire-sdk-python.gh-pages/README.md > ../solidfire-sdk-python.gh-pages/index.md
 
-rm -rf ../solidfire-sdk-python.gh-pages/docs
+rm -rf ../solidfire-sdk-python.gh-pages/docs || :
 
-mkdir ../solidfire-sdk-python.gh-pages/docs
-mkdir ../solidfire-sdk-python.gh-pages/docs/1.0.0
 
-mv -f docs/_build/html/* ../solidfire-sdk-python.gh-pages/docs/1.0.0
+mv -f docs/_build/html/* ../solidfire-sdk-python.gh-pages
+mv ../solidfire-sdk-python.gh-pages/index.html docs-index.html
 
 # commit and push generated content to `master' branch
 # since repository was cloned in write mode with token auth - we can push there
