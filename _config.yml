@@ -1,5 +1,4 @@
 # Site settings
-include:
-        "docs/1.0.0/_static"
+include: [ "docs/1.0.0/_static" ]
 # Build settings
 markdown: kramdown
