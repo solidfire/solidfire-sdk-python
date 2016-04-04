@@ -11,6 +11,30 @@ Minimum versions:
 * Python 2: 2.7+
 * Python 3: 3.3+
 
+Dependencies
+------------
+**PycURL**
+
+The Solidfire Python SDK depends on the PycURL library which depends on an installed SSL library.  If your installation fails due to PycURL, this is most likely due to a missing SSL dependency. OpenSSL is the recomended SSL backend for all linux flavors.
+
+The following are instructions are required before installing the Solidfire SDK.  Instructions are Python 2.7 specific with examples of Python 3.3+ examples in the comments.
+
+**Ubuntu Pre-Installation Steps**::
+    
+    sudo apt-get install python-pip                                  # or python3-pip
+    sudo apt-get install libffi-dev libssl-dev libcurl4-openssl-dev
+    sudo apt-get install python-dev                                  # or python3.3-dev python3.4-dev python3.5-dev
+    pip install pyopenssl ndg-httpsclient pyasn1                     # use the correct version of pip (i.e. pip3.3)
+
+**RHEL/CentOS Pre-Installation Steps**::
+    
+    yum install epel-release
+    yum groupinstall 'Development Tools'
+    yum -y install python-setuptools python-pip python-wheel         # or python3-setuptools python3-pip python3-wheel
+    yum -y install libffi-devel openssl-devel libcurl
+    yum -y install python-devel                                      # or python3.3-devel python3.4-devel python3.5-devel 
+    pip install pyopenssl ndg-httpsclient pyasn1                     # use the correct version of pip (i.e. pip3.3)
+
 Installation
 ============
 To install globally with `pip` (if you have pip 1.3 or greater installed globally)::
@@ -23,30 +47,22 @@ To install globally with `pip` (if you have pip 1.3 or greater installed globall
 
 It is recommended using virtualenv <https://github.com/pypa/virtualenv> for isolating your python environment to only the required libraries::
 
-    $> pip install -e git+https://github.com/solidfire/solidfire-sdk-python.git@release/1.0.0#egg=solidfire-sdk-python
+    pip install -e git+https://github.com/solidfire/solidfire-sdk-python.git@release/1.0.0#egg=solidfire-sdk-python
 
 Alternatively, for development purposes or to inspect the source, the following will work::
 
-    $> git clone git@github.com:solidfire/solidfire-sdk-python.git  
-    $> cd solidfire-sdk-python  
-    $> git checkout release/1.0.0
-    $> pip install -e ".[dev,test, docs, release]"
-    $> python setup.py install
+    git clone git@github.com:solidfire/solidfire-sdk-python.git  
+    cd solidfire-sdk-python  
+    git checkout release/1.0.0
+    pip install -e ".[dev, test, docs, release]"
+    python setup.py install
 
 Then you will need to append the location of this directory to your `PYTHONPATH` environment
 variable so you can use the SDK in other python scripts::
 
-    $> export PYTHONPATH=$PYTHONPATH:/path/to/sf-python-sdk/
+    export PYTHONPATH=$PYTHONPATH:/path/to/sf-python-sdk/
 
 That's it -- you are ready to start interacting with your SolidFire cluster using Python!
-
-Dependencies
-------------
-**PycURL**
-
-The Solidfire Python SDK depends on the PycURL library which depends on an installed SSL library.  If your installation fails due to PycURL, this is most likely due to a missing SSL dependency. OpenSSL is the recomended SSL backend for all linux flavors. See the PycURL installation notes for further information.
-
-<http://pycurl.io/docs/latest/install.html#a-note-regarding-ssl-backends>
 
 **How To Use**
 --------------
