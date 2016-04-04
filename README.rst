@@ -11,35 +11,6 @@ Minimum versions:
 * Python 2: 2.7+
 * Python 3: 3.3+
 
-Installation
-============
-To install globally with `pip` (if you have pip 1.3 or greater installed globally)::
-
-    $> pip install solidfire-sdk-python
-
-**From Source**
----------------
-*Note*:
-
-It is recommended using virtualenv <https://github.com/pypa/virtualenv> for isolating your python environment to only the required libraries::
-
-    pip install -e git+https://github.com/solidfire/solidfire-sdk-python.git@release/1.0.0#egg=solidfire-sdk-python
-
-Alternatively, for development purposes or to inspect the source, the following will work::
-
-    git clone git@github.com:solidfire/solidfire-sdk-python.git  
-    cd solidfire-sdk-python  
-    git checkout release/1.0.0
-    pip install -e ".[dev,test, docs, release]"
-    python setup.py install
-
-Then you will need to append the location of this directory to your `PYTHONPATH` environment
-variable so you can use the SDK in other python scripts::
-
-    export PYTHONPATH=$PYTHONPATH:/path/to/sf-python-sdk/
-
-That's it -- you are ready to start interacting with your SolidFire cluster using Python!
-
 Dependencies
 ------------
 **PycURL**
@@ -63,6 +34,35 @@ The following are instructions are required before installing the Solidfire SDK.
     yum -y install libffi-devel openssl-devel libcurl
     yum -y install python-devel                                      # or python3.3-devel python3.4-devel python3.5-devel 
     pip install pyopenssl ndg-httpsclient pyasn1                     # use the correct version of pip (i.e. pip3.3)
+
+Installation
+============
+To install globally with `pip` (if you have pip 1.3 or greater installed globally)::
+
+    $> pip install solidfire-sdk-python
+
+**From Source**
+---------------
+*Note*:
+
+It is recommended using virtualenv <https://github.com/pypa/virtualenv> for isolating your python environment to only the required libraries::
+
+    pip install -e git+https://github.com/solidfire/solidfire-sdk-python.git@release/1.0.0#egg=solidfire-sdk-python
+
+Alternatively, for development purposes or to inspect the source, the following will work::
+
+    git clone git@github.com:solidfire/solidfire-sdk-python.git  
+    cd solidfire-sdk-python  
+    git checkout release/1.0.0
+    pip install -e ".[dev, test, docs, release]"
+    python setup.py install
+
+Then you will need to append the location of this directory to your `PYTHONPATH` environment
+variable so you can use the SDK in other python scripts::
+
+    export PYTHONPATH=$PYTHONPATH:/path/to/sf-python-sdk/
+
+That's it -- you are ready to start interacting with your SolidFire cluster using Python!
 
 **How To Use**
 --------------
