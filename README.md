@@ -14,7 +14,7 @@ Dependencies
 ------------
 **PycURL**
 
-The Solidfire Python SDK depends on the PycURL library which depends on an installed SSL library.  If your installation fails due to PycURL, this is most likely due to a missing SSL dependency. OpenSSL is the recomended SSL backend for all linux flavors.
+The Solidfire Python SDK depends on the PycURL library which depends on an installed SSL library.  If the installation fails due to PycURL, this is most likely due to a missing SSL dependency. OpenSSL is the recomended SSL backend for all linux flavors.
 
 The following are instructions are required before installing the Solidfire SDK.  Instructions are Python 2.7 specific with examples of Python 3.3+ examples in the comments.
 
@@ -36,15 +36,15 @@ The following are instructions are required before installing the Solidfire SDK.
 
 Installation
 ============
-To install globally with `pip` (if you have pip 1.3 or greater installed globally):
+To install globally with `pip` (requires pip 1.3 or greater installed globally):
 
-    $> pip install solidfire-sdk-python
+    pip install solidfire-sdk-python
 
 **From Source**
 ---------------
-*Note*:
+        *Note*: It is recommended using virtualenv <https://github.com/pypa/virtualenv> for isolating the python environment to only the required libraries.
 
-It is recommended using virtualenv <https://github.com/pypa/virtualenv> for isolating your python environment to only the required libraries:
+To install the latest version of the SDK:
 
     pip install -e git+https://github.com/solidfire/solidfire-sdk-python.git@release/1.0.0#egg=solidfire-sdk-python
 
@@ -56,8 +56,8 @@ Alternatively, for development purposes or to inspect the source, the following 
     pip install -e ".[dev, test, docs, release]"
     python setup.py install
 
-Then you will need to append the location of this directory to your `PYTHONPATH` environment
-variable so you can use the SDK in other python scripts:
+Then append the location of this directory to the `PYTHONPATH` environment
+variable to use the SDK in other python scripts:
 
     export PYTHONPATH=$PYTHONPATH:/path/to/sf-python-sdk/
 
@@ -66,7 +66,7 @@ That's it -- you are ready to start interacting with your SolidFire cluster usin
 **How To Use**
 --------------
 Using the SolidFire Element API Python SDK is very straightforward.
-Just import the module, instantiate an instance of the `solidfire.Element` class, give it your authentication 
+Just import the module, instantiate an instance of the `solidfire.Element` class, give it admin authentication 
 credentials, and start asking the SolidFire Element API for data.
 *Note*:
 The parameter *verify_ssl=False* is useful when connecting to an IP or when ssl errors are causing the connection to fail.
