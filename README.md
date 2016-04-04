@@ -42,7 +42,7 @@ To install globally with `pip` (requires pip 1.3 or greater installed globally):
 
 **From Source**
 ---------------
-        *Note*: It is recommended using virtualenv <https://github.com/pypa/virtualenv> for isolating the python environment to only the required libraries.
+*Note*: It is recommended using virtualenv <https://github.com/pypa/virtualenv> for isolating the python environment to only the required libraries.
 
 To install the latest version of the SDK:
 
@@ -68,8 +68,10 @@ That's it -- you are ready to start interacting with your SolidFire cluster usin
 Using the SolidFire Element API Python SDK is very straightforward.
 Just import the module, instantiate an instance of the `solidfire.Element` class, give it admin authentication 
 credentials, and start asking the SolidFire Element API for data.
-*Note*:
-The parameter *verify_ssl=False* is useful when connecting to an IP or when ssl errors are causing the connection to fail.
+
+*Note*: The parameter *verify_ssl=False* is useful when connecting to an IP or when ssl errors are causing the connection to fail.
+
+**Example**:
 
     >>> from solidfire import Element
     >>> sf = Element('<MVIP>', '<YOUR USERNAME>', '<YOUR PASSWORD>', '<API VERSION>', verify_ssl=False)
