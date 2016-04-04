@@ -100,6 +100,20 @@ To access the logger for the Element instance:
     >>> from solidfire import common
     >>> common.log
 
+**Timeouts**
+------------
+Connection timeout (useful for failing fast when a host becomes unreachable):
+
+    >>> from solidfire import Element
+    >>> sf = Element('<MVIP>', '<YOUR USERNAME>', '<YOUR PASSWORD>', '<API VERSION>', verify_ssl=False)
+    >>> sf.timeout(600)
+
+Read timeout (useful for extending time for a service call to return):
+
+    >>> from solidfire import Element
+    >>> sf = Element('<MVIP>', '<YOUR USERNAME>', '<YOUR PASSWORD>', '<API VERSION>', verify_ssl=False)
+    >>> sf.read_timeout(600)
+    
 **License**
 -----------
 Copyright © 2016 NetApp, Inc.  All rights reserved.
