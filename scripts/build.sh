@@ -24,7 +24,7 @@ rm -rf ../solidfire-sdk-python.gh-pages/docs || :
 
 
 cp -frl --backup=numbered docs/_build/html/* ../solidfire-sdk-python.gh-pages
-cp -frl ../solidfire-sdk-python.gh-pages/index.html docs-index.html
+cp -frl ../solidfire-sdk-python.gh-pages/index.html ../solidfire-sdk-python.gh-pages/docs-index.html
 
 # commit and push generated content to `master' branch
 # since repository was cloned in write mode with token auth - we can push there
