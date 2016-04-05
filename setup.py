@@ -58,7 +58,7 @@ setup(
         'Intended Audience :: System Administrators',
 
         'Topic :: Utilities',
-        'Topic :: System :: Systems Administration'
+        'Topic :: System :: Systems Administration',
         'Topic :: Software Development :: Libraries :: Application Frameworks',
 
         'License :: OSI Approved :: Apache Software License',
