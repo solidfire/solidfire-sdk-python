@@ -6,7 +6,25 @@ SolidFire Element API Python SDK
 
 Python SDK library for interacting with the SolidFire Element API.
 
-Minimum versions:
+.. image:: https://img.shields.io/pypi/v/solidfire-sdk-python.svg
+    :target: https://badge.fury.io/py/solidfire-sdk-python
+    
+.. image:: https://img.shields.io/pypi/pyversions/solidfire-sdk-python.svg
+    :target: https://pypi.python.org/pypi/solidfire-sdk-python/
+    
+.. image:: https://img.shields.io/pypi/format/solidfire-sdk-python.svg
+    :target: https://pypi.python.org/pypi/solidfire-sdk-python/
+    
+.. image:: https://img.shields.io/pypi/dm/solidfire-sdk-python.svg
+    :target: https://pypi.python.org/pypi/solidfire-sdk-python/
+    
+.. image:: https://img.shields.io/pypi/l/solidfire-sdk-python.svg
+    :target: https://pypi.python.org/pypi/solidfire-sdk-python/
+    
+.. image:: https://img.shields.io/travis/solidfire/solidfire-sdk-python/release/1.0.0.svg
+    :target: https://travis-ci.org/solidfire/solidfire-sdk-python/branches
+    
+Minimum Python Versions:
 
 * Python 2: 2.7+
 * Python 3: 3.3+
