@@ -15,7 +15,7 @@ Python SDK library for interacting with the SolidFire Element API.
 .. image:: https://img.shields.io/pypi/format/solidfire-sdk-python.svg
     :target: https://pypi.python.org/pypi/solidfire-sdk-python/
     
-.. image:: https://img.shields.io/pypi/dd/solidfire-sdk-python.svg
+.. image:: https://img.shields.io/pypi/dm/solidfire-sdk-python.svg
     :target: https://pypi.python.org/pypi/solidfire-sdk-python/
     
 .. image:: https://img.shields.io/pypi/l/solidfire-sdk-python.svg
