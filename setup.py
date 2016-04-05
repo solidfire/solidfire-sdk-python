@@ -44,7 +44,7 @@ setup(
     url='https://github.com/solidfire/solidfire-sdk-python',
 
     author='Jason Ryan Womack',
-    author_email='jason.womack@solidfire.com',
+    author_email='jason.womack@netapp.com',
 
     license='Apache2',
 
@@ -75,7 +75,7 @@ setup(
 
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 
-    install_requires=['pycurl>=7.19.0', 'future>=0.15.2', 'sphinx_rtd_theme'],
+    install_requires=['pycurl>=7.19.0', 'future>=0.15.2'],
 
     # $> pip install -e ".[dev,test, docs, release]"
     extras_require={
