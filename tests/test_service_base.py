@@ -5,7 +5,8 @@ from unittest.case import TestCase
 from hamcrest import \
     assert_that, equal_to, starts_with, calling, is_, not_, raises, ends_with
 
-from solidfire.common import ServiceBase, ApiVersionError
+from solidfire.common import ServiceBase, ApiParameterVersionError, \
+    ApiMethodVersionError
 
 
 class NoOpDispatcher(object):
@@ -60,87 +61,92 @@ class TestServiceBase(TestCase):
 
 
 class ServiceBaseCheckMethodVersion(TestCase):
-    def test_should_not_throw_api_version_exception_with_no_since(self):
+    def test_should_not_raise_api_parameter_version_err_with_no_since(self):
         service = ServiceBase(api_version=9.0)
         assert_that(
             calling(service._check_method_version).with_args("aMethod", None),
-            not_(raises(ApiVersionError))
+            not_(raises(ApiParameterVersionError))
         )
 
-    def test_should_not_throw_api_version_exception_with_lower_version(self):
+    def test_should_not_raise_api_parameter_version_err_with_lower_version(
+            self):
         service = ServiceBase(api_version=9.0)
         assert_that(
             calling(service._check_method_version).with_args("aMethod", 8.0),
-            not_(raises(ApiVersionError))
+            not_(raises(ApiParameterVersionError))
         )
 
-    def test_should_not_throw_api_version_exception_with_version_match(self):
+    def test_should_not_raise_api_parameter_version_err_with_version_match(
+            self):
         service = ServiceBase(api_version=9.0)
         assert_that(
             calling(service._check_method_version).with_args("aMethod", 9.0),
-            not_(raises(ApiVersionError))
+            not_(raises(ApiParameterVersionError))
         )
 
-    def test_should_throw_api_version_exception(self):
+    def test_should_raise_api_method_version_err(self):
         service = ServiceBase(api_version=9.0)
         assert_that(
             calling(service._check_method_version).with_args("aMethod", 10.0),
-            raises(ApiVersionError)
+            raises(ApiMethodVersionError)
         )
 
 
 class ServiceBaseCheckParamVersion(TestCase):
-    def test_should_not_throw_api_version_exception_with_no_params(self):
+    def test_should_not_raise_api_parameter_version_err_with_no_params(self):
         service = ServiceBase(api_version=9.0)
         assert_that(
-            calling(service.check_param_versions).with_args("aMethod", None),
-            not_(raises(ApiVersionError))
+            calling(service._check_param_versions).with_args("aMethod", None),
+            not_(raises(ApiParameterVersionError))
         )
 
-    def test_should_not_throw_api_version_exception_with_empty_params(self):
-        service = ServiceBase(api_version=9.0)
-        assert_that(
-            calling(service.check_param_versions).with_args("aMethod", []),
-            not_(raises(ApiVersionError))
-        )
-
-    def test_should_not_throw_api_version_exception_with_lesser_version(self):
-        service = ServiceBase(api_version=9.0)
-        assert_that(
-            calling(service.check_param_versions).with_args(
-                "aMethod", [("aParam", "aValue", 8.0, None)]),
-            not_(raises(ApiVersionError))
-        )
-
-    def test_should_not_throw_api_version_exception_with_matching_version(
+    def test_should_not_raise_api_method_version_err_with_empty_params(
             self):
         service = ServiceBase(api_version=9.0)
         assert_that(
-            calling(service.check_param_versions).with_args(
-                "aMethod", [("aParam", "aValue", 9.0, None)]),
-            not_(raises(ApiVersionError))
+            calling(service._check_param_versions).with_args("aMethod", []),
+            not_(raises(ApiMethodVersionError))
         )
 
-    def test_should_throw_api_version_exception_with_greater_version(self):
+    def test_should_not_raise_api_parameter_version_err_with_lesser_version(
+            self):
         service = ServiceBase(api_version=9.0)
         assert_that(
-            calling(service.check_param_versions).with_args(
+            calling(service._check_param_versions).with_args(
+                "aMethod", [("aParam", "aValue", 8.0, None)]),
+            not_(raises(ApiParameterVersionError))
+        )
+
+    def test_should_not_raise_api_parameter_version_err_with_matching_version(
+            self):
+        service = ServiceBase(api_version=9.0)
+        assert_that(
+            calling(service._check_param_versions).with_args(
+                "aMethod", [("aParam", "aValue", 9.0, None)]),
+            not_(raises(ApiParameterVersionError))
+        )
+
+    def test_should_raise_api_parameter_version_err_with_greater_version(self):
+        service = ServiceBase(api_version=9.0)
+        assert_that(
+            calling(service._check_param_versions).with_args(
                 "aMethod", [("aParam", "aValue", 10.0, None)]),
-            raises(ApiVersionError,
+            raises(ApiParameterVersionError,
                    ".*Invalid Parameters: \['aParam \(version: 10.0\)'\]"
                    )
         )
 
-    def test_should_throw_api_version_exception_with_multiple_greater(self):
+    def test_should_raise_api_parameter_version_err_with_multiple_greater(
+            self):
         service = ServiceBase(api_version=9.0)
         assert_that(
-            calling(service.check_param_versions).with_args(
+            calling(service._check_param_versions).with_args(
                 "aMethod",
                 [
                     ("aParam", "aValue", 10.0, None),
                     ("2ndParam", "2ndValue", 11.0, None)
                 ]),
-            raises(ApiVersionError,
+            raises(ApiParameterVersionError,
                    ".*Invalid Parameters: \["
                    "'aParam \(version: 10.0\)', "
                    "'2ndParam \(version: 11.0\)'"
@@ -150,11 +156,11 @@ class ServiceBaseCheckParamVersion(TestCase):
 
 
 class ServiceBaseSendRequest(TestCase):
-    def test_should_throw_api_version_exception_with_no_params(self):
+    def test_should_raise_api_method_version_err_with_no_params(self):
         service = ServiceBase(api_version=9.0, dispatcher=NoOpDispatcher)
         assert_that(
             calling(
                 service._send_request
             ).with_args("aMethod", None, since=10.0),
-            raises(ApiVersionError)
+            raises(ApiMethodVersionError)
         )

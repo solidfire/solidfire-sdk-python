@@ -209,9 +209,6 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
                 cls._properties[name] = prop
 
     def __init__(self, **kwargs):
-        """
-        DataObject constructor.
-        """
         for k, v in kwargs.items():
             if k not in type(self)._properties:
                 msg_fmt = 'Key "{k}" is not a valid property'

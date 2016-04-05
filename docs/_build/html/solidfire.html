@@ -1,0 +1,3267 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>solidfire package &mdash; SolidFire Python SDK v1.0.0.102</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/solidfire.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SolidFire Python SDK v1.0.0.102" href="index.html"/>
+        <link rel="next" title="solidfire.common package" href="solidfire.common.html"/>
+        <link rel="prev" title="Welcome to solidfire’s documentation!" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> solidfire-sdk-python
+          
+
+          
+            
+            <img src="_static/PythonSDK.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">solidfire package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.common.html">solidfire.common package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-solidfire.models">Models (solidfire.models)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-solidfire.results">Results (solidfire.results)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-solidfire">Element Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">solidfire-sdk-python</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>solidfire package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/solidfire.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="solidfire-package">
+<h1>solidfire package<a class="headerlink" href="#solidfire-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.common.html">solidfire.common package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.common.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.common.html#module-solidfire.common.model">Common Model (solidfire.common.model)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.common.html#module-solidfire.common">Common Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-solidfire.models">
+<span id="models-solidfire-models"></span><h2>Models (solidfire.models)<a class="headerlink" href="#module-solidfire.models" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="solidfire.models.Account">
+<em class="property">class </em><code class="descclassname">solidfire.models.</code><code class="descname">Account</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.models.Account" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object containing information about an account.
+This object only includes &#8220;configured&#8221; information about the account, not
+any runtime or usage information.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>account_id</strong> (<em>int</em>) &#8211; [required] Unique <em>account_id</em> for the account.</li>
+<li><strong>username</strong> (<em>str</em>) &#8211; [required] User name for the account.</li>
+<li><strong>status</strong> (<em>str</em>) &#8211; [required] Current status of the account.</li>
+<li><strong>volumes</strong> (<em>int</em>) &#8211; [required] List of <em>volume_ids</em> for Volumes owned by this
+account.</li>
+<li><strong>initiator_secret</strong> (<em>str</em>) &#8211; (optional) CHAP secret to use for the initiator.</li>
+<li><strong>target_secret</strong> (<em>str</em>) &#8211; (optional) CHAP secret to use for the target (mutual
+CHAP authentication).</li>
+<li><strong>attributes</strong> (<em>dict</em>) &#8211; (optional) List of Name/Value pairs in JSON object
+format.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.models.Account.account_id">
+<code class="descname">account_id</code><a class="headerlink" href="#solidfire.models.Account.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Account.attributes">
+<code class="descname">attributes</code><a class="headerlink" href="#solidfire.models.Account.attributes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Account.initiator_secret">
+<code class="descname">initiator_secret</code><a class="headerlink" href="#solidfire.models.Account.initiator_secret" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Account.status">
+<code class="descname">status</code><a class="headerlink" href="#solidfire.models.Account.status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Account.target_secret">
+<code class="descname">target_secret</code><a class="headerlink" href="#solidfire.models.Account.target_secret" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Account.username">
+<code class="descname">username</code><a class="headerlink" href="#solidfire.models.Account.username" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Account.volumes">
+<code class="descname">volumes</code><a class="headerlink" href="#solidfire.models.Account.volumes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.models.GroupSnapshot">
+<em class="property">class </em><code class="descclassname">solidfire.models.</code><code class="descname">GroupSnapshot</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.models.GroupSnapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>Group Snapshot object represents a point-in-time copy of a group of
+volumes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>group_snapshot_id</strong> (<em>int</em>) &#8211; [required] Unique ID of the new group snapshot.</li>
+<li><strong>group_snapshot_uuid</strong> (<em>UUID</em>) &#8211; [required] UUID of the group snapshot.</li>
+<li><strong>members</strong> (<a class="reference internal" href="#solidfire.models.GroupSnapshotMembers" title="solidfire.models.GroupSnapshotMembers"><em>GroupSnapshotMembers</em></a>) &#8211; [required] List of <em>volume_ids</em> and <em>snapshot_ids</em> for each
+member of the group.</li>
+<li><strong>name</strong> (<em>str</em>) &#8211; [required] Name of the group snapshot, or, if none was given,
+the UTC formatted day and time on which the snapshot was created.</li>
+<li><strong>create_time</strong> (<em>str</em>) &#8211; [required] The UTC formatted day and time on which the
+snapshot was created.</li>
+<li><strong>status</strong> (<em>str</em>) &#8211; <p>[required] Status of the snapshot. Possible values:</p>
+<p><strong>Preparing</strong>: A snapshot that is being prepared for use and is not yet
+writable.</p>
+<p><strong>Done</strong>: A snapshot that has finished being prepared and is now usable</p>
+</li>
+<li><strong>attributes</strong> (<em>dict</em>) &#8211; [required] List of Name/Value pairs in JSON object
+format.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.models.GroupSnapshot.attributes">
+<code class="descname">attributes</code><a class="headerlink" href="#solidfire.models.GroupSnapshot.attributes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.GroupSnapshot.create_time">
+<code class="descname">create_time</code><a class="headerlink" href="#solidfire.models.GroupSnapshot.create_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.GroupSnapshot.group_snapshot_id">
+<code class="descname">group_snapshot_id</code><a class="headerlink" href="#solidfire.models.GroupSnapshot.group_snapshot_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.GroupSnapshot.group_snapshot_uuid">
+<code class="descname">group_snapshot_uuid</code><a class="headerlink" href="#solidfire.models.GroupSnapshot.group_snapshot_uuid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.GroupSnapshot.members">
+<code class="descname">members</code><a class="headerlink" href="#solidfire.models.GroupSnapshot.members" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.GroupSnapshot.name">
+<code class="descname">name</code><a class="headerlink" href="#solidfire.models.GroupSnapshot.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.GroupSnapshot.status">
+<code class="descname">status</code><a class="headerlink" href="#solidfire.models.GroupSnapshot.status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.models.GroupSnapshotMembers">
+<em class="property">class </em><code class="descclassname">solidfire.models.</code><code class="descname">GroupSnapshotMembers</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.models.GroupSnapshotMembers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>List of checksum, <em>volume_ids</em> and <em>snapshot_ids</em> for each member of the
+group.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>volume_id</strong> (<em>int</em>) &#8211; [required] The source volume ID for the snapshot.</li>
+<li><strong>snapshot_id</strong> (<em>int</em>) &#8211; [required] Unique ID of a snapshot from which the new
+snapshot is made. The <em>snapshot_id</em> passed must be a snapshot on the
+given volume.</li>
+<li><strong>snapshot_uuid</strong> (<em>str</em>) &#8211; [required] Universal Unique ID of an existing
+snapshot.</li>
+<li><strong>checksum</strong> (<em>str</em>) &#8211; [required] A string that represents the correct digits in
+the stored snapshot. This checksum can be used later to compare other
+snapshots to detect errors in the data.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.models.GroupSnapshotMembers.checksum">
+<code class="descname">checksum</code><a class="headerlink" href="#solidfire.models.GroupSnapshotMembers.checksum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.GroupSnapshotMembers.snapshot_id">
+<code class="descname">snapshot_id</code><a class="headerlink" href="#solidfire.models.GroupSnapshotMembers.snapshot_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.GroupSnapshotMembers.snapshot_uuid">
+<code class="descname">snapshot_uuid</code><a class="headerlink" href="#solidfire.models.GroupSnapshotMembers.snapshot_uuid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.GroupSnapshotMembers.volume_id">
+<code class="descname">volume_id</code><a class="headerlink" href="#solidfire.models.GroupSnapshotMembers.volume_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.models.MetadataHosts">
+<em class="property">class </em><code class="descclassname">solidfire.models.</code><code class="descname">MetadataHosts</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.models.MetadataHosts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The volume services on which the volume metadata resides.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dead_secondaries</strong> (<em>int</em>) &#8211; [required] Secondary metadata (slice) services
+that are in a dead state.</li>
+<li><strong>live_secondaries</strong> (<em>int</em>) &#8211; [required] Secondary metadata (slice) services
+that are currently in a &#8220;live&#8221; state.</li>
+<li><strong>primary</strong> (<em>int</em>) &#8211; [required] The primary metadata (slice) services hosting
+the volume.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.models.MetadataHosts.dead_secondaries">
+<code class="descname">dead_secondaries</code><a class="headerlink" href="#solidfire.models.MetadataHosts.dead_secondaries" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.MetadataHosts.live_secondaries">
+<code class="descname">live_secondaries</code><a class="headerlink" href="#solidfire.models.MetadataHosts.live_secondaries" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.MetadataHosts.primary">
+<code class="descname">primary</code><a class="headerlink" href="#solidfire.models.MetadataHosts.primary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.models.QoS">
+<em class="property">class </em><code class="descclassname">solidfire.models.</code><code class="descname">QoS</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.models.QoS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>Quality of Service (QoS) values are used on SolidFire volumes to provision
+performance expectations.
+Minimum, maximum and burst <em>qos</em> values can be set within the ranges
+specified in the <em>qos</em> table below.</p>
+<p>Volumes created without specified <em>qos</em> values are created with the Default
+values listed below.
+Default values can be found by running the <em>get_default_qos</em> method.</p>
+<p><strong>minIOPS</strong> Min: 100/50 (v7.0/v8.0), Default: 100, Max: 15,000</p>
+<p><strong>maxIOPS</strong> Min: 100/50 (v7.0/v8.0), Default: 15,000, Max: 100,000</p>
+<p><strong>burstIOPS</strong> Min: 100/50 (v7.0/v8.0), Default: 15,000, Max: 100,000</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>min_iops</strong> (<em>int</em>) &#8211; (optional) Desired minimum 4KB IOPS to guarantee. The
+allowed IOPS will only drop below this level if all volumes have been
+capped at their minimum IOPS value and there is still insufficient
+performance capacity.</li>
+<li><strong>max_iops</strong> (<em>int</em>) &#8211; (optional) Desired maximum 4KB IOPS allowed over an
+extended period of time.</li>
+<li><strong>burst_iops</strong> (<em>int</em>) &#8211; (optional) Maximum &#8220;peak&#8221; 4KB IOPS allowed for short
+periods of time. Allows for bursts of I/O activity over the normal max
+IOPS value.</li>
+<li><strong>burst_time</strong> (<em>int</em>) &#8211; <p>(optional) The length of time burst IOPS is allowed. The
+value returned is represented in time units of seconds.</p>
+<p><strong>Note</strong>: this value is calculated by the system based on IOPS set for
+QoS.</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.models.QoS.burst_iops">
+<code class="descname">burst_iops</code><a class="headerlink" href="#solidfire.models.QoS.burst_iops" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.QoS.burst_time">
+<code class="descname">burst_time</code><a class="headerlink" href="#solidfire.models.QoS.burst_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.QoS.max_iops">
+<code class="descname">max_iops</code><a class="headerlink" href="#solidfire.models.QoS.max_iops" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.QoS.min_iops">
+<code class="descname">min_iops</code><a class="headerlink" href="#solidfire.models.QoS.min_iops" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.models.RemoteReplication">
+<em class="property">class </em><code class="descclassname">solidfire.models.</code><code class="descname">RemoteReplication</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.models.RemoteReplication" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>Details on the volume replication.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>mode</strong> (<em>str</em>) &#8211; <p>[required] Volume replication mode.</p>
+<p>Possible values:</p>
+<p><strong>Async</strong>: Writes are acknowledged when they complete locally. The
+cluster does not wait for writes to be replicated to the target
+cluster.</p>
+<p><strong>Sync</strong>: Source acknowledges write when the data is stored locally and
+on the remote cluster.</p>
+<p><strong>SnapshotsOnly</strong>: Only snapshots created on the source cluster will be
+replicated. Active writes from the source volume will not be
+replicated.</p>
+</li>
+<li><strong>pause_limit</strong> (<em>int</em>) &#8211; [required] The number of occurring write ops before
+auto-pausing, on a per volume pair level.</li>
+<li><strong>remote_service_id</strong> (<em>int</em>) &#8211; [required] The remote slice service ID.</li>
+<li><strong>resume_details</strong> (<em>str</em>) &#8211; [required] Reserved for future use.</li>
+<li><strong>snapshot_replication</strong> (<a class="reference internal" href="#solidfire.models.SnapshotReplication" title="solidfire.models.SnapshotReplication"><em>SnapshotReplication</em></a>) &#8211; [required] The details of snapshot
+replication.</li>
+<li><strong>state</strong> (<em>str</em>) &#8211; [required] The state of the volume replication.</li>
+<li><strong>state_details</strong> (<em>str</em>) &#8211; [required] Reserved for future use.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.models.RemoteReplication.mode">
+<code class="descname">mode</code><a class="headerlink" href="#solidfire.models.RemoteReplication.mode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.RemoteReplication.pause_limit">
+<code class="descname">pause_limit</code><a class="headerlink" href="#solidfire.models.RemoteReplication.pause_limit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.RemoteReplication.remote_service_id">
+<code class="descname">remote_service_id</code><a class="headerlink" href="#solidfire.models.RemoteReplication.remote_service_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.RemoteReplication.resume_details">
+<code class="descname">resume_details</code><a class="headerlink" href="#solidfire.models.RemoteReplication.resume_details" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.RemoteReplication.snapshot_replication">
+<code class="descname">snapshot_replication</code><a class="headerlink" href="#solidfire.models.RemoteReplication.snapshot_replication" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.RemoteReplication.state">
+<code class="descname">state</code><a class="headerlink" href="#solidfire.models.RemoteReplication.state" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.RemoteReplication.state_details">
+<code class="descname">state_details</code><a class="headerlink" href="#solidfire.models.RemoteReplication.state_details" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.models.Snapshot">
+<em class="property">class </em><code class="descclassname">solidfire.models.</code><code class="descname">Snapshot</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.models.Snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>Snapshots is an object containing information about each snapshot made for
+a volume.
+The return object includes information for the active snapshot as well as
+each snapshot created for the volume.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>snapshot_id</strong> (<em>int</em>) &#8211; [required] Unique ID for this snapshot.</li>
+<li><strong>volume_id</strong> (<em>int</em>) &#8211; [required] The volume this snapshot was taken of.</li>
+<li><strong>name</strong> (<em>str</em>) &#8211; [required] A name for this snapshot. It is not necessarily
+unique.</li>
+<li><strong>checksum</strong> (<em>str</em>) &#8211; [required] A string that represents the correct digits in
+the stored snapshot. This checksum can be used later to compare other
+snapshots to detect errors in the data.</li>
+<li><strong>enable_remote_replication</strong> (<em>bool</em>) &#8211; [required] Identifies if snapshot is
+enabled for remote replication.</li>
+<li><strong>expiration_reason</strong> (<em>str</em>) &#8211; <p>[required] Indicates how the snapshot expiration
+was set. Possible values:</p>
+<p><strong>api</strong>: expiration time was set by using the API.</p>
+<p><strong>none</strong>: there is no expiration time set.</p>
+<p><strong>test</strong>: expiration time was set for testing.</p>
+</li>
+<li><strong>expiration_time</strong> (<em>str</em>) &#8211; [required] The time at which this snapshot will
+expire and be purged from the cluster.</li>
+<li><strong>remote_statuses</strong> (<em>str</em>) &#8211; <p>[required] Current remote status of the snapshot
+<em>remote_status:</em> Possible values:</p>
+<p><strong>Present</strong>: Snapshot exists on a remote cluster</p>
+<p><strong>Not Present</strong>: Snapshot does not exist on remote cluster</p>
+<p><strong>Syncing</strong>: This is a target cluster and it is currently replicating
+the snapshot</p>
+<p><strong>Deleted</strong>: This is a target cluster, the snapshot has been deleted,
+and it still exists on the source.</p>
+<p><strong>volumePairUUID</strong>: universal identifier of the volume pair</p>
+</li>
+<li><strong>status</strong> (<em>str</em>) &#8211; <p>[required] Current status of the snapshot</p>
+<p><strong>Preparing</strong>: A snapshot that is being prepared for use and is not yet
+writable.</p>
+<p><strong>Done</strong>: A snapshot that has finished being prepared and is now
+usable.</p>
+<p><strong>Active</strong>: This snapshot is the active branch.</p>
+</li>
+<li><strong>snapshot_uuid</strong> (<em>str</em>) &#8211; [required] Universal Unique ID of an existing
+snapshot.</li>
+<li><strong>total_size</strong> (<em>int</em>) &#8211; [required] Total size of this snapshot in bytes. It is
+equivalent to <em>total_size</em> of the volume when this snapshot was taken.</li>
+<li><strong>group_snapshot_uuid</strong> (<em>UUID</em>) &#8211; [required] The current &#8220;members&#8221; results
+contains information about each snapshot in the group. Each of these
+members will have a &#8220;uuid&#8221; parameter for the snapshot&#8217;s UUID.</li>
+<li><strong>create_time</strong> (<em>str</em>) &#8211; [required] The time this snapshot was taken.</li>
+<li><strong>attributes</strong> (<em>dict</em>) &#8211; [required] List of Name/Value pairs in JSON object
+format.</li>
+<li><strong>group_id</strong> (<em>int</em>) &#8211; (optional) If present, the ID of the group this snapshot
+is a part of. If not present, this snapshot is not part of a group.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.models.Snapshot.attributes">
+<code class="descname">attributes</code><a class="headerlink" href="#solidfire.models.Snapshot.attributes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Snapshot.checksum">
+<code class="descname">checksum</code><a class="headerlink" href="#solidfire.models.Snapshot.checksum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Snapshot.create_time">
+<code class="descname">create_time</code><a class="headerlink" href="#solidfire.models.Snapshot.create_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Snapshot.enable_remote_replication">
+<code class="descname">enable_remote_replication</code><a class="headerlink" href="#solidfire.models.Snapshot.enable_remote_replication" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Snapshot.expiration_reason">
+<code class="descname">expiration_reason</code><a class="headerlink" href="#solidfire.models.Snapshot.expiration_reason" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Snapshot.expiration_time">
+<code class="descname">expiration_time</code><a class="headerlink" href="#solidfire.models.Snapshot.expiration_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Snapshot.group_id">
+<code class="descname">group_id</code><a class="headerlink" href="#solidfire.models.Snapshot.group_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Snapshot.group_snapshot_uuid">
+<code class="descname">group_snapshot_uuid</code><a class="headerlink" href="#solidfire.models.Snapshot.group_snapshot_uuid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Snapshot.name">
+<code class="descname">name</code><a class="headerlink" href="#solidfire.models.Snapshot.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Snapshot.remote_statuses">
+<code class="descname">remote_statuses</code><a class="headerlink" href="#solidfire.models.Snapshot.remote_statuses" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Snapshot.snapshot_id">
+<code class="descname">snapshot_id</code><a class="headerlink" href="#solidfire.models.Snapshot.snapshot_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Snapshot.snapshot_uuid">
+<code class="descname">snapshot_uuid</code><a class="headerlink" href="#solidfire.models.Snapshot.snapshot_uuid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Snapshot.status">
+<code class="descname">status</code><a class="headerlink" href="#solidfire.models.Snapshot.status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Snapshot.total_size">
+<code class="descname">total_size</code><a class="headerlink" href="#solidfire.models.Snapshot.total_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Snapshot.volume_id">
+<code class="descname">volume_id</code><a class="headerlink" href="#solidfire.models.Snapshot.volume_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.models.SnapshotReplication">
+<em class="property">class </em><code class="descclassname">solidfire.models.</code><code class="descname">SnapshotReplication</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.models.SnapshotReplication" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>state</strong> (<em>str</em>) &#8211; [required] The state of the snapshot replication.</li>
+<li><strong>state_details</strong> (<em>str</em>) &#8211; [required] Reserved for future use.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.models.SnapshotReplication.state">
+<code class="descname">state</code><a class="headerlink" href="#solidfire.models.SnapshotReplication.state" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.SnapshotReplication.state_details">
+<code class="descname">state_details</code><a class="headerlink" href="#solidfire.models.SnapshotReplication.state_details" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.models.Volume">
+<em class="property">class </em><code class="descclassname">solidfire.models.</code><code class="descname">Volume</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.models.Volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>Volumes Info is an object containing information about a volume.
+The return objects only include &#8220;configured&#8221; information about the volume
+and not runtime or usage information.
+Information about paired volumes will also be returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>volume_id</strong> (<em>int</em>) &#8211; [required] Unique <em>volume_id</em> for the volume.</li>
+<li><strong>name</strong> (<em>str</em>) &#8211; [required] Name of the volume as provided at creation time.</li>
+<li><strong>account_id</strong> (<em>int</em>) &#8211; [required] Unique <em>account_id</em> for the account.</li>
+<li><strong>create_time</strong> (<em>str</em>) &#8211; [required] UTC formatted time the volume was created.</li>
+<li><strong>status</strong> (<em>str</em>) &#8211; [required] Current status of the volume init: A volume that
+is being initialized and is not ready for connections. active: An
+active volume ready for connections.</li>
+<li><strong>access</strong> (<em>str</em>) &#8211; <p>[required] Access allowed for the volume</p>
+<p><strong>readOnly</strong>: Only read operations are allowed.</p>
+<p><strong>readWrite</strong>: Reads and writes are allowed.</p>
+<p><strong>locked</strong>: No reads or writes are allowed.</p>
+<p><strong>replicationTarget</strong>: Designated as a target volume in a replicated
+volume pair.</p>
+</li>
+<li><strong>enable512e</strong> (<em>bool</em>) &#8211; [required] If &#8220;true&#8221;, the volume provides 512 byte
+sector emulation.</li>
+<li><strong>iqn</strong> (<em>str</em>) &#8211; [required] Volume iSCSI Qualified Name.</li>
+<li><strong>scsi_euidevice_id</strong> (<em>str</em>) &#8211; [required] Globally unique SCSI device identifier
+for the volume in EUI-64 based 16-byte format.</li>
+<li><strong>scsi_naadevice_id</strong> (<em>str</em>) &#8211; [required] Globally unique SCSI device identifier
+for the volume in NAA IEEE Registered Extended format.</li>
+<li><strong>qos</strong> (<a class="reference internal" href="#solidfire.models.VolumeQOS" title="solidfire.models.VolumeQOS"><em>VolumeQOS</em></a>) &#8211; [required] Quality of service settings for this volume.</li>
+<li><strong>volume_access_groups</strong> (<em>int</em>) &#8211; [required] List of volume access groups to
+which a volume belongs.</li>
+<li><strong>volume_pairs</strong> (<a class="reference internal" href="#solidfire.models.VolumePair" title="solidfire.models.VolumePair"><em>VolumePair</em></a>) &#8211; [required] Information about a paired volume.
+Available only if a volume is paired. &#64;see <em>volume_pairs</em> for return
+values.</li>
+<li><strong>slice_count</strong> (<em>int</em>) &#8211; [required] The number of slices backing this volume. In
+the current software, this value will always be 1.</li>
+<li><strong>total_size</strong> (<em>int</em>) &#8211; [required] Total size of this volume in bytes.</li>
+<li><strong>block_size</strong> (<em>int</em>) &#8211; [required] Size of the blocks on the volume.</li>
+<li><strong>virtual_volume_id</strong> (<em>UUID</em>) &#8211; [required] Virtual volume ID this volume backs.</li>
+<li><strong>attributes</strong> (<em>dict</em>) &#8211; [required] List of Name/Value pairs in JSON object
+format.</li>
+<li><strong>delete_time</strong> (<em>str</em>) &#8211; (optional) The time this volume was deleted. If this
+has no value, the volume has not yet been deleted.</li>
+<li><strong>purge_time</strong> (<em>str</em>) &#8211; (optional) The time this volume will be purged from the
+system. If this has no value, the volume has not yet been deleted (and
+is not scheduled for purging).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.models.Volume.access">
+<code class="descname">access</code><a class="headerlink" href="#solidfire.models.Volume.access" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Volume.account_id">
+<code class="descname">account_id</code><a class="headerlink" href="#solidfire.models.Volume.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Volume.attributes">
+<code class="descname">attributes</code><a class="headerlink" href="#solidfire.models.Volume.attributes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Volume.block_size">
+<code class="descname">block_size</code><a class="headerlink" href="#solidfire.models.Volume.block_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Volume.create_time">
+<code class="descname">create_time</code><a class="headerlink" href="#solidfire.models.Volume.create_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Volume.delete_time">
+<code class="descname">delete_time</code><a class="headerlink" href="#solidfire.models.Volume.delete_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Volume.enable512e">
+<code class="descname">enable512e</code><a class="headerlink" href="#solidfire.models.Volume.enable512e" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Volume.iqn">
+<code class="descname">iqn</code><a class="headerlink" href="#solidfire.models.Volume.iqn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Volume.name">
+<code class="descname">name</code><a class="headerlink" href="#solidfire.models.Volume.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Volume.purge_time">
+<code class="descname">purge_time</code><a class="headerlink" href="#solidfire.models.Volume.purge_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Volume.qos">
+<code class="descname">qos</code><a class="headerlink" href="#solidfire.models.Volume.qos" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Volume.scsi_euidevice_id">
+<code class="descname">scsi_euidevice_id</code><a class="headerlink" href="#solidfire.models.Volume.scsi_euidevice_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Volume.scsi_naadevice_id">
+<code class="descname">scsi_naadevice_id</code><a class="headerlink" href="#solidfire.models.Volume.scsi_naadevice_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Volume.slice_count">
+<code class="descname">slice_count</code><a class="headerlink" href="#solidfire.models.Volume.slice_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Volume.status">
+<code class="descname">status</code><a class="headerlink" href="#solidfire.models.Volume.status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Volume.total_size">
+<code class="descname">total_size</code><a class="headerlink" href="#solidfire.models.Volume.total_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Volume.virtual_volume_id">
+<code class="descname">virtual_volume_id</code><a class="headerlink" href="#solidfire.models.Volume.virtual_volume_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Volume.volume_access_groups">
+<code class="descname">volume_access_groups</code><a class="headerlink" href="#solidfire.models.Volume.volume_access_groups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Volume.volume_id">
+<code class="descname">volume_id</code><a class="headerlink" href="#solidfire.models.Volume.volume_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.Volume.volume_pairs">
+<code class="descname">volume_pairs</code><a class="headerlink" href="#solidfire.models.Volume.volume_pairs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.models.VolumeAccessGroup">
+<em class="property">class </em><code class="descclassname">solidfire.models.</code><code class="descname">VolumeAccessGroup</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.models.VolumeAccessGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>A volume access group is a useful way of grouping volumes and initiators
+together for ease of management.</p>
+<p>Volume Access Group Limits:</p>
+<ul class="simple">
+<li>A volume access group can contain up to sixty-four initiator IQNs.</li>
+<li>An initiator can only belong to only one volume access group.</li>
+<li>A volume access group can contain up to two thousand volumes.</li>
+<li>Each volume access group can belong to a maximum of four other volume
+access groups.</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>volume_access_group_id</strong> (<em>int</em>) &#8211; [required] Unique ID for this volume access
+group.</li>
+<li><strong>name</strong> (<em>str</em>) &#8211; [required] Name of the volume access group.</li>
+<li><strong>initiators</strong> (<em>str</em>) &#8211; [required] List of unique initiator names belonging to
+the volume access group.</li>
+<li><strong>volumes</strong> (<em>int</em>) &#8211; [required] List of volumes belonging to the volume access
+group.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.models.VolumeAccessGroup.initiators">
+<code class="descname">initiators</code><a class="headerlink" href="#solidfire.models.VolumeAccessGroup.initiators" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeAccessGroup.name">
+<code class="descname">name</code><a class="headerlink" href="#solidfire.models.VolumeAccessGroup.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeAccessGroup.volume_access_group_id">
+<code class="descname">volume_access_group_id</code><a class="headerlink" href="#solidfire.models.VolumeAccessGroup.volume_access_group_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeAccessGroup.volumes">
+<code class="descname">volumes</code><a class="headerlink" href="#solidfire.models.VolumeAccessGroup.volumes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.models.VolumePair">
+<em class="property">class </em><code class="descclassname">solidfire.models.</code><code class="descname">VolumePair</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.models.VolumePair" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The Volume Pair Info is an object containing information about a volume
+that is paired on a remote cluster.
+If the volume is not paired, this object is null.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cluster_pair_id</strong> (<em>int</em>) &#8211; [required] The remote cluster a volume is paired
+with.</li>
+<li><strong>remote_volume_id</strong> (<em>int</em>) &#8211; [required] The <em>volume_id</em> on the remote cluster a
+volume is paired with.</li>
+<li><strong>remote_slice_id</strong> (<em>int</em>) &#8211; [required] The <em>slice_id</em> on the remote cluster a
+volume is paired with.</li>
+<li><strong>remote_volume_name</strong> (<em>str</em>) &#8211; [required] The last-observed name of the volume
+on the remote cluster a volume is paired with.</li>
+<li><strong>volume_pair_uuid</strong> (<em>UUID</em>) &#8211; [required] A UUID in canonical form.</li>
+<li><strong>remote_replication</strong> (<a class="reference internal" href="#solidfire.models.RemoteReplication" title="solidfire.models.RemoteReplication"><em>RemoteReplication</em></a>) &#8211; [required] Details about the replication
+configuration for this volume pair.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.models.VolumePair.cluster_pair_id">
+<code class="descname">cluster_pair_id</code><a class="headerlink" href="#solidfire.models.VolumePair.cluster_pair_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumePair.remote_replication">
+<code class="descname">remote_replication</code><a class="headerlink" href="#solidfire.models.VolumePair.remote_replication" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumePair.remote_slice_id">
+<code class="descname">remote_slice_id</code><a class="headerlink" href="#solidfire.models.VolumePair.remote_slice_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumePair.remote_volume_id">
+<code class="descname">remote_volume_id</code><a class="headerlink" href="#solidfire.models.VolumePair.remote_volume_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumePair.remote_volume_name">
+<code class="descname">remote_volume_name</code><a class="headerlink" href="#solidfire.models.VolumePair.remote_volume_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumePair.volume_pair_uuid">
+<code class="descname">volume_pair_uuid</code><a class="headerlink" href="#solidfire.models.VolumePair.volume_pair_uuid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.models.VolumeQOS">
+<em class="property">class </em><code class="descclassname">solidfire.models.</code><code class="descname">VolumeQOS</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.models.VolumeQOS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>Quality of Service (QoS) Result values are used on SolidFire volumes to
+provision performance expectations.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>min_iops</strong> (<em>int</em>) &#8211; [required] Desired minimum 4KB IOPS to guarantee. The
+allowed IOPS will only drop below this level if all volumes have been
+capped at their min IOPS value and there is still insufficient
+performance capacity.</li>
+<li><strong>max_iops</strong> (<em>int</em>) &#8211; [required] Desired maximum 4KB IOPS allowed over an
+extended period of time.</li>
+<li><strong>burst_iops</strong> (<em>int</em>) &#8211; [required] Maximum &#8220;peak&#8221; 4KB IOPS allowed for short
+periods of time. Allows for bursts of I/O activity over the normal max
+IOPS value.</li>
+<li><strong>burst_time</strong> (<em>int</em>) &#8211; <p>[required] The length of time burst IOPS is allowed. The
+value returned is represented in time units of seconds.</p>
+<p><strong>Note</strong>: this value is calculated by the system based on IOPS set for
+QoS.</p>
+</li>
+<li><strong>curve</strong> (<em>str</em>) &#8211; [required] The curve is a set of key-value pairs. The keys
+are I/O sizes in bytes. The values represent the cost performing an IOP
+at a specific I/O size. The curve is calculated relative to a 4096 byte
+operation set at 100 IOPS.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.models.VolumeQOS.burst_iops">
+<code class="descname">burst_iops</code><a class="headerlink" href="#solidfire.models.VolumeQOS.burst_iops" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeQOS.burst_time">
+<code class="descname">burst_time</code><a class="headerlink" href="#solidfire.models.VolumeQOS.burst_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeQOS.curve">
+<code class="descname">curve</code><a class="headerlink" href="#solidfire.models.VolumeQOS.curve" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeQOS.max_iops">
+<code class="descname">max_iops</code><a class="headerlink" href="#solidfire.models.VolumeQOS.max_iops" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeQOS.min_iops">
+<code class="descname">min_iops</code><a class="headerlink" href="#solidfire.models.VolumeQOS.min_iops" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.models.VolumeStats">
+<em class="property">class </em><code class="descclassname">solidfire.models.</code><code class="descname">VolumeStats</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.models.VolumeStats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>Contains statistical data for an individual volume.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>account_id</strong> (<em>int</em>) &#8211; [required] <em>account_id</em> of the volume owner.</li>
+<li><strong>actual_iops</strong> (<em>int</em>) &#8211; [required] Current actual IOPS to the volume in the
+last 500 milliseconds.</li>
+<li><strong>average_iopsize</strong> (<em>int</em>) &#8211; [required] Average size in bytes of recent I/O to
+the volume in the last 500 milliseconds.</li>
+<li><strong>burst_iopscredit</strong> (<em>int</em>) &#8211; [required] The total number of IOP credits
+available to the user. When users are not using up to the max IOPS,
+credits are accrued.</li>
+<li><strong>client_queue_depth</strong> (<em>int</em>) &#8211; [required] The number of outstanding read and
+write operations to the cluster.</li>
+<li><strong>desired_metadata_hosts</strong> (<a class="reference internal" href="#solidfire.models.MetadataHosts" title="solidfire.models.MetadataHosts"><em>MetadataHosts</em></a>) &#8211; [required] The volume services being
+migrated to if the volume metadata is getting migrated between volume
+services. A &#8220;null&#8221; value means the volume is not migrating.</li>
+<li><strong>latency_usec</strong> (<em>int</em>) &#8211; <p>[required] The observed latency time, in microseconds,
+to complete operations to a volume.</p>
+<p>A &#8220;0&#8221; (zero) value means there is no I/O to the volume.</p>
+</li>
+<li><strong>metadata_hosts</strong> (<a class="reference internal" href="#solidfire.models.MetadataHosts" title="solidfire.models.MetadataHosts"><em>MetadataHosts</em></a>) &#8211; [required] The volume services on which the volume
+metadata resides.</li>
+<li><strong>non_zero_blocks</strong> (<em>int</em>) &#8211; [required] The number of 4KiB blocks with data
+after the last garbage collection operation has completed.</li>
+<li><strong>read_bytes</strong> (<em>int</em>) &#8211; [required] Total bytes read by clients.</li>
+<li><strong>read_latency_usec</strong> (<em>int</em>) &#8211; [required] The average time, in microseconds, to
+complete read operations.</li>
+<li><strong>read_ops</strong> (<em>int</em>) &#8211; [required] Total read operations.</li>
+<li><strong>throttle</strong> (<em>float</em>) &#8211; [required] A floating value between 0 and 1 that
+represents how much the system is throttling clients below their max
+IOPS because of re-replication of data, transient errors and snapshots
+taken.</li>
+<li><strong>timestamp</strong> (<em>str</em>) &#8211; [required] The current time in UTC.</li>
+<li><strong>total_latency_usec</strong> (<em>int</em>) &#8211; [required] The average time, in microseconds, to
+complete read and write operations to a volume.</li>
+<li><strong>unaligned_reads</strong> (<em>int</em>) &#8211; [required] For 512e volumes, the number of read
+operations that were not on a 4k sector boundary. High numbers of
+unaligned reads may indicate improper partition alignment.</li>
+<li><strong>unaligned_writes</strong> (<em>int</em>) &#8211; [required] For 512e volumes, the number of write
+operations that were not on a 4k sector boundary. High numbers of
+unaligned writes may indicate improper partition alignment.</li>
+<li><strong>volume_access_groups</strong> (<em>int</em>) &#8211; [required] List of volume access group(s) to
+which a volume belongs.</li>
+<li><strong>volume_id</strong> (<em>int</em>) &#8211; [required] Volume ID of the volume.</li>
+<li><strong>volume_size</strong> (<em>int</em>) &#8211; [required] Total provisioned capacity in bytes.</li>
+<li><strong>volume_utilization</strong> (<em>float</em>) &#8211; <p>[required] A floating value that describes how
+much the client is using the volume.</p>
+<p>Values:</p>
+<p>0 = Client is not using the volume</p>
+<p>1 = Client is using their max</p>
+<p>&gt;1 = Client is using their burst</p>
+</li>
+<li><strong>write_bytes</strong> (<em>int</em>) &#8211; [required] Total bytes written by clients.</li>
+<li><strong>write_latency_usec</strong> (<em>int</em>) &#8211; [required] The average time, in microseconds, to
+complete write operations.</li>
+<li><strong>write_ops</strong> (<em>int</em>) &#8211; [required] Total write operations occurring on the
+volume.</li>
+<li><strong>zero_blocks</strong> (<em>int</em>) &#8211; [required] Total number of 4KiB blocks without data
+after the last round of garbage collection operation has completed.</li>
+<li><strong>async_delay</strong> (<em>str</em>) &#8211; <p>(optional) The length of time since the volume was last
+synced with the remote cluster. If the volume is not paired, this is
+null.</p>
+<p><strong>Note</strong>: A target volume in an active replication state always has an
+async delay of 0 (zero).</p>
+<p>Target volumes are system-aware during replication and assume async
+delay is accurate at all times.</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.account_id">
+<code class="descname">account_id</code><a class="headerlink" href="#solidfire.models.VolumeStats.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.actual_iops">
+<code class="descname">actual_iops</code><a class="headerlink" href="#solidfire.models.VolumeStats.actual_iops" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.async_delay">
+<code class="descname">async_delay</code><a class="headerlink" href="#solidfire.models.VolumeStats.async_delay" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.average_iopsize">
+<code class="descname">average_iopsize</code><a class="headerlink" href="#solidfire.models.VolumeStats.average_iopsize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.burst_iopscredit">
+<code class="descname">burst_iopscredit</code><a class="headerlink" href="#solidfire.models.VolumeStats.burst_iopscredit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.client_queue_depth">
+<code class="descname">client_queue_depth</code><a class="headerlink" href="#solidfire.models.VolumeStats.client_queue_depth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.desired_metadata_hosts">
+<code class="descname">desired_metadata_hosts</code><a class="headerlink" href="#solidfire.models.VolumeStats.desired_metadata_hosts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.latency_usec">
+<code class="descname">latency_usec</code><a class="headerlink" href="#solidfire.models.VolumeStats.latency_usec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.metadata_hosts">
+<code class="descname">metadata_hosts</code><a class="headerlink" href="#solidfire.models.VolumeStats.metadata_hosts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.non_zero_blocks">
+<code class="descname">non_zero_blocks</code><a class="headerlink" href="#solidfire.models.VolumeStats.non_zero_blocks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.read_bytes">
+<code class="descname">read_bytes</code><a class="headerlink" href="#solidfire.models.VolumeStats.read_bytes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.read_latency_usec">
+<code class="descname">read_latency_usec</code><a class="headerlink" href="#solidfire.models.VolumeStats.read_latency_usec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.read_ops">
+<code class="descname">read_ops</code><a class="headerlink" href="#solidfire.models.VolumeStats.read_ops" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.throttle">
+<code class="descname">throttle</code><a class="headerlink" href="#solidfire.models.VolumeStats.throttle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.timestamp">
+<code class="descname">timestamp</code><a class="headerlink" href="#solidfire.models.VolumeStats.timestamp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.total_latency_usec">
+<code class="descname">total_latency_usec</code><a class="headerlink" href="#solidfire.models.VolumeStats.total_latency_usec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.unaligned_reads">
+<code class="descname">unaligned_reads</code><a class="headerlink" href="#solidfire.models.VolumeStats.unaligned_reads" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.unaligned_writes">
+<code class="descname">unaligned_writes</code><a class="headerlink" href="#solidfire.models.VolumeStats.unaligned_writes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.volume_access_groups">
+<code class="descname">volume_access_groups</code><a class="headerlink" href="#solidfire.models.VolumeStats.volume_access_groups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.volume_id">
+<code class="descname">volume_id</code><a class="headerlink" href="#solidfire.models.VolumeStats.volume_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.volume_size">
+<code class="descname">volume_size</code><a class="headerlink" href="#solidfire.models.VolumeStats.volume_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.volume_utilization">
+<code class="descname">volume_utilization</code><a class="headerlink" href="#solidfire.models.VolumeStats.volume_utilization" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.write_bytes">
+<code class="descname">write_bytes</code><a class="headerlink" href="#solidfire.models.VolumeStats.write_bytes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.write_latency_usec">
+<code class="descname">write_latency_usec</code><a class="headerlink" href="#solidfire.models.VolumeStats.write_latency_usec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.write_ops">
+<code class="descname">write_ops</code><a class="headerlink" href="#solidfire.models.VolumeStats.write_ops" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.models.VolumeStats.zero_blocks">
+<code class="descname">zero_blocks</code><a class="headerlink" href="#solidfire.models.VolumeStats.zero_blocks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-solidfire.results">
+<span id="results-solidfire-results"></span><h2>Results (solidfire.results)<a class="headerlink" href="#module-solidfire.results" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="solidfire.results.AddAccountResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">AddAccountResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.AddAccountResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;add_account&#8221; API Service call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>account_id</strong> (<em>int</em>) &#8211; [required] <em>account_id</em> for the newly created Account.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.AddAccountResult.account_id">
+<code class="descname">account_id</code><a class="headerlink" href="#solidfire.results.AddAccountResult.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.AsyncResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">AsyncResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.AsyncResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The wrapped object returned by the <em>&#8220;get_async_result&#8221;</em> API Service call.</p>
+<p><strong>Note</strong>: The return value of <em>get_async_result</em> is essentially a nested
+version of the standard JSON response with an additional status field.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>message</strong> (<em>str</em>) &#8211; [required] The return value for the original method call if
+the call was completed successfully.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.AsyncResult.message">
+<code class="descname">message</code><a class="headerlink" href="#solidfire.results.AsyncResult.message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.CloneVolumeResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">CloneVolumeResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.CloneVolumeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;clone_volume&#8221; API Service call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>clone_id</strong> (<em>int</em>) &#8211; [required] The ID of the newly-created clone.</li>
+<li><strong>volume_id</strong> (<em>int</em>) &#8211; [required] The volume ID of the newly-created clone.</li>
+<li><strong>async_handle</strong> (<em>int</em>) &#8211; [required] Handle value used to track the progress of
+the clone.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.CloneVolumeResult.async_handle">
+<code class="descname">async_handle</code><a class="headerlink" href="#solidfire.results.CloneVolumeResult.async_handle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.results.CloneVolumeResult.clone_id">
+<code class="descname">clone_id</code><a class="headerlink" href="#solidfire.results.CloneVolumeResult.clone_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.results.CloneVolumeResult.volume_id">
+<code class="descname">volume_id</code><a class="headerlink" href="#solidfire.results.CloneVolumeResult.volume_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.CreateGroupSnapshotResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">CreateGroupSnapshotResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.CreateGroupSnapshotResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;create_group_snapshot&#8221; API Service call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>group_snapshot_id</strong> (<em>int</em>) &#8211; [required] Unique ID of the new group snapshot.</li>
+<li><strong>members</strong> (<a class="reference internal" href="#solidfire.models.GroupSnapshotMembers" title="solidfire.models.GroupSnapshotMembers"><em>GroupSnapshotMembers</em></a>) &#8211; [required] List of checksum, <em>volume_ids</em> and
+<em>snapshot_ids</em> for each member of the group.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.CreateGroupSnapshotResult.group_snapshot_id">
+<code class="descname">group_snapshot_id</code><a class="headerlink" href="#solidfire.results.CreateGroupSnapshotResult.group_snapshot_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.results.CreateGroupSnapshotResult.members">
+<code class="descname">members</code><a class="headerlink" href="#solidfire.results.CreateGroupSnapshotResult.members" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.CreateSnapshotResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">CreateSnapshotResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.CreateSnapshotResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;create_snapshot&#8221; API Service call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>snapshot_id</strong> (<em>int</em>) &#8211; [required] ID of the newly-created snapshot.</li>
+<li><strong>checksum</strong> (<em>str</em>) &#8211; [required] A string that represents the correct digits in
+the stored snapshot. This checksum can be used later to compare other
+snapshots to detect errors in the data.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.CreateSnapshotResult.checksum">
+<code class="descname">checksum</code><a class="headerlink" href="#solidfire.results.CreateSnapshotResult.checksum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.results.CreateSnapshotResult.snapshot_id">
+<code class="descname">snapshot_id</code><a class="headerlink" href="#solidfire.results.CreateSnapshotResult.snapshot_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.CreateVolumeAccessGroupResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">CreateVolumeAccessGroupResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.CreateVolumeAccessGroupResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;create_volume_access_group&#8221; API Service call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>volume_access_group_id</strong> (<em>int</em>) &#8211; [required] The ID for the newly-created
+volume access group.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.CreateVolumeAccessGroupResult.volume_access_group_id">
+<code class="descname">volume_access_group_id</code><a class="headerlink" href="#solidfire.results.CreateVolumeAccessGroupResult.volume_access_group_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.CreateVolumeResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">CreateVolumeResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.CreateVolumeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;create_volume&#8221; API Service call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>volume_id</strong> (<em>int</em>) &#8211; [required] <em>volume_id</em> for the newly created volume.</li>
+<li><strong>curve</strong> (<em>str</em>) &#8211; (optional) The curve is a set of key-value pairs. The keys
+are I/O sizes in bytes. The values represent the cost performing an IOP
+at a specific I/O size. The curve is calculated relative to a 4096 byte
+operation set at 100 IOPS.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.CreateVolumeResult.curve">
+<code class="descname">curve</code><a class="headerlink" href="#solidfire.results.CreateVolumeResult.curve" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.results.CreateVolumeResult.volume_id">
+<code class="descname">volume_id</code><a class="headerlink" href="#solidfire.results.CreateVolumeResult.volume_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.DeleteGroupSnapshotResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">DeleteGroupSnapshotResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.DeleteGroupSnapshotResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;delete_group_snapshot&#8221; API Service call.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.DeleteSnapshotResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">DeleteSnapshotResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.DeleteSnapshotResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;delete_snapshot&#8221; API Service call.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.DeleteVolumeAccessGroupResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">DeleteVolumeAccessGroupResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.DeleteVolumeAccessGroupResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;delete_volume_access_group&#8221; API Service call.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.DeleteVolumeResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">DeleteVolumeResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.DeleteVolumeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;delete_volume&#8221; API Service call.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.GetAPIResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">GetAPIResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.GetAPIResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;get_api&#8221; API Service call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>current_version</strong> (<em>float</em>) &#8211; [required]</li>
+<li><strong>supported_versions</strong> (<em>float</em>) &#8211; [required]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.GetAPIResult.current_version">
+<code class="descname">current_version</code><a class="headerlink" href="#solidfire.results.GetAPIResult.current_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.results.GetAPIResult.supported_versions">
+<code class="descname">supported_versions</code><a class="headerlink" href="#solidfire.results.GetAPIResult.supported_versions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.GetAccountResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">GetAccountResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.GetAccountResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;get_account&#8221; API Service call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>account</strong> (<a class="reference internal" href="#solidfire.models.Account" title="solidfire.models.Account"><em>Account</em></a>) &#8211; [required] Account details.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.GetAccountResult.account">
+<code class="descname">account</code><a class="headerlink" href="#solidfire.results.GetAccountResult.account" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.GetAsyncResultResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">GetAsyncResultResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.GetAsyncResultResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the <em>&#8220;get_async_result&#8221;</em> API Service call.</p>
+<p><strong>Note</strong>: The return value of <em>get_async_result</em> is essentially a nested
+version of the standard JSON response with an additional status field.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>result</strong> (<a class="reference internal" href="#solidfire.results.AsyncResult" title="solidfire.results.AsyncResult"><em>AsyncResult</em></a>) &#8211; [required] The resulting message for the original method
+call if the call was completed successfully.</li>
+<li><strong>status</strong> (<em>str</em>) &#8211; <p>[required] Status of the asynchronous method call</p>
+<p><strong>running</strong>: The method is still running.</p>
+<p><strong>complete</strong>: The method is complete and the result or error is
+available.</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.GetAsyncResultResult.result">
+<code class="descname">result</code><a class="headerlink" href="#solidfire.results.GetAsyncResultResult.result" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.results.GetAsyncResultResult.status">
+<code class="descname">status</code><a class="headerlink" href="#solidfire.results.GetAsyncResultResult.status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.GetVolumeEfficiencyResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">GetVolumeEfficiencyResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.GetVolumeEfficiencyResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;get_volume_efficiency&#8221; API Service call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>compression</strong> (<em>float</em>) &#8211; [required] The amount of space being saved by
+compressing data on a single volume. Stated as a ratio where &#8220;1&#8221;
+means data has been stored without being compressed.</li>
+<li><strong>deduplication</strong> (<em>float</em>) &#8211; [required] The amount of space being saved on a
+single volume by not duplicating data. Stated as a ratio.</li>
+<li><strong>missing_volumes</strong> (<em>int</em>) &#8211; [required] The volumes that could not be queried
+for efficiency data. Missing volumes can be caused by GC being less
+than hour old, temporary network loss or restarted services since the
+GC cycle.</li>
+<li><strong>thin_provisioning</strong> (<em>float</em>) &#8211; [required] The ratio of space used to the amount
+of space allocated for storing data. Stated as a ratio.</li>
+<li><strong>timestamp</strong> (<em>str</em>) &#8211; [required] The last time efficiency data was collected
+after Garbage Collection (GC).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.GetVolumeEfficiencyResult.compression">
+<code class="descname">compression</code><a class="headerlink" href="#solidfire.results.GetVolumeEfficiencyResult.compression" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.results.GetVolumeEfficiencyResult.deduplication">
+<code class="descname">deduplication</code><a class="headerlink" href="#solidfire.results.GetVolumeEfficiencyResult.deduplication" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.results.GetVolumeEfficiencyResult.missing_volumes">
+<code class="descname">missing_volumes</code><a class="headerlink" href="#solidfire.results.GetVolumeEfficiencyResult.missing_volumes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.results.GetVolumeEfficiencyResult.thin_provisioning">
+<code class="descname">thin_provisioning</code><a class="headerlink" href="#solidfire.results.GetVolumeEfficiencyResult.thin_provisioning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.results.GetVolumeEfficiencyResult.timestamp">
+<code class="descname">timestamp</code><a class="headerlink" href="#solidfire.results.GetVolumeEfficiencyResult.timestamp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.GetVolumeStatsResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">GetVolumeStatsResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.GetVolumeStatsResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;get_volume_stats&#8221; API Service call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>volume_stats</strong> (<a class="reference internal" href="#solidfire.models.VolumeStats" title="solidfire.models.VolumeStats"><em>VolumeStats</em></a>) &#8211; [required] Volume activity information.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.GetVolumeStatsResult.volume_stats">
+<code class="descname">volume_stats</code><a class="headerlink" href="#solidfire.results.GetVolumeStatsResult.volume_stats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.ListAccountsResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">ListAccountsResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.ListAccountsResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;list_accounts&#8221; API Service call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>accounts</strong> (<a class="reference internal" href="#solidfire.models.Account" title="solidfire.models.Account"><em>Account</em></a>) &#8211; [required] List of accounts.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.ListAccountsResult.accounts">
+<code class="descname">accounts</code><a class="headerlink" href="#solidfire.results.ListAccountsResult.accounts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.ListActiveVolumesResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">ListActiveVolumesResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.ListActiveVolumesResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;list_active_volumes&#8221; API Service call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>volumes</strong> (<a class="reference internal" href="#solidfire.models.Volume" title="solidfire.models.Volume"><em>Volume</em></a>) &#8211; [required] List of active volumes.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.ListActiveVolumesResult.volumes">
+<code class="descname">volumes</code><a class="headerlink" href="#solidfire.results.ListActiveVolumesResult.volumes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.ListDeletedVolumesResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">ListDeletedVolumesResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.ListDeletedVolumesResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;list_deleted_volumes&#8221; API Service call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>volumes</strong> (<a class="reference internal" href="#solidfire.models.Volume" title="solidfire.models.Volume"><em>Volume</em></a>) &#8211; [required] List of deleted volumes.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.ListDeletedVolumesResult.volumes">
+<code class="descname">volumes</code><a class="headerlink" href="#solidfire.results.ListDeletedVolumesResult.volumes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.ListGroupSnapshotsResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">ListGroupSnapshotsResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.ListGroupSnapshotsResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;list_group_snapshots&#8221; API Service call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>group_snapshots</strong> (<a class="reference internal" href="#solidfire.models.GroupSnapshot" title="solidfire.models.GroupSnapshot"><em>GroupSnapshot</em></a>) &#8211; [required] List of Group Snapshots.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.ListGroupSnapshotsResult.group_snapshots">
+<code class="descname">group_snapshots</code><a class="headerlink" href="#solidfire.results.ListGroupSnapshotsResult.group_snapshots" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.ListSnapshotsResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">ListSnapshotsResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.ListSnapshotsResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;list_snapshots&#8221; API Service call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>snapshots</strong> (<a class="reference internal" href="#solidfire.models.Snapshot" title="solidfire.models.Snapshot"><em>Snapshot</em></a>) &#8211; [required] Information about each snapshot for each
+volume. If <em>volume_id</em> is not provided, all snapshots for all volumes
+is returned. Snapshots that are in a group will be returned with a
+&#8220;groupID&#8221;. Snapshots that are enabled for replication.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.ListSnapshotsResult.snapshots">
+<code class="descname">snapshots</code><a class="headerlink" href="#solidfire.results.ListSnapshotsResult.snapshots" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.ListVolumeAccessGroupsResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">ListVolumeAccessGroupsResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.ListVolumeAccessGroupsResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;list_volume_access_groups&#8221; API Service call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>volume_access_groups</strong> (<a class="reference internal" href="#solidfire.models.VolumeAccessGroup" title="solidfire.models.VolumeAccessGroup"><em>VolumeAccessGroup</em></a>) &#8211; [required] List of volume access groups.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.ListVolumeAccessGroupsResult.volume_access_groups">
+<code class="descname">volume_access_groups</code><a class="headerlink" href="#solidfire.results.ListVolumeAccessGroupsResult.volume_access_groups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.ListVolumeStatsByAccountResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">ListVolumeStatsByAccountResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.ListVolumeStatsByAccountResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;list_volume_stats_by_account&#8221; API Service
+call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>volume_stats</strong> (<a class="reference internal" href="#solidfire.models.VolumeStats" title="solidfire.models.VolumeStats"><em>VolumeStats</em></a>) &#8211; <p>[required] List of account activity information.</p>
+<p><strong>Note</strong>: The <em>volume_id</em> member is 0 for each entry, as the values
+represent the summation of all volumes owned by the account.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.ListVolumeStatsByAccountResult.volume_stats">
+<code class="descname">volume_stats</code><a class="headerlink" href="#solidfire.results.ListVolumeStatsByAccountResult.volume_stats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.ListVolumeStatsByVolumeAccessGroupResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">ListVolumeStatsByVolumeAccessGroupResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.ListVolumeStatsByVolumeAccessGroupResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;list_volume_stats_by_volume_access_group&#8221; API
+Service call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>volume_stats</strong> (<a class="reference internal" href="#solidfire.models.VolumeStats" title="solidfire.models.VolumeStats"><em>VolumeStats</em></a>) &#8211; <p>[required] List of account activity information.</p>
+<p><strong>Note</strong>: The <em>volume_id</em> member is 0 for each entry, as the values
+represent the summation of all volumes owned by the account.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.ListVolumeStatsByVolumeAccessGroupResult.volume_stats">
+<code class="descname">volume_stats</code><a class="headerlink" href="#solidfire.results.ListVolumeStatsByVolumeAccessGroupResult.volume_stats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.ListVolumeStatsByVolumeResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">ListVolumeStatsByVolumeResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.ListVolumeStatsByVolumeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;list_volume_stats_by_volume&#8221; API Service
+call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>volume_stats</strong> (<a class="reference internal" href="#solidfire.models.VolumeStats" title="solidfire.models.VolumeStats"><em>VolumeStats</em></a>) &#8211; [required] List of account activity information.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.ListVolumeStatsByVolumeResult.volume_stats">
+<code class="descname">volume_stats</code><a class="headerlink" href="#solidfire.results.ListVolumeStatsByVolumeResult.volume_stats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.ListVolumesForAccountResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">ListVolumesForAccountResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.ListVolumesForAccountResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;list_volumes_for_account&#8221; API Service call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>volumes</strong> (<a class="reference internal" href="#solidfire.models.Volume" title="solidfire.models.Volume"><em>Volume</em></a>) &#8211; [required] List of volumes.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.ListVolumesForAccountResult.volumes">
+<code class="descname">volumes</code><a class="headerlink" href="#solidfire.results.ListVolumesForAccountResult.volumes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.ListVolumesResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">ListVolumesResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.ListVolumesResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;list_volumes&#8221; API Service call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>volumes</strong> (<a class="reference internal" href="#solidfire.models.Volume" title="solidfire.models.Volume"><em>Volume</em></a>) &#8211; [required] List of volumes.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.ListVolumesResult.volumes">
+<code class="descname">volumes</code><a class="headerlink" href="#solidfire.results.ListVolumesResult.volumes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.ModifyAccountResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">ModifyAccountResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.ModifyAccountResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;modify_account&#8221; API Service call.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.ModifyGroupSnapshotResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">ModifyGroupSnapshotResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.ModifyGroupSnapshotResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;modify_group_snapshot&#8221; API Service call.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.ModifySnapshotResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">ModifySnapshotResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.ModifySnapshotResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;modify_snapshot&#8221; API Service call.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.ModifyVolumeAccessGroupResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">ModifyVolumeAccessGroupResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.ModifyVolumeAccessGroupResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;modify_volume_access_group&#8221; API Service call.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.ModifyVolumeResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">ModifyVolumeResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.ModifyVolumeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;modify_volume&#8221; API Service call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>curve</strong> (<em>str</em>) &#8211; (optional) The curve is a set of key-value pairs. The keys
+are I/O sizes in bytes. The values represent the cost performing an IOP
+at a specific I/O size. The curve is calculated relative to a 4096 byte
+operation set at 100 IOPS.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.results.ModifyVolumeResult.curve">
+<code class="descname">curve</code><a class="headerlink" href="#solidfire.results.ModifyVolumeResult.curve" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.PurgeDeletedVolumeResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">PurgeDeletedVolumeResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.PurgeDeletedVolumeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;purge_deleted_volume&#8221; API Service call.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.RemoveAccountResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">RemoveAccountResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.RemoveAccountResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;remove_account&#8221; API Service call.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.results.RestoreDeletedVolumeResult">
+<em class="property">class </em><code class="descclassname">solidfire.results.</code><code class="descname">RestoreDeletedVolumeResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.results.RestoreDeletedVolumeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;restore_deleted_volume&#8221; API Service call.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-solidfire">
+<span id="element-module-contents"></span><h2>Element Module contents<a class="headerlink" href="#module-solidfire" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="solidfire.Element">
+<em class="property">class </em><code class="descclassname">solidfire.</code><code class="descname">Element</code><span class="sig-paren">(</span><em>mvip=None</em>, <em>username=None</em>, <em>password=None</em>, <em>api_version=8.0</em>, <em>verify_ssl=True</em>, <em>dispatcher=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.ServiceBase" title="solidfire.common.ServiceBase"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.ServiceBase</span></code></a></p>
+<p>The API for controlling a SolidFire cluster.</p>
+<p>Constructor for initializing a connection to an instance of Element OS</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>mvip</strong> (<em>str</em>) &#8211; the management IP (IP or hostname)</li>
+<li><strong>username</strong> (<em>str</em>) &#8211; username use to connect to the Element OS instance.</li>
+<li><strong>password</strong> (<em>str</em>) &#8211; authentication for username</li>
+<li><strong>api_version</strong> (<em>float or str</em>) &#8211; specific version of Element OS to connect</li>
+<li><strong>verify_ssl</strong> (<em>bool</em>) &#8211; disable to avoid ssl connection errors especially
+when using an IP instead of a hostname</li>
+<li><strong>dispatcher</strong> &#8211; a prebuilt or custom http dispatcher</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a configured and tested instance of Element</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><dl class="first last docutils">
+<dt>ApiVersionExceededError: api_version is greater than connected</dt>
+<dd><p class="first last">Element OS.</p>
+</dd>
+<dt>ApiVersionUnsupportedError: api_version is not supported by</dt>
+<dd><p class="first last">instance of Element OS.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="solidfire.Element.add_account">
+<code class="descname">add_account</code><span class="sig-paren">(</span><em>username</em>, <em>initiator_secret=None</em>, <em>target_secret=None</em>, <em>attributes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.add_account" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to add a new account to the system.
+New volumes can be created under the new account.
+The CHAP settings specified for the account applies to all volumes
+owned by the account.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>username</strong> (<em>str</em>) &#8211; [required] Unique username for this account. (May be 1
+to 64 characters in length).</li>
+<li><strong>initiator_secret</strong> (<em>str</em>) &#8211; <p>(optional) CHAP secret to use for the
+initiator. Should be 12-16 characters long and impenetrable. The
+CHAP initiator secrets must be unique and cannot be the same as the
+target CHAP secret.</p>
+<p>If not specified, a random secret is created.</p>
+</li>
+<li><strong>target_secret</strong> (<em>str</em>) &#8211; <p>(optional) CHAP secret to use for the target
+(mutual CHAP authentication). Should be 12-16 characters long and
+impenetrable. The CHAP target secrets must be unique and cannot be
+the same as the initiator CHAP secret.</p>
+<p>If not specified, a random secret is created.</p>
+</li>
+<li><strong>attributes</strong> (<em>dict</em>) &#8211; (optional) List of Name/Value pairs in JSON object
+format.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.AddAccountResult" title="solidfire.results.AddAccountResult">AddAccountResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.add_initiators_to_volume_access_group">
+<code class="descname">add_initiators_to_volume_access_group</code><span class="sig-paren">(</span><em>volume_access_group_id</em>, <em>initiators</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.add_initiators_to_volume_access_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add initiators to a volume access group.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>volume_access_group_id</strong> (<em>int</em>) &#8211; [required] The ID of the volume access
+group to modify.</li>
+<li><strong>initiators</strong> (<em>str</em>) &#8211; [required] List of initiators to add to the volume
+access group.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.ModifyVolumeAccessGroupResult" title="solidfire.results.ModifyVolumeAccessGroupResult">ModifyVolumeAccessGroupResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.add_volumes_to_volume_access_group">
+<code class="descname">add_volumes_to_volume_access_group</code><span class="sig-paren">(</span><em>volume_access_group_id</em>, <em>volumes</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.add_volumes_to_volume_access_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add volumes to a volume access group.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>volume_access_group_id</strong> (<em>int</em>) &#8211; [required] The ID of the volume access
+group to modify.</li>
+<li><strong>volumes</strong> (<em>int</em>) &#8211; [required] List of volumes to add to this volume access
+group.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.ModifyVolumeAccessGroupResult" title="solidfire.results.ModifyVolumeAccessGroupResult">ModifyVolumeAccessGroupResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.clone_volume">
+<code class="descname">clone_volume</code><span class="sig-paren">(</span><em>volume_id</em>, <em>name</em>, <em>new_account_id=None</em>, <em>new_size=None</em>, <em>access=None</em>, <em>snapshot_id=None</em>, <em>attributes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.clone_volume" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>clone_volume</em> is used to create a copy of the volume.
+This method is asynchronous and may take a variable amount of time to
+complete.
+The cloning process begins immediately when the <em>clone_volume</em> request
+is made and is representative of the state of the volume when the API
+method is issued.
+<em>get_async_results</em> can be used to determine when the cloning process
+is complete and the new volume is available for connections.
+<em>list_sync_jobs</em> can be used to see the progress of creating the clone.</p>
+<p><strong>Note</strong>: The initial attributes and quality of service settings for
+the volume are inherited from the volume being cloned.
+If different settings are required, they can be changed via
+ModifyVolume.</p>
+<p><strong>Note</strong>: Cloned volumes do not inherit volume access group memberships
+from the source volume.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>volume_id</strong> (<em>int</em>) &#8211; [required] The ID of the volume to clone.</li>
+<li><strong>name</strong> (<em>str</em>) &#8211; [required] The name for the newly-created volume.</li>
+<li><strong>new_account_id</strong> (<em>int</em>) &#8211; (optional) <em>account_id</em> for the owner of the new
+volume. If unspecified, the <em>account_id</em> of the owner of the volume
+being cloned is used.</li>
+<li><strong>new_size</strong> (<em>int</em>) &#8211; (optional) New size of the volume, in bytes. May be
+greater or less than the size of the volume being cloned. If
+unspecified, the clone&amp;#39;s volume size will be the same as the
+source volume. Size is rounded up to the nearest 1 MiB.</li>
+<li><strong>access</strong> (<em>str</em>) &#8211; <p>(optional) Access settings for the new volume.</p>
+<p><strong>readOnly</strong>: Only read operations are allowed.</p>
+<p><strong>readWrite</strong>: Reads and writes are allowed.</p>
+<p><strong>locked</strong>: No reads or writes are allowed.</p>
+<p><strong>replicationTarget</strong>: Identify a volume as the target volume for a
+paired set of volumes. If the volume is not paired, the access
+status is locked.</p>
+<p>If unspecified, the access settings of the clone will be the same
+as the source.</p>
+</li>
+<li><strong>snapshot_id</strong> (<em>int</em>) &#8211; (optional) ID of the snapshot to use as the source
+of the clone. If unspecified, the clone will be created with a
+snapshot of the active volume.</li>
+<li><strong>attributes</strong> (<em>dict</em>) &#8211; (optional) List of Name/Value pairs in JSON object
+format.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.CloneVolumeResult" title="solidfire.results.CloneVolumeResult">CloneVolumeResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.create_group_snapshot">
+<code class="descname">create_group_snapshot</code><span class="sig-paren">(</span><em>volumes</em>, <em>name=None</em>, <em>enable_remote_replication=None</em>, <em>retention=None</em>, <em>attributes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.create_group_snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>create_group_snapshot</em> is used to create a point-in-time copy of a
+group of volumes.
+The snapshot created can then be used later as a backup or rollback to
+ensure the data on the group of volumes is consistent for the point in
+time in which the snapshot was created.</p>
+<p><strong>Note</strong>: Creating a group snapshot is allowed if cluster fullness is
+at stage 2 or 3.
+Snapshots are not created when cluster fullness is at stage 4 or 5.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>volumes</strong> (<em>int</em>) &#8211; [required] Unique ID of the volume image from which to
+copy.</li>
+<li><strong>name</strong> (<em>str</em>) &#8211; (optional) A name for the snapshot. If no name is
+provided, the date and time the snapshot was taken is used.</li>
+<li><strong>enable_remote_replication</strong> (<em>bool</em>) &#8211; (optional) Identifies if snapshot is
+enabled for remote replication.</li>
+<li><strong>retention</strong> (<em>str</em>) &#8211; (optional) The amount of time the snapshot will be
+retained. Enter in <em>hh:mm:ss</em></li>
+<li><strong>attributes</strong> (<em>dict</em>) &#8211; (optional) List of Name/Value pairs in JSON object
+format.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.CreateGroupSnapshotResult" title="solidfire.results.CreateGroupSnapshotResult">CreateGroupSnapshotResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.create_snapshot">
+<code class="descname">create_snapshot</code><span class="sig-paren">(</span><em>volume_id</em>, <em>snapshot_id=None</em>, <em>name=None</em>, <em>enable_remote_replication=None</em>, <em>retention=None</em>, <em>attributes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.create_snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>create_snapshot</em> is used to create a point-in-time copy of a volume.
+A snapshot can be created from any volume or from an existing snapshot.</p>
+<p><strong>Note</strong>: Creating a snapshot is allowed if cluster fullness is at
+stage 2 or 3.
+Snapshots are not created when cluster fullness is at stage 4 or 5.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>volume_id</strong> (<em>int</em>) &#8211; [required] ID of the volume image from which to copy.</li>
+<li><strong>snapshot_id</strong> (<em>int</em>) &#8211; (optional) Unique ID of a snapshot from which the
+new snapshot is made. The <em>snapshot_id</em> passed must be a snapshot
+on the given volume. If a <em>snapshot_id</em> is not provided, a snapshot
+is created from the volume&#8217;s active branch.</li>
+<li><strong>name</strong> (<em>str</em>) &#8211; (optional) A name for the snapshot. If no name is
+provided, the date and time the snapshot was taken is used.</li>
+<li><strong>enable_remote_replication</strong> (<em>bool</em>) &#8211; (optional) Identifies if snapshot is
+enabled for remote replication.</li>
+<li><strong>retention</strong> (<em>str</em>) &#8211; (optional) The amount of time the snapshot will be
+retained. Enter in <em>hh:mm:ss</em></li>
+<li><strong>attributes</strong> (<em>dict</em>) &#8211; (optional) List of Name/Value pairs in JSON object
+format.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.CreateSnapshotResult" title="solidfire.results.CreateSnapshotResult">CreateSnapshotResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.create_volume">
+<code class="descname">create_volume</code><span class="sig-paren">(</span><em>name</em>, <em>account_id</em>, <em>total_size</em>, <em>enable512e</em>, <em>qos=None</em>, <em>attributes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.create_volume" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>create_volume</em> is used to create a new (empty) volume on the cluster.
+When the volume is created successfully it is available for connection
+via iSCSI.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>str</em>) &#8211; [required] Name of the volume. Not required to be unique,
+but it is recommended. May be 1 to 64 characters in length.</li>
+<li><strong>account_id</strong> (<em>int</em>) &#8211; [required] <em>account_id</em> for the owner of this
+volume.</li>
+<li><strong>total_size</strong> (<em>int</em>) &#8211; [required] Total size of the volume, in bytes. Size
+is rounded up to the nearest 1MB size.</li>
+<li><strong>enable512e</strong> (<em>bool</em>) &#8211; [required] Should the volume provides 512-byte
+sector emulation?</li>
+<li><strong>qos</strong> (<a class="reference internal" href="#solidfire.models.QoS" title="solidfire.models.QoS"><em>QoS</em></a>) &#8211; <p>(optional) Initial quality of service settings for this
+volume.</p>
+<p>Volumes created without specified <em>qos</em> values are created with the
+default values for QoS. Default values for a volume can be found by
+running the <em>get_default_qos</em> method.</p>
+</li>
+<li><strong>attributes</strong> (<em>dict</em>) &#8211; (optional) List of Name/Value pairs in JSON object
+format.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.CreateVolumeResult" title="solidfire.results.CreateVolumeResult">CreateVolumeResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.create_volume_access_group">
+<code class="descname">create_volume_access_group</code><span class="sig-paren">(</span><em>name</em>, <em>initiators=None</em>, <em>volumes=None</em>, <em>virtual_network_id=None</em>, <em>virtual_network_tags=None</em>, <em>attributes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.create_volume_access_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new volume access group.
+The new volume access group must be given a name when it is created.
+Entering initiators and volumes are optional when creating a volume
+access group.
+Once the group is created volumes and initiator IQNs can be added.
+Any initiator IQN that is successfully added to the volume access group
+is able to access any volume in the group without CHAP authentication.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>str</em>) &#8211; [required] Name of the volume access group. It is not
+required to be unique, but recommended.</li>
+<li><strong>initiators</strong> (<em>str</em>) &#8211; (optional) List of initiators to include in the
+volume access group. If unspecified, the access group will start
+out without configured initiators.</li>
+<li><strong>volumes</strong> (<em>int</em>) &#8211; (optional) List of volumes to initially include in the
+volume access group. If unspecified, the access group will start
+without any volumes.</li>
+<li><strong>virtual_network_id</strong> (<em>int</em>) &#8211; (optional) The ID of the SolidFire Virtual
+Network ID to associate the volume access group with.</li>
+<li><strong>virtual_network_tags</strong> (<em>int</em>) &#8211; (optional) The ID of the VLAN Virtual
+Network Tag to associate the volume access group with.</li>
+<li><strong>attributes</strong> (<em>dict</em>) &#8211; (optional) List of Name/Value pairs in JSON object
+format.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.CreateVolumeAccessGroupResult" title="solidfire.results.CreateVolumeAccessGroupResult">CreateVolumeAccessGroupResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.delete_group_snapshot">
+<code class="descname">delete_group_snapshot</code><span class="sig-paren">(</span><em>group_snapshot_id</em>, <em>save_members</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.delete_group_snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>delete_group_snapshot</em> is used to delete a group snapshot.
+The <em>save_members</em> parameter can be used to preserve all the snapshots
+that
+were made for the volumes in the group but the group association will
+be removed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>group_snapshot_id</strong> (<em>int</em>) &#8211; [required] Unique ID of the group snapshot.</li>
+<li><strong>save_members</strong> (<em>bool</em>) &#8211; <p>[required]</p>
+<p><strong>true</strong>: Snapshots are kept, but group association is removed.</p>
+<p><strong>false</strong>: The group and snapshots are deleted.</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.DeleteGroupSnapshotResult" title="solidfire.results.DeleteGroupSnapshotResult">DeleteGroupSnapshotResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.delete_snapshot">
+<code class="descname">delete_snapshot</code><span class="sig-paren">(</span><em>snapshot_id</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.delete_snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>delete_snapshot</em> is used to delete a snapshot.
+A snapshot that is currently the &#8220;active&#8221; snapshot cannot be deleted.
+You must rollback and make another snapshot &#8220;active&#8221; before the
+current snapshot can be deleted.
+To rollback a snapshot, use RollbackToSnapshot.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>snapshot_id</strong> (<em>int</em>) &#8211; [required] The ID of the snapshot to delete.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a response</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#solidfire.results.DeleteSnapshotResult" title="solidfire.results.DeleteSnapshotResult">DeleteSnapshotResult</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.delete_volume">
+<code class="descname">delete_volume</code><span class="sig-paren">(</span><em>volume_id</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.delete_volume" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>delete_volume</em> marks an active volume for deletion.
+It is purged (permanently deleted) after the cleanup interval elapses.
+After making a request to delete a volume, any active iSCSI connections
+to the volume is immediately terminated and no further connections are
+allowed while the volume is in this state.
+It is not returned in target discovery requests.</p>
+<p>Any snapshots of a volume that has been marked to delete are not
+affected.
+Snapshots are kept until the volume is purged from the system.</p>
+<p>If a volume is marked for deletion, and it has a bulk volume read or
+bulk volume write operation in progress, the bulk volume operation is
+stopped.</p>
+<p>If the volume you delete is paired with a volume, replication between
+the paired volumes is suspended and no data is transferred to it or
+from it while in a deleted state.
+The remote volume the deleted volume was paired with enters into a
+<em>paused_misconfigured</em> state and data is no longer sent to it or from
+the deleted volume.
+Until the deleted volume is purged, it can be restored and data
+transfers resumes.
+If the deleted volume gets purged from the system, the volume it was
+paired with enters into a <em>stopped_misconfigured</em> state and the volume
+pairing status is removed.
+The purged volume becomes permanently unavailable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>volume_id</strong> (<em>int</em>) &#8211; [required] The ID of the volume to delete.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a response</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#solidfire.results.DeleteVolumeResult" title="solidfire.results.DeleteVolumeResult">DeleteVolumeResult</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.delete_volume_access_group">
+<code class="descname">delete_volume_access_group</code><span class="sig-paren">(</span><em>volume_access_group_id</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.delete_volume_access_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a volume access group from the system.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>volume_access_group_id</strong> (<em>int</em>) &#8211; [required] The ID of the volume access
+group to delete.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a response</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#solidfire.results.DeleteVolumeAccessGroupResult" title="solidfire.results.DeleteVolumeAccessGroupResult">DeleteVolumeAccessGroupResult</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.get_account_by_id">
+<code class="descname">get_account_by_id</code><span class="sig-paren">(</span><em>account_id</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.get_account_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns details about an account, given its AccountID.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>account_id</strong> (<em>int</em>) &#8211; [required] Specifies the account for which details
+are gathered.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a response</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#solidfire.results.GetAccountResult" title="solidfire.results.GetAccountResult">GetAccountResult</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.get_account_by_name">
+<code class="descname">get_account_by_name</code><span class="sig-paren">(</span><em>username</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.get_account_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns details about an account, given its Username.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>username</strong> (<em>str</em>) &#8211; [required] Username for the account.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a response</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#solidfire.results.GetAccountResult" title="solidfire.results.GetAccountResult">GetAccountResult</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.get_api">
+<code class="descname">get_api</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.get_api" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the current version of the API and a list of all supported
+versions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a response</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#solidfire.results.GetAPIResult" title="solidfire.results.GetAPIResult">GetAPIResult</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.get_async_result">
+<code class="descname">get_async_result</code><span class="sig-paren">(</span><em>async_handle</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.get_async_result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to retrieve the result of asynchronous method calls.
+Some method calls are long running and do not complete when the initial
+response is sent.
+To obtain the result of the method call, polling with
+<em>get_async_result</em> is required.</p>
+<p><em>get_async_result</em> returns the overall status of the operation (in
+progress, completed, or error) in a standard fashion,
+but the actual data returned for the operation depends on the original
+method call and the return data is documented with each method.</p>
+<p>The result for a completed asynchronous method call can only be
+retrieved once.
+Once the final result has been returned, later attempts returns an
+error.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>async_handle</strong> (<em>int</em>) &#8211; [required] A value that was returned from the
+original asynchronous method call.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a response</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#solidfire.results.GetAsyncResultResult" title="solidfire.results.GetAsyncResultResult">GetAsyncResultResult</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.get_volume_efficiency">
+<code class="descname">get_volume_efficiency</code><span class="sig-paren">(</span><em>volume_id</em>, <em>force=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.get_volume_efficiency" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>get_volume_efficiency</em> is used to retrieve information about a volume.
+Only the volume given as a parameter in this API method is used to
+compute the capacity.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>volume_id</strong> (<em>int</em>) &#8211; [required] Specifies the volume for which capacity is
+computed.</li>
+<li><strong>force</strong> (<em>bool</em>) &#8211; (optional)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.GetVolumeEfficiencyResult" title="solidfire.results.GetVolumeEfficiencyResult">GetVolumeEfficiencyResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.get_volume_stats">
+<code class="descname">get_volume_stats</code><span class="sig-paren">(</span><em>volume_id</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.get_volume_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>get_volume_stats</em> is used to retrieve high-level activity measurements
+for a single volume.
+Values are cumulative from the creation of the volume.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>volume_id</strong> (<em>int</em>) &#8211; [required] Specifies the volume for which statistics
+is gathered.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a response</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#solidfire.results.GetVolumeStatsResult" title="solidfire.results.GetVolumeStatsResult">GetVolumeStatsResult</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.list_accounts">
+<code class="descname">list_accounts</code><span class="sig-paren">(</span><em>start_account_id=None</em>, <em>limit=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.list_accounts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the entire list of accounts, with optional paging support.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>start_account_id</strong> (<em>int</em>) &#8211; (optional) Starting <em>account_id</em> to return. If
+no Account exists with this <em>account_id,</em> the next Account by
+<em>account_id</em> order is used as the start of the list. To page
+through the list, pass the <em>account_id</em> of the last Account in the
+previous response + 1</li>
+<li><strong>limit</strong> (<em>int</em>) &#8211; (optional) Maximum number of <em>account_info</em> objects to
+return.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.ListAccountsResult" title="solidfire.results.ListAccountsResult">ListAccountsResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.list_active_volumes">
+<code class="descname">list_active_volumes</code><span class="sig-paren">(</span><em>start_volume_id=None</em>, <em>limit=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.list_active_volumes" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list_active_volumes</em> is used to return the list of active volumes
+currently in the system.
+The list of volumes is returned sorted in <em>volume_id</em> order and can be
+returned in multiple parts (pages).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>start_volume_id</strong> (<em>int</em>) &#8211; (optional) The ID of the first volume to list.
+This can be useful for paging results. By default, this starts at
+the lowest VolumeID.</li>
+<li><strong>limit</strong> (<em>int</em>) &#8211; (optional) The maximum number of volumes to return from
+the API.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.ListActiveVolumesResult" title="solidfire.results.ListActiveVolumesResult">ListActiveVolumesResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.list_deleted_volumes">
+<code class="descname">list_deleted_volumes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.list_deleted_volumes" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list_deleted_volumes</em> is used to return the entire list of volumes
+that have been marked for deletion and is purged from the system.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a response</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#solidfire.results.ListDeletedVolumesResult" title="solidfire.results.ListDeletedVolumesResult">ListDeletedVolumesResult</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.list_group_snapshots">
+<code class="descname">list_group_snapshots</code><span class="sig-paren">(</span><em>volume_id=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.list_group_snapshots" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list_group_snapshots</em> is used to return information about all group
+snapshots that have been created.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>volume_id</strong> (<em>int</em>) &#8211; (optional) An array of unique volume <em>ids</em> to query.
+If this parameter is not specified, all group snapshots on the
+cluster will be included.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a response</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#solidfire.results.ListGroupSnapshotsResult" title="solidfire.results.ListGroupSnapshotsResult">ListGroupSnapshotsResult</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.list_snapshots">
+<code class="descname">list_snapshots</code><span class="sig-paren">(</span><em>volume_id=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.list_snapshots" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list_snapshots</em> is used to return the attributes of each snapshot
+taken on the volume.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>volume_id</strong> (<em>int</em>) &#8211; (optional) The volume to list snapshots for. If not
+provided, all snapshots for all volumes are returned.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a response</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#solidfire.results.ListSnapshotsResult" title="solidfire.results.ListSnapshotsResult">ListSnapshotsResult</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.list_volume_access_groups">
+<code class="descname">list_volume_access_groups</code><span class="sig-paren">(</span><em>start_volume_access_group_id=None</em>, <em>limit=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.list_volume_access_groups" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list_volume_access_groups</em> is used to return information about the
+volume access groups that are currently in the system.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>start_volume_access_group_id</strong> (<em>int</em>) &#8211; (optional) The lowest
+<em>volume_access_group_id</em> to return. This can be useful for paging.
+If unspecified, there is no lower limit (implicitly 0).</li>
+<li><strong>limit</strong> (<em>int</em>) &#8211; (optional) The maximum number of results to return. This
+can be useful for paging.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.ListVolumeAccessGroupsResult" title="solidfire.results.ListVolumeAccessGroupsResult">ListVolumeAccessGroupsResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.list_volume_stats_by_account">
+<code class="descname">list_volume_stats_by_account</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.list_volume_stats_by_account" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list_volume_stats_by_account</em> returns high-level activity measurements
+for every account.
+Values are summed from all the volumes owned by the account.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a response</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#solidfire.results.ListVolumeStatsByAccountResult" title="solidfire.results.ListVolumeStatsByAccountResult">ListVolumeStatsByAccountResult</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.list_volume_stats_by_volume">
+<code class="descname">list_volume_stats_by_volume</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.list_volume_stats_by_volume" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list_volume_stats_by_volume</em> returns high-level activity measurements
+for every volume, by volume.
+Values are cumulative from the creation of the volume.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a response</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#solidfire.results.ListVolumeStatsByVolumeResult" title="solidfire.results.ListVolumeStatsByVolumeResult">ListVolumeStatsByVolumeResult</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.list_volume_stats_by_volume_access_group">
+<code class="descname">list_volume_stats_by_volume_access_group</code><span class="sig-paren">(</span><em>volume_access_groups=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.list_volume_stats_by_volume_access_group" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list_volume_stats_by_volume_access_group</em> is used to get total
+activity measurements for all of the volumes that are a member of the
+specified volume access group(s).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>volume_access_groups</strong> (<em>int</em>) &#8211; (optional) An array of
+<em>volume_access_group_ids</em> for which volume activity is returned. If
+no <em>volume_access_group_id</em> is specified, stats for all volume
+access groups is returned.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a response</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#solidfire.results.ListVolumeStatsByVolumeAccessGroupResult" title="solidfire.results.ListVolumeStatsByVolumeAccessGroupResult">ListVolumeStatsByVolumeAccessGroupResult</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.list_volumes">
+<code class="descname">list_volumes</code><span class="sig-paren">(</span><em>start_volume_id=None</em>, <em>limit=None</em>, <em>volume_status=None</em>, <em>accounts=None</em>, <em>is_paired=None</em>, <em>volume_ids=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.list_volumes" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <em>list_volumes</em> method is used to return a list of volumes that are
+in a cluster.
+You can specify the volumes you want to return in the list by using the
+available parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>start_volume_id</strong> (<em>int</em>) &#8211; (optional) The ID of the first volume to list.
+This can be useful for paging results. By default, this starts at
+the lowest VolumeID.</li>
+<li><strong>limit</strong> (<em>int</em>) &#8211; (optional) The maximum number of volumes to return from
+the API.</li>
+<li><strong>volume_status</strong> (<em>str</em>) &#8211; (optional) If specified, filter to only volumes
+with the provided status. By default, list all volumes.</li>
+<li><strong>accounts</strong> (<em>int</em>) &#8211; (optional) If specified, only fetch volumes which
+belong to the provided accounts. By default, list volumes for all
+accounts.</li>
+<li><strong>is_paired</strong> (<em>bool</em>) &#8211; (optional) If specified, only fetch volumes which are
+paired (if true) or non-paired (if false). By default, list all
+volumes regardless of their pairing status.</li>
+<li><strong>volume_ids</strong> (<em>int</em>) &#8211; (optional) If specified, only fetch volumes
+specified in this list. This option cannot be specified if
+<em>start_volume_id,</em> limit, or accounts option is specified.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.ListVolumesResult" title="solidfire.results.ListVolumesResult">ListVolumesResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.list_volumes_for_account">
+<code class="descname">list_volumes_for_account</code><span class="sig-paren">(</span><em>account_id</em>, <em>start_volume_id=None</em>, <em>limit=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.list_volumes_for_account" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list_volumes_for_account</em> returns the list of active AND (pending)
+deleted volumes for an account.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>account_id</strong> (<em>int</em>) &#8211; [required] The ID of the account to list the volumes
+for.</li>
+<li><strong>start_volume_id</strong> (<em>int</em>) &#8211; (optional) The ID of the first volume to list.
+This can be useful for paging results. By default, this starts at
+the lowest VolumeID.</li>
+<li><strong>limit</strong> (<em>int</em>) &#8211; (optional) The maximum number of volumes to return from
+the API.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.ListVolumesForAccountResult" title="solidfire.results.ListVolumesForAccountResult">ListVolumesForAccountResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.modify_account">
+<code class="descname">modify_account</code><span class="sig-paren">(</span><em>account_id</em>, <em>username=None</em>, <em>status=None</em>, <em>initiator_secret=None</em>, <em>target_secret=None</em>, <em>attributes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.modify_account" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to modify an existing account.
+When locking an account, any existing connections from that account are
+immediately terminated.
+When changing CHAP settings, any existing connections continue to be
+active,
+and the new CHAP values are only used on subsequent connection or
+reconnection.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>account_id</strong> (<em>int</em>) &#8211; [required] <em>account_id</em> for the account to modify.</li>
+<li><strong>username</strong> (<em>str</em>) &#8211; (optional) Change the username of the account to this
+value.</li>
+<li><strong>status</strong> (<em>str</em>) &#8211; (optional) Status of the account.</li>
+<li><strong>initiator_secret</strong> (<em>str</em>) &#8211; (optional) CHAP secret to use for the
+initiator. Should be 12-16 characters long and impenetrable.</li>
+<li><strong>target_secret</strong> (<em>str</em>) &#8211; (optional) CHAP secret to use for the target
+(mutual CHAP authentication). Should be 12-16 characters long and
+impenetrable.</li>
+<li><strong>attributes</strong> (<em>dict</em>) &#8211; (optional) List of Name/Value pairs in JSON object
+format.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.ModifyAccountResult" title="solidfire.results.ModifyAccountResult">ModifyAccountResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.modify_group_snapshot">
+<code class="descname">modify_group_snapshot</code><span class="sig-paren">(</span><em>group_snapshot_id</em>, <em>expiration_time=None</em>, <em>enable_remote_replication=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.modify_group_snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>modify_group_snapshot</em> is used to change the attributes currently
+assigned to a group snapshot.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>group_snapshot_id</strong> (<em>int</em>) &#8211; [required] ID of the snapshot.</li>
+<li><strong>expiration_time</strong> (<em>str</em>) &#8211; (optional) Use to set the time when the
+snapshot should be removed.</li>
+<li><strong>enable_remote_replication</strong> (<em>bool</em>) &#8211; <p>(optional) Use to enable the snapshot
+created to be replicated to a remote SolidFire cluster. Possible
+values:</p>
+<p><strong>true</strong>: the snapshot will be replicated to remote storage.</p>
+<p><strong>false</strong>: Default. No replication.</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.ModifyGroupSnapshotResult" title="solidfire.results.ModifyGroupSnapshotResult">ModifyGroupSnapshotResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.modify_snapshot">
+<code class="descname">modify_snapshot</code><span class="sig-paren">(</span><em>snapshot_id</em>, <em>expiration_time=None</em>, <em>enable_remote_replication=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.modify_snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>modify_snapshot</em> is used to change the attributes currently assigned
+to a snapshot.
+Use this API method to enable the snapshots created on the Read/Write
+(source) volume to be remotely replicated to a target SolidFire storage
+system.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>snapshot_id</strong> (<em>int</em>) &#8211; [required] ID of the snapshot.</li>
+<li><strong>expiration_time</strong> (<em>str</em>) &#8211; (optional) Use to set the time when the
+snapshot should be removed.</li>
+<li><strong>enable_remote_replication</strong> (<em>bool</em>) &#8211; <p>(optional) Use to enable the snapshot
+created to be replicated to a remote SolidFire cluster. Possible
+values:</p>
+<p><strong>true</strong>: the snapshot will be replicated to remote storage.</p>
+<p><strong>false</strong>: Default. No replication.</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.ModifySnapshotResult" title="solidfire.results.ModifySnapshotResult">ModifySnapshotResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.modify_volume">
+<code class="descname">modify_volume</code><span class="sig-paren">(</span><em>volume_id</em>, <em>account_id=None</em>, <em>access=None</em>, <em>set_create_time=None</em>, <em>qos=None</em>, <em>total_size=None</em>, <em>attributes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.modify_volume" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>modify_volume</em> is used to modify settings on an existing volume.
+Modifications can be made to one volume at a time and changes take
+place immediately.
+If an optional parameter is left unspecified, the value will not be
+changed.</p>
+<p>Extending the size of a volume that is being replicated should be done
+in an order.
+The target (Replication Target) volume should first be increased in
+size, then the source (Read/Write) volume can be resized.
+It is recommended that both the target and the source volumes be the
+same size.</p>
+<p><strong>Note</strong>: If you change access status to locked or target all existing
+iSCSI connections are terminated.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>volume_id</strong> (<em>int</em>) &#8211; [required] <em>volume_id</em> for the volume to be modified.</li>
+<li><strong>account_id</strong> (<em>int</em>) &#8211; (optional) <em>account_id</em> to which the volume is
+reassigned. If none is specified, the previous account name is
+used.</li>
+<li><strong>access</strong> (<em>str</em>) &#8211; <p>(optional) Access allowed for the volume.</p>
+<p><strong>readOnly</strong>: Only read operations are allowed.</p>
+<p><strong>readWrite</strong>: Reads and writes are allowed.</p>
+<p><strong>locked</strong>: No reads or writes are allowed.</p>
+<p><strong>replicationTarget</strong>: Identify a volume as the target volume for a
+paired set of volumes. If the volume is not paired, the access
+status is locked.</p>
+<p>If unspecified, the access settings of the clone will be the same
+as the source.</p>
+</li>
+<li><strong>set_create_time</strong> (<em>str</em>) &#8211; (optional) Identify the time at which the
+volume was created.</li>
+<li><strong>qos</strong> (<a class="reference internal" href="#solidfire.models.QoS" title="solidfire.models.QoS"><em>QoS</em></a>) &#8211; (optional) New quality of service settings for this volume.</li>
+<li><strong>total_size</strong> (<em>int</em>) &#8211; (optional) New size of the volume in bytes. Size is
+rounded up to the nearest 1MiB size. This parameter can only be
+used to <em>increase</em> the size of a volume.</li>
+<li><strong>attributes</strong> (<em>dict</em>) &#8211; (optional) List of Name/Value pairs in JSON object
+format.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.ModifyVolumeResult" title="solidfire.results.ModifyVolumeResult">ModifyVolumeResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.modify_volume_access_group">
+<code class="descname">modify_volume_access_group</code><span class="sig-paren">(</span><em>volume_access_group_id</em>, <em>virtual_network_id=None</em>, <em>virtual_network_tags=None</em>, <em>name=None</em>, <em>initiators=None</em>, <em>volumes=None</em>, <em>attributes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.modify_volume_access_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update initiators and add or remove volumes from a volume access group.
+A specified initiator or volume that duplicates an existing volume or
+initiator in a volume access group is left as-is.
+If a value is not specified for volumes or initiators, the current list
+of initiators and volumes are not changed.</p>
+<p>Often, it is easier to use the convenience functions to modify
+initiators and volumes independently:</p>
+<p><em>add_initiators_to_volume_access_group</em></p>
+<p><em>remove_initiators_from_volume_access_group</em></p>
+<p><em>add_volumes_to_volume_access_group</em></p>
+<p><em>remove_volumes_from_volume_access_group</em></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>volume_access_group_id</strong> (<em>int</em>) &#8211; [required] The ID of the volume access
+group to modify.</li>
+<li><strong>virtual_network_id</strong> (<em>int</em>) &#8211; (optional) The ID of the SolidFire Virtual
+Network ID to associate the volume access group with.</li>
+<li><strong>virtual_network_tags</strong> (<em>int</em>) &#8211; (optional) The ID of the VLAN Virtual
+Network Tag to associate the volume access group with.</li>
+<li><strong>name</strong> (<em>str</em>) &#8211; (optional) Name of the volume access group. It is not
+required to be unique, but recommended.</li>
+<li><strong>initiators</strong> (<em>str</em>) &#8211; (optional) List of initiators to include in the
+volume access group. If unspecified, the access group&amp;#39;s
+configured initiators will not be modified.</li>
+<li><strong>volumes</strong> (<em>int</em>) &#8211; (optional) List of volumes to initially include in the
+volume access group. If unspecified, the access group&amp;#39;s volumes
+will not be modified.</li>
+<li><strong>attributes</strong> (<em>dict</em>) &#8211; (optional) List of Name/Value pairs in JSON object
+format.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.ModifyVolumeAccessGroupResult" title="solidfire.results.ModifyVolumeAccessGroupResult">ModifyVolumeAccessGroupResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.purge_deleted_volume">
+<code class="descname">purge_deleted_volume</code><span class="sig-paren">(</span><em>volume_id</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.purge_deleted_volume" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>purge_deleted_volume</em> immediately and permanently purges a volume
+which has been deleted.
+A volume must be deleted using <em>delete_volume</em> before it can be purged.
+Volumes are purged automatically after a period of time, so usage of
+this method is not typically required.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>volume_id</strong> (<em>int</em>) &#8211; [required] The ID of the volume to purge.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a response</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#solidfire.results.PurgeDeletedVolumeResult" title="solidfire.results.PurgeDeletedVolumeResult">PurgeDeletedVolumeResult</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.remove_account">
+<code class="descname">remove_account</code><span class="sig-paren">(</span><em>account_id</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.remove_account" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to remove an existing account.
+All Volumes must be deleted and purged on the account before it can be
+removed.
+If volumes on the account are still pending deletion, <em>remove_account</em>
+cannot be used until <em>delete_volume</em> to delete and purge the volumes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>account_id</strong> (<em>int</em>) &#8211; [required] <em>account_id</em> for the account to remove.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a response</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#solidfire.results.RemoveAccountResult" title="solidfire.results.RemoveAccountResult">RemoveAccountResult</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.remove_initiators_from_volume_access_group">
+<code class="descname">remove_initiators_from_volume_access_group</code><span class="sig-paren">(</span><em>volume_access_group_id</em>, <em>initiators</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.remove_initiators_from_volume_access_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove initiators from a volume access group.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>volume_access_group_id</strong> (<em>int</em>) &#8211; [required] The ID of the volume access
+group to modify.</li>
+<li><strong>initiators</strong> (<em>str</em>) &#8211; [required] List of initiators to remove from the
+volume access group.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.ModifyVolumeAccessGroupResult" title="solidfire.results.ModifyVolumeAccessGroupResult">ModifyVolumeAccessGroupResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.remove_volumes_from_volume_access_group">
+<code class="descname">remove_volumes_from_volume_access_group</code><span class="sig-paren">(</span><em>volume_access_group_id</em>, <em>volumes</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.remove_volumes_from_volume_access_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove volumes from a volume access group.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>volume_access_group_id</strong> (<em>int</em>) &#8211; [required] The ID of the volume access
+group to modify.</li>
+<li><strong>volumes</strong> (<em>int</em>) &#8211; [required] List of volumes to remove from this volume
+access group.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.ModifyVolumeAccessGroupResult" title="solidfire.results.ModifyVolumeAccessGroupResult">ModifyVolumeAccessGroupResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.restore_deleted_volume">
+<code class="descname">restore_deleted_volume</code><span class="sig-paren">(</span><em>volume_id</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.restore_deleted_volume" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>restore_deleted_volume</em> marks a deleted volume as active again.
+This action makes the volume immediately available for iSCSI
+connection.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>volume_id</strong> (<em>int</em>) &#8211; [required] <em>restore_deleted_volume</em></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a response</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#solidfire.results.RestoreDeletedVolumeResult" title="solidfire.results.RestoreDeletedVolumeResult">RestoreDeletedVolumeResult</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.rollback_to_group_snapshot">
+<code class="descname">rollback_to_group_snapshot</code><span class="sig-paren">(</span><em>group_snapshot_id</em>, <em>save_current_state</em>, <em>name=None</em>, <em>attributes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.rollback_to_group_snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>rollback_to_group_snapshot</em> is used to roll back each individual
+volume in a snapshot group to a copy of their individual snapshots.</p>
+<p><strong>Note</strong>: Creating a snapshot is allowed if cluster fullness is at
+stage 2 or 3.
+Snapshots are not created when cluster fullness is at stage 4 or 5.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>group_snapshot_id</strong> (<em>int</em>) &#8211; [required] Unique ID of the group snapshot.</li>
+<li><strong>save_current_state</strong> (<em>bool</em>) &#8211; <p>[required]</p>
+<p><strong>true</strong>: The previous active volume image is kept.</p>
+<p><strong>false</strong>: (default) The previous active volume image is deleted.</p>
+</li>
+<li><strong>name</strong> (<em>str</em>) &#8211; (optional) Name for the snapshot. If no name is given,
+then the name of the snapshot being rolled back to is used with
+&#8220;-copy&#8221; appended to the end of the name.</li>
+<li><strong>attributes</strong> (<em>dict</em>) &#8211; (optional) List of Name/Value pairs in JSON object
+format</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.CreateGroupSnapshotResult" title="solidfire.results.CreateGroupSnapshotResult">CreateGroupSnapshotResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.Element.rollback_to_snapshot">
+<code class="descname">rollback_to_snapshot</code><span class="sig-paren">(</span><em>volume_id</em>, <em>snapshot_id</em>, <em>save_current_state</em>, <em>name=None</em>, <em>attributes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.Element.rollback_to_snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>rollback_to_snapshot</em> is used to make an existing snapshot the
+&#8220;active&#8221; volume image. This method creates a new
+snapshot from an existing snapshot. The new snapshot becomes &#8220;active&#8221;
+and the existing snapshot is preserved until
+it is manually deleted. The previously &#8220;active&#8221; snapshot is deleted
+unless the parameter <em>save_current_state</em> is set with
+a value of &#8220;true.&#8221;</p>
+<p><strong>Note</strong>: Creating a snapshot is allowed if cluster fullness is at
+stage 2 or 3.
+Snapshots are not created when cluster fullness is at stage 4 or 5.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>volume_id</strong> (<em>int</em>) &#8211; [required] <em>volume_id</em> for the volume.</li>
+<li><strong>snapshot_id</strong> (<em>int</em>) &#8211; [required] ID of a previously created snapshot on
+the given volume.</li>
+<li><strong>save_current_state</strong> (<em>bool</em>) &#8211; <p>[required]</p>
+<p><strong>true</strong>: The previous active volume image is kept.</p>
+<p><strong>false</strong>: (default) The previous active volume image is deleted.</p>
+</li>
+<li><strong>name</strong> (<em>str</em>) &#8211; (optional) Name for the snapshot. If no name is given,
+then the name of the snapshot being rolled back to is used with
+&#8220;-copy&#8221; appended to the end of the name.</li>
+<li><strong>attributes</strong> (<em>dict</em>) &#8211; (optional) List of Name/Value pairs in JSON object
+format</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#solidfire.results.CreateSnapshotResult" title="solidfire.results.CreateSnapshotResult">CreateSnapshotResult</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="solidfire.common.html" class="btn btn-neutral float-right" title="solidfire.common package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to solidfire’s documentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2016, NetApp, Inc.  All Rights Reserved..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0.102',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,7 +1,3 @@
-/docs/_build
-/solidfire/__init__.py
-/solidfire/models.py
-/solidfire/results.py
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -55,7 +51,6 @@ coverage.xml
 *.log
 
 # Sphinx documentation
-docs/_build/
 
 # PyBuilder
 target/

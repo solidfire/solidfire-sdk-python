@@ -36,7 +36,7 @@ class Clean(_clean):
 setup(
     name='solidfire-sdk-python',
 
-    version='1.0.0.dev1',
+    version='1.0.0.102',
 
     description='SolidFire Python SDK',
     long_description=long_description,
@@ -49,7 +49,7 @@ setup(
     license='Apache2',
 
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 5 - Production/Stable',
 
         'Operating System :: OS Independent',
 
@@ -58,7 +58,7 @@ setup(
         'Intended Audience :: System Administrators',
 
         'Topic :: Utilities',
-        'Topic :: System :: Systems Administration'
+        'Topic :: System :: Systems Administration',
         'Topic :: Software Development :: Libraries :: Application Frameworks',
 
         'License :: OSI Approved :: Apache Software License',

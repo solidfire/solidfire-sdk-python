@@ -14,8 +14,8 @@ master_doc = 'index'
 project = 'solidfire-sdk-python'
 copyright = '2014-2016, NetApp, Inc.  All Rights Reserved.'
 author = 'Jason Ryan Womack'
-version = '1.0'
-release = '1.0.0.dev1'
+version = '1.0.0'
+release = '1.0.0.102'
 language = 'en'
 
 exclude_patterns = ['_build']
@@ -35,19 +35,19 @@ html_theme_options = {}
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-# html_title = None
+html_title = 'SolidFire Python SDK v' + release
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
-# html_short_title = None
+html_short_title = 'SF-Python SDK v' + release
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-# html_logo = None
+html_logo = '_static/PythonSDK.png'
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
-# html_favicon = None
+html_favicon = '_static/favicon.ico'
 
 html_static_path = ['_static']
 htmlhelp_basename = 'solidfiredoc'
@@ -55,18 +55,18 @@ htmlhelp_basename = 'solidfiredoc'
 latex_elements = {}
 
 latex_documents = [
-    (master_doc, 'solidfire.tex', 'solidfire Documentation',
+    (master_doc, 'SolidFire.tex', 'SolidFire Documentation',
      'Author', 'manual'),
 ]
 
 man_pages = [
-    (master_doc, 'solidfire', 'solidfire Documentation',
+    (master_doc, 'SolidFire', 'SolidFire Documentation',
      [author], 1)
 ]
 
 texinfo_documents = [
-    (master_doc, 'solidfire', 'solidfire Documentation',
-     author, 'solidfire', 'One line description of project.',
+    (master_doc, 'SolidFire', 'Python SDK Documentation',
+     author, 'SolidFire', 'Python SDK',
      'Miscellaneous'),
 ]
 
