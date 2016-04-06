@@ -44,7 +44,7 @@ setup(
     url='https://github.com/solidfire/solidfire-sdk-python',
 
     author='Jason Ryan Womack',
-    author_email='jason.womack@solidfire.com',
+    author_email='jason.womack@netapp.com',
 
     license='Apache2',
 
