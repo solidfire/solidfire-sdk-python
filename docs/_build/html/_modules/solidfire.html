@@ -1,0 +1,2095 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>solidfire &mdash; SolidFire Python SDK v1.0.0.104</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/solidfire.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SolidFire Python SDK v1.0.0.104" href="../index.html"/>
+        <link rel="up" title="Module code" href="index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> solidfire-sdk-python
+          
+
+          
+            
+            <img src="../_static/PythonSDK.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../solidfire.html">solidfire package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">solidfire-sdk-python</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Module code</a> &raquo;</li>
+      
+    <li>solidfire</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for solidfire</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright © 2014-2016 NetApp, Inc. All Rights Reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># DO NOT EDIT THIS CODE BY HAND! It has been generated with jsvcgen.</span>
+<span class="c1">#</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">logging</span> <span class="kn">import</span> <span class="n">Logger</span>
+<span class="kn">from</span> <span class="nn">solidfire</span> <span class="kn">import</span> <span class="n">common</span>
+<span class="kn">from</span> <span class="nn">solidfire.common</span> <span class="kn">import</span> <span class="n">ServiceBase</span><span class="p">,</span> <span class="n">ApiVersionExceededError</span><span class="p">,</span> \
+    <span class="n">ApiVersionUnsupportedError</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">AddAccountResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">CloneVolumeResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">CreateGroupSnapshotResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">CreateSnapshotResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">CreateVolumeAccessGroupResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">CreateVolumeResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">DeleteGroupSnapshotResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">DeleteSnapshotResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">DeleteVolumeAccessGroupResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">DeleteVolumeResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">GetAPIResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">GetAccountResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">GetAsyncResultResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">GetVolumeEfficiencyResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">GetVolumeStatsResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">ListAccountsResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">ListActiveVolumesResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">ListDeletedVolumesResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">ListGroupSnapshotsResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">ListSnapshotsResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">ListVolumeAccessGroupsResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">ListVolumeStatsByAccountResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">ListVolumeStatsByVolumeAccessGroupResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">ListVolumeStatsByVolumeResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">ListVolumesForAccountResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">ListVolumesResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">ModifyAccountResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">ModifyGroupSnapshotResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">ModifySnapshotResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">ModifyVolumeAccessGroupResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">ModifyVolumeResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">PurgeDeletedVolumeResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">RemoveAccountResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="kn">import</span> <span class="n">RestoreDeletedVolumeResult</span>
+
+<span class="n">OPTIONAL</span> <span class="o">=</span> <span class="bp">None</span>
+
+
+<div class="viewcode-block" id="Element"><a class="viewcode-back" href="../solidfire.html#solidfire.Element">[docs]</a><span class="k">class</span> <span class="nc">Element</span><span class="p">(</span><span class="n">ServiceBase</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The API for controlling a SolidFire cluster.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mvip</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">api_version</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">verify_ssl</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">dispatcher</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor for initializing a connection to an instance of Element OS</span>
+
+<span class="sd">        :param mvip: the management IP (IP or hostname)</span>
+<span class="sd">        :type mvip: str</span>
+<span class="sd">        :param username: username use to connect to the Element OS instance.</span>
+<span class="sd">        :type username: str</span>
+<span class="sd">        :param password: authentication for username</span>
+<span class="sd">        :type password: str</span>
+<span class="sd">        :param api_version: specific version of Element OS to connect</span>
+<span class="sd">        :type api_version: float or str</span>
+<span class="sd">        :param verify_ssl: disable to avoid ssl connection errors especially</span>
+<span class="sd">            when using an IP instead of a hostname</span>
+<span class="sd">        :type verify_ssl: bool</span>
+<span class="sd">        :param dispatcher: a prebuilt or custom http dispatcher</span>
+<span class="sd">        :return: a configured and tested instance of Element</span>
+<span class="sd">        :raises:</span>
+<span class="sd">            ApiVersionExceededError: api_version is greater than connected</span>
+<span class="sd">                Element OS.</span>
+<span class="sd">            ApiVersionUnsupportedError: api_version is not supported by</span>
+<span class="sd">                instance of Element OS.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">logLevel</span> <span class="o">=</span> <span class="n">Logger</span><span class="o">.</span><span class="n">getEffectiveLevel</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">log</span><span class="p">)</span>
+        <span class="n">Logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">log</span><span class="p">,</span> <span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
+        <span class="n">ServiceBase</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mvip</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span>
+                             <span class="mf">0.0</span><span class="p">,</span> <span class="n">verify_ssl</span><span class="p">,</span> <span class="n">dispatcher</span><span class="p">)</span>
+
+        <span class="n">api</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_api</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">api_version</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">float</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">current_version</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ApiVersionExceededError</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span> <span class="n">api</span><span class="o">.</span><span class="n">current_version</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">str</span><span class="p">(</span><span class="n">api_version</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">api</span><span class="o">.</span><span class="n">supported_versions</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ApiVersionUnsupportedError</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span>
+                                             <span class="n">api</span><span class="o">.</span><span class="n">supported_versions</span><span class="p">)</span>
+
+        <span class="n">ServiceBase</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mvip</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">api_version</span><span class="p">,</span>
+                             <span class="n">verify_ssl</span><span class="p">,</span> <span class="n">dispatcher</span><span class="p">)</span>
+        <span class="n">common</span><span class="o">.</span><span class="n">setLogLevel</span><span class="p">(</span><span class="n">logLevel</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Element.add_account"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.add_account">[docs]</a>    <span class="k">def</span> <span class="nf">add_account</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">username</span><span class="p">,</span>
+            <span class="n">initiator_secret</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">target_secret</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">attributes</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Used to add a new account to the system.</span>
+<span class="sd">        New volumes can be created under the new account.</span>
+<span class="sd">        The CHAP settings specified for the account applies to all volumes</span>
+<span class="sd">        owned by the account.</span>
+
+<span class="sd">        :param username: [required] Unique username for this account. (May be 1</span>
+<span class="sd">            to 64 characters in length).</span>
+<span class="sd">        :type username: str</span>
+
+<span class="sd">        :param initiator_secret: (optional) CHAP secret to use for the</span>
+<span class="sd">            initiator. Should be 12-16 characters long and impenetrable. The</span>
+<span class="sd">            CHAP initiator secrets must be unique and cannot be the same as the</span>
+<span class="sd">            target CHAP secret.</span>
+
+<span class="sd">            If not specified, a random secret is created.</span>
+
+<span class="sd">        :type initiator_secret: str</span>
+
+<span class="sd">        :param target_secret: (optional) CHAP secret to use for the target</span>
+<span class="sd">            (mutual CHAP authentication). Should be 12-16 characters long and</span>
+<span class="sd">            impenetrable. The CHAP target secrets must be unique and cannot be</span>
+<span class="sd">            the same as the initiator CHAP secret.</span>
+
+<span class="sd">            If not specified, a random secret is created.</span>
+
+<span class="sd">        :type target_secret: str</span>
+
+<span class="sd">        :param attributes: (optional) List of Name/Value pairs in JSON object</span>
+<span class="sd">            format.</span>
+<span class="sd">        :type attributes: dict</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: AddAccountResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">initiator_secret</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;initiatorSecret&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">initiator_secret</span>
+        <span class="k">if</span> <span class="n">target_secret</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;targetSecret&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">target_secret</span>
+        <span class="k">if</span> <span class="n">attributes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attributes</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;AddAccount&#39;</span><span class="p">,</span>
+            <span class="n">AddAccountResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.get_account_by_id"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.get_account_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_account_by_id</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">account_id</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns details about an account, given its AccountID.</span>
+
+<span class="sd">        :param account_id: [required] Specifies the account for which details</span>
+<span class="sd">            are gathered.</span>
+<span class="sd">        :type account_id: int</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: GetAccountResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;accountID&quot;</span><span class="p">:</span> <span class="n">account_id</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;GetAccountByID&#39;</span><span class="p">,</span>
+            <span class="n">GetAccountResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.get_account_by_name"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.get_account_by_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_account_by_name</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">username</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns details about an account, given its Username.</span>
+
+<span class="sd">        :param username: [required] Username for the account.</span>
+<span class="sd">        :type username: str</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: GetAccountResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;GetAccountByName&#39;</span><span class="p">,</span>
+            <span class="n">GetAccountResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.list_accounts"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.list_accounts">[docs]</a>    <span class="k">def</span> <span class="nf">list_accounts</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">start_account_id</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">limit</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the entire list of accounts, with optional paging support.</span>
+
+<span class="sd">        :param start_account_id: (optional) Starting *account_id* to return. If</span>
+<span class="sd">            no Account exists with this *account_id,* the next Account by</span>
+<span class="sd">            *account_id* order is used as the start of the list. To page</span>
+<span class="sd">            through the list, pass the *account_id* of the last Account in the</span>
+<span class="sd">            previous response + 1</span>
+<span class="sd">        :type start_account_id: int</span>
+
+<span class="sd">        :param limit: (optional) Maximum number of *account_info* objects to</span>
+<span class="sd">            return.</span>
+<span class="sd">        :type limit: int</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: ListAccountsResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">start_account_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;startAccountID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">start_account_id</span>
+        <span class="k">if</span> <span class="n">limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;limit&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">limit</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;ListAccounts&#39;</span><span class="p">,</span>
+            <span class="n">ListAccountsResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.modify_account"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.modify_account">[docs]</a>    <span class="k">def</span> <span class="nf">modify_account</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">account_id</span><span class="p">,</span>
+            <span class="n">username</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">status</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">initiator_secret</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">target_secret</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">attributes</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Used to modify an existing account.</span>
+<span class="sd">        When locking an account, any existing connections from that account are</span>
+<span class="sd">        immediately terminated.</span>
+<span class="sd">        When changing CHAP settings, any existing connections continue to be</span>
+<span class="sd">        active,</span>
+<span class="sd">        and the new CHAP values are only used on subsequent connection or</span>
+<span class="sd">        reconnection.</span>
+
+<span class="sd">        :param account_id: [required] *account_id* for the account to modify.</span>
+<span class="sd">        :type account_id: int</span>
+
+<span class="sd">        :param username: (optional) Change the username of the account to this</span>
+<span class="sd">            value.</span>
+<span class="sd">        :type username: str</span>
+
+<span class="sd">        :param status: (optional) Status of the account.</span>
+<span class="sd">        :type status: str</span>
+
+<span class="sd">        :param initiator_secret: (optional) CHAP secret to use for the</span>
+<span class="sd">            initiator. Should be 12-16 characters long and impenetrable.</span>
+<span class="sd">        :type initiator_secret: str</span>
+
+<span class="sd">        :param target_secret: (optional) CHAP secret to use for the target</span>
+<span class="sd">            (mutual CHAP authentication). Should be 12-16 characters long and</span>
+<span class="sd">            impenetrable.</span>
+<span class="sd">        :type target_secret: str</span>
+
+<span class="sd">        :param attributes: (optional) List of Name/Value pairs in JSON object</span>
+<span class="sd">            format.</span>
+<span class="sd">        :type attributes: dict</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: ModifyAccountResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;accountID&quot;</span><span class="p">:</span> <span class="n">account_id</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">username</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">username</span>
+        <span class="k">if</span> <span class="n">status</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">status</span>
+        <span class="k">if</span> <span class="n">initiator_secret</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;initiatorSecret&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">initiator_secret</span>
+        <span class="k">if</span> <span class="n">target_secret</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;targetSecret&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">target_secret</span>
+        <span class="k">if</span> <span class="n">attributes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attributes</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;ModifyAccount&#39;</span><span class="p">,</span>
+            <span class="n">ModifyAccountResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.remove_account"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.remove_account">[docs]</a>    <span class="k">def</span> <span class="nf">remove_account</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">account_id</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Used to remove an existing account.</span>
+<span class="sd">        All Volumes must be deleted and purged on the account before it can be</span>
+<span class="sd">        removed.</span>
+<span class="sd">        If volumes on the account are still pending deletion, *remove_account*</span>
+<span class="sd">        cannot be used until *delete_volume* to delete and purge the volumes.</span>
+
+<span class="sd">        :param account_id: [required] *account_id* for the account to remove.</span>
+<span class="sd">        :type account_id: int</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: RemoveAccountResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;accountID&quot;</span><span class="p">:</span> <span class="n">account_id</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;RemoveAccount&#39;</span><span class="p">,</span>
+            <span class="n">RemoveAccountResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.get_api"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.get_api">[docs]</a>    <span class="k">def</span> <span class="nf">get_api</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves the current version of the API and a list of all supported</span>
+<span class="sd">        versions.</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: GetAPIResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;GetAPI&#39;</span><span class="p">,</span>
+            <span class="n">GetAPIResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.get_async_result"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.get_async_result">[docs]</a>    <span class="k">def</span> <span class="nf">get_async_result</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">async_handle</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Used to retrieve the result of asynchronous method calls.</span>
+<span class="sd">        Some method calls are long running and do not complete when the initial</span>
+<span class="sd">        response is sent.</span>
+<span class="sd">        To obtain the result of the method call, polling with</span>
+<span class="sd">        *get_async_result* is required.</span>
+
+
+
+
+<span class="sd">        *get_async_result* returns the overall status of the operation (in</span>
+<span class="sd">        progress, completed, or error) in a standard fashion,</span>
+<span class="sd">        but the actual data returned for the operation depends on the original</span>
+<span class="sd">        method call and the return data is documented with each method.</span>
+
+
+
+
+<span class="sd">        The result for a completed asynchronous method call can only be</span>
+<span class="sd">        retrieved once.</span>
+<span class="sd">        Once the final result has been returned, later attempts returns an</span>
+<span class="sd">        error.</span>
+
+<span class="sd">        :param async_handle: [required] A value that was returned from the</span>
+<span class="sd">            original asynchronous method call.</span>
+<span class="sd">        :type async_handle: int</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: GetAsyncResultResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;asyncHandle&quot;</span><span class="p">:</span> <span class="n">async_handle</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;GetAsyncResult&#39;</span><span class="p">,</span>
+            <span class="n">GetAsyncResultResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.create_snapshot"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.create_snapshot">[docs]</a>    <span class="k">def</span> <span class="nf">create_snapshot</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">volume_id</span><span class="p">,</span>
+            <span class="n">snapshot_id</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">enable_remote_replication</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">retention</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">attributes</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *create_snapshot* is used to create a point-in-time copy of a volume.</span>
+<span class="sd">        A snapshot can be created from any volume or from an existing snapshot.</span>
+
+
+
+
+<span class="sd">        **Note**: Creating a snapshot is allowed if cluster fullness is at</span>
+<span class="sd">        stage 2 or 3.</span>
+<span class="sd">        Snapshots are not created when cluster fullness is at stage 4 or 5.</span>
+
+<span class="sd">        :param volume_id: [required] ID of the volume image from which to copy.</span>
+<span class="sd">        :type volume_id: int</span>
+
+<span class="sd">        :param snapshot_id: (optional) Unique ID of a snapshot from which the</span>
+<span class="sd">            new snapshot is made. The *snapshot_id* passed must be a snapshot</span>
+<span class="sd">            on the given volume. If a *snapshot_id* is not provided, a snapshot</span>
+<span class="sd">            is created from the volume&#39;s active branch.</span>
+<span class="sd">        :type snapshot_id: int</span>
+
+<span class="sd">        :param name: (optional) A name for the snapshot. If no name is</span>
+<span class="sd">            provided, the date and time the snapshot was taken is used.</span>
+<span class="sd">        :type name: str</span>
+
+<span class="sd">        :param enable_remote_replication: (optional) Identifies if snapshot is</span>
+<span class="sd">            enabled for remote replication.</span>
+<span class="sd">        :type enable_remote_replication: bool</span>
+
+<span class="sd">        :param retention: (optional) The amount of time the snapshot will be</span>
+<span class="sd">            retained. Enter in *hh:mm:ss*</span>
+<span class="sd">        :type retention: str</span>
+
+<span class="sd">        :param attributes: (optional) List of Name/Value pairs in JSON object</span>
+<span class="sd">            format.</span>
+<span class="sd">        :type attributes: dict</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: CreateSnapshotResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;volumeID&quot;</span><span class="p">:</span> <span class="n">volume_id</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_param_versions</span><span class="p">(</span>
+            <span class="s1">&#39;create_snapshot&#39;</span><span class="p">,</span>
+            <span class="p">[</span>
+                <span class="p">(</span><span class="s2">&quot;enable_remote_replication&quot;</span><span class="p">,</span>
+                 <span class="n">enable_remote_replication</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">&quot;retention&quot;</span><span class="p">,</span>
+                 <span class="n">retention</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">snapshot_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;snapshotID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">snapshot_id</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">if</span> <span class="n">enable_remote_replication</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;enableRemoteReplication&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enable_remote_replication</span>
+        <span class="k">if</span> <span class="n">retention</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;retention&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">retention</span>
+        <span class="k">if</span> <span class="n">attributes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attributes</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;CreateSnapshot&#39;</span><span class="p">,</span>
+            <span class="n">CreateSnapshotResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.delete_snapshot"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.delete_snapshot">[docs]</a>    <span class="k">def</span> <span class="nf">delete_snapshot</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">snapshot_id</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *delete_snapshot* is used to delete a snapshot.</span>
+<span class="sd">        A snapshot that is currently the \&quot;active\&quot; snapshot cannot be deleted.</span>
+<span class="sd">        You must rollback and make another snapshot \&quot;active\&quot; before the</span>
+<span class="sd">        current snapshot can be deleted.</span>
+<span class="sd">        To rollback a snapshot, use RollbackToSnapshot.</span>
+
+<span class="sd">        :param snapshot_id: [required] The ID of the snapshot to delete.</span>
+<span class="sd">        :type snapshot_id: int</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: DeleteSnapshotResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;snapshotID&quot;</span><span class="p">:</span> <span class="n">snapshot_id</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;DeleteSnapshot&#39;</span><span class="p">,</span>
+            <span class="n">DeleteSnapshotResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.list_snapshots"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.list_snapshots">[docs]</a>    <span class="k">def</span> <span class="nf">list_snapshots</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">volume_id</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *list_snapshots* is used to return the attributes of each snapshot</span>
+<span class="sd">        taken on the volume.</span>
+
+<span class="sd">        :param volume_id: (optional) The volume to list snapshots for. If not</span>
+<span class="sd">            provided, all snapshots for all volumes are returned.</span>
+<span class="sd">        :type volume_id: int</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: ListSnapshotsResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">volume_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;volumeID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">volume_id</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;ListSnapshots&#39;</span><span class="p">,</span>
+            <span class="n">ListSnapshotsResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.modify_snapshot"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.modify_snapshot">[docs]</a>    <span class="k">def</span> <span class="nf">modify_snapshot</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">snapshot_id</span><span class="p">,</span>
+            <span class="n">expiration_time</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">enable_remote_replication</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *modify_snapshot* is used to change the attributes currently assigned</span>
+<span class="sd">        to a snapshot.</span>
+<span class="sd">        Use this API method to enable the snapshots created on the Read/Write</span>
+<span class="sd">        (source) volume to be remotely replicated to a target SolidFire storage</span>
+<span class="sd">        system.</span>
+
+<span class="sd">        :param snapshot_id: [required] ID of the snapshot.</span>
+<span class="sd">        :type snapshot_id: int</span>
+
+<span class="sd">        :param expiration_time: (optional) Use to set the time when the</span>
+<span class="sd">            snapshot should be removed.</span>
+<span class="sd">        :type expiration_time: str</span>
+
+<span class="sd">        :param enable_remote_replication: (optional) Use to enable the snapshot</span>
+<span class="sd">            created to be replicated to a remote SolidFire cluster. Possible</span>
+<span class="sd">            values:</span>
+
+<span class="sd">            **true**: the snapshot will be replicated to remote storage.</span>
+
+<span class="sd">            **false**: Default. No replication.</span>
+
+<span class="sd">        :type enable_remote_replication: bool</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: ModifySnapshotResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;snapshotID&quot;</span><span class="p">:</span> <span class="n">snapshot_id</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">expiration_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;expirationTime&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">expiration_time</span>
+        <span class="k">if</span> <span class="n">enable_remote_replication</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;enableRemoteReplication&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enable_remote_replication</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;ModifySnapshot&#39;</span><span class="p">,</span>
+            <span class="n">ModifySnapshotResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+            <span class="n">since</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.rollback_to_snapshot"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.rollback_to_snapshot">[docs]</a>    <span class="k">def</span> <span class="nf">rollback_to_snapshot</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">volume_id</span><span class="p">,</span>
+            <span class="n">snapshot_id</span><span class="p">,</span>
+            <span class="n">save_current_state</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">attributes</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *rollback_to_snapshot* is used to make an existing snapshot the</span>
+<span class="sd">        \&quot;active\&quot; volume image. This method creates a new</span>
+<span class="sd">        snapshot from an existing snapshot. The new snapshot becomes \&quot;active\&quot;</span>
+<span class="sd">        and the existing snapshot is preserved until</span>
+<span class="sd">        it is manually deleted. The previously \&quot;active\&quot; snapshot is deleted</span>
+<span class="sd">        unless the parameter *save_current_state* is set with</span>
+<span class="sd">        a value of \&quot;true.\&quot;</span>
+
+
+
+
+<span class="sd">        **Note**: Creating a snapshot is allowed if cluster fullness is at</span>
+<span class="sd">        stage 2 or 3.</span>
+<span class="sd">        Snapshots are not created when cluster fullness is at stage 4 or 5.</span>
+
+<span class="sd">        :param volume_id: [required] *volume_id* for the volume.</span>
+<span class="sd">        :type volume_id: int</span>
+
+<span class="sd">        :param snapshot_id: [required] ID of a previously created snapshot on</span>
+<span class="sd">            the given volume.</span>
+<span class="sd">        :type snapshot_id: int</span>
+
+<span class="sd">        :param save_current_state: [required]</span>
+
+<span class="sd">            **true**: The previous active volume image is kept.</span>
+
+<span class="sd">            **false**: (default) The previous active volume image is deleted.</span>
+
+<span class="sd">        :type save_current_state: bool</span>
+
+<span class="sd">        :param name: (optional) Name for the snapshot. If no name is given,</span>
+<span class="sd">            then the name of the snapshot being rolled back to is used with</span>
+<span class="sd">            \&quot;-copy\&quot; appended to the end of the name.</span>
+<span class="sd">        :type name: str</span>
+
+<span class="sd">        :param attributes: (optional) List of Name/Value pairs in JSON object</span>
+<span class="sd">            format</span>
+<span class="sd">        :type attributes: dict</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: CreateSnapshotResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;volumeID&quot;</span><span class="p">:</span> <span class="n">volume_id</span><span class="p">,</span>
+            <span class="s2">&quot;snapshotID&quot;</span><span class="p">:</span> <span class="n">snapshot_id</span><span class="p">,</span>
+            <span class="s2">&quot;saveCurrentState&quot;</span><span class="p">:</span> <span class="n">save_current_state</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">if</span> <span class="n">attributes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attributes</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;RollbackToSnapshot&#39;</span><span class="p">,</span>
+            <span class="n">CreateSnapshotResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.create_group_snapshot"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.create_group_snapshot">[docs]</a>    <span class="k">def</span> <span class="nf">create_group_snapshot</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">volumes</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">enable_remote_replication</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">retention</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">attributes</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *create_group_snapshot* is used to create a point-in-time copy of a</span>
+<span class="sd">        group of volumes.</span>
+<span class="sd">        The snapshot created can then be used later as a backup or rollback to</span>
+<span class="sd">        ensure the data on the group of volumes is consistent for the point in</span>
+<span class="sd">        time in which the snapshot was created.</span>
+
+
+
+
+<span class="sd">        **Note**: Creating a group snapshot is allowed if cluster fullness is</span>
+<span class="sd">        at stage 2 or 3.</span>
+<span class="sd">        Snapshots are not created when cluster fullness is at stage 4 or 5.</span>
+
+<span class="sd">        :param volumes: [required] Unique ID of the volume image from which to</span>
+<span class="sd">            copy.</span>
+<span class="sd">        :type volumes: int</span>
+
+<span class="sd">        :param name: (optional) A name for the snapshot. If no name is</span>
+<span class="sd">            provided, the date and time the snapshot was taken is used.</span>
+<span class="sd">        :type name: str</span>
+
+<span class="sd">        :param enable_remote_replication: (optional) Identifies if snapshot is</span>
+<span class="sd">            enabled for remote replication.</span>
+<span class="sd">        :type enable_remote_replication: bool</span>
+
+<span class="sd">        :param retention: (optional) The amount of time the snapshot will be</span>
+<span class="sd">            retained. Enter in *hh:mm:ss*</span>
+<span class="sd">        :type retention: str</span>
+
+<span class="sd">        :param attributes: (optional) List of Name/Value pairs in JSON object</span>
+<span class="sd">            format.</span>
+<span class="sd">        :type attributes: dict</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: CreateGroupSnapshotResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;volumes&quot;</span><span class="p">:</span> <span class="n">volumes</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_param_versions</span><span class="p">(</span>
+            <span class="s1">&#39;create_group_snapshot&#39;</span><span class="p">,</span>
+            <span class="p">[</span>
+                <span class="p">(</span><span class="s2">&quot;enable_remote_replication&quot;</span><span class="p">,</span>
+                 <span class="n">enable_remote_replication</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">&quot;retention&quot;</span><span class="p">,</span>
+                 <span class="n">retention</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">if</span> <span class="n">enable_remote_replication</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;enableRemoteReplication&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enable_remote_replication</span>
+        <span class="k">if</span> <span class="n">retention</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;retention&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">retention</span>
+        <span class="k">if</span> <span class="n">attributes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attributes</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;CreateGroupSnapshot&#39;</span><span class="p">,</span>
+            <span class="n">CreateGroupSnapshotResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.delete_group_snapshot"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.delete_group_snapshot">[docs]</a>    <span class="k">def</span> <span class="nf">delete_group_snapshot</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">group_snapshot_id</span><span class="p">,</span>
+            <span class="n">save_members</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *delete_group_snapshot* is used to delete a group snapshot.</span>
+<span class="sd">        The *save_members* parameter can be used to preserve all the snapshots</span>
+<span class="sd">        that</span>
+<span class="sd">        were made for the volumes in the group but the group association will</span>
+<span class="sd">        be removed.</span>
+
+<span class="sd">        :param group_snapshot_id: [required] Unique ID of the group snapshot.</span>
+<span class="sd">        :type group_snapshot_id: int</span>
+
+<span class="sd">        :param save_members: [required]</span>
+
+<span class="sd">            **true**: Snapshots are kept, but group association is removed.</span>
+
+<span class="sd">            **false**: The group and snapshots are deleted.</span>
+
+<span class="sd">        :type save_members: bool</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: DeleteGroupSnapshotResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;groupSnapshotID&quot;</span><span class="p">:</span> <span class="n">group_snapshot_id</span><span class="p">,</span>
+            <span class="s2">&quot;saveMembers&quot;</span><span class="p">:</span> <span class="n">save_members</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;DeleteGroupSnapshot&#39;</span><span class="p">,</span>
+            <span class="n">DeleteGroupSnapshotResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.list_group_snapshots"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.list_group_snapshots">[docs]</a>    <span class="k">def</span> <span class="nf">list_group_snapshots</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">volume_id</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *list_group_snapshots* is used to return information about all group</span>
+<span class="sd">        snapshots that have been created.</span>
+
+<span class="sd">        :param volume_id: (optional) An array of unique volume *ids* to query.</span>
+<span class="sd">            If this parameter is not specified, all group snapshots on the</span>
+<span class="sd">            cluster will be included.</span>
+<span class="sd">        :type volume_id: int</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: ListGroupSnapshotsResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">volume_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;volumeID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">volume_id</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;ListGroupSnapshots&#39;</span><span class="p">,</span>
+            <span class="n">ListGroupSnapshotsResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.modify_group_snapshot"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.modify_group_snapshot">[docs]</a>    <span class="k">def</span> <span class="nf">modify_group_snapshot</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">group_snapshot_id</span><span class="p">,</span>
+            <span class="n">expiration_time</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">enable_remote_replication</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *modify_group_snapshot* is used to change the attributes currently</span>
+<span class="sd">        assigned to a group snapshot.</span>
+
+<span class="sd">        :param group_snapshot_id: [required] ID of the snapshot.</span>
+<span class="sd">        :type group_snapshot_id: int</span>
+
+<span class="sd">        :param expiration_time: (optional) Use to set the time when the</span>
+<span class="sd">            snapshot should be removed.</span>
+<span class="sd">        :type expiration_time: str</span>
+
+<span class="sd">        :param enable_remote_replication: (optional) Use to enable the snapshot</span>
+<span class="sd">            created to be replicated to a remote SolidFire cluster. Possible</span>
+<span class="sd">            values:</span>
+
+<span class="sd">            **true**: the snapshot will be replicated to remote storage.</span>
+
+<span class="sd">            **false**: Default. No replication.</span>
+
+<span class="sd">        :type enable_remote_replication: bool</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: ModifyGroupSnapshotResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;groupSnapshotID&quot;</span><span class="p">:</span> <span class="n">group_snapshot_id</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">expiration_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;expirationTime&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">expiration_time</span>
+        <span class="k">if</span> <span class="n">enable_remote_replication</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;enableRemoteReplication&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enable_remote_replication</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;ModifyGroupSnapshot&#39;</span><span class="p">,</span>
+            <span class="n">ModifyGroupSnapshotResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+            <span class="n">since</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.rollback_to_group_snapshot"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.rollback_to_group_snapshot">[docs]</a>    <span class="k">def</span> <span class="nf">rollback_to_group_snapshot</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">group_snapshot_id</span><span class="p">,</span>
+            <span class="n">save_current_state</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">attributes</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *rollback_to_group_snapshot* is used to roll back each individual</span>
+<span class="sd">        volume in a snapshot group to a copy of their individual snapshots.</span>
+
+
+
+
+<span class="sd">        **Note**: Creating a snapshot is allowed if cluster fullness is at</span>
+<span class="sd">        stage 2 or 3.</span>
+<span class="sd">        Snapshots are not created when cluster fullness is at stage 4 or 5.</span>
+
+<span class="sd">        :param group_snapshot_id: [required] Unique ID of the group snapshot.</span>
+<span class="sd">        :type group_snapshot_id: int</span>
+
+<span class="sd">        :param save_current_state: [required]</span>
+
+<span class="sd">            **true**: The previous active volume image is kept.</span>
+
+<span class="sd">            **false**: (default) The previous active volume image is deleted.</span>
+
+<span class="sd">        :type save_current_state: bool</span>
+
+<span class="sd">        :param name: (optional) Name for the snapshot. If no name is given,</span>
+<span class="sd">            then the name of the snapshot being rolled back to is used with</span>
+<span class="sd">            \&quot;-copy\&quot; appended to the end of the name.</span>
+<span class="sd">        :type name: str</span>
+
+<span class="sd">        :param attributes: (optional) List of Name/Value pairs in JSON object</span>
+<span class="sd">            format</span>
+<span class="sd">        :type attributes: dict</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: CreateGroupSnapshotResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;groupSnapshotID&quot;</span><span class="p">:</span> <span class="n">group_snapshot_id</span><span class="p">,</span>
+            <span class="s2">&quot;saveCurrentState&quot;</span><span class="p">:</span> <span class="n">save_current_state</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">if</span> <span class="n">attributes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attributes</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;RollbackToGroupSnapshot&#39;</span><span class="p">,</span>
+            <span class="n">CreateGroupSnapshotResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+            <span class="n">since</span><span class="o">=</span><span class="mf">7.0</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.clone_volume"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.clone_volume">[docs]</a>    <span class="k">def</span> <span class="nf">clone_volume</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">volume_id</span><span class="p">,</span>
+            <span class="n">name</span><span class="p">,</span>
+            <span class="n">new_account_id</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">new_size</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">access</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">snapshot_id</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">attributes</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *clone_volume* is used to create a copy of the volume.</span>
+<span class="sd">        This method is asynchronous and may take a variable amount of time to</span>
+<span class="sd">        complete.</span>
+<span class="sd">        The cloning process begins immediately when the *clone_volume* request</span>
+<span class="sd">        is made and is representative of the state of the volume when the API</span>
+<span class="sd">        method is issued.</span>
+<span class="sd">        *get_async_results* can be used to determine when the cloning process</span>
+<span class="sd">        is complete and the new volume is available for connections.</span>
+<span class="sd">        *list_sync_jobs* can be used to see the progress of creating the clone.</span>
+
+
+
+
+<span class="sd">        **Note**: The initial attributes and quality of service settings for</span>
+<span class="sd">        the volume are inherited from the volume being cloned.</span>
+<span class="sd">        If different settings are required, they can be changed via</span>
+<span class="sd">        ModifyVolume.</span>
+
+
+
+
+<span class="sd">        **Note**: Cloned volumes do not inherit volume access group memberships</span>
+<span class="sd">        from the source volume.</span>
+
+<span class="sd">        :param volume_id: [required] The ID of the volume to clone.</span>
+<span class="sd">        :type volume_id: int</span>
+
+<span class="sd">        :param name: [required] The name for the newly-created volume.</span>
+<span class="sd">        :type name: str</span>
+
+<span class="sd">        :param new_account_id: (optional) *account_id* for the owner of the new</span>
+<span class="sd">            volume. If unspecified, the *account_id* of the owner of the volume</span>
+<span class="sd">            being cloned is used.</span>
+<span class="sd">        :type new_account_id: int</span>
+
+<span class="sd">        :param new_size: (optional) New size of the volume, in bytes. May be</span>
+<span class="sd">            greater or less than the size of the volume being cloned. If</span>
+<span class="sd">            unspecified, the clone&amp;#39;s volume size will be the same as the</span>
+<span class="sd">            source volume. Size is rounded up to the nearest 1 MiB.</span>
+<span class="sd">        :type new_size: int</span>
+
+<span class="sd">        :param access: (optional) Access settings for the new volume.</span>
+
+<span class="sd">            **readOnly**: Only read operations are allowed.</span>
+
+<span class="sd">            **readWrite**: Reads and writes are allowed.</span>
+
+<span class="sd">            **locked**: No reads or writes are allowed.</span>
+
+<span class="sd">            **replicationTarget**: Identify a volume as the target volume for a</span>
+<span class="sd">            paired set of volumes. If the volume is not paired, the access</span>
+<span class="sd">            status is locked.</span>
+
+<span class="sd">            If unspecified, the access settings of the clone will be the same</span>
+<span class="sd">            as the source.</span>
+
+<span class="sd">        :type access: str</span>
+
+<span class="sd">        :param snapshot_id: (optional) ID of the snapshot to use as the source</span>
+<span class="sd">            of the clone. If unspecified, the clone will be created with a</span>
+<span class="sd">            snapshot of the active volume.</span>
+<span class="sd">        :type snapshot_id: int</span>
+
+<span class="sd">        :param attributes: (optional) List of Name/Value pairs in JSON object</span>
+<span class="sd">            format.</span>
+<span class="sd">        :type attributes: dict</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: CloneVolumeResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;volumeID&quot;</span><span class="p">:</span> <span class="n">volume_id</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">new_account_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;newAccountID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_account_id</span>
+        <span class="k">if</span> <span class="n">new_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;newSize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_size</span>
+        <span class="k">if</span> <span class="n">access</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;access&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">access</span>
+        <span class="k">if</span> <span class="n">snapshot_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;snapshotID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">snapshot_id</span>
+        <span class="k">if</span> <span class="n">attributes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attributes</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;CloneVolume&#39;</span><span class="p">,</span>
+            <span class="n">CloneVolumeResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.create_volume"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.create_volume">[docs]</a>    <span class="k">def</span> <span class="nf">create_volume</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">name</span><span class="p">,</span>
+            <span class="n">account_id</span><span class="p">,</span>
+            <span class="n">total_size</span><span class="p">,</span>
+            <span class="n">enable512e</span><span class="p">,</span>
+            <span class="n">qos</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">attributes</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *create_volume* is used to create a new (empty) volume on the cluster.</span>
+<span class="sd">        When the volume is created successfully it is available for connection</span>
+<span class="sd">        via iSCSI.</span>
+
+<span class="sd">        :param name: [required] Name of the volume. Not required to be unique,</span>
+<span class="sd">            but it is recommended. May be 1 to 64 characters in length.</span>
+<span class="sd">        :type name: str</span>
+
+<span class="sd">        :param account_id: [required] *account_id* for the owner of this</span>
+<span class="sd">            volume.</span>
+<span class="sd">        :type account_id: int</span>
+
+<span class="sd">        :param total_size: [required] Total size of the volume, in bytes. Size</span>
+<span class="sd">            is rounded up to the nearest 1MB size.</span>
+<span class="sd">        :type total_size: int</span>
+
+<span class="sd">        :param enable512e: [required] Should the volume provides 512-byte</span>
+<span class="sd">            sector emulation?</span>
+<span class="sd">        :type enable512e: bool</span>
+
+<span class="sd">        :param qos: (optional) Initial quality of service settings for this</span>
+<span class="sd">            volume.</span>
+
+<span class="sd">            Volumes created without specified *qos* values are created with the</span>
+<span class="sd">            default values for QoS. Default values for a volume can be found by</span>
+<span class="sd">            running the *get_default_qos* method.</span>
+
+<span class="sd">        :type qos: QoS</span>
+
+<span class="sd">        :param attributes: (optional) List of Name/Value pairs in JSON object</span>
+<span class="sd">            format.</span>
+<span class="sd">        :type attributes: dict</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: CreateVolumeResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+            <span class="s2">&quot;accountID&quot;</span><span class="p">:</span> <span class="n">account_id</span><span class="p">,</span>
+            <span class="s2">&quot;totalSize&quot;</span><span class="p">:</span> <span class="n">total_size</span><span class="p">,</span>
+            <span class="s2">&quot;enable512e&quot;</span><span class="p">:</span> <span class="n">enable512e</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">qos</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;qos&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">qos</span>
+        <span class="k">if</span> <span class="n">attributes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attributes</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;CreateVolume&#39;</span><span class="p">,</span>
+            <span class="n">CreateVolumeResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.delete_volume"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.delete_volume">[docs]</a>    <span class="k">def</span> <span class="nf">delete_volume</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">volume_id</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *delete_volume* marks an active volume for deletion.</span>
+<span class="sd">        It is purged (permanently deleted) after the cleanup interval elapses.</span>
+<span class="sd">        After making a request to delete a volume, any active iSCSI connections</span>
+<span class="sd">        to the volume is immediately terminated and no further connections are</span>
+<span class="sd">        allowed while the volume is in this state.</span>
+<span class="sd">        It is not returned in target discovery requests.</span>
+
+
+
+
+<span class="sd">        Any snapshots of a volume that has been marked to delete are not</span>
+<span class="sd">        affected.</span>
+<span class="sd">        Snapshots are kept until the volume is purged from the system.</span>
+
+
+
+
+<span class="sd">        If a volume is marked for deletion, and it has a bulk volume read or</span>
+<span class="sd">        bulk volume write operation in progress, the bulk volume operation is</span>
+<span class="sd">        stopped.</span>
+
+
+
+
+<span class="sd">        If the volume you delete is paired with a volume, replication between</span>
+<span class="sd">        the paired volumes is suspended and no data is transferred to it or</span>
+<span class="sd">        from it while in a deleted state.</span>
+<span class="sd">        The remote volume the deleted volume was paired with enters into a</span>
+<span class="sd">        *paused_misconfigured* state and data is no longer sent to it or from</span>
+<span class="sd">        the deleted volume.</span>
+<span class="sd">        Until the deleted volume is purged, it can be restored and data</span>
+<span class="sd">        transfers resumes.</span>
+<span class="sd">        If the deleted volume gets purged from the system, the volume it was</span>
+<span class="sd">        paired with enters into a *stopped_misconfigured* state and the volume</span>
+<span class="sd">        pairing status is removed.</span>
+<span class="sd">        The purged volume becomes permanently unavailable.</span>
+
+<span class="sd">        :param volume_id: [required] The ID of the volume to delete.</span>
+<span class="sd">        :type volume_id: int</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: DeleteVolumeResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;volumeID&quot;</span><span class="p">:</span> <span class="n">volume_id</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;DeleteVolume&#39;</span><span class="p">,</span>
+            <span class="n">DeleteVolumeResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.get_volume_stats"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.get_volume_stats">[docs]</a>    <span class="k">def</span> <span class="nf">get_volume_stats</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">volume_id</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *get_volume_stats* is used to retrieve high-level activity measurements</span>
+<span class="sd">        for a single volume.</span>
+<span class="sd">        Values are cumulative from the creation of the volume.</span>
+
+<span class="sd">        :param volume_id: [required] Specifies the volume for which statistics</span>
+<span class="sd">            is gathered.</span>
+<span class="sd">        :type volume_id: int</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: GetVolumeStatsResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;volumeID&quot;</span><span class="p">:</span> <span class="n">volume_id</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;GetVolumeStats&#39;</span><span class="p">,</span>
+            <span class="n">GetVolumeStatsResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.get_volume_efficiency"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.get_volume_efficiency">[docs]</a>    <span class="k">def</span> <span class="nf">get_volume_efficiency</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">volume_id</span><span class="p">,</span>
+            <span class="n">force</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *get_volume_efficiency* is used to retrieve information about a volume.</span>
+<span class="sd">        Only the volume given as a parameter in this API method is used to</span>
+<span class="sd">        compute the capacity.</span>
+
+<span class="sd">        :param volume_id: [required] Specifies the volume for which capacity is</span>
+<span class="sd">            computed.</span>
+<span class="sd">        :type volume_id: int</span>
+
+<span class="sd">        :param force: (optional)</span>
+<span class="sd">        :type force: bool</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: GetVolumeEfficiencyResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;volumeID&quot;</span><span class="p">:</span> <span class="n">volume_id</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">force</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;force&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">force</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;GetVolumeEfficiency&#39;</span><span class="p">,</span>
+            <span class="n">GetVolumeEfficiencyResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.list_active_volumes"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.list_active_volumes">[docs]</a>    <span class="k">def</span> <span class="nf">list_active_volumes</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">start_volume_id</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">limit</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *list_active_volumes* is used to return the list of active volumes</span>
+<span class="sd">        currently in the system.</span>
+<span class="sd">        The list of volumes is returned sorted in *volume_id* order and can be</span>
+<span class="sd">        returned in multiple parts (pages).</span>
+
+<span class="sd">        :param start_volume_id: (optional) The ID of the first volume to list.</span>
+<span class="sd">            This can be useful for paging results. By default, this starts at</span>
+<span class="sd">            the lowest VolumeID.</span>
+<span class="sd">        :type start_volume_id: int</span>
+
+<span class="sd">        :param limit: (optional) The maximum number of volumes to return from</span>
+<span class="sd">            the API.</span>
+<span class="sd">        :type limit: int</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: ListActiveVolumesResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">start_volume_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;startVolumeID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">start_volume_id</span>
+        <span class="k">if</span> <span class="n">limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;limit&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">limit</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;ListActiveVolumes&#39;</span><span class="p">,</span>
+            <span class="n">ListActiveVolumesResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.list_deleted_volumes"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.list_deleted_volumes">[docs]</a>    <span class="k">def</span> <span class="nf">list_deleted_volumes</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *list_deleted_volumes* is used to return the entire list of volumes</span>
+<span class="sd">        that have been marked for deletion and is purged from the system.</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: ListDeletedVolumesResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;ListDeletedVolumes&#39;</span><span class="p">,</span>
+            <span class="n">ListDeletedVolumesResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.list_volumes"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.list_volumes">[docs]</a>    <span class="k">def</span> <span class="nf">list_volumes</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">start_volume_id</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">limit</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">volume_status</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">accounts</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">is_paired</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">volume_ids</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The *list_volumes* method is used to return a list of volumes that are</span>
+<span class="sd">        in a cluster.</span>
+<span class="sd">        You can specify the volumes you want to return in the list by using the</span>
+<span class="sd">        available parameters.</span>
+
+<span class="sd">        :param start_volume_id: (optional) The ID of the first volume to list.</span>
+<span class="sd">            This can be useful for paging results. By default, this starts at</span>
+<span class="sd">            the lowest VolumeID.</span>
+<span class="sd">        :type start_volume_id: int</span>
+
+<span class="sd">        :param limit: (optional) The maximum number of volumes to return from</span>
+<span class="sd">            the API.</span>
+<span class="sd">        :type limit: int</span>
+
+<span class="sd">        :param volume_status: (optional) If specified, filter to only volumes</span>
+<span class="sd">            with the provided status. By default, list all volumes.</span>
+<span class="sd">        :type volume_status: str</span>
+
+<span class="sd">        :param accounts: (optional) If specified, only fetch volumes which</span>
+<span class="sd">            belong to the provided accounts. By default, list volumes for all</span>
+<span class="sd">            accounts.</span>
+<span class="sd">        :type accounts: int</span>
+
+<span class="sd">        :param is_paired: (optional) If specified, only fetch volumes which are</span>
+<span class="sd">            paired (if true) or non-paired (if false). By default, list all</span>
+<span class="sd">            volumes regardless of their pairing status.</span>
+<span class="sd">        :type is_paired: bool</span>
+
+<span class="sd">        :param volume_ids: (optional) If specified, only fetch volumes</span>
+<span class="sd">            specified in this list. This option cannot be specified if</span>
+<span class="sd">            *start_volume_id,* limit, or accounts option is specified.</span>
+<span class="sd">        :type volume_ids: int</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: ListVolumesResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_param_versions</span><span class="p">(</span>
+            <span class="s1">&#39;list_volumes&#39;</span><span class="p">,</span>
+            <span class="p">[</span>
+                <span class="p">(</span><span class="s2">&quot;volume_ids&quot;</span><span class="p">,</span>
+                 <span class="n">volume_ids</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">start_volume_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;startVolumeID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">start_volume_id</span>
+        <span class="k">if</span> <span class="n">limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;limit&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">limit</span>
+        <span class="k">if</span> <span class="n">volume_status</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;volumeStatus&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">volume_status</span>
+        <span class="k">if</span> <span class="n">accounts</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;accounts&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">accounts</span>
+        <span class="k">if</span> <span class="n">is_paired</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;isPaired&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">is_paired</span>
+        <span class="k">if</span> <span class="n">volume_ids</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;volumeIDs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">volume_ids</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;ListVolumes&#39;</span><span class="p">,</span>
+            <span class="n">ListVolumesResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+            <span class="n">since</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.list_volumes_for_account"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.list_volumes_for_account">[docs]</a>    <span class="k">def</span> <span class="nf">list_volumes_for_account</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">account_id</span><span class="p">,</span>
+            <span class="n">start_volume_id</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">limit</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *list_volumes_for_account* returns the list of active AND (pending)</span>
+<span class="sd">        deleted volumes for an account.</span>
+
+<span class="sd">        :param account_id: [required] The ID of the account to list the volumes</span>
+<span class="sd">            for.</span>
+<span class="sd">        :type account_id: int</span>
+
+<span class="sd">        :param start_volume_id: (optional) The ID of the first volume to list.</span>
+<span class="sd">            This can be useful for paging results. By default, this starts at</span>
+<span class="sd">            the lowest VolumeID.</span>
+<span class="sd">        :type start_volume_id: int</span>
+
+<span class="sd">        :param limit: (optional) The maximum number of volumes to return from</span>
+<span class="sd">            the API.</span>
+<span class="sd">        :type limit: int</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: ListVolumesForAccountResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;accountID&quot;</span><span class="p">:</span> <span class="n">account_id</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">start_volume_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;startVolumeID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">start_volume_id</span>
+        <span class="k">if</span> <span class="n">limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;limit&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">limit</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;ListVolumesForAccount&#39;</span><span class="p">,</span>
+            <span class="n">ListVolumesForAccountResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+            <span class="n">deprecated</span><span class="o">=</span><span class="mf">8.0</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.list_volume_stats_by_account"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.list_volume_stats_by_account">[docs]</a>    <span class="k">def</span> <span class="nf">list_volume_stats_by_account</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *list_volume_stats_by_account* returns high-level activity measurements</span>
+<span class="sd">        for every account.</span>
+<span class="sd">        Values are summed from all the volumes owned by the account.</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: ListVolumeStatsByAccountResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;ListVolumeStatsByAccount&#39;</span><span class="p">,</span>
+            <span class="n">ListVolumeStatsByAccountResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.list_volume_stats_by_volume"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.list_volume_stats_by_volume">[docs]</a>    <span class="k">def</span> <span class="nf">list_volume_stats_by_volume</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *list_volume_stats_by_volume* returns high-level activity measurements</span>
+<span class="sd">        for every volume, by volume.</span>
+<span class="sd">        Values are cumulative from the creation of the volume.</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: ListVolumeStatsByVolumeResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;ListVolumeStatsByVolume&#39;</span><span class="p">,</span>
+            <span class="n">ListVolumeStatsByVolumeResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.list_volume_stats_by_volume_access_group"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.list_volume_stats_by_volume_access_group">[docs]</a>    <span class="k">def</span> <span class="nf">list_volume_stats_by_volume_access_group</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">volume_access_groups</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *list_volume_stats_by_volume_access_group* is used to get total</span>
+<span class="sd">        activity measurements for all of the volumes that are a member of the</span>
+<span class="sd">        specified volume access group(s).</span>
+
+<span class="sd">        :param volume_access_groups: (optional) An array of</span>
+<span class="sd">            *volume_access_group_ids* for which volume activity is returned. If</span>
+<span class="sd">            no *volume_access_group_id* is specified, stats for all volume</span>
+<span class="sd">            access groups is returned.</span>
+<span class="sd">        :type volume_access_groups: int</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: ListVolumeStatsByVolumeAccessGroupResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">volume_access_groups</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;volumeAccessGroups&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">volume_access_groups</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;ListVolumeStatsByVolumeAccessGroup&#39;</span><span class="p">,</span>
+            <span class="n">ListVolumeStatsByVolumeAccessGroupResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.modify_volume"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.modify_volume">[docs]</a>    <span class="k">def</span> <span class="nf">modify_volume</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">volume_id</span><span class="p">,</span>
+            <span class="n">account_id</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">access</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">set_create_time</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">qos</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">total_size</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">attributes</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *modify_volume* is used to modify settings on an existing volume.</span>
+<span class="sd">        Modifications can be made to one volume at a time and changes take</span>
+<span class="sd">        place immediately.</span>
+<span class="sd">        If an optional parameter is left unspecified, the value will not be</span>
+<span class="sd">        changed.</span>
+
+
+
+
+<span class="sd">        Extending the size of a volume that is being replicated should be done</span>
+<span class="sd">        in an order.</span>
+<span class="sd">        The target (Replication Target) volume should first be increased in</span>
+<span class="sd">        size, then the source (Read/Write) volume can be resized.</span>
+<span class="sd">        It is recommended that both the target and the source volumes be the</span>
+<span class="sd">        same size.</span>
+
+
+
+
+<span class="sd">        **Note**: If you change access status to locked or target all existing</span>
+<span class="sd">        iSCSI connections are terminated.</span>
+
+<span class="sd">        :param volume_id: [required] *volume_id* for the volume to be modified.</span>
+<span class="sd">        :type volume_id: int</span>
+
+<span class="sd">        :param account_id: (optional) *account_id* to which the volume is</span>
+<span class="sd">            reassigned. If none is specified, the previous account name is</span>
+<span class="sd">            used.</span>
+<span class="sd">        :type account_id: int</span>
+
+<span class="sd">        :param access: (optional) Access allowed for the volume.</span>
+
+<span class="sd">            **readOnly**: Only read operations are allowed.</span>
+
+<span class="sd">            **readWrite**: Reads and writes are allowed.</span>
+
+<span class="sd">            **locked**: No reads or writes are allowed.</span>
+
+<span class="sd">            **replicationTarget**: Identify a volume as the target volume for a</span>
+<span class="sd">            paired set of volumes. If the volume is not paired, the access</span>
+<span class="sd">            status is locked.</span>
+
+<span class="sd">            If unspecified, the access settings of the clone will be the same</span>
+<span class="sd">            as the source.</span>
+
+<span class="sd">        :type access: str</span>
+
+<span class="sd">        :param set_create_time: (optional) Identify the time at which the</span>
+<span class="sd">            volume was created.</span>
+<span class="sd">        :type set_create_time: str</span>
+
+<span class="sd">        :param qos: (optional) New quality of service settings for this volume.</span>
+<span class="sd">        :type qos: QoS</span>
+
+<span class="sd">        :param total_size: (optional) New size of the volume in bytes. Size is</span>
+<span class="sd">            rounded up to the nearest 1MiB size. This parameter can only be</span>
+<span class="sd">            used to *increase* the size of a volume.</span>
+<span class="sd">        :type total_size: int</span>
+
+<span class="sd">        :param attributes: (optional) List of Name/Value pairs in JSON object</span>
+<span class="sd">            format.</span>
+<span class="sd">        :type attributes: dict</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: ModifyVolumeResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;volumeID&quot;</span><span class="p">:</span> <span class="n">volume_id</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">account_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;accountID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">account_id</span>
+        <span class="k">if</span> <span class="n">access</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;access&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">access</span>
+        <span class="k">if</span> <span class="n">set_create_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;setCreateTime&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">set_create_time</span>
+        <span class="k">if</span> <span class="n">qos</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;qos&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">qos</span>
+        <span class="k">if</span> <span class="n">total_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;totalSize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">total_size</span>
+        <span class="k">if</span> <span class="n">attributes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attributes</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;ModifyVolume&#39;</span><span class="p">,</span>
+            <span class="n">ModifyVolumeResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.purge_deleted_volume"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.purge_deleted_volume">[docs]</a>    <span class="k">def</span> <span class="nf">purge_deleted_volume</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">volume_id</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *purge_deleted_volume* immediately and permanently purges a volume</span>
+<span class="sd">        which has been deleted.</span>
+<span class="sd">        A volume must be deleted using *delete_volume* before it can be purged.</span>
+<span class="sd">        Volumes are purged automatically after a period of time, so usage of</span>
+<span class="sd">        this method is not typically required.</span>
+
+<span class="sd">        :param volume_id: [required] The ID of the volume to purge.</span>
+<span class="sd">        :type volume_id: int</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: PurgeDeletedVolumeResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;volumeID&quot;</span><span class="p">:</span> <span class="n">volume_id</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;PurgeDeletedVolume&#39;</span><span class="p">,</span>
+            <span class="n">PurgeDeletedVolumeResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.restore_deleted_volume"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.restore_deleted_volume">[docs]</a>    <span class="k">def</span> <span class="nf">restore_deleted_volume</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">volume_id</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *restore_deleted_volume* marks a deleted volume as active again.</span>
+<span class="sd">        This action makes the volume immediately available for iSCSI</span>
+<span class="sd">        connection.</span>
+
+<span class="sd">        :param volume_id: [required] *restore_deleted_volume*</span>
+<span class="sd">        :type volume_id: int</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: RestoreDeletedVolumeResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;volumeID&quot;</span><span class="p">:</span> <span class="n">volume_id</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;RestoreDeletedVolume&#39;</span><span class="p">,</span>
+            <span class="n">RestoreDeletedVolumeResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.create_volume_access_group"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.create_volume_access_group">[docs]</a>    <span class="k">def</span> <span class="nf">create_volume_access_group</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">name</span><span class="p">,</span>
+            <span class="n">initiators</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">volumes</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">virtual_network_id</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">virtual_network_tags</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">attributes</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a new volume access group.</span>
+<span class="sd">        The new volume access group must be given a name when it is created.</span>
+<span class="sd">        Entering initiators and volumes are optional when creating a volume</span>
+<span class="sd">        access group.</span>
+<span class="sd">        Once the group is created volumes and initiator IQNs can be added.</span>
+<span class="sd">        Any initiator IQN that is successfully added to the volume access group</span>
+<span class="sd">        is able to access any volume in the group without CHAP authentication.</span>
+
+<span class="sd">        :param name: [required] Name of the volume access group. It is not</span>
+<span class="sd">            required to be unique, but recommended.</span>
+<span class="sd">        :type name: str</span>
+
+<span class="sd">        :param initiators: (optional) List of initiators to include in the</span>
+<span class="sd">            volume access group. If unspecified, the access group will start</span>
+<span class="sd">            out without configured initiators.</span>
+<span class="sd">        :type initiators: str</span>
+
+<span class="sd">        :param volumes: (optional) List of volumes to initially include in the</span>
+<span class="sd">            volume access group. If unspecified, the access group will start</span>
+<span class="sd">            without any volumes.</span>
+<span class="sd">        :type volumes: int</span>
+
+<span class="sd">        :param virtual_network_id: (optional) The ID of the SolidFire Virtual</span>
+<span class="sd">            Network ID to associate the volume access group with.</span>
+<span class="sd">        :type virtual_network_id: int</span>
+
+<span class="sd">        :param virtual_network_tags: (optional) The ID of the VLAN Virtual</span>
+<span class="sd">            Network Tag to associate the volume access group with.</span>
+<span class="sd">        :type virtual_network_tags: int</span>
+
+<span class="sd">        :param attributes: (optional) List of Name/Value pairs in JSON object</span>
+<span class="sd">            format.</span>
+<span class="sd">        :type attributes: dict</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: CreateVolumeAccessGroupResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_param_versions</span><span class="p">(</span>
+            <span class="s1">&#39;create_volume_access_group&#39;</span><span class="p">,</span>
+            <span class="p">[</span>
+                <span class="p">(</span><span class="s2">&quot;virtual_network_id&quot;</span><span class="p">,</span>
+                 <span class="n">virtual_network_id</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">&quot;virtual_network_tags&quot;</span><span class="p">,</span>
+                 <span class="n">virtual_network_tags</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">initiators</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;initiators&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">initiators</span>
+        <span class="k">if</span> <span class="n">volumes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;volumes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">volumes</span>
+        <span class="k">if</span> <span class="n">virtual_network_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;virtualNetworkID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">virtual_network_id</span>
+        <span class="k">if</span> <span class="n">virtual_network_tags</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;virtualNetworkTags&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">virtual_network_tags</span>
+        <span class="k">if</span> <span class="n">attributes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attributes</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;CreateVolumeAccessGroup&#39;</span><span class="p">,</span>
+            <span class="n">CreateVolumeAccessGroupResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.list_volume_access_groups"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.list_volume_access_groups">[docs]</a>    <span class="k">def</span> <span class="nf">list_volume_access_groups</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">start_volume_access_group_id</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">limit</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *list_volume_access_groups* is used to return information about the</span>
+<span class="sd">        volume access groups that are currently in the system.</span>
+
+<span class="sd">        :param start_volume_access_group_id: (optional) The lowest</span>
+<span class="sd">            *volume_access_group_id* to return. This can be useful for paging.</span>
+<span class="sd">            If unspecified, there is no lower limit (implicitly 0).</span>
+<span class="sd">        :type start_volume_access_group_id: int</span>
+
+<span class="sd">        :param limit: (optional) The maximum number of results to return. This</span>
+<span class="sd">            can be useful for paging.</span>
+<span class="sd">        :type limit: int</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: ListVolumeAccessGroupsResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">start_volume_access_group_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;startVolumeAccessGroupID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">start_volume_access_group_id</span>
+        <span class="k">if</span> <span class="n">limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;limit&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">limit</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;ListVolumeAccessGroups&#39;</span><span class="p">,</span>
+            <span class="n">ListVolumeAccessGroupsResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.delete_volume_access_group"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.delete_volume_access_group">[docs]</a>    <span class="k">def</span> <span class="nf">delete_volume_access_group</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">volume_access_group_id</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete a volume access group from the system.</span>
+
+<span class="sd">        :param volume_access_group_id: [required] The ID of the volume access</span>
+<span class="sd">            group to delete.</span>
+<span class="sd">        :type volume_access_group_id: int</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: DeleteVolumeAccessGroupResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;volumeAccessGroupID&quot;</span><span class="p">:</span> <span class="n">volume_access_group_id</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;DeleteVolumeAccessGroup&#39;</span><span class="p">,</span>
+            <span class="n">DeleteVolumeAccessGroupResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.modify_volume_access_group"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.modify_volume_access_group">[docs]</a>    <span class="k">def</span> <span class="nf">modify_volume_access_group</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">volume_access_group_id</span><span class="p">,</span>
+            <span class="n">virtual_network_id</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">virtual_network_tags</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">initiators</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">volumes</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
+            <span class="n">attributes</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update initiators and add or remove volumes from a volume access group.</span>
+<span class="sd">        A specified initiator or volume that duplicates an existing volume or</span>
+<span class="sd">        initiator in a volume access group is left as-is.</span>
+<span class="sd">        If a value is not specified for volumes or initiators, the current list</span>
+<span class="sd">        of initiators and volumes are not changed.</span>
+
+
+
+
+<span class="sd">        Often, it is easier to use the convenience functions to modify</span>
+<span class="sd">        initiators and volumes independently:</span>
+
+
+
+
+<span class="sd">        *add_initiators_to_volume_access_group*</span>
+
+
+
+<span class="sd">        *remove_initiators_from_volume_access_group*</span>
+
+
+
+<span class="sd">        *add_volumes_to_volume_access_group*</span>
+
+
+
+<span class="sd">        *remove_volumes_from_volume_access_group*</span>
+
+
+
+
+<span class="sd">        :param volume_access_group_id: [required] The ID of the volume access</span>
+<span class="sd">            group to modify.</span>
+<span class="sd">        :type volume_access_group_id: int</span>
+
+<span class="sd">        :param virtual_network_id: (optional) The ID of the SolidFire Virtual</span>
+<span class="sd">            Network ID to associate the volume access group with.</span>
+<span class="sd">        :type virtual_network_id: int</span>
+
+<span class="sd">        :param virtual_network_tags: (optional) The ID of the VLAN Virtual</span>
+<span class="sd">            Network Tag to associate the volume access group with.</span>
+<span class="sd">        :type virtual_network_tags: int</span>
+
+<span class="sd">        :param name: (optional) Name of the volume access group. It is not</span>
+<span class="sd">            required to be unique, but recommended.</span>
+<span class="sd">        :type name: str</span>
+
+<span class="sd">        :param initiators: (optional) List of initiators to include in the</span>
+<span class="sd">            volume access group. If unspecified, the access group&amp;#39;s</span>
+<span class="sd">            configured initiators will not be modified.</span>
+<span class="sd">        :type initiators: str</span>
+
+<span class="sd">        :param volumes: (optional) List of volumes to initially include in the</span>
+<span class="sd">            volume access group. If unspecified, the access group&amp;#39;s volumes</span>
+<span class="sd">            will not be modified.</span>
+<span class="sd">        :type volumes: int</span>
+
+<span class="sd">        :param attributes: (optional) List of Name/Value pairs in JSON object</span>
+<span class="sd">            format.</span>
+<span class="sd">        :type attributes: dict</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: ModifyVolumeAccessGroupResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;volumeAccessGroupID&quot;</span><span class="p">:</span> <span class="n">volume_access_group_id</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_param_versions</span><span class="p">(</span>
+            <span class="s1">&#39;modify_volume_access_group&#39;</span><span class="p">,</span>
+            <span class="p">[</span>
+                <span class="p">(</span><span class="s2">&quot;virtual_network_id&quot;</span><span class="p">,</span>
+                 <span class="n">virtual_network_id</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">&quot;virtual_network_tags&quot;</span><span class="p">,</span>
+                 <span class="n">virtual_network_tags</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">virtual_network_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;virtualNetworkID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">virtual_network_id</span>
+        <span class="k">if</span> <span class="n">virtual_network_tags</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;virtualNetworkTags&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">virtual_network_tags</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">if</span> <span class="n">initiators</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;initiators&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">initiators</span>
+        <span class="k">if</span> <span class="n">volumes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;volumes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">volumes</span>
+        <span class="k">if</span> <span class="n">attributes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attributes</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;ModifyVolumeAccessGroup&#39;</span><span class="p">,</span>
+            <span class="n">ModifyVolumeAccessGroupResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.add_initiators_to_volume_access_group"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.add_initiators_to_volume_access_group">[docs]</a>    <span class="k">def</span> <span class="nf">add_initiators_to_volume_access_group</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">volume_access_group_id</span><span class="p">,</span>
+            <span class="n">initiators</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add initiators to a volume access group.</span>
+
+<span class="sd">        :param volume_access_group_id: [required] The ID of the volume access</span>
+<span class="sd">            group to modify.</span>
+<span class="sd">        :type volume_access_group_id: int</span>
+
+<span class="sd">        :param initiators: [required] List of initiators to add to the volume</span>
+<span class="sd">            access group.</span>
+<span class="sd">        :type initiators: str</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: ModifyVolumeAccessGroupResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;volumeAccessGroupID&quot;</span><span class="p">:</span> <span class="n">volume_access_group_id</span><span class="p">,</span>
+            <span class="s2">&quot;initiators&quot;</span><span class="p">:</span> <span class="n">initiators</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;AddInitiatorsToVolumeAccessGroup&#39;</span><span class="p">,</span>
+            <span class="n">ModifyVolumeAccessGroupResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.remove_initiators_from_volume_access_group"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.remove_initiators_from_volume_access_group">[docs]</a>    <span class="k">def</span> <span class="nf">remove_initiators_from_volume_access_group</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">volume_access_group_id</span><span class="p">,</span>
+            <span class="n">initiators</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove initiators from a volume access group.</span>
+
+<span class="sd">        :param volume_access_group_id: [required] The ID of the volume access</span>
+<span class="sd">            group to modify.</span>
+<span class="sd">        :type volume_access_group_id: int</span>
+
+<span class="sd">        :param initiators: [required] List of initiators to remove from the</span>
+<span class="sd">            volume access group.</span>
+<span class="sd">        :type initiators: str</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: ModifyVolumeAccessGroupResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;volumeAccessGroupID&quot;</span><span class="p">:</span> <span class="n">volume_access_group_id</span><span class="p">,</span>
+            <span class="s2">&quot;initiators&quot;</span><span class="p">:</span> <span class="n">initiators</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;RemoveInitiatorsFromVolumeAccessGroup&#39;</span><span class="p">,</span>
+            <span class="n">ModifyVolumeAccessGroupResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.add_volumes_to_volume_access_group"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.add_volumes_to_volume_access_group">[docs]</a>    <span class="k">def</span> <span class="nf">add_volumes_to_volume_access_group</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">volume_access_group_id</span><span class="p">,</span>
+            <span class="n">volumes</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add volumes to a volume access group.</span>
+
+<span class="sd">        :param volume_access_group_id: [required] The ID of the volume access</span>
+<span class="sd">            group to modify.</span>
+<span class="sd">        :type volume_access_group_id: int</span>
+
+<span class="sd">        :param volumes: [required] List of volumes to add to this volume access</span>
+<span class="sd">            group.</span>
+<span class="sd">        :type volumes: int</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: ModifyVolumeAccessGroupResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;volumeAccessGroupID&quot;</span><span class="p">:</span> <span class="n">volume_access_group_id</span><span class="p">,</span>
+            <span class="s2">&quot;volumes&quot;</span><span class="p">:</span> <span class="n">volumes</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;AddVolumesToVolumeAccessGroup&#39;</span><span class="p">,</span>
+            <span class="n">ModifyVolumeAccessGroupResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Element.remove_volumes_from_volume_access_group"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.remove_volumes_from_volume_access_group">[docs]</a>    <span class="k">def</span> <span class="nf">remove_volumes_from_volume_access_group</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">volume_access_group_id</span><span class="p">,</span>
+            <span class="n">volumes</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove volumes from a volume access group.</span>
+
+<span class="sd">        :param volume_access_group_id: [required] The ID of the volume access</span>
+<span class="sd">            group to modify.</span>
+<span class="sd">        :type volume_access_group_id: int</span>
+
+<span class="sd">        :param volumes: [required] List of volumes to remove from this volume</span>
+<span class="sd">            access group.</span>
+<span class="sd">        :type volumes: int</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: ModifyVolumeAccessGroupResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;volumeAccessGroupID&quot;</span><span class="p">:</span> <span class="n">volume_access_group_id</span><span class="p">,</span>
+            <span class="s2">&quot;volumes&quot;</span><span class="p">:</span> <span class="n">volumes</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span>
+            <span class="s1">&#39;RemoveVolumesFromVolumeAccessGroup&#39;</span><span class="p">,</span>
+            <span class="n">ModifyVolumeAccessGroupResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2016, NetApp, Inc.  All Rights Reserved..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0.0.104',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

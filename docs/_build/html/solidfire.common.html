@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>solidfire.common package &mdash; SolidFire Python SDK v1.0.0.102</title>
+  <title>solidfire.common package &mdash; SolidFire Python SDK v1.0.0.104</title>
   
 
   
@@ -160,13 +160,13 @@
 <span id="common-model-solidfire-common-model"></span><h2>Common Model (solidfire.common.model)<a class="headerlink" href="#module-solidfire.common.model" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="solidfire.common.model.DataObject">
-<em class="property">class </em><code class="descclassname">solidfire.common.model.</code><code class="descname">DataObject</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.model.DataObject" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">solidfire.common.model.</code><code class="descname">DataObject</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common/model.html#DataObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.DataObject" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#solidfire.common.model.ModelProperty" title="solidfire.common.model.ModelProperty"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.ModelProperty</span></code></a></p>
 <p>DataObject is the base type for all generated types, including the MetaData
 properties, as described from the api descriptors.</p>
 <dl class="classmethod">
 <dt id="solidfire.common.model.DataObject.extract">
-<em class="property">classmethod </em><code class="descname">extract</code><span class="sig-paren">(</span><em>data</em>, <em>strict=True</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.model.DataObject.extract" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="descname">extract</code><span class="sig-paren">(</span><em>data</em>, <em>strict=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common/model.html#DataObject.extract"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.DataObject.extract" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts json to a DataObject.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -188,7 +188,7 @@ missing values will None or empty.</li>
 
 <dl class="method">
 <dt id="solidfire.common.model.DataObject.to_json">
-<code class="descname">to_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.model.DataObject.to_json" title="Permalink to this definition">¶</a></dt>
+<code class="descname">to_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common/model.html#DataObject.to_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.DataObject.to_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts DataObject to json.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -204,14 +204,14 @@ missing values will None or empty.</li>
 
 <dl class="class">
 <dt id="solidfire.common.model.MetaDataObject">
-<em class="property">class </em><code class="descclassname">solidfire.common.model.</code><code class="descname">MetaDataObject</code><span class="sig-paren">(</span><em>name</em>, <em>bases</em>, <em>classdict</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.model.MetaDataObject" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">solidfire.common.model.</code><code class="descname">MetaDataObject</code><span class="sig-paren">(</span><em>name</em>, <em>bases</em>, <em>classdict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common/model.html#MetaDataObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.MetaDataObject" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">type</span></code></p>
 <p>MetaDataObject defines a method for attributing ModelProperties to a type.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="solidfire.common.model.ModelProperty">
-<em class="property">class </em><code class="descclassname">solidfire.common.model.</code><code class="descname">ModelProperty</code><span class="sig-paren">(</span><em>member_name</em>, <em>member_type</em>, <em>array=False</em>, <em>optional=False</em>, <em>documentation=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.model.ModelProperty" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">solidfire.common.model.</code><code class="descname">ModelProperty</code><span class="sig-paren">(</span><em>member_name</em>, <em>member_type</em>, <em>array=False</em>, <em>optional=False</em>, <em>documentation=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common/model.html#ModelProperty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.ModelProperty" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>ModelProperty metadata container for API data type information.</p>
 <p>ModelProperty constructor.</p>
@@ -232,7 +232,7 @@ missing values will None or empty.</li>
 </table>
 <dl class="method">
 <dt id="solidfire.common.model.ModelProperty.array">
-<code class="descname">array</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.model.ModelProperty.array" title="Permalink to this definition">¶</a></dt>
+<code class="descname">array</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common/model.html#ModelProperty.array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.ModelProperty.array" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -245,7 +245,7 @@ missing values will None or empty.</li>
 
 <dl class="method">
 <dt id="solidfire.common.model.ModelProperty.documentation">
-<code class="descname">documentation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.model.ModelProperty.documentation" title="Permalink to this definition">¶</a></dt>
+<code class="descname">documentation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common/model.html#ModelProperty.documentation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.ModelProperty.documentation" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -258,7 +258,7 @@ missing values will None or empty.</li>
 
 <dl class="method">
 <dt id="solidfire.common.model.ModelProperty.extend_json">
-<code class="descname">extend_json</code><span class="sig-paren">(</span><em>out</em>, <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.model.ModelProperty.extend_json" title="Permalink to this definition">¶</a></dt>
+<code class="descname">extend_json</code><span class="sig-paren">(</span><em>out</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common/model.html#ModelProperty.extend_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.ModelProperty.extend_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Serialize the property as json-like structure.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -276,7 +276,7 @@ missing values will None or empty.</li>
 
 <dl class="method">
 <dt id="solidfire.common.model.ModelProperty.extract_from">
-<code class="descname">extract_from</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.model.ModelProperty.extract_from" title="Permalink to this definition">¶</a></dt>
+<code class="descname">extract_from</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common/model.html#ModelProperty.extract_from"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.ModelProperty.extract_from" title="Permalink to this definition">¶</a></dt>
 <dd><p>Deserialize the property from json.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -292,7 +292,7 @@ missing values will None or empty.</li>
 
 <dl class="method">
 <dt id="solidfire.common.model.ModelProperty.known_default">
-<code class="descname">known_default</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.model.ModelProperty.known_default" title="Permalink to this definition">¶</a></dt>
+<code class="descname">known_default</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common/model.html#ModelProperty.known_default"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.ModelProperty.known_default" title="Permalink to this definition">¶</a></dt>
 <dd><p>Helps convert a property to a default value.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -306,7 +306,7 @@ missing values will None or empty.</li>
 
 <dl class="method">
 <dt id="solidfire.common.model.ModelProperty.member_name">
-<code class="descname">member_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.model.ModelProperty.member_name" title="Permalink to this definition">¶</a></dt>
+<code class="descname">member_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common/model.html#ModelProperty.member_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.ModelProperty.member_name" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -319,7 +319,7 @@ missing values will None or empty.</li>
 
 <dl class="method">
 <dt id="solidfire.common.model.ModelProperty.member_type">
-<code class="descname">member_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.model.ModelProperty.member_type" title="Permalink to this definition">¶</a></dt>
+<code class="descname">member_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common/model.html#ModelProperty.member_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.ModelProperty.member_type" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -332,7 +332,7 @@ missing values will None or empty.</li>
 
 <dl class="method">
 <dt id="solidfire.common.model.ModelProperty.optional">
-<code class="descname">optional</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.model.ModelProperty.optional" title="Permalink to this definition">¶</a></dt>
+<code class="descname">optional</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common/model.html#ModelProperty.optional"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.ModelProperty.optional" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -347,7 +347,7 @@ missing values will None or empty.</li>
 
 <dl class="function">
 <dt id="solidfire.common.model.extract">
-<code class="descclassname">solidfire.common.model.</code><code class="descname">extract</code><span class="sig-paren">(</span><em>typ</em>, <em>src</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.model.extract" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">solidfire.common.model.</code><code class="descname">extract</code><span class="sig-paren">(</span><em>typ</em>, <em>src</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common/model.html#extract"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.extract" title="Permalink to this definition">¶</a></dt>
 <dd><p>DataObject value type converter.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -369,7 +369,7 @@ original version is returned.</p>
 
 <dl class="function">
 <dt id="solidfire.common.model.property">
-<code class="descclassname">solidfire.common.model.</code><code class="descname">property</code><span class="sig-paren">(</span><em>member_name</em>, <em>member_type</em>, <em>array=False</em>, <em>optional=False</em>, <em>documentation=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.model.property" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">solidfire.common.model.</code><code class="descname">property</code><span class="sig-paren">(</span><em>member_name</em>, <em>member_type</em>, <em>array=False</em>, <em>optional=False</em>, <em>documentation=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common/model.html#property"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.property" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructs the type for a DataObject property.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -393,7 +393,7 @@ original version is returned.</p>
 
 <dl class="function">
 <dt id="solidfire.common.model.serialize">
-<code class="descclassname">solidfire.common.model.</code><code class="descname">serialize</code><span class="sig-paren">(</span><em>val</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.model.serialize" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">solidfire.common.model.</code><code class="descname">serialize</code><span class="sig-paren">(</span><em>val</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common/model.html#serialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.serialize" title="Permalink to this definition">¶</a></dt>
 <dd><p>DataObject serializer value based on MetaData attributes.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -413,8 +413,8 @@ original version is returned.</p>
 <p>API Common Library</p>
 <dl class="exception">
 <dt id="solidfire.common.ApiMethodVersionError">
-<em class="property">exception </em><code class="descclassname">solidfire.common.</code><code class="descname">ApiMethodVersionError</code><span class="sig-paren">(</span><em>method_name</em>, <em>api_version</em>, <em>since</em>, <em>deprecated=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.ApiMethodVersionError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+<em class="property">exception </em><code class="descclassname">solidfire.common.</code><code class="descname">ApiMethodVersionError</code><span class="sig-paren">(</span><em>method_name</em>, <em>api_version</em>, <em>since</em>, <em>deprecated=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#ApiMethodVersionError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.ApiMethodVersionError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>An ApiMethodVersionError occurs when a service method is not compatible
 with the version of the connected server.</p>
 <p>ApiMethodVersionError constructor.</p>
@@ -464,8 +464,8 @@ compatible.</li>
 
 <dl class="exception">
 <dt id="solidfire.common.ApiParameterVersionError">
-<em class="property">exception </em><code class="descclassname">solidfire.common.</code><code class="descname">ApiParameterVersionError</code><span class="sig-paren">(</span><em>method_name</em>, <em>api_version</em>, <em>params</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.ApiParameterVersionError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+<em class="property">exception </em><code class="descclassname">solidfire.common.</code><code class="descname">ApiParameterVersionError</code><span class="sig-paren">(</span><em>method_name</em>, <em>api_version</em>, <em>params</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#ApiParameterVersionError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.ApiParameterVersionError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>An ApiParameterVersionError occurs when a parameter supplied to a service
 method is not compatible with the version of the connected server.</p>
 <p>ApiParameterVersionError constructor.</p>
@@ -514,8 +514,8 @@ and deprecated values for each offending parameter.</li>
 
 <dl class="exception">
 <dt id="solidfire.common.ApiServerError">
-<em class="property">exception </em><code class="descclassname">solidfire.common.</code><code class="descname">ApiServerError</code><span class="sig-paren">(</span><em>method_name</em>, <em>err_json</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.ApiServerError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+<em class="property">exception </em><code class="descclassname">solidfire.common.</code><code class="descname">ApiServerError</code><span class="sig-paren">(</span><em>method_name</em>, <em>err_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#ApiServerError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.ApiServerError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>ApiServerError is an exception that occurs on the server and is passes as a
 response back to the sdk.</p>
 <p>ApiServerError constructor.</p>
@@ -560,8 +560,8 @@ occurred.</li>
 
 <dl class="exception">
 <dt id="solidfire.common.ApiVersionExceededError">
-<em class="property">exception </em><code class="descclassname">solidfire.common.</code><code class="descname">ApiVersionExceededError</code><span class="sig-paren">(</span><em>api_version</em>, <em>current_version</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.ApiVersionExceededError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+<em class="property">exception </em><code class="descclassname">solidfire.common.</code><code class="descname">ApiVersionExceededError</code><span class="sig-paren">(</span><em>api_version</em>, <em>current_version</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#ApiVersionExceededError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.ApiVersionExceededError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>An ApiVersionExceededError occurs when connecting to a server with a
 version lower then the provided api_version.</p>
 <p>ApiVersionExceededError constructor.</p>
@@ -594,8 +594,8 @@ connection to the server.</li>
 
 <dl class="exception">
 <dt id="solidfire.common.ApiVersionUnsupportedError">
-<em class="property">exception </em><code class="descclassname">solidfire.common.</code><code class="descname">ApiVersionUnsupportedError</code><span class="sig-paren">(</span><em>api_version</em>, <em>supported_versions</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.ApiVersionUnsupportedError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+<em class="property">exception </em><code class="descclassname">solidfire.common.</code><code class="descname">ApiVersionUnsupportedError</code><span class="sig-paren">(</span><em>api_version</em>, <em>supported_versions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#ApiVersionUnsupportedError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.ApiVersionUnsupportedError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>An ApiVersionUnsupportedError occurs when connecting to a server unable
 to support the provided api_version.</p>
 <p>ApiVersionUnsupportedError constructor.</p>
@@ -629,7 +629,7 @@ a server.</li>
 
 <dl class="class">
 <dt id="solidfire.common.CurlDispatcher">
-<em class="property">class </em><code class="descclassname">solidfire.common.</code><code class="descname">CurlDispatcher</code><span class="sig-paren">(</span><em>endpoint</em>, <em>username</em>, <em>password</em>, <em>verify_ssl</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.CurlDispatcher" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">solidfire.common.</code><code class="descname">CurlDispatcher</code><span class="sig-paren">(</span><em>endpoint</em>, <em>username</em>, <em>password</em>, <em>verify_ssl</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#CurlDispatcher"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.CurlDispatcher" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>The CurlDispatcher is responsible for connecting, sending, and receiving
 data to a server.</p>
@@ -651,7 +651,7 @@ raised, otherwise, if False, they are ignored.</li>
 </table>
 <dl class="method">
 <dt id="solidfire.common.CurlDispatcher.connect_timeout">
-<code class="descname">connect_timeout</code><span class="sig-paren">(</span><em>timeout_in_sec</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.CurlDispatcher.connect_timeout" title="Permalink to this definition">¶</a></dt>
+<code class="descname">connect_timeout</code><span class="sig-paren">(</span><em>timeout_in_sec</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#CurlDispatcher.connect_timeout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.CurlDispatcher.connect_timeout" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the time to wait for a connection to be established before timeout.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -667,7 +667,7 @@ raised, otherwise, if False, they are ignored.</li>
 
 <dl class="method">
 <dt id="solidfire.common.CurlDispatcher.post">
-<code class="descname">post</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.CurlDispatcher.post" title="Permalink to this definition">¶</a></dt>
+<code class="descname">post</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#CurlDispatcher.post"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.CurlDispatcher.post" title="Permalink to this definition">¶</a></dt>
 <dd><p>Post data to the associated endpoint and await the server&#8217;s response.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -681,12 +681,12 @@ raised, otherwise, if False, they are ignored.</li>
 
 <dl class="attribute">
 <dt id="solidfire.common.CurlDispatcher.pycurl">
-<code class="descname">pycurl</code><em class="property"> = &lt;module 'pycurl' from '/Users/jwomack-LT/Python2.7/lib/python2.7/site-packages/pycurl.so'&gt;</em><a class="headerlink" href="#solidfire.common.CurlDispatcher.pycurl" title="Permalink to this definition">¶</a></dt>
+<code class="descname">pycurl</code><em class="property"> = &lt;module 'pycurl' from '/Users/jwomack-LT/Python3.5.0/lib/python3.5/site-packages/pycurl.cpython-35m-darwin.so'&gt;</em><a class="headerlink" href="#solidfire.common.CurlDispatcher.pycurl" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="solidfire.common.CurlDispatcher.restore_timeout_defaults">
-<code class="descname">restore_timeout_defaults</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.CurlDispatcher.restore_timeout_defaults" title="Permalink to this definition">¶</a></dt>
+<code class="descname">restore_timeout_defaults</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#CurlDispatcher.restore_timeout_defaults"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.CurlDispatcher.restore_timeout_defaults" title="Permalink to this definition">¶</a></dt>
 <dd><p>Restores the Connection and Read Timeout to their original durations of
 30 seconds for connection timeout and 300 seconds (5 minutes) for read
 timeout.</p>
@@ -694,7 +694,7 @@ timeout.</p>
 
 <dl class="method">
 <dt id="solidfire.common.CurlDispatcher.timeout">
-<code class="descname">timeout</code><span class="sig-paren">(</span><em>timeout_in_sec</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.CurlDispatcher.timeout" title="Permalink to this definition">¶</a></dt>
+<code class="descname">timeout</code><span class="sig-paren">(</span><em>timeout_in_sec</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#CurlDispatcher.timeout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.CurlDispatcher.timeout" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the time to wait for a response before timeout.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -712,7 +712,7 @@ timeout.</p>
 
 <dl class="class">
 <dt id="solidfire.common.ServiceBase">
-<em class="property">class </em><code class="descclassname">solidfire.common.</code><code class="descname">ServiceBase</code><span class="sig-paren">(</span><em>mvip=None</em>, <em>username=None</em>, <em>password=None</em>, <em>api_version=8.0</em>, <em>verify_ssl=True</em>, <em>dispatcher=None</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.ServiceBase" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">solidfire.common.</code><code class="descname">ServiceBase</code><span class="sig-paren">(</span><em>mvip=None</em>, <em>username=None</em>, <em>password=None</em>, <em>api_version=8.0</em>, <em>verify_ssl=True</em>, <em>dispatcher=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#ServiceBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.ServiceBase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>The base type for API services.
 This performs the sending, encoding and decoding of requests.</p>
@@ -739,7 +739,7 @@ when using an IP instead of a hostname</li>
 </table>
 <dl class="method">
 <dt id="solidfire.common.ServiceBase.connect_timeout">
-<code class="descname">connect_timeout</code><span class="sig-paren">(</span><em>timeout_in_sec</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.ServiceBase.connect_timeout" title="Permalink to this definition">¶</a></dt>
+<code class="descname">connect_timeout</code><span class="sig-paren">(</span><em>timeout_in_sec</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#ServiceBase.connect_timeout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.ServiceBase.connect_timeout" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the time to wait for a connection to be established before timeout.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -755,14 +755,14 @@ when using an IP instead of a hostname</li>
 
 <dl class="method">
 <dt id="solidfire.common.ServiceBase.restore_timeout_defaults">
-<code class="descname">restore_timeout_defaults</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.ServiceBase.restore_timeout_defaults" title="Permalink to this definition">¶</a></dt>
+<code class="descname">restore_timeout_defaults</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#ServiceBase.restore_timeout_defaults"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.ServiceBase.restore_timeout_defaults" title="Permalink to this definition">¶</a></dt>
 <dd><p>Restores the Connection and Read Timeout to their original durations of
 300 seconds (5 minutes) each.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="solidfire.common.ServiceBase.timeout">
-<code class="descname">timeout</code><span class="sig-paren">(</span><em>timeout_in_sec</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.ServiceBase.timeout" title="Permalink to this definition">¶</a></dt>
+<code class="descname">timeout</code><span class="sig-paren">(</span><em>timeout_in_sec</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#ServiceBase.timeout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.ServiceBase.timeout" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the time to wait for a response before timeout.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -780,7 +780,7 @@ when using an IP instead of a hostname</li>
 
 <dl class="function">
 <dt id="solidfire.common.setLogLevel">
-<code class="descclassname">solidfire.common.</code><code class="descname">setLogLevel</code><span class="sig-paren">(</span><em>level</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.common.setLogLevel" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">solidfire.common.</code><code class="descname">setLogLevel</code><span class="sig-paren">(</span><em>level</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#setLogLevel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.setLogLevel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the logging level of Element logger and all handlers.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">logging</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">solidfire</span> <span class="kn">import</span> <span class="n">common</span>
@@ -839,7 +839,7 @@ when using an IP instead of a hostname</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0.0.102',
+            VERSION:'1.0.0.104',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

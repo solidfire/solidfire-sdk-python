@@ -1,0 +1,1013 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>solidfire.results &mdash; SolidFire Python SDK v1.0.0.104</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/solidfire.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SolidFire Python SDK v1.0.0.104" href="../../index.html"/>
+        <link rel="up" title="solidfire" href="../solidfire.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> solidfire-sdk-python
+          
+
+          
+            
+            <img src="../../_static/PythonSDK.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html">solidfire package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">solidfire-sdk-python</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+          <li><a href="../solidfire.html">solidfire</a> &raquo;</li>
+      
+    <li>solidfire.results</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for solidfire.results</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright © 2014-2016 NetApp, Inc. All Rights Reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># DO NOT EDIT THIS CODE BY HAND! It has been generated with jsvcgen.</span>
+<span class="c1">#</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">solidfire.common</span> <span class="kn">import</span> <span class="n">model</span> <span class="k">as</span> <span class="n">data_model</span>
+<span class="kn">from</span> <span class="nn">solidfire.models</span> <span class="kn">import</span> <span class="n">Account</span>
+<span class="kn">from</span> <span class="nn">solidfire.models</span> <span class="kn">import</span> <span class="n">GroupSnapshot</span>
+<span class="kn">from</span> <span class="nn">solidfire.models</span> <span class="kn">import</span> <span class="n">GroupSnapshotMembers</span>
+<span class="kn">from</span> <span class="nn">solidfire.models</span> <span class="kn">import</span> <span class="n">Snapshot</span>
+<span class="kn">from</span> <span class="nn">solidfire.models</span> <span class="kn">import</span> <span class="n">Volume</span>
+<span class="kn">from</span> <span class="nn">solidfire.models</span> <span class="kn">import</span> <span class="n">VolumeAccessGroup</span>
+<span class="kn">from</span> <span class="nn">solidfire.models</span> <span class="kn">import</span> <span class="n">VolumeStats</span>
+
+
+<div class="viewcode-block" id="AsyncResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.AsyncResult">[docs]</a><span class="k">class</span> <span class="nc">AsyncResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The wrapped object returned by the *\&quot;get_async_result\&quot;* API Service call.</span>
+
+
+
+
+<span class="sd">    **Note**: The return value of *get_async_result* is essentially a nested</span>
+<span class="sd">    version of the standard JSON response with an additional status field.</span>
+
+<span class="sd">    :param message: [required] The return value for the original method call if</span>
+<span class="sd">        the call was completed successfully.</span>
+<span class="sd">    :type message: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">message</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;message&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The return value for the original method call if the call was</span><span class="se">\</span>
+<span class="s2">        completed successfully.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DeleteGroupSnapshotResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.DeleteGroupSnapshotResult">[docs]</a><span class="k">class</span> <span class="nc">DeleteGroupSnapshotResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;delete_group_snapshot\&quot; API Service call.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DeleteSnapshotResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.DeleteSnapshotResult">[docs]</a><span class="k">class</span> <span class="nc">DeleteSnapshotResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;delete_snapshot\&quot; API Service call.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DeleteVolumeAccessGroupResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.DeleteVolumeAccessGroupResult">[docs]</a><span class="k">class</span> <span class="nc">DeleteVolumeAccessGroupResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;delete_volume_access_group\&quot; API Service call.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DeleteVolumeResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.DeleteVolumeResult">[docs]</a><span class="k">class</span> <span class="nc">DeleteVolumeResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;delete_volume\&quot; API Service call.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GetAPIResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.GetAPIResult">[docs]</a><span class="k">class</span> <span class="nc">GetAPIResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;get_api\&quot; API Service call.</span>
+
+<span class="sd">    :param current_version: [required]</span>
+<span class="sd">    :type current_version: float</span>
+
+<span class="sd">    :param supported_versions: [required]</span>
+<span class="sd">    :type supported_versions: float</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">current_version</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;currentVersion&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="bp">None</span>
+    <span class="p">)</span>
+
+    <span class="n">supported_versions</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;supportedVersions&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="bp">None</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ModifyAccountResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.ModifyAccountResult">[docs]</a><span class="k">class</span> <span class="nc">ModifyAccountResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;modify_account\&quot; API Service call.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ModifyGroupSnapshotResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.ModifyGroupSnapshotResult">[docs]</a><span class="k">class</span> <span class="nc">ModifyGroupSnapshotResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;modify_group_snapshot\&quot; API Service call.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ModifySnapshotResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.ModifySnapshotResult">[docs]</a><span class="k">class</span> <span class="nc">ModifySnapshotResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;modify_snapshot\&quot; API Service call.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ModifyVolumeAccessGroupResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.ModifyVolumeAccessGroupResult">[docs]</a><span class="k">class</span> <span class="nc">ModifyVolumeAccessGroupResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;modify_volume_access_group\&quot; API Service call.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ModifyVolumeResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.ModifyVolumeResult">[docs]</a><span class="k">class</span> <span class="nc">ModifyVolumeResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;modify_volume\&quot; API Service call.</span>
+
+<span class="sd">    :param curve: (optional) The curve is a set of key-value pairs. The keys</span>
+<span class="sd">        are I/O sizes in bytes. The values represent the cost performing an IOP</span>
+<span class="sd">        at a specific I/O size. The curve is calculated relative to a 4096 byte</span>
+<span class="sd">        operation set at 100 IOPS.</span>
+<span class="sd">    :type curve: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">curve</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;curve&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The curve is a set of key-value pairs.</span><span class="se">\</span>
+<span class="s2">        The keys are I/O sizes in bytes.</span><span class="se">\</span>
+<span class="s2">        The values represent the cost performing an IOP at a specific I/O</span><span class="se">\</span>
+<span class="s2">        size.</span><span class="se">\</span>
+<span class="s2">        The curve is calculated relative to a 4096 byte operation set at 100</span><span class="se">\</span>
+<span class="s2">        IOPS.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PurgeDeletedVolumeResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.PurgeDeletedVolumeResult">[docs]</a><span class="k">class</span> <span class="nc">PurgeDeletedVolumeResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;purge_deleted_volume\&quot; API Service call.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RemoveAccountResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.RemoveAccountResult">[docs]</a><span class="k">class</span> <span class="nc">RemoveAccountResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;remove_account\&quot; API Service call.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RestoreDeletedVolumeResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.RestoreDeletedVolumeResult">[docs]</a><span class="k">class</span> <span class="nc">RestoreDeletedVolumeResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;restore_deleted_volume\&quot; API Service call.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AddAccountResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.AddAccountResult">[docs]</a><span class="k">class</span> <span class="nc">AddAccountResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;add_account\&quot; API Service call.</span>
+
+<span class="sd">    :param account_id: [required] *account_id* for the newly created Account.</span>
+<span class="sd">    :type account_id: int</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">account_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;accountID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        *account_id* for the newly created Account.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CreateVolumeAccessGroupResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.CreateVolumeAccessGroupResult">[docs]</a><span class="k">class</span> <span class="nc">CreateVolumeAccessGroupResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;create_volume_access_group\&quot; API Service call.</span>
+
+<span class="sd">    :param volume_access_group_id: [required] The ID for the newly-created</span>
+<span class="sd">        volume access group.</span>
+<span class="sd">    :type volume_access_group_id: int</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">volume_access_group_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumeAccessGroupID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The ID for the newly-created volume access group.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CreateVolumeResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.CreateVolumeResult">[docs]</a><span class="k">class</span> <span class="nc">CreateVolumeResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;create_volume\&quot; API Service call.</span>
+
+<span class="sd">    :param volume_id: [required] *volume_id* for the newly created volume.</span>
+<span class="sd">    :type volume_id: int</span>
+
+<span class="sd">    :param curve: (optional) The curve is a set of key-value pairs. The keys</span>
+<span class="sd">        are I/O sizes in bytes. The values represent the cost performing an IOP</span>
+<span class="sd">        at a specific I/O size. The curve is calculated relative to a 4096 byte</span>
+<span class="sd">        operation set at 100 IOPS.</span>
+<span class="sd">    :type curve: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">volume_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumeID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        *volume_id* for the newly created volume.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">curve</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;curve&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The curve is a set of key-value pairs.</span><span class="se">\</span>
+<span class="s2">        The keys are I/O sizes in bytes.</span><span class="se">\</span>
+<span class="s2">        The values represent the cost performing an IOP at a specific I/O</span><span class="se">\</span>
+<span class="s2">        size.</span><span class="se">\</span>
+<span class="s2">        The curve is calculated relative to a 4096 byte operation set at 100</span><span class="se">\</span>
+<span class="s2">        IOPS.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GetAccountResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.GetAccountResult">[docs]</a><span class="k">class</span> <span class="nc">GetAccountResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;get_account\&quot; API Service call.</span>
+
+<span class="sd">    :param account: [required] Account details.</span>
+<span class="sd">    :type account: Account</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">account</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;account&quot;</span><span class="p">,</span> <span class="n">Account</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Account details.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GetVolumeStatsResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.GetVolumeStatsResult">[docs]</a><span class="k">class</span> <span class="nc">GetVolumeStatsResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;get_volume_stats\&quot; API Service call.</span>
+
+<span class="sd">    :param volume_stats: [required] Volume activity information.</span>
+<span class="sd">    :type volume_stats: VolumeStats</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">volume_stats</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumeStats&quot;</span><span class="p">,</span> <span class="n">VolumeStats</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Volume activity information.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ListAccountsResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.ListAccountsResult">[docs]</a><span class="k">class</span> <span class="nc">ListAccountsResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;list_accounts\&quot; API Service call.</span>
+
+<span class="sd">    :param accounts: [required] List of accounts.</span>
+<span class="sd">    :type accounts: Account</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">accounts</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;accounts&quot;</span><span class="p">,</span> <span class="n">Account</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        List of accounts.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ListActiveVolumesResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.ListActiveVolumesResult">[docs]</a><span class="k">class</span> <span class="nc">ListActiveVolumesResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;list_active_volumes\&quot; API Service call.</span>
+
+<span class="sd">    :param volumes: [required] List of active volumes.</span>
+<span class="sd">    :type volumes: Volume</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">volumes</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumes&quot;</span><span class="p">,</span> <span class="n">Volume</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        List of active volumes.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ListDeletedVolumesResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.ListDeletedVolumesResult">[docs]</a><span class="k">class</span> <span class="nc">ListDeletedVolumesResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;list_deleted_volumes\&quot; API Service call.</span>
+
+<span class="sd">    :param volumes: [required] List of deleted volumes.</span>
+<span class="sd">    :type volumes: Volume</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">volumes</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumes&quot;</span><span class="p">,</span> <span class="n">Volume</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        List of deleted volumes.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ListGroupSnapshotsResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.ListGroupSnapshotsResult">[docs]</a><span class="k">class</span> <span class="nc">ListGroupSnapshotsResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;list_group_snapshots\&quot; API Service call.</span>
+
+<span class="sd">    :param group_snapshots: [required] List of Group Snapshots.</span>
+<span class="sd">    :type group_snapshots: GroupSnapshot</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">group_snapshots</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;groupSnapshots&quot;</span><span class="p">,</span> <span class="n">GroupSnapshot</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        List of Group Snapshots.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ListSnapshotsResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.ListSnapshotsResult">[docs]</a><span class="k">class</span> <span class="nc">ListSnapshotsResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;list_snapshots\&quot; API Service call.</span>
+
+<span class="sd">    :param snapshots: [required] Information about each snapshot for each</span>
+<span class="sd">        volume. If *volume_id* is not provided, all snapshots for all volumes</span>
+<span class="sd">        is returned. Snapshots that are in a group will be returned with a</span>
+<span class="sd">        \&quot;groupID\&quot;. Snapshots that are enabled for replication.</span>
+<span class="sd">    :type snapshots: Snapshot</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">snapshots</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;snapshots&quot;</span><span class="p">,</span> <span class="n">Snapshot</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Information about each snapshot for each volume.</span><span class="se">\</span>
+<span class="s2">        If *volume_id* is not provided, all snapshots for all volumes is</span><span class="se">\</span>
+<span class="s2">        returned.</span><span class="se">\</span>
+<span class="s2">        Snapshots that are in a group will be returned with a </span><span class="se">\&quot;</span><span class="s2">groupID</span><span class="se">\&quot;</span><span class="s2">.</span><span class="se">\</span>
+<span class="s2">        Snapshots that are enabled for replication.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ListVolumeAccessGroupsResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.ListVolumeAccessGroupsResult">[docs]</a><span class="k">class</span> <span class="nc">ListVolumeAccessGroupsResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;list_volume_access_groups\&quot; API Service call.</span>
+
+<span class="sd">    :param volume_access_groups: [required] List of volume access groups.</span>
+<span class="sd">    :type volume_access_groups: VolumeAccessGroup</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">volume_access_groups</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumeAccessGroups&quot;</span><span class="p">,</span> <span class="n">VolumeAccessGroup</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        List of volume access groups.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ListVolumeStatsByAccountResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.ListVolumeStatsByAccountResult">[docs]</a><span class="k">class</span> <span class="nc">ListVolumeStatsByAccountResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;list_volume_stats_by_account\&quot; API Service</span>
+<span class="sd">    call.</span>
+
+<span class="sd">    :param volume_stats: [required] List of account activity information.</span>
+
+<span class="sd">        **Note**: The *volume_id* member is 0 for each entry, as the values</span>
+<span class="sd">        represent the summation of all volumes owned by the account.</span>
+
+<span class="sd">    :type volume_stats: VolumeStats</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">volume_stats</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumeStats&quot;</span><span class="p">,</span> <span class="n">VolumeStats</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        List of account activity information.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **Note**: The *volume_id* member is 0 for each entry, as the</span><span class="se">\</span>
+<span class="s2">        values represent the summation of all volumes owned by the account.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ListVolumeStatsByVolumeAccessGroupResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.ListVolumeStatsByVolumeAccessGroupResult">[docs]</a><span class="k">class</span> <span class="nc">ListVolumeStatsByVolumeAccessGroupResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;list_volume_stats_by_volume_access_group\&quot; API</span>
+<span class="sd">    Service call.</span>
+
+<span class="sd">    :param volume_stats: [required] List of account activity information.</span>
+
+<span class="sd">        **Note**: The *volume_id* member is 0 for each entry, as the values</span>
+<span class="sd">        represent the summation of all volumes owned by the account.</span>
+
+<span class="sd">    :type volume_stats: VolumeStats</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">volume_stats</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumeStats&quot;</span><span class="p">,</span> <span class="n">VolumeStats</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        List of account activity information.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **Note**: The *volume_id* member is 0 for each entry, as the</span><span class="se">\</span>
+<span class="s2">        values represent the summation of all volumes owned by the account.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ListVolumeStatsByVolumeResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.ListVolumeStatsByVolumeResult">[docs]</a><span class="k">class</span> <span class="nc">ListVolumeStatsByVolumeResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;list_volume_stats_by_volume\&quot; API Service</span>
+<span class="sd">    call.</span>
+
+<span class="sd">    :param volume_stats: [required] List of account activity information.</span>
+<span class="sd">    :type volume_stats: VolumeStats</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">volume_stats</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumeStats&quot;</span><span class="p">,</span> <span class="n">VolumeStats</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        List of account activity information.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ListVolumesForAccountResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.ListVolumesForAccountResult">[docs]</a><span class="k">class</span> <span class="nc">ListVolumesForAccountResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;list_volumes_for_account\&quot; API Service call.</span>
+
+<span class="sd">    :param volumes: [required] List of volumes.</span>
+<span class="sd">    :type volumes: Volume</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">volumes</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumes&quot;</span><span class="p">,</span> <span class="n">Volume</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        List of volumes.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ListVolumesResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.ListVolumesResult">[docs]</a><span class="k">class</span> <span class="nc">ListVolumesResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;list_volumes\&quot; API Service call.</span>
+
+<span class="sd">    :param volumes: [required] List of volumes.</span>
+<span class="sd">    :type volumes: Volume</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">volumes</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumes&quot;</span><span class="p">,</span> <span class="n">Volume</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        List of volumes.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CreateGroupSnapshotResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.CreateGroupSnapshotResult">[docs]</a><span class="k">class</span> <span class="nc">CreateGroupSnapshotResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;create_group_snapshot\&quot; API Service call.</span>
+
+<span class="sd">    :param group_snapshot_id: [required] Unique ID of the new group snapshot.</span>
+<span class="sd">    :type group_snapshot_id: int</span>
+
+<span class="sd">    :param members: [required] List of checksum, *volume_ids* and</span>
+<span class="sd">        *snapshot_ids* for each member of the group.</span>
+<span class="sd">    :type members: GroupSnapshotMembers</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">group_snapshot_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;groupSnapshotID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Unique ID of the new group snapshot.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">members</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;members&quot;</span><span class="p">,</span> <span class="n">GroupSnapshotMembers</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        List of checksum, *volume_ids* and *snapshot_ids* for each member of</span><span class="se">\</span>
+<span class="s2">        the group.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CreateSnapshotResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.CreateSnapshotResult">[docs]</a><span class="k">class</span> <span class="nc">CreateSnapshotResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;create_snapshot\&quot; API Service call.</span>
+
+<span class="sd">    :param snapshot_id: [required] ID of the newly-created snapshot.</span>
+<span class="sd">    :type snapshot_id: int</span>
+
+<span class="sd">    :param checksum: [required] A string that represents the correct digits in</span>
+<span class="sd">        the stored snapshot. This checksum can be used later to compare other</span>
+<span class="sd">        snapshots to detect errors in the data.</span>
+<span class="sd">    :type checksum: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">snapshot_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;snapshotID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        ID of the newly-created snapshot.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">checksum</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;checksum&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        A string that represents the correct digits in the stored snapshot.</span><span class="se">\</span>
+<span class="s2">        This checksum can be used later to compare other snapshots to detect</span><span class="se">\</span>
+<span class="s2">        errors in the data.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GetAsyncResultResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.GetAsyncResultResult">[docs]</a><span class="k">class</span> <span class="nc">GetAsyncResultResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the *\&quot;get_async_result\&quot;* API Service call.</span>
+
+
+
+
+<span class="sd">    **Note**: The return value of *get_async_result* is essentially a nested</span>
+<span class="sd">    version of the standard JSON response with an additional status field.</span>
+
+<span class="sd">    :param result: [required] The resulting message for the original method</span>
+<span class="sd">        call if the call was completed successfully.</span>
+<span class="sd">    :type result: AsyncResult</span>
+
+<span class="sd">    :param status: [required] Status of the asynchronous method call</span>
+
+<span class="sd">        **running**: The method is still running.</span>
+
+<span class="sd">        **complete**: The method is complete and the result or error is</span>
+<span class="sd">        available.</span>
+
+<span class="sd">    :type status: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;result&quot;</span><span class="p">,</span> <span class="n">AsyncResult</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The resulting message for the original method call if the call was</span><span class="se">\</span>
+<span class="s2">        completed successfully.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">status</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Status of the asynchronous method call</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **running**: The method is still running.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **complete**: The method is complete and the result or error is</span><span class="se">\</span>
+<span class="s2">        available.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GetVolumeEfficiencyResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.GetVolumeEfficiencyResult">[docs]</a><span class="k">class</span> <span class="nc">GetVolumeEfficiencyResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;get_volume_efficiency\&quot; API Service call.</span>
+
+<span class="sd">    :param compression: [required] The amount of space being saved by</span>
+<span class="sd">        compressing data on a single volume. Stated as a ratio where \&quot;1\&quot;</span>
+<span class="sd">        means data has been stored without being compressed.</span>
+<span class="sd">    :type compression: float</span>
+
+<span class="sd">    :param deduplication: [required] The amount of space being saved on a</span>
+<span class="sd">        single volume by not duplicating data. Stated as a ratio.</span>
+<span class="sd">    :type deduplication: float</span>
+
+<span class="sd">    :param missing_volumes: [required] The volumes that could not be queried</span>
+<span class="sd">        for efficiency data. Missing volumes can be caused by GC being less</span>
+<span class="sd">        than hour old, temporary network loss or restarted services since the</span>
+<span class="sd">        GC cycle.</span>
+<span class="sd">    :type missing_volumes: int</span>
+
+<span class="sd">    :param thin_provisioning: [required] The ratio of space used to the amount</span>
+<span class="sd">        of space allocated for storing data. Stated as a ratio.</span>
+<span class="sd">    :type thin_provisioning: float</span>
+
+<span class="sd">    :param timestamp: [required] The last time efficiency data was collected</span>
+<span class="sd">        after Garbage Collection (GC).</span>
+<span class="sd">    :type timestamp: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">compression</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The amount of space being saved by compressing data on a single</span><span class="se">\</span>
+<span class="s2">        volume.</span><span class="se">\</span>
+<span class="s2">        Stated as a ratio where </span><span class="se">\&quot;</span><span class="s2">1</span><span class="se">\&quot;</span><span class="s2"> means data has been stored without being</span><span class="se">\</span>
+<span class="s2">        compressed.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">deduplication</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;deduplication&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The amount of space being saved on a single volume by not duplicating</span><span class="se">\</span>
+<span class="s2">        data.</span><span class="se">\</span>
+<span class="s2">        Stated as a ratio.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">missing_volumes</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;missingVolumes&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The volumes that could not be queried for efficiency data.</span><span class="se">\</span>
+<span class="s2">        Missing volumes can be caused by GC being less than hour old,</span><span class="se">\</span>
+<span class="s2">        temporary network loss or restarted services since the GC cycle.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">thin_provisioning</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;thinProvisioning&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The ratio of space used to the amount of space allocated for storing</span><span class="se">\</span>
+<span class="s2">        data.</span><span class="se">\</span>
+<span class="s2">        Stated as a ratio.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">timestamp</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The last time efficiency data was collected after Garbage Collection</span><span class="se">\</span>
+<span class="s2">        (GC).</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CloneVolumeResult"><a class="viewcode-back" href="../../solidfire.html#solidfire.results.CloneVolumeResult">[docs]</a><span class="k">class</span> <span class="nc">CloneVolumeResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;clone_volume\&quot; API Service call.</span>
+
+<span class="sd">    :param clone_id: [required] The ID of the newly-created clone.</span>
+<span class="sd">    :type clone_id: int</span>
+
+<span class="sd">    :param volume_id: [required] The volume ID of the newly-created clone.</span>
+<span class="sd">    :type volume_id: int</span>
+
+<span class="sd">    :param async_handle: [required] Handle value used to track the progress of</span>
+<span class="sd">        the clone.</span>
+<span class="sd">    :type async_handle: int</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">clone_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;cloneID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The ID of the newly-created clone.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">volume_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumeID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The volume ID of the newly-created clone.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">async_handle</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;asyncHandle&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Handle value used to track the progress of the clone.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2016, NetApp, Inc.  All Rights Reserved..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0.0.104',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

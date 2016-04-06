@@ -1,0 +1,1985 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>solidfire.models &mdash; SolidFire Python SDK v1.0.0.104</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/solidfire.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SolidFire Python SDK v1.0.0.104" href="../../index.html"/>
+        <link rel="up" title="solidfire" href="../solidfire.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> solidfire-sdk-python
+          
+
+          
+            
+            <img src="../../_static/PythonSDK.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html">solidfire package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">solidfire-sdk-python</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+          <li><a href="../solidfire.html">solidfire</a> &raquo;</li>
+      
+    <li>solidfire.models</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for solidfire.models</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright © 2014-2016 NetApp, Inc. All Rights Reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># DO NOT EDIT THIS CODE BY HAND! It has been generated with jsvcgen.</span>
+<span class="c1">#</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">solidfire.common</span> <span class="kn">import</span> <span class="n">model</span> <span class="k">as</span> <span class="n">data_model</span>
+<span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">UUID</span>
+
+
+<div class="viewcode-block" id="QoS"><a class="viewcode-back" href="../../solidfire.html#solidfire.models.QoS">[docs]</a><span class="k">class</span> <span class="nc">QoS</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Quality of Service (QoS) values are used on SolidFire volumes to provision</span>
+<span class="sd">    performance expectations.</span>
+<span class="sd">    Minimum, maximum and burst *qos* values can be set within the ranges</span>
+<span class="sd">    specified in the *qos* table below.</span>
+
+
+
+
+<span class="sd">    Volumes created without specified *qos* values are created with the Default</span>
+<span class="sd">    values listed below.</span>
+<span class="sd">    Default values can be found by running the *get_default_qos* method.</span>
+
+
+
+
+<span class="sd">    **minIOPS** Min: 100/50 (v7.0/v8.0), Default: 100, Max: 15,000</span>
+
+
+
+<span class="sd">    **maxIOPS** Min: 100/50 (v7.0/v8.0), Default: 15,000, Max: 100,000</span>
+
+
+
+<span class="sd">    **burstIOPS** Min: 100/50 (v7.0/v8.0), Default: 15,000, Max: 100,000</span>
+
+
+
+
+<span class="sd">    :param min_iops: (optional) Desired minimum 4KB IOPS to guarantee. The</span>
+<span class="sd">        allowed IOPS will only drop below this level if all volumes have been</span>
+<span class="sd">        capped at their minimum IOPS value and there is still insufficient</span>
+<span class="sd">        performance capacity.</span>
+<span class="sd">    :type min_iops: int</span>
+
+<span class="sd">    :param max_iops: (optional) Desired maximum 4KB IOPS allowed over an</span>
+<span class="sd">        extended period of time.</span>
+<span class="sd">    :type max_iops: int</span>
+
+<span class="sd">    :param burst_iops: (optional) Maximum \&quot;peak\&quot; 4KB IOPS allowed for short</span>
+<span class="sd">        periods of time. Allows for bursts of I/O activity over the normal max</span>
+<span class="sd">        IOPS value.</span>
+<span class="sd">    :type burst_iops: int</span>
+
+<span class="sd">    :param burst_time: (optional) The length of time burst IOPS is allowed. The</span>
+<span class="sd">        value returned is represented in time units of seconds.</span>
+
+<span class="sd">        **Note**: this value is calculated by the system based on IOPS set for</span>
+<span class="sd">        QoS.</span>
+
+<span class="sd">    :type burst_time: int</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">min_iops</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;minIOPS&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Desired minimum 4KB IOPS to guarantee.</span><span class="se">\</span>
+<span class="s2">        The allowed IOPS will only drop below this level if all volumes have</span><span class="se">\</span>
+<span class="s2">        been capped</span><span class="se">\</span>
+<span class="s2">        at their minimum IOPS value and there is still insufficient</span><span class="se">\</span>
+<span class="s2">        performance capacity.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">max_iops</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;maxIOPS&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Desired maximum 4KB IOPS allowed over an extended period of time.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">burst_iops</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;burstIOPS&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Maximum </span><span class="se">\&quot;</span><span class="s2">peak</span><span class="se">\&quot;</span><span class="s2"> 4KB IOPS allowed for short periods of time.</span><span class="se">\</span>
+<span class="s2">        Allows for bursts of I/O activity over the normal max IOPS value.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">burst_time</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;burstTime&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The length of time burst IOPS is allowed.</span><span class="se">\</span>
+<span class="s2">        The value returned is represented in time units of seconds.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **Note**: this value is calculated by the system based on IOPS set</span><span class="se">\</span>
+<span class="s2">        for QoS.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SnapshotReplication"><a class="viewcode-back" href="../../solidfire.html#solidfire.models.SnapshotReplication">[docs]</a><span class="k">class</span> <span class="nc">SnapshotReplication</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :param state: [required] The state of the snapshot replication.</span>
+<span class="sd">    :type state: str</span>
+
+<span class="sd">    :param state_details: [required] Reserved for future use.</span>
+<span class="sd">    :type state_details: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">state</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The state of the snapshot replication.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">state_details</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;stateDetails&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Reserved for future use.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="VolumeQOS"><a class="viewcode-back" href="../../solidfire.html#solidfire.models.VolumeQOS">[docs]</a><span class="k">class</span> <span class="nc">VolumeQOS</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Quality of Service (QoS) Result values are used on SolidFire volumes to</span>
+<span class="sd">    provision performance expectations.</span>
+
+<span class="sd">    :param min_iops: [required] Desired minimum 4KB IOPS to guarantee. The</span>
+<span class="sd">        allowed IOPS will only drop below this level if all volumes have been</span>
+<span class="sd">        capped at their min IOPS value and there is still insufficient</span>
+<span class="sd">        performance capacity.</span>
+<span class="sd">    :type min_iops: int</span>
+
+<span class="sd">    :param max_iops: [required] Desired maximum 4KB IOPS allowed over an</span>
+<span class="sd">        extended period of time.</span>
+<span class="sd">    :type max_iops: int</span>
+
+<span class="sd">    :param burst_iops: [required] Maximum \&quot;peak\&quot; 4KB IOPS allowed for short</span>
+<span class="sd">        periods of time. Allows for bursts of I/O activity over the normal max</span>
+<span class="sd">        IOPS value.</span>
+<span class="sd">    :type burst_iops: int</span>
+
+<span class="sd">    :param burst_time: [required] The length of time burst IOPS is allowed. The</span>
+<span class="sd">        value returned is represented in time units of seconds.</span>
+
+<span class="sd">        **Note**: this value is calculated by the system based on IOPS set for</span>
+<span class="sd">        QoS.</span>
+
+<span class="sd">    :type burst_time: int</span>
+
+<span class="sd">    :param curve: [required] The curve is a set of key-value pairs. The keys</span>
+<span class="sd">        are I/O sizes in bytes. The values represent the cost performing an IOP</span>
+<span class="sd">        at a specific I/O size. The curve is calculated relative to a 4096 byte</span>
+<span class="sd">        operation set at 100 IOPS.</span>
+<span class="sd">    :type curve: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">min_iops</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;minIOPS&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Desired minimum 4KB IOPS to guarantee.</span><span class="se">\</span>
+<span class="s2">        The allowed IOPS will only drop below this level if all volumes have</span><span class="se">\</span>
+<span class="s2">        been capped</span><span class="se">\</span>
+<span class="s2">        at their min IOPS value and there is still insufficient performance</span><span class="se">\</span>
+<span class="s2">        capacity.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">max_iops</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;maxIOPS&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Desired maximum 4KB IOPS allowed over an extended period of time.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">burst_iops</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;burstIOPS&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Maximum </span><span class="se">\&quot;</span><span class="s2">peak</span><span class="se">\&quot;</span><span class="s2"> 4KB IOPS allowed for short periods of time.</span><span class="se">\</span>
+<span class="s2">        Allows for bursts of I/O activity over the normal max IOPS value.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">burst_time</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;burstTime&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The length of time burst IOPS is allowed.</span><span class="se">\</span>
+<span class="s2">        The value returned is represented in time units of seconds.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **Note**: this value is calculated by the system based on IOPS set</span><span class="se">\</span>
+<span class="s2">        for QoS.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">curve</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;curve&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The curve is a set of key-value pairs.</span><span class="se">\</span>
+<span class="s2">        The keys are I/O sizes in bytes.</span><span class="se">\</span>
+<span class="s2">        The values represent the cost performing an IOP at a specific I/O</span><span class="se">\</span>
+<span class="s2">        size.</span><span class="se">\</span>
+<span class="s2">        The curve is calculated relative to a 4096 byte operation set at 100</span><span class="se">\</span>
+<span class="s2">        IOPS.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RemoteReplication"><a class="viewcode-back" href="../../solidfire.html#solidfire.models.RemoteReplication">[docs]</a><span class="k">class</span> <span class="nc">RemoteReplication</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Details on the volume replication.</span>
+
+<span class="sd">    :param mode: [required] Volume replication mode.</span>
+
+<span class="sd">        Possible values:</span>
+
+<span class="sd">        **Async**: Writes are acknowledged when they complete locally. The</span>
+<span class="sd">        cluster does not wait for writes to be replicated to the target</span>
+<span class="sd">        cluster.</span>
+
+<span class="sd">        **Sync**: Source acknowledges write when the data is stored locally and</span>
+<span class="sd">        on the remote cluster.</span>
+
+<span class="sd">        **SnapshotsOnly**: Only snapshots created on the source cluster will be</span>
+<span class="sd">        replicated. Active writes from the source volume will not be</span>
+<span class="sd">        replicated.</span>
+
+
+
+<span class="sd">    :type mode: str</span>
+
+<span class="sd">    :param pause_limit: [required] The number of occurring write ops before</span>
+<span class="sd">        auto-pausing, on a per volume pair level.</span>
+<span class="sd">    :type pause_limit: int</span>
+
+<span class="sd">    :param remote_service_id: [required] The remote slice service ID.</span>
+<span class="sd">    :type remote_service_id: int</span>
+
+<span class="sd">    :param resume_details: [required] Reserved for future use.</span>
+<span class="sd">    :type resume_details: str</span>
+
+<span class="sd">    :param snapshot_replication: [required] The details of snapshot</span>
+<span class="sd">        replication.</span>
+<span class="sd">    :type snapshot_replication: SnapshotReplication</span>
+
+<span class="sd">    :param state: [required] The state of the volume replication.</span>
+<span class="sd">    :type state: str</span>
+
+<span class="sd">    :param state_details: [required] Reserved for future use.</span>
+<span class="sd">    :type state_details: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">mode</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;mode&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Volume replication mode.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">        Possible values:</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">        **Async**: Writes are acknowledged when they complete locally. The</span><span class="se">\</span>
+<span class="s2">        cluster does not wait for writes to be replicated to the target</span><span class="se">\</span>
+<span class="s2">        cluster.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">        **Sync**: Source acknowledges write when the data is stored locally</span><span class="se">\</span>
+<span class="s2">        and on the remote cluster.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">        **SnapshotsOnly**: Only snapshots created on the source cluster will</span><span class="se">\</span>
+<span class="s2">        be replicated. Active writes from the source volume will not be</span><span class="se">\</span>
+<span class="s2">        replicated.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">pause_limit</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;pauseLimit&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The number of occurring write ops before auto-pausing, on a per volume</span><span class="se">\</span>
+<span class="s2">        pair level.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">remote_service_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;remoteServiceID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The remote slice service ID.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">resume_details</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;resumeDetails&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Reserved for future use.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">snapshot_replication</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;snapshotReplication&quot;</span><span class="p">,</span> <span class="n">SnapshotReplication</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The details of snapshot replication.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">state</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The state of the volume replication.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">state_details</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;stateDetails&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Reserved for future use.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GroupSnapshotMembers"><a class="viewcode-back" href="../../solidfire.html#solidfire.models.GroupSnapshotMembers">[docs]</a><span class="k">class</span> <span class="nc">GroupSnapshotMembers</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    List of checksum, *volume_ids* and *snapshot_ids* for each member of the</span>
+<span class="sd">    group.</span>
+
+<span class="sd">    :param volume_id: [required] The source volume ID for the snapshot.</span>
+<span class="sd">    :type volume_id: int</span>
+
+<span class="sd">    :param snapshot_id: [required] Unique ID of a snapshot from which the new</span>
+<span class="sd">        snapshot is made. The *snapshot_id* passed must be a snapshot on the</span>
+<span class="sd">        given volume.</span>
+<span class="sd">    :type snapshot_id: int</span>
+
+<span class="sd">    :param snapshot_uuid: [required] Universal Unique ID of an existing</span>
+<span class="sd">        snapshot.</span>
+<span class="sd">    :type snapshot_uuid: str</span>
+
+<span class="sd">    :param checksum: [required] A string that represents the correct digits in</span>
+<span class="sd">        the stored snapshot. This checksum can be used later to compare other</span>
+<span class="sd">        snapshots to detect errors in the data.</span>
+<span class="sd">    :type checksum: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">volume_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumeID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The source volume ID for the snapshot.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">snapshot_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;snapshotID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Unique ID of a snapshot from which the new snapshot is made.</span><span class="se">\</span>
+<span class="s2">        The *snapshot_id* passed must be a snapshot on the given volume.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">snapshot_uuid</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;SnapshotUUID&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Universal Unique ID of an existing snapshot.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">checksum</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;checksum&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        A string that represents the correct digits in the stored snapshot.</span><span class="se">\</span>
+<span class="s2">        This checksum can be used later to compare other snapshots to detect</span><span class="se">\</span>
+<span class="s2">        errors in the data.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GroupSnapshot"><a class="viewcode-back" href="../../solidfire.html#solidfire.models.GroupSnapshot">[docs]</a><span class="k">class</span> <span class="nc">GroupSnapshot</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Group Snapshot object represents a point-in-time copy of a group of</span>
+<span class="sd">    volumes.</span>
+
+<span class="sd">    :param group_snapshot_id: [required] Unique ID of the new group snapshot.</span>
+<span class="sd">    :type group_snapshot_id: int</span>
+
+<span class="sd">    :param group_snapshot_uuid: [required] UUID of the group snapshot.</span>
+<span class="sd">    :type group_snapshot_uuid: UUID</span>
+
+<span class="sd">    :param members: [required] List of *volume_ids* and *snapshot_ids* for each</span>
+<span class="sd">        member of the group.</span>
+<span class="sd">    :type members: GroupSnapshotMembers</span>
+
+<span class="sd">    :param name: [required] Name of the group snapshot, or, if none was given,</span>
+<span class="sd">        the UTC formatted day and time on which the snapshot was created.</span>
+<span class="sd">    :type name: str</span>
+
+<span class="sd">    :param create_time: [required] The UTC formatted day and time on which the</span>
+<span class="sd">        snapshot was created.</span>
+<span class="sd">    :type create_time: str</span>
+
+<span class="sd">    :param status: [required] Status of the snapshot. Possible values:</span>
+
+<span class="sd">        **Preparing**: A snapshot that is being prepared for use and is not yet</span>
+<span class="sd">        writable.</span>
+
+<span class="sd">        **Done**: A snapshot that has finished being prepared and is now usable</span>
+
+<span class="sd">    :type status: str</span>
+
+<span class="sd">    :param attributes: [required] List of Name/Value pairs in JSON object</span>
+<span class="sd">        format.</span>
+<span class="sd">    :type attributes: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">group_snapshot_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;groupSnapshotID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Unique ID of the new group snapshot.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">group_snapshot_uuid</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;groupSnapshotUUID&quot;</span><span class="p">,</span> <span class="n">UUID</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        UUID of the group snapshot.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">members</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;members&quot;</span><span class="p">,</span> <span class="n">GroupSnapshotMembers</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        List of *volume_ids* and *snapshot_ids* for each member of the group.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Name of the group snapshot, or, if none was given, the UTC formatted</span><span class="se">\</span>
+<span class="s2">        day and time on which the snapshot was created.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">create_time</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;createTime&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The UTC formatted day and time on which the snapshot was created.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">status</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Status of the snapshot.</span><span class="se">\</span>
+<span class="s2">        Possible values:</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **Preparing**: A snapshot that is being prepared for use and is</span><span class="se">\</span>
+<span class="s2">        not yet writable.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **Done**: A snapshot that has finished being prepared and is now</span><span class="se">\</span>
+<span class="s2">        usable</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">attributes</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;attributes&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        List of Name/Value pairs in JSON object format.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MetadataHosts"><a class="viewcode-back" href="../../solidfire.html#solidfire.models.MetadataHosts">[docs]</a><span class="k">class</span> <span class="nc">MetadataHosts</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The volume services on which the volume metadata resides.</span>
+
+<span class="sd">    :param dead_secondaries: [required] Secondary metadata (slice) services</span>
+<span class="sd">        that are in a dead state.</span>
+<span class="sd">    :type dead_secondaries: int</span>
+
+<span class="sd">    :param live_secondaries: [required] Secondary metadata (slice) services</span>
+<span class="sd">        that are currently in a \&quot;live\&quot; state.</span>
+<span class="sd">    :type live_secondaries: int</span>
+
+<span class="sd">    :param primary: [required] The primary metadata (slice) services hosting</span>
+<span class="sd">        the volume.</span>
+<span class="sd">    :type primary: int</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">dead_secondaries</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;deadSecondaries&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Secondary metadata (slice) services that are in a dead state.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">live_secondaries</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;liveSecondaries&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Secondary metadata (slice) services that are currently in a </span><span class="se">\&quot;</span><span class="s2">live</span><span class="se">\&quot;\</span>
+<span class="s2">        state.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">primary</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;primary&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The primary metadata (slice) services hosting the volume.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="VolumePair"><a class="viewcode-back" href="../../solidfire.html#solidfire.models.VolumePair">[docs]</a><span class="k">class</span> <span class="nc">VolumePair</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The Volume Pair Info is an object containing information about a volume</span>
+<span class="sd">    that is paired on a remote cluster.</span>
+<span class="sd">    If the volume is not paired, this object is null.</span>
+
+<span class="sd">    :param cluster_pair_id: [required] The remote cluster a volume is paired</span>
+<span class="sd">        with.</span>
+<span class="sd">    :type cluster_pair_id: int</span>
+
+<span class="sd">    :param remote_volume_id: [required] The *volume_id* on the remote cluster a</span>
+<span class="sd">        volume is paired with.</span>
+<span class="sd">    :type remote_volume_id: int</span>
+
+<span class="sd">    :param remote_slice_id: [required] The *slice_id* on the remote cluster a</span>
+<span class="sd">        volume is paired with.</span>
+<span class="sd">    :type remote_slice_id: int</span>
+
+<span class="sd">    :param remote_volume_name: [required] The last-observed name of the volume</span>
+<span class="sd">        on the remote cluster a volume is paired with.</span>
+<span class="sd">    :type remote_volume_name: str</span>
+
+<span class="sd">    :param volume_pair_uuid: [required] A UUID in canonical form.</span>
+<span class="sd">    :type volume_pair_uuid: UUID</span>
+
+<span class="sd">    :param remote_replication: [required] Details about the replication</span>
+<span class="sd">        configuration for this volume pair.</span>
+<span class="sd">    :type remote_replication: RemoteReplication</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">cluster_pair_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;clusterPairID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The remote cluster a volume is paired with.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">remote_volume_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;remoteVolumeID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The *volume_id* on the remote cluster a volume is paired with.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">remote_slice_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;remoteSliceID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The *slice_id* on the remote cluster a volume is paired with.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">remote_volume_name</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;remoteVolumeName&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The last-observed name of the volume on the remote cluster a volume is</span><span class="se">\</span>
+<span class="s2">        paired with.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">volume_pair_uuid</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumePairUUID&quot;</span><span class="p">,</span> <span class="n">UUID</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        A UUID in canonical form.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">remote_replication</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;remoteReplication&quot;</span><span class="p">,</span> <span class="n">RemoteReplication</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Details about the replication configuration for this volume pair.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="VolumeAccessGroup"><a class="viewcode-back" href="../../solidfire.html#solidfire.models.VolumeAccessGroup">[docs]</a><span class="k">class</span> <span class="nc">VolumeAccessGroup</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A volume access group is a useful way of grouping volumes and initiators</span>
+<span class="sd">    together for ease of management.</span>
+
+
+
+
+<span class="sd">    Volume Access Group Limits:</span>
+
+
+
+
+<span class="sd">    - A volume access group can contain up to sixty-four initiator IQNs.</span>
+<span class="sd">    - An initiator can only belong to only one volume access group.</span>
+<span class="sd">    - A volume access group can contain up to two thousand volumes.</span>
+<span class="sd">    - Each volume access group can belong to a maximum of four other volume</span>
+<span class="sd">      access groups.</span>
+
+<span class="sd">    :param volume_access_group_id: [required] Unique ID for this volume access</span>
+<span class="sd">        group.</span>
+<span class="sd">    :type volume_access_group_id: int</span>
+
+<span class="sd">    :param name: [required] Name of the volume access group.</span>
+<span class="sd">    :type name: str</span>
+
+<span class="sd">    :param initiators: [required] List of unique initiator names belonging to</span>
+<span class="sd">        the volume access group.</span>
+<span class="sd">    :type initiators: str</span>
+
+<span class="sd">    :param volumes: [required] List of volumes belonging to the volume access</span>
+<span class="sd">        group.</span>
+<span class="sd">    :type volumes: int</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">volume_access_group_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumeAccessGroupID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Unique ID for this volume access group.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Name of the volume access group.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">initiators</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;initiators&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        List of unique initiator names belonging to the volume access group.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">volumes</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumes&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        List of volumes belonging to the volume access group.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Account"><a class="viewcode-back" href="../../solidfire.html#solidfire.models.Account">[docs]</a><span class="k">class</span> <span class="nc">Account</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object containing information about an account.</span>
+<span class="sd">    This object only includes \&quot;configured\&quot; information about the account, not</span>
+<span class="sd">    any runtime or usage information.</span>
+
+<span class="sd">    :param account_id: [required] Unique *account_id* for the account.</span>
+<span class="sd">    :type account_id: int</span>
+
+<span class="sd">    :param username: [required] User name for the account.</span>
+<span class="sd">    :type username: str</span>
+
+<span class="sd">    :param status: [required] Current status of the account.</span>
+<span class="sd">    :type status: str</span>
+
+<span class="sd">    :param volumes: [required] List of *volume_ids* for Volumes owned by this</span>
+<span class="sd">        account.</span>
+<span class="sd">    :type volumes: int</span>
+
+<span class="sd">    :param initiator_secret: (optional) CHAP secret to use for the initiator.</span>
+<span class="sd">    :type initiator_secret: str</span>
+
+<span class="sd">    :param target_secret: (optional) CHAP secret to use for the target (mutual</span>
+<span class="sd">        CHAP authentication).</span>
+<span class="sd">    :type target_secret: str</span>
+
+<span class="sd">    :param attributes: (optional) List of Name/Value pairs in JSON object</span>
+<span class="sd">        format.</span>
+<span class="sd">    :type attributes: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">account_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;accountID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Unique *account_id* for the account.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">username</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        User name for the account.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">status</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Current status of the account.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">volumes</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumes&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        List of *volume_ids* for Volumes owned by this account.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">initiator_secret</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;initiatorSecret&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        CHAP secret to use for the initiator.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">target_secret</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;targetSecret&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        CHAP secret to use for the target (mutual CHAP authentication).</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">attributes</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;attributes&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        List of Name/Value pairs in JSON object format.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Snapshot"><a class="viewcode-back" href="../../solidfire.html#solidfire.models.Snapshot">[docs]</a><span class="k">class</span> <span class="nc">Snapshot</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Snapshots is an object containing information about each snapshot made for</span>
+<span class="sd">    a volume.</span>
+<span class="sd">    The return object includes information for the active snapshot as well as</span>
+<span class="sd">    each snapshot created for the volume.</span>
+
+<span class="sd">    :param snapshot_id: [required] Unique ID for this snapshot.</span>
+<span class="sd">    :type snapshot_id: int</span>
+
+<span class="sd">    :param volume_id: [required] The volume this snapshot was taken of.</span>
+<span class="sd">    :type volume_id: int</span>
+
+<span class="sd">    :param name: [required] A name for this snapshot. It is not necessarily</span>
+<span class="sd">        unique.</span>
+<span class="sd">    :type name: str</span>
+
+<span class="sd">    :param checksum: [required] A string that represents the correct digits in</span>
+<span class="sd">        the stored snapshot. This checksum can be used later to compare other</span>
+<span class="sd">        snapshots to detect errors in the data.</span>
+<span class="sd">    :type checksum: str</span>
+
+<span class="sd">    :param enable_remote_replication: [required] Identifies if snapshot is</span>
+<span class="sd">        enabled for remote replication.</span>
+<span class="sd">    :type enable_remote_replication: bool</span>
+
+<span class="sd">    :param expiration_reason: [required] Indicates how the snapshot expiration</span>
+<span class="sd">        was set. Possible values:</span>
+
+<span class="sd">        **api**: expiration time was set by using the API.</span>
+
+<span class="sd">        **none**: there is no expiration time set.</span>
+
+<span class="sd">        **test**: expiration time was set for testing.</span>
+
+<span class="sd">    :type expiration_reason: str</span>
+
+<span class="sd">    :param expiration_time: [required] The time at which this snapshot will</span>
+<span class="sd">        expire and be purged from the cluster.</span>
+<span class="sd">    :type expiration_time: str</span>
+
+<span class="sd">    :param remote_statuses: [required] Current remote status of the snapshot</span>
+<span class="sd">        *remote_status:* Possible values:</span>
+
+<span class="sd">        **Present**: Snapshot exists on a remote cluster</span>
+
+<span class="sd">        **Not Present**: Snapshot does not exist on remote cluster</span>
+
+<span class="sd">        **Syncing**: This is a target cluster and it is currently replicating</span>
+<span class="sd">        the snapshot</span>
+
+<span class="sd">        **Deleted**: This is a target cluster, the snapshot has been deleted,</span>
+<span class="sd">        and it still exists on the source.</span>
+
+<span class="sd">        **volumePairUUID**: universal identifier of the volume pair</span>
+
+<span class="sd">    :type remote_statuses: str</span>
+
+<span class="sd">    :param status: [required] Current status of the snapshot</span>
+
+<span class="sd">        **Preparing**: A snapshot that is being prepared for use and is not yet</span>
+<span class="sd">        writable.</span>
+
+<span class="sd">        **Done**: A snapshot that has finished being prepared and is now</span>
+<span class="sd">        usable.</span>
+
+<span class="sd">        **Active**: This snapshot is the active branch.</span>
+
+<span class="sd">    :type status: str</span>
+
+<span class="sd">    :param snapshot_uuid: [required] Universal Unique ID of an existing</span>
+<span class="sd">        snapshot.</span>
+<span class="sd">    :type snapshot_uuid: str</span>
+
+<span class="sd">    :param total_size: [required] Total size of this snapshot in bytes. It is</span>
+<span class="sd">        equivalent to *total_size* of the volume when this snapshot was taken.</span>
+<span class="sd">    :type total_size: int</span>
+
+<span class="sd">    :param group_snapshot_uuid: [required] The current \&quot;members\&quot; results</span>
+<span class="sd">        contains information about each snapshot in the group. Each of these</span>
+<span class="sd">        members will have a \&quot;uuid\&quot; parameter for the snapshot&#39;s UUID.</span>
+<span class="sd">    :type group_snapshot_uuid: UUID</span>
+
+<span class="sd">    :param create_time: [required] The time this snapshot was taken.</span>
+<span class="sd">    :type create_time: str</span>
+
+<span class="sd">    :param attributes: [required] List of Name/Value pairs in JSON object</span>
+<span class="sd">        format.</span>
+<span class="sd">    :type attributes: dict</span>
+
+<span class="sd">    :param group_id: (optional) If present, the ID of the group this snapshot</span>
+<span class="sd">        is a part of. If not present, this snapshot is not part of a group.</span>
+<span class="sd">    :type group_id: int</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">snapshot_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;snapshotID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Unique ID for this snapshot.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">volume_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumeID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The volume this snapshot was taken of.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        A name for this snapshot.</span><span class="se">\</span>
+<span class="s2">        It is not necessarily unique.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">checksum</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;checksum&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        A string that represents the correct digits in the stored snapshot.</span><span class="se">\</span>
+<span class="s2">        This checksum can be used later to compare other snapshots to detect</span><span class="se">\</span>
+<span class="s2">        errors in the data.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">enable_remote_replication</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;enableRemoteReplication&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Identifies if snapshot is enabled for remote replication.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">expiration_reason</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;expirationReason&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Indicates how the snapshot expiration was set. Possible values:</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **api**: expiration time was set by using the API.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **none**: there is no expiration time set.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **test**: expiration time was set for testing.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">expiration_time</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;expirationTime&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The time at which this snapshot will expire and be purged from the</span><span class="se">\</span>
+<span class="s2">        cluster.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">remote_statuses</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;remoteStatuses&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Current remote status of the snapshot *remote_status:* Possible</span><span class="se">\</span>
+<span class="s2">        values:</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **Present**: Snapshot exists on a remote cluster</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **Not Present**: Snapshot does not exist on remote cluster</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **Syncing**: This is a target cluster and it is currently</span><span class="se">\</span>
+<span class="s2">        replicating the snapshot</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **Deleted**: This is a target cluster, the snapshot has been</span><span class="se">\</span>
+<span class="s2">        deleted, and it still exists on the source.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **volumePairUUID**: universal identifier of the volume pair</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">status</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Current status of the snapshot</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **Preparing**: A snapshot that is being prepared for use and is</span><span class="se">\</span>
+<span class="s2">        not yet writable.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **Done**: A snapshot that has finished being prepared and is now</span><span class="se">\</span>
+<span class="s2">        usable.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **Active**: This snapshot is the active branch.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">snapshot_uuid</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;SnapshotUUID&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Universal Unique ID of an existing snapshot.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">total_size</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;totalSize&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Total size of this snapshot in bytes.</span><span class="se">\</span>
+<span class="s2">        It is equivalent to *total_size* of the volume when this snapshot was</span><span class="se">\</span>
+<span class="s2">        taken.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">group_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;groupID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        If present, the ID of the group this snapshot is a part of.</span><span class="se">\</span>
+<span class="s2">        If not present, this snapshot is not part of a group.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">group_snapshot_uuid</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;groupSnapshotUUID&quot;</span><span class="p">,</span> <span class="n">UUID</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The current </span><span class="se">\&quot;</span><span class="s2">members</span><span class="se">\&quot;</span><span class="s2"> results contains information about each</span><span class="se">\</span>
+<span class="s2">        snapshot in the group.</span><span class="se">\</span>
+<span class="s2">        Each of these members will have a </span><span class="se">\&quot;</span><span class="s2">uuid</span><span class="se">\&quot;</span><span class="s2"> parameter for the</span><span class="se">\</span>
+<span class="s2">        snapshot&#39;s UUID.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">create_time</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;createTime&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The time this snapshot was taken.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">attributes</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;attributes&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        List of Name/Value pairs in JSON object format.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="VolumeStats"><a class="viewcode-back" href="../../solidfire.html#solidfire.models.VolumeStats">[docs]</a><span class="k">class</span> <span class="nc">VolumeStats</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Contains statistical data for an individual volume.</span>
+
+<span class="sd">    :param account_id: [required] *account_id* of the volume owner.</span>
+<span class="sd">    :type account_id: int</span>
+
+<span class="sd">    :param actual_iops: [required] Current actual IOPS to the volume in the</span>
+<span class="sd">        last 500 milliseconds.</span>
+<span class="sd">    :type actual_iops: int</span>
+
+<span class="sd">    :param average_iopsize: [required] Average size in bytes of recent I/O to</span>
+<span class="sd">        the volume in the last 500 milliseconds.</span>
+<span class="sd">    :type average_iopsize: int</span>
+
+<span class="sd">    :param burst_iopscredit: [required] The total number of IOP credits</span>
+<span class="sd">        available to the user. When users are not using up to the max IOPS,</span>
+<span class="sd">        credits are accrued.</span>
+<span class="sd">    :type burst_iopscredit: int</span>
+
+<span class="sd">    :param client_queue_depth: [required] The number of outstanding read and</span>
+<span class="sd">        write operations to the cluster.</span>
+<span class="sd">    :type client_queue_depth: int</span>
+
+<span class="sd">    :param desired_metadata_hosts: [required] The volume services being</span>
+<span class="sd">        migrated to if the volume metadata is getting migrated between volume</span>
+<span class="sd">        services. A \&quot;null\&quot; value means the volume is not migrating.</span>
+<span class="sd">    :type desired_metadata_hosts: MetadataHosts</span>
+
+<span class="sd">    :param latency_usec: [required] The observed latency time, in microseconds,</span>
+<span class="sd">        to complete operations to a volume.</span>
+
+<span class="sd">        A \&quot;0\&quot; (zero) value means there is no I/O to the volume.</span>
+
+<span class="sd">    :type latency_usec: int</span>
+
+<span class="sd">    :param metadata_hosts: [required] The volume services on which the volume</span>
+<span class="sd">        metadata resides.</span>
+<span class="sd">    :type metadata_hosts: MetadataHosts</span>
+
+<span class="sd">    :param non_zero_blocks: [required] The number of 4KiB blocks with data</span>
+<span class="sd">        after the last garbage collection operation has completed.</span>
+<span class="sd">    :type non_zero_blocks: int</span>
+
+<span class="sd">    :param read_bytes: [required] Total bytes read by clients.</span>
+<span class="sd">    :type read_bytes: int</span>
+
+<span class="sd">    :param read_latency_usec: [required] The average time, in microseconds, to</span>
+<span class="sd">        complete read operations.</span>
+<span class="sd">    :type read_latency_usec: int</span>
+
+<span class="sd">    :param read_ops: [required] Total read operations.</span>
+<span class="sd">    :type read_ops: int</span>
+
+<span class="sd">    :param throttle: [required] A floating value between 0 and 1 that</span>
+<span class="sd">        represents how much the system is throttling clients below their max</span>
+<span class="sd">        IOPS because of re-replication of data, transient errors and snapshots</span>
+<span class="sd">        taken.</span>
+<span class="sd">    :type throttle: float</span>
+
+<span class="sd">    :param timestamp: [required] The current time in UTC.</span>
+<span class="sd">    :type timestamp: str</span>
+
+<span class="sd">    :param total_latency_usec: [required] The average time, in microseconds, to</span>
+<span class="sd">        complete read and write operations to a volume.</span>
+<span class="sd">    :type total_latency_usec: int</span>
+
+<span class="sd">    :param unaligned_reads: [required] For 512e volumes, the number of read</span>
+<span class="sd">        operations that were not on a 4k sector boundary. High numbers of</span>
+<span class="sd">        unaligned reads may indicate improper partition alignment.</span>
+<span class="sd">    :type unaligned_reads: int</span>
+
+<span class="sd">    :param unaligned_writes: [required] For 512e volumes, the number of write</span>
+<span class="sd">        operations that were not on a 4k sector boundary. High numbers of</span>
+<span class="sd">        unaligned writes may indicate improper partition alignment.</span>
+<span class="sd">    :type unaligned_writes: int</span>
+
+<span class="sd">    :param volume_access_groups: [required] List of volume access group(s) to</span>
+<span class="sd">        which a volume belongs.</span>
+<span class="sd">    :type volume_access_groups: int</span>
+
+<span class="sd">    :param volume_id: [required] Volume ID of the volume.</span>
+<span class="sd">    :type volume_id: int</span>
+
+<span class="sd">    :param volume_size: [required] Total provisioned capacity in bytes.</span>
+<span class="sd">    :type volume_size: int</span>
+
+<span class="sd">    :param volume_utilization: [required] A floating value that describes how</span>
+<span class="sd">        much the client is using the volume.</span>
+
+<span class="sd">        Values:</span>
+
+<span class="sd">        0 = Client is not using the volume</span>
+
+<span class="sd">        1 = Client is using their max</span>
+
+<span class="sd">        &gt;1 = Client is using their burst</span>
+
+<span class="sd">    :type volume_utilization: float</span>
+
+<span class="sd">    :param write_bytes: [required] Total bytes written by clients.</span>
+<span class="sd">    :type write_bytes: int</span>
+
+<span class="sd">    :param write_latency_usec: [required] The average time, in microseconds, to</span>
+<span class="sd">        complete write operations.</span>
+<span class="sd">    :type write_latency_usec: int</span>
+
+<span class="sd">    :param write_ops: [required] Total write operations occurring on the</span>
+<span class="sd">        volume.</span>
+<span class="sd">    :type write_ops: int</span>
+
+<span class="sd">    :param zero_blocks: [required] Total number of 4KiB blocks without data</span>
+<span class="sd">        after the last round of garbage collection operation has completed.</span>
+<span class="sd">    :type zero_blocks: int</span>
+
+<span class="sd">    :param async_delay: (optional) The length of time since the volume was last</span>
+<span class="sd">        synced with the remote cluster. If the volume is not paired, this is</span>
+<span class="sd">        null.</span>
+
+
+
+<span class="sd">        **Note**: A target volume in an active replication state always has an</span>
+<span class="sd">        async delay of 0 (zero).</span>
+
+<span class="sd">        Target volumes are system-aware during replication and assume async</span>
+<span class="sd">        delay is accurate at all times.</span>
+
+<span class="sd">    :type async_delay: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">account_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;accountID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        *account_id* of the volume owner.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">actual_iops</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;actualIOPS&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Current actual IOPS to the volume in the last 500 milliseconds.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">async_delay</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;asyncDelay&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The length of time since the volume was last synced with the remote</span><span class="se">\</span>
+<span class="s2">        cluster.</span><span class="se">\</span>
+<span class="s2">        If the volume is not paired, this is null.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **Note**: A target volume in an active replication state always</span><span class="se">\</span>
+<span class="s2">        has an async delay of 0 (zero).</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            Target volumes are system-aware during replication and assume</span><span class="se">\</span>
+<span class="s2">        async delay is accurate at all times.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">average_iopsize</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;averageIOPSize&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Average size in bytes of recent I/O to the volume in the last 500</span><span class="se">\</span>
+<span class="s2">        milliseconds.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">burst_iopscredit</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;burstIOPSCredit&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The total number of IOP credits available to the user.</span><span class="se">\</span>
+<span class="s2">        When users are not using up to the max IOPS, credits are accrued.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">client_queue_depth</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;clientQueueDepth&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The number of outstanding read and write operations to the cluster.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">desired_metadata_hosts</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;desiredMetadataHosts&quot;</span><span class="p">,</span> <span class="n">MetadataHosts</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The volume services being migrated to if the volume metadata is</span><span class="se">\</span>
+<span class="s2">        getting migrated between volume services.</span><span class="se">\</span>
+<span class="s2">        A </span><span class="se">\&quot;</span><span class="s2">null</span><span class="se">\&quot;</span><span class="s2"> value means the volume is not migrating.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">latency_usec</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;latencyUSec&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The observed latency time, in microseconds, to complete operations to</span><span class="se">\</span>
+<span class="s2">        a volume.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">        A </span><span class="se">\&quot;</span><span class="s2">0</span><span class="se">\&quot;</span><span class="s2"> (zero) value means there is no I/O to the volume.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">metadata_hosts</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;metadataHosts&quot;</span><span class="p">,</span> <span class="n">MetadataHosts</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The volume services on which the volume metadata resides.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">non_zero_blocks</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;nonZeroBlocks&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The number of 4KiB blocks with data after the last garbage collection</span><span class="se">\</span>
+<span class="s2">        operation has completed.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">read_bytes</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;readBytes&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Total bytes read by clients.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">read_latency_usec</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;readLatencyUSec&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The average time, in microseconds, to complete read operations.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">read_ops</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;readOps&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Total read operations.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">throttle</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;throttle&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        A floating value between 0 and 1 that represents how much the system</span><span class="se">\</span>
+<span class="s2">        is throttling clients</span><span class="se">\</span>
+<span class="s2">        below their max IOPS because of re-replication of data, transient</span><span class="se">\</span>
+<span class="s2">        errors and snapshots taken.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">timestamp</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The current time in UTC.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">total_latency_usec</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;totalLatencyUSec&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The average time, in microseconds, to complete read and write</span><span class="se">\</span>
+<span class="s2">        operations to a volume.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">unaligned_reads</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;unalignedReads&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        For 512e volumes, the number of read operations that were not on a 4k</span><span class="se">\</span>
+<span class="s2">        sector boundary.</span><span class="se">\</span>
+<span class="s2">        High numbers of unaligned reads may indicate improper partition</span><span class="se">\</span>
+<span class="s2">        alignment.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">unaligned_writes</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;unalignedWrites&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        For 512e volumes, the number of write operations that were not on a 4k</span><span class="se">\</span>
+<span class="s2">        sector boundary.</span><span class="se">\</span>
+<span class="s2">        High numbers of unaligned writes may indicate improper partition</span><span class="se">\</span>
+<span class="s2">        alignment.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">volume_access_groups</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumeAccessGroups&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        List of volume access group(s) to which a volume belongs.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">volume_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumeID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Volume ID of the volume.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">volume_size</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumeSize&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Total provisioned capacity in bytes.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">volume_utilization</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumeUtilization&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        A floating value that describes how much the client is using the</span><span class="se">\</span>
+<span class="s2">        volume.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">        Values:</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">        0 = Client is not using the volume</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">        1 = Client is using their max</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">        &gt;1 = Client is using their burst</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">write_bytes</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;writeBytes&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Total bytes written by clients.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">write_latency_usec</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;writeLatencyUSec&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The average time, in microseconds, to complete write operations.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">write_ops</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;writeOps&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Total write operations occurring on the volume.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">zero_blocks</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;zeroBlocks&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Total number of 4KiB blocks without data after the last round of</span><span class="se">\</span>
+<span class="s2">        garbage collection operation has completed.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Volume"><a class="viewcode-back" href="../../solidfire.html#solidfire.models.Volume">[docs]</a><span class="k">class</span> <span class="nc">Volume</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Volumes Info is an object containing information about a volume.</span>
+<span class="sd">    The return objects only include \&quot;configured\&quot; information about the volume</span>
+<span class="sd">    and not runtime or usage information.</span>
+<span class="sd">    Information about paired volumes will also be returned.</span>
+
+<span class="sd">    :param volume_id: [required] Unique *volume_id* for the volume.</span>
+<span class="sd">    :type volume_id: int</span>
+
+<span class="sd">    :param name: [required] Name of the volume as provided at creation time.</span>
+<span class="sd">    :type name: str</span>
+
+<span class="sd">    :param account_id: [required] Unique *account_id* for the account.</span>
+<span class="sd">    :type account_id: int</span>
+
+<span class="sd">    :param create_time: [required] UTC formatted time the volume was created.</span>
+<span class="sd">    :type create_time: str</span>
+
+<span class="sd">    :param status: [required] Current status of the volume init: A volume that</span>
+<span class="sd">        is being initialized and is not ready for connections. active: An</span>
+<span class="sd">        active volume ready for connections.</span>
+<span class="sd">    :type status: str</span>
+
+<span class="sd">    :param access: [required] Access allowed for the volume</span>
+
+<span class="sd">        **readOnly**: Only read operations are allowed.</span>
+
+<span class="sd">        **readWrite**: Reads and writes are allowed.</span>
+
+<span class="sd">        **locked**: No reads or writes are allowed.</span>
+
+<span class="sd">        **replicationTarget**: Designated as a target volume in a replicated</span>
+<span class="sd">        volume pair.</span>
+
+<span class="sd">    :type access: str</span>
+
+<span class="sd">    :param enable512e: [required] If \&quot;true\&quot;, the volume provides 512 byte</span>
+<span class="sd">        sector emulation.</span>
+<span class="sd">    :type enable512e: bool</span>
+
+<span class="sd">    :param iqn: [required] Volume iSCSI Qualified Name.</span>
+<span class="sd">    :type iqn: str</span>
+
+<span class="sd">    :param scsi_euidevice_id: [required] Globally unique SCSI device identifier</span>
+<span class="sd">        for the volume in EUI-64 based 16-byte format.</span>
+<span class="sd">    :type scsi_euidevice_id: str</span>
+
+<span class="sd">    :param scsi_naadevice_id: [required] Globally unique SCSI device identifier</span>
+<span class="sd">        for the volume in NAA IEEE Registered Extended format.</span>
+<span class="sd">    :type scsi_naadevice_id: str</span>
+
+<span class="sd">    :param qos: [required] Quality of service settings for this volume.</span>
+<span class="sd">    :type qos: VolumeQOS</span>
+
+<span class="sd">    :param volume_access_groups: [required] List of volume access groups to</span>
+<span class="sd">        which a volume belongs.</span>
+<span class="sd">    :type volume_access_groups: int</span>
+
+<span class="sd">    :param volume_pairs: [required] Information about a paired volume.</span>
+<span class="sd">        Available only if a volume is paired. @see *volume_pairs* for return</span>
+<span class="sd">        values.</span>
+<span class="sd">    :type volume_pairs: VolumePair</span>
+
+<span class="sd">    :param slice_count: [required] The number of slices backing this volume. In</span>
+<span class="sd">        the current software, this value will always be 1.</span>
+<span class="sd">    :type slice_count: int</span>
+
+<span class="sd">    :param total_size: [required] Total size of this volume in bytes.</span>
+<span class="sd">    :type total_size: int</span>
+
+<span class="sd">    :param block_size: [required] Size of the blocks on the volume.</span>
+<span class="sd">    :type block_size: int</span>
+
+<span class="sd">    :param virtual_volume_id: [required] Virtual volume ID this volume backs.</span>
+<span class="sd">    :type virtual_volume_id: UUID</span>
+
+<span class="sd">    :param attributes: [required] List of Name/Value pairs in JSON object</span>
+<span class="sd">        format.</span>
+<span class="sd">    :type attributes: dict</span>
+
+<span class="sd">    :param delete_time: (optional) The time this volume was deleted. If this</span>
+<span class="sd">        has no value, the volume has not yet been deleted.</span>
+<span class="sd">    :type delete_time: str</span>
+
+<span class="sd">    :param purge_time: (optional) The time this volume will be purged from the</span>
+<span class="sd">        system. If this has no value, the volume has not yet been deleted (and</span>
+<span class="sd">        is not scheduled for purging).</span>
+<span class="sd">    :type purge_time: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">volume_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumeID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Unique *volume_id* for the volume.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Name of the volume as provided at creation time.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">account_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;accountID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Unique *account_id* for the account.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">create_time</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;createTime&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        UTC formatted time the volume was created.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">status</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Current status of the volume</span><span class="se">\</span>
+<span class="s2">        init: A volume that is being initialized and is not ready for</span><span class="se">\</span>
+<span class="s2">        connections.</span><span class="se">\</span>
+<span class="s2">        active: An active volume ready for connections.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">access</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;access&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Access allowed for the volume</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **readOnly**: Only read operations are allowed.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **readWrite**: Reads and writes are allowed.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **locked**: No reads or writes are allowed.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">            **replicationTarget**: Designated as a target volume in a</span><span class="se">\</span>
+<span class="s2">        replicated volume pair.</span><span class="se">\</span>
+<span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">enable512e</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;enable512e&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        If </span><span class="se">\&quot;</span><span class="s2">true</span><span class="se">\&quot;</span><span class="s2">, the volume provides 512 byte sector emulation.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">iqn</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;iqn&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Volume iSCSI Qualified Name.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">scsi_euidevice_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;scsiEUIDeviceID&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Globally unique SCSI device identifier for the volume in EUI-64 based</span><span class="se">\</span>
+<span class="s2">        16-byte format.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">scsi_naadevice_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;scsiNAADeviceID&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Globally unique SCSI device identifier for the volume in NAA IEEE</span><span class="se">\</span>
+<span class="s2">        Registered Extended format.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">qos</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;qos&quot;</span><span class="p">,</span> <span class="n">VolumeQOS</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Quality of service settings for this volume.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">volume_access_groups</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumeAccessGroups&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        List of volume access groups to which a volume belongs.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">volume_pairs</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumePairs&quot;</span><span class="p">,</span> <span class="n">VolumePair</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Information about a paired volume.</span><span class="se">\</span>
+<span class="s2">        Available only if a volume is paired.</span><span class="se">\</span>
+<span class="s2">        @see *volume_pairs* for return values.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">delete_time</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;deleteTime&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The time this volume was deleted.</span><span class="se">\</span>
+<span class="s2">        If this has no value, the volume has not yet been deleted.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">purge_time</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;purgeTime&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The time this volume will be purged from the system.</span><span class="se">\</span>
+<span class="s2">        If this has no value, the volume has not yet been deleted (and is not</span><span class="se">\</span>
+<span class="s2">        scheduled for purging).</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">slice_count</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;sliceCount&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The number of slices backing this volume.</span><span class="se">\</span>
+<span class="s2">        In the current software, this value will always be 1.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">total_size</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;totalSize&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Total size of this volume in bytes.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">block_size</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;blockSize&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Size of the blocks on the volume.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">virtual_volume_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;virtualVolumeID&quot;</span><span class="p">,</span> <span class="n">UUID</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Virtual volume ID this volume backs.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">attributes</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;attributes&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        List of Name/Value pairs in JSON object format.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2016, NetApp, Inc.  All Rights Reserved..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0.0.104',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
