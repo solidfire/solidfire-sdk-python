@@ -65,21 +65,13 @@ To install globally with `pip` (requires pip 1.3 or greater installed globally):
 
 To install the latest version of the SDK::
 
-<<<<<<< HEAD
     pip install -e git+https://github.com/solidfire/solidfire-sdk-python.git@develop#egg=solidfire-sdk-python
-=======
-    pip install -e git+https://github.com/solidfire/solidfire-sdk-python.git@master#egg=solidfire-sdk-python
->>>>>>> v1.0.0
 
 Alternatively, for development purposes or to inspect the source, the following will work::
 
     git clone git@github.com:solidfire/solidfire-sdk-python.git  
-    cd solidfire-sdk-python  
-<<<<<<< HEAD
+    cd solidfire-sdk-python
     git checkout develop
-=======
-    git checkout master
->>>>>>> v1.0.0
     pip install -e ".[dev, test, docs, release]"
     python setup.py install
 
