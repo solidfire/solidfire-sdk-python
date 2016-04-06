@@ -36,7 +36,7 @@ class Clean(_clean):
 setup(
     name='solidfire-sdk-python',
 
-    version='1.0.0.102',
+    version='1.0.0.104',
 
     description='SolidFire Python SDK',
     long_description=long_description,
@@ -44,7 +44,7 @@ setup(
     url='https://github.com/solidfire/solidfire-sdk-python',
 
     author='Jason Ryan Womack',
-    author_email='jason.womack@solidfire.com',
+    author_email='jason.womack@netapp.com',
 
     license='Apache2',
 
