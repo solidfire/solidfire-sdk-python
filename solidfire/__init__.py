@@ -14,6 +14,12 @@ from solidfire import common
 from solidfire.common import ServiceBase, ApiVersionExceededError, \
     ApiVersionUnsupportedError
 from solidfire.results import AddAccountResult
+from solidfire.results import AddClusterAdminResult
+from solidfire.results import AddDrivesResult
+from solidfire.results import AddNodesResult
+from solidfire.results import AddVirtualNetworkResult
+from solidfire.results import AsyncHandleResult
+from solidfire.results import ClearClusterFaultsResult
 from solidfire.results import CloneVolumeResult
 from solidfire.results import CreateGroupSnapshotResult
 from solidfire.results import CreateSnapshotResult
@@ -23,16 +29,36 @@ from solidfire.results import DeleteGroupSnapshotResult
 from solidfire.results import DeleteSnapshotResult
 from solidfire.results import DeleteVolumeAccessGroupResult
 from solidfire.results import DeleteVolumeResult
+from solidfire.results import DisableEncryptionAtRestResult
+from solidfire.results import EnableEncryptionAtRestResult
 from solidfire.results import GetAPIResult
 from solidfire.results import GetAccountResult
 from solidfire.results import GetAsyncResultResult
+from solidfire.results import GetClusterCapacityResult
+from solidfire.results import GetClusterConfigResult
+from solidfire.results import GetClusterFullThresholdResult
+from solidfire.results import GetClusterInfoResult
+from solidfire.results import GetClusterVersionInfoResult
+from solidfire.results import GetConfigResult
+from solidfire.results import GetCurrentClusterAdminResult
+from solidfire.results import GetLimitsResult
+from solidfire.results import GetNetworkConfigResult
 from solidfire.results import GetVolumeEfficiencyResult
 from solidfire.results import GetVolumeStatsResult
 from solidfire.results import ListAccountsResult
+from solidfire.results import ListActiveNodesResult
 from solidfire.results import ListActiveVolumesResult
+from solidfire.results import ListAllNodesResult
+from solidfire.results import ListClusterAdminsResult
+from solidfire.results import ListClusterFaultsResult
 from solidfire.results import ListDeletedVolumesResult
+from solidfire.results import ListDrivesResult
+from solidfire.results import ListEventsResult
 from solidfire.results import ListGroupSnapshotsResult
+from solidfire.results import ListISCSISessionsResult
+from solidfire.results import ListPendingNodesResult
 from solidfire.results import ListSnapshotsResult
+from solidfire.results import ListVirtualNetworksResult
 from solidfire.results import ListVolumeAccessGroupsResult
 from solidfire.results import ListVolumeStatsByAccountResult
 from solidfire.results import ListVolumeStatsByVolumeAccessGroupResult
@@ -40,13 +66,21 @@ from solidfire.results import ListVolumeStatsByVolumeResult
 from solidfire.results import ListVolumesForAccountResult
 from solidfire.results import ListVolumesResult
 from solidfire.results import ModifyAccountResult
+from solidfire.results import ModifyClusterAdminResult
+from solidfire.results import ModifyClusterFullThresholdResult
 from solidfire.results import ModifyGroupSnapshotResult
 from solidfire.results import ModifySnapshotResult
 from solidfire.results import ModifyVolumeAccessGroupResult
 from solidfire.results import ModifyVolumeResult
 from solidfire.results import PurgeDeletedVolumeResult
 from solidfire.results import RemoveAccountResult
+from solidfire.results import RemoveClusterAdminResult
+from solidfire.results import RemoveNodesResult
+from solidfire.results import RemoveVirtualNetworkResult
 from solidfire.results import RestoreDeletedVolumeResult
+from solidfire.results import SetClusterConfigResult
+from solidfire.results import SetConfigResult
+from solidfire.results import SetNetworkConfigResult
 
 OPTIONAL = None
 
@@ -328,6 +362,483 @@ class Element(ServiceBase):
             params,
         )
 
+    def get_cluster_capacity(
+            self,):
+        """
+        Return the high-level capacity measurements for an entire cluster.
+        The fields returned from this method can be used to calculate the
+        efficiency rates that are displayed in the Element User Interface.
+
+        :returns: a response
+        :rtype: GetClusterCapacityResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'GetClusterCapacity',
+            GetClusterCapacityResult,
+            params,
+        )
+
+    def get_cluster_info(
+            self,):
+        """
+        Return configuration information about the cluster.
+
+        :returns: a response
+        :rtype: GetClusterInfoResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'GetClusterInfo',
+            GetClusterInfoResult,
+            params,
+        )
+
+    def get_cluster_version_info(
+            self,):
+        """
+        Return information about the Element software version running on each
+        node in the cluster.
+        Information about the nodes that are currently in the process of
+        upgrading software is also returned.
+
+        :returns: a response
+        :rtype: GetClusterVersionInfoResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'GetClusterVersionInfo',
+            GetClusterVersionInfoResult,
+            params,
+        )
+
+    def get_limits(
+            self,):
+        """
+        Retrieves the limit values set by the API
+
+        :returns: a response
+        :rtype: GetLimitsResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'GetLimits',
+            GetLimitsResult,
+            params,
+        )
+
+    def list_events(
+            self,
+            max_events=OPTIONAL,
+            start_event_id=OPTIONAL,
+            end_event_id=OPTIONAL,
+            event_queue_type=OPTIONAL,):
+        """
+        Returns events detected on the cluster, sorted from oldest to newest.
+
+        :param max_events: (optional)
+        :type max_events: int
+
+        :param start_event_id: (optional)
+        :type start_event_id: int
+
+        :param end_event_id: (optional)
+        :type end_event_id: int
+
+        :param event_queue_type: (optional)
+        :type event_queue_type: str
+
+        :returns: a response
+        :rtype: ListEventsResult
+        """
+
+        params = {}
+        if max_events is not None:
+            params["maxEvents"] = max_events
+        if start_event_id is not None:
+            params["startEventID"] = start_event_id
+        if end_event_id is not None:
+            params["endEventID"] = end_event_id
+        if event_queue_type is not None:
+            params["eventQueueType"] = event_queue_type
+
+        return self._send_request(
+            'ListEvents',
+            ListEventsResult,
+            params,
+        )
+
+    def list_cluster_faults(
+            self,
+            exceptions=OPTIONAL,
+            best_practices=OPTIONAL,
+            update=OPTIONAL,
+            fault_types=OPTIONAL,):
+        """
+        Gets the list of cluster faults
+
+        :param exceptions: (optional)
+        :type exceptions: bool
+
+        :param best_practices: (optional)
+        :type best_practices: bool
+
+        :param update: (optional)
+        :type update: bool
+
+        :param fault_types: (optional)
+        :type fault_types: str
+
+        :returns: a response
+        :rtype: ListClusterFaultsResult
+        """
+
+        params = {}
+        if exceptions is not None:
+            params["exceptions"] = exceptions
+        if best_practices is not None:
+            params["bestPractices"] = best_practices
+        if update is not None:
+            params["update"] = update
+        if fault_types is not None:
+            params["faultTypes"] = fault_types
+
+        return self._send_request(
+            'ListClusterFaults',
+            ListClusterFaultsResult,
+            params,
+        )
+
+    def clear_cluster_faults(
+            self,
+            fault_types=OPTIONAL,):
+        """
+        *clear_cluster_faults* is used to clear information about both current
+        faults that are resolved as well as faults that were previously
+        detected and resolved can be cleared.
+
+        :param fault_types: (optional) Determines the types of faults cleared:
+
+            **current**: Faults that are currently detected and have not been
+            resolved.
+
+            **resolved**: Faults that were previously detected and resolved.
+
+            **all**: Both current and resolved faults are cleared. The fault
+            status can be determined by the \"resolved\" field of the fault
+            object.
+
+        :type fault_types: str
+
+        :returns: a response
+        :rtype: ClearClusterFaultsResult
+        """
+
+        params = {}
+        if fault_types is not None:
+            params["faultTypes"] = fault_types
+
+        return self._send_request(
+            'ClearClusterFaults',
+            ClearClusterFaultsResult,
+            params,
+        )
+
+    def get_cluster_config(
+            self,):
+        """
+        The *get_cluster_config* API method is used to return information about
+        the cluster configuration this node uses to communicate with the
+        cluster it is a part of.
+
+
+
+
+        **Note**: This method is available only through the per-node API
+        endpoint 5.0 or later.
+
+        :returns: a response
+        :rtype: GetClusterConfigResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'GetClusterConfig',
+            GetClusterConfigResult,
+            params,
+        )
+
+    def get_cluster_full_threshold(
+            self,):
+        """
+        *get_cluster_full_threshold* is used to view the stages set for cluster
+        fullness levels. All levels are returned when this method is entered.
+
+        :returns: a response
+        :rtype: GetClusterFullThresholdResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'GetClusterFullThreshold',
+            GetClusterFullThresholdResult,
+            params,
+        )
+
+    def modify_cluster_full_threshold(
+            self,
+            stage2_aware_threshold=OPTIONAL,
+            stage3_block_threshold_percent=OPTIONAL,
+            max_metadata_over_provision_factor=OPTIONAL,):
+        """
+        *modify_cluster_full_threshold* is used to change the level at which an
+        event is generated when the storage cluster approaches the capacity
+        utilization requested. The number entered in this setting is used to
+        indicate the number of node failures the system is required to recover
+        from. For example, on a 10 node cluster, if you want to be alerted when
+        the system cannot recover from 3 nodes failures, enter the value of
+        \"3\". When this number is reached, a message alert is sent to the
+        Event Log in the Cluster Management Console.
+
+        :param stage2_aware_threshold: (optional) Number of nodes worth of
+            capacity remaining on the cluster that triggers a notification.
+        :type stage2_aware_threshold: int
+
+        :param stage3_block_threshold_percent: (optional) Percent below
+            \"Error\" state to raise a cluster \"Warning\" alert.
+        :type stage3_block_threshold_percent: int
+
+        :param max_metadata_over_provision_factor: (optional) A value
+            representative of the number of times metadata space can be over
+            provisioned relative to the amount of space available. For example,
+            if there was enough metadata space to store 100 *ti_b* of volumes
+            and this number was set to 5, then 500 *ti_b* worth of volumes
+            could be created.
+        :type max_metadata_over_provision_factor: int
+
+        :returns: a response
+        :rtype: ModifyClusterFullThresholdResult
+        """
+
+        params = {}
+        self._check_param_versions(
+            'modify_cluster_full_threshold',
+            [
+                ("stage3_block_threshold_percent",
+                 stage3_block_threshold_percent, 8.0, None),
+            ]
+        )
+        if stage2_aware_threshold is not None:
+            params["stage2AwareThreshold"] = stage2_aware_threshold
+        if stage3_block_threshold_percent is not None:
+            params["stage3BlockThresholdPercent"] = \
+                stage3_block_threshold_percent
+        if max_metadata_over_provision_factor is not None:
+            params["maxMetadataOverProvisionFactor"] = \
+                max_metadata_over_provision_factor
+
+        return self._send_request(
+            'ModifyClusterFullThreshold',
+            ModifyClusterFullThresholdResult,
+            params,
+        )
+
+    def list_cluster_admins(
+            self,):
+        """
+        *list_cluster_admins* returns the list of all cluster administrators
+        for the cluster. There can be several cluster administrators that have
+        different levels of permissions. There can be only one primary cluster
+        administrator in the system. The primary Cluster Admin is the
+        administrator that was created when the cluster was created. LDAP
+        administrators can also be created when setting up an LDAP system on
+        the cluster.
+
+        :returns: a response
+        :rtype: ListClusterAdminsResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'ListClusterAdmins',
+            ListClusterAdminsResult,
+            params,
+        )
+
+    def add_cluster_admin(
+            self,
+            username,
+            password,
+            access,
+            attributes=OPTIONAL,):
+        """
+        *add_cluster_admin* adds a new Cluster Admin. A Cluster Admin can be
+        used to manage the cluster via the API and management tools. Cluster
+        Admins are completely separate and unrelated to standard tenant
+        accounts.
+
+
+
+
+        Each Cluster Admin can be restricted to a sub-set of the API. SolidFire
+        recommends using multiple Cluster Admins for different users and
+        applications. Each Cluster Admin should be given the minimal
+        permissions necessary to reduce the potential impact of credential
+        compromise.
+
+        :param username: [required] Unique username for this Cluster Admin.
+        :type username: str
+
+        :param password: [required] Password used to authenticate this Cluster
+            Admin.
+        :type password: str
+
+        :param access: [required] Controls which methods this Cluster Admin can
+            use. For more details on the levels of access, see \"Access
+            Control\" in the Element API Guide.
+        :type access: str
+
+        :param attributes: (optional) List of Name/Value pairs in JSON object
+            format.
+        :type attributes: dict
+
+        :returns: a response
+        :rtype: AddClusterAdminResult
+        """
+
+        params = {
+            "username": username,
+            "password": password,
+            "access": access,
+        }
+        if attributes is not None:
+            params["attributes"] = attributes
+
+        return self._send_request(
+            'AddClusterAdmin',
+            AddClusterAdminResult,
+            params,
+        )
+
+    def modify_cluster_admin(
+            self,
+            cluster_admin_id,
+            password=OPTIONAL,
+            access=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        *modify_cluster_admin* is used to change the settings for a Cluster
+        Admin or LDAP Cluster Admin. Access for the administrator Cluster Admin
+        account cannot be changed.
+
+        :param cluster_admin_id: [required] *cluster_admin_id* for the Cluster
+            Admin or LDAP Cluster Admin to modify.
+        :type cluster_admin_id: int
+
+        :param password: (optional) Password used to authenticate this Cluster
+            Admin.
+        :type password: str
+
+        :param access: (optional) Controls which methods this Cluster Admin can
+            use. For more details on the levels of access, see \"Access
+            Control\" in the Element API Guide.
+        :type access: str
+
+        :param attributes: (optional) List of Name/Value pairs in JSON object
+            format.
+        :type attributes: dict
+
+        :returns: a response
+        :rtype: ModifyClusterAdminResult
+        """
+
+        params = {
+            "clusterAdminID": cluster_admin_id,
+        }
+        if password is not None:
+            params["password"] = password
+        if access is not None:
+            params["access"] = access
+        if attributes is not None:
+            params["attributes"] = attributes
+
+        return self._send_request(
+            'ModifyClusterAdmin',
+            ModifyClusterAdminResult,
+            params,
+        )
+
+    def remove_cluster_admin(
+            self,
+            cluster_admin_id,):
+        """
+        *remove_cluster_admin* is used to remove a Cluster Admin. The \"admin\"
+        Cluster Admin cannot be removed.
+
+        :param cluster_admin_id: [required] *cluster_admin_id* for the Cluster
+            Admin to remove.
+        :type cluster_admin_id: int
+
+        :returns: a response
+        :rtype: RemoveClusterAdminResult
+        """
+
+        params = {
+            "clusterAdminID": cluster_admin_id,
+        }
+
+        return self._send_request(
+            'RemoveClusterAdmin',
+            RemoveClusterAdminResult,
+            params,
+        )
+
+    def set_cluster_config(
+            self,
+            cluster,):
+        """
+        The *set_cluster_config* API method is used to set the configuration
+        this node uses to communicate with the cluster it is associated with.
+        To see the states in which these objects can be modified see Cluster
+        Object on page 109. To display the current cluster interface settings
+        for a node, run the *get_cluster_config* API method.
+
+
+
+
+        **Note**: This method is available only through the per-node API
+        endpoint 5.0 or later.
+
+        :param cluster: [required] Objects that are changed for the cluster
+            interface settings. Only the fields you want changed need to be
+            added to this method as objects in the \"cluster\" parameter.
+        :type cluster: ClusterConfig
+
+        :returns: a response
+        :rtype: SetClusterConfigResult
+        """
+
+        params = {
+            "cluster": cluster,
+        }
+
+        return self._send_request(
+            'SetClusterConfig',
+            SetClusterConfigResult,
+            params,
+        )
+
     def get_api(
             self,):
         """
@@ -343,6 +854,85 @@ class Element(ServiceBase):
         return self._send_request(
             'GetAPI',
             GetAPIResult,
+            params,
+        )
+
+    def get_current_cluster_admin(
+            self,):
+        """
+        *get_current_cluster_admin* returns information for the current primary
+        cluster administrator. The primary Cluster Admin was ncreated when the
+        cluster was created.
+
+        :returns: a response
+        :rtype: GetCurrentClusterAdminResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'GetCurrentClusterAdmin',
+            GetCurrentClusterAdminResult,
+            params,
+        )
+
+    def enable_encryption_at_rest(
+            self,):
+        """
+        The *enable_encryption_at_rest* method is used to enable the Advanced
+        Encryption Standard (AES) 256-bit encryption at rest on the cluster so
+        that the cluster can manage the encryption key used for the drives on
+        each node. This feature is not enabled by default. Enabling this
+        operation allows the cluster to automatically manage encryption keys
+        internally for the drives on each node in the cluster. Nodes do not
+        store the keys to unlock drives and the keys are never passed over the
+        network. Two nodes participating in a cluster are required to access
+        the key to disable encryption on a drive. The encryption management
+        does not affect performance or efficiency on the cluster. If an
+        encryption-enabled drive or node is removed from the cluster with the
+        API, all data is secure erased and any data left on the drive cannot be
+        read or accessed.
+        Enabling or disabling encryption should be performed when the cluster
+        is running and in a healthy state. Encryption can be enabled or
+        disabled at your discretion and can be performed as often as you need.
+        **Note**: This process is asynchronous and returns a response before
+        encryption is enabled. The *get_cluster_info* method can be used to
+        poll the system to see when the process has completed.
+
+        :returns: a response
+        :rtype: EnableEncryptionAtRestResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'EnableEncryptionAtRest',
+            EnableEncryptionAtRestResult,
+            params,
+        )
+
+    def disable_encryption_at_rest(
+            self,):
+        """
+        The *disable_encryption_at_rest* method is used to remove the
+        encryption that was previously applied to the cluster using the
+        *enable_encryption_at_rest* method.
+        Enabling or disabling encryption should be performed when the cluster
+        is running and in a healthy state. Encryption can be enabled or
+        disabled at your discretion and can be performed as often as you need.
+        **Note**: This process is asynchronous and returns a response before
+        encryption is disabled. The *get_cluster_info* method can be used to
+        poll the system to see when the process has completed.
+
+        :returns: a response
+        :rtype: DisableEncryptionAtRestResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'DisableEncryptionAtRest',
+            DisableEncryptionAtRestResult,
             params,
         )
 
@@ -390,6 +980,400 @@ class Element(ServiceBase):
             params,
         )
 
+    def add_drives(
+            self,
+            drives,):
+        """
+        *add_drives* is used to add one or more available drives to the cluster
+        enabling the drives to host a portion of the cluster&#39;s data.
+        When you add a node to the cluster or install new drives in an existing
+        node, the new drives are marked as \"available\" and must be added via
+        *add_drives* before they can be utilized.
+        Use the *\"list_drives\"* method to display drives that are
+        \"available\" to be added.
+        When you add multiple drives, it is more efficient to add them in a
+        single *\"add_drives\"* method call rather than multiple individual
+        methods with a single drive each.
+        This reduces the amount of data balancing that must occur to stabilize
+        the storage load on the cluster.
+
+
+
+
+        When you add a drive, the system automatically determines the \"type\"
+        of drive it should be.
+
+
+
+
+        The method returns immediately. However, it may take some time for the
+        data in the cluster to be rebalanced using the newly added drives.
+        As the new drive(s) are syncing on the system, you can use the
+        *\"list_sync_jobs\"* method to see how the drive(s) are being
+        rebalanced and the progress of adding the new drive.
+
+        :param drives: [required] List of drives to add to the cluster.
+        :type drives: NewDrive
+
+        :returns: a response
+        :rtype: AddDrivesResult
+        """
+
+        params = {
+            "drives": drives,
+        }
+
+        return self._send_request(
+            'AddDrives',
+            AddDrivesResult,
+            params,
+        )
+
+    def list_drives(
+            self,):
+        """
+        *list_drives* allows you to retrieve the list of the drives that exist
+        in the cluster&#39;s active nodes.
+        This method returns drives that have been added as volume metadata or
+        block drives as well as drives that have not been added and are
+        available.
+
+        :returns: a response
+        :rtype: ListDrivesResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'ListDrives',
+            ListDrivesResult,
+            params,
+        )
+
+    def remove_drives(
+            self,
+            drives,):
+        """
+        You can use *remove_drives* to proactively remove drives that are part
+        of the cluster.
+        You may want to use this method when reducing cluster capacity or
+        preparing to replace drives nearing the end of their service life.
+        Any data on the drives is removed and migrated to other drives in the
+        cluster before the drive is removed from the cluster. This is an
+        asynchronous method.
+        Depending on the total capacity of the drives being removed, it may
+        take several minutes to migrate all of the data.
+        Use the *\"get_async_result\"* method to check the status of the remove
+        operation.
+
+
+
+
+        When removing multiple drives, use a single *\"remove_drives\"* method
+        call rather than multiple individual methods with a single drive each.
+        This reduces the amount of data balancing that must occur to even
+        stabilize the storage load on the cluster.
+
+
+
+
+        You can also remove drives with a \"failed\" status using
+        \"RemoveDrives\".
+        When you remove a drive with a \"failed\" status it is not returned to
+        an \"available\" or \"active\" status.
+        The drive is unavailable for use in the cluster.
+
+
+
+
+        Use the *\"list_drives\"* method to obtain the *drive_ids* for the
+        drives you want to remove.
+
+        :param drives: [required] List of *drive_ids* to remove from the
+            cluster.
+        :type drives: int
+
+        :returns: a response
+        :rtype: AsyncHandleResult
+        """
+
+        params = {
+            "drives": drives,
+        }
+
+        return self._send_request(
+            'RemoveDrives',
+            AsyncHandleResult,
+            params,
+        )
+
+    def list_active_nodes(
+            self,):
+
+        params = {}
+
+        return self._send_request(
+            'ListActiveNodes',
+            ListActiveNodesResult,
+            params,
+        )
+
+    def list_all_nodes(
+            self,):
+
+        params = {}
+
+        return self._send_request(
+            'ListAllNodes',
+            ListAllNodesResult,
+            params,
+        )
+
+    def list_pending_nodes(
+            self,):
+        """
+        Gets the list of pending nodes.
+        Pending nodes are running and configured to join the cluster, but have
+        not been added via the *add_nodes* method.
+
+        :returns: a response
+        :rtype: ListPendingNodesResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'ListPendingNodes',
+            ListPendingNodesResult,
+            params,
+        )
+
+    def add_nodes(
+            self,
+            pending_nodes,):
+        """
+        *add_nodes* is used to add one or more new nodes to the cluster. When a
+        node is not configured and starts up for the first time you are
+        prompted to configure the node. Once a node is configured it is
+        registered as a \"pending node\" with the cluster.
+
+
+
+
+        Adding a node to a cluster that has been set up for virtual networking
+        will require a sufficient number of virtual storage IP addresses to
+        allocate a virtual IP to the new node. If there are no virtual IP
+        addresses available for the new node, the *add_node* operation will not
+        complete successfully. Use the *\"modify_virtual_network\"* method to
+        add more storage IP addresses to your virtual network.
+
+
+
+
+        The software version on each node in a cluster must be compatible. Run
+        the *\"list_all_nodes\"* API to see what versions of software are
+        currently running on the cluster nodes. For an explanation of software
+        version compatibility, see *\"node* Versioning and Compatibility\" in
+        the Element API guide.
+
+
+
+
+        Once a node has been added, the drives on the node are made available
+        and can then be added via the *\"add_drives\"* method to increase the
+        storage capacity of the cluster.
+
+
+
+
+        **Note**: It may take several seconds after adding a new Node for it to
+        start up and register the drives as being available.
+
+        :param pending_nodes: [required] List of *pending_node_ids* for the
+            Nodes to be added. You can obtain the list of Pending Nodes via the
+            *list_pending_nodes* method.
+        :type pending_nodes: int
+
+        :returns: a response
+        :rtype: AddNodesResult
+        """
+
+        params = {
+            "pendingNodes": pending_nodes,
+        }
+
+        return self._send_request(
+            'AddNodes',
+            AddNodesResult,
+            params,
+        )
+
+    def remove_nodes(
+            self,
+            nodes,):
+        """
+        *remove_nodes* is used to remove one or more nodes that should no
+        longer participate in the cluster. Before removing a node, all drives
+        it contains must first be removed with *\"remove_drives\"* method. A
+        node cannot be removed until the *remove_drives* process has completed
+        and all data has been migrated away from the node.
+
+
+
+
+        Once removed, a node registers itself as a pending node and can be
+        added again, or shut down which removes it from the *\"pending* Node\"
+        list.
+
+        :param nodes: [required] List of *node_ids* for the nodes to be
+            removed.
+        :type nodes: int
+
+        :returns: a response
+        :rtype: RemoveNodesResult
+        """
+
+        params = {
+            "nodes": nodes,
+        }
+
+        return self._send_request(
+            'RemoveNodes',
+            RemoveNodesResult,
+            params,
+        )
+
+    def get_network_config(
+            self,):
+        """
+        The *get_network_config* API method is used to display the network
+        configuration information for a node.
+
+
+
+
+        **Note**: This method is available only through the per-node API
+        endpoint 5.0 or later.
+
+        :returns: a response
+        :rtype: GetNetworkConfigResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'GetNetworkConfig',
+            GetNetworkConfigResult,
+            params,
+        )
+
+    def set_config(
+            self,
+            config,):
+        """
+        The *set_config* API method is used to set all the configuration
+        information for the node. This includes the same information available
+        via calls to *set_cluster_config* and *set_network_config* in one API
+        method.
+
+
+
+
+        **Warning!** Changing the 'bond-mode' on a node can cause a temporary
+        loss of network connectivity. Caution should be taken when using this
+        method.
+
+
+
+
+        **Note**: This method is available only through the per-node API
+        endpoint 5.0 or later.
+
+        :param config: [required] Objects that you want changed for the cluster
+            interface settings.
+        :type config: Config
+
+        :returns: a response
+        :rtype: SetConfigResult
+        """
+
+        params = {
+            "config": config,
+        }
+
+        return self._send_request(
+            'SetConfig',
+            SetConfigResult,
+            params,
+        )
+
+    def set_network_config(
+            self,
+            network,):
+        """
+        The *\"set_network_config\"* method is used to set the network
+        configuration for a node. To see the states in which these objects can
+        be modified, see *\"network* Object for 1G and 10G Interfaces\" on page
+        109 of the Element API. To display the current network settings for a
+        node, run the *\"get_network_config\"* method.
+
+
+
+
+        **WARNING!** Changing the \"bond-mode\" on a node can cause a temporary
+        loss of network connectivity. Caution should be taken when using this
+        method.
+
+
+
+
+        **Note**: This method is available only through the per-node API
+        endpoint 5.0 or later.
+
+        :param network: [required] Objects that will be changed for the node
+            network settings.
+        :type network: Network
+
+        :returns: a response
+        :rtype: SetNetworkConfigResult
+        """
+
+        params = {
+            "network": network,
+        }
+
+        return self._send_request(
+            'SetNetworkConfig',
+            SetNetworkConfigResult,
+            params,
+        )
+
+    def get_config(
+            self,):
+        """
+        The *get_config* API method is used to retrieve all the configuration
+        information for the node. This one API method includes the same
+        information available in both *\"get_cluster_config\"* and
+        *\"get_network_config\"* methods.
+
+
+
+
+        **Note**: This method is available only through the per-node API
+        endpoint 5.0 or later.
+
+        :returns: a response
+        :rtype: GetConfigResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'GetConfig',
+            GetConfigResult,
+            params,
+        )
+
     def create_snapshot(
             self,
             volume_id,
@@ -415,7 +1399,7 @@ class Element(ServiceBase):
         :param snapshot_id: (optional) Unique ID of a snapshot from which the
             new snapshot is made. The *snapshot_id* passed must be a snapshot
             on the given volume. If a *snapshot_id* is not provided, a snapshot
-            is created from the volume's active branch.
+            is created from the volume&#39;s active branch.
         :type snapshot_id: int
 
         :param name: (optional) A name for the snapshot. If no name is
@@ -871,6 +1855,244 @@ class Element(ServiceBase):
             since=7.0,
         )
 
+    def list_virtual_networks(
+            self,
+            virtual_network_id=OPTIONAL,
+            virtual_network_tag=OPTIONAL,
+            virtual_network_ids=OPTIONAL,
+            virtual_network_tags=OPTIONAL,):
+        """
+        *list_virtual_networks* is used to get a list of all the configured
+        virtual networks for the cluster. This method can be used to verify the
+        virtual network settings in the cluster.
+
+        This method does not require any parameters to be passed. But, one or
+        more *virtual_network_ids* or *virtual_network_tags* can be passed in
+        order to filter the results.
+
+        :param virtual_network_id: (optional) Network ID to filter the list for
+            a single virtual network
+        :type virtual_network_id: int
+
+        :param virtual_network_tag: (optional) Network Tag to filter the list
+            for a single virtual network
+        :type virtual_network_tag: int
+
+        :param virtual_network_ids: (optional) *network_ids* to include in the
+            list.
+        :type virtual_network_ids: int
+
+        :param virtual_network_tags: (optional) Network Tags to include in the
+            list.
+        :type virtual_network_tags: int
+
+        :returns: a response
+        :rtype: ListVirtualNetworksResult
+        """
+
+        params = {}
+        if virtual_network_id is not None:
+            params["virtualNetworkID"] = virtual_network_id
+        if virtual_network_tag is not None:
+            params["virtualNetworkTag"] = virtual_network_tag
+        if virtual_network_ids is not None:
+            params["virtualNetworkIDs"] = virtual_network_ids
+        if virtual_network_tags is not None:
+            params["virtualNetworkTags"] = virtual_network_tags
+
+        return self._send_request(
+            'ListVirtualNetworks',
+            ListVirtualNetworksResult,
+            params,
+            since=7.0,
+        )
+
+    def add_virtual_network(
+            self,
+            virtual_network_tag,
+            name,
+            address_blocks,
+            netmask,
+            svip,
+            attributes=OPTIONAL,):
+        """
+        *add_virtual_network* is used to add a new virtual network to a cluster
+        configuration. When a virtual network is added, an interface for each
+        node is created and each will require a virtual network IP address. The
+        number of IP addresses specified as a parameter for this API method
+        must be equal to or greater than the number of nodes in the cluster.
+        Virtual network addresses are bulk provisioned by SolidFire and
+        assigned to individual nodes automatically. Virtual network addresses
+        do not need to be assigned to nodes manually.
+
+        **Note:** The *add_virtual_network* method is used only to create a new
+        virtual network. If you want to make changes to a virtual network,
+        please use the *modify_virtual_network* method.
+
+        :param virtual_network_tag: [required] A unique virtual network (VLAN)
+            tag. Supported values are 1 to 4095 (the number zero (0) is not
+            supported).
+        :type virtual_network_tag: int
+
+        :param name: [required] User defined name for the new virtual network.
+        :type name: str
+
+        :param address_blocks: [required] Unique Range of IP addresses to
+            include in the virtual network. Attributes for this parameter are:
+            **start:** start of the IP address range. (String) **size:** numbre
+            of IP addresses to include in the block. (Integer)
+        :type address_blocks: AddressBlock
+
+        :param netmask: [required] Unique netmask for the virtual network being
+            created.
+        :type netmask: str
+
+        :param svip: [required] Unique storage IP address for the virtual
+            network being created.
+        :type svip: str
+
+        :param attributes: (optional) List of Name/Value pairs in JSON object
+            format.
+        :type attributes: dict
+
+        :returns: a response
+        :rtype: AddVirtualNetworkResult
+        """
+
+        params = {
+            "virtualNetworkTag": virtual_network_tag,
+            "name": name,
+            "addressBlocks": address_blocks,
+            "netmask": netmask,
+            "svip": svip,
+        }
+        if attributes is not None:
+            params["attributes"] = attributes
+
+        return self._send_request(
+            'AddVirtualNetwork',
+            AddVirtualNetworkResult,
+            params,
+            since=7.0,
+        )
+
+    def modify_virtual_network(
+            self,
+            virtual_network_id=OPTIONAL,
+            virtual_network_tag=OPTIONAL,
+            name=OPTIONAL,
+            address_blocks=OPTIONAL,
+            netmask=OPTIONAL,
+            svip=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        *modify_virtual_network* is used to change various attributes of a
+        *virtual_network* object. This method can be used to add or remove
+        address blocks, change the netmask IP, or modify the name or
+        description of the virtual network.
+
+        **Note:** This method requires either the *virtual_network_id* or the
+        *virtual_network_tag* as a parameter, but not both.
+
+        :param virtual_network_id: (optional) Unique identifier of the virtual
+            network to modify. This is the virtual network ID assigned by the
+            SolidFire cluster.
+        :type virtual_network_id: int
+
+        :param virtual_network_tag: (optional) Network Tag that identifies the
+            virtual network to modify.
+        :type virtual_network_tag: int
+
+        :param name: (optional) New name for the virtual network.
+        :type name: str
+
+        :param address_blocks: (optional) New *address_block* to set for this
+            Virtual Network object. This may contain new address blocks to add
+            to the existing object or it may omit unused address blocks that
+            need to be removed. Alternatively, existing address blocks may be
+            extended or reduced in size. The size of the starting
+            *address_blocks* for a Virtual Network object can only be
+            increased, and can never be decreased. Attributes for this
+            parameter are: **start:** start of the IP address range. (String)
+            **size:** numbre of IP addresses to include in the block. (Integer)
+        :type address_blocks: AddressBlock
+
+        :param netmask: (optional) New netmask for this virtual network.
+        :type netmask: str
+
+        :param svip: (optional) The storage virtual IP address for this virtual
+            network. The svip for Virtual Network cannot be changed. A new
+            Virtual Network must be created in order to use a different svip
+            address.
+        :type svip: str
+
+        :param attributes: (optional) A new list of Name/Value pairs in JSON
+            object format.
+        :type attributes: dict
+
+        :returns: a response
+        :rtype: AddVirtualNetworkResult
+        """
+
+        params = {}
+        if virtual_network_id is not None:
+            params["virtualNetworkID"] = virtual_network_id
+        if virtual_network_tag is not None:
+            params["virtualNetworkTag"] = virtual_network_tag
+        if name is not None:
+            params["name"] = name
+        if address_blocks is not None:
+            params["addressBlocks"] = address_blocks
+        if netmask is not None:
+            params["netmask"] = netmask
+        if svip is not None:
+            params["svip"] = svip
+        if attributes is not None:
+            params["attributes"] = attributes
+
+        return self._send_request(
+            'ModifyVirtualNetwork',
+            AddVirtualNetworkResult,
+            params,
+            since=7.0,
+        )
+
+    def remove_virtual_network(
+            self,
+            virtual_network_id=OPTIONAL,
+            virtual_network_tag=OPTIONAL,):
+        """
+        *remove_virtual_network* is used to remove a previously added virtual
+        network.
+
+        **Note:** This method requires either the *virtual_network_id* of the
+        *virtual_network_tag* as a parameter, but not both.
+
+        :param virtual_network_id: (optional) Network ID that identifies the
+            virtual network to remove.
+        :type virtual_network_id: int
+
+        :param virtual_network_tag: (optional) Network Tag that identifies the
+            virtual network to remove.
+        :type virtual_network_tag: int
+
+        :returns: a response
+        :rtype: RemoveVirtualNetworkResult
+        """
+
+        params = {}
+        if virtual_network_id is not None:
+            params["virtualNetworkID"] = virtual_network_id
+        if virtual_network_tag is not None:
+            params["virtualNetworkTag"] = virtual_network_tag
+
+        return self._send_request(
+            'RemoveVirtualNetwork',
+            RemoveVirtualNetworkResult,
+            params,
+            since=7.0,
+        )
+
     def clone_volume(
             self,
             volume_id,
@@ -1202,6 +2424,24 @@ class Element(ServiceBase):
         return self._send_request(
             'ListDeletedVolumes',
             ListDeletedVolumesResult,
+            params,
+        )
+
+    def list_iscsisessions(
+            self,):
+        """
+        *list_iscsisessions* is used to return iSCSI connection information for
+        volumes in the cluster.
+
+        :returns: a response
+        :rtype: ListISCSISessionsResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'ListISCSISessions',
+            ListISCSISessionsResult,
             params,
         )
 
