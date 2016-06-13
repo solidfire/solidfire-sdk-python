@@ -42,6 +42,8 @@ def serialize(val):
         return KNOWN_CONVERSIONS[type(val)](val)
     elif isinstance(val, dict):
         return dict((k, serialize(v)) for k, v in val.items())
+    elif isinstance(val, list):
+        return list(serialize(v) for v in val)
     elif hasattr(val, '_optional') and val.optional():
         return None
     else:
