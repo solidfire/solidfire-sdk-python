@@ -613,6 +613,24 @@ class RestoreDeletedVolumeResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class TestDrivesResult(data_model.DataObject):
+    """
+    The object returned by the \"test_drives\" API Service call.
+
+    :param details: [required]
+    :type details: str
+    """
+
+    details = data_model.property(
+        "details", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class AddAccountResult(data_model.DataObject):
     """
     The object returned by the \"add_account\" API Service call.
@@ -1293,6 +1311,85 @@ class ListVolumesResult(data_model.DataObject):
         array=True, optional=False,
         documentation="\
         List of volumes.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class SetClusterConfigResult(data_model.DataObject):
+    """
+    The object returned by the \"set_cluster_config\" API Service call.
+
+    :param cluster: [required] Settings for the cluster. All new and current
+        settings are returned.
+    :type cluster: ClusterConfig
+    """
+
+    cluster = data_model.property(
+        "cluster", ClusterConfig,
+        array=False, optional=False,
+        documentation="\
+        Settings for the cluster. All new and current settings are returned.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class SetConfigResult(data_model.DataObject):
+    """
+    The object returned by the \"set_config\" API Service call.
+
+    :param config: [required] The new and current configuration for the node.
+    :type config: Config
+    """
+
+    config = data_model.property(
+        "config", Config,
+        array=False, optional=False,
+        documentation="\
+        The new and current configuration for the node.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class SetNetworkConfigResult(data_model.DataObject):
+    """
+    The object returned by the \"set_network_config\" API Service call.
+
+    :param network: [required]
+    :type network: Network
+    """
+
+    network = data_model.property(
+        "network", Network,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class CreateGroupSnapshotResult(data_model.DataObject):
+    """
+    The object returned by the \"reset_drives\" API Service call.
+
+    :param details: [required] Details of drives that are being reset.
+    :type details: ResetDrivesDetails
+    """
+
+    details = data_model.property(
+        "details", ResetDrivesDetails,
+        array=False, optional=False,
+        documentation="\
+        Details of drives that are being reset.\
         "
     )
 
