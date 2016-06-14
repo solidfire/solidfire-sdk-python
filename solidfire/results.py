@@ -16,14 +16,18 @@ from solidfire.models import ClusterFaultInfo
 from solidfire.models import ClusterInfo
 from solidfire.models import ClusterVersionInfo
 from solidfire.models import Config
+from solidfire.models import DriveHardwareInfo
 from solidfire.models import DriveInfo
+from solidfire.models import DriveStats
 from solidfire.models import EventInfo
 from solidfire.models import GroupSnapshot
 from solidfire.models import GroupSnapshotMembers
 from solidfire.models import ISCSISession
 from solidfire.models import Network
 from solidfire.models import Node
+from solidfire.models import NodeDriveHardware
 from solidfire.models import PendingNode
+from solidfire.models import ResetDrivesDetails
 from solidfire.models import Snapshot
 from solidfire.models import SoftwareVersionInfo
 from solidfire.models import VirtualNetwork
@@ -613,6 +617,24 @@ class RestoreDeletedVolumeResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class TestDrivesResult(data_model.DataObject):
+    """
+    The object returned by the \"test_drives\" API Service call.
+
+    :param details: [required]
+    :type details: str
+    """
+
+    details = data_model.property(
+        "details", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class AddAccountResult(data_model.DataObject):
     """
     The object returned by the \"add_account\" API Service call.
@@ -880,6 +902,42 @@ class GetCurrentClusterAdminResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class GetDriveHardwareInfoResult(data_model.DataObject):
+    """
+    The object returned by the \"get_drive_hardware_info\" API Service call.
+
+    :param drive_hardware_info: [required]
+    :type drive_hardware_info: DriveHardwareInfo
+    """
+
+    drive_hardware_info = data_model.property(
+        "driveHardwareInfo", DriveHardwareInfo,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class GetDriveStatsResult(data_model.DataObject):
+    """
+    The object returned by the \"get_drive_stats\" API Service call.
+
+    :param drive_stats: [required]
+    :type drive_stats: DriveStats
+    """
+
+    drive_stats = data_model.property(
+        "driveStats", DriveStats,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class GetNetworkConfigResult(data_model.DataObject):
     """
     The object returned by the \"get_network_config\" API Service call.
@@ -1028,6 +1086,24 @@ class ListDeletedVolumesResult(data_model.DataObject):
         documentation="\
         List of deleted volumes.\
         "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class ListDriveHardwareResult(data_model.DataObject):
+    """
+    The object returned by the \"list_drive_hardware\" API Service call.
+
+    :param nodes: [required]
+    :type nodes: NodeDriveHardware
+    """
+
+    nodes = data_model.property(
+        "nodes", NodeDriveHardware,
+        array=True, optional=False,
+        documentation=None
     )
 
     def __init__(self, **kwargs):
@@ -1293,6 +1369,26 @@ class ListVolumesResult(data_model.DataObject):
         array=True, optional=False,
         documentation="\
         List of volumes.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class ResetDrivesResult(data_model.DataObject):
+    """
+    The object returned by the \"reset_drives\" API Service call.
+
+    :param details: [required] Details of drives that are being reset.
+    :type details: ResetDrivesDetails
+    """
+
+    details = data_model.property(
+        "details", ResetDrivesDetails,
+        array=False, optional=False,
+        documentation="\
+        Details of drives that are being reset.\
         "
     )
 

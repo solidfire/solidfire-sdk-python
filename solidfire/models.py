@@ -42,6 +42,409 @@ class AddressBlock(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class DriveHardware(data_model.DataObject):
+    """
+
+    :param canonical_name: [required]
+    :type canonical_name: str
+
+    :param connected: [required]
+    :type connected: bool
+
+    :param dev: [required]
+    :type dev: int
+
+    :param dev_path: [required]
+    :type dev_path: str
+
+    :param drive_type: [required]
+    :type drive_type: str
+
+    :param life_remaining_percent: [required]
+    :type life_remaining_percent: int
+
+    :param lifetime_read_bytes: [required]
+    :type lifetime_read_bytes: int
+
+    :param lifetime_write_bytes: [required]
+    :type lifetime_write_bytes: int
+
+    :param name: [required]
+    :type name: str
+
+    :param path: [required]
+    :type path: str
+
+    :param path_link: [required]
+    :type path_link: str
+
+    :param power_on_hours: [required]
+    :type power_on_hours: int
+
+    :param product: [required]
+    :type product: str
+
+    :param reallocated_sectors: [required]
+    :type reallocated_sectors: int
+
+    :param reserve_capacity_percent: [required]
+    :type reserve_capacity_percent: int
+
+    :param scsi_compat_id: [required]
+    :type scsi_compat_id: str
+
+    :param scsi_state: [required]
+    :type scsi_state: str
+
+    :param security_at_maximum: [required]
+    :type security_at_maximum: bool
+
+    :param security_enabled: [required]
+    :type security_enabled: bool
+
+    :param security_frozen: [required]
+    :type security_frozen: bool
+
+    :param security_locked: [required]
+    :type security_locked: bool
+
+    :param security_supported: [required]
+    :type security_supported: bool
+
+    :param serial: [required]
+    :type serial: str
+
+    :param size: [required]
+    :type size: int
+
+    :param slot: [required]
+    :type slot: int
+
+    :param smart_ssd_write_capable: [required]
+    :type smart_ssd_write_capable: bool
+
+    :param uuid: [required]
+    :type uuid: UUID
+
+    :param vendor: [required]
+    :type vendor: str
+
+    :param version: [required]
+    :type version: str
+    """
+
+    canonical_name = data_model.property(
+        "canonicalName", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    connected = data_model.property(
+        "connected", bool,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    dev = data_model.property(
+        "dev", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    dev_path = data_model.property(
+        "devPath", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    drive_type = data_model.property(
+        "driveType", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    life_remaining_percent = data_model.property(
+        "lifeRemainingPercent", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    lifetime_read_bytes = data_model.property(
+        "lifetimeReadBytes", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    lifetime_write_bytes = data_model.property(
+        "lifetimeWriteBytes", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    path = data_model.property(
+        "path", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    path_link = data_model.property(
+        "pathLink", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    power_on_hours = data_model.property(
+        "powerOnHours", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    product = data_model.property(
+        "product", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    reallocated_sectors = data_model.property(
+        "reallocatedSectors", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    reserve_capacity_percent = data_model.property(
+        "reserveCapacityPercent", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    scsi_compat_id = data_model.property(
+        "scsiCompatId", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    scsi_state = data_model.property(
+        "scsiState", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    security_at_maximum = data_model.property(
+        "securityAtMaximum", bool,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    security_enabled = data_model.property(
+        "securityEnabled", bool,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    security_frozen = data_model.property(
+        "securityFrozen", bool,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    security_locked = data_model.property(
+        "securityLocked", bool,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    security_supported = data_model.property(
+        "securitySupported", bool,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    serial = data_model.property(
+        "serial", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    size = data_model.property(
+        "size", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    slot = data_model.property(
+        "slot", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    smart_ssd_write_capable = data_model.property(
+        "smartSsdWriteCapable", bool,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    uuid = data_model.property(
+        "uuid", UUID,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    vendor = data_model.property(
+        "vendor", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    version = data_model.property(
+        "version", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class DriveHardwareInfo(data_model.DataObject):
+    """
+
+    :param description: [required]
+    :type description: str
+
+    :param dev: [required]
+    :type dev: str
+
+    :param devpath: [required]
+    :type devpath: str
+
+    :param drive_security_at_maximum: [required]
+    :type drive_security_at_maximum: bool
+
+    :param drive_security_frozen: [required]
+    :type drive_security_frozen: bool
+
+    :param drive_security_locked: [required]
+    :type drive_security_locked: bool
+
+    :param logicalname: [required]
+    :type logicalname: str
+
+    :param product: [required]
+    :type product: str
+
+    :param security_feature_enabled: [required]
+    :type security_feature_enabled: bool
+
+    :param security_feature_supported: [required]
+    :type security_feature_supported: bool
+
+    :param serial: [required]
+    :type serial: str
+
+    :param size: [required]
+    :type size: int
+
+    :param uuid: [required]
+    :type uuid: UUID
+
+    :param version: [required]
+    :type version: str
+    """
+
+    description = data_model.property(
+        "description", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    dev = data_model.property(
+        "dev", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    devpath = data_model.property(
+        "devpath", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    drive_security_at_maximum = data_model.property(
+        "driveSecurityAtMaximum", bool,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    drive_security_frozen = data_model.property(
+        "driveSecurityFrozen", bool,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    drive_security_locked = data_model.property(
+        "driveSecurityLocked", bool,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    logicalname = data_model.property(
+        "logicalname", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    product = data_model.property(
+        "product", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    security_feature_enabled = data_model.property(
+        "securityFeatureEnabled", bool,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    security_feature_supported = data_model.property(
+        "securityFeatureSupported", bool,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    serial = data_model.property(
+        "serial", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    size = data_model.property(
+        "size", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    uuid = data_model.property(
+        "uuid", UUID,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    version = data_model.property(
+        "version", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class PhysicalAdapter(data_model.DataObject):
     """
 
@@ -261,6 +664,52 @@ class QoS(data_model.DataObject):
         for QoS.\
 \
         "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class ResetDriveDetails(data_model.DataObject):
+    """
+
+    :param drive: [required] Drive name
+    :type drive: str
+
+    :param return_code: [required]
+    :type return_code: int
+
+    :param stderr: [required]
+    :type stderr: str
+
+    :param stdout: [required]
+    :type stdout: str
+    """
+
+    drive = data_model.property(
+        "drive", str,
+        array=False, optional=False,
+        documentation="\
+        Drive name\
+        "
+    )
+
+    return_code = data_model.property(
+        "returnCode", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    stderr = data_model.property(
+        "stderr", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    stdout = data_model.property(
+        "stdout", str,
+        array=False, optional=False,
+        documentation=None
     )
 
     def __init__(self, **kwargs):
@@ -702,6 +1151,175 @@ class ClusterCapacity(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class DriveStats(data_model.DataObject):
+    """
+
+    :param active_sessions: [required]
+    :type active_sessions: int
+
+    :param failed_die_count: [required]
+    :type failed_die_count: int
+
+    :param life_remaining_percent: [required]
+    :type life_remaining_percent: int
+
+    :param lifetime_read_bytes: [required]
+    :type lifetime_read_bytes: int
+
+    :param lifetime_write_bytes: [required]
+    :type lifetime_write_bytes: int
+
+    :param power_on_hours: [required]
+    :type power_on_hours: int
+
+    :param read_bytes: [required]
+    :type read_bytes: int
+
+    :param read_ops: [required]
+    :type read_ops: int
+
+    :param reallocated_sectors: [required]
+    :type reallocated_sectors: int
+
+    :param reserve_capacity_percent: [required]
+    :type reserve_capacity_percent: int
+
+    :param timestamp: [required]
+    :type timestamp: str
+
+    :param total_capacity: [required]
+    :type total_capacity: int
+
+    :param used_memory: [required]
+    :type used_memory: int
+
+    :param write_bytes: [required]
+    :type write_bytes: int
+
+    :param write_ops: [required]
+    :type write_ops: int
+
+    :param used_capacity: (optional)
+    :type used_capacity: int
+    """
+
+    active_sessions = data_model.property(
+        "activeSessions", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    failed_die_count = data_model.property(
+        "failedDieCount", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    life_remaining_percent = data_model.property(
+        "lifeRemainingPercent", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    lifetime_read_bytes = data_model.property(
+        "lifetimeReadBytes", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    lifetime_write_bytes = data_model.property(
+        "lifetimeWriteBytes", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    power_on_hours = data_model.property(
+        "powerOnHours", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    read_bytes = data_model.property(
+        "readBytes", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    read_ops = data_model.property(
+        "readOps", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    reallocated_sectors = data_model.property(
+        "reallocatedSectors", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    reserve_capacity_percent = data_model.property(
+        "reserveCapacityPercent", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    timestamp = data_model.property(
+        "timestamp", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    total_capacity = data_model.property(
+        "totalCapacity", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    used_capacity = data_model.property(
+        "usedCapacity", int,
+        array=False, optional=True,
+        documentation=None
+    )
+
+    used_memory = data_model.property(
+        "usedMemory", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    write_bytes = data_model.property(
+        "writeBytes", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    write_ops = data_model.property(
+        "writeOps", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class DrivesHardware(data_model.DataObject):
+    """
+
+    :param drive_hardware: [required]
+    :type drive_hardware: DriveHardware
+    """
+
+    drive_hardware = data_model.property(
+        "driveHardware", DriveHardware,
+        array=True, optional=False,
+        documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class NetworkConfig(data_model.DataObject):
     """
 
@@ -1094,6 +1712,25 @@ class RemoteReplication(data_model.DataObject):
         array=False, optional=False,
         documentation="\
         Reserved for future use.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class ResetDrivesDetails(data_model.DataObject):
+    """
+
+    :param drives: [required] Details of a single drive that is being reset.
+    :type drives: ResetDriveDetails
+    """
+
+    drives = data_model.property(
+        "drives", ResetDriveDetails,
+        array=True, optional=False,
+        documentation="\
+        Details of a single drive that is being reset.\
         "
     )
 
@@ -1516,6 +2153,32 @@ class MetadataHosts(data_model.DataObject):
         documentation="\
         The primary metadata (slice) services hosting the volume.\
         "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class NodeDriveHardware(data_model.DataObject):
+    """
+
+    :param node_id: [required]
+    :type node_id: int
+
+    :param result: [required]
+    :type result: DrivesHardware
+    """
+
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    result = data_model.property(
+        "result", DrivesHardware,
+        array=False, optional=False,
+        documentation=None
     )
 
     def __init__(self, **kwargs):
