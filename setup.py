@@ -75,7 +75,7 @@ setup(
 
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 
-    install_requires=['pycurl>=7.19.0', 'future>=0.15.2'],
+    install_requires=['pycurl>=7.34.0', 'future>=0.15.2'],
 
     # $> pip install -e ".[dev,test, docs, release]"
     extras_require={
