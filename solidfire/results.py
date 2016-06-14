@@ -9,6 +9,7 @@ from __future__ import unicode_literals
 from __future__ import absolute_import
 from solidfire.common import model as data_model
 from solidfire.models import Account
+from solidfire.models import AddedNode
 from solidfire.models import ClusterAdmin
 from solidfire.models import ClusterCapacity
 from solidfire.models import ClusterConfig
@@ -678,11 +679,11 @@ class AddNodesResult(data_model.DataObject):
 
     :param nodes: [required] An array of objects mapping the previous
         \"pendingNodeID\" to the \"nodeID\".
-    :type nodes: PendingNode
+    :type nodes: AddedNode
     """
 
     nodes = data_model.property(
-        "nodes", PendingNode,
+        "nodes", AddedNode,
         array=True, optional=False,
         documentation="\
         An array of objects mapping the previous *\"pending_node_id\"* to the\
