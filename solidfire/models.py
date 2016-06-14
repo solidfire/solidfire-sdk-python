@@ -1738,6 +1738,32 @@ class ResetDrivesDetails(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class AddedNode(data_model.DataObject):
+    """
+
+    :param node_id: [required]
+    :type node_id: int
+
+    :param pending_node_id: [required]
+    :type pending_node_id: int
+    """
+
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    pending_node_id = data_model.property(
+        "pendingNodeID", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class ClusterAdmin(data_model.DataObject):
     """
 
