@@ -13,7 +13,6 @@ from logging import Logger
 from solidfire import common
 from solidfire.common import ServiceBase, ApiVersionExceededError, \
     ApiVersionUnsupportedError
-from solidfire.models import str
 from solidfire.results import AddAccountResult
 from solidfire.results import AddClusterAdminResult
 from solidfire.results import AddDrivesResult
