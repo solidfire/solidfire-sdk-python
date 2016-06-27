@@ -15,6 +15,7 @@ from solidfire.models import ClusterCapacity
 from solidfire.models import ClusterConfig
 from solidfire.models import ClusterFaultInfo
 from solidfire.models import ClusterInfo
+from solidfire.models import ClusterStats
 from solidfire.models import ClusterVersionInfo
 from solidfire.models import Config
 from solidfire.models import DriveHardwareInfo
@@ -27,8 +28,12 @@ from solidfire.models import ISCSISession
 from solidfire.models import Network
 from solidfire.models import Node
 from solidfire.models import NodeDriveHardware
+from solidfire.models import NodeStatsInfo
+from solidfire.models import NodeStatsNodes
+from solidfire.models import PairedCluster
 from solidfire.models import PendingNode
 from solidfire.models import ResetDrivesDetails
+from solidfire.models import Schedule
 from solidfire.models import Snapshot
 from solidfire.models import SoftwareVersionInfo
 from solidfire.models import VirtualNetwork
@@ -99,6 +104,44 @@ class ClearClusterFaultsResult(data_model.DataObject):
     """
     The object returned by the \"clear_cluster_faults\" API Service call.
     """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class CompleteClusterPairingResult(data_model.DataObject):
+    """
+    The object returned by the \"complete_cluster_pairing\" API Service call.
+
+    :param cluster_pair_id: [required] Unique identifier for the cluster pair.
+    :type cluster_pair_id: int
+    """
+
+    cluster_pair_id = data_model.property(
+        "clusterPairID", int,
+        array=False, optional=False,
+        documentation="\
+        Unique identifier for the cluster pair.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class CreateScheduleResult(data_model.DataObject):
+    """
+    The object returned by the \"create_schedule\" API Service call.
+
+    :param schedule_id: [required]
+    :type schedule_id: int
+    """
+
+    schedule_id = data_model.property(
+        "scheduleID", int,
+        array=False, optional=False,
+        documentation=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -540,7 +583,7 @@ class ModifyVolumeResult(data_model.DataObject):
     """
     The object returned by the \"modify_volume\" API Service call.
 
-    :param curve: (optional) The curve is a set of key-value pairs. The keys
+    :param curve: [required] The curve is a set of key-value pairs. The keys
         are I/O sizes in bytes. The values represent the cost performing an IOP
         at a specific I/O size. The curve is calculated relative to a 4096 byte
         operation set at 100 IOPS.
@@ -549,7 +592,7 @@ class ModifyVolumeResult(data_model.DataObject):
 
     curve = data_model.property(
         "curve", str,
-        array=False, optional=True,
+        array=False, optional=False,
         documentation="\
         The curve is a set of key-value pairs.\
         The keys are I/O sizes in bytes.\
@@ -591,6 +634,15 @@ class RemoveClusterAdminResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class RemoveClusterPairResult(data_model.DataObject):
+    """
+    The object returned by the \"remove_cluster_pair\" API Service call.
+    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class RemoveNodesResult(data_model.DataObject):
     """
     The object returned by the \"remove_nodes\" API Service call.
@@ -613,6 +665,39 @@ class RestoreDeletedVolumeResult(data_model.DataObject):
     """
     The object returned by the \"restore_deleted_volume\" API Service call.
     """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class StartClusterPairingResult(data_model.DataObject):
+    """
+    The object returned by the \"start_cluster_pairing\" API Service call.
+
+    :param cluster_pairing_key: [required] A string of characters that is used
+        by the \"CompleteClusterPairing\" API method.
+    :type cluster_pairing_key: str
+
+    :param cluster_pair_id: [required] Unique identifier for the cluster pair.
+    :type cluster_pair_id: int
+    """
+
+    cluster_pairing_key = data_model.property(
+        "clusterPairingKey", str,
+        array=False, optional=False,
+        documentation="\
+        A string of characters that is used by the\
+        *\"_complete_cluster_pairing\"* API method.\
+        "
+    )
+
+    cluster_pair_id = data_model.property(
+        "clusterPairID", int,
+        array=False, optional=False,
+        documentation="\
+        Unique identifier for the cluster pair.\
+        "
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -745,7 +830,7 @@ class CreateVolumeResult(data_model.DataObject):
     :param volume_id: [required] *volume_id* for the newly created volume.
     :type volume_id: int
 
-    :param curve: (optional) The curve is a set of key-value pairs. The keys
+    :param curve: [required] The curve is a set of key-value pairs. The keys
         are I/O sizes in bytes. The values represent the cost performing an IOP
         at a specific I/O size. The curve is calculated relative to a 4096 byte
         operation set at 100 IOPS.
@@ -762,7 +847,7 @@ class CreateVolumeResult(data_model.DataObject):
 
     curve = data_model.property(
         "curve", str,
-        array=False, optional=True,
+        array=False, optional=False,
         documentation="\
         The curve is a set of key-value pairs.\
         The keys are I/O sizes in bytes.\
@@ -855,6 +940,24 @@ class GetClusterInfoResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class GetClusterStatsResult(data_model.DataObject):
+    """
+    The object returned by the \"get_cluster_stats\" API Service call.
+
+    :param cluster_stats: [required]
+    :type cluster_stats: ClusterStats
+    """
+
+    cluster_stats = data_model.property(
+        "clusterStats", ClusterStats,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class GetConfigResult(data_model.DataObject):
     """
     The object returned by the \"get_config\" API Service call.
@@ -939,6 +1042,85 @@ class GetDriveStatsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class GetEfficiencyResult(data_model.DataObject):
+    """
+    The object returned by the \"get_efficiency\" API Service call.
+
+    :param compression: [required] The amount of space being saved by
+        compressing data on a single volume. Stated as a ratio where \"1\"
+        means data has been stored without being compressed.
+    :type compression: float
+
+    :param deduplication: [required] The amount of space being saved on a
+        single volume by not duplicating data. Stated as a ratio.
+    :type deduplication: float
+
+    :param thin_provisioning: [required] The ratio of space used to the amount
+        of space allocated for storing data. Stated as a ratio.
+    :type thin_provisioning: float
+
+    :param timestamp: [required] The last time efficiency data was collected
+        after Garbage Collection (GC). ISO 8601 data string.
+    :type timestamp: str
+
+    :param missing_volumes: [required] The volumes that could not be queried
+        for efficiency data. Missing volumes can be caused by GC being less
+        than hour old, temporary network loss or restarted services since the
+        GC cycle.
+    :type missing_volumes: int
+    """
+
+    compression = data_model.property(
+        "compression", float,
+        array=False, optional=False,
+        documentation="\
+        The amount of space being saved by compressing data on a single\
+        volume. Stated as a ratio where \"1\" means data has been stored\
+        without being compressed.\
+        "
+    )
+
+    deduplication = data_model.property(
+        "deduplication", float,
+        array=False, optional=False,
+        documentation="\
+        The amount of space being saved on a single volume by not duplicating\
+        data. Stated as a ratio.\
+        "
+    )
+
+    thin_provisioning = data_model.property(
+        "thinProvisioning", float,
+        array=False, optional=False,
+        documentation="\
+        The ratio of space used to the amount of space allocated for storing\
+        data. Stated as a ratio.\
+        "
+    )
+
+    timestamp = data_model.property(
+        "timestamp", str,
+        array=False, optional=False,
+        documentation="\
+        The last time efficiency data was collected after Garbage Collection\
+        (GC). ISO 8601 data string.\
+        "
+    )
+
+    missing_volumes = data_model.property(
+        "missingVolumes", int,
+        array=True, optional=False,
+        documentation="\
+        The volumes that could not be queried for efficiency data. Missing\
+        volumes can be caused by GC being less than hour old, temporary\
+        network loss or restarted services since the GC cycle.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class GetNetworkConfigResult(data_model.DataObject):
     """
     The object returned by the \"get_network_config\" API Service call.
@@ -951,6 +1133,46 @@ class GetNetworkConfigResult(data_model.DataObject):
         "network", Network,
         array=False, optional=False,
         documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class GetNodeStatsResult(data_model.DataObject):
+    """
+    The object returned by the \"get_node_stats\" API Service call.
+
+    :param node_stats: [required] Node activity information.
+    :type node_stats: NodeStatsInfo
+    """
+
+    node_stats = data_model.property(
+        "nodeStats", NodeStatsInfo,
+        array=False, optional=False,
+        documentation="\
+        Node activity information.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class GetScheduleResult(data_model.DataObject):
+    """
+    The object returned by the \"get_schedule\" API Service call.
+
+    :param schedule: [required] The schedule attributes.
+    :type schedule: Schedule
+    """
+
+    schedule = data_model.property(
+        "schedule", Schedule,
+        array=False, optional=False,
+        documentation="\
+        The schedule attributes.\
+        "
     )
 
     def __init__(self, **kwargs):
@@ -1073,6 +1295,26 @@ class ListClusterFaultsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class ListClusterPairsResult(data_model.DataObject):
+    """
+    The object returned by the \"list_cluster_pairs\" API Service call.
+
+    :param cluster_pairs: [required] Information about each paired cluster.
+    :type cluster_pairs: PairedCluster
+    """
+
+    cluster_pairs = data_model.property(
+        "clusterPairs", PairedCluster,
+        array=True, optional=False,
+        documentation="\
+        Information about each paired cluster.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class ListDeletedVolumesResult(data_model.DataObject):
     """
     The object returned by the \"list_deleted_volumes\" API Service call.
@@ -1170,6 +1412,26 @@ class ListISCSISessionsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class ListNodeStatsResult(data_model.DataObject):
+    """
+    The object returned by the \"list_node_stats\" API Service call.
+
+    :param node_stats: [required] Node activity information for all nodes.
+    :type node_stats: NodeStatsNodes
+    """
+
+    node_stats = data_model.property(
+        "nodeStats", NodeStatsNodes,
+        array=False, optional=False,
+        documentation="\
+        Node activity information for all nodes.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class ListPendingNodesResult(data_model.DataObject):
     """
     The object returned by the \"list_pending_nodes\" API Service call.
@@ -1182,6 +1444,27 @@ class ListPendingNodesResult(data_model.DataObject):
         "pendingNodes", PendingNode,
         array=True, optional=False,
         documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class ListSchedulesResult(data_model.DataObject):
+    """
+    The object returned by the \"list_schedules\" API Service call.
+
+    :param schedules: [required] The list of schedules currently on the
+        cluster.
+    :type schedules: Schedule
+    """
+
+    schedules = data_model.property(
+        "schedules", Schedule,
+        array=True, optional=False,
+        documentation="\
+        The list of schedules currently on the cluster.\
+        "
     )
 
     def __init__(self, **kwargs):
@@ -1370,6 +1653,26 @@ class ListVolumesResult(data_model.DataObject):
         array=True, optional=False,
         documentation="\
         List of volumes.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class ModifyScheduleResult(data_model.DataObject):
+    """
+    The object returned by the \"modify_schedule\" API Service call.
+
+    :param schedule: [required] Schedule attributes with modifications.
+    :type schedule: Schedule
+    """
+
+    schedule = data_model.property(
+        "schedule", Schedule,
+        array=False, optional=False,
+        documentation="\
+        Schedule attributes with modifications.\
         "
     )
 

@@ -13,6 +13,7 @@ from logging import Logger
 from solidfire import common
 from solidfire.common import ServiceBase, ApiVersionExceededError, \
     ApiVersionUnsupportedError
+from solidfire.models import str
 from solidfire.results import AddAccountResult
 from solidfire.results import AddClusterAdminResult
 from solidfire.results import AddDrivesResult
@@ -21,7 +22,9 @@ from solidfire.results import AddVirtualNetworkResult
 from solidfire.results import AsyncHandleResult
 from solidfire.results import ClearClusterFaultsResult
 from solidfire.results import CloneVolumeResult
+from solidfire.results import CompleteClusterPairingResult
 from solidfire.results import CreateGroupSnapshotResult
+from solidfire.results import CreateScheduleResult
 from solidfire.results import CreateSnapshotResult
 from solidfire.results import CreateVolumeAccessGroupResult
 from solidfire.results import CreateVolumeResult
@@ -38,13 +41,17 @@ from solidfire.results import GetClusterCapacityResult
 from solidfire.results import GetClusterConfigResult
 from solidfire.results import GetClusterFullThresholdResult
 from solidfire.results import GetClusterInfoResult
+from solidfire.results import GetClusterStatsResult
 from solidfire.results import GetClusterVersionInfoResult
 from solidfire.results import GetConfigResult
 from solidfire.results import GetCurrentClusterAdminResult
 from solidfire.results import GetDriveHardwareInfoResult
 from solidfire.results import GetDriveStatsResult
+from solidfire.results import GetEfficiencyResult
 from solidfire.results import GetLimitsResult
 from solidfire.results import GetNetworkConfigResult
+from solidfire.results import GetNodeStatsResult
+from solidfire.results import GetScheduleResult
 from solidfire.results import GetVolumeEfficiencyResult
 from solidfire.results import GetVolumeStatsResult
 from solidfire.results import ListAccountsResult
@@ -53,13 +60,16 @@ from solidfire.results import ListActiveVolumesResult
 from solidfire.results import ListAllNodesResult
 from solidfire.results import ListClusterAdminsResult
 from solidfire.results import ListClusterFaultsResult
+from solidfire.results import ListClusterPairsResult
 from solidfire.results import ListDeletedVolumesResult
 from solidfire.results import ListDriveHardwareResult
 from solidfire.results import ListDrivesResult
 from solidfire.results import ListEventsResult
 from solidfire.results import ListGroupSnapshotsResult
 from solidfire.results import ListISCSISessionsResult
+from solidfire.results import ListNodeStatsResult
 from solidfire.results import ListPendingNodesResult
+from solidfire.results import ListSchedulesResult
 from solidfire.results import ListSnapshotsResult
 from solidfire.results import ListVirtualNetworksResult
 from solidfire.results import ListVolumeAccessGroupsResult
@@ -72,12 +82,14 @@ from solidfire.results import ModifyAccountResult
 from solidfire.results import ModifyClusterAdminResult
 from solidfire.results import ModifyClusterFullThresholdResult
 from solidfire.results import ModifyGroupSnapshotResult
+from solidfire.results import ModifyScheduleResult
 from solidfire.results import ModifySnapshotResult
 from solidfire.results import ModifyVolumeAccessGroupResult
 from solidfire.results import ModifyVolumeResult
 from solidfire.results import PurgeDeletedVolumeResult
 from solidfire.results import RemoveAccountResult
 from solidfire.results import RemoveClusterAdminResult
+from solidfire.results import RemoveClusterPairResult
 from solidfire.results import RemoveNodesResult
 from solidfire.results import RemoveVirtualNetworkResult
 from solidfire.results import ResetDrivesResult
@@ -85,6 +97,7 @@ from solidfire.results import RestoreDeletedVolumeResult
 from solidfire.results import SetClusterConfigResult
 from solidfire.results import SetConfigResult
 from solidfire.results import SetNetworkConfigResult
+from solidfire.results import StartClusterPairingResult
 from solidfire.results import TestDrivesResult
 
 OPTIONAL = None
@@ -364,6 +377,38 @@ class Element(ServiceBase):
         return self._send_request(
             'RemoveAccount',
             RemoveAccountResult,
+            params,
+        )
+
+    def get_account_efficiency(
+            self,
+            account_id,
+            force=OPTIONAL,):
+        """
+        *get_account_efficiency* is used to retrieve information about a volume
+        account. Only the account given as a parameter in this API method is
+        used to compute the capacity.
+
+        :param account_id: [required] Specifies the volume account for which
+            capacity is computed.
+        :type account_id: int
+
+        :param force: (optional)
+        :type force: bool
+
+        :returns: a response
+        :rtype: GetEfficiencyResult
+        """
+
+        params = {
+            "accountID": account_id,
+        }
+        if force is not None:
+            params["force"] = force
+
+        return self._send_request(
+            'GetAccountEfficiency',
+            GetEfficiencyResult,
             params,
         )
 
@@ -655,6 +700,25 @@ class Element(ServiceBase):
         return self._send_request(
             'ModifyClusterFullThreshold',
             ModifyClusterFullThresholdResult,
+            params,
+        )
+
+    def get_cluster_stats(
+            self,):
+        """
+        *get_cluster_stats* is used to return high-level activity measurements
+        for the cluster. Values returned are cumulative from the creation of
+        the cluster.
+
+        :returns: a response
+        :rtype: GetClusterStatsResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'GetClusterStats',
+            GetClusterStatsResult,
             params,
         )
 
@@ -1581,6 +1645,150 @@ class Element(ServiceBase):
             params,
         )
 
+    def get_node_stats(
+            self,
+            node_id,):
+        """
+        *get_node_stats* is used to return the high-level activity measurements
+        for a single node.
+
+        :param node_id: [required] Specifies the node for which statistics are
+            gathered.
+        :type node_id: int
+
+        :returns: a response
+        :rtype: GetNodeStatsResult
+        """
+
+        params = {
+            "nodeID": node_id,
+        }
+
+        return self._send_request(
+            'GetNodeStats',
+            GetNodeStatsResult,
+            params,
+        )
+
+    def list_node_stats(
+            self,):
+        """
+        *list_node_stats* is used to return the high-level activity
+        measurements for all nodes in a cluster.
+
+        :returns: a response
+        :rtype: ListNodeStatsResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'ListNodeStats',
+            ListNodeStatsResult,
+            params,
+        )
+
+    def list_cluster_pairs(
+            self,):
+        """
+        *list_cluster_pairs* allows you to list all of the clusters a cluster
+        is paired with.
+        This method returns information about active and pending cluster
+        pairings, such as statistics about the current pairing as well as the
+        connectivity and latency (in milliseconds) of the cluster pairing.
+
+        :returns: a response
+        :rtype: ListClusterPairsResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'ListClusterPairs',
+            ListClusterPairsResult,
+            params,
+        )
+
+    def start_cluster_pairing(
+            self,):
+        """
+        *start_cluster_pairing* allows you to create an encoded key from a
+        cluster that is used to pair with another cluster.
+        The key created from this API method is used in the
+        *\"_complete_cluster_pairing\"* API method to establish a cluster
+        pairing.
+        You can pair a cluster with a maximum of four other SolidFire clusters.
+
+        :returns: a response
+        :rtype: StartClusterPairingResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'StartClusterPairing',
+            StartClusterPairingResult,
+            params,
+        )
+
+    def complete_cluster_pairing(
+            self,
+            cluster_pairing_key,):
+        """
+        The *complete_cluster_pairing* method is the second step in the cluster
+        pairing process.
+        Use this method with the encoded key received from the
+        *\"_start_cluster_pairing\"* API method to complete the cluster pairing
+        process.
+
+        :param cluster_pairing_key: [required]
+        :type cluster_pairing_key: str
+
+        :returns: a response
+        :rtype: CompleteClusterPairingResult
+        """
+
+        params = {
+            "clusterPairingKey": cluster_pairing_key,
+        }
+
+        return self._send_request(
+            'CompleteClusterPairing',
+            CompleteClusterPairingResult,
+            params,
+        )
+
+    def remove_cluster_pair(
+            self,
+            cluster_pair_id,):
+        """
+        You can use the *remove_cluster_pair* method to close the open
+        connections between two paired clusters.
+
+
+
+        **Note**: Before you remove a cluster pair, you must first remove all
+        volume pairing to the clusters with the *\"_remove_volume_pair\"* API
+        method.
+
+        :param cluster_pair_id: [required] Unique identifier used to pair two
+            clusters.
+        :type cluster_pair_id: int
+
+        :returns: a response
+        :rtype: RemoveClusterPairResult
+        """
+
+        params = {
+            "clusterPairID": cluster_pair_id,
+        }
+
+        return self._send_request(
+            'RemoveClusterPair',
+            RemoveClusterPairResult,
+            params,
+        )
+
     def create_snapshot(
             self,
             volume_id,
@@ -2060,6 +2268,429 @@ class Element(ServiceBase):
             CreateGroupSnapshotResult,
             params,
             since=7.0,
+        )
+
+    def get_schedule(
+            self,
+            schedule_id,):
+        """
+        *get_schedule* is used to return information about a scheduled snapshot
+        that has been created. You can see information about a specified
+        schedule if there are many snapshot schedules in the system. You can
+        include more than one schedule with this method by specifying
+        additional *schedule_ids* to the parameter.
+
+        :param schedule_id: [required] Unique ID of the schedule or multiple
+            schedules to display
+        :type schedule_id: int
+
+        :returns: a response
+        :rtype: GetScheduleResult
+        """
+
+        params = {
+            "scheduleID": schedule_id,
+        }
+
+        return self._send_request(
+            'GetSchedule',
+            GetScheduleResult,
+            params,
+            since=8.0,
+        )
+
+    def list_schedules(
+            self,):
+        """
+        *list_schedule* is used to return information about all scheduled
+        snapshots that have been created.
+
+        :returns: a response
+        :rtype: ListSchedulesResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'ListSchedules',
+            ListSchedulesResult,
+            params,
+            since=8.0,
+        )
+
+    def create_schedule(
+            self,
+            attributes,
+            schedule_name,
+            schedule_type,
+            schedule_info,
+            hours=OPTIONAL,
+            minutes=OPTIONAL,
+            paused=OPTIONAL,
+            recurring=OPTIONAL,
+            starting_date=OPTIONAL,
+            monthdays=OPTIONAL,
+            weekdays=OPTIONAL,):
+        """
+        *create_schedule* is used to create a schedule that will autonomously
+        make a snapshot of a volume at a defined interval.
+
+
+
+
+
+
+
+        The snapshot created can be used later as a backup or rollback to
+        ensure the data on a volume or group of volumes is consistent for the
+        point in time in which the snapshot was created.
+
+
+
+
+
+
+
+        **Note**: Creating a snapshot is allowed if cluster fullness is at
+        stage 2 or 3. Snapshots are not created when cluster fullness is at
+        stage 4 or 5.
+
+        :param attributes: [required] The \"frequency\" object is returned in
+            \"attributes\" to indicate the frequency at which the snapshot will
+            be made.
+
+            Valid values for \"frequency\" are:
+
+            Days of Week
+
+            Days of Month
+
+            Time Interval
+
+        :type attributes: dict
+
+        :param schedule_name: [required] Unique name for the schedule.
+        :type schedule_name: str
+
+        :param schedule_type: [required] Indicates the type of schedule to
+            create.
+
+            Valid value is:
+
+            snapshot
+
+        :type schedule_type: str
+
+        :param schedule_info: [required] An object of schedule information
+            about how the snapshot should be created at each scheduled
+            interval.
+
+            *volume_id* - The ID of the volume to be included in the snapshot.
+            (Integer)
+
+            volumes - A list of volume *ids* to be included in the group
+            snapshot. (Array of Integers)
+
+            name - The snapshot name to be used. (String)
+
+            *enable_remote_replication* - Indicates if the snapshot should be
+            included in remote replication. (Boolean)
+
+            retention - The amount of time the snapshot will be retained in
+            HH:mm:ss. (String)
+
+        :type schedule_info: ScheduleInfo
+
+        :param hours: (optional) Number of hours between snapshots or hour at
+            which the snapshot will occur in \"Days of Week\", or \"Days of
+            Month\" mode.
+
+            Valid values: 0 - 24
+
+        :type hours: int
+
+        :param minutes: (optional) Number of minutes between snapshots or
+            minute at which the snapshot will occur in \"Days of Week\", or
+            \"Days of Month\" mode.
+
+            Valid values: 0 - 59
+
+        :type minutes: int
+
+        :param paused: (optional) Indicates if the schedule should be paused or
+            not.
+        :type paused: bool
+
+        :param recurring: (optional) Indicates if the schedule will be
+            recurring or not.
+        :type recurring: bool
+
+        :param starting_date: (optional) Time after which the schedule will be
+            run. If not set the schedule starts immediately. Formatted in UTC
+            time.
+        :type starting_date: str
+
+        :param monthdays: (optional) The days of the month that a snapshot will
+            be made.
+
+            Valid values: 1 - 31
+
+        :type monthdays: int
+
+        :param weekdays: (optional) Day of the week the snapshot is to be
+            created.
+
+            Required values:
+
+            day: 0 - 6 (Sunday - Saturday)
+
+            offset: 1
+
+        :type weekdays: Weekday
+
+        :returns: a response
+        :rtype: CreateScheduleResult
+        """
+
+        params = {
+            "attributes": attributes,
+            "scheduleName": schedule_name,
+            "scheduleType": schedule_type,
+            "scheduleInfo": schedule_info,
+        }
+        if hours is not None:
+            params["hours"] = hours
+        if minutes is not None:
+            params["minutes"] = minutes
+        if paused is not None:
+            params["paused"] = paused
+        if recurring is not None:
+            params["recurring"] = recurring
+        if starting_date is not None:
+            params["startingDate"] = starting_date
+        if monthdays is not None:
+            params["monthdays"] = monthdays
+        if weekdays is not None:
+            params["weekdays"] = weekdays
+
+        return self._send_request(
+            'CreateSchedule',
+            CreateScheduleResult,
+            params,
+            since=8.0,
+        )
+
+    def modify_schedule(
+            self,
+            schedule_id,
+            attributes=OPTIONAL,
+            hours=OPTIONAL,
+            minutes=OPTIONAL,
+            monthdays=OPTIONAL,
+            paused=OPTIONAL,
+            recurring=OPTIONAL,
+            run_next_interval=OPTIONAL,
+            schedule_info=OPTIONAL,
+            schedule_name=OPTIONAL,
+            schedule_type=OPTIONAL,
+            starting_date=OPTIONAL,
+            to_be_deleted=OPTIONAL,
+            weekdays=OPTIONAL,):
+        """
+        *modify_schedule* is used to change the intervals at which a scheduled
+        snapshot occurs. This allows for adjustment to the snapshot frequency
+        and retention.
+
+
+
+
+        :param schedule_id: [required] Unique ID of the schedule.
+        :type schedule_id: int
+
+        :param attributes: (optional) The \"frequency\" object is returned in
+            \"attributes\" to indicate the frequency at which the snapshot will
+            be made.
+
+            Valid values for \"frequency\" are:
+
+            Days of Week
+
+            Days of Month
+
+            Time Interval
+
+        :type attributes: dict
+
+        :param hours: (optional) Number of hours between snapshots or hour at
+            which the snapshot will occur in \"Days of Week\", or \"Days of
+            Month\" mode.
+
+            Valid values: 0 - 24
+
+        :type hours: int
+
+        :param minutes: (optional) Number of minutes between snapshots or
+            minute at which the snapshot will occur in \"Days of Week\", or
+            \"Days of Month\" mode.
+
+            Valid values: 0 - 59
+
+        :type minutes: int
+
+        :param monthdays: (optional) The days of the month that a snapshot will
+            be made.
+
+            Valid values: 1 - 31
+
+        :type monthdays: int
+
+        :param paused: (optional) Indicates if the schedule should be paused or
+            not.
+        :type paused: bool
+
+        :param recurring: (optional) Indicates if the schedule will be
+            recurring or not.
+        :type recurring: bool
+
+        :param run_next_interval: (optional) Use to choose to run the schedule
+            when the scheduler the next time the scheduler is active. When set
+            to \"true\", the schedule will run the next time the scheduler is
+            active and then reset back to \"false\".
+        :type run_next_interval: bool
+
+        :param schedule_info: (optional) An object of schedule information
+            about how the snapshot should be created at each scheduled
+            interval.
+
+            *volume_id* - The ID of the volume to be included in the snapshot.
+            (Integer)
+
+            volumes - A list of volume *ids* to be included in the group
+            snapshot. (Array of Integers)
+
+            name - The snapshot name to be used. (String)
+
+            *enable_remote_replication* - Indicates if the snapshot should be
+            included in remote replication. (Boolean)
+
+            retention - The amount of time the snapshot will be retained in
+            HH:mm:ss. (String)
+
+        :type schedule_info: ScheduleInfo
+
+        :param schedule_name: (optional) Unique name for the schedule.
+        :type schedule_name: str
+
+        :param schedule_type: (optional) Only \"snapshot\" is supported at this
+            time.
+        :type schedule_type: str
+
+        :param starting_date: (optional) Indicates the date the first time the
+            schedule began or will begin.
+        :type starting_date: str
+
+        :param to_be_deleted: (optional) Indicates if the schedule is marked
+            for deletion.
+        :type to_be_deleted: bool
+
+        :param weekdays: (optional) Day of the week the snapshot is to be
+            created. The day of the week starts at Sunday with the value of
+            \"0\" and an offset of \"1.\" Monday has a value of \"1\" with an
+            offset of \"1\", etc.
+        :type weekdays: Weekday
+
+        :returns: a response
+        :rtype: ModifyScheduleResult
+        """
+
+        params = {
+            "scheduleID": schedule_id,
+        }
+        if attributes is not None:
+            params["attributes"] = attributes
+        if hours is not None:
+            params["hours"] = hours
+        if minutes is not None:
+            params["minutes"] = minutes
+        if monthdays is not None:
+            params["monthdays"] = monthdays
+        if paused is not None:
+            params["paused"] = paused
+        if recurring is not None:
+            params["recurring"] = recurring
+        if run_next_interval is not None:
+            params["runNextInterval"] = run_next_interval
+        if schedule_info is not None:
+            params["scheduleInfo"] = schedule_info
+        if schedule_name is not None:
+            params["scheduleName"] = schedule_name
+        if schedule_type is not None:
+            params["scheduleType"] = schedule_type
+        if starting_date is not None:
+            params["startingDate"] = starting_date
+        if to_be_deleted is not None:
+            params["toBeDeleted"] = to_be_deleted
+        if weekdays is not None:
+            params["weekdays"] = weekdays
+
+        return self._send_request(
+            'ModifySchedule',
+            ModifyScheduleResult,
+            params,
+            since=8.0,
+        )
+
+    def get_raw_stats(
+            self,):
+        """
+        The *get_raw_stats* call is used by SolidFire engineering to
+        troubleshoot new features. The data returned from *get_raw_stats* is
+        not documented, it changes frequently, and is not guaranteed to be
+        accurate. It is not recommended to ever use *get_raw_stats* for
+        collecting performance data or any other management integration with a
+        SolidFire cluster.
+        The data returned from *get_raw_stats* changes frequently, and is not
+        guaranteed to accurately show performance from the system. It is not
+        recommended to ever use *get_raw_stats* for collecting performance data
+        or any other management integration with a SolidFire cluster.
+
+        :returns: a response
+        :rtype: Object
+        """
+
+        params = {}
+
+        return self._send_request(
+            'GetRawStats',
+            str,
+            params,
+        )
+
+    def get_complete_stats(
+            self,):
+        """
+        The *get_complete_stats* API method is used by SolidFire engineering to
+        troubleshoot new features. The data returned from *get_complete_stats*
+        is not documented, changes frequently, and is not guaranteed to be
+        accurate. It is not recommended to ever use *get_complete_stats* for
+        collecting performance data or any other management integration with a
+        SolidFire cluster.
+        The data returned from *get_complete_stats* changes frequently, and is
+        not guaranteed to accurately show performance from the system. It is
+        not recommended to ever use *get_complete_stats* for collecting
+        performance data or any other management integration with a SolidFire
+        cluster.
+
+        :returns: a response
+        :rtype: Object
+        """
+
+        params = {}
+
+        return self._send_request(
+            'GetCompleteStats',
+            str,
+            params,
         )
 
     def list_virtual_networks(
@@ -3341,5 +3972,32 @@ class Element(ServiceBase):
         return self._send_request(
             'RemoveVolumesFromVolumeAccessGroup',
             ModifyVolumeAccessGroupResult,
+            params,
+        )
+
+    def get_volume_access_group_efficiency(
+            self,
+            volume_access_group_id,):
+        """
+        *get_volume_access_group_efficiency* is used to retrieve efficiency
+        information about a volume access group. Only the volume access group
+        provided as parameters in this API method is used to compute the
+        capacity.
+
+        :param volume_access_group_id: [required] Specifies the volume access
+            group for which capacity is computed.
+        :type volume_access_group_id: int
+
+        :returns: a response
+        :rtype: GetEfficiencyResult
+        """
+
+        params = {
+            "volumeAccessGroupID": volume_access_group_id,
+        }
+
+        return self._send_request(
+            'GetVolumeAccessGroupEfficiency',
+            GetEfficiencyResult,
             params,
         )

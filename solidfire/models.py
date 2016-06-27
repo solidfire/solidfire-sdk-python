@@ -120,9 +120,6 @@ class DriveHardware(data_model.DataObject):
     :param slot: [required]
     :type slot: int
 
-    :param smart_ssd_write_capable: [required]
-    :type smart_ssd_write_capable: bool
-
     :param uuid: [required]
     :type uuid: UUID
 
@@ -131,6 +128,9 @@ class DriveHardware(data_model.DataObject):
 
     :param version: [required]
     :type version: str
+
+    :param smart_ssd_write_capable: (optional)
+    :type smart_ssd_write_capable: bool
     """
 
     canonical_name = data_model.property(
@@ -285,7 +285,7 @@ class DriveHardware(data_model.DataObject):
 
     smart_ssd_write_capable = data_model.property(
         "smartSsdWriteCapable", bool,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation=None
     )
 
@@ -716,6 +716,73 @@ class ResetDriveDetails(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class ScheduleInfo(data_model.DataObject):
+    """
+
+    :param volume_id: (optional) The ID of the volume to be included in the
+        snapshot.
+    :type volume_id: int
+
+    :param volumes: (optional) A list of volume *ids* to be included in the
+        group snapshot.
+    :type volumes: int
+
+    :param name: (optional) The snapshot name to be used.
+    :type name: str
+
+    :param enable_remote_replication: (optional) Indicates if the snapshot
+        should be included in remote replication.
+    :type enable_remote_replication: bool
+
+    :param retention: (optional) The amount of time the snapshot will be
+        retained in HH:mm:ss.
+    :type retention: str
+    """
+
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=True,
+        documentation="\
+        The ID of the volume to be included in the snapshot.\
+        "
+    )
+
+    volumes = data_model.property(
+        "volumes", int,
+        array=True, optional=True,
+        documentation="\
+        A list of volume *ids* to be included in the group snapshot.\
+        "
+    )
+
+    name = data_model.property(
+        "name", str,
+        array=False, optional=True,
+        documentation="\
+        The snapshot name to be used.\
+        "
+    )
+
+    enable_remote_replication = data_model.property(
+        "enableRemoteReplication", bool,
+        array=False, optional=True,
+        documentation="\
+        Indicates if the snapshot should be included in remote replication.\
+        "
+    )
+
+    retention = data_model.property(
+        "retention", str,
+        array=False, optional=True,
+        documentation="\
+        The amount of time the snapshot will be retained in HH:mm:ss.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class SnapshotReplication(data_model.DataObject):
     """
 
@@ -835,6 +902,32 @@ class VolumeQOS(data_model.DataObject):
         The curve is calculated relative to a 4096 byte operation set at 100\
         IOPS.\
         "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class Weekday(data_model.DataObject):
+    """
+
+    :param day: [required]
+    :type day: int
+
+    :param offset: [required]
+    :type offset: int
+    """
+
+    day = data_model.property(
+        "day", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    offset = data_model.property(
+        "offset", int,
+        array=False, optional=False,
+        documentation=None
     )
 
     def __init__(self, **kwargs):
@@ -1144,6 +1237,91 @@ class ClusterCapacity(data_model.DataObject):
         documentation="\
         Total number of 4KiB blocks without data after the last round of\
         garabage collection operation has completed.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class ClusterStats(data_model.DataObject):
+    """
+
+    :param cluster_utilization: [required] The amount of cluster capacity being
+        utilized.
+    :type cluster_utilization: float
+
+    :param client_queue_depth: [required]
+    :type client_queue_depth: int
+
+    :param read_bytes: [required] Total bytes read by clients.
+    :type read_bytes: int
+
+    :param read_ops: [required] Total read operations.
+    :type read_ops: int
+
+    :param timestamp: [required] Current time in UTC format. ISO 8601 date
+        string.
+    :type timestamp: str
+
+    :param write_bytes: [required] Total bytes written by clients.
+    :type write_bytes: int
+
+    :param write_ops: [required] Total write operations.
+    :type write_ops: int
+    """
+
+    cluster_utilization = data_model.property(
+        "clusterUtilization", float,
+        array=False, optional=False,
+        documentation="\
+        The amount of cluster capacity being utilized.\
+        "
+    )
+
+    client_queue_depth = data_model.property(
+        "clientQueueDepth", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    read_bytes = data_model.property(
+        "readBytes", int,
+        array=False, optional=False,
+        documentation="\
+        Total bytes read by clients.\
+        "
+    )
+
+    read_ops = data_model.property(
+        "readOps", int,
+        array=False, optional=False,
+        documentation="\
+        Total read operations.\
+        "
+    )
+
+    timestamp = data_model.property(
+        "timestamp", str,
+        array=False, optional=False,
+        documentation="\
+        Current time in UTC format. ISO 8601 date string.\
+        "
+    )
+
+    write_bytes = data_model.property(
+        "writeBytes", int,
+        array=False, optional=False,
+        documentation="\
+        Total bytes written by clients.\
+        "
+    )
+
+    write_ops = data_model.property(
+        "writeOps", int,
+        array=False, optional=False,
+        documentation="\
+        Total write operations.\
         "
     )
 
@@ -1590,6 +1768,104 @@ class NewDrive(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class PairedCluster(data_model.DataObject):
+    """
+
+    :param cluster_name: [required] Name of the other cluster in the pair
+    :type cluster_name: str
+
+    :param cluster_pair_id: [required] Unique ID given to each cluster in the
+        pair.
+    :type cluster_pair_id: int
+
+    :param cluster_pair_uuid: [required] Universally unique identifier.
+    :type cluster_pair_uuid: UUID
+
+    :param latency: [required] Number, in milliseconds, of latency between
+        clusters.
+    :type latency: int
+
+    :param mvip: [required] IP of the management connection for paired
+        clusters.
+    :type mvip: str
+
+    :param status: [required] Can be one of the following:
+
+        **Connected** **Misconfigured** **Disconnected**
+
+    :type status: str
+
+    :param version: [required] The Element OS version of the other cluster in
+        the pair.
+    :type version: str
+    """
+
+    cluster_name = data_model.property(
+        "clusterName", str,
+        array=False, optional=False,
+        documentation="\
+        Name of the other cluster in the pair\
+        "
+    )
+
+    cluster_pair_id = data_model.property(
+        "clusterPairID", int,
+        array=False, optional=False,
+        documentation="\
+        Unique ID given to each cluster in the pair.\
+        "
+    )
+
+    cluster_pair_uuid = data_model.property(
+        "clusterPairUUID", UUID,
+        array=False, optional=False,
+        documentation="\
+        Universally unique identifier.\
+        "
+    )
+
+    latency = data_model.property(
+        "latency", int,
+        array=False, optional=False,
+        documentation="\
+        Number, in milliseconds, of latency between clusters.\
+        "
+    )
+
+    mvip = data_model.property(
+        "mvip", str,
+        array=False, optional=False,
+        documentation="\
+        IP of the management connection for paired clusters.\
+        "
+    )
+
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation="\
+        Can be one of the following:\
+\
+\
+\
+        **Connected**\
+        **Misconfigured**\
+        **Disconnected**\
+        "
+    )
+
+    version = data_model.property(
+        "version", str,
+        array=False, optional=False,
+        documentation="\
+        The Element OS version of the other cluster in the pair.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class RemoteReplication(data_model.DataObject):
     """
     Details on the volume replication.
@@ -1867,6 +2143,149 @@ class Network(data_model.DataObject):
         "Bond1G", NetworkConfig,
         array=False, optional=True,
         documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class NodeStatsInfo(data_model.DataObject):
+    """
+
+    :param c_bytes_in: [required] Bytes in on the cluster interface.
+    :type c_bytes_in: int
+
+    :param c_bytes_out: [required] Bytes out on the cluster interface.
+    :type c_bytes_out: int
+
+    :param cpu: [required] CPU Usage %
+    :type cpu: int
+
+    :param m_bytes_in: [required] Bytes in on the management interface.
+    :type m_bytes_in: int
+
+    :param m_bytes_out: [required] Bytes out on the management interface.
+    :type m_bytes_out: int
+
+    :param network_utilization_cluster: [required] Network interface
+        utilization (in %) for the cluster network interface.
+    :type network_utilization_cluster: int
+
+    :param network_utilization_storage: [required] Network interface
+        utilization (in %) for the storage network interface.
+    :type network_utilization_storage: int
+
+    :param node_id: [required]
+    :type node_id: int
+
+    :param s_bytes_in: [required] Bytes in on the storage interface.
+    :type s_bytes_in: int
+
+    :param s_bytes_out: [required] Bytes out on the storage interface.
+    :type s_bytes_out: int
+
+    :param timestamp: [required] Current time in UTC format ISO 8691 date
+        string.
+    :type timestamp: str
+
+    :param used_memory: [required] Total memory usage in bytes.
+    :type used_memory: int
+    """
+
+    c_bytes_in = data_model.property(
+        "cBytesIn", int,
+        array=False, optional=False,
+        documentation="\
+        Bytes in on the cluster interface.\
+        "
+    )
+
+    c_bytes_out = data_model.property(
+        "cBytesOut", int,
+        array=False, optional=False,
+        documentation="\
+        Bytes out on the cluster interface.\
+        "
+    )
+
+    cpu = data_model.property(
+        "cpu", int,
+        array=False, optional=False,
+        documentation="\
+        CPU Usage %\
+        "
+    )
+
+    m_bytes_in = data_model.property(
+        "mBytesIn", int,
+        array=False, optional=False,
+        documentation="\
+        Bytes in on the management interface.\
+        "
+    )
+
+    m_bytes_out = data_model.property(
+        "mBytesOut", int,
+        array=False, optional=False,
+        documentation="\
+        Bytes out on the management interface.\
+        "
+    )
+
+    network_utilization_cluster = data_model.property(
+        "networkUtilizationCluster", int,
+        array=False, optional=False,
+        documentation="\
+        Network interface utilization (in %) for the cluster network\
+        interface.\
+        "
+    )
+
+    network_utilization_storage = data_model.property(
+        "networkUtilizationStorage", int,
+        array=False, optional=False,
+        documentation="\
+        Network interface utilization (in %) for the storage network\
+        interface.\
+        "
+    )
+
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    s_bytes_in = data_model.property(
+        "sBytesIn", int,
+        array=False, optional=False,
+        documentation="\
+        Bytes in on the storage interface.\
+        "
+    )
+
+    s_bytes_out = data_model.property(
+        "sBytesOut", int,
+        array=False, optional=False,
+        documentation="\
+        Bytes out on the storage interface.\
+        "
+    )
+
+    timestamp = data_model.property(
+        "timestamp", str,
+        array=False, optional=False,
+        documentation="\
+        Current time in UTC format ISO 8691 date string.\
+        "
+    )
+
+    used_memory = data_model.property(
+        "usedMemory", int,
+        array=False, optional=False,
+        documentation="\
+        Total memory usage in bytes.\
+        "
     )
 
     def __init__(self, **kwargs):
@@ -2205,6 +2624,316 @@ class NodeDriveHardware(data_model.DataObject):
         "result", DrivesHardware,
         array=False, optional=False,
         documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class NodeStatsNodes(data_model.DataObject):
+    """
+
+    :param nodes: [required] Node activity information for a single node.
+    :type nodes: NodeStatsInfo
+    """
+
+    nodes = data_model.property(
+        "nodes", NodeStatsInfo,
+        array=True, optional=False,
+        documentation="\
+        Node activity information for a single node.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class Schedule(data_model.DataObject):
+    """
+    Schedule is an object containing information about each schedule created to
+    autonomously make a snapshot of a volume. The return object includes
+    information for all schedules. If *schedule_id* is used to identify a
+    specific schedule then only information for that *schedule_id* is returned.
+    Schedules information is returned with the API method, see *list_schedules*
+    on the SolidFire API guide page 245.
+
+    :param attributes: [required] Indicates the frequency of the schedule
+        occurrence.
+
+        Valid values are:
+
+        Day of Week
+
+        Day of Month
+
+        Time Interval
+
+    :type attributes: dict
+
+    :param has_error: [required] Indicates whether or not the schedule has
+        errors.
+    :type has_error: bool
+
+    :param hours: [required] Shows the hours that will elapse before the next
+        snapshot is created.
+
+        Valid values are: 0 - 24
+
+    :type hours: int
+
+    :param last_run_status: [required] Indicates the status of the last
+        scheduled snapshot.
+
+        Valid values are:
+
+        Success
+
+        Failed
+
+    :type last_run_status: str
+
+    :param last_run_time_start: [required] Indicates the last time the schedule
+        started n ISO 8601 date string. Valid values are:
+
+        Success
+
+        Failed
+
+    :type last_run_time_start: str
+
+    :param minutes: [required] Shows the minutes that will elapse before the
+        next snapshot is created. Valid values are: 0 - 59
+    :type minutes: int
+
+    :param monthdays: [required] Shows the days of the month that the next
+        snapshot will be created on. Valid values are: 0 - 31
+    :type monthdays: int
+
+    :param paused: [required] Indicates whether or not the schedule is paused.
+    :type paused: bool
+
+    :param recurring: [required] Indicates whether or not the schedule is
+        recurring.
+    :type recurring: bool
+
+    :param run_next_interval: [required] Indicates whether or not the schedule
+        will run the next time the scheduler is active. When set to \"true\",
+        the schedule will run the next time the scheduler is active and then
+        reset back to \"false\".
+    :type run_next_interval: bool
+
+    :param schedule_id: [required] Unique ID of the schedule
+    :type schedule_id: int
+
+    :param schedule_info: [required] Includes the unique name given to the
+        schedule, the retention period for the snapshot that was created, and
+        the volume ID of the volume from which the snapshot was created.
+    :type schedule_info: ScheduleInfo
+
+    :param schedule_name: [required] Unique name assigned to the schedule.
+    :type schedule_name: str
+
+    :param schedule_type: [required] Only \"snapshot\" is supported at this
+        time.
+    :type schedule_type: str
+
+    :param starting_date: [required] Indicates the date the first time the
+        schedule began of will begin. Formatted in UTC time.
+    :type starting_date: str
+
+    :param to_be_deleted: [required] Indicates if the schedule is marked for
+        deletion.
+    :type to_be_deleted: bool
+
+    :param weekdays: [required] Indicates the days of the week that a snapshot
+        will be made.
+    :type weekdays: Weekday
+    """
+
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=False,
+        documentation="\
+        Indicates the frequency of the schedule occurrence.\
+\
+\
+\
+        Valid values are:\
+\
+\
+\
+        Day of Week\
+\
+\
+\
+        Day of Month\
+\
+\
+\
+        Time Interval\
+        "
+    )
+
+    has_error = data_model.property(
+        "hasError", bool,
+        array=False, optional=False,
+        documentation="\
+        Indicates whether or not the schedule has errors.\
+        "
+    )
+
+    hours = data_model.property(
+        "hours", int,
+        array=False, optional=False,
+        documentation="\
+        Shows the hours that will elapse before the next snapshot is created.\
+\
+\
+\
+        Valid values are: 0 - 24\
+        "
+    )
+
+    last_run_status = data_model.property(
+        "lastRunStatus", str,
+        array=False, optional=False,
+        documentation="\
+        Indicates the status of the last scheduled snapshot.\
+\
+\
+\
+        Valid values are:\
+\
+\
+\
+        Success\
+\
+\
+\
+        Failed\
+        "
+    )
+
+    last_run_time_start = data_model.property(
+        "lastRunTimeStart", str,
+        array=False, optional=False,
+        documentation="\
+        Indicates the last time the schedule started n ISO 8601 date string.\
+        Valid values are:\
+\
+\
+\
+        Success\
+\
+\
+\
+        Failed\
+        "
+    )
+
+    minutes = data_model.property(
+        "minutes", int,
+        array=False, optional=False,
+        documentation="\
+        Shows the minutes that will elapse before the next snapshot is\
+        created.\
+        Valid values are: 0 - 59\
+        "
+    )
+
+    monthdays = data_model.property(
+        "monthdays", int,
+        array=True, optional=False,
+        documentation="\
+        Shows the days of the month that the next snapshot will be created on.\
+        Valid values are: 0 - 31\
+        "
+    )
+
+    paused = data_model.property(
+        "paused", bool,
+        array=False, optional=False,
+        documentation="\
+        Indicates whether or not the schedule is paused.\
+        "
+    )
+
+    recurring = data_model.property(
+        "recurring", bool,
+        array=False, optional=False,
+        documentation="\
+        Indicates whether or not the schedule is recurring.\
+        "
+    )
+
+    run_next_interval = data_model.property(
+        "runNextInterval", bool,
+        array=False, optional=False,
+        documentation="\
+        Indicates whether or not the schedule will run the next time the\
+        scheduler is active. When set to \"true\", the schedule will run the\
+        next time the scheduler is active and then reset back to \"false\".\
+        "
+    )
+
+    schedule_id = data_model.property(
+        "scheduleID", int,
+        array=False, optional=False,
+        documentation="\
+        Unique ID of the schedule\
+        "
+    )
+
+    schedule_info = data_model.property(
+        "scheduleInfo", ScheduleInfo,
+        array=False, optional=False,
+        documentation="\
+        Includes the unique name given to the schedule, the retention period\
+        for the snapshot that was created, and the volume ID of the volume\
+        from which the snapshot was created.\
+        "
+    )
+
+    schedule_name = data_model.property(
+        "scheduleName", str,
+        array=False, optional=False,
+        documentation="\
+        Unique name assigned to the schedule.\
+        "
+    )
+
+    schedule_type = data_model.property(
+        "scheduleType", str,
+        array=False, optional=False,
+        documentation="\
+        Only \"snapshot\" is supported at this time.\
+        "
+    )
+
+    starting_date = data_model.property(
+        "startingDate", str,
+        array=False, optional=False,
+        documentation="\
+        Indicates the date the first time the schedule began of will begin.\
+        Formatted in UTC time.\
+        "
+    )
+
+    to_be_deleted = data_model.property(
+        "toBeDeleted", bool,
+        array=False, optional=False,
+        documentation="\
+        Indicates if the schedule is marked for deletion.\
+        "
+    )
+
+    weekdays = data_model.property(
+        "weekdays", Weekday,
+        array=True, optional=False,
+        documentation="\
+        Indicates the days of the week that a snapshot will be made.\
+        "
     )
 
     def __init__(self, **kwargs):
