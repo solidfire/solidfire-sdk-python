@@ -2089,6 +2089,32 @@ class VirtualNetwork(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class Weekday(data_model.DataObject):
+    """
+
+    :param day: [required]
+    :type day: int
+
+    :param offset: [required]
+    :type offset: int
+    """
+
+    day = data_model.property(
+        "day", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    offset = data_model.property(
+        "offset", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class ClusterCapacity(data_model.DataObject):
     """
     High level capacity measurements for the entire cluster.
@@ -2669,6 +2695,104 @@ class NewDrive(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class PairedCluster(data_model.DataObject):
+    """
+
+    :param cluster_name: [required] Name of the other cluster in the pair
+    :type cluster_name: str
+
+    :param cluster_pair_id: [required] Unique ID given to each cluster in the
+        pair.
+    :type cluster_pair_id: int
+
+    :param cluster_pair_uuid: [required] Universally unique identifier.
+    :type cluster_pair_uuid: UUID
+
+    :param latency: [required] Number, in milliseconds, of latency between
+        clusters.
+    :type latency: int
+
+    :param mvip: [required] IP of the management connection for paired
+        clusters.
+    :type mvip: str
+
+    :param status: [required] Can be one of the following:
+
+        **Connected** **Misconfigured** **Disconnected**
+
+    :type status: str
+
+    :param version: [required] The Element OS version of the other cluster in
+        the pair.
+    :type version: str
+    """
+
+    cluster_name = data_model.property(
+        "clusterName", str,
+        array=False, optional=False,
+        documentation="\
+        Name of the other cluster in the pair\
+        "
+    )
+
+    cluster_pair_id = data_model.property(
+        "clusterPairID", int,
+        array=False, optional=False,
+        documentation="\
+        Unique ID given to each cluster in the pair.\
+        "
+    )
+
+    cluster_pair_uuid = data_model.property(
+        "clusterPairUUID", UUID,
+        array=False, optional=False,
+        documentation="\
+        Universally unique identifier.\
+        "
+    )
+
+    latency = data_model.property(
+        "latency", int,
+        array=False, optional=False,
+        documentation="\
+        Number, in milliseconds, of latency between clusters.\
+        "
+    )
+
+    mvip = data_model.property(
+        "mvip", str,
+        array=False, optional=False,
+        documentation="\
+        IP of the management connection for paired clusters.\
+        "
+    )
+
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation="\
+        Can be one of the following:\
+\
+\
+\
+        **Connected**\
+        **Misconfigured**\
+        **Disconnected**\
+        "
+    )
+
+    version = data_model.property(
+        "version", str,
+        array=False, optional=False,
+        documentation="\
+        The Element OS version of the other cluster in the pair.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class RemoteReplication(data_model.DataObject):
     """
     Details on the volume replication.
@@ -2901,6 +3025,149 @@ class Network(data_model.DataObject):
         "Bond1G", NetworkConfig,
         array=False, optional=True,
         documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class NodeStatsInfo(data_model.DataObject):
+    """
+
+    :param c_bytes_in: [required] Bytes in on the cluster interface.
+    :type c_bytes_in: int
+
+    :param c_bytes_out: [required] Bytes out on the cluster interface.
+    :type c_bytes_out: int
+
+    :param cpu: [required] CPU Usage %
+    :type cpu: int
+
+    :param m_bytes_in: [required] Bytes in on the management interface.
+    :type m_bytes_in: int
+
+    :param m_bytes_out: [required] Bytes out on the management interface.
+    :type m_bytes_out: int
+
+    :param network_utilization_cluster: [required] Network interface
+        utilization (in %) for the cluster network interface.
+    :type network_utilization_cluster: int
+
+    :param network_utilization_storage: [required] Network interface
+        utilization (in %) for the storage network interface.
+    :type network_utilization_storage: int
+
+    :param node_id: [required]
+    :type node_id: int
+
+    :param s_bytes_in: [required] Bytes in on the storage interface.
+    :type s_bytes_in: int
+
+    :param s_bytes_out: [required] Bytes out on the storage interface.
+    :type s_bytes_out: int
+
+    :param timestamp: [required] Current time in UTC format ISO 8691 date
+        string.
+    :type timestamp: str
+
+    :param used_memory: [required] Total memory usage in bytes.
+    :type used_memory: int
+    """
+
+    c_bytes_in = data_model.property(
+        "cBytesIn", int,
+        array=False, optional=False,
+        documentation="\
+        Bytes in on the cluster interface.\
+        "
+    )
+
+    c_bytes_out = data_model.property(
+        "cBytesOut", int,
+        array=False, optional=False,
+        documentation="\
+        Bytes out on the cluster interface.\
+        "
+    )
+
+    cpu = data_model.property(
+        "cpu", int,
+        array=False, optional=False,
+        documentation="\
+        CPU Usage %\
+        "
+    )
+
+    m_bytes_in = data_model.property(
+        "mBytesIn", int,
+        array=False, optional=False,
+        documentation="\
+        Bytes in on the management interface.\
+        "
+    )
+
+    m_bytes_out = data_model.property(
+        "mBytesOut", int,
+        array=False, optional=False,
+        documentation="\
+        Bytes out on the management interface.\
+        "
+    )
+
+    network_utilization_cluster = data_model.property(
+        "networkUtilizationCluster", int,
+        array=False, optional=False,
+        documentation="\
+        Network interface utilization (in %) for the cluster network\
+        interface.\
+        "
+    )
+
+    network_utilization_storage = data_model.property(
+        "networkUtilizationStorage", int,
+        array=False, optional=False,
+        documentation="\
+        Network interface utilization (in %) for the storage network\
+        interface.\
+        "
+    )
+
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    s_bytes_in = data_model.property(
+        "sBytesIn", int,
+        array=False, optional=False,
+        documentation="\
+        Bytes in on the storage interface.\
+        "
+    )
+
+    s_bytes_out = data_model.property(
+        "sBytesOut", int,
+        array=False, optional=False,
+        documentation="\
+        Bytes out on the storage interface.\
+        "
+    )
+
+    timestamp = data_model.property(
+        "timestamp", str,
+        array=False, optional=False,
+        documentation="\
+        Current time in UTC format ISO 8691 date string.\
+        "
+    )
+
+    used_memory = data_model.property(
+        "usedMemory", int,
+        array=False, optional=False,
+        documentation="\
+        Total memory usage in bytes.\
+        "
     )
 
     def __init__(self, **kwargs):
