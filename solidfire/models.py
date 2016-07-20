@@ -1818,6 +1818,7 @@ class DrivesHardware(data_model.DataObject):
 
 class FibreChannelPortList(data_model.DataObject):
     """
+    List of all Fibre Channel ports.
 
     :param fibre_channel_ports: [required] List of all physical Fibre Channel
         ports.
@@ -2595,24 +2596,31 @@ class ClusterVersionInfo(data_model.DataObject):
 
 class LunAssignment(data_model.DataObject):
     """
+    *volume_id* and Lun assignment.
 
-    :param volume_id: [required]
+    :param volume_id: [required] The volume ID assigned to the Lun.
     :type volume_id: int
 
-    :param lun: [required]
+    :param lun: [required] Correct LUN values are 0 - 16383. An exception will
+        be seen if an incorrect LUN value is passed.
     :type lun: int
     """
 
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation=None
+        documentation="\
+        The volume ID assigned to the Lun.\
+        "
     )
 
     lun = data_model.property(
         "lun", int,
         array=False, optional=False,
-        documentation=None
+        documentation="\
+        Correct LUN values are 0 - 16383. An exception will be seen if an\
+        incorrect LUN value is passed.\
+        "
     )
 
     def __init__(self, **kwargs):
@@ -2885,51 +2893,70 @@ class DriveInfo(data_model.DataObject):
 
 class FibreChannelSession(data_model.DataObject):
     """
+    *fibre_channel_session* contains information about each Fibre Channel
+    session that is visible to the cluster and what target ports it is visible
+    on.
 
-    :param initiator_wwpn: [required]
+    :param initiator_wwpn: [required] The WWPN of the initiator which is logged
+        into the target port.
     :type initiator_wwpn: str
 
-    :param node_id: [required]
+    :param node_id: [required] The node owning the Fibre Channel session.
     :type node_id: int
 
-    :param service_id: [required]
+    :param service_id: [required] The service ID of the *fservice* owning this
+        Fibre Channel session
     :type service_id: int
 
-    :param target_wwpn: [required]
+    :param target_wwpn: [required] The WWPN of the target port involved in this
+        session.
     :type target_wwpn: str
 
-    :param volume_access_group_id: [required]
+    :param volume_access_group_id: [required] The ID of the volume access group
+        to which the *initiator_wwpn* belongs. If not in a volume access group,
+        the value will be null.
     :type volume_access_group_id: int
     """
 
     initiator_wwpn = data_model.property(
         "initiatorWWPN", str,
         array=False, optional=False,
-        documentation=None
+        documentation="\
+        The WWPN of the initiator which is logged into the target port.\
+        "
     )
 
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
-        documentation=None
+        documentation="\
+        The node owning the Fibre Channel session.\
+        "
     )
 
     service_id = data_model.property(
         "serviceID", int,
         array=False, optional=False,
-        documentation=None
+        documentation="\
+        The service ID of the *fservice* owning this Fibre Channel session\
+        "
     )
 
     target_wwpn = data_model.property(
         "targetWWPN", str,
         array=False, optional=False,
-        documentation=None
+        documentation="\
+        The WWPN of the target port involved in this session.\
+        "
     )
 
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation=None
+        documentation="\
+        The ID of the volume access group to which the *initiator_wwpn*\
+        belongs. If not in a volume access group, the value will be null.\
+        "
     )
 
     def __init__(self, **kwargs):
@@ -3698,33 +3725,44 @@ class VolumeAccessGroup(data_model.DataObject):
 
 class VolumeAccessGroupLunAssignments(data_model.DataObject):
     """
+    *volume_access_group* ID and Lun to be assigned to all volumes within it.
 
-    :param volume_access_group_id: [required]
+    :param volume_access_group_id: [required] Unique volume access group ID for
+        which the LUN assignments will be modified.
     :type volume_access_group_id: int
 
-    :param lun_assignments: [required]
+    :param lun_assignments: [required] The volume *ids* with assigned LUN
+        values.
     :type lun_assignments: LunAssignment
 
-    :param deleted_lun_assignments: [required]
+    :param deleted_lun_assignments: [required] The volume *ids* with deleted
+        LUN values.
     :type deleted_lun_assignments: LunAssignment
     """
 
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation=None
+        documentation="\
+        Unique volume access group ID for which the LUN assignments will be\
+        modified.\
+        "
     )
 
     lun_assignments = data_model.property(
         "lunAssignments", LunAssignment,
         array=True, optional=False,
-        documentation=None
+        documentation="\
+        The volume *ids* with assigned LUN values.\
+        "
     )
 
     deleted_lun_assignments = data_model.property(
         "deletedLunAssignments", LunAssignment,
         array=True, optional=False,
-        documentation=None
+        documentation="\
+        The volume *ids* with deleted LUN values.\
+        "
     )
 
     def __init__(self, **kwargs):
