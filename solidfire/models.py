@@ -42,6 +42,14 @@ class AddressBlock(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class CHAPSecret(data_model.DataObject):
+    """
+    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class DriveHardware(data_model.DataObject):
     """
 
@@ -445,6 +453,193 @@ class DriveHardwareInfo(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class FibreChannelPortInfo(data_model.DataObject):
+    """
+    Fibre Channel Node Port Info object returns information about all Fibre
+    Channel ports on a node, or for one node in the cluster. The same
+    information is returned for all ports or port information for one node.
+    This information is returned with the API method
+    *list_node_fibre_channel_port_info* (in the SolidFire API Guide).
+
+    :param firmware: [required] The version of the firmware installed on the
+        Fibre Channel port.
+    :type firmware: str
+
+    :param hba_port: [required] The ID of the individual HBA port.
+    :type hba_port: int
+
+    :param model: [required] Model of the HBA on the port.
+    :type model: str
+
+    :param n_port_id: [required] Unique SolidFire port node ID.
+    :type n_port_id: str
+
+    :param pci_slot: [required] Slot in which the pci card resides on the Fibre
+        Channel node hardware.
+    :type pci_slot: int
+
+    :param serial: [required] Serial number on the Fibre Channel port.
+    :type serial: str
+
+    :param speed: [required] Speed of the HBA on the port.
+    :type speed: str
+
+    :param state: [required] Possible values:
+
+        **Unknown
+
+        *not_present*
+
+        Online
+
+        Offline
+
+        Blocked
+
+        Bypassed
+
+        Diagnostics
+
+        Linkdown
+
+        Error
+
+        Loopback
+
+        Deleted**
+
+    :type state: str
+
+    :param switch_wwn: [required] The World Wide Name of the Fibre Channel
+        switch port.
+    :type switch_wwn: str
+
+    :param wwnn: [required] World Wide Node Name of the HBA node.
+    :type wwnn: str
+
+    :param wwpn: [required] World Wide Port Name assigned to the physical port
+        of the HBA.
+    :type wwpn: str
+    """
+
+    firmware = data_model.property(
+        "firmware", str,
+        array=False, optional=False,
+        documentation="\
+        The version of the firmware installed on the Fibre Channel port.\
+        "
+    )
+
+    hba_port = data_model.property(
+        "hbaPort", int,
+        array=False, optional=False,
+        documentation="\
+        The ID of the individual HBA port.\
+        "
+    )
+
+    model = data_model.property(
+        "model", str,
+        array=False, optional=False,
+        documentation="\
+        Model of the HBA on the port.\
+        "
+    )
+
+    n_port_id = data_model.property(
+        "nPortID", str,
+        array=False, optional=False,
+        documentation="\
+        Unique SolidFire port node ID.\
+        "
+    )
+
+    pci_slot = data_model.property(
+        "pciSlot", int,
+        array=False, optional=False,
+        documentation="\
+        Slot in which the pci card resides on the Fibre Channel node hardware.\
+        "
+    )
+
+    serial = data_model.property(
+        "serial", str,
+        array=False, optional=False,
+        documentation="\
+        Serial number on the Fibre Channel port.\
+        "
+    )
+
+    speed = data_model.property(
+        "speed", str,
+        array=False, optional=False,
+        documentation="\
+        Speed of the HBA on the port.\
+        "
+    )
+
+    state = data_model.property(
+        "state", str,
+        array=False, optional=False,
+        documentation="\
+        Possible values:\
+\
+\
+\
+\
+        **Unknown\
+\
+            *not_present*\
+\
+            Online\
+\
+            Offline\
+\
+            Blocked\
+\
+            Bypassed\
+\
+            Diagnostics\
+\
+            Linkdown\
+\
+            Error\
+\
+            Loopback\
+\
+            Deleted**\
+\
+        "
+    )
+
+    switch_wwn = data_model.property(
+        "switchWwn", str,
+        array=False, optional=False,
+        documentation="\
+        The World Wide Name of the Fibre Channel switch port.\
+        "
+    )
+
+    wwnn = data_model.property(
+        "wwnn", str,
+        array=False, optional=False,
+        documentation="\
+        World Wide Node Name of the HBA node.\
+        "
+    )
+
+    wwpn = data_model.property(
+        "wwpn", str,
+        array=False, optional=False,
+        documentation="\
+        World Wide Port Name assigned to the physical port of the HBA.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class PhysicalAdapter(data_model.DataObject):
     """
 
@@ -813,6 +1008,129 @@ class SnapshotReplication(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class SnmpNetwork(data_model.DataObject):
+    """
+    The SNMP network object contains information about SNMP configuration for
+    the cluster nodes. SNMP v3 is supported on SolidFire clusters.
+
+    :param access: [required] **ro**: read-only access.* **rw**: for read-write
+        access. **rosys**: for read-only access to a restricted set of system
+        information *SolidFire recommends that all networks other than the
+        default \"localhost\" be set to \"ro\" access, because all SolidFire
+        MIB objects are read-only.
+    :type access: str
+
+    :param cidr: [required] A CIDR network mask. This network mask must be an
+        integer greater than or equal to 0, and less than or equal to 32. It
+        must also not be equal to 31.
+    :type cidr: int
+
+    :param community: [required] SNMP community string.
+    :type community: str
+
+    :param network: [required] This parameter along with the cidr variable is
+        used to control which network the access and community string apply to.
+        The special value of \"default\" is used to specify an entry that
+        applies to all networks. The cidr mask is ignored when network value is
+        either a host name or default.
+    :type network: str
+    """
+
+    access = data_model.property(
+        "access", str,
+        array=False, optional=False,
+        documentation="\
+        **ro**: read-only access.*\
+        **rw**: for read-write access.\
+        **rosys**: for read-only access to a restricted set of system\
+        information\
+        *SolidFire recommends that all networks other than the default\
+        \"localhost\" be set to \"ro\" access, because all SolidFire MIB\
+        objects are read-only.\
+        "
+    )
+
+    cidr = data_model.property(
+        "cidr", int,
+        array=False, optional=False,
+        documentation="\
+        A CIDR network mask. This network mask must be an integer greater than\
+        or equal to 0, and less than or equal to 32. It must also not be equal\
+        to 31.\
+        "
+    )
+
+    community = data_model.property(
+        "community", str,
+        array=False, optional=False,
+        documentation="\
+        SNMP community string.\
+        "
+    )
+
+    network = data_model.property(
+        "network", str,
+        array=False, optional=False,
+        documentation="\
+        This parameter along with the cidr variable is used to control which\
+        network the access and community string apply to. The special value of\
+        \"default\" is used to specify an entry that applies to all networks.\
+        The cidr mask is ignored when network value is either a host name or\
+        default.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class SnmpTrapRecipient(data_model.DataObject):
+    """
+    Host that is to receive the traps generated by the cluster.
+
+    :param host: [required] The IP address or host name of the target network
+        management station.
+    :type host: str
+
+    :param community: [required] SNMP community string.
+    :type community: str
+
+    :param port: [required] The UDP port number on the host where the trap is
+        to be sent. Valid range is 1 - 65535. 0 (zero) is not a valid port
+        number. Default is 162.
+    :type port: int
+    """
+
+    host = data_model.property(
+        "host", str,
+        array=False, optional=False,
+        documentation="\
+        The IP address or host name of the target network management station.\
+        "
+    )
+
+    community = data_model.property(
+        "community", str,
+        array=False, optional=False,
+        documentation="\
+        SNMP community string.\
+        "
+    )
+
+    port = data_model.property(
+        "port", int,
+        array=False, optional=False,
+        documentation="\
+        The UDP port number on the host where the trap is to be sent. Valid\
+        range is 1 - 65535. 0 (zero) is not a valid port number. Default is\
+        162.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class VolumeQOS(data_model.DataObject):
     """
     Quality of Service (QoS) Result values are used on SolidFire volumes to
@@ -845,7 +1163,7 @@ class VolumeQOS(data_model.DataObject):
         are I/O sizes in bytes. The values represent the cost performing an IOP
         at a specific I/O size. The curve is calculated relative to a 4096 byte
         operation set at 100 IOPS.
-    :type curve: str
+    :type curve: dict
     """
 
     min_iops = data_model.property(
@@ -892,7 +1210,7 @@ class VolumeQOS(data_model.DataObject):
     )
 
     curve = data_model.property(
-        "curve", str,
+        "curve", dict,
         array=False, optional=False,
         documentation="\
         The curve is a set of key-value pairs.\
@@ -1498,6 +1816,26 @@ class DrivesHardware(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class FibreChannelPortList(data_model.DataObject):
+    """
+
+    :param fibre_channel_ports: [required] List of all physical Fibre Channel
+        ports.
+    :type fibre_channel_ports: FibreChannelPortInfo
+    """
+
+    fibre_channel_ports = data_model.property(
+        "fibreChannelPorts", FibreChannelPortInfo,
+        array=True, optional=False,
+        documentation="\
+        List of all physical Fibre Channel ports.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class NetworkConfig(data_model.DataObject):
     """
 
@@ -2014,6 +2352,94 @@ class ResetDrivesDetails(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class SnmpV3UsmUser(data_model.DataObject):
+    """
+    The SNMP v3 *usm_user* object is used with the API method *set_snmp_info*
+    to configure SNMP on the cluster.
+
+    :param access: [required] **rouser**: read-only access.* **rwuser**: for
+        read-write access. **rosys**: for read-only access to a restricted set
+        of system information *SolidFire recommends that all USM users be set
+        to \"rouser\" access, because all SolidFire MIB objects are read-only.
+    :type access: str
+
+    :param name: [required] The name of the user. Must contain at least one
+        character, but no more than 32 characters. Blank spaces are not
+        allowed.
+    :type name: str
+
+    :param password: [required] The password of the user. Must be between 8 and
+        255 characters long (inclusive). Blank spaces are not allowed. Required
+        if \"secLevel\" is \"auth\" or \"priv.\"
+    :type password: str
+
+    :param passphrase: [required] The passphrase of the user. Must be between 8
+        and 255 characters long (inclusive). Blank spaces are not allowed.
+        Required if \"secLevel\" is \"priv.\"
+    :type passphrase: str
+
+    :param sec_level: [required] **noauth**: No password or passphrase is
+        required. **auth**: A password is required for user access. **priv**: A
+        password and passphrase is required for user access.
+    :type sec_level: str
+    """
+
+    access = data_model.property(
+        "access", str,
+        array=False, optional=False,
+        documentation="\
+        **rouser**: read-only access.*\
+        **rwuser**: for read-write access.\
+        **rosys**: for read-only access to a restricted set of system\
+        information\
+        *SolidFire recommends that all USM users be set to \"rouser\" access,\
+        because all SolidFire MIB objects are read-only.\
+        "
+    )
+
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="\
+        The name of the user. Must contain at least one character, but no more\
+        than 32 characters. Blank spaces are not allowed.\
+        "
+    )
+
+    password = data_model.property(
+        "password", str,
+        array=False, optional=False,
+        documentation="\
+        The password of the user. Must be between 8 and 255 characters long\
+        (inclusive). Blank spaces are not allowed. Required if *\"sec_level\"*\
+        is \"auth\" or \"priv.\"\
+        "
+    )
+
+    passphrase = data_model.property(
+        "passphrase", str,
+        array=False, optional=False,
+        documentation="\
+        The passphrase of the user. Must be between 8 and 255 characters long\
+        (inclusive). Blank spaces are not allowed. Required if *\"sec_level\"*\
+        is \"priv.\"\
+        "
+    )
+
+    sec_level = data_model.property(
+        "secLevel", str,
+        array=False, optional=False,
+        documentation="\
+        **noauth**: No password or passphrase is required.\
+        **auth**: A password is required for user access.\
+        **priv**: A password and passphrase is required for user access.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class AddedNode(data_model.DataObject):
     """
 
@@ -2034,6 +2460,50 @@ class AddedNode(data_model.DataObject):
         "pendingNodeID", int,
         array=False, optional=False,
         documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class BackupTarget(data_model.DataObject):
+    """
+    The object containing information about a backup target.
+
+    :param name: [required] Name for the backup target.
+    :type name: str
+
+    :param backup_target_id: [required] Unique identifier assigned to the
+        backup target.
+    :type backup_target_id: int
+
+    :param attributes: (optional) List of Name/Value pairs in JSON object
+        format.
+    :type attributes: dict
+    """
+
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="\
+        Name for the backup target.\
+        "
+    )
+
+    backup_target_id = data_model.property(
+        "backupTargetID", int,
+        array=False, optional=False,
+        documentation="\
+        Unique identifier assigned to the backup target.\
+        "
+    )
+
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="\
+        List of Name/Value pairs in JSON object format.\
+        "
     )
 
     def __init__(self, **kwargs):
@@ -2115,6 +2585,32 @@ class ClusterVersionInfo(data_model.DataObject):
 
     node_internal_revision = data_model.property(
         "nodeInternalRevision", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class LunAssignment(data_model.DataObject):
+    """
+
+    :param volume_id: [required]
+    :type volume_id: int
+
+    :param lun: [required]
+    :type lun: int
+    """
+
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    lun = data_model.property(
+        "lun", int,
         array=False, optional=False,
         documentation=None
     )
@@ -2381,6 +2877,59 @@ class DriveInfo(data_model.DataObject):
         documentation="\
         List of Name/Value pairs in JSON object format.\
         "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class FibreChannelSession(data_model.DataObject):
+    """
+
+    :param initiator_wwpn: [required]
+    :type initiator_wwpn: str
+
+    :param node_id: [required]
+    :type node_id: int
+
+    :param service_id: [required]
+    :type service_id: int
+
+    :param target_wwpn: [required]
+    :type target_wwpn: str
+
+    :param volume_access_group_id: [required]
+    :type volume_access_group_id: int
+    """
+
+    initiator_wwpn = data_model.property(
+        "initiatorWWPN", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    service_id = data_model.property(
+        "serviceID", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    target_wwpn = data_model.property(
+        "targetWWPN", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    volume_access_group_id = data_model.property(
+        "volumeAccessGroupID", int,
+        array=False, optional=False,
+        documentation=None
     )
 
     def __init__(self, **kwargs):
@@ -3147,6 +3696,132 @@ class VolumeAccessGroup(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class VolumeAccessGroupLunAssignments(data_model.DataObject):
+    """
+
+    :param volume_access_group_id: [required]
+    :type volume_access_group_id: int
+
+    :param lun_assignments: [required]
+    :type lun_assignments: LunAssignment
+
+    :param deleted_lun_assignments: [required]
+    :type deleted_lun_assignments: LunAssignment
+    """
+
+    volume_access_group_id = data_model.property(
+        "volumeAccessGroupID", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    lun_assignments = data_model.property(
+        "lunAssignments", LunAssignment,
+        array=True, optional=False,
+        documentation=None
+    )
+
+    deleted_lun_assignments = data_model.property(
+        "deletedLunAssignments", LunAssignment,
+        array=True, optional=False,
+        documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class Account(data_model.DataObject):
+    """
+    The object containing information about an account.
+    This object only includes \"configured\" information about the account, not
+    any runtime or usage information.
+
+    :param account_id: [required] Unique *account_id* for the account.
+    :type account_id: int
+
+    :param username: [required] User name for the account.
+    :type username: str
+
+    :param status: [required] Current status of the account.
+    :type status: str
+
+    :param volumes: [required] List of *volume_ids* for Volumes owned by this
+        account.
+    :type volumes: int
+
+    :param initiator_secret: (optional) CHAP secret to use for the initiator.
+    :type initiator_secret: CHAPSecret
+
+    :param target_secret: (optional) CHAP secret to use for the target (mutual
+        CHAP authentication).
+    :type target_secret: CHAPSecret
+
+    :param attributes: (optional) List of Name/Value pairs in JSON object
+        format.
+    :type attributes: dict
+    """
+
+    account_id = data_model.property(
+        "accountID", int,
+        array=False, optional=False,
+        documentation="\
+        Unique *account_id* for the account.\
+        "
+    )
+
+    username = data_model.property(
+        "username", str,
+        array=False, optional=False,
+        documentation="\
+        User name for the account.\
+        "
+    )
+
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation="\
+        Current status of the account.\
+        "
+    )
+
+    volumes = data_model.property(
+        "volumes", int,
+        array=True, optional=False,
+        documentation="\
+        List of *volume_ids* for Volumes owned by this account.\
+        "
+    )
+
+    initiator_secret = data_model.property(
+        "initiatorSecret", CHAPSecret,
+        array=False, optional=True,
+        documentation="\
+        CHAP secret to use for the initiator.\
+        "
+    )
+
+    target_secret = data_model.property(
+        "targetSecret", CHAPSecret,
+        array=False, optional=True,
+        documentation="\
+        CHAP secret to use for the target (mutual CHAP authentication).\
+        "
+    )
+
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="\
+        List of Name/Value pairs in JSON object format.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class VirtualNetwork(data_model.DataObject):
     """
 
@@ -3240,97 +3915,6 @@ class VirtualNetwork(data_model.DataObject):
         array=False, optional=False,
         documentation="\
         Storage IP address for the virtual network.\
-        "
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-
-class Account(data_model.DataObject):
-    """
-    The object containing information about an account.
-    This object only includes \"configured\" information about the account, not
-    any runtime or usage information.
-
-    :param account_id: [required] Unique *account_id* for the account.
-    :type account_id: int
-
-    :param username: [required] User name for the account.
-    :type username: str
-
-    :param status: [required] Current status of the account.
-    :type status: str
-
-    :param volumes: [required] List of *volume_ids* for Volumes owned by this
-        account.
-    :type volumes: int
-
-    :param initiator_secret: (optional) CHAP secret to use for the initiator.
-    :type initiator_secret: str
-
-    :param target_secret: (optional) CHAP secret to use for the target (mutual
-        CHAP authentication).
-    :type target_secret: str
-
-    :param attributes: (optional) List of Name/Value pairs in JSON object
-        format.
-    :type attributes: dict
-    """
-
-    account_id = data_model.property(
-        "accountID", int,
-        array=False, optional=False,
-        documentation="\
-        Unique *account_id* for the account.\
-        "
-    )
-
-    username = data_model.property(
-        "username", str,
-        array=False, optional=False,
-        documentation="\
-        User name for the account.\
-        "
-    )
-
-    status = data_model.property(
-        "status", str,
-        array=False, optional=False,
-        documentation="\
-        Current status of the account.\
-        "
-    )
-
-    volumes = data_model.property(
-        "volumes", int,
-        array=True, optional=False,
-        documentation="\
-        List of *volume_ids* for Volumes owned by this account.\
-        "
-    )
-
-    initiator_secret = data_model.property(
-        "initiatorSecret", str,
-        array=False, optional=True,
-        documentation="\
-        CHAP secret to use for the initiator.\
-        "
-    )
-
-    target_secret = data_model.property(
-        "targetSecret", str,
-        array=False, optional=True,
-        documentation="\
-        CHAP secret to use for the target (mutual CHAP authentication).\
-        "
-    )
-
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="\
-        List of Name/Value pairs in JSON object format.\
         "
     )
 

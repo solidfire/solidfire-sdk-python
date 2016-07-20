@@ -10,6 +10,7 @@ from __future__ import absolute_import
 from solidfire.common import model as data_model
 from solidfire.models import Account
 from solidfire.models import AddedNode
+from solidfire.models import BackupTarget
 from solidfire.models import ClusterAdmin
 from solidfire.models import ClusterCapacity
 from solidfire.models import ClusterConfig
@@ -22,6 +23,8 @@ from solidfire.models import DriveHardwareInfo
 from solidfire.models import DriveInfo
 from solidfire.models import DriveStats
 from solidfire.models import EventInfo
+from solidfire.models import FibreChannelPortList
+from solidfire.models import FibreChannelSession
 from solidfire.models import GroupSnapshot
 from solidfire.models import GroupSnapshotMembers
 from solidfire.models import ISCSISession
@@ -35,10 +38,14 @@ from solidfire.models import PendingNode
 from solidfire.models import ResetDrivesDetails
 from solidfire.models import Schedule
 from solidfire.models import Snapshot
+from solidfire.models import SnmpNetwork
+from solidfire.models import SnmpTrapRecipient
+from solidfire.models import SnmpV3UsmUser
 from solidfire.models import SoftwareVersionInfo
 from solidfire.models import VirtualNetwork
 from solidfire.models import Volume
 from solidfire.models import VolumeAccessGroup
+from solidfire.models import VolumeAccessGroupLunAssignments
 from solidfire.models import VolumeStats
 
 
@@ -192,9 +199,27 @@ class DisableEncryptionAtRestResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class DisableSnmpResult(data_model.DataObject):
+    """
+    The object returned by the \"disable_snmp\" API Service call.
+    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class EnableEncryptionAtRestResult(data_model.DataObject):
     """
     The object returned by the \"enable_encryption_at_rest\" API Service call.
+    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class EnableSnmpResult(data_model.DataObject):
+    """
+    The object returned by the \"enable_snmp\" API Service call.
     """
 
     def __init__(self, **kwargs):
@@ -534,9 +559,70 @@ class GetLimitsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class GetSnmpStateResult(data_model.DataObject):
+    """
+    The object returned by the \"get_snmp_state\" API Service call.
+
+    :param enabled: [required] If the nodes in the cluster are configured for
+        SNMP.
+    :type enabled: bool
+
+    :param snmp_v3_enabled: [required] If the node in the cluster is configured
+        for SNMP v3.
+    :type snmp_v3_enabled: bool
+    """
+
+    enabled = data_model.property(
+        "enabled", bool,
+        array=False, optional=False,
+        documentation="\
+        If the nodes in the cluster are configured for SNMP.\
+        "
+    )
+
+    snmp_v3_enabled = data_model.property(
+        "snmpV3Enabled", bool,
+        array=False, optional=False,
+        documentation="\
+        If the node in the cluster is configured for SNMP v3.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class ListFibreChannelPortInfoResult(data_model.DataObject):
+    """
+    The object returned by the \"list_fibre_channel_port_info\" API Service
+    call.
+
+    :param fibre_channel_port_info: [required]
+    :type fibre_channel_port_info: dict
+    """
+
+    fibre_channel_port_info = data_model.property(
+        "fibreChannelPortInfo", dict,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class ModifyAccountResult(data_model.DataObject):
     """
     The object returned by the \"modify_account\" API Service call.
+    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class ModifyBackupTargetResult(data_model.DataObject):
+    """
+    The object returned by the \"modify_backup_target\" API Service call.
     """
 
     def __init__(self, **kwargs):
@@ -570,6 +656,16 @@ class ModifySnapshotResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class ModifyVolumeAccessGroupLunAssignmentsResult(data_model.DataObject):
+    """
+    The object returned by the \"modify_volume_access_group_lun_assignments\"
+    API Service call.
+    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class ModifyVolumeAccessGroupResult(data_model.DataObject):
     """
     The object returned by the \"modify_volume_access_group\" API Service call.
@@ -587,11 +683,11 @@ class ModifyVolumeResult(data_model.DataObject):
         are I/O sizes in bytes. The values represent the cost performing an IOP
         at a specific I/O size. The curve is calculated relative to a 4096 byte
         operation set at 100 IOPS.
-    :type curve: str
+    :type curve: dict
     """
 
     curve = data_model.property(
-        "curve", str,
+        "curve", dict,
         array=False, optional=False,
         documentation="\
         The curve is a set of key-value pairs.\
@@ -619,6 +715,15 @@ class PurgeDeletedVolumeResult(data_model.DataObject):
 class RemoveAccountResult(data_model.DataObject):
     """
     The object returned by the \"remove_account\" API Service call.
+    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class RemoveBackupTargetResult(data_model.DataObject):
+    """
+    The object returned by the \"remove_backup_target\" API Service call.
     """
 
     def __init__(self, **kwargs):
@@ -665,6 +770,51 @@ class RestoreDeletedVolumeResult(data_model.DataObject):
     """
     The object returned by the \"restore_deleted_volume\" API Service call.
     """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class SetSnmpACLResult(data_model.DataObject):
+    """
+    The object returned by the \"set_snmp_acl\" API Service call.
+    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class SetSnmpInfoResult(data_model.DataObject):
+    """
+    The object returned by the \"set_snmp_info\" API Service call.
+    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class SetSnmpTrapInfoResult(data_model.DataObject):
+    """
+    The object returned by the \"set_snmp_trap_info\" API Service call.
+    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class SnmpSendTestTrapsResult(data_model.DataObject):
+    """
+    The object returned by the \"snmp_send_test_traps\" API Service call.
+
+    :param status: [required]
+    :type status: str
+    """
+
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -802,6 +952,27 @@ class AsyncHandleResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class CreateBackupTargetResult(data_model.DataObject):
+    """
+    The object returned by the \"create_backup_target\" API Service call.
+
+    :param backup_target_id: [required] Unique identifier assigned to the
+        backup target.
+    :type backup_target_id: int
+    """
+
+    backup_target_id = data_model.property(
+        "backupTargetID", int,
+        array=False, optional=False,
+        documentation="\
+        Unique identifier assigned to the backup target.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class CreateVolumeAccessGroupResult(data_model.DataObject):
     """
     The object returned by the \"create_volume_access_group\" API Service call.
@@ -834,7 +1005,7 @@ class CreateVolumeResult(data_model.DataObject):
         are I/O sizes in bytes. The values represent the cost performing an IOP
         at a specific I/O size. The curve is calculated relative to a 4096 byte
         operation set at 100 IOPS.
-    :type curve: str
+    :type curve: dict
     """
 
     volume_id = data_model.property(
@@ -846,7 +1017,7 @@ class CreateVolumeResult(data_model.DataObject):
     )
 
     curve = data_model.property(
-        "curve", str,
+        "curve", dict,
         array=False, optional=False,
         documentation="\
         The curve is a set of key-value pairs.\
@@ -856,6 +1027,24 @@ class CreateVolumeResult(data_model.DataObject):
         The curve is calculated relative to a 4096 byte operation set at 100\
         IOPS.\
         "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class FibreChannelPortInfoResult(data_model.DataObject):
+    """
+    The object returned by the \"fibre_channel_port_info\" API Service call.
+
+    :param result: [required]
+    :type result: FibreChannelPortList
+    """
+
+    result = data_model.property(
+        "result", FibreChannelPortList,
+        array=False, optional=False,
+        documentation=None
     )
 
     def __init__(self, **kwargs):
@@ -875,6 +1064,26 @@ class GetAccountResult(data_model.DataObject):
         array=False, optional=False,
         documentation="\
         Account details.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class GetBackupTargetResult(data_model.DataObject):
+    """
+    The object returned by the \"get_backup_target\" API Service call.
+
+    :param backup_target: [required] Object returned for backup target.
+    :type backup_target: BackupTarget
+    """
+
+    backup_target = data_model.property(
+        "backupTarget", BackupTarget,
+        array=False, optional=False,
+        documentation="\
+        Object returned for backup target.\
         "
     )
 
@@ -1179,6 +1388,95 @@ class GetScheduleResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class GetSnmpTrapInfoResult(data_model.DataObject):
+    """
+    The object returned by the \"get_snmp_trap_info\" API Service call.
+
+    :param trap_recipients: [required] List of hosts that are to receive the
+        traps generated by the cluster.
+    :type trap_recipients: SnmpTrapRecipient
+
+    :param cluster_fault_traps_enabled: [required] If \"true\", when a cluster
+        fault is logged a corresponding *solid_fire_cluster_fault_notification*
+        is sent to the configured list of trap recipients.
+    :type cluster_fault_traps_enabled: bool
+
+    :param cluster_fault_resolved_traps_enabled: [required] If \"true\", when a
+        cluster fault is logged a corresponding
+        *solid_fire_cluster_fault_resolved_notification* is sent to the
+        configured list of trap recipients.
+    :type cluster_fault_resolved_traps_enabled: bool
+
+    :param cluster_event_traps_enabled: [required] If \"true\", when a cluster
+        fault is logged a corresponding *solid_fire_cluster_event_notification*
+        is sent to the configured list of trap recipients.
+    :type cluster_event_traps_enabled: bool
+    """
+
+    trap_recipients = data_model.property(
+        "trapRecipients", SnmpTrapRecipient,
+        array=True, optional=False,
+        documentation="\
+        List of hosts that are to receive the traps generated by the cluster.\
+        "
+    )
+
+    cluster_fault_traps_enabled = data_model.property(
+        "clusterFaultTrapsEnabled", bool,
+        array=False, optional=False,
+        documentation="\
+        If \"true\", when a cluster fault is logged a corresponding\
+        *solid_fire_cluster_fault_notification* is sent to the configured list\
+        of trap recipients.\
+        "
+    )
+
+    cluster_fault_resolved_traps_enabled = data_model.property(
+        "clusterFaultResolvedTrapsEnabled", bool,
+        array=False, optional=False,
+        documentation="\
+        If \"true\", when a cluster fault is logged a corresponding\
+        *solid_fire_cluster_fault_resolved_notification* is sent to the\
+        configured list of trap recipients.\
+        "
+    )
+
+    cluster_event_traps_enabled = data_model.property(
+        "clusterEventTrapsEnabled", bool,
+        array=False, optional=False,
+        documentation="\
+        If \"true\", when a cluster fault is logged a corresponding\
+        *solid_fire_cluster_event_notification* is sent to the configured list\
+        of trap recipients.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class GetVolumeAccessGroupLunAssignmentsResult(data_model.DataObject):
+    """
+    The object returned by the \"get_volume_access_group_lun_assignments\" API
+    Service call.
+
+    :param volume_access_group_lun_assignments: [required] List of all physical
+        Fibre Channel ports, or a port for a single node.
+    :type volume_access_group_lun_assignments: VolumeAccessGroupLunAssignments
+    """
+
+    volume_access_group_lun_assignments = data_model.property(
+        "volumeAccessGroupLunAssignments", VolumeAccessGroupLunAssignments,
+        array=False, optional=False,
+        documentation="\
+        List of all physical Fibre Channel ports, or a port for a single node.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class GetVolumeStatsResult(data_model.DataObject):
     """
     The object returned by the \"get_volume_stats\" API Service call.
@@ -1250,6 +1548,26 @@ class ListActiveVolumesResult(data_model.DataObject):
         array=True, optional=False,
         documentation="\
         List of active volumes.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class ListBackupTargetsResult(data_model.DataObject):
+    """
+    The object returned by the \"list_backup_targets\" API Service call.
+
+    :param backup_targets: [required] Objects returned for each backup target.
+    :type backup_targets: BackupTarget
+    """
+
+    backup_targets = data_model.property(
+        "backupTargets", BackupTarget,
+        array=True, optional=False,
+        documentation="\
+        Objects returned for each backup target.\
         "
     )
 
@@ -1368,6 +1686,25 @@ class ListDrivesResult(data_model.DataObject):
         documentation="\
         Information for the drives that are connected to the cluster.\
         "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class ListFibreChannelSessionsResult(data_model.DataObject):
+    """
+    The object returned by the \"list_fibre_channel_sessions\" API Service
+    call.
+
+    :param sessions: [required]
+    :type sessions: FibreChannelSession
+    """
+
+    sessions = data_model.property(
+        "sessions", FibreChannelSession,
+        array=True, optional=False,
+        documentation=None
     )
 
     def __init__(self, **kwargs):
@@ -1674,6 +2011,34 @@ class ModifyScheduleResult(data_model.DataObject):
         documentation="\
         Schedule attributes with modifications.\
         "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class NodeFibreChannelPortInfoResult(data_model.DataObject):
+    """
+    The object returned by the \"node_fibre_channel_port_info\" API Service
+    call.
+
+    :param node_id: [required]
+    :type node_id: int
+
+    :param result: [required]
+    :type result: FibreChannelPortList
+    """
+
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    result = data_model.property(
+        "result", FibreChannelPortList,
+        array=False, optional=False,
+        documentation=None
     )
 
     def __init__(self, **kwargs):
@@ -2142,6 +2507,111 @@ class GetClusterFullThresholdResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class GetSnmpACLResult(data_model.DataObject):
+    """
+    The object returned by the \"get_snmp_acl\" API Service call.
+
+    :param networks: [required] List of networks and what type of access they
+        have to the SNMP servers running on the cluster nodes. Present if SNMP
+        v3 is disabled.
+    :type networks: SnmpNetwork
+
+    :param usm_users: [required] List of users and the type of access they have
+        to the SNMP servers running on the cluster nodes. Present if SNMP v3 is
+        enabled.
+    :type usm_users: SnmpV3UsmUser
+    """
+
+    networks = data_model.property(
+        "networks", SnmpNetwork,
+        array=True, optional=False,
+        documentation="\
+        List of networks and what type of access they have to the SNMP servers\
+        running on the cluster nodes. Present if SNMP v3 is disabled.\
+        "
+    )
+
+    usm_users = data_model.property(
+        "usmUsers", SnmpV3UsmUser,
+        array=True, optional=False,
+        documentation="\
+        List of users and the type of access they have to the SNMP servers\
+        running on the cluster nodes. Present if SNMP v3 is enabled.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class GetSnmpInfoResult(data_model.DataObject):
+    """
+    The object returned by the \"get_snmp_info\" API Service call.
+
+    :param networks: [required] List of networks and access types enabled for
+        SNMP.
+
+        **Note**: \"networks\" will only be present if SNMP V3 is disabled.
+
+    :type networks: SnmpNetwork
+
+    :param enabled: [required] If the nodes in the cluster are configured for
+        SNMP.
+    :type enabled: bool
+
+    :param snmp_v3_enabled: [required] If the nodes in the cluster are
+        configured for SNMP v3.
+    :type snmp_v3_enabled: bool
+
+    :param usm_users: [required] If SNMP v3 is enabled, the values returned is
+        a list of user access parameters for SNMP information from the cluster.
+        This will be returned instead of the \"networks\" parameter.
+    :type usm_users: SnmpV3UsmUser
+    """
+
+    networks = data_model.property(
+        "networks", SnmpNetwork,
+        array=True, optional=False,
+        documentation="\
+        List of networks and access types enabled for SNMP.\
+\
+\
+\
+\
+        **Note**: \"networks\" will only be present if SNMP V3 is disabled.\
+        "
+    )
+
+    enabled = data_model.property(
+        "enabled", bool,
+        array=False, optional=False,
+        documentation="\
+        If the nodes in the cluster are configured for SNMP.\
+        "
+    )
+
+    snmp_v3_enabled = data_model.property(
+        "snmpV3Enabled", bool,
+        array=False, optional=False,
+        documentation="\
+        If the nodes in the cluster are configured for SNMP v3.\
+        "
+    )
+
+    usm_users = data_model.property(
+        "usmUsers", SnmpV3UsmUser,
+        array=True, optional=False,
+        documentation="\
+        If SNMP v3 is enabled, the values returned is a list of user access\
+        parameters for SNMP information from the cluster. This will be\
+        returned instead of the \"networks\" parameter.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class GetVolumeEfficiencyResult(data_model.DataObject):
     """
     The object returned by the \"get_volume_efficiency\" API Service call.
@@ -2272,6 +2742,28 @@ class ListEventsResult(data_model.DataObject):
         "events", EventInfo,
         array=True, optional=False,
         documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class ListNodeFibreChannelPortInfoResult(data_model.DataObject):
+    """
+    The object returned by the \"list_node_fibre_channel_port_info\" API
+    Service call.
+
+    :param nodes: [required] List of fibre channel port info results grouped by
+        node.
+    :type nodes: NodeFibreChannelPortInfoResult
+    """
+
+    nodes = data_model.property(
+        "nodes", NodeFibreChannelPortInfoResult,
+        array=True, optional=False,
+        documentation="\
+        List of fibre channel port info results grouped by node.\
+        "
     )
 
     def __init__(self, **kwargs):
