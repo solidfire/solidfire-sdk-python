@@ -2063,7 +2063,8 @@ class Element(ServiceBase):
         *\"_start_cluster_pairing\"* API method to complete the cluster pairing
         process.
 
-        :param cluster_pairing_key: [required]
+        :param cluster_pairing_key: [required] A string of characters that is
+            returned from the *start_cluster_pairing* API method.
         :type cluster_pairing_key: str
 
         :returns: a response

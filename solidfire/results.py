@@ -586,17 +586,20 @@ class GetSnmpStateResult(data_model.DataObject):
 
 class ListFibreChannelPortInfoResult(data_model.DataObject):
     """
-    The object returned by the \"list_fibre_channel_port_info\" API Service
-    call.
+    *list_fibre_channel_port_info_result* is used to return information about
+    the Fibre Channel ports.
 
-    :param fibre_channel_port_info: [required]
+    :param fibre_channel_port_info: [required] Used to return information about
+        the Fibre Channel ports.
     :type fibre_channel_port_info: dict
     """
 
     fibre_channel_port_info = data_model.property(
         "fibreChannelPortInfo", dict,
         array=False, optional=False,
-        documentation=None
+        documentation="\
+        Used to return information about the Fibre Channel ports.\
+        "
     )
 
     def __init__(self, **kwargs):
@@ -1027,16 +1030,19 @@ class CreateVolumeResult(data_model.DataObject):
 
 class FibreChannelPortInfoResult(data_model.DataObject):
     """
-    The object returned by the \"fibre_channel_port_info\" API Service call.
+    Used to return information about the Fibre Channel ports.
 
-    :param result: [required]
+    :param result: [required] Used to return information about the Fibre
+        Channel ports.
     :type result: FibreChannelPortList
     """
 
     result = data_model.property(
         "result", FibreChannelPortList,
         array=False, optional=False,
-        documentation=None
+        documentation="\
+        Used to return information about the Fibre Channel ports.\
+        "
     )
 
     def __init__(self, **kwargs):
@@ -1553,17 +1559,20 @@ class ListDrivesResult(data_model.DataObject):
 
 class ListFibreChannelSessionsResult(data_model.DataObject):
     """
-    The object returned by the \"list_fibre_channel_sessions\" API Service
-    call.
+    Used to return information about the Fibre Channel sessions.
 
-    :param sessions: [required]
+    :param sessions: [required] A list of *fibre_channel_session* objects with
+        information about the Fibre Channel session.
     :type sessions: FibreChannelSession
     """
 
     sessions = data_model.property(
         "sessions", FibreChannelSession,
         array=True, optional=False,
-        documentation=None
+        documentation="\
+        A list of *fibre_channel_session* objects with information about the\
+        Fibre Channel session.\
+        "
     )
 
     def __init__(self, **kwargs):
@@ -1908,7 +1917,9 @@ class SetNetworkConfigResult(data_model.DataObject):
     network = data_model.property(
         "network", Network,
         array=False, optional=False,
-        documentation=None
+        documentation="\
+        Contains a list of information about the Fibre Channel ports.\
+        "
     )
 
     def __init__(self, **kwargs):
@@ -2620,8 +2631,7 @@ class ListEventsResult(data_model.DataObject):
 
 class ListNodeFibreChannelPortInfoResult(data_model.DataObject):
     """
-    The object returned by the \"list_node_fibre_channel_port_info\" API
-    Service call.
+    List of fibre channel port info results grouped by node.
 
     :param nodes: [required] List of fibre channel port info results grouped by
         node.
