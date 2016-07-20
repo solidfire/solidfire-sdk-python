@@ -2425,6 +2425,26 @@ class ClusterCapacity(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class FibreChannelPortList(data_model.DataObject):
+    """
+
+    :param fibre_channel_ports: [required] List of all physical Fibre Channel
+        ports.
+    :type fibre_channel_ports: FibreChannelPortInfo
+    """
+
+    fibre_channel_ports = data_model.property(
+        "fibreChannelPorts", FibreChannelPortInfo,
+        array=True, optional=False,
+        documentation="\
+        List of all physical Fibre Channel ports.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class NetworkConfig(data_model.DataObject):
     """
 
@@ -2924,6 +2944,50 @@ class RemoteReplication(data_model.DataObject):
 
 class ClusterAdmin(data_model.DataObject):
     """
+    The object containing information about a backup target.
+
+    :param name: [required] Name for the backup target.
+    :type name: str
+
+    :param backup_target_id: [required] Unique identifier assigned to the
+        backup target.
+    :type backup_target_id: int
+
+    :param attributes: (optional) List of Name/Value pairs in JSON object
+        format.
+    :type attributes: dict
+    """
+
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="\
+        Name for the backup target.\
+        "
+    )
+
+    backup_target_id = data_model.property(
+        "backupTargetID", int,
+        array=False, optional=False,
+        documentation="\
+        Unique identifier assigned to the backup target.\
+        "
+    )
+
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="\
+        List of Name/Value pairs in JSON object format.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class ClusterAdmin(data_model.DataObject):
+    """
 
     :param access: [required]
     :type access: str
@@ -2997,6 +3061,32 @@ class ClusterVersionInfo(data_model.DataObject):
 
     node_internal_revision = data_model.property(
         "nodeInternalRevision", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class LunAssignment(data_model.DataObject):
+    """
+
+    :param volume_id: [required]
+    :type volume_id: int
+
+    :param lun: [required]
+    :type lun: int
+    """
+
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    lun = data_model.property(
+        "lun", int,
         array=False, optional=False,
         documentation=None
     )
@@ -3263,6 +3353,59 @@ class DriveInfo(data_model.DataObject):
         documentation="\
         List of Name/Value pairs in JSON object format.\
         "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class FibreChannelSession(data_model.DataObject):
+    """
+
+    :param initiator_wwpn: [required]
+    :type initiator_wwpn: str
+
+    :param node_id: [required]
+    :type node_id: int
+
+    :param service_id: [required]
+    :type service_id: int
+
+    :param target_wwpn: [required]
+    :type target_wwpn: str
+
+    :param volume_access_group_id: [required]
+    :type volume_access_group_id: int
+    """
+
+    initiator_wwpn = data_model.property(
+        "initiatorWWPN", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    service_id = data_model.property(
+        "serviceID", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    target_wwpn = data_model.property(
+        "targetWWPN", str,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    volume_access_group_id = data_model.property(
+        "volumeAccessGroupID", int,
+        array=False, optional=False,
+        documentation=None
     )
 
     def __init__(self, **kwargs):
@@ -3693,6 +3836,132 @@ class VolumeAccessGroup(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class VolumeAccessGroupLunAssignments(data_model.DataObject):
+    """
+
+    :param volume_access_group_id: [required]
+    :type volume_access_group_id: int
+
+    :param lun_assignments: [required]
+    :type lun_assignments: LunAssignment
+
+    :param deleted_lun_assignments: [required]
+    :type deleted_lun_assignments: LunAssignment
+    """
+
+    volume_access_group_id = data_model.property(
+        "volumeAccessGroupID", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    lun_assignments = data_model.property(
+        "lunAssignments", LunAssignment,
+        array=True, optional=False,
+        documentation=None
+    )
+
+    deleted_lun_assignments = data_model.property(
+        "deletedLunAssignments", LunAssignment,
+        array=True, optional=False,
+        documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class Account(data_model.DataObject):
+    """
+    The object containing information about an account.
+    This object only includes \"configured\" information about the account, not
+    any runtime or usage information.
+
+    :param account_id: [required] Unique *account_id* for the account.
+    :type account_id: int
+
+    :param username: [required] User name for the account.
+    :type username: str
+
+    :param status: [required] Current status of the account.
+    :type status: str
+
+    :param volumes: [required] List of *volume_ids* for Volumes owned by this
+        account.
+    :type volumes: int
+
+    :param initiator_secret: (optional) CHAP secret to use for the initiator.
+    :type initiator_secret: CHAPSecret
+
+    :param target_secret: (optional) CHAP secret to use for the target (mutual
+        CHAP authentication).
+    :type target_secret: CHAPSecret
+
+    :param attributes: (optional) List of Name/Value pairs in JSON object
+        format.
+    :type attributes: dict
+    """
+
+    account_id = data_model.property(
+        "accountID", int,
+        array=False, optional=False,
+        documentation="\
+        Unique *account_id* for the account.\
+        "
+    )
+
+    username = data_model.property(
+        "username", str,
+        array=False, optional=False,
+        documentation="\
+        User name for the account.\
+        "
+    )
+
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation="\
+        Current status of the account.\
+        "
+    )
+
+    volumes = data_model.property(
+        "volumes", int,
+        array=True, optional=False,
+        documentation="\
+        List of *volume_ids* for Volumes owned by this account.\
+        "
+    )
+
+    initiator_secret = data_model.property(
+        "initiatorSecret", CHAPSecret,
+        array=False, optional=True,
+        documentation="\
+        CHAP secret to use for the initiator.\
+        "
+    )
+
+    target_secret = data_model.property(
+        "targetSecret", CHAPSecret,
+        array=False, optional=True,
+        documentation="\
+        CHAP secret to use for the target (mutual CHAP authentication).\
+        "
+    )
+
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="\
+        List of Name/Value pairs in JSON object format.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class VirtualNetwork(data_model.DataObject):
     """
 
@@ -3786,97 +4055,6 @@ class VirtualNetwork(data_model.DataObject):
         array=False, optional=False,
         documentation="\
         Storage IP address for the virtual network.\
-        "
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-
-class Account(data_model.DataObject):
-    """
-    The object containing information about an account.
-    This object only includes \"configured\" information about the account, not
-    any runtime or usage information.
-
-    :param account_id: [required] Unique *account_id* for the account.
-    :type account_id: int
-
-    :param username: [required] User name for the account.
-    :type username: str
-
-    :param status: [required] Current status of the account.
-    :type status: str
-
-    :param volumes: [required] List of *volume_ids* for Volumes owned by this
-        account.
-    :type volumes: int
-
-    :param initiator_secret: (optional) CHAP secret to use for the initiator.
-    :type initiator_secret: str
-
-    :param target_secret: (optional) CHAP secret to use for the target (mutual
-        CHAP authentication).
-    :type target_secret: str
-
-    :param attributes: (optional) List of Name/Value pairs in JSON object
-        format.
-    :type attributes: dict
-    """
-
-    account_id = data_model.property(
-        "accountID", int,
-        array=False, optional=False,
-        documentation="\
-        Unique *account_id* for the account.\
-        "
-    )
-
-    username = data_model.property(
-        "username", str,
-        array=False, optional=False,
-        documentation="\
-        User name for the account.\
-        "
-    )
-
-    status = data_model.property(
-        "status", str,
-        array=False, optional=False,
-        documentation="\
-        Current status of the account.\
-        "
-    )
-
-    volumes = data_model.property(
-        "volumes", int,
-        array=True, optional=False,
-        documentation="\
-        List of *volume_ids* for Volumes owned by this account.\
-        "
-    )
-
-    initiator_secret = data_model.property(
-        "initiatorSecret", str,
-        array=False, optional=True,
-        documentation="\
-        CHAP secret to use for the initiator.\
-        "
-    )
-
-    target_secret = data_model.property(
-        "targetSecret", str,
-        array=False, optional=True,
-        documentation="\
-        CHAP secret to use for the target (mutual CHAP authentication).\
-        "
-    )
-
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="\
-        List of Name/Value pairs in JSON object format.\
         "
     )
 

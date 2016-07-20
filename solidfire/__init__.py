@@ -11,6 +11,8 @@ from __future__ import absolute_import
 import logging
 from logging import Logger
 from solidfire import common
+from solidfire.adaptor import ElementServiceAdaptor
+
 from solidfire.common import ServiceBase, ApiVersionExceededError, \
     ApiVersionUnsupportedError
 from solidfire.results import AddAccountResult
@@ -22,6 +24,7 @@ from solidfire.results import AsyncHandleResult
 from solidfire.results import ClearClusterFaultsResult
 from solidfire.results import CloneVolumeResult
 from solidfire.results import CompleteClusterPairingResult
+from solidfire.results import CreateBackupTargetResult
 from solidfire.results import CreateGroupSnapshotResult
 from solidfire.results import CreateScheduleResult
 from solidfire.results import CreateSnapshotResult
@@ -32,10 +35,13 @@ from solidfire.results import DeleteSnapshotResult
 from solidfire.results import DeleteVolumeAccessGroupResult
 from solidfire.results import DeleteVolumeResult
 from solidfire.results import DisableEncryptionAtRestResult
+from solidfire.results import DisableSnmpResult
 from solidfire.results import EnableEncryptionAtRestResult
+from solidfire.results import EnableSnmpResult
 from solidfire.results import GetAPIResult
 from solidfire.results import GetAccountResult
 from solidfire.results import GetAsyncResultResult
+from solidfire.results import GetBackupTargetResult
 from solidfire.results import GetClusterCapacityResult
 from solidfire.results import GetClusterConfigResult
 from solidfire.results import GetClusterFullThresholdResult
@@ -48,20 +54,29 @@ from solidfire.results import GetLimitsResult
 from solidfire.results import GetNetworkConfigResult
 from solidfire.results import GetNodeStatsResult
 from solidfire.results import GetScheduleResult
+from solidfire.results import GetSnmpACLResult
+from solidfire.results import GetSnmpInfoResult
+from solidfire.results import GetSnmpStateResult
+from solidfire.results import GetSnmpTrapInfoResult
+from solidfire.results import GetVolumeAccessGroupLunAssignmentsResult
 from solidfire.results import GetVolumeEfficiencyResult
 from solidfire.results import GetVolumeStatsResult
 from solidfire.results import ListAccountsResult
 from solidfire.results import ListActiveNodesResult
 from solidfire.results import ListActiveVolumesResult
 from solidfire.results import ListAllNodesResult
+from solidfire.results import ListBackupTargetsResult
 from solidfire.results import ListClusterAdminsResult
 from solidfire.results import ListClusterFaultsResult
 from solidfire.results import ListClusterPairsResult
 from solidfire.results import ListDeletedVolumesResult
 from solidfire.results import ListDrivesResult
 from solidfire.results import ListEventsResult
+from solidfire.results import ListFibreChannelPortInfoResult
+from solidfire.results import ListFibreChannelSessionsResult
 from solidfire.results import ListGroupSnapshotsResult
 from solidfire.results import ListISCSISessionsResult
+from solidfire.results import ListNodeFibreChannelPortInfoResult
 from solidfire.results import ListNodeStatsResult
 from solidfire.results import ListPendingNodesResult
 from solidfire.results import ListSchedulesResult
@@ -74,15 +89,18 @@ from solidfire.results import ListVolumeStatsByVolumeResult
 from solidfire.results import ListVolumesForAccountResult
 from solidfire.results import ListVolumesResult
 from solidfire.results import ModifyAccountResult
+from solidfire.results import ModifyBackupTargetResult
 from solidfire.results import ModifyClusterAdminResult
 from solidfire.results import ModifyClusterFullThresholdResult
 from solidfire.results import ModifyGroupSnapshotResult
 from solidfire.results import ModifyScheduleResult
 from solidfire.results import ModifySnapshotResult
+from solidfire.results import ModifyVolumeAccessGroupLunAssignmentsResult
 from solidfire.results import ModifyVolumeAccessGroupResult
 from solidfire.results import ModifyVolumeResult
 from solidfire.results import PurgeDeletedVolumeResult
 from solidfire.results import RemoveAccountResult
+from solidfire.results import RemoveBackupTargetResult
 from solidfire.results import RemoveClusterAdminResult
 from solidfire.results import RemoveClusterPairResult
 from solidfire.results import RemoveNodesResult
@@ -165,7 +183,7 @@ class Element(ServiceBase):
 
             If not specified, a random secret is created.
 
-        :type initiator_secret: str
+        :type initiator_secret: CHAPSecret
 
         :param target_secret: (optional) CHAP secret to use for the target
             (mutual CHAP authentication). Should be 12-16 characters long and
@@ -174,7 +192,7 @@ class Element(ServiceBase):
 
             If not specified, a random secret is created.
 
-        :type target_secret: str
+        :type target_secret: CHAPSecret
 
         :param attributes: (optional) List of Name/Value pairs in JSON object
             format.
@@ -310,12 +328,12 @@ class Element(ServiceBase):
 
         :param initiator_secret: (optional) CHAP secret to use for the
             initiator. Should be 12-16 characters long and impenetrable.
-        :type initiator_secret: str
+        :type initiator_secret: CHAPSecret
 
         :param target_secret: (optional) CHAP secret to use for the target
             (mutual CHAP authentication). Should be 12-16 characters long and
             impenetrable.
-        :type target_secret: str
+        :type target_secret: CHAPSecret
 
         :param attributes: (optional) List of Name/Value pairs in JSON object
             format.
@@ -401,6 +419,142 @@ class Element(ServiceBase):
         return self._send_request(
             'GetAccountEfficiency',
             GetEfficiencyResult,
+            params,
+        )
+
+    def create_backup_target(
+            self,
+            name,
+            attributes=OPTIONAL,):
+        """
+        *create_backup_target* allows you to create and store backup target
+        information so that you do not need to re-enter it each time a backup
+        is created.
+
+        :param name: [required] Name for the backup target.
+        :type name: str
+
+        :param attributes: (optional) List of Name/Value pairs in JSON object
+            format.
+        :type attributes: dict
+
+        :returns: a response
+        :rtype: CreateBackupTargetResult
+        """
+
+        params = {
+            "name": name,
+        }
+        if attributes is not None:
+            params["attributes"] = attributes
+
+        return self._send_request(
+            'CreateBackupTarget',
+            CreateBackupTargetResult,
+            params,
+        )
+
+    def get_backup_target(
+            self,
+            backup_target_id,):
+        """
+        *get_backup_target* allows you to return information about a specific
+        backup target that has been created.
+
+        :param backup_target_id: [required] Unique identifier assigned to the
+            backup target.
+        :type backup_target_id: int
+
+        :returns: a response
+        :rtype: GetBackupTargetResult
+        """
+
+        params = {
+            "backupTargetID": backup_target_id,
+        }
+
+        return self._send_request(
+            'GetBackupTarget',
+            GetBackupTargetResult,
+            params,
+        )
+
+    def list_backup_targets(
+            self,):
+        """
+        You can use *list_backup_targets* to retrieve information about all
+        backup targets that have been created.
+
+        :returns: a response
+        :rtype: ListBackupTargetsResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'ListBackupTargets',
+            ListBackupTargetsResult,
+            params,
+        )
+
+    def modify_backup_target(
+            self,
+            backup_target_id,
+            name=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        *modify_backup_target* is used to change attributes of a backup target.
+
+        :param backup_target_id: [required] Unique identifier assigned to the
+            backup target.
+        :type backup_target_id: int
+
+        :param name: (optional) Name for the backup target.
+        :type name: str
+
+        :param attributes: (optional) List of Name/Value pairs in JSON object
+            format.
+        :type attributes: dict
+
+        :returns: a response
+        :rtype: ModifyBackupTargetResult
+        """
+
+        params = {
+            "backupTargetID": backup_target_id,
+        }
+        if name is not None:
+            params["name"] = name
+        if attributes is not None:
+            params["attributes"] = attributes
+
+        return self._send_request(
+            'ModifyBackupTarget',
+            ModifyBackupTargetResult,
+            params,
+        )
+
+    def remove_backup_target(
+            self,
+            backup_target_id,):
+        """
+        *remove_backup_target* allows you to delete backup targets.
+
+        :param backup_target_id: [required] Unique target ID of the target to
+            remove.
+        :type backup_target_id: int
+
+        :returns: a response
+        :rtype: RemoveBackupTargetResult
+        """
+
+        params = {
+            "backupTargetID": backup_target_id,
+        }
+
+        return self._send_request(
+            'RemoveBackupTarget',
+            RemoveBackupTargetResult,
             params,
         )
 
@@ -900,6 +1054,291 @@ class Element(ServiceBase):
             params,
         )
 
+    def get_snmp_acl(
+            self,):
+        """
+        *get_snmp_acl* is used to return the current SNMP access permissions on
+        the cluster nodes.
+
+        :returns: a response
+        :rtype: GetSnmpACLResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'GetSnmpACL',
+            GetSnmpACLResult,
+            params,
+            since=8.0,
+        )
+
+    def set_snmp_acl(
+            self,
+            networks,
+            usm_users,):
+        """
+        *set_snmp_acl* is used to configure SNMP access permissions on the
+        cluster nodes. The values set with this interface apply to all nodes in
+        the cluster, and the values that are passed replace, in whole, all
+        values set in any previous call to SetSnmpACL. Also note that the
+        values set with this interface replace all \"network\" or
+        *\"usm_users\"* values set with the older SetSnmpInfo.
+
+        :param networks: [required] List of networks and what type of access
+            they have to the SNMP servers running on the cluster nodes. See
+            SNMP Network Object for possible \"networks\" values. REQUIRED if
+            SNMP *v_* is disabled.
+        :type networks: SnmpNetwork
+
+        :param usm_users: [required] List of users and the type of access they
+            have to the SNMP servers running on the cluster nodes. REQUIRED if
+            SNMP v3 is enabled.
+        :type usm_users: SnmpV3UsmUser
+
+        :returns: a response
+        :rtype: SetSnmpACLResult
+        """
+
+        params = {
+            "networks": networks,
+            "usmUsers": usm_users,
+        }
+
+        return self._send_request(
+            'SetSnmpACL',
+            SetSnmpACLResult,
+            params,
+            since=8.0,
+        )
+
+    def get_snmp_trap_info(
+            self,):
+        """
+        *get_snmp_trap_info* is used to return current SNMP trap configuration
+        information.
+
+        :returns: a response
+        :rtype: GetSnmpTrapInfoResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'GetSnmpTrapInfo',
+            GetSnmpTrapInfoResult,
+            params,
+        )
+
+    def set_snmp_trap_info(
+            self,
+            trap_recipients,
+            cluster_fault_traps_enabled,
+            cluster_fault_resolved_traps_enabled,
+            cluster_event_traps_enabled,):
+        """
+        *set_snmp_trap_info* is used to enable and disable the generation of
+        SolidFire SNMP notifications (traps) and to specify the set of network
+        host computers that are to receive the notifications. The values passed
+        with each *set_snmp_trap_info* method replaces all values set in any
+        previous method to SetSnmpTrapInfo.
+
+        :param trap_recipients: [required] List of hosts that are to receive
+            the traps generated by the Cluster Master. At least one object is
+            required if any one of the trap types is enabled.
+        :type trap_recipients: SnmpTrapRecipient
+
+        :param cluster_fault_traps_enabled: [required] If \"true\", when a
+            cluster fault is logged a corresponding
+            *solid_fire_cluster_fault_notification* is sent to the configured
+            list of trap recipients.
+        :type cluster_fault_traps_enabled: bool
+
+        :param cluster_fault_resolved_traps_enabled: [required] If \"true\",
+            when a cluster fault is logged a corresponding
+            *solid_fire_cluster_fault_resolved_notification* is sent to the
+            configured list of trap recipients.
+        :type cluster_fault_resolved_traps_enabled: bool
+
+        :param cluster_event_traps_enabled: [required] If \"true\", when a
+            cluster fault is logged a corresponding
+            *solid_fire_cluster_event_notification* is sent to the configured
+            list of trap recipients.
+        :type cluster_event_traps_enabled: bool
+
+        :returns: a response
+        :rtype: SetSnmpTrapInfoResult
+        """
+
+        params = {
+            "trapRecipients": trap_recipients,
+            "clusterFaultTrapsEnabled": cluster_fault_traps_enabled,
+            "clusterFaultResolvedTrapsEnabled":
+                cluster_fault_resolved_traps_enabled,
+            "clusterEventTrapsEnabled": cluster_event_traps_enabled,
+        }
+
+        return self._send_request(
+            'SetSnmpTrapInfo',
+            SetSnmpTrapInfoResult,
+            params,
+        )
+
+    def enable_snmp(
+            self,
+            snmp_v3_enabled,):
+        """
+        *enable_snmp* is used to enable SNMP on the cluster nodes. The values
+        set with this interface apply to all nodes in the cluster, and the
+        values that are passed replace, in whole, all values set in any
+        previous call to EnableSnmp.
+
+        :param snmp_v3_enabled: [required] If set to \"true\", then SNMP v3 is
+            enabled on each node in the cluster. If set to \"false\", then SNMP
+            v2 is enabled.
+        :type snmp_v3_enabled: bool
+
+        :returns: a response
+        :rtype: EnableSnmpResult
+        """
+
+        params = {
+            "snmpV3Enabled": snmp_v3_enabled,
+        }
+
+        return self._send_request(
+            'EnableSnmp',
+            EnableSnmpResult,
+            params,
+        )
+
+    def disable_snmp(
+            self,):
+        """
+        *disable_snmp* is used to disable SNMP on the cluster nodes.
+
+        :returns: a response
+        :rtype: DisableSnmpResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'DisableSnmp',
+            DisableSnmpResult,
+            params,
+        )
+
+    def get_snmp_info(
+            self,):
+        """
+        *get_snmp_info* is used to return the current simple network management
+        protocol (SNMP) configuration information.
+
+
+
+
+        **Note**: *get_snmp_info* will be available for Element OS 8 and prior
+        releases. It will be deprecated after Element OS 8. There are two new
+        SNMP API methods that you should migrate over to. They are
+        *get_snmp_state* and GetSnmpACL. Please see details in this document
+        for their descriptions and usage.
+
+        :returns: a response
+        :rtype: GetSnmpInfoResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'GetSnmpInfo',
+            GetSnmpInfoResult,
+            params,
+        )
+
+    def set_snmp_info(
+            self,
+            networks=OPTIONAL,
+            enabled=OPTIONAL,
+            snmp_v3_enabled=OPTIONAL,
+            usm_users=OPTIONAL,):
+        """
+        *set_snmp_info* is used to configure SNMP v2 and v3 on the cluster
+        nodes. The values set with this interface apply to all nodes in the
+        cluster, and the values that are passed replace, in whole, all values
+        set in any previous call to SetSnmpInfo.
+
+
+
+
+        **Note**: *enable_snmp* and *set_snmp_acl* methods can be used to
+        accomplish the same results as SetSnmpInfo. *set_snmp_info* will no
+        longer be available after the Element 8 release. Please use
+        *enable_snmp* and *set_snmp_acl* in the future.
+
+        :param networks: (optional) List of networks and what type of access
+            they have to the SNMP servers running on the cluster nodes. See
+            SNMP Network Object for possible \"networks\" values. SNMP v2 only.
+        :type networks: SnmpNetwork
+
+        :param enabled: (optional) If set to \"true\", then SNMP is enabled on
+            each node in the cluster.
+        :type enabled: bool
+
+        :param snmp_v3_enabled: (optional) If set to \"true\", then SNMP v3 is
+            enabled on each node in the cluster.
+        :type snmp_v3_enabled: bool
+
+        :param usm_users: (optional) If SNMP v3 is enabled, this value must be
+            passed in place of the \"networks\" parameter. SNMP v3 only.
+        :type usm_users: SnmpV3UsmUser
+
+        :returns: a response
+        :rtype: SetSnmpInfoResult
+        """
+
+        params = {}
+        if networks is not None:
+            params["networks"] = networks
+        if enabled is not None:
+            params["enabled"] = enabled
+        if snmp_v3_enabled is not None:
+            params["snmpV3Enabled"] = snmp_v3_enabled
+        if usm_users is not None:
+            params["usmUsers"] = usm_users
+
+        return self._send_request(
+            'SetSnmpInfo',
+            SetSnmpInfoResult,
+            params,
+        )
+
+    def get_snmp_state(
+            self,):
+        """
+        *get_snmp_state* is used to return the current state of the SNMP
+        feature.
+
+
+
+
+        **Note**: *get_snmp_state* is new for Element OS 8. Please use this
+        method and *set_snmp_acl* to migrate your SNMP functionality in the
+        future.
+
+        :returns: a response
+        :rtype: GetSnmpStateResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'GetSnmpState',
+            GetSnmpStateResult,
+            params,
+            since=8.0,
+        )
+
     def get_api(
             self,):
         """
@@ -994,6 +1433,25 @@ class Element(ServiceBase):
         return self._send_request(
             'DisableEncryptionAtRest',
             DisableEncryptionAtRestResult,
+            params,
+        )
+
+    def snmp_send_test_traps(
+            self,):
+        """
+        *snmp_send_test_traps* enables you to test SNMP functionality for a
+        cluster. This method instructs the cluster to send test SNMP traps to
+        the currently configured SNMP manager.
+
+        :returns: a response
+        :rtype: SnmpSendTestTrapsResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'SnmpSendTestTraps',
+            SnmpSendTestTrapsResult,
             params,
         )
 
@@ -1166,6 +1624,78 @@ class Element(ServiceBase):
             'RemoveDrives',
             AsyncHandleResult,
             params,
+        )
+
+    def list_fibre_channel_port_info(
+            self,):
+        """
+        The *list_fibre_channel_port_info* is used to return information about
+        the Fibre Channel ports. The API method is intended for use on
+        individual nodes; userid and password is required for access to
+        individual Fibre Channel nodes. However, this method can be used on the
+        cluster if the force=true parameter is included in the method call.
+        When used on the cluster, all Fibre Channel interfaces are listed.
+
+        :returns: a response
+        :rtype: ListFibreChannelPortInfoResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'ListFibreChannelPortInfo',
+            ListFibreChannelPortInfoResult,
+            params,
+            since=8.0,
+        )
+
+    def list_node_fibre_channel_port_info(
+            self,
+            force=OPTIONAL,):
+        """
+        The *list_node_fibre_channel_port_info* is used to return information
+        about the Fibre Channel ports. The API method is intended for use on
+        individual nodes; userid and password is required for access to
+        individual Fibre Channel nodes. However, this method can be used on the
+        cluster if the force=true parameter is included in the method call.
+        When used on the cluster, all Fibre Channel interfaces are listed.
+
+        :param force: (optional) Specify force=true to call method on all
+            member nodes of the cluster.
+        :type force: bool
+
+        :returns: a response
+        :rtype: ListNodeFibreChannelPortInfoResult
+        """
+
+        params = {}
+        if force is not None:
+            params["force"] = force
+
+        return self._send_request(
+            'ListNodeFibreChannelPortInfo',
+            ListNodeFibreChannelPortInfoResult,
+            params,
+            since=7.0,
+        )
+
+    def list_fibre_channel_sessions(
+            self,):
+        """
+        The *list_fibre_channel_sessions* is used to return information about
+        the active Fibre Channel sessions on a cluster.
+
+        :returns: a response
+        :rtype: ListFibreChannelSessionsResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'ListFibreChannelSessions',
+            ListFibreChannelSessionsResult,
+            params,
+            since=7.0,
         )
 
     def list_active_nodes(
@@ -1454,11 +1984,13 @@ class Element(ServiceBase):
             "nodeID": node_id,
         }
 
-        return self._send_request(
+        result = self._send_request(
             'GetNodeStats',
             GetNodeStatsResult,
             params,
         )
+
+        return ElementServiceAdaptor.get_node_stats(params, result)
 
     def list_node_stats(
             self,):
@@ -3789,5 +4321,85 @@ class Element(ServiceBase):
         return self._send_request(
             'GetVolumeAccessGroupEfficiency',
             GetEfficiencyResult,
+            params,
+        )
+
+    def get_volume_access_group_lun_assignments(
+            self,
+            volume_access_group_id,):
+        """
+        The *get_volume_access_group_lun_assignments* is used to return
+        information LUN mappings of a specified volume access group.
+
+        :param volume_access_group_id: [required] Unique volume access group ID
+            used to return information.
+        :type volume_access_group_id: int
+
+        :returns: a response
+        :rtype: GetVolumeAccessGroupLunAssignmentsResult
+        """
+
+        params = {
+            "volumeAccessGroupID": volume_access_group_id,
+        }
+
+        return self._send_request(
+            'GetVolumeAccessGroupLunAssignments',
+            GetVolumeAccessGroupLunAssignmentsResult,
+            params,
+        )
+
+    def modify_volume_access_group_lun_assignments(
+            self,
+            volume_access_group_id,
+            lun_assignments,):
+        """
+        The *modifyt_volume_access_group_lun_assignments* is used to define
+        custom LUN assignments for specific volumes. Only LUN values set on the
+        *lun_assignments* parameter will be changed in the volume access group.
+        All other LUN assignments will remain unchanged.
+
+
+
+
+        LUN assignment values must be unique for volumes in a volume access
+        group. An exception will be seen if LUN assignments are duplicated in a
+        volume access group. However, the same LUN values can be used again in
+        different volume access groups.
+
+
+
+
+        **Note:** Correct LUN values are 0 - 16383. An exception will be seen
+        if an incorrect LUN value is passed. None of the specified LUN
+        assignments will be modified if there is an exception.
+
+
+
+
+        **Caution:** If a LUN assignment is changed for a volume with active
+        I/O, the I/O could be disrupted. Changes to the server configuration
+        may be required in order to change volume LUN assignments.
+
+        :param volume_access_group_id: [required] Unique volume access group ID
+            for which the LUN assignments will be modified.
+        :type volume_access_group_id: int
+
+        :param lun_assignments: [required] The volume *ids* with new assigned
+            LUN values.
+        :type lun_assignments: LunAssignment
+
+        :returns: a response
+        :rtype: ModifyVolumeAccessGroupLunAssignmentsResult
+        """
+
+        params = {
+            "volumeAccessGroupID": volume_access_group_id,
+            "lunAssignments": lun_assignments,
+        }
+
+        return self._send_request(
+            'ModifyVolumeAccessGroupLunAssignments',
+            ModifyVolumeAccessGroupLunAssignmentsResult,
             params,
         )
