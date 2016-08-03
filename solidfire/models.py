@@ -9,6 +9,7 @@ from __future__ import unicode_literals
 from __future__ import absolute_import
 from solidfire.common import model as data_model
 from uuid import UUID
+from solidfire.models import CHAPSecret
 
 
 class AddressBlock(data_model.DataObject):
@@ -37,14 +38,6 @@ class AddressBlock(data_model.DataObject):
         Number of IP addresses to include in the block.\
         "
     )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-
-class CHAPSecret(data_model.DataObject):
-    """
-    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -633,6 +626,201 @@ class FibreChannelPortInfo(data_model.DataObject):
         array=False, optional=False,
         documentation="\
         World Wide Port Name assigned to the physical port of the HBA.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class LdapConfiguration(data_model.DataObject):
+    """
+    LDAP Configuration object returns information about the LDAP configuration
+    on SolidFire storage. LDAP information is returned with the API method
+    GetLdapConfiguration.
+
+    :param auth_type: [required] Identifies which user authentcation method
+        will be used.
+
+        Valid values:
+
+        **DirectBind**
+
+        **SearchAndBind**
+
+    :type auth_type: str
+
+    :param enabled: [required] Identifies whether or not the system is enabled
+        for LDAP.
+
+        Valid values:
+
+        **true**
+
+        **false**
+
+    :type enabled: bool
+
+    :param group_search_base_dn: [required] The base DN of the tree to start
+        the group search (will do a subtree search from here).
+    :type group_search_base_dn: str
+
+    :param group_search_custom_filter: [required] The custom search filter
+        used.
+    :type group_search_custom_filter: str
+
+    :param group_search_type: [required] Controls the default group search
+        filter used, can be one of the following:
+
+        **NoGroups**: No group support.
+
+        **ActiveDirectory**: Nested membership of all of a user&#39;s AD
+        groups.
+
+        **MemberDN**: *member_dn* style groups (single-level).
+
+    :type group_search_type: str
+
+    :param search_bind_dn: [required] A fully qualified DN to log in with to
+        perform an LDAP search for the user (needs read access to the LDAP
+        directory).
+    :type search_bind_dn: str
+
+    :param server_uris: [required] A comma-separated list of LDAP server *uris*
+        (examples: \"ldap://1.2.3.4\" and ldaps://1.2.3.4:123\")
+    :type server_uris: str
+
+    :param user_dntemplate: [required] A string that is used to form a fully
+        qualified user DN.
+    :type user_dntemplate: str
+
+    :param user_search_base_dn: [required] The base DN of the tree used to
+        start the search (will do a subtree search from here).
+    :type user_search_base_dn: str
+
+    :param user_search_filter: [required] The LDAP filter used.
+    :type user_search_filter: str
+    """
+
+    auth_type = data_model.property(
+        "authType", str,
+        array=False, optional=False,
+        documentation="\
+        Identifies which user authentcation method will be used.\
+\
+\
+\
+        Valid values:\
+\
+\
+\
+        **DirectBind**\
+\
+\
+\
+        **SearchAndBind**\
+        "
+    )
+
+    enabled = data_model.property(
+        "enabled", bool,
+        array=False, optional=False,
+        documentation="\
+        Identifies whether or not the system is enabled for LDAP.\
+\
+\
+\
+        Valid values:\
+\
+\
+\
+        **true**\
+\
+\
+\
+        **false**\
+        "
+    )
+
+    group_search_base_dn = data_model.property(
+        "groupSearchBaseDN", str,
+        array=False, optional=False,
+        documentation="\
+        The base DN of the tree to start the group search (will do a subtree\
+        search from here).\
+        "
+    )
+
+    group_search_custom_filter = data_model.property(
+        "groupSearchCustomFilter", str,
+        array=False, optional=False,
+        documentation="\
+        The custom search filter used.\
+        "
+    )
+
+    group_search_type = data_model.property(
+        "groupSearchType", str,
+        array=False, optional=False,
+        documentation="\
+        Controls the default group search filter used, can be one of the\
+        following:\
+\
+\
+\
+        **NoGroups**: No group support.\
+\
+\
+\
+        **ActiveDirectory**: Nested membership of all of a user&#39;s AD\
+        groups.\
+\
+\
+\
+        **MemberDN**: *member_dn* style groups (single-level).\
+        "
+    )
+
+    search_bind_dn = data_model.property(
+        "searchBindDN", str,
+        array=False, optional=False,
+        documentation="\
+        A fully qualified DN to log in with to perform an LDAP search for the\
+        user (needs read access to the LDAP directory).\
+        "
+    )
+
+    server_uris = data_model.property(
+        "serverURIs", str,
+        array=True, optional=False,
+        documentation="\
+        A comma-separated list of LDAP server *uris* (examples:\
+        \"ldap://1.2.3.4\" and ldaps://1.2.3.4:123\")\
+        "
+    )
+
+    user_dntemplate = data_model.property(
+        "userDNTemplate", str,
+        array=False, optional=False,
+        documentation="\
+        A string that is used to form a fully qualified user DN.\
+        "
+    )
+
+    user_search_base_dn = data_model.property(
+        "userSearchBaseDN", str,
+        array=False, optional=False,
+        documentation="\
+        The base DN of the tree used to start the search (will do a subtree\
+        search from here).\
+        "
+    )
+
+    user_search_filter = data_model.property(
+        "userSearchFilter", str,
+        array=False, optional=False,
+        documentation="\
+        The LDAP filter used.\
         "
     )
 
@@ -2511,6 +2699,198 @@ class BackupTarget(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class BulkVolumeJob(data_model.DataObject):
+    """
+
+    :param bulk_volume_id: [required] The internal bulk volume job ID.
+    :type bulk_volume_id: int
+
+    :param create_time: [required] Timestamp created for the bulk volume job.
+    :type create_time: str
+
+    :param elapsed_time: [required] The number of seconds since the job began.
+    :type elapsed_time: int
+
+    :param format: [required] Format is either \"compressed\" or \"native\".
+    :type format: str
+
+    :param key: [required] The unique key created by the bulk volume session.
+    :type key: str
+
+    :param percent_complete: [required] The completed percentage reported by
+        the operation.
+    :type percent_complete: int
+
+    :param remaining_time: [required] The estimated time remaining in seconds.
+    :type remaining_time: int
+
+    :param src_volume_id: [required] The source volume ID.
+    :type src_volume_id: int
+
+    :param status: [required] Can be one of the following:
+
+        **preparing**
+
+        **active**
+
+        **done**
+
+        **failed**
+
+    :type status: str
+
+    :param script: [required] The name of the script if one is provided.
+    :type script: str
+
+    :param snapshot_id: [required] ID of the snapshot if a snapshot is in the
+        source of the bulk volume job.
+    :type snapshot_id: int
+
+    :param type: [required] Can be one of the following:
+
+        **read**
+
+        **write**
+
+    :type type: str
+
+    :param attributes: [required] JSON attributes on the bulk volume job.
+    :type attributes: dict
+    """
+
+    bulk_volume_id = data_model.property(
+        "bulkVolumeID", int,
+        array=False, optional=False,
+        documentation="\
+        The internal bulk volume job ID.\
+        "
+    )
+
+    create_time = data_model.property(
+        "createTime", str,
+        array=False, optional=False,
+        documentation="\
+        Timestamp created for the bulk volume job.\
+        "
+    )
+
+    elapsed_time = data_model.property(
+        "elapsedTime", int,
+        array=False, optional=False,
+        documentation="\
+        The number of seconds since the job began.\
+        "
+    )
+
+    format = data_model.property(
+        "format", str,
+        array=False, optional=False,
+        documentation="\
+        Format is either \"compressed\" or \"native\".\
+        "
+    )
+
+    key = data_model.property(
+        "key", str,
+        array=False, optional=False,
+        documentation="\
+        The unique key created by the bulk volume session.\
+        "
+    )
+
+    percent_complete = data_model.property(
+        "percentComplete", int,
+        array=False, optional=False,
+        documentation="\
+        The completed percentage reported by the operation.\
+        "
+    )
+
+    remaining_time = data_model.property(
+        "remainingTime", int,
+        array=False, optional=False,
+        documentation="\
+        The estimated time remaining in seconds.\
+        "
+    )
+
+    src_volume_id = data_model.property(
+        "srcVolumeID", int,
+        array=False, optional=False,
+        documentation="\
+        The source volume ID.\
+        "
+    )
+
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation="\
+        Can be one of the following:\
+\
+\
+            **preparing**\
+\
+\
+\
+            **active**\
+\
+\
+\
+            **done**\
+\
+\
+\
+            **failed**\
+\
+        "
+    )
+
+    script = data_model.property(
+        "script", str,
+        array=False, optional=False,
+        documentation="\
+        The name of the script if one is provided.\
+        "
+    )
+
+    snapshot_id = data_model.property(
+        "snapshotID", int,
+        array=False, optional=False,
+        documentation="\
+        ID of the snapshot if a snapshot is in the source of the bulk volume\
+        job.\
+        "
+    )
+
+    type = data_model.property(
+        "type", str,
+        array=False, optional=False,
+        documentation="\
+        Can be one of the following:\
+\
+\
+            **read**\
+\
+\
+\
+            **write**\
+\
+        "
+    )
+
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=False,
+        documentation="\
+        JSON attributes on the bulk volume job.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class ClusterAdmin(data_model.DataObject):
     """
 
@@ -3769,97 +4149,6 @@ class VolumeAccessGroupLunAssignments(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
-class Account(data_model.DataObject):
-    """
-    The object containing information about an account.
-    This object only includes \"configured\" information about the account, not
-    any runtime or usage information.
-
-    :param account_id: [required] Unique *account_id* for the account.
-    :type account_id: int
-
-    :param username: [required] User name for the account.
-    :type username: str
-
-    :param status: [required] Current status of the account.
-    :type status: str
-
-    :param volumes: [required] List of *volume_ids* for Volumes owned by this
-        account.
-    :type volumes: int
-
-    :param initiator_secret: (optional) CHAP secret to use for the initiator.
-    :type initiator_secret: CHAPSecret
-
-    :param target_secret: (optional) CHAP secret to use for the target (mutual
-        CHAP authentication).
-    :type target_secret: CHAPSecret
-
-    :param attributes: (optional) List of Name/Value pairs in JSON object
-        format.
-    :type attributes: dict
-    """
-
-    account_id = data_model.property(
-        "accountID", int,
-        array=False, optional=False,
-        documentation="\
-        Unique *account_id* for the account.\
-        "
-    )
-
-    username = data_model.property(
-        "username", str,
-        array=False, optional=False,
-        documentation="\
-        User name for the account.\
-        "
-    )
-
-    status = data_model.property(
-        "status", str,
-        array=False, optional=False,
-        documentation="\
-        Current status of the account.\
-        "
-    )
-
-    volumes = data_model.property(
-        "volumes", int,
-        array=True, optional=False,
-        documentation="\
-        List of *volume_ids* for Volumes owned by this account.\
-        "
-    )
-
-    initiator_secret = data_model.property(
-        "initiatorSecret", CHAPSecret,
-        array=False, optional=True,
-        documentation="\
-        CHAP secret to use for the initiator.\
-        "
-    )
-
-    target_secret = data_model.property(
-        "targetSecret", CHAPSecret,
-        array=False, optional=True,
-        documentation="\
-        CHAP secret to use for the target (mutual CHAP authentication).\
-        "
-    )
-
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="\
-        List of Name/Value pairs in JSON object format.\
-        "
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-
 class VirtualNetwork(data_model.DataObject):
     """
 
@@ -3953,6 +4242,97 @@ class VirtualNetwork(data_model.DataObject):
         array=False, optional=False,
         documentation="\
         Storage IP address for the virtual network.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class Account(data_model.DataObject):
+    """
+    The object containing information about an account.
+    This object only includes \"configured\" information about the account, not
+    any runtime or usage information.
+
+    :param account_id: [required] Unique *account_id* for the account.
+    :type account_id: int
+
+    :param username: [required] User name for the account.
+    :type username: str
+
+    :param status: [required] Current status of the account.
+    :type status: str
+
+    :param volumes: [required] List of *volume_ids* for Volumes owned by this
+        account.
+    :type volumes: int
+
+    :param initiator_secret: (optional) CHAP secret to use for the initiator.
+    :type initiator_secret: CHAPSecret
+
+    :param target_secret: (optional) CHAP secret to use for the target (mutual
+        CHAP authentication).
+    :type target_secret: CHAPSecret
+
+    :param attributes: (optional) List of Name/Value pairs in JSON object
+        format.
+    :type attributes: dict
+    """
+
+    account_id = data_model.property(
+        "accountID", int,
+        array=False, optional=False,
+        documentation="\
+        Unique *account_id* for the account.\
+        "
+    )
+
+    username = data_model.property(
+        "username", str,
+        array=False, optional=False,
+        documentation="\
+        User name for the account.\
+        "
+    )
+
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation="\
+        Current status of the account.\
+        "
+    )
+
+    volumes = data_model.property(
+        "volumes", int,
+        array=True, optional=False,
+        documentation="\
+        List of *volume_ids* for Volumes owned by this account.\
+        "
+    )
+
+    initiator_secret = data_model.property(
+        "initiatorSecret", CHAPSecret,
+        array=False, optional=True,
+        documentation="\
+        CHAP secret to use for the initiator.\
+        "
+    )
+
+    target_secret = data_model.property(
+        "targetSecret", CHAPSecret,
+        array=False, optional=True,
+        documentation="\
+        CHAP secret to use for the target (mutual CHAP authentication).\
+        "
+    )
+
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="\
+        List of Name/Value pairs in JSON object format.\
         "
     )
 

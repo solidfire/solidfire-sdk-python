@@ -11,6 +11,7 @@ from solidfire.common import model as data_model
 from solidfire.models import Account
 from solidfire.models import AddedNode
 from solidfire.models import BackupTarget
+from solidfire.models import BulkVolumeJob
 from solidfire.models import ClusterAdmin
 from solidfire.models import ClusterCapacity
 from solidfire.models import ClusterConfig
@@ -28,6 +29,7 @@ from solidfire.models import FibreChannelSession
 from solidfire.models import GroupSnapshot
 from solidfire.models import GroupSnapshotMembers
 from solidfire.models import ISCSISession
+from solidfire.models import LdapConfiguration
 from solidfire.models import Network
 from solidfire.models import Node
 from solidfire.models import NodeDriveHardware
@@ -52,6 +54,15 @@ from solidfire.models import VolumeStats
 class AddDrivesResult(data_model.DataObject):
     """
     The object returned by the \"add_drives\" API Service call.
+    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class AddLdapClusterAdminResult(data_model.DataObject):
+    """
+    The object returned by the \"add_ldap_cluster_admin\" API Service call.
     """
 
     def __init__(self, **kwargs):
@@ -136,6 +147,15 @@ class CompleteClusterPairingResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class CompleteVolumePairingResult(data_model.DataObject):
+    """
+    The object returned by the \"complete_volume_pairing\" API Service call.
+    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class CreateScheduleResult(data_model.DataObject):
     """
     The object returned by the \"create_schedule\" API Service call.
@@ -199,6 +219,16 @@ class DisableEncryptionAtRestResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class DisableLdapAuthenticationResult(data_model.DataObject):
+    """
+    The object returned by the \"disable_ldap_authentication\" API Service
+    call.
+    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class DisableSnmpResult(data_model.DataObject):
     """
     The object returned by the \"disable_snmp\" API Service call.
@@ -211,6 +241,15 @@ class DisableSnmpResult(data_model.DataObject):
 class EnableEncryptionAtRestResult(data_model.DataObject):
     """
     The object returned by the \"enable_encryption_at_rest\" API Service call.
+    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class EnableLdapAuthenticationResult(data_model.DataObject):
+    """
+    The object returned by the \"enable_ldap_authentication\" API Service call.
     """
 
     def __init__(self, **kwargs):
@@ -678,6 +717,15 @@ class ModifyVolumeAccessGroupResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class ModifyVolumePairResult(data_model.DataObject):
+    """
+    The object returned by the \"modify_volume_pair\" API Service call.
+    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class ModifyVolumeResult(data_model.DataObject):
     """
     The object returned by the \"modify_volume\" API Service call.
@@ -769,6 +817,15 @@ class RemoveVirtualNetworkResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class RemoveVolumePairResult(data_model.DataObject):
+    """
+    The object returned by the \"remove_volume_pair\" API Service call.
+    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class RestoreDeletedVolumeResult(data_model.DataObject):
     """
     The object returned by the \"restore_deleted_volume\" API Service call.
@@ -840,7 +897,7 @@ class StartClusterPairingResult(data_model.DataObject):
         array=False, optional=False,
         documentation="\
         A string of characters that is used by the\
-        *\"_complete_cluster_pairing\"* API method.\
+        *\"complete_cluster_pairing\"* API method.\
         "
     )
 
@@ -849,6 +906,28 @@ class StartClusterPairingResult(data_model.DataObject):
         array=False, optional=False,
         documentation="\
         Unique identifier for the cluster pair.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class StartVolumePairingResult(data_model.DataObject):
+    """
+    The object returned by the \"start_volume_pairing\" API Service call.
+
+    :param volume_pairing_key: [required] A string of characters that is used
+        by the \"CompleteVolumePairing\" API method.
+    :type volume_pairing_key: str
+    """
+
+    volume_pairing_key = data_model.property(
+        "volumePairingKey", str,
+        array=False, optional=False,
+        documentation="\
+        A string of characters that is used by the\
+        *\"complete_volume_pairing\"* API method.\
         "
     )
 
@@ -868,6 +947,39 @@ class TestDrivesResult(data_model.DataObject):
         "details", str,
         array=False, optional=False,
         documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class TestLdapAuthenticationResult(data_model.DataObject):
+    """
+    The object returned by the \"test_ldap_authentication\" API Service call.
+
+    :param groups: [required] List of LDAP groups that the tested user is a
+        member of.
+    :type groups: str
+
+    :param user_dn: [required] The tested user&#39;s full LDAP distinguished
+        name.
+    :type user_dn: str
+    """
+
+    groups = data_model.property(
+        "groups", str,
+        array=True, optional=False,
+        documentation="\
+        List of LDAP groups that the tested user is a member of.\
+        "
+    )
+
+    user_dn = data_model.property(
+        "userDN", str,
+        array=False, optional=False,
+        documentation="\
+        The tested user&#39;s full LDAP distinguished name.\
+        "
     )
 
     def __init__(self, **kwargs):
@@ -1336,6 +1448,43 @@ class GetEfficiencyResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class GetLdapConfigurationResult(data_model.DataObject):
+    """
+    The object returned by the \"get_ldap_configuration\" API Service call.
+
+    :param ldap_configuration: [required] List of the current LDAP
+        configuration settings. This API call will not return the plain text of
+        the search account password.
+
+        **Note**: If LDAP authentication is currently disabled, all the
+        returned settings will be empty with the exception of \"authType\", and
+        \"groupSearchType\" which are set to \"SearchAndBind\" and
+        \"ActiveDirectory\" respectively.
+
+    :type ldap_configuration: LdapConfiguration
+    """
+
+    ldap_configuration = data_model.property(
+        "ldapConfiguration", LdapConfiguration,
+        array=False, optional=False,
+        documentation="\
+        List of the current LDAP configuration settings. This API call will\
+        not return the plain text of the search account password.\
+\
+\
+\
+\
+        **Note**: If LDAP authentication is currently disabled, all the\
+        returned settings will be empty with the exception of *\"auth_type\",*\
+        and *\"group_search_type\"* which are set to *\"search_and_bind\"* and\
+        *\"active_directory\"* respectively.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class GetNetworkConfigResult(data_model.DataObject):
     """
     The object returned by the \"get_network_config\" API Service call.
@@ -1541,6 +1690,26 @@ class ListActiveNodesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class ListActivePairedVolumesResult(data_model.DataObject):
+    """
+    The object returned by the \"list_active_paired_volumes\" API Service call.
+
+    :param volumes: [required] Volume information for the paired volumes.
+    :type volumes: Volume
+    """
+
+    volumes = data_model.property(
+        "volumes", Volume,
+        array=True, optional=False,
+        documentation="\
+        Volume information for the paired volumes.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class ListActiveVolumesResult(data_model.DataObject):
     """
     The object returned by the \"list_active_volumes\" API Service call.
@@ -1574,6 +1743,27 @@ class ListBackupTargetsResult(data_model.DataObject):
         array=True, optional=False,
         documentation="\
         Objects returned for each backup target.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class ListBulkVolumeJobsResult(data_model.DataObject):
+    """
+    The object returned by the \"list_bulk_volume_jobs\" API Service call.
+
+    :param bulk_volume_jobs: [required] An array of information for each bulk
+        volume job.
+    :type bulk_volume_jobs: BulkVolumeJob
+    """
+
+    bulk_volume_jobs = data_model.property(
+        "bulkVolumeJobs", BulkVolumeJob,
+        array=True, optional=False,
+        documentation="\
+        An array of information for each bulk volume job.\
         "
     )
 
@@ -2131,6 +2321,150 @@ class SetNetworkConfigResult(data_model.DataObject):
         "network", Network,
         array=False, optional=False,
         documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class StartBulkVolumeReadResult(data_model.DataObject):
+    """
+    The object returned by the \"start_bulk_volume_read\" API Service call.
+
+    :param async_handle: [required] ID of the async process to be checked for
+        completion.
+    :type async_handle: int
+
+    :param key: [required] Opaque key uniquely identifying the session.
+    :type key: str
+
+    :param url: [required] URL to access the node&#39;s web server
+    :type url: str
+    """
+
+    async_handle = data_model.property(
+        "asyncHandle", int,
+        array=False, optional=False,
+        documentation="\
+        ID of the async process to be checked for completion.\
+        "
+    )
+
+    key = data_model.property(
+        "key", str,
+        array=False, optional=False,
+        documentation="\
+        Opaque key uniquely identifying the session.\
+        "
+    )
+
+    url = data_model.property(
+        "url", str,
+        array=False, optional=False,
+        documentation="\
+        URL to access the node&#39;s web server\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class StartBulkVolumeWriteResult(data_model.DataObject):
+    """
+    The object returned by the \"start_bulk_volume_write\" API Service call.
+
+    :param async_handle: [required] ID of the async process to be checked for
+        completion.
+    :type async_handle: int
+
+    :param key: [required] Opaque key uniquely identifying the session.
+    :type key: str
+
+    :param url: [required] URL to access the node&#39;s web server
+    :type url: str
+    """
+
+    async_handle = data_model.property(
+        "asyncHandle", int,
+        array=False, optional=False,
+        documentation="\
+        ID of the async process to be checked for completion.\
+        "
+    )
+
+    key = data_model.property(
+        "key", str,
+        array=False, optional=False,
+        documentation="\
+        Opaque key uniquely identifying the session.\
+        "
+    )
+
+    url = data_model.property(
+        "url", str,
+        array=False, optional=False,
+        documentation="\
+        URL to access the node&#39;s web server\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class UpdateBulkVolumeStatusResult(data_model.DataObject):
+    """
+    The object returned by the \"update_bulk_volume_status\" API Service call.
+
+    :param status: [required] Status of the session requested. Returned status:
+
+        **** **active** **done** **failed**
+
+    :type status: str
+
+    :param url: [required] The URL to access the node&#39;s web server provided
+        only if the session is still active.
+    :type url: str
+
+    :param attributes: [required] Returns attributes that were specified in the
+        *bulk_volume_status_update* method. Values are returned if they have
+        changed or not.
+    :type attributes: dict
+    """
+
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation="\
+        Status of the session requested. Returned status:\
+\
+\
+\
+        ****\
+        **active**\
+        **done**\
+        **failed**\
+        "
+    )
+
+    url = data_model.property(
+        "url", str,
+        array=False, optional=False,
+        documentation="\
+        The URL to access the node&#39;s web server provided only if the\
+        session is still active.\
+        "
+    )
+
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=False,
+        documentation="\
+        Returns attributes that were specified in the\
+        *bulk_volume_status_update* method. Values are returned if they have\
+        changed or not.\
+        "
     )
 
     def __init__(self, **kwargs):
