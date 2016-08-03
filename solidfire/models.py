@@ -9,6 +9,7 @@ from __future__ import unicode_literals
 from __future__ import absolute_import
 from solidfire.common import model as data_model
 from uuid import UUID
+from solidfire.models import CHAPSecret
 
 
 class AddressBlock(data_model.DataObject):
@@ -2987,6 +2988,198 @@ class ClusterAdmin(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class BulkVolumeJob(data_model.DataObject):
+    """
+
+    :param bulk_volume_id: [required] The internal bulk volume job ID.
+    :type bulk_volume_id: int
+
+    :param create_time: [required] Timestamp created for the bulk volume job.
+    :type create_time: str
+
+    :param elapsed_time: [required] The number of seconds since the job began.
+    :type elapsed_time: int
+
+    :param format: [required] Format is either \"compressed\" or \"native\".
+    :type format: str
+
+    :param key: [required] The unique key created by the bulk volume session.
+    :type key: str
+
+    :param percent_complete: [required] The completed percentage reported by
+        the operation.
+    :type percent_complete: int
+
+    :param remaining_time: [required] The estimated time remaining in seconds.
+    :type remaining_time: int
+
+    :param src_volume_id: [required] The source volume ID.
+    :type src_volume_id: int
+
+    :param status: [required] Can be one of the following:
+
+        **preparing**
+
+        **active**
+
+        **done**
+
+        **failed**
+
+    :type status: str
+
+    :param script: [required] The name of the script if one is provided.
+    :type script: str
+
+    :param snapshot_id: [required] ID of the snapshot if a snapshot is in the
+        source of the bulk volume job.
+    :type snapshot_id: int
+
+    :param type: [required] Can be one of the following:
+
+        **read**
+
+        **write**
+
+    :type type: str
+
+    :param attributes: [required] JSON attributes on the bulk volume job.
+    :type attributes: dict
+    """
+
+    bulk_volume_id = data_model.property(
+        "bulkVolumeID", int,
+        array=False, optional=False,
+        documentation="\
+        The internal bulk volume job ID.\
+        "
+    )
+
+    create_time = data_model.property(
+        "createTime", str,
+        array=False, optional=False,
+        documentation="\
+        Timestamp created for the bulk volume job.\
+        "
+    )
+
+    elapsed_time = data_model.property(
+        "elapsedTime", int,
+        array=False, optional=False,
+        documentation="\
+        The number of seconds since the job began.\
+        "
+    )
+
+    format = data_model.property(
+        "format", str,
+        array=False, optional=False,
+        documentation="\
+        Format is either \"compressed\" or \"native\".\
+        "
+    )
+
+    key = data_model.property(
+        "key", str,
+        array=False, optional=False,
+        documentation="\
+        The unique key created by the bulk volume session.\
+        "
+    )
+
+    percent_complete = data_model.property(
+        "percentComplete", int,
+        array=False, optional=False,
+        documentation="\
+        The completed percentage reported by the operation.\
+        "
+    )
+
+    remaining_time = data_model.property(
+        "remainingTime", int,
+        array=False, optional=False,
+        documentation="\
+        The estimated time remaining in seconds.\
+        "
+    )
+
+    src_volume_id = data_model.property(
+        "srcVolumeID", int,
+        array=False, optional=False,
+        documentation="\
+        The source volume ID.\
+        "
+    )
+
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation="\
+        Can be one of the following:\
+\
+\
+            **preparing**\
+\
+\
+\
+            **active**\
+\
+\
+\
+            **done**\
+\
+\
+\
+            **failed**\
+\
+        "
+    )
+
+    script = data_model.property(
+        "script", str,
+        array=False, optional=False,
+        documentation="\
+        The name of the script if one is provided.\
+        "
+    )
+
+    snapshot_id = data_model.property(
+        "snapshotID", int,
+        array=False, optional=False,
+        documentation="\
+        ID of the snapshot if a snapshot is in the source of the bulk volume\
+        job.\
+        "
+    )
+
+    type = data_model.property(
+        "type", str,
+        array=False, optional=False,
+        documentation="\
+        Can be one of the following:\
+\
+\
+            **read**\
+\
+\
+\
+            **write**\
+\
+        "
+    )
+
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=False,
+        documentation="\
+        JSON attributes on the bulk volume job.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class ClusterAdmin(data_model.DataObject):
     """
 
@@ -3909,97 +4102,6 @@ class VolumeAccessGroupLunAssignments(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
-class Account(data_model.DataObject):
-    """
-    The object containing information about an account.
-    This object only includes \"configured\" information about the account, not
-    any runtime or usage information.
-
-    :param account_id: [required] Unique *account_id* for the account.
-    :type account_id: int
-
-    :param username: [required] User name for the account.
-    :type username: str
-
-    :param status: [required] Current status of the account.
-    :type status: str
-
-    :param volumes: [required] List of *volume_ids* for Volumes owned by this
-        account.
-    :type volumes: int
-
-    :param initiator_secret: (optional) CHAP secret to use for the initiator.
-    :type initiator_secret: CHAPSecret
-
-    :param target_secret: (optional) CHAP secret to use for the target (mutual
-        CHAP authentication).
-    :type target_secret: CHAPSecret
-
-    :param attributes: (optional) List of Name/Value pairs in JSON object
-        format.
-    :type attributes: dict
-    """
-
-    account_id = data_model.property(
-        "accountID", int,
-        array=False, optional=False,
-        documentation="\
-        Unique *account_id* for the account.\
-        "
-    )
-
-    username = data_model.property(
-        "username", str,
-        array=False, optional=False,
-        documentation="\
-        User name for the account.\
-        "
-    )
-
-    status = data_model.property(
-        "status", str,
-        array=False, optional=False,
-        documentation="\
-        Current status of the account.\
-        "
-    )
-
-    volumes = data_model.property(
-        "volumes", int,
-        array=True, optional=False,
-        documentation="\
-        List of *volume_ids* for Volumes owned by this account.\
-        "
-    )
-
-    initiator_secret = data_model.property(
-        "initiatorSecret", CHAPSecret,
-        array=False, optional=True,
-        documentation="\
-        CHAP secret to use for the initiator.\
-        "
-    )
-
-    target_secret = data_model.property(
-        "targetSecret", CHAPSecret,
-        array=False, optional=True,
-        documentation="\
-        CHAP secret to use for the target (mutual CHAP authentication).\
-        "
-    )
-
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="\
-        List of Name/Value pairs in JSON object format.\
-        "
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-
 class VirtualNetwork(data_model.DataObject):
     """
 
@@ -4093,6 +4195,97 @@ class VirtualNetwork(data_model.DataObject):
         array=False, optional=False,
         documentation="\
         Storage IP address for the virtual network.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class Account(data_model.DataObject):
+    """
+    The object containing information about an account.
+    This object only includes \"configured\" information about the account, not
+    any runtime or usage information.
+
+    :param account_id: [required] Unique *account_id* for the account.
+    :type account_id: int
+
+    :param username: [required] User name for the account.
+    :type username: str
+
+    :param status: [required] Current status of the account.
+    :type status: str
+
+    :param volumes: [required] List of *volume_ids* for Volumes owned by this
+        account.
+    :type volumes: int
+
+    :param initiator_secret: (optional) CHAP secret to use for the initiator.
+    :type initiator_secret: CHAPSecret
+
+    :param target_secret: (optional) CHAP secret to use for the target (mutual
+        CHAP authentication).
+    :type target_secret: CHAPSecret
+
+    :param attributes: (optional) List of Name/Value pairs in JSON object
+        format.
+    :type attributes: dict
+    """
+
+    account_id = data_model.property(
+        "accountID", int,
+        array=False, optional=False,
+        documentation="\
+        Unique *account_id* for the account.\
+        "
+    )
+
+    username = data_model.property(
+        "username", str,
+        array=False, optional=False,
+        documentation="\
+        User name for the account.\
+        "
+    )
+
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation="\
+        Current status of the account.\
+        "
+    )
+
+    volumes = data_model.property(
+        "volumes", int,
+        array=True, optional=False,
+        documentation="\
+        List of *volume_ids* for Volumes owned by this account.\
+        "
+    )
+
+    initiator_secret = data_model.property(
+        "initiatorSecret", CHAPSecret,
+        array=False, optional=True,
+        documentation="\
+        CHAP secret to use for the initiator.\
+        "
+    )
+
+    target_secret = data_model.property(
+        "targetSecret", CHAPSecret,
+        array=False, optional=True,
+        documentation="\
+        CHAP secret to use for the target (mutual CHAP authentication).\
+        "
+    )
+
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="\
+        List of Name/Value pairs in JSON object format.\
         "
     )
 

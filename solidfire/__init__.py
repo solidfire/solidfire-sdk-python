@@ -18,12 +18,14 @@ from solidfire.common import ServiceBase, ApiVersionExceededError, \
 from solidfire.results import AddAccountResult
 from solidfire.results import AddClusterAdminResult
 from solidfire.results import AddDrivesResult
+from solidfire.results import AddLdapClusterAdminResult
 from solidfire.results import AddNodesResult
 from solidfire.results import AddVirtualNetworkResult
 from solidfire.results import AsyncHandleResult
 from solidfire.results import ClearClusterFaultsResult
 from solidfire.results import CloneVolumeResult
 from solidfire.results import CompleteClusterPairingResult
+from solidfire.results import CompleteVolumePairingResult
 from solidfire.results import CreateBackupTargetResult
 from solidfire.results import CreateGroupSnapshotResult
 from solidfire.results import CreateScheduleResult
@@ -35,8 +37,10 @@ from solidfire.results import DeleteSnapshotResult
 from solidfire.results import DeleteVolumeAccessGroupResult
 from solidfire.results import DeleteVolumeResult
 from solidfire.results import DisableEncryptionAtRestResult
+from solidfire.results import DisableLdapAuthenticationResult
 from solidfire.results import DisableSnmpResult
 from solidfire.results import EnableEncryptionAtRestResult
+from solidfire.results import EnableLdapAuthenticationResult
 from solidfire.results import EnableSnmpResult
 from solidfire.results import GetAPIResult
 from solidfire.results import GetAccountResult
@@ -63,9 +67,11 @@ from solidfire.results import GetVolumeEfficiencyResult
 from solidfire.results import GetVolumeStatsResult
 from solidfire.results import ListAccountsResult
 from solidfire.results import ListActiveNodesResult
+from solidfire.results import ListActivePairedVolumesResult
 from solidfire.results import ListActiveVolumesResult
 from solidfire.results import ListAllNodesResult
 from solidfire.results import ListBackupTargetsResult
+from solidfire.results import ListBulkVolumeJobsResult
 from solidfire.results import ListClusterAdminsResult
 from solidfire.results import ListClusterFaultsResult
 from solidfire.results import ListClusterPairsResult
@@ -97,6 +103,7 @@ from solidfire.results import ModifyScheduleResult
 from solidfire.results import ModifySnapshotResult
 from solidfire.results import ModifyVolumeAccessGroupLunAssignmentsResult
 from solidfire.results import ModifyVolumeAccessGroupResult
+from solidfire.results import ModifyVolumePairResult
 from solidfire.results import ModifyVolumeResult
 from solidfire.results import PurgeDeletedVolumeResult
 from solidfire.results import RemoveAccountResult
@@ -1698,6 +1705,270 @@ class Element(ServiceBase):
             since=7.0,
         )
 
+    def add_ldap_cluster_admin(
+            self,
+            username,
+            access,
+            attributes=OPTIONAL,):
+        """
+        *add_ldap_cluster_admin* is used to add a new LDAP Cluster Admin. An
+        LDAP Cluster Admin can be used to manage the cluster via the API and
+        management tools. LDAP Cluster Admins are completely separate and
+        unrelated to standard tenant accounts.
+
+
+
+
+        An LDAP group that has been defined in Active Directory can also be
+        added using this API method. The access level that is given to the
+        group will be passed to the individual users in the LDAP group.
+
+        :param username: [required] The distinguished user name for the new
+            LDAP cluster admin.
+        :type username: str
+
+        :param access: [required] Controls which methods this Cluster Admin can
+            use. For more details on the levels of access, see the Access
+            Control appendix in the SolidFire API Reference.
+        :type access: str
+
+        :param attributes: (optional) List of Name/Value pairs in JSON object
+            format.
+        :type attributes: dict
+
+        :returns: a response
+        :rtype: AddLdapClusterAdminResult
+        """
+
+        params = {
+            "username": username,
+            "access": access,
+        }
+        if attributes is not None:
+            params["attributes"] = attributes
+
+        return self._send_request(
+            'AddLdapClusterAdmin',
+            AddLdapClusterAdminResult,
+            params,
+            since=8.0,
+        )
+
+    def test_ldap_authentication(
+            self,
+            username,
+            password,
+            ldap_configuration=OPTIONAL,):
+        """
+        The *test_ldap_authentication* is used to verify the currently enabled
+        LDAP authentication configuration settings are correct. If the
+        configuration settings are correct, the API call returns a list of the
+        groups the tested user is a member of.
+
+        :param username: [required] The username to be tested.
+        :type username: str
+
+        :param password: [required] The password for the username to be tester.
+        :type password: str
+
+        :param ldap_configuration: (optional) An *ldap_configuration* object to
+            be tested. If this parameter is provided, the API call will test
+            the provided configuration even if LDAP authentication is currently
+            disabled.
+        :type ldap_configuration: LdapConfiguration
+
+        :returns: a response
+        :rtype: TestLdapAuthenticationResult
+        """
+
+        params = {
+            "username": username,
+            "password": password,
+        }
+        if ldap_configuration is not None:
+            params["ldapConfiguration"] = ldap_configuration
+
+        return self._send_request(
+            'TestLdapAuthentication',
+            TestLdapAuthenticationResult,
+            params,
+            since=8.0,
+        )
+
+    def get_ldap_configuration(
+            self,):
+        """
+        The *get_ldap_configuration* is used to get the LDAP configuration
+        currently active on the cluster.
+
+        :returns: a response
+        :rtype: GetLdapConfigurationResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'GetLdapConfiguration',
+            GetLdapConfigurationResult,
+            params,
+            since=8.0,
+        )
+
+    def enable_ldap_authentication(
+            self,
+            server_uris,
+            auth_type=OPTIONAL,
+            group_search_base_dn=OPTIONAL,
+            group_search_custom_filter=OPTIONAL,
+            group_search_type=OPTIONAL,
+            search_bind_dn=OPTIONAL,
+            search_bind_password=OPTIONAL,
+            user_dntemplate=OPTIONAL,
+            user_search_base_dn=OPTIONAL,
+            user_search_filter=OPTIONAL,):
+        """
+        The *enable_ldap_authentication* method is used to configure an LDAP
+        server connection to use for LDAP authentication to a SolidFire
+        cluster. Users that are members on the LDAP server can then log in to a
+        SolidFire storage system using their LDAP authentication userid and
+        password.
+
+        :param server_uris: [required] A list of LDAP server *uris* (examples:
+            \"ldap://1.2.3.4\" and ldaps://1.2.3.4:123\")
+        :type server_uris: str
+
+        :param auth_type: (optional) Identifies which user authentcation method
+            will be used.
+
+            Must be one of the following:
+
+            **DirectBind**
+
+            **SearchAndBind** (default)
+
+        :type auth_type: str
+
+        :param group_search_base_dn: (optional) The base DN of the tree to
+            start the group search (will do a subtree search from here).
+        :type group_search_base_dn: str
+
+        :param group_search_custom_filter: (optional) REQUIRED for
+            *custom_filter*
+
+            For use with the *custom_filter* search type, an LDAP filter to use
+            to return the *dns* of a user&#39;s groups.
+
+            The string can have placeholder text of %USERNAME% and %USERDN% to
+            be replaced with their username and full *user_dn* as needed.
+
+        :type group_search_custom_filter: str
+
+        :param group_search_type: (optional) Controls the default group search
+            filter used, can be one of the following:
+
+            **NoGroups**: No group support.
+
+            **ActiveDirectory**: (default) Nested membership of all of a
+            user&#39;s AD groups.
+
+            **MemberDN**: *member_dn* style groups (single-level).
+
+        :type group_search_type: str
+
+        :param search_bind_dn: (optional) REQUIRED for *search_and_bind*
+
+            A fully qualified DN to log in with to perform an LDAP search for
+            the user (needs read access to the LDAP directory).
+
+        :type search_bind_dn: str
+
+        :param search_bind_password: (optional) REQUIRED for *search_and_bind*
+
+            The password for the *search_bind_dn* account used for searching.
+
+        :type search_bind_password: str
+
+        :param user_dntemplate: (optional) REQUIRED for *direct_bind*
+
+            A string that is used to form a fully qualified user DN.
+
+            The string should have the placeholder text \"%USERNAME%\" which
+            will be replaced with the username of the authenticating user.
+
+        :type user_dntemplate: str
+
+        :param user_search_base_dn: (optional) REQUIRED for *search_and_bind*
+            The base DN of the tree used to start the search (will do a subtree
+            search from here).
+        :type user_search_base_dn: str
+
+        :param user_search_filter: (optional) REQUIRED for SearchAndBind.
+
+            The LDAP filter to use.
+
+            The string should have the placeholder text \"%USERNAME%\" which
+            will be replaced with the username of the authenticating user.
+
+            Example: (&(objectClass=person) (sAMAccountName=%USERNAME%)) will
+            use the *s_amaccount_name* field in Active Directory to match the
+            nusername entered at cluster login.
+
+        :type user_search_filter: str
+
+        :returns: a response
+        :rtype: EnableLdapAuthenticationResult
+        """
+
+        params = {
+            "serverURIs": server_uris,
+        }
+        if auth_type is not None:
+            params["authType"] = auth_type
+        if group_search_base_dn is not None:
+            params["groupSearchBaseDN"] = group_search_base_dn
+        if group_search_custom_filter is not None:
+            params["groupSearchCustomFilter"] = group_search_custom_filter
+        if group_search_type is not None:
+            params["groupSearchType"] = group_search_type
+        if search_bind_dn is not None:
+            params["searchBindDN"] = search_bind_dn
+        if search_bind_password is not None:
+            params["searchBindPassword"] = search_bind_password
+        if user_dntemplate is not None:
+            params["userDNTemplate"] = user_dntemplate
+        if user_search_base_dn is not None:
+            params["userSearchBaseDN"] = user_search_base_dn
+        if user_search_filter is not None:
+            params["userSearchFilter"] = user_search_filter
+
+        return self._send_request(
+            'EnableLdapAuthentication',
+            EnableLdapAuthenticationResult,
+            params,
+            since=8.0,
+        )
+
+    def disable_ldap_authentication(
+            self,):
+        """
+        The *disable_ldap_authentication* method is used disable LDAP
+        authentication and remove all LDAP configuration settings. This call
+        will not remove any configured cluster admin accounts (user or group).
+        However, those cluster admin accounts will no longer be able to log in.
+
+        :returns: a response
+        :rtype: DisableLdapAuthenticationResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'DisableLdapAuthentication',
+            DisableLdapAuthenticationResult,
+            params,
+            since=8.0,
+        )
+
     def list_active_nodes(
             self,):
 
@@ -2013,8 +2284,8 @@ class Element(ServiceBase):
     def list_cluster_pairs(
             self,):
         """
-        *list_cluster_pairs* allows you to list all of the clusters a cluster
-        is paired with.
+        *list_cluster_pairs* is used to list all of the clusters a cluster is
+        paired with.
         This method returns information about active and pending cluster
         pairings, such as statistics about the current pairing as well as the
         connectivity and latency (in milliseconds) of the cluster pairing.
@@ -2031,13 +2302,33 @@ class Element(ServiceBase):
             params,
         )
 
+    def list_active_paired_volumes(
+            self,):
+        """
+        *list_active_paired_volumes* is used to list all of the active volumes
+        paired with a volume.
+        Volumes listed in the return for this method include volumes with
+        active and pending pairings.
+
+        :returns: a response
+        :rtype: ListActivePairedVolumesResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'ListActivePairedVolumes',
+            ListActivePairedVolumesResult,
+            params,
+        )
+
     def start_cluster_pairing(
             self,):
         """
-        *start_cluster_pairing* allows you to create an encoded key from a
-        cluster that is used to pair with another cluster.
+        *start_cluster_pairing* is used to create an encoded key from a cluster
+        that is used to pair with another cluster.
         The key created from this API method is used in the
-        *\"_complete_cluster_pairing\"* API method to establish a cluster
+        *\"complete_cluster_pairing\"* API method to establish a cluster
         pairing.
         You can pair a cluster with a maximum of four other SolidFire clusters.
 
@@ -2053,6 +2344,57 @@ class Element(ServiceBase):
             params,
         )
 
+    def start_volume_pairing(
+            self,
+            volume_id,
+            mode=OPTIONAL,):
+        """
+        *start_volume_pairing* is used to create an encoded key from a volume
+        that is used to pair with another volume.
+        The key that this method creates is used in the
+        *\"complete_volume_pairing\"* API method to establish a volume pairing.
+
+        :param volume_id: [required] The ID of the volume on which to start the
+            pairing process.
+        :type volume_id: int
+
+        :param mode: (optional) The mode of the volume on which to start the
+            pairing process. The mode can only be set if the volume is the
+            source volume.
+
+            Possible values:
+
+            **Async**: (default if no mode parameter specified) Writes are
+            acknowledged when they complete locally. The cluster does not wait
+            for writes to be replicated to the target cluster.
+
+            **Sync**: Source acknowledges write when the data is stored locally
+            and on the remote cluster.
+
+            **SnapshotsOnly**: Only snapshots created on the source cluster
+            will be replicated. Active writes from the source volume will not
+            be replicated.
+
+
+
+        :type mode: str
+
+        :returns: a response
+        :rtype: StartVolumePairingResult
+        """
+
+        params = {
+            "volumeID": volume_id,
+        }
+        if mode is not None:
+            params["mode"] = mode
+
+        return self._send_request(
+            'StartVolumePairing',
+            StartVolumePairingResult,
+            params,
+        )
+
     def complete_cluster_pairing(
             self,
             cluster_pairing_key,):
@@ -2060,11 +2402,11 @@ class Element(ServiceBase):
         The *complete_cluster_pairing* method is the second step in the cluster
         pairing process.
         Use this method with the encoded key received from the
-        *\"_start_cluster_pairing\"* API method to complete the cluster pairing
+        *\"start_cluster_pairing\"* API method to complete the cluster pairing
         process.
 
         :param cluster_pairing_key: [required] A string of characters that is
-            returned from the *start_cluster_pairing* API method.
+            returned from the \"StartClusterPairing\" API method.
         :type cluster_pairing_key: str
 
         :returns: a response
@@ -2081,6 +2423,37 @@ class Element(ServiceBase):
             params,
         )
 
+    def complete_volume_pairing(
+            self,
+            volume_pairing_key,
+            volume_id,):
+        """
+        *complete_volume_pairing* is used to complete the pairing of two
+        volumes.
+
+        :param volume_pairing_key: [required] The key returned from the
+            \"StartVolumePairing\" API method.
+        :type volume_pairing_key: str
+
+        :param volume_id: [required] The ID of volume on which to complete the
+            pairing process.
+        :type volume_id: int
+
+        :returns: a response
+        :rtype: CompleteVolumePairingResult
+        """
+
+        params = {
+            "volumePairingKey": volume_pairing_key,
+            "volumeID": volume_id,
+        }
+
+        return self._send_request(
+            'CompleteVolumePairing',
+            CompleteVolumePairingResult,
+            params,
+        )
+
     def remove_cluster_pair(
             self,
             cluster_pair_id,):
@@ -2091,7 +2464,7 @@ class Element(ServiceBase):
 
 
         **Note**: Before you remove a cluster pair, you must first remove all
-        volume pairing to the clusters with the *\"_remove_volume_pair\"* API
+        volume pairing to the clusters with the *\"remove_volume_pair\"* API
         method.
 
         :param cluster_pair_id: [required] Unique identifier used to pair two
@@ -2109,6 +2482,95 @@ class Element(ServiceBase):
         return self._send_request(
             'RemoveClusterPair',
             RemoveClusterPairResult,
+            params,
+        )
+
+    def remove_volume_pair(
+            self,
+            volume_id,):
+        """
+        *remove_volume_pair* is used to remove the remote pairing between two
+        volumes.
+        When the volume pairing information is removed, data is no longer
+        replicated to or from the volume.
+        This method should be run on both the source and target volumes that
+        are paired together.
+
+        :param volume_id: [required] ID of the volume on which to stop the
+            replication process.
+        :type volume_id: int
+
+        :returns: a response
+        :rtype: RemoveVolumePairResult
+        """
+
+        params = {
+            "volumeID": volume_id,
+        }
+
+        return self._send_request(
+            'RemoveVolumePair',
+            RemoveVolumePairResult,
+            params,
+        )
+
+    def modify_volume_pair(
+            self,
+            volume_id,
+            paused_manual=OPTIONAL,
+            mode=OPTIONAL,):
+        """
+        *modify_volume_pair* is used to pause or restart replication between a
+        pair of volumes.
+
+        :param volume_id: [required] Identification number of the volume to be
+            modified.
+        :type volume_id: int
+
+        :param paused_manual: (optional) Valid values that can be entered:
+
+            **true**: to pause volume replication.
+
+            **false**: to restart volume replication.
+
+            If no value is specified, no change in replication is performed.
+
+        :type paused_manual: bool
+
+        :param mode: (optional) Volume replication mode.
+
+            Possible values:
+
+            **Async**: Writes are acknowledged when they complete locally. The
+            cluster does not wait for writes to be replicated to the target
+            cluster.
+
+            **Sync**: The source acknowledges the write when the data is stored
+            locally and on the remote cluster.
+
+            **SnapshotsOnly**: Only snapshots created on the source cluster
+            will be replicated. Active writes from the source volume are not
+            replicated.
+
+
+
+        :type mode: str
+
+        :returns: a response
+        :rtype: ModifyVolumePairResult
+        """
+
+        params = {
+            "volumeID": volume_id,
+        }
+        if paused_manual is not None:
+            params["pausedManual"] = paused_manual
+        if mode is not None:
+            params["mode"] = mode
+
+        return self._send_request(
+            'ModifyVolumePair',
+            ModifyVolumePairResult,
             params,
         )
 
@@ -3535,6 +3997,24 @@ class Element(ServiceBase):
             params,
         )
 
+    def list_bulk_volume_jobs(
+            self,):
+        """
+        *list_bulk_volume_jobs* is used to return information about each bulk
+        volume read or write operation that is occurring in the system.
+
+        :returns: a response
+        :rtype: ListBulkVolumeJobsResult
+        """
+
+        params = {}
+
+        return self._send_request(
+            'ListBulkVolumeJobs',
+            ListBulkVolumeJobsResult,
+            params,
+        )
+
     def list_active_volumes(
             self,
             start_volume_id=OPTIONAL,
@@ -3935,6 +4415,230 @@ class Element(ServiceBase):
         return self._send_request(
             'RestoreDeletedVolume',
             RestoreDeletedVolumeResult,
+            params,
+        )
+
+    def start_bulk_volume_read(
+            self,
+            volume_id,
+            format,
+            snapshot_id=OPTIONAL,
+            script=OPTIONAL,
+            script_parameters=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        *start_bulk_volume_read* allows you to initialize a bulk volume read
+        session on a specified volume.
+        Only two bulk volume processes can run simultaneously on a volume.
+        When you initialize the session, data is read from a SolidFire storage
+        volume for the purposes of storing the data on an external backup
+        source.
+        The external data is accessed by a web server running on a SolidFire
+        node.
+        Communications and server interaction information for external data
+        access is passed by a script running on the SolidFire storage system.
+
+
+
+
+
+
+
+        At the start of a bulk volume read operation, a snapshot of the volume
+        is made and the snapshot is deleted when the read has completed.
+        You can also read a snapshot of the volume by entering the ID of the
+        snapshot as a parameter.
+        Reading a previous snapshot does not create a new snapshot of the
+        volume, nor does the previous snapshot be deleted when the read
+        completes.
+
+
+
+
+
+
+
+        **Note**: This process creates a new snapshot if the ID of an existing
+        snapshot is not provided.
+        Snapshots can be created if cluster fullness is at stage 2 or 3.
+        Snapshots are not created when cluster fullness is at stage 4 or 5.
+
+        :param volume_id: [required] ID of the volume to be read.
+        :type volume_id: int
+
+        :param format: [required] The format of the volume data. Can be either:
+
+            **uncompressed**: every byte of the volume is returned without any
+            compression. **native**: opaque data is returned that is smaller
+            and more efficiently stored and written on a subsequent bulk volume
+            write.
+
+        :type format: str
+
+        :param snapshot_id: (optional) ID of a previously created snapshot used
+            for bulk volume reads. If no ID is entered, a snapshot of the
+            current active volume image is made.
+        :type snapshot_id: int
+
+        :param script: (optional) Executable name of a script. If no script
+            name is given then the key and URL is necessary to access SolidFire
+            nodes. The script is run on the primary node and the key and URL is
+            returned to the script so the local web server can be contacted.
+        :type script: str
+
+        :param script_parameters: (optional) JSON parameters to pass to the
+            script.
+        :type script_parameters: str
+
+        :param attributes: (optional) JSON attributes for the bulk volume job.
+        :type attributes: dict
+
+        :returns: a response
+        :rtype: StartBulkVolumeReadResult
+        """
+
+        params = {
+            "volumeID": volume_id,
+            "format": format,
+        }
+        if snapshot_id is not None:
+            params["snapshotID"] = snapshot_id
+        if script is not None:
+            params["script"] = script
+        if script_parameters is not None:
+            params["scriptParameters"] = script_parameters
+        if attributes is not None:
+            params["attributes"] = attributes
+
+        return self._send_request(
+            'StartBulkVolumeRead',
+            StartBulkVolumeReadResult,
+            params,
+        )
+
+    def start_bulk_volume_write(
+            self,
+            volume_id,
+            format,
+            script=OPTIONAL,
+            script_parameters=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        *start_bulk_volume_write* allows you to initialize a bulk volume write
+        session on a specified volume.
+        Only two bulk volume processes can run simultaneously on a volume.
+        When the session is initialized, data can be written to a SolidFire
+        storage volume from an external backup source.
+        The external data is accessed by a web server running on a SolidFire
+        node.
+        Communications and server interaction information for external data
+        access is passed by a script running on the SolidFire storage system.
+
+        :param volume_id: [required] ID of the volume to be written to.
+        :type volume_id: int
+
+        :param format: [required] The format of the volume data. Can be either:
+
+            **uncompressed**: every byte of the volume is returned without any
+            compression. **native**: opaque data is returned that is smaller
+            and more efficiently stored and written on a subsequent bulk volume
+            write
+
+        :type format: str
+
+        :param script: (optional) Executable name of a script. If no script
+            name is given then the key and URL are necessary to access
+            SolidFire nodes. The script runs on the primary node and the key
+            and URL is returned to the script so the local web server can be
+            contacted.
+        :type script: str
+
+        :param script_parameters: (optional) JSON parameters to pass to the
+            script.
+        :type script_parameters: str
+
+        :param attributes: (optional) JSON attributes for the bulk volume job.
+        :type attributes: dict
+
+        :returns: a response
+        :rtype: StartBulkVolumeWriteResult
+        """
+
+        params = {
+            "volumeID": volume_id,
+            "format": format,
+        }
+        if script is not None:
+            params["script"] = script
+        if script_parameters is not None:
+            params["scriptParameters"] = script_parameters
+        if attributes is not None:
+            params["attributes"] = attributes
+
+        return self._send_request(
+            'StartBulkVolumeWrite',
+            StartBulkVolumeWriteResult,
+            params,
+        )
+
+    def update_bulk_volume_status(
+            self,
+            key,
+            status,
+            percent_complete=OPTIONAL,
+            message=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        You can use *update_bulk_volume_status* in a script to return to the
+        SolidFire system the status of a bulk volume job that you have started
+        with the *\"start_bulk_volume_read\"* or *\"start_bulk_volume_write\"*
+        methods.
+
+        :param key: [required] The key assigned during initialization of a
+            \"StartBulkVolumeRead\" or \"StartBulkVolumeWrite\" session.
+        :type key: str
+
+        :param status: [required] The SolidFire system sets the status of the
+            given bulk volume job.
+
+            Possible values:
+
+            **running**: jobs that are still active. **complete**: jobs that
+            are done. failed - jobs that have failed. **failed**: jobs that
+            have failed.
+
+        :type status: str
+
+        :param percent_complete: (optional) The completed progress of the bulk
+            volume job as a percentage.
+        :type percent_complete: str
+
+        :param message: (optional) Returns the status of the bulk volume job
+            when the job has completed.
+        :type message: str
+
+        :param attributes: (optional) JSON attributes  updates what is on the
+            bulk volume job.
+        :type attributes: dict
+
+        :returns: a response
+        :rtype: UpdateBulkVolumeStatusResult
+        """
+
+        params = {
+            "key": key,
+            "status": status,
+        }
+        if percent_complete is not None:
+            params["percentComplete"] = percent_complete
+        if message is not None:
+            params["message"] = message
+        if attributes is not None:
+            params["attributes"] = attributes
+
+        return self._send_request(
+            'UpdateBulkVolumeStatus',
+            UpdateBulkVolumeStatusResult,
             params,
         )
 
