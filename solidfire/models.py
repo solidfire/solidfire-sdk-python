@@ -9,7 +9,13 @@ from __future__ import unicode_literals
 from __future__ import absolute_import
 from solidfire.common import model as data_model
 from uuid import UUID
-from solidfire.models import CHAPSecret
+from solidfire.custom import CHAPSecret as UserDefinedCHAPSecret
+
+
+class CHAPSecret(UserDefinedCHAPSecret):
+    def __init__(self, **kwargs):
+        self = UserDefinedCHAPSecret()
+        data_model.DataObject.__init__(self, **kwargs)
 
 
 class AddressBlock(data_model.DataObject):
