@@ -51,7 +51,6 @@ from solidfire.models import VolumeAccessGroupLunAssignments
 from solidfire.models import VolumeStats
 
 
-
 class AddDrivesResult(data_model.DataObject):
     """
     The object returned by the \"add_drives\" API Service call.
