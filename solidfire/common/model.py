@@ -36,7 +36,9 @@ def serialize(val):
 
     :return: the serialized value
     """
-    if hasattr(val, 'to_json'):
+    if hasattr(val, 'custom_to_json'):
+        return val.custom_to_json()
+    elif hasattr(val, 'to_json'):
         return val.to_json()
     elif type(val) in KNOWN_CONVERSIONS:
         return KNOWN_CONVERSIONS[type(val)](val)
@@ -274,6 +276,8 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
         for name, prop in cls._properties.items():
             if data is None:
                 pass
+            elif hasattr(prop.member_type(),'custom_extract'):
+                ctor_dict[name] = prop.member_type().custom_extract(data[prop.member_name()])
             elif prop.member_name() in data:
                 data_val = data[prop.member_name()]
                 ctor_dict[name] = prop.extract_from(data_val)
