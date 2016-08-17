@@ -1,15 +1,15 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright © 2014-2016 NetApp, Inc. All Rights Reserved.
+# Copyright &copy 2014-2016 NetApp, Inc. All Rights Reserved.
 #
 # CONFIDENTIALITY NOTICE: THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION OF
 # NETAPP, INC. USE, DISCLOSURE OR REPRODUCTION IS PROHIBITED WITHOUT THE PRIOR
 # EXPRESS WRITTEN PERMISSION OF NETAPP, INC.
 
 from __future__ import unicode_literals
-from future.utils import with_metaclass
 import json
+from future.utils import with_metaclass
 
 KNOWN_CONVERSIONS = {
     type(set): list
@@ -37,19 +37,21 @@ def serialize(val):
     :return: the serialized value
     """
     if hasattr(val, 'custom_to_json'):
-        return val.custom_to_json()
+        return_value = val.custom_to_json()
     elif hasattr(val, 'to_json'):
-        return val.to_json()
+        return_value = val.to_json()
     elif type(val) in KNOWN_CONVERSIONS:
-        return KNOWN_CONVERSIONS[type(val)](val)
+        return_value = KNOWN_CONVERSIONS[type(val)](val)
     elif isinstance(val, dict):
-        return dict((k, serialize(v)) for k, v in val.items())
+        return_value = dict((k, serialize(v)) for k, v in val.items())
     elif isinstance(val, list):
-        return list(serialize(v) for v in val)
+        return_value = list(serialize(v) for v in val)
     elif hasattr(val, '_optional') and val.optional():
-        return None
+        return_value = None
     else:
-        return val
+        return_value = val
+
+    return return_value
 
 
 def extract(typ, src):
@@ -64,15 +66,18 @@ def extract(typ, src):
         original version is returned.
     """
     if hasattr(typ, 'extract'):
-        return typ.extract(src, False)
+        return_value = typ.extract(src, False)
     else:
-        return src
+        return_value = src
+
+    return return_value
 
 
 class ModelProperty(object):
     """
     ModelProperty metadata container for API data type information.
     """
+
     def __init__(self, member_name, member_type, array=False, optional=False,
                  documentation=None):
         """
@@ -213,13 +218,13 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
                 cls._properties[name] = prop
 
     def __init__(self, **kwargs):
-        for k, v in kwargs.items():
-            if k not in type(self)._properties:
-                msg_fmt = 'Key "{k}" is not a valid property'
-                msg = msg_fmt.format(k)
+        for key, value in kwargs.items():
+            if key not in type(self)._properties:
+                msg_fmt = 'Key "{key}" is not a valid property'
+                msg = msg_fmt.format(key)
                 raise TypeError(msg)
             else:
-                setattr(self, k, v)
+                setattr(self, key, value)
 
     def __repr__(self):
         """
@@ -236,12 +241,12 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
                 else:
                     attrs = (repr(x) for x in getattr(self, name))
                 msg_fmt = '[{arr}]'
-                r = msg_fmt.format(
+                attr_repr = msg_fmt.format(
                     arr=str.join(str(', '), attrs))
             else:
-                r = repr(getattr(self, name))
+                attr_repr = repr(getattr(self, name))
             msg_fmt = '{name}={repr}'
-            msg = msg_fmt.format(name=name, repr=r)
+            msg = msg_fmt.format(name=name, repr=attr_repr)
             props.append(msg)
         return str.format(str('{cls}({props})'),
                           cls=type(self).__name__,
@@ -276,8 +281,9 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
         for name, prop in cls._properties.items():
             if data is None:
                 pass
-            elif hasattr(prop.member_type(),'custom_extract'):
-                ctor_dict[name] = prop.member_type().custom_extract(data[prop.member_name()])
+            elif hasattr(prop.member_type(), 'custom_extract'):
+                ctor_dict[name] = prop.member_type().custom_extract(
+                    data[prop.member_name()])
             elif prop.member_name() in data:
                 data_val = data[prop.member_name()]
                 ctor_dict[name] = prop.extract_from(data_val)
@@ -293,7 +299,7 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
                 msg = msg_fmt.format(typ=cls.__name__,
                                      name=prop.member_name(),
                                      data=json.dumps(data)
-                                     )
+                                    )
                 raise TypeError(msg)
         return cls(**ctor_dict)
 
@@ -340,4 +346,4 @@ def property(member_name, member_type,
                array=array,
                optional=optional,
                documentation=documentation
-               )
+              )

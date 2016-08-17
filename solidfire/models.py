@@ -10,11 +10,18 @@ from __future__ import absolute_import
 from solidfire.common import model as data_model
 from uuid import UUID
 from solidfire.custom import CHAPSecret as UserDefinedCHAPSecret
+from solidfire.custom import Frequency as UserDefinedFrequency
 
 
 class CHAPSecret(UserDefinedCHAPSecret):
     def __init__(self, **kwargs):
         self = UserDefinedCHAPSecret()
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class Frequency(UserDefinedFrequency):
+    def __init__(self, **kwargs):
+        self = UserDefinedFrequency()
         data_model.DataObject.__init__(self, **kwargs)
 
 
