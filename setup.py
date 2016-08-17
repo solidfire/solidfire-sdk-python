@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright © 2014-2016 NetApp, Inc. All Rights Reserved.
+# Copyright &copy 2014-2016 NetApp, Inc. All Rights Reserved.
 #
 # CONFIDENTIALITY NOTICE: THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION OF
 # NETAPP, INC. USE, DISCLOSURE OR REPRODUCTION IS PROHIBITED WITHOUT THE PRIOR
@@ -75,7 +75,7 @@ setup(
 
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 
-    install_requires=['pycurl>=7.34.0', 'future>=0.15.2'],
+    install_requires=['pycurl>=7.34.0', 'future>=0.15.2', 'enum34>=1.1.6'],
 
     # $> pip install -e ".[dev,test, docs, release]"
     extras_require={

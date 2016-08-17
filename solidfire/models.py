@@ -10,11 +10,18 @@ from __future__ import absolute_import
 from solidfire.common import model as data_model
 from uuid import UUID
 from solidfire.custom import CHAPSecret as UserDefinedCHAPSecret
+from solidfire.custom import Frequency as UserDefinedFrequency
 
 
 class CHAPSecret(UserDefinedCHAPSecret):
     def __init__(self, **kwargs):
         self = UserDefinedCHAPSecret()
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class Frequency(UserDefinedFrequency):
+    def __init__(self, **kwargs):
+        self = UserDefinedFrequency()
         data_model.DataObject.__init__(self, **kwargs)
 
 
@@ -1108,16 +1115,12 @@ class ResetDriveDetails(data_model.DataObject):
 class ScheduleInfo(data_model.DataObject):
     """
 
-    :param volume_id: (optional) The ID of the volume to be included in the
-        snapshot.
-    :type volume_id: int
-
-    :param volumes: (optional) A list of volume *ids* to be included in the
+    :param volume_ids: (optional) A list of volume *ids* to be included in the
         group snapshot.
-    :type volumes: int
+    :type volume_ids: int
 
-    :param name: (optional) The snapshot name to be used.
-    :type name: str
+    :param snapshot_name: (optional) The snapshot name to be used.
+    :type snapshot_name: str
 
     :param enable_remote_replication: (optional) Indicates if the snapshot
         should be included in remote replication.
@@ -1128,24 +1131,16 @@ class ScheduleInfo(data_model.DataObject):
     :type retention: str
     """
 
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=True,
-        documentation="\
-        The ID of the volume to be included in the snapshot.\
-        "
-    )
-
-    volumes = data_model.property(
-        "volumes", int,
+    volume_ids = data_model.property(
+        "volumeIDs", int,
         array=True, optional=True,
         documentation="\
         A list of volume *ids* to be included in the group snapshot.\
         "
     )
 
-    name = data_model.property(
-        "name", str,
+    snapshot_name = data_model.property(
+        "snapshotName", str,
         array=False, optional=True,
         documentation="\
         The snapshot name to be used.\
@@ -1414,32 +1409,6 @@ class VolumeQOS(data_model.DataObject):
         The curve is calculated relative to a 4096 byte operation set at 100\
         IOPS.\
         "
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-
-class Weekday(data_model.DataObject):
-    """
-
-    :param day: [required]
-    :type day: int
-
-    :param offset: [required]
-    :type offset: int
-    """
-
-    day = data_model.property(
-        "day", int,
-        array=False, optional=False,
-        documentation=None
-    )
-
-    offset = data_model.property(
-        "offset", int,
-        array=False, optional=False,
-        documentation=None
     )
 
     def __init__(self, **kwargs):
@@ -3620,29 +3589,18 @@ class Schedule(data_model.DataObject):
     Schedules information is returned with the API method, see *list_schedules*
     on the SolidFire API guide page 245.
 
-    :param attributes: [required] Indicates the frequency of the schedule
-        occurrence.
+    :param frequency: [required] Indicates the frequency of the schedule
+        occurrence. Set this to a type that inherits from Frequency.
 
-        Valid values are:
+        Valid types are:
 
-        Day of Week
+        *day_of_week_frequency*
 
-        Day of Month
+        *day_of_month_frequency*
 
-        Time Interval
+        *time_interval_frequency*
 
-    :type attributes: dict
-
-    :param has_error: [required] Indicates whether or not the schedule has
-        errors.
-    :type has_error: bool
-
-    :param hours: [required] Shows the hours that will elapse before the next
-        snapshot is created.
-
-        Valid values are: 0 - 24
-
-    :type hours: int
+    :type frequency: Frequency
 
     :param last_run_status: [required] Indicates the status of the last
         scheduled snapshot.
@@ -3664,96 +3622,73 @@ class Schedule(data_model.DataObject):
 
     :type last_run_time_start: str
 
-    :param minutes: [required] Shows the minutes that will elapse before the
-        next snapshot is created. Valid values are: 0 - 59
-    :type minutes: int
-
-    :param monthdays: [required] Shows the days of the month that the next
-        snapshot will be created on. Valid values are: 0 - 31
-    :type monthdays: int
-
-    :param paused: [required] Indicates whether or not the schedule is paused.
-    :type paused: bool
-
-    :param recurring: [required] Indicates whether or not the schedule is
-        recurring.
-    :type recurring: bool
-
-    :param run_next_interval: [required] Indicates whether or not the schedule
-        will run the next time the scheduler is active. When set to \"true\",
-        the schedule will run the next time the scheduler is active and then
-        reset back to \"false\".
-    :type run_next_interval: bool
-
-    :param schedule_id: [required] Unique ID of the schedule
-    :type schedule_id: int
-
     :param schedule_info: [required] Includes the unique name given to the
         schedule, the retention period for the snapshot that was created, and
         the volume ID of the volume from which the snapshot was created.
     :type schedule_info: ScheduleInfo
 
-    :param schedule_name: [required] Unique name assigned to the schedule.
-    :type schedule_name: str
-
-    :param schedule_type: [required] Only \"snapshot\" is supported at this
-        time.
-    :type schedule_type: str
+    :param name: [required] Unique name assigned to the schedule.
+    :type name: str
 
     :param starting_date: [required] Indicates the date the first time the
         schedule began of will begin. Formatted in UTC time.
     :type starting_date: str
 
-    :param to_be_deleted: [required] Indicates if the schedule is marked for
+    :param has_error: (optional) Indicates whether or not the schedule has
+        errors.
+    :type has_error: bool
+
+    :param paused: (optional) Indicates whether or not the schedule is paused.
+    :type paused: bool
+
+    :param recurring: (optional) Indicates whether or not the schedule is
+        recurring.
+    :type recurring: bool
+
+    :param run_next_interval: (optional) Indicates whether or not the schedule
+        will run the next time the scheduler is active. When set to \"true\",
+        the schedule will run the next time the scheduler is active and then
+        reset back to \"false\".
+    :type run_next_interval: bool
+
+    :param schedule_id: (optional) Unique ID of the schedule
+    :type schedule_id: int
+
+    :param to_be_deleted: (optional) Indicates if the schedule is marked for
         deletion.
     :type to_be_deleted: bool
-
-    :param weekdays: [required] Indicates the days of the week that a snapshot
-        will be made.
-    :type weekdays: Weekday
     """
 
-    attributes = data_model.property(
-        "attributes", dict,
+    frequency = data_model.property(
+        "frequency", Frequency,
         array=False, optional=False,
         documentation="\
-        Indicates the frequency of the schedule occurrence.\
+        Indicates the frequency of the schedule occurrence. Set this to a type\
+        that inherits from Frequency.\
 \
 \
 \
-        Valid values are:\
+        Valid types are:\
 \
 \
 \
-        Day of Week\
+        *day_of_week_frequency*\
 \
 \
 \
-        Day of Month\
+        *day_of_month_frequency*\
 \
 \
 \
-        Time Interval\
+        *time_interval_frequency*\
         "
     )
 
     has_error = data_model.property(
         "hasError", bool,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Indicates whether or not the schedule has errors.\
-        "
-    )
-
-    hours = data_model.property(
-        "hours", int,
-        array=False, optional=False,
-        documentation="\
-        Shows the hours that will elapse before the next snapshot is created.\
-\
-\
-\
-        Valid values are: 0 - 24\
         "
     )
 
@@ -3794,28 +3729,9 @@ class Schedule(data_model.DataObject):
         "
     )
 
-    minutes = data_model.property(
-        "minutes", int,
-        array=False, optional=False,
-        documentation="\
-        Shows the minutes that will elapse before the next snapshot is\
-        created.\
-        Valid values are: 0 - 59\
-        "
-    )
-
-    monthdays = data_model.property(
-        "monthdays", int,
-        array=True, optional=False,
-        documentation="\
-        Shows the days of the month that the next snapshot will be created on.\
-        Valid values are: 0 - 31\
-        "
-    )
-
     paused = data_model.property(
         "paused", bool,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Indicates whether or not the schedule is paused.\
         "
@@ -3823,7 +3739,7 @@ class Schedule(data_model.DataObject):
 
     recurring = data_model.property(
         "recurring", bool,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Indicates whether or not the schedule is recurring.\
         "
@@ -3831,7 +3747,7 @@ class Schedule(data_model.DataObject):
 
     run_next_interval = data_model.property(
         "runNextInterval", bool,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Indicates whether or not the schedule will run the next time the\
         scheduler is active. When set to \"true\", the schedule will run the\
@@ -3841,7 +3757,7 @@ class Schedule(data_model.DataObject):
 
     schedule_id = data_model.property(
         "scheduleID", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Unique ID of the schedule\
         "
@@ -3857,19 +3773,11 @@ class Schedule(data_model.DataObject):
         "
     )
 
-    schedule_name = data_model.property(
-        "scheduleName", str,
+    name = data_model.property(
+        "name", str,
         array=False, optional=False,
         documentation="\
         Unique name assigned to the schedule.\
-        "
-    )
-
-    schedule_type = data_model.property(
-        "scheduleType", str,
-        array=False, optional=False,
-        documentation="\
-        Only \"snapshot\" is supported at this time.\
         "
     )
 
@@ -3884,17 +3792,9 @@ class Schedule(data_model.DataObject):
 
     to_be_deleted = data_model.property(
         "toBeDeleted", bool,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Indicates if the schedule is marked for deletion.\
-        "
-    )
-
-    weekdays = data_model.property(
-        "weekdays", Weekday,
-        array=True, optional=False,
-        documentation="\
-        Indicates the days of the week that a snapshot will be made.\
         "
     )
 

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright © 2014-2016 NetApp, Inc. All Rights Reserved.
+# Copyright &copy 2014-2016 NetApp, Inc. All Rights Reserved.
 #
 # DO NOT EDIT THIS CODE BY HAND! It has been generated with jsvcgen.
 #
@@ -169,8 +169,8 @@ class Element(ServiceBase):
                 instance of Element OS.
         """
 
-        logLevel = Logger.getEffectiveLevel(common.log)
-        Logger.setLevel(common.log, logging.ERROR)
+        logLevel = Logger.getEffectiveLevel(common.LOG)
+        Logger.setLevel(common.LOG, logging.ERROR)
         ServiceBase.__init__(self, mvip, username, password,
                              0.0, verify_ssl, dispatcher)
 
@@ -237,7 +237,7 @@ class Element(ServiceBase):
         if attributes is not None:
             params["attributes"] = attributes
 
-        return self._send_request(
+        return self.send_request(
             'AddAccount',
             AddAccountResult,
             params,
@@ -261,7 +261,7 @@ class Element(ServiceBase):
             "accountID": account_id,
         }
 
-        return self._send_request(
+        return self.send_request(
             'GetAccountByID',
             GetAccountResult,
             params,
@@ -284,7 +284,7 @@ class Element(ServiceBase):
             "username": username,
         }
 
-        return self._send_request(
+        return self.send_request(
             'GetAccountByName',
             GetAccountResult,
             params,
@@ -318,7 +318,7 @@ class Element(ServiceBase):
         if limit is not None:
             params["limit"] = limit
 
-        return self._send_request(
+        return self.send_request(
             'ListAccounts',
             ListAccountsResult,
             params,
@@ -382,7 +382,7 @@ class Element(ServiceBase):
         if attributes is not None:
             params["attributes"] = attributes
 
-        return self._send_request(
+        return self.send_request(
             'ModifyAccount',
             ModifyAccountResult,
             params,
@@ -409,7 +409,7 @@ class Element(ServiceBase):
             "accountID": account_id,
         }
 
-        return self._send_request(
+        return self.send_request(
             'RemoveAccount',
             RemoveAccountResult,
             params,
@@ -441,7 +441,7 @@ class Element(ServiceBase):
         if force is not None:
             params["force"] = force
 
-        return self._send_request(
+        return self.send_request(
             'GetAccountEfficiency',
             GetEfficiencyResult,
             params,
@@ -473,7 +473,7 @@ class Element(ServiceBase):
         if attributes is not None:
             params["attributes"] = attributes
 
-        return self._send_request(
+        return self.send_request(
             'CreateBackupTarget',
             CreateBackupTargetResult,
             params,
@@ -498,7 +498,7 @@ class Element(ServiceBase):
             "backupTargetID": backup_target_id,
         }
 
-        return self._send_request(
+        return self.send_request(
             'GetBackupTarget',
             GetBackupTargetResult,
             params,
@@ -516,7 +516,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'ListBackupTargets',
             ListBackupTargetsResult,
             params,
@@ -553,7 +553,7 @@ class Element(ServiceBase):
         if attributes is not None:
             params["attributes"] = attributes
 
-        return self._send_request(
+        return self.send_request(
             'ModifyBackupTarget',
             ModifyBackupTargetResult,
             params,
@@ -577,7 +577,7 @@ class Element(ServiceBase):
             "backupTargetID": backup_target_id,
         }
 
-        return self._send_request(
+        return self.send_request(
             'RemoveBackupTarget',
             RemoveBackupTargetResult,
             params,
@@ -596,7 +596,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'GetClusterCapacity',
             GetClusterCapacityResult,
             params,
@@ -613,7 +613,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'GetClusterInfo',
             GetClusterInfoResult,
             params,
@@ -633,7 +633,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'GetClusterVersionInfo',
             GetClusterVersionInfoResult,
             params,
@@ -650,7 +650,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'GetLimits',
             GetLimitsResult,
             params,
@@ -691,7 +691,7 @@ class Element(ServiceBase):
         if event_queue_type is not None:
             params["eventQueueType"] = event_queue_type
 
-        return self._send_request(
+        return self.send_request(
             'ListEvents',
             ListEventsResult,
             params,
@@ -732,7 +732,7 @@ class Element(ServiceBase):
         if fault_types is not None:
             params["faultTypes"] = fault_types
 
-        return self._send_request(
+        return self.send_request(
             'ListClusterFaults',
             ListClusterFaultsResult,
             params,
@@ -767,7 +767,7 @@ class Element(ServiceBase):
         if fault_types is not None:
             params["faultTypes"] = fault_types
 
-        return self._send_request(
+        return self.send_request(
             'ClearClusterFaults',
             ClearClusterFaultsResult,
             params,
@@ -792,7 +792,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'GetClusterConfig',
             GetClusterConfigResult,
             params,
@@ -810,7 +810,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'GetClusterFullThreshold',
             GetClusterFullThresholdResult,
             params,
@@ -868,7 +868,7 @@ class Element(ServiceBase):
             params["maxMetadataOverProvisionFactor"] = \
                 max_metadata_over_provision_factor
 
-        return self._send_request(
+        return self.send_request(
             'ModifyClusterFullThreshold',
             ModifyClusterFullThresholdResult,
             params,
@@ -887,7 +887,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'GetClusterStats',
             GetClusterStatsResult,
             params,
@@ -910,7 +910,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'ListClusterAdmins',
             ListClusterAdminsResult,
             params,
@@ -965,7 +965,7 @@ class Element(ServiceBase):
         if attributes is not None:
             params["attributes"] = attributes
 
-        return self._send_request(
+        return self.send_request(
             'AddClusterAdmin',
             AddClusterAdminResult,
             params,
@@ -1013,7 +1013,7 @@ class Element(ServiceBase):
         if attributes is not None:
             params["attributes"] = attributes
 
-        return self._send_request(
+        return self.send_request(
             'ModifyClusterAdmin',
             ModifyClusterAdminResult,
             params,
@@ -1038,7 +1038,7 @@ class Element(ServiceBase):
             "clusterAdminID": cluster_admin_id,
         }
 
-        return self._send_request(
+        return self.send_request(
             'RemoveClusterAdmin',
             RemoveClusterAdminResult,
             params,
@@ -1073,7 +1073,7 @@ class Element(ServiceBase):
             "cluster": cluster,
         }
 
-        return self._send_request(
+        return self.send_request(
             'SetClusterConfig',
             SetClusterConfigResult,
             params,
@@ -1091,7 +1091,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'GetSnmpACL',
             GetSnmpACLResult,
             params,
@@ -1130,7 +1130,7 @@ class Element(ServiceBase):
             "usmUsers": usm_users,
         }
 
-        return self._send_request(
+        return self.send_request(
             'SetSnmpACL',
             SetSnmpACLResult,
             params,
@@ -1149,7 +1149,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'GetSnmpTrapInfo',
             GetSnmpTrapInfoResult,
             params,
@@ -1203,7 +1203,7 @@ class Element(ServiceBase):
             "clusterEventTrapsEnabled": cluster_event_traps_enabled,
         }
 
-        return self._send_request(
+        return self.send_request(
             'SetSnmpTrapInfo',
             SetSnmpTrapInfoResult,
             params,
@@ -1231,7 +1231,7 @@ class Element(ServiceBase):
             "snmpV3Enabled": snmp_v3_enabled,
         }
 
-        return self._send_request(
+        return self.send_request(
             'EnableSnmp',
             EnableSnmpResult,
             params,
@@ -1248,7 +1248,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'DisableSnmp',
             DisableSnmpResult,
             params,
@@ -1275,7 +1275,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'GetSnmpInfo',
             GetSnmpInfoResult,
             params,
@@ -1332,7 +1332,7 @@ class Element(ServiceBase):
         if usm_users is not None:
             params["usmUsers"] = usm_users
 
-        return self._send_request(
+        return self.send_request(
             'SetSnmpInfo',
             SetSnmpInfoResult,
             params,
@@ -1357,7 +1357,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'GetSnmpState',
             GetSnmpStateResult,
             params,
@@ -1376,7 +1376,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'GetAPI',
             GetAPIResult,
             params,
@@ -1395,7 +1395,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'GetCurrentClusterAdmin',
             GetCurrentClusterAdminResult,
             params,
@@ -1430,7 +1430,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'EnableEncryptionAtRest',
             EnableEncryptionAtRestResult,
             params,
@@ -1455,7 +1455,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'DisableEncryptionAtRest',
             DisableEncryptionAtRestResult,
             params,
@@ -1474,7 +1474,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'SnmpSendTestTraps',
             SnmpSendTestTrapsResult,
             params,
@@ -1518,7 +1518,7 @@ class Element(ServiceBase):
             "asyncHandle": async_handle,
         }
 
-        return self._send_request(
+        return self.send_request(
             'GetAsyncResult',
             GetAsyncResultResult,
             params,
@@ -1567,7 +1567,7 @@ class Element(ServiceBase):
             "drives": drives,
         }
 
-        return self._send_request(
+        return self.send_request(
             'AddDrives',
             AddDrivesResult,
             params,
@@ -1588,7 +1588,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'ListDrives',
             ListDrivesResult,
             params,
@@ -1615,7 +1615,7 @@ class Element(ServiceBase):
             "driveID": drive_id,
         }
 
-        return self._send_request(
+        return self.send_request(
             'GetDriveHardwareInfo',
             GetDriveHardwareInfoResult,
             params,
@@ -1640,7 +1640,7 @@ class Element(ServiceBase):
             "force": force,
         }
 
-        return self._send_request(
+        return self.send_request(
             'ListDriveHardware',
             ListDriveHardwareResult,
             params,
@@ -1678,7 +1678,7 @@ class Element(ServiceBase):
             "force": force,
         }
 
-        return self._send_request(
+        return self.send_request(
             'ResetDrives',
             ResetDrivesResult,
             params,
@@ -1723,7 +1723,7 @@ class Element(ServiceBase):
         if minutes is not None:
             params["minutes"] = minutes
 
-        return self._send_request(
+        return self.send_request(
             'TestDrives',
             TestDrivesResult,
             params,
@@ -1754,7 +1754,7 @@ class Element(ServiceBase):
             "driveID": drive_id,
         }
 
-        return self._send_request(
+        return self.send_request(
             'GetDriveStats',
             GetDriveStatsResult,
             params,
@@ -1790,7 +1790,7 @@ class Element(ServiceBase):
             "drives": drives,
         }
 
-        return self._send_request(
+        return self.send_request(
             'SecureEraseDrives',
             AsyncHandleResult,
             params,
@@ -1847,7 +1847,7 @@ class Element(ServiceBase):
             "drives": drives,
         }
 
-        return self._send_request(
+        return self.send_request(
             'RemoveDrives',
             AsyncHandleResult,
             params,
@@ -1869,7 +1869,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'ListFibreChannelPortInfo',
             ListFibreChannelPortInfoResult,
             params,
@@ -1899,7 +1899,7 @@ class Element(ServiceBase):
         if force is not None:
             params["force"] = force
 
-        return self._send_request(
+        return self.send_request(
             'ListNodeFibreChannelPortInfo',
             ListNodeFibreChannelPortInfoResult,
             params,
@@ -1918,7 +1918,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'ListFibreChannelSessions',
             ListFibreChannelSessionsResult,
             params,
@@ -1967,7 +1967,7 @@ class Element(ServiceBase):
         if attributes is not None:
             params["attributes"] = attributes
 
-        return self._send_request(
+        return self.send_request(
             'AddLdapClusterAdmin',
             AddLdapClusterAdminResult,
             params,
@@ -2008,7 +2008,7 @@ class Element(ServiceBase):
         if ldap_configuration is not None:
             params["ldapConfiguration"] = ldap_configuration
 
-        return self._send_request(
+        return self.send_request(
             'TestLdapAuthentication',
             TestLdapAuthenticationResult,
             params,
@@ -2027,7 +2027,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'GetLdapConfiguration',
             GetLdapConfigurationResult,
             params,
@@ -2161,7 +2161,7 @@ class Element(ServiceBase):
         if user_search_filter is not None:
             params["userSearchFilter"] = user_search_filter
 
-        return self._send_request(
+        return self.send_request(
             'EnableLdapAuthentication',
             EnableLdapAuthenticationResult,
             params,
@@ -2182,7 +2182,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'DisableLdapAuthentication',
             DisableLdapAuthenticationResult,
             params,
@@ -2194,7 +2194,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'ListActiveNodes',
             ListActiveNodesResult,
             params,
@@ -2205,7 +2205,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'ListAllNodes',
             ListAllNodesResult,
             params,
@@ -2224,7 +2224,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'ListPendingNodes',
             ListPendingNodesResult,
             params,
@@ -2284,7 +2284,7 @@ class Element(ServiceBase):
             "pendingNodes": pending_nodes,
         }
 
-        return self._send_request(
+        return self.send_request(
             'AddNodes',
             AddNodesResult,
             params,
@@ -2319,7 +2319,7 @@ class Element(ServiceBase):
             "nodes": nodes,
         }
 
-        return self._send_request(
+        return self.send_request(
             'RemoveNodes',
             RemoveNodesResult,
             params,
@@ -2343,7 +2343,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'GetNetworkConfig',
             GetNetworkConfigResult,
             params,
@@ -2383,7 +2383,7 @@ class Element(ServiceBase):
             "config": config,
         }
 
-        return self._send_request(
+        return self.send_request(
             'SetConfig',
             SetConfigResult,
             params,
@@ -2424,7 +2424,7 @@ class Element(ServiceBase):
             "network": network,
         }
 
-        return self._send_request(
+        return self.send_request(
             'SetNetworkConfig',
             SetNetworkConfigResult,
             params,
@@ -2450,7 +2450,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'GetConfig',
             GetConfigResult,
             params,
@@ -2475,13 +2475,11 @@ class Element(ServiceBase):
             "nodeID": node_id,
         }
 
-        result = self._send_request(
-            'GetNodeStats',
-            GetNodeStatsResult,
-            params,
-        )
+        since = None
+        deprecated = None
 
-        return ElementServiceAdaptor.get_node_stats(params, result)
+        return ElementServiceAdaptor.get_node_stats(self, params,
+                                                    since, deprecated)
 
     def list_node_stats(
             self,):
@@ -2495,7 +2493,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'ListNodeStats',
             ListNodeStatsResult,
             params,
@@ -2516,7 +2514,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'ListClusterPairs',
             ListClusterPairsResult,
             params,
@@ -2536,7 +2534,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'ListActivePairedVolumes',
             ListActivePairedVolumesResult,
             params,
@@ -2558,7 +2556,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'StartClusterPairing',
             StartClusterPairingResult,
             params,
@@ -2609,7 +2607,7 @@ class Element(ServiceBase):
         if mode is not None:
             params["mode"] = mode
 
-        return self._send_request(
+        return self.send_request(
             'StartVolumePairing',
             StartVolumePairingResult,
             params,
@@ -2637,7 +2635,7 @@ class Element(ServiceBase):
             "clusterPairingKey": cluster_pairing_key,
         }
 
-        return self._send_request(
+        return self.send_request(
             'CompleteClusterPairing',
             CompleteClusterPairingResult,
             params,
@@ -2668,7 +2666,7 @@ class Element(ServiceBase):
             "volumeID": volume_id,
         }
 
-        return self._send_request(
+        return self.send_request(
             'CompleteVolumePairing',
             CompleteVolumePairingResult,
             params,
@@ -2699,7 +2697,7 @@ class Element(ServiceBase):
             "clusterPairID": cluster_pair_id,
         }
 
-        return self._send_request(
+        return self.send_request(
             'RemoveClusterPair',
             RemoveClusterPairResult,
             params,
@@ -2728,7 +2726,7 @@ class Element(ServiceBase):
             "volumeID": volume_id,
         }
 
-        return self._send_request(
+        return self.send_request(
             'RemoveVolumePair',
             RemoveVolumePairResult,
             params,
@@ -2788,7 +2786,7 @@ class Element(ServiceBase):
         if mode is not None:
             params["mode"] = mode
 
-        return self._send_request(
+        return self.send_request(
             'ModifyVolumePair',
             ModifyVolumePairResult,
             params,
@@ -2865,7 +2863,7 @@ class Element(ServiceBase):
         if attributes is not None:
             params["attributes"] = attributes
 
-        return self._send_request(
+        return self.send_request(
             'CreateSnapshot',
             CreateSnapshotResult,
             params,
@@ -2892,7 +2890,7 @@ class Element(ServiceBase):
             "snapshotID": snapshot_id,
         }
 
-        return self._send_request(
+        return self.send_request(
             'DeleteSnapshot',
             DeleteSnapshotResult,
             params,
@@ -2917,7 +2915,7 @@ class Element(ServiceBase):
         if volume_id is not None:
             params["volumeID"] = volume_id
 
-        return self._send_request(
+        return self.send_request(
             'ListSnapshots',
             ListSnapshotsResult,
             params,
@@ -2964,7 +2962,7 @@ class Element(ServiceBase):
         if enable_remote_replication is not None:
             params["enableRemoteReplication"] = enable_remote_replication
 
-        return self._send_request(
+        return self.send_request(
             'ModifySnapshot',
             ModifySnapshotResult,
             params,
@@ -3032,7 +3030,7 @@ class Element(ServiceBase):
         if attributes is not None:
             params["attributes"] = attributes
 
-        return self._send_request(
+        return self.send_request(
             'RollbackToSnapshot',
             CreateSnapshotResult,
             params,
@@ -3104,7 +3102,7 @@ class Element(ServiceBase):
         if attributes is not None:
             params["attributes"] = attributes
 
-        return self._send_request(
+        return self.send_request(
             'CreateGroupSnapshot',
             CreateGroupSnapshotResult,
             params,
@@ -3141,7 +3139,7 @@ class Element(ServiceBase):
             "saveMembers": save_members,
         }
 
-        return self._send_request(
+        return self.send_request(
             'DeleteGroupSnapshot',
             DeleteGroupSnapshotResult,
             params,
@@ -3167,7 +3165,7 @@ class Element(ServiceBase):
         if volume_id is not None:
             params["volumeID"] = volume_id
 
-        return self._send_request(
+        return self.send_request(
             'ListGroupSnapshots',
             ListGroupSnapshotsResult,
             params,
@@ -3211,7 +3209,7 @@ class Element(ServiceBase):
         if enable_remote_replication is not None:
             params["enableRemoteReplication"] = enable_remote_replication
 
-        return self._send_request(
+        return self.send_request(
             'ModifyGroupSnapshot',
             ModifyGroupSnapshotResult,
             params,
@@ -3268,7 +3266,7 @@ class Element(ServiceBase):
         if attributes is not None:
             params["attributes"] = attributes
 
-        return self._send_request(
+        return self.send_request(
             'RollbackToGroupSnapshot',
             CreateGroupSnapshotResult,
             params,
@@ -3297,12 +3295,11 @@ class Element(ServiceBase):
             "scheduleID": schedule_id,
         }
 
-        return self._send_request(
-            'GetSchedule',
-            GetScheduleResult,
-            params,
-            since=8.0,
-        )
+        since = 8.0
+        deprecated = None
+
+        return ElementServiceAdaptor.get_schedule(self, params,
+                                                  since, deprecated)
 
     def list_schedules(
             self,):
@@ -3316,26 +3313,15 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
-            'ListSchedules',
-            ListSchedulesResult,
-            params,
-            since=8.0,
-        )
+        since = 8.0
+        deprecated = None
+
+        return ElementServiceAdaptor.list_schedules(self, params,
+                                                    since, deprecated)
 
     def create_schedule(
             self,
-            attributes,
-            schedule_name,
-            schedule_type,
-            schedule_info,
-            hours=OPTIONAL,
-            minutes=OPTIONAL,
-            paused=OPTIONAL,
-            recurring=OPTIONAL,
-            starting_date=OPTIONAL,
-            monthdays=OPTIONAL,
-            weekdays=OPTIONAL,):
+            schedule,):
         """
         *create_schedule* is used to create a schedule that will autonomously
         make a snapshot of a volume at a defined interval.
@@ -3360,147 +3346,39 @@ class Element(ServiceBase):
         stage 2 or 3. Snapshots are not created when cluster fullness is at
         stage 4 or 5.
 
-        :param attributes: [required] The \"frequency\" object is returned in
-            \"attributes\" to indicate the frequency at which the snapshot will
-            be made.
+        :param schedule: [required] The \"Schedule\" object will be used to
+            create a new schedule.
 
-            Valid values for \"frequency\" are:
+            Do not set *schedule_id* property, it will be ignored.
 
-            Days of Week
+            Frequency property must be of type that inherits from Frequency.
+            Valid types are:
 
-            Days of Month
+            *days_of_month_frequency*
 
-            Time Interval
+            *days_or_week_frequency*
 
-        :type attributes: dict
+            *time_interval_frequency*
 
-        :param schedule_name: [required] Unique name for the schedule.
-        :type schedule_name: str
-
-        :param schedule_type: [required] Indicates the type of schedule to
-            create.
-
-            Valid value is:
-
-            snapshot
-
-        :type schedule_type: str
-
-        :param schedule_info: [required] An object of schedule information
-            about how the snapshot should be created at each scheduled
-            interval.
-
-            *volume_id* - The ID of the volume to be included in the snapshot.
-            (Integer)
-
-            volumes - A list of volume *ids* to be included in the group
-            snapshot. (Array of Integers)
-
-            name - The snapshot name to be used. (String)
-
-            *enable_remote_replication* - Indicates if the snapshot should be
-            included in remote replication. (Boolean)
-
-            retention - The amount of time the snapshot will be retained in
-            HH:mm:ss. (String)
-
-        :type schedule_info: ScheduleInfo
-
-        :param hours: (optional) Number of hours between snapshots or hour at
-            which the snapshot will occur in \"Days of Week\", or \"Days of
-            Month\" mode.
-
-            Valid values: 0 - 24
-
-        :type hours: int
-
-        :param minutes: (optional) Number of minutes between snapshots or
-            minute at which the snapshot will occur in \"Days of Week\", or
-            \"Days of Month\" mode.
-
-            Valid values: 0 - 59
-
-        :type minutes: int
-
-        :param paused: (optional) Indicates if the schedule should be paused or
-            not.
-        :type paused: bool
-
-        :param recurring: (optional) Indicates if the schedule will be
-            recurring or not.
-        :type recurring: bool
-
-        :param starting_date: (optional) Time after which the schedule will be
-            run. If not set the schedule starts immediately. Formatted in UTC
-            time.
-        :type starting_date: str
-
-        :param monthdays: (optional) The days of the month that a snapshot will
-            be made.
-
-            Valid values: 1 - 31
-
-        :type monthdays: int
-
-        :param weekdays: (optional) Day of the week the snapshot is to be
-            created.
-
-            Required values:
-
-            day: 0 - 6 (Sunday - Saturday)
-
-            offset: 1
-
-        :type weekdays: Weekday
+        :type schedule: Schedule
 
         :returns: a response
         :rtype: CreateScheduleResult
         """
 
         params = {
-            "attributes": attributes,
-            "scheduleName": schedule_name,
-            "scheduleType": schedule_type,
-            "scheduleInfo": schedule_info,
+            "schedule": schedule,
         }
-        if hours is not None:
-            params["hours"] = hours
-        if minutes is not None:
-            params["minutes"] = minutes
-        if paused is not None:
-            params["paused"] = paused
-        if recurring is not None:
-            params["recurring"] = recurring
-        if starting_date is not None:
-            params["startingDate"] = starting_date
-        if monthdays is not None:
-            params["monthdays"] = monthdays
-        if weekdays is not None:
-            params["weekdays"] = weekdays
 
-        return self._send_request(
-            'CreateSchedule',
-            CreateScheduleResult,
-            params,
-            since=8.0,
-        )
+        since = 8.0
+        deprecated = None
+
+        return ElementServiceAdaptor.create_schedule(self, params,
+                                                     since, deprecated)
 
     def modify_schedule(
             self,
-            schedule_id,
-            attributes=OPTIONAL,
-            hours=OPTIONAL,
-            minutes=OPTIONAL,
-            monthdays=OPTIONAL,
-            paused=OPTIONAL,
-            recurring=OPTIONAL,
-            run_next_interval=OPTIONAL,
-            schedule_info=OPTIONAL,
-            schedule_name=OPTIONAL,
-            schedule_type=OPTIONAL,
-            starting_date=OPTIONAL,
-            to_be_deleted=OPTIONAL,
-            weekdays=OPTIONAL,):
+            schedule,):
         """
         *modify_schedule* is used to change the intervals at which a scheduled
         snapshot occurs. This allows for adjustment to the snapshot frequency
@@ -3509,141 +3387,35 @@ class Element(ServiceBase):
 
 
 
-        :param schedule_id: [required] Unique ID of the schedule.
-        :type schedule_id: int
+        :param schedule: [required] The \"Schedule\" object will be used to
+            modify an existing schedule.
 
-        :param attributes: (optional) The \"frequency\" object is returned in
-            \"attributes\" to indicate the frequency at which the snapshot will
-            be made.
+            The *schedule_id* property is required.
 
-            Valid values for \"frequency\" are:
+            Frequency property must be of type that inherits from Frequency.
+            Valid types are:
 
-            Days of Week
+            *days_of_month_frequency*
 
-            Days of Month
+            *days_or_week_frequency*
 
-            Time Interval
+            *time_interval_frequency*
 
-        :type attributes: dict
-
-        :param hours: (optional) Number of hours between snapshots or hour at
-            which the snapshot will occur in \"Days of Week\", or \"Days of
-            Month\" mode.
-
-            Valid values: 0 - 24
-
-        :type hours: int
-
-        :param minutes: (optional) Number of minutes between snapshots or
-            minute at which the snapshot will occur in \"Days of Week\", or
-            \"Days of Month\" mode.
-
-            Valid values: 0 - 59
-
-        :type minutes: int
-
-        :param monthdays: (optional) The days of the month that a snapshot will
-            be made.
-
-            Valid values: 1 - 31
-
-        :type monthdays: int
-
-        :param paused: (optional) Indicates if the schedule should be paused or
-            not.
-        :type paused: bool
-
-        :param recurring: (optional) Indicates if the schedule will be
-            recurring or not.
-        :type recurring: bool
-
-        :param run_next_interval: (optional) Use to choose to run the schedule
-            when the scheduler the next time the scheduler is active. When set
-            to \"true\", the schedule will run the next time the scheduler is
-            active and then reset back to \"false\".
-        :type run_next_interval: bool
-
-        :param schedule_info: (optional) An object of schedule information
-            about how the snapshot should be created at each scheduled
-            interval.
-
-            *volume_id* - The ID of the volume to be included in the snapshot.
-            (Integer)
-
-            volumes - A list of volume *ids* to be included in the group
-            snapshot. (Array of Integers)
-
-            name - The snapshot name to be used. (String)
-
-            *enable_remote_replication* - Indicates if the snapshot should be
-            included in remote replication. (Boolean)
-
-            retention - The amount of time the snapshot will be retained in
-            HH:mm:ss. (String)
-
-        :type schedule_info: ScheduleInfo
-
-        :param schedule_name: (optional) Unique name for the schedule.
-        :type schedule_name: str
-
-        :param schedule_type: (optional) Only \"snapshot\" is supported at this
-            time.
-        :type schedule_type: str
-
-        :param starting_date: (optional) Indicates the date the first time the
-            schedule began or will begin.
-        :type starting_date: str
-
-        :param to_be_deleted: (optional) Indicates if the schedule is marked
-            for deletion.
-        :type to_be_deleted: bool
-
-        :param weekdays: (optional) Day of the week the snapshot is to be
-            created. The day of the week starts at Sunday with the value of
-            \"0\" and an offset of \"1.\" Monday has a value of \"1\" with an
-            offset of \"1\", etc.
-        :type weekdays: Weekday
+        :type schedule: Schedule
 
         :returns: a response
         :rtype: ModifyScheduleResult
         """
 
         params = {
-            "scheduleID": schedule_id,
+            "schedule": schedule,
         }
-        if attributes is not None:
-            params["attributes"] = attributes
-        if hours is not None:
-            params["hours"] = hours
-        if minutes is not None:
-            params["minutes"] = minutes
-        if monthdays is not None:
-            params["monthdays"] = monthdays
-        if paused is not None:
-            params["paused"] = paused
-        if recurring is not None:
-            params["recurring"] = recurring
-        if run_next_interval is not None:
-            params["runNextInterval"] = run_next_interval
-        if schedule_info is not None:
-            params["scheduleInfo"] = schedule_info
-        if schedule_name is not None:
-            params["scheduleName"] = schedule_name
-        if schedule_type is not None:
-            params["scheduleType"] = schedule_type
-        if starting_date is not None:
-            params["startingDate"] = starting_date
-        if to_be_deleted is not None:
-            params["toBeDeleted"] = to_be_deleted
-        if weekdays is not None:
-            params["weekdays"] = weekdays
 
-        return self._send_request(
-            'ModifySchedule',
-            ModifyScheduleResult,
-            params,
-            since=8.0,
-        )
+        since = 8.0
+        deprecated = None
+
+        return ElementServiceAdaptor.modify_schedule(self, params,
+                                                     since, deprecated)
 
     def get_raw_stats(
             self,):
@@ -3665,7 +3437,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'GetRawStats',
             str,
             params,
@@ -3692,7 +3464,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'GetCompleteStats',
             str,
             params,
@@ -3743,7 +3515,7 @@ class Element(ServiceBase):
         if virtual_network_tags is not None:
             params["virtualNetworkTags"] = virtual_network_tags
 
-        return self._send_request(
+        return self.send_request(
             'ListVirtualNetworks',
             ListVirtualNetworksResult,
             params,
@@ -3812,7 +3584,7 @@ class Element(ServiceBase):
         if attributes is not None:
             params["attributes"] = attributes
 
-        return self._send_request(
+        return self.send_request(
             'AddVirtualNetwork',
             AddVirtualNetworkResult,
             params,
@@ -3893,7 +3665,7 @@ class Element(ServiceBase):
         if attributes is not None:
             params["attributes"] = attributes
 
-        return self._send_request(
+        return self.send_request(
             'ModifyVirtualNetwork',
             AddVirtualNetworkResult,
             params,
@@ -3929,7 +3701,7 @@ class Element(ServiceBase):
         if virtual_network_tag is not None:
             params["virtualNetworkTag"] = virtual_network_tag
 
-        return self._send_request(
+        return self.send_request(
             'RemoveVirtualNetwork',
             RemoveVirtualNetworkResult,
             params,
@@ -4032,7 +3804,7 @@ class Element(ServiceBase):
         if attributes is not None:
             params["attributes"] = attributes
 
-        return self._send_request(
+        return self.send_request(
             'CloneVolume',
             CloneVolumeResult,
             params,
@@ -4095,7 +3867,7 @@ class Element(ServiceBase):
         if attributes is not None:
             params["attributes"] = attributes
 
-        return self._send_request(
+        return self.send_request(
             'CreateVolume',
             CreateVolumeResult,
             params,
@@ -4153,7 +3925,7 @@ class Element(ServiceBase):
             "volumeID": volume_id,
         }
 
-        return self._send_request(
+        return self.send_request(
             'DeleteVolume',
             DeleteVolumeResult,
             params,
@@ -4179,7 +3951,7 @@ class Element(ServiceBase):
             "volumeID": volume_id,
         }
 
-        return self._send_request(
+        return self.send_request(
             'GetVolumeStats',
             GetVolumeStatsResult,
             params,
@@ -4211,7 +3983,7 @@ class Element(ServiceBase):
         if force is not None:
             params["force"] = force
 
-        return self._send_request(
+        return self.send_request(
             'GetVolumeEfficiency',
             GetVolumeEfficiencyResult,
             params,
@@ -4229,7 +4001,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'ListBulkVolumeJobs',
             ListBulkVolumeJobsResult,
             params,
@@ -4264,7 +4036,7 @@ class Element(ServiceBase):
         if limit is not None:
             params["limit"] = limit
 
-        return self._send_request(
+        return self.send_request(
             'ListActiveVolumes',
             ListActiveVolumesResult,
             params,
@@ -4282,7 +4054,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'ListDeletedVolumes',
             ListDeletedVolumesResult,
             params,
@@ -4300,7 +4072,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'ListISCSISessions',
             ListISCSISessionsResult,
             params,
@@ -4373,7 +4145,7 @@ class Element(ServiceBase):
         if volume_ids is not None:
             params["volumeIDs"] = volume_ids
 
-        return self._send_request(
+        return self.send_request(
             'ListVolumes',
             ListVolumesResult,
             params,
@@ -4414,7 +4186,7 @@ class Element(ServiceBase):
         if limit is not None:
             params["limit"] = limit
 
-        return self._send_request(
+        return self.send_request(
             'ListVolumesForAccount',
             ListVolumesForAccountResult,
             params,
@@ -4434,7 +4206,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'ListVolumeStatsByAccount',
             ListVolumeStatsByAccountResult,
             params,
@@ -4453,7 +4225,7 @@ class Element(ServiceBase):
 
         params = {}
 
-        return self._send_request(
+        return self.send_request(
             'ListVolumeStatsByVolume',
             ListVolumeStatsByVolumeResult,
             params,
@@ -4481,7 +4253,7 @@ class Element(ServiceBase):
         if volume_access_groups is not None:
             params["volumeAccessGroups"] = volume_access_groups
 
-        return self._send_request(
+        return self.send_request(
             'ListVolumeStatsByVolumeAccessGroup',
             ListVolumeStatsByVolumeAccessGroupResult,
             params,
@@ -4580,7 +4352,7 @@ class Element(ServiceBase):
         if attributes is not None:
             params["attributes"] = attributes
 
-        return self._send_request(
+        return self.send_request(
             'ModifyVolume',
             ModifyVolumeResult,
             params,
@@ -4607,7 +4379,7 @@ class Element(ServiceBase):
             "volumeID": volume_id,
         }
 
-        return self._send_request(
+        return self.send_request(
             'PurgeDeletedVolume',
             PurgeDeletedVolumeResult,
             params,
@@ -4632,7 +4404,7 @@ class Element(ServiceBase):
             "volumeID": volume_id,
         }
 
-        return self._send_request(
+        return self.send_request(
             'RestoreDeletedVolume',
             RestoreDeletedVolumeResult,
             params,
@@ -4730,7 +4502,7 @@ class Element(ServiceBase):
         if attributes is not None:
             params["attributes"] = attributes
 
-        return self._send_request(
+        return self.send_request(
             'StartBulkVolumeRead',
             StartBulkVolumeReadResult,
             params,
@@ -4795,7 +4567,7 @@ class Element(ServiceBase):
         if attributes is not None:
             params["attributes"] = attributes
 
-        return self._send_request(
+        return self.send_request(
             'StartBulkVolumeWrite',
             StartBulkVolumeWriteResult,
             params,
@@ -4856,7 +4628,7 @@ class Element(ServiceBase):
         if attributes is not None:
             params["attributes"] = attributes
 
-        return self._send_request(
+        return self.send_request(
             'UpdateBulkVolumeStatus',
             UpdateBulkVolumeStatusResult,
             params,
@@ -4932,7 +4704,7 @@ class Element(ServiceBase):
         if attributes is not None:
             params["attributes"] = attributes
 
-        return self._send_request(
+        return self.send_request(
             'CreateVolumeAccessGroup',
             CreateVolumeAccessGroupResult,
             params,
@@ -4965,7 +4737,7 @@ class Element(ServiceBase):
         if limit is not None:
             params["limit"] = limit
 
-        return self._send_request(
+        return self.send_request(
             'ListVolumeAccessGroups',
             ListVolumeAccessGroupsResult,
             params,
@@ -4989,7 +4761,7 @@ class Element(ServiceBase):
             "volumeAccessGroupID": volume_access_group_id,
         }
 
-        return self._send_request(
+        return self.send_request(
             'DeleteVolumeAccessGroup',
             DeleteVolumeAccessGroupResult,
             params,
@@ -5096,7 +4868,7 @@ class Element(ServiceBase):
         if attributes is not None:
             params["attributes"] = attributes
 
-        return self._send_request(
+        return self.send_request(
             'ModifyVolumeAccessGroup',
             ModifyVolumeAccessGroupResult,
             params,
@@ -5126,7 +4898,7 @@ class Element(ServiceBase):
             "initiators": initiators,
         }
 
-        return self._send_request(
+        return self.send_request(
             'AddInitiatorsToVolumeAccessGroup',
             ModifyVolumeAccessGroupResult,
             params,
@@ -5156,7 +4928,7 @@ class Element(ServiceBase):
             "initiators": initiators,
         }
 
-        return self._send_request(
+        return self.send_request(
             'RemoveInitiatorsFromVolumeAccessGroup',
             ModifyVolumeAccessGroupResult,
             params,
@@ -5186,7 +4958,7 @@ class Element(ServiceBase):
             "volumes": volumes,
         }
 
-        return self._send_request(
+        return self.send_request(
             'AddVolumesToVolumeAccessGroup',
             ModifyVolumeAccessGroupResult,
             params,
@@ -5216,7 +4988,7 @@ class Element(ServiceBase):
             "volumes": volumes,
         }
 
-        return self._send_request(
+        return self.send_request(
             'RemoveVolumesFromVolumeAccessGroup',
             ModifyVolumeAccessGroupResult,
             params,
@@ -5243,7 +5015,7 @@ class Element(ServiceBase):
             "volumeAccessGroupID": volume_access_group_id,
         }
 
-        return self._send_request(
+        return self.send_request(
             'GetVolumeAccessGroupEfficiency',
             GetEfficiencyResult,
             params,
@@ -5268,7 +5040,7 @@ class Element(ServiceBase):
             "volumeAccessGroupID": volume_access_group_id,
         }
 
-        return self._send_request(
+        return self.send_request(
             'GetVolumeAccessGroupLunAssignments',
             GetVolumeAccessGroupLunAssignmentsResult,
             params,
@@ -5323,7 +5095,7 @@ class Element(ServiceBase):
             "lunAssignments": lun_assignments,
         }
 
-        return self._send_request(
+        return self.send_request(
             'ModifyVolumeAccessGroupLunAssignments',
             ModifyVolumeAccessGroupLunAssignmentsResult,
             params,
