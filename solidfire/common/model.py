@@ -231,7 +231,11 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
         Base repr() for all generated objects.
         """
         props = []
-        for name, prop in sorted(type(self)._properties.items()):
+        if hasattr(self, '_member_type'):
+            member_items = self.member_type()._properties
+        else:
+            member_items = self._properties
+        for name, prop in sorted(member_items.items()):
 
             if prop.array() and hasattr(self, name):
                 try:
@@ -244,7 +248,10 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
                 attr_repr = msg_fmt.format(
                     arr=str.join(str(', '), attrs))
             else:
-                attr_repr = repr(getattr(self, name))
+                if hasattr(self, '_properties'):
+                    attr_repr = self._properties[name].member_type()
+                else:
+                    attr_repr = self.member_type()
             msg_fmt = '{name}={repr}'
             msg = msg_fmt.format(name=name, repr=attr_repr)
             props.append(msg)
@@ -338,7 +345,6 @@ def property(member_name, member_type,
                (ModelProperty,),
                {
                    '__doc__': documentation,
-                   '__repr__': repr(_as_ascii(msg))
                })
 
     return typ(member_name=member_name,
