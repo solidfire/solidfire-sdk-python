@@ -3276,6 +3276,32 @@ class ClusterVersionInfo(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class GroupCloneVolumeMember(data_model.DataObject):
+    """
+
+    :param volume_id: [required]
+    :type volume_id: int
+
+    :param src_volume_id: [required]
+    :type src_volume_id: int
+    """
+
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    src_volume_id = data_model.property(
+        "srcVolumeID", int,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class LunAssignment(data_model.DataObject):
     """
     *volume_id* and Lun assignment.
@@ -3471,6 +3497,85 @@ class NodeStatsInfo(data_model.DataObject):
         array=False, optional=False,
         documentation="\
         Total memory usage in bytes.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class CloneMultipleVolumeParams(data_model.DataObject):
+    """
+
+    :param volume_id: [required] Required parameter for \"volumes\" array:
+        volumeID.
+    :type volume_id: int
+
+    :param access: (optional) access : *read_only;* *read_write,* locked,
+        *replication_target*
+    :type access: str
+
+    :param name: (optional) New name for the clone.
+    :type name: str
+
+    :param new_account_id: (optional) Account ID for the new volume.
+    :type new_account_id: int
+
+    :param new_size: (optional) New size Total size of the volume, in bytes.
+        Size is rounded up to the neares 1MB size.
+    :type new_size: int
+
+    :param attributes: (optional) List of Name/Value pairs in JSON object
+        format.
+    :type attributes: dict
+    """
+
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="\
+        Required parameter for \"volumes\" array: volumeID.\
+        "
+    )
+
+    access = data_model.property(
+        "access", str,
+        array=False, optional=True,
+        documentation="\
+        access : *read_only;* *read_write,* locked, *replication_target*\
+        "
+    )
+
+    name = data_model.property(
+        "name", str,
+        array=False, optional=True,
+        documentation="\
+        New name for the clone.\
+        "
+    )
+
+    new_account_id = data_model.property(
+        "newAccountID", int,
+        array=False, optional=True,
+        documentation="\
+        Account ID for the new volume.\
+        "
+    )
+
+    new_size = data_model.property(
+        "newSize", int,
+        array=False, optional=True,
+        documentation="\
+        New size Total size of the volume, in bytes. Size is rounded up to the\
+        neares 1MB size.\
+        "
+    )
+
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="\
+        List of Name/Value pairs in JSON object format.\
         "
     )
 

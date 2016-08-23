@@ -23,6 +23,7 @@ from solidfire.results import AddNodesResult
 from solidfire.results import AddVirtualNetworkResult
 from solidfire.results import AsyncHandleResult
 from solidfire.results import ClearClusterFaultsResult
+from solidfire.results import CloneMultipleVolumesResult
 from solidfire.results import CloneVolumeResult
 from solidfire.results import CompleteClusterPairingResult
 from solidfire.results import CompleteVolumePairingResult
@@ -3587,6 +3588,80 @@ class Element(ServiceBase):
         return self.send_request(
             'CloneVolume',
             CloneVolumeResult,
+            params,
+        )
+
+    def clone_multiple_volumes(
+            self,
+            volumes,
+            access=OPTIONAL,
+            group_snapshot_id=OPTIONAL,
+            new_account_id=OPTIONAL,):
+        """
+        *clone_multiple_volumes* is used to create a clone of a group of
+        specified volumes. A consistent set of characteristics can be assigned
+        to a group of multiple volume when they are cloned together.
+        If *group_snapshot_id* is going to be used to clone the volumes in a
+        group snapshot, the group snapshot must be created first using the
+        *create_group_snapshot* API method or the SolidFire Element WebUI.
+        Using *group_snapshot_id* is optional when cloning multiple volumes.
+
+
+
+
+        **Note**: Cloning multiple volumes is allowed if cluster fullness is at
+        stage 2 or 3. Clones are not created when cluster fullness is at stage
+        4 or 5.
+
+        :param volumes: [required] Array of Unique ID for each volume to
+            include in the clone with optional parameters. If optional
+            parameters are not specified, the values will be inherited from the
+            source volumes.
+        :type volumes: CloneMultipleVolumeParams
+
+        :param access: (optional) New default access method for the new volumes
+            if not overridden by information passed in the volumes array.
+
+            **readOnly**: Only read operations are allowed.
+
+            **readWrite**: Reads and writes are allowed.
+
+            **locked**: No reads or writes are allowed.
+
+            **replicationTarget**: Identify a volume as the target volume for a
+            paired set of volumes. If the volume is not paired, the access
+            status is locked.
+
+            If unspecified, the access settings of the clone will be the same
+            as the source.
+
+        :type access: str
+
+        :param group_snapshot_id: (optional) ID of the group snapshot to use as
+            a basis for the clone.
+        :type group_snapshot_id: int
+
+        :param new_account_id: (optional) New account ID for the volumes if not
+            overridden by information passed in the volumes array.
+        :type new_account_id: int
+
+        :returns: a response
+        :rtype: CloneMultipleVolumesResult
+        """
+
+        params = {
+            "volumes": volumes,
+        }
+        if access is not None:
+            params["access"] = access
+        if group_snapshot_id is not None:
+            params["groupSnapshotID"] = group_snapshot_id
+        if new_account_id is not None:
+            params["newAccountID"] = new_account_id
+
+        return self.send_request(
+            'CloneMultipleVolumes',
+            CloneMultipleVolumesResult,
             params,
         )
 
