@@ -3,8 +3,8 @@ from solidfire import Element
 from solidfire.common import SdkOperationError, ApiVersionUnsupportedError
 import logging
 
-minimum_version = 7.0
-maximum_version = 8.4
+min_sdk_version = 7.0
+max_sdk_version = 8.4
 
 
 class Factory:
@@ -59,18 +59,18 @@ class Factory:
         if port != 443:
             target = target + ":" + str(port)
 
-        element = Element(target, username, password, minimum_version,
+        element = Element(target, username, password, min_sdk_version,
                           verify_ssl)
 
         api = element.get_api()
 
-        min_supported_version = float(min(api.supported_versions))
-        max_supported_version = float(max(api.supported_versions))
+        min_api_version = float(min(api.supported_versions))
+        max_api_version = float(max(api.supported_versions))
 
         if version is None:
             # cluster's version is greater than max supported version
-            if float(api.current_version) > maximum_version:
-                element = Element(target, username, password, maximum_version,
+            if float(api.current_version) > max_sdk_version:
+                element = Element(target, username, password, max_sdk_version,
                                   verify_ssl)
             else:
                 element = Element(target, username, password,
@@ -82,11 +82,26 @@ class Factory:
                 raise SdkOperationError("Unable to determine version to "
                                         "connect from value: " + version)
 
-            if versionActual < min_supported_version or \
-                            versionActual > max_supported_version:
+            # version requested is the same as minumum version supported by SDK
+            if versionActual == element._api_version:
+                return element
+
+            if versionActual < min_sdk_version:
+                raise SdkOperationError("Cannot connect to a version lower than supported by the SDK. "
+                                        "Connect at {0} or higher.".format(min_sdk_version))
+
+            supported_versions = []
+            version_is_unsupported = True
+            for api_version in api.supported_versions:
+                if float(api_version) >= min_sdk_version:
+                    supported_versions.append(api_version)
+                    if versionActual == float(api_version):
+                        version_is_unsupported = False
+
+            if version_is_unsupported:
                 raise SdkOperationError(
-                    "Invalid version to connect to on cluster. Valid version are between {0} and {1}"
-                        .format(min_supported_version, max_supported_version))
+                    "Invalid version to connect on this cluster. Valid versions are: {0}"
+                        .format(", ".join(supported_versions)))
             else:
                 element = Element(target, username, password, versionActual,
                                   verify_ssl)
