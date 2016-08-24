@@ -6,14 +6,15 @@ import logging
 minimum_version = 7.0
 maximum_version = 8.4
 
-class Factory():
+
+class Factory:
     """
     The Factory for creating a SolidFire Element object.
     """
 
     @staticmethod
-    def create(target, username, password, version = None,
-               verify_ssl = False, port = 443):
+    def create(target, username, password, version=None,
+               verify_ssl=False, port=443):
 
         """
         Factory method to create a Element object which is used to call
@@ -63,6 +64,9 @@ class Factory():
 
         api = element.get_api()
 
+        min_supported_version = float(min(api.supported_versions))
+        max_supported_version = float(max(api.supported_versions))
+
         if version is None:
             # cluster's version is greater than max supported version
             if float(api.current_version) > maximum_version:
@@ -78,12 +82,11 @@ class Factory():
                 raise SdkOperationError("Unable to determine version to "
                                         "connect from value: " + version)
 
-            if versionActual < float(min(api.supported_versions)) or \
-                            versionActual > float(max(api.supported_versions)):
-                raise ApiVersionUnsupportedError("Invalid version" +
-                " to connect to on cluster. Valid version" +
-                " are between " + min(api.supported_versions) +
-                " and " + max(api.supported_versions))
+            if versionActual < min_supported_version or \
+                            versionActual > max_supported_version:
+                raise SdkOperationError(
+                    "Invalid version to connect to on cluster. Valid version are between {0} and {1}"
+                        .format(min_supported_version, max_supported_version))
             else:
                 element = Element(target, username, password, versionActual,
                                   verify_ssl)
