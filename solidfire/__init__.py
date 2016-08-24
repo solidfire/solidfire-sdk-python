@@ -145,24 +145,9 @@ class Element(ServiceBase):
         :type verify_ssl: bool
         :param dispatcher: a prebuilt or custom http dispatcher
         :return: a configured and tested instance of Element
-        :raises:
-            ApiVersionExceededError: api_version is greater than connected
-                Element OS.
-            ApiVersionUnsupportedError: api_version is not supported by
-                instance of Element OS.
         """
 
         logLevel = Logger.getEffectiveLevel(common.LOG)
-        Logger.setLevel(common.LOG, logging.ERROR)
-        ServiceBase.__init__(self, mvip, username, password,
-                             0.0, verify_ssl, dispatcher)
-
-        api = self.get_api()
-        if float(api_version) > float(api.current_version):
-            raise ApiVersionExceededError(api_version, api.current_version)
-        elif str(api_version) not in api.supported_versions:
-            raise ApiVersionUnsupportedError(api_version,
-                                             api.supported_versions)
 
         ServiceBase.__init__(self, mvip, username, password, api_version,
                              verify_ssl, dispatcher)
