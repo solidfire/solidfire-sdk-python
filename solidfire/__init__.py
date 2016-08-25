@@ -146,12 +146,8 @@ class Element(ServiceBase):
         :param dispatcher: a prebuilt or custom http dispatcher
         :return: a configured and tested instance of Element
         """
-
-        logLevel = Logger.getEffectiveLevel(common.LOG)
-
         ServiceBase.__init__(self, mvip, username, password, api_version,
                              verify_ssl, dispatcher)
-        common.setLogLevel(logLevel)
 
     def add_account(
             self,
