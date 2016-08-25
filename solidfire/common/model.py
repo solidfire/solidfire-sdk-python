@@ -248,10 +248,10 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
                 attr_repr = msg_fmt.format(
                     arr=str.join(str(', '), attrs))
             else:
-                if hasattr(self, '_properties'):
-                    attr_repr = self._properties[name].member_type()
+                if hasattr(self, name):
+                    attr_repr = getattr(self, name)
                 else:
-                    attr_repr = self.member_type()
+                    attr_repr = None
             msg_fmt = '{name}={repr}'
             msg = msg_fmt.format(name=name, repr=attr_repr)
             props.append(msg)
