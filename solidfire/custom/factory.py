@@ -1,7 +1,10 @@
 import re
+
 from solidfire import Element
-from solidfire.common import SdkOperationError, ApiVersionUnsupportedError
+from solidfire.common import SdkOperationError
 import logging
+
+LOG = logging.getLogger('solidfire.Element')
 
 min_sdk_version = 7.0
 max_sdk_version = 8.4
@@ -82,10 +85,6 @@ class Factory:
                 raise SdkOperationError("Unable to determine version to "
                                         "connect from value: " + version)
 
-            # version requested is the same as minumum version supported by SDK
-            if versionActual == element._api_version:
-                return element
-
             if versionActual < min_sdk_version:
                 raise SdkOperationError("Cannot connect to a version lower than supported by the SDK. "
                                         "Connect at {0} or higher.".format(min_sdk_version))
@@ -105,12 +104,16 @@ class Factory:
             else:
                 element = Element(target, username, password, versionActual,
                                   verify_ssl)
+                if (versionActual > max_sdk_version):
+                    LOG.warning(
+                        "You have connected to a version that is higher than supported by this SDK. Some functionality may not work.")
 
-        logging.info(Factory.asciiArt())
+        LOG.info("Connected to {0} using API version {1}".format(target, element._api_version))
+        LOG.info(Factory.asciiArt(element._api_version))
         return element
 
     @staticmethod
-    def asciiArt():
+    def asciiArt(version):
         """
         Used to build SolidFire ASCII art.
         :return: a string with the SolidFire ASCII art.
@@ -124,5 +127,5 @@ class Factory:
         art += "           /__/__/       \__\__\__\__/__/    \n"
         art += "          /__/            \__\__\__\/__/     \n"
         art += "\n"
-        art += "                  NetApp SolidFire\n"
+        art += "             NetApp SolidFire Version {0}\n".format(version)
         return art
