@@ -43,6 +43,9 @@ def setLogLevel(level):
     for handler in LOG.handlers:
         handler.setLevel(level)
 
+class SdkOperationError(Exception):
+    def __init__(self, *args, **kwargs):
+        Exception.__init__(self, *args, **kwargs)
 
 class ApiServerError(Exception):
     """

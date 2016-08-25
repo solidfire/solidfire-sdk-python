@@ -26,6 +26,7 @@ from solidfire.models import DriveStats
 from solidfire.models import EventInfo
 from solidfire.models import FibreChannelPortList
 from solidfire.models import FibreChannelSession
+from solidfire.models import GroupCloneVolumeMember
 from solidfire.models import GroupSnapshot
 from solidfire.models import GroupSnapshotMembers
 from solidfire.models import ISCSISession
@@ -3371,6 +3372,50 @@ class ModifyClusterFullThresholdResult(data_model.DataObject):
         array=False, optional=False,
         documentation="\
         Amount of space used on volume drives to store metadata.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class CloneMultipleVolumesResult(data_model.DataObject):
+    """
+    The object returned by the \"clone_multiple_volumes\" API Service call.
+
+    :param async_handle: [required] A value returned from an asynchronous
+        method call.
+    :type async_handle: int
+
+    :param group_clone_id: [required] Unique ID of the new group clone.
+    :type group_clone_id: int
+
+    :param members: [required] List of *volume_ids* for the source and
+        destination volume pairs.
+    :type members: GroupCloneVolumeMember
+    """
+
+    async_handle = data_model.property(
+        "asyncHandle", int,
+        array=False, optional=False,
+        documentation="\
+        A value returned from an asynchronous method call.\
+        "
+    )
+
+    group_clone_id = data_model.property(
+        "groupCloneID", int,
+        array=False, optional=False,
+        documentation="\
+        Unique ID of the new group clone.\
+        "
+    )
+
+    members = data_model.property(
+        "members", GroupCloneVolumeMember,
+        array=True, optional=False,
+        documentation="\
+        List of *volume_ids* for the source and destination volume pairs.\
         "
     )
 
