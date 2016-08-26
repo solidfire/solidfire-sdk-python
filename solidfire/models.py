@@ -701,7 +701,7 @@ class LdapConfiguration(data_model.DataObject):
 
     :param server_uris: [required] A comma-separated list of LDAP server *uris*
         (examples: \"ldap://1.2.3.4\" and ldaps://1.2.3.4:123\")
-    :type server_uris: str
+    :type server_uris: str[]
 
     :param user_dntemplate: [required] A string that is used to form a fully
         qualified user DN.
@@ -1117,7 +1117,7 @@ class ScheduleInfo(data_model.DataObject):
 
     :param volume_ids: (optional) A list of volume *ids* to be included in the
         group snapshot.
-    :type volume_ids: int
+    :type volume_ids: int[]
 
     :param snapshot_name: (optional) The snapshot name to be used.
     :type snapshot_name: str
@@ -1313,6 +1313,26 @@ class SnmpTrapRecipient(data_model.DataObject):
         The UDP port number on the host where the trap is to be sent. Valid\
         range is 1 - 65535. 0 (zero) is not a valid port number. Default is\
         162.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class TestConnectEnsembleDetails(data_model.DataObject):
+    """
+
+    :param nodes: [required] A list of each ensemble node in the test and the
+        results of the tests.
+    :type nodes: str
+    """
+
+    nodes = data_model.property(
+        "nodes", str,
+        array=False, optional=False,
+        documentation="\
+        A list of each ensemble node in the test and the results of the tests.\
         "
     )
 
@@ -1966,7 +1986,7 @@ class DrivesHardware(data_model.DataObject):
     """
 
     :param drive_hardware: [required]
-    :type drive_hardware: DriveHardware
+    :type drive_hardware: DriveHardware[]
     """
 
     drive_hardware = data_model.property(
@@ -1985,7 +2005,7 @@ class FibreChannelPortList(data_model.DataObject):
 
     :param fibre_channel_ports: [required] List of all physical Fibre Channel
         ports.
-    :type fibre_channel_ports: FibreChannelPortInfo
+    :type fibre_channel_ports: FibreChannelPortInfo[]
     """
 
     fibre_channel_ports = data_model.property(
@@ -2073,13 +2093,13 @@ class NetworkConfig(data_model.DataObject):
     :type physical: PhysicalAdapter
 
     :param routes: (optional)
-    :type routes: str
+    :type routes: str[]
 
     :param status: (optional)
     :type status: str
 
     :param symmetric_route_rules: (optional)
-    :type symmetric_route_rules: str
+    :type symmetric_route_rules: str[]
 
     :param up_and_running: (optional)
     :type up_and_running: bool
@@ -2501,7 +2521,7 @@ class ResetDrivesDetails(data_model.DataObject):
     """
 
     :param drives: [required] Details of a single drive that is being reset.
-    :type drives: ResetDriveDetails
+    :type drives: ResetDriveDetails[]
     """
 
     drives = data_model.property(
@@ -2870,7 +2890,7 @@ class ClusterAdmin(data_model.DataObject):
     """
 
     :param access: [required]
-    :type access: str
+    :type access: str[]
 
     :param cluster_admin_id: [required]
     :type cluster_admin_id: int
@@ -2951,24 +2971,30 @@ class ClusterVersionInfo(data_model.DataObject):
 
 class GroupCloneVolumeMember(data_model.DataObject):
     """
+    Represents the relationship between the source Volume and cloned Volume
+    IDs.
 
-    :param volume_id: [required]
+    :param volume_id: [required] The *volume_id* of the cloned volume.
     :type volume_id: int
 
-    :param src_volume_id: [required]
+    :param src_volume_id: [required] The *volume_id* of the source volume.
     :type src_volume_id: int
     """
 
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation=None
+        documentation="\
+        The *volume_id* of the cloned volume.\
+        "
     )
 
     src_volume_id = data_model.property(
         "srcVolumeID", int,
         array=False, optional=False,
-        documentation=None
+        documentation="\
+        The *volume_id* of the source volume.\
+        "
     )
 
     def __init__(self, **kwargs):
@@ -3177,6 +3203,90 @@ class NodeStatsInfo(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class TestConnectMvipDetails(data_model.DataObject):
+    """
+
+    :param ping_bytes: [required] Details of the ping tests with 56 Bytes and
+        1500 Bytes.
+    :type ping_bytes: str
+
+    :param mvip: [required] The MVIP tested against.
+    :type mvip: str
+
+    :param connected: [required] Whether the test could connect to the MVIP.
+    :type connected: bool
+    """
+
+    ping_bytes = data_model.property(
+        "pingBytes", str,
+        array=False, optional=False,
+        documentation="\
+        Details of the ping tests with 56 Bytes and 1500 Bytes.\
+        "
+    )
+
+    mvip = data_model.property(
+        "mvip", str,
+        array=False, optional=False,
+        documentation="\
+        The MVIP tested against.\
+        "
+    )
+
+    connected = data_model.property(
+        "connected", bool,
+        array=False, optional=False,
+        documentation="\
+        Whether the test could connect to the MVIP.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class TestConnectSvipDetails(data_model.DataObject):
+    """
+
+    :param ping_bytes: [required] Details of the ping tests with 56 Bytes and
+        1500 Bytes.
+    :type ping_bytes: str
+
+    :param svip: [required] The SVIP tested against.
+    :type svip: str
+
+    :param connected: [required] Whether the test could connect to the MVIP.
+    :type connected: bool
+    """
+
+    ping_bytes = data_model.property(
+        "pingBytes", str,
+        array=False, optional=False,
+        documentation="\
+        Details of the ping tests with 56 Bytes and 1500 Bytes.\
+        "
+    )
+
+    svip = data_model.property(
+        "svip", str,
+        array=False, optional=False,
+        documentation="\
+        The SVIP tested against.\
+        "
+    )
+
+    connected = data_model.property(
+        "connected", bool,
+        array=False, optional=False,
+        documentation="\
+        Whether the test could connect to the MVIP.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class CloneMultipleVolumeParams(data_model.DataObject):
     """
 
@@ -3195,7 +3305,7 @@ class CloneMultipleVolumeParams(data_model.DataObject):
     :type new_account_id: int
 
     :param new_size: (optional) New size Total size of the volume, in bytes.
-        Size is rounded up to the neares 1MB size.
+        Size is rounded up to the nearest 1MB size.
     :type new_size: int
 
     :param attributes: (optional) List of Name/Value pairs in JSON object
@@ -3240,7 +3350,7 @@ class CloneMultipleVolumeParams(data_model.DataObject):
         array=False, optional=True,
         documentation="\
         New size Total size of the volume, in bytes. Size is rounded up to the\
-        neares 1MB size.\
+        nearest 1MB size.\
         "
     )
 
@@ -3498,7 +3608,7 @@ class GroupSnapshot(data_model.DataObject):
 
     :param members: [required] List of *volume_ids* and *snapshot_ids* for each
         member of the group.
-    :type members: GroupSnapshotMembers
+    :type members: GroupSnapshotMembers[]
 
     :param name: [required] Name of the group snapshot, or, if none was given,
         the UTC formatted day and time on which the snapshot was created.
@@ -3600,11 +3710,11 @@ class MetadataHosts(data_model.DataObject):
 
     :param dead_secondaries: [required] Secondary metadata (slice) services
         that are in a dead state.
-    :type dead_secondaries: int
+    :type dead_secondaries: int[]
 
     :param live_secondaries: [required] Secondary metadata (slice) services
         that are currently in a \"live\" state.
-    :type live_secondaries: int
+    :type live_secondaries: int[]
 
     :param primary: [required] The primary metadata (slice) services hosting
         the volume.
@@ -3670,7 +3780,7 @@ class NodeStatsNodes(data_model.DataObject):
     """
 
     :param nodes: [required] Node activity information for a single node.
-    :type nodes: NodeStatsInfo
+    :type nodes: NodeStatsInfo[]
     """
 
     nodes = data_model.property(
@@ -4071,11 +4181,11 @@ class VolumeAccessGroup(data_model.DataObject):
 
     :param initiators: [required] List of unique initiator names belonging to
         the volume access group.
-    :type initiators: str
+    :type initiators: str[]
 
     :param volumes: [required] List of volumes belonging to the volume access
         group.
-    :type volumes: int
+    :type volumes: int[]
     """
 
     volume_access_group_id = data_model.property(
@@ -4124,11 +4234,11 @@ class VolumeAccessGroupLunAssignments(data_model.DataObject):
 
     :param lun_assignments: [required] The volume *ids* with assigned LUN
         values.
-    :type lun_assignments: LunAssignment
+    :type lun_assignments: LunAssignment[]
 
     :param deleted_lun_assignments: [required] The volume *ids* with deleted
         LUN values.
-    :type deleted_lun_assignments: LunAssignment
+    :type deleted_lun_assignments: LunAssignment[]
     """
 
     volume_access_group_id = data_model.property(
@@ -4177,7 +4287,7 @@ class VirtualNetwork(data_model.DataObject):
         far right being the first IP address in the list of addressBlocks.
         **size:** the size of this block of addresses. **start:** first IP
         address in the block.
-    :type address_blocks: AddressBlock
+    :type address_blocks: AddressBlock[]
 
     :param attributes: [required] List of Name/Value pairs in JSON object
         format.
@@ -4277,7 +4387,7 @@ class Account(data_model.DataObject):
 
     :param volumes: [required] List of *volume_ids* for Volumes owned by this
         account.
-    :type volumes: int
+    :type volumes: int[]
 
     :param initiator_secret: (optional) CHAP secret to use for the initiator.
     :type initiator_secret: CHAPSecret
@@ -4461,7 +4571,7 @@ class ClusterConfig(data_model.DataObject):
     :type cluster: str
 
     :param ensemble: [required] Nodes that are participating in the cluster.
-    :type ensemble: str
+    :type ensemble: str[]
 
     :param mipi: [required] Network interface used for node management.
     :type mipi: str
@@ -4577,7 +4687,7 @@ class ClusterInfo(data_model.DataObject):
 
     :param ensemble: [required] Array of Node IP addresses that are
         participating in the cluster.
-    :type ensemble: str
+    :type ensemble: str[]
 
     :param mvip: [required] Management network interface.
     :type mvip: str
@@ -5213,7 +5323,7 @@ class VolumeStats(data_model.DataObject):
 
     :param volume_access_groups: [required] List of volume access group(s) to
         which a volume belongs.
-    :type volume_access_groups: int
+    :type volume_access_groups: int[]
 
     :param volume_id: [required] Volume ID of the volume.
     :type volume_id: int
@@ -6031,12 +6141,12 @@ class Volume(data_model.DataObject):
 
     :param volume_access_groups: [required] List of volume access groups to
         which a volume belongs.
-    :type volume_access_groups: int
+    :type volume_access_groups: int[]
 
     :param volume_pairs: [required] Information about a paired volume.
         Available only if a volume is paired. @see *volume_pairs* for return
         values.
-    :type volume_pairs: VolumePair
+    :type volume_pairs: VolumePair[]
 
     :param slice_count: [required] The number of slices backing this volume. In
         the current software, this value will always be 1.
