@@ -70,11 +70,12 @@ def extract(typ, src):
         return_value = typ.extract(src, False)
     elif type(src) == typ:
         return_value = src
+    elif typ == UUID:
+        return_value = UUID(src)
+    elif typ.__init__(src) is not None:
+        return_value = typ.__init__(src)
     else:
-        if typ == UUID:
-            return_value = UUID(src)
-        else:
-            return_value = typ.__init__(src)
+        return_value = src
 
     return return_value
 

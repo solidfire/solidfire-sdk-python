@@ -43,9 +43,11 @@ def setLogLevel(level):
     for handler in LOG.handlers:
         handler.setLevel(level)
 
+
 class SdkOperationError(Exception):
     def __init__(self, *args, **kwargs):
         Exception.__init__(self, *args, **kwargs)
+
 
 class ApiServerError(Exception):
     """
@@ -533,6 +535,16 @@ class ServiceBase(object):
         300 seconds (5 minutes) each.
         """
         self._dispatcher.restore_timeout_defaults()
+
+    @property
+    def api_version(self):
+        """
+        Returns the version of the Element API
+
+        :return: the version of the Element API
+        :rtype: float
+        """
+        return self._api_version
 
     def send_request(self, method_name,
                      result_type,
