@@ -2,6 +2,7 @@ import re
 
 from solidfire import Element
 from solidfire.common import SdkOperationError
+from solidfire.util import ascii_art
 import logging
 
 LOG = logging.getLogger('solidfire.Element')
@@ -10,7 +11,7 @@ min_sdk_version = 7.0
 max_sdk_version = 8.4
 
 
-class Factory:
+class ElementFactory:
     """
     The Factory for creating a SolidFire Element object.
     """
@@ -33,8 +34,8 @@ class Factory:
         :param password: authentication for username
         :type password: str
         :param version: specific version of Element OS to connect to. If this
-            doesn't match the cluster or is outside the versions supported by this
-            SDK, you will get an exception.
+            doesn't match the cluster or is outside the versions supported by
+            this SDK, you will get an exception.
         :type version: float or str
         :param verify_ssl: enable this to check ssl connection for errors
             especially when using a hostname. It is invalid to set this to
@@ -52,12 +53,13 @@ class Factory:
                 instance of Element OS.
         """
 
-        target_is_ip = re.match(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$", target)
+        target_is_ip = re.match(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$",
+                                target)
 
-        if target_is_ip is not None and verify_ssl == True:
+        if target_is_ip is not None and verify_ssl:
             raise SdkOperationError("Cannot verify SSL when target is an IP "
-                                    "address. Set verify_ssl to false or use a "
-                                    "fully qualified domain name.")
+                                    "address. Set verify_ssl to false or use "
+                                    "a fully qualified domain name.")
 
         if port != 443:
             target = target + ":" + str(port)
@@ -66,9 +68,6 @@ class Factory:
                           verify_ssl)
 
         api = element.get_api()
-
-        min_api_version = float(min(api.supported_versions))
-        max_api_version = float(max(api.supported_versions))
 
         if version is None:
             # cluster's version is greater than max supported version
@@ -80,52 +79,41 @@ class Factory:
                                   api.current_version, verify_ssl)
         else:
             try:
-                versionActual = float(version)
+                version_actual = float(version)
             except:
                 raise SdkOperationError("Unable to determine version to "
                                         "connect from value: " + version)
 
-            if versionActual < min_sdk_version:
-                raise SdkOperationError("Cannot connect to a version lower than supported by the SDK. "
-                                        "Connect at {0} or higher.".format(min_sdk_version))
+            if version_actual < min_sdk_version:
+                raise SdkOperationError("Cannot connect to a version lower "
+                                        "than supported by the SDK. "
+                                        "Connect at {0} or higher."
+                                        .format(min_sdk_version))
 
             supported_versions = []
             version_is_unsupported = True
             for api_version in api.supported_versions:
                 if float(api_version) >= min_sdk_version:
                     supported_versions.append(api_version)
-                    if versionActual == float(api_version):
+                    if version_actual == float(api_version):
                         version_is_unsupported = False
 
             if version_is_unsupported:
                 raise SdkOperationError(
-                    "Invalid version to connect on this cluster. Valid versions are: {0}"
-                        .format(", ".join(supported_versions)))
+                    "Invalid version to connect on this cluster. "
+                    "Valid versions are: {0}"
+                    .format(", ".join(supported_versions)))
             else:
-                element = Element(target, username, password, versionActual,
+                element = Element(target, username, password, version_actual,
                                   verify_ssl)
-                if (versionActual > max_sdk_version):
+                if version_actual > max_sdk_version:
                     LOG.warning(
-                        "You have connected to a version that is higher than supported by this SDK. Some functionality may not work.")
+                        "You have connected to a version that is higher than "
+                        "supported by this SDK. Some functionality may not "
+                        "work.")
 
-        LOG.info("Connected to {0} using API version {1}".format(target, element._api_version))
-        LOG.info(Factory.asciiArt(element._api_version))
+        LOG.info("Connected to {0} using API version {1}"
+                 .format(target, element.api_version))
+
+        LOG.info(ascii_art(element.api_version))
         return element
-
-    @staticmethod
-    def asciiArt(version):
-        """
-        Used to build SolidFire ASCII art.
-        :return: a string with the SolidFire ASCII art.
-        """
-        art = "\n"
-        art += "                ______________            ___\n"
-        art += "               /__/__\__\__\__\       ___/__/\n"
-        art += "              /_ /__/_\__\__\__\  ___/__/__/ \n"
-        art += "             /__/__/__/\__\__\__\/__/__/__/  \n"
-        art += "            /__/__/__/  \__\__\__\_/__/__/   \n"
-        art += "           /__/__/       \__\__\__\__/__/    \n"
-        art += "          /__/            \__\__\__\/__/     \n"
-        art += "\n"
-        art += "             NetApp SolidFire Version {0}\n".format(version)
-        return art

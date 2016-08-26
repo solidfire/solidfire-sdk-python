@@ -274,7 +274,7 @@ class GetAPIResult(data_model.DataObject):
     :type current_version: float
 
     :param supported_versions: [required]
-    :type supported_versions: float
+    :type supported_versions: float[]
     """
 
     current_version = data_model.property(
