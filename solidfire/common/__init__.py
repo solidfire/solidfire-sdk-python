@@ -541,12 +541,24 @@ class ServiceBase(object):
                      deprecated=None):
         """
 
-        :param method_name:
-        :param result_type:
-        :param params:
-        :param since:
-        :param deprecated:
-        :return:
+        :param method_name: the name of the API method to call
+        :type method_name: str
+
+        :param result_type: the type of the result object returned from the API
+        method called.
+        :type result_type: DataObject
+
+        :param params: the parameters supplied to the API call.
+        :type params: dict
+
+        :param since: the first version this service was available
+        :type since: str or float
+
+        :param deprecated: the final version this service was available
+        :type deprecated: str or float
+
+        :return: the result of the API service call
+        :rtype: DataObject
         """
 
         self._check_method_version(method_name, since, deprecated)

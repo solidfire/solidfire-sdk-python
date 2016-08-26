@@ -9,6 +9,7 @@
 
 from __future__ import unicode_literals
 import json
+from uuid import UUID
 from future.utils import with_metaclass
 
 KNOWN_CONVERSIONS = {
@@ -67,8 +68,13 @@ def extract(typ, src):
     """
     if hasattr(typ, 'extract'):
         return_value = typ.extract(src, False)
-    else:
+    elif type(src) == typ:
         return_value = src
+    else:
+        if typ == UUID:
+            return_value = UUID(src)
+        else:
+            return_value = typ.__init__(src)
 
     return return_value
 
@@ -103,6 +109,15 @@ class ModelProperty(object):
         self._array = array
         self._optional = optional
         self._documentation = documentation
+
+    def __repr__(self):
+        if self._array:
+            arr = '[]'
+        else:
+            arr = ''
+
+        full_type = '{}'.format(self._member_type).replace('\'>', arr + '\'>')
+        return full_type
 
     def extend_json(self, out, data):
         """
@@ -231,10 +246,7 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
         Base repr() for all generated objects.
         """
         props = []
-        if hasattr(self, '_member_type'):
-            member_items = self.member_type()._properties
-        else:
-            member_items = self._properties
+        member_items = self._properties
         for name, prop in sorted(member_items.items()):
 
             if prop.array() and hasattr(self, name):
@@ -351,5 +363,8 @@ def property(member_name, member_type,
                member_type=member_type,
                array=array,
                optional=optional,
-               documentation=documentation
-              )
+               documentation=documentation)
+
+
+def blah(anything):
+    return anything.documentation

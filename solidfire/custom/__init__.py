@@ -71,10 +71,63 @@ class FrequencyTypes:
     types = {Time_Interval, Days_Of_Month, Days_Of_Week}
 
 
+class Weekday:
+    """
+    A better representation of the Weekday.
+    """
+
+    Sunday = ('Sunday', 1)
+    Monday = ('Monday', 2)
+    Tuesday = ('Tuesday', 3)
+    Wednesday = ('Wednesday', 4)
+    Thursday = ('Thursday', 5)
+    Friday = ('Friday', 6)
+    Saturday = ('Saturday', 7)
+
+    all_weekdays = [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday,
+                    Saturday]
+
+    @staticmethod
+    def from_id(weekday_id):
+        for weekday in Weekday.all_weekdays:
+            if weekday[1] == weekday_id:
+                return weekday
+        raise AttributeError
+
+    @staticmethod
+    def from_name(weekday_name):
+        for weekday in Weekday.all_weekdays:
+            if weekday[0] == weekday_name:
+                return weekday
+        raise AttributeError
+
+
 class Frequency(data_model.DataObject):
     """
     User Defined object (does not correlate to and API Object) which simplifies
     the construction of Snapshot Schedule objects.
+
+     :param minutes: Number of minutes between snapshots or the minute at
+     which the snapshot will occur in "Days of Week", or "Days of Month" mode.
+     Valid values  0 - 59
+     :type minutes: int
+
+    :param hours: Number of hours between snapshots or hour at which the
+    snapshot will occur in "Days of Week", or "Days of Month" mode.
+    Valid values  0 - 24
+    :type hours: int
+
+    :param monthdays: The days of the month that a snapshot will be made.
+    Valid values  1 - 31
+    :type monthdays: int
+
+    :param weekdays: Day of the week the snapshot is to be created.
+    Required Values (if used)
+    Day - 0 - 6 (Sunday - Saturday).
+    :type weekdays: Weekday[]
+
+    :param days: Time Interval days between snapshot.
+    :type days: int[]
     """
     @staticmethod
     def types():
@@ -122,18 +175,17 @@ class Frequency(data_model.DataObject):
     )
 
     weekdays = data_model.property(
-        "weekdays", int,
+        "weekdays", Weekday,
         array=True, optional=False,
         documentation="Day of the week the snapshot is to be created. "
                       "Required Values (if used)"
                       ""
                       "Day - 0 - 6 (Sunday - Saturday)."
-                      "Offset - 1."
     )
 
     days = data_model.property(
         "days", int,
-        array=False, optional=False,
+        array=True, optional=False,
         documentation="Time Interval days between snapshot."
     )
 
@@ -141,34 +193,3 @@ class Frequency(data_model.DataObject):
         self.freq_type = None
 
         data_model.DataObject.__init__(self, **kwargs)
-
-
-class Weekday:
-    """
-    A better representation of the Weekday.
-    """
-
-    Sunday = ('Sunday', 1)
-    Monday = ('Monday', 2)
-    Tuesday = ('Tuesday', 3)
-    Wednesday = ('Wednesday', 4)
-    Thursday = ('Thursday', 5)
-    Friday = ('Friday', 6)
-    Saturday = ('Saturday', 7)
-
-    all_weekdays = [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday,
-                    Saturday]
-
-    @staticmethod
-    def from_id(weekday_id):
-        for weekday in Weekday.all_weekdays:
-            if weekday[1] == weekday_id:
-                return weekday
-        raise AttributeError
-
-    @staticmethod
-    def from_name(weekday_name):
-        for weekday in Weekday.all_weekdays:
-            if weekday[0] == weekday_name:
-                return weekday
-        raise AttributeError
