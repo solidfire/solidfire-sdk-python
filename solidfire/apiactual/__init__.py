@@ -1,3 +1,11 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+#
+# Copyright &copy; 2014-2016 NetApp, Inc. All Rights Reserved.
+#
+# CONFIDENTIALITY NOTICE: THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION OF
+# NETAPP, INC. USE, DISCLOSURE OR REPRODUCTION IS PROHIBITED WITHOUT THE PRIOR
+# EXPRESS WRITTEN PERMISSION OF NETAPP, INC.
 """
 Module contains objects directly mapped to the Element API. These are
 generated and then moved here before the API is regenerated with changes.
