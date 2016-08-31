@@ -9,8 +9,8 @@ from __future__ import unicode_literals
 from __future__ import absolute_import
 from solidfire.common import model as data_model
 from uuid import UUID
-from solidfire.custom import CHAPSecret as UserDefinedCHAPSecret
-from solidfire.custom import Frequency as UserDefinedFrequency
+from solidfire.custom.models import CHAPSecret as UserDefinedCHAPSecret
+from solidfire.custom.models import Frequency as UserDefinedFrequency
 
 
 class CHAPSecret(UserDefinedCHAPSecret):
@@ -3574,7 +3574,7 @@ class GroupSnapshotMembers(data_model.DataObject):
     )
 
     snapshot_uuid = data_model.property(
-        "SnapshotUUID", str,
+        "snapshotUUID", str,
         array=False, optional=False,
         documentation="\
         Universal Unique ID of an existing snapshot.\
@@ -4270,106 +4270,6 @@ class VolumeAccessGroupLunAssignments(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
-class VirtualNetwork(data_model.DataObject):
-    """
-
-    :param virtual_network_id: [required] SolidFire unique identifier for a
-        virtual network.
-    :type virtual_network_id: int
-
-    :param virtual_network_tag: [required] VLAN Tag identifier.
-    :type virtual_network_tag: int
-
-    :param address_blocks: [required] Range of address blocks currently
-        assigned to the virtual network. **available:** Binary string in \"1\"s
-        and \"0\"s. 1 equals the IP is available and 0 equals the IP is not
-        available. The string is read from right to left with the digit to the
-        far right being the first IP address in the list of addressBlocks.
-        **size:** the size of this block of addresses. **start:** first IP
-        address in the block.
-    :type address_blocks: AddressBlock[]
-
-    :param attributes: [required] List of Name/Value pairs in JSON object
-        format.
-    :type attributes: dict
-
-    :param name: [required] The name assigned to the virtual network.
-    :type name: str
-
-    :param netmask: [required] IP address of the netmask for the virtual
-        network.
-    :type netmask: str
-
-    :param svip: [required] Storage IP address for the virtual network.
-    :type svip: str
-    """
-
-    virtual_network_id = data_model.property(
-        "virtualNetworkID", int,
-        array=False, optional=False,
-        documentation="\
-        SolidFire unique identifier for a virtual network.\
-        "
-    )
-
-    virtual_network_tag = data_model.property(
-        "virtualNetworkTag", int,
-        array=False, optional=False,
-        documentation="\
-        VLAN Tag identifier.\
-        "
-    )
-
-    address_blocks = data_model.property(
-        "addressBlocks", AddressBlock,
-        array=True, optional=False,
-        documentation="\
-        Range of address blocks currently assigned to the virtual network.\
-        **available:** Binary string in \"1\"s and \"0\"s. 1 equals the IP is\
-        available and 0 equals the IP is not available. The string is read\
-        from right to left with the digit to the far right being the first IP\
-        address in the list of addressBlocks.\
-        **size:** the size of this block of addresses.\
-        **start:** first IP address in the block.\
-        "
-    )
-
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=False,
-        documentation="\
-        List of Name/Value pairs in JSON object format.\
-        "
-    )
-
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation="\
-        The name assigned to the virtual network.\
-        "
-    )
-
-    netmask = data_model.property(
-        "netmask", str,
-        array=False, optional=False,
-        documentation="\
-        IP address of the netmask for the virtual network.\
-        "
-    )
-
-    svip = data_model.property(
-        "svip", str,
-        array=False, optional=False,
-        documentation="\
-        Storage IP address for the virtual network.\
-        "
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-
 class Account(data_model.DataObject):
     """
     The object containing information about an account.
@@ -4452,6 +4352,128 @@ class Account(data_model.DataObject):
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
+        documentation="\
+        List of Name/Value pairs in JSON object format.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class VirtualNetwork(data_model.DataObject):
+    """
+
+    :param virtual_network_id: [required] SolidFire unique identifier for a
+        virtual network.
+    :type virtual_network_id: int
+
+    :param virtual_network_tag: [required] VLAN Tag identifier.
+    :type virtual_network_tag: int
+
+    :param address_blocks: [required] Range of address blocks currently
+        assigned to the virtual network. **available:** Binary string in \"1\"s
+        and \"0\"s. 1 equals the IP is available and 0 equals the IP is not
+        available. The string is read from right to left with the digit to the
+        far right being the first IP address in the list of addressBlocks.
+        **size:** the size of this block of addresses. **start:** first IP
+        address in the block.
+    :type address_blocks: AddressBlock[]
+
+    :param name: [required] The name assigned to the virtual network.
+    :type name: str
+
+    :param netmask: [required] IP address of the netmask for the virtual
+        network.
+    :type netmask: str
+
+    :param svip: [required] Storage IP address for the virtual network.
+    :type svip: str
+
+    :param attributes: [required] List of Name/Value pairs in JSON object
+        format.
+    :type attributes: dict
+
+    :param gateway: (optional)
+    :type gateway: str
+
+    :param namespace: (optional)
+    :type namespace: bool
+    """
+
+    virtual_network_id = data_model.property(
+        "virtualNetworkID", int,
+        array=False, optional=False,
+        documentation="\
+        SolidFire unique identifier for a virtual network.\
+        "
+    )
+
+    virtual_network_tag = data_model.property(
+        "virtualNetworkTag", int,
+        array=False, optional=False,
+        documentation="\
+        VLAN Tag identifier.\
+        "
+    )
+
+    address_blocks = data_model.property(
+        "addressBlocks", AddressBlock,
+        array=True, optional=False,
+        documentation="\
+        Range of address blocks currently assigned to the virtual network.\
+        **available:** Binary string in \"1\"s and \"0\"s. 1 equals the IP is\
+        available and 0 equals the IP is not available. The string is read\
+        from right to left with the digit to the far right being the first IP\
+        address in the list of addressBlocks.\
+        **size:** the size of this block of addresses.\
+        **start:** first IP address in the block.\
+        "
+    )
+
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="\
+        The name assigned to the virtual network.\
+        "
+    )
+
+    netmask = data_model.property(
+        "netmask", str,
+        array=False, optional=False,
+        documentation="\
+        IP address of the netmask for the virtual network.\
+        "
+    )
+
+    svip = data_model.property(
+        "svip", str,
+        array=False, optional=False,
+        documentation="\
+        Storage IP address for the virtual network.\
+        "
+    )
+
+    gateway = data_model.property(
+        "gateway", str,
+        array=False, optional=True,
+        documentation="\
+\
+        "
+    )
+
+    namespace = data_model.property(
+        "namespace", bool,
+        array=False, optional=True,
+        documentation="\
+\
+        "
+    )
+
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=False,
         documentation="\
         List of Name/Value pairs in JSON object format.\
         "
@@ -5038,7 +5060,7 @@ class Snapshot(data_model.DataObject):
 
     :param snapshot_uuid: [required] Universal Unique ID of an existing
         snapshot.
-    :type snapshot_uuid: str
+    :type snapshot_uuid: UUID
 
     :param total_size: [required] Total size of this snapshot in bytes. It is
         equivalent to *total_size* of the volume when this snapshot was taken.
@@ -5187,7 +5209,7 @@ class Snapshot(data_model.DataObject):
     )
 
     snapshot_uuid = data_model.property(
-        "SnapshotUUID", str,
+        "snapshotUUID", UUID,
         array=False, optional=False,
         documentation="\
         Universal Unique ID of an existing snapshot.\

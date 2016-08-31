@@ -734,6 +734,15 @@ class ModifyGroupSnapshotResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class ModifyScheduleResult(data_model.DataObject):
+    """
+    The object returned by the \"modify_schedule\" API Service call.
+    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class ModifySnapshotResult(data_model.DataObject):
     """
     The object returned by the \"modify_snapshot\" API Service call.
@@ -2234,26 +2243,6 @@ class ListVolumesResult(data_model.DataObject):
         array=True, optional=False,
         documentation="\
         List of volumes.\
-        "
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-
-class ModifyScheduleResult(data_model.DataObject):
-    """
-    The object returned by the \"modify_schedule\" API Service call.
-
-    :param schedule: [required] Schedule attributes with modifications.
-    :type schedule: Schedule
-    """
-
-    schedule = data_model.property(
-        "schedule", Schedule,
-        array=False, optional=False,
-        documentation="\
-        Schedule attributes with modifications.\
         "
     )
 
