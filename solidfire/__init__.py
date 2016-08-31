@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright &copy 2014-2016 NetApp, Inc. All Rights Reserved.
+# Copyright &copy; 2014-2016 NetApp, Inc. All Rights Reserved.
 #
 # DO NOT EDIT THIS CODE BY HAND! It has been generated with jsvcgen.
 #
