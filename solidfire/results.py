@@ -726,6 +726,15 @@ class ModifyGroupSnapshotResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class ModifyScheduleResult(data_model.DataObject):
+    """
+    The object returned by the \"modify_schedule\" API Service call.
+    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class ModifySnapshotResult(data_model.DataObject):
     """
     The object returned by the \"modify_snapshot\" API Service call.

@@ -888,7 +888,7 @@ class Element(ServiceBase):
             username,
             password,
             access,
-            accept_eula,
+            accept_eula=OPTIONAL,
             attributes=OPTIONAL,):
         """
         *add_cluster_admin* adds a new Cluster Admin. A Cluster Admin can be
@@ -917,7 +917,7 @@ class Element(ServiceBase):
             Control\" in the Element API Guide.
         :type access: str[]
 
-        :param accept_eula: [required] Indicate your acceptance of the End User
+        :param accept_eula: (optional) Indicate your acceptance of the End User
             License Agreement when creating this cluster admin. To accept the
             EULA, set this parameter to true.
         :type accept_eula: bool
@@ -934,7 +934,6 @@ class Element(ServiceBase):
             "username": username,
             "password": password,
             "access": access,
-            "acceptEula": accept_eula,
         }
         self._check_param_versions(
             'add_cluster_admin',
@@ -943,6 +942,8 @@ class Element(ServiceBase):
                  accept_eula, 9.0, None),
             ]
         )
+        if accept_eula is not None:
+            params["acceptEula"] = accept_eula
         if attributes is not None:
             params["attributes"] = attributes
 
@@ -1708,7 +1709,7 @@ class Element(ServiceBase):
             self,
             username,
             access,
-            accept_eula,
+            accept_eula=OPTIONAL,
             attributes=OPTIONAL,):
         """
         *add_ldap_cluster_admin* is used to add a new LDAP Cluster Admin. An
@@ -1732,7 +1733,7 @@ class Element(ServiceBase):
             Control appendix in the SolidFire API Reference.
         :type access: str[]
 
-        :param accept_eula: [required] Indicate your acceptance of the End User
+        :param accept_eula: (optional) Indicate your acceptance of the End User
             License Agreement when creating this cluster admin. To accept the
             EULA, set this parameter to true.
         :type accept_eula: bool
@@ -1748,7 +1749,6 @@ class Element(ServiceBase):
         params = {
             "username": username,
             "access": access,
-            "acceptEula": accept_eula,
         }
         self._check_param_versions(
             'add_ldap_cluster_admin',
@@ -1757,6 +1757,8 @@ class Element(ServiceBase):
                  accept_eula, 9.0, None),
             ]
         )
+        if accept_eula is not None:
+            params["acceptEula"] = accept_eula
         if attributes is not None:
             params["attributes"] = attributes
 
