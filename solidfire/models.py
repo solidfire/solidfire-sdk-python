@@ -9,8 +9,8 @@ from __future__ import unicode_literals
 from __future__ import absolute_import
 from solidfire.common import model as data_model
 from uuid import UUID
-from solidfire.custom import CHAPSecret as UserDefinedCHAPSecret
-from solidfire.custom import Frequency as UserDefinedFrequency
+from solidfire.custom.models import CHAPSecret as UserDefinedCHAPSecret
+from solidfire.custom.models import Frequency as UserDefinedFrequency
 
 
 class CHAPSecret(UserDefinedCHAPSecret):
@@ -2445,7 +2445,7 @@ class FibreChannelPortList(data_model.DataObject):
 
     :param fibre_channel_ports: [required] List of all physical Fibre Channel
         ports.
-    :type fibre_channel_ports: FibreChannelPortInfo[]
+    :type fibre_channel_ports: FibreChannelPortInfo
     """
 
     fibre_channel_ports = data_model.property(
@@ -2533,13 +2533,13 @@ class NetworkConfig(data_model.DataObject):
     :type physical: PhysicalAdapter
 
     :param routes: (optional)
-    :type routes: str[]
+    :type routes: str
 
     :param status: (optional)
     :type status: str
 
     :param symmetric_route_rules: (optional)
-    :type symmetric_route_rules: str[]
+    :type symmetric_route_rules: str
 
     :param up_and_running: (optional)
     :type up_and_running: bool
@@ -3207,7 +3207,7 @@ class ClusterAdmin(data_model.DataObject):
     """
 
     :param access: [required]
-    :type access: str[]
+    :type access: str
 
     :param cluster_admin_id: [required]
     :type cluster_admin_id: int
@@ -3962,7 +3962,7 @@ class GroupSnapshot(data_model.DataObject):
 
     :param members: [required] List of *volume_ids* and *snapshot_ids* for each
         member of the group.
-    :type members: GroupSnapshotMembers[]
+    :type members: GroupSnapshotMembers
 
     :param name: [required] Name of the group snapshot, or, if none was given,
         the UTC formatted day and time on which the snapshot was created.
@@ -4064,11 +4064,11 @@ class MetadataHosts(data_model.DataObject):
 
     :param dead_secondaries: [required] Secondary metadata (slice) services
         that are in a dead state.
-    :type dead_secondaries: int[]
+    :type dead_secondaries: int
 
     :param live_secondaries: [required] Secondary metadata (slice) services
         that are currently in a \"live\" state.
-    :type live_secondaries: int[]
+    :type live_secondaries: int
 
     :param primary: [required] The primary metadata (slice) services hosting
         the volume.
@@ -4268,11 +4268,11 @@ class VolumeAccessGroup(data_model.DataObject):
 
     :param initiators: [required] List of unique initiator names belonging to
         the volume access group.
-    :type initiators: str[]
+    :type initiators: str
 
     :param volumes: [required] List of volumes belonging to the volume access
         group.
-    :type volumes: int[]
+    :type volumes: int
     """
 
     volume_access_group_id = data_model.property(
@@ -4321,11 +4321,11 @@ class VolumeAccessGroupLunAssignments(data_model.DataObject):
 
     :param lun_assignments: [required] The volume *ids* with assigned LUN
         values.
-    :type lun_assignments: LunAssignment[]
+    :type lun_assignments: LunAssignment
 
     :param deleted_lun_assignments: [required] The volume *ids* with deleted
         LUN values.
-    :type deleted_lun_assignments: LunAssignment[]
+    :type deleted_lun_assignments: LunAssignment
     """
 
     volume_access_group_id = data_model.property(
@@ -4694,7 +4694,7 @@ class ClusterConfig(data_model.DataObject):
     :type cluster: str
 
     :param ensemble: [required] Nodes that are participating in the cluster.
-    :type ensemble: str[]
+    :type ensemble: str
 
     :param mipi: [required] Network interface used for node management.
     :type mipi: str
@@ -4810,7 +4810,7 @@ class ClusterInfo(data_model.DataObject):
 
     :param ensemble: [required] Array of Node IP addresses that are
         participating in the cluster.
-    :type ensemble: str[]
+    :type ensemble: str
 
     :param mvip: [required] Management network interface.
     :type mvip: str
@@ -5446,7 +5446,7 @@ class VolumeStats(data_model.DataObject):
 
     :param volume_access_groups: [required] List of volume access group(s) to
         which a volume belongs.
-    :type volume_access_groups: int[]
+    :type volume_access_groups: int
 
     :param volume_id: [required] Volume ID of the volume.
     :type volume_id: int
@@ -6264,12 +6264,12 @@ class Volume(data_model.DataObject):
 
     :param volume_access_groups: [required] List of volume access groups to
         which a volume belongs.
-    :type volume_access_groups: int[]
+    :type volume_access_groups: int
 
     :param volume_pairs: [required] Information about a paired volume.
         Available only if a volume is paired. @see *volume_pairs* for return
         values.
-    :type volume_pairs: VolumePair[]
+    :type volume_pairs: VolumePair
 
     :param slice_count: [required] The number of slices backing this volume. In
         the current software, this value will always be 1.
