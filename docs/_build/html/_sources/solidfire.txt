@@ -6,21 +6,33 @@ Subpackages
 
 .. toctree::
 
+    solidfire.adaptor
+    solidfire.apiactual
     solidfire.common
+    solidfire.custom
+    solidfire.util
 
 Submodules
 ----------
 
-Models (solidfire.models)
--------------------------
+solidfire.factory module
+------------------------
+
+.. automodule:: solidfire.factory
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+solidfire.models module
+-----------------------
 
 .. automodule:: solidfire.models
     :members:
     :undoc-members:
     :show-inheritance:
 
-Results (solidfire.results)
----------------------------
+solidfire.results module
+------------------------
 
 .. automodule:: solidfire.results
     :members:
@@ -28,8 +40,8 @@ Results (solidfire.results)
     :show-inheritance:
 
 
-Element Module contents
------------------------
+Module contents
+---------------
 
 .. automodule:: solidfire
     :members:

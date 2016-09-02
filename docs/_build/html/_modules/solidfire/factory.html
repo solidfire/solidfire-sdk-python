@@ -1,0 +1,326 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>solidfire.factory &mdash; SolidFire Python SDK v1.1.0.49</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/solidfire.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SolidFire Python SDK v1.1.0.49" href="../../index.html"/>
+        <link rel="up" title="solidfire" href="../solidfire.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> solidfire-sdk-python
+          
+
+          
+            
+            <img src="../../_static/PythonSDK.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.0.49
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html">solidfire package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">solidfire-sdk-python</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+          <li><a href="../solidfire.html">solidfire</a> &raquo;</li>
+      
+    <li>solidfire.factory</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for solidfire.factory</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright &amp;copy; 2014-2016 NetApp, Inc. All Rights Reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># CONFIDENTIALITY NOTICE: THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION OF</span>
+<span class="c1"># NETAPP, INC. USE, DISCLOSURE OR REPRODUCTION IS PROHIBITED WITHOUT THE PRIOR</span>
+<span class="c1"># EXPRESS WRITTEN PERMISSION OF NETAPP, INC.</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="kn">from</span> <span class="nn">solidfire</span> <span class="kn">import</span> <span class="n">Element</span>
+<span class="kn">from</span> <span class="nn">solidfire.common</span> <span class="kn">import</span> <span class="n">SdkOperationError</span>
+<span class="kn">from</span> <span class="nn">solidfire.util</span> <span class="kn">import</span> <span class="n">ascii_art</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;solidfire.Element&#39;</span><span class="p">)</span>
+
+<span class="n">min_sdk_version</span> <span class="o">=</span> <span class="mf">7.0</span>
+<span class="n">max_sdk_version</span> <span class="o">=</span> <span class="mf">8.4</span>
+
+
+<div class="viewcode-block" id="ElementFactory"><a class="viewcode-back" href="../../solidfire.html#solidfire.factory.ElementFactory">[docs]</a><span class="k">class</span> <span class="nc">ElementFactory</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The Factory for creating a SolidFire Element object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ElementFactory.create"><a class="viewcode-back" href="../../solidfire.html#solidfire.factory.ElementFactory.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+               <span class="n">verify_ssl</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">443</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Factory method to create a Element object which is used to call</span>
+<span class="sd">         the SolidFire API. This method runs multiple checks and logic</span>
+<span class="sd">         to ensure the Element object creation is valid for the cluster</span>
+<span class="sd">         you are attempting to connect to. It is preferred to use this</span>
+<span class="sd">         factory method over the standard constructor.</span>
+
+<span class="sd">        :param target: the target IP or hostname of the cluster or node.</span>
+<span class="sd">        :type target: str</span>
+<span class="sd">        :param username: username used to connect to the Element OS instance.</span>
+<span class="sd">        :type username: str</span>
+<span class="sd">        :param password: authentication for username</span>
+<span class="sd">        :type password: str</span>
+<span class="sd">        :param version: specific version of Element OS to connect to. If this</span>
+<span class="sd">            doesn&#39;t match the cluster or is outside the versions supported by</span>
+<span class="sd">            this SDK, you will get an exception.</span>
+<span class="sd">        :type version: float or str</span>
+<span class="sd">        :param verify_ssl: enable this to check ssl connection for errors</span>
+<span class="sd">            especially when using a hostname. It is invalid to set this to</span>
+<span class="sd">            true when using an IP address in the target.</span>
+<span class="sd">        :type verify_ssl: bool</span>
+<span class="sd">        :param port: a port to connect to if other than 443, which is the</span>
+<span class="sd">            default for a SolidFire cluster. Specify 442 if connecting to</span>
+<span class="sd">            a SoldiFire node.</span>
+<span class="sd">        :type port: int</span>
+<span class="sd">        :return: a configured and tested instance of Element</span>
+<span class="sd">        :raises:</span>
+<span class="sd">            SdkOperationError: verify_ssl is true but target is an IP address</span>
+<span class="sd">            SdkOperationError: version is unable to be determined as float</span>
+<span class="sd">            ApiVersionUnsupportedError: version is not supported by</span>
+<span class="sd">                instance of Element OS.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">target_is_ip</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">r&quot;^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$&quot;</span><span class="p">,</span>
+                                <span class="n">target</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">target_is_ip</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">verify_ssl</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SdkOperationError</span><span class="p">(</span><span class="s2">&quot;Cannot verify SSL when target is an IP &quot;</span>
+                                    <span class="s2">&quot;address. Set verify_ssl to false or use &quot;</span>
+                                    <span class="s2">&quot;a fully qualified domain name.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">port</span> <span class="o">!=</span> <span class="mi">443</span><span class="p">:</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="n">target</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">port</span><span class="p">)</span>
+
+        <span class="n">element</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">min_sdk_version</span><span class="p">,</span>
+                          <span class="n">verify_ssl</span><span class="p">)</span>
+
+        <span class="n">api</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">get_api</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">version</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># cluster&#39;s version is greater than max supported version</span>
+            <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">current_version</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">max_sdk_version</span><span class="p">:</span>
+                <span class="n">element</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">max_sdk_version</span><span class="p">,</span>
+                                  <span class="n">verify_ssl</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">element</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span>
+                                  <span class="n">api</span><span class="o">.</span><span class="n">current_version</span><span class="p">,</span> <span class="n">verify_ssl</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">version_actual</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">SdkOperationError</span><span class="p">(</span><span class="s2">&quot;Unable to determine version to &quot;</span>
+                                        <span class="s2">&quot;connect from value: &quot;</span> <span class="o">+</span> <span class="n">version</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">version_actual</span> <span class="o">&lt;</span> <span class="n">min_sdk_version</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">SdkOperationError</span><span class="p">(</span><span class="s2">&quot;Cannot connect to a version lower &quot;</span>
+                                        <span class="s2">&quot;than supported by the SDK. &quot;</span>
+                                        <span class="s2">&quot;Connect at {0} or higher.&quot;</span>
+                                        <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">min_sdk_version</span><span class="p">))</span>
+
+            <span class="n">supported_versions</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">version_is_unsupported</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="k">for</span> <span class="n">api_version</span> <span class="ow">in</span> <span class="n">api</span><span class="o">.</span><span class="n">supported_versions</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">api_version</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">min_sdk_version</span><span class="p">:</span>
+                    <span class="n">supported_versions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">api_version</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">version_actual</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="n">api_version</span><span class="p">):</span>
+                        <span class="n">version_is_unsupported</span> <span class="o">=</span> <span class="bp">False</span>
+
+            <span class="k">if</span> <span class="n">version_is_unsupported</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">SdkOperationError</span><span class="p">(</span>
+                    <span class="s2">&quot;Invalid version to connect on this cluster. &quot;</span>
+                    <span class="s2">&quot;Valid versions are: {0}&quot;</span>
+                    <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">supported_versions</span><span class="p">)))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">element</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">version_actual</span><span class="p">,</span>
+                                  <span class="n">verify_ssl</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">version_actual</span> <span class="o">&gt;</span> <span class="n">max_sdk_version</span><span class="p">:</span>
+                    <span class="n">LOG</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                        <span class="s2">&quot;You have connected to a version that is higher than &quot;</span>
+                        <span class="s2">&quot;supported by this SDK. Some functionality may not &quot;</span>
+                        <span class="s2">&quot;work.&quot;</span><span class="p">)</span>
+
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Connected to {0} using API version {1}&quot;</span>
+                 <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">element</span><span class="o">.</span><span class="n">api_version</span><span class="p">))</span>
+
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">ascii_art</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">api_version</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">element</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2016, NetApp, Inc.  All Rights Reserved..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.1.0.49',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

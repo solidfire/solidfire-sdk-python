@@ -1,0 +1,481 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>solidfire.custom package &mdash; SolidFire Python SDK v1.1.0.49</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/solidfire.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SolidFire Python SDK v1.1.0.49" href="index.html"/>
+        <link rel="up" title="solidfire package" href="solidfire.html"/>
+        <link rel="next" title="solidfire.util package" href="solidfire.util.html"/>
+        <link rel="prev" title="solidfire.common package" href="solidfire.common.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> solidfire-sdk-python
+          
+
+          
+            
+            <img src="_static/PythonSDK.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.0.49
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="solidfire.html">solidfire package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="solidfire.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="solidfire.adaptor.html">solidfire.adaptor package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.apiactual.html">solidfire.apiactual package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.common.html">solidfire.common package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">solidfire.custom package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-solidfire.custom">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.util.html">solidfire.util package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.factory">solidfire.factory module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.models">solidfire.models module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.results">solidfire.results module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">solidfire-sdk-python</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="solidfire.html">solidfire package</a> &raquo;</li>
+      
+    <li>solidfire.custom package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/solidfire.custom.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="solidfire-custom-package">
+<h1>solidfire.custom package<a class="headerlink" href="#solidfire-custom-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-solidfire.custom">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-solidfire.custom" title="Permalink to this headline">¶</a></h2>
+<p>Module contains user defined objects directly implemented to map to the Element
+API.</p>
+<dl class="class">
+<dt id="solidfire.custom.CHAPSecret">
+<em class="property">class </em><code class="descclassname">solidfire.custom.</code><code class="descname">CHAPSecret</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/custom.html#CHAPSecret"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.custom.CHAPSecret" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>A representation of the CHAP Secret</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>secret</strong> &#8211; [required] A 12 - 16 character string.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="solidfire.custom.CHAPSecret.auto_generate">
+<code class="descname">auto_generate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/custom.html#CHAPSecret.auto_generate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.custom.CHAPSecret.auto_generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used in &#8216;AddAccount&#8217; and &#8216;ModifyAccount&#8217; to cause a CHAP Secret to be
+auto generated by the cluster.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="solidfire.custom.CHAPSecret.custom_extract">
+<em class="property">classmethod </em><code class="descname">custom_extract</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/custom.html#CHAPSecret.custom_extract"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.custom.CHAPSecret.custom_extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize the property from json.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> &#8211; the data to be converted.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the extracted data.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="solidfire.custom.CHAPSecret.custom_to_json">
+<code class="descname">custom_to_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/custom.html#CHAPSecret.custom_to_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.custom.CHAPSecret.custom_to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Custom json serialize logic
+:return:</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.custom.CHAPSecret.secret">
+<code class="descname">secret</code><em class="property"> = &lt;class 'str'&gt;</em><a class="headerlink" href="#solidfire.custom.CHAPSecret.secret" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.custom.Frequency">
+<em class="property">class </em><code class="descclassname">solidfire.custom.</code><code class="descname">Frequency</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/custom.html#Frequency"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.custom.Frequency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>User Defined object (does not correlate to and API Object) which simplifies
+the construction of Snapshot Schedule objects.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">param minutes:</th><td class="field-body">Number of minutes between snapshots or the minute at</td>
+</tr>
+</tbody>
+</table>
+<p>which the snapshot will occur in &#8220;Days of Week&#8221;, or &#8220;Days of Month&#8221; mode.
+Valid values  0 - 59
+:type minutes: int</p>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>hours</strong> &#8211; Number of hours between snapshots or hour at which the</td>
+</tr>
+</tbody>
+</table>
+<p>snapshot will occur in &#8220;Days of Week&#8221;, or &#8220;Days of Month&#8221; mode.
+Valid values  0 - 24
+:type hours: int</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>monthdays</strong> &#8211; The days of the month that a snapshot will be made.</td>
+</tr>
+</tbody>
+</table>
+<p>Valid values  1 - 31
+:type monthdays: int</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>weekdays</strong> &#8211; Day of the week the snapshot is to be created.</td>
+</tr>
+</tbody>
+</table>
+<p>Required Values (if used)
+Day - 0 - 6 (Sunday - Saturday).
+:type weekdays: Weekday[]</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>days</strong> (<em>int[]</em>) &#8211; Time Interval days between snapshot.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.custom.Frequency.days">
+<code class="descname">days</code><em class="property"> = &lt;class 'int[]'&gt;</em><a class="headerlink" href="#solidfire.custom.Frequency.days" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.custom.Frequency.hours">
+<code class="descname">hours</code><em class="property"> = &lt;class 'int'&gt;</em><a class="headerlink" href="#solidfire.custom.Frequency.hours" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.custom.Frequency.minutes">
+<code class="descname">minutes</code><em class="property"> = &lt;class 'int'&gt;</em><a class="headerlink" href="#solidfire.custom.Frequency.minutes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.custom.Frequency.monthdays">
+<code class="descname">monthdays</code><em class="property"> = &lt;class 'int[]'&gt;</em><a class="headerlink" href="#solidfire.custom.Frequency.monthdays" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="solidfire.custom.Frequency.set_type">
+<code class="descname">set_type</code><span class="sig-paren">(</span><em>a_type</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/custom.html#Frequency.set_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.custom.Frequency.set_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the FrequencyType of this Frequency object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>a_type</strong> &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">a_type: FrequencyType</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the selected FrequencyType</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="solidfire.custom.Frequency.types">
+<em class="property">static </em><code class="descname">types</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/custom.html#Frequency.types"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.custom.Frequency.types" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of FrequencyTypes.
+:return:</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.custom.Frequency.weekdays">
+<code class="descname">weekdays</code><em class="property"> = &lt;class 'solidfire.custom.Weekday[]'&gt;</em><a class="headerlink" href="#solidfire.custom.Frequency.weekdays" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.custom.FrequencyTypes">
+<em class="property">class </em><code class="descclassname">solidfire.custom.</code><code class="descname">FrequencyTypes</code><a class="reference internal" href="_modules/solidfire/custom.html#FrequencyTypes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.custom.FrequencyTypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>User Defined object (does not correlate to and API Object) which enumerates
+the different types of Snapshot Schedules.</p>
+<dl class="attribute">
+<dt id="solidfire.custom.FrequencyTypes.Days_Of_Month">
+<code class="descname">Days_Of_Month</code><em class="property"> = 'Days Of Month'</em><a class="headerlink" href="#solidfire.custom.FrequencyTypes.Days_Of_Month" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.custom.FrequencyTypes.Days_Of_Week">
+<code class="descname">Days_Of_Week</code><em class="property"> = 'Days Of Week'</em><a class="headerlink" href="#solidfire.custom.FrequencyTypes.Days_Of_Week" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.custom.FrequencyTypes.Time_Interval">
+<code class="descname">Time_Interval</code><em class="property"> = 'Time Interval'</em><a class="headerlink" href="#solidfire.custom.FrequencyTypes.Time_Interval" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.custom.FrequencyTypes.types">
+<code class="descname">types</code><em class="property"> = {'Days Of Week', 'Time Interval', 'Days Of Month'}</em><a class="headerlink" href="#solidfire.custom.FrequencyTypes.types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="solidfire.custom.Weekday">
+<em class="property">class </em><code class="descclassname">solidfire.custom.</code><code class="descname">Weekday</code><a class="reference internal" href="_modules/solidfire/custom.html#Weekday"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.custom.Weekday" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>A better representation of the Weekday.</p>
+<dl class="attribute">
+<dt id="solidfire.custom.Weekday.Friday">
+<code class="descname">Friday</code><em class="property"> = ('Friday', 6)</em><a class="headerlink" href="#solidfire.custom.Weekday.Friday" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.custom.Weekday.Monday">
+<code class="descname">Monday</code><em class="property"> = ('Monday', 2)</em><a class="headerlink" href="#solidfire.custom.Weekday.Monday" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.custom.Weekday.Saturday">
+<code class="descname">Saturday</code><em class="property"> = ('Saturday', 7)</em><a class="headerlink" href="#solidfire.custom.Weekday.Saturday" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.custom.Weekday.Sunday">
+<code class="descname">Sunday</code><em class="property"> = ('Sunday', 1)</em><a class="headerlink" href="#solidfire.custom.Weekday.Sunday" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.custom.Weekday.Thursday">
+<code class="descname">Thursday</code><em class="property"> = ('Thursday', 5)</em><a class="headerlink" href="#solidfire.custom.Weekday.Thursday" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.custom.Weekday.Tuesday">
+<code class="descname">Tuesday</code><em class="property"> = ('Tuesday', 3)</em><a class="headerlink" href="#solidfire.custom.Weekday.Tuesday" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.custom.Weekday.Wednesday">
+<code class="descname">Wednesday</code><em class="property"> = ('Wednesday', 4)</em><a class="headerlink" href="#solidfire.custom.Weekday.Wednesday" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="solidfire.custom.Weekday.all_weekdays">
+<code class="descname">all_weekdays</code><em class="property"> = [('Sunday', 1), ('Monday', 2), ('Tuesday', 3), ('Wednesday', 4), ('Thursday', 5), ('Friday', 6), ('Saturday', 7)]</em><a class="headerlink" href="#solidfire.custom.Weekday.all_weekdays" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="solidfire.custom.Weekday.from_id">
+<em class="property">static </em><code class="descname">from_id</code><span class="sig-paren">(</span><em>weekday_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/custom.html#Weekday.from_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.custom.Weekday.from_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="solidfire.custom.Weekday.from_name">
+<em class="property">static </em><code class="descname">from_name</code><span class="sig-paren">(</span><em>weekday_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/custom.html#Weekday.from_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.custom.Weekday.from_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="solidfire.util.html" class="btn btn-neutral float-right" title="solidfire.util package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="solidfire.common.html" class="btn btn-neutral" title="solidfire.common package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2016, NetApp, Inc.  All Rights Reserved..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.1.0.49',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

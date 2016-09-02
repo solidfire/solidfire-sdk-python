@@ -2753,7 +2753,11 @@ class PairedCluster(data_model.DataObject):
 
     :param status: [required] Can be one of the following:
 
-        **Connected** **Misconfigured** **Disconnected**
+        **Connected**
+
+        **Misconfigured**
+
+        **Disconnected**
 
     :type status: str
 
@@ -2809,10 +2813,16 @@ class PairedCluster(data_model.DataObject):
         Can be one of the following:\
 \
 \
+            **Connected**\
 \
-        **Connected**\
-        **Misconfigured**\
-        **Disconnected**\
+\
+\
+            **Misconfigured**\
+\
+\
+\
+            **Disconnected**\
+\
         "
     )
 
@@ -3601,8 +3611,21 @@ class CloneMultipleVolumeParams(data_model.DataObject):
         volumeID.
     :type volume_id: int
 
-    :param access: (optional) access : *read_only;* *read_write,* locked,
-        *replication_target*
+    :param access: (optional) Access settings for the new volume.
+
+        **readOnly**: Only read operations are allowed.
+
+        **readWrite**: Reads and writes are allowed.
+
+        **locked**: No reads or writes are allowed.
+
+        **replicationTarget**: Identify a volume as the target volume for a
+        paired set of volumes. If the volume is not paired, the access status
+        is locked.
+
+        If unspecified, the access settings of the clone will be the same as
+        the source.
+
     :type access: str
 
     :param name: (optional) New name for the clone.
@@ -3632,7 +3655,31 @@ class CloneMultipleVolumeParams(data_model.DataObject):
         "access", str,
         array=False, optional=True,
         documentation="\
-        access : *read_only;* *read_write,* locked, *replication_target*\
+        Access settings for the new volume.\
+\
+\
+            **readOnly**: Only read operations are allowed.\
+\
+\
+\
+            **readWrite**: Reads and writes are allowed.\
+\
+\
+\
+            **locked**: No reads or writes are allowed.\
+\
+\
+\
+            **replicationTarget**: Identify a volume as the target volume for\
+        a paired set of volumes. If the volume is not paired, the access\
+        status is locked.\
+\
+\
+\
+\
+\
+        If unspecified, the access settings of the clone will be the same as\
+        the source.\
         "
     )
 
@@ -4412,12 +4459,17 @@ class VirtualNetwork(data_model.DataObject):
     :type virtual_network_tag: int
 
     :param address_blocks: [required] Range of address blocks currently
-        assigned to the virtual network. **available:** Binary string in \"1\"s
-        and \"0\"s. 1 equals the IP is available and 0 equals the IP is not
-        available. The string is read from right to left with the digit to the
-        far right being the first IP address in the list of addressBlocks.
-        **size:** the size of this block of addresses. **start:** first IP
-        address in the block.
+        assigned to the virtual network.
+
+        **available:** Binary string in \"1\"s and \"0\"s. 1 equals the IP is
+        available and 0 equals the IP is not available. The string is read from
+        right to left with the digit to the far right being the first IP
+        address in the list of addressBlocks.
+
+        **size:** the size of this block of addresses.
+
+        **start:** first IP address in the block.
+
     :type address_blocks: AddressBlock[]
 
     :param name: [required] The name assigned to the virtual network.
@@ -4462,12 +4514,21 @@ class VirtualNetwork(data_model.DataObject):
         array=True, optional=False,
         documentation="\
         Range of address blocks currently assigned to the virtual network.\
-        **available:** Binary string in \"1\"s and \"0\"s. 1 equals the IP is\
-        available and 0 equals the IP is not available. The string is read\
+\
+\
+            **available:** Binary string in \"1\"s and \"0\"s. 1 equals the IP\
+        is available and 0 equals the IP is not available. The string is read\
         from right to left with the digit to the far right being the first IP\
         address in the list of addressBlocks.\
-        **size:** the size of this block of addresses.\
-        **start:** first IP address in the block.\
+\
+\
+\
+            **size:** the size of this block of addresses.\
+\
+\
+\
+            **start:** first IP address in the block.\
+\
         "
     )
 
