@@ -1,0 +1,629 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>solidfire.apiactual &mdash; SolidFire Python SDK v1.1.0.49</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/solidfire.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SolidFire Python SDK v1.1.0.49" href="../../index.html"/>
+        <link rel="up" title="solidfire" href="../solidfire.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> solidfire-sdk-python
+          
+
+          
+            
+            <img src="../../_static/PythonSDK.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.0.49
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html">solidfire package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">solidfire-sdk-python</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+          <li><a href="../solidfire.html">solidfire</a> &raquo;</li>
+      
+    <li>solidfire.apiactual</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for solidfire.apiactual</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright &amp;copy; 2014-2016 NetApp, Inc. All Rights Reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># CONFIDENTIALITY NOTICE: THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION OF</span>
+<span class="c1"># NETAPP, INC. USE, DISCLOSURE OR REPRODUCTION IS PROHIBITED WITHOUT THE PRIOR</span>
+<span class="c1"># EXPRESS WRITTEN PERMISSION OF NETAPP, INC.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module contains objects directly mapped to the Element API. These are</span>
+<span class="sd">generated and then moved here before the API is regenerated with changes.</span>
+<span class="sd">Adaptors are used to transform actual API object into custom object and</span>
+<span class="sd">vice-versa.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">solidfire.common</span> <span class="kn">import</span> <span class="n">model</span> <span class="k">as</span> <span class="n">data_model</span>
+
+
+<div class="viewcode-block" id="ApiScheduleInfo"><a class="viewcode-back" href="../../solidfire.apiactual.html#solidfire.apiactual.ApiScheduleInfo">[docs]</a><span class="k">class</span> <span class="nc">ApiScheduleInfo</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :param volume_id: (optional) The ID of the volume to be included in the</span>
+<span class="sd">        snapshot.</span>
+<span class="sd">    :type volume_id: int</span>
+
+<span class="sd">    :param volumes: (optional) A list of volume *ids* to be included in the</span>
+<span class="sd">        group snapshot.</span>
+<span class="sd">    :type volumes: int</span>
+
+<span class="sd">    :param name: (optional) The snapshot name to be used.</span>
+<span class="sd">    :type name: str</span>
+
+<span class="sd">    :param enable_remote_replication: (optional) Indicates if the snapshot</span>
+<span class="sd">        should be included in remote replication.</span>
+<span class="sd">    :type enable_remote_replication: bool</span>
+
+<span class="sd">    :param retention: (optional) The amount of time the snapshot will be</span>
+<span class="sd">        retained in HH:mm:ss.</span>
+<span class="sd">    :type retention: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">volume_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumeID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The ID of the volume to be included in the snapshot.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">volumes</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;volumes&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        A list of volume *ids* to be included in the group snapshot.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The snapshot name to be used.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">enable_remote_replication</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;enableRemoteReplication&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Indicates if the snapshot should be included in remote replication.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">retention</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;retention&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The amount of time the snapshot will be retained in HH:mm:ss.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ApiWeekday"><a class="viewcode-back" href="../../solidfire.apiactual.html#solidfire.apiactual.ApiWeekday">[docs]</a><span class="k">class</span> <span class="nc">ApiWeekday</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :param day: [required]</span>
+<span class="sd">    :type day: int</span>
+
+<span class="sd">    :param offset: [required]</span>
+<span class="sd">    :type offset: int</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">day</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;day&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="bp">None</span>
+    <span class="p">)</span>
+
+    <span class="n">offset</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;offset&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="bp">None</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ApiSchedule"><a class="viewcode-back" href="../../solidfire.apiactual.html#solidfire.apiactual.ApiSchedule">[docs]</a><span class="k">class</span> <span class="nc">ApiSchedule</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Schedule is an object containing information about each schedule created to</span>
+<span class="sd">    autonomously make a snapshot of a volume. The return object includes</span>
+<span class="sd">    information for all schedules. If *schedule_id* is used to identify a</span>
+<span class="sd">    specific schedule then only information for that *schedule_id* is returned.</span>
+<span class="sd">    Schedules information is returned with the API method, see *list_schedules*</span>
+<span class="sd">    on the SolidFire API guide page 245.</span>
+
+<span class="sd">    :param attributes: [required] Indicates the frequency of the schedule</span>
+<span class="sd">        occurrence.</span>
+
+<span class="sd">        Valid values are:</span>
+
+<span class="sd">        Day of Week</span>
+
+<span class="sd">        Day of Month</span>
+
+<span class="sd">        Time Interval</span>
+
+<span class="sd">    :type attributes: dict</span>
+
+<span class="sd">    :param has_error: [required] Indicates whether or not the schedule has</span>
+<span class="sd">        errors.</span>
+<span class="sd">    :type has_error: bool</span>
+
+<span class="sd">    :param hours: [required] Shows the hours that will elapse before the next</span>
+<span class="sd">        snapshot is created.</span>
+
+<span class="sd">        Valid values are: 0 - 24</span>
+
+<span class="sd">    :type hours: int</span>
+
+<span class="sd">    :param last_run_status: [required] Indicates the status of the last</span>
+<span class="sd">        scheduled snapshot.</span>
+
+<span class="sd">        Valid values are:</span>
+
+<span class="sd">        Success</span>
+
+<span class="sd">        Failed</span>
+
+<span class="sd">    :type last_run_status: str</span>
+
+<span class="sd">    :param last_run_time_start: [required] Indicates the last time the schedule</span>
+<span class="sd">        started n ISO 8601 date string. Valid values are:</span>
+
+<span class="sd">        Success</span>
+
+<span class="sd">        Failed</span>
+
+<span class="sd">    :type last_run_time_start: str</span>
+
+<span class="sd">    :param minutes: [required] Shows the minutes that will elapse before the</span>
+<span class="sd">        next snapshot is created. Valid values are: 0 - 59</span>
+<span class="sd">    :type minutes: int</span>
+
+<span class="sd">    :param monthdays: [required] Shows the days of the month that the next</span>
+<span class="sd">        snapshot will be created on. Valid values are: 0 - 31</span>
+<span class="sd">    :type monthdays: int</span>
+
+<span class="sd">    :param paused: [required] Indicates whether or not the schedule is paused.</span>
+<span class="sd">    :type paused: bool</span>
+
+<span class="sd">    :param recurring: [required] Indicates whether or not the schedule is</span>
+<span class="sd">        recurring.</span>
+<span class="sd">    :type recurring: bool</span>
+
+<span class="sd">    :param run_next_interval: [required] Indicates whether or not the schedule</span>
+<span class="sd">        will run the next time the scheduler is active. When set to \&quot;true\&quot;,</span>
+<span class="sd">        the schedule will run the next time the scheduler is active and then</span>
+<span class="sd">        reset back to \&quot;false\&quot;.</span>
+<span class="sd">    :type run_next_interval: bool</span>
+
+<span class="sd">    :param schedule_id: [required] Unique ID of the schedule</span>
+<span class="sd">    :type schedule_id: int</span>
+
+<span class="sd">    :param schedule_info: [required] Includes the unique name given to the</span>
+<span class="sd">        schedule, the retention period for the snapshot that was created, and</span>
+<span class="sd">        the volume ID of the volume from which the snapshot was created.</span>
+<span class="sd">    :type schedule_info: ScheduleInfo</span>
+
+<span class="sd">    :param schedule_name: [required] Unique name assigned to the schedule.</span>
+<span class="sd">    :type schedule_name: str</span>
+
+<span class="sd">    :param schedule_type: [required] Only \&quot;snapshot\&quot; is supported at this</span>
+<span class="sd">        time.</span>
+<span class="sd">    :type schedule_type: str</span>
+
+<span class="sd">    :param starting_date: [required] Indicates the date the first time the</span>
+<span class="sd">        schedule began of will begin. Formatted in UTC time.</span>
+<span class="sd">    :type starting_date: str</span>
+
+<span class="sd">    :param to_be_deleted: [required] Indicates if the schedule is marked for</span>
+<span class="sd">        deletion.</span>
+<span class="sd">    :type to_be_deleted: bool</span>
+
+<span class="sd">    :param weekdays: [required] Indicates the days of the week that a snapshot</span>
+<span class="sd">        will be made.</span>
+<span class="sd">    :type weekdays: Weekday</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">attributes</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;attributes&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Indicates the frequency of the schedule occurrence.</span><span class="se">\</span>
+<span class="s2">        Valid values are:</span><span class="se">\</span>
+<span class="s2">        Day of Week</span><span class="se">\</span>
+<span class="s2">        Day of Month</span><span class="se">\</span>
+<span class="s2">        Time Interval</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">has_error</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;hasError&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Indicates whether or not the schedule has errors.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">hours</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;hours&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Shows the hours that will elapse before the next snapshot is created.</span><span class="se">\</span>
+<span class="s2">        Valid values are: 0 - 24</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">last_run_status</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;lastRunStatus&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Indicates the status of the last scheduled snapshot.</span><span class="se">\</span>
+<span class="s2">        Valid values are:</span><span class="se">\</span>
+<span class="s2">        Success</span><span class="se">\</span>
+<span class="s2">        Failed</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">last_run_time_start</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;lastRunTimeStart&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Indicates the last time the schedule started n ISO 8601 date string.</span><span class="se">\</span>
+<span class="s2">        Valid values are:</span><span class="se">\</span>
+<span class="s2">        Success</span><span class="se">\</span>
+<span class="s2">        Failed</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">minutes</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;minutes&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Shows the minutes that will elapse before the next snapshot is</span><span class="se">\</span>
+<span class="s2">        created.</span><span class="se">\</span>
+<span class="s2">        Valid values are: 0 - 59</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">monthdays</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;monthdays&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Shows the days of the month that the next snapshot will be created on.</span><span class="se">\</span>
+<span class="s2">        Valid values are: 0 - 31</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">paused</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;paused&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Indicates whether or not the schedule is paused.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">recurring</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;recurring&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Indicates whether or not the schedule is recurring.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">run_next_interval</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;runNextInterval&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Indicates whether or not the schedule will run the next time the</span><span class="se">\</span>
+<span class="s2">        scheduler is active. When set to </span><span class="se">\&quot;</span><span class="s2">true</span><span class="se">\&quot;</span><span class="s2">, the schedule will run the</span><span class="se">\</span>
+<span class="s2">        next time the scheduler is active and then reset back to </span><span class="se">\&quot;</span><span class="s2">false</span><span class="se">\&quot;</span><span class="s2">.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">schedule_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;scheduleID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Unique ID of the schedule</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">schedule_info</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;scheduleInfo&quot;</span><span class="p">,</span> <span class="n">ApiScheduleInfo</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Includes the unique name given to the schedule, the retention period</span><span class="se">\</span>
+<span class="s2">        for the snapshot that was created, and the volume ID of the volume</span><span class="se">\</span>
+<span class="s2">        from which the snapshot was created.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">schedule_name</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;scheduleName&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Unique name assigned to the schedule.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">schedule_type</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;scheduleType&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Only </span><span class="se">\&quot;</span><span class="s2">snapshot</span><span class="se">\&quot;</span><span class="s2"> is supported at this time.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">starting_date</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;startingDate&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Indicates the date the first time the schedule began of will begin.</span><span class="se">\</span>
+<span class="s2">        Formatted in UTC time.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">to_be_deleted</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;toBeDeleted&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Indicates if the schedule is marked for deletion.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">weekdays</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;weekdays&quot;</span><span class="p">,</span> <span class="n">ApiWeekday</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Indicates the days of the week that a snapshot will be made.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ApiGetScheduleResult"><a class="viewcode-back" href="../../solidfire.apiactual.html#solidfire.apiactual.ApiGetScheduleResult">[docs]</a><span class="k">class</span> <span class="nc">ApiGetScheduleResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;get_schedule\&quot; API Service call.</span>
+
+<span class="sd">    :param schedule: [required] The schedule attributes.</span>
+<span class="sd">    :type schedule: Schedule</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">schedule</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;schedule&quot;</span><span class="p">,</span> <span class="n">ApiSchedule</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The schedule attributes.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ApiListSchedulesResult"><a class="viewcode-back" href="../../solidfire.apiactual.html#solidfire.apiactual.ApiListSchedulesResult">[docs]</a><span class="k">class</span> <span class="nc">ApiListSchedulesResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;list_schedules\&quot; API Service call.</span>
+
+<span class="sd">    :param schedules: [required] The list of schedules currently on the</span>
+<span class="sd">        cluster.</span>
+<span class="sd">    :type schedules: Schedule</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">schedules</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;schedules&quot;</span><span class="p">,</span> <span class="n">ApiSchedule</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The list of schedules currently on the cluster.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ApiModifyScheduleResult"><a class="viewcode-back" href="../../solidfire.apiactual.html#solidfire.apiactual.ApiModifyScheduleResult">[docs]</a><span class="k">class</span> <span class="nc">ApiModifyScheduleResult</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The object returned by the \&quot;modify_schedule\&quot; API Service call.</span>
+
+<span class="sd">    :param schedule: [required] Schedule attributes with modifications.</span>
+<span class="sd">    :type schedule: Schedule</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">schedule</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;schedule&quot;</span><span class="p">,</span> <span class="n">ApiSchedule</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        Schedule attributes with modifications.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2016, NetApp, Inc.  All Rights Reserved..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.1.0.49',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

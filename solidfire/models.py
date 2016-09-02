@@ -1202,11 +1202,17 @@ class SnmpNetwork(data_model.DataObject):
     The SNMP network object contains information about SNMP configuration for
     the cluster nodes. SNMP v3 is supported on SolidFire clusters.
 
-    :param access: [required] **ro**: read-only access.* **rw**: for read-write
-        access. **rosys**: for read-only access to a restricted set of system
+    :param access: [required]
+
+        **ro**: read-only access.*
+
+        **rw**: for read-write access.
+
+        **rosys**: for read-only access to a restricted set of system
         information *SolidFire recommends that all networks other than the
         default \"localhost\" be set to \"ro\" access, because all SolidFire
         MIB objects are read-only.
+
     :type access: str
 
     :param cidr: [required] A CIDR network mask. This network mask must be an
@@ -1229,10 +1235,19 @@ class SnmpNetwork(data_model.DataObject):
         "access", str,
         array=False, optional=False,
         documentation="\
-        **ro**: read-only access.*\
-        **rw**: for read-write access.\
-        **rosys**: for read-only access to a restricted set of system\
+\
+\
+            **ro**: read-only access.*\
+\
+\
+\
+            **rw**: for read-write access.\
+\
+\
+\
+            **rosys**: for read-only access to a restricted set of system\
         information\
+\
         *SolidFire recommends that all networks other than the default\
         \"localhost\" be set to \"ro\" access, because all SolidFire MIB\
         objects are read-only.\
@@ -2313,7 +2328,11 @@ class PairedCluster(data_model.DataObject):
 
     :param status: [required] Can be one of the following:
 
-        **Connected** **Misconfigured** **Disconnected**
+        **Connected**
+
+        **Misconfigured**
+
+        **Disconnected**
 
     :type status: str
 
@@ -2369,10 +2388,16 @@ class PairedCluster(data_model.DataObject):
         Can be one of the following:\
 \
 \
+            **Connected**\
 \
-        **Connected**\
-        **Misconfigured**\
-        **Disconnected**\
+\
+\
+            **Misconfigured**\
+\
+\
+\
+            **Disconnected**\
+\
         "
     )
 
@@ -2541,10 +2566,16 @@ class SnmpV3UsmUser(data_model.DataObject):
     The SNMP v3 *usm_user* object is used with the API method *set_snmp_info*
     to configure SNMP on the cluster.
 
-    :param access: [required] **rouser**: read-only access.* **rwuser**: for
-        read-write access. **rosys**: for read-only access to a restricted set
-        of system information *SolidFire recommends that all USM users be set
-        to \"rouser\" access, because all SolidFire MIB objects are read-only.
+    :param access: [required]
+
+        **rouser**: read-only access.*
+
+        **rwuser**: for read-write access.
+
+        **rosys**: for read-only access to a restricted set of system
+        information *SolidFire recommends that all USM users be set to
+        \"rouser\" access, because all SolidFire MIB objects are read-only.
+
     :type access: str
 
     :param name: [required] The name of the user. Must contain at least one
@@ -2562,9 +2593,14 @@ class SnmpV3UsmUser(data_model.DataObject):
         Required if \"secLevel\" is \"priv.\"
     :type passphrase: str
 
-    :param sec_level: [required] **noauth**: No password or passphrase is
-        required. **auth**: A password is required for user access. **priv**: A
-        password and passphrase is required for user access.
+    :param sec_level: [required]
+
+        **noauth**: No password or passphrase is required.
+
+        **auth**: A password is required for user access.
+
+        **priv**: A password and passphrase is required for user access.
+
     :type sec_level: str
     """
 
@@ -2572,10 +2608,19 @@ class SnmpV3UsmUser(data_model.DataObject):
         "access", str,
         array=False, optional=False,
         documentation="\
-        **rouser**: read-only access.*\
-        **rwuser**: for read-write access.\
-        **rosys**: for read-only access to a restricted set of system\
+\
+\
+            **rouser**: read-only access.*\
+\
+\
+\
+            **rwuser**: for read-write access.\
+\
+\
+\
+            **rosys**: for read-only access to a restricted set of system\
         information\
+\
         *SolidFire recommends that all USM users be set to \"rouser\" access,\
         because all SolidFire MIB objects are read-only.\
         "
@@ -2614,9 +2659,18 @@ class SnmpV3UsmUser(data_model.DataObject):
         "secLevel", str,
         array=False, optional=False,
         documentation="\
-        **noauth**: No password or passphrase is required.\
-        **auth**: A password is required for user access.\
-        **priv**: A password and passphrase is required for user access.\
+\
+\
+            **noauth**: No password or passphrase is required.\
+\
+\
+\
+            **auth**: A password is required for user access.\
+\
+\
+\
+            **priv**: A password and passphrase is required for user access.\
+\
         "
     )
 
@@ -3294,8 +3348,21 @@ class CloneMultipleVolumeParams(data_model.DataObject):
         volumeID.
     :type volume_id: int
 
-    :param access: (optional) access : *read_only;* *read_write,* locked,
-        *replication_target*
+    :param access: (optional) Access settings for the new volume.
+
+        **readOnly**: Only read operations are allowed.
+
+        **readWrite**: Reads and writes are allowed.
+
+        **locked**: No reads or writes are allowed.
+
+        **replicationTarget**: Identify a volume as the target volume for a
+        paired set of volumes. If the volume is not paired, the access status
+        is locked.
+
+        If unspecified, the access settings of the clone will be the same as
+        the source.
+
     :type access: str
 
     :param name: (optional) New name for the clone.
@@ -3325,7 +3392,31 @@ class CloneMultipleVolumeParams(data_model.DataObject):
         "access", str,
         array=False, optional=True,
         documentation="\
-        access : *read_only;* *read_write,* locked, *replication_target*\
+        Access settings for the new volume.\
+\
+\
+            **readOnly**: Only read operations are allowed.\
+\
+\
+\
+            **readWrite**: Reads and writes are allowed.\
+\
+\
+\
+            **locked**: No reads or writes are allowed.\
+\
+\
+\
+            **replicationTarget**: Identify a volume as the target volume for\
+        a paired set of volumes. If the volume is not paired, the access\
+        status is locked.\
+\
+\
+\
+\
+\
+        If unspecified, the access settings of the clone will be the same as\
+        the source.\
         "
     )
 
@@ -4372,12 +4463,17 @@ class VirtualNetwork(data_model.DataObject):
     :type virtual_network_tag: int
 
     :param address_blocks: [required] Range of address blocks currently
-        assigned to the virtual network. **available:** Binary string in \"1\"s
-        and \"0\"s. 1 equals the IP is available and 0 equals the IP is not
-        available. The string is read from right to left with the digit to the
-        far right being the first IP address in the list of addressBlocks.
-        **size:** the size of this block of addresses. **start:** first IP
-        address in the block.
+        assigned to the virtual network.
+
+        **available:** Binary string in \"1\"s and \"0\"s. 1 equals the IP is
+        available and 0 equals the IP is not available. The string is read from
+        right to left with the digit to the far right being the first IP
+        address in the list of addressBlocks.
+
+        **size:** the size of this block of addresses.
+
+        **start:** first IP address in the block.
+
     :type address_blocks: AddressBlock[]
 
     :param name: [required] The name assigned to the virtual network.
@@ -4422,12 +4518,21 @@ class VirtualNetwork(data_model.DataObject):
         array=True, optional=False,
         documentation="\
         Range of address blocks currently assigned to the virtual network.\
-        **available:** Binary string in \"1\"s and \"0\"s. 1 equals the IP is\
-        available and 0 equals the IP is not available. The string is read\
+\
+\
+            **available:** Binary string in \"1\"s and \"0\"s. 1 equals the IP\
+        is available and 0 equals the IP is not available. The string is read\
         from right to left with the digit to the far right being the first IP\
         address in the list of addressBlocks.\
-        **size:** the size of this block of addresses.\
-        **start:** first IP address in the block.\
+\
+\
+\
+            **size:** the size of this block of addresses.\
+\
+\
+\
+            **start:** first IP address in the block.\
+\
         "
     )
 
