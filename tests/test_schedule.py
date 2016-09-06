@@ -150,5 +150,17 @@ class TestSchedule(TestCase):
         results = sf.list_schedules()
 
         for sched in results.schedules:
+            assert_that(type(sched.frequency) is TimeIntervalFrequency or
+                            type(sched.frequency) is DaysOfMonthFrequency or
+                            type(sched.frequency) is DaysOfWeekFrequency,
+                        equal_to(True))
+
+
+    def test_get_schedule(self):
+        sf = ElementFactory.create("172.26.64.48", "admin", "admin")
+
+        results = sf.get_schedule(786)
+
+        for sched in results.schedules:
             assert_that(sched.frequency is None, equal_to(True))
 

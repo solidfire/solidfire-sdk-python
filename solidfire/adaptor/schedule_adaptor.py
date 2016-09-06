@@ -179,12 +179,12 @@ class ScheduleAdaptor:
                 schedule.frequency.hours = int(api.hours % 24)
                 schedule.frequency.minutes = api.minutes
             elif freq == "Days Of Month":
-                schedule.Frequency = DaysOfMonthFrequency()
+                schedule.frequency = DaysOfMonthFrequency()
                 schedule.frequency.hours = api.hours,
                 schedule.frequency.minutes = api.minutes,
                 schedule.frequency.monthdays = api.monthdays
             elif freq == "Days Of Week":
-                schedule.Frequency = DaysOfWeekFrequency()
+                schedule.frequency = DaysOfWeekFrequency()
                 schedule.frequency.hours = api.hours
                 schedule.frequency.minutes = api.minutes
                 schedule.frequency.weekdays = ScheduleAdaptor \
