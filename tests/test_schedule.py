@@ -164,3 +164,22 @@ class TestSchedule(TestCase):
         for sched in results.schedules:
             assert_that(sched.frequency is None, equal_to(True))
 
+    def test_lest_schedules(self):
+        sf = ElementFactory.create("172.26.64.48", "admin", "admin")
+
+        schedules = sf.list_schedules().schedules
+
+        sched_id = schedules[0].schedule_id
+
+        schedules[0].to_be_deleted = True
+
+        sf.modify_schedule(schedules[0])
+
+        sched = sf.get_schedule(sched_id)
+
+        one = 1
+
+
+
+
+
