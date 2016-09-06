@@ -127,7 +127,7 @@ class ModelProperty(object):
         :param out: the resulting output.
         :param data: the data to be converted.
         """
-        if data is None:
+        if data is None or hasattr(data, '_member_type'):  # HACK ALERT
             if not self._optional:
                 out[self._member_name] = None
         elif self._array:
@@ -242,6 +242,9 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
             else:
                 setattr(self, key, value)
 
+    def get_properties(self):
+        return self._properties
+
     def __repr__(self):
         """
         Base repr() for all generated objects.
@@ -319,14 +322,14 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
                 msg = msg_fmt.format(typ=cls.__name__,
                                      name=prop.member_name(),
                                      data=json.dumps(data)
-                                    )
+                                     )
                 raise TypeError(msg)
         return cls(**ctor_dict)
 
 
-def property(member_name, member_type,
-             array=False, optional=False,
-             documentation=None):
+def property(member_name: object, member_type: object,
+             array: object = False, optional: object = False,
+             documentation: object = None) -> object:
     """
     Constructs the type for a DataObject property.
 
@@ -365,7 +368,3 @@ def property(member_name, member_type,
                array=array,
                optional=optional,
                documentation=documentation)
-
-
-def blah(anything):
-    return anything.documentation

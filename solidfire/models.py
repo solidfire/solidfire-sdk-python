@@ -4373,12 +4373,19 @@ class Account(data_model.DataObject):
     :param username: [required] User name for the account.
     :type username: str
 
-    :param status: [required] Current status of the account.
-    :type status: str
+    :param address_blocks: [required] Range of address blocks currently
+        assigned to the virtual network.
 
-    :param volumes: [required] List of *volume_ids* for Volumes owned by this
-        account.
-    :type volumes: int[]
+        **available:** Binary string in \"1\"s and \"0\"s. 1 equals the IP is
+        available and 0 equals the IP is not available. The string is read from
+        right to left with the digit to the far right being the first IP
+        address in the list of addressBlocks.
+
+        **size:** the size of this block of addresses.
+
+        **start:** first IP address in the block.
+
+    :type address_blocks: AddressBlock[]
 
     :param initiator_secret: (optional) CHAP secret to use for the initiator.
     :type initiator_secret: CHAPSecret
@@ -4412,7 +4419,22 @@ class Account(data_model.DataObject):
         "status", str,
         array=False, optional=False,
         documentation="\
-        Current status of the account.\
+        Range of address blocks currently assigned to the virtual network.\
+\
+\
+            **available:** Binary string in \"1\"s and \"0\"s. 1 equals the IP\
+        is available and 0 equals the IP is not available. The string is read\
+        from right to left with the digit to the far right being the first IP\
+        address in the list of addressBlocks.\
+\
+\
+\
+            **size:** the size of this block of addresses.\
+\
+\
+\
+            **start:** first IP address in the block.\
+\
         "
     )
 

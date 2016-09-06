@@ -22,7 +22,7 @@ class ApiScheduleInfo(data_model.DataObject):
         snapshot.
     :type volume_id: int
 
-    :param volumes: (optional) A list of volume *ids* to be included in the
+    :param volumes: (required) A list of volume *ids* to be included in the
         group snapshot.
     :type volumes: int
 
@@ -48,7 +48,7 @@ class ApiScheduleInfo(data_model.DataObject):
 
     volumes = data_model.property(
         "volumes", int,
-        array=True, optional=True,
+        array=True, optional=False,
         documentation="\
         A list of volume *ids* to be included in the group snapshot.\
         "
@@ -130,7 +130,7 @@ class ApiSchedule(data_model.DataObject):
 
     :type attributes: dict
 
-    :param has_error: [required] Indicates whether or not the schedule has
+    :param has_error: Indicates whether or not the schedule has
         errors.
     :type has_error: bool
 
@@ -141,7 +141,7 @@ class ApiSchedule(data_model.DataObject):
 
     :type hours: int
 
-    :param last_run_status: [required] Indicates the status of the last
+    :param last_run_status: Indicates the status of the last
         scheduled snapshot.
 
         Valid values are:
@@ -152,7 +152,7 @@ class ApiSchedule(data_model.DataObject):
 
     :type last_run_status: str
 
-    :param last_run_time_start: [required] Indicates the last time the schedule
+    :param last_run_time_start: Indicates the last time the schedule
         started n ISO 8601 date string. Valid values are:
 
         Success
@@ -165,24 +165,24 @@ class ApiSchedule(data_model.DataObject):
         next snapshot is created. Valid values are: 0 - 59
     :type minutes: int
 
-    :param monthdays: [required] Shows the days of the month that the next
+    :param monthdays: Shows the days of the month that the next
         snapshot will be created on. Valid values are: 0 - 31
     :type monthdays: int
 
-    :param paused: [required] Indicates whether or not the schedule is paused.
+    :param paused:  Indicates whether or not the schedule is paused.
     :type paused: bool
 
-    :param recurring: [required] Indicates whether or not the schedule is
+    :param recurring: Indicates whether or not the schedule is
         recurring.
     :type recurring: bool
 
-    :param run_next_interval: [required] Indicates whether or not the schedule
+    :param run_next_interval: Indicates whether or not the schedule
         will run the next time the scheduler is active. When set to \"true\",
         the schedule will run the next time the scheduler is active and then
         reset back to \"false\".
     :type run_next_interval: bool
 
-    :param schedule_id: [required] Unique ID of the schedule
+    :param schedule_id: Unique ID of the schedule
     :type schedule_id: int
 
     :param schedule_info: [required] Includes the unique name given to the
@@ -190,29 +190,29 @@ class ApiSchedule(data_model.DataObject):
         the volume ID of the volume from which the snapshot was created.
     :type schedule_info: ScheduleInfo
 
-    :param schedule_name: [required] Unique name assigned to the schedule.
+    :param schedule_name: Unique name assigned to the schedule.
     :type schedule_name: str
 
     :param schedule_type: [required] Only \"snapshot\" is supported at this
         time.
     :type schedule_type: str
 
-    :param starting_date: [required] Indicates the date the first time the
+    :param starting_date: Indicates the date the first time the
         schedule began of will begin. Formatted in UTC time.
     :type starting_date: str
 
-    :param to_be_deleted: [required] Indicates if the schedule is marked for
+    :param to_be_deleted: Indicates if the schedule is marked for
         deletion.
     :type to_be_deleted: bool
 
-    :param weekdays: [required] Indicates the days of the week that a snapshot
+    :param weekdays: Indicates the days of the week that a snapshot
         will be made.
     :type weekdays: Weekday
     """
 
     attributes = data_model.property(
         "attributes", dict,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Indicates the frequency of the schedule occurrence.\
         Valid values are:\
@@ -224,7 +224,7 @@ class ApiSchedule(data_model.DataObject):
 
     has_error = data_model.property(
         "hasError", bool,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Indicates whether or not the schedule has errors.\
         "
@@ -241,7 +241,7 @@ class ApiSchedule(data_model.DataObject):
 
     last_run_status = data_model.property(
         "lastRunStatus", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Indicates the status of the last scheduled snapshot.\
         Valid values are:\
@@ -252,7 +252,7 @@ class ApiSchedule(data_model.DataObject):
 
     last_run_time_start = data_model.property(
         "lastRunTimeStart", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Indicates the last time the schedule started n ISO 8601 date string.\
         Valid values are:\
@@ -273,7 +273,7 @@ class ApiSchedule(data_model.DataObject):
 
     monthdays = data_model.property(
         "monthdays", int,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="\
         Shows the days of the month that the next snapshot will be created on.\
         Valid values are: 0 - 31\
@@ -282,7 +282,7 @@ class ApiSchedule(data_model.DataObject):
 
     paused = data_model.property(
         "paused", bool,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Indicates whether or not the schedule is paused.\
         "
@@ -290,7 +290,7 @@ class ApiSchedule(data_model.DataObject):
 
     recurring = data_model.property(
         "recurring", bool,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Indicates whether or not the schedule is recurring.\
         "
@@ -298,7 +298,7 @@ class ApiSchedule(data_model.DataObject):
 
     run_next_interval = data_model.property(
         "runNextInterval", bool,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Indicates whether or not the schedule will run the next time the\
         scheduler is active. When set to \"true\", the schedule will run the\
@@ -308,7 +308,7 @@ class ApiSchedule(data_model.DataObject):
 
     schedule_id = data_model.property(
         "scheduleID", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Unique ID of the schedule\
         "
@@ -326,7 +326,7 @@ class ApiSchedule(data_model.DataObject):
 
     schedule_name = data_model.property(
         "scheduleName", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Unique name assigned to the schedule.\
         "
@@ -342,7 +342,7 @@ class ApiSchedule(data_model.DataObject):
 
     starting_date = data_model.property(
         "startingDate", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Indicates the date the first time the schedule began of will begin.\
         Formatted in UTC time.\
@@ -351,7 +351,7 @@ class ApiSchedule(data_model.DataObject):
 
     to_be_deleted = data_model.property(
         "toBeDeleted", bool,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Indicates if the schedule is marked for deletion.\
         "
@@ -359,7 +359,7 @@ class ApiSchedule(data_model.DataObject):
 
     weekdays = data_model.property(
         "weekdays", ApiWeekday,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="\
         Indicates the days of the week that a snapshot will be made.\
         "
@@ -411,6 +411,15 @@ class ApiListSchedulesResult(data_model.DataObject):
 
 
 class ApiModifyScheduleResult(data_model.DataObject):
+    """
+    The object returned by the \"modify_schedule\" API Service call.
+
+    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ApiCreateScheduleResult(data_model.DataObject):
     """
     The object returned by the \"modify_schedule\" API Service call.
 
