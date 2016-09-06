@@ -652,15 +652,19 @@ class Element(ServiceBase):
             end_event_id=OPTIONAL,
             event_queue_type=OPTIONAL,):
         """
-        Returns events detected on the cluster, sorted from oldest to newest.
+        *list_events* returns events detected on the cluster, sorted from
+        oldest to newest.
 
-        :param max_events: (optional)
+        :param max_events: (optional) Specifies the maximum number of events to
+            return.
         :type max_events: int
 
-        :param start_event_id: (optional)
+        :param start_event_id: (optional) Identifies the beginning of a range
+            of events to return.
         :type start_event_id: int
 
-        :param end_event_id: (optional)
+        :param end_event_id: (optional) Identifies the end of a range of events
+            to return.
         :type end_event_id: int
 
         :param event_queue_type: (optional)
@@ -693,18 +697,26 @@ class Element(ServiceBase):
             update=OPTIONAL,
             fault_types=OPTIONAL,):
         """
-        Gets the list of cluster faults
+        *list_cluster_faults* is used to retrieve information about any faults
+        detected on the cluster.
+        With this method, both current and resolved faults can be retrieved.
+        The system caches faults every 30 seconds.
 
         :param exceptions: (optional)
         :type exceptions: bool
 
-        :param best_practices: (optional)
+        :param best_practices: (optional) Include faults triggered by
+            sub-optimal system configuration. Possible values: true, false
         :type best_practices: bool
 
         :param update: (optional)
         :type update: bool
 
-        :param fault_types: (optional)
+        :param fault_types: (optional) Determines the types of faults returned:
+            current: List active, unresolved faults. **resolved**: List faults
+            that were previously detected and resolved. **all**: (Default) List
+            both current and resolved faults. You can see the fault status in
+            the 'resolved' field of the Cluster Fault object.
         :type fault_types: str
 
         :returns: a response
@@ -1446,18 +1458,13 @@ class Element(ServiceBase):
     def disable_encryption_at_rest(
             self,):
         """
-        The *disable_encryption_at_rest* method is used to remove the
+        The *disable_encryption_at_rest* method enables you to remove the
         encryption that was previously applied to the cluster using the
         *enable_encryption_at_rest* method.
-        Enabling or disabling encryption should be performed when the cluster
-        is running and in a healthy state. Encryption can be enabled or
-        disabled at your discretion and can be performed as often as you need.
-
-
-            **Note**: This process is asynchronous and returns a response
-        before encryption is disabled. The *get_cluster_info* method can be
-        used to poll the system to see when the process has completed.
-
+        This disable method is asynchronous and returns a response before
+        encryption is disabled.
+        You can use the *get_cluster_info* method to poll the system to see
+        when the process has completed.
 
         :returns: a response
         :rtype: DisableEncryptionAtRestResult
@@ -1639,7 +1646,8 @@ class Element(ServiceBase):
         this method on the cluster to return drive hardware information for all
         the drives on all nodes.
 
-        :param force: [required]
+        :param force: [required] This must be set to true in order to retrieve
+            the drive hardware stats from the cluster.
         :type force: bool
 
         :returns: a response
@@ -2216,6 +2224,13 @@ class Element(ServiceBase):
 
     def list_active_nodes(
             self,):
+        """
+        *list_active_nodes* returns the list of currently active nodes that are
+        in the cluster.
+
+        :returns: a response
+        :rtype: ListActiveNodesResult
+        """
 
         params = {}
 
@@ -2227,6 +2242,13 @@ class Element(ServiceBase):
 
     def list_all_nodes(
             self,):
+        """
+        *list_all_nodes* enables you to retrieve a list of active and pending
+        nodes in the cluster.
+
+        :returns: a response
+        :rtype: ListAllNodesResult
+        """
 
         params = {}
 
@@ -3009,10 +3031,6 @@ class Element(ServiceBase):
         it is manually deleted. The previously \"active\" snapshot is deleted
         unless the parameter *save_current_state* is set with
         a value of \"true.\"
-
-
-
-
         **Note**: Creating a snapshot is allowed if cluster fullness is at
         stage 2 or 3.
         Snapshots are not created when cluster fullness is at stage 4 or 5.
@@ -4754,7 +4772,8 @@ class Element(ServiceBase):
         This action makes the volume immediately available for iSCSI
         connection.
 
-        :param volume_id: [required] *restore_deleted_volume*
+        :param volume_id: [required] *volume_id* for the deleted volume to
+            restore.
         :type volume_id: int
 
         :returns: a response

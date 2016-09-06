@@ -9,8 +9,8 @@ from __future__ import unicode_literals
 from __future__ import absolute_import
 from solidfire.common import model as data_model
 from uuid import UUID
-from solidfire.custom import CHAPSecret as UserDefinedCHAPSecret
-from solidfire.custom import Frequency as UserDefinedFrequency
+from solidfire.custom.models import CHAPSecret as UserDefinedCHAPSecret
+from solidfire.custom.models import Frequency as UserDefinedFrequency
 
 
 class CHAPSecret(UserDefinedCHAPSecret):
@@ -4691,40 +4691,40 @@ class ClusterConfig(data_model.DataObject):
     Cluster Config object returns information the node uses to communicate with
     the cluster.
 
-    :param cipi: [required] Network interface used for cluster communication.
+    :param cipi: (optional) Network interface used for cluster communication.
     :type cipi: str
 
-    :param cluster: [required] Unique cluster name.
+    :param cluster: (optional) Unique cluster name.
     :type cluster: str
 
-    :param ensemble: [required] Nodes that are participating in the cluster.
+    :param ensemble: (optional) Nodes that are participating in the cluster.
     :type ensemble: str[]
 
-    :param mipi: [required] Network interface used for node management.
+    :param mipi: (optional) Network interface used for node management.
     :type mipi: str
 
-    :param name: [required] Unique cluster name.
+    :param name: (optional) Unique cluster name.
     :type name: str
-
-    :param role: [required] Identifies the role of the node
-    :type role: str
-
-    :param sipi: [required] Network interface used for storage.
-    :type sipi: str
-
-    :param state: [required]
-    :type state: str
 
     :param node_id: (optional)
     :type node_id: int
 
     :param pending_node_id: (optional)
     :type pending_node_id: int
+
+    :param role: (optional) Identifies the role of the node
+    :type role: str
+
+    :param sipi: (optional) Network interface used for storage.
+    :type sipi: str
+
+    :param state: (optional)
+    :type state: str
     """
 
     cipi = data_model.property(
         "cipi", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Network interface used for cluster communication.\
         "
@@ -4732,7 +4732,7 @@ class ClusterConfig(data_model.DataObject):
 
     cluster = data_model.property(
         "cluster", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Unique cluster name.\
         "
@@ -4740,7 +4740,7 @@ class ClusterConfig(data_model.DataObject):
 
     ensemble = data_model.property(
         "ensemble", str,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="\
         Nodes that are participating in the cluster.\
         "
@@ -4748,7 +4748,7 @@ class ClusterConfig(data_model.DataObject):
 
     mipi = data_model.property(
         "mipi", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Network interface used for node management.\
         "
@@ -4756,7 +4756,7 @@ class ClusterConfig(data_model.DataObject):
 
     name = data_model.property(
         "name", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Unique cluster name.\
         "
@@ -4776,7 +4776,7 @@ class ClusterConfig(data_model.DataObject):
 
     role = data_model.property(
         "role", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Identifies the role of the node\
         "
@@ -4784,7 +4784,7 @@ class ClusterConfig(data_model.DataObject):
 
     sipi = data_model.property(
         "sipi", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Network interface used for storage.\
         "
@@ -4792,7 +4792,7 @@ class ClusterConfig(data_model.DataObject):
 
     state = data_model.property(
         "state", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation=None
     )
 
