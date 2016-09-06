@@ -1202,11 +1202,17 @@ class SnmpNetwork(data_model.DataObject):
     The SNMP network object contains information about SNMP configuration for
     the cluster nodes. SNMP v3 is supported on SolidFire clusters.
 
-    :param access: [required] **ro**: read-only access.* **rw**: for read-write
-        access. **rosys**: for read-only access to a restricted set of system
+    :param access: [required]
+
+        **ro**: read-only access.*
+
+        **rw**: for read-write access.
+
+        **rosys**: for read-only access to a restricted set of system
         information *SolidFire recommends that all networks other than the
         default \"localhost\" be set to \"ro\" access, because all SolidFire
         MIB objects are read-only.
+
     :type access: str
 
     :param cidr: [required] A CIDR network mask. This network mask must be an
@@ -1229,10 +1235,19 @@ class SnmpNetwork(data_model.DataObject):
         "access", str,
         array=False, optional=False,
         documentation="\
-        **ro**: read-only access.*\
-        **rw**: for read-write access.\
-        **rosys**: for read-only access to a restricted set of system\
+\
+\
+            **ro**: read-only access.*\
+\
+\
+\
+            **rw**: for read-write access.\
+\
+\
+\
+            **rosys**: for read-only access to a restricted set of system\
         information\
+\
         *SolidFire recommends that all networks other than the default\
         \"localhost\" be set to \"ro\" access, because all SolidFire MIB\
         objects are read-only.\
@@ -2313,7 +2328,11 @@ class PairedCluster(data_model.DataObject):
 
     :param status: [required] Can be one of the following:
 
-        **Connected** **Misconfigured** **Disconnected**
+        **Connected**
+
+        **Misconfigured**
+
+        **Disconnected**
 
     :type status: str
 
@@ -2369,10 +2388,16 @@ class PairedCluster(data_model.DataObject):
         Can be one of the following:\
 \
 \
+            **Connected**\
 \
-        **Connected**\
-        **Misconfigured**\
-        **Disconnected**\
+\
+\
+            **Misconfigured**\
+\
+\
+\
+            **Disconnected**\
+\
         "
     )
 
@@ -2541,10 +2566,16 @@ class SnmpV3UsmUser(data_model.DataObject):
     The SNMP v3 *usm_user* object is used with the API method *set_snmp_info*
     to configure SNMP on the cluster.
 
-    :param access: [required] **rouser**: read-only access.* **rwuser**: for
-        read-write access. **rosys**: for read-only access to a restricted set
-        of system information *SolidFire recommends that all USM users be set
-        to \"rouser\" access, because all SolidFire MIB objects are read-only.
+    :param access: [required]
+
+        **rouser**: read-only access.*
+
+        **rwuser**: for read-write access.
+
+        **rosys**: for read-only access to a restricted set of system
+        information *SolidFire recommends that all USM users be set to
+        \"rouser\" access, because all SolidFire MIB objects are read-only.
+
     :type access: str
 
     :param name: [required] The name of the user. Must contain at least one
@@ -2562,9 +2593,14 @@ class SnmpV3UsmUser(data_model.DataObject):
         Required if \"secLevel\" is \"priv.\"
     :type passphrase: str
 
-    :param sec_level: [required] **noauth**: No password or passphrase is
-        required. **auth**: A password is required for user access. **priv**: A
-        password and passphrase is required for user access.
+    :param sec_level: [required]
+
+        **noauth**: No password or passphrase is required.
+
+        **auth**: A password is required for user access.
+
+        **priv**: A password and passphrase is required for user access.
+
     :type sec_level: str
     """
 
@@ -2572,10 +2608,19 @@ class SnmpV3UsmUser(data_model.DataObject):
         "access", str,
         array=False, optional=False,
         documentation="\
-        **rouser**: read-only access.*\
-        **rwuser**: for read-write access.\
-        **rosys**: for read-only access to a restricted set of system\
+\
+\
+            **rouser**: read-only access.*\
+\
+\
+\
+            **rwuser**: for read-write access.\
+\
+\
+\
+            **rosys**: for read-only access to a restricted set of system\
         information\
+\
         *SolidFire recommends that all USM users be set to \"rouser\" access,\
         because all SolidFire MIB objects are read-only.\
         "
@@ -2614,9 +2659,18 @@ class SnmpV3UsmUser(data_model.DataObject):
         "secLevel", str,
         array=False, optional=False,
         documentation="\
-        **noauth**: No password or passphrase is required.\
-        **auth**: A password is required for user access.\
-        **priv**: A password and passphrase is required for user access.\
+\
+\
+            **noauth**: No password or passphrase is required.\
+\
+\
+\
+            **auth**: A password is required for user access.\
+\
+\
+\
+            **priv**: A password and passphrase is required for user access.\
+\
         "
     )
 
@@ -3294,8 +3348,21 @@ class CloneMultipleVolumeParams(data_model.DataObject):
         volumeID.
     :type volume_id: int
 
-    :param access: (optional) access : *read_only;* *read_write,* locked,
-        *replication_target*
+    :param access: (optional) Access settings for the new volume.
+
+        **readOnly**: Only read operations are allowed.
+
+        **readWrite**: Reads and writes are allowed.
+
+        **locked**: No reads or writes are allowed.
+
+        **replicationTarget**: Identify a volume as the target volume for a
+        paired set of volumes. If the volume is not paired, the access status
+        is locked.
+
+        If unspecified, the access settings of the clone will be the same as
+        the source.
+
     :type access: str
 
     :param name: (optional) New name for the clone.
@@ -3325,7 +3392,31 @@ class CloneMultipleVolumeParams(data_model.DataObject):
         "access", str,
         array=False, optional=True,
         documentation="\
-        access : *read_only;* *read_write,* locked, *replication_target*\
+        Access settings for the new volume.\
+\
+\
+            **readOnly**: Only read operations are allowed.\
+\
+\
+\
+            **readWrite**: Reads and writes are allowed.\
+\
+\
+\
+            **locked**: No reads or writes are allowed.\
+\
+\
+\
+            **replicationTarget**: Identify a volume as the target volume for\
+        a paired set of volumes. If the volume is not paired, the access\
+        status is locked.\
+\
+\
+\
+\
+\
+        If unspecified, the access settings of the clone will be the same as\
+        the source.\
         "
     )
 
@@ -3574,7 +3665,7 @@ class GroupSnapshotMembers(data_model.DataObject):
     )
 
     snapshot_uuid = data_model.property(
-        "SnapshotUUID", str,
+        "snapshotUUID", str,
         array=False, optional=False,
         documentation="\
         Universal Unique ID of an existing snapshot.\
@@ -4270,106 +4361,6 @@ class VolumeAccessGroupLunAssignments(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
-class VirtualNetwork(data_model.DataObject):
-    """
-
-    :param virtual_network_id: [required] SolidFire unique identifier for a
-        virtual network.
-    :type virtual_network_id: int
-
-    :param virtual_network_tag: [required] VLAN Tag identifier.
-    :type virtual_network_tag: int
-
-    :param address_blocks: [required] Range of address blocks currently
-        assigned to the virtual network. **available:** Binary string in \"1\"s
-        and \"0\"s. 1 equals the IP is available and 0 equals the IP is not
-        available. The string is read from right to left with the digit to the
-        far right being the first IP address in the list of addressBlocks.
-        **size:** the size of this block of addresses. **start:** first IP
-        address in the block.
-    :type address_blocks: AddressBlock[]
-
-    :param attributes: [required] List of Name/Value pairs in JSON object
-        format.
-    :type attributes: dict
-
-    :param name: [required] The name assigned to the virtual network.
-    :type name: str
-
-    :param netmask: [required] IP address of the netmask for the virtual
-        network.
-    :type netmask: str
-
-    :param svip: [required] Storage IP address for the virtual network.
-    :type svip: str
-    """
-
-    virtual_network_id = data_model.property(
-        "virtualNetworkID", int,
-        array=False, optional=False,
-        documentation="\
-        SolidFire unique identifier for a virtual network.\
-        "
-    )
-
-    virtual_network_tag = data_model.property(
-        "virtualNetworkTag", int,
-        array=False, optional=False,
-        documentation="\
-        VLAN Tag identifier.\
-        "
-    )
-
-    address_blocks = data_model.property(
-        "addressBlocks", AddressBlock,
-        array=True, optional=False,
-        documentation="\
-        Range of address blocks currently assigned to the virtual network.\
-        **available:** Binary string in \"1\"s and \"0\"s. 1 equals the IP is\
-        available and 0 equals the IP is not available. The string is read\
-        from right to left with the digit to the far right being the first IP\
-        address in the list of addressBlocks.\
-        **size:** the size of this block of addresses.\
-        **start:** first IP address in the block.\
-        "
-    )
-
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=False,
-        documentation="\
-        List of Name/Value pairs in JSON object format.\
-        "
-    )
-
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation="\
-        The name assigned to the virtual network.\
-        "
-    )
-
-    netmask = data_model.property(
-        "netmask", str,
-        array=False, optional=False,
-        documentation="\
-        IP address of the netmask for the virtual network.\
-        "
-    )
-
-    svip = data_model.property(
-        "svip", str,
-        array=False, optional=False,
-        documentation="\
-        Storage IP address for the virtual network.\
-        "
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-
 class Account(data_model.DataObject):
     """
     The object containing information about an account.
@@ -4452,6 +4443,142 @@ class Account(data_model.DataObject):
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
+        documentation="\
+        List of Name/Value pairs in JSON object format.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class VirtualNetwork(data_model.DataObject):
+    """
+
+    :param virtual_network_id: [required] SolidFire unique identifier for a
+        virtual network.
+    :type virtual_network_id: int
+
+    :param virtual_network_tag: [required] VLAN Tag identifier.
+    :type virtual_network_tag: int
+
+    :param address_blocks: [required] Range of address blocks currently
+        assigned to the virtual network.
+
+        **available:** Binary string in \"1\"s and \"0\"s. 1 equals the IP is
+        available and 0 equals the IP is not available. The string is read from
+        right to left with the digit to the far right being the first IP
+        address in the list of addressBlocks.
+
+        **size:** the size of this block of addresses.
+
+        **start:** first IP address in the block.
+
+    :type address_blocks: AddressBlock[]
+
+    :param name: [required] The name assigned to the virtual network.
+    :type name: str
+
+    :param netmask: [required] IP address of the netmask for the virtual
+        network.
+    :type netmask: str
+
+    :param svip: [required] Storage IP address for the virtual network.
+    :type svip: str
+
+    :param attributes: [required] List of Name/Value pairs in JSON object
+        format.
+    :type attributes: dict
+
+    :param gateway: (optional)
+    :type gateway: str
+
+    :param namespace: (optional)
+    :type namespace: bool
+    """
+
+    virtual_network_id = data_model.property(
+        "virtualNetworkID", int,
+        array=False, optional=False,
+        documentation="\
+        SolidFire unique identifier for a virtual network.\
+        "
+    )
+
+    virtual_network_tag = data_model.property(
+        "virtualNetworkTag", int,
+        array=False, optional=False,
+        documentation="\
+        VLAN Tag identifier.\
+        "
+    )
+
+    address_blocks = data_model.property(
+        "addressBlocks", AddressBlock,
+        array=True, optional=False,
+        documentation="\
+        Range of address blocks currently assigned to the virtual network.\
+\
+\
+            **available:** Binary string in \"1\"s and \"0\"s. 1 equals the IP\
+        is available and 0 equals the IP is not available. The string is read\
+        from right to left with the digit to the far right being the first IP\
+        address in the list of addressBlocks.\
+\
+\
+\
+            **size:** the size of this block of addresses.\
+\
+\
+\
+            **start:** first IP address in the block.\
+\
+        "
+    )
+
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="\
+        The name assigned to the virtual network.\
+        "
+    )
+
+    netmask = data_model.property(
+        "netmask", str,
+        array=False, optional=False,
+        documentation="\
+        IP address of the netmask for the virtual network.\
+        "
+    )
+
+    svip = data_model.property(
+        "svip", str,
+        array=False, optional=False,
+        documentation="\
+        Storage IP address for the virtual network.\
+        "
+    )
+
+    gateway = data_model.property(
+        "gateway", str,
+        array=False, optional=True,
+        documentation="\
+\
+        "
+    )
+
+    namespace = data_model.property(
+        "namespace", bool,
+        array=False, optional=True,
+        documentation="\
+\
+        "
+    )
+
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=False,
         documentation="\
         List of Name/Value pairs in JSON object format.\
         "
@@ -4564,40 +4691,40 @@ class ClusterConfig(data_model.DataObject):
     Cluster Config object returns information the node uses to communicate with
     the cluster.
 
-    :param cipi: [required] Network interface used for cluster communication.
+    :param cipi: (optional) Network interface used for cluster communication.
     :type cipi: str
 
-    :param cluster: [required] Unique cluster name.
+    :param cluster: (optional) Unique cluster name.
     :type cluster: str
 
-    :param ensemble: [required] Nodes that are participating in the cluster.
+    :param ensemble: (optional) Nodes that are participating in the cluster.
     :type ensemble: str[]
 
-    :param mipi: [required] Network interface used for node management.
+    :param mipi: (optional) Network interface used for node management.
     :type mipi: str
 
-    :param name: [required] Unique cluster name.
+    :param name: (optional) Unique cluster name.
     :type name: str
-
-    :param role: [required] Identifies the role of the node
-    :type role: str
-
-    :param sipi: [required] Network interface used for storage.
-    :type sipi: str
-
-    :param state: [required]
-    :type state: str
 
     :param node_id: (optional)
     :type node_id: int
 
     :param pending_node_id: (optional)
     :type pending_node_id: int
+
+    :param role: (optional) Identifies the role of the node
+    :type role: str
+
+    :param sipi: (optional) Network interface used for storage.
+    :type sipi: str
+
+    :param state: (optional)
+    :type state: str
     """
 
     cipi = data_model.property(
         "cipi", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Network interface used for cluster communication.\
         "
@@ -4605,7 +4732,7 @@ class ClusterConfig(data_model.DataObject):
 
     cluster = data_model.property(
         "cluster", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Unique cluster name.\
         "
@@ -4613,7 +4740,7 @@ class ClusterConfig(data_model.DataObject):
 
     ensemble = data_model.property(
         "ensemble", str,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="\
         Nodes that are participating in the cluster.\
         "
@@ -4621,7 +4748,7 @@ class ClusterConfig(data_model.DataObject):
 
     mipi = data_model.property(
         "mipi", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Network interface used for node management.\
         "
@@ -4629,7 +4756,7 @@ class ClusterConfig(data_model.DataObject):
 
     name = data_model.property(
         "name", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Unique cluster name.\
         "
@@ -4649,7 +4776,7 @@ class ClusterConfig(data_model.DataObject):
 
     role = data_model.property(
         "role", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Identifies the role of the node\
         "
@@ -4657,7 +4784,7 @@ class ClusterConfig(data_model.DataObject):
 
     sipi = data_model.property(
         "sipi", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Network interface used for storage.\
         "
@@ -4665,7 +4792,7 @@ class ClusterConfig(data_model.DataObject):
 
     state = data_model.property(
         "state", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation=None
     )
 
@@ -5187,7 +5314,7 @@ class Snapshot(data_model.DataObject):
     )
 
     snapshot_uuid = data_model.property(
-        "SnapshotUUID", UUID,
+        "snapshotUUID", UUID,
         array=False, optional=False,
         documentation="\
         Universal Unique ID of an existing snapshot.\

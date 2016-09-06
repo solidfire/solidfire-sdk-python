@@ -2620,7 +2620,15 @@ class UpdateBulkVolumeStatusResult(data_model.DataObject):
 
     :param status: [required] Status of the session requested. Returned status:
 
-        **** **active** **done** **failed**
+
+
+        **preparing**
+
+        **active**
+
+        **done**
+
+        **failed**
 
     :type status: str
 
@@ -2642,10 +2650,22 @@ class UpdateBulkVolumeStatusResult(data_model.DataObject):
 \
 \
 \
-        ****\
-        **active**\
-        **done**\
-        **failed**\
+\
+\
+            **preparing**\
+\
+\
+\
+            **active**\
+\
+\
+\
+            **done**\
+\
+\
+\
+            **failed**\
+\
         "
     )
 

@@ -652,15 +652,19 @@ class Element(ServiceBase):
             end_event_id=OPTIONAL,
             event_queue_type=OPTIONAL,):
         """
-        Returns events detected on the cluster, sorted from oldest to newest.
+        *list_events* returns events detected on the cluster, sorted from
+        oldest to newest.
 
-        :param max_events: (optional)
+        :param max_events: (optional) Specifies the maximum number of events to
+            return.
         :type max_events: int
 
-        :param start_event_id: (optional)
+        :param start_event_id: (optional) Identifies the beginning of a range
+            of events to return.
         :type start_event_id: int
 
-        :param end_event_id: (optional)
+        :param end_event_id: (optional) Identifies the end of a range of events
+            to return.
         :type end_event_id: int
 
         :param event_queue_type: (optional)
@@ -693,18 +697,26 @@ class Element(ServiceBase):
             update=OPTIONAL,
             fault_types=OPTIONAL,):
         """
-        Gets the list of cluster faults
+        *list_cluster_faults* is used to retrieve information about any faults
+        detected on the cluster.
+        With this method, both current and resolved faults can be retrieved.
+        The system caches faults every 30 seconds.
 
         :param exceptions: (optional)
         :type exceptions: bool
 
-        :param best_practices: (optional)
+        :param best_practices: (optional) Include faults triggered by
+            sub-optimal system configuration. Possible values: true, false
         :type best_practices: bool
 
         :param update: (optional)
         :type update: bool
 
-        :param fault_types: (optional)
+        :param fault_types: (optional) Determines the types of faults returned:
+            current: List active, unresolved faults. **resolved**: List faults
+            that were previously detected and resolved. **all**: (Default) List
+            both current and resolved faults. You can see the fault status in
+            the 'resolved' field of the Cluster Fault object.
         :type fault_types: str
 
         :returns: a response
@@ -1424,9 +1436,12 @@ class Element(ServiceBase):
         Enabling or disabling encryption should be performed when the cluster
         is running and in a healthy state. Encryption can be enabled or
         disabled at your discretion and can be performed as often as you need.
-        **Note**: This process is asynchronous and returns a response before
-        encryption is enabled. The *get_cluster_info* method can be used to
-        poll the system to see when the process has completed.
+
+
+            **Note**: This process is asynchronous and returns a response
+        before encryption is enabled. The *get_cluster_info* method can be used
+        to poll the system to see when the process has completed.
+
 
         :returns: a response
         :rtype: EnableEncryptionAtRestResult
@@ -1443,15 +1458,13 @@ class Element(ServiceBase):
     def disable_encryption_at_rest(
             self,):
         """
-        The *disable_encryption_at_rest* method is used to remove the
+        The *disable_encryption_at_rest* method enables you to remove the
         encryption that was previously applied to the cluster using the
         *enable_encryption_at_rest* method.
-        Enabling or disabling encryption should be performed when the cluster
-        is running and in a healthy state. Encryption can be enabled or
-        disabled at your discretion and can be performed as often as you need.
-        **Note**: This process is asynchronous and returns a response before
-        encryption is disabled. The *get_cluster_info* method can be used to
-        poll the system to see when the process has completed.
+        This disable method is asynchronous and returns a response before
+        encryption is disabled.
+        You can use the *get_cluster_info* method to poll the system to see
+        when the process has completed.
 
         :returns: a response
         :rtype: DisableEncryptionAtRestResult
@@ -1633,7 +1646,8 @@ class Element(ServiceBase):
         this method on the cluster to return drive hardware information for all
         the drives on all nodes.
 
-        :param force: [required]
+        :param force: [required] This must be set to true in order to retrieve
+            the drive hardware stats from the cluster.
         :type force: bool
 
         :returns: a response
@@ -2210,6 +2224,13 @@ class Element(ServiceBase):
 
     def list_active_nodes(
             self,):
+        """
+        *list_active_nodes* returns the list of currently active nodes that are
+        in the cluster.
+
+        :returns: a response
+        :rtype: ListActiveNodesResult
+        """
 
         params = {}
 
@@ -2221,6 +2242,13 @@ class Element(ServiceBase):
 
     def list_all_nodes(
             self,):
+        """
+        *list_all_nodes* enables you to retrieve a list of active and pending
+        nodes in the cluster.
+
+        :returns: a response
+        :rtype: ListAllNodesResult
+        """
 
         params = {}
 
@@ -3003,10 +3031,6 @@ class Element(ServiceBase):
         it is manually deleted. The previously \"active\" snapshot is deleted
         unless the parameter *save_current_state* is set with
         a value of \"true.\"
-
-
-
-
         **Note**: Creating a snapshot is allowed if cluster fullness is at
         stage 2 or 3.
         Snapshots are not created when cluster fullness is at stage 4 or 5.
@@ -3494,8 +3518,11 @@ class Element(ServiceBase):
         """
         The *list_tests* API method is used to return the tests that are
         available to run on a node.
-        **Note**: This method is available only through the per-node API
+
+
+            **Note**: This method is available only through the per-node API
         endpoint 5.0 or later.
+
 
         :returns: a response
         :rtype: ListTestsResult
@@ -3514,8 +3541,11 @@ class Element(ServiceBase):
         """
         The *list_utilities* API method is used to return the tests that are
         available to run on a node.
-        **Note**: This method is available only through the per-node API
+
+
+            **Note**: This method is available only through the per-node API
         endpoint 5.0 or later.
+
 
         :returns: a response
         :rtype: ListUtilitiesResult
@@ -3537,8 +3567,11 @@ class Element(ServiceBase):
         with a sepcified database ensemble. By default it uses the ensemble for
         the cluster the node is associated with. Alternatively you can provide
         a different ensemble to test connectivity with.
-        **Note**: This method is available only through the per-node API
+
+
+            **Note**: This method is available only through the per-node API
         endpoint 5.0 or later.
+
 
         :param ensemble: (optional) A comma-separated list of ensemble node
             *cips* for connectivity testing
@@ -3565,8 +3598,11 @@ class Element(ServiceBase):
         The *test_connect_mvip* API method is used to test the management
         connection to the cluster. The test pings the MVIP and executes a
         simple API method to verify connectivity.
-        **Note**: This method is available only through the per-node API
+
+
+            **Note**: This method is available only through the per-node API
         endpoint 5.0 or later.
+
 
         :param mvip: (optional) Optionally, use to test the management
             connection of a different MVIP. This is not needed to test the
@@ -3594,8 +3630,11 @@ class Element(ServiceBase):
         The *test_connect_svip* API method is used to test the storage
         connection to the cluster. The test pings the SVIP using ICMP packets
         and when successful connects as an iSCSI initiator.
-        **Note**: This method is available only through the per-node API
+
+
+            **Note**: This method is available only through the per-node API
         endpoint 5.0 or later.
+
 
         :param svip: (optional) Optionally, use to test the storage connection
             of a different SVIP. This is not needed to test the connection to
@@ -3628,8 +3667,11 @@ class Element(ServiceBase):
         nodes in the cluster on both 1G and 10G interfaces using ICMP packets.
         The test uses the appropriate MTU sizes for each packet based on the
         MTU settings in the network configuration.
-        **Note**: This method is available only through the per-node API
+
+
+            **Note**: This method is available only through the per-node API
         endpoint 5.0 or later.
+
 
         :param attempts: (optional) Specifies the number of times the system
             should repeat the test ping. Default is 5.
@@ -3747,6 +3789,9 @@ class Element(ServiceBase):
         assigned to individual nodes automatically. Virtual network addresses
         do not need to be assigned to nodes manually.
 
+
+
+
         **Note:** The *add_virtual_network* method is used only to create a new
         virtual network. If you want to make changes to a virtual network,
         please use the *modify_virtual_network* method.
@@ -3761,8 +3806,11 @@ class Element(ServiceBase):
 
         :param address_blocks: [required] Unique Range of IP addresses to
             include in the virtual network. Attributes for this parameter are:
-            **start:** start of the IP address range. (String) **size:** numbre
-            of IP addresses to include in the block. (Integer)
+
+            **start:** start of the IP address range. (String)
+
+            **size:** numbre of IP addresses to include in the block. (Integer)
+
         :type address_blocks: AddressBlock[]
 
         :param netmask: [required] Unique netmask for the virtual network being
@@ -3834,6 +3882,9 @@ class Element(ServiceBase):
         address blocks, change the netmask IP, or modify the name or
         description of the virtual network.
 
+
+
+
         **Note:** This method requires either the *virtual_network_id* or the
         *virtual_network_tag* as a parameter, but not both.
 
@@ -3856,8 +3907,12 @@ class Element(ServiceBase):
             extended or reduced in size. The size of the starting
             *address_blocks* for a Virtual Network object can only be
             increased, and can never be decreased. Attributes for this
-            parameter are: **start:** start of the IP address range. (String)
+            parameter are:
+
+            **start:** start of the IP address range. (String)
+
             **size:** numbre of IP addresses to include in the block. (Integer)
+
         :type address_blocks: AddressBlock[]
 
         :param netmask: (optional) New netmask for this virtual network.
@@ -3926,6 +3981,9 @@ class Element(ServiceBase):
         """
         *remove_virtual_network* is used to remove a previously added virtual
         network.
+
+
+
 
         **Note:** This method requires either the *virtual_network_id* of the
         *virtual_network_tag* as a parameter, but not both.
@@ -4714,7 +4772,8 @@ class Element(ServiceBase):
         This action makes the volume immediately available for iSCSI
         connection.
 
-        :param volume_id: [required] *restore_deleted_volume*
+        :param volume_id: [required] *volume_id* for the deleted volume to
+            restore.
         :type volume_id: int
 
         :returns: a response
@@ -4782,9 +4841,10 @@ class Element(ServiceBase):
         :param format: [required] The format of the volume data. Can be either:
 
             **uncompressed**: every byte of the volume is returned without any
-            compression. **native**: opaque data is returned that is smaller
-            and more efficiently stored and written on a subsequent bulk volume
-            write.
+            compression.
+
+            **native**: opaque data is returned that is smaller and more
+            efficiently stored and written on a subsequent bulk volume write.
 
         :type format: str
 
@@ -4853,9 +4913,10 @@ class Element(ServiceBase):
         :param format: [required] The format of the volume data. Can be either:
 
             **uncompressed**: every byte of the volume is returned without any
-            compression. **native**: opaque data is returned that is smaller
-            and more efficiently stored and written on a subsequent bulk volume
-            write
+            compression.
+
+            **native**: opaque data is returned that is smaller and more
+            efficiently stored and written on a subsequent bulk volume write
 
         :type format: str
 
@@ -4916,9 +4977,13 @@ class Element(ServiceBase):
 
             Possible values:
 
-            **running**: jobs that are still active. **complete**: jobs that
-            are done. failed - jobs that have failed. **failed**: jobs that
-            have failed.
+
+
+            **running**: jobs that are still active.
+
+            **complete**: jobs that are done. failed - jobs that have failed.
+
+            **failed**: jobs that have failed.
 
         :type status: str
 
