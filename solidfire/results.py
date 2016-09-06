@@ -1015,8 +1015,7 @@ class TestLdapAuthenticationResult(data_model.DataObject):
         member of.
     :type groups: str[]
 
-    :param user_dn: [required] The tested user&#39;s full LDAP distinguished
-        name.
+    :param user_dn: [required] The tested user's full LDAP distinguished name.
     :type user_dn: str
     """
 
@@ -1032,7 +1031,7 @@ class TestLdapAuthenticationResult(data_model.DataObject):
         "userDN", str,
         array=False, optional=False,
         documentation="\
-        The tested user&#39;s full LDAP distinguished name.\
+        The tested user's full LDAP distinguished name.\
         "
     )
 
@@ -2374,7 +2373,7 @@ class StartBulkVolumeReadResult(data_model.DataObject):
     :param key: [required] Opaque key uniquely identifying the session.
     :type key: str
 
-    :param url: [required] URL to access the node&#39;s web server
+    :param url: [required] URL to access the node's web server
     :type url: str
     """
 
@@ -2398,7 +2397,7 @@ class StartBulkVolumeReadResult(data_model.DataObject):
         "url", str,
         array=False, optional=False,
         documentation="\
-        URL to access the node&#39;s web server\
+        URL to access the node's web server\
         "
     )
 
@@ -2417,7 +2416,7 @@ class StartBulkVolumeWriteResult(data_model.DataObject):
     :param key: [required] Opaque key uniquely identifying the session.
     :type key: str
 
-    :param url: [required] URL to access the node&#39;s web server
+    :param url: [required] URL to access the node's web server
     :type url: str
     """
 
@@ -2441,7 +2440,7 @@ class StartBulkVolumeWriteResult(data_model.DataObject):
         "url", str,
         array=False, optional=False,
         documentation="\
-        URL to access the node&#39;s web server\
+        URL to access the node's web server\
         "
     )
 
@@ -2634,7 +2633,7 @@ class UpdateBulkVolumeStatusResult(data_model.DataObject):
 
     :type status: str
 
-    :param url: [required] The URL to access the node&#39;s web server provided
+    :param url: [required] The URL to access the node's web server provided
         only if the session is still active.
     :type url: str
 
@@ -2675,8 +2674,8 @@ class UpdateBulkVolumeStatusResult(data_model.DataObject):
         "url", str,
         array=False, optional=False,
         documentation="\
-        The URL to access the node&#39;s web server provided only if the\
-        session is still active.\
+        The URL to access the node's web server provided only if the session\
+        is still active.\
         "
     )
 

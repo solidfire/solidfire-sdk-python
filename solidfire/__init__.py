@@ -1553,7 +1553,7 @@ class Element(ServiceBase):
             drives,):
         """
         *add_drives* is used to add one or more available drives to the cluster
-        enabling the drives to host a portion of the cluster&#39;s data.
+        enabling the drives to host a portion of the cluster's data.
         When you add a node to the cluster or install new drives in an existing
         node, the new drives are marked as \"available\" and must be added via
         *add_drives* before they can be utilized.
@@ -1601,7 +1601,7 @@ class Element(ServiceBase):
             self,):
         """
         *list_drives* allows you to retrieve the list of the drives that exist
-        in the cluster&#39;s active nodes.
+        in the cluster's active nodes.
         This method returns drives that have been added as volume metadata or
         block drives as well as drives that have not been added and are
         available.
@@ -2116,7 +2116,7 @@ class Element(ServiceBase):
             *custom_filter*
 
             For use with the *custom_filter* search type, an LDAP filter to use
-            to return the *dns* of a user&#39;s groups.
+            to return the *dns* of a user's groups.
 
             The string can have placeholder text of %USERNAME% and %USERDN% to
             be replaced with their username and full *user_dn* as needed.
@@ -2128,8 +2128,8 @@ class Element(ServiceBase):
 
             **NoGroups**: No group support.
 
-            **ActiveDirectory**: (default) Nested membership of all of a
-            user&#39;s AD groups.
+            **ActiveDirectory**: (default) Nested membership of all of a user's
+            AD groups.
 
             **MemberDN**: *member_dn* style groups (single-level).
 
@@ -2871,7 +2871,7 @@ class Element(ServiceBase):
         :param snapshot_id: (optional) Unique ID of a snapshot from which the
             new snapshot is made. The *snapshot_id* passed must be a snapshot
             on the given volume. If a *snapshot_id* is not provided, a snapshot
-            is created from the volume&#39;s active branch.
+            is created from the volume's active branch.
         :type snapshot_id: int
 
         :param name: (optional) A name for the snapshot. If no name is
@@ -3813,7 +3813,9 @@ class Element(ServiceBase):
 
         :param address_blocks: [required] Unique Range of IP addresses to
             include in the virtual network. Attributes for this parameter are:
+
             **start:** start of the IP address range. (String)
+
             **size:** numbre of IP addresses to include in the block. (Integer)
 
         :type address_blocks: AddressBlock[]
@@ -4065,8 +4067,8 @@ class Element(ServiceBase):
 
         :param new_size: (optional) New size of the volume, in bytes. May be
             greater or less than the size of the volume being cloned. If
-            unspecified, the clone&#39;s volume size will be the same as the
-            source volume. Size is rounded up to the nearest 1 MiB.
+            unspecified, the clone's volume size will be the same as the source
+            volume. Size is rounded up to the nearest 1 MiB.
         :type new_size: int
 
         :param access: (optional) Access settings for the new volume.
@@ -5217,12 +5219,12 @@ class Element(ServiceBase):
         :type name: str
 
         :param initiators: (optional) List of initiators to include in the
-            volume access group. If unspecified, the access group&#39;s
-            configured initiators will not be modified.
+            volume access group. If unspecified, the access group's configured
+            initiators will not be modified.
         :type initiators: str[]
 
         :param volumes: (optional) List of volumes to initially include in the
-            volume access group. If unspecified, the access group&#39;s volumes
+            volume access group. If unspecified, the access group's volumes
             will not be modified.
         :type volumes: int[]
 
