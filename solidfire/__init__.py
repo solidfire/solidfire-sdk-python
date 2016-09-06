@@ -653,6 +653,13 @@ class Element(ServiceBase):
         """
 
         params = {}
+        self._check_param_versions(
+            'list_events',
+            [
+                ("event_queue_type",
+                 event_queue_type, 9.0, None),
+            ]
+        )
         if max_events is not None:
             params["maxEvents"] = max_events
         if start_event_id is not None:

@@ -1689,14 +1689,16 @@ class ListClusterFaultsResult(data_model.DataObject):
     """
     The object returned by the \"list_cluster_faults\" API Service call.
 
-    :param faults: [required]
+    :param faults: [required] The list of Cluster Fault objects.
     :type faults: ClusterFaultInfo[]
     """
 
     faults = data_model.property(
         "faults", ClusterFaultInfo,
         array=True, optional=False,
-        documentation=None
+        documentation="\
+        The list of Cluster Fault objects.\
+        "
     )
 
     def __init__(self, **kwargs):
