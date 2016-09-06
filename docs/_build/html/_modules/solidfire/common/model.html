@@ -267,7 +267,7 @@
 <span class="sd">        :param out: the resulting output.</span>
 <span class="sd">        :param data: the data to be converted.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;_member_type&#39;</span><span class="p">):</span>  <span class="c1"># HACK ALERT</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_optional</span><span class="p">:</span>
                 <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_member_name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_array</span><span class="p">:</span>
@@ -382,6 +382,9 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
+<div class="viewcode-block" id="DataObject.get_properties"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.DataObject.get_properties">[docs]</a>    <span class="k">def</span> <span class="nf">get_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span></div>
+
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Base repr() for all generated objects.</span>
@@ -459,14 +462,14 @@
                 <span class="n">msg</span> <span class="o">=</span> <span class="n">msg_fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">typ</span><span class="o">=</span><span class="n">cls</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                                      <span class="n">name</span><span class="o">=</span><span class="n">prop</span><span class="o">.</span><span class="n">member_name</span><span class="p">(),</span>
                                      <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-                                    <span class="p">)</span>
+                                     <span class="p">)</span>
                 <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">cls</span><span class="p">(</span><span class="o">**</span><span class="n">ctor_dict</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="property"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.property">[docs]</a><span class="k">def</span> <span class="nf">property</span><span class="p">(</span><span class="n">member_name</span><span class="p">,</span> <span class="n">member_type</span><span class="p">,</span>
-             <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-             <span class="n">documentation</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="property"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.property">[docs]</a><span class="k">def</span> <span class="nf">property</span><span class="p">(</span><span class="n">member_name</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">member_type</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
+             <span class="n">array</span><span class="p">:</span> <span class="nb">object</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="nb">object</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
+             <span class="n">documentation</span><span class="p">:</span> <span class="nb">object</span> <span class="o">=</span> <span class="bp">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Constructs the type for a DataObject property.</span>
 
@@ -505,10 +508,6 @@
                <span class="n">array</span><span class="o">=</span><span class="n">array</span><span class="p">,</span>
                <span class="n">optional</span><span class="o">=</span><span class="n">optional</span><span class="p">,</span>
                <span class="n">documentation</span><span class="o">=</span><span class="n">documentation</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="blah"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.blah">[docs]</a><span class="k">def</span> <span class="nf">blah</span><span class="p">(</span><span class="n">anything</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">anything</span><span class="o">.</span><span class="n">documentation</span></div>
 </pre></div>
 
            </div>

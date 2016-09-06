@@ -788,15 +788,19 @@
             <span class="n">end_event_id</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
             <span class="n">event_queue_type</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns events detected on the cluster, sorted from oldest to newest.</span>
+<span class="sd">        *list_events* returns events detected on the cluster, sorted from</span>
+<span class="sd">        oldest to newest.</span>
 
-<span class="sd">        :param max_events: (optional)</span>
+<span class="sd">        :param max_events: (optional) Specifies the maximum number of events to</span>
+<span class="sd">            return.</span>
 <span class="sd">        :type max_events: int</span>
 
-<span class="sd">        :param start_event_id: (optional)</span>
+<span class="sd">        :param start_event_id: (optional) Identifies the beginning of a range</span>
+<span class="sd">            of events to return.</span>
 <span class="sd">        :type start_event_id: int</span>
 
-<span class="sd">        :param end_event_id: (optional)</span>
+<span class="sd">        :param end_event_id: (optional) Identifies the end of a range of events</span>
+<span class="sd">            to return.</span>
 <span class="sd">        :type end_event_id: int</span>
 
 <span class="sd">        :param event_queue_type: (optional)</span>
@@ -807,6 +811,13 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_param_versions</span><span class="p">(</span>
+            <span class="s1">&#39;list_events&#39;</span><span class="p">,</span>
+            <span class="p">[</span>
+                <span class="p">(</span><span class="s2">&quot;event_queue_type&quot;</span><span class="p">,</span>
+                 <span class="n">event_queue_type</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
         <span class="k">if</span> <span class="n">max_events</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">params</span><span class="p">[</span><span class="s2">&quot;maxEvents&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_events</span>
         <span class="k">if</span> <span class="n">start_event_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
@@ -829,18 +840,26 @@
             <span class="n">update</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,</span>
             <span class="n">fault_types</span><span class="o">=</span><span class="n">OPTIONAL</span><span class="p">,):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Gets the list of cluster faults</span>
+<span class="sd">        *list_cluster_faults* is used to retrieve information about any faults</span>
+<span class="sd">        detected on the cluster.</span>
+<span class="sd">        With this method, both current and resolved faults can be retrieved.</span>
+<span class="sd">        The system caches faults every 30 seconds.</span>
 
 <span class="sd">        :param exceptions: (optional)</span>
 <span class="sd">        :type exceptions: bool</span>
 
-<span class="sd">        :param best_practices: (optional)</span>
+<span class="sd">        :param best_practices: (optional) Include faults triggered by</span>
+<span class="sd">            sub-optimal system configuration. Possible values: true, false</span>
 <span class="sd">        :type best_practices: bool</span>
 
 <span class="sd">        :param update: (optional)</span>
 <span class="sd">        :type update: bool</span>
 
-<span class="sd">        :param fault_types: (optional)</span>
+<span class="sd">        :param fault_types: (optional) Determines the types of faults returned:</span>
+<span class="sd">            current: List active, unresolved faults. **resolved**: List faults</span>
+<span class="sd">            that were previously detected and resolved. **all**: (Default) List</span>
+<span class="sd">            both current and resolved faults. You can see the fault status in</span>
+<span class="sd">            the &#39;resolved&#39; field of the Cluster Fault object.</span>
 <span class="sd">        :type fault_types: str</span>
 
 <span class="sd">        :returns: a response</span>
@@ -1582,18 +1601,13 @@
 <div class="viewcode-block" id="Element.disable_encryption_at_rest"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.disable_encryption_at_rest">[docs]</a>    <span class="k">def</span> <span class="nf">disable_encryption_at_rest</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The *disable_encryption_at_rest* method is used to remove the</span>
+<span class="sd">        The *disable_encryption_at_rest* method enables you to remove the</span>
 <span class="sd">        encryption that was previously applied to the cluster using the</span>
 <span class="sd">        *enable_encryption_at_rest* method.</span>
-<span class="sd">        Enabling or disabling encryption should be performed when the cluster</span>
-<span class="sd">        is running and in a healthy state. Encryption can be enabled or</span>
-<span class="sd">        disabled at your discretion and can be performed as often as you need.</span>
-
-
-<span class="sd">            **Note**: This process is asynchronous and returns a response</span>
-<span class="sd">        before encryption is disabled. The *get_cluster_info* method can be</span>
-<span class="sd">        used to poll the system to see when the process has completed.</span>
-
+<span class="sd">        This disable method is asynchronous and returns a response before</span>
+<span class="sd">        encryption is disabled.</span>
+<span class="sd">        You can use the *get_cluster_info* method to poll the system to see</span>
+<span class="sd">        when the process has completed.</span>
 
 <span class="sd">        :returns: a response</span>
 <span class="sd">        :rtype: DisableEncryptionAtRestResult</span>
@@ -1675,7 +1689,7 @@
             <span class="n">drives</span><span class="p">,):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        *add_drives* is used to add one or more available drives to the cluster</span>
-<span class="sd">        enabling the drives to host a portion of the cluster&amp;#39;s data.</span>
+<span class="sd">        enabling the drives to host a portion of the cluster&#39;s data.</span>
 <span class="sd">        When you add a node to the cluster or install new drives in an existing</span>
 <span class="sd">        node, the new drives are marked as \&quot;available\&quot; and must be added via</span>
 <span class="sd">        *add_drives* before they can be utilized.</span>
@@ -1723,7 +1737,7 @@
             <span class="bp">self</span><span class="p">,):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        *list_drives* allows you to retrieve the list of the drives that exist</span>
-<span class="sd">        in the cluster&amp;#39;s active nodes.</span>
+<span class="sd">        in the cluster&#39;s active nodes.</span>
 <span class="sd">        This method returns drives that have been added as volume metadata or</span>
 <span class="sd">        block drives as well as drives that have not been added and are</span>
 <span class="sd">        available.</span>
@@ -1775,7 +1789,8 @@
 <span class="sd">        this method on the cluster to return drive hardware information for all</span>
 <span class="sd">        the drives on all nodes.</span>
 
-<span class="sd">        :param force: [required]</span>
+<span class="sd">        :param force: [required] This must be set to true in order to retrieve</span>
+<span class="sd">            the drive hardware stats from the cluster.</span>
 <span class="sd">        :type force: bool</span>
 
 <span class="sd">        :returns: a response</span>
@@ -2237,7 +2252,7 @@
 <span class="sd">            *custom_filter*</span>
 
 <span class="sd">            For use with the *custom_filter* search type, an LDAP filter to use</span>
-<span class="sd">            to return the *dns* of a user&amp;#39;s groups.</span>
+<span class="sd">            to return the *dns* of a user&#39;s groups.</span>
 
 <span class="sd">            The string can have placeholder text of %USERNAME% and %USERDN% to</span>
 <span class="sd">            be replaced with their username and full *user_dn* as needed.</span>
@@ -2249,8 +2264,8 @@
 
 <span class="sd">            **NoGroups**: No group support.</span>
 
-<span class="sd">            **ActiveDirectory**: (default) Nested membership of all of a</span>
-<span class="sd">            user&amp;#39;s AD groups.</span>
+<span class="sd">            **ActiveDirectory**: (default) Nested membership of all of a user&#39;s</span>
+<span class="sd">            AD groups.</span>
 
 <span class="sd">            **MemberDN**: *member_dn* style groups (single-level).</span>
 
@@ -2352,6 +2367,13 @@
 
 <div class="viewcode-block" id="Element.list_active_nodes"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.list_active_nodes">[docs]</a>    <span class="k">def</span> <span class="nf">list_active_nodes</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *list_active_nodes* returns the list of currently active nodes that are</span>
+<span class="sd">        in the cluster.</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: ListActiveNodesResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -2363,6 +2385,13 @@
 
 <div class="viewcode-block" id="Element.list_all_nodes"><a class="viewcode-back" href="../solidfire.html#solidfire.Element.list_all_nodes">[docs]</a>    <span class="k">def</span> <span class="nf">list_all_nodes</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *list_all_nodes* enables you to retrieve a list of active and pending</span>
+<span class="sd">        nodes in the cluster.</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: ListAllNodesResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -2978,7 +3007,7 @@
 <span class="sd">        :param snapshot_id: (optional) Unique ID of a snapshot from which the</span>
 <span class="sd">            new snapshot is made. The *snapshot_id* passed must be a snapshot</span>
 <span class="sd">            on the given volume. If a *snapshot_id* is not provided, a snapshot</span>
-<span class="sd">            is created from the volume&amp;#39;s active branch.</span>
+<span class="sd">            is created from the volume&#39;s active branch.</span>
 <span class="sd">        :type snapshot_id: int</span>
 
 <span class="sd">        :param name: (optional) A name for the snapshot. If no name is</span>
@@ -3145,10 +3174,6 @@
 <span class="sd">        it is manually deleted. The previously \&quot;active\&quot; snapshot is deleted</span>
 <span class="sd">        unless the parameter *save_current_state* is set with</span>
 <span class="sd">        a value of \&quot;true.\&quot;</span>
-
-
-
-
 <span class="sd">        **Note**: Creating a snapshot is allowed if cluster fullness is at</span>
 <span class="sd">        stage 2 or 3.</span>
 <span class="sd">        Snapshots are not created when cluster fullness is at stage 4 or 5.</span>
@@ -4178,8 +4203,8 @@
 
 <span class="sd">        :param new_size: (optional) New size of the volume, in bytes. May be</span>
 <span class="sd">            greater or less than the size of the volume being cloned. If</span>
-<span class="sd">            unspecified, the clone&amp;#39;s volume size will be the same as the</span>
-<span class="sd">            source volume. Size is rounded up to the nearest 1 MiB.</span>
+<span class="sd">            unspecified, the clone&#39;s volume size will be the same as the source</span>
+<span class="sd">            volume. Size is rounded up to the nearest 1 MiB.</span>
 <span class="sd">        :type new_size: int</span>
 
 <span class="sd">        :param access: (optional) Access settings for the new volume.</span>
@@ -4890,7 +4915,8 @@
 <span class="sd">        This action makes the volume immediately available for iSCSI</span>
 <span class="sd">        connection.</span>
 
-<span class="sd">        :param volume_id: [required] *restore_deleted_volume*</span>
+<span class="sd">        :param volume_id: [required] *volume_id* for the deleted volume to</span>
+<span class="sd">            restore.</span>
 <span class="sd">        :type volume_id: int</span>
 
 <span class="sd">        :returns: a response</span>
@@ -5329,12 +5355,12 @@
 <span class="sd">        :type name: str</span>
 
 <span class="sd">        :param initiators: (optional) List of initiators to include in the</span>
-<span class="sd">            volume access group. If unspecified, the access group&amp;#39;s</span>
-<span class="sd">            configured initiators will not be modified.</span>
+<span class="sd">            volume access group. If unspecified, the access group&#39;s configured</span>
+<span class="sd">            initiators will not be modified.</span>
 <span class="sd">        :type initiators: str[]</span>
 
 <span class="sd">        :param volumes: (optional) List of volumes to initially include in the</span>
-<span class="sd">            volume access group. If unspecified, the access group&amp;#39;s volumes</span>
+<span class="sd">            volume access group. If unspecified, the access group&#39;s volumes</span>
 <span class="sd">            will not be modified.</span>
 <span class="sd">        :type volumes: int[]</span>
 

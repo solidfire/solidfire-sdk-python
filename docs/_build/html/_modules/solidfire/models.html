@@ -147,8 +147,8 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
 <span class="kn">from</span> <span class="nn">solidfire.common</span> <span class="kn">import</span> <span class="n">model</span> <span class="k">as</span> <span class="n">data_model</span>
 <span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">UUID</span>
-<span class="kn">from</span> <span class="nn">solidfire.custom</span> <span class="kn">import</span> <span class="n">CHAPSecret</span> <span class="k">as</span> <span class="n">UserDefinedCHAPSecret</span>
-<span class="kn">from</span> <span class="nn">solidfire.custom</span> <span class="kn">import</span> <span class="n">Frequency</span> <span class="k">as</span> <span class="n">UserDefinedFrequency</span>
+<span class="kn">from</span> <span class="nn">solidfire.custom.models</span> <span class="kn">import</span> <span class="n">CHAPSecret</span> <span class="k">as</span> <span class="n">UserDefinedCHAPSecret</span>
+<span class="kn">from</span> <span class="nn">solidfire.custom.models</span> <span class="kn">import</span> <span class="n">Frequency</span> <span class="k">as</span> <span class="n">UserDefinedFrequency</span>
 
 
 <div class="viewcode-block" id="CHAPSecret"><a class="viewcode-back" href="../../solidfire.html#solidfire.models.CHAPSecret">[docs]</a><span class="k">class</span> <span class="nc">CHAPSecret</span><span class="p">(</span><span class="n">UserDefinedCHAPSecret</span><span class="p">):</span>
@@ -825,8 +825,7 @@
 
 <span class="sd">        **NoGroups**: No group support.</span>
 
-<span class="sd">        **ActiveDirectory**: Nested membership of all of a user&amp;#39;s AD</span>
-<span class="sd">        groups.</span>
+<span class="sd">        **ActiveDirectory**: Nested membership of all of a user&#39;s AD groups.</span>
 
 <span class="sd">        **MemberDN**: *member_dn* style groups (single-level).</span>
 
@@ -923,8 +922,7 @@
 <span class="se">\</span>
 <span class="se">\</span>
 <span class="se">\</span>
-<span class="s2">        **ActiveDirectory**: Nested membership of all of a user&amp;#39;s AD</span><span class="se">\</span>
-<span class="s2">        groups.</span><span class="se">\</span>
+<span class="s2">        **ActiveDirectory**: Nested membership of all of a user&#39;s AD groups.</span><span class="se">\</span>
 <span class="se">\</span>
 <span class="se">\</span>
 <span class="se">\</span>
@@ -1053,7 +1051,7 @@
 <div class="viewcode-block" id="Platform"><a class="viewcode-back" href="../../solidfire.html#solidfire.models.Platform">[docs]</a><span class="k">class</span> <span class="nc">Platform</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="sd">    :param node_type: [required] SolidFire&amp;#39;s name for this platform.</span>
+<span class="sd">    :param node_type: [required] *solid_fire&#39;s* name for this platform.</span>
 <span class="sd">    :type node_type: str</span>
 
 <span class="sd">    :param chassis_type: [required] Name of the chassis (example: \&quot;R620\&quot;).</span>
@@ -1071,7 +1069,7 @@
         <span class="s2">&quot;nodeType&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
-<span class="s2">        SolidFire&amp;#39;s name for this platform.</span><span class="se">\</span>
+<span class="s2">        *solid_fire&#39;s* name for this platform.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
     <span class="p">)</span>
 
@@ -4829,40 +4827,40 @@
 <span class="sd">    Cluster Config object returns information the node uses to communicate with</span>
 <span class="sd">    the cluster.</span>
 
-<span class="sd">    :param cipi: [required] Network interface used for cluster communication.</span>
+<span class="sd">    :param cipi: (optional) Network interface used for cluster communication.</span>
 <span class="sd">    :type cipi: str</span>
 
-<span class="sd">    :param cluster: [required] Unique cluster name.</span>
+<span class="sd">    :param cluster: (optional) Unique cluster name.</span>
 <span class="sd">    :type cluster: str</span>
 
-<span class="sd">    :param ensemble: [required] Nodes that are participating in the cluster.</span>
+<span class="sd">    :param ensemble: (optional) Nodes that are participating in the cluster.</span>
 <span class="sd">    :type ensemble: str[]</span>
 
-<span class="sd">    :param mipi: [required] Network interface used for node management.</span>
+<span class="sd">    :param mipi: (optional) Network interface used for node management.</span>
 <span class="sd">    :type mipi: str</span>
 
-<span class="sd">    :param name: [required] Unique cluster name.</span>
+<span class="sd">    :param name: (optional) Unique cluster name.</span>
 <span class="sd">    :type name: str</span>
-
-<span class="sd">    :param role: [required] Identifies the role of the node</span>
-<span class="sd">    :type role: str</span>
-
-<span class="sd">    :param sipi: [required] Network interface used for storage.</span>
-<span class="sd">    :type sipi: str</span>
-
-<span class="sd">    :param state: [required]</span>
-<span class="sd">    :type state: str</span>
 
 <span class="sd">    :param node_id: (optional)</span>
 <span class="sd">    :type node_id: int</span>
 
 <span class="sd">    :param pending_node_id: (optional)</span>
 <span class="sd">    :type pending_node_id: int</span>
+
+<span class="sd">    :param role: (optional) Identifies the role of the node</span>
+<span class="sd">    :type role: str</span>
+
+<span class="sd">    :param sipi: (optional) Network interface used for storage.</span>
+<span class="sd">    :type sipi: str</span>
+
+<span class="sd">    :param state: (optional)</span>
+<span class="sd">    :type state: str</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">cipi</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;cipi&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Network interface used for cluster communication.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -4870,7 +4868,7 @@
 
     <span class="n">cluster</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;cluster&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Unique cluster name.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -4878,7 +4876,7 @@
 
     <span class="n">ensemble</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;ensemble&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Nodes that are participating in the cluster.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -4886,7 +4884,7 @@
 
     <span class="n">mipi</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;mipi&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Network interface used for node management.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -4894,7 +4892,7 @@
 
     <span class="n">name</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Unique cluster name.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -4914,7 +4912,7 @@
 
     <span class="n">role</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;role&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Identifies the role of the node</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -4922,7 +4920,7 @@
 
     <span class="n">sipi</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;sipi&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Network interface used for storage.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -4930,7 +4928,7 @@
 
     <span class="n">state</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="bp">None</span>
     <span class="p">)</span>
 
@@ -5105,20 +5103,20 @@
 <span class="sd">        communication.</span>
 <span class="sd">    :type cip: str</span>
 
-<span class="sd">    :param cipi: [required] The machine&amp;#39;s name for the \&quot;cip\&quot; interface.</span>
+<span class="sd">    :param cipi: [required] The machine&#39;s name for the \&quot;cip\&quot; interface.</span>
 <span class="sd">    :type cipi: str</span>
 
 <span class="sd">    :param mip: [required] IP address used for cluster management (hosting the</span>
 <span class="sd">        API and web site).</span>
 <span class="sd">    :type mip: str</span>
 
-<span class="sd">    :param mipi: [required] The machine&amp;#39;s name for the \&quot;mip\&quot; interface.</span>
+<span class="sd">    :param mipi: [required] The machine&#39;s name for the \&quot;mip\&quot; interface.</span>
 <span class="sd">    :type mipi: str</span>
 
 <span class="sd">    :param sip: [required] IP address used for iSCSI traffic.</span>
 <span class="sd">    :type sip: str</span>
 
-<span class="sd">    :param sipi: [required] The machine&amp;#39;s name for the \&quot;sip\&quot; interface.</span>
+<span class="sd">    :param sipi: [required] The machine&#39;s name for the \&quot;sip\&quot; interface.</span>
 <span class="sd">    :type sipi: str</span>
 
 <span class="sd">    :param software_version: [required] The version of SolidFire software this</span>
@@ -5175,7 +5173,7 @@
         <span class="s2">&quot;cipi&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
-<span class="s2">        The machine&amp;#39;s name for the </span><span class="se">\&quot;</span><span class="s2">cip</span><span class="se">\&quot;</span><span class="s2"> interface.</span><span class="se">\</span>
+<span class="s2">        The machine&#39;s name for the </span><span class="se">\&quot;</span><span class="s2">cip</span><span class="se">\&quot;</span><span class="s2"> interface.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
     <span class="p">)</span>
 
@@ -5191,7 +5189,7 @@
         <span class="s2">&quot;mipi&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
-<span class="s2">        The machine&amp;#39;s name for the </span><span class="se">\&quot;</span><span class="s2">mip</span><span class="se">\&quot;</span><span class="s2"> interface.</span><span class="se">\</span>
+<span class="s2">        The machine&#39;s name for the </span><span class="se">\&quot;</span><span class="s2">mip</span><span class="se">\&quot;</span><span class="s2"> interface.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
     <span class="p">)</span>
 
@@ -5207,7 +5205,7 @@
         <span class="s2">&quot;sipi&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
-<span class="s2">        The machine&amp;#39;s name for the </span><span class="se">\&quot;</span><span class="s2">sip</span><span class="se">\&quot;</span><span class="s2"> interface.</span><span class="se">\</span>
+<span class="s2">        The machine&#39;s name for the </span><span class="se">\&quot;</span><span class="s2">sip</span><span class="se">\&quot;</span><span class="s2"> interface.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
     <span class="p">)</span>
 
@@ -5311,7 +5309,7 @@
 
 <span class="sd">    :param group_snapshot_uuid: [required] The current \&quot;members\&quot; results</span>
 <span class="sd">        contains information about each snapshot in the group. Each of these</span>
-<span class="sd">        members will have a \&quot;uuid\&quot; parameter for the snapshot&amp;#39;s UUID.</span>
+<span class="sd">        members will have a \&quot;uuid\&quot; parameter for the snapshot&#39;s UUID.</span>
 <span class="sd">    :type group_snapshot_uuid: UUID</span>
 
 <span class="sd">    :param create_time: [required] The time this snapshot was taken.</span>
@@ -5485,7 +5483,7 @@
 <span class="s2">        The current </span><span class="se">\&quot;</span><span class="s2">members</span><span class="se">\&quot;</span><span class="s2"> results contains information about each</span><span class="se">\</span>
 <span class="s2">        snapshot in the group.</span><span class="se">\</span>
 <span class="s2">        Each of these members will have a </span><span class="se">\&quot;</span><span class="s2">uuid</span><span class="se">\&quot;</span><span class="s2"> parameter for the</span><span class="se">\</span>
-<span class="s2">        snapshot&amp;#39;s UUID.</span><span class="se">\</span>
+<span class="s2">        snapshot&#39;s UUID.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
     <span class="p">)</span>
 
@@ -6183,20 +6181,20 @@
 <span class="sd">        communication.</span>
 <span class="sd">    :type cip: str</span>
 
-<span class="sd">    :param cipi: [required] The machine&amp;#39;s name for the \&quot;cip\&quot; interface.</span>
+<span class="sd">    :param cipi: [required] The machine&#39;s name for the \&quot;cip\&quot; interface.</span>
 <span class="sd">    :type cipi: str</span>
 
 <span class="sd">    :param mip: [required] IP address used for cluster management (hosting the</span>
 <span class="sd">        API and web site).</span>
 <span class="sd">    :type mip: str</span>
 
-<span class="sd">    :param mipi: [required] The machine&amp;#39;s name for the \&quot;mip\&quot; interface.</span>
+<span class="sd">    :param mipi: [required] The machine&#39;s name for the \&quot;mip\&quot; interface.</span>
 <span class="sd">    :type mipi: str</span>
 
 <span class="sd">    :param sip: [required] IP address used for iSCSI traffic.</span>
 <span class="sd">    :type sip: str</span>
 
-<span class="sd">    :param sipi: [required] The machine&amp;#39;s name for the \&quot;sip\&quot; interface.</span>
+<span class="sd">    :param sipi: [required] The machine&#39;s name for the \&quot;sip\&quot; interface.</span>
 <span class="sd">    :type sipi: str</span>
 
 <span class="sd">    :param uuid: [required] UUID of node.</span>
@@ -6269,7 +6267,7 @@
         <span class="s2">&quot;cipi&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
-<span class="s2">        The machine&amp;#39;s name for the </span><span class="se">\&quot;</span><span class="s2">cip</span><span class="se">\&quot;</span><span class="s2"> interface.</span><span class="se">\</span>
+<span class="s2">        The machine&#39;s name for the </span><span class="se">\&quot;</span><span class="s2">cip</span><span class="se">\&quot;</span><span class="s2"> interface.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
     <span class="p">)</span>
 
@@ -6285,7 +6283,7 @@
         <span class="s2">&quot;mipi&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
-<span class="s2">        The machine&amp;#39;s name for the </span><span class="se">\&quot;</span><span class="s2">mip</span><span class="se">\&quot;</span><span class="s2"> interface.</span><span class="se">\</span>
+<span class="s2">        The machine&#39;s name for the </span><span class="se">\&quot;</span><span class="s2">mip</span><span class="se">\&quot;</span><span class="s2"> interface.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
     <span class="p">)</span>
 
@@ -6301,7 +6299,7 @@
         <span class="s2">&quot;sipi&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
-<span class="s2">        The machine&amp;#39;s name for the </span><span class="se">\&quot;</span><span class="s2">sip</span><span class="se">\&quot;</span><span class="s2"> interface.</span><span class="se">\</span>
+<span class="s2">        The machine&#39;s name for the </span><span class="se">\&quot;</span><span class="s2">sip</span><span class="se">\&quot;</span><span class="s2"> interface.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
     <span class="p">)</span>
 
