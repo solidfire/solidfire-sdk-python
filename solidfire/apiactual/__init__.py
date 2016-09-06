@@ -273,7 +273,7 @@ class ApiSchedule(data_model.DataObject):
 
     monthdays = data_model.property(
         "monthdays", int,
-        array=True, optional=True,
+        array=True, optional=False,
         documentation="\
         Shows the days of the month that the next snapshot will be created on.\
         Valid values are: 0 - 31\
@@ -359,7 +359,7 @@ class ApiSchedule(data_model.DataObject):
 
     weekdays = data_model.property(
         "weekdays", ApiWeekday,
-        array=True, optional=True,
+        array=True, optional=False,
         documentation="\
         Indicates the days of the week that a snapshot will be made.\
         "

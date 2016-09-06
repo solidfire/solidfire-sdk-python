@@ -296,7 +296,6 @@ class ScheduleAdaptor:
                 api_weekday.day = weekday[1]
                 api_weekday.offset = 1
                 api_weekdays.append(api_weekday)
-
             api.weekdays = api_weekdays
             api.monthdays = None
             api.attributes["frequency"] = "Days Of Week"

@@ -7,7 +7,9 @@ from solidfire.adaptor import ScheduleAdaptor
 from solidfire.custom.models import *
 from solidfire.models import *
 from solidfire.factory import ElementFactory
-
+import logging
+from solidfire import common
+common.setLogLevel(logging.DEBUG)
 
 class TestSchedule(TestCase):
 
@@ -164,20 +166,122 @@ class TestSchedule(TestCase):
         for sched in results.schedules:
             assert_that(sched.frequency is None, equal_to(True))
 
-    def test_lest_schedules(self):
+    def test_change_frequency_dom_to_dow(self):
         sf = ElementFactory.create("172.26.64.48", "admin", "admin")
 
-        schedules = sf.list_schedules().schedules
+        vols = sf.list_volumes().volumes
+        vol_ids = []
+        for vol in vols:
+            vol_ids.append(vol.volume_id)
 
-        sched_id = schedules[0].schedule_id
+        sched = Schedule()
+        sched.name = "mySchedule"
+        sched.frequency = DaysOfMonthFrequency(hours=4, minutes=30,
+                                               monthdays=[2])
+        sched.schedule_info = ScheduleInfo()
+        sched.schedule_info.volume_ids = vol_ids
 
-        schedules[0].to_be_deleted = True
+        result = sf.create_schedule(sched)
 
-        sf.modify_schedule(schedules[0])
+        new_sched_id = result.schedule_id
 
-        sched = sf.get_schedule(sched_id)
+        new_sched = sf.get_schedule(new_sched_id).schedule
 
-        one = 1
+        new_sched.frequency = DaysOfWeekFrequency(hours=5, weekdays=[
+            Weekday.from_id(1), Weekday.from_id(4)])
+
+        sf.modify_schedule(new_sched)
+
+        modified_sched = sf.get_schedule(new_sched_id).schedule
+
+
+    def test_change_frequency_dow_to_dom(self):
+        sf = ElementFactory.create("172.26.64.48", "admin", "admin")
+
+        vols = sf.list_volumes().volumes
+        vol_ids = []
+        for vol in vols:
+            vol_ids.append(vol.volume_id)
+
+        sched = Schedule()
+        sched.name = "mySchedule"
+        sched.frequency = DaysOfWeekFrequency(hours=4, minutes=30,
+                                               weekdays=[
+                                                   Weekday.from_id(1),
+                                                   Weekday.from_id(4)])
+        sched.schedule_info = ScheduleInfo()
+        sched.schedule_info.volume_ids = vol_ids
+
+        result = sf.create_schedule(sched)
+
+        new_sched_id = result.schedule_id
+
+        new_sched = sf.get_schedule(new_sched_id).schedule
+
+        new_sched.frequency = DaysOfMonthFrequency(hours=5, monthdays=[4,5])
+
+        sf.modify_schedule(new_sched)
+
+        modified_sched = sf.get_schedule(new_sched_id).schedule
+
+    def test_change_frequency_dow_to_ti(self):
+        sf = ElementFactory.create("172.26.64.48", "admin", "admin")
+
+        vols = sf.list_volumes().volumes
+        vol_ids = []
+        for vol in vols:
+            vol_ids.append(vol.volume_id)
+
+        sched = Schedule()
+        sched.name = "mySchedule"
+        sched.frequency = DaysOfWeekFrequency(hours=4, minutes=30,
+                                               weekdays=[
+                                                   Weekday.from_id(1),
+                                                   Weekday.from_id(4)])
+        sched.schedule_info = ScheduleInfo()
+        sched.schedule_info.volume_ids = vol_ids
+
+        result = sf.create_schedule(sched)
+
+        new_sched_id = result.schedule_id
+
+        new_sched = sf.get_schedule(new_sched_id).schedule
+
+        new_sched.frequency = TimeIntervalFrequency(hours=5, days=1)
+
+        sf.modify_schedule(new_sched)
+
+        modified_sched = sf.get_schedule(new_sched_id).schedule
+
+    def test_change_frequency_ti_to_dom(self):
+        sf = ElementFactory.create("172.26.64.48", "admin", "admin")
+
+        vols = sf.list_volumes().volumes
+        vol_ids = []
+        for vol in vols:
+            vol_ids.append(vol.volume_id)
+
+        sched = Schedule()
+        sched.name = "mySchedule"
+        sched.frequency = TimeIntervalFrequency(hours=5, days=1)
+
+        sched.schedule_info = ScheduleInfo()
+        sched.schedule_info.volume_ids = vol_ids
+
+        result = sf.create_schedule(sched)
+
+        new_sched_id = result.schedule_id
+
+        new_sched = sf.get_schedule(new_sched_id).schedule
+
+        new_sched.frequency = DaysOfWeekFrequency(hours=4, minutes=30,
+                                               weekdays=[
+                                                   Weekday.from_id(1),
+                                                   Weekday.from_id(4)])
+
+        sf.modify_schedule(new_sched)
+
+        modified_sched = sf.get_schedule(new_sched_id).schedule
 
 
 
