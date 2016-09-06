@@ -1439,15 +1439,10 @@ class Element(ServiceBase):
         The *disable_encryption_at_rest* method enables you to remove the
         encryption that was previously applied to the cluster using the
         *enable_encryption_at_rest* method.
-        Enabling or disabling encryption should be performed when the cluster
-        is running and in a healthy state. Encryption can be enabled or
-        disabled at your discretion and can be performed as often as you need.
-
-
-            **Note**: This process is asynchronous and returns a response
-        before encryption is disabled. The *get_cluster_info* method can be
-        used to poll the system to see when the process has completed.
-
+        This disable method is asynchronous and returns a response before
+        encryption is disabled.
+        You can use the *get_cluster_info* method to poll the system to see
+        when the process has completed.
 
         :returns: a response
         :rtype: DisableEncryptionAtRestResult
