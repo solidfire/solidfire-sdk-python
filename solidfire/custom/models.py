@@ -66,13 +66,13 @@ class Weekday:
     A better representation of the Weekday.
     """
 
-    Sunday = ('Sunday', 1)
-    Monday = ('Monday', 2)
-    Tuesday = ('Tuesday', 3)
-    Wednesday = ('Wednesday', 4)
-    Thursday = ('Thursday', 5)
-    Friday = ('Friday', 6)
-    Saturday = ('Saturday', 7)
+    Sunday = ('Sunday', 0)
+    Monday = ('Monday', 1)
+    Tuesday = ('Tuesday', 2)
+    Wednesday = ('Wednesday', 3)
+    Thursday = ('Thursday', 4)
+    Friday = ('Friday', 5)
+    Saturday = ('Saturday', 6)
 
     all_weekdays = [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday,
                     Saturday]

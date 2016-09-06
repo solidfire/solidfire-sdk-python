@@ -2445,7 +2445,7 @@ class FibreChannelPortList(data_model.DataObject):
 
     :param fibre_channel_ports: [required] List of all physical Fibre Channel
         ports.
-    :type fibre_channel_ports: FibreChannelPortInfo
+    :type fibre_channel_ports: FibreChannelPortInfo[]
     """
 
     fibre_channel_ports = data_model.property(
@@ -2533,13 +2533,13 @@ class NetworkConfig(data_model.DataObject):
     :type physical: PhysicalAdapter
 
     :param routes: (optional)
-    :type routes: str
+    :type routes: str[]
 
     :param status: (optional)
     :type status: str
 
     :param symmetric_route_rules: (optional)
-    :type symmetric_route_rules: str
+    :type symmetric_route_rules: str[]
 
     :param up_and_running: (optional)
     :type up_and_running: bool
@@ -3207,7 +3207,7 @@ class ClusterAdmin(data_model.DataObject):
     """
 
     :param access: [required]
-    :type access: str
+    :type access: str[]
 
     :param cluster_admin_id: [required]
     :type cluster_admin_id: int
@@ -3928,7 +3928,7 @@ class GroupSnapshotMembers(data_model.DataObject):
     )
 
     snapshot_uuid = data_model.property(
-        "snapshotUUID", str,
+        "SnapshotUUID", str,
         array=False, optional=False,
         documentation="\
         Universal Unique ID of an existing snapshot.\
@@ -3962,7 +3962,7 @@ class GroupSnapshot(data_model.DataObject):
 
     :param members: [required] List of *volume_ids* and *snapshot_ids* for each
         member of the group.
-    :type members: GroupSnapshotMembers
+    :type members: GroupSnapshotMembers[]
 
     :param name: [required] Name of the group snapshot, or, if none was given,
         the UTC formatted day and time on which the snapshot was created.
@@ -4064,11 +4064,11 @@ class MetadataHosts(data_model.DataObject):
 
     :param dead_secondaries: [required] Secondary metadata (slice) services
         that are in a dead state.
-    :type dead_secondaries: int
+    :type dead_secondaries: int[]
 
     :param live_secondaries: [required] Secondary metadata (slice) services
         that are currently in a \"live\" state.
-    :type live_secondaries: int
+    :type live_secondaries: int[]
 
     :param primary: [required] The primary metadata (slice) services hosting
         the volume.
@@ -4268,11 +4268,11 @@ class VolumeAccessGroup(data_model.DataObject):
 
     :param initiators: [required] List of unique initiator names belonging to
         the volume access group.
-    :type initiators: str
+    :type initiators: str[]
 
     :param volumes: [required] List of volumes belonging to the volume access
         group.
-    :type volumes: int
+    :type volumes: int[]
     """
 
     volume_access_group_id = data_model.property(
@@ -4321,11 +4321,11 @@ class VolumeAccessGroupLunAssignments(data_model.DataObject):
 
     :param lun_assignments: [required] The volume *ids* with assigned LUN
         values.
-    :type lun_assignments: LunAssignment
+    :type lun_assignments: LunAssignment[]
 
     :param deleted_lun_assignments: [required] The volume *ids* with deleted
         LUN values.
-    :type deleted_lun_assignments: LunAssignment
+    :type deleted_lun_assignments: LunAssignment[]
     """
 
     volume_access_group_id = data_model.property(
@@ -4350,6 +4350,116 @@ class VolumeAccessGroupLunAssignments(data_model.DataObject):
         array=True, optional=False,
         documentation="\
         The volume *ids* with deleted LUN values.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class VirtualNetwork(data_model.DataObject):
+    """
+
+    :param virtual_network_id: [required] SolidFire unique identifier for a
+        virtual network.
+    :type virtual_network_id: int
+
+    :param virtual_network_tag: [required] VLAN Tag identifier.
+    :type virtual_network_tag: int
+
+    :param address_blocks: [required] Range of address blocks currently
+        assigned to the virtual network.
+
+        **available:** Binary string in \"1\"s and \"0\"s. 1 equals the IP is
+        available and 0 equals the IP is not available. The string is read from
+        right to left with the digit to the far right being the first IP
+        address in the list of addressBlocks.
+
+        **size:** the size of this block of addresses.
+
+        **start:** first IP address in the block.
+
+    :type address_blocks: AddressBlock[]
+
+    :param name: [required] The name assigned to the virtual network.
+    :type name: str
+
+    :param netmask: [required] IP address of the netmask for the virtual
+        network.
+    :type netmask: str
+
+    :param svip: [required] Storage IP address for the virtual network.
+    :type svip: str
+    """
+
+    virtual_network_id = data_model.property(
+        "virtualNetworkID", int,
+        array=False, optional=False,
+        documentation="\
+        SolidFire unique identifier for a virtual network.\
+        "
+    )
+
+    virtual_network_tag = data_model.property(
+        "virtualNetworkTag", int,
+        array=False, optional=False,
+        documentation="\
+        VLAN Tag identifier.\
+        "
+    )
+
+    address_blocks = data_model.property(
+        "addressBlocks", AddressBlock,
+        array=True, optional=False,
+        documentation="\
+        Range of address blocks currently assigned to the virtual network.\
+\
+\
+            **available:** Binary string in \"1\"s and \"0\"s. 1 equals the IP\
+        is available and 0 equals the IP is not available. The string is read\
+        from right to left with the digit to the far right being the first IP\
+        address in the list of addressBlocks.\
+\
+\
+\
+            **size:** the size of this block of addresses.\
+\
+\
+\
+            **start:** first IP address in the block.\
+\
+        "
+    )
+
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=False,
+        documentation="\
+        List of Name/Value pairs in JSON object format.\
+        "
+    )
+
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="\
+        The name assigned to the virtual network.\
+        "
+    )
+
+    netmask = data_model.property(
+        "netmask", str,
+        array=False, optional=False,
+        documentation="\
+        IP address of the netmask for the virtual network.\
+        "
+    )
+
+    svip = data_model.property(
+        "svip", str,
+        array=False, optional=False,
+        documentation="\
+        Storage IP address for the virtual network.\
         "
     )
 
@@ -4439,142 +4549,6 @@ class Account(data_model.DataObject):
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="\
-        List of Name/Value pairs in JSON object format.\
-        "
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-
-class VirtualNetwork(data_model.DataObject):
-    """
-
-    :param virtual_network_id: [required] SolidFire unique identifier for a
-        virtual network.
-    :type virtual_network_id: int
-
-    :param virtual_network_tag: [required] VLAN Tag identifier.
-    :type virtual_network_tag: int
-
-    :param address_blocks: [required] Range of address blocks currently
-        assigned to the virtual network.
-
-        **available:** Binary string in \"1\"s and \"0\"s. 1 equals the IP is
-        available and 0 equals the IP is not available. The string is read from
-        right to left with the digit to the far right being the first IP
-        address in the list of addressBlocks.
-
-        **size:** the size of this block of addresses.
-
-        **start:** first IP address in the block.
-
-    :type address_blocks: AddressBlock[]
-
-    :param name: [required] The name assigned to the virtual network.
-    :type name: str
-
-    :param netmask: [required] IP address of the netmask for the virtual
-        network.
-    :type netmask: str
-
-    :param svip: [required] Storage IP address for the virtual network.
-    :type svip: str
-
-    :param attributes: [required] List of Name/Value pairs in JSON object
-        format.
-    :type attributes: dict
-
-    :param gateway: (optional)
-    :type gateway: str
-
-    :param namespace: (optional)
-    :type namespace: bool
-    """
-
-    virtual_network_id = data_model.property(
-        "virtualNetworkID", int,
-        array=False, optional=False,
-        documentation="\
-        SolidFire unique identifier for a virtual network.\
-        "
-    )
-
-    virtual_network_tag = data_model.property(
-        "virtualNetworkTag", int,
-        array=False, optional=False,
-        documentation="\
-        VLAN Tag identifier.\
-        "
-    )
-
-    address_blocks = data_model.property(
-        "addressBlocks", AddressBlock,
-        array=True, optional=False,
-        documentation="\
-        Range of address blocks currently assigned to the virtual network.\
-\
-\
-            **available:** Binary string in \"1\"s and \"0\"s. 1 equals the IP\
-        is available and 0 equals the IP is not available. The string is read\
-        from right to left with the digit to the far right being the first IP\
-        address in the list of addressBlocks.\
-\
-\
-\
-            **size:** the size of this block of addresses.\
-\
-\
-\
-            **start:** first IP address in the block.\
-\
-        "
-    )
-
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation="\
-        The name assigned to the virtual network.\
-        "
-    )
-
-    netmask = data_model.property(
-        "netmask", str,
-        array=False, optional=False,
-        documentation="\
-        IP address of the netmask for the virtual network.\
-        "
-    )
-
-    svip = data_model.property(
-        "svip", str,
-        array=False, optional=False,
-        documentation="\
-        Storage IP address for the virtual network.\
-        "
-    )
-
-    gateway = data_model.property(
-        "gateway", str,
-        array=False, optional=True,
-        documentation="\
-\
-        "
-    )
-
-    namespace = data_model.property(
-        "namespace", bool,
-        array=False, optional=True,
-        documentation="\
-\
-        "
-    )
-
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=False,
         documentation="\
         List of Name/Value pairs in JSON object format.\
         "
@@ -4694,7 +4668,7 @@ class ClusterConfig(data_model.DataObject):
     :type cluster: str
 
     :param ensemble: [required] Nodes that are participating in the cluster.
-    :type ensemble: str
+    :type ensemble: str[]
 
     :param mipi: [required] Network interface used for node management.
     :type mipi: str
@@ -4810,7 +4784,7 @@ class ClusterInfo(data_model.DataObject):
 
     :param ensemble: [required] Array of Node IP addresses that are
         participating in the cluster.
-    :type ensemble: str
+    :type ensemble: str[]
 
     :param mvip: [required] Management network interface.
     :type mvip: str
@@ -5310,7 +5284,7 @@ class Snapshot(data_model.DataObject):
     )
 
     snapshot_uuid = data_model.property(
-        "snapshotUUID", UUID,
+        "SnapshotUUID", UUID,
         array=False, optional=False,
         documentation="\
         Universal Unique ID of an existing snapshot.\
@@ -5446,7 +5420,7 @@ class VolumeStats(data_model.DataObject):
 
     :param volume_access_groups: [required] List of volume access group(s) to
         which a volume belongs.
-    :type volume_access_groups: int
+    :type volume_access_groups: int[]
 
     :param volume_id: [required] Volume ID of the volume.
     :type volume_id: int
@@ -6264,12 +6238,12 @@ class Volume(data_model.DataObject):
 
     :param volume_access_groups: [required] List of volume access groups to
         which a volume belongs.
-    :type volume_access_groups: int
+    :type volume_access_groups: int[]
 
     :param volume_pairs: [required] Information about a paired volume.
         Available only if a volume is paired. @see *volume_pairs* for return
         values.
-    :type volume_pairs: VolumePair
+    :type volume_pairs: VolumePair[]
 
     :param slice_count: [required] The number of slices backing this volume. In
         the current software, this value will always be 1.
