@@ -103,10 +103,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="solidfire.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="solidfire.html#solidfire-factory-module">solidfire.factory module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="solidfire.html#solidfire-models-module">solidfire.models module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="solidfire.html#solidfire-results-module">solidfire.results module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.factory">solidfire.factory module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.models">solidfire.models module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.results">solidfire.results module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -164,6 +164,26 @@ generated and then moved here before the API is regenerated with changes.
 Adaptors are used to transform actual API object into custom object and
 vice-versa.</p>
 <dl class="class">
+<dt id="solidfire.apiactual.ApiCreateScheduleResult">
+<em class="property">class </em><code class="descclassname">solidfire.apiactual.</code><code class="descname">ApiCreateScheduleResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/apiactual.html#ApiCreateScheduleResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.apiactual.ApiCreateScheduleResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
+<p>The object returned by the &#8220;modify_schedule&#8221; API Service call.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>schedule</strong> (<a class="reference internal" href="solidfire.html#solidfire.models.Schedule" title="solidfire.models.Schedule"><em>Schedule</em></a>) &#8211; [required] Schedule attributes with modifications.</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="solidfire.apiactual.ApiCreateScheduleResult.schedule">
+<code class="descname">schedule</code><em class="property"> = &lt;class 'solidfire.apiactual.ApiSchedule'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiCreateScheduleResult.schedule" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="solidfire.apiactual.ApiGetScheduleResult">
 <em class="property">class </em><code class="descclassname">solidfire.apiactual.</code><code class="descname">ApiGetScheduleResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/apiactual.html#ApiGetScheduleResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.apiactual.ApiGetScheduleResult" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
@@ -172,7 +192,7 @@ vice-versa.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>schedule</strong> (<em>Schedule</em>) &#8211; [required] The schedule attributes.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>schedule</strong> (<a class="reference internal" href="solidfire.html#solidfire.models.Schedule" title="solidfire.models.Schedule"><em>Schedule</em></a>) &#8211; [required] The schedule attributes.</td>
 </tr>
 </tbody>
 </table>
@@ -192,7 +212,7 @@ vice-versa.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>schedules</strong> (<em>Schedule</em>) &#8211; [required] The list of schedules currently on the
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>schedules</strong> (<a class="reference internal" href="solidfire.html#solidfire.models.Schedule" title="solidfire.models.Schedule"><em>Schedule</em></a>) &#8211; [required] The list of schedules currently on the
 cluster.</td>
 </tr>
 </tbody>
@@ -209,19 +229,6 @@ cluster.</td>
 <em class="property">class </em><code class="descclassname">solidfire.apiactual.</code><code class="descname">ApiModifyScheduleResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/apiactual.html#ApiModifyScheduleResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.apiactual.ApiModifyScheduleResult" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
 <p>The object returned by the &#8220;modify_schedule&#8221; API Service call.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>schedule</strong> (<em>Schedule</em>) &#8211; [required] Schedule attributes with modifications.</td>
-</tr>
-</tbody>
-</table>
-<dl class="attribute">
-<dt id="solidfire.apiactual.ApiModifyScheduleResult.schedule">
-<code class="descname">schedule</code><em class="property"> = &lt;class 'solidfire.apiactual.ApiSchedule'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiModifyScheduleResult.schedule" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 <dl class="class">
@@ -246,46 +253,46 @@ occurrence.</p>
 <p>Day of Month</p>
 <p>Time Interval</p>
 </li>
-<li><strong>has_error</strong> (<em>bool</em>) &#8211; [required] Indicates whether or not the schedule has
+<li><strong>has_error</strong> (<em>bool</em>) &#8211; Indicates whether or not the schedule has
 errors.</li>
 <li><strong>hours</strong> (<em>int</em>) &#8211; <p>[required] Shows the hours that will elapse before the next
 snapshot is created.</p>
 <p>Valid values are: 0 - 24</p>
 </li>
-<li><strong>last_run_status</strong> (<em>str</em>) &#8211; <p>[required] Indicates the status of the last
+<li><strong>last_run_status</strong> (<em>str</em>) &#8211; <p>Indicates the status of the last
 scheduled snapshot.</p>
 <p>Valid values are:</p>
 <p>Success</p>
 <p>Failed</p>
 </li>
-<li><strong>last_run_time_start</strong> (<em>str</em>) &#8211; <p>[required] Indicates the last time the schedule
+<li><strong>last_run_time_start</strong> (<em>str</em>) &#8211; <p>Indicates the last time the schedule
 started n ISO 8601 date string. Valid values are:</p>
 <p>Success</p>
 <p>Failed</p>
 </li>
 <li><strong>minutes</strong> (<em>int</em>) &#8211; [required] Shows the minutes that will elapse before the
 next snapshot is created. Valid values are: 0 - 59</li>
-<li><strong>monthdays</strong> (<em>int</em>) &#8211; [required] Shows the days of the month that the next
+<li><strong>monthdays</strong> (<em>int</em>) &#8211; Shows the days of the month that the next
 snapshot will be created on. Valid values are: 0 - 31</li>
-<li><strong>paused</strong> (<em>bool</em>) &#8211; [required] Indicates whether or not the schedule is paused.</li>
-<li><strong>recurring</strong> (<em>bool</em>) &#8211; [required] Indicates whether or not the schedule is
+<li><strong>paused</strong> (<em>bool</em>) &#8211; Indicates whether or not the schedule is paused.</li>
+<li><strong>recurring</strong> (<em>bool</em>) &#8211; Indicates whether or not the schedule is
 recurring.</li>
-<li><strong>run_next_interval</strong> (<em>bool</em>) &#8211; [required] Indicates whether or not the schedule
+<li><strong>run_next_interval</strong> (<em>bool</em>) &#8211; Indicates whether or not the schedule
 will run the next time the scheduler is active. When set to &#8220;true&#8221;,
 the schedule will run the next time the scheduler is active and then
 reset back to &#8220;false&#8221;.</li>
-<li><strong>schedule_id</strong> (<em>int</em>) &#8211; [required] Unique ID of the schedule</li>
-<li><strong>schedule_info</strong> (<em>ScheduleInfo</em>) &#8211; [required] Includes the unique name given to the
+<li><strong>schedule_id</strong> (<em>int</em>) &#8211; Unique ID of the schedule</li>
+<li><strong>schedule_info</strong> (<a class="reference internal" href="solidfire.html#solidfire.models.ScheduleInfo" title="solidfire.models.ScheduleInfo"><em>ScheduleInfo</em></a>) &#8211; [required] Includes the unique name given to the
 schedule, the retention period for the snapshot that was created, and
 the volume ID of the volume from which the snapshot was created.</li>
-<li><strong>schedule_name</strong> (<em>str</em>) &#8211; [required] Unique name assigned to the schedule.</li>
+<li><strong>schedule_name</strong> (<em>str</em>) &#8211; Unique name assigned to the schedule.</li>
 <li><strong>schedule_type</strong> (<em>str</em>) &#8211; [required] Only &#8220;snapshot&#8221; is supported at this
 time.</li>
-<li><strong>starting_date</strong> (<em>str</em>) &#8211; [required] Indicates the date the first time the
+<li><strong>starting_date</strong> (<em>str</em>) &#8211; Indicates the date the first time the
 schedule began of will begin. Formatted in UTC time.</li>
-<li><strong>to_be_deleted</strong> (<em>bool</em>) &#8211; [required] Indicates if the schedule is marked for
+<li><strong>to_be_deleted</strong> (<em>bool</em>) &#8211; Indicates if the schedule is marked for
 deletion.</li>
-<li><strong>weekdays</strong> (<a class="reference internal" href="solidfire.custom.html#solidfire.custom.Weekday" title="solidfire.custom.Weekday"><em>Weekday</em></a>) &#8211; [required] Indicates the days of the week that a snapshot
+<li><strong>weekdays</strong> (<em>Weekday</em>) &#8211; Indicates the days of the week that a snapshot
 will be made.</li>
 </ul>
 </td>
@@ -390,7 +397,7 @@ will be made.</li>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>volume_id</strong> (<em>int</em>) &#8211; (optional) The ID of the volume to be included in the
 snapshot.</li>
-<li><strong>volumes</strong> (<em>int</em>) &#8211; (optional) A list of volume <em>ids</em> to be included in the
+<li><strong>volumes</strong> (<em>int</em>) &#8211; (required) A list of volume <em>ids</em> to be included in the
 group snapshot.</li>
 <li><strong>name</strong> (<em>str</em>) &#8211; (optional) The snapshot name to be used.</li>
 <li><strong>enable_remote_replication</strong> (<em>bool</em>) &#8211; (optional) Indicates if the snapshot

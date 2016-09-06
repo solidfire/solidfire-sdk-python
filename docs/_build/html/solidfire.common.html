@@ -105,10 +105,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="solidfire.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="solidfire.html#solidfire-factory-module">solidfire.factory module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="solidfire.html#solidfire-models-module">solidfire.models module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="solidfire.html#solidfire-results-module">solidfire.results module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.factory">solidfire.factory module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.models">solidfire.models module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.results">solidfire.results module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -191,6 +191,11 @@ missing values will None or empty.</li>
 </tbody>
 </table>
 </dd></dl>
+
+<dl class="method">
+<dt id="solidfire.common.model.DataObject.get_properties">
+<code class="descname">get_properties</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common/model.html#DataObject.get_properties"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.DataObject.get_properties" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="solidfire.common.model.DataObject.to_json">
@@ -352,11 +357,6 @@ missing values will None or empty.</li>
 </dd></dl>
 
 <dl class="function">
-<dt id="solidfire.common.model.blah">
-<code class="descclassname">solidfire.common.model.</code><code class="descname">blah</code><span class="sig-paren">(</span><em>anything</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common/model.html#blah"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.blah" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
 <dt id="solidfire.common.model.extract">
 <code class="descclassname">solidfire.common.model.</code><code class="descname">extract</code><span class="sig-paren">(</span><em>typ</em>, <em>src</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common/model.html#extract"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.extract" title="Permalink to this definition">¶</a></dt>
 <dd><p>DataObject value type converter.</p>
@@ -380,7 +380,7 @@ original version is returned.</p>
 
 <dl class="function">
 <dt id="solidfire.common.model.property">
-<code class="descclassname">solidfire.common.model.</code><code class="descname">property</code><span class="sig-paren">(</span><em>member_name</em>, <em>member_type</em>, <em>array=False</em>, <em>optional=False</em>, <em>documentation=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common/model.html#property"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.property" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">solidfire.common.model.</code><code class="descname">property</code><span class="sig-paren">(</span><em>member_name: object</em>, <em>member_type: object</em>, <em>array: object=False</em>, <em>optional: object=False</em>, <em>documentation: object=None</em><span class="sig-paren">)</span> &rarr; object<a class="reference internal" href="_modules/solidfire/common/model.html#property"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.property" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructs the type for a DataObject property.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -388,7 +388,7 @@ original version is returned.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>member_name</strong> (<em>str</em>) &#8211; the name of the property.</li>
-<li><strong>member_type</strong> (<em>type</em>) &#8211; the type of the property.</li>
+<li><strong>member_type</strong> (<a class="reference internal" href="solidfire.html#solidfire.models.DriveInfo.type" title="solidfire.models.DriveInfo.type"><em>type</em></a>) &#8211; the type of the property.</li>
 <li><strong>array</strong> (<em>bool</em>) &#8211; is the property an array.</li>
 <li><strong>optional</strong> (<em>bool</em>) &#8211; is the property optional.</li>
 <li><strong>documentation</strong> (<em>str or NoneType</em>) &#8211; documentation for the property.</li>

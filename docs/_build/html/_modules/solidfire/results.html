@@ -1153,8 +1153,7 @@
 <span class="sd">        member of.</span>
 <span class="sd">    :type groups: str[]</span>
 
-<span class="sd">    :param user_dn: [required] The tested user&amp;#39;s full LDAP distinguished</span>
-<span class="sd">        name.</span>
+<span class="sd">    :param user_dn: [required] The tested user&#39;s full LDAP distinguished name.</span>
 <span class="sd">    :type user_dn: str</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -1170,7 +1169,7 @@
         <span class="s2">&quot;userDN&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
-<span class="s2">        The tested user&amp;#39;s full LDAP distinguished name.</span><span class="se">\</span>
+<span class="s2">        The tested user&#39;s full LDAP distinguished name.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
     <span class="p">)</span>
 
@@ -1987,14 +1986,16 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The object returned by the \&quot;list_cluster_faults\&quot; API Service call.</span>
 
-<span class="sd">    :param faults: [required]</span>
+<span class="sd">    :param faults: [required] The list of Cluster Fault objects.</span>
 <span class="sd">    :type faults: ClusterFaultInfo[]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">faults</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;faults&quot;</span><span class="p">,</span> <span class="n">ClusterFaultInfo</span><span class="p">,</span>
         <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-        <span class="n">documentation</span><span class="o">=</span><span class="bp">None</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        The list of Cluster Fault objects.</span><span class="se">\</span>
+<span class="s2">        &quot;</span>
     <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -2510,7 +2511,7 @@
 <span class="sd">    :param key: [required] Opaque key uniquely identifying the session.</span>
 <span class="sd">    :type key: str</span>
 
-<span class="sd">    :param url: [required] URL to access the node&amp;#39;s web server</span>
+<span class="sd">    :param url: [required] URL to access the node&#39;s web server</span>
 <span class="sd">    :type url: str</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -2534,7 +2535,7 @@
         <span class="s2">&quot;url&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
-<span class="s2">        URL to access the node&amp;#39;s web server</span><span class="se">\</span>
+<span class="s2">        URL to access the node&#39;s web server</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
     <span class="p">)</span>
 
@@ -2553,7 +2554,7 @@
 <span class="sd">    :param key: [required] Opaque key uniquely identifying the session.</span>
 <span class="sd">    :type key: str</span>
 
-<span class="sd">    :param url: [required] URL to access the node&amp;#39;s web server</span>
+<span class="sd">    :param url: [required] URL to access the node&#39;s web server</span>
 <span class="sd">    :type url: str</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -2577,7 +2578,7 @@
         <span class="s2">&quot;url&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
-<span class="s2">        URL to access the node&amp;#39;s web server</span><span class="se">\</span>
+<span class="s2">        URL to access the node&#39;s web server</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
     <span class="p">)</span>
 
@@ -2770,7 +2771,7 @@
 
 <span class="sd">    :type status: str</span>
 
-<span class="sd">    :param url: [required] The URL to access the node&amp;#39;s web server provided</span>
+<span class="sd">    :param url: [required] The URL to access the node&#39;s web server provided</span>
 <span class="sd">        only if the session is still active.</span>
 <span class="sd">    :type url: str</span>
 
@@ -2811,8 +2812,8 @@
         <span class="s2">&quot;url&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
-<span class="s2">        The URL to access the node&amp;#39;s web server provided only if the</span><span class="se">\</span>
-<span class="s2">        session is still active.</span><span class="se">\</span>
+<span class="s2">        The URL to access the node&#39;s web server provided only if the session</span><span class="se">\</span>
+<span class="s2">        is still active.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
     <span class="p">)</span>
 
