@@ -103,10 +103,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="solidfire.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.factory">solidfire.factory module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.models">solidfire.models module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.results">solidfire.results module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#solidfire-factory-module">solidfire.factory module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#solidfire-models-module">solidfire.models module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#solidfire-results-module">solidfire.results module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -172,7 +172,7 @@ vice-versa.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>schedule</strong> (<a class="reference internal" href="solidfire.html#solidfire.models.Schedule" title="solidfire.models.Schedule"><em>Schedule</em></a>) &#8211; [required] The schedule attributes.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>schedule</strong> (<em>Schedule</em>) &#8211; [required] The schedule attributes.</td>
 </tr>
 </tbody>
 </table>
@@ -192,7 +192,7 @@ vice-versa.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>schedules</strong> (<a class="reference internal" href="solidfire.html#solidfire.models.Schedule" title="solidfire.models.Schedule"><em>Schedule</em></a>) &#8211; [required] The list of schedules currently on the
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>schedules</strong> (<em>Schedule</em>) &#8211; [required] The list of schedules currently on the
 cluster.</td>
 </tr>
 </tbody>
@@ -213,7 +213,7 @@ cluster.</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>schedule</strong> (<a class="reference internal" href="solidfire.html#solidfire.models.Schedule" title="solidfire.models.Schedule"><em>Schedule</em></a>) &#8211; [required] Schedule attributes with modifications.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>schedule</strong> (<em>Schedule</em>) &#8211; [required] Schedule attributes with modifications.</td>
 </tr>
 </tbody>
 </table>
@@ -275,7 +275,7 @@ will run the next time the scheduler is active. When set to &#8220;true&#8221;,
 the schedule will run the next time the scheduler is active and then
 reset back to &#8220;false&#8221;.</li>
 <li><strong>schedule_id</strong> (<em>int</em>) &#8211; [required] Unique ID of the schedule</li>
-<li><strong>schedule_info</strong> (<a class="reference internal" href="solidfire.html#solidfire.models.ScheduleInfo" title="solidfire.models.ScheduleInfo"><em>ScheduleInfo</em></a>) &#8211; [required] Includes the unique name given to the
+<li><strong>schedule_info</strong> (<em>ScheduleInfo</em>) &#8211; [required] Includes the unique name given to the
 schedule, the retention period for the snapshot that was created, and
 the volume ID of the volume from which the snapshot was created.</li>
 <li><strong>schedule_name</strong> (<em>str</em>) &#8211; [required] Unique name assigned to the schedule.</li>
