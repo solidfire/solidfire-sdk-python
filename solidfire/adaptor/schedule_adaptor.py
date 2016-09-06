@@ -263,8 +263,15 @@ class ScheduleAdaptor:
         api.attributes = {}
 
         if type(frequency) is TimeIntervalFrequency:
-            if hasattr(frequency.days, '_member_type'):
+            if hasattr(frequency.days, '_member_type') or frequency.days is \
+                    None:
                 frequency.days = 0
+            if hasattr(frequency.hours, '_member_type') or frequency.hours is \
+                    None:
+                frequency.hours = 0
+            if hasattr(frequency.minutes, '_member_type') or \
+                            frequency.minutes is None:
+                frequency.minutes = 0
             api.minutes = frequency.minutes
             api.hours = frequency.days * 24 + frequency.hours
             api.attributes["frequency"] = "Time Interval"

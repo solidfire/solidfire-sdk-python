@@ -103,6 +103,19 @@ class TestSchedule(TestCase):
 
         result = sf.create_schedule(sched)
 
+    def test_create_but_time_interval_days_minutes_is_None(self):
+        sf = ElementFactory.create("192.168.139.165", "admin", "admin")
+
+        sched = Schedule()
+        sched.name = "mySchedule"
+        sched.frequency = TimeIntervalFrequency(hours=21, minutes=None,
+                                                days=None)
+        sched.schedule_info = ScheduleInfo()
+        sched.schedule_info.volume_ids = [1]
+
+        print(sched)
+
+        result = sf.create_schedule(sched)
 
     def test_create_but_schedule_info_volumes_empty(self):
         sf = ElementFactory.create("192.168.139.165", "admin", "admin")
