@@ -59,6 +59,65 @@ class TestSchedule(TestCase):
         deleted_sched = sf.get_schedule(new_sched_id).schedule
         assert_that(deleted_sched.to_be_deleted, equal_to(True))
 
+    def test_create_but_missing_schedule_info(self):
+        sf = ElementFactory.create("192.168.139.165", "admin", "admin")
+
+        sched = Schedule()
+        sched.name = "mySchedule"
+        sched.frequency = TimeIntervalFrequency(hours=4, minutes=30, days=2)
+        sched.frequency.hours = 4
+        sched.frequency.minutes = 30
+        sched.frequency.days = 2
+
+        result = sf.create_schedule(sched)
+
+    def test_create_but_missing_frequency(self):
+        sf = ElementFactory.create("192.168.139.165", "admin", "admin")
+
+        sched = Schedule()
+        sched.name = "mySchedule"
+
+        result = sf.create_schedule(sched)
+
+    def test_create_but_missing_schedule_info_volumes(self):
+        sf = ElementFactory.create("192.168.139.165", "admin", "admin")
+
+        sched = Schedule()
+        sched.name = "mySchedule"
+        sched.frequency = TimeIntervalFrequency(hours=4, minutes=30, days=2)
+        sched.frequency.hours = 4
+        sched.frequency.minutes = 30
+        sched.frequency.days = 2
+        sched.schedule_info = ScheduleInfo()
+
+        result = sf.create_schedule(sched)
+
+    def test_create_but_time_interval_days_minutes_is_None(self):
+        sf = ElementFactory.create("192.168.139.165", "admin", "admin")
+
+        sched = Schedule()
+        sched.name = "mySchedule"
+        sched.frequency = TimeIntervalFrequency(hours=4)
+        sched.schedule_info = ScheduleInfo()
+        sched.schedule_info.volume_ids = [1]
+
+        result = sf.create_schedule(sched)
+
+
+    def test_create_but_schedule_info_volumes_empty(self):
+        sf = ElementFactory.create("192.168.139.165", "admin", "admin")
+
+        sched = Schedule()
+        sched.name = "mySchedule"
+        sched.frequency = TimeIntervalFrequency(hours=4, minutes=30, days=2)
+        sched.frequency.hours = 4
+        sched.frequency.minutes = 30
+        sched.frequency.days = 2
+        sched.schedule_info = ScheduleInfo()
+        sched.schedule_info.volume_ids = []
+        result = sf.create_schedule(sched)
+
+
     def test_schedule_to_api_achedule(self):
         freq = TimeIntervalFrequency(hours=4, minutes=30, days=2)
         info = ScheduleInfo(volume_ids = [1, 4])
@@ -71,3 +130,12 @@ class TestSchedule(TestCase):
         assert_that(api_sched.attributes['frequency'],
                     equal_to("Time Interval"))
         assert_that(api_sched.schedule_info.volumes, equal_to([1, 4]))
+
+    def test_lest_schedules(self):
+        sf = ElementFactory.create("172.26.64.48", "admin", "admin")
+
+        results = sf.list_schedules()
+
+        for sched in results.schedules:
+            assert_that(sched.frequency is None, equal_to(True))
+
