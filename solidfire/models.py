@@ -3665,7 +3665,7 @@ class GroupSnapshotMembers(data_model.DataObject):
     )
 
     snapshot_uuid = data_model.property(
-        "SnapshotUUID", str,
+        "snapshotUUID", str,
         array=False, optional=False,
         documentation="\
         Universal Unique ID of an existing snapshot.\
@@ -4361,6 +4361,119 @@ class VolumeAccessGroupLunAssignments(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class Account(data_model.DataObject):
+    """
+    The object containing information about an account.
+    This object only includes \"configured\" information about the account, not
+    any runtime or usage information.
+
+    :param account_id: [required] Unique *account_id* for the account.
+    :type account_id: int
+
+    :param username: [required] User name for the account.
+    :type username: str
+
+    :param address_blocks: [required] Range of address blocks currently
+        assigned to the virtual network.
+
+        **available:** Binary string in \"1\"s and \"0\"s. 1 equals the IP is
+        available and 0 equals the IP is not available. The string is read from
+        right to left with the digit to the far right being the first IP
+        address in the list of addressBlocks.
+
+        **size:** the size of this block of addresses.
+
+        **start:** first IP address in the block.
+
+    :type address_blocks: AddressBlock[]
+
+    :param initiator_secret: (optional) CHAP secret to use for the initiator.
+    :type initiator_secret: CHAPSecret
+
+    :param target_secret: (optional) CHAP secret to use for the target (mutual
+        CHAP authentication).
+    :type target_secret: CHAPSecret
+
+    :param attributes: (optional) List of Name/Value pairs in JSON object
+        format.
+    :type attributes: dict
+    """
+
+    account_id = data_model.property(
+        "accountID", int,
+        array=False, optional=False,
+        documentation="\
+        Unique *account_id* for the account.\
+        "
+    )
+
+    username = data_model.property(
+        "username", str,
+        array=False, optional=False,
+        documentation="\
+        User name for the account.\
+        "
+    )
+
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation="\
+        Range of address blocks currently assigned to the virtual network.\
+\
+\
+            **available:** Binary string in \"1\"s and \"0\"s. 1 equals the IP\
+        is available and 0 equals the IP is not available. The string is read\
+        from right to left with the digit to the far right being the first IP\
+        address in the list of addressBlocks.\
+\
+\
+\
+            **size:** the size of this block of addresses.\
+\
+\
+\
+            **start:** first IP address in the block.\
+\
+        "
+    )
+
+    volumes = data_model.property(
+        "volumes", int,
+        array=True, optional=False,
+        documentation="\
+        List of *volume_ids* for Volumes owned by this account.\
+        "
+    )
+
+    initiator_secret = data_model.property(
+        "initiatorSecret", CHAPSecret,
+        array=False, optional=True,
+        documentation="\
+        CHAP secret to use for the initiator.\
+        "
+    )
+
+    target_secret = data_model.property(
+        "targetSecret", CHAPSecret,
+        array=False, optional=True,
+        documentation="\
+        CHAP secret to use for the target (mutual CHAP authentication).\
+        "
+    )
+
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="\
+        List of Name/Value pairs in JSON object format.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class VirtualNetwork(data_model.DataObject):
     """
 
@@ -4394,6 +4507,16 @@ class VirtualNetwork(data_model.DataObject):
 
     :param svip: [required] Storage IP address for the virtual network.
     :type svip: str
+
+    :param attributes: [required] List of Name/Value pairs in JSON object
+        format.
+    :type attributes: dict
+
+    :param gateway: (optional)
+    :type gateway: str
+
+    :param namespace: (optional)
+    :type namespace: bool
     """
 
     virtual_network_id = data_model.property(
@@ -4435,14 +4558,6 @@ class VirtualNetwork(data_model.DataObject):
         "
     )
 
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=False,
-        documentation="\
-        List of Name/Value pairs in JSON object format.\
-        "
-    )
-
     name = data_model.property(
         "name", str,
         array=False, optional=False,
@@ -4467,92 +4582,25 @@ class VirtualNetwork(data_model.DataObject):
         "
     )
 
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-
-class Account(data_model.DataObject):
-    """
-    The object containing information about an account.
-    This object only includes \"configured\" information about the account, not
-    any runtime or usage information.
-
-    :param account_id: [required] Unique *account_id* for the account.
-    :type account_id: int
-
-    :param username: [required] User name for the account.
-    :type username: str
-
-    :param status: [required] Current status of the account.
-    :type status: str
-
-    :param volumes: [required] List of *volume_ids* for Volumes owned by this
-        account.
-    :type volumes: int[]
-
-    :param initiator_secret: (optional) CHAP secret to use for the initiator.
-    :type initiator_secret: CHAPSecret
-
-    :param target_secret: (optional) CHAP secret to use for the target (mutual
-        CHAP authentication).
-    :type target_secret: CHAPSecret
-
-    :param attributes: (optional) List of Name/Value pairs in JSON object
-        format.
-    :type attributes: dict
-    """
-
-    account_id = data_model.property(
-        "accountID", int,
-        array=False, optional=False,
-        documentation="\
-        Unique *account_id* for the account.\
-        "
-    )
-
-    username = data_model.property(
-        "username", str,
-        array=False, optional=False,
-        documentation="\
-        User name for the account.\
-        "
-    )
-
-    status = data_model.property(
-        "status", str,
-        array=False, optional=False,
-        documentation="\
-        Current status of the account.\
-        "
-    )
-
-    volumes = data_model.property(
-        "volumes", int,
-        array=True, optional=False,
-        documentation="\
-        List of *volume_ids* for Volumes owned by this account.\
-        "
-    )
-
-    initiator_secret = data_model.property(
-        "initiatorSecret", CHAPSecret,
+    gateway = data_model.property(
+        "gateway", str,
         array=False, optional=True,
         documentation="\
-        CHAP secret to use for the initiator.\
+\
         "
     )
 
-    target_secret = data_model.property(
-        "targetSecret", CHAPSecret,
+    namespace = data_model.property(
+        "namespace", bool,
         array=False, optional=True,
         documentation="\
-        CHAP secret to use for the target (mutual CHAP authentication).\
+\
         "
     )
 
     attributes = data_model.property(
         "attributes", dict,
-        array=False, optional=True,
+        array=False, optional=False,
         documentation="\
         List of Name/Value pairs in JSON object format.\
         "
@@ -4665,40 +4713,40 @@ class ClusterConfig(data_model.DataObject):
     Cluster Config object returns information the node uses to communicate with
     the cluster.
 
-    :param cipi: [required] Network interface used for cluster communication.
+    :param cipi: (optional) Network interface used for cluster communication.
     :type cipi: str
 
-    :param cluster: [required] Unique cluster name.
+    :param cluster: (optional) Unique cluster name.
     :type cluster: str
 
-    :param ensemble: [required] Nodes that are participating in the cluster.
+    :param ensemble: (optional) Nodes that are participating in the cluster.
     :type ensemble: str[]
 
-    :param mipi: [required] Network interface used for node management.
+    :param mipi: (optional) Network interface used for node management.
     :type mipi: str
 
-    :param name: [required] Unique cluster name.
+    :param name: (optional) Unique cluster name.
     :type name: str
-
-    :param role: [required] Identifies the role of the node
-    :type role: str
-
-    :param sipi: [required] Network interface used for storage.
-    :type sipi: str
-
-    :param state: [required]
-    :type state: str
 
     :param node_id: (optional)
     :type node_id: int
 
     :param pending_node_id: (optional)
     :type pending_node_id: int
+
+    :param role: (optional) Identifies the role of the node
+    :type role: str
+
+    :param sipi: (optional) Network interface used for storage.
+    :type sipi: str
+
+    :param state: (optional)
+    :type state: str
     """
 
     cipi = data_model.property(
         "cipi", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Network interface used for cluster communication.\
         "
@@ -4706,7 +4754,7 @@ class ClusterConfig(data_model.DataObject):
 
     cluster = data_model.property(
         "cluster", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Unique cluster name.\
         "
@@ -4714,7 +4762,7 @@ class ClusterConfig(data_model.DataObject):
 
     ensemble = data_model.property(
         "ensemble", str,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="\
         Nodes that are participating in the cluster.\
         "
@@ -4722,7 +4770,7 @@ class ClusterConfig(data_model.DataObject):
 
     mipi = data_model.property(
         "mipi", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Network interface used for node management.\
         "
@@ -4730,7 +4778,7 @@ class ClusterConfig(data_model.DataObject):
 
     name = data_model.property(
         "name", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Unique cluster name.\
         "
@@ -4750,7 +4798,7 @@ class ClusterConfig(data_model.DataObject):
 
     role = data_model.property(
         "role", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Identifies the role of the node\
         "
@@ -4758,7 +4806,7 @@ class ClusterConfig(data_model.DataObject):
 
     sipi = data_model.property(
         "sipi", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="\
         Network interface used for storage.\
         "
@@ -4766,7 +4814,7 @@ class ClusterConfig(data_model.DataObject):
 
     state = data_model.property(
         "state", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation=None
     )
 
@@ -5288,7 +5336,7 @@ class Snapshot(data_model.DataObject):
     )
 
     snapshot_uuid = data_model.property(
-        "SnapshotUUID", UUID,
+        "snapshotUUID", UUID,
         array=False, optional=False,
         documentation="\
         Universal Unique ID of an existing snapshot.\
