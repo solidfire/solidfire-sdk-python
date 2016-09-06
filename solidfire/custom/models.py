@@ -188,4 +188,3 @@ class DaysOfMonthFrequency(Frequency):
                       "Valid values are: 1 - 31"
     )
 
-
