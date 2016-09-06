@@ -178,17 +178,21 @@ class ScheduleAdaptor:
                 schedule.frequency.days = int(api.hours / 24)
                 schedule.frequency.hours = int(api.hours % 24)
                 schedule.frequency.minutes = api.minutes
+                schedule.frequency.weekdays = None
+                schedule.frequency.monthdays = None
             elif freq == "Days Of Month":
                 schedule.frequency = DaysOfMonthFrequency()
-                schedule.frequency.hours = api.hours,
-                schedule.frequency.minutes = api.minutes,
+                schedule.frequency.hours = api.hours
+                schedule.frequency.minutes = api.minutes
                 schedule.frequency.monthdays = api.monthdays
+                schedule.frequency.weekdays = None
             elif freq == "Days Of Week":
                 schedule.frequency = DaysOfWeekFrequency()
                 schedule.frequency.hours = api.hours
                 schedule.frequency.minutes = api.minutes
                 schedule.frequency.weekdays = ScheduleAdaptor \
                     .to_weekdays(api.weekdays)
+                schedule.frequency.monthdays = None
             else:
                 raise Exception("Cannot determine frequency")
         except:
@@ -275,10 +279,13 @@ class ScheduleAdaptor:
             api.minutes = frequency.minutes
             api.hours = frequency.days * 24 + frequency.hours
             api.attributes["frequency"] = "Time Interval"
+            api.weekdays = None
+            api.monthdays = None
         if type(frequency) is DaysOfMonthFrequency:
             api.minutes = frequency.minutes
             api.hours = frequency.hours
             api.monthdays = frequency.monthdays
+            api.weekdays = None
             api.attributes["frequency"] = "Days Of Month"
         if type(frequency) is DaysOfWeekFrequency:
             api.minutes = frequency.minutes
@@ -291,6 +298,7 @@ class ScheduleAdaptor:
                 api_weekdays.append(api_weekday)
 
             api.weekdays = api_weekdays
+            api.monthdays = None
             api.attributes["frequency"] = "Days Of Week"
         return api
 
