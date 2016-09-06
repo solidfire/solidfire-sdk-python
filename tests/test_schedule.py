@@ -3,7 +3,7 @@ from unittest.case import TestCase
 from hamcrest import \
     assert_that, equal_to, is_, greater_than
 
-from solidfire.adaptor import ScheduleAdaptor, ElementServiceAdaptor
+from solidfire.adaptor import ScheduleAdaptor
 from solidfire.custom.models import *
 from solidfire.models import *
 from solidfire.factory import ElementFactory
