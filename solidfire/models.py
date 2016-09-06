@@ -4369,19 +4369,12 @@ class Account(data_model.DataObject):
     :param username: [required] User name for the account.
     :type username: str
 
-    :param address_blocks: [required] Range of address blocks currently
-        assigned to the virtual network.
+    :param status: [required] Current status of the account.
+    :type status: str
 
-        **available:** Binary string in \"1\"s and \"0\"s. 1 equals the IP is
-        available and 0 equals the IP is not available. The string is read from
-        right to left with the digit to the far right being the first IP
-        address in the list of addressBlocks.
-
-        **size:** the size of this block of addresses.
-
-        **start:** first IP address in the block.
-
-    :type address_blocks: AddressBlock[]
+    :param volumes: [required] List of *volume_ids* for Volumes owned by this
+        account.
+    :type volumes: int[]
 
     :param initiator_secret: (optional) CHAP secret to use for the initiator.
     :type initiator_secret: CHAPSecret
@@ -4415,22 +4408,7 @@ class Account(data_model.DataObject):
         "status", str,
         array=False, optional=False,
         documentation="\
-        Range of address blocks currently assigned to the virtual network.\
-\
-\
-            **available:** Binary string in \"1\"s and \"0\"s. 1 equals the IP\
-        is available and 0 equals the IP is not available. The string is read\
-        from right to left with the digit to the far right being the first IP\
-        address in the list of addressBlocks.\
-\
-\
-\
-            **size:** the size of this block of addresses.\
-\
-\
-\
-            **start:** first IP address in the block.\
-\
+        Current status of the account.\
         "
     )
 
@@ -4985,20 +4963,20 @@ class PendingNode(data_model.DataObject):
         communication.
     :type cip: str
 
-    :param cipi: [required] The machine&#39;s name for the \"cip\" interface.
+    :param cipi: [required] The machine's name for the \"cip\" interface.
     :type cipi: str
 
     :param mip: [required] IP address used for cluster management (hosting the
         API and web site).
     :type mip: str
 
-    :param mipi: [required] The machine&#39;s name for the \"mip\" interface.
+    :param mipi: [required] The machine's name for the \"mip\" interface.
     :type mipi: str
 
     :param sip: [required] IP address used for iSCSI traffic.
     :type sip: str
 
-    :param sipi: [required] The machine&#39;s name for the \"sip\" interface.
+    :param sipi: [required] The machine's name for the \"sip\" interface.
     :type sipi: str
 
     :param software_version: [required] The version of SolidFire software this
@@ -5055,7 +5033,7 @@ class PendingNode(data_model.DataObject):
         "cipi", str,
         array=False, optional=False,
         documentation="\
-        The machine&#39;s name for the \"cip\" interface.\
+        The machine's name for the \"cip\" interface.\
         "
     )
 
@@ -5071,7 +5049,7 @@ class PendingNode(data_model.DataObject):
         "mipi", str,
         array=False, optional=False,
         documentation="\
-        The machine&#39;s name for the \"mip\" interface.\
+        The machine's name for the \"mip\" interface.\
         "
     )
 
@@ -5087,7 +5065,7 @@ class PendingNode(data_model.DataObject):
         "sipi", str,
         array=False, optional=False,
         documentation="\
-        The machine&#39;s name for the \"sip\" interface.\
+        The machine's name for the \"sip\" interface.\
         "
     )
 
@@ -5191,7 +5169,7 @@ class Snapshot(data_model.DataObject):
 
     :param group_snapshot_uuid: [required] The current \"members\" results
         contains information about each snapshot in the group. Each of these
-        members will have a \"uuid\" parameter for the snapshot&#39;s UUID.
+        members will have a \"uuid\" parameter for the snapshot's UUID.
     :type group_snapshot_uuid: UUID
 
     :param create_time: [required] The time this snapshot was taken.
@@ -5365,7 +5343,7 @@ class Snapshot(data_model.DataObject):
         The current \"members\" results contains information about each\
         snapshot in the group.\
         Each of these members will have a \"uuid\" parameter for the\
-        snapshot&#39;s UUID.\
+        snapshot's UUID.\
         "
     )
 
@@ -6063,20 +6041,20 @@ class Node(data_model.DataObject):
         communication.
     :type cip: str
 
-    :param cipi: [required] The machine&#39;s name for the \"cip\" interface.
+    :param cipi: [required] The machine's name for the \"cip\" interface.
     :type cipi: str
 
     :param mip: [required] IP address used for cluster management (hosting the
         API and web site).
     :type mip: str
 
-    :param mipi: [required] The machine&#39;s name for the \"mip\" interface.
+    :param mipi: [required] The machine's name for the \"mip\" interface.
     :type mipi: str
 
     :param sip: [required] IP address used for iSCSI traffic.
     :type sip: str
 
-    :param sipi: [required] The machine&#39;s name for the \"sip\" interface.
+    :param sipi: [required] The machine's name for the \"sip\" interface.
     :type sipi: str
 
     :param uuid: [required] UUID of node.
@@ -6149,7 +6127,7 @@ class Node(data_model.DataObject):
         "cipi", str,
         array=False, optional=False,
         documentation="\
-        The machine&#39;s name for the \"cip\" interface.\
+        The machine's name for the \"cip\" interface.\
         "
     )
 
@@ -6165,7 +6143,7 @@ class Node(data_model.DataObject):
         "mipi", str,
         array=False, optional=False,
         documentation="\
-        The machine&#39;s name for the \"mip\" interface.\
+        The machine's name for the \"mip\" interface.\
         "
     )
 
@@ -6181,7 +6159,7 @@ class Node(data_model.DataObject):
         "sipi", str,
         array=False, optional=False,
         documentation="\
-        The machine&#39;s name for the \"sip\" interface.\
+        The machine's name for the \"sip\" interface.\
         "
     )
 
