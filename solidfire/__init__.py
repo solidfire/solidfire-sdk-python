@@ -3806,9 +3806,7 @@ class Element(ServiceBase):
 
         :param address_blocks: [required] Unique Range of IP addresses to
             include in the virtual network. Attributes for this parameter are:
-
             **start:** start of the IP address range. (String)
-
             **size:** numbre of IP addresses to include in the block. (Integer)
 
         :type address_blocks: AddressBlock[]
