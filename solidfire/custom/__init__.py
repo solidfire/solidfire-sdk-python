@@ -11,6 +11,7 @@
 Module contains user defined objects directly implemented to map to the Element
 API.
 """
+
 from __future__ import unicode_literals
 from __future__ import absolute_import
 from solidfire.common import model as data_model

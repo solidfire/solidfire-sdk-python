@@ -15,7 +15,10 @@ from solidfire.custom.models import Weekday, DaysOfMonthFrequency, \
 from solidfire.models import Schedule, Frequency, ScheduleInfo
 from solidfire.results import GetScheduleResult, ListSchedulesResult, \
     CreateScheduleResult, ModifyScheduleResult
+import logging
 
+
+LOG = logging.getLogger('solidfire.Element')
 
 class ScheduleAdaptor:
     """
@@ -79,9 +82,23 @@ class ScheduleAdaptor:
         :return:
         """
 
-        if hasattr(params['schedule'].schedule_id, '_member_type'):
+        if hasattr(params['schedule'].schedule_id, '_member_type') or \
+                params['schedule'].schedule_id is None:
             raise AttributeError("ScheduleID is missing. Cannot modify a "
                                  "schedule without a ScheduleID")
+
+        if hasattr(params['schedule'].frequency, '_member_type') or \
+                params['schedule'].frequency is None:
+            raise AttributeError("Frequency is not present. Make sure the "
+                                 "schedule object has a value in the "
+                                 "frequency property before attempting to "
+                                 "modify a Schedule.")
+
+        if hasattr(params['schedule'].schedule_info, '_member_type'):
+            raise AttributeError("Schedule_info is not present. Make sure the "
+                                 "schedule object has a value in the "
+                                 "schedule_info property before attempting to "
+                                 "modify a Schedule.")
 
         api_schedule = ScheduleAdaptor.to_api_schedule(params['schedule'])
 
@@ -106,6 +123,19 @@ class ScheduleAdaptor:
                                  "not specify ScheduleID when creating a "
                                  "Schedule. One will be assigned upon "
                                  "creation.")
+
+        if hasattr(params['schedule'].frequency, '_member_type') or \
+                params['schedule'].frequency is None:
+            raise AttributeError("Frequency is not present. Make sure the "
+                                 "schedule object has a value in the "
+                                 "frequency property before attempting to "
+                                 "create a Schedule.")
+
+        if hasattr(params['schedule'].schedule_info, '_member_type'):
+            raise AttributeError("Schedule_info is not present. Make sure the "
+                                 "schedule object has a value in the "
+                                 "schedule_info property before attempting to "
+                                 "modify a Schedule.")
 
         api_schedule = ScheduleAdaptor.to_api_schedule(params['schedule'])
 
@@ -140,24 +170,35 @@ class ScheduleAdaptor:
         schedule.schedule_info = ScheduleAdaptor.to_schedule_info(
             api.schedule_info)
 
-        freq = api.attributes["frequency"]
+        try:
+            freq = api.attributes["frequency"]
 
-        if freq == "Time Interval":
-            schedule.frequency = TimeIntervalFrequency()
-            schedule.frequency.days = int(api.hours / 24)
-            schedule.frequency.hours = int(api.hours % 24)
-            schedule.frequency.minutes = api.minutes
-        elif freq == "Days Of Month":
-            schedule.Frequency = DaysOfMonthFrequency()
-            schedule.frequency.hours = api.hours,
-            schedule.frequency.minutes = api.minutes,
-            schedule.frequency.monthdays = api.monthdays
-        elif freq == "Days Of Week":
-            schedule.Frequency = DaysOfWeekFrequency()
-            schedule.frequency.hours = api.hours
-            schedule.frequency.minutes = api.minutes
-            schedule.frequency.weekdays = ScheduleAdaptor \
-                .to_weekdays(api.weekdays)
+            if freq == "Time Interval":
+                schedule.frequency = TimeIntervalFrequency()
+                schedule.frequency.days = int(api.hours / 24)
+                schedule.frequency.hours = int(api.hours % 24)
+                schedule.frequency.minutes = api.minutes
+                schedule.frequency.weekdays = None
+                schedule.frequency.monthdays = None
+            elif freq == "Days Of Month":
+                schedule.frequency = DaysOfMonthFrequency()
+                schedule.frequency.hours = api.hours
+                schedule.frequency.minutes = api.minutes
+                schedule.frequency.monthdays = api.monthdays
+                schedule.frequency.weekdays = None
+            elif freq == "Days Of Week":
+                schedule.frequency = DaysOfWeekFrequency()
+                schedule.frequency.hours = api.hours
+                schedule.frequency.minutes = api.minutes
+                schedule.frequency.weekdays = ScheduleAdaptor \
+                    .to_weekdays(api.weekdays)
+                schedule.frequency.monthdays = None
+            else:
+                raise Exception("Cannot determine frequency")
+        except:
+            LOG.error("Cannot deserialize Schedule {0}. The frequency "
+                      "property has an unknown value.".format(
+                schedule.name))
 
         return schedule
 
@@ -226,13 +267,25 @@ class ScheduleAdaptor:
         api.attributes = {}
 
         if type(frequency) is TimeIntervalFrequency:
+            if hasattr(frequency.days, '_member_type') or frequency.days is \
+                    None:
+                frequency.days = 0
+            if hasattr(frequency.hours, '_member_type') or frequency.hours is \
+                    None:
+                frequency.hours = 0
+            if hasattr(frequency.minutes, '_member_type') or \
+                            frequency.minutes is None:
+                frequency.minutes = 0
             api.minutes = frequency.minutes
             api.hours = frequency.days * 24 + frequency.hours
             api.attributes["frequency"] = "Time Interval"
+            api.weekdays = None
+            api.monthdays = None
         if type(frequency) is DaysOfMonthFrequency:
             api.minutes = frequency.minutes
             api.hours = frequency.hours
             api.monthdays = frequency.monthdays
+            api.weekdays = None
             api.attributes["frequency"] = "Days Of Month"
         if type(frequency) is DaysOfWeekFrequency:
             api.minutes = frequency.minutes
@@ -243,8 +296,8 @@ class ScheduleAdaptor:
                 api_weekday.day = weekday[1]
                 api_weekday.offset = 1
                 api_weekdays.append(api_weekday)
-
             api.weekdays = api_weekdays
+            api.monthdays = None
             api.attributes["frequency"] = "Days Of Week"
         return api
 
@@ -262,10 +315,13 @@ class ScheduleAdaptor:
         api.retention = info.retention
 
         # noinspection PyTypeChecker
-        if info.volume_ids is None or len(info.volume_ids) == 0:
+        if hasattr(info.volume_ids, '_member_type') or info.volume_ids \
+                is None or len(info.volume_ids) == 0:
             raise AttributeError('ScheduleInfo.VolumeIDs are missing. '
                                  'Cannot create or modify a schedule without at '
                                  'least one VolumeID.')
+
+
         else:
             api.volumes = info.volume_ids
 
