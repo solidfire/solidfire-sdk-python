@@ -29,12 +29,9 @@ class ScheduleAdaptor:
     @staticmethod
     def get_schedule(element, params, since, deprecated):
         """
-
-        :param element:
-        :param params:
-        :param since:
-        :param deprecated:
-        :return:
+        Calls to this static method should ONLY originate from the
+        get_schedule method in the Element class. DO NOT CALL THIS directly.
+        Documentation here is intentionally brief.
         """
         api_result = element.send_request("GetSchedule",
                                           ApiGetScheduleResult, params,
@@ -49,12 +46,9 @@ class ScheduleAdaptor:
     @staticmethod
     def list_schedules(element, params, since, deprecated):
         """
-
-        :param element:
-        :param params:
-        :param since:
-        :param deprecated:
-        :return:
+        Calls to this static method should ONLY originate from the
+        list_schedules method in the Element class. DO NOT CALL THIS directly.
+        Documentation here is intentionally brief.
         """
 
         api_result = element.send_request("ListSchedules",
@@ -74,12 +68,9 @@ class ScheduleAdaptor:
     @staticmethod
     def modify_schedule(element, params, since, deprecated):
         """
-
-        :param element:
-        :param params:
-        :param since:
-        :param deprecated:
-        :return:
+        Calls to this static method should ONLY originate from the
+        modify_schedules method in the Element class. DO NOT CALL THIS
+        directly. Documentation here is intentionally brief.
         """
 
         if hasattr(params['schedule'].schedule_id, '_member_type') or \
@@ -111,12 +102,9 @@ class ScheduleAdaptor:
     @staticmethod
     def create_schedule(element, params, since, deprecated):
         """
-
-        :param element:
-        :param params:
-        :param since:
-        :param deprecated:
-        :return:
+        Calls to this static method should ONLY originate from the
+        create_schedules method in the Element class. DO NOT CALL THIS
+        directly. Documentation here is intentionally brief.
         """
         if not hasattr(params['schedule'].schedule_id, '_member_type'):
             raise AttributeError("ScheduleID should not be present. Do "
@@ -149,10 +137,10 @@ class ScheduleAdaptor:
     @staticmethod
     def to_schedule(api):
         """
-
-        :param api:
+        Converts an ApiSchedule object into a Schedule object
+        :param api: the ApiSchedule object to be converted
         :type api: solidfire.apiactual.ApiSchedule
-        :return:
+        :return: solidfire.models.Schedule
         """
         schedule = Schedule()
 
@@ -205,10 +193,10 @@ class ScheduleAdaptor:
     @staticmethod
     def to_schedule_info(api):
         """
-
-        :param api:
+        Convert an ApiScheduleInfo object into a ScheduleInfo object
+        :param api: the ApiScheduleInfo object
         :type api: solidfire.apiactual.ApiScheduleInfo
-        :return:
+        :return: solidfire.models.ScheduleInfo
         """
         info = ScheduleInfo()
         info.enable_remote_replication = api.enable_remote_replication
@@ -229,10 +217,10 @@ class ScheduleAdaptor:
     @staticmethod
     def to_weekdays(api):
         """
-
-        :param api:
+        Converts an ApiWeekday object array into a Weekday object array
+        :param api: array of ApiWeekday objects
         :type api: solidfire.apiactual.ApiWeekday[]
-        :return:
+        :return: solidfire.custom.models.Weekday[]
         """
         weekdays = []
         for api_day in api:
@@ -242,10 +230,10 @@ class ScheduleAdaptor:
     @staticmethod
     def to_api_schedule(schedule):
         """
-
-        :param schedule:
+        Converts a Schedule object into an ApiSchedule object
+        :param schedule: the Schedule object
         :type schedule: Schedule
-        :return:
+        :return: solidfire.apiactual.ApiSchedule
         """
         api = ApiSchedule()
         api.has_error = schedule.has_error
@@ -304,10 +292,10 @@ class ScheduleAdaptor:
     @staticmethod
     def to_api_schedule_info(info):
         """
-
-        :param info:
+        Converts a ScheduleInfo object into an ApiScheduleInfo object
+        :param info: the ScheduleInfo object
         :type info: ScheduleInfo
-        :return:
+        :return: solidfire.apiactual.ApiScheduleInfo
         """
         api = ApiScheduleInfo()
         api.enable_remote_replication = info.enable_remote_replication
