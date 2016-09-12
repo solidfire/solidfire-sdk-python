@@ -220,3 +220,4 @@ Notice the *paused* field changes from ``False`` to ``True``
 
 .. |sf-python-logo| image:: https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/release1.1/img/python.png
     :height: 50px
+    :width: 50px
