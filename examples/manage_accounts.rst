@@ -138,6 +138,4 @@ call the static ``auto_generate()`` method on the **CHAPSecret** class.
     add_account_result = sfe.modify_account(account_id=1,
                                             target_secret=CHAPSecret.auto_generate())
 
-.. |sf-python-logo| image:: https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/release1.1/img/python.png
-    :height: 50px
-    :width: 50px
+.. |sf-python-logo| image:: https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/release1.1/img/python-50.png
