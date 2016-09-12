@@ -129,7 +129,7 @@ Connection timeout (useful for failing fast when a host becomes unreachable)::
     >>> sf = Element('<MVIP>', '<YOUR USERNAME>', '<YOUR PASSWORD>', '<API VERSION>', verify_ssl=False)
     >>> sf.timeout(600)
 
-Read timeout (useful for extending time for a service call to return)::
+Read timeout (useful for extending time for a service call to return):
 
     >>> from solidfire import Element
     >>> sf = Element('<MVIP>', '<YOUR USERNAME>', '<YOUR PASSWORD>', '<API VERSION>', verify_ssl=False)

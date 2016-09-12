@@ -1,5 +1,5 @@
-SolidFire Python SDK Examples
-==============================
+|sf-python-logo| SolidFire Python SDK Examples
+==============================================
 
 Snapshot Scheduling
 -------------------
@@ -217,3 +217,6 @@ This is the output:
     Schedule(frequency=TimeIntervalFrequency(days=0, hours=12, minutes=0), has_error=False, last_run_status='Success', last_run_time_start=None, name='SnapshotsEvery12Hours', paused=True, recurring=False, run_next_interval=False, schedule_id=56, schedule_info=ScheduleInfo(enable_remote_replication=None, retention='72:00:00', snapshot_name='12th hour snapshot', volume_ids='[1, 3, 5]'), starting_date='2016-12-01T00:00:00Z', to_be_deleted=False)
 
 Notice the *paused* field changes from ``False`` to ``True``
+
+.. |sf-python-logo| image:: https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/release1.1/img/python.png
+    :height: 50px
