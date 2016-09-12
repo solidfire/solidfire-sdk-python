@@ -203,7 +203,7 @@ it back. Here is an example:
     sfe.modify_schedule(sched)
 
     # Send another get_schedule request and gather the result
-    get_modified_schedule_result = sfe.get_schedule(schedule_id=56)
+    get_modified_schedule_result = sfe.get_schedule(schedule_id=new_schedule_id)
 
     # display the newly modified schedule
     print(get_modified_schedule_result.schedule)
