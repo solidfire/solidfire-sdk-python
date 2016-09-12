@@ -1,5 +1,5 @@
-SolidFire Python SDK
-=====================
+|sf-python-logo| SolidFire Python SDK
+=====================================
 
 Python SDK library for interacting with SolidFire Element API
 
@@ -62,15 +62,14 @@ To install globally with ``pip`` (requires pip 1.3 or greater)
 PycURL
 ~~~~~~
 
-**Install
-`PycURL <http://pycurl.io/docs/latest/install.html#install>`__**
+Instructions for installing PycURL.
 
 ::
 
     pip install pycurl
 
 The Solidfire Python SDK depends on the PycURL library which depends on
-an installed SSL library. If the installation fails due to PycURL, this
+an installed SSL library. If the PIP installation fails due to PycURL, this
 is most likely due to a missing SSL dependency. OpenSSL is the
 recomended SSL backend for all linux flavors.
 
@@ -154,7 +153,7 @@ SDK and Element OS. Optionally, you can choose to set the version
 manually and whether or not to verify SSL. Read more about it in the
 `ElementFactory <link-to-pypi-doc-for-elementfactory>`__ documentation.
 
-.. code:: python
+.. code-block:: 
 
     from solidfire.factory import ElementFactory
 
@@ -165,22 +164,23 @@ Step 2 - Call the API method and retrieve the result
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 All service methods in SolidFireElement call API endpoints and they all
-return result objects. The naming convention is [method\_name]\_result.
-For example, ``list_accounts`` returns a ``list_accounts_result`` object
-which has a property called ``accounts`` that can be iterated.
+return result objects. The naming convention is :code:`[method_name]_result`.
+For example, :code:`list_accounts` returns a :code:`list_accounts_result` object
+which has a property called :code:`accounts` that can be iterated.
 
-*This example sends a request to create an account then pulls the new
-account id from the add\_account\_result object.*
+This example sends a request to list accounts then pulls the first account
+from the :code:`add_account_result` object.
 
-.. code:: python
+.. code-block::  
 
     # Send the request and wait for the result then pull the AccountID
-    new_account_id = sfe.add_account(username="example-account").account_id;   
+    list_accounts_result = sfe.list_accounts()
+    account = list_accounts_result.accounts[0];   
 
 More examples using the Python SDK
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code:: python
+.. code-block:: 
 
     from solidfire.factory import ElementFactory
 
@@ -216,14 +216,14 @@ More examples using the Python SDK
 More Examples
 -------------
 
-More specific examples are available `here <examples>`__
+More specific examples are available `here <https://github.com/solidfire/solidfire-sdk-python/tree/gh-pages/examples>`__
 
 Logging
 -------
 
-To configure logging responses, execute the following::
+To configure logging responses, execute the following:
 
-.. code:: python
+.. code-block:: 
 
     import logging
     from solidfire import common
@@ -236,17 +236,17 @@ Timeouts
 --------
 
 Connection timeout (useful for failing fast when a host becomes
-unreachable)::
+unreachable):
 
-.. code:: python
+.. code-block:: 
 
     from solidfire.factory import ElementFactory
     sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
     sfe.timeout(600)
 
-Read timeout (useful for extending time for a service call to return)::
+Read timeout (useful for extending time for a service call to return):
 
-.. code:: python
+.. code-block::  
 
     from solidfire.factory import ElementFactory
     sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
@@ -269,6 +269,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
+.. |sf-python-logo| image:: https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/release1.1/img/python.png
+    :height: 50px
 .. |pypy| image:: https://img.shields.io/pypi/v/solidfire-sdk-python.svg
    :target: https://badge.fury.io/py/solidfire-sdk-python
 .. |python| image:: https://img.shields.io/pypi/pyversions/solidfire-sdk-python.svg
