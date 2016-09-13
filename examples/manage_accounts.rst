@@ -1,5 +1,5 @@
-|sf-python-logo| SolidFire Python SDK Examples
-==============================================
+Account Management Examples
+===========================
 
 Manage Accounts
 ---------------
@@ -25,7 +25,7 @@ List all Accounts
 
 To list all accounts on a cluster:
 
-.. code:: python
+.. code-block:: python
 
     from solidfire.factory import ElementFactory
 
@@ -44,7 +44,7 @@ Get one Account
 
 To get a single account by ID:
 
-.. code:: python
+.. code-block:: python
 
     from solidfire.factory import ElementFactory
 
@@ -59,7 +59,7 @@ To get a single account by ID:
 
 To get a single account by username:
 
-.. code:: python
+.. code-block:: python
 
     from solidfire.factory import ElementFactory
 
@@ -82,7 +82,7 @@ will be auto-generated.
 
 First, we create an account with only a username:
 
-.. code:: python
+.. code-block:: python
 
     from solidfire.factory import ElementFactory
 
@@ -101,7 +101,7 @@ set the string value for the ``intitiator_secret``. The
 ``target_secret`` will be auto-generated during the process on the
 cluster:
 
-.. code:: python
+.. code-block:: python
 
     from solidfire.factory import ElementFactory
 
@@ -127,7 +127,7 @@ In this example, we will instruct the API to autogenerate a new
 ``target_secret`` value for an account. In order to do so we need to
 call the static ``auto_generate()`` method on the **CHAPSecret** class.
 
-.. code:: python
+.. code-block:: python
 
     from solidfire.factory import ElementFactory
 
@@ -138,4 +138,3 @@ call the static ``auto_generate()`` method on the **CHAPSecret** class.
     add_account_result = sfe.modify_account(account_id=1,
                                             target_secret=CHAPSecret.auto_generate())
 
-.. |sf-python-logo| image:: https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/release1.1/img/python-50.png

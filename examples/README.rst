@@ -1,9 +1,8 @@
-|sf-python-logo| SolidFire Python SDK
-=====================================
+SolidFire Python SDK Examples
+=============================
 
 More examples using the Python SDK library.
 
 -  `Manage Accounts <#list-all-accounts>`__
--  `Schedule Snapshots <#list-all-accounts>`__
+-  `Schedule Snapshots <#list-all-schedules>`__
 
-.. |sf-python-logo| image:: https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/release1.1/img/python-50.png
