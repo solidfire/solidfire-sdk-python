@@ -54,7 +54,7 @@ SDK.
 +------------------------------------------------------------------+-----------+
 | Component                                                        | Version   |
 +==================================================================+===========+
-| `PycURL <http://pycurl.io/docs/latest/install.html#install>`__   | 7.21.5+   |
+| `PycURL <http://pycurl.io/docs/latest/install.html#install>`__   | 7.34.0+   |
 +------------------------------------------------------------------+-----------+
 
 To install globally with ``pip`` (requires pip 1.3 or greater)
