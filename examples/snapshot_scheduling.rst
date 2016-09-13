@@ -1,5 +1,5 @@
-|sf-python-logo| SolidFire Python SDK Examples
-==============================================
+Snapshot Scheduling Examples
+============================
 
 Snapshot Scheduling
 -------------------
@@ -26,7 +26,7 @@ List all Schedules
 
 To list all the schedules on a cluster:
 
-.. code:: python
+.. code-block:: python
 
     from solidfire.factory import ElementFactory
 
@@ -45,7 +45,7 @@ Get one Schedule
 
 To get a single schedule:
 
-.. code:: python
+.. code-block:: python
 
     from solidfire.factory import ElementFactory
 
@@ -95,7 +95,7 @@ snapshot will be taken on the specified weekdays at the time specified
 in the hours and minutes properties. Control the schedule by setting
 weekdays, hours, and minutes on the DaysOfWeekFrequency object.
 
-.. code:: python
+.. code-block:: python
 
     from solidfire.custom.models import DaysOfWeekFrequency, Weekday
     from solidfire.models import Schedule
@@ -117,7 +117,7 @@ snapshot will be taken on the specified month days at the time specified
 in the hours and minutes properties. Control the schedule by setting
 monthdays, hours, and minutes on the DaysOfMonthFrequency object.
 
-.. code:: python
+.. code-block:: python
 
     from solidfire.custom.models import DaysOfMonthFrequency
     from solidfire.models import Schedule
@@ -141,7 +141,7 @@ should be retained.
 Continuing on with the `Time Interval <#time-interval-schedule>`__
 example from above:
 
-.. code:: python
+.. code-block:: python
 
     from solidfire.custom.models import TimeIntervalFrequency
     from solidfire.models import Schedule, ScheduleInfo
@@ -180,7 +180,7 @@ its schedule\_id set. You can create one manually but it is preferred to
 retrieve it from the cluster, modify the properties needed and then send
 it back. Here is an example:
 
-.. code:: python
+.. code-block:: python
 
     from solidfire.factory import ElementFactory
 
@@ -217,5 +217,3 @@ This is the output:
     Schedule(frequency=TimeIntervalFrequency(days=0, hours=12, minutes=0), has_error=False, last_run_status='Success', last_run_time_start=None, name='SnapshotsEvery12Hours', paused=True, recurring=False, run_next_interval=False, schedule_id=56, schedule_info=ScheduleInfo(enable_remote_replication=None, retention='72:00:00', snapshot_name='12th hour snapshot', volume_ids='[1, 3, 5]'), starting_date='2016-12-01T00:00:00Z', to_be_deleted=False)
 
 Notice the *paused* field changes from ``False`` to ``True``
-
-.. |sf-python-logo| image:: https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/release1.1/img/python-50.png

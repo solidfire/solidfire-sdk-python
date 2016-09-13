@@ -153,7 +153,7 @@ SDK and Element OS. Optionally, you can choose to set the version
 manually and whether or not to verify SSL. Read more about it in the
 `ElementFactory <link-to-pypi-doc-for-elementfactory>`__ documentation.
 
-.. code-block:: 
+.. code-block:: python
 
     from solidfire.factory import ElementFactory
 
@@ -171,7 +171,7 @@ which has a property called :code:`accounts` that can be iterated.
 This example sends a request to list accounts then pulls the first account
 from the :code:`add_account_result` object.
 
-.. code-block::  
+.. code-block:: python
 
     # Send the request and wait for the result then pull the AccountID
     list_accounts_result = sfe.list_accounts()
@@ -180,7 +180,7 @@ from the :code:`add_account_result` object.
 More examples using the Python SDK
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: 
+.. code-block:: python
 
     from solidfire.factory import ElementFactory
 
@@ -223,7 +223,7 @@ Logging
 
 To configure logging responses, execute the following:
 
-.. code-block:: 
+.. code-block:: python
 
     import logging
     from solidfire import common
@@ -238,7 +238,7 @@ Timeouts
 Connection timeout (useful for failing fast when a host becomes
 unreachable):
 
-.. code-block:: 
+.. code-block:: python
 
     from solidfire.factory import ElementFactory
     sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
@@ -246,7 +246,7 @@ unreachable):
 
 Read timeout (useful for extending time for a service call to return):
 
-.. code-block::  
+.. code-block:: python
 
     from solidfire.factory import ElementFactory
     sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
