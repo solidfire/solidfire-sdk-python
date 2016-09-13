@@ -63,7 +63,8 @@ class CHAPSecret(data_model.DataObject):
 
 class Weekday:
     """
-    A better representation of the Weekday.
+    A better representation of the Weekday. Used in the DaysOfWeekFrequency
+    class.
     """
 
     Sunday = ('Sunday', 0)
