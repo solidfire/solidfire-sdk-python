@@ -27,7 +27,6 @@ class ElementFactory:
     @staticmethod
     def create(target, username, password, version=None,
                verify_ssl=False, port=443):
-
         """
         Factory method to create a Element object which is used to call
          the SolidFire API. This method runs multiple checks and logic

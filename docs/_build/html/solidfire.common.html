@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>solidfire.common package &mdash; SolidFire Python SDK v1.1.0.49</title>
+  <title>solidfire.common package &mdash; SolidFire Python SDK v1.1.0.84</title>
   
 
   
@@ -34,7 +34,7 @@
   
 
   
-    <link rel="top" title="SolidFire Python SDK v1.1.0.49" href="index.html"/>
+    <link rel="top" title="SolidFire Python SDK v1.1.0.84" href="index.html"/>
         <link rel="up" title="solidfire package" href="solidfire.html"/>
         <link rel="next" title="solidfire.custom package" href="solidfire.custom.html"/>
         <link rel="prev" title="solidfire.apiactual package" href="solidfire.apiactual.html"/> 
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                1.1.0.49
+                1.1.0.84
               </div>
             
           
@@ -94,7 +94,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="solidfire.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="solidfire.adaptor.html">solidfire.adaptor package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="solidfire.apiactual.html">solidfire.apiactual package</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="">solidfire.common package</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">solidfire.common package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-solidfire.common.model">solidfire.common.model module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-solidfire.common">Module contents</a></li>
@@ -195,7 +195,18 @@ missing values will None or empty.</li>
 <dl class="method">
 <dt id="solidfire.common.model.DataObject.get_properties">
 <code class="descname">get_properties</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common/model.html#DataObject.get_properties"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.DataObject.get_properties" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Exposes the type properties for a Data Object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the dictionary of property names and thier type information.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="solidfire.common.model.DataObject.to_json">
@@ -380,7 +391,7 @@ original version is returned.</p>
 
 <dl class="function">
 <dt id="solidfire.common.model.property">
-<code class="descclassname">solidfire.common.model.</code><code class="descname">property</code><span class="sig-paren">(</span><em>member_name: object</em>, <em>member_type: object</em>, <em>array: object=False</em>, <em>optional: object=False</em>, <em>documentation: object=None</em><span class="sig-paren">)</span> &rarr; object<a class="reference internal" href="_modules/solidfire/common/model.html#property"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.property" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">solidfire.common.model.</code><code class="descname">property</code><span class="sig-paren">(</span><em>member_name: str</em>, <em>member_type: type</em>, <em>array: bool = False</em>, <em>optional: bool = False</em>, <em>documentation: str = None</em><span class="sig-paren">)</span> &rarr; type<a class="reference internal" href="_modules/solidfire/common/model.html#property"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.model.property" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructs the type for a DataObject property.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -388,7 +399,7 @@ original version is returned.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>member_name</strong> (<em>str</em>) &#8211; the name of the property.</li>
-<li><strong>member_type</strong> (<a class="reference internal" href="solidfire.html#solidfire.models.DriveInfo.type" title="solidfire.models.DriveInfo.type"><em>type</em></a>) &#8211; the type of the property.</li>
+<li><strong>member_type</strong> (<a class="reference internal" href="solidfire.html#solidfire.models.ClusterFaultInfo.type" title="solidfire.models.ClusterFaultInfo.type"><em>type</em></a>) &#8211; the type of the property.</li>
 <li><strong>array</strong> (<em>bool</em>) &#8211; is the property an array.</li>
 <li><strong>optional</strong> (<em>bool</em>) &#8211; is the property optional.</li>
 <li><strong>documentation</strong> (<em>str or NoneType</em>) &#8211; documentation for the property.</li>
@@ -800,21 +811,10 @@ when using an IP instead of a hostname</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>method_name</strong> (<em>str</em>) &#8211; the name of the API method to call</li>
-<li><strong>result_type</strong> &#8211; the type of the result object returned from the API</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<p>method called.
-:type result_type: DataObject</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>method_name</strong> (<em>str</em>) &#8211; the name of the API method to call</li>
+<li><strong>result_type</strong> (<a class="reference internal" href="#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><em>DataObject</em></a>) &#8211; the type of the result object returned from the API
+method called.</li>
 <li><strong>params</strong> (<em>dict</em>) &#8211; the parameters supplied to the API call.</li>
 <li><strong>since</strong> (<em>str or float</em>) &#8211; the first version this service was available</li>
 <li><strong>deprecated</strong> (<em>str or float</em>) &#8211; the final version this service was available</li>
@@ -853,8 +853,8 @@ when using an IP instead of a hostname</li>
 <dt id="solidfire.common.setLogLevel">
 <code class="descclassname">solidfire.common.</code><code class="descname">setLogLevel</code><span class="sig-paren">(</span><em>level</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#setLogLevel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.setLogLevel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the logging level of Element logger and all handlers.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">logging</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">solidfire</span> <span class="kn">import</span> <span class="n">common</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">logging</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">solidfire</span> <span class="k">import</span> <span class="n">common</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">common</span><span class="o">.</span><span class="n">setLogLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -912,7 +912,7 @@ when using an IP instead of a hostname</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.1.0.49',
+            VERSION:'1.1.0.84',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
