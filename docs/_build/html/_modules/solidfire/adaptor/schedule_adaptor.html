@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>solidfire.adaptor.schedule_adaptor &mdash; SolidFire Python SDK v1.1.0.87</title>
+  <title>solidfire.adaptor.schedule_adaptor &mdash; SolidFire Python SDK v1.1.0.88</title>
   
 
   
@@ -34,7 +34,7 @@
   
 
   
-    <link rel="top" title="SolidFire Python SDK v1.1.0.87" href="../../../index.html"/>
+    <link rel="top" title="SolidFire Python SDK v1.1.0.88" href="../../../index.html"/>
         <link rel="up" title="solidfire.adaptor" href="../adaptor.html"/> 
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                1.1.0.87
+                1.1.0.88
               </div>
             
           
@@ -281,8 +281,10 @@
 <div class="viewcode-block" id="ScheduleAdaptor.to_schedule"><a class="viewcode-back" href="../../../solidfire.adaptor.html#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_schedule">[docs]</a>    <span class="k">def</span> <span class="nf">to_schedule</span><span class="p">(</span><span class="n">api</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Converts an ApiSchedule object into a Schedule object</span>
+
 <span class="sd">        :param api: the ApiSchedule object to be converted</span>
 <span class="sd">        :type api: solidfire.apiactual.ApiSchedule</span>
+
 <span class="sd">        :return: solidfire.models.Schedule</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">schedule</span> <span class="o">=</span> <span class="n">Schedule</span><span class="p">()</span>
@@ -337,8 +339,10 @@
 <div class="viewcode-block" id="ScheduleAdaptor.to_schedule_info"><a class="viewcode-back" href="../../../solidfire.adaptor.html#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_schedule_info">[docs]</a>    <span class="k">def</span> <span class="nf">to_schedule_info</span><span class="p">(</span><span class="n">api</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Convert an ApiScheduleInfo object into a ScheduleInfo object</span>
+
 <span class="sd">        :param api: the ApiScheduleInfo object</span>
 <span class="sd">        :type api: solidfire.apiactual.ApiScheduleInfo</span>
+
 <span class="sd">        :return: solidfire.models.ScheduleInfo</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">info</span> <span class="o">=</span> <span class="n">ScheduleInfo</span><span class="p">()</span>
@@ -361,8 +365,10 @@
 <div class="viewcode-block" id="ScheduleAdaptor.to_weekdays"><a class="viewcode-back" href="../../../solidfire.adaptor.html#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_weekdays">[docs]</a>    <span class="k">def</span> <span class="nf">to_weekdays</span><span class="p">(</span><span class="n">api</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Converts an ApiWeekday object array into a Weekday object array</span>
+
 <span class="sd">        :param api: array of ApiWeekday objects</span>
 <span class="sd">        :type api: solidfire.apiactual.ApiWeekday[]</span>
+
 <span class="sd">        :return: solidfire.custom.models.Weekday[]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">weekdays</span> <span class="o">=</span> <span class="p">[]</span>
@@ -376,6 +382,7 @@
 <span class="sd">        Converts a Schedule object into an ApiSchedule object</span>
 <span class="sd">        :param schedule: the Schedule object</span>
 <span class="sd">        :type schedule: Schedule</span>
+
 <span class="sd">        :return: solidfire.apiactual.ApiSchedule</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">api</span> <span class="o">=</span> <span class="n">ApiSchedule</span><span class="p">()</span>
@@ -436,8 +443,10 @@
 <div class="viewcode-block" id="ScheduleAdaptor.to_api_schedule_info"><a class="viewcode-back" href="../../../solidfire.adaptor.html#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_api_schedule_info">[docs]</a>    <span class="k">def</span> <span class="nf">to_api_schedule_info</span><span class="p">(</span><span class="n">info</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Converts a ScheduleInfo object into an ApiScheduleInfo object</span>
+<span class="sd">        </span>
 <span class="sd">        :param info: the ScheduleInfo object</span>
 <span class="sd">        :type info: ScheduleInfo</span>
+
 <span class="sd">        :return: solidfire.apiactual.ApiScheduleInfo</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">api</span> <span class="o">=</span> <span class="n">ApiScheduleInfo</span><span class="p">()</span>
@@ -490,7 +499,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'1.1.0.87',
+            VERSION:'1.1.0.88',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

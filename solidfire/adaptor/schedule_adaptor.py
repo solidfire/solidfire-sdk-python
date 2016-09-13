@@ -138,8 +138,10 @@ class ScheduleAdaptor:
     def to_schedule(api):
         """
         Converts an ApiSchedule object into a Schedule object
+
         :param api: the ApiSchedule object to be converted
         :type api: solidfire.apiactual.ApiSchedule
+
         :return: solidfire.models.Schedule
         """
         schedule = Schedule()
@@ -194,8 +196,10 @@ class ScheduleAdaptor:
     def to_schedule_info(api):
         """
         Convert an ApiScheduleInfo object into a ScheduleInfo object
+
         :param api: the ApiScheduleInfo object
         :type api: solidfire.apiactual.ApiScheduleInfo
+
         :return: solidfire.models.ScheduleInfo
         """
         info = ScheduleInfo()
@@ -218,8 +222,10 @@ class ScheduleAdaptor:
     def to_weekdays(api):
         """
         Converts an ApiWeekday object array into a Weekday object array
+
         :param api: array of ApiWeekday objects
         :type api: solidfire.apiactual.ApiWeekday[]
+
         :return: solidfire.custom.models.Weekday[]
         """
         weekdays = []
@@ -233,6 +239,7 @@ class ScheduleAdaptor:
         Converts a Schedule object into an ApiSchedule object
         :param schedule: the Schedule object
         :type schedule: Schedule
+
         :return: solidfire.apiactual.ApiSchedule
         """
         api = ApiSchedule()
@@ -293,8 +300,10 @@ class ScheduleAdaptor:
     def to_api_schedule_info(info):
         """
         Converts a ScheduleInfo object into an ApiScheduleInfo object
+        
         :param info: the ScheduleInfo object
         :type info: ScheduleInfo
+
         :return: solidfire.apiactual.ApiScheduleInfo
         """
         api = ApiScheduleInfo()
