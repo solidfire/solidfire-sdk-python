@@ -95,30 +95,7 @@ class Weekday:
 
 class Frequency(data_model.DataObject):
     """
-    User Defined object (does not correlate to API Object) which simplifies
-    the construction of Snapshot Schedule objects.
-
-     :param minutes: Number of minutes between snapshots or the minute at
-     which the snapshot will occur in "Days of Week", or "Days of Month" mode.
-     Valid values  0 - 59
-     :type minutes: int
-
-    :param hours: Number of hours between snapshots or hour at which the
-    snapshot will occur in "Days of Week", or "Days of Month" mode.
-    Valid values  0 - 24
-    :type hours: int
-
-    :param monthdays: The days of the month that a snapshot will be made.
-    Valid values  1 - 31
-    :type monthdays: int[]
-
-    :param weekdays: Day of the week the snapshot is to be created.
-    Required Values (if used)
-    Day - 0 - 6 (Sunday - Saturday).
-    :type weekdays: Weekday[]
-
-    :param days: Time Interval days between snapshot.
-    :type days: int[]
+    Abstract class used to determine the frequency of a Schedule.
     """
 
     def __init__(self, **kwargs):
@@ -126,6 +103,25 @@ class Frequency(data_model.DataObject):
 
 
 class TimeIntervalFrequency(Frequency):
+    """
+    Use this class when setting the frequency of a Schedule to Time Interval.
+    Time Interval schedules trigger after the specified interval of time has
+    passed.
+
+    :param minutes:  The minutes that will elapse before the next snapshot is
+    created.
+    Valid values are: 0 - 59. Default is 0.
+    :type minutes: int
+
+    :param hours: The hours that will elapse before the next snapshot is
+    created.
+    Valid values  0 - 24. Default is 0.
+    :type hours: int
+
+    :param days: The days that will elapse before the next snapshot is created.
+    Default is 0.
+    :type days: int
+    """
     minutes = data_model.property(
         "minutes", int,
         array=False, optional=False,
@@ -147,6 +143,23 @@ class TimeIntervalFrequency(Frequency):
 
 
 class DaysOfWeekFrequency(Frequency):
+    """
+    Use this class when setting the frequency of a Schedule to Days Of Week.
+    Days of week schedules trigger on the weekdays and time specified.
+
+    :param minutes:  The minutes within the hour the snapshot will be created
+    on the set weekdays.
+    Valid values are: 0 - 59. Default is 0.
+    :type minutes: int
+
+    :param The hour of the day the next snapshot will be created on the set
+    weekdays.
+    Valid values are: 0 - 24. Default is 0
+    :type hours: int
+
+    :param weekdays: The days of the week a snapshot will be created on.
+    :type weekdays: int
+    """
     minutes = data_model.property(
         "minutes", int,
         array=False, optional=False,
@@ -168,7 +181,27 @@ class DaysOfWeekFrequency(Frequency):
                       "Weekday - 1 - 7 (Sunday - Saturday)."
     )
 
+
 class DaysOfMonthFrequency(Frequency):
+    """
+    Use this class when setting the frequency of a Schedule to Days Of Month.
+    Days of month schedules trigger on the monthdays and time specified.
+
+    :param minutes:  The minutes within the hour the snapshot will be created
+    on the set weekdays.
+    Valid values are: 0 - 59. Default is 0.
+    :type minutes: int
+
+    :param The hour of the day the next snapshot will be created on the set
+    weekdays.
+    Valid values are: 0 - 24. Default is 0
+    :type hours: int
+
+    :param monthdays: An array of the days of the month a snapshot will be
+    created on.
+    Valid values are: 1 - 31
+    :type monthdays: int
+    """
     minutes = data_model.property(
         "minutes", int,
         array=False, optional=False,
@@ -188,4 +221,3 @@ class DaysOfMonthFrequency(Frequency):
         documentation="Days of the month the snapshot is to be created. "
                       "Valid values are: 1 - 31"
     )
-
