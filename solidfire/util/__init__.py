@@ -12,8 +12,10 @@
 def ascii_art(version):
     """
     Used to build SolidFire ASCII art.
+
     :return: a string with the SolidFire ASCII art.
     """
+
     art = "\n"
     art += "                                             \n"
     art += "                ______________            ___\n"
