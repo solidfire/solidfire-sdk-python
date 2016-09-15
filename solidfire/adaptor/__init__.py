@@ -22,10 +22,10 @@ class ElementServiceAdaptor(object):
         This adaptor includes the original Node ID from the request in the
         response object. It is returned as null from the original API call.
 
-        :param element:
+        :param element: an instance of Element
         :type element: Element
 
-        :param params:
+        :param params: the parameters supplied to the get_node_stats call
         :type params: dict
 
         :param since: service method inception version
