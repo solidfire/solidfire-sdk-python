@@ -333,9 +333,9 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
         return cls(**ctor_dict)
 
 
-def property(member_name: str, member_type: type,
-             array: bool = False, optional: bool = False,
-             documentation: str = None) -> type:
+def property(member_name, member_type,
+             array = False, optional = False,
+             documentation = None):
     """
     Constructs the type for a DataObject property.
 
