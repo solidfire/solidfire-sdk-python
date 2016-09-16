@@ -158,6 +158,11 @@
 
 <div class="viewcode-block" id="ApiScheduleInfo"><a class="viewcode-back" href="../../solidfire.apiactual.html#solidfire.apiactual.ApiScheduleInfo">[docs]</a><span class="k">class</span> <span class="nc">ApiScheduleInfo</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This represents the ScheduleInfo object in the ApiSchedule class. It</span>
+<span class="sd">    should not be used by users of this SDK. The ScheduleAdaptor will</span>
+<span class="sd">    convert between ApiScheduleInfo and ScheduleInfo during calls. Refer to</span>
+<span class="sd">    documentation about Schedule, ScheduleInfo, and Weekday for more</span>
+<span class="sd">    information.</span>
 
 <span class="sd">    :param volume_id: (optional) The ID of the volume to be included in the</span>
 <span class="sd">        snapshot.</span>
@@ -225,6 +230,12 @@
 
 <div class="viewcode-block" id="ApiWeekday"><a class="viewcode-back" href="../../solidfire.apiactual.html#solidfire.apiactual.ApiWeekday">[docs]</a><span class="k">class</span> <span class="nc">ApiWeekday</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    This represents the Weekday object used by the API when an ApiSchedule</span>
+<span class="sd">    is setup for a Days Of Week frequency. It should not be used by users of</span>
+<span class="sd">    this SDK. The ScheduleAdaptor will convert between ApiWeekday and</span>
+<span class="sd">    Weekday during calls. Refer to documentation about Schedule, ScheduleInfo,</span>
+<span class="sd">    and Weekday for more information.</span>
 
 <span class="sd">    :param day: [required]</span>
 <span class="sd">    :type day: int</span>
