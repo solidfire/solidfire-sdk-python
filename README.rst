@@ -216,7 +216,7 @@ More examples using the Python SDK
 More Examples
 -------------
 
-More specific examples are available `here <https://github.com/solidfire/solidfire-sdk-python/tree/gh-pages/examples>`__
+More specific examples are available `here <examples/README.rst>`__
 
 Logging
 -------
