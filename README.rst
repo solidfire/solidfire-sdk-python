@@ -43,7 +43,7 @@ Documentation (v1.1)
 `Latest Docs <https://pythonhosted.org/solidfire-sdk-python/>`__
 
 `Release
-Notes <https://github.com/solidfire/sdk-dotnet/raw/gh-pages/Dot%20NET%20SDK%20Release%20Notes_v1.0.pdf>`__
+Notes <https://github.com/solidfire/solidfire-sdk-python/blob/gh-pages/SolidFire_Python_SDK_Release_Notes_v1.1.pdf>`__
 
 Prerequisites
 -------------
