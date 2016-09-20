@@ -141,8 +141,8 @@ cluster using Python!
 Examples
 --------
 
-Step 1 - Build an `Element <help/v1.1/html/T_SolidFire_Element_Api_SolidFireElement.htm>`__ object using the factory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Step 1 - Build an `Element <https://pythonhosted.org/solidfire-sdk-python/solidfire.html#solidfire.Element>`__ object using the factory
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This is the preferred way to construct the
 `Element <help/v1.1/html/T_SolidFire_Element_Api_SolidFireElement.htm>`__
@@ -151,7 +151,7 @@ credentials supplied to test the connection. It will also set the
 version to communicate with based on the highest number supported by the
 SDK and Element OS. Optionally, you can choose to set the version
 manually and whether or not to verify SSL. Read more about it in the
-`ElementFactory <link-to-pypi-doc-for-elementfactory>`__ documentation.
+`ElementFactory <https://pythonhosted.org/solidfire-sdk-python/solidfire.html#solidfire.factory.ElementFactory>`__ documentation.
 
 .. code-block:: python
 
