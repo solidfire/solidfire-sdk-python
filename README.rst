@@ -8,7 +8,7 @@ Python SDK library for interacting with SolidFire Element API
 Current Release
 ---------------
 
-Version 1.1.\*
+Version 1.1.0.92
 
 Description
 -----------
@@ -216,7 +216,7 @@ More examples using the Python SDK
 More Examples
 -------------
 
-More specific examples are available `here <examples/README.rst>`__
+More specific examples are available `here <https://github.com/solidfire/solidfire-sdk-python/blob/release1.1/examples/README.rst>`__
 
 Logging
 -------
@@ -229,8 +229,11 @@ To configure logging responses, execute the following:
     from solidfire import common
     common.setLogLevel(logging.DEBUG)
 
-To access the logger for the Element instance:: :sub:`~` python from
-solidfire import common common.log :sub:`~`
+To access the logger for the Element instance:
+
+.. code-block:: python
+
+     from solidfire.common import LOG
 
 Timeouts
 --------
