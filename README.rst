@@ -145,7 +145,7 @@ Step 1 - Build an `Element <https://pythonhosted.org/solidfire-sdk-python/solidf
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This is the preferred way to construct the
-`Element <help/v1.1/html/T_SolidFire_Element_Api_SolidFireElement.htm>`__
+`Element <https://pythonhosted.org/solidfire-sdk-python/solidfire.html#solidfire.Element>`__
 object. The factory will make a call to the SolidFire cluster using the
 credentials supplied to test the connection. It will also set the
 version to communicate with based on the highest number supported by the
