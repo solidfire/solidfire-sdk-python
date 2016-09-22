@@ -1,3 +1,11 @@
+.. toctree::
+
+.. include:: ../README.rst
+
+.. include:: ../examples/manage_accounts.rst
+
+.. include:: ../examples/snapshot_scheduling.rst
+
 solidfire package
 =================
 

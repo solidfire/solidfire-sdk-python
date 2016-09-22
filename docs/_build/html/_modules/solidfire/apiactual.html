@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>solidfire.apiactual &mdash; SolidFire Python SDK v1.1.0.49</title>
+  <title>solidfire.apiactual &mdash; SolidFire Python SDK v1.1.0.91</title>
   
 
   
@@ -34,7 +34,7 @@
   
 
   
-    <link rel="top" title="SolidFire Python SDK v1.1.0.49" href="../../index.html"/>
+    <link rel="top" title="SolidFire Python SDK v1.1.0.91" href="../../index.html"/>
         <link rel="up" title="solidfire" href="../solidfire.html"/> 
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                1.1.0.49
+                1.1.0.91
               </div>
             
           
@@ -88,7 +88,10 @@
             
             
                 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html">solidfire package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html"> SolidFire Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html#account-management-examples">Account Management Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html#snapshot-scheduling-examples">Snapshot Scheduling Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html#solidfire-package">solidfire package</a></li>
 </ul>
 
             
@@ -150,11 +153,16 @@
 <span class="sd">Adaptors are used to transform actual API object into custom object and</span>
 <span class="sd">vice-versa.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">solidfire.common</span> <span class="kn">import</span> <span class="n">model</span> <span class="k">as</span> <span class="n">data_model</span>
+<span class="kn">from</span> <span class="nn">solidfire.common</span> <span class="k">import</span> <span class="n">model</span> <span class="k">as</span> <span class="n">data_model</span>
 
 
 <div class="viewcode-block" id="ApiScheduleInfo"><a class="viewcode-back" href="../../solidfire.apiactual.html#solidfire.apiactual.ApiScheduleInfo">[docs]</a><span class="k">class</span> <span class="nc">ApiScheduleInfo</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This represents the ScheduleInfo object in the ApiSchedule class. It</span>
+<span class="sd">    should not be used by users of this SDK. The ScheduleAdaptor will</span>
+<span class="sd">    convert between ApiScheduleInfo and ScheduleInfo during calls. Refer to</span>
+<span class="sd">    documentation about Schedule, ScheduleInfo, and Weekday for more</span>
+<span class="sd">    information.</span>
 
 <span class="sd">    :param volume_id: (optional) The ID of the volume to be included in the</span>
 <span class="sd">        snapshot.</span>
@@ -178,7 +186,7 @@
 
     <span class="n">volume_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;volumeID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        The ID of the volume to be included in the snapshot.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -186,7 +194,7 @@
 
     <span class="n">volumes</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;volumes&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        A list of volume *ids* to be included in the group snapshot.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -194,7 +202,7 @@
 
     <span class="n">name</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        The snapshot name to be used.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -202,7 +210,7 @@
 
     <span class="n">enable_remote_replication</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;enableRemoteReplication&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Indicates if the snapshot should be included in remote replication.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -210,7 +218,7 @@
 
     <span class="n">retention</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;retention&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        The amount of time the snapshot will be retained in HH:mm:ss.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -223,6 +231,12 @@
 <div class="viewcode-block" id="ApiWeekday"><a class="viewcode-back" href="../../solidfire.apiactual.html#solidfire.apiactual.ApiWeekday">[docs]</a><span class="k">class</span> <span class="nc">ApiWeekday</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="sd">    This represents the Weekday object used by the API when an ApiSchedule</span>
+<span class="sd">    is setup for a Days Of Week frequency. It should not be used by users of</span>
+<span class="sd">    this SDK. The ScheduleAdaptor will convert between ApiWeekday and</span>
+<span class="sd">    Weekday during calls. Refer to documentation about Schedule, ScheduleInfo,</span>
+<span class="sd">    and Weekday for more information.</span>
+
 <span class="sd">    :param day: [required]</span>
 <span class="sd">    :type day: int</span>
 
@@ -232,14 +246,14 @@
 
     <span class="n">day</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;day&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-        <span class="n">documentation</span><span class="o">=</span><span class="bp">None</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="kc">None</span>
     <span class="p">)</span>
 
     <span class="n">offset</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;offset&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-        <span class="n">documentation</span><span class="o">=</span><span class="bp">None</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="kc">None</span>
     <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -350,7 +364,7 @@
 
     <span class="n">attributes</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;attributes&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Indicates the frequency of the schedule occurrence.</span><span class="se">\</span>
 <span class="s2">        Valid values are:</span><span class="se">\</span>
@@ -362,7 +376,7 @@
 
     <span class="n">has_error</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;hasError&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Indicates whether or not the schedule has errors.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -370,7 +384,7 @@
 
     <span class="n">hours</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;hours&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Shows the hours that will elapse before the next snapshot is created.</span><span class="se">\</span>
 <span class="s2">        Valid values are: 0 - 24</span><span class="se">\</span>
@@ -379,7 +393,7 @@
 
     <span class="n">last_run_status</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;lastRunStatus&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Indicates the status of the last scheduled snapshot.</span><span class="se">\</span>
 <span class="s2">        Valid values are:</span><span class="se">\</span>
@@ -390,7 +404,7 @@
 
     <span class="n">last_run_time_start</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;lastRunTimeStart&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Indicates the last time the schedule started n ISO 8601 date string.</span><span class="se">\</span>
 <span class="s2">        Valid values are:</span><span class="se">\</span>
@@ -401,7 +415,7 @@
 
     <span class="n">minutes</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;minutes&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Shows the minutes that will elapse before the next snapshot is</span><span class="se">\</span>
 <span class="s2">        created.</span><span class="se">\</span>
@@ -411,7 +425,7 @@
 
     <span class="n">monthdays</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;monthdays&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Shows the days of the month that the next snapshot will be created on.</span><span class="se">\</span>
 <span class="s2">        Valid values are: 0 - 31</span><span class="se">\</span>
@@ -420,7 +434,7 @@
 
     <span class="n">paused</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;paused&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Indicates whether or not the schedule is paused.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -428,7 +442,7 @@
 
     <span class="n">recurring</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;recurring&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Indicates whether or not the schedule is recurring.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -436,7 +450,7 @@
 
     <span class="n">run_next_interval</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;runNextInterval&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Indicates whether or not the schedule will run the next time the</span><span class="se">\</span>
 <span class="s2">        scheduler is active. When set to </span><span class="se">\&quot;</span><span class="s2">true</span><span class="se">\&quot;</span><span class="s2">, the schedule will run the</span><span class="se">\</span>
@@ -446,7 +460,7 @@
 
     <span class="n">schedule_id</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;scheduleID&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Unique ID of the schedule</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -454,7 +468,7 @@
 
     <span class="n">schedule_info</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;scheduleInfo&quot;</span><span class="p">,</span> <span class="n">ApiScheduleInfo</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Includes the unique name given to the schedule, the retention period</span><span class="se">\</span>
 <span class="s2">        for the snapshot that was created, and the volume ID of the volume</span><span class="se">\</span>
@@ -464,7 +478,7 @@
 
     <span class="n">schedule_name</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;scheduleName&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Unique name assigned to the schedule.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -472,7 +486,7 @@
 
     <span class="n">schedule_type</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;scheduleType&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Only </span><span class="se">\&quot;</span><span class="s2">snapshot</span><span class="se">\&quot;</span><span class="s2"> is supported at this time.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -480,7 +494,7 @@
 
     <span class="n">starting_date</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;startingDate&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Indicates the date the first time the schedule began of will begin.</span><span class="se">\</span>
 <span class="s2">        Formatted in UTC time.</span><span class="se">\</span>
@@ -489,7 +503,7 @@
 
     <span class="n">to_be_deleted</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;toBeDeleted&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Indicates if the schedule is marked for deletion.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -497,7 +511,7 @@
 
     <span class="n">weekdays</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;weekdays&quot;</span><span class="p">,</span> <span class="n">ApiWeekday</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Indicates the days of the week that a snapshot will be made.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -517,7 +531,7 @@
 
     <span class="n">schedule</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;schedule&quot;</span><span class="p">,</span> <span class="n">ApiSchedule</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        The schedule attributes.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -538,7 +552,7 @@
 
     <span class="n">schedules</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;schedules&quot;</span><span class="p">,</span> <span class="n">ApiSchedule</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        The list of schedules currently on the cluster.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -567,7 +581,7 @@
 
     <span class="n">schedule</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
         <span class="s2">&quot;schedule&quot;</span><span class="p">,</span> <span class="n">ApiSchedule</span><span class="p">,</span>
-        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\</span>
 <span class="s2">        Schedule attributes with modifications.</span><span class="se">\</span>
 <span class="s2">        &quot;</span>
@@ -608,7 +622,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'1.1.0.49',
+            VERSION:'1.1.0.91',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>solidfire.common.model &mdash; SolidFire Python SDK v1.1.0.49</title>
+  <title>solidfire.common.model &mdash; SolidFire Python SDK v1.1.0.91</title>
   
 
   
@@ -34,7 +34,7 @@
   
 
   
-    <link rel="top" title="SolidFire Python SDK v1.1.0.49" href="../../../index.html"/>
+    <link rel="top" title="SolidFire Python SDK v1.1.0.91" href="../../../index.html"/>
         <link rel="up" title="solidfire.common" href="../common.html"/> 
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                1.1.0.49
+                1.1.0.91
               </div>
             
           
@@ -88,7 +88,10 @@
             
             
                 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../solidfire.html">solidfire package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../solidfire.html"> SolidFire Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../solidfire.html#account-management-examples">Account Management Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../solidfire.html#snapshot-scheduling-examples">Snapshot Scheduling Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../solidfire.html#solidfire-package">solidfire package</a></li>
 </ul>
 
             
@@ -147,10 +150,10 @@
 <span class="c1"># NETAPP, INC. USE, DISCLOSURE OR REPRODUCTION IS PROHIBITED WITHOUT THE PRIOR</span>
 <span class="c1"># EXPRESS WRITTEN PERMISSION OF NETAPP, INC.</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">unicode_literals</span>
 <span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">UUID</span>
-<span class="kn">from</span> <span class="nn">future.utils</span> <span class="kn">import</span> <span class="n">with_metaclass</span>
+<span class="kn">from</span> <span class="nn">uuid</span> <span class="k">import</span> <span class="n">UUID</span>
+<span class="kn">from</span> <span class="nn">future.utils</span> <span class="k">import</span> <span class="n">with_metaclass</span>
 
 <span class="n">KNOWN_CONVERSIONS</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nb">type</span><span class="p">(</span><span class="nb">set</span><span class="p">):</span> <span class="nb">list</span>
@@ -188,7 +191,7 @@
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
         <span class="n">return_value</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">serialize</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">val</span><span class="p">)</span>
     <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="s1">&#39;_optional&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">val</span><span class="o">.</span><span class="n">optional</span><span class="p">():</span>
-        <span class="n">return_value</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">return_value</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">return_value</span> <span class="o">=</span> <span class="n">val</span>
 
@@ -207,12 +210,12 @@
 <span class="sd">        original version is returned.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">typ</span><span class="p">,</span> <span class="s1">&#39;extract&#39;</span><span class="p">):</span>
-        <span class="n">return_value</span> <span class="o">=</span> <span class="n">typ</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+        <span class="n">return_value</span> <span class="o">=</span> <span class="n">typ</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
     <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">src</span><span class="p">)</span> <span class="o">==</span> <span class="n">typ</span><span class="p">:</span>
         <span class="n">return_value</span> <span class="o">=</span> <span class="n">src</span>
     <span class="k">elif</span> <span class="n">typ</span> <span class="o">==</span> <span class="n">UUID</span><span class="p">:</span>
         <span class="n">return_value</span> <span class="o">=</span> <span class="n">UUID</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">typ</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">src</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">typ</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">src</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">return_value</span> <span class="o">=</span> <span class="n">typ</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">return_value</span> <span class="o">=</span> <span class="n">src</span>
@@ -225,8 +228,8 @@
 <span class="sd">    ModelProperty metadata container for API data type information.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">member_name</span><span class="p">,</span> <span class="n">member_type</span><span class="p">,</span> <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-                 <span class="n">documentation</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">member_name</span><span class="p">,</span> <span class="n">member_type</span><span class="p">,</span> <span class="n">array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">documentation</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        ModelProperty constructor.</span>
 
@@ -257,7 +260,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">arr</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 
-        <span class="n">full_type</span> <span class="o">=</span> <span class="s1">&#39;{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_member_type</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&gt;&#39;</span><span class="p">,</span> <span class="n">arr</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&gt;&#39;</span><span class="p">)</span>
+        <span class="n">full_type</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_member_type</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&gt;&#39;</span><span class="p">,</span> <span class="n">arr</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&gt;&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">full_type</span>
 
 <div class="viewcode-block" id="ModelProperty.extend_json"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.ModelProperty.extend_json">[docs]</a>    <span class="k">def</span> <span class="nf">extend_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
@@ -267,14 +270,14 @@
 <span class="sd">        :param out: the resulting output.</span>
 <span class="sd">        :param data: the data to be converted.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;_member_type&#39;</span><span class="p">):</span>  <span class="c1"># HACK ALERT</span>
+        <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;_member_type&#39;</span><span class="p">):</span>  <span class="c1"># HACK ALERT</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_optional</span><span class="p">:</span>
-                <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_member_name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_member_name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_array</span><span class="p">:</span>
             <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_member_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">serialize</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_optional</span><span class="p">:</span>
             <span class="n">optional_data</span> <span class="o">=</span> <span class="n">serialize</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">optional_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">optional_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_member_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">optional_data</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_member_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">serialize</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
@@ -288,10 +291,10 @@
 <span class="sd">        :return: the extracted data.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_array</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">[]</span> <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="p">[</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_member_type</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span>
+            <span class="k">return</span> <span class="p">[]</span> <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_member_type</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span>
                                             <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">None</span> <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_member_type</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+            <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_member_type</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ModelProperty.member_name"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.ModelProperty.member_name">[docs]</a>    <span class="k">def</span> <span class="nf">member_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -336,7 +339,7 @@
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_member_type</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
             <span class="k">return</span> <span class="s1">&#39;&#39;</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_member_type</span> <span class="ow">is</span> <span class="nb">bool</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">False</span>
+            <span class="k">return</span> <span class="kc">False</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">pass</span></div></div>
 
@@ -359,7 +362,7 @@
 <span class="sd">    DataObject is the base type for all generated types, including the MetaData</span>
 <span class="sd">    properties, as described from the api descriptors.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">_properties</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">_properties</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">_create_properties</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
@@ -369,20 +372,26 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">cls</span><span class="o">.</span><span class="n">_properties</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
-            <span class="n">prop</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+            <span class="n">prop</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">ModelProperty</span><span class="p">):</span>
                 <span class="n">cls</span><span class="o">.</span><span class="n">_properties</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">prop</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_properties</span><span class="p">:</span>
-                <span class="n">msg_fmt</span> <span class="o">=</span> <span class="s1">&#39;Key &quot;{key}&quot; is not a valid property&#39;</span>
+                <span class="n">msg_fmt</span> <span class="o">=</span> <span class="s1">&#39;Key &quot;</span><span class="si">{key}</span><span class="s1">&quot; is not a valid property&#39;</span>
                 <span class="n">msg</span> <span class="o">=</span> <span class="n">msg_fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
                 <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
 <div class="viewcode-block" id="DataObject.get_properties"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.DataObject.get_properties">[docs]</a>    <span class="k">def</span> <span class="nf">get_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Exposes the type properties for a Data Object.</span>
+
+<span class="sd">        :return: the dictionary of property names and thier type information.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span></div>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -400,18 +409,18 @@
                     <span class="n">attrs</span> <span class="o">=</span> <span class="p">[]</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">attrs</span> <span class="o">=</span> <span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
-                <span class="n">msg_fmt</span> <span class="o">=</span> <span class="s1">&#39;[{arr}]&#39;</span>
+                <span class="n">msg_fmt</span> <span class="o">=</span> <span class="s1">&#39;[</span><span class="si">{arr}</span><span class="s1">]&#39;</span>
                 <span class="n">attr_repr</span> <span class="o">=</span> <span class="n">msg_fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                     <span class="n">arr</span><span class="o">=</span><span class="nb">str</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">),</span> <span class="n">attrs</span><span class="p">))</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
                     <span class="n">attr_repr</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">attr_repr</span> <span class="o">=</span> <span class="bp">None</span>
-            <span class="n">msg_fmt</span> <span class="o">=</span> <span class="s1">&#39;{name}={repr!r}&#39;</span>
+                    <span class="n">attr_repr</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">msg_fmt</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">=</span><span class="si">{repr!r}</span><span class="s1">&#39;</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="n">msg_fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="nb">repr</span><span class="o">=</span><span class="n">attr_repr</span><span class="p">)</span>
             <span class="n">props</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-        <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="s1">&#39;{cls}({props})&#39;</span><span class="p">),</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{cls}</span><span class="s1">(</span><span class="si">{props}</span><span class="s1">)&#39;</span><span class="p">),</span>
                           <span class="n">cls</span><span class="o">=</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                           <span class="n">props</span><span class="o">=</span><span class="nb">str</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">),</span> <span class="n">props</span><span class="p">))</span>
 
@@ -423,11 +432,11 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">out</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">prop</span> <span class="ow">in</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_properties</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">prop</span><span class="o">.</span><span class="n">extend_json</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="bp">None</span><span class="p">))</span>
+            <span class="n">prop</span><span class="o">.</span><span class="n">extend_json</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">out</span></div>
 
     <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="DataObject.extract"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.DataObject.extract">[docs]</a>    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="DataObject.extract"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.DataObject.extract">[docs]</a>    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Converts json to a DataObject.</span>
 
@@ -442,7 +451,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ctor_dict</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">cls</span><span class="o">.</span><span class="n">_properties</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">pass</span>
             <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">prop</span><span class="o">.</span><span class="n">member_type</span><span class="p">(),</span> <span class="s1">&#39;custom_extract&#39;</span><span class="p">):</span>
                 <span class="n">ctor_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">prop</span><span class="o">.</span><span class="n">member_type</span><span class="p">()</span><span class="o">.</span><span class="n">custom_extract</span><span class="p">(</span>
@@ -451,14 +460,14 @@
                 <span class="n">data_val</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">prop</span><span class="o">.</span><span class="n">member_name</span><span class="p">()]</span>
                 <span class="n">ctor_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">prop</span><span class="o">.</span><span class="n">extract_from</span><span class="p">(</span><span class="n">data_val</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">prop</span><span class="o">.</span><span class="n">optional</span><span class="p">():</span>
-                <span class="n">ctor_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="n">ctor_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="k">elif</span> <span class="n">prop</span><span class="o">.</span><span class="n">array</span><span class="p">():</span>
                 <span class="n">ctor_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">elif</span> <span class="ow">not</span> <span class="n">strict</span><span class="p">:</span>
-                <span class="n">ctor_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="n">ctor_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">msg_fmt</span> <span class="o">=</span> <span class="s1">&#39;Can not create {typ}: &#39;</span> \
-                          <span class="s1">&#39;missing required property &quot;{name}&quot; in {data}&#39;</span>
+                <span class="n">msg_fmt</span> <span class="o">=</span> <span class="s1">&#39;Can not create </span><span class="si">{typ}</span><span class="s1">: &#39;</span> \
+                          <span class="s1">&#39;missing required property &quot;</span><span class="si">{name}</span><span class="s1">&quot; in </span><span class="si">{data}</span><span class="s1">&#39;</span>
                 <span class="n">msg</span> <span class="o">=</span> <span class="n">msg_fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">typ</span><span class="o">=</span><span class="n">cls</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                                      <span class="n">name</span><span class="o">=</span><span class="n">prop</span><span class="o">.</span><span class="n">member_name</span><span class="p">(),</span>
                                      <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
@@ -467,9 +476,9 @@
         <span class="k">return</span> <span class="n">cls</span><span class="p">(</span><span class="o">**</span><span class="n">ctor_dict</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="property"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.property">[docs]</a><span class="k">def</span> <span class="nf">property</span><span class="p">(</span><span class="n">member_name</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">member_type</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
-             <span class="n">array</span><span class="p">:</span> <span class="nb">object</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="nb">object</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
-             <span class="n">documentation</span><span class="p">:</span> <span class="nb">object</span> <span class="o">=</span> <span class="bp">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+<div class="viewcode-block" id="property"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.property">[docs]</a><span class="k">def</span> <span class="nf">property</span><span class="p">(</span><span class="n">member_name</span><span class="p">,</span> <span class="n">member_type</span><span class="p">,</span>
+             <span class="n">array</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">optional</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+             <span class="n">documentation</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Constructs the type for a DataObject property.</span>
 
@@ -490,7 +499,7 @@
 
 <span class="sd">    :return: the constructed type of a property</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">msg_fmt</span> <span class="o">=</span> <span class="s1">&#39;Property of type {typ}{arr}&#39;</span>
+    <span class="n">msg_fmt</span> <span class="o">=</span> <span class="s1">&#39;Property of type </span><span class="si">{typ}{arr}</span><span class="s1">&#39;</span>
     <span class="n">msg</span> <span class="o">=</span> <span class="n">msg_fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
         <span class="n">typ</span><span class="o">=</span><span class="n">member_type</span><span class="p">,</span>
         <span class="n">arr</span><span class="o">=</span><span class="s1">&#39;[]&#39;</span>
@@ -541,7 +550,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'1.1.0.49',
+            VERSION:'1.1.0.91',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

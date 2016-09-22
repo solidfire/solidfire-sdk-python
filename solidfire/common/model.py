@@ -243,6 +243,12 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
                 setattr(self, key, value)
 
     def get_properties(self):
+        """
+        Exposes the type properties for a Data Object.
+
+        :return: the dictionary of property names and thier type information.
+        :rtype: dict
+        """
         return self._properties
 
     def __repr__(self):
@@ -327,9 +333,9 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
         return cls(**ctor_dict)
 
 
-def property(member_name: object, member_type: object,
-             array: object = False, optional: object = False,
-             documentation: object = None) -> object:
+def property(member_name, member_type,
+             array = False, optional = False,
+             documentation = None):
     """
     Constructs the type for a DataObject property.
 

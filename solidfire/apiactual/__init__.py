@@ -17,6 +17,11 @@ from solidfire.common import model as data_model
 
 class ApiScheduleInfo(data_model.DataObject):
     """
+    This represents the ScheduleInfo object in the ApiSchedule class. It
+    should not be used by users of this SDK. The ScheduleAdaptor will
+    convert between ApiScheduleInfo and ScheduleInfo during calls. Refer to
+    documentation about Schedule, ScheduleInfo, and Weekday for more
+    information.
 
     :param volume_id: (optional) The ID of the volume to be included in the
         snapshot.
@@ -84,6 +89,12 @@ class ApiScheduleInfo(data_model.DataObject):
 
 class ApiWeekday(data_model.DataObject):
     """
+
+    This represents the Weekday object used by the API when an ApiSchedule
+    is setup for a Days Of Week frequency. It should not be used by users of
+    this SDK. The ScheduleAdaptor will convert between ApiWeekday and
+    Weekday during calls. Refer to documentation about Schedule, ScheduleInfo,
+    and Weekday for more information.
 
     :param day: [required]
     :type day: int

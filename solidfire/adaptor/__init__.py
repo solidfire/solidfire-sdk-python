@@ -22,10 +22,10 @@ class ElementServiceAdaptor(object):
         This adaptor includes the original Node ID from the request in the
         response object. It is returned as null from the original API call.
 
-        :param element:
+        :param element: an instance of Element
         :type element: Element
 
-        :param params:
+        :param params: the parameters supplied to the get_node_stats call
         :type params: dict
 
         :param since: service method inception version
@@ -53,12 +53,9 @@ class ElementServiceAdaptor(object):
     @staticmethod
     def get_schedule(element, params, since, deprecated):
         """
-
-        :param element:
-        :param params:
-        :param since:
-        :param deprecated:
-        :return:
+        Calls to this static method should ONLY originate from the
+        get_schedule method in the Element class. DO NOT CALL THIS directly.
+        Documentation here is intentionally brief.
         """
 
         return ScheduleAdaptor.get_schedule(element, params,
@@ -67,12 +64,9 @@ class ElementServiceAdaptor(object):
     @staticmethod
     def list_schedules(element, params, since, deprecated):
         """
-
-        :param element:
-        :param params:
-        :param since:
-        :param deprecated:
-        :return:
+        Calls to this static method should ONLY originate from the
+        list_schedules method in the Element class. DO NOT CALL THIS directly.
+        Documentation here is intentionally brief.
         """
 
         return ScheduleAdaptor.list_schedules(element, params,
@@ -81,12 +75,9 @@ class ElementServiceAdaptor(object):
     @staticmethod
     def modify_schedule(element, params, since, deprecated):
         """
-
-        :param element:
-        :param params:
-        :param since:
-        :param deprecated:
-        :return:
+        Calls to this static method should ONLY originate from the
+        modify_schedules method in the Element class. DO NOT CALL THIS
+        directly. Documentation here is intentionally brief.
         """
 
         return ScheduleAdaptor.modify_schedule(element, params,
@@ -95,12 +86,9 @@ class ElementServiceAdaptor(object):
     @staticmethod
     def create_schedule(element, params, since, deprecated):
         """
-
-        :param element:
-        :param params:
-        :param since:
-        :param deprecated:
-        :return:
+        Calls to this static method should ONLY originate from the
+        create_schedules method in the Element class. DO NOT CALL THIS
+        directly. Documentation here is intentionally brief.
         """
 
         return ScheduleAdaptor.create_schedule(element, params,
