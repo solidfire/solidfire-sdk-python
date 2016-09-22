@@ -1,0 +1,7 @@
+# Site settings
+include:
+  - docs
+  - docs/1.0.0
+  - docs/1.0.0/_static
+# Build settings
+markdown: kramdown
