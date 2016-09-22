@@ -1,7 +1,9 @@
 # Site settings
-include:
-  - docs
-  - docs/1.0.0
-  - docs/1.0.0/_static
+
 # Build settings
+ghlighter: rouge
 markdown: kramdown
+kramdown:
+        input: GFM
+        auto_ids: true
+        syntax_highlighter: rouge
