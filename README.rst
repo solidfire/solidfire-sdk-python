@@ -1,5 +1,5 @@
-|sf-python-logo| SolidFire Python SDK
-=====================================
+|sf-python-logo| SolidFire Python SDK v1.1
+==========================================
 
 Python SDK library for interacting with SolidFire Element API
 
