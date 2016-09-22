@@ -55,6 +55,10 @@ from solidfire.results import GetClusterStatsResult
 from solidfire.results import GetClusterVersionInfoResult
 from solidfire.results import GetConfigResult
 from solidfire.results import GetCurrentClusterAdminResult
+from solidfire.results import GetDriveHardwareInfoResult
+from solidfire.results import GetDriveStatsResult
+from solidfire.results import GetEfficiencyResult
+from solidfire.results import GetLdapConfigurationResult
 from solidfire.results import GetLimitsResult
 from solidfire.results import GetNetworkConfigResult
 from solidfire.results import GetNodeStatsResult
@@ -77,6 +81,7 @@ from solidfire.results import ListClusterAdminsResult
 from solidfire.results import ListClusterFaultsResult
 from solidfire.results import ListClusterPairsResult
 from solidfire.results import ListDeletedVolumesResult
+from solidfire.results import ListDriveHardwareResult
 from solidfire.results import ListDrivesResult
 from solidfire.results import ListEventsResult
 from solidfire.results import ListFibreChannelPortInfoResult
@@ -115,10 +120,27 @@ from solidfire.results import RemoveClusterAdminResult
 from solidfire.results import RemoveClusterPairResult
 from solidfire.results import RemoveNodesResult
 from solidfire.results import RemoveVirtualNetworkResult
+from solidfire.results import RemoveVolumePairResult
+from solidfire.results import ResetDrivesResult
 from solidfire.results import RestoreDeletedVolumeResult
 from solidfire.results import SetClusterConfigResult
 from solidfire.results import SetConfigResult
 from solidfire.results import SetNetworkConfigResult
+from solidfire.results import SetSnmpACLResult
+from solidfire.results import SetSnmpInfoResult
+from solidfire.results import SetSnmpTrapInfoResult
+from solidfire.results import SnmpSendTestTrapsResult
+from solidfire.results import StartBulkVolumeReadResult
+from solidfire.results import StartBulkVolumeWriteResult
+from solidfire.results import StartClusterPairingResult
+from solidfire.results import StartVolumePairingResult
+from solidfire.results import TestConnectEnsembleResult
+from solidfire.results import TestConnectMvipResult
+from solidfire.results import TestConnectSvipResult
+from solidfire.results import TestDrivesResult
+from solidfire.results import TestLdapAuthenticationResult
+from solidfire.results import TestPingResult
+from solidfire.results import UpdateBulkVolumeStatusResult
 
 OPTIONAL = None
 
@@ -1593,6 +1615,209 @@ class Element(ServiceBase):
         return self.send_request(
             'ListDrives',
             ListDrivesResult,
+            params,
+        )
+
+    def get_drive_hardware_info(
+            self,
+            drive_id,):
+        """
+        *get_drive_hardware_info* returns all the hardware info for the given
+        drive. This generally includes manufacturers, vendors, versions, and
+        other associated hardware identification information.
+
+        :param drive_id: [required] *drive_id* for the drive information
+            requested. *drive_ids* can be obtained via the \"ListDrives\"
+            method.
+        :type drive_id: int
+
+        :returns: a response
+        :rtype: GetDriveHardwareInfoResult
+        """
+
+        params = {
+            "driveID": drive_id,
+        }
+
+        return self.send_request(
+            'GetDriveHardwareInfo',
+            GetDriveHardwareInfoResult,
+            params,
+        )
+
+    def list_drive_hardware(
+            self,
+            force,):
+        """
+        *list_drive_hardware* returns all the drives connected to a node. Use
+        this method on the cluster to return drive hardware information for all
+        the drives on all nodes.
+
+        :param force: [required] This must be set to true in order to retrieve
+            the drive hardware stats from the cluster.
+        :type force: bool
+
+        :returns: a response
+        :rtype: ListDriveHardwareResult
+        """
+
+        params = {
+            "force": force,
+        }
+
+        return self.send_request(
+            'ListDriveHardware',
+            ListDriveHardwareResult,
+            params,
+        )
+
+    def reset_drives(
+            self,
+            drives,
+            force,):
+        """
+        *reset_drives* is used to pro-actively initialize drives and remove all
+        data currently residing on the drive. The drive can then be reused in
+        an existing node or used in an upgraded SolidFire node. This method
+        requires the force=true parameter to be included in the method call.
+
+
+
+
+        **Note**: This method is available only through the per-node API
+        endpoint 5.0 or later.
+
+        :param drives: [required] List of device names (not driveIDs) to reset.
+        :type drives: str
+
+        :param force: [required] The \"force\" parameter must be included on
+            this method to successfully reset a drive.
+        :type force: bool
+
+        :returns: a response
+        :rtype: ResetDrivesResult
+        """
+
+        params = {
+            "drives": drives,
+            "force": force,
+        }
+
+        return self.send_request(
+            'ResetDrives',
+            ResetDrivesResult,
+            params,
+        )
+
+    def test_drives(
+            self,
+            force,
+            minutes=OPTIONAL,):
+        """
+        The *test_drives* API method is used to run a hardware validation on
+        all the drives on the node. Hardware failures on the drives are
+        detected if present and they are reported in the results of the
+        validation tests.
+
+
+
+
+        **Note**: This test takes approximately 10 minutes.
+
+
+
+
+        **Note**: This method is available only through the per-node API
+        endpoint 5.0 or later.
+
+        :param force: [required] The \"force\" parameter must be included on
+            this method to successfully test the drives on the node.
+        :type force: bool
+
+        :param minutes: (optional) The number of minutes to run the test can be
+            specified.
+        :type minutes: int
+
+        :returns: a response
+        :rtype: TestDrivesResult
+        """
+
+        params = {
+            "force": force,
+        }
+        if minutes is not None:
+            params["minutes"] = minutes
+
+        return self.send_request(
+            'TestDrives',
+            TestDrivesResult,
+            params,
+        )
+
+    def get_drive_stats(
+            self,
+            drive_id,):
+        """
+        *get_drive_stats* return high-level activity measurements for a single
+        drive. Values are cumulative from the addition of the drive to the
+        cluster. Some values are specific to Block Drives. Statistical data may
+        not be returned for both block and metadata drives when running this
+        method.
+        For more information on which drive type returns which data, see
+        Response Example (Block Drive) and Response Example (Volume Metadata
+        Drive) in the SolidFire API guide.
+
+        :param drive_id: [required] Specifies the drive for which statistics
+            are gathered.
+        :type drive_id: int
+
+        :returns: a response
+        :rtype: GetDriveStatsResult
+        """
+
+        params = {
+            "driveID": drive_id,
+        }
+
+        return self.send_request(
+            'GetDriveStats',
+            GetDriveStatsResult,
+            params,
+        )
+
+    def secure_erase_drives(
+            self,
+            drives,):
+        """
+        *secure_erase_drives* is used to remove any residual data from drives
+        that have a status of \"available.\" For example, when replacing a
+        drive at its end-of-life that contained sensitive data.
+        It uses a Security Erase Unit command to write a predetermined pattern
+        to the drive and resets the encryption key on the drive. The method may
+        take up to two minutes to complete, so it is an asynchronous method.
+        The *get_async_result* method can be used to check on the status of the
+        secure erase operation.
+
+
+
+
+        Use the *\"list_drives\"* method to obtain the *drive_ids* for the
+        drives you want to secure erase.
+
+        :param drives: [required] List of *drive_ids* to secure erase.
+        :type drives: int[]
+
+        :returns: a response
+        :rtype: AsyncHandleResult
+        """
+
+        params = {
+            "drives": drives,
+        }
+
+        return self.send_request(
+            'SecureEraseDrives',
+            AsyncHandleResult,
             params,
         )
 

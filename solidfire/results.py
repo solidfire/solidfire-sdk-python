@@ -20,7 +20,9 @@ from solidfire.models import ClusterInfo
 from solidfire.models import ClusterStats
 from solidfire.models import ClusterVersionInfo
 from solidfire.models import Config
+from solidfire.models import DriveHardwareInfo
 from solidfire.models import DriveInfo
+from solidfire.models import DriveStats
 from solidfire.models import EventInfo
 from solidfire.models import FibreChannelPortList
 from solidfire.models import FibreChannelSession
@@ -31,7 +33,13 @@ from solidfire.models import ISCSISession
 from solidfire.models import LdapConfiguration
 from solidfire.models import Network
 from solidfire.models import Node
+from solidfire.models import NodeDriveHardware
+from solidfire.models import NodeStatsInfo
+from solidfire.models import NodeStatsNodes
+from solidfire.models import PairedCluster
 from solidfire.models import PendingNode
+from solidfire.models import ResetDrivesDetails
+from solidfire.models import Schedule
 from solidfire.models import Snapshot
 from solidfire.models import SnmpNetwork
 from solidfire.models import SnmpTrapRecipient
@@ -1378,6 +1386,158 @@ class GetCurrentClusterAdminResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class GetDriveHardwareInfoResult(data_model.DataObject):
+    """
+    The object returned by the \"get_drive_hardware_info\" API Service call.
+
+    :param drive_hardware_info: [required]
+    :type drive_hardware_info: DriveHardwareInfo
+    """
+
+    drive_hardware_info = data_model.property(
+        "driveHardwareInfo", DriveHardwareInfo,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class GetDriveStatsResult(data_model.DataObject):
+    """
+    The object returned by the \"get_drive_stats\" API Service call.
+
+    :param drive_stats: [required]
+    :type drive_stats: DriveStats
+    """
+
+    drive_stats = data_model.property(
+        "driveStats", DriveStats,
+        array=False, optional=False,
+        documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class GetEfficiencyResult(data_model.DataObject):
+    """
+    The object returned by the \"get_efficiency\" API Service call.
+
+    :param compression: [required] The amount of space being saved by
+        compressing data on a single volume. Stated as a ratio where \"1\"
+        means data has been stored without being compressed.
+    :type compression: float
+
+    :param deduplication: [required] The amount of space being saved on a
+        single volume by not duplicating data. Stated as a ratio.
+    :type deduplication: float
+
+    :param thin_provisioning: [required] The ratio of space used to the amount
+        of space allocated for storing data. Stated as a ratio.
+    :type thin_provisioning: float
+
+    :param timestamp: [required] The last time efficiency data was collected
+        after Garbage Collection (GC). ISO 8601 data string.
+    :type timestamp: str
+
+    :param missing_volumes: [required] The volumes that could not be queried
+        for efficiency data. Missing volumes can be caused by GC being less
+        than hour old, temporary network loss or restarted services since the
+        GC cycle.
+    :type missing_volumes: int[]
+    """
+
+    compression = data_model.property(
+        "compression", float,
+        array=False, optional=False,
+        documentation="\
+        The amount of space being saved by compressing data on a single\
+        volume. Stated as a ratio where \"1\" means data has been stored\
+        without being compressed.\
+        "
+    )
+
+    deduplication = data_model.property(
+        "deduplication", float,
+        array=False, optional=False,
+        documentation="\
+        The amount of space being saved on a single volume by not duplicating\
+        data. Stated as a ratio.\
+        "
+    )
+
+    thin_provisioning = data_model.property(
+        "thinProvisioning", float,
+        array=False, optional=False,
+        documentation="\
+        The ratio of space used to the amount of space allocated for storing\
+        data. Stated as a ratio.\
+        "
+    )
+
+    timestamp = data_model.property(
+        "timestamp", str,
+        array=False, optional=False,
+        documentation="\
+        The last time efficiency data was collected after Garbage Collection\
+        (GC). ISO 8601 data string.\
+        "
+    )
+
+    missing_volumes = data_model.property(
+        "missingVolumes", int,
+        array=True, optional=False,
+        documentation="\
+        The volumes that could not be queried for efficiency data. Missing\
+        volumes can be caused by GC being less than hour old, temporary\
+        network loss or restarted services since the GC cycle.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
+class GetLdapConfigurationResult(data_model.DataObject):
+    """
+    The object returned by the \"get_ldap_configuration\" API Service call.
+
+    :param ldap_configuration: [required] List of the current LDAP
+        configuration settings. This API call will not return the plain text of
+        the search account password.
+
+        **Note**: If LDAP authentication is currently disabled, all the
+        returned settings will be empty with the exception of \"authType\", and
+        \"groupSearchType\" which are set to \"SearchAndBind\" and
+        \"ActiveDirectory\" respectively.
+
+    :type ldap_configuration: LdapConfiguration
+    """
+
+    ldap_configuration = data_model.property(
+        "ldapConfiguration", LdapConfiguration,
+        array=False, optional=False,
+        documentation="\
+        List of the current LDAP configuration settings. This API call will\
+        not return the plain text of the search account password.\
+\
+\
+\
+\
+        **Note**: If LDAP authentication is currently disabled, all the\
+        returned settings will be empty with the exception of *\"auth_type\",*\
+        and *\"group_search_type\"* which are set to *\"search_and_bind\"* and\
+        *\"active_directory\"* respectively.\
+        "
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class GetNetworkConfigResult(data_model.DataObject):
     """
     The object returned by the \"get_network_config\" API Service call.
@@ -1744,6 +1904,24 @@ class ListDeletedVolumesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
+class ListDriveHardwareResult(data_model.DataObject):
+    """
+    The object returned by the \"list_drive_hardware\" API Service call.
+
+    :param nodes: [required]
+    :type nodes: NodeDriveHardware[]
+    """
+
+    nodes = data_model.property(
+        "nodes", NodeDriveHardware,
+        array=True, optional=False,
+        documentation=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+
 class ListDrivesResult(data_model.DataObject):
     """
     The object returned by the \"list_drives\" API Service call.
@@ -2073,57 +2251,28 @@ class ListVolumesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
-class SetClusterConfigResult(data_model.DataObject):
+class NodeFibreChannelPortInfoResult(data_model.DataObject):
     """
-    The object returned by the \"set_cluster_config\" API Service call.
+    Fibre channel port info results for a node.
 
-    :param cluster: [required] Settings for the cluster. All new and current
-        settings are returned.
-    :type cluster: ClusterConfig
+    :param node_id: [required] The ID of the Fibre Channel node.
+    :type node_id: int
+
+    :param result: [required] Contains a list of information about the Fibre
+        Channel ports.
+    :type result: FibreChannelPortList
     """
 
-    cluster = data_model.property(
-        "cluster", ClusterConfig,
+    node_id = data_model.property(
+        "nodeID", int,
         array=False, optional=False,
         documentation="\
-        Settings for the cluster. All new and current settings are returned.\
+        The ID of the Fibre Channel node.\
         "
     )
 
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-
-class SetConfigResult(data_model.DataObject):
-    """
-    The object returned by the \"set_config\" API Service call.
-
-    :param config: [required] The new and current configuration for the node.
-    :type config: Config
-    """
-
-    config = data_model.property(
-        "config", Config,
-        array=False, optional=False,
-        documentation="\
-        The new and current configuration for the node.\
-        "
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-
-class SetNetworkConfigResult(data_model.DataObject):
-    """
-    The object returned by the \"set_network_config\" API Service call.
-
-    :param network: [required]
-    :type network: Network
-    """
-
-    network = data_model.property(
-        "network", Network,
+    result = data_model.property(
+        "result", FibreChannelPortList,
         array=False, optional=False,
         documentation="\
         Contains a list of information about the Fibre Channel ports.\
@@ -2134,7 +2283,7 @@ class SetNetworkConfigResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 
-class CreateGroupSnapshotResult(data_model.DataObject):
+class ResetDrivesResult(data_model.DataObject):
     """
     The object returned by the \"reset_drives\" API Service call.
 
