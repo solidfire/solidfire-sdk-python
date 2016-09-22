@@ -1,0 +1,892 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SolidFire Python SDK &mdash; SolidFire Python SDK v1.1.0.93</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/solidfire.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SolidFire Python SDK v1.1.0.93" href="index.html"/>
+        <link rel="next" title="solidfire.adaptor package" href="solidfire.adaptor.html"/>
+        <link rel="prev" title="Welcome to solidfire’s documentation!" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> solidfire-sdk-python
+          
+
+          
+            
+            <img src="_static/PythonSDK.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.0.93
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#"> SolidFire Python SDK</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#current-release">Current Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compatibility">Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation-v1-1">Documentation (v1.1)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pycurl">PycURL</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#step-1-build-an-element-object-using-the-factory">Step 1 - Build an Element object using the factory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2-call-the-api-method-and-retrieve-the-result">Step 2 - Call the API method and retrieve the result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#more-examples-using-the-python-sdk">More examples using the Python SDK</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#more-examples">More Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#logging">Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#timeouts">Timeouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license"><strong>License</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#account-management-examples">Account Management Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#manage-accounts">Manage Accounts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-all-accounts">List all Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-one-account">Get one Account</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-an-account">Create an Account</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modify-an-account">Modify an Account</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#snapshot-scheduling-examples">Snapshot Scheduling Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#snapshot-scheduling">Snapshot Scheduling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-all-schedules">List all Schedules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-one-schedule">Get one Schedule</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-schedule">Create a Schedule</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#time-interval-schedule">Time Interval Schedule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#days-of-week-schedule">Days Of Week Schedule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#days-of-month-schedule">Days Of Month Schedule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-a-schedule-cont">Create a Schedule (cont.)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#modify-a-schedule">Modify a Schedule</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#solidfire-package">solidfire package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.adaptor.html">solidfire.adaptor package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.apiactual.html">solidfire.apiactual package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.common.html">solidfire.common package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.custom.html">solidfire.custom package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.util.html">solidfire.util package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#solidfire-factory-module">solidfire.factory module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#solidfire-models-module">solidfire.models module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#solidfire-results-module">solidfire.results module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-contents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">solidfire-sdk-python</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li> SolidFire Python SDK</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/solidfire.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<div class="section" id="sf-python-logo-solidfire-python-sdk">
+<h1><img alt="sf-python-logo" src="https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/release1.1/img/python-50.png" /> SolidFire Python SDK<a class="headerlink" href="#sf-python-logo-solidfire-python-sdk" title="Permalink to this headline">¶</a></h1>
+<p>Python SDK library for interacting with SolidFire Element API</p>
+<p><a class="reference external" href="https://badge.fury.io/py/solidfire-sdk-python"><img alt="pypy" src="https://img.shields.io/pypi/v/solidfire-sdk-python.svg" /></a> <a class="reference external" href="https://pypi.python.org/pypi/solidfire-sdk-python/"><img alt="python" src="https://img.shields.io/pypi/pyversions/solidfire-sdk-python.svg" /></a> <a class="reference external" href="https://pypi.python.org/pypi/solidfire-sdk-python/"><img alt="format" src="https://img.shields.io/pypi/format/solidfire-sdk-python.svg" /></a> <a class="reference external" href="https://pypi.python.org/pypi/solidfire-sdk-python/"><img alt="downloads" src="https://img.shields.io/pypi/dm/solidfire-sdk-python.svg" /></a> <a class="reference external" href="https://pypi.python.org/pypi/solidfire-sdk-python/"><img alt="license" src="https://img.shields.io/pypi/l/solidfire-sdk-python.svg" /></a> <a class="reference external" href="https://pypi.python.org/pypi/solidfire-sdk-python/"><img alt="build" src="https://img.shields.io/travis/solidfire/solidfire-sdk-python/release/1.0.0.svg" /></a></p>
+<div class="section" id="current-release">
+<h2>Current Release<a class="headerlink" href="#current-release" title="Permalink to this headline">¶</a></h2>
+<p>Version 1.1.*</p>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>The SolidFire Python SDK is a collection of libraries that facilitate
+integration and orchestration between proprietary systems and
+third-party applications. The Python SDK allows developers to deeply
+integrate SolidFire system API with the Python programming language. The
+SolidFire Python SDK reduces the amount of additional coding time
+required for integration.</p>
+</div>
+<div class="section" id="compatibility">
+<h2>Compatibility<a class="headerlink" href="#compatibility" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="62%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Component</th>
+<th class="head">Version</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>SolidFire Element OS</td>
+<td>7.x and 8.x</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="getting-help">
+<h2>Getting Help<a class="headerlink" href="#getting-help" title="Permalink to this headline">¶</a></h2>
+<p>If you have any questions or comments about this product, contact
+<a class="reference external" href="mailto:ng-sf-host-integrations-sdk&#37;&#52;&#48;netapp&#46;com">ng-sf-host-integrations-sdk<span>&#64;</span>netapp<span>&#46;</span>com</a> or reach out to the online
+developer community at <a class="reference external" href="http://netapp.io">ThePub</a>. Your feedback
+helps us focus our efforts on new features and capabilities.</p>
+</div>
+<div class="section" id="documentation-v1-1">
+<h2>Documentation (v1.1)<a class="headerlink" href="#documentation-v1-1" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://pythonhosted.org/solidfire-sdk-python/">Latest Docs</a></p>
+<p><a class="reference external" href="https://github.com/solidfire/sdk-dotnet/raw/gh-pages/Dot%20NET%20SDK%20Release%20Notes_v1.0.pdf">Release
+Notes</a></p>
+</div>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>The following prerequisites are required before installing the Solidfire
+SDK.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="86%" />
+<col width="14%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Component</th>
+<th class="head">Version</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference external" href="http://pycurl.io/docs/latest/install.html#install">PycURL</a></td>
+<td>7.34.0+</td>
+</tr>
+</tbody>
+</table>
+<p>To install globally with <code class="docutils literal"><span class="pre">pip</span></code> (requires pip 1.3 or greater)</p>
+<div class="section" id="pycurl">
+<h3>PycURL<a class="headerlink" href="#pycurl" title="Permalink to this headline">¶</a></h3>
+<p>Instructions for installing PycURL.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pycurl</span>
+</pre></div>
+</div>
+<p>The Solidfire Python SDK depends on the PycURL library which depends on
+an installed SSL library. If the PIP installation fails due to PycURL, this
+is most likely due to a missing SSL dependency. OpenSSL is the
+recomended SSL backend for all linux flavors.</p>
+<p>Instructions are Python 2.7 specific with examples of Python 3.3+
+examples in the comments.</p>
+<p><strong>Ubuntu Pre-Installation Steps</strong>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">pip</span>                                  <span class="c1"># or python3-pip</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libffi</span><span class="o">-</span><span class="n">dev</span> <span class="n">libssl</span><span class="o">-</span><span class="n">dev</span> <span class="n">libcurl4</span><span class="o">-</span><span class="n">openssl</span><span class="o">-</span><span class="n">dev</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">dev</span>                                  <span class="c1"># or python3.3-dev python3.4-dev python3.5-dev</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">pyopenssl</span> <span class="n">ndg</span><span class="o">-</span><span class="n">httpsclient</span> <span class="n">pyasn1</span>                     <span class="c1"># use the correct version of pip (i.e. pip3.3)</span>
+</pre></div>
+</div>
+<p><strong>RHEL/CentOS Pre-Installation Steps</strong>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">yum</span> <span class="n">install</span> <span class="n">epel</span><span class="o">-</span><span class="n">release</span>
+<span class="n">yum</span> <span class="n">groupinstall</span> <span class="s1">&#39;Development Tools&#39;</span>
+<span class="n">yum</span> <span class="o">-</span><span class="n">y</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">setuptools</span> <span class="n">python</span><span class="o">-</span><span class="n">pip</span> <span class="n">python</span><span class="o">-</span><span class="n">wheel</span>         <span class="c1"># or python3-setuptools python3-pip python3-wheel</span>
+<span class="n">yum</span> <span class="o">-</span><span class="n">y</span> <span class="n">install</span> <span class="n">libffi</span><span class="o">-</span><span class="n">devel</span> <span class="n">openssl</span><span class="o">-</span><span class="n">devel</span> <span class="n">libcurl</span>
+<span class="n">yum</span> <span class="o">-</span><span class="n">y</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">devel</span>                                      <span class="c1"># or python3.3-devel python3.4-devel python3.5-devel</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">pyopenssl</span> <span class="n">ndg</span><span class="o">-</span><span class="n">httpsclient</span> <span class="n">pyasn1</span>                     <span class="c1"># use the correct version of pip (i.e. pip3.3)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p><strong>From PyPI</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">solidfire</span><span class="o">-</span><span class="n">sdk</span><span class="o">-</span><span class="n">python</span>
+</pre></div>
+</div>
+<p><strong>From Source</strong></p>
+<p><em>Note</em>: It is recommended using
+<a class="reference external" href="https://github.com/pypa/virtualenv">virtualenv</a> for isolating the
+python environment to only the required libraries.</p>
+<p>To install the latest version of the SDK:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">solidfire</span><span class="o">/</span><span class="n">solidfire</span><span class="o">-</span><span class="n">sdk</span><span class="o">-</span><span class="n">python</span><span class="o">.</span><span class="n">git</span><span class="nd">@develop</span><span class="c1">#egg=solidfire-sdk-python</span>
+</pre></div>
+</div>
+<p>Alternatively, for development purposes or to inspect the source, the
+following will work:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">solidfire</span><span class="o">/</span><span class="n">solidfire</span><span class="o">-</span><span class="n">sdk</span><span class="o">-</span><span class="n">python</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">solidfire</span><span class="o">-</span><span class="n">sdk</span><span class="o">-</span><span class="n">python</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">develop</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;.[dev, test, docs, release]&quot;</span>
+<span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>Then append the location of this directory to the <code class="docutils literal"><span class="pre">PYTHONPATH</span></code>
+environment variable to use the SDK in other python scripts:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>export PYTHONPATH=$PYTHONPATH:/path/to/sf-python-sdk/
+</pre></div>
+</div>
+<p>That&#8217;s it &#8211; you are ready to start interacting with your SolidFire
+cluster using Python!</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="step-1-build-an-element-object-using-the-factory">
+<h3>Step 1 - Build an <a class="reference external" href="help/v1.1/html/T_SolidFire_Element_Api_SolidFireElement.htm">Element</a> object using the factory<a class="headerlink" href="#step-1-build-an-element-object-using-the-factory" title="Permalink to this headline">¶</a></h3>
+<p>This is the preferred way to construct the
+<a class="reference external" href="help/v1.1/html/T_SolidFire_Element_Api_SolidFireElement.htm">Element</a>
+object. The factory will make a call to the SolidFire cluster using the
+credentials supplied to test the connection. It will also set the
+version to communicate with based on the highest number supported by the
+SDK and Element OS. Optionally, you can choose to set the version
+manually and whether or not to verify SSL. Read more about it in the
+<a class="reference external" href="link-to-pypi-doc-for-elementfactory">ElementFactory</a> documentation.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.factory</span> <span class="kn">import</span> <span class="n">ElementFactory</span>
+
+<span class="c1"># Use ElementFactory to get a SolidFireElement object.</span>
+<span class="n">sfe</span> <span class="o">=</span> <span class="n">ElementFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;ip-address-of-cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-2-call-the-api-method-and-retrieve-the-result">
+<h3>Step 2 - Call the API method and retrieve the result<a class="headerlink" href="#step-2-call-the-api-method-and-retrieve-the-result" title="Permalink to this headline">¶</a></h3>
+<p>All service methods in SolidFireElement call API endpoints and they all
+return result objects. The naming convention is <code class="code docutils literal"><span class="pre">[method_name]_result</span></code>.
+For example, <code class="code docutils literal"><span class="pre">list_accounts</span></code> returns a <code class="code docutils literal"><span class="pre">list_accounts_result</span></code> object
+which has a property called <code class="code docutils literal"><span class="pre">accounts</span></code> that can be iterated.</p>
+<p>This example sends a request to list accounts then pulls the first account
+from the <code class="code docutils literal"><span class="pre">add_account_result</span></code> object.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Send the request and wait for the result then pull the AccountID</span>
+<span class="n">list_accounts_result</span> <span class="o">=</span> <span class="n">sfe</span><span class="o">.</span><span class="n">list_accounts</span><span class="p">()</span>
+<span class="n">account</span> <span class="o">=</span> <span class="n">list_accounts_result</span><span class="o">.</span><span class="n">accounts</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="more-examples-using-the-python-sdk">
+<h3>More examples using the Python SDK<a class="headerlink" href="#more-examples-using-the-python-sdk" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.factory</span> <span class="kn">import</span> <span class="n">ElementFactory</span>
+
+<span class="c1"># Create connection to SF Cluster</span>
+<span class="n">sfe</span> <span class="o">=</span> <span class="n">ElementFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;ip-address-of-cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+
+<span class="c1"># --------- EXAMPLE 1 - CREATE AN ACCOUNT -----------</span>
+<span class="c1"># Send the request with required parameters and gather the result</span>
+<span class="n">add_account_result</span> <span class="o">=</span> <span class="n">sfe</span><span class="o">.</span><span class="n">add_account</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s2">&quot;example-account&quot;</span><span class="p">)</span>
+<span class="c1"># Pull the account ID from the result object</span>
+<span class="n">account_id</span> <span class="o">=</span> <span class="n">add_account_result</span><span class="o">.</span><span class="n">account_id</span>
+
+<span class="c1"># --------- EXAMPLE 2 - CREATE A VOLUME -------------</span>
+<span class="c1"># Send the request with required parameters and gather the result</span>
+<span class="n">create_volume_result</span> <span class="o">=</span> <span class="n">sfe</span><span class="o">.</span><span class="n">create_volume</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;example-volume&quot;</span><span class="p">,</span>
+                                         <span class="n">account_id</span><span class="o">=</span><span class="n">account_id</span><span class="p">,</span>
+                                         <span class="n">total_size</span><span class="o">=</span><span class="mi">1000000000</span><span class="p">,</span>
+                                         <span class="n">enable512e</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="c1"># Pull the VolumeID off the result object</span>
+<span class="n">volume_id</span> <span class="o">=</span> <span class="n">create_volume_result</span><span class="o">.</span><span class="n">volume_id</span>
+
+<span class="c1"># --------- EXAMPLE 3 - LIST ONE VOLUME FOR AN ACCOUNT -------------</span>
+<span class="c1"># Send the request with desired parameters and pull the first volume in the</span>
+<span class="c1"># result</span>
+<span class="n">volume</span> <span class="o">=</span> <span class="n">sfe</span><span class="o">.</span><span class="n">list_volumes</span><span class="p">(</span><span class="n">accounts</span><span class="o">=</span><span class="p">[</span><span class="n">account_id</span><span class="p">],</span> <span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">volumes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># pull the iqn from the volume</span>
+<span class="n">iqn</span> <span class="o">=</span> <span class="n">volume</span><span class="o">.</span><span class="n">iqn</span>
+
+<span class="c1"># --------- EXAMPLE 3 - MODIFY A VOLUME -------------</span>
+<span class="c1"># Send the request with the desired parameters</span>
+<span class="n">sfe</span><span class="o">.</span><span class="n">modify_volume</span><span class="p">(</span><span class="n">volume_id</span><span class="o">=</span><span class="n">volume_id</span><span class="p">,</span> <span class="n">total_size</span><span class="o">=</span><span class="mi">2000000000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="more-examples">
+<h2>More Examples<a class="headerlink" href="#more-examples" title="Permalink to this headline">¶</a></h2>
+<p>More specific examples are available <a class="reference external" href="examples/README.rst">here</a></p>
+</div>
+<div class="section" id="logging">
+<h2>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h2>
+<p>To configure logging responses, execute the following:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">solidfire</span> <span class="kn">import</span> <span class="n">common</span>
+<span class="n">common</span><span class="o">.</span><span class="n">setLogLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To access the logger for the Element instance:: <sub>~</sub> python from
+solidfire import common common.log <sub>~</sub></p>
+</div>
+<div class="section" id="timeouts">
+<h2>Timeouts<a class="headerlink" href="#timeouts" title="Permalink to this headline">¶</a></h2>
+<p>Connection timeout (useful for failing fast when a host becomes
+unreachable):</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.factory</span> <span class="kn">import</span> <span class="n">ElementFactory</span>
+<span class="n">sfe</span> <span class="o">=</span> <span class="n">ElementFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;ip-address-of-cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+<span class="n">sfe</span><span class="o">.</span><span class="n">timeout</span><span class="p">(</span><span class="mi">600</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Read timeout (useful for extending time for a service call to return):</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.factory</span> <span class="kn">import</span> <span class="n">ElementFactory</span>
+<span class="n">sfe</span> <span class="o">=</span> <span class="n">ElementFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;ip-address-of-cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+<span class="n">sf</span><span class="o">.</span><span class="n">read_timeout</span><span class="p">(</span><span class="mi">600</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="license">
+<h2><strong>License</strong><a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>Copyright © 2016 NetApp, Inc. All rights reserved.</p>
+<p>Licensed under the Apache License, Version 2.0 (the &#8220;License&#8221;); you may
+not use this file except in compliance with the License. You may obtain
+a copy of the License at</p>
+<p><a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &#8220;AS IS&#8221; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
+</div>
+</div>
+<div class="section" id="account-management-examples">
+<h1>Account Management Examples<a class="headerlink" href="#account-management-examples" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="manage-accounts">
+<h2>Manage Accounts<a class="headerlink" href="#manage-accounts" title="Permalink to this headline">¶</a></h2>
+<p>These examples walk through all interactions with an Account on the
+SolidFire cluster.</p>
+<p>Examples for:</p>
+<ul class="simple">
+<li><a class="reference external" href="#list-all-accounts">List all Accounts</a></li>
+<li><a class="reference external" href="#get-one-account">Get one Account</a></li>
+<li><a class="reference external" href="#create-an-account">Create an Account</a></li>
+<li><a class="reference external" href="#modify-an-account">Modify an Account</a></li>
+</ul>
+<div class="section" id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
+<p>Further documentation for each method and type can be found in our PyPI
+documentation repository.</p>
+</div>
+<div class="section" id="list-all-accounts">
+<h3>List all Accounts<a class="headerlink" href="#list-all-accounts" title="Permalink to this headline">¶</a></h3>
+<p>To list all accounts on a cluster:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.factory</span> <span class="kn">import</span> <span class="n">ElementFactory</span>
+
+<span class="c1"># Create connection to SF Cluster</span>
+<span class="n">sfe</span> <span class="o">=</span> <span class="n">ElementFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;ip-address-of-cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+
+<span class="c1"># Send the request and gather the result</span>
+<span class="n">list_accounts_result</span> <span class="o">=</span> <span class="n">sfe</span><span class="o">.</span><span class="n">list_accounts</span><span class="p">()</span>
+
+<span class="c1"># iterate the accounts array on the result object and display each Account</span>
+<span class="k">for</span> <span class="n">account</span> <span class="ow">in</span> <span class="n">list_accounts_result</span><span class="o">.</span><span class="n">accounts</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-one-account">
+<h3>Get one Account<a class="headerlink" href="#get-one-account" title="Permalink to this headline">¶</a></h3>
+<p>To get a single account by ID:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.factory</span> <span class="kn">import</span> <span class="n">ElementFactory</span>
+
+<span class="c1"># Create connection to SF Cluster</span>
+<span class="n">sfe</span> <span class="o">=</span> <span class="n">ElementFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;ip-address-of-cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+
+<span class="c1"># Send the request with a specific account id and gather the result</span>
+<span class="n">get_account_result</span> <span class="o">=</span> <span class="n">sfe</span><span class="o">.</span><span class="n">get_account_by_id</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Display the account from the result object</span>
+<span class="k">print</span><span class="p">(</span><span class="n">get_account_result</span><span class="o">.</span><span class="n">account</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To get a single account by username:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.factory</span> <span class="kn">import</span> <span class="n">ElementFactory</span>
+
+<span class="c1"># Create connection to SF Cluster</span>
+<span class="n">sfe</span> <span class="o">=</span> <span class="n">ElementFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;ip-address-of-cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+
+<span class="c1"># Send the request with a specific account username and gather the result</span>
+<span class="n">get_account_result</span> <span class="o">=</span> <span class="n">sfe</span><span class="o">.</span><span class="n">get_account_by_name</span><span class="p">(</span><span class="s1">&#39;username-of-account&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display the account from the result object</span>
+<span class="k">print</span><span class="p">(</span><span class="n">get_account_result</span><span class="o">.</span><span class="n">account</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-an-account">
+<h3>Create an Account<a class="headerlink" href="#create-an-account" title="Permalink to this headline">¶</a></h3>
+<p>To create an account you must specify the <code class="docutils literal"><span class="pre">username</span></code>. Optionally, you
+can also specify the <code class="docutils literal"><span class="pre">initiator_secret</span></code> and <code class="docutils literal"><span class="pre">target_secret</span></code> which
+are <strong>CHAPSecret</strong> objects. If those secrets are not specified, they
+will be auto-generated.</p>
+<p>First, we create an account with only a username:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.factory</span> <span class="kn">import</span> <span class="n">ElementFactory</span>
+
+<span class="c1"># Create connection to SF Cluster</span>
+<span class="n">sfe</span> <span class="o">=</span> <span class="n">ElementFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;ip-address-of-cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+
+<span class="c1"># Send the request and gather the result</span>
+<span class="n">add_account_result</span> <span class="o">=</span> <span class="n">sfe</span><span class="o">.</span><span class="n">add_account</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s2">&quot;my-new-account&quot;</span><span class="p">)</span>
+
+<span class="c1"># Grab the account ID from the result object</span>
+<span class="n">new_account_id</span> <span class="o">=</span> <span class="n">add_account_result</span><span class="o">.</span><span class="n">account_id</span>
+</pre></div>
+</div>
+<p>Now we create an account and specify the <code class="docutils literal"><span class="pre">username</span></code> and
+<code class="docutils literal"><span class="pre">initiator_secret</span></code>. Notice we created a new <strong>CHAPSecret</strong> object and
+set the string value for the <code class="docutils literal"><span class="pre">intitiator_secret</span></code>. The
+<code class="docutils literal"><span class="pre">target_secret</span></code> will be auto-generated during the process on the
+cluster:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.factory</span> <span class="kn">import</span> <span class="n">ElementFactory</span>
+
+<span class="c1"># Create connection to SF Cluster</span>
+<span class="n">sfe</span> <span class="o">=</span> <span class="n">ElementFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;ip-address-of-cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+
+<span class="c1"># Send the request and gather the result</span>
+<span class="n">add_account_result</span> <span class="o">=</span> <span class="n">sfe</span><span class="o">.</span><span class="n">add_account</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s2">&quot;my-new-account&quot;</span><span class="p">,</span>
+                                     <span class="n">initiator_secret</span><span class="o">=</span><span class="n">CHAPSecret</span><span class="p">(</span>
+                                         <span class="s2">&quot;a12To16CharValue&quot;</span><span class="p">))</span>
+
+<span class="c1"># Grab the account ID from the result object</span>
+<span class="n">new_account_id</span> <span class="o">=</span> <span class="n">add_account_result</span><span class="o">.</span><span class="n">account_id</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="modify-an-account">
+<h3>Modify an Account<a class="headerlink" href="#modify-an-account" title="Permalink to this headline">¶</a></h3>
+<p>To modify an account, all you need is the <code class="docutils literal"><span class="pre">account_id</span></code> and the values
+you want to change. Any values you leave off will remain as they were
+before this call is made.</p>
+<p>In this example, we will instruct the API to autogenerate a new
+<code class="docutils literal"><span class="pre">target_secret</span></code> value for an account. In order to do so we need to
+call the static <code class="docutils literal"><span class="pre">auto_generate()</span></code> method on the <strong>CHAPSecret</strong> class.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.factory</span> <span class="kn">import</span> <span class="n">ElementFactory</span>
+
+<span class="c1"># Create connection to SF Cluster</span>
+<span class="n">sfe</span> <span class="o">=</span> <span class="n">ElementFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;ip-address-of-cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+
+<span class="c1"># Send the request with the account_id and gather the result</span>
+<span class="n">add_account_result</span> <span class="o">=</span> <span class="n">sfe</span><span class="o">.</span><span class="n">modify_account</span><span class="p">(</span><span class="n">account_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                        <span class="n">target_secret</span><span class="o">=</span><span class="n">CHAPSecret</span><span class="o">.</span><span class="n">auto_generate</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="snapshot-scheduling-examples">
+<h1>Snapshot Scheduling Examples<a class="headerlink" href="#snapshot-scheduling-examples" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="snapshot-scheduling">
+<h2>Snapshot Scheduling<a class="headerlink" href="#snapshot-scheduling" title="Permalink to this headline">¶</a></h2>
+<p>These examples walk through all interactions with a Schedule. Schedules
+control when automatic Snapshots will be taken of volumes on the
+SolidFire cluster.</p>
+<p>Examples for:</p>
+<ul class="simple">
+<li><a class="reference external" href="#list-all-schedules">List all Schedules</a></li>
+<li><a class="reference external" href="#get-one-schedule">Get one Schedule</a></li>
+<li><a class="reference external" href="#create-a-schedule">Create a Schedule</a></li>
+<li><a class="reference external" href="#modify-a-schedule">Modify a Schedule</a></li>
+</ul>
+<div class="section" id="id1">
+<h3>Documentation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Further documentation for each method and type can be found in our PyPI
+documentation repository.</p>
+</div>
+<div class="section" id="list-all-schedules">
+<h3>List all Schedules<a class="headerlink" href="#list-all-schedules" title="Permalink to this headline">¶</a></h3>
+<p>To list all the schedules on a cluster:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.factory</span> <span class="kn">import</span> <span class="n">ElementFactory</span>
+
+<span class="c1"># Create connection to SF Cluster</span>
+<span class="n">sfe</span> <span class="o">=</span> <span class="n">ElementFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;ip-address-of-cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+
+<span class="c1"># Send the request and gather the result</span>
+<span class="n">list_schedules_result</span> <span class="o">=</span> <span class="n">sfe</span><span class="o">.</span><span class="n">list_schedules</span><span class="p">()</span>
+
+<span class="c1"># iterate the schedules array on the result object and display each Schedule</span>
+<span class="k">for</span> <span class="n">schedule</span> <span class="ow">in</span> <span class="n">list_schedules_result</span><span class="o">.</span><span class="n">schedules</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">schedule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-one-schedule">
+<h3>Get one Schedule<a class="headerlink" href="#get-one-schedule" title="Permalink to this headline">¶</a></h3>
+<p>To get a single schedule:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.factory</span> <span class="kn">import</span> <span class="n">ElementFactory</span>
+
+<span class="c1"># Create connection to SF Cluster</span>
+<span class="n">sfe</span> <span class="o">=</span> <span class="n">ElementFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;ip-address-of-cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+
+<span class="c1"># Send the request with the schedule_id and gather the result</span>
+<span class="n">get_schedule_result</span> <span class="o">=</span> <span class="n">sfe</span><span class="o">.</span><span class="n">get_schedule</span><span class="p">(</span><span class="n">schedule_id</span><span class="o">=</span><span class="mi">56</span><span class="p">)</span>
+
+<span class="c1"># Display the schedule from the result object</span>
+<span class="k">print</span><span class="p">(</span><span class="n">get_schedule_result</span><span class="o">.</span><span class="n">schedule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-a-schedule">
+<h3>Create a Schedule<a class="headerlink" href="#create-a-schedule" title="Permalink to this headline">¶</a></h3>
+<p>In order for automatic snapshots to be taken, you need to create a
+schedule. There are three types of schedules that can be created:</p>
+<ul class="simple">
+<li><a class="reference external" href="#time-interval-schedule">Time Interval</a></li>
+<li><a class="reference external" href="#days-of-week-schedule">Days Of Week</a></li>
+<li><a class="reference external" href="#days-of-month-schedule">Days Of Month</a></li>
+</ul>
+<p>All three types of schedules are demonstrated here:</p>
+<div class="section" id="time-interval-schedule">
+<h4>Time Interval Schedule<a class="headerlink" href="#time-interval-schedule" title="Permalink to this headline">¶</a></h4>
+<p>This type of schedule will base snapshots on a time interval frequency.
+Each snapshot will be taken after the specified amount of time has
+passed. Control the duration by setting days, hours, and minutes on the
+TimeIntervalFrequency object.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.custom.models</span> <span class="k">import</span> <span class="n">TimeIntervalFrequency</span>
+<span class="kn">from</span> <span class="nn">solidfire.models</span> <span class="k">import</span> <span class="n">Schedule</span>
+
+<span class="n">sched</span> <span class="o">=</span> <span class="n">Schedule</span><span class="p">()</span>
+<span class="n">sched</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;SnapshotEvery3AndAHalfDays&quot;</span>
+<span class="n">sched</span><span class="o">.</span><span class="n">frequency</span> <span class="o">=</span> <span class="n">TimeIntervalFrequency</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">hours</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="days-of-week-schedule">
+<h4>Days Of Week Schedule<a class="headerlink" href="#days-of-week-schedule" title="Permalink to this headline">¶</a></h4>
+<p>This type of schedule will base snapshots on a weekly frequency. Each
+snapshot will be taken on the specified weekdays at the time specified
+in the hours and minutes properties. Control the schedule by setting
+weekdays, hours, and minutes on the DaysOfWeekFrequency object.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.custom.models</span> <span class="kn">import</span> <span class="n">DaysOfWeekFrequency</span><span class="p">,</span> <span class="n">Weekday</span>
+<span class="kn">from</span> <span class="nn">solidfire.models</span> <span class="kn">import</span> <span class="n">Schedule</span>
+
+<span class="n">sched</span> <span class="o">=</span> <span class="n">Schedule</span><span class="p">()</span>
+<span class="n">sched</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;SnapshotOnMonWedFriAt3am&quot;</span>
+<span class="n">sched</span><span class="o">.</span><span class="n">frequency</span> <span class="o">=</span> <span class="n">DaysOfWeekFrequency</span><span class="p">(</span>
+            <span class="n">weekdays</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">Weekday</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="s2">&quot;Monday&quot;</span><span class="p">),</span>
+                <span class="n">Weekday</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="s2">&quot;Wednesday&quot;</span><span class="p">),</span>
+                <span class="n">Weekday</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="s2">&quot;Friday&quot;</span><span class="p">)],</span>
+            <span class="n">hours</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="days-of-month-schedule">
+<h4>Days Of Month Schedule<a class="headerlink" href="#days-of-month-schedule" title="Permalink to this headline">¶</a></h4>
+<p>This type of schedule will base snapshots on a monthly frequency. Each
+snapshot will be taken on the specified month days at the time specified
+in the hours and minutes properties. Control the schedule by setting
+monthdays, hours, and minutes on the DaysOfMonthFrequency object.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.custom.models</span> <span class="kn">import</span> <span class="n">DaysOfMonthFrequency</span>
+<span class="kn">from</span> <span class="nn">solidfire.models</span> <span class="kn">import</span> <span class="n">Schedule</span>
+
+<span class="n">sched</span> <span class="o">=</span> <span class="n">Schedule</span><span class="p">()</span>
+<span class="n">sched</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;SnapshotOn7th14thAnd21stAt0130Hours&quot;</span>
+<span class="n">sched</span><span class="o">.</span><span class="n">frequency</span> <span class="o">=</span> <span class="n">DaysOfMonthFrequency</span><span class="p">(</span>
+            <span class="n">monthdays</span><span class="o">=</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">21</span><span class="p">],</span>
+            <span class="n">hours</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+            <span class="n">monutes</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-a-schedule-cont">
+<h4>Create a Schedule (cont.)<a class="headerlink" href="#create-a-schedule-cont" title="Permalink to this headline">¶</a></h4>
+<p>After creating the schedule and setting the frequency to Time Interval,
+Days Of Week, or Days Of Month, complete the object by setting the
+schedule_info property. This controls information about the resulting
+snapshot such as which volumes are in it, its name, and how long it
+should be retained.</p>
+<p>Continuing on with the <a class="reference external" href="#time-interval-schedule">Time Interval</a>
+example from above:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.custom.models</span> <span class="kn">import</span> <span class="n">TimeIntervalFrequency</span>
+<span class="kn">from</span> <span class="nn">solidfire.models</span> <span class="kn">import</span> <span class="n">Schedule</span><span class="p">,</span> <span class="n">ScheduleInfo</span>
+<span class="kn">from</span> <span class="nn">solidfire.factory</span> <span class="kn">import</span> <span class="n">ElementFactory</span>
+
+<span class="n">sched</span> <span class="o">=</span> <span class="n">Schedule</span><span class="p">()</span>
+<span class="n">sched</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;SnapshotEvery12Hours&quot;</span>
+<span class="n">sched</span><span class="o">.</span><span class="n">frequency</span> <span class="o">=</span> <span class="n">TimeIntervalFrequency</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">sched</span><span class="o">.</span><span class="n">schedule_info</span> <span class="o">=</span> <span class="n">ScheduleInfo</span><span class="p">(</span>
+    <span class="n">volume_ids</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="n">snapshot_name</span> <span class="o">=</span> <span class="s1">&#39;12th hour snapshot&#39;</span><span class="p">,</span>
+    <span class="n">retention</span><span class="o">=</span><span class="s2">&quot;72:00:00&quot;</span> <span class="c1"># in HH:mm:ss format</span>
+<span class="p">)</span>
+<span class="c1"># When should the schedule start?</span>
+<span class="n">sched</span><span class="o">.</span><span class="n">starting_date</span> <span class="o">=</span> <span class="s2">&quot;2016-12-01T00:00:00Z&quot;</span>
+
+<span class="c1"># Create connection to SF Cluster</span>
+<span class="n">sfe</span> <span class="o">=</span> <span class="n">ElementFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;ip-address-of-cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+
+<span class="c1"># Call the create_schedule method with the newly created schedule object</span>
+<span class="n">create_schedule_result</span> <span class="o">=</span> <span class="n">sfe</span><span class="o">.</span><span class="n">create_schedule</span><span class="p">(</span><span class="n">sched</span><span class="p">)</span>
+
+<span class="c1"># Grab the schedule ID from the result object</span>
+<span class="n">new_schedule_id</span> <span class="o">=</span> <span class="n">create_schedule_result</span><span class="o">.</span><span class="n">schedule_id</span>
+</pre></div>
+</div>
+<p>At this point we have created a new schedule called SnapshotEvery12Hours
+that creates a snapshot whose name is prepended with &#8220;12th hour
+snapshot&#8221; every 12 hours for volumes 1, 3, and 5 that is retained for 72
+hours.</p>
+</div>
+</div>
+<div class="section" id="modify-a-schedule">
+<h3>Modify a Schedule<a class="headerlink" href="#modify-a-schedule" title="Permalink to this headline">¶</a></h3>
+<p>To modify a schedule, first you must have a valid schedule object with
+its schedule_id set. You can create one manually but it is preferred to
+retrieve it from the cluster, modify the properties needed and then send
+it back. Here is an example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.factory</span> <span class="kn">import</span> <span class="n">ElementFactory</span>
+
+<span class="c1"># Create connection to SF Cluster</span>
+<span class="n">sfe</span> <span class="o">=</span> <span class="n">ElementFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;ip-address-of-cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+
+<span class="c1"># Send the request with the schedule_id and gather the result</span>
+<span class="n">get_schedule_result</span> <span class="o">=</span> <span class="n">sfe</span><span class="o">.</span><span class="n">get_schedule</span><span class="p">(</span><span class="n">schedule_id</span><span class="o">=</span><span class="n">new_schedule_id</span><span class="p">)</span>
+
+<span class="c1"># set a schedule variable from the schedule in the result for ease of use</span>
+<span class="n">sched</span> <span class="o">=</span> <span class="n">get_schedule_result</span><span class="o">.</span><span class="n">schedule</span>
+
+<span class="c1"># display the retrieved schedule</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sched</span><span class="p">)</span>
+
+<span class="c1"># set paused to True in order to pause the schedule</span>
+<span class="n">sched</span><span class="o">.</span><span class="n">paused</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="c1"># send the request to modify this schedule</span>
+<span class="n">sfe</span><span class="o">.</span><span class="n">modify_schedule</span><span class="p">(</span><span class="n">sched</span><span class="p">)</span>
+
+<span class="c1"># Send another get_schedule request and gather the result</span>
+<span class="n">get_modified_schedule_result</span> <span class="o">=</span> <span class="n">sfe</span><span class="o">.</span><span class="n">get_schedule</span><span class="p">(</span><span class="n">schedule_id</span><span class="o">=</span><span class="n">new_schedule_id</span><span class="p">)</span>
+
+<span class="c1"># display the newly modified schedule</span>
+<span class="k">print</span><span class="p">(</span><span class="n">get_modified_schedule_result</span><span class="o">.</span><span class="n">schedule</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is the output:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Schedule</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="n">TimeIntervalFrequency</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hours</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">minutes</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">has_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">last_run_status</span><span class="o">=</span><span class="s1">&#39;Success&#39;</span><span class="p">,</span> <span class="n">last_run_time_start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;SnapshotsEvery12Hours&#39;</span><span class="p">,</span> <span class="n">paused</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">recurring</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">run_next_interval</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">schedule_id</span><span class="o">=</span><span class="mi">56</span><span class="p">,</span> <span class="n">schedule_info</span><span class="o">=</span><span class="n">ScheduleInfo</span><span class="p">(</span><span class="n">enable_remote_replication</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">retention</span><span class="o">=</span><span class="s1">&#39;72:00:00&#39;</span><span class="p">,</span> <span class="n">snapshot_name</span><span class="o">=</span><span class="s1">&#39;12th hour snapshot&#39;</span><span class="p">,</span> <span class="n">volume_ids</span><span class="o">=</span><span class="s1">&#39;[1, 3, 5]&#39;</span><span class="p">),</span> <span class="n">starting_date</span><span class="o">=</span><span class="s1">&#39;2016-12-01T00:00:00Z&#39;</span><span class="p">,</span> <span class="n">to_be_deleted</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">Schedule</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="n">TimeIntervalFrequency</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hours</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">minutes</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">has_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">last_run_status</span><span class="o">=</span><span class="s1">&#39;Success&#39;</span><span class="p">,</span> <span class="n">last_run_time_start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;SnapshotsEvery12Hours&#39;</span><span class="p">,</span> <span class="n">paused</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">recurring</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">run_next_interval</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">schedule_id</span><span class="o">=</span><span class="mi">56</span><span class="p">,</span> <span class="n">schedule_info</span><span class="o">=</span><span class="n">ScheduleInfo</span><span class="p">(</span><span class="n">enable_remote_replication</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">retention</span><span class="o">=</span><span class="s1">&#39;72:00:00&#39;</span><span class="p">,</span> <span class="n">snapshot_name</span><span class="o">=</span><span class="s1">&#39;12th hour snapshot&#39;</span><span class="p">,</span> <span class="n">volume_ids</span><span class="o">=</span><span class="s1">&#39;[1, 3, 5]&#39;</span><span class="p">),</span> <span class="n">starting_date</span><span class="o">=</span><span class="s1">&#39;2016-12-01T00:00:00Z&#39;</span><span class="p">,</span> <span class="n">to_be_deleted</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Notice the <em>paused</em> field changes from <code class="docutils literal"><span class="pre">False</span></code> to <code class="docutils literal"><span class="pre">True</span></code></p>
+</div>
+</div>
+</div>
+<div class="section" id="solidfire-package">
+<h1>solidfire package<a class="headerlink" href="#solidfire-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.adaptor.html">solidfire.adaptor package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.adaptor.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.adaptor.html#solidfire-adaptor-schedule-adaptor-module">solidfire.adaptor.schedule_adaptor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.adaptor.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.apiactual.html">solidfire.apiactual package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.apiactual.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.common.html">solidfire.common package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.common.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.common.html#solidfire-common-model-module">solidfire.common.model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.common.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.custom.html">solidfire.custom package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.custom.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.util.html">solidfire.util package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.util.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="solidfire-factory-module">
+<h2>solidfire.factory module<a class="headerlink" href="#solidfire-factory-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="solidfire-models-module">
+<h2>solidfire.models module<a class="headerlink" href="#solidfire-models-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="solidfire-results-module">
+<h2>solidfire.results module<a class="headerlink" href="#solidfire-results-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="solidfire.adaptor.html" class="btn btn-neutral float-right" title="solidfire.adaptor package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to solidfire’s documentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2016, NetApp, Inc.  All Rights Reserved..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.1.0.93',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
