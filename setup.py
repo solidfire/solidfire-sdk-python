@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright © 2014-2016 NetApp, Inc. All Rights Reserved.
+# Copyright &copy; 2014-2016 NetApp, Inc. All Rights Reserved.
 #
 # CONFIDENTIALITY NOTICE: THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION OF
 # NETAPP, INC. USE, DISCLOSURE OR REPRODUCTION IS PROHIBITED WITHOUT THE PRIOR
@@ -36,7 +36,7 @@ class Clean(_clean):
 setup(
     name='solidfire-sdk-python',
 
-    version='1.0.0.104',
+    version='1.1.0.93',
 
     description='SolidFire Python SDK',
     long_description=long_description,
@@ -75,7 +75,7 @@ setup(
 
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 
-    install_requires=['pycurl>=7.19.0', 'future>=0.15.2', 'sphinx_rtd_theme'],
+    install_requires=['pycurl>=7.34.0', 'future>=0.15.2', 'enum34>=1.1.6'],
 
     # $> pip install -e ".[dev,test, docs, release]"
     extras_require={

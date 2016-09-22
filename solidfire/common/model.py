@@ -1,15 +1,16 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright © 2014-2016 NetApp, Inc. All Rights Reserved.
+# Copyright &copy; 2014-2016 NetApp, Inc. All Rights Reserved.
 #
 # CONFIDENTIALITY NOTICE: THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION OF
 # NETAPP, INC. USE, DISCLOSURE OR REPRODUCTION IS PROHIBITED WITHOUT THE PRIOR
 # EXPRESS WRITTEN PERMISSION OF NETAPP, INC.
 
 from __future__ import unicode_literals
-from future.utils import with_metaclass
 import json
+from uuid import UUID
+from future.utils import with_metaclass
 
 KNOWN_CONVERSIONS = {
     type(set): list
@@ -36,16 +37,22 @@ def serialize(val):
 
     :return: the serialized value
     """
-    if hasattr(val, 'to_json'):
-        return val.to_json()
+    if hasattr(val, 'custom_to_json'):
+        return_value = val.custom_to_json()
+    elif hasattr(val, 'to_json'):
+        return_value = val.to_json()
     elif type(val) in KNOWN_CONVERSIONS:
-        return KNOWN_CONVERSIONS[type(val)](val)
+        return_value = KNOWN_CONVERSIONS[type(val)](val)
     elif isinstance(val, dict):
-        return dict((k, serialize(v)) for k, v in val.items())
+        return_value = dict((k, serialize(v)) for k, v in val.items())
+    elif isinstance(val, list):
+        return_value = list(serialize(v) for v in val)
     elif hasattr(val, '_optional') and val.optional():
-        return None
+        return_value = None
     else:
-        return val
+        return_value = val
+
+    return return_value
 
 
 def extract(typ, src):
@@ -60,15 +67,24 @@ def extract(typ, src):
         original version is returned.
     """
     if hasattr(typ, 'extract'):
-        return typ.extract(src, False)
+        return_value = typ.extract(src, False)
+    elif type(src) == typ:
+        return_value = src
+    elif typ == UUID:
+        return_value = UUID(src)
+    elif typ.__init__(src) is not None:
+        return_value = typ.__init__(src)
     else:
-        return src
+        return_value = src
+
+    return return_value
 
 
 class ModelProperty(object):
     """
     ModelProperty metadata container for API data type information.
     """
+
     def __init__(self, member_name, member_type, array=False, optional=False,
                  documentation=None):
         """
@@ -95,6 +111,15 @@ class ModelProperty(object):
         self._optional = optional
         self._documentation = documentation
 
+    def __repr__(self):
+        if self._array:
+            arr = '[]'
+        else:
+            arr = ''
+
+        full_type = '{}'.format(self._member_type).replace('\'>', arr + '\'>')
+        return full_type
+
     def extend_json(self, out, data):
         """
         Serialize the property as json-like structure.
@@ -102,7 +127,7 @@ class ModelProperty(object):
         :param out: the resulting output.
         :param data: the data to be converted.
         """
-        if data is None:
+        if data is None or hasattr(data, '_member_type'):  # HACK ALERT
             if not self._optional:
                 out[self._member_name] = None
         elif self._array:
@@ -209,20 +234,30 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
                 cls._properties[name] = prop
 
     def __init__(self, **kwargs):
-        for k, v in kwargs.items():
-            if k not in type(self)._properties:
-                msg_fmt = 'Key "{k}" is not a valid property'
-                msg = msg_fmt.format(k)
+        for key, value in kwargs.items():
+            if key not in type(self)._properties:
+                msg_fmt = 'Key "{key}" is not a valid property'
+                msg = msg_fmt.format(key)
                 raise TypeError(msg)
             else:
-                setattr(self, k, v)
+                setattr(self, key, value)
+
+    def get_properties(self):
+        """
+        Exposes the type properties for a Data Object.
+
+        :return: the dictionary of property names and thier type information.
+        :rtype: dict
+        """
+        return self._properties
 
     def __repr__(self):
         """
         Base repr() for all generated objects.
         """
         props = []
-        for name, prop in sorted(type(self)._properties.items()):
+        member_items = self._properties
+        for name, prop in sorted(member_items.items()):
 
             if prop.array() and hasattr(self, name):
                 try:
@@ -232,12 +267,15 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
                 else:
                     attrs = (repr(x) for x in getattr(self, name))
                 msg_fmt = '[{arr}]'
-                r = msg_fmt.format(
+                attr_repr = msg_fmt.format(
                     arr=str.join(str(', '), attrs))
             else:
-                r = repr(getattr(self, name))
-            msg_fmt = '{name}={repr}'
-            msg = msg_fmt.format(name=name, repr=r)
+                if hasattr(self, name):
+                    attr_repr = getattr(self, name)
+                else:
+                    attr_repr = None
+            msg_fmt = '{name}={repr!r}'
+            msg = msg_fmt.format(name=name, repr=attr_repr)
             props.append(msg)
         return str.format(str('{cls}({props})'),
                           cls=type(self).__name__,
@@ -272,6 +310,9 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
         for name, prop in cls._properties.items():
             if data is None:
                 pass
+            elif hasattr(prop.member_type(), 'custom_extract'):
+                ctor_dict[name] = prop.member_type().custom_extract(
+                    data[prop.member_name()])
             elif prop.member_name() in data:
                 data_val = data[prop.member_name()]
                 ctor_dict[name] = prop.extract_from(data_val)
@@ -293,8 +334,8 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
 
 
 def property(member_name, member_type,
-             array=False, optional=False,
-             documentation=None):
+             array = False, optional = False,
+             documentation = None):
     """
     Constructs the type for a DataObject property.
 
@@ -326,12 +367,10 @@ def property(member_name, member_type,
                (ModelProperty,),
                {
                    '__doc__': documentation,
-                   '__repr__': repr(_as_ascii(msg))
                })
 
     return typ(member_name=member_name,
                member_type=member_type,
                array=array,
                optional=optional,
-               documentation=documentation
-               )
+               documentation=documentation)

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to solidfire’s documentation! &mdash; SolidFire Python SDK v1.0.0.102</title>
+  <title>Welcome to solidfire’s documentation! &mdash; SolidFire Python SDK v1.1.0.93</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                1.0.0
+                1.1.0.93
               </div>
             
           
@@ -88,7 +88,10 @@
             
             
                 <ul>
-<li class="toctree-l1"><a class="reference internal" href="solidfire.html">solidfire package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.html"> SolidFire Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.html#account-management-examples">Account Management Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.html#snapshot-scheduling-examples">Snapshot Scheduling Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.html#solidfire-package">solidfire package</a></li>
 </ul>
 
             
@@ -138,20 +141,90 @@
 <p>Contents:</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="solidfire.html">solidfire package</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.html"> SolidFire Python SDK</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#current-release">Current Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#compatibility">Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#documentation-v1-1">Documentation (v1.1)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.html#pycurl">PycURL</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.html#step-1-build-an-element-object-using-the-factory">Step 1 - Build an Element object using the factory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.html#step-2-call-the-api-method-and-retrieve-the-result">Step 2 - Call the API method and retrieve the result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.html#more-examples-using-the-python-sdk">More examples using the Python SDK</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#more-examples">More Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#logging">Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#timeouts">Timeouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#license"><strong>License</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.html#account-management-examples">Account Management Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#manage-accounts">Manage Accounts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.html#documentation">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.html#list-all-accounts">List all Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.html#get-one-account">Get one Account</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.html#create-an-account">Create an Account</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.html#modify-an-account">Modify an Account</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.html#snapshot-scheduling-examples">Snapshot Scheduling Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#snapshot-scheduling">Snapshot Scheduling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.html#id1">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.html#list-all-schedules">List all Schedules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.html#get-one-schedule">Get one Schedule</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.html#create-a-schedule">Create a Schedule</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="solidfire.html#time-interval-schedule">Time Interval Schedule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="solidfire.html#days-of-week-schedule">Days Of Week Schedule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="solidfire.html#days-of-month-schedule">Days Of Month Schedule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="solidfire.html#create-a-schedule-cont">Create a Schedule (cont.)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.html#modify-a-schedule">Modify a Schedule</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.html#solidfire-package">solidfire package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="solidfire.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.adaptor.html">solidfire.adaptor package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="solidfire.adaptor.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="solidfire.adaptor.html#solidfire-adaptor-schedule-adaptor-module">solidfire.adaptor.schedule_adaptor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="solidfire.adaptor.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.apiactual.html">solidfire.apiactual package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="solidfire.apiactual.html#module-contents">Module contents</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="solidfire.common.html">solidfire.common package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="solidfire.common.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="solidfire.common.html#module-solidfire.common.model">Common Model (solidfire.common.model)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="solidfire.common.html#module-solidfire.common">Common Module contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="solidfire.common.html#solidfire-common-model-module">solidfire.common.model module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="solidfire.common.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.custom.html">solidfire.custom package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="solidfire.custom.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="solidfire.util.html">solidfire.util package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="solidfire.util.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="solidfire.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.models">Models (solidfire.models)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.results">Results (solidfire.results)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire">Element Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#solidfire-factory-module">solidfire.factory module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#solidfire-models-module">solidfire.models module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#solidfire-results-module">solidfire.results module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -160,9 +233,9 @@
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
 </ul>
 </div>
 
@@ -173,7 +246,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="solidfire.html" class="btn btn-neutral float-right" title="solidfire package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="solidfire.html" class="btn btn-neutral float-right" title="SolidFire Python SDK" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>
@@ -205,7 +278,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0.0.102',
+            VERSION:'1.1.0.93',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

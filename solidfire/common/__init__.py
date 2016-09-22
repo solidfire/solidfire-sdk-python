@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright © 2014-2016 NetApp, Inc. All Rights Reserved.
+# Copyright &copy; 2014-2016 NetApp, Inc. All Rights Reserved.
 #
 # CONFIDENTIALITY NOTICE: THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION OF
 # NETAPP, INC. USE, DISCLOSURE OR REPRODUCTION IS PROHIBITED WITHOUT THE PRIOR
@@ -12,22 +12,21 @@ import json
 from contextlib import closing
 
 import itertools
-import pycurl
 import logging
 
 from solidfire.common import model
 
-log = logging.getLogger('solidfire.Element')
-log.setLevel(logging.INFO)
-ch = logging.StreamHandler()
-ch.setLevel(logging.INFO)
-formatter = logging.Formatter(
+LOG = logging.getLogger('solidfire.Element')
+LOG.setLevel(logging.INFO)
+CH = logging.StreamHandler()
+CH.setLevel(logging.INFO)
+FORMATTER = logging.Formatter(
     '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
-ch.setFormatter(formatter)
-log.addHandler(ch)
+CH.setFormatter(FORMATTER)
+LOG.addHandler(CH)
 
-atomic_counter = itertools.count()
+ATOMIC_COUNTER = itertools.count()
 
 
 def setLogLevel(level):
@@ -40,9 +39,14 @@ def setLogLevel(level):
 
     :param level: level must be an int or a str.
     """
-    log.setLevel(level)
-    for handler in log.handlers:
+    LOG.setLevel(level)
+    for handler in LOG.handlers:
         handler.setLevel(level)
+
+
+class SdkOperationError(Exception):
+    def __init__(self, *args, **kwargs):
+        Exception.__init__(self, *args, **kwargs)
 
 
 class ApiServerError(Exception):
@@ -66,6 +70,7 @@ class ApiServerError(Exception):
 
         self._method_name = method_name
         self._err_json = err_json
+        Exception.__init__(self)
 
     def __repr__(self):
         return '%s(method_name="%s", err_json=%s)' % (
@@ -85,7 +90,7 @@ class ApiServerError(Exception):
     @property
     def error_name(self):
         """The name of the error."""
-        return json.loads(self._err_json)\
+        return json.loads(self._err_json) \
             .get('error', {}).get('name', 'Unknown')
 
     @property
@@ -135,6 +140,7 @@ class ApiMethodVersionError(Exception):
         self._since = float(since) if since is not None else since
         self._deprecated = float(deprecated) \
             if deprecated is not None else deprecated
+        Exception.__init__(self)
 
     def __repr__(self):
         return '%s(method_name="%s", ' \
@@ -214,6 +220,7 @@ class ApiParameterVersionError(Exception):
                 self._violations.append(
                     name + ' (version: ' + str(since) + ')'
                 )
+        Exception.__init__(self)
 
     def __repr__(self):
         return '%s(method_name="%s", ' \
@@ -276,6 +283,7 @@ class ApiVersionExceededError(Exception):
         """
         self._api_version = float(api_version)
         self._current_version = float(current_version)
+        Exception.__init__(self)
 
     def __repr__(self):
         return '%s(api_version=%s, ' \
@@ -327,6 +335,7 @@ class ApiVersionUnsupportedError(Exception):
         """
         self._api_version = float(api_version)
         self._supported_versions = [float(i) for i in supported_versions]
+        Exception.__init__(self)
 
     def __repr__(self):
         return '%s(api_version=%s, ' \
@@ -527,22 +536,52 @@ class ServiceBase(object):
         """
         self._dispatcher.restore_timeout_defaults()
 
-    def _send_request(self, method_name,
-                      result_type,
-                      params=None,
-                      since=None,
-                      deprecated=None):
+    @property
+    def api_version(self):
+        """
+        Returns the version of the Element API
+
+        :return: the version of the Element API
+        :rtype: float
+        """
+        return self._api_version
+
+    def send_request(self, method_name,
+                     result_type,
+                     params=None,
+                     since=None,
+                     deprecated=None):
+        """
+        :param method_name: the name of the API method to call
+        :type method_name: str
+
+        :param result_type: the type of the result object returned from the API
+            method called.
+        :type result_type: DataObject
+
+        :param params: the parameters supplied to the API call.
+        :type params: dict
+
+        :param since: the first version this service was available
+        :type since: str or float
+
+        :param deprecated: the final version this service was available
+        :type deprecated: str or float
+
+        :return: the result of the API service call
+        :rtype: DataObject
+        """
 
         self._check_method_version(method_name, since, deprecated)
 
         if params is None:
             params = {}
 
-        global atomic_counter
-        if hasattr(atomic_counter, 'next'):
-            atomic_id = atomic_counter.next()
+        global ATOMIC_COUNTER
+        if hasattr(ATOMIC_COUNTER, 'next'):
+            atomic_id = ATOMIC_COUNTER.next()
         else:
-            atomic_id = atomic_counter.__next__()
+            atomic_id = ATOMIC_COUNTER.__next__()
         encoded = json.dumps({
             'method': method_name,
             'id': atomic_id if atomic_id > 0 else 0,
@@ -552,17 +591,18 @@ class ServiceBase(object):
             ),
         })
 
+        import pycurl
         try:
-            log.info(msg=encoded)
+            LOG.info(msg=encoded)
             response_raw = self._dispatcher.post(encoded)
-        except pycurl.error as e:
+        except pycurl.error as error:
             json_err = json.dumps(
                 {
                     'error':
                         {
-                            'name': str(e.__class__).split('\'')[1],
+                            'name': str(error.__class__).split('\'')[1],
                             'code': 500,
-                            'message': e.args[1]
+                            'message': error.args[1]
                         }
                 }
             )
@@ -581,18 +621,19 @@ class ServiceBase(object):
             )
             raise ApiServerError('login', json_err)
 
+        # noinspection PyBroadException
         try:
             response = json.loads(response_raw)
-            log.debug(msg=response)
-        except Exception as e:
-            log.error(msg=response_raw)
+            LOG.debug(msg=response)
+        except Exception as error:
+            LOG.error(msg=response_raw)
             response = json.dumps(
                 {
                     'error':
                         {
                             'name': 'JSONDecodeError',
                             'code': 500,
-                            'message': str(e)
+                            'message': str(error)
                         }
                 }
             )

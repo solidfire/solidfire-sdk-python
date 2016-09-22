@@ -1,0 +1,520 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>solidfire.adaptor.schedule_adaptor &mdash; SolidFire Python SDK v1.1.0.87</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/solidfire.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SolidFire Python SDK v1.1.0.87" href="../../../index.html"/>
+        <link rel="up" title="solidfire.adaptor" href="../adaptor.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> solidfire-sdk-python
+          
+
+          
+            
+            <img src="../../../_static/PythonSDK.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.0.87
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../solidfire.html"> SolidFire Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../solidfire.html#account-management-examples">Account Management Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../solidfire.html#snapshot-scheduling-examples">Snapshot Scheduling Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../solidfire.html#solidfire-package">solidfire package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">solidfire-sdk-python</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+          <li><a href="../../solidfire.html">solidfire</a> &raquo;</li>
+      
+          <li><a href="../adaptor.html">solidfire.adaptor</a> &raquo;</li>
+      
+    <li>solidfire.adaptor.schedule_adaptor</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for solidfire.adaptor.schedule_adaptor</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright &amp;copy; 2014-2016 NetApp, Inc. All Rights Reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># CONFIDENTIALITY NOTICE: THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION OF</span>
+<span class="c1"># NETAPP, INC. USE, DISCLOSURE OR REPRODUCTION IS PROHIBITED WITHOUT THE PRIOR</span>
+<span class="c1"># EXPRESS WRITTEN PERMISSION OF NETAPP, INC.</span>
+<span class="sd">&quot;&quot;&quot;Module implements Schedule Simplification conversion logic.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">solidfire.apiactual</span> <span class="k">import</span> <span class="n">ApiSchedule</span><span class="p">,</span> <span class="n">ApiScheduleInfo</span><span class="p">,</span> <span class="n">ApiWeekday</span><span class="p">,</span> \
+    <span class="n">ApiGetScheduleResult</span><span class="p">,</span> <span class="n">ApiListSchedulesResult</span><span class="p">,</span> <span class="n">ApiModifyScheduleResult</span><span class="p">,</span> \
+    <span class="n">ApiCreateScheduleResult</span>
+<span class="kn">from</span> <span class="nn">solidfire.custom.models</span> <span class="k">import</span> <span class="n">Weekday</span><span class="p">,</span> <span class="n">DaysOfMonthFrequency</span><span class="p">,</span> \
+    <span class="n">DaysOfWeekFrequency</span><span class="p">,</span> <span class="n">TimeIntervalFrequency</span>
+<span class="kn">from</span> <span class="nn">solidfire.models</span> <span class="k">import</span> <span class="n">Schedule</span><span class="p">,</span> <span class="n">Frequency</span><span class="p">,</span> <span class="n">ScheduleInfo</span>
+<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="k">import</span> <span class="n">GetScheduleResult</span><span class="p">,</span> <span class="n">ListSchedulesResult</span><span class="p">,</span> \
+    <span class="n">CreateScheduleResult</span><span class="p">,</span> <span class="n">ModifyScheduleResult</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;solidfire.Element&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ScheduleAdaptor"><a class="viewcode-back" href="../../../solidfire.adaptor.html#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor">[docs]</a><span class="k">class</span> <span class="nc">ScheduleAdaptor</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class contains the implementation of the schedule specific adaptor</span>
+<span class="sd">    calls for simplifying Snapshot Scheduling.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ScheduleAdaptor.get_schedule"><a class="viewcode-back" href="../../../solidfire.adaptor.html#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.get_schedule">[docs]</a>    <span class="k">def</span> <span class="nf">get_schedule</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calls to this static method should ONLY originate from the</span>
+<span class="sd">        get_schedule method in the Element class. DO NOT CALL THIS directly.</span>
+<span class="sd">        Documentation here is intentionally brief.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">api_result</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">send_request</span><span class="p">(</span><span class="s2">&quot;GetSchedule&quot;</span><span class="p">,</span>
+                                          <span class="n">ApiGetScheduleResult</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span>
+                                          <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">GetScheduleResult</span><span class="p">()</span>
+
+        <span class="n">result</span><span class="o">.</span><span class="n">schedule</span> <span class="o">=</span> <span class="n">ScheduleAdaptor</span><span class="o">.</span><span class="n">to_schedule</span><span class="p">(</span><span class="n">api_result</span><span class="o">.</span><span class="n">schedule</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">result</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ScheduleAdaptor.list_schedules"><a class="viewcode-back" href="../../../solidfire.adaptor.html#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.list_schedules">[docs]</a>    <span class="k">def</span> <span class="nf">list_schedules</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calls to this static method should ONLY originate from the</span>
+<span class="sd">        list_schedules method in the Element class. DO NOT CALL THIS directly.</span>
+<span class="sd">        Documentation here is intentionally brief.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">api_result</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">send_request</span><span class="p">(</span><span class="s2">&quot;ListSchedules&quot;</span><span class="p">,</span>
+                                          <span class="n">ApiListSchedulesResult</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span>
+                                          <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">ListSchedulesResult</span><span class="p">()</span>
+
+        <span class="n">schedules</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">schedule</span> <span class="ow">in</span> <span class="n">api_result</span><span class="o">.</span><span class="n">schedules</span><span class="p">:</span>
+            <span class="n">schedules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ScheduleAdaptor</span><span class="o">.</span><span class="n">to_schedule</span><span class="p">(</span><span class="n">schedule</span><span class="p">))</span>
+
+        <span class="n">result</span><span class="o">.</span><span class="n">schedules</span> <span class="o">=</span> <span class="n">schedules</span>
+
+        <span class="k">return</span> <span class="n">result</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ScheduleAdaptor.modify_schedule"><a class="viewcode-back" href="../../../solidfire.adaptor.html#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.modify_schedule">[docs]</a>    <span class="k">def</span> <span class="nf">modify_schedule</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calls to this static method should ONLY originate from the</span>
+<span class="sd">        modify_schedules method in the Element class. DO NOT CALL THIS</span>
+<span class="sd">        directly. Documentation here is intentionally brief.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;schedule&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">schedule_id</span><span class="p">,</span> <span class="s1">&#39;_member_type&#39;</span><span class="p">)</span> <span class="ow">or</span> \
+                <span class="n">params</span><span class="p">[</span><span class="s1">&#39;schedule&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">schedule_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;ScheduleID is missing. Cannot modify a &quot;</span>
+                                 <span class="s2">&quot;schedule without a ScheduleID&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;schedule&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">frequency</span><span class="p">,</span> <span class="s1">&#39;_member_type&#39;</span><span class="p">)</span> <span class="ow">or</span> \
+                <span class="n">params</span><span class="p">[</span><span class="s1">&#39;schedule&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">frequency</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Frequency is not present. Make sure the &quot;</span>
+                                 <span class="s2">&quot;schedule object has a value in the &quot;</span>
+                                 <span class="s2">&quot;frequency property before attempting to &quot;</span>
+                                 <span class="s2">&quot;modify a Schedule.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;schedule&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">schedule_info</span><span class="p">,</span> <span class="s1">&#39;_member_type&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Schedule_info is not present. Make sure the &quot;</span>
+                                 <span class="s2">&quot;schedule object has a value in the &quot;</span>
+                                 <span class="s2">&quot;schedule_info property before attempting to &quot;</span>
+                                 <span class="s2">&quot;modify a Schedule.&quot;</span><span class="p">)</span>
+
+        <span class="n">api_schedule</span> <span class="o">=</span> <span class="n">ScheduleAdaptor</span><span class="o">.</span><span class="n">to_api_schedule</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;schedule&#39;</span><span class="p">])</span>
+
+        <span class="n">element</span><span class="o">.</span><span class="n">send_request</span><span class="p">(</span><span class="s2">&quot;ModifySchedule&quot;</span><span class="p">,</span>
+                             <span class="n">ApiModifyScheduleResult</span><span class="p">,</span> <span class="n">api_schedule</span><span class="o">.</span><span class="n">to_json</span><span class="p">(),</span>
+                             <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">ModifyScheduleResult</span><span class="p">()</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ScheduleAdaptor.create_schedule"><a class="viewcode-back" href="../../../solidfire.adaptor.html#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.create_schedule">[docs]</a>    <span class="k">def</span> <span class="nf">create_schedule</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calls to this static method should ONLY originate from the</span>
+<span class="sd">        create_schedules method in the Element class. DO NOT CALL THIS</span>
+<span class="sd">        directly. Documentation here is intentionally brief.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;schedule&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">schedule_id</span><span class="p">,</span> <span class="s1">&#39;_member_type&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;ScheduleID should not be present. Do &quot;</span>
+                                 <span class="s2">&quot;not specify ScheduleID when creating a &quot;</span>
+                                 <span class="s2">&quot;Schedule. One will be assigned upon &quot;</span>
+                                 <span class="s2">&quot;creation.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;schedule&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">frequency</span><span class="p">,</span> <span class="s1">&#39;_member_type&#39;</span><span class="p">)</span> <span class="ow">or</span> \
+                <span class="n">params</span><span class="p">[</span><span class="s1">&#39;schedule&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">frequency</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Frequency is not present. Make sure the &quot;</span>
+                                 <span class="s2">&quot;schedule object has a value in the &quot;</span>
+                                 <span class="s2">&quot;frequency property before attempting to &quot;</span>
+                                 <span class="s2">&quot;create a Schedule.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;schedule&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">schedule_info</span><span class="p">,</span> <span class="s1">&#39;_member_type&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Schedule_info is not present. Make sure the &quot;</span>
+                                 <span class="s2">&quot;schedule object has a value in the &quot;</span>
+                                 <span class="s2">&quot;schedule_info property before attempting to &quot;</span>
+                                 <span class="s2">&quot;modify a Schedule.&quot;</span><span class="p">)</span>
+
+        <span class="n">api_schedule</span> <span class="o">=</span> <span class="n">ScheduleAdaptor</span><span class="o">.</span><span class="n">to_api_schedule</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;schedule&#39;</span><span class="p">])</span>
+
+        <span class="n">api_result</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">send_request</span><span class="p">(</span><span class="s2">&quot;CreateSchedule&quot;</span><span class="p">,</span>
+                                          <span class="n">CreateScheduleResult</span><span class="p">,</span>
+                                          <span class="n">api_schedule</span><span class="o">.</span><span class="n">to_json</span><span class="p">(),</span>
+                                          <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">api_result</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ScheduleAdaptor.to_schedule"><a class="viewcode-back" href="../../../solidfire.adaptor.html#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_schedule">[docs]</a>    <span class="k">def</span> <span class="nf">to_schedule</span><span class="p">(</span><span class="n">api</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Converts an ApiSchedule object into a Schedule object</span>
+<span class="sd">        :param api: the ApiSchedule object to be converted</span>
+<span class="sd">        :type api: solidfire.apiactual.ApiSchedule</span>
+<span class="sd">        :return: solidfire.models.Schedule</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">schedule</span> <span class="o">=</span> <span class="n">Schedule</span><span class="p">()</span>
+
+        <span class="n">schedule</span><span class="o">.</span><span class="n">has_error</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">has_error</span>
+        <span class="n">schedule</span><span class="o">.</span><span class="n">last_run_status</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">last_run_status</span>
+        <span class="n">schedule</span><span class="o">.</span><span class="n">last_run_time_start</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">last_run_time_start</span>
+        <span class="n">schedule</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">schedule_name</span>
+        <span class="n">schedule</span><span class="o">.</span><span class="n">paused</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">paused</span>
+        <span class="n">schedule</span><span class="o">.</span><span class="n">recurring</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">recurring</span>
+        <span class="n">schedule</span><span class="o">.</span><span class="n">run_next_interval</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">run_next_interval</span>
+        <span class="n">schedule</span><span class="o">.</span><span class="n">schedule_id</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">schedule_id</span>
+        <span class="n">schedule</span><span class="o">.</span><span class="n">starting_date</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">starting_date</span>
+        <span class="n">schedule</span><span class="o">.</span><span class="n">to_be_deleted</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">to_be_deleted</span>
+
+        <span class="n">schedule</span><span class="o">.</span><span class="n">schedule_info</span> <span class="o">=</span> <span class="n">ScheduleAdaptor</span><span class="o">.</span><span class="n">to_schedule_info</span><span class="p">(</span>
+            <span class="n">api</span><span class="o">.</span><span class="n">schedule_info</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">freq</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s2">&quot;frequency&quot;</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">freq</span> <span class="o">==</span> <span class="s2">&quot;Time Interval&quot;</span><span class="p">:</span>
+                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span> <span class="o">=</span> <span class="n">TimeIntervalFrequency</span><span class="p">()</span>
+                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">days</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">hours</span> <span class="o">/</span> <span class="mi">24</span><span class="p">)</span>
+                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">hours</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">hours</span> <span class="o">%</span> <span class="mi">24</span><span class="p">)</span>
+                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">minutes</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">minutes</span>
+                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">weekdays</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">monthdays</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">elif</span> <span class="n">freq</span> <span class="o">==</span> <span class="s2">&quot;Days Of Month&quot;</span><span class="p">:</span>
+                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span> <span class="o">=</span> <span class="n">DaysOfMonthFrequency</span><span class="p">()</span>
+                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">hours</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">hours</span>
+                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">minutes</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">minutes</span>
+                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">monthdays</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">monthdays</span>
+                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">weekdays</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">elif</span> <span class="n">freq</span> <span class="o">==</span> <span class="s2">&quot;Days Of Week&quot;</span><span class="p">:</span>
+                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span> <span class="o">=</span> <span class="n">DaysOfWeekFrequency</span><span class="p">()</span>
+                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">hours</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">hours</span>
+                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">minutes</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">minutes</span>
+                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">weekdays</span> <span class="o">=</span> <span class="n">ScheduleAdaptor</span> \
+                    <span class="o">.</span><span class="n">to_weekdays</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">weekdays</span><span class="p">)</span>
+                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">monthdays</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Cannot determine frequency&quot;</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Cannot deserialize Schedule </span><span class="si">{0}</span><span class="s2">. The frequency &quot;</span>
+                      <span class="s2">&quot;property has an unknown value.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">schedule</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">schedule</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ScheduleAdaptor.to_schedule_info"><a class="viewcode-back" href="../../../solidfire.adaptor.html#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_schedule_info">[docs]</a>    <span class="k">def</span> <span class="nf">to_schedule_info</span><span class="p">(</span><span class="n">api</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert an ApiScheduleInfo object into a ScheduleInfo object</span>
+<span class="sd">        :param api: the ApiScheduleInfo object</span>
+<span class="sd">        :type api: solidfire.apiactual.ApiScheduleInfo</span>
+<span class="sd">        :return: solidfire.models.ScheduleInfo</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="n">ScheduleInfo</span><span class="p">()</span>
+        <span class="n">info</span><span class="o">.</span><span class="n">enable_remote_replication</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">enable_remote_replication</span>
+        <span class="n">info</span><span class="o">.</span><span class="n">snapshot_name</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">info</span><span class="o">.</span><span class="n">retention</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">retention</span>
+
+        <span class="n">volume_ids</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">api</span><span class="o">.</span><span class="n">volume_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">volume_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">volume_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">api</span><span class="o">.</span><span class="n">volumes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># noinspection PyTypeChecker</span>
+            <span class="n">volume_ids</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">volumes</span><span class="p">)</span>
+
+        <span class="n">info</span><span class="o">.</span><span class="n">volume_ids</span> <span class="o">=</span> <span class="n">volume_ids</span>
+
+        <span class="k">return</span> <span class="n">info</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ScheduleAdaptor.to_weekdays"><a class="viewcode-back" href="../../../solidfire.adaptor.html#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_weekdays">[docs]</a>    <span class="k">def</span> <span class="nf">to_weekdays</span><span class="p">(</span><span class="n">api</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Converts an ApiWeekday object array into a Weekday object array</span>
+<span class="sd">        :param api: array of ApiWeekday objects</span>
+<span class="sd">        :type api: solidfire.apiactual.ApiWeekday[]</span>
+<span class="sd">        :return: solidfire.custom.models.Weekday[]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">weekdays</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">api_day</span> <span class="ow">in</span> <span class="n">api</span><span class="p">:</span>
+            <span class="n">weekdays</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Weekday</span><span class="o">.</span><span class="n">from_id</span><span class="p">(</span><span class="n">api_day</span><span class="o">.</span><span class="n">day</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">weekdays</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ScheduleAdaptor.to_api_schedule"><a class="viewcode-back" href="../../../solidfire.adaptor.html#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_api_schedule">[docs]</a>    <span class="k">def</span> <span class="nf">to_api_schedule</span><span class="p">(</span><span class="n">schedule</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Converts a Schedule object into an ApiSchedule object</span>
+<span class="sd">        :param schedule: the Schedule object</span>
+<span class="sd">        :type schedule: Schedule</span>
+<span class="sd">        :return: solidfire.apiactual.ApiSchedule</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">api</span> <span class="o">=</span> <span class="n">ApiSchedule</span><span class="p">()</span>
+        <span class="n">api</span><span class="o">.</span><span class="n">has_error</span> <span class="o">=</span> <span class="n">schedule</span><span class="o">.</span><span class="n">has_error</span>
+        <span class="n">api</span><span class="o">.</span><span class="n">last_run_status</span> <span class="o">=</span> <span class="n">schedule</span><span class="o">.</span><span class="n">last_run_status</span>
+        <span class="n">api</span><span class="o">.</span><span class="n">last_run_time_start</span> <span class="o">=</span> <span class="n">schedule</span><span class="o">.</span><span class="n">last_run_time_start</span>
+        <span class="n">api</span><span class="o">.</span><span class="n">schedule_name</span> <span class="o">=</span> <span class="n">schedule</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">api</span><span class="o">.</span><span class="n">paused</span> <span class="o">=</span> <span class="n">schedule</span><span class="o">.</span><span class="n">paused</span>
+        <span class="n">api</span><span class="o">.</span><span class="n">recurring</span> <span class="o">=</span> <span class="n">schedule</span><span class="o">.</span><span class="n">recurring</span>
+        <span class="n">api</span><span class="o">.</span><span class="n">run_next_interval</span> <span class="o">=</span> <span class="n">schedule</span><span class="o">.</span><span class="n">run_next_interval</span>
+        <span class="n">api</span><span class="o">.</span><span class="n">schedule_id</span> <span class="o">=</span> <span class="n">schedule</span><span class="o">.</span><span class="n">schedule_id</span>
+        <span class="n">api</span><span class="o">.</span><span class="n">starting_date</span> <span class="o">=</span> <span class="n">schedule</span><span class="o">.</span><span class="n">starting_date</span>
+        <span class="n">api</span><span class="o">.</span><span class="n">to_be_deleted</span> <span class="o">=</span> <span class="n">schedule</span><span class="o">.</span><span class="n">to_be_deleted</span>
+        <span class="n">api</span><span class="o">.</span><span class="n">schedule_type</span> <span class="o">=</span> <span class="s1">&#39;Snapshot&#39;</span>
+
+        <span class="n">api</span><span class="o">.</span><span class="n">schedule_info</span> <span class="o">=</span> <span class="n">ScheduleAdaptor</span> \
+            <span class="o">.</span><span class="n">to_api_schedule_info</span><span class="p">(</span><span class="n">schedule</span><span class="o">.</span><span class="n">schedule_info</span><span class="p">)</span>
+
+        <span class="n">frequency</span> <span class="o">=</span> <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span>
+        <span class="n">api</span><span class="o">.</span><span class="n">attributes</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span> <span class="ow">is</span> <span class="n">TimeIntervalFrequency</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">frequency</span><span class="o">.</span><span class="n">days</span><span class="p">,</span> <span class="s1">&#39;_member_type&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">frequency</span><span class="o">.</span><span class="n">days</span> <span class="ow">is</span> \
+                    <span class="kc">None</span><span class="p">:</span>
+                <span class="n">frequency</span><span class="o">.</span><span class="n">days</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">frequency</span><span class="o">.</span><span class="n">hours</span><span class="p">,</span> <span class="s1">&#39;_member_type&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">frequency</span><span class="o">.</span><span class="n">hours</span> <span class="ow">is</span> \
+                    <span class="kc">None</span><span class="p">:</span>
+                <span class="n">frequency</span><span class="o">.</span><span class="n">hours</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">frequency</span><span class="o">.</span><span class="n">minutes</span><span class="p">,</span> <span class="s1">&#39;_member_type&#39;</span><span class="p">)</span> <span class="ow">or</span> \
+                            <span class="n">frequency</span><span class="o">.</span><span class="n">minutes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">frequency</span><span class="o">.</span><span class="n">minutes</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">api</span><span class="o">.</span><span class="n">minutes</span> <span class="o">=</span> <span class="n">frequency</span><span class="o">.</span><span class="n">minutes</span>
+            <span class="n">api</span><span class="o">.</span><span class="n">hours</span> <span class="o">=</span> <span class="n">frequency</span><span class="o">.</span><span class="n">days</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">+</span> <span class="n">frequency</span><span class="o">.</span><span class="n">hours</span>
+            <span class="n">api</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s2">&quot;frequency&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Time Interval&quot;</span>
+            <span class="n">api</span><span class="o">.</span><span class="n">weekdays</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">api</span><span class="o">.</span><span class="n">monthdays</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span> <span class="ow">is</span> <span class="n">DaysOfMonthFrequency</span><span class="p">:</span>
+            <span class="n">api</span><span class="o">.</span><span class="n">minutes</span> <span class="o">=</span> <span class="n">frequency</span><span class="o">.</span><span class="n">minutes</span>
+            <span class="n">api</span><span class="o">.</span><span class="n">hours</span> <span class="o">=</span> <span class="n">frequency</span><span class="o">.</span><span class="n">hours</span>
+            <span class="n">api</span><span class="o">.</span><span class="n">monthdays</span> <span class="o">=</span> <span class="n">frequency</span><span class="o">.</span><span class="n">monthdays</span>
+            <span class="n">api</span><span class="o">.</span><span class="n">weekdays</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">api</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s2">&quot;frequency&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Days Of Month&quot;</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span> <span class="ow">is</span> <span class="n">DaysOfWeekFrequency</span><span class="p">:</span>
+            <span class="n">api</span><span class="o">.</span><span class="n">minutes</span> <span class="o">=</span> <span class="n">frequency</span><span class="o">.</span><span class="n">minutes</span>
+            <span class="n">api</span><span class="o">.</span><span class="n">hours</span> <span class="o">=</span> <span class="n">frequency</span><span class="o">.</span><span class="n">hours</span>
+            <span class="n">api_weekdays</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">weekday</span> <span class="ow">in</span> <span class="n">frequency</span><span class="o">.</span><span class="n">weekdays</span><span class="p">:</span>
+                <span class="n">api_weekday</span> <span class="o">=</span> <span class="n">ApiWeekday</span><span class="p">()</span>
+                <span class="n">api_weekday</span><span class="o">.</span><span class="n">day</span> <span class="o">=</span> <span class="n">weekday</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">api_weekday</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="n">api_weekdays</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">api_weekday</span><span class="p">)</span>
+            <span class="n">api</span><span class="o">.</span><span class="n">weekdays</span> <span class="o">=</span> <span class="n">api_weekdays</span>
+            <span class="n">api</span><span class="o">.</span><span class="n">monthdays</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">api</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s2">&quot;frequency&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Days Of Week&quot;</span>
+        <span class="k">return</span> <span class="n">api</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ScheduleAdaptor.to_api_schedule_info"><a class="viewcode-back" href="../../../solidfire.adaptor.html#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_api_schedule_info">[docs]</a>    <span class="k">def</span> <span class="nf">to_api_schedule_info</span><span class="p">(</span><span class="n">info</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Converts a ScheduleInfo object into an ApiScheduleInfo object</span>
+<span class="sd">        :param info: the ScheduleInfo object</span>
+<span class="sd">        :type info: ScheduleInfo</span>
+<span class="sd">        :return: solidfire.apiactual.ApiScheduleInfo</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">api</span> <span class="o">=</span> <span class="n">ApiScheduleInfo</span><span class="p">()</span>
+        <span class="n">api</span><span class="o">.</span><span class="n">enable_remote_replication</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">enable_remote_replication</span>
+        <span class="n">api</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">snapshot_name</span>
+        <span class="n">api</span><span class="o">.</span><span class="n">retention</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">retention</span>
+
+        <span class="c1"># noinspection PyTypeChecker</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">volume_ids</span><span class="p">,</span> <span class="s1">&#39;_member_type&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">info</span><span class="o">.</span><span class="n">volume_ids</span> \
+                <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">volume_ids</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;ScheduleInfo.VolumeIDs are missing. &#39;</span>
+                                 <span class="s1">&#39;Cannot create or modify a schedule without at &#39;</span>
+                                 <span class="s1">&#39;least one VolumeID.&#39;</span><span class="p">)</span>
+
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">api</span><span class="o">.</span><span class="n">volumes</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">volume_ids</span>
+
+        <span class="k">return</span> <span class="n">api</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2016, NetApp, Inc.  All Rights Reserved..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'1.1.0.87',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

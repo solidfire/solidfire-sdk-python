@@ -4,8 +4,8 @@ solidfire.common package
 Submodules
 ----------
 
-Common Model (solidfire.common.model)
--------------------------------------
+solidfire.common.model module
+-----------------------------
 
 .. automodule:: solidfire.common.model
     :members:
@@ -13,9 +13,10 @@ Common Model (solidfire.common.model)
     :show-inheritance:
 
 
-Common Module contents
-----------------------
+Module contents
+---------------
 
 .. automodule:: solidfire.common
     :members:
+    :undoc-members:
     :show-inheritance:

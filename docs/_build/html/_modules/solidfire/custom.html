@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>solidfire.custom &mdash; SolidFire Python SDK v1.1.0.49</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/solidfire.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SolidFire Python SDK v1.1.0.49" href="../../index.html"/>
+        <link rel="up" title="solidfire" href="../solidfire.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> solidfire-sdk-python
+          
+
+          
+            
+            <img src="../../_static/PythonSDK.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.0.49
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html">solidfire package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">solidfire-sdk-python</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+          <li><a href="../solidfire.html">solidfire</a> &raquo;</li>
+      
+    <li>solidfire.custom</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for solidfire.custom</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright &amp;copy; 2014-2016 NetApp, Inc. All Rights Reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># CONFIDENTIALITY NOTICE: THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION OF</span>
+<span class="c1"># NETAPP, INC. USE, DISCLOSURE OR REPRODUCTION IS PROHIBITED WITHOUT THE PRIOR</span>
+<span class="c1"># EXPRESS WRITTEN PERMISSION OF NETAPP, INC.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module contains user defined objects directly implemented to map to the Element</span>
+<span class="sd">API.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">solidfire.common</span> <span class="kn">import</span> <span class="n">model</span> <span class="k">as</span> <span class="n">data_model</span>
+
+<span class="n">AUTO_GENERATE_SECRET</span> <span class="o">=</span> <span class="s2">&quot;AUTO-GENERATE-CHAP-SECRET&quot;</span>
+
+
+<div class="viewcode-block" id="CHAPSecret"><a class="viewcode-back" href="../../solidfire.custom.html#solidfire.custom.CHAPSecret">[docs]</a><span class="k">class</span> <span class="nc">CHAPSecret</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A representation of the CHAP Secret</span>
+
+<span class="sd">    :param secret: [required] A 12 - 16 character string.</span>
+<span class="sd">    :type start: str</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">secret</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;secret&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;A 12 - 16 character string.&quot;</span>
+    <span class="p">)</span>
+
+<div class="viewcode-block" id="CHAPSecret.auto_generate"><a class="viewcode-back" href="../../solidfire.custom.html#solidfire.custom.CHAPSecret.auto_generate">[docs]</a>    <span class="k">def</span> <span class="nf">auto_generate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Used in &#39;AddAccount&#39; and &#39;ModifyAccount&#39; to cause a CHAP Secret to be</span>
+<span class="sd">        auto generated by the cluster.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">secret</span> <span class="o">=</span> <span class="n">AUTO_GENERATE_SECRET</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="CHAPSecret.custom_extract"><a class="viewcode-back" href="../../solidfire.custom.html#solidfire.custom.CHAPSecret.custom_extract">[docs]</a>    <span class="k">def</span> <span class="nf">custom_extract</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Deserialize the property from json.</span>
+
+<span class="sd">        :param data: the data to be converted.</span>
+
+<span class="sd">        :return: the extracted data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">chap</span> <span class="o">=</span> <span class="n">CHAPSecret</span><span class="p">()</span>
+        <span class="n">chap</span><span class="o">.</span><span class="n">secret</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="k">return</span> <span class="n">chap</span></div>
+
+<div class="viewcode-block" id="CHAPSecret.custom_to_json"><a class="viewcode-back" href="../../solidfire.custom.html#solidfire.custom.CHAPSecret.custom_to_json">[docs]</a>    <span class="k">def</span> <span class="nf">custom_to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Custom json serialize logic</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">secret</span> <span class="o">==</span> <span class="n">AUTO_GENERATE_SECRET</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">secret</span></div></div>
+
+
+<div class="viewcode-block" id="FrequencyTypes"><a class="viewcode-back" href="../../solidfire.custom.html#solidfire.custom.FrequencyTypes">[docs]</a><span class="k">class</span> <span class="nc">FrequencyTypes</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    User Defined object (does not correlate to and API Object) which enumerates</span>
+<span class="sd">    the different types of Snapshot Schedules.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Time_Interval</span> <span class="o">=</span> <span class="s2">&quot;Time Interval&quot;</span>
+    <span class="n">Days_Of_Month</span> <span class="o">=</span> <span class="s2">&quot;Days Of Month&quot;</span>
+    <span class="n">Days_Of_Week</span> <span class="o">=</span> <span class="s2">&quot;Days Of Week&quot;</span>
+
+    <span class="n">types</span> <span class="o">=</span> <span class="p">{</span><span class="n">Time_Interval</span><span class="p">,</span> <span class="n">Days_Of_Month</span><span class="p">,</span> <span class="n">Days_Of_Week</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="Weekday"><a class="viewcode-back" href="../../solidfire.custom.html#solidfire.custom.Weekday">[docs]</a><span class="k">class</span> <span class="nc">Weekday</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A better representation of the Weekday.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">Sunday</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Sunday&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">Monday</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Monday&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">Tuesday</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Tuesday&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">Wednesday</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Wednesday&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="n">Thursday</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Thursday&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">Friday</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Friday&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">Saturday</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Saturday&#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+
+    <span class="n">all_weekdays</span> <span class="o">=</span> <span class="p">[</span><span class="n">Sunday</span><span class="p">,</span> <span class="n">Monday</span><span class="p">,</span> <span class="n">Tuesday</span><span class="p">,</span> <span class="n">Wednesday</span><span class="p">,</span> <span class="n">Thursday</span><span class="p">,</span> <span class="n">Friday</span><span class="p">,</span>
+                    <span class="n">Saturday</span><span class="p">]</span>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Weekday.from_id"><a class="viewcode-back" href="../../solidfire.custom.html#solidfire.custom.Weekday.from_id">[docs]</a>    <span class="k">def</span> <span class="nf">from_id</span><span class="p">(</span><span class="n">weekday_id</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">weekday</span> <span class="ow">in</span> <span class="n">Weekday</span><span class="o">.</span><span class="n">all_weekdays</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">weekday</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">weekday_id</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">weekday</span>
+        <span class="k">raise</span> <span class="ne">AttributeError</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Weekday.from_name"><a class="viewcode-back" href="../../solidfire.custom.html#solidfire.custom.Weekday.from_name">[docs]</a>    <span class="k">def</span> <span class="nf">from_name</span><span class="p">(</span><span class="n">weekday_name</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">weekday</span> <span class="ow">in</span> <span class="n">Weekday</span><span class="o">.</span><span class="n">all_weekdays</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">weekday</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">weekday_name</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">weekday</span>
+        <span class="k">raise</span> <span class="ne">AttributeError</span></div></div>
+
+
+<div class="viewcode-block" id="Frequency"><a class="viewcode-back" href="../../solidfire.custom.html#solidfire.custom.Frequency">[docs]</a><span class="k">class</span> <span class="nc">Frequency</span><span class="p">(</span><span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    User Defined object (does not correlate to and API Object) which simplifies</span>
+<span class="sd">    the construction of Snapshot Schedule objects.</span>
+
+<span class="sd">     :param minutes: Number of minutes between snapshots or the minute at</span>
+<span class="sd">     which the snapshot will occur in &quot;Days of Week&quot;, or &quot;Days of Month&quot; mode.</span>
+<span class="sd">     Valid values  0 - 59</span>
+<span class="sd">     :type minutes: int</span>
+
+<span class="sd">    :param hours: Number of hours between snapshots or hour at which the</span>
+<span class="sd">    snapshot will occur in &quot;Days of Week&quot;, or &quot;Days of Month&quot; mode.</span>
+<span class="sd">    Valid values  0 - 24</span>
+<span class="sd">    :type hours: int</span>
+
+<span class="sd">    :param monthdays: The days of the month that a snapshot will be made.</span>
+<span class="sd">    Valid values  1 - 31</span>
+<span class="sd">    :type monthdays: int</span>
+
+<span class="sd">    :param weekdays: Day of the week the snapshot is to be created.</span>
+<span class="sd">    Required Values (if used)</span>
+<span class="sd">    Day - 0 - 6 (Sunday - Saturday).</span>
+<span class="sd">    :type weekdays: Weekday[]</span>
+
+<span class="sd">    :param days: Time Interval days between snapshot.</span>
+<span class="sd">    :type days: int[]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Frequency.types"><a class="viewcode-back" href="../../solidfire.custom.html#solidfire.custom.Frequency.types">[docs]</a>    <span class="k">def</span> <span class="nf">types</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the list of FrequencyTypes.</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">FrequencyTypes</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Frequency.set_type"><a class="viewcode-back" href="../../solidfire.custom.html#solidfire.custom.Frequency.set_type">[docs]</a>    <span class="k">def</span> <span class="nf">set_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a_type</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the FrequencyType of this Frequency object.</span>
+
+<span class="sd">        :param a_type:</span>
+<span class="sd">        :type: a_type: FrequencyType</span>
+<span class="sd">        :return: the selected FrequencyType</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">a_type</span> <span class="ow">in</span> <span class="n">Frequency</span><span class="o">.</span><span class="n">types</span><span class="p">()</span><span class="o">.</span><span class="n">types</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">freq_type</span> <span class="o">=</span> <span class="n">a_type</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">freq_type</span></div>
+
+    <span class="n">minutes</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;minutes&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;Number of minutes between snapshots or the minute at &quot;</span>
+                      <span class="s2">&quot;which the snapshot will occur in </span><span class="se">\&quot;</span><span class="s2">Days of Week</span><span class="se">\&quot;</span><span class="s2">, or &quot;</span>
+                      <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">Days of Month</span><span class="se">\&quot;</span><span class="s2"> mode. Valid values  0 - 59&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">hours</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;hours&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;Number of hours between snapshots or hour at which the &quot;</span>
+                      <span class="s2">&quot;snapshot will occur in </span><span class="se">\&quot;</span><span class="s2">Days of Week</span><span class="se">\&quot;</span><span class="s2">, or </span><span class="se">\&quot;</span><span class="s2">Days of &quot;</span>
+                      <span class="s2">&quot;Month</span><span class="se">\&quot;</span><span class="s2"> mode. Valid values  0 - 24&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">monthdays</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;monthdays&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;The days of the month that a snapshot will be made. &quot;</span>
+                      <span class="s2">&quot;Valid values  1 - 31&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">weekdays</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;weekdays&quot;</span><span class="p">,</span> <span class="n">Weekday</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;Day of the week the snapshot is to be created. &quot;</span>
+                      <span class="s2">&quot;Required Values (if used)&quot;</span>
+                      <span class="s2">&quot;&quot;</span>
+                      <span class="s2">&quot;Day - 0 - 6 (Sunday - Saturday).&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">days</span> <span class="o">=</span> <span class="n">data_model</span><span class="o">.</span><span class="n">property</span><span class="p">(</span>
+        <span class="s2">&quot;days&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">array</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">documentation</span><span class="o">=</span><span class="s2">&quot;Time Interval days between snapshot.&quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">freq_type</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="n">data_model</span><span class="o">.</span><span class="n">DataObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2016, NetApp, Inc.  All Rights Reserved..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.1.0.49',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
