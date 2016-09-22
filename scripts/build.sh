@@ -1,31 +1,40 @@
 #!/bin/bash
 
-# enable error reporting to the console
-set -ev
-
-echo $TOXENV
-echo $TRAVIS_BRANCH
+# only proceed script when started on master
+if [ $TRAVIS_BRANCH != "master" ]; then
+  echo "this is not on master, exiting"
+  exit 0
+fi
 
 # only proceed script when started not by pull request (PR)
-if [[ "$TRAVIS_BRANCH" == feature* ]] || [[ "$TOXENV" != "py35" ]]; then
+if [ $TRAVIS_PULL_REQUEST == "true" ]; then
   echo "this is PR, exiting"
   exit 0
 fi
 
-#clone "master" branch of the repository using encrypted GH_TOKEN for authentification
-git clone -b  gh-pages https://${GH_TOKEN}@github.com/solidfire/solidfire-sdk-python.git ../solidfire-sdk-python.gh-pages
+# enable error reporting to the console
+set -e
 
-# copy generated HTML site to "master" branch
-sed 's/::$/:/' README.rst | tail -n+5 > ../solidfire-sdk-python.gh-pages/README.md
+#clone `master' branch of the repository using encrypted GH_TOKEN for authentification
+git clone -b  gh-pages https://${GH_TOKEN}@github.com/solidfire/solidfire-sdk-java.git ../solidfire-sdk-java.gh-pages
 
-cat ../solidfire-sdk-python.gh-pages/front.yml ../solidfire-sdk-python.gh-pages/README.md > ../solidfire-sdk-python.gh-pages/index.md
+cat ../solidfire-sdk-java.gh-pages/front.yml ./README.md > ../solidfire-sdk-java.gh-pages/index.md
+
+# copy generated HTML site to `master' branch
+for file in **/*.md; do
+    cat ../solidfire-sdk-java.gh-pages/front.yml ${file} > ../solidfire-sdk-java.gh-pages/${file##*/}
+done
+
+sed -i -e 's/.md/.html/g' ../solidfire-sdk-java.gh-pages/*.md
+sed -i -e 's/examples\///g' ../solidfire-sdk-java.gh-pages/*.md
+
+rm -f ../solidfire-sdk-java.gh-pages/**/*.md-e
 
 # commit and push generated content to `master' branch
 # since repository was cloned in write mode with token auth - we can push there
-cd ../solidfire-sdk-python.gh-pages
+cd ../solidfire-sdk-java.gh-pages
 git config user.email "jason.womack@solidfire.com"
 git config user.name "Jason Ryan Womack"
 git add -A .
-git commit -a -m "Travis #$TRAVIS_BUILD_NUMBER"
+git commit --allow-empty -a -m "Travis #$TRAVIS_BUILD_NUMBER"
 git push --quiet origin gh-pages > /dev/null 2>&1
-
