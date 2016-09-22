@@ -16,23 +16,23 @@ fi
 set -e
 
 #clone `master' branch of the repository using encrypted GH_TOKEN for authentification
-git clone -b  gh-pages https://${GH_TOKEN}@github.com/solidfire/solidfire-sdk-java.git ../solidfire-sdk-java.gh-pages
+git clone -b  gh-pages https://${GH_TOKEN}@github.com/solidfire/solidfire-sdk-python.git ../solidfire-sdk-python.gh-pages
 
-cat ../solidfire-sdk-java.gh-pages/front.yml ./README.md > ../solidfire-sdk-java.gh-pages/index.md
+cat ../solidfire-sdk-python.gh-pages/front.yml ./README.rst > ../solidfire-sdk-python.gh-pages/index.rst
 
 # copy generated HTML site to `master' branch
-for file in **/*.md; do
-    cat ../solidfire-sdk-java.gh-pages/front.yml ${file} > ../solidfire-sdk-java.gh-pages/${file##*/}
+for file in **/*.rst; do
+    cat ../solidfire-sdk-python.gh-pages/front.yml ${file} > ../solidfire-sdk-python.gh-pages/${file##*/}
 done
 
-sed -i -e 's/.md/.html/g' ../solidfire-sdk-java.gh-pages/*.md
-sed -i -e 's/examples\///g' ../solidfire-sdk-java.gh-pages/*.md
+sed -i -e 's/.rst/.html/g' ../solidfire-sdk-python.gh-pages/*.rst
+sed -i -e 's/examples\///g' ../solidfire-sdk-python.gh-pages/*.rst
 
-rm -f ../solidfire-sdk-java.gh-pages/**/*.md-e
+rm -f ../solidfire-sdk-python.gh-pages/**/*.rst-e
 
 # commit and push generated content to `master' branch
 # since repository was cloned in write mode with token auth - we can push there
-cd ../solidfire-sdk-java.gh-pages
+cd ../solidfire-sdk-python.gh-pages
 git config user.email "jason.womack@solidfire.com"
 git config user.name "Jason Ryan Womack"
 git add -A .
