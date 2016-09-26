@@ -19,7 +19,6 @@ cache:
 install:
 - "sudo apt-get install pandoc"
 - pip install -e ".[dev,test, docs, release]"
-script: tox
 after_success:
 - "./scripts/build.sh"
 env:
