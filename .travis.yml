@@ -1,7 +1,4 @@
 language: python
-branches:
-  only:
-  - release/1.0.0
 matrix:
   include:
   - os: linux
