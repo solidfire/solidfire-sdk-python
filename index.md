@@ -1,4 +1,8 @@
 ---
+title: Solidfire Python SDK
+layout: index
+---
+---
 title: '![sf-python-logo](https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/release1.1/img/python-50.png) SolidFire Python SDK'
 ---
 
