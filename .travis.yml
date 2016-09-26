@@ -16,7 +16,9 @@ matrix:
   - os: linux
     python: 3.5
     env: TOXENV=py35
+cache: apt
 install:
+- "sudo apt-get install pandoc"
 - pip install -e ".[dev,test, docs, release]"
 - pip install tox coveralls
 script: tox
