@@ -28,6 +28,7 @@ Compatibility
 +========================+===============+
 | SolidFire Element OS   | 7.0 - 8.4\*   |
 +------------------------+---------------+
+
 \* **Note**: *This version of the SDK will work with versions of Element OS greater then 8.4 but some features will not be supported in the API.*
 
 
