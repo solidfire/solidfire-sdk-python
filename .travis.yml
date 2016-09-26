@@ -16,9 +16,6 @@ matrix:
 cache: 
  - apt
  - pip
- directories:
-  - .autoconf
-  - $HOME/.m2
 install:
 - "sudo apt-get install pandoc"
 - pip install -e ".[dev,test, docs, release]"
