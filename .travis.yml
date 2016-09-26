@@ -22,11 +22,9 @@ cache:
 install:
 - "sudo apt-get install pandoc"
 - pip install -e ".[dev,test, docs, release]"
-- pip install tox coveralls
 script: tox
 after_success:
 - "./scripts/build.sh"
-- coveralls
 env:
   global:
     secure: mxh1FgwJx+Yd9eHPnQo2eLmcVaEQ1aAn8IjyhtiqVph4IPnH3sSYcf5AwPCwSfRd2Hh1v3J/cvT86QR6GlM995bXTqSJVTMv6Ngt5GeO5R2xyOfcOgSTRiH+V0xvy/oby0hxDHoUbdym2qGC7TKhKqxYf+G8x0orOYnUzS0hZ+RuIFa1M0GqXi2exBsVXJe2YXwTSFKWrFrUNLc1vgAGoN0IR38cP8jt0DwkpTzKO80K5EVCfEEZzUKa4ecRFXrFUNFoouEUwHuhXzB/F9w9pO1pJKEeJz3TIWVLR5C1g6tf5n771gvkfsaf2k3DXpq1IEgFIp5FDb5a43Bgzt9gs6CluXoLD2/LWcqheiZ73uHHs3ELHZRA6q7pAYt1Q1eS1b+YyiJOxjAhkwt3AuLfKj371VG5IdOMgByaI1LNcSYN6fi3bFeQJWx/Yo2zadd7pOwel+vSbUmIK76IT4ph/zUJfm2CGHAKyX8P08/qWsyKBjpvqLrT8/7oYJDvgbfT7f7kR4oJWQ+bn5UARQRCq32pI2GtMKS88jwpaG5eGWm9Bek1HPC0Klk83EOy4/j/fhMkVRK7ZKKbLFep2N80zmG5S8cinwNP/9PyskEpdQEJA5u8jFHPvkbeEC9vnlQaViS9COGyEyuqfWg0NrikrWt0olT0Ii4c9i11Pbv/Zrk=
