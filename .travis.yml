@@ -16,7 +16,7 @@ matrix:
 cache: 
  - apt
  - pip
-  directories:
+ directories:
   - .autoconf
   - $HOME/.m2
 install:
