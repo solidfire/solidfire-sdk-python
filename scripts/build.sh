@@ -18,13 +18,13 @@ set -e
 #clone `master' branch of the repository using encrypted GH_TOKEN for authentification
 git clone -b  gh-pages https://${GH_TOKEN}@github.com/solidfire/solidfire-sdk-python.git ../solidfire-sdk-python.gh-pages
 
-{cat ../solidfire-sdk-python.gh-pages/front.yml; pandoc -s -f rst --to=markdown_github --wrap=none ./README.rst;} > ../solidfire-sdk-python.gh-pages/index.md
+{ cat ../solidfire-sdk-python.gh-pages/front.yml ; pandoc -s -f rst --to=markdown_github --wrap=none ./README.rst ; } > ../solidfire-sdk-python.gh-pages/index.md
 
 # copy generated HTML site to `master' branch
 for file in examples/*.rst; do
     filename="${file##*/}"
     filenameWithoutExtension="${filename%.*}"
-    {cat ../solidfire-sdk-python.gh-pages/front.yml; pandoc -s -f rst --to=markdown_github --wrap=none ${file};} > ../solidfire-sdk-python.gh-pages/${filenameWithoutExtension}.md
+    { cat ../solidfire-sdk-python.gh-pages/front.yml ; pandoc -s -f rst --to=markdown_github --wrap=none ${file} ; } > ../solidfire-sdk-python.gh-pages/${filenameWithoutExtension}.md
 done
 
 sed -i -e 's/.rst/.html/g' ../solidfire-sdk-python.gh-pages/*.md
