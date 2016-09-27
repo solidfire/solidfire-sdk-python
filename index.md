@@ -19,19 +19,21 @@ The SolidFire Python SDK is a collection of libraries that facilitate integratio
 Compatibility
 =============
 
-<table>
+<table style="width:57%;">
+<colgroup>
 <col width="34%" />
 <col width="22%" />
+</colgroup>
 <thead>
 <tr class="header">
-<th align="left">Component</th>
-<th align="left">Version</th>
+<th>Component</th>
+<th>Version</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">SolidFire Element OS</td>
-<td align="left">7.0 - 8.4*</td>
+<td>SolidFire Element OS</td>
+<td>7.0 - 8.4*</td>
 </tr>
 </tbody>
 </table>
@@ -56,18 +58,20 @@ Prerequisites
 The following prerequisites are required before installing the Solidfire SDK.
 
 <table>
+<colgroup>
 <col width="84%" />
 <col width="15%" />
+</colgroup>
 <thead>
 <tr class="header">
-<th align="left">Component</th>
-<th align="left">Version</th>
+<th>Component</th>
+<th>Version</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="http://pycurl.io/docs/latest/install.html#install">PycURL</a></td>
-<td align="left">7.34.0+</td>
+<td><a href="http://pycurl.io/docs/latest/install.html#install">PycURL</a></td>
+<td>7.34.0+</td>
 </tr>
 </tbody>
 </table>
@@ -138,30 +142,30 @@ Step 1 - Build an [Element](https://pythonhosted.org/solidfire-sdk-python/solidf
 
 This is the preferred way to construct the [Element](https://pythonhosted.org/solidfire-sdk-python/solidfire.html#solidfire.Element) object. The factory will make a call to the SolidFire cluster using the credentials supplied to test the connection. It will also set the version to communicate with based on the highest number supported by the SDK and Element OS. Optionally, you can choose to set the version manually and whether or not to verify SSL. Read more about it in the [ElementFactory](https://pythonhosted.org/solidfire-sdk-python/solidfire.html#solidfire.factory.ElementFactory) documentation.
 
-~~~~ {.sourceCode .python}
+``` sourceCode
 from solidfire.factory import ElementFactory
 
 # Use ElementFactory to get a SolidFireElement object.
 sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
-~~~~
+```
 
 Step 2 - Call the API method and retrieve the result
 ----------------------------------------------------
 
-All service methods in SolidFireElement call API endpoints and they all return result objects. The naming convention is [method\_name]\_result. For example, list\_accounts returns a list\_accounts\_result object which has a property called accounts that can be iterated.
+All service methods in SolidFireElement call API endpoints and they all return result objects. The naming convention is `[method_name]_result`. For example, `list_accounts` returns a `list_accounts_result` object which has a property called `accounts` that can be iterated.
 
-This example sends a request to list accounts then pulls the f.html account from the add\_account\_result object.
+This example sends a request to list accounts then pulls the f.html account from the `add_account_result` object.
 
-~~~~ {.sourceCode .python}
+``` sourceCode
 # Send the request and wait for the result then pull the AccountID
 list_accounts_result = sfe.list_accounts()
 account = list_accounts_result.accounts[0];   
-~~~~
+```
 
 More examples using the Python SDK
 ----------------------------------
 
-~~~~ {.sourceCode .python}
+``` sourceCode
 from solidfire.factory import ElementFactory
 
 # Create connection to SF Cluster
@@ -192,7 +196,7 @@ iqn = volume.iqn
 # --------- EXAMPLE 3 - MODIFY A VOLUME -------------
 # Send the request with the desired parameters
 sfe.modify_volume(volume_id=volume_id, total_size=2000000000)
-~~~~
+```
 
 More Examples
 =============
@@ -204,36 +208,36 @@ Logging
 
 To configure logging responses, execute the following:
 
-~~~~ {.sourceCode .python}
+``` sourceCode
 import logging
 from solidfire import common
 common.setLogLevel(logging.DEBUG)
-~~~~
+```
 
 To access the logger for the Element instance:
 
-~~~~ {.sourceCode .python}
+``` sourceCode
 from solidfire.common import LOG
-~~~~
+```
 
 Timeouts
 ========
 
 Connection timeout (useful for failing fast when a host becomes unreachable):
 
-~~~~ {.sourceCode .python}
+``` sourceCode
 from solidfire.factory import ElementFactory
 sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
 sfe.timeout(600)
-~~~~
+```
 
 Read timeout (useful for extending time for a service call to return):
 
-~~~~ {.sourceCode .python}
+``` sourceCode
 from solidfire.factory import ElementFactory
 sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
 sf.read_timeout(600)
-~~~~
+```
 
 **License**
 ===========

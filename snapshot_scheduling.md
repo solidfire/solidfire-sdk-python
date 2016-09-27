@@ -21,7 +21,7 @@ List all Schedules
 
 To list all the schedules on a cluster:
 
-~~~~ {.sourceCode .python}
+``` sourceCode
 from solidfire.factory import ElementFactory
 
 # Create connection to SF Cluster
@@ -33,14 +33,14 @@ list_schedules_result = sfe.list_schedules()
 # iterate the schedules array on the result object and display each Schedule 
 for schedule in list_schedules_result.schedules:
     print(schedule)
-~~~~
+```
 
 Get one Schedule
 ================
 
 To get a single schedule:
 
-~~~~ {.sourceCode .python}
+``` sourceCode
 from solidfire.factory import ElementFactory
 
 # Create connection to SF Cluster
@@ -51,7 +51,7 @@ get_schedule_result = sfe.get_schedule(schedule_id=56)
 
 # Display the schedule from the result object
 print(get_schedule_result.schedule)
-~~~~
+```
 
 Create a Schedule
 =================
@@ -69,21 +69,21 @@ Time Interval Schedule
 
 This type of schedule will base snapshots on a time interval frequency. Each snapshot will be taken after the specified amount of time has passed. Control the duration by setting days, hours, and minutes on the TimeIntervalFrequency object.
 
-~~~~ {.sourceCode .python}
+``` sourceCode
 from solidfire.custom.models import TimeIntervalFrequency
 from solidfire.models import Schedule
 
 sched = Schedule()
 sched.name = "SnapshotEvery3AndAHalfDays"
 sched.frequency = TimeIntervalFrequency(days=3, hours=12)
-~~~~
+```
 
 Days Of Week Schedule
 ---------------------
 
 This type of schedule will base snapshots on a weekly frequency. Each snapshot will be taken on the specified weekdays at the time specified in the hours and minutes properties. Control the schedule by setting weekdays, hours, and minutes on the DaysOfWeekFrequency object.
 
-~~~~ {.sourceCode .python}
+``` sourceCode
 from solidfire.custom.models import DaysOfWeekFrequency, Weekday
 from solidfire.models import Schedule
 
@@ -95,14 +95,14 @@ sched.frequency = DaysOfWeekFrequency(
                 Weekday.from_name("Wednesday"),
                 Weekday.from_name("Friday")], 
             hours=3)
-~~~~
+```
 
 Days Of Month Schedule
 ----------------------
 
 This type of schedule will base snapshots on a monthly frequency. Each snapshot will be taken on the specified month days at the time specified in the hours and minutes properties. Control the schedule by setting monthdays, hours, and minutes on the DaysOfMonthFrequency object.
 
-~~~~ {.sourceCode .python}
+``` sourceCode
 from solidfire.custom.models import DaysOfMonthFrequency
 from solidfire.models import Schedule
 
@@ -112,7 +112,7 @@ sched.frequency = DaysOfMonthFrequency(
             monthdays=[7,14,21], 
             hours=3,
             monutes=30)
-~~~~
+```
 
 Create a Schedule (cont.)
 -------------------------
@@ -121,7 +121,7 @@ After creating the schedule and setting the frequency to Time Interval, Days Of 
 
 Continuing on with the [Time Interval](#time-interval-schedule) example from above:
 
-~~~~ {.sourceCode .python}
+``` sourceCode
 from solidfire.custom.models import TimeIntervalFrequency
 from solidfire.models import Schedule, ScheduleInfo
 from solidfire.factory import ElementFactory
@@ -145,7 +145,7 @@ create_schedule_result = sfe.create_schedule(sched)
 
 # Grab the schedule ID from the result object
 new_schedule_id = create_schedule_result.schedule_id
-~~~~
+```
 
 At this point we have created a new schedule called SnapshotEvery12Hours that creates a snapshot whose name is prepended with "12th hour snapshot" every 12 hours for volumes 1, 3, and 5 that is retained for 72 hours.
 
@@ -154,7 +154,7 @@ Modify a Schedule
 
 To modify a schedule, f.html you must have a valid schedule object with its schedule\_id set. You can create one manually but it is preferred to retrieve it from the cluster, modify the properties needed and then send it back. Here is an example:
 
-~~~~ {.sourceCode .python}
+``` sourceCode
 from solidfire.factory import ElementFactory
 
 # Create connection to SF Cluster
@@ -180,7 +180,7 @@ get_modified_schedule_result = sfe.get_schedule(schedule_id=new_schedule_id)
 
 # display the newly modified schedule
 print(get_modified_schedule_result.schedule)
-~~~~
+```
 
 This is the output:
 

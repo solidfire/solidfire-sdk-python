@@ -21,7 +21,7 @@ List all Accounts
 
 To list all accounts on a cluster:
 
-~~~~ {.sourceCode .python}
+``` sourceCode
 from solidfire.factory import ElementFactory
 
 # Create connection to SF Cluster
@@ -33,14 +33,14 @@ list_accounts_result = sfe.list_accounts()
 # iterate the accounts array on the result object and display each Account
 for account in list_accounts_result.accounts:
     print(account)
-~~~~
+```
 
 Get one Account
 ===============
 
 To get a single account by ID:
 
-~~~~ {.sourceCode .python}
+``` sourceCode
 from solidfire.factory import ElementFactory
 
 # Create connection to SF Cluster
@@ -51,11 +51,11 @@ get_account_result = sfe.get_account_by_id(1)
 
 # Display the account from the result object
 print(get_account_result.account)
-~~~~
+```
 
 To get a single account by username:
 
-~~~~ {.sourceCode .python}
+``` sourceCode
 from solidfire.factory import ElementFactory
 
 # Create connection to SF Cluster
@@ -66,7 +66,7 @@ get_account_result = sfe.get_account_by_name('username-of-account')
 
 # Display the account from the result object
 print(get_account_result.account)
-~~~~
+```
 
 Create an Account
 =================
@@ -75,7 +75,7 @@ To create an account you must specify the `username`. Optionally, you can also s
 
 F.html, we create an account with only a username:
 
-~~~~ {.sourceCode .python}
+``` sourceCode
 from solidfire.factory import ElementFactory
 
 # Create connection to SF Cluster
@@ -86,11 +86,11 @@ add_account_result = sfe.add_account(username="my-new-account")
 
 # Grab the account ID from the result object
 new_account_id = add_account_result.account_id
-~~~~
+```
 
 Now we create an account and specify the `username` and `initiator_secret`. Notice we created a new **CHAPSecret** object and set the string value for the `intitiator_secret`. The `target_secret` will be auto-generated during the process on the cluster:
 
-~~~~ {.sourceCode .python}
+``` sourceCode
 from solidfire.factory import ElementFactory
 
 # Create connection to SF Cluster
@@ -103,7 +103,7 @@ add_account_result = sfe.add_account(username="my-new-account",
 
 # Grab the account ID from the result object
 new_account_id = add_account_result.account_id
-~~~~
+```
 
 Modify an Account
 =================
@@ -112,7 +112,7 @@ To modify an account, all you need is the `account_id` and the values you want t
 
 In this example, we will instruct the API to autogenerate a new `target_secret` value for an account. In order to do so we need to call the static `auto_generate()` method on the **CHAPSecret** class.
 
-~~~~ {.sourceCode .python}
+``` sourceCode
 from solidfire.factory import ElementFactory
 
 # Create connection to SF Cluster
@@ -121,4 +121,4 @@ sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
 # Send the request with the account_id and gather the result
 add_account_result = sfe.modify_account(account_id=1,
                                         target_secret=CHAPSecret.auto_generate())
-~~~~
+```
