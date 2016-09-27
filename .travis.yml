@@ -11,6 +11,7 @@ install:
  - "sudo apt-get install cabal-install"
  - "cabal update"
  - "cabal install pandoc"
+ - "PATH=$HOME/.cabal/bin:$PATH"
 script:
 - "./scripts/build.sh"
 env:
