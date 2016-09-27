@@ -5,7 +5,8 @@ cache:
  - apt
  - pip
 install:
-- "sudo apt-get install pandoc"
+- "cabal update"
+- "cabal install pandoc"
 script:
 - "./scripts/build.sh"
 env:
