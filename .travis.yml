@@ -4,6 +4,9 @@ dist: trusty
 cache: 
  - apt
  - pip
+ - $HOME/.ghc
+ - $HOME/.cabal
+ - $HOME/.stack
 install:
  - "sudo apt-get install cabal-install"
  - "cabal update"
