@@ -197,7 +197,7 @@ sfe.modify_volume(volume_id=volume_id, total_size=2000000000)
 More Examples
 =============
 
-More specific examples are available [here](https://github.com/solidfire/solidfire-sdk-python/blob/release1.1/README.html)
+More specific examples are available [here](examples.html)
 
 Logging
 =======
