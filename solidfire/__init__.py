@@ -62,6 +62,7 @@ from solidfire.results import GetLdapConfigurationResult
 from solidfire.results import GetLimitsResult
 from solidfire.results import GetNetworkConfigResult
 from solidfire.results import GetNodeStatsResult
+from solidfire.results import GetNtpInfoResult
 from solidfire.results import GetScheduleResult
 from solidfire.results import GetSnmpACLResult
 from solidfire.results import GetSnmpInfoResult
@@ -976,13 +977,6 @@ class Element(ServiceBase):
             "password": password,
             "access": access,
         }
-        self._check_param_versions(
-            'add_cluster_admin',
-            [
-                ("accept_eula",
-                 accept_eula, 9.0, None),
-            ]
-        )
         if accept_eula is not None:
             params["acceptEula"] = accept_eula
         if attributes is not None:
@@ -1402,6 +1396,24 @@ class Element(ServiceBase):
         return self.send_request(
             'GetAPI',
             GetAPIResult,
+            params,
+        )
+
+    def get_ntp_info(
+            self,):
+        """
+        *get_ntp_info* is used to return the current network time protocol
+        (NTP) configuration information.
+
+        :returns: a response
+        :rtype: GetNtpInfoResult
+        """
+
+        params = {}
+
+        return self.send_request(
+            'GetNtpInfo',
+            GetNtpInfoResult,
             params,
         )
 
@@ -1950,6 +1962,41 @@ class Element(ServiceBase):
             since=7.0,
         )
 
+    def invoke_sfapi(
+            self,
+            method,
+            parameters=OPTIONAL,):
+        """
+        This will invoke any API method supported by the SolidFire API for the
+        version and port the connection is using.
+        Returns a nested hashtable of key/value pairs that contain the result
+        of the invoked method.
+
+        :param method: [required] The name of the method to invoke. This is
+            case sensitive.
+        :type method: str
+
+        :param parameters: (optional) An object, normally a dictionary or
+            hashtable of the key/value pairs, to be passed as the params for
+            the method being invoked.
+        :type parameters: dict
+
+        :returns: a response
+        :rtype: InvokeSFApiResult
+        """
+
+        params = {
+            "method": method,
+        }
+        if parameters is not None:
+            params["parameters"] = parameters
+
+        since = None
+        deprecated = None
+
+        return ElementServiceAdaptor.invoke_sfapi(self, params,
+                                                  since, deprecated)
+
     def add_ldap_cluster_admin(
             self,
             username,
@@ -1995,13 +2042,6 @@ class Element(ServiceBase):
             "username": username,
             "access": access,
         }
-        self._check_param_versions(
-            'add_ldap_cluster_admin',
-            [
-                ("accept_eula",
-                 accept_eula, 9.0, None),
-            ]
-        )
         if accept_eula is not None:
             params["acceptEula"] = accept_eula
         if attributes is not None:
@@ -2658,6 +2698,13 @@ class Element(ServiceBase):
         params = {
             "volumeID": volume_id,
         }
+        self._check_param_versions(
+            'start_volume_pairing',
+            [
+                ("mode",
+                 mode, 8.0, None),
+            ]
+        )
         if mode is not None:
             params["mode"] = mode
 

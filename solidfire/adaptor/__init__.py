@@ -51,6 +51,24 @@ class ElementServiceAdaptor(object):
         return result
 
     @staticmethod
+    def invoke_sfapi(element, params, since, deprecated):
+        if "parameters" in params:
+            return element.send_request(
+                params["method"],
+                dict,
+                params["parameters"],
+                since,
+                deprecated
+            )
+        else:
+            return element.send_request(
+                params["method"],
+                dict,
+                since=since,
+                deprecated=deprecated
+            )
+
+    @staticmethod
     def get_schedule(element, params, since, deprecated):
         """
         Calls to this static method should ONLY originate from the
