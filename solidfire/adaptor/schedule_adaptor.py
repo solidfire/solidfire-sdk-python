@@ -12,8 +12,7 @@ from solidfire.apiactual import ApiSchedule, ApiScheduleInfo, ApiWeekday, \
     ApiCreateScheduleResult
 from solidfire.custom.models import Weekday, DaysOfMonthFrequency, \
     DaysOfWeekFrequency, TimeIntervalFrequency
-from solidfire.models import Schedule, Frequency, ScheduleInfo
-from solidfire.results import GetScheduleResult, ListSchedulesResult, \
+from solidfire.models import Schedule, Frequency, ScheduleInfo, GetScheduleResult, ListSchedulesResult, \
     CreateScheduleResult, ModifyScheduleResult
 import logging
 
