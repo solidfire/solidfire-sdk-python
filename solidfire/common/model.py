@@ -13,7 +13,8 @@ from uuid import UUID
 from future.utils import with_metaclass
 
 KNOWN_CONVERSIONS = {
-    type(set): list
+    type(set): list,
+    UUID: str
 }
 
 
