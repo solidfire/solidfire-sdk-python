@@ -8,6 +8,7 @@
 # EXPRESS WRITTEN PERMISSION OF NETAPP, INC.
 """Module implements the generated adaptor calls from solidfire.Element"""
 from solidfire.adaptor.schedule_adaptor import ScheduleAdaptor
+from solidfire.models import GetNodeStatsResult
 
 class ElementServiceAdaptor(object):
     """
