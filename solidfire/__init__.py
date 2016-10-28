@@ -52,8 +52,8 @@ class Element(ServiceBase):
     def add_account(
             self,
             username,
-            initiatorSecret=OPTIONAL,
-            targetSecret=OPTIONAL,
+            initiator_secret=OPTIONAL,
+            target_secret=OPTIONAL,
             attributes=OPTIONAL,):
         """
         [&#x27;Used to add a new account to the system.&#x27;, &#x27;New volumes can be created under the new account.&#x27;, &#x27;The CHAP settings specified for the account applies to all volumes owned by the account.&#x27;]
@@ -75,10 +75,10 @@ class Element(ServiceBase):
         params = { 
             "username": username,
         }
-        if initiatorSecret is not None:
-            params["initiatorSecret"] = initiatorSecret
-        if targetSecret is not None:
-            params["targetSecret"] = targetSecret
+        if initiator_secret is not None:
+            params["initiatorSecret"] = initiator_secret
+        if target_secret is not None:
+            params["targetSecret"] = target_secret
         if attributes is not None:
             params["attributes"] = attributes
         
@@ -91,7 +91,7 @@ class Element(ServiceBase):
 
     def get_account_by_id(
             self,
-            accountID,):
+            account_id,):
         """
         Returns details about an account, given its AccountID.
         :param accountID: [required] Specifies the account for which details are gathered.
@@ -99,7 +99,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "accountID": accountID,
+            "accountID": account_id,
         }
         
         # There is no adaptor.
@@ -131,7 +131,7 @@ class Element(ServiceBase):
 
     def list_accounts(
             self,
-            startAccountID=OPTIONAL,
+            start_account_id=OPTIONAL,
             limit=OPTIONAL,):
         """
         Returns the entire list of accounts, with optional paging support.
@@ -144,8 +144,8 @@ class Element(ServiceBase):
 
         params = { 
         }
-        if startAccountID is not None:
-            params["startAccountID"] = startAccountID
+        if start_account_id is not None:
+            params["startAccountID"] = start_account_id
         if limit is not None:
             params["limit"] = limit
         
@@ -158,11 +158,11 @@ class Element(ServiceBase):
 
     def modify_account(
             self,
-            accountID,
+            account_id,
             username=OPTIONAL,
             status=OPTIONAL,
-            initiatorSecret=OPTIONAL,
-            targetSecret=OPTIONAL,
+            initiator_secret=OPTIONAL,
+            target_secret=OPTIONAL,
             attributes=OPTIONAL,):
         """
         [&#x27;Used to modify an existing account.&#x27;, &#x27;When locking an account, any existing connections from that account are immediately terminated.&#x27;, &#x27;When changing CHAP settings, any existing connections continue to be active,&#x27;, &#x27;and the new CHAP values are only used on subsequent connection or reconnection.&#x27;]
@@ -189,16 +189,16 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "accountID": accountID,
+            "accountID": account_id,
         }
         if username is not None:
             params["username"] = username
         if status is not None:
             params["status"] = status
-        if initiatorSecret is not None:
-            params["initiatorSecret"] = initiatorSecret
-        if targetSecret is not None:
-            params["targetSecret"] = targetSecret
+        if initiator_secret is not None:
+            params["initiatorSecret"] = initiator_secret
+        if target_secret is not None:
+            params["targetSecret"] = target_secret
         if attributes is not None:
             params["attributes"] = attributes
         
@@ -211,7 +211,7 @@ class Element(ServiceBase):
 
     def remove_account(
             self,
-            accountID,):
+            account_id,):
         """
         [&#x27;Used to remove an existing account.&#x27;, &#x27;All Volumes must be deleted and purged on the account before it can be removed.&#x27;, &#x27;If volumes on the account are still pending deletion, RemoveAccount cannot be used until DeleteVolume to delete and purge the volumes.&#x27;]
         [&#x27;Used to remove an existing account.&#x27;, &#x27;All Volumes must be deleted and purged on the account before it can be removed.&#x27;, &#x27;If volumes on the account are still pending deletion, RemoveAccount cannot be used until DeleteVolume to delete and purge the volumes.&#x27;]
@@ -221,7 +221,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "accountID": accountID,
+            "accountID": account_id,
         }
         
         # There is no adaptor.
@@ -233,7 +233,7 @@ class Element(ServiceBase):
 
     def get_account_efficiency(
             self,
-            accountID,
+            account_id,
             force=OPTIONAL,):
         """
         GetAccountEfficiency is used to retrieve information about a volume account. Only the account given as a parameter in this API method is used to compute the capacity.
@@ -245,7 +245,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "accountID": accountID,
+            "accountID": account_id,
         }
         if force is not None:
             params["force"] = force
@@ -285,7 +285,7 @@ class Element(ServiceBase):
 
     def get_backup_target(
             self,
-            backupTargetID,):
+            backup_target_id,):
         """
         GetBackupTarget allows you to return information about a specific backup target that has been created.
         :param backupTargetID: [required] [&#x27;Unique identifier assigned to the backup target.&#x27;]
@@ -293,7 +293,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "backupTargetID": backupTargetID,
+            "backupTargetID": backup_target_id,
         }
         
         # There is no adaptor.
@@ -320,7 +320,7 @@ class Element(ServiceBase):
 
     def modify_backup_target(
             self,
-            backupTargetID,
+            backup_target_id,
             name=OPTIONAL,
             attributes=OPTIONAL,):
         """
@@ -336,7 +336,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "backupTargetID": backupTargetID,
+            "backupTargetID": backup_target_id,
         }
         if name is not None:
             params["name"] = name
@@ -352,7 +352,7 @@ class Element(ServiceBase):
 
     def remove_backup_target(
             self,
-            backupTargetID,):
+            backup_target_id,):
         """
         [&#x27;RemoveBackupTarget allows you to delete backup targets.&#x27;]
         :param backupTargetID: [required] [&#x27;Unique target ID of the target to remove.&#x27;]
@@ -360,7 +360,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "backupTargetID": backupTargetID,
+            "backupTargetID": backup_target_id,
         }
         
         # There is no adaptor.
@@ -434,10 +434,10 @@ class Element(ServiceBase):
 
     def list_events(
             self,
-            maxEvents=OPTIONAL,
-            startEventID=OPTIONAL,
-            endEventID=OPTIONAL,
-            eventQueueType=OPTIONAL,):
+            max_events=OPTIONAL,
+            start_event_id=OPTIONAL,
+            end_event_id=OPTIONAL,
+            event_queue_type=OPTIONAL,):
         """
         ListEvents returns events detected on the cluster, sorted from oldest to newest.
         :param maxEvents:  Specifies the maximum number of events to return.
@@ -455,14 +455,14 @@ class Element(ServiceBase):
 
         params = { 
         }
-        if maxEvents is not None:
-            params["maxEvents"] = maxEvents
-        if startEventID is not None:
-            params["startEventID"] = startEventID
-        if endEventID is not None:
-            params["endEventID"] = endEventID
-        if eventQueueType is not None:
-            params["eventQueueType"] = eventQueueType
+        if max_events is not None:
+            params["maxEvents"] = max_events
+        if start_event_id is not None:
+            params["startEventID"] = start_event_id
+        if end_event_id is not None:
+            params["endEventID"] = end_event_id
+        if event_queue_type is not None:
+            params["eventQueueType"] = event_queue_type
         
         # There is no adaptor.
         return self.send_request(
@@ -474,9 +474,9 @@ class Element(ServiceBase):
     def list_cluster_faults(
             self,
             exceptions=OPTIONAL,
-            bestPractices=OPTIONAL,
+            best_practices=OPTIONAL,
             update=OPTIONAL,
-            faultTypes=OPTIONAL,):
+            fault_types=OPTIONAL,):
         """
         [&#x27;ListClusterFaults is used to retrieve information about any faults detected on the cluster.&#x27;, &#x27;With this method, both current and resolved faults can be retrieved. The system caches faults every 30 seconds.&#x27;]
         [&#x27;ListClusterFaults is used to retrieve information about any faults detected on the cluster.&#x27;, &#x27;With this method, both current and resolved faults can be retrieved. The system caches faults every 30 seconds.&#x27;]
@@ -497,12 +497,12 @@ class Element(ServiceBase):
         }
         if exceptions is not None:
             params["exceptions"] = exceptions
-        if bestPractices is not None:
-            params["bestPractices"] = bestPractices
+        if best_practices is not None:
+            params["bestPractices"] = best_practices
         if update is not None:
             params["update"] = update
-        if faultTypes is not None:
-            params["faultTypes"] = faultTypes
+        if fault_types is not None:
+            params["faultTypes"] = fault_types
         
         # There is no adaptor.
         return self.send_request(
@@ -513,7 +513,7 @@ class Element(ServiceBase):
 
     def clear_cluster_faults(
             self,
-            faultTypes=OPTIONAL,):
+            fault_types=OPTIONAL,):
         """
         ClearClusterFaults is used to clear information about both current faults that are resolved as well as faults that were previously detected and resolved can be cleared.
         :param faultTypes:  [&#x27;Determines the types of faults cleared:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;current&lt;/b&gt;: Faults that are currently detected and have not been resolved.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;resolved&lt;/b&gt;: Faults that were previously detected and resolved.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;all&lt;/b&gt;: Both current and resolved faults are cleared. The fault status can be determined by the &quot;resolved&quot; field of the fault object.&#x27;][&#x27;Determines the types of faults cleared:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;current&lt;/b&gt;: Faults that are currently detected and have not been resolved.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;resolved&lt;/b&gt;: Faults that were previously detected and resolved.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;all&lt;/b&gt;: Both current and resolved faults are cleared. The fault status can be determined by the &quot;resolved&quot; field of the fault object.&#x27;][&#x27;Determines the types of faults cleared:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;current&lt;/b&gt;: Faults that are currently detected and have not been resolved.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;resolved&lt;/b&gt;: Faults that were previously detected and resolved.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;all&lt;/b&gt;: Both current and resolved faults are cleared. The fault status can be determined by the &quot;resolved&quot; field of the fault object.&#x27;][&#x27;Determines the types of faults cleared:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;current&lt;/b&gt;: Faults that are currently detected and have not been resolved.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;resolved&lt;/b&gt;: Faults that were previously detected and resolved.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;all&lt;/b&gt;: Both current and resolved faults are cleared. The fault status can be determined by the &quot;resolved&quot; field of the fault object.&#x27;]
@@ -522,8 +522,8 @@ class Element(ServiceBase):
 
         params = { 
         }
-        if faultTypes is not None:
-            params["faultTypes"] = faultTypes
+        if fault_types is not None:
+            params["faultTypes"] = fault_types
         
         # There is no adaptor.
         return self.send_request(
@@ -566,9 +566,9 @@ class Element(ServiceBase):
 
     def modify_cluster_full_threshold(
             self,
-            stage2AwareThreshold=OPTIONAL,
-            stage3BlockThresholdPercent=OPTIONAL,
-            maxMetadataOverProvisionFactor=OPTIONAL,):
+            stage2_aware_threshold=OPTIONAL,
+            stage3_block_threshold_percent=OPTIONAL,
+            max_metadata_over_provision_factor=OPTIONAL,):
         """
         [&#x27;ModifyClusterFullThreshold is used to change the level at which an event is generated when the storage cluster approaches the capacity utilization requested. The number entered in this setting is used to indicate the number of node failures the system is required to recover from. For example, on a 10 node cluster, if you want to be alerted when the system cannot recover from 3 nodes failures, enter the value of &quot;3&quot;. When this number is reached, a message alert is sent to the Event Log in the Cluster Management Console.&#x27;]
         :param stage2AwareThreshold:  Number of nodes worth of capacity remaining on the cluster that triggers a notification.
@@ -583,12 +583,12 @@ class Element(ServiceBase):
 
         params = { 
         }
-        if stage2AwareThreshold is not None:
-            params["stage2AwareThreshold"] = stage2AwareThreshold
-        if stage3BlockThresholdPercent is not None:
-            params["stage3BlockThresholdPercent"] = stage3BlockThresholdPercent
-        if maxMetadataOverProvisionFactor is not None:
-            params["maxMetadataOverProvisionFactor"] = maxMetadataOverProvisionFactor
+        if stage2_aware_threshold is not None:
+            params["stage2AwareThreshold"] = stage2_aware_threshold
+        if stage3_block_threshold_percent is not None:
+            params["stage3BlockThresholdPercent"] = stage3_block_threshold_percent
+        if max_metadata_over_provision_factor is not None:
+            params["maxMetadataOverProvisionFactor"] = max_metadata_over_provision_factor
         
         # There is no adaptor.
         return self.send_request(
@@ -631,11 +631,11 @@ class Element(ServiceBase):
             self,
             mvip,
             svip,
-            repCount,
+            rep_count,
             username,
             password,
             nodes,
-            acceptEula=OPTIONAL,
+            accept_eula=OPTIONAL,
             attributes=OPTIONAL,):
         """
         [&#x27;The CreateCluster method is used to initialize the node in a cluster that has ownership of the &quot;mvip&quot; and &quot;svip&quot; addresses. Each new cluster is initialized using the MIP of the first node in the cluster. This method also automatically adds all the nodes being configured into the cluster. The method is used only once each time a new cluster is initialized.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Note&lt;/b&gt;: You need to log into the node that is used as the master node for the cluster. Once logged in, run the GetBootstrapConfig method on the node to get the IP addresses for the rest of the nodes that you want to include in the cluster. Then run the CreateCluster method.&#x27;]
@@ -669,13 +669,13 @@ class Element(ServiceBase):
         params = { 
             "mvip": mvip,
             "svip": svip,
-            "repCount": repCount,
+            "repCount": rep_count,
             "username": username,
             "password": password,
             "nodes": nodes,
         }
-        if acceptEula is not None:
-            params["acceptEula"] = acceptEula
+        if accept_eula is not None:
+            params["acceptEula"] = accept_eula
         if attributes is not None:
             params["attributes"] = attributes
         
@@ -706,7 +706,7 @@ class Element(ServiceBase):
             username,
             password,
             access,
-            acceptEula=OPTIONAL,
+            accept_eula=OPTIONAL,
             attributes=OPTIONAL,):
         """
         [&#x27;AddClusterAdmin adds a new Cluster Admin. A Cluster Admin can be used to manage the cluster via the API and management tools. Cluster Admins are completely separate and unrelated to standard tenant accounts.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;Each Cluster Admin can be restricted to a sub-set of the API. SolidFire recommends using multiple Cluster Admins for different users and applications. Each Cluster Admin should be given the minimal permissions necessary to reduce the potential impact of credential compromise.&#x27;]
@@ -733,8 +733,8 @@ class Element(ServiceBase):
             "password": password,
             "access": access,
         }
-        if acceptEula is not None:
-            params["acceptEula"] = acceptEula
+        if accept_eula is not None:
+            params["acceptEula"] = accept_eula
         if attributes is not None:
             params["attributes"] = attributes
         
@@ -747,7 +747,7 @@ class Element(ServiceBase):
 
     def modify_cluster_admin(
             self,
-            clusterAdminID,
+            cluster_admin_id,
             password=OPTIONAL,
             access=OPTIONAL,
             attributes=OPTIONAL,):
@@ -767,7 +767,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "clusterAdminID": clusterAdminID,
+            "clusterAdminID": cluster_admin_id,
         }
         if password is not None:
             params["password"] = password
@@ -785,7 +785,7 @@ class Element(ServiceBase):
 
     def remove_cluster_admin(
             self,
-            clusterAdminID,):
+            cluster_admin_id,):
         """
         [&#x27;RemoveClusterAdmin is used to remove a Cluster Admin. The &quot;admin&quot; Cluster Admin cannot be removed.&#x27;]
         :param clusterAdminID: [required] ClusterAdminID for the Cluster Admin to remove.
@@ -793,7 +793,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "clusterAdminID": clusterAdminID,
+            "clusterAdminID": cluster_admin_id,
         }
         
         # There is no adaptor.
@@ -844,7 +844,7 @@ class Element(ServiceBase):
     def set_snmp_acl(
             self,
             networks,
-            usmUsers,):
+            usm_users,):
         """
         [&#x27;SetSnmpACL is used to configure SNMP access permissions on the cluster nodes. The values set with this interface apply to all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpACL. Also note that the values set with this interface replace all &quot;network&quot; or &quot;usmUsers&quot; values set with the older SetSnmpInfo.&#x27;]
         :param networks: [required] List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible &quot;networks&quot; values. REQUIRED if SNMP v# is disabled.
@@ -856,7 +856,7 @@ class Element(ServiceBase):
 
         params = { 
             "networks": networks,
-            "usmUsers": usmUsers,
+            "usmUsers": usm_users,
         }
         
         # There is no adaptor.
@@ -884,10 +884,10 @@ class Element(ServiceBase):
 
     def set_snmp_trap_info(
             self,
-            trapRecipients,
-            clusterFaultTrapsEnabled,
-            clusterFaultResolvedTrapsEnabled,
-            clusterEventTrapsEnabled,):
+            trap_recipients,
+            cluster_fault_traps_enabled,
+            cluster_fault_resolved_traps_enabled,
+            cluster_event_traps_enabled,):
         """
         [&#x27;SetSnmpTrapInfo is used to enable and disable the generation of SolidFire SNMP notifications (traps) and to specify the set of network host computers that are to receive the notifications. The values passed with each SetSnmpTrapInfo method replaces all values set in any previous method to SetSnmpTrapInfo.&#x27;]
         :param trapRecipients: [required] List of hosts that are to receive the traps generated by the Cluster Master. At least one object is required if any one of the trap types is enabled.
@@ -904,10 +904,10 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "trapRecipients": trapRecipients,
-            "clusterFaultTrapsEnabled": clusterFaultTrapsEnabled,
-            "clusterFaultResolvedTrapsEnabled": clusterFaultResolvedTrapsEnabled,
-            "clusterEventTrapsEnabled": clusterEventTrapsEnabled,
+            "trapRecipients": trap_recipients,
+            "clusterFaultTrapsEnabled": cluster_fault_traps_enabled,
+            "clusterFaultResolvedTrapsEnabled": cluster_fault_resolved_traps_enabled,
+            "clusterEventTrapsEnabled": cluster_event_traps_enabled,
         }
         
         # There is no adaptor.
@@ -919,7 +919,7 @@ class Element(ServiceBase):
 
     def enable_snmp(
             self,
-            snmpV3Enabled,):
+            snmp_v3_enabled,):
         """
         [&#x27;EnableSnmp is used to enable SNMP on the cluster nodes. The values set with this interface apply to all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to EnableSnmp.&#x27;]
         :param snmpV3Enabled: [required] If set to &quot;true&quot;, then SNMP v3 is enabled on each node in the cluster. If set to &quot;false&quot;, then SNMP v2 is enabled.
@@ -927,7 +927,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "snmpV3Enabled": snmpV3Enabled,
+            "snmpV3Enabled": snmp_v3_enabled,
         }
         
         # There is no adaptor.
@@ -973,8 +973,8 @@ class Element(ServiceBase):
             self,
             networks=OPTIONAL,
             enabled=OPTIONAL,
-            snmpV3Enabled=OPTIONAL,
-            usmUsers=OPTIONAL,):
+            snmp_v3_enabled=OPTIONAL,
+            usm_users=OPTIONAL,):
         """
         [&#x27;SetSnmpInfo is used to configure SNMP v2 and v3 on the cluster nodes. The values set with this interface apply to all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpInfo.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Note&lt;/b&gt;: EnableSnmp and SetSnmpACL methods can be used to accomplish the same results as SetSnmpInfo. SetSnmpInfo will no longer be available after the Element 8 release. Please use EnableSnmp and SetSnmpACL in the future.&#x27;]
         [&#x27;SetSnmpInfo is used to configure SNMP v2 and v3 on the cluster nodes. The values set with this interface apply to all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpInfo.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Note&lt;/b&gt;: EnableSnmp and SetSnmpACL methods can be used to accomplish the same results as SetSnmpInfo. SetSnmpInfo will no longer be available after the Element 8 release. Please use EnableSnmp and SetSnmpACL in the future.&#x27;]
@@ -998,10 +998,10 @@ class Element(ServiceBase):
             params["networks"] = networks
         if enabled is not None:
             params["enabled"] = enabled
-        if snmpV3Enabled is not None:
-            params["snmpV3Enabled"] = snmpV3Enabled
-        if usmUsers is not None:
-            params["usmUsers"] = usmUsers
+        if snmp_v3_enabled is not None:
+            params["snmpV3Enabled"] = snmp_v3_enabled
+        if usm_users is not None:
+            params["usmUsers"] = usm_users
         
         # There is no adaptor.
         return self.send_request(
@@ -1133,9 +1133,9 @@ class Element(ServiceBase):
             self,
             password,
             username,
-            allowIncomplete=OPTIONAL,
-            bundleName=OPTIONAL,
-            extraArgs=OPTIONAL,
+            allow_incomplete=OPTIONAL,
+            bundle_name=OPTIONAL,
+            extra_args=OPTIONAL,
             mvip=OPTIONAL,
             nodes=OPTIONAL,):
         """
@@ -1166,12 +1166,12 @@ class Element(ServiceBase):
             "password": password,
             "username": username,
         }
-        if allowIncomplete is not None:
-            params["allowIncomplete"] = allowIncomplete
-        if bundleName is not None:
-            params["bundleName"] = bundleName
-        if extraArgs is not None:
-            params["extraArgs"] = extraArgs
+        if allow_incomplete is not None:
+            params["allowIncomplete"] = allow_incomplete
+        if bundle_name is not None:
+            params["bundleName"] = bundle_name
+        if extra_args is not None:
+            params["extraArgs"] = extra_args
         if mvip is not None:
             params["mvip"] = mvip
         if nodes is not None:
@@ -1187,9 +1187,9 @@ class Element(ServiceBase):
 
     def create_support_bundle(
             self,
-            bundleName=OPTIONAL,
-            extraArgs=OPTIONAL,
-            timeoutSec=OPTIONAL,):
+            bundle_name=OPTIONAL,
+            extra_args=OPTIONAL,
+            timeout_sec=OPTIONAL,):
         """
         [&quot;CreateSupportBundle is used to create a support bundle file under the node&#x27;s directory. When the bundle has been successfully created, the bundle is stored on the node as a tar.gz file.&quot;]
         :param bundleName:  Unique name for each support bundle created. If no name is provided, then &#x27;supportbundle&#x27; and the node name is used as a file name.
@@ -1204,12 +1204,12 @@ class Element(ServiceBase):
 
         params = { 
         }
-        if bundleName is not None:
-            params["bundleName"] = bundleName
-        if extraArgs is not None:
-            params["extraArgs"] = extraArgs
-        if timeoutSec is not None:
-            params["timeoutSec"] = timeoutSec
+        if bundle_name is not None:
+            params["bundleName"] = bundle_name
+        if extra_args is not None:
+            params["extraArgs"] = extra_args
+        if timeout_sec is not None:
+            params["timeoutSec"] = timeout_sec
         
         # There is no adaptor.
         return self.send_request(
@@ -1305,7 +1305,7 @@ class Element(ServiceBase):
 
     def get_async_result(
             self,
-            asyncHandle,):
+            async_handle,):
         """
         [&#x27;Used to retrieve the result of asynchronous method calls.&#x27;, &#x27;Some method calls are long running and do not complete when the initial response is sent.&#x27;, &#x27;To obtain the result of the method call, polling with GetAsyncResult is required.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;GetAsyncResult returns the overall status of the operation (in progress, completed, or error) in a standard fashion,&#x27;, &#x27;but the actual data returned for the operation depends on the original method call and the return data is documented with each method.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;The result for a completed asynchronous method call can only be retrieved once.&#x27;, &#x27;Once the final result has been returned, later attempts returns an error.&#x27;]
         [&#x27;Used to retrieve the result of asynchronous method calls.&#x27;, &#x27;Some method calls are long running and do not complete when the initial response is sent.&#x27;, &#x27;To obtain the result of the method call, polling with GetAsyncResult is required.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;GetAsyncResult returns the overall status of the operation (in progress, completed, or error) in a standard fashion,&#x27;, &#x27;but the actual data returned for the operation depends on the original method call and the return data is documented with each method.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;The result for a completed asynchronous method call can only be retrieved once.&#x27;, &#x27;Once the final result has been returned, later attempts returns an error.&#x27;]
@@ -1321,7 +1321,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "asyncHandle": asyncHandle,
+            "asyncHandle": async_handle,
         }
         
         # There is no adaptor.
@@ -1395,7 +1395,7 @@ class Element(ServiceBase):
 
     def get_drive_hardware_info(
             self,
-            driveID,):
+            drive_id,):
         """
         GetDriveHardwareInfo returns all the hardware info for the given drive. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
         :param driveID: [required] DriveID for the drive information requested. DriveIDs can be obtained via the &quot;ListDrives&quot; method.
@@ -1403,7 +1403,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "driveID": driveID,
+            "driveID": drive_id,
         }
         
         # There is no adaptor.
@@ -1492,7 +1492,7 @@ class Element(ServiceBase):
 
     def get_drive_stats(
             self,
-            driveID,):
+            drive_id,):
         """
         [&#x27;GetDriveStats return high-level activity measurements for a single drive. Values are cumulative from the addition of the drive to the cluster. Some values are specific to Block Drives. Statistical data may not be returned for both block and metadata drives when running this method.&#x27;, &#x27;For more information on which drive type returns which data, see Response Example (Block Drive) and Response Example (Volume Metadata Drive) in the SolidFire API guide.&#x27;]
         [&#x27;GetDriveStats return high-level activity measurements for a single drive. Values are cumulative from the addition of the drive to the cluster. Some values are specific to Block Drives. Statistical data may not be returned for both block and metadata drives when running this method.&#x27;, &#x27;For more information on which drive type returns which data, see Response Example (Block Drive) and Response Example (Volume Metadata Drive) in the SolidFire API guide.&#x27;]
@@ -1501,7 +1501,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "driveID": driveID,
+            "driveID": drive_id,
         }
         
         # There is no adaptor.
@@ -1703,7 +1703,7 @@ class Element(ServiceBase):
 
     def get_node_hardware_info(
             self,
-            nodeID,):
+            node_id,):
         """
         GetNodeHardwareInfo is used to return all the hardware info and status for the node specified. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
         :param nodeID: [required] The ID of the node for which hardware information is being requested.  Information about a  node is returned if a   node is specified.
@@ -1711,7 +1711,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "nodeID": nodeID,
+            "nodeID": node_id,
         }
         
         # There is no adaptor.
@@ -1767,7 +1767,7 @@ class Element(ServiceBase):
             self,
             username,
             access,
-            acceptEula=OPTIONAL,
+            accept_eula=OPTIONAL,
             attributes=OPTIONAL,):
         """
         [&#x27;AddLdapClusterAdmin is used to add a new LDAP Cluster Admin. An LDAP Cluster Admin can be used to manage the cluster via the API and management tools. LDAP Cluster Admins are completely separate and unrelated to standard tenant accounts.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;An LDAP group that has been defined in Active Directory can also be added using this API method. The access level that is given to the group will be passed to the individual users in the LDAP group.&#x27;]
@@ -1790,8 +1790,8 @@ class Element(ServiceBase):
             "username": username,
             "access": access,
         }
-        if acceptEula is not None:
-            params["acceptEula"] = acceptEula
+        if accept_eula is not None:
+            params["acceptEula"] = accept_eula
         if attributes is not None:
             params["attributes"] = attributes
         
@@ -1807,7 +1807,7 @@ class Element(ServiceBase):
             self,
             username,
             password,
-            ldapConfiguration=OPTIONAL,):
+            ldap_configuration=OPTIONAL,):
         """
         [&#x27;The TestLdapAuthentication is used to verify the currently enabled LDAP authentication configuration settings are correct. If the configuration settings are correct, the API call returns a list of the groups the tested user is a member of.&#x27;]
         :param username: [required] The username to be tested.
@@ -1824,8 +1824,8 @@ class Element(ServiceBase):
             "username": username,
             "password": password,
         }
-        if ldapConfiguration is not None:
-            params["ldapConfiguration"] = ldapConfiguration
+        if ldap_configuration is not None:
+            params["ldapConfiguration"] = ldap_configuration
         
         # There is no adaptor.
         return self.send_request(
@@ -1853,16 +1853,16 @@ class Element(ServiceBase):
 
     def enable_ldap_authentication(
             self,
-            serverURIs,
-            authType=OPTIONAL,
-            groupSearchBaseDN=OPTIONAL,
-            groupSearchCustomFilter=OPTIONAL,
-            groupSearchType=OPTIONAL,
-            searchBindDN=OPTIONAL,
-            searchBindPassword=OPTIONAL,
-            userDNTemplate=OPTIONAL,
-            userSearchBaseDN=OPTIONAL,
-            userSearchFilter=OPTIONAL,):
+            server_uris,
+            auth_type=OPTIONAL,
+            group_search_base_dn=OPTIONAL,
+            group_search_custom_filter=OPTIONAL,
+            group_search_type=OPTIONAL,
+            search_bind_dn=OPTIONAL,
+            search_bind_password=OPTIONAL,
+            user_dntemplate=OPTIONAL,
+            user_search_base_dn=OPTIONAL,
+            user_search_filter=OPTIONAL,):
         """
         [&#x27;The EnableLdapAuthentication method is used to configure an LDAP server connection to use for LDAP authentication to a SolidFire cluster. Users that are members on the LDAP server can then log in to a SolidFire storage system using their LDAP authentication userid and password.&#x27;]
         :param authType:  [&#x27;Identifies which user authentcation method will be used. &lt;br/&gt;&#x27;, &#x27;Must be one of the following:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;DirectBind&lt;/b&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;SearchAndBind&lt;/b&gt; (default)&#x27;][&#x27;Identifies which user authentcation method will be used. &lt;br/&gt;&#x27;, &#x27;Must be one of the following:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;DirectBind&lt;/b&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;SearchAndBind&lt;/b&gt; (default)&#x27;][&#x27;Identifies which user authentcation method will be used. &lt;br/&gt;&#x27;, &#x27;Must be one of the following:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;DirectBind&lt;/b&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;SearchAndBind&lt;/b&gt; (default)&#x27;][&#x27;Identifies which user authentcation method will be used. &lt;br/&gt;&#x27;, &#x27;Must be one of the following:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;DirectBind&lt;/b&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;SearchAndBind&lt;/b&gt; (default)&#x27;]
@@ -1897,26 +1897,26 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "serverURIs": serverURIs,
+            "serverURIs": server_uris,
         }
-        if authType is not None:
-            params["authType"] = authType
-        if groupSearchBaseDN is not None:
-            params["groupSearchBaseDN"] = groupSearchBaseDN
-        if groupSearchCustomFilter is not None:
-            params["groupSearchCustomFilter"] = groupSearchCustomFilter
-        if groupSearchType is not None:
-            params["groupSearchType"] = groupSearchType
-        if searchBindDN is not None:
-            params["searchBindDN"] = searchBindDN
-        if searchBindPassword is not None:
-            params["searchBindPassword"] = searchBindPassword
-        if userDNTemplate is not None:
-            params["userDNTemplate"] = userDNTemplate
-        if userSearchBaseDN is not None:
-            params["userSearchBaseDN"] = userSearchBaseDN
-        if userSearchFilter is not None:
-            params["userSearchFilter"] = userSearchFilter
+        if auth_type is not None:
+            params["authType"] = auth_type
+        if group_search_base_dn is not None:
+            params["groupSearchBaseDN"] = group_search_base_dn
+        if group_search_custom_filter is not None:
+            params["groupSearchCustomFilter"] = group_search_custom_filter
+        if group_search_type is not None:
+            params["groupSearchType"] = group_search_type
+        if search_bind_dn is not None:
+            params["searchBindDN"] = search_bind_dn
+        if search_bind_password is not None:
+            params["searchBindPassword"] = search_bind_password
+        if user_dntemplate is not None:
+            params["userDNTemplate"] = user_dntemplate
+        if user_search_base_dn is not None:
+            params["userSearchBaseDN"] = user_search_base_dn
+        if user_search_filter is not None:
+            params["userSearchFilter"] = user_search_filter
         
         # There is no adaptor.
         return self.send_request(
@@ -1995,7 +1995,7 @@ class Element(ServiceBase):
 
     def set_remote_logging_hosts(
             self,
-            remoteHosts,):
+            remote_hosts,):
         """
         [&#x27;RemoteLoggingHosts is used to configure remote logging from the nodes in the storage cluster to a centralized log server or servers. Remote logging is performed over TCP using the default port 514. This API does not add to the existing logging hosts. Rather, it replaces what currently exists with new values specified by this API method. You can use the GetRemoteLoggingHosts to determine what the current logging hosts are and then use the SetRemoteLoggingHosts to set the desired list of current and new logging hosts.&#x27;]
         :param remoteHosts: [required] List of hosts to send log messages to.
@@ -2003,7 +2003,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "remoteHosts": remoteHosts,
+            "remoteHosts": remote_hosts,
         }
         
         # There is no adaptor.
@@ -2104,7 +2104,7 @@ class Element(ServiceBase):
 
     def add_nodes(
             self,
-            pendingNodes,):
+            pending_nodes,):
         """
         [&#x27;AddNodes is used to add one or more new nodes to the cluster. When a node is not configured and starts up for the first time you are prompted to configure the node. Once a node is configured it is registered as a &quot;pending node&quot; with the cluster.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;Adding a node to a cluster that has been set up for virtual networking will require a sufficient number of virtual storage IP addresses to allocate a virtual IP to the new node. If there are no virtual IP addresses available for the new node, the AddNode operation will not complete successfully. Use the &quot;ModifyVirtualNetwork&quot; method to add more storage IP addresses to your virtual network.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;The software version on each node in a cluster must be compatible. Run the &quot;ListAllNodes&quot; API to see what versions of software are currently running on the cluster nodes. For an explanation of software version compatibility, see &quot;Node Versioning and Compatibility&quot; in the Element API guide.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;Once a node has been added, the drives on the node are made available and can then be added via the &quot;AddDrives&quot; method to increase the storage capacity of the cluster.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Note&lt;/b&gt;: It may take several seconds after adding a new Node for it to start up and register the drives as being available.&#x27;]
         [&#x27;AddNodes is used to add one or more new nodes to the cluster. When a node is not configured and starts up for the first time you are prompted to configure the node. Once a node is configured it is registered as a &quot;pending node&quot; with the cluster.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;Adding a node to a cluster that has been set up for virtual networking will require a sufficient number of virtual storage IP addresses to allocate a virtual IP to the new node. If there are no virtual IP addresses available for the new node, the AddNode operation will not complete successfully. Use the &quot;ModifyVirtualNetwork&quot; method to add more storage IP addresses to your virtual network.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;The software version on each node in a cluster must be compatible. Run the &quot;ListAllNodes&quot; API to see what versions of software are currently running on the cluster nodes. For an explanation of software version compatibility, see &quot;Node Versioning and Compatibility&quot; in the Element API guide.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;Once a node has been added, the drives on the node are made available and can then be added via the &quot;AddDrives&quot; method to increase the storage capacity of the cluster.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Note&lt;/b&gt;: It may take several seconds after adding a new Node for it to start up and register the drives as being available.&#x27;]
@@ -2120,7 +2120,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "pendingNodes": pendingNodes,
+            "pendingNodes": pending_nodes,
         }
         
         # There is no adaptor.
@@ -2251,7 +2251,7 @@ class Element(ServiceBase):
 
     def get_node_stats(
             self,
-            nodeID,):
+            node_id,):
         """
         [&#x27;GetNodeStats is used to return the high-level activity measurements for a single node.&#x27;]
         :param nodeID: [required] Specifies the node for which statistics are gathered.
@@ -2259,7 +2259,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "nodeID": nodeID,
+            "nodeID": node_id,
         }
         
         # There is an adaptor!
@@ -2352,7 +2352,7 @@ class Element(ServiceBase):
 
     def start_volume_pairing(
             self,
-            volumeID,
+            volume_id,
             mode=OPTIONAL,):
         """
         [&#x27;StartVolumePairing is used to create an encoded key from a volume that is used to pair with another volume.&#x27;, &#x27;The key that this method creates is used in the &quot;CompleteVolumePairing&quot; API method to establish a volume pairing.&#x27;]
@@ -2365,7 +2365,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeID": volumeID,
+            "volumeID": volume_id,
         }
         if mode is not None:
             params["mode"] = mode
@@ -2379,7 +2379,7 @@ class Element(ServiceBase):
 
     def complete_cluster_pairing(
             self,
-            clusterPairingKey,):
+            cluster_pairing_key,):
         """
         [&#x27;The CompleteClusterPairing method is the second step in the cluster pairing process.&#x27;, &#x27;Use this method with the encoded key received from the &quot;StartClusterPairing&quot; API method to complete the cluster pairing process.&#x27;]
         [&#x27;The CompleteClusterPairing method is the second step in the cluster pairing process.&#x27;, &#x27;Use this method with the encoded key received from the &quot;StartClusterPairing&quot; API method to complete the cluster pairing process.&#x27;]
@@ -2388,7 +2388,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "clusterPairingKey": clusterPairingKey,
+            "clusterPairingKey": cluster_pairing_key,
         }
         
         # There is no adaptor.
@@ -2400,8 +2400,8 @@ class Element(ServiceBase):
 
     def complete_volume_pairing(
             self,
-            volumePairingKey,
-            volumeID,):
+            volume_pairing_key,
+            volume_id,):
         """
         [&#x27;CompleteVolumePairing is used to complete the pairing of two volumes.&#x27;]
         :param volumePairingKey: [required] The key returned from the &quot;StartVolumePairing&quot; API method.
@@ -2412,8 +2412,8 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumePairingKey": volumePairingKey,
-            "volumeID": volumeID,
+            "volumePairingKey": volume_pairing_key,
+            "volumeID": volume_id,
         }
         
         # There is no adaptor.
@@ -2425,7 +2425,7 @@ class Element(ServiceBase):
 
     def remove_cluster_pair(
             self,
-            clusterPairID,):
+            cluster_pair_id,):
         """
         [&#x27;You can use the RemoveClusterPair method to close the open connections between two paired clusters.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Note&lt;/b&gt;: Before you remove a cluster pair, you must first remove all volume pairing to the clusters with the &quot;RemoveVolumePair&quot; API method.&#x27;]
         [&#x27;You can use the RemoveClusterPair method to close the open connections between two paired clusters.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Note&lt;/b&gt;: Before you remove a cluster pair, you must first remove all volume pairing to the clusters with the &quot;RemoveVolumePair&quot; API method.&#x27;]
@@ -2434,7 +2434,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "clusterPairID": clusterPairID,
+            "clusterPairID": cluster_pair_id,
         }
         
         # There is no adaptor.
@@ -2446,7 +2446,7 @@ class Element(ServiceBase):
 
     def remove_volume_pair(
             self,
-            volumeID,):
+            volume_id,):
         """
         [&#x27;RemoveVolumePair is used to remove the remote pairing between two volumes.&#x27;, &#x27;When the volume pairing information is removed, data is no longer replicated to or from the volume.&#x27;, &#x27;This method should be run on both the source and target volumes that are paired together.&#x27;]
         [&#x27;RemoveVolumePair is used to remove the remote pairing between two volumes.&#x27;, &#x27;When the volume pairing information is removed, data is no longer replicated to or from the volume.&#x27;, &#x27;This method should be run on both the source and target volumes that are paired together.&#x27;]
@@ -2456,7 +2456,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeID": volumeID,
+            "volumeID": volume_id,
         }
         
         # There is no adaptor.
@@ -2468,8 +2468,8 @@ class Element(ServiceBase):
 
     def modify_volume_pair(
             self,
-            volumeID,
-            pausedManual=OPTIONAL,
+            volume_id,
+            paused_manual=OPTIONAL,
             mode=OPTIONAL,):
         """
         [&#x27;ModifyVolumePair is used to pause or restart replication between a pair of volumes.&#x27;]
@@ -2484,10 +2484,10 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeID": volumeID,
+            "volumeID": volume_id,
         }
-        if pausedManual is not None:
-            params["pausedManual"] = pausedManual
+        if paused_manual is not None:
+            params["pausedManual"] = paused_manual
         if mode is not None:
             params["mode"] = mode
         
@@ -2500,7 +2500,7 @@ class Element(ServiceBase):
 
     def list_protocol_endpoints(
             self,
-            protocolEndpointIDs=OPTIONAL,):
+            protocol_endpoint_ids=OPTIONAL,):
         """
         [&#x27;Gets protocol endpoints in the system&#x27;, &quot;If protocolEndpointIDs isn&#x27;t specified all protocol endpoints&quot;, &#x27;are returned. Else the supplied protocolEndpointIDs are.&#x27;]
         [&#x27;Gets protocol endpoints in the system&#x27;, &quot;If protocolEndpointIDs isn&#x27;t specified all protocol endpoints&quot;, &#x27;are returned. Else the supplied protocolEndpointIDs are.&#x27;]
@@ -2511,8 +2511,8 @@ class Element(ServiceBase):
 
         params = { 
         }
-        if protocolEndpointIDs is not None:
-            params["protocolEndpointIDs"] = protocolEndpointIDs
+        if protocol_endpoint_ids is not None:
+            params["protocolEndpointIDs"] = protocol_endpoint_ids
         
         # There is no adaptor.
         return self.send_request(
@@ -2538,10 +2538,10 @@ class Element(ServiceBase):
 
     def create_snapshot(
             self,
-            volumeID,
-            snapshotID=OPTIONAL,
+            volume_id,
+            snapshot_id=OPTIONAL,
             name=OPTIONAL,
-            enableRemoteReplication=OPTIONAL,
+            enable_remote_replication=OPTIONAL,
             retention=OPTIONAL,
             attributes=OPTIONAL,):
         """
@@ -2570,14 +2570,14 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeID": volumeID,
+            "volumeID": volume_id,
         }
-        if snapshotID is not None:
-            params["snapshotID"] = snapshotID
+        if snapshot_id is not None:
+            params["snapshotID"] = snapshot_id
         if name is not None:
             params["name"] = name
-        if enableRemoteReplication is not None:
-            params["enableRemoteReplication"] = enableRemoteReplication
+        if enable_remote_replication is not None:
+            params["enableRemoteReplication"] = enable_remote_replication
         if retention is not None:
             params["retention"] = retention
         if attributes is not None:
@@ -2592,7 +2592,7 @@ class Element(ServiceBase):
 
     def delete_snapshot(
             self,
-            snapshotID,):
+            snapshot_id,):
         """
         [&#x27;DeleteSnapshot is used to delete a snapshot.&#x27;, &#x27;A snapshot that is currently the &quot;active&quot; snapshot cannot be deleted.&#x27;, &#x27;You must rollback and make another snapshot &quot;active&quot; before the current snapshot can be deleted.&#x27;, &#x27;To rollback a snapshot, use RollbackToSnapshot.&#x27;]
         [&#x27;DeleteSnapshot is used to delete a snapshot.&#x27;, &#x27;A snapshot that is currently the &quot;active&quot; snapshot cannot be deleted.&#x27;, &#x27;You must rollback and make another snapshot &quot;active&quot; before the current snapshot can be deleted.&#x27;, &#x27;To rollback a snapshot, use RollbackToSnapshot.&#x27;]
@@ -2603,7 +2603,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "snapshotID": snapshotID,
+            "snapshotID": snapshot_id,
         }
         
         # There is no adaptor.
@@ -2615,7 +2615,7 @@ class Element(ServiceBase):
 
     def list_snapshots(
             self,
-            volumeID=OPTIONAL,):
+            volume_id=OPTIONAL,):
         """
         [&#x27;ListSnapshots is used to return the attributes of each snapshot taken on the volume.&#x27;]
         :param volumeID:  [&#x27;The volume to list snapshots for.&#x27;, &#x27;If not provided, all snapshots for all volumes are returned.&#x27;][&#x27;The volume to list snapshots for.&#x27;, &#x27;If not provided, all snapshots for all volumes are returned.&#x27;]
@@ -2624,8 +2624,8 @@ class Element(ServiceBase):
 
         params = { 
         }
-        if volumeID is not None:
-            params["volumeID"] = volumeID
+        if volume_id is not None:
+            params["volumeID"] = volume_id
         
         # There is no adaptor.
         return self.send_request(
@@ -2636,9 +2636,9 @@ class Element(ServiceBase):
 
     def modify_snapshot(
             self,
-            snapshotID,
-            expirationTime=OPTIONAL,
-            enableRemoteReplication=OPTIONAL,):
+            snapshot_id,
+            expiration_time=OPTIONAL,
+            enable_remote_replication=OPTIONAL,):
         """
         [&#x27;ModifySnapshot is used to change the attributes currently assigned to a snapshot.&#x27;, &#x27;Use this API method to enable the snapshots created on the Read/Write (source) volume to be remotely replicated to a target SolidFire storage system.&#x27;]
         [&#x27;ModifySnapshot is used to change the attributes currently assigned to a snapshot.&#x27;, &#x27;Use this API method to enable the snapshots created on the Read/Write (source) volume to be remotely replicated to a target SolidFire storage system.&#x27;]
@@ -2653,12 +2653,12 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "snapshotID": snapshotID,
+            "snapshotID": snapshot_id,
         }
-        if expirationTime is not None:
-            params["expirationTime"] = expirationTime
-        if enableRemoteReplication is not None:
-            params["enableRemoteReplication"] = enableRemoteReplication
+        if expiration_time is not None:
+            params["expirationTime"] = expiration_time
+        if enable_remote_replication is not None:
+            params["enableRemoteReplication"] = enable_remote_replication
         
         # There is no adaptor.
         return self.send_request(
@@ -2670,9 +2670,9 @@ class Element(ServiceBase):
 
     def rollback_to_snapshot(
             self,
-            volumeID,
-            snapshotID,
-            saveCurrentState,
+            volume_id,
+            snapshot_id,
+            save_current_state,
             name=OPTIONAL,
             attributes=OPTIONAL,):
         """
@@ -2699,9 +2699,9 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeID": volumeID,
-            "snapshotID": snapshotID,
-            "saveCurrentState": saveCurrentState,
+            "volumeID": volume_id,
+            "snapshotID": snapshot_id,
+            "saveCurrentState": save_current_state,
         }
         if name is not None:
             params["name"] = name
@@ -2719,7 +2719,7 @@ class Element(ServiceBase):
             self,
             volumes,
             name=OPTIONAL,
-            enableRemoteReplication=OPTIONAL,
+            enable_remote_replication=OPTIONAL,
             retention=OPTIONAL,
             attributes=OPTIONAL,):
         """
@@ -2749,8 +2749,8 @@ class Element(ServiceBase):
         }
         if name is not None:
             params["name"] = name
-        if enableRemoteReplication is not None:
-            params["enableRemoteReplication"] = enableRemoteReplication
+        if enable_remote_replication is not None:
+            params["enableRemoteReplication"] = enable_remote_replication
         if retention is not None:
             params["retention"] = retention
         if attributes is not None:
@@ -2765,8 +2765,8 @@ class Element(ServiceBase):
 
     def delete_group_snapshot(
             self,
-            groupSnapshotID,
-            saveMembers,):
+            group_snapshot_id,
+            save_members,):
         """
         [&#x27;DeleteGroupSnapshot is used to delete a group snapshot.&#x27;, &#x27;The saveMembers parameter can be used to preserve all the snapshots that&#x27;, &#x27;were made for the volumes in the group but the group association will be removed.&#x27;]
         [&#x27;DeleteGroupSnapshot is used to delete a group snapshot.&#x27;, &#x27;The saveMembers parameter can be used to preserve all the snapshots that&#x27;, &#x27;were made for the volumes in the group but the group association will be removed.&#x27;]
@@ -2779,8 +2779,8 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "groupSnapshotID": groupSnapshotID,
-            "saveMembers": saveMembers,
+            "groupSnapshotID": group_snapshot_id,
+            "saveMembers": save_members,
         }
         
         # There is no adaptor.
@@ -2792,7 +2792,7 @@ class Element(ServiceBase):
 
     def list_group_snapshots(
             self,
-            volumeID=OPTIONAL,):
+            volume_id=OPTIONAL,):
         """
         [&#x27;ListGroupSnapshots is used to return information about all group snapshots that have been created.&#x27;]
         :param volumeID:  [&#x27;An array of unique volume IDs to query.&#x27;, &#x27;If this parameter is not specified, all group snapshots on the cluster will be included.&#x27;][&#x27;An array of unique volume IDs to query.&#x27;, &#x27;If this parameter is not specified, all group snapshots on the cluster will be included.&#x27;]
@@ -2801,8 +2801,8 @@ class Element(ServiceBase):
 
         params = { 
         }
-        if volumeID is not None:
-            params["volumeID"] = volumeID
+        if volume_id is not None:
+            params["volumeID"] = volume_id
         
         # There is no adaptor.
         return self.send_request(
@@ -2813,9 +2813,9 @@ class Element(ServiceBase):
 
     def modify_group_snapshot(
             self,
-            groupSnapshotID,
-            expirationTime=OPTIONAL,
-            enableRemoteReplication=OPTIONAL,):
+            group_snapshot_id,
+            expiration_time=OPTIONAL,
+            enable_remote_replication=OPTIONAL,):
         """
         [&#x27;ModifyGroupSnapshot is used to change the attributes currently assigned to a group snapshot.&#x27;]
         :param groupSnapshotID: [required] ID of the snapshot.
@@ -2829,12 +2829,12 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "groupSnapshotID": groupSnapshotID,
+            "groupSnapshotID": group_snapshot_id,
         }
-        if expirationTime is not None:
-            params["expirationTime"] = expirationTime
-        if enableRemoteReplication is not None:
-            params["enableRemoteReplication"] = enableRemoteReplication
+        if expiration_time is not None:
+            params["expirationTime"] = expiration_time
+        if enable_remote_replication is not None:
+            params["enableRemoteReplication"] = enable_remote_replication
         
         # There is no adaptor.
         return self.send_request(
@@ -2846,8 +2846,8 @@ class Element(ServiceBase):
 
     def rollback_to_group_snapshot(
             self,
-            groupSnapshotID,
-            saveCurrentState,
+            group_snapshot_id,
+            save_current_state,
             name=OPTIONAL,
             attributes=OPTIONAL,):
         """
@@ -2869,8 +2869,8 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "groupSnapshotID": groupSnapshotID,
-            "saveCurrentState": saveCurrentState,
+            "groupSnapshotID": group_snapshot_id,
+            "saveCurrentState": save_current_state,
         }
         if name is not None:
             params["name"] = name
@@ -2887,7 +2887,7 @@ class Element(ServiceBase):
 
     def get_schedule(
             self,
-            scheduleID,):
+            schedule_id,):
         """
         [&#x27;GetSchedule is used to return information about a scheduled snapshot that has been created. You can see information about a specified schedule if there are many snapshot schedules in the system. You can include more than one schedule with this method by specifying additional scheduleIDs to the parameter.&#x27;]
         :param scheduleID: [required] [&#x27;Unique ID of the schedule or multiple schedules to display&#x27;]
@@ -2895,7 +2895,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "scheduleID": scheduleID,
+            "scheduleID": schedule_id,
         }
         
         # There is an adaptor!
@@ -2999,9 +2999,9 @@ class Element(ServiceBase):
     def create_storage_container(
             self,
             name,
-            callingHostID=OPTIONAL,
-            initiatorSecret=OPTIONAL,
-            targetSecret=OPTIONAL,):
+            calling_host_id=OPTIONAL,
+            initiator_secret=OPTIONAL,
+            target_secret=OPTIONAL,):
         """
         Creates a new VVols storage container.
         :param name: [required] Name of the storage container.
@@ -3020,12 +3020,12 @@ class Element(ServiceBase):
         params = { 
             "name": name,
         }
-        if callingHostID is not None:
-            params["callingHostID"] = callingHostID
-        if initiatorSecret is not None:
-            params["initiatorSecret"] = initiatorSecret
-        if targetSecret is not None:
-            params["targetSecret"] = targetSecret
+        if calling_host_id is not None:
+            params["callingHostID"] = calling_host_id
+        if initiator_secret is not None:
+            params["initiatorSecret"] = initiator_secret
+        if target_secret is not None:
+            params["targetSecret"] = target_secret
         
         # There is no adaptor.
         return self.send_request(
@@ -3037,8 +3037,8 @@ class Element(ServiceBase):
 
     def delete_storage_containers(
             self,
-            storageContainerIDs,
-            callingHostID=OPTIONAL,):
+            storage_container_ids,
+            calling_host_id=OPTIONAL,):
         """
         Deletes a storage container from the system.
         :param storageContainerIDs: [required] list of storageContainerID of the storage container to delete.
@@ -3049,10 +3049,10 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "storageContainerIDs": storageContainerIDs,
+            "storageContainerIDs": storage_container_ids,
         }
-        if callingHostID is not None:
-            params["callingHostID"] = callingHostID
+        if calling_host_id is not None:
+            params["callingHostID"] = calling_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -3064,10 +3064,10 @@ class Element(ServiceBase):
 
     def modify_storage_container(
             self,
-            storageContainerID,
-            initiatorSecret=OPTIONAL,
-            targetSecret=OPTIONAL,
-            callingHostID=OPTIONAL,):
+            storage_container_id,
+            initiator_secret=OPTIONAL,
+            target_secret=OPTIONAL,
+            calling_host_id=OPTIONAL,):
         """
         Modifies an existing storage container.
         :param storageContainerID: [required] 
@@ -3084,14 +3084,14 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "storageContainerID": storageContainerID,
+            "storageContainerID": storage_container_id,
         }
-        if initiatorSecret is not None:
-            params["initiatorSecret"] = initiatorSecret
-        if targetSecret is not None:
-            params["targetSecret"] = targetSecret
-        if callingHostID is not None:
-            params["callingHostID"] = callingHostID
+        if initiator_secret is not None:
+            params["initiatorSecret"] = initiator_secret
+        if target_secret is not None:
+            params["targetSecret"] = target_secret
+        if calling_host_id is not None:
+            params["callingHostID"] = calling_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -3103,8 +3103,8 @@ class Element(ServiceBase):
 
     def list_storage_containers(
             self,
-            storageContainerIDs=OPTIONAL,
-            callingHostID=OPTIONAL,):
+            storage_container_ids=OPTIONAL,
+            calling_host_id=OPTIONAL,):
         """
         Gets information for all storage containers currently in the system.
         :param storageContainerIDs:  List of storage containers to get
@@ -3116,10 +3116,10 @@ class Element(ServiceBase):
 
         params = { 
         }
-        if storageContainerIDs is not None:
-            params["storageContainerIDs"] = storageContainerIDs
-        if callingHostID is not None:
-            params["callingHostID"] = callingHostID
+        if storage_container_ids is not None:
+            params["storageContainerIDs"] = storage_container_ids
+        if calling_host_id is not None:
+            params["callingHostID"] = calling_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -3131,7 +3131,7 @@ class Element(ServiceBase):
 
     def get_storage_container_efficiency(
             self,
-            storageContainerID,):
+            storage_container_id,):
         """
         GetStorageContainerEfficiency enables you to retrieve efficiency information about a virtual volume storage container.
         :param storageContainerID: [required] The ID of the storage container for which to retrieve efficiency information.
@@ -3139,7 +3139,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "storageContainerID": storageContainerID,
+            "storageContainerID": storage_container_id,
         }
         
         # There is no adaptor.
@@ -3252,9 +3252,9 @@ class Element(ServiceBase):
             self,
             attempts=OPTIONAL,
             hosts=OPTIONAL,
-            totalTimeoutSec=OPTIONAL,
-            packetSize=OPTIONAL,
-            pingTimeoutMsec=OPTIONAL,):
+            total_timeout_sec=OPTIONAL,
+            packet_size=OPTIONAL,
+            ping_timeout_msec=OPTIONAL,):
         """
         [&#x27;The TestPing API method is used to validate the connection to all nodes in the cluster on both 1G and 10G interfaces using ICMP packets. The test uses the appropriate MTU sizes for each packet based on the MTU settings in the network configuration.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;Note&lt;/b&gt;: This method is available only through the per-node API endpoint 5.0 or later.&#x27;]
         [&#x27;The TestPing API method is used to validate the connection to all nodes in the cluster on both 1G and 10G interfaces using ICMP packets. The test uses the appropriate MTU sizes for each packet based on the MTU settings in the network configuration.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;Note&lt;/b&gt;: This method is available only through the per-node API endpoint 5.0 or later.&#x27;]
@@ -3280,12 +3280,12 @@ class Element(ServiceBase):
             params["attempts"] = attempts
         if hosts is not None:
             params["hosts"] = hosts
-        if totalTimeoutSec is not None:
-            params["totalTimeoutSec"] = totalTimeoutSec
-        if packetSize is not None:
-            params["packetSize"] = packetSize
-        if pingTimeoutMsec is not None:
-            params["pingTimeoutMsec"] = pingTimeoutMsec
+        if total_timeout_sec is not None:
+            params["totalTimeoutSec"] = total_timeout_sec
+        if packet_size is not None:
+            params["packetSize"] = packet_size
+        if ping_timeout_msec is not None:
+            params["pingTimeoutMsec"] = ping_timeout_msec
         
         # There is no adaptor.
         return self.send_request(
@@ -3296,10 +3296,10 @@ class Element(ServiceBase):
 
     def list_virtual_networks(
             self,
-            virtualNetworkID=OPTIONAL,
-            virtualNetworkTag=OPTIONAL,
-            virtualNetworkIDs=OPTIONAL,
-            virtualNetworkTags=OPTIONAL,):
+            virtual_network_id=OPTIONAL,
+            virtual_network_tag=OPTIONAL,
+            virtual_network_ids=OPTIONAL,
+            virtual_network_tags=OPTIONAL,):
         """
         [&#x27;ListVirtualNetworks is used to get a list of all the configured virtual networks for the cluster. This method can be used to verify the virtual network settings in the cluster.&#x27;, &#x27;&#x27;, &#x27;This method does not require any parameters to be passed. But, one or more VirtualNetworkIDs or VirtualNetworkTags can be passed in order to filter the results.&#x27;]
         [&#x27;ListVirtualNetworks is used to get a list of all the configured virtual networks for the cluster. This method can be used to verify the virtual network settings in the cluster.&#x27;, &#x27;&#x27;, &#x27;This method does not require any parameters to be passed. But, one or more VirtualNetworkIDs or VirtualNetworkTags can be passed in order to filter the results.&#x27;]
@@ -3319,14 +3319,14 @@ class Element(ServiceBase):
 
         params = { 
         }
-        if virtualNetworkID is not None:
-            params["virtualNetworkID"] = virtualNetworkID
-        if virtualNetworkTag is not None:
-            params["virtualNetworkTag"] = virtualNetworkTag
-        if virtualNetworkIDs is not None:
-            params["virtualNetworkIDs"] = virtualNetworkIDs
-        if virtualNetworkTags is not None:
-            params["virtualNetworkTags"] = virtualNetworkTags
+        if virtual_network_id is not None:
+            params["virtualNetworkID"] = virtual_network_id
+        if virtual_network_tag is not None:
+            params["virtualNetworkTag"] = virtual_network_tag
+        if virtual_network_ids is not None:
+            params["virtualNetworkIDs"] = virtual_network_ids
+        if virtual_network_tags is not None:
+            params["virtualNetworkTags"] = virtual_network_tags
         
         # There is no adaptor.
         return self.send_request(
@@ -3338,9 +3338,9 @@ class Element(ServiceBase):
 
     def add_virtual_network(
             self,
-            virtualNetworkTag,
+            virtual_network_tag,
             name,
-            addressBlocks,
+            address_blocks,
             netmask,
             svip,
             gateway=OPTIONAL,
@@ -3376,9 +3376,9 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "virtualNetworkTag": virtualNetworkTag,
+            "virtualNetworkTag": virtual_network_tag,
             "name": name,
-            "addressBlocks": addressBlocks,
+            "addressBlocks": address_blocks,
             "netmask": netmask,
             "svip": svip,
         }
@@ -3399,10 +3399,10 @@ class Element(ServiceBase):
 
     def modify_virtual_network(
             self,
-            virtualNetworkID=OPTIONAL,
-            virtualNetworkTag=OPTIONAL,
+            virtual_network_id=OPTIONAL,
+            virtual_network_tag=OPTIONAL,
             name=OPTIONAL,
-            addressBlocks=OPTIONAL,
+            address_blocks=OPTIONAL,
             netmask=OPTIONAL,
             svip=OPTIONAL,
             gateway=OPTIONAL,
@@ -3442,14 +3442,14 @@ class Element(ServiceBase):
 
         params = { 
         }
-        if virtualNetworkID is not None:
-            params["virtualNetworkID"] = virtualNetworkID
-        if virtualNetworkTag is not None:
-            params["virtualNetworkTag"] = virtualNetworkTag
+        if virtual_network_id is not None:
+            params["virtualNetworkID"] = virtual_network_id
+        if virtual_network_tag is not None:
+            params["virtualNetworkTag"] = virtual_network_tag
         if name is not None:
             params["name"] = name
-        if addressBlocks is not None:
-            params["addressBlocks"] = addressBlocks
+        if address_blocks is not None:
+            params["addressBlocks"] = address_blocks
         if netmask is not None:
             params["netmask"] = netmask
         if svip is not None:
@@ -3471,8 +3471,8 @@ class Element(ServiceBase):
 
     def remove_virtual_network(
             self,
-            virtualNetworkID=OPTIONAL,
-            virtualNetworkTag=OPTIONAL,):
+            virtual_network_id=OPTIONAL,
+            virtual_network_tag=OPTIONAL,):
         """
         [&#x27;RemoveVirtualNetwork is used to remove a previously added virtual network.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Note:&lt;/b&gt; This method requires either the VirtualNetworkID of the VirtualNetworkTag as a parameter, but not both.&#x27;]
         [&#x27;RemoveVirtualNetwork is used to remove a previously added virtual network.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Note:&lt;/b&gt; This method requires either the VirtualNetworkID of the VirtualNetworkTag as a parameter, but not both.&#x27;]
@@ -3486,10 +3486,10 @@ class Element(ServiceBase):
 
         params = { 
         }
-        if virtualNetworkID is not None:
-            params["virtualNetworkID"] = virtualNetworkID
-        if virtualNetworkTag is not None:
-            params["virtualNetworkTag"] = virtualNetworkTag
+        if virtual_network_id is not None:
+            params["virtualNetworkID"] = virtual_network_id
+        if virtual_network_tag is not None:
+            params["virtualNetworkTag"] = virtual_network_tag
         
         # There is no adaptor.
         return self.send_request(
@@ -3502,12 +3502,12 @@ class Element(ServiceBase):
     def create_virtual_volume(
             self,
             name,
-            storageContainerID,
-            virtualVolumeType,
-            totalSize,
+            storage_container_id,
+            virtual_volume_type,
+            total_size,
             qos=OPTIONAL,
             metadata=OPTIONAL,
-            callingVirtualVolumeHostID=OPTIONAL,):
+            calling_virtual_volume_host_id=OPTIONAL,):
         """
         [&#x27;CreateVirtualVolume is used to create a new (empty) Virtual Volume on the cluster.&#x27;, &#x27;When the volume is created successfully it is available for connection via PE.&#x27;]
         [&#x27;CreateVirtualVolume is used to create a new (empty) Virtual Volume on the cluster.&#x27;, &#x27;When the volume is created successfully it is available for connection via PE.&#x27;]
@@ -3535,16 +3535,16 @@ class Element(ServiceBase):
 
         params = { 
             "name": name,
-            "storageContainerID": storageContainerID,
-            "virtualVolumeType": virtualVolumeType,
-            "totalSize": totalSize,
+            "storageContainerID": storage_container_id,
+            "virtualVolumeType": virtual_volume_type,
+            "totalSize": total_size,
         }
         if qos is not None:
             params["qos"] = qos
         if metadata is not None:
             params["metadata"] = metadata
-        if callingVirtualVolumeHostID is not None:
-            params["callingVirtualVolumeHostID"] = callingVirtualVolumeHostID
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -3556,8 +3556,8 @@ class Element(ServiceBase):
 
     def delete_virtual_volumes(
             self,
-            virtualVolumes,
-            callingVirtualVolumeHostID=OPTIONAL,):
+            virtual_volumes,
+            calling_virtual_volume_host_id=OPTIONAL,):
         """
         [&#x27;DeleteVirtualVolume marks an active volume for deletion.&#x27;, &#x27;It is purged (permanently deleted) after the cleanup interval elapses.&#x27;, &#x27;After making a request to delete a volume, any active iSCSI connections to the volume is immediately terminated and no further connections are allowed while the volume is in this state.&#x27;, &#x27;It is not returned in target discovery requests.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;Any snapshots of a volume that has been marked to delete are not affected.&#x27;, &#x27;Snapshots are kept until the volume is purged from the system.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If a volume is marked for deletion, and it has a bulk volume read or bulk volume write operation in progress, the bulk volume operation is stopped.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If the volume you delete is paired with a volume, replication between the paired volumes is suspended and no data is transferred to it or from it while in a deleted state.&#x27;, &#x27;The remote volume the deleted volume was paired with enters into a PausedMisconfigured state and data is no longer sent to it or from the deleted volume.&#x27;, &#x27;Until the deleted volume is purged, it can be restored and data transfers resumes.&#x27;, &#x27;If the deleted volume gets purged from the system, the volume it was paired with enters into a StoppedMisconfigured state and the volume pairing status is removed.&#x27;, &#x27;The purged volume becomes permanently unavailable.&#x27;]
         [&#x27;DeleteVirtualVolume marks an active volume for deletion.&#x27;, &#x27;It is purged (permanently deleted) after the cleanup interval elapses.&#x27;, &#x27;After making a request to delete a volume, any active iSCSI connections to the volume is immediately terminated and no further connections are allowed while the volume is in this state.&#x27;, &#x27;It is not returned in target discovery requests.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;Any snapshots of a volume that has been marked to delete are not affected.&#x27;, &#x27;Snapshots are kept until the volume is purged from the system.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If a volume is marked for deletion, and it has a bulk volume read or bulk volume write operation in progress, the bulk volume operation is stopped.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If the volume you delete is paired with a volume, replication between the paired volumes is suspended and no data is transferred to it or from it while in a deleted state.&#x27;, &#x27;The remote volume the deleted volume was paired with enters into a PausedMisconfigured state and data is no longer sent to it or from the deleted volume.&#x27;, &#x27;Until the deleted volume is purged, it can be restored and data transfers resumes.&#x27;, &#x27;If the deleted volume gets purged from the system, the volume it was paired with enters into a StoppedMisconfigured state and the volume pairing status is removed.&#x27;, &#x27;The purged volume becomes permanently unavailable.&#x27;]
@@ -3582,10 +3582,10 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "virtualVolumes": virtualVolumes,
+            "virtualVolumes": virtual_volumes,
         }
-        if callingVirtualVolumeHostID is not None:
-            params["callingVirtualVolumeHostID"] = callingVirtualVolumeHostID
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -3597,10 +3597,10 @@ class Element(ServiceBase):
 
     def list_virtual_volumes(
             self,
-            startVirtualVolumeID=OPTIONAL,
+            start_virtual_volume_id=OPTIONAL,
             limit=OPTIONAL,
-            virtualVolumeIDs=OPTIONAL,
-            callingVirtualVolumeHostID=OPTIONAL,):
+            virtual_volume_ids=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
         """
         :param startVirtualVolumeID:  [&#x27;The ID of the first Virtual Volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this lists all Virtual Volumes.&#x27;][&#x27;The ID of the first Virtual Volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this lists all Virtual Volumes.&#x27;][&#x27;The ID of the first Virtual Volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this lists all Virtual Volumes.&#x27;]
         :type startVirtualVolumeID: 
@@ -3617,14 +3617,14 @@ class Element(ServiceBase):
 
         params = { 
         }
-        if startVirtualVolumeID is not None:
-            params["startVirtualVolumeID"] = startVirtualVolumeID
+        if start_virtual_volume_id is not None:
+            params["startVirtualVolumeID"] = start_virtual_volume_id
         if limit is not None:
             params["limit"] = limit
-        if virtualVolumeIDs is not None:
-            params["virtualVolumeIDs"] = virtualVolumeIDs
-        if callingVirtualVolumeHostID is not None:
-            params["callingVirtualVolumeHostID"] = callingVirtualVolumeHostID
+        if virtual_volume_ids is not None:
+            params["virtualVolumeIDs"] = virtual_volume_ids
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -3635,10 +3635,10 @@ class Element(ServiceBase):
 
     def modify_virtual_volume(
             self,
-            virtualVolumeID,
+            virtual_volume_id,
             qos=OPTIONAL,
-            totalSize=OPTIONAL,
-            callingVirtualVolumeHostID=OPTIONAL,):
+            total_size=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
         """
         [&#x27;ModifyVirtualVolume is used to modify settings on an existing virtual volume.&#x27;]
         :param virtualVolumeID: [required] VvolVolumeID for the volume to be modified.
@@ -3655,14 +3655,14 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "virtualVolumeID": virtualVolumeID,
+            "virtualVolumeID": virtual_volume_id,
         }
         if qos is not None:
             params["qos"] = qos
-        if totalSize is not None:
-            params["totalSize"] = totalSize
-        if callingVirtualVolumeHostID is not None:
-            params["callingVirtualVolumeHostID"] = callingVirtualVolumeHostID
+        if total_size is not None:
+            params["totalSize"] = total_size
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -3674,10 +3674,10 @@ class Element(ServiceBase):
 
     def modify_virtual_volume_metadata(
             self,
-            virtualVolumeID,
+            virtual_volume_id,
             metadata,
-            removeKeys,
-            callingVirtualVolumeHostID=OPTIONAL,):
+            remove_keys,
+            calling_virtual_volume_host_id=OPTIONAL,):
         """
         [&#x27;ModifyVirtualVolumeMetadata is used to selectively modify the VVol metadata.&#x27;]
         :param virtualVolumeID: [required] VvolVolumeID for the volume to be modified.
@@ -3694,12 +3694,12 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "virtualVolumeID": virtualVolumeID,
+            "virtualVolumeID": virtual_volume_id,
             "metadata": metadata,
-            "removeKeys": removeKeys,
+            "removeKeys": remove_keys,
         }
-        if callingVirtualVolumeHostID is not None:
-            params["callingVirtualVolumeHostID"] = callingVirtualVolumeHostID
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -3711,9 +3711,9 @@ class Element(ServiceBase):
 
     def query_virtual_volume_metadata(
             self,
-            queryConstraints=OPTIONAL,
-            wildcardConstraints=OPTIONAL,
-            callingVirtualVolumeHostID=OPTIONAL,):
+            query_constraints=OPTIONAL,
+            wildcard_constraints=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
         """
         [&#x27;QueryVirtualVolumeMetadata returns a list of VVols matching a metadata query.&#x27;]
         :param queryConstraints:  
@@ -3728,12 +3728,12 @@ class Element(ServiceBase):
 
         params = { 
         }
-        if queryConstraints is not None:
-            params["queryConstraints"] = queryConstraints
-        if wildcardConstraints is not None:
-            params["wildcardConstraints"] = wildcardConstraints
-        if callingVirtualVolumeHostID is not None:
-            params["callingVirtualVolumeHostID"] = callingVirtualVolumeHostID
+        if query_constraints is not None:
+            params["queryConstraints"] = query_constraints
+        if wildcard_constraints is not None:
+            params["wildcardConstraints"] = wildcard_constraints
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -3745,12 +3745,12 @@ class Element(ServiceBase):
 
     def clone_virtual_volume(
             self,
-            virtualVolumeID,
+            virtual_volume_id,
             name=OPTIONAL,
             qos=OPTIONAL,
             metadata=OPTIONAL,
-            newContainerID=OPTIONAL,
-            callingVirtualVolumeHostID=OPTIONAL,):
+            new_container_id=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
         """
         [&#x27;CloneVirtualVolume is used to execute a VMware Virtual Volume clone.&#x27;]
         :param virtualVolumeID: [required] The ID of the Virtual Volume to clone.
@@ -3773,7 +3773,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "virtualVolumeID": virtualVolumeID,
+            "virtualVolumeID": virtual_volume_id,
         }
         if name is not None:
             params["name"] = name
@@ -3781,10 +3781,10 @@ class Element(ServiceBase):
             params["qos"] = qos
         if metadata is not None:
             params["metadata"] = metadata
-        if newContainerID is not None:
-            params["newContainerID"] = newContainerID
-        if callingVirtualVolumeHostID is not None:
-            params["callingVirtualVolumeHostID"] = callingVirtualVolumeHostID
+        if new_container_id is not None:
+            params["newContainerID"] = new_container_id
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -3796,11 +3796,11 @@ class Element(ServiceBase):
 
     def fast_clone_virtual_volume(
             self,
-            virtualVolumeID,
+            virtual_volume_id,
             name=OPTIONAL,
             qos=OPTIONAL,
             metadata=OPTIONAL,
-            callingVirtualVolumeHostID=OPTIONAL,):
+            calling_virtual_volume_host_id=OPTIONAL,):
         """
         [&#x27;FastCloneVirtualVolume is used to execute a VMware Virtual Volume fast clone.&#x27;]
         :param virtualVolumeID: [required] The ID of the Virtual Volume to clone.
@@ -3820,7 +3820,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "virtualVolumeID": virtualVolumeID,
+            "virtualVolumeID": virtual_volume_id,
         }
         if name is not None:
             params["name"] = name
@@ -3828,8 +3828,8 @@ class Element(ServiceBase):
             params["qos"] = qos
         if metadata is not None:
             params["metadata"] = metadata
-        if callingVirtualVolumeHostID is not None:
-            params["callingVirtualVolumeHostID"] = callingVirtualVolumeHostID
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -3841,10 +3841,10 @@ class Element(ServiceBase):
 
     def prepare_virtual_snapshot(
             self,
-            virtualVolumeID,
+            virtual_volume_id,
             name=OPTIONAL,
-            writableSnapshot=OPTIONAL,
-            callingVirtualVolumeHostID=OPTIONAL,):
+            writable_snapshot=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
         """
         [&#x27;PrepareVirtualSnapshot is used to set up VMware Virtual Volume snapshot.&#x27;]
         :param virtualVolumeID: [required] The ID of the Virtual Volume to clone.
@@ -3861,14 +3861,14 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "virtualVolumeID": virtualVolumeID,
+            "virtualVolumeID": virtual_volume_id,
         }
         if name is not None:
             params["name"] = name
-        if writableSnapshot is not None:
-            params["writableSnapshot"] = writableSnapshot
-        if callingVirtualVolumeHostID is not None:
-            params["callingVirtualVolumeHostID"] = callingVirtualVolumeHostID
+        if writable_snapshot is not None:
+            params["writableSnapshot"] = writable_snapshot
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -3880,10 +3880,10 @@ class Element(ServiceBase):
 
     def snapshot_virtual_volume(
             self,
-            virtualVolumeID,
+            virtual_volume_id,
             timeout,
             metadata=OPTIONAL,
-            callingVirtualVolumeHostID=OPTIONAL,):
+            calling_virtual_volume_host_id=OPTIONAL,):
         """
         [&#x27;SnapshotVirtualVolume is used to take a VMware Virtual Volume snapshot.&#x27;]
         :param virtualVolumeID: [required] The ID of the Virtual Volume to clone.
@@ -3900,13 +3900,13 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "virtualVolumeID": virtualVolumeID,
+            "virtualVolumeID": virtual_volume_id,
             "timeout": timeout,
         }
         if metadata is not None:
             params["metadata"] = metadata
-        if callingVirtualVolumeHostID is not None:
-            params["callingVirtualVolumeHostID"] = callingVirtualVolumeHostID
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -3918,9 +3918,9 @@ class Element(ServiceBase):
 
     def rollback_virtual_volume(
             self,
-            srcVirtualVolumeID,
-            dstVirtualVolumeID,
-            callingVirtualVolumeHostID=OPTIONAL,):
+            src_virtual_volume_id,
+            dst_virtual_volume_id,
+            calling_virtual_volume_host_id=OPTIONAL,):
         """
         [&#x27;RollbackVirtualVolume is used to restore a VMware Virtual Volume snapshot.&#x27;]
         :param srcVirtualVolumeID: [required] The ID of the Virtual Volume snapshot.
@@ -3934,11 +3934,11 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "srcVirtualVolumeID": srcVirtualVolumeID,
-            "dstVirtualVolumeID": dstVirtualVolumeID,
+            "srcVirtualVolumeID": src_virtual_volume_id,
+            "dstVirtualVolumeID": dst_virtual_volume_id,
         }
-        if callingVirtualVolumeHostID is not None:
-            params["callingVirtualVolumeHostID"] = callingVirtualVolumeHostID
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -3950,11 +3950,11 @@ class Element(ServiceBase):
 
     def get_virtual_volume_allocated_bitmap(
             self,
-            virtualVolumeID,
-            segmentStart,
-            segmentLength,
-            chunkSize,
-            callingVirtualVolumeHostID=OPTIONAL,):
+            virtual_volume_id,
+            segment_start,
+            segment_length,
+            chunk_size,
+            calling_virtual_volume_host_id=OPTIONAL,):
         """
         [&#x27;GetVirtualVolumeAllocatedBitmap returns a b64-encoded block of data &#x27;, &#x27;representing a bitmap where non-zero bits indicate the allocation of a &#x27;, &#x27;segment (LBA range) of the volume.&#x27;]
         [&#x27;GetVirtualVolumeAllocatedBitmap returns a b64-encoded block of data &#x27;, &#x27;representing a bitmap where non-zero bits indicate the allocation of a &#x27;, &#x27;segment (LBA range) of the volume.&#x27;]
@@ -3976,13 +3976,13 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "virtualVolumeID": virtualVolumeID,
-            "segmentStart": segmentStart,
-            "segmentLength": segmentLength,
-            "chunkSize": chunkSize,
+            "virtualVolumeID": virtual_volume_id,
+            "segmentStart": segment_start,
+            "segmentLength": segment_length,
+            "chunkSize": chunk_size,
         }
-        if callingVirtualVolumeHostID is not None:
-            params["callingVirtualVolumeHostID"] = callingVirtualVolumeHostID
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -3994,12 +3994,12 @@ class Element(ServiceBase):
 
     def get_virtual_volume_unshared_bitmap(
             self,
-            virtualVolumeID,
-            baseVirtualVolumeID,
-            segmentStart,
-            segmentLength,
-            chunkSize,
-            callingVirtualVolumeHostID=OPTIONAL,):
+            virtual_volume_id,
+            base_virtual_volume_id,
+            segment_start,
+            segment_length,
+            chunk_size,
+            calling_virtual_volume_host_id=OPTIONAL,):
         """
         [&#x27;GetVirtualVolumeAllocatedBitmap returns a b64-encoded block of data &#x27;, &#x27;representing a bitmap where non-zero bits indicate that data is not the same &#x27;, &#x27;between two volumes for a common segment (LBA range) of the volumes.&#x27;]
         [&#x27;GetVirtualVolumeAllocatedBitmap returns a b64-encoded block of data &#x27;, &#x27;representing a bitmap where non-zero bits indicate that data is not the same &#x27;, &#x27;between two volumes for a common segment (LBA range) of the volumes.&#x27;]
@@ -4024,14 +4024,14 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "virtualVolumeID": virtualVolumeID,
-            "baseVirtualVolumeID": baseVirtualVolumeID,
-            "segmentStart": segmentStart,
-            "segmentLength": segmentLength,
-            "chunkSize": chunkSize,
+            "virtualVolumeID": virtual_volume_id,
+            "baseVirtualVolumeID": base_virtual_volume_id,
+            "segmentStart": segment_start,
+            "segmentLength": segment_length,
+            "chunkSize": chunk_size,
         }
-        if callingVirtualVolumeHostID is not None:
-            params["callingVirtualVolumeHostID"] = callingVirtualVolumeHostID
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -4043,12 +4043,12 @@ class Element(ServiceBase):
 
     def get_virtual_volume_unshared_chunks(
             self,
-            virtualVolumeID,
-            baseVirtualVolumeID,
-            segmentStart,
-            segmentLength,
-            chunkSize,
-            callingVirtualVolumeHostID=OPTIONAL,):
+            virtual_volume_id,
+            base_virtual_volume_id,
+            segment_start,
+            segment_length,
+            chunk_size,
+            calling_virtual_volume_host_id=OPTIONAL,):
         """
         [&#x27;GetVirtualVolumeAllocatedBitmap scans a VVol segment and returns the number of &#x27;, &#x27;chunks not shared between two volumes. This call will return results in less &#x27;, &#x27;than 30 seconds. If the specified VVol and the base VVil are not related, an &#x27;, &#x27;error is thrown. If the offset/length combination is invalid or out fo range &#x27;, &#x27;an error is thrown.&#x27;]
         [&#x27;GetVirtualVolumeAllocatedBitmap scans a VVol segment and returns the number of &#x27;, &#x27;chunks not shared between two volumes. This call will return results in less &#x27;, &#x27;than 30 seconds. If the specified VVol and the base VVil are not related, an &#x27;, &#x27;error is thrown. If the offset/length combination is invalid or out fo range &#x27;, &#x27;an error is thrown.&#x27;]
@@ -4075,14 +4075,14 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "virtualVolumeID": virtualVolumeID,
-            "baseVirtualVolumeID": baseVirtualVolumeID,
-            "segmentStart": segmentStart,
-            "segmentLength": segmentLength,
-            "chunkSize": chunkSize,
+            "virtualVolumeID": virtual_volume_id,
+            "baseVirtualVolumeID": base_virtual_volume_id,
+            "segmentStart": segment_start,
+            "segmentLength": segment_length,
+            "chunkSize": chunk_size,
         }
-        if callingVirtualVolumeHostID is not None:
-            params["callingVirtualVolumeHostID"] = callingVirtualVolumeHostID
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -4094,10 +4094,10 @@ class Element(ServiceBase):
 
     def copy_diffs_to_virtual_volume(
             self,
-            virtualVolumeID,
-            baseVirtualVolumeID,
-            dstVirtualVolumeID,
-            callingVirtualVolumeHostID=OPTIONAL,):
+            virtual_volume_id,
+            base_virtual_volume_id,
+            dst_virtual_volume_id,
+            calling_virtual_volume_host_id=OPTIONAL,):
         """
         [&#x27;CopyDiffsToVirtualVolume is a three-way merge function.&#x27;]
         :param virtualVolumeID: [required] The ID of the snapshot Virtual Volume.
@@ -4114,12 +4114,12 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "virtualVolumeID": virtualVolumeID,
-            "baseVirtualVolumeID": baseVirtualVolumeID,
-            "dstVirtualVolumeID": dstVirtualVolumeID,
+            "virtualVolumeID": virtual_volume_id,
+            "baseVirtualVolumeID": base_virtual_volume_id,
+            "dstVirtualVolumeID": dst_virtual_volume_id,
         }
-        if callingVirtualVolumeHostID is not None:
-            params["callingVirtualVolumeHostID"] = callingVirtualVolumeHostID
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -4131,12 +4131,12 @@ class Element(ServiceBase):
 
     def create_virtual_volume_host(
             self,
-            virtualVolumeHostID,
-            clusterID,
-            initiatorNames=OPTIONAL,
-            visibleProtocolEndpointIDs=OPTIONAL,
-            hostAddress=OPTIONAL,
-            callingVirtualVolumeHostID=OPTIONAL,):
+            virtual_volume_host_id,
+            cluster_id,
+            initiator_names=OPTIONAL,
+            visible_protocol_endpoint_ids=OPTIONAL,
+            host_address=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
         """
         [&#x27;CreateVirtualVolumeHost creates a new ESX host.&#x27;]
         :param virtualVolumeHostID: [required] The GUID of the ESX host.
@@ -4159,17 +4159,17 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "virtualVolumeHostID": virtualVolumeHostID,
-            "clusterID": clusterID,
+            "virtualVolumeHostID": virtual_volume_host_id,
+            "clusterID": cluster_id,
         }
-        if initiatorNames is not None:
-            params["initiatorNames"] = initiatorNames
-        if visibleProtocolEndpointIDs is not None:
-            params["visibleProtocolEndpointIDs"] = visibleProtocolEndpointIDs
-        if hostAddress is not None:
-            params["hostAddress"] = hostAddress
-        if callingVirtualVolumeHostID is not None:
-            params["callingVirtualVolumeHostID"] = callingVirtualVolumeHostID
+        if initiator_names is not None:
+            params["initiatorNames"] = initiator_names
+        if visible_protocol_endpoint_ids is not None:
+            params["visibleProtocolEndpointIDs"] = visible_protocol_endpoint_ids
+        if host_address is not None:
+            params["hostAddress"] = host_address
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -4181,8 +4181,8 @@ class Element(ServiceBase):
 
     def list_virtual_volume_hosts(
             self,
-            virtualVolumeHostIDs=OPTIONAL,
-            callingVirtualVolumeHostID=OPTIONAL,):
+            virtual_volume_host_ids=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
         """
         [&#x27;ListVirtualVolumeHosts returns a list of known ESX hosts.&#x27;]
         :param virtualVolumeHostIDs:  
@@ -4194,10 +4194,10 @@ class Element(ServiceBase):
 
         params = { 
         }
-        if virtualVolumeHostIDs is not None:
-            params["virtualVolumeHostIDs"] = virtualVolumeHostIDs
-        if callingVirtualVolumeHostID is not None:
-            params["callingVirtualVolumeHostID"] = callingVirtualVolumeHostID
+        if virtual_volume_host_ids is not None:
+            params["virtualVolumeHostIDs"] = virtual_volume_host_ids
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -4209,12 +4209,12 @@ class Element(ServiceBase):
 
     def modify_virtual_volume_host(
             self,
-            virtualVolumeHostID,
-            clusterID=OPTIONAL,
-            visibleProtocolEndpointIDs=OPTIONAL,
-            initiatorNames=OPTIONAL,
-            hostAddress=OPTIONAL,
-            callingVirtualVolumeHostID=OPTIONAL,):
+            virtual_volume_host_id,
+            cluster_id=OPTIONAL,
+            visible_protocol_endpoint_ids=OPTIONAL,
+            initiator_names=OPTIONAL,
+            host_address=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
         """
         [&#x27;ModifyVirtualVolumeHost changes an existing ESX host.&#x27;]
         :param virtualVolumeHostID: [required] The GUID of the ESX host.
@@ -4237,18 +4237,18 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "virtualVolumeHostID": virtualVolumeHostID,
+            "virtualVolumeHostID": virtual_volume_host_id,
         }
-        if clusterID is not None:
-            params["clusterID"] = clusterID
-        if visibleProtocolEndpointIDs is not None:
-            params["visibleProtocolEndpointIDs"] = visibleProtocolEndpointIDs
-        if initiatorNames is not None:
-            params["initiatorNames"] = initiatorNames
-        if hostAddress is not None:
-            params["hostAddress"] = hostAddress
-        if callingVirtualVolumeHostID is not None:
-            params["callingVirtualVolumeHostID"] = callingVirtualVolumeHostID
+        if cluster_id is not None:
+            params["clusterID"] = cluster_id
+        if visible_protocol_endpoint_ids is not None:
+            params["visibleProtocolEndpointIDs"] = visible_protocol_endpoint_ids
+        if initiator_names is not None:
+            params["initiatorNames"] = initiator_names
+        if host_address is not None:
+            params["hostAddress"] = host_address
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -4259,8 +4259,8 @@ class Element(ServiceBase):
 
     def get_virtual_volume_task_update(
             self,
-            virtualVolumeTaskID,
-            callingVirtualVolumeHostID=OPTIONAL,):
+            virtual_volume_task_id,
+            calling_virtual_volume_host_id=OPTIONAL,):
         """
         [&#x27;GetVirtualVolumeTaskUpdate checks the status of a VVol Async Task.&#x27;]
         :param virtualVolumeTaskID: [required] The UUID of the VVol Task.
@@ -4271,10 +4271,10 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "virtualVolumeTaskID": virtualVolumeTaskID,
+            "virtualVolumeTaskID": virtual_volume_task_id,
         }
-        if callingVirtualVolumeHostID is not None:
-            params["callingVirtualVolumeHostID"] = callingVirtualVolumeHostID
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -4286,8 +4286,8 @@ class Element(ServiceBase):
 
     def list_virtual_volume_tasks(
             self,
-            virtualVolumeTaskIDs=OPTIONAL,
-            callingVirtualVolumeHostID=OPTIONAL,):
+            virtual_volume_task_ids=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
         """
         [&#x27;ListVirtualVolumeTasks returns a list of VVol Async Tasks.&#x27;]
         :param virtualVolumeTaskIDs:  
@@ -4299,10 +4299,10 @@ class Element(ServiceBase):
 
         params = { 
         }
-        if virtualVolumeTaskIDs is not None:
-            params["virtualVolumeTaskIDs"] = virtualVolumeTaskIDs
-        if callingVirtualVolumeHostID is not None:
-            params["callingVirtualVolumeHostID"] = callingVirtualVolumeHostID
+        if virtual_volume_task_ids is not None:
+            params["virtualVolumeTaskIDs"] = virtual_volume_task_ids
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -4314,8 +4314,8 @@ class Element(ServiceBase):
 
     def cancel_virtual_volume_task(
             self,
-            virtualVolumeTaskID,
-            callingVirtualVolumeHostID=OPTIONAL,):
+            virtual_volume_task_id,
+            calling_virtual_volume_host_id=OPTIONAL,):
         """
         [&#x27;CancelVirtualVolumeTask attempts to cancel the VVol Async Task.&#x27;]
         :param virtualVolumeTaskID: [required] The UUID of the VVol Task to cancel.
@@ -4326,10 +4326,10 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "virtualVolumeTaskID": virtualVolumeTaskID,
+            "virtualVolumeTaskID": virtual_volume_task_id,
         }
-        if callingVirtualVolumeHostID is not None:
-            params["callingVirtualVolumeHostID"] = callingVirtualVolumeHostID
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -4341,9 +4341,9 @@ class Element(ServiceBase):
 
     def bind_virtual_volumes(
             self,
-            virtualVolumeIDs,
-            virtualVolumeHostID,
-            bindContext,):
+            virtual_volume_ids,
+            virtual_volume_host_id,
+            bind_context,):
         """
         [&#x27;BindVirtualVolume binds a VVol with a Host.&#x27;]
         :param virtualVolumeIDs: [required] The UUID of the VVol to bind.
@@ -4357,9 +4357,9 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "virtualVolumeIDs": virtualVolumeIDs,
-            "virtualVolumeHostID": virtualVolumeHostID,
-            "bindContext": bindContext,
+            "virtualVolumeIDs": virtual_volume_ids,
+            "virtualVolumeHostID": virtual_volume_host_id,
+            "bindContext": bind_context,
         }
         
         # There is no adaptor.
@@ -4371,8 +4371,8 @@ class Element(ServiceBase):
 
     def list_virtual_volume_bindings(
             self,
-            virtualVolumeBindingIDs=OPTIONAL,
-            callingVirtualVolumeHostID=OPTIONAL,):
+            virtual_volume_binding_ids=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
         """
         [&#x27;ListVirtualVolumeBindings returns a list of VVol bindings.&#x27;]
         :param virtualVolumeBindingIDs:  
@@ -4384,10 +4384,10 @@ class Element(ServiceBase):
 
         params = { 
         }
-        if virtualVolumeBindingIDs is not None:
-            params["virtualVolumeBindingIDs"] = virtualVolumeBindingIDs
-        if callingVirtualVolumeHostID is not None:
-            params["callingVirtualVolumeHostID"] = callingVirtualVolumeHostID
+        if virtual_volume_binding_ids is not None:
+            params["virtualVolumeBindingIDs"] = virtual_volume_binding_ids
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -4399,9 +4399,9 @@ class Element(ServiceBase):
 
     def unbind_virtual_volumes(
             self,
-            unbindContext,
-            virtualVolumeHostID,
-            unbindArgs,):
+            unbind_context,
+            virtual_volume_host_id,
+            unbind_args,):
         """
         [&#x27;UnbindGetVirtualVolume removes the VVol &lt;-&gt; Host binding.&#x27;]
         :param unbindContext: [required] Normal, Start, or End?
@@ -4415,9 +4415,9 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "unbindContext": unbindContext,
-            "virtualVolumeHostID": virtualVolumeHostID,
-            "unbindArgs": unbindArgs,
+            "unbindContext": unbind_context,
+            "virtualVolumeHostID": virtual_volume_host_id,
+            "unbindArgs": unbind_args,
         }
         
         # There is no adaptor.
@@ -4430,7 +4430,7 @@ class Element(ServiceBase):
     def modify_vasa_provider_info(
             self,
             keystore=OPTIONAL,
-            vasaProviderID=OPTIONAL,
+            vasa_provider_id=OPTIONAL,
             options=OPTIONAL,):
         """
         [&#x27;Update the Vasa Provider info&#x27;]
@@ -4448,8 +4448,8 @@ class Element(ServiceBase):
         }
         if keystore is not None:
             params["keystore"] = keystore
-        if vasaProviderID is not None:
-            params["vasaProviderID"] = vasaProviderID
+        if vasa_provider_id is not None:
+            params["vasaProviderID"] = vasa_provider_id
         if options is not None:
             params["options"] = options
         
@@ -4495,12 +4495,12 @@ class Element(ServiceBase):
 
     def clone_volume(
             self,
-            volumeID,
+            volume_id,
             name,
-            newAccountID=OPTIONAL,
-            newSize=OPTIONAL,
+            new_account_id=OPTIONAL,
+            new_size=OPTIONAL,
             access=OPTIONAL,
-            snapshotID=OPTIONAL,
+            snapshot_id=OPTIONAL,
             attributes=OPTIONAL,):
         """
         [&#x27;CloneVolume is used to create a copy of the volume.&#x27;, &#x27;This method is asynchronous and may take a variable amount of time to complete.&#x27;, &#x27;The cloning process begins immediately when the CloneVolume request is made and is representative of the state of the volume when the API method is issued.&#x27;, &#x27;GetAsyncResults can be used to determine when the cloning process is complete and the new volume is available for connections.&#x27;, &#x27;ListSyncJobs can be used to see the progress of creating the clone.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Note&lt;/b&gt;: The initial attributes and quality of service settings for the volume are inherited from the volume being cloned.&#x27;, &#x27;If different settings are required, they can be changed via ModifyVolume.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Note&lt;/b&gt;: Cloned volumes do not inherit volume access group memberships from the source volume.&#x27;]
@@ -4536,17 +4536,17 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeID": volumeID,
+            "volumeID": volume_id,
             "name": name,
         }
-        if newAccountID is not None:
-            params["newAccountID"] = newAccountID
-        if newSize is not None:
-            params["newSize"] = newSize
+        if new_account_id is not None:
+            params["newAccountID"] = new_account_id
+        if new_size is not None:
+            params["newSize"] = new_size
         if access is not None:
             params["access"] = access
-        if snapshotID is not None:
-            params["snapshotID"] = snapshotID
+        if snapshot_id is not None:
+            params["snapshotID"] = snapshot_id
         if attributes is not None:
             params["attributes"] = attributes
         
@@ -4561,8 +4561,8 @@ class Element(ServiceBase):
             self,
             volumes,
             access=OPTIONAL,
-            groupSnapshotID=OPTIONAL,
-            newAccountID=OPTIONAL,):
+            group_snapshot_id=OPTIONAL,
+            new_account_id=OPTIONAL,):
         """
         [&#x27;CloneMultipleVolumes is used to create a clone of a group of specified volumes. A consistent set of characteristics can be assigned to a group of multiple volume when they are cloned together.&#x27;, &#x27;If groupSnapshotID is going to be used to clone the volumes in a group snapshot, the group snapshot must be created first using the CreateGroupSnapshot API method or the SolidFire Element WebUI. Using groupSnapshotID is optional when cloning multiple volumes.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Note&lt;/b&gt;: Cloning multiple volumes is allowed if cluster fullness is at stage 2 or 3. Clones are not created when cluster fullness is at stage 4 or 5.&#x27;]
         [&#x27;CloneMultipleVolumes is used to create a clone of a group of specified volumes. A consistent set of characteristics can be assigned to a group of multiple volume when they are cloned together.&#x27;, &#x27;If groupSnapshotID is going to be used to clone the volumes in a group snapshot, the group snapshot must be created first using the CreateGroupSnapshot API method or the SolidFire Element WebUI. Using groupSnapshotID is optional when cloning multiple volumes.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Note&lt;/b&gt;: Cloning multiple volumes is allowed if cluster fullness is at stage 2 or 3. Clones are not created when cluster fullness is at stage 4 or 5.&#x27;]
@@ -4586,10 +4586,10 @@ class Element(ServiceBase):
         }
         if access is not None:
             params["access"] = access
-        if groupSnapshotID is not None:
-            params["groupSnapshotID"] = groupSnapshotID
-        if newAccountID is not None:
-            params["newAccountID"] = newAccountID
+        if group_snapshot_id is not None:
+            params["groupSnapshotID"] = group_snapshot_id
+        if new_account_id is not None:
+            params["newAccountID"] = new_account_id
         
         # There is no adaptor.
         return self.send_request(
@@ -4600,9 +4600,9 @@ class Element(ServiceBase):
 
     def copy_volume(
             self,
-            volumeID,
-            dstVolumeID,
-            snapshotID=OPTIONAL,):
+            volume_id,
+            dst_volume_id,
+            snapshot_id=OPTIONAL,):
         """
         Copies one volume to another.
         :param volumeID: [required] Source volume to copy.
@@ -4616,11 +4616,11 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeID": volumeID,
-            "dstVolumeID": dstVolumeID,
+            "volumeID": volume_id,
+            "dstVolumeID": dst_volume_id,
         }
-        if snapshotID is not None:
-            params["snapshotID"] = snapshotID
+        if snapshot_id is not None:
+            params["snapshotID"] = snapshot_id
         
         # There is no adaptor.
         return self.send_request(
@@ -4632,7 +4632,7 @@ class Element(ServiceBase):
 
     def cancel_clone(
             self,
-            cloneID,):
+            clone_id,):
         """
         Cancels a currently running clone operation.
         :param cloneID: [required] 
@@ -4640,7 +4640,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "cloneID": cloneID,
+            "cloneID": clone_id,
         }
         
         # There is no adaptor.
@@ -4654,8 +4654,8 @@ class Element(ServiceBase):
     def create_volume(
             self,
             name,
-            accountID,
-            totalSize,
+            account_id,
+            total_size,
             enable512e,
             qos=OPTIONAL,
             attributes=OPTIONAL,):
@@ -4683,8 +4683,8 @@ class Element(ServiceBase):
 
         params = { 
             "name": name,
-            "accountID": accountID,
-            "totalSize": totalSize,
+            "accountID": account_id,
+            "totalSize": total_size,
             "enable512e": enable512e,
         }
         if qos is not None:
@@ -4701,7 +4701,7 @@ class Element(ServiceBase):
 
     def delete_volume(
             self,
-            volumeID,):
+            volume_id,):
         """
         [&#x27;DeleteVolume marks an active volume for deletion.&#x27;, &#x27;It is purged (permanently deleted) after the cleanup interval elapses.&#x27;, &#x27;After making a request to delete a volume, any active iSCSI connections to the volume is immediately terminated and no further connections are allowed while the volume is in this state.&#x27;, &#x27;It is not returned in target discovery requests.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;Any snapshots of a volume that has been marked to delete are not affected.&#x27;, &#x27;Snapshots are kept until the volume is purged from the system.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If a volume is marked for deletion, and it has a bulk volume read or bulk volume write operation in progress, the bulk volume operation is stopped.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If the volume you delete is paired with a volume, replication between the paired volumes is suspended and no data is transferred to it or from it while in a deleted state.&#x27;, &#x27;The remote volume the deleted volume was paired with enters into a PausedMisconfigured state and data is no longer sent to it or from the deleted volume.&#x27;, &#x27;Until the deleted volume is purged, it can be restored and data transfers resumes.&#x27;, &#x27;If the deleted volume gets purged from the system, the volume it was paired with enters into a StoppedMisconfigured state and the volume pairing status is removed.&#x27;, &#x27;The purged volume becomes permanently unavailable.&#x27;]
         [&#x27;DeleteVolume marks an active volume for deletion.&#x27;, &#x27;It is purged (permanently deleted) after the cleanup interval elapses.&#x27;, &#x27;After making a request to delete a volume, any active iSCSI connections to the volume is immediately terminated and no further connections are allowed while the volume is in this state.&#x27;, &#x27;It is not returned in target discovery requests.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;Any snapshots of a volume that has been marked to delete are not affected.&#x27;, &#x27;Snapshots are kept until the volume is purged from the system.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If a volume is marked for deletion, and it has a bulk volume read or bulk volume write operation in progress, the bulk volume operation is stopped.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If the volume you delete is paired with a volume, replication between the paired volumes is suspended and no data is transferred to it or from it while in a deleted state.&#x27;, &#x27;The remote volume the deleted volume was paired with enters into a PausedMisconfigured state and data is no longer sent to it or from the deleted volume.&#x27;, &#x27;Until the deleted volume is purged, it can be restored and data transfers resumes.&#x27;, &#x27;If the deleted volume gets purged from the system, the volume it was paired with enters into a StoppedMisconfigured state and the volume pairing status is removed.&#x27;, &#x27;The purged volume becomes permanently unavailable.&#x27;]
@@ -4723,7 +4723,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeID": volumeID,
+            "volumeID": volume_id,
         }
         
         # There is no adaptor.
@@ -4750,7 +4750,7 @@ class Element(ServiceBase):
 
     def get_volume_stats(
             self,
-            volumeID,):
+            volume_id,):
         """
         [&#x27;GetVolumeStats is used to retrieve high-level activity measurements for a single volume.&#x27;, &#x27;Values are cumulative from the creation of the volume.&#x27;]
         [&#x27;GetVolumeStats is used to retrieve high-level activity measurements for a single volume.&#x27;, &#x27;Values are cumulative from the creation of the volume.&#x27;]
@@ -4759,7 +4759,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeID": volumeID,
+            "volumeID": volume_id,
         }
         
         # There is no adaptor.
@@ -4771,7 +4771,7 @@ class Element(ServiceBase):
 
     def get_volume_efficiency(
             self,
-            volumeID,
+            volume_id,
             force=OPTIONAL,):
         """
         [&#x27;GetVolumeEfficiency is used to retrieve information about a volume.&#x27;, &#x27;Only the volume given as a parameter in this API method is used to compute the capacity.&#x27;]
@@ -4784,7 +4784,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeID": volumeID,
+            "volumeID": volume_id,
         }
         if force is not None:
             params["force"] = force
@@ -4813,7 +4813,7 @@ class Element(ServiceBase):
 
     def list_active_volumes(
             self,
-            startVolumeID=OPTIONAL,
+            start_volume_id=OPTIONAL,
             limit=OPTIONAL,):
         """
         [&#x27;ListActiveVolumes is used to return the list of active volumes currently in the system.&#x27;, &#x27;The list of volumes is returned sorted in VolumeID order and can be returned in multiple parts (pages).&#x27;]
@@ -4827,8 +4827,8 @@ class Element(ServiceBase):
 
         params = { 
         }
-        if startVolumeID is not None:
-            params["startVolumeID"] = startVolumeID
+        if start_volume_id is not None:
+            params["startVolumeID"] = start_volume_id
         if limit is not None:
             params["limit"] = limit
         
@@ -4871,12 +4871,12 @@ class Element(ServiceBase):
 
     def list_volumes(
             self,
-            startVolumeID=OPTIONAL,
+            start_volume_id=OPTIONAL,
             limit=OPTIONAL,
-            volumeStatus=OPTIONAL,
+            volume_status=OPTIONAL,
             accounts=OPTIONAL,
-            isPaired=OPTIONAL,
-            volumeIDs=OPTIONAL,):
+            is_paired=OPTIONAL,
+            volume_ids=OPTIONAL,):
         """
         [&#x27;The ListVolumes method is used to return a list of volumes that are in a cluster.&#x27;, &#x27;You can specify the volumes you want to return in the list by using the available parameters.&#x27;]
         [&#x27;The ListVolumes method is used to return a list of volumes that are in a cluster.&#x27;, &#x27;You can specify the volumes you want to return in the list by using the available parameters.&#x27;]
@@ -4901,18 +4901,18 @@ class Element(ServiceBase):
 
         params = { 
         }
-        if startVolumeID is not None:
-            params["startVolumeID"] = startVolumeID
+        if start_volume_id is not None:
+            params["startVolumeID"] = start_volume_id
         if limit is not None:
             params["limit"] = limit
-        if volumeStatus is not None:
-            params["volumeStatus"] = volumeStatus
+        if volume_status is not None:
+            params["volumeStatus"] = volume_status
         if accounts is not None:
             params["accounts"] = accounts
-        if isPaired is not None:
-            params["isPaired"] = isPaired
-        if volumeIDs is not None:
-            params["volumeIDs"] = volumeIDs
+        if is_paired is not None:
+            params["isPaired"] = is_paired
+        if volume_ids is not None:
+            params["volumeIDs"] = volume_ids
         
         # There is no adaptor.
         return self.send_request(
@@ -4924,8 +4924,8 @@ class Element(ServiceBase):
 
     def list_volumes_for_account(
             self,
-            accountID,
-            startVolumeID=OPTIONAL,
+            account_id,
+            start_volume_id=OPTIONAL,
             limit=OPTIONAL,):
         """
         [&#x27;ListVolumesForAccount returns the list of active AND (pending) deleted volumes for an account.&#x27;]
@@ -4940,10 +4940,10 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "accountID": accountID,
+            "accountID": account_id,
         }
-        if startVolumeID is not None:
-            params["startVolumeID"] = startVolumeID
+        if start_volume_id is not None:
+            params["startVolumeID"] = start_volume_id
         if limit is not None:
             params["limit"] = limit
         
@@ -4988,7 +4988,7 @@ class Element(ServiceBase):
 
     def list_volume_stats_by_volume_access_group(
             self,
-            volumeAccessGroups=OPTIONAL,):
+            volume_access_groups=OPTIONAL,):
         """
         [&#x27;ListVolumeStatsByVolumeAccessGroup is used to get total activity measurements for all of the volumes that are a member of the specified volume access group(s).&#x27;]
         :param volumeAccessGroups:  [&#x27;An array of VolumeAccessGroupIDs for which volume activity is returned.&#x27;, &#x27;If no VolumeAccessGroupID is specified, stats for all volume access groups is returned.&#x27;][&#x27;An array of VolumeAccessGroupIDs for which volume activity is returned.&#x27;, &#x27;If no VolumeAccessGroupID is specified, stats for all volume access groups is returned.&#x27;]
@@ -4997,8 +4997,8 @@ class Element(ServiceBase):
 
         params = { 
         }
-        if volumeAccessGroups is not None:
-            params["volumeAccessGroups"] = volumeAccessGroups
+        if volume_access_groups is not None:
+            params["volumeAccessGroups"] = volume_access_groups
         
         # There is no adaptor.
         return self.send_request(
@@ -5009,11 +5009,11 @@ class Element(ServiceBase):
 
     def modify_volume(
             self,
-            volumeID,
-            accountID=OPTIONAL,
+            volume_id,
+            account_id=OPTIONAL,
             access=OPTIONAL,
             qos=OPTIONAL,
-            totalSize=OPTIONAL,
+            total_size=OPTIONAL,
             attributes=OPTIONAL,):
         """
         [&#x27;ModifyVolume is used to modify settings on an existing volume.&#x27;, &#x27;Modifications can be made to one volume at a time and changes take place immediately.&#x27;, &#x27;If an optional parameter is left unspecified, the value will not be changed.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;Extending the size of a volume that is being replicated should be done in an order.&#x27;, &#x27;The target (Replication Target) volume should first be increased in size, then the source (Read/Write) volume can be resized.&#x27;, &#x27;It is recommended that both the target and the source volumes be the same size.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Note&lt;/b&gt;: If you change access status to locked or target all existing iSCSI connections are terminated.&#x27;]
@@ -5045,16 +5045,16 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeID": volumeID,
+            "volumeID": volume_id,
         }
-        if accountID is not None:
-            params["accountID"] = accountID
+        if account_id is not None:
+            params["accountID"] = account_id
         if access is not None:
             params["access"] = access
         if qos is not None:
             params["qos"] = qos
-        if totalSize is not None:
-            params["totalSize"] = totalSize
+        if total_size is not None:
+            params["totalSize"] = total_size
         if attributes is not None:
             params["attributes"] = attributes
         
@@ -5067,7 +5067,7 @@ class Element(ServiceBase):
 
     def purge_deleted_volume(
             self,
-            volumeID,):
+            volume_id,):
         """
         [&#x27;PurgeDeletedVolume immediately and permanently purges a volume which has been deleted.&#x27;, &#x27;A volume must be deleted using DeleteVolume before it can be purged.&#x27;, &#x27;Volumes are purged automatically after a period of time, so usage of this method is not typically required.&#x27;]
         [&#x27;PurgeDeletedVolume immediately and permanently purges a volume which has been deleted.&#x27;, &#x27;A volume must be deleted using DeleteVolume before it can be purged.&#x27;, &#x27;Volumes are purged automatically after a period of time, so usage of this method is not typically required.&#x27;]
@@ -5077,7 +5077,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeID": volumeID,
+            "volumeID": volume_id,
         }
         
         # There is no adaptor.
@@ -5089,7 +5089,7 @@ class Element(ServiceBase):
 
     def restore_deleted_volume(
             self,
-            volumeID,):
+            volume_id,):
         """
         [&#x27;RestoreDeletedVolume marks a deleted volume as active again.&#x27;, &#x27;This action makes the volume immediately available for iSCSI connection.&#x27;]
         [&#x27;RestoreDeletedVolume marks a deleted volume as active again.&#x27;, &#x27;This action makes the volume immediately available for iSCSI connection.&#x27;]
@@ -5098,7 +5098,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeID": volumeID,
+            "volumeID": volume_id,
         }
         
         # There is no adaptor.
@@ -5110,11 +5110,11 @@ class Element(ServiceBase):
 
     def start_bulk_volume_read(
             self,
-            volumeID,
+            volume_id,
             format,
-            snapshotID=OPTIONAL,
+            snapshot_id=OPTIONAL,
             script=OPTIONAL,
-            scriptParameters=OPTIONAL,
+            script_parameters=OPTIONAL,
             attributes=OPTIONAL,):
         """
         [&#x27;StartBulkVolumeRead allows you to initialize a bulk volume read session on a specified volume.&#x27;, &#x27;Only two bulk volume processes can run simultaneously on a volume.&#x27;, &#x27;When you initialize the session, data is read from a SolidFire storage volume for the purposes of storing the data on an external backup source.&#x27;, &#x27;The external data is accessed by a web server running on a SolidFire node.&#x27;, &#x27;Communications and server interaction information for external data access is passed by a script running on the SolidFire storage system.&lt;br/&gt;&#x27;, &#x27;&lt;br/&gt;&#x27;, &#x27;At the start of a bulk volume read operation, a snapshot of the volume is made and the snapshot is deleted when the read has completed.&#x27;, &#x27;You can also read a snapshot of the volume by entering the ID of the snapshot as a parameter.&#x27;, &#x27;Reading a previous snapshot does not create a new snapshot of the volume, nor does the previous snapshot be deleted when the read completes.&lt;br/&gt;&#x27;, &#x27;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Note&lt;/b&gt;: This process creates a new snapshot if the ID of an existing snapshot is not provided.&#x27;, &#x27;Snapshots can be created if cluster fullness is at stage 2 or 3.&#x27;, &#x27;Snapshots are not created when cluster fullness is at stage 4 or 5.&#x27;]
@@ -5150,15 +5150,15 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeID": volumeID,
+            "volumeID": volume_id,
             "format": format,
         }
-        if snapshotID is not None:
-            params["snapshotID"] = snapshotID
+        if snapshot_id is not None:
+            params["snapshotID"] = snapshot_id
         if script is not None:
             params["script"] = script
-        if scriptParameters is not None:
-            params["scriptParameters"] = scriptParameters
+        if script_parameters is not None:
+            params["scriptParameters"] = script_parameters
         if attributes is not None:
             params["attributes"] = attributes
         
@@ -5171,10 +5171,10 @@ class Element(ServiceBase):
 
     def start_bulk_volume_write(
             self,
-            volumeID,
+            volume_id,
             format,
             script=OPTIONAL,
-            scriptParameters=OPTIONAL,
+            script_parameters=OPTIONAL,
             attributes=OPTIONAL,):
         """
         [&#x27;StartBulkVolumeWrite allows you to initialize a bulk volume write session on a specified volume.&#x27;, &#x27;Only two bulk volume processes can run simultaneously on a volume.&#x27;, &#x27;When the session is initialized, data can be written to a SolidFire storage volume from an external backup source.&#x27;, &#x27;The external data is accessed by a web server running on a SolidFire node.&#x27;, &#x27;Communications and server interaction information for external data access is passed by a script running on the SolidFire storage system.&#x27;]
@@ -5199,13 +5199,13 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeID": volumeID,
+            "volumeID": volume_id,
             "format": format,
         }
         if script is not None:
             params["script"] = script
-        if scriptParameters is not None:
-            params["scriptParameters"] = scriptParameters
+        if script_parameters is not None:
+            params["scriptParameters"] = script_parameters
         if attributes is not None:
             params["attributes"] = attributes
         
@@ -5220,7 +5220,7 @@ class Element(ServiceBase):
             self,
             key,
             status,
-            percentComplete=OPTIONAL,
+            percent_complete=OPTIONAL,
             message=OPTIONAL,
             attributes=OPTIONAL,):
         """
@@ -5245,8 +5245,8 @@ class Element(ServiceBase):
             "key": key,
             "status": status,
         }
-        if percentComplete is not None:
-            params["percentComplete"] = percentComplete
+        if percent_complete is not None:
+            params["percentComplete"] = percent_complete
         if message is not None:
             params["message"] = message
         if attributes is not None:
@@ -5264,8 +5264,8 @@ class Element(ServiceBase):
             name,
             initiators=OPTIONAL,
             volumes=OPTIONAL,
-            virtualNetworkID=OPTIONAL,
-            virtualNetworkTags=OPTIONAL,
+            virtual_network_id=OPTIONAL,
+            virtual_network_tags=OPTIONAL,
             attributes=OPTIONAL,):
         """
         [&#x27;Creates a new volume access group.&#x27;, &#x27;The new volume access group must be given a name when it is created.&#x27;, &#x27;Entering initiators and volumes are optional when creating a volume access group.&#x27;, &#x27;Once the group is created volumes and initiator IQNs can be added.&#x27;, &#x27;Any initiator IQN that is successfully added to the volume access group is able to access any volume in the group without CHAP authentication.&#x27;]
@@ -5299,10 +5299,10 @@ class Element(ServiceBase):
             params["initiators"] = initiators
         if volumes is not None:
             params["volumes"] = volumes
-        if virtualNetworkID is not None:
-            params["virtualNetworkID"] = virtualNetworkID
-        if virtualNetworkTags is not None:
-            params["virtualNetworkTags"] = virtualNetworkTags
+        if virtual_network_id is not None:
+            params["virtualNetworkID"] = virtual_network_id
+        if virtual_network_tags is not None:
+            params["virtualNetworkTags"] = virtual_network_tags
         if attributes is not None:
             params["attributes"] = attributes
         
@@ -5315,7 +5315,7 @@ class Element(ServiceBase):
 
     def list_volume_access_groups(
             self,
-            startVolumeAccessGroupID=OPTIONAL,
+            start_volume_access_group_id=OPTIONAL,
             limit=OPTIONAL,):
         """
         [&#x27;ListVolumeAccessGroups is used to return information about the volume access groups that are currently in the system.&#x27;]
@@ -5328,8 +5328,8 @@ class Element(ServiceBase):
 
         params = { 
         }
-        if startVolumeAccessGroupID is not None:
-            params["startVolumeAccessGroupID"] = startVolumeAccessGroupID
+        if start_volume_access_group_id is not None:
+            params["startVolumeAccessGroupID"] = start_volume_access_group_id
         if limit is not None:
             params["limit"] = limit
         
@@ -5342,7 +5342,7 @@ class Element(ServiceBase):
 
     def delete_volume_access_group(
             self,
-            volumeAccessGroupID,):
+            volume_access_group_id,):
         """
         Delete a volume access group from the system.
         :param volumeAccessGroupID: [required] [&#x27;The ID of the volume access group to delete.&#x27;]
@@ -5350,7 +5350,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeAccessGroupID": volumeAccessGroupID,
+            "volumeAccessGroupID": volume_access_group_id,
         }
         
         # There is no adaptor.
@@ -5362,9 +5362,9 @@ class Element(ServiceBase):
 
     def modify_volume_access_group(
             self,
-            volumeAccessGroupID,
-            virtualNetworkID=OPTIONAL,
-            virtualNetworkTags=OPTIONAL,
+            volume_access_group_id,
+            virtual_network_id=OPTIONAL,
+            virtual_network_tags=OPTIONAL,
             name=OPTIONAL,
             initiators=OPTIONAL,
             volumes=OPTIONAL,
@@ -5403,12 +5403,12 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeAccessGroupID": volumeAccessGroupID,
+            "volumeAccessGroupID": volume_access_group_id,
         }
-        if virtualNetworkID is not None:
-            params["virtualNetworkID"] = virtualNetworkID
-        if virtualNetworkTags is not None:
-            params["virtualNetworkTags"] = virtualNetworkTags
+        if virtual_network_id is not None:
+            params["virtualNetworkID"] = virtual_network_id
+        if virtual_network_tags is not None:
+            params["virtualNetworkTags"] = virtual_network_tags
         if name is not None:
             params["name"] = name
         if initiators is not None:
@@ -5427,7 +5427,7 @@ class Element(ServiceBase):
 
     def add_initiators_to_volume_access_group(
             self,
-            volumeAccessGroupID,
+            volume_access_group_id,
             initiators,):
         """
         Add initiators to a volume access group.
@@ -5439,7 +5439,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeAccessGroupID": volumeAccessGroupID,
+            "volumeAccessGroupID": volume_access_group_id,
             "initiators": initiators,
         }
         
@@ -5452,7 +5452,7 @@ class Element(ServiceBase):
 
     def remove_initiators_from_volume_access_group(
             self,
-            volumeAccessGroupID,
+            volume_access_group_id,
             initiators,):
         """
         Remove initiators from a volume access group.
@@ -5464,7 +5464,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeAccessGroupID": volumeAccessGroupID,
+            "volumeAccessGroupID": volume_access_group_id,
             "initiators": initiators,
         }
         
@@ -5477,7 +5477,7 @@ class Element(ServiceBase):
 
     def add_volumes_to_volume_access_group(
             self,
-            volumeAccessGroupID,
+            volume_access_group_id,
             volumes,):
         """
         Add volumes to a volume access group.
@@ -5489,7 +5489,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeAccessGroupID": volumeAccessGroupID,
+            "volumeAccessGroupID": volume_access_group_id,
             "volumes": volumes,
         }
         
@@ -5502,7 +5502,7 @@ class Element(ServiceBase):
 
     def remove_volumes_from_volume_access_group(
             self,
-            volumeAccessGroupID,
+            volume_access_group_id,
             volumes,):
         """
         Remove volumes from a volume access group.
@@ -5514,7 +5514,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeAccessGroupID": volumeAccessGroupID,
+            "volumeAccessGroupID": volume_access_group_id,
             "volumes": volumes,
         }
         
@@ -5527,7 +5527,7 @@ class Element(ServiceBase):
 
     def get_volume_access_group_efficiency(
             self,
-            volumeAccessGroupID,):
+            volume_access_group_id,):
         """
         GetVolumeAccessGroupEfficiency is used to retrieve efficiency information about a volume access group. Only the volume access group provided as parameters in this API method is used to compute the capacity.
         :param volumeAccessGroupID: [required] Specifies the volume access group for which capacity is computed.
@@ -5535,7 +5535,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeAccessGroupID": volumeAccessGroupID,
+            "volumeAccessGroupID": volume_access_group_id,
         }
         
         # There is no adaptor.
@@ -5547,7 +5547,7 @@ class Element(ServiceBase):
 
     def get_volume_access_group_lun_assignments(
             self,
-            volumeAccessGroupID,):
+            volume_access_group_id,):
         """
         The GetVolumeAccessGroupLunAssignments is used to return information LUN mappings of a specified volume access group.
         :param volumeAccessGroupID: [required] Unique volume access group ID used to return information.
@@ -5555,7 +5555,7 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeAccessGroupID": volumeAccessGroupID,
+            "volumeAccessGroupID": volume_access_group_id,
         }
         
         # There is no adaptor.
@@ -5567,8 +5567,8 @@ class Element(ServiceBase):
 
     def modify_volume_access_group_lun_assignments(
             self,
-            volumeAccessGroupID,
-            lunAssignments,):
+            volume_access_group_id,
+            lun_assignments,):
         """
         [&#x27;The ModifytVolumeAccessGroupLunAssignments is used to define custom LUN assignments for specific volumes. Only LUN values set on the lunAssignments parameter will be changed in the volume access group. All other LUN assignments will remain unchanged.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;LUN assignment values must be unique for volumes in a volume access group. An exception will be seen if LUN assignments are duplicated in a volume access group. However, the same LUN values can be used again in different volume access groups.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Note:&lt;/b&gt; Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed. None of the specified LUN assignments will be modified if there is an exception.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Caution:&lt;/b&gt; If a LUN assignment is changed for a volume with active I/O, the I/O could be disrupted. Changes to the server configuration may be required in order to change volume LUN assignments.&#x27;]
         [&#x27;The ModifytVolumeAccessGroupLunAssignments is used to define custom LUN assignments for specific volumes. Only LUN values set on the lunAssignments parameter will be changed in the volume access group. All other LUN assignments will remain unchanged.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;LUN assignment values must be unique for volumes in a volume access group. An exception will be seen if LUN assignments are duplicated in a volume access group. However, the same LUN values can be used again in different volume access groups.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Note:&lt;/b&gt; Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed. None of the specified LUN assignments will be modified if there is an exception.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Caution:&lt;/b&gt; If a LUN assignment is changed for a volume with active I/O, the I/O could be disrupted. Changes to the server configuration may be required in order to change volume LUN assignments.&#x27;]
@@ -5585,8 +5585,8 @@ class Element(ServiceBase):
         """
 
         params = { 
-            "volumeAccessGroupID": volumeAccessGroupID,
-            "lunAssignments": lunAssignments,
+            "volumeAccessGroupID": volume_access_group_id,
+            "lunAssignments": lun_assignments,
         }
         
         # There is no adaptor.
@@ -5625,7 +5625,7 @@ class Element(ServiceBase):
     def delete_database_entry(
             self,
             path,
-            dataVersion,):
+            data_version,):
         """
         Deletes an existing database entry
         :param path: [required] 
@@ -5637,7 +5637,7 @@ class Element(ServiceBase):
 
         params = { 
             "path": path,
-            "dataVersion": dataVersion,
+            "dataVersion": data_version,
         }
         
         # There is no adaptor.
@@ -5670,7 +5670,7 @@ class Element(ServiceBase):
     def set_database_entry(
             self,
             path,
-            dataVersion,
+            data_version,
             data,):
         """
         Sets the contents of an existing database entry
@@ -5686,7 +5686,7 @@ class Element(ServiceBase):
 
         params = { 
             "path": path,
-            "dataVersion": dataVersion,
+            "dataVersion": data_version,
             "data": data,
         }
         
