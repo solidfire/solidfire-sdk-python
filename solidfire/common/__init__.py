@@ -582,13 +582,23 @@ class ServiceBase(object):
             atomic_id = ATOMIC_COUNTER.next()
         else:
             atomic_id = ATOMIC_COUNTER.__next__()
+
+        # Create the serialized request
+        paramsArray = []
+        for name, val in params.items():
+            param = (name, model.serialize(val))
+            if(type(val) is CHAPSecret):
+
+        params = dict(
+                (name, model.serialize(val))
+                for name, val in params.items()
+            )
+
+
         encoded = json.dumps({
             'method': method_name,
             'id': atomic_id if atomic_id > 0 else 0,
-            'params': dict(
-                (name, model.serialize(val))
-                for name, val in params.items()
-            ),
+            'params':
         })
 
         import pycurl
