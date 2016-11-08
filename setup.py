@@ -90,7 +90,7 @@ setup(
         'release': ['twine>=1.6.5', ],
     },
 
-    #cmdclass={
-    #    'clean': Clean,
-    #},
+    cmdclass={
+        'clean': Clean,
+    },
 )
