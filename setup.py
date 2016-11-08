@@ -75,7 +75,7 @@ setup(
 
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 
-    install_requires=['pycurl>=7.34.0', 'future>=0.15.2', 'enum34>=1.1.6'],
+    install_requires=['setuptools>=19.2', 'pycurl>=7.34.0', 'future>=0.15.2', 'enum34>=1.1.6'],
 
     # $> pip install -e ".[dev,test, docs, release]"
     extras_require={
@@ -90,7 +90,7 @@ setup(
         'release': ['twine>=1.6.5', ],
     },
 
-    cmdclass={
-        'clean': Clean,
-    },
+    #cmdclass={
+    #    'clean': Clean,
+    #},
 )
