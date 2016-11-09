@@ -524,7 +524,6 @@ class ServiceBase(object):
             dispatcher = CurlDispatcher(endpoint, username, password,
                                         verify_ssl)
         self._dispatcher = dispatcher
-        print(mvip)
         mvipArr = mvip.split(':')
         if(len(mvipArr) == 2):
             self._port = mvipArr[1]
