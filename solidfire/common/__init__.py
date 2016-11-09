@@ -368,29 +368,11 @@ class ApiConnectionError(Exception):
                  connection_type,
                  connection_port):
         message = "You tried to run a command that typically only runs on a " + \
-                  connection_type.lower() + " connection on the following port: " + connection_port + \
-                  " If you want to run a cluster only command, please use port 443." + \
-                  " If you want to run a node only command, please use port 442." + \
-                  " To switch, recreate your ElementFactory with a port set."
+                  connection_type.lower() + " connection on port " + connection_port + \
+                  " Recreate your element factory with the right port."
         super(ApiConnectionError, self).__init__(message)
         self._connection_type = connection_type
         self._connection_port = connection_port
-
-    def __repr__(self):
-        return '%s(api_version=%s, ' \
-               'supported_versions=%s)' % (
-                   self.__class__.__name__,
-                   self._api_version,
-                   self._supported_versions
-               )
-
-    def __str__(self):
-        return str.format(
-            '\n    Version Unsupported:\n'
-            '    Provided Api Version: {_api_version}\n'
-            '    Supported Version: {_supported_versions}\n',
-            **self.__dict__
-        )
 
     @property
     def connection_type(self):
@@ -542,7 +524,12 @@ class ServiceBase(object):
             dispatcher = CurlDispatcher(endpoint, username, password,
                                         verify_ssl)
         self._dispatcher = dispatcher
-        self._port = mvip.split(':')[1]
+        print(mvip)
+        mvipArr = mvip.split(':')
+        if(len(mvipArr) == 2):
+            self._port = mvipArr[1]
+        else:
+            self._port = 443
 
     def timeout(self, timeout_in_sec):
         """
@@ -585,7 +572,6 @@ class ServiceBase(object):
 
     def send_request(self, method_name,
                      result_type,
-                     connection_type,
                      params=None,
                      since=None,
                      deprecated=None):
@@ -610,7 +596,6 @@ class ServiceBase(object):
         :rtype: DataObject
         """
 
-        self._check_connection_type(connection_type)
         self._check_method_version(method_name, since, deprecated)
 
         if params is None:
@@ -622,22 +607,13 @@ class ServiceBase(object):
         else:
             atomic_id = ATOMIC_COUNTER.__next__()
 
-        # Create the serialized request
-        paramsArray = []
-        for name, val in params.items():
-            param = (name, model.serialize(val))
-            if(type(val) is CHAPSecret):
-
-        params = dict(
-                (name, model.serialize(val))
-                for name, val in params.items()
-            )
-
-
         encoded = json.dumps({
             'method': method_name,
             'id': atomic_id if atomic_id > 0 else 0,
-            'params':
+            'params': dict(
+                 (name, model.serialize(val))
+                 for name, val in params.items()
+             ),
         })
 
         import pycurl
@@ -702,9 +678,9 @@ class ServiceBase(object):
         """
 
         if(connection_type == "Cluster" and self._port == "442"):
-            ApiConnectionError(connection_type, self._port)
+            raise ApiConnectionError(connection_type, self._port)
         elif(connection_type == "Node" and self._port == "443"):
-            ApiConnectionError(connection_type, self._port)
+            raise ApiConnectionError(connection_type, self._port)
 
 
     def _check_method_version(self,
