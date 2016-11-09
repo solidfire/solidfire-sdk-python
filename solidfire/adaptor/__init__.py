@@ -50,21 +50,23 @@ class ElementServiceAdaptor(object):
         return result
 
     @staticmethod
-    def invoke_sfapi(element, params, since, deprecated):
+    def invoke_sfapi(element, params, since, deprecated, connection_type):
         if "parameters" in params:
             return element.send_request(
                 params["method"],
                 dict,
                 params["parameters"],
                 since,
-                deprecated
+                deprecated,
+                connection_type
             )
         else:
             return element.send_request(
                 params["method"],
                 dict,
                 since=since,
-                deprecated=deprecated
+                deprecated=deprecated,
+                connection_type=connection_type
             )
 
     @staticmethod
