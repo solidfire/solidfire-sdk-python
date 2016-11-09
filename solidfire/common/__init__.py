@@ -363,6 +363,9 @@ class ApiVersionUnsupportedError(Exception):
         """The versions supported by the connected Element OS"""
         return self._supported_versions
 
+class ApiConnectionError(Exception):
+    def __init__(self, message):
+        super(ApiConnectionError, self).__init__(message)
 
 class CurlDispatcher(object):
     """
@@ -506,6 +509,11 @@ class ServiceBase(object):
             dispatcher = CurlDispatcher(endpoint, username, password,
                                         verify_ssl)
         self._dispatcher = dispatcher
+        mvipArr = mvip.split(':')
+        if(len(mvipArr) == 2):
+            self._port = mvipArr[1]
+        else:
+            self._port = 443
 
     def timeout(self, timeout_in_sec):
         """
@@ -583,22 +591,13 @@ class ServiceBase(object):
         else:
             atomic_id = ATOMIC_COUNTER.__next__()
 
-        # Create the serialized request
-        paramsArray = []
-        for name, val in params.items():
-            param = (name, model.serialize(val))
-            if(type(val) is CHAPSecret):
-
-        params = dict(
-                (name, model.serialize(val))
-                for name, val in params.items()
-            )
-
-
         encoded = json.dumps({
             'method': method_name,
             'id': atomic_id if atomic_id > 0 else 0,
-            'params':
+            'params': dict(
+                 (name, model.serialize(val))
+                 for name, val in params.items()
+             ),
         })
 
         import pycurl
@@ -652,6 +651,23 @@ class ServiceBase(object):
             raise ApiServerError(method_name, response['error'])
         else:
             return model.extract(result_type, response['result'])
+
+    def _check_connection_type(self, method_name,
+                               connection_type):
+        """
+        Check the connection type to verify that it is right.
+
+        :param connection_type: connection type the method expects.
+        :type connection_type: str
+        """
+
+        if(connection_type == "Cluster" and self._port == "442"):
+            raise ApiConnectionError(method_name +
+                                     " cannot be called on a node connection. It is a cluster-only method.")
+        elif(connection_type == "Node" and self._port == "443"):
+            raise ApiConnectionError(method_name +
+                                     " cannot be called on a cluster connection. It is a node-only method")
+
 
     def _check_method_version(self,
                               method_name,
