@@ -364,23 +364,8 @@ class ApiVersionUnsupportedError(Exception):
         return self._supported_versions
 
 class ApiConnectionError(Exception):
-    def __init__(self,
-                 connection_type,
-                 connection_port):
-        message = "You tried to run a command that typically only runs on a " + \
-                  connection_type.lower() + " connection on port " + connection_port + \
-                  " Recreate your element factory with the right port."
+    def __init__(self, message):
         super(ApiConnectionError, self).__init__(message)
-        self._connection_type = connection_type
-        self._connection_port = connection_port
-
-    @property
-    def connection_type(self):
-        return self._connection_type
-
-    @property
-    def connection_port(self):
-        return self._connection_port
 
 class CurlDispatcher(object):
     """
@@ -667,7 +652,7 @@ class ServiceBase(object):
         else:
             return model.extract(result_type, response['result'])
 
-    def _check_connection_type(self,
+    def _check_connection_type(self, method_name,
                                connection_type):
         """
         Check the connection type to verify that it is right.
@@ -677,9 +662,11 @@ class ServiceBase(object):
         """
 
         if(connection_type == "Cluster" and self._port == "442"):
-            raise ApiConnectionError(connection_type, self._port)
+            raise ApiConnectionError(method_name +
+                                     " cannot be called on a node connection. It is a cluster-only method.")
         elif(connection_type == "Node" and self._port == "443"):
-            raise ApiConnectionError(connection_type, self._port)
+            raise ApiConnectionError(method_name +
+                                     " cannot be called on a cluster connection. It is a node-only method")
 
 
     def _check_method_version(self,

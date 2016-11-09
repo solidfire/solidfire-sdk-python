@@ -72,8 +72,7 @@ class Element(ServiceBase):
         :type attributes: dict
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("add_account", "Cluster")
 
         params = { 
             "username": username,
@@ -101,8 +100,7 @@ class Element(ServiceBase):
         :type accountID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_account_by_id", "Cluster")
 
         params = { 
             "accountID": account_id,
@@ -124,8 +122,7 @@ class Element(ServiceBase):
         :type username: str
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_account_by_name", "Cluster")
 
         params = { 
             "username": username,
@@ -151,8 +148,7 @@ class Element(ServiceBase):
         :type limit: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_accounts", "Cluster")
 
         params = { 
         }
@@ -200,8 +196,7 @@ class Element(ServiceBase):
         :type attributes: dict
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("modify_account", "Cluster")
 
         params = { 
             "accountID": account_id,
@@ -235,8 +230,7 @@ class Element(ServiceBase):
         :type accountID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("remove_account", "Cluster")
 
         params = { 
             "accountID": account_id,
@@ -262,8 +256,7 @@ class Element(ServiceBase):
         :type force: bool
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_account_efficiency", "Cluster")
 
         params = { 
             "accountID": account_id,
@@ -291,8 +284,7 @@ class Element(ServiceBase):
         :type attributes: dict
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("create_backup_target", "Cluster")
 
         params = { 
             "name": name,
@@ -316,8 +308,7 @@ class Element(ServiceBase):
         :type backupTargetID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_backup_target", "Cluster")
 
         params = { 
             "backupTargetID": backup_target_id,
@@ -335,8 +326,7 @@ class Element(ServiceBase):
         """
         You can use ListBackupTargets to retrieve information about all backup targets that have been created."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_backup_targets", "Cluster")
 
         params = { 
         }
@@ -365,8 +355,7 @@ class Element(ServiceBase):
         :type attributes: dict
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("modify_backup_target", "Cluster")
 
         params = { 
             "backupTargetID": backup_target_id,
@@ -392,8 +381,7 @@ class Element(ServiceBase):
         :type backupTargetID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("remove_backup_target", "Cluster")
 
         params = { 
             "backupTargetID": backup_target_id,
@@ -412,8 +400,7 @@ class Element(ServiceBase):
         Return the high-level capacity measurements for an entire cluster.
         The fields returned from this method can be used to calculate the efficiency rates that are displayed in the Element User Interface."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_cluster_capacity", "Cluster")
 
         params = { 
         }
@@ -430,8 +417,7 @@ class Element(ServiceBase):
         """
         Return configuration information about the cluster."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_cluster_info", "Cluster")
 
         params = { 
         }
@@ -449,8 +435,7 @@ class Element(ServiceBase):
         Return information about the Element software version running on each node in the cluster.
         Information about the nodes that are currently in the process of upgrading software is also returned."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_cluster_version_info", "Cluster")
 
         params = { 
         }
@@ -467,8 +452,7 @@ class Element(ServiceBase):
         """
         Retrieves the limit values set by the API"""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_limits", "Cluster")
 
         params = { 
         }
@@ -501,8 +485,7 @@ class Element(ServiceBase):
         :type eventQueueType: str
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_events", "Cluster")
 
         params = { 
         }
@@ -544,8 +527,7 @@ class Element(ServiceBase):
         :type faultTypes: str
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_cluster_faults", "Cluster")
 
         params = { 
         }
@@ -574,8 +556,7 @@ class Element(ServiceBase):
         :type faultTypes: str
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("clear_cluster_faults", "Cluster")
 
         params = { 
         }
@@ -596,8 +577,7 @@ class Element(ServiceBase):
         <br/><br/>
         <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
 
-        connection_type = "Node"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_cluster_config", "Node")
 
         params = { 
         }
@@ -614,8 +594,7 @@ class Element(ServiceBase):
         """
         GetClusterFullThreshold is used to view the stages set for cluster fullness levels. All levels are returned when this method is entered."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_cluster_full_threshold", "Cluster")
 
         params = { 
         }
@@ -644,8 +623,7 @@ class Element(ServiceBase):
         :type maxMetadataOverProvisionFactor: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("modify_cluster_full_threshold", "Cluster")
 
         params = { 
         }
@@ -668,8 +646,7 @@ class Element(ServiceBase):
         """
         GetClusterStats is used to return high-level activity measurements for the cluster. Values returned are cumulative from the creation of the cluster."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_cluster_stats", "Cluster")
 
         params = { 
         }
@@ -686,8 +663,7 @@ class Element(ServiceBase):
         """
         ListClusterAdmins returns the list of all cluster administrators for the cluster. There can be several cluster administrators that have different levels of permissions. There can be only one primary cluster administrator in the system. The primary Cluster Admin is the administrator that was created when the cluster was created. LDAP administrators can also be created when setting up an LDAP system on the cluster."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_cluster_admins", "Cluster")
 
         params = { 
         }
@@ -726,8 +702,7 @@ class Element(ServiceBase):
         :type attributes: dict
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("add_cluster_admin", "Cluster")
 
         params = { 
             "username": username,
@@ -767,8 +742,7 @@ class Element(ServiceBase):
         :type attributes: dict
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("modify_cluster_admin", "Cluster")
 
         params = { 
             "clusterAdminID": cluster_admin_id,
@@ -796,8 +770,7 @@ class Element(ServiceBase):
         :type clusterAdminID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("remove_cluster_admin", "Cluster")
 
         params = { 
             "clusterAdminID": cluster_admin_id,
@@ -821,8 +794,7 @@ class Element(ServiceBase):
         :type cluster: ClusterConfig
         """
 
-        connection_type = "Node"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("set_cluster_config", "Node")
 
         params = { 
             "cluster": cluster,
@@ -840,8 +812,7 @@ class Element(ServiceBase):
         """
         GetSnmpACL is used to return the current SNMP access permissions on the cluster nodes."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_snmp_acl", "Cluster")
 
         params = { 
         }
@@ -867,8 +838,7 @@ class Element(ServiceBase):
         :type usmUsers: SnmpV3UsmUser
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("set_snmp_acl", "Cluster")
 
         params = { 
             "networks": networks,
@@ -888,8 +858,7 @@ class Element(ServiceBase):
         """
         GetSnmpTrapInfo is used to return current SNMP trap configuration information."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_snmp_trap_info", "Cluster")
 
         params = { 
         }
@@ -922,8 +891,7 @@ class Element(ServiceBase):
         :type clusterEventTrapsEnabled: bool
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("set_snmp_trap_info", "Cluster")
 
         params = { 
             "trapRecipients": trap_recipients,
@@ -948,8 +916,7 @@ class Element(ServiceBase):
         :type snmpV3Enabled: bool
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("enable_snmp", "Cluster")
 
         params = { 
             "snmpV3Enabled": snmp_v3_enabled,
@@ -967,8 +934,7 @@ class Element(ServiceBase):
         """
         DisableSnmp is used to disable SNMP on the cluster nodes."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("disable_snmp", "Cluster")
 
         params = { 
         }
@@ -987,8 +953,7 @@ class Element(ServiceBase):
         <br/><br/>
         <b>Note</b>: GetSnmpInfo will be available for Element OS 8 and prior releases. It will be deprecated after Element OS 8. There are two new SNMP API methods that you should migrate over to. They are GetSnmpState and GetSnmpACL. Please see details in this document for their descriptions and usage."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_snmp_info", "Cluster")
 
         params = { 
         }
@@ -1023,8 +988,7 @@ class Element(ServiceBase):
         :type usmUsers: SnmpV3UsmUser
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("set_snmp_info", "Cluster")
 
         params = { 
         }
@@ -1051,8 +1015,7 @@ class Element(ServiceBase):
         <br/><br/>
         <b>Note</b>: GetSnmpState is new for Element OS 8. Please use this method and SetSnmpACL to migrate your SNMP functionality in the future."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_snmp_state", "Cluster")
 
         params = { 
         }
@@ -1070,8 +1033,7 @@ class Element(ServiceBase):
         """
         Retrieves the current version of the API and a list of all supported versions."""
 
-        connection_type = "Both"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_api", "Both")
 
         params = { 
         }
@@ -1088,8 +1050,7 @@ class Element(ServiceBase):
         """
         GetNtpInfo is used to return the current network time protocol (NTP) configuration information."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_ntp_info", "Cluster")
 
         params = { 
         }
@@ -1106,8 +1067,7 @@ class Element(ServiceBase):
         """
         GetCurrentClusterAdmin returns information for the current primary cluster administrator. The primary Cluster Admin was ncreated when the cluster was created."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_current_cluster_admin", "Cluster")
 
         params = { 
         }
@@ -1126,8 +1086,7 @@ class Element(ServiceBase):
         Enabling or disabling encryption should be performed when the cluster is running and in a healthy state. Encryption can be enabled or disabled at your discretion and can be performed as often as you need.
         <br/><b>Note</b>: This process is asynchronous and returns a response before encryption is enabled. The GetClusterInfo method can be used to poll the system to see when the process has completed."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("enable_encryption_at_rest", "Cluster")
 
         params = { 
         }
@@ -1146,8 +1105,7 @@ class Element(ServiceBase):
         This disable method is asynchronous and returns a response before encryption is disabled.
         You can use the GetClusterInfo method to poll the system to see when the process has completed."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("disable_encryption_at_rest", "Cluster")
 
         params = { 
         }
@@ -1164,8 +1122,7 @@ class Element(ServiceBase):
         """
         SnmpSendTestTraps enables you to test SNMP functionality for a cluster. This method instructs the cluster to send test SNMP traps to the currently configured SNMP manager."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("snmp_send_test_traps", "Cluster")
 
         params = { 
         }
@@ -1194,8 +1151,7 @@ class Element(ServiceBase):
         :type asyncHandle: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_async_result", "Cluster")
 
         params = { 
             "asyncHandle": async_handle,
@@ -1226,8 +1182,7 @@ class Element(ServiceBase):
         :type drives: NewDrive
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("add_drives", "Cluster")
 
         params = { 
             "drives": drives,
@@ -1246,8 +1201,7 @@ class Element(ServiceBase):
         ListDrives allows you to retrieve the list of the drives that exist in the cluster's active nodes.
         This method returns drives that have been added as volume metadata or block drives as well as drives that have not been added and are available."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_drives", "Cluster")
 
         params = { 
         }
@@ -1268,8 +1222,7 @@ class Element(ServiceBase):
         :type driveID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_drive_hardware_info", "Cluster")
 
         params = { 
             "driveID": drive_id,
@@ -1291,8 +1244,7 @@ class Element(ServiceBase):
         :type force: bool
         """
 
-        connection_type = "Node"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_drive_hardware", "Node")
 
         params = { 
             "force": force,
@@ -1320,8 +1272,7 @@ class Element(ServiceBase):
         :type force: bool
         """
 
-        connection_type = "Node"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("reset_drives", "Node")
 
         params = { 
             "drives": drives,
@@ -1352,8 +1303,7 @@ class Element(ServiceBase):
         :type force: bool
         """
 
-        connection_type = "Node"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("test_drives", "Node")
 
         params = { 
             "force": force,
@@ -1378,8 +1328,7 @@ class Element(ServiceBase):
         :type driveID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_drive_stats", "Cluster")
 
         params = { 
             "driveID": drive_id,
@@ -1405,8 +1354,7 @@ class Element(ServiceBase):
         :type drives: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("secure_erase_drives", "Cluster")
 
         params = { 
             "drives": drives,
@@ -1441,8 +1389,7 @@ class Element(ServiceBase):
         :type drives: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("remove_drives", "Cluster")
 
         params = { 
             "drives": drives,
@@ -1464,8 +1411,7 @@ class Element(ServiceBase):
         :type feature: str
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_feature_status", "Cluster")
 
         params = { 
         }
@@ -1489,8 +1435,7 @@ class Element(ServiceBase):
         :type feature: str
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("enable_feature", "Cluster")
 
         params = { 
             "feature": feature,
@@ -1509,8 +1454,7 @@ class Element(ServiceBase):
         """
         The ListFibreChannelPortInfo is used to return information about the Fibre Channel ports. The API method is intended for use on individual nodes; userid and password is required for access to individual Fibre Channel nodes. However, this method can be used on the cluster if the force=true parameter is included in the method call. When used on the cluster, all Fibre Channel interfaces are listed."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_fibre_channel_port_info", "Cluster")
 
         params = { 
         }
@@ -1532,8 +1476,7 @@ class Element(ServiceBase):
         :type force: bool
         """
 
-        connection_type = "Node"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_node_fibre_channel_port_info", "Node")
 
         params = { 
         }
@@ -1553,8 +1496,7 @@ class Element(ServiceBase):
         """
         The ListFibreChannelSessions is used to return information about the active Fibre Channel sessions on a cluster."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_fibre_channel_sessions", "Cluster")
 
         params = { 
         }
@@ -1576,8 +1518,7 @@ class Element(ServiceBase):
         :type type: str
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_cluster_hardware_info", "Cluster")
 
         params = { 
         }
@@ -1596,8 +1537,7 @@ class Element(ServiceBase):
         """
         GetHardwareConfig enables you to display the hardware configuration information for a node. NOTE: This method is available only through the per-node API endpoint 5.0 or later."""
 
-        connection_type = "Node"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_hardware_config", "Node")
 
         params = { 
         }
@@ -1618,8 +1558,7 @@ class Element(ServiceBase):
         :type nodeID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_node_hardware_info", "Cluster")
 
         params = { 
             "nodeID": node_id,
@@ -1637,8 +1576,7 @@ class Element(ServiceBase):
         """
         GetNvramInfo allows you to retrieve information from each node about the NVRAM card.  """
 
-        connection_type = "Node"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_nvram_info", "Node")
 
         params = { 
         }
@@ -1660,8 +1598,7 @@ class Element(ServiceBase):
         :type initiators: CreateInitiator
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("create_initiators", "Cluster")
 
         params = { 
             "initiators": initiators,
@@ -1684,8 +1621,7 @@ class Element(ServiceBase):
         :type initiators: ModifyInitiator
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("modify_initiators", "Cluster")
 
         params = { 
             "initiators": initiators,
@@ -1708,8 +1644,7 @@ class Element(ServiceBase):
         :type initiators: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("delete_initiators", "Cluster")
 
         params = { 
             "initiators": initiators,
@@ -1739,8 +1674,7 @@ class Element(ServiceBase):
         :type initiators: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_initiators", "Cluster")
 
         params = { 
         }
@@ -1772,8 +1706,7 @@ class Element(ServiceBase):
         :type parameters: dict
         """
 
-        connection_type = "Both"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("invoke_sfapi", "Both")
 
         params = { 
             "method": method,
@@ -1811,8 +1744,7 @@ class Element(ServiceBase):
         :type attributes: dict
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("add_ldap_cluster_admin", "Cluster")
 
         params = { 
             "username": username,
@@ -1848,8 +1780,7 @@ class Element(ServiceBase):
         :type ldapConfiguration: LdapConfiguration
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("test_ldap_authentication", "Cluster")
 
         params = { 
             "username": username,
@@ -1871,8 +1802,7 @@ class Element(ServiceBase):
         """
         The GetLdapConfiguration is used to get the LDAP configuration currently active on the cluster."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_ldap_configuration", "Cluster")
 
         params = { 
         }
@@ -1930,8 +1860,7 @@ class Element(ServiceBase):
         :type userSearchFilter: str
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("enable_ldap_authentication", "Cluster")
 
         params = { 
             "serverURIs": server_uris,
@@ -1968,8 +1897,7 @@ class Element(ServiceBase):
         """
         The DisableLdapAuthentication method is used disable LDAP authentication and remove all LDAP configuration settings. This call will not remove any configured cluster admin accounts (user or group). However, those cluster admin accounts will no longer be able to log in."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("disable_ldap_authentication", "Cluster")
 
         params = { 
         }
@@ -1987,8 +1915,7 @@ class Element(ServiceBase):
         """
         ListActiveNodes returns the list of currently active nodes that are in the cluster."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_active_nodes", "Cluster")
 
         params = { 
         }
@@ -2005,8 +1932,7 @@ class Element(ServiceBase):
         """
         ListAllNodes enables you to retrieve a list of active and pending nodes in the cluster."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_all_nodes", "Cluster")
 
         params = { 
         }
@@ -2024,8 +1950,7 @@ class Element(ServiceBase):
         Gets the list of pending nodes.
         Pending nodes are running and configured to join the cluster, but have not been added via the AddNodes method."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_pending_nodes", "Cluster")
 
         params = { 
         }
@@ -2054,8 +1979,7 @@ class Element(ServiceBase):
         :type pendingNodes: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("add_nodes", "Cluster")
 
         params = { 
             "pendingNodes": pending_nodes,
@@ -2079,8 +2003,7 @@ class Element(ServiceBase):
         :type nodes: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("remove_nodes", "Cluster")
 
         params = { 
             "nodes": nodes,
@@ -2100,8 +2023,7 @@ class Element(ServiceBase):
         <br/><br/>
         <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
 
-        connection_type = "Node"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_network_config", "Node")
 
         params = { 
         }
@@ -2126,8 +2048,7 @@ class Element(ServiceBase):
         :type config: Config
         """
 
-        connection_type = "Node"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("set_config", "Node")
 
         params = { 
             "config": config,
@@ -2153,8 +2074,7 @@ class Element(ServiceBase):
         :type network: Network
         """
 
-        connection_type = "Node"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("set_network_config", "Node")
 
         params = { 
             "network": network,
@@ -2174,8 +2094,7 @@ class Element(ServiceBase):
         <br/><br/>
         <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
 
-        connection_type = "Both"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_config", "Both")
 
         params = { 
         }
@@ -2196,8 +2115,7 @@ class Element(ServiceBase):
         :type nodeID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_node_stats", "Cluster")
 
         params = { 
             "nodeID": node_id,
@@ -2215,8 +2133,7 @@ class Element(ServiceBase):
         """
         ListNodeStats is used to return the high-level activity measurements for all nodes in a cluster."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_node_stats", "Cluster")
 
         params = { 
         }
@@ -2234,8 +2151,7 @@ class Element(ServiceBase):
         ListClusterPairs is used to list all of the clusters a cluster is paired with.
         This method returns information about active and pending cluster pairings, such as statistics about the current pairing as well as the connectivity and latency (in milliseconds) of the cluster pairing."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_cluster_pairs", "Cluster")
 
         params = { 
         }
@@ -2253,8 +2169,7 @@ class Element(ServiceBase):
         ListActivePairedVolumes is used to list all of the active volumes paired with a volume.
         Volumes listed in the return for this method include volumes with active and pending pairings."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_active_paired_volumes", "Cluster")
 
         params = { 
         }
@@ -2273,8 +2188,7 @@ class Element(ServiceBase):
         The key created from this API method is used in the "CompleteClusterPairing" API method to establish a cluster pairing.
         You can pair a cluster with a maximum of four other SolidFire clusters."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("start_cluster_pairing", "Cluster")
 
         params = { 
         }
@@ -2300,8 +2214,7 @@ class Element(ServiceBase):
         :type mode: str
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("start_volume_pairing", "Cluster")
 
         params = { 
             "volumeID": volume_id,
@@ -2326,8 +2239,7 @@ class Element(ServiceBase):
         :type clusterPairingKey: str
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("complete_cluster_pairing", "Cluster")
 
         params = { 
             "clusterPairingKey": cluster_pairing_key,
@@ -2353,8 +2265,7 @@ class Element(ServiceBase):
         :type volumeID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("complete_volume_pairing", "Cluster")
 
         params = { 
             "volumePairingKey": volume_pairing_key,
@@ -2378,8 +2289,7 @@ class Element(ServiceBase):
         :type clusterPairID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("remove_cluster_pair", "Cluster")
 
         params = { 
             "clusterPairID": cluster_pair_id,
@@ -2403,8 +2313,7 @@ class Element(ServiceBase):
         :type volumeID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("remove_volume_pair", "Cluster")
 
         params = { 
             "volumeID": volume_id,
@@ -2434,8 +2343,7 @@ class Element(ServiceBase):
         :type mode: str
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("modify_volume_pair", "Cluster")
 
         params = { 
             "volumeID": volume_id,
@@ -2485,8 +2393,7 @@ class Element(ServiceBase):
         :type attributes: dict
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("create_snapshot", "Cluster")
 
         params = { 
             "volumeID": volume_id,
@@ -2521,8 +2428,7 @@ class Element(ServiceBase):
         :type snapshotID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("delete_snapshot", "Cluster")
 
         params = { 
             "snapshotID": snapshot_id,
@@ -2544,8 +2450,7 @@ class Element(ServiceBase):
         :type volumeID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_snapshots", "Cluster")
 
         params = { 
         }
@@ -2577,8 +2482,7 @@ class Element(ServiceBase):
         :type enableRemoteReplication: bool
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("modify_snapshot", "Cluster")
 
         params = { 
             "snapshotID": snapshot_id,
@@ -2626,8 +2530,7 @@ class Element(ServiceBase):
         :type attributes: dict
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("rollback_to_snapshot", "Cluster")
 
         params = { 
             "volumeID": volume_id,
@@ -2675,8 +2578,7 @@ class Element(ServiceBase):
         :type attributes: dict
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("create_group_snapshot", "Cluster")
 
         params = { 
             "volumes": volumes,
@@ -2712,8 +2614,7 @@ class Element(ServiceBase):
         :type saveMembers: bool
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("delete_group_snapshot", "Cluster")
 
         params = { 
             "groupSnapshotID": group_snapshot_id,
@@ -2736,8 +2637,7 @@ class Element(ServiceBase):
         :type volumeID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_group_snapshots", "Cluster")
 
         params = { 
         }
@@ -2768,8 +2668,7 @@ class Element(ServiceBase):
         :type enableRemoteReplication: bool
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("modify_group_snapshot", "Cluster")
 
         params = { 
             "groupSnapshotID": group_snapshot_id,
@@ -2811,8 +2710,7 @@ class Element(ServiceBase):
         :type attributes: dict
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("rollback_to_group_snapshot", "Cluster")
 
         params = { 
             "groupSnapshotID": group_snapshot_id,
@@ -2840,8 +2738,7 @@ class Element(ServiceBase):
         :type scheduleID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_schedule", "Cluster")
 
         params = { 
             "scheduleID": schedule_id,
@@ -2859,8 +2756,7 @@ class Element(ServiceBase):
         """
         ListSchedule is used to return information about all scheduled snapshots that have been created."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_schedules", "Cluster")
 
         params = { 
         }
@@ -2886,8 +2782,7 @@ class Element(ServiceBase):
         :type schedule: Schedule
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("create_schedule", "Cluster")
 
         params = { 
             "schedule": schedule,
@@ -2909,8 +2804,7 @@ class Element(ServiceBase):
         :type schedule: Schedule
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("modify_schedule", "Cluster")
 
         params = { 
             "schedule": schedule,
@@ -2929,8 +2823,7 @@ class Element(ServiceBase):
         The GetRawStats call is used by SolidFire engineering to troubleshoot new features. The data returned from GetRawStats is not documented, it changes frequently, and is not guaranteed to be accurate. It is not recommended to ever use GetRawStats for collecting performance data or any other management integration with a SolidFire cluster.
         The data returned from GetRawStats changes frequently, and is not guaranteed to accurately show performance from the system. It is not recommended to ever use GetRawStats for collecting performance data or any other management integration with a SolidFire cluster."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_raw_stats", "Cluster")
 
         params = { 
         }
@@ -2948,8 +2841,7 @@ class Element(ServiceBase):
         The GetCompleteStats API method is used by SolidFire engineering to troubleshoot new features. The data returned from GetCompleteStats is not documented, changes frequently, and is not guaranteed to be accurate. It is not recommended to ever use GetCompleteStats for collecting performance data or any other management integration with a SolidFire cluster.
         The data returned from GetCompleteStats changes frequently, and is not guaranteed to accurately show performance from the system. It is not recommended to ever use GetCompleteStats for collecting performance data or any other management integration with a SolidFire cluster."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_complete_stats", "Cluster")
 
         params = { 
         }
@@ -2978,8 +2870,7 @@ class Element(ServiceBase):
         :type targetSecret: str
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("create_storage_container", "Cluster")
 
         params = { 
             "name": name,
@@ -3006,8 +2897,7 @@ class Element(ServiceBase):
         :type storageContainerIDs: UUID
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("delete_storage_containers", "Cluster")
 
         params = { 
             "storageContainerIDs": storage_container_ids,
@@ -3038,8 +2928,7 @@ class Element(ServiceBase):
         :type targetSecret: str
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("modify_storage_container", "Cluster")
 
         params = { 
             "storageContainerID": storage_container_id,
@@ -3066,8 +2955,7 @@ class Element(ServiceBase):
         :type storageContainerIDs: UUID
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_storage_containers", "Cluster")
 
         params = { 
         }
@@ -3091,8 +2979,7 @@ class Element(ServiceBase):
         :type storageContainerID: UUID
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_storage_container_efficiency", "Cluster")
 
         params = { 
             "storageContainerID": storage_container_id,
@@ -3112,8 +2999,7 @@ class Element(ServiceBase):
         The ListTests API method is used to return the tests that are available to run on a node.
         <br/><b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
 
-        connection_type = "Node"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_tests", "Node")
 
         params = { 
         }
@@ -3131,8 +3017,7 @@ class Element(ServiceBase):
         The ListUtilities API method is used to return the tests that are available to run on a node.
         <br/><b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
 
-        connection_type = "Node"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_utilities", "Node")
 
         params = { 
         }
@@ -3154,8 +3039,7 @@ class Element(ServiceBase):
         :type ensemble: str
         """
 
-        connection_type = "Node"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("test_connect_ensemble", "Node")
 
         params = { 
         }
@@ -3179,8 +3063,7 @@ class Element(ServiceBase):
         :type mvip: str
         """
 
-        connection_type = "Node"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("test_connect_mvip", "Node")
 
         params = { 
         }
@@ -3204,8 +3087,7 @@ class Element(ServiceBase):
         :type svip: str
         """
 
-        connection_type = "Node"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("test_connect_svip", "Node")
 
         params = { 
         }
@@ -3245,8 +3127,7 @@ class Element(ServiceBase):
         :type pingTimeoutMsec: int
         """
 
-        connection_type = "Node"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("test_ping", "Node")
 
         params = { 
         }
@@ -3291,8 +3172,7 @@ class Element(ServiceBase):
         :type virtualNetworkTags: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_virtual_networks", "Cluster")
 
         params = { 
         }
@@ -3352,8 +3232,7 @@ class Element(ServiceBase):
         :type attributes: dict
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("add_virtual_network", "Cluster")
 
         params = { 
             "virtualNetworkTag": virtual_network_tag,
@@ -3420,8 +3299,7 @@ class Element(ServiceBase):
         :type attributes: dict
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("modify_virtual_network", "Cluster")
 
         params = { 
         }
@@ -3467,8 +3345,7 @@ class Element(ServiceBase):
         :type virtualNetworkTag: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("remove_virtual_network", "Cluster")
 
         params = { 
         }
@@ -3506,8 +3383,7 @@ class Element(ServiceBase):
         :type callingVirtualVolumeHostID: UUID
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("prepare_virtual_snapshot", "Cluster")
 
         params = { 
             "virtualVolumeID": virtual_volume_id,
@@ -3560,8 +3436,7 @@ class Element(ServiceBase):
         :type callingVirtualVolumeHostID: UUID
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_virtual_volume_unshared_chunks", "Cluster")
 
         params = { 
             "virtualVolumeID": virtual_volume_id,
@@ -3610,8 +3485,7 @@ class Element(ServiceBase):
         :type callingVirtualVolumeHostID: UUID
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("create_virtual_volume_host", "Cluster")
 
         params = { 
             "virtualVolumeHostID": virtual_volume_host_id,
@@ -3647,8 +3521,7 @@ class Element(ServiceBase):
         :type callingVirtualVolumeHostID: UUID
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_virtual_volume_hosts", "Cluster")
 
         params = { 
         }
@@ -3678,8 +3551,7 @@ class Element(ServiceBase):
         :type callingVirtualVolumeHostID: UUID
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_virtual_volume_task_update", "Cluster")
 
         params = { 
             "virtualVolumeTaskID": virtual_volume_task_id,
@@ -3708,8 +3580,7 @@ class Element(ServiceBase):
         :type callingVirtualVolumeHostID: UUID
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_virtual_volume_tasks", "Cluster")
 
         params = { 
         }
@@ -3739,8 +3610,7 @@ class Element(ServiceBase):
         :type callingVirtualVolumeHostID: UUID
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_virtual_volume_bindings", "Cluster")
 
         params = { 
         }
@@ -3762,8 +3632,7 @@ class Element(ServiceBase):
         """
         Enables retrieval of the number of virtual volumes currently in the system."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_virtual_volume_count", "Cluster")
 
         params = { 
         }
@@ -3818,8 +3687,7 @@ class Element(ServiceBase):
         :type attributes: dict
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("clone_volume", "Cluster")
 
         params = { 
             "volumeID": volume_id,
@@ -3867,8 +3735,7 @@ class Element(ServiceBase):
         :type newAccountID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("clone_multiple_volumes", "Cluster")
 
         params = { 
             "volumes": volumes,
@@ -3917,8 +3784,7 @@ class Element(ServiceBase):
         :type attributes: dict
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("create_volume", "Cluster")
 
         params = { 
             "name": name,
@@ -3961,8 +3827,7 @@ class Element(ServiceBase):
         :type volumeID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("delete_volume", "Cluster")
 
         params = { 
             "volumeID": volume_id,
@@ -3985,8 +3850,7 @@ class Element(ServiceBase):
         :type volumeID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_volume_stats", "Cluster")
 
         params = { 
             "volumeID": volume_id,
@@ -4013,8 +3877,7 @@ class Element(ServiceBase):
         :type force: bool
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_volume_efficiency", "Cluster")
 
         params = { 
             "volumeID": volume_id,
@@ -4034,8 +3897,7 @@ class Element(ServiceBase):
         """
         ListBulkVolumeJobs is used to return information about each bulk volume read or write operation that is occurring in the system."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_bulk_volume_jobs", "Cluster")
 
         params = { 
         }
@@ -4061,8 +3923,7 @@ class Element(ServiceBase):
         :type limit: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_active_volumes", "Cluster")
 
         params = { 
         }
@@ -4083,8 +3944,7 @@ class Element(ServiceBase):
         """
         ListDeletedVolumes is used to return the entire list of volumes that have been marked for deletion and is purged from the system."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_deleted_volumes", "Cluster")
 
         params = { 
         }
@@ -4101,8 +3961,7 @@ class Element(ServiceBase):
         """
         ListISCSISessions is used to return iSCSI connection information for volumes in the cluster."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_iscsisessions", "Cluster")
 
         params = { 
         }
@@ -4144,8 +4003,7 @@ class Element(ServiceBase):
         :type volumeIDs: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_volumes", "Cluster")
 
         params = { 
         }
@@ -4187,8 +4045,7 @@ class Element(ServiceBase):
         :type limit: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_volumes_for_account", "Cluster")
 
         params = { 
             "accountID": account_id,
@@ -4211,8 +4068,7 @@ class Element(ServiceBase):
         ListVolumeStatsByAccount returns high-level activity measurements for every account.
         Values are summed from all the volumes owned by the account."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_volume_stats_by_account", "Cluster")
 
         params = { 
         }
@@ -4230,8 +4086,7 @@ class Element(ServiceBase):
         ListVolumeStatsByVolume returns high-level activity measurements for every volume, by volume.
         Values are cumulative from the creation of the volume."""
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_volume_stats_by_volume", "Cluster")
 
         params = { 
         }
@@ -4252,8 +4107,7 @@ class Element(ServiceBase):
         :type volumeAccessGroups: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_volume_stats_by_volume_access_group", "Cluster")
 
         params = { 
         }
@@ -4304,8 +4158,7 @@ class Element(ServiceBase):
         :type attributes: dict
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("modify_volume", "Cluster")
 
         params = { 
             "volumeID": volume_id,
@@ -4339,8 +4192,7 @@ class Element(ServiceBase):
         :type volumeID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("purge_deleted_volume", "Cluster")
 
         params = { 
             "volumeID": volume_id,
@@ -4363,8 +4215,7 @@ class Element(ServiceBase):
         :type volumeID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("restore_deleted_volume", "Cluster")
 
         params = { 
             "volumeID": volume_id,
@@ -4418,8 +4269,7 @@ class Element(ServiceBase):
         :type attributes: dict
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("start_bulk_volume_read", "Cluster")
 
         params = { 
             "volumeID": volume_id,
@@ -4470,8 +4320,7 @@ class Element(ServiceBase):
         :type attributes: dict
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("start_bulk_volume_write", "Cluster")
 
         params = { 
             "volumeID": volume_id,
@@ -4516,8 +4365,7 @@ class Element(ServiceBase):
         :type attributes: dict
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("update_bulk_volume_status", "Cluster")
 
         params = { 
             "key": key,
@@ -4570,8 +4418,7 @@ class Element(ServiceBase):
         :type attributes: dict
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("create_volume_access_group", "Cluster")
 
         params = { 
             "name": name,
@@ -4607,8 +4454,7 @@ class Element(ServiceBase):
         :type limit: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("list_volume_access_groups", "Cluster")
 
         params = { 
         }
@@ -4633,8 +4479,7 @@ class Element(ServiceBase):
         :type volumeAccessGroupID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("delete_volume_access_group", "Cluster")
 
         params = { 
             "volumeAccessGroupID": volume_access_group_id,
@@ -4689,8 +4534,7 @@ class Element(ServiceBase):
         :type attributes: dict
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("modify_volume_access_group", "Cluster")
 
         params = { 
             "volumeAccessGroupID": volume_access_group_id,
@@ -4728,8 +4572,7 @@ class Element(ServiceBase):
         :type initiators: str
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("add_initiators_to_volume_access_group", "Cluster")
 
         params = { 
             "volumeAccessGroupID": volume_access_group_id,
@@ -4756,8 +4599,7 @@ class Element(ServiceBase):
         :type initiators: str
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("remove_initiators_from_volume_access_group", "Cluster")
 
         params = { 
             "volumeAccessGroupID": volume_access_group_id,
@@ -4784,8 +4626,7 @@ class Element(ServiceBase):
         :type volumes: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("add_volumes_to_volume_access_group", "Cluster")
 
         params = { 
             "volumeAccessGroupID": volume_access_group_id,
@@ -4812,8 +4653,7 @@ class Element(ServiceBase):
         :type volumes: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("remove_volumes_from_volume_access_group", "Cluster")
 
         params = { 
             "volumeAccessGroupID": volume_access_group_id,
@@ -4836,8 +4676,7 @@ class Element(ServiceBase):
         :type volumeAccessGroupID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_volume_access_group_efficiency", "Cluster")
 
         params = { 
             "volumeAccessGroupID": volume_access_group_id,
@@ -4859,8 +4698,7 @@ class Element(ServiceBase):
         :type volumeAccessGroupID: int
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("get_volume_access_group_lun_assignments", "Cluster")
 
         params = { 
             "volumeAccessGroupID": volume_access_group_id,
@@ -4892,8 +4730,7 @@ class Element(ServiceBase):
         :type lunAssignments: LunAssignment
         """
 
-        connection_type = "Cluster"
-        self._check_connection_type(connection_type)
+        self._check_connection_type("modify_volume_access_group_lun_assignments", "Cluster")
 
         params = { 
             "volumeAccessGroupID": volume_access_group_id,
