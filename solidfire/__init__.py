@@ -2360,6 +2360,31 @@ class Element(ServiceBase):
             params
         )
 
+    def list_protocol_endpoints(
+            self,
+            protocol_endpoint_ids=OPTIONAL,):
+        """
+        Gets protocol endpoints in the system
+        If protocolEndpointIDs isn't specified all protocol endpoints
+        are returned. Else the supplied protocolEndpointIDs are.
+        :param protocolEndpointIDs:  
+        :type protocolEndpointIDs: UUID
+        """
+
+        self._check_connection_type("list_protocol_endpoints", "Cluster")
+
+        params = { 
+        }
+        if protocol_endpoint_ids is not None:
+            params["protocolEndpointIDs"] = protocol_endpoint_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListProtocolEndpoints',
+            ListProtocolEndpointsResult,
+            params
+        )
+
     def create_snapshot(
             self,
             volume_id,
@@ -3222,10 +3247,10 @@ class Element(ServiceBase):
         :param svip: [required] [&#x27;Unique storage IP address for the virtual network being created.&#x27;]
         :type svip: str
         
-        :param gateway:  [&#x27;&#x27;]
+        :param gateway:  [u&#x27;&#x27;]
         :type gateway: str
         
-        :param namespace:  [&#x27;&#x27;]
+        :param namespace:  [u&#x27;&#x27;]
         :type namespace: bool
         
         :param attributes:  [&#x27;List of Name/Value pairs in JSON object format.&#x27;]
@@ -3289,10 +3314,10 @@ class Element(ServiceBase):
         :param svip:  [&#x27;The storage virtual IP address for this virtual network. The svip for Virtual Network cannot be changed. A new Virtual Network must be created in order to use a different svip address.&#x27;]
         :type svip: str
         
-        :param gateway:  [&#x27;&#x27;]
+        :param gateway:  [u&#x27;&#x27;]
         :type gateway: str
         
-        :param namespace:  [&#x27;&#x27;]
+        :param namespace:  [u&#x27;&#x27;]
         :type namespace: bool
         
         :param attributes:  [&#x27;A new list of Name/Value pairs in JSON object format.&#x27;]
@@ -3360,6 +3385,46 @@ class Element(ServiceBase):
             RemoveVirtualNetworkResult,
             params,
             since=7.0
+        )
+
+    def list_virtual_volumes(
+            self,
+            start_virtual_volume_id=OPTIONAL,
+            limit=OPTIONAL,
+            virtual_volume_ids=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        :param startVirtualVolumeID:  [&#x27;The ID of the first Virtual Volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this lists all Virtual Volumes.&#x27;][&#x27;The ID of the first Virtual Volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this lists all Virtual Volumes.&#x27;][&#x27;The ID of the first Virtual Volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this lists all Virtual Volumes.&#x27;]
+        :type startVirtualVolumeID: UUID
+        
+        :param limit:  [&#x27;The maximum number of volumes to return from the API.&#x27;]
+        :type limit: int
+        
+        :param virtualVolumeIDs:  [&#x27;List of Virtual Volume IDs to get.&#x27;]
+        :type virtualVolumeIDs: UUID
+        
+        :param callingVirtualVolumeHostID:  
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("list_virtual_volumes", "Cluster")
+
+        params = { 
+        }
+        if start_virtual_volume_id is not None:
+            params["startVirtualVolumeID"] = start_virtual_volume_id
+        if limit is not None:
+            params["limit"] = limit
+        if virtual_volume_ids is not None:
+            params["virtualVolumeIDs"] = virtual_volume_ids
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVirtualVolumes',
+            ListVirtualVolumesResult,
+            params
         )
 
     def prepare_virtual_snapshot(
