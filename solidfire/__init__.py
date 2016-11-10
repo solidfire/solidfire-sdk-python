@@ -59,16 +59,16 @@ class Element(ServiceBase):
         Used to add a new account to the system.
         New volumes can be created under the new account.
         The CHAP settings specified for the account applies to all volumes owned by the account.
-        :param username: [required] [&#x27;Unique username for this account.&#x27;, &#x27;(May be 1 to 64 characters in length).&#x27;][&#x27;Unique username for this account.&#x27;, &#x27;(May be 1 to 64 characters in length).&#x27;]
+        :param username: [required] Unique username for this account. (May be 1 to 64 characters in length). 
         :type username: str
         
-        :param initiatorSecret:  [&#x27;CHAP secret to use for the initiator.&#x27;, &#x27;Should be 12-16 characters long and impenetrable.&#x27;, &#x27;The CHAP initiator secrets must be unique and cannot be the same as the target CHAP secret.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If not specified, a random secret is created.&#x27;][&#x27;CHAP secret to use for the initiator.&#x27;, &#x27;Should be 12-16 characters long and impenetrable.&#x27;, &#x27;The CHAP initiator secrets must be unique and cannot be the same as the target CHAP secret.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If not specified, a random secret is created.&#x27;][&#x27;CHAP secret to use for the initiator.&#x27;, &#x27;Should be 12-16 characters long and impenetrable.&#x27;, &#x27;The CHAP initiator secrets must be unique and cannot be the same as the target CHAP secret.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If not specified, a random secret is created.&#x27;][&#x27;CHAP secret to use for the initiator.&#x27;, &#x27;Should be 12-16 characters long and impenetrable.&#x27;, &#x27;The CHAP initiator secrets must be unique and cannot be the same as the target CHAP secret.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If not specified, a random secret is created.&#x27;][&#x27;CHAP secret to use for the initiator.&#x27;, &#x27;Should be 12-16 characters long and impenetrable.&#x27;, &#x27;The CHAP initiator secrets must be unique and cannot be the same as the target CHAP secret.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If not specified, a random secret is created.&#x27;]
+        :param initiatorSecret:  CHAP secret to use for the initiator. Should be 12-16 characters long and impenetrable. The CHAP initiator secrets must be unique and cannot be the same as the target CHAP secret. <br/><br/> If not specified, a random secret is created. 
         :type initiatorSecret: CHAPSecret
         
-        :param targetSecret:  [&#x27;CHAP secret to use for the target (mutual CHAP authentication).&#x27;, &#x27;Should be 12-16 characters long and impenetrable.&#x27;, &#x27;The CHAP target secrets must be unique and cannot be the same as the initiator CHAP secret.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If not specified, a random secret is created.&#x27;][&#x27;CHAP secret to use for the target (mutual CHAP authentication).&#x27;, &#x27;Should be 12-16 characters long and impenetrable.&#x27;, &#x27;The CHAP target secrets must be unique and cannot be the same as the initiator CHAP secret.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If not specified, a random secret is created.&#x27;][&#x27;CHAP secret to use for the target (mutual CHAP authentication).&#x27;, &#x27;Should be 12-16 characters long and impenetrable.&#x27;, &#x27;The CHAP target secrets must be unique and cannot be the same as the initiator CHAP secret.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If not specified, a random secret is created.&#x27;][&#x27;CHAP secret to use for the target (mutual CHAP authentication).&#x27;, &#x27;Should be 12-16 characters long and impenetrable.&#x27;, &#x27;The CHAP target secrets must be unique and cannot be the same as the initiator CHAP secret.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If not specified, a random secret is created.&#x27;][&#x27;CHAP secret to use for the target (mutual CHAP authentication).&#x27;, &#x27;Should be 12-16 characters long and impenetrable.&#x27;, &#x27;The CHAP target secrets must be unique and cannot be the same as the initiator CHAP secret.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If not specified, a random secret is created.&#x27;]
+        :param targetSecret:  CHAP secret to use for the target (mutual CHAP authentication). Should be 12-16 characters long and impenetrable. The CHAP target secrets must be unique and cannot be the same as the initiator CHAP secret. <br/><br/> If not specified, a random secret is created. 
         :type targetSecret: CHAPSecret
         
-        :param attributes:  List of Name/Value pairs in JSON object format.
+        :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
 
@@ -96,7 +96,7 @@ class Element(ServiceBase):
             account_id,):
         """
         Returns details about an account, given its AccountID.
-        :param accountID: [required] Specifies the account for which details are gathered.
+        :param accountID: [required] Specifies the account for which details are gathered. 
         :type accountID: int
         """
 
@@ -118,7 +118,7 @@ class Element(ServiceBase):
             username,):
         """
         Returns details about an account, given its Username.
-        :param username: [required] Username for the account.
+        :param username: [required] Username for the account. 
         :type username: str
         """
 
@@ -141,10 +141,10 @@ class Element(ServiceBase):
             limit=OPTIONAL,):
         """
         Returns the entire list of accounts, with optional paging support.
-        :param startAccountID:  [&#x27;Starting AccountID to return.&#x27;, &#x27;If no Account exists with this AccountID,&#x27;, &#x27;the next Account by AccountID order is used as the start of the list.&#x27;, &#x27;To page through the list, pass the AccountID of the last Account in the previous response + 1&#x27;][&#x27;Starting AccountID to return.&#x27;, &#x27;If no Account exists with this AccountID,&#x27;, &#x27;the next Account by AccountID order is used as the start of the list.&#x27;, &#x27;To page through the list, pass the AccountID of the last Account in the previous response + 1&#x27;][&#x27;Starting AccountID to return.&#x27;, &#x27;If no Account exists with this AccountID,&#x27;, &#x27;the next Account by AccountID order is used as the start of the list.&#x27;, &#x27;To page through the list, pass the AccountID of the last Account in the previous response + 1&#x27;][&#x27;Starting AccountID to return.&#x27;, &#x27;If no Account exists with this AccountID,&#x27;, &#x27;the next Account by AccountID order is used as the start of the list.&#x27;, &#x27;To page through the list, pass the AccountID of the last Account in the previous response + 1&#x27;]
+        :param startAccountID:  Starting AccountID to return. If no Account exists with this AccountID, the next Account by AccountID order is used as the start of the list. To page through the list, pass the AccountID of the last Account in the previous response + 1 
         :type startAccountID: int
         
-        :param limit:  Maximum number of AccountInfo objects to return.
+        :param limit:  Maximum number of AccountInfo objects to return. 
         :type limit: int
         """
 
@@ -177,22 +177,22 @@ class Element(ServiceBase):
         When locking an account, any existing connections from that account are immediately terminated.
         When changing CHAP settings, any existing connections continue to be active,
         and the new CHAP values are only used on subsequent connection or reconnection.
-        :param accountID: [required] AccountID for the account to modify.
+        :param accountID: [required] AccountID for the account to modify. 
         :type accountID: int
         
-        :param username:  Change the username of the account to this value.
+        :param username:  Change the username of the account to this value. 
         :type username: str
         
-        :param status:  Status of the account.
+        :param status:  Status of the account. 
         :type status: str
         
-        :param initiatorSecret:  [&#x27;CHAP secret to use for the initiator.&#x27;, &#x27;Should be 12-16 characters long and impenetrable.&#x27;][&#x27;CHAP secret to use for the initiator.&#x27;, &#x27;Should be 12-16 characters long and impenetrable.&#x27;]
+        :param initiatorSecret:  CHAP secret to use for the initiator. Should be 12-16 characters long and impenetrable. 
         :type initiatorSecret: CHAPSecret
         
-        :param targetSecret:  [&#x27;CHAP secret to use for the target (mutual CHAP authentication).&#x27;, &#x27;Should be 12-16 characters long and impenetrable.&#x27;][&#x27;CHAP secret to use for the target (mutual CHAP authentication).&#x27;, &#x27;Should be 12-16 characters long and impenetrable.&#x27;]
+        :param targetSecret:  CHAP secret to use for the target (mutual CHAP authentication). Should be 12-16 characters long and impenetrable. 
         :type targetSecret: CHAPSecret
         
-        :param attributes:  List of Name/Value pairs in JSON object format.
+        :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
 
@@ -226,7 +226,7 @@ class Element(ServiceBase):
         Used to remove an existing account.
         All Volumes must be deleted and purged on the account before it can be removed.
         If volumes on the account are still pending deletion, RemoveAccount cannot be used until DeleteVolume to delete and purge the volumes.
-        :param accountID: [required] AccountID for the account to remove.
+        :param accountID: [required] AccountID for the account to remove. 
         :type accountID: int
         """
 
@@ -249,7 +249,7 @@ class Element(ServiceBase):
             force=OPTIONAL,):
         """
         GetAccountEfficiency is used to retrieve information about a volume account. Only the account given as a parameter in this API method is used to compute the capacity.
-        :param accountID: [required] Specifies the volume account for which capacity is computed.
+        :param accountID: [required] Specifies the volume account for which capacity is computed. 
         :type accountID: int
         
         :param force:  
@@ -277,10 +277,10 @@ class Element(ServiceBase):
             attributes=OPTIONAL,):
         """
         CreateBackupTarget allows you to create and store backup target information so that you do not need to re-enter it each time a backup is created.
-        :param name: [required] [&#x27;Name for the backup target.&#x27;]
+        :param name: [required] Name for the backup target. 
         :type name: str
         
-        :param attributes:  List of Name/Value pairs in JSON object format.
+        :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
 
@@ -304,7 +304,7 @@ class Element(ServiceBase):
             backup_target_id,):
         """
         GetBackupTarget allows you to return information about a specific backup target that has been created.
-        :param backupTargetID: [required] [&#x27;Unique identifier assigned to the backup target.&#x27;]
+        :param backupTargetID: [required] Unique identifier assigned to the backup target. 
         :type backupTargetID: int
         """
 
@@ -345,13 +345,13 @@ class Element(ServiceBase):
             attributes=OPTIONAL,):
         """
         ModifyBackupTarget is used to change attributes of a backup target.
-        :param backupTargetID: [required] [&#x27;Unique identifier assigned to the backup target.&#x27;]
+        :param backupTargetID: [required] Unique identifier assigned to the backup target. 
         :type backupTargetID: int
         
-        :param name:  [&#x27;Name for the backup target.&#x27;]
+        :param name:  Name for the backup target. 
         :type name: str
         
-        :param attributes:  List of Name/Value pairs in JSON object format.
+        :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
 
@@ -377,7 +377,7 @@ class Element(ServiceBase):
             backup_target_id,):
         """
         RemoveBackupTarget allows you to delete backup targets.
-        :param backupTargetID: [required] [&#x27;Unique target ID of the target to remove.&#x27;]
+        :param backupTargetID: [required] Unique target ID of the target to remove. 
         :type backupTargetID: int
         """
 
@@ -472,13 +472,13 @@ class Element(ServiceBase):
             event_queue_type=OPTIONAL,):
         """
         ListEvents returns events detected on the cluster, sorted from oldest to newest.
-        :param maxEvents:  Specifies the maximum number of events to return.
+        :param maxEvents:  Specifies the maximum number of events to return. 
         :type maxEvents: int
         
-        :param startEventID:  Identifies the beginning of a range of events to return.
+        :param startEventID:  Identifies the beginning of a range of events to return. 
         :type startEventID: int
         
-        :param endEventID:  Identifies the end of a range of events to return.
+        :param endEventID:  Identifies the end of a range of events to return. 
         :type endEventID: int
         
         :param eventQueueType:  
@@ -517,13 +517,13 @@ class Element(ServiceBase):
         :param exceptions:  
         :type exceptions: bool
         
-        :param bestPractices:  [&#x27;Include faults triggered by sub-optimal system configuration.&#x27;, &#x27;Possible values: true, false&#x27;][&#x27;Include faults triggered by sub-optimal system configuration.&#x27;, &#x27;Possible values: true, false&#x27;]
+        :param bestPractices:  Include faults triggered by sub-optimal system configuration. Possible values: true, false 
         :type bestPractices: bool
         
         :param update:  
         :type update: bool
         
-        :param faultTypes:  [&#x27;Determines the types of faults returned: current: List active, unresolved faults.&#x27;, &#x27;&lt;b&gt;resolved&lt;/b&gt;: List faults that were previously detected and resolved.&#x27;, &quot;&lt;b&gt;all&lt;/b&gt;: (Default) List both current and resolved faults. You can see the fault status in the &#x27;resolved&#x27; field of the Cluster Fault object.&quot;][&#x27;Determines the types of faults returned: current: List active, unresolved faults.&#x27;, &#x27;&lt;b&gt;resolved&lt;/b&gt;: List faults that were previously detected and resolved.&#x27;, &quot;&lt;b&gt;all&lt;/b&gt;: (Default) List both current and resolved faults. You can see the fault status in the &#x27;resolved&#x27; field of the Cluster Fault object.&quot;][&#x27;Determines the types of faults returned: current: List active, unresolved faults.&#x27;, &#x27;&lt;b&gt;resolved&lt;/b&gt;: List faults that were previously detected and resolved.&#x27;, &quot;&lt;b&gt;all&lt;/b&gt;: (Default) List both current and resolved faults. You can see the fault status in the &#x27;resolved&#x27; field of the Cluster Fault object.&quot;]
+        :param faultTypes:  Determines the types of faults returned: current: List active, unresolved faults. <b>resolved</b>: List faults that were previously detected and resolved. <b>all</b>: (Default) List both current and resolved faults. You can see the fault status in the 'resolved' field of the Cluster Fault object. 
         :type faultTypes: str
         """
 
@@ -552,7 +552,7 @@ class Element(ServiceBase):
             fault_types=OPTIONAL,):
         """
         ClearClusterFaults is used to clear information about both current faults that are resolved as well as faults that were previously detected and resolved can be cleared.
-        :param faultTypes:  [&#x27;Determines the types of faults cleared:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;current&lt;/b&gt;: Faults that are currently detected and have not been resolved.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;resolved&lt;/b&gt;: Faults that were previously detected and resolved.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;all&lt;/b&gt;: Both current and resolved faults are cleared. The fault status can be determined by the &quot;resolved&quot; field of the fault object.&#x27;][&#x27;Determines the types of faults cleared:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;current&lt;/b&gt;: Faults that are currently detected and have not been resolved.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;resolved&lt;/b&gt;: Faults that were previously detected and resolved.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;all&lt;/b&gt;: Both current and resolved faults are cleared. The fault status can be determined by the &quot;resolved&quot; field of the fault object.&#x27;][&#x27;Determines the types of faults cleared:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;current&lt;/b&gt;: Faults that are currently detected and have not been resolved.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;resolved&lt;/b&gt;: Faults that were previously detected and resolved.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;all&lt;/b&gt;: Both current and resolved faults are cleared. The fault status can be determined by the &quot;resolved&quot; field of the fault object.&#x27;][&#x27;Determines the types of faults cleared:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;current&lt;/b&gt;: Faults that are currently detected and have not been resolved.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;resolved&lt;/b&gt;: Faults that were previously detected and resolved.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;all&lt;/b&gt;: Both current and resolved faults are cleared. The fault status can be determined by the &quot;resolved&quot; field of the fault object.&#x27;]
+        :param faultTypes:  Determines the types of faults cleared:<br/> <b>current</b>: Faults that are currently detected and have not been resolved.<br/> <b>resolved</b>: Faults that were previously detected and resolved.<br/> <b>all</b>: Both current and resolved faults are cleared. The fault status can be determined by the "resolved" field of the fault object. 
         :type faultTypes: str
         """
 
@@ -613,13 +613,13 @@ class Element(ServiceBase):
             max_metadata_over_provision_factor=OPTIONAL,):
         """
         ModifyClusterFullThreshold is used to change the level at which an event is generated when the storage cluster approaches the capacity utilization requested. The number entered in this setting is used to indicate the number of node failures the system is required to recover from. For example, on a 10 node cluster, if you want to be alerted when the system cannot recover from 3 nodes failures, enter the value of "3". When this number is reached, a message alert is sent to the Event Log in the Cluster Management Console.
-        :param stage2AwareThreshold:  Number of nodes worth of capacity remaining on the cluster that triggers a notification.
+        :param stage2AwareThreshold:  Number of nodes worth of capacity remaining on the cluster that triggers a notification. 
         :type stage2AwareThreshold: int
         
-        :param stage3BlockThresholdPercent:  Percent below &quot;Error&quot; state to raise a cluster &quot;Warning&quot; alert.
+        :param stage3BlockThresholdPercent:  Percent below "Error" state to raise a cluster "Warning" alert. 
         :type stage3BlockThresholdPercent: int
         
-        :param maxMetadataOverProvisionFactor:  A value representative of the number of times metadata space can be over provisioned relative to the amount of space available. For example, if there was enough metadata space to store 100 TiB of volumes and this number was set to 5, then 500 TiB worth of volumes could be created.
+        :param maxMetadataOverProvisionFactor:  A value representative of the number of times metadata space can be over provisioned relative to the amount of space available. For example, if there was enough metadata space to store 100 TiB of volumes and this number was set to 5, then 500 TiB worth of volumes could be created. 
         :type maxMetadataOverProvisionFactor: int
         """
 
@@ -686,19 +686,19 @@ class Element(ServiceBase):
         AddClusterAdmin adds a new Cluster Admin. A Cluster Admin can be used to manage the cluster via the API and management tools. Cluster Admins are completely separate and unrelated to standard tenant accounts.
         <br/><br/>
         Each Cluster Admin can be restricted to a sub-set of the API. SolidFire recommends using multiple Cluster Admins for different users and applications. Each Cluster Admin should be given the minimal permissions necessary to reduce the potential impact of credential compromise.
-        :param username: [required] Unique username for this Cluster Admin.
+        :param username: [required] Unique username for this Cluster Admin. 
         :type username: str
         
-        :param password: [required] Password used to authenticate this Cluster Admin.
+        :param password: [required] Password used to authenticate this Cluster Admin. 
         :type password: str
         
-        :param access: [required] Controls which methods this Cluster Admin can use. For more details on the levels of access, see &quot;Access Control&quot; in the Element API Guide.
+        :param access: [required] Controls which methods this Cluster Admin can use. For more details on the levels of access, see "Access Control" in the Element API Guide. 
         :type access: str
         
-        :param acceptEula:  Indicate your acceptance of the End User License Agreement when creating this cluster admin. To accept the EULA, set this parameter to true.
+        :param acceptEula:  Indicate your acceptance of the End User License Agreement when creating this cluster admin. To accept the EULA, set this parameter to true. 
         :type acceptEula: bool
         
-        :param attributes:  List of Name/Value pairs in JSON object format.
+        :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
 
@@ -729,16 +729,16 @@ class Element(ServiceBase):
             attributes=OPTIONAL,):
         """
         ModifyClusterAdmin is used to change the settings for a Cluster Admin or LDAP Cluster Admin. Access for the administrator Cluster Admin account cannot be changed.
-        :param clusterAdminID: [required] ClusterAdminID for the Cluster Admin or LDAP Cluster Admin to modify.
+        :param clusterAdminID: [required] ClusterAdminID for the Cluster Admin or LDAP Cluster Admin to modify. 
         :type clusterAdminID: int
         
-        :param password:  Password used to authenticate this Cluster Admin.
+        :param password:  Password used to authenticate this Cluster Admin. 
         :type password: str
         
-        :param access:  Controls which methods this Cluster Admin can use. For more details on the levels of access, see &quot;Access Control&quot; in the Element API Guide.
+        :param access:  Controls which methods this Cluster Admin can use. For more details on the levels of access, see "Access Control" in the Element API Guide. 
         :type access: str
         
-        :param attributes:  List of Name/Value pairs in JSON object format.
+        :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
 
@@ -766,7 +766,7 @@ class Element(ServiceBase):
             cluster_admin_id,):
         """
         RemoveClusterAdmin is used to remove a Cluster Admin. The "admin" Cluster Admin cannot be removed.
-        :param clusterAdminID: [required] ClusterAdminID for the Cluster Admin to remove.
+        :param clusterAdminID: [required] ClusterAdminID for the Cluster Admin to remove. 
         :type clusterAdminID: int
         """
 
@@ -790,7 +790,7 @@ class Element(ServiceBase):
         The SetClusterConfig API method is used to set the configuration this node uses to communicate with the cluster it is associated with. To see the states in which these objects can be modified see Cluster Object on page 109. To display the current cluster interface settings for a node, run the GetClusterConfig API method.
         <br/><br/>
         <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
-        :param cluster: [required] Objects that are changed for the cluster interface settings. Only the fields you want changed need to be added to this method as objects in the &quot;cluster&quot; parameter.
+        :param cluster: [required] Objects that are changed for the cluster interface settings. Only the fields you want changed need to be added to this method as objects in the "cluster" parameter. 
         :type cluster: ClusterConfig
         """
 
@@ -831,10 +831,10 @@ class Element(ServiceBase):
             usm_users,):
         """
         SetSnmpACL is used to configure SNMP access permissions on the cluster nodes. The values set with this interface apply to all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpACL. Also note that the values set with this interface replace all "network" or "usmUsers" values set with the older SetSnmpInfo.
-        :param networks: [required] List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible &quot;networks&quot; values. REQUIRED if SNMP v# is disabled.
+        :param networks: [required] List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. REQUIRED if SNMP v# is disabled. 
         :type networks: SnmpNetwork
         
-        :param usmUsers: [required] List of users and the type of access they have to the SNMP servers running on the cluster nodes. REQUIRED if SNMP v3 is enabled.
+        :param usmUsers: [required] List of users and the type of access they have to the SNMP servers running on the cluster nodes. REQUIRED if SNMP v3 is enabled. 
         :type usmUsers: SnmpV3UsmUser
         """
 
@@ -878,16 +878,16 @@ class Element(ServiceBase):
             cluster_event_traps_enabled,):
         """
         SetSnmpTrapInfo is used to enable and disable the generation of SolidFire SNMP notifications (traps) and to specify the set of network host computers that are to receive the notifications. The values passed with each SetSnmpTrapInfo method replaces all values set in any previous method to SetSnmpTrapInfo.
-        :param trapRecipients: [required] List of hosts that are to receive the traps generated by the Cluster Master. At least one object is required if any one of the trap types is enabled.
+        :param trapRecipients: [required] List of hosts that are to receive the traps generated by the Cluster Master. At least one object is required if any one of the trap types is enabled. 
         :type trapRecipients: SnmpTrapRecipient
         
-        :param clusterFaultTrapsEnabled: [required] If &quot;true&quot;, when a cluster fault is logged a corresponding solidFireClusterFaultNotification is sent to the configured list of trap recipients.
+        :param clusterFaultTrapsEnabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterFaultNotification is sent to the configured list of trap recipients. 
         :type clusterFaultTrapsEnabled: bool
         
-        :param clusterFaultResolvedTrapsEnabled: [required] If &quot;true&quot;, when a cluster fault is logged a corresponding solidFireClusterFaultResolvedNotification is sent to the configured list of trap recipients.
+        :param clusterFaultResolvedTrapsEnabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterFaultResolvedNotification is sent to the configured list of trap recipients. 
         :type clusterFaultResolvedTrapsEnabled: bool
         
-        :param clusterEventTrapsEnabled: [required] If &quot;true&quot;, when a cluster fault is logged a corresponding solidFireClusterEventNotification is sent to the configured list of trap recipients.
+        :param clusterEventTrapsEnabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterEventNotification is sent to the configured list of trap recipients. 
         :type clusterEventTrapsEnabled: bool
         """
 
@@ -912,7 +912,7 @@ class Element(ServiceBase):
             snmp_v3_enabled,):
         """
         EnableSnmp is used to enable SNMP on the cluster nodes. The values set with this interface apply to all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to EnableSnmp.
-        :param snmpV3Enabled: [required] If set to &quot;true&quot;, then SNMP v3 is enabled on each node in the cluster. If set to &quot;false&quot;, then SNMP v2 is enabled.
+        :param snmpV3Enabled: [required] If set to "true", then SNMP v3 is enabled on each node in the cluster. If set to "false", then SNMP v2 is enabled. 
         :type snmpV3Enabled: bool
         """
 
@@ -975,16 +975,16 @@ class Element(ServiceBase):
         SetSnmpInfo is used to configure SNMP v2 and v3 on the cluster nodes. The values set with this interface apply to all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpInfo.
         <br/><br/>
         <b>Note</b>: EnableSnmp and SetSnmpACL methods can be used to accomplish the same results as SetSnmpInfo. SetSnmpInfo will no longer be available after the Element 8 release. Please use EnableSnmp and SetSnmpACL in the future.
-        :param networks:  List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible &quot;networks&quot; values. SNMP v2 only.
+        :param networks:  List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. SNMP v2 only. 
         :type networks: SnmpNetwork
         
-        :param enabled:  If set to &quot;true&quot;, then SNMP is enabled on each node in the cluster.
+        :param enabled:  If set to "true", then SNMP is enabled on each node in the cluster. 
         :type enabled: bool
         
-        :param snmpV3Enabled:  If set to &quot;true&quot;, then SNMP v3 is enabled on each node in the cluster.
+        :param snmpV3Enabled:  If set to "true", then SNMP v3 is enabled on each node in the cluster. 
         :type snmpV3Enabled: bool
         
-        :param usmUsers:  If SNMP v3 is enabled, this value must be passed in place of the &quot;networks&quot; parameter. SNMP v3 only.
+        :param usmUsers:  If SNMP v3 is enabled, this value must be passed in place of the "networks" parameter. SNMP v3 only. 
         :type usmUsers: SnmpV3UsmUser
         """
 
@@ -1147,7 +1147,7 @@ class Element(ServiceBase):
         <br/><br/>
         The result for a completed asynchronous method call can only be retrieved once.
         Once the final result has been returned, later attempts returns an error.
-        :param asyncHandle: [required] A value that was returned from the original asynchronous method call.
+        :param asyncHandle: [required] A value that was returned from the original asynchronous method call. 
         :type asyncHandle: int
         """
 
@@ -1178,7 +1178,7 @@ class Element(ServiceBase):
         <br/><br/>
         The method returns immediately. However, it may take some time for the data in the cluster to be rebalanced using the newly added drives.
         As the new drive(s) are syncing on the system, you can use the "ListSyncJobs" method to see how the drive(s) are being rebalanced and the progress of adding the new drive.
-        :param drives: [required] List of drives to add to the cluster.
+        :param drives: [required] List of drives to add to the cluster. 
         :type drives: NewDrive
         """
 
@@ -1218,7 +1218,7 @@ class Element(ServiceBase):
             drive_id,):
         """
         GetDriveHardwareInfo returns all the hardware info for the given drive. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
-        :param driveID: [required] DriveID for the drive information requested. DriveIDs can be obtained via the &quot;ListDrives&quot; method.
+        :param driveID: [required] DriveID for the drive information requested. DriveIDs can be obtained via the "ListDrives" method. 
         :type driveID: int
         """
 
@@ -1240,7 +1240,7 @@ class Element(ServiceBase):
             force,):
         """
         ListDriveHardware returns all the drives connected to a node. Use this method on the cluster to return drive hardware information for all the drives on all nodes.
-        :param force: [required] This must be set to true in order to retrieve the drive hardware stats from the cluster.
+        :param force: [required] This must be set to true in order to retrieve the drive hardware stats from the cluster. 
         :type force: bool
         """
 
@@ -1265,10 +1265,10 @@ class Element(ServiceBase):
         ResetDrives is used to pro-actively initialize drives and remove all data currently residing on the drive. The drive can then be reused in an existing node or used in an upgraded SolidFire node. This method requires the force=true parameter to be included in the method call.
         <br/><br/>
         <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
-        :param drives: [required] List of device names (not driveIDs) to reset.
+        :param drives: [required] List of device names (not driveIDs) to reset. 
         :type drives: str
         
-        :param force: [required] The &quot;force&quot; parameter must be included on this method to successfully reset a drive.
+        :param force: [required] The "force" parameter must be included on this method to successfully reset a drive. 
         :type force: bool
         """
 
@@ -1296,10 +1296,10 @@ class Element(ServiceBase):
         <b>Note</b>: This test takes approximately 10 minutes.
         <br/><br/>
         <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
-        :param minutes:  The number of minutes to run the test can be specified.
+        :param minutes:  The number of minutes to run the test can be specified. 
         :type minutes: int
         
-        :param force: [required] The &quot;force&quot; parameter must be included on this method to successfully test the drives on the node.
+        :param force: [required] The "force" parameter must be included on this method to successfully test the drives on the node. 
         :type force: bool
         """
 
@@ -1324,7 +1324,7 @@ class Element(ServiceBase):
         """
         GetDriveStats return high-level activity measurements for a single drive. Values are cumulative from the addition of the drive to the cluster. Some values are specific to Block Drives. Statistical data may not be returned for both block and metadata drives when running this method.
         For more information on which drive type returns which data, see Response Example (Block Drive) and Response Example (Volume Metadata Drive) in the SolidFire API guide.
-        :param driveID: [required] Specifies the drive for which statistics are gathered.
+        :param driveID: [required] Specifies the drive for which statistics are gathered. 
         :type driveID: int
         """
 
@@ -1350,7 +1350,7 @@ class Element(ServiceBase):
         The GetAsyncResult method can be used to check on the status of the secure erase operation.
         <br/><br/>
         Use the "ListDrives" method to obtain the driveIDs for the drives you want to secure erase.
-        :param drives: [required] List of driveIDs to secure erase.
+        :param drives: [required] List of driveIDs to secure erase. 
         :type drives: int
         """
 
@@ -1385,7 +1385,7 @@ class Element(ServiceBase):
         The drive is unavailable for use in the cluster.
         <br/><br/>
         Use the "ListDrives" method to obtain the driveIDs for the drives you want to remove.
-        :param drives: [required] List of driveIDs to remove from the cluster.
+        :param drives: [required] List of driveIDs to remove from the cluster. 
         :type drives: int
         """
 
@@ -1407,7 +1407,7 @@ class Element(ServiceBase):
             feature=OPTIONAL,):
         """
         GetFeatureStatus allows you to retrieve the status of a cluster feature.
-        :param feature:  [&#x27;Valid values: vvols: Find the status of the Virtual Volumes (VVOLs) cluster feature.&#x27;]
+        :param feature:  Valid values: vvols: Find the status of the Virtual Volumes (VVOLs) cluster feature. 
         :type feature: str
         """
 
@@ -1431,7 +1431,7 @@ class Element(ServiceBase):
             feature,):
         """
         EnableFeature allows you to enable cluster features that are disabled by default.
-        :param feature: [required] [&#x27;Valid values: vvols: Enable the Virtual Volumes (VVOLs) cluster feature.&#x27;]
+        :param feature: [required] Valid values: vvols: Enable the Virtual Volumes (VVOLs) cluster feature. 
         :type feature: str
         """
 
@@ -1472,7 +1472,7 @@ class Element(ServiceBase):
             force=OPTIONAL,):
         """
         The ListNodeFibreChannelPortInfo is used to return information about the Fibre Channel ports. The API method is intended for use on individual nodes; userid and password is required for access to individual Fibre Channel nodes. However, this method can be used on the cluster if the force=true parameter is included in the method call. When used on the cluster, all Fibre Channel interfaces are listed.
-        :param force:  Specify force=true to call method on all member nodes of the cluster.
+        :param force:  Specify force=true to call method on all member nodes of the cluster. 
         :type force: bool
         """
 
@@ -1514,7 +1514,7 @@ class Element(ServiceBase):
             type=OPTIONAL,):
         """
         You can use the GetClusterHardwareInfo method to retrieve the hardware status and information for all Fibre Channel nodes, iSCSI nodes and drives in the cluster. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
-        :param type:  Include only a certain type of hardware information in the response. Can be one of the following:drives: List only drive information in the response.nodes: List only node information in the response.all: Include both drive and node information in the response.If this parameter is omitted, a type of &quot;all&quot; is assumed.
+        :param type:  Include only a certain type of hardware information in the response. Can be one of the following:drives: List only drive information in the response.nodes: List only node information in the response.all: Include both drive and node information in the response.If this parameter is omitted, a type of "all" is assumed. 
         :type type: str
         """
 
@@ -1554,7 +1554,7 @@ class Element(ServiceBase):
             node_id,):
         """
         GetNodeHardwareInfo is used to return all the hardware info and status for the node specified. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
-        :param nodeID: [required] The ID of the node for which hardware information is being requested.  Information about a  node is returned if a   node is specified.
+        :param nodeID: [required] The ID of the node for which hardware information is being requested.  Information about a  node is returned if a   node is specified. 
         :type nodeID: int
         """
 
@@ -1594,7 +1594,7 @@ class Element(ServiceBase):
         """
         CreateInitiators enables you to create multiple new initiator IQNs or World Wide Port Names (WWPNs) and optionally assign them aliases and attributes. When you use CreateInitiators to create new initiators, you can also add them to volume access groups.
         If CreateInitiators fails to create one of the initiators provided in the parameter, the method returns an error and does not create any initiators (no partial completion is possible).
-        :param initiators: [required] [&#x27;A list of Initiator objects containing characteristics of each new initiator&#x27;]
+        :param initiators: [required] A list of Initiator objects containing characteristics of each new initiator 
         :type initiators: CreateInitiator
         """
 
@@ -1617,7 +1617,7 @@ class Element(ServiceBase):
         """
         ModifyInitiators enables you to change the attributes of an existing initiator. You cannot change the name of an existing initiator. If you need to change the name of an initiator, delete the existing initiator with DeleteInitiators and create a new one with CreateInitiators.
         If ModifyInitiators fails to change one of the initiators provided in the parameter, the method returns an error and does not create any initiators (no partial completion is possible).
-        :param initiators: [required] [&#x27;A list of Initiator objects containing characteristics of each initiator to modify.&#x27;]
+        :param initiators: [required] A list of Initiator objects containing characteristics of each initiator to modify. 
         :type initiators: ModifyInitiator
         """
 
@@ -1640,7 +1640,7 @@ class Element(ServiceBase):
         """
         DeleteInitiators enables you to delete one or more initiators from the system (and from any associated volumes or volume access groups).
         If DeleteInitiators fails to delete one of the initiators provided in the parameter, the system returns an error and does not delete any initiators (no partial completion is possible).
-        :param initiators: [required] [&#x27;An array of IDs of initiators to delete.&#x27;]
+        :param initiators: [required] An array of IDs of initiators to delete. 
         :type initiators: int
         """
 
@@ -1664,13 +1664,13 @@ class Element(ServiceBase):
             initiators=OPTIONAL,):
         """
         ListInitiators enables you to list initiator IQNs or World Wide Port Names (WWPNs).
-        :param startInitiatorID:  The initiator ID at which to begin the listing. You can supply this parameter or the &quot;initiators&quot; parameter, but not both.
+        :param startInitiatorID:  The initiator ID at which to begin the listing. You can supply this parameter or the "initiators" parameter, but not both. 
         :type startInitiatorID: int
         
-        :param limit:  The maximum number of initiator objects to return.
+        :param limit:  The maximum number of initiator objects to return. 
         :type limit: int
         
-        :param initiators:  A list of initiator IDs to retrieve. You can supply this parameter or the &quot;startInitiatorID&quot; parameter, but not both.
+        :param initiators:  A list of initiator IDs to retrieve. You can supply this parameter or the "startInitiatorID" parameter, but not both. 
         :type initiators: int
         """
 
@@ -1699,10 +1699,10 @@ class Element(ServiceBase):
         """
         This will invoke any API method supported by the SolidFire API for the version and port the connection is using.
         Returns a nested hashtable of key/value pairs that contain the result of the invoked method.
-        :param method: [required] The name of the method to invoke. This is case sensitive.
+        :param method: [required] The name of the method to invoke. This is case sensitive. 
         :type method: str
         
-        :param parameters:  [&#x27;An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked.&#x27;]
+        :param parameters:  An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked. 
         :type parameters: dict
         """
 
@@ -1731,16 +1731,16 @@ class Element(ServiceBase):
         AddLdapClusterAdmin is used to add a new LDAP Cluster Admin. An LDAP Cluster Admin can be used to manage the cluster via the API and management tools. LDAP Cluster Admins are completely separate and unrelated to standard tenant accounts.
         <br/><br/>
         An LDAP group that has been defined in Active Directory can also be added using this API method. The access level that is given to the group will be passed to the individual users in the LDAP group.
-        :param username: [required] The distinguished user name for the new LDAP cluster admin.
+        :param username: [required] The distinguished user name for the new LDAP cluster admin. 
         :type username: str
         
-        :param access: [required] Controls which methods this Cluster Admin can use. For more details on the levels of access, see the Access Control appendix in the SolidFire API Reference.
+        :param access: [required] Controls which methods this Cluster Admin can use. For more details on the levels of access, see the Access Control appendix in the SolidFire API Reference. 
         :type access: str
         
-        :param acceptEula:  Indicate your acceptance of the End User License Agreement when creating this cluster admin. To accept the EULA, set this parameter to true.
+        :param acceptEula:  Indicate your acceptance of the End User License Agreement when creating this cluster admin. To accept the EULA, set this parameter to true. 
         :type acceptEula: bool
         
-        :param attributes:  List of Name/Value pairs in JSON object format.
+        :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
 
@@ -1770,13 +1770,13 @@ class Element(ServiceBase):
             ldap_configuration=OPTIONAL,):
         """
         The TestLdapAuthentication is used to verify the currently enabled LDAP authentication configuration settings are correct. If the configuration settings are correct, the API call returns a list of the groups the tested user is a member of.
-        :param username: [required] The username to be tested.
+        :param username: [required] The username to be tested. 
         :type username: str
         
-        :param password: [required] The password for the username to be tester.
+        :param password: [required] The password for the username to be tester. 
         :type password: str
         
-        :param ldapConfiguration:  An ldapConfiguration object to be tested. If this parameter is provided, the API call will test the provided configuration even if LDAP authentication is currently disabled.
+        :param ldapConfiguration:  An ldapConfiguration object to be tested. If this parameter is provided, the API call will test the provided configuration even if LDAP authentication is currently disabled. 
         :type ldapConfiguration: LdapConfiguration
         """
 
@@ -1829,34 +1829,34 @@ class Element(ServiceBase):
             user_search_filter=OPTIONAL,):
         """
         The EnableLdapAuthentication method is used to configure an LDAP server connection to use for LDAP authentication to a SolidFire cluster. Users that are members on the LDAP server can then log in to a SolidFire storage system using their LDAP authentication userid and password.
-        :param authType:  [&#x27;Identifies which user authentcation method will be used. &lt;br/&gt;&#x27;, &#x27;Must be one of the following:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;DirectBind&lt;/b&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;SearchAndBind&lt;/b&gt; (default)&#x27;][&#x27;Identifies which user authentcation method will be used. &lt;br/&gt;&#x27;, &#x27;Must be one of the following:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;DirectBind&lt;/b&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;SearchAndBind&lt;/b&gt; (default)&#x27;][&#x27;Identifies which user authentcation method will be used. &lt;br/&gt;&#x27;, &#x27;Must be one of the following:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;DirectBind&lt;/b&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;SearchAndBind&lt;/b&gt; (default)&#x27;][&#x27;Identifies which user authentcation method will be used. &lt;br/&gt;&#x27;, &#x27;Must be one of the following:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;DirectBind&lt;/b&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;SearchAndBind&lt;/b&gt; (default)&#x27;]
+        :param authType:  Identifies which user authentcation method will be used. <br/> Must be one of the following:<br/> <b>DirectBind</b><br/> <b>SearchAndBind</b> (default) 
         :type authType: str
         
-        :param groupSearchBaseDN:  [&#x27;The base DN of the tree to start the group search (will do a subtree search from here).&#x27;]
+        :param groupSearchBaseDN:  The base DN of the tree to start the group search (will do a subtree search from here). 
         :type groupSearchBaseDN: str
         
-        :param groupSearchCustomFilter:  [&#x27;REQUIRED for CustomFilter&lt;br/&gt;&#x27;, &quot;For use with the CustomFilter search type, an LDAP filter to use to return the DNs of a user&#x27;s groups.&lt;br/&gt;&quot;, &#x27;The string can have placeholder text of %USERNAME% and %USERDN% to be replaced with their username and full userDN as needed.&#x27;][&#x27;REQUIRED for CustomFilter&lt;br/&gt;&#x27;, &quot;For use with the CustomFilter search type, an LDAP filter to use to return the DNs of a user&#x27;s groups.&lt;br/&gt;&quot;, &#x27;The string can have placeholder text of %USERNAME% and %USERDN% to be replaced with their username and full userDN as needed.&#x27;][&#x27;REQUIRED for CustomFilter&lt;br/&gt;&#x27;, &quot;For use with the CustomFilter search type, an LDAP filter to use to return the DNs of a user&#x27;s groups.&lt;br/&gt;&quot;, &#x27;The string can have placeholder text of %USERNAME% and %USERDN% to be replaced with their username and full userDN as needed.&#x27;]
+        :param groupSearchCustomFilter:  REQUIRED for CustomFilter<br/> For use with the CustomFilter search type, an LDAP filter to use to return the DNs of a user's groups.<br/> The string can have placeholder text of %USERNAME% and %USERDN% to be replaced with their username and full userDN as needed. 
         :type groupSearchCustomFilter: str
         
-        :param groupSearchType:  [&#x27;Controls the default group search filter used, can be one of the following:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;NoGroups&lt;/b&gt;: No group support.&lt;br/&gt;&#x27;, &quot;&lt;b&gt;ActiveDirectory&lt;/b&gt;: (default) Nested membership of all of a user&#x27;s AD groups.&lt;br/&gt;&quot;, &#x27;&lt;b&gt;MemberDN&lt;/b&gt;: MemberDN style groups (single-level).&#x27;][&#x27;Controls the default group search filter used, can be one of the following:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;NoGroups&lt;/b&gt;: No group support.&lt;br/&gt;&#x27;, &quot;&lt;b&gt;ActiveDirectory&lt;/b&gt;: (default) Nested membership of all of a user&#x27;s AD groups.&lt;br/&gt;&quot;, &#x27;&lt;b&gt;MemberDN&lt;/b&gt;: MemberDN style groups (single-level).&#x27;][&#x27;Controls the default group search filter used, can be one of the following:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;NoGroups&lt;/b&gt;: No group support.&lt;br/&gt;&#x27;, &quot;&lt;b&gt;ActiveDirectory&lt;/b&gt;: (default) Nested membership of all of a user&#x27;s AD groups.&lt;br/&gt;&quot;, &#x27;&lt;b&gt;MemberDN&lt;/b&gt;: MemberDN style groups (single-level).&#x27;][&#x27;Controls the default group search filter used, can be one of the following:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;NoGroups&lt;/b&gt;: No group support.&lt;br/&gt;&#x27;, &quot;&lt;b&gt;ActiveDirectory&lt;/b&gt;: (default) Nested membership of all of a user&#x27;s AD groups.&lt;br/&gt;&quot;, &#x27;&lt;b&gt;MemberDN&lt;/b&gt;: MemberDN style groups (single-level).&#x27;]
+        :param groupSearchType:  Controls the default group search filter used, can be one of the following:<br/> <b>NoGroups</b>: No group support.<br/> <b>ActiveDirectory</b>: (default) Nested membership of all of a user's AD groups.<br/> <b>MemberDN</b>: MemberDN style groups (single-level). 
         :type groupSearchType: str
         
-        :param searchBindDN:  [&#x27;REQUIRED for SearchAndBind&lt;br/&gt;&#x27;, &#x27;A fully qualified DN to log in with to perform an LDAP search for the user (needs read access to the LDAP directory).&#x27;][&#x27;REQUIRED for SearchAndBind&lt;br/&gt;&#x27;, &#x27;A fully qualified DN to log in with to perform an LDAP search for the user (needs read access to the LDAP directory).&#x27;]
+        :param searchBindDN:  REQUIRED for SearchAndBind<br/> A fully qualified DN to log in with to perform an LDAP search for the user (needs read access to the LDAP directory). 
         :type searchBindDN: str
         
-        :param searchBindPassword:  [&#x27;REQUIRED for SearchAndBind&lt;br/&gt;&#x27;, &#x27;The password for the searchBindDN account used for searching.&#x27;][&#x27;REQUIRED for SearchAndBind&lt;br/&gt;&#x27;, &#x27;The password for the searchBindDN account used for searching.&#x27;]
+        :param searchBindPassword:  REQUIRED for SearchAndBind<br/> The password for the searchBindDN account used for searching. 
         :type searchBindPassword: str
         
-        :param serverURIs: [required] [&#x27;A list of LDAP server URIs (examples: &quot;ldap://1.2.3.4&quot; and ldaps://1.2.3.4:123&quot;)&#x27;]
+        :param serverURIs: [required] A list of LDAP server URIs (examples: "ldap://1.2.3.4" and ldaps://1.2.3.4:123") 
         :type serverURIs: str
         
-        :param userDNTemplate:  [&#x27;REQUIRED for DirectBind&lt;br/&gt;&#x27;, &#x27;A string that is used to form a fully qualified user DN.&lt;br/&gt;&#x27;, &#x27;The string should have the placeholder text &quot;%USERNAME%&quot; which will be replaced with the username of the authenticating user.&#x27;][&#x27;REQUIRED for DirectBind&lt;br/&gt;&#x27;, &#x27;A string that is used to form a fully qualified user DN.&lt;br/&gt;&#x27;, &#x27;The string should have the placeholder text &quot;%USERNAME%&quot; which will be replaced with the username of the authenticating user.&#x27;][&#x27;REQUIRED for DirectBind&lt;br/&gt;&#x27;, &#x27;A string that is used to form a fully qualified user DN.&lt;br/&gt;&#x27;, &#x27;The string should have the placeholder text &quot;%USERNAME%&quot; which will be replaced with the username of the authenticating user.&#x27;]
+        :param userDNTemplate:  REQUIRED for DirectBind<br/> A string that is used to form a fully qualified user DN.<br/> The string should have the placeholder text "%USERNAME%" which will be replaced with the username of the authenticating user. 
         :type userDNTemplate: str
         
-        :param userSearchBaseDN:  [&#x27;REQUIRED for SearchAndBind&#x27;, &#x27;The base DN of the tree used to start the search (will do a subtree search from here).&#x27;][&#x27;REQUIRED for SearchAndBind&#x27;, &#x27;The base DN of the tree used to start the search (will do a subtree search from here).&#x27;]
+        :param userSearchBaseDN:  REQUIRED for SearchAndBind The base DN of the tree used to start the search (will do a subtree search from here). 
         :type userSearchBaseDN: str
         
-        :param userSearchFilter:  [&#x27;REQUIRED for SearchAndBind.&lt;br/&gt;&#x27;, &#x27;The LDAP filter to use.&lt;br/&gt;&#x27;, &#x27;The string should have the placeholder text &quot;%USERNAME%&quot; which will be replaced with the username of the authenticating user.&lt;br/&gt;&#x27;, &#x27;Example: (&amp;(objectClass=person) (sAMAccountName=%USERNAME%)) will use the sAMAccountName field in Active Directory to match the nusername entered at cluster login.&#x27;][&#x27;REQUIRED for SearchAndBind.&lt;br/&gt;&#x27;, &#x27;The LDAP filter to use.&lt;br/&gt;&#x27;, &#x27;The string should have the placeholder text &quot;%USERNAME%&quot; which will be replaced with the username of the authenticating user.&lt;br/&gt;&#x27;, &#x27;Example: (&amp;(objectClass=person) (sAMAccountName=%USERNAME%)) will use the sAMAccountName field in Active Directory to match the nusername entered at cluster login.&#x27;][&#x27;REQUIRED for SearchAndBind.&lt;br/&gt;&#x27;, &#x27;The LDAP filter to use.&lt;br/&gt;&#x27;, &#x27;The string should have the placeholder text &quot;%USERNAME%&quot; which will be replaced with the username of the authenticating user.&lt;br/&gt;&#x27;, &#x27;Example: (&amp;(objectClass=person) (sAMAccountName=%USERNAME%)) will use the sAMAccountName field in Active Directory to match the nusername entered at cluster login.&#x27;][&#x27;REQUIRED for SearchAndBind.&lt;br/&gt;&#x27;, &#x27;The LDAP filter to use.&lt;br/&gt;&#x27;, &#x27;The string should have the placeholder text &quot;%USERNAME%&quot; which will be replaced with the username of the authenticating user.&lt;br/&gt;&#x27;, &#x27;Example: (&amp;(objectClass=person) (sAMAccountName=%USERNAME%)) will use the sAMAccountName field in Active Directory to match the nusername entered at cluster login.&#x27;]
+        :param userSearchFilter:  REQUIRED for SearchAndBind.<br/> The LDAP filter to use.<br/> The string should have the placeholder text "%USERNAME%" which will be replaced with the username of the authenticating user.<br/> Example: (&(objectClass=person) (sAMAccountName=%USERNAME%)) will use the sAMAccountName field in Active Directory to match the nusername entered at cluster login. 
         :type userSearchFilter: str
         """
 
@@ -1975,7 +1975,7 @@ class Element(ServiceBase):
         Once a node has been added, the drives on the node are made available and can then be added via the "AddDrives" method to increase the storage capacity of the cluster.
         <br/><br/>
         <b>Note</b>: It may take several seconds after adding a new Node for it to start up and register the drives as being available.
-        :param pendingNodes: [required] List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method.
+        :param pendingNodes: [required] List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method. 
         :type pendingNodes: int
         """
 
@@ -1999,7 +1999,7 @@ class Element(ServiceBase):
         RemoveNodes is used to remove one or more nodes that should no longer participate in the cluster. Before removing a node, all drives it contains must first be removed with "RemoveDrives" method. A node cannot be removed until the RemoveDrives process has completed and all data has been migrated away from the node.
         <br/><br/>
         Once removed, a node registers itself as a pending node and can be added again, or shut down which removes it from the "Pending Node" list.
-        :param nodes: [required] List of NodeIDs for the nodes to be removed.
+        :param nodes: [required] List of NodeIDs for the nodes to be removed. 
         :type nodes: int
         """
 
@@ -2044,7 +2044,7 @@ class Element(ServiceBase):
         <b>Warning!</b> Changing the 'bond-mode' on a node can cause a temporary loss of network connectivity. Caution should be taken when using this method.
         <br/><br/>
         <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
-        :param config: [required] Objects that you want changed for the cluster interface settings.
+        :param config: [required] Objects that you want changed for the cluster interface settings. 
         :type config: Config
         """
 
@@ -2070,7 +2070,7 @@ class Element(ServiceBase):
         <b>WARNING!</b> Changing the "bond-mode" on a node can cause a temporary loss of network connectivity. Caution should be taken when using this method.
         <br/><br/>
         <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
-        :param network: [required] Objects that will be changed for the node network settings.
+        :param network: [required] Objects that will be changed for the node network settings. 
         :type network: Network
         """
 
@@ -2111,7 +2111,7 @@ class Element(ServiceBase):
             node_id,):
         """
         GetNodeStats is used to return the high-level activity measurements for a single node.
-        :param nodeID: [required] Specifies the node for which statistics are gathered.
+        :param nodeID: [required] Specifies the node for which statistics are gathered. 
         :type nodeID: int
         """
 
@@ -2207,10 +2207,10 @@ class Element(ServiceBase):
         """
         StartVolumePairing is used to create an encoded key from a volume that is used to pair with another volume.
         The key that this method creates is used in the "CompleteVolumePairing" API method to establish a volume pairing.
-        :param volumeID: [required] The ID of the volume on which to start the pairing process.
+        :param volumeID: [required] The ID of the volume on which to start the pairing process. 
         :type volumeID: int
         
-        :param mode:  [&#x27;The mode of the volume on which to start the pairing process. The mode can only be set if the volume is the source volume.&lt;br/&gt;&#x27;, &#x27;Possible values:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Async&lt;/b&gt;: (default if no mode parameter specified) Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Sync&lt;/b&gt;: Source acknowledges write when the data is stored locally and on the remote cluster.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;SnapshotsOnly&lt;/b&gt;: Only snapshots created on the source cluster will be replicated. Active writes from the source volume will not be replicated.&lt;br/&gt;&#x27;][&#x27;The mode of the volume on which to start the pairing process. The mode can only be set if the volume is the source volume.&lt;br/&gt;&#x27;, &#x27;Possible values:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Async&lt;/b&gt;: (default if no mode parameter specified) Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Sync&lt;/b&gt;: Source acknowledges write when the data is stored locally and on the remote cluster.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;SnapshotsOnly&lt;/b&gt;: Only snapshots created on the source cluster will be replicated. Active writes from the source volume will not be replicated.&lt;br/&gt;&#x27;][&#x27;The mode of the volume on which to start the pairing process. The mode can only be set if the volume is the source volume.&lt;br/&gt;&#x27;, &#x27;Possible values:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Async&lt;/b&gt;: (default if no mode parameter specified) Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Sync&lt;/b&gt;: Source acknowledges write when the data is stored locally and on the remote cluster.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;SnapshotsOnly&lt;/b&gt;: Only snapshots created on the source cluster will be replicated. Active writes from the source volume will not be replicated.&lt;br/&gt;&#x27;][&#x27;The mode of the volume on which to start the pairing process. The mode can only be set if the volume is the source volume.&lt;br/&gt;&#x27;, &#x27;Possible values:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Async&lt;/b&gt;: (default if no mode parameter specified) Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Sync&lt;/b&gt;: Source acknowledges write when the data is stored locally and on the remote cluster.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;SnapshotsOnly&lt;/b&gt;: Only snapshots created on the source cluster will be replicated. Active writes from the source volume will not be replicated.&lt;br/&gt;&#x27;][&#x27;The mode of the volume on which to start the pairing process. The mode can only be set if the volume is the source volume.&lt;br/&gt;&#x27;, &#x27;Possible values:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Async&lt;/b&gt;: (default if no mode parameter specified) Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Sync&lt;/b&gt;: Source acknowledges write when the data is stored locally and on the remote cluster.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;SnapshotsOnly&lt;/b&gt;: Only snapshots created on the source cluster will be replicated. Active writes from the source volume will not be replicated.&lt;br/&gt;&#x27;]
+        :param mode:  The mode of the volume on which to start the pairing process. The mode can only be set if the volume is the source volume.<br/> Possible values:<br/> <b>Async</b>: (default if no mode parameter specified) Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.<br/> <b>Sync</b>: Source acknowledges write when the data is stored locally and on the remote cluster.<br/> <b>SnapshotsOnly</b>: Only snapshots created on the source cluster will be replicated. Active writes from the source volume will not be replicated.<br/> 
         :type mode: str
         """
 
@@ -2235,7 +2235,7 @@ class Element(ServiceBase):
         """
         The CompleteClusterPairing method is the second step in the cluster pairing process.
         Use this method with the encoded key received from the "StartClusterPairing" API method to complete the cluster pairing process.
-        :param clusterPairingKey: [required] A string of characters that is returned from the &quot;StartClusterPairing&quot; API method.
+        :param clusterPairingKey: [required] A string of characters that is returned from the "StartClusterPairing" API method. 
         :type clusterPairingKey: str
         """
 
@@ -2258,10 +2258,10 @@ class Element(ServiceBase):
             volume_id,):
         """
         CompleteVolumePairing is used to complete the pairing of two volumes.
-        :param volumePairingKey: [required] The key returned from the &quot;StartVolumePairing&quot; API method.
+        :param volumePairingKey: [required] The key returned from the "StartVolumePairing" API method. 
         :type volumePairingKey: str
         
-        :param volumeID: [required] The ID of volume on which to complete the pairing process.
+        :param volumeID: [required] The ID of volume on which to complete the pairing process. 
         :type volumeID: int
         """
 
@@ -2285,7 +2285,7 @@ class Element(ServiceBase):
         """
         You can use the RemoveClusterPair method to close the open connections between two paired clusters.<br/>
         <b>Note</b>: Before you remove a cluster pair, you must first remove all volume pairing to the clusters with the "RemoveVolumePair" API method.
-        :param clusterPairID: [required] Unique identifier used to pair two clusters.
+        :param clusterPairID: [required] Unique identifier used to pair two clusters. 
         :type clusterPairID: int
         """
 
@@ -2309,7 +2309,7 @@ class Element(ServiceBase):
         RemoveVolumePair is used to remove the remote pairing between two volumes.
         When the volume pairing information is removed, data is no longer replicated to or from the volume.
         This method should be run on both the source and target volumes that are paired together.
-        :param volumeID: [required] ID of the volume on which to stop the replication process.
+        :param volumeID: [required] ID of the volume on which to stop the replication process. 
         :type volumeID: int
         """
 
@@ -2333,13 +2333,13 @@ class Element(ServiceBase):
             mode=OPTIONAL,):
         """
         ModifyVolumePair is used to pause or restart replication between a pair of volumes.
-        :param volumeID: [required] Identification number of the volume to be modified.
+        :param volumeID: [required] Identification number of the volume to be modified. 
         :type volumeID: int
         
-        :param pausedManual:  [&#x27;Valid values that can be entered:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;true&lt;/b&gt;: to pause volume replication.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;false&lt;/b&gt;: to restart volume replication.&lt;br/&gt;&#x27;, &#x27;If no value is specified, no change in replication is performed.&#x27;][&#x27;Valid values that can be entered:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;true&lt;/b&gt;: to pause volume replication.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;false&lt;/b&gt;: to restart volume replication.&lt;br/&gt;&#x27;, &#x27;If no value is specified, no change in replication is performed.&#x27;][&#x27;Valid values that can be entered:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;true&lt;/b&gt;: to pause volume replication.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;false&lt;/b&gt;: to restart volume replication.&lt;br/&gt;&#x27;, &#x27;If no value is specified, no change in replication is performed.&#x27;][&#x27;Valid values that can be entered:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;true&lt;/b&gt;: to pause volume replication.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;false&lt;/b&gt;: to restart volume replication.&lt;br/&gt;&#x27;, &#x27;If no value is specified, no change in replication is performed.&#x27;]
+        :param pausedManual:  Valid values that can be entered:<br/> <b>true</b>: to pause volume replication.<br/> <b>false</b>: to restart volume replication.<br/> If no value is specified, no change in replication is performed. 
         :type pausedManual: bool
         
-        :param mode:  [&#x27;Volume replication mode.&lt;br/&gt;&#x27;, &#x27;Possible values:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Async&lt;/b&gt;: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Sync&lt;/b&gt;: The source acknowledges the write when the data is stored locally and on the remote cluster.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;SnapshotsOnly&lt;/b&gt;: Only snapshots created on the source cluster will be replicated. Active writes from the source volume are not replicated.&lt;br/&gt;&#x27;][&#x27;Volume replication mode.&lt;br/&gt;&#x27;, &#x27;Possible values:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Async&lt;/b&gt;: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Sync&lt;/b&gt;: The source acknowledges the write when the data is stored locally and on the remote cluster.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;SnapshotsOnly&lt;/b&gt;: Only snapshots created on the source cluster will be replicated. Active writes from the source volume are not replicated.&lt;br/&gt;&#x27;][&#x27;Volume replication mode.&lt;br/&gt;&#x27;, &#x27;Possible values:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Async&lt;/b&gt;: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Sync&lt;/b&gt;: The source acknowledges the write when the data is stored locally and on the remote cluster.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;SnapshotsOnly&lt;/b&gt;: Only snapshots created on the source cluster will be replicated. Active writes from the source volume are not replicated.&lt;br/&gt;&#x27;][&#x27;Volume replication mode.&lt;br/&gt;&#x27;, &#x27;Possible values:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Async&lt;/b&gt;: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Sync&lt;/b&gt;: The source acknowledges the write when the data is stored locally and on the remote cluster.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;SnapshotsOnly&lt;/b&gt;: Only snapshots created on the source cluster will be replicated. Active writes from the source volume are not replicated.&lt;br/&gt;&#x27;][&#x27;Volume replication mode.&lt;br/&gt;&#x27;, &#x27;Possible values:&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Async&lt;/b&gt;: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Sync&lt;/b&gt;: The source acknowledges the write when the data is stored locally and on the remote cluster.&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;SnapshotsOnly&lt;/b&gt;: Only snapshots created on the source cluster will be replicated. Active writes from the source volume are not replicated.&lt;br/&gt;&#x27;]
+        :param mode:  Volume replication mode.<br/> Possible values:<br/> <b>Async</b>: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.<br/> <b>Sync</b>: The source acknowledges the write when the data is stored locally and on the remote cluster.<br/> <b>SnapshotsOnly</b>: Only snapshots created on the source cluster will be replicated. Active writes from the source volume are not replicated.<br/> 
         :type mode: str
         """
 
@@ -2360,6 +2360,31 @@ class Element(ServiceBase):
             params
         )
 
+    def list_protocol_endpoints(
+            self,
+            protocol_endpoint_ids=OPTIONAL,):
+        """
+        Gets protocol endpoints in the system
+        If protocolEndpointIDs isn't specified all protocol endpoints
+        are returned. Else the supplied protocolEndpointIDs are.
+        :param protocolEndpointIDs:  
+        :type protocolEndpointIDs: UUID
+        """
+
+        self._check_connection_type("list_protocol_endpoints", "Cluster")
+
+        params = { 
+        }
+        if protocol_endpoint_ids is not None:
+            params["protocolEndpointIDs"] = protocol_endpoint_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListProtocolEndpoints',
+            ListProtocolEndpointsResult,
+            params
+        )
+
     def create_snapshot(
             self,
             volume_id,
@@ -2374,22 +2399,22 @@ class Element(ServiceBase):
         <br/><br/>
         <b>Note</b>: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
         Snapshots are not created when cluster fullness is at stage 4 or 5.
-        :param volumeID: [required] ID of the volume image from which to copy.
+        :param volumeID: [required] ID of the volume image from which to copy. 
         :type volumeID: int
         
-        :param snapshotID:  [&#x27;Unique ID of a snapshot from which the new snapshot is made.&#x27;, &#x27;The snapshotID passed must be a snapshot on the given volume.&#x27;, &quot;If a SnapshotID is not provided, a snapshot is created from the volume&#x27;s active branch.&quot;][&#x27;Unique ID of a snapshot from which the new snapshot is made.&#x27;, &#x27;The snapshotID passed must be a snapshot on the given volume.&#x27;, &quot;If a SnapshotID is not provided, a snapshot is created from the volume&#x27;s active branch.&quot;][&#x27;Unique ID of a snapshot from which the new snapshot is made.&#x27;, &#x27;The snapshotID passed must be a snapshot on the given volume.&#x27;, &quot;If a SnapshotID is not provided, a snapshot is created from the volume&#x27;s active branch.&quot;]
+        :param snapshotID:  Unique ID of a snapshot from which the new snapshot is made. The snapshotID passed must be a snapshot on the given volume. If a SnapshotID is not provided, a snapshot is created from the volume's active branch. 
         :type snapshotID: int
         
-        :param name:  [&#x27;A name for the snapshot.&#x27;, &#x27;If no name is provided, the date and time the snapshot was taken is used.&#x27;][&#x27;A name for the snapshot.&#x27;, &#x27;If no name is provided, the date and time the snapshot was taken is used.&#x27;]
+        :param name:  A name for the snapshot. If no name is provided, the date and time the snapshot was taken is used. 
         :type name: str
         
-        :param enableRemoteReplication:  Identifies if snapshot is enabled for remote replication.
+        :param enableRemoteReplication:  Identifies if snapshot is enabled for remote replication. 
         :type enableRemoteReplication: bool
         
-        :param retention:  [&#x27;The amount of time the snapshot will be retained. Enter in HH:mm:ss&#x27;]
+        :param retention:  The amount of time the snapshot will be retained. Enter in HH:mm:ss 
         :type retention: str
         
-        :param attributes:  List of Name/Value pairs in JSON object format.
+        :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
 
@@ -2424,7 +2449,7 @@ class Element(ServiceBase):
         A snapshot that is currently the "active" snapshot cannot be deleted.
         You must rollback and make another snapshot "active" before the current snapshot can be deleted.
         To rollback a snapshot, use RollbackToSnapshot.
-        :param snapshotID: [required] The ID of the snapshot to delete.
+        :param snapshotID: [required] The ID of the snapshot to delete. 
         :type snapshotID: int
         """
 
@@ -2446,7 +2471,7 @@ class Element(ServiceBase):
             volume_id=OPTIONAL,):
         """
         ListSnapshots is used to return the attributes of each snapshot taken on the volume.
-        :param volumeID:  [&#x27;The volume to list snapshots for.&#x27;, &#x27;If not provided, all snapshots for all volumes are returned.&#x27;][&#x27;The volume to list snapshots for.&#x27;, &#x27;If not provided, all snapshots for all volumes are returned.&#x27;]
+        :param volumeID:  The volume to list snapshots for. If not provided, all snapshots for all volumes are returned. 
         :type volumeID: int
         """
 
@@ -2472,13 +2497,13 @@ class Element(ServiceBase):
         """
         ModifySnapshot is used to change the attributes currently assigned to a snapshot.
         Use this API method to enable the snapshots created on the Read/Write (source) volume to be remotely replicated to a target SolidFire storage system.
-        :param snapshotID: [required] ID of the snapshot.
+        :param snapshotID: [required] ID of the snapshot. 
         :type snapshotID: int
         
-        :param expirationTime:  Use to set the time when the snapshot should be removed.
+        :param expirationTime:  Use to set the time when the snapshot should be removed. 
         :type expirationTime: str
         
-        :param enableRemoteReplication:  [&#x27;Use to enable the snapshot created to be replicated to a remote SolidFire cluster.&#x27;, &#x27;Possible values:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;true&lt;/b&gt;: the snapshot will be replicated to remote storage.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;false&lt;/b&gt;: Default. No replication.&#x27;][&#x27;Use to enable the snapshot created to be replicated to a remote SolidFire cluster.&#x27;, &#x27;Possible values:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;true&lt;/b&gt;: the snapshot will be replicated to remote storage.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;false&lt;/b&gt;: Default. No replication.&#x27;][&#x27;Use to enable the snapshot created to be replicated to a remote SolidFire cluster.&#x27;, &#x27;Possible values:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;true&lt;/b&gt;: the snapshot will be replicated to remote storage.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;false&lt;/b&gt;: Default. No replication.&#x27;][&#x27;Use to enable the snapshot created to be replicated to a remote SolidFire cluster.&#x27;, &#x27;Possible values:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;true&lt;/b&gt;: the snapshot will be replicated to remote storage.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;false&lt;/b&gt;: Default. No replication.&#x27;]
+        :param enableRemoteReplication:  Use to enable the snapshot created to be replicated to a remote SolidFire cluster. Possible values: <br/><b>true</b>: the snapshot will be replicated to remote storage. <br/><b>false</b>: Default. No replication. 
         :type enableRemoteReplication: bool
         """
 
@@ -2514,19 +2539,19 @@ class Element(ServiceBase):
         a value of "true."
         <b>Note</b>: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
         Snapshots are not created when cluster fullness is at stage 4 or 5.
-        :param volumeID: [required] [&#x27;VolumeID for the volume.&#x27;]
+        :param volumeID: [required] VolumeID for the volume. 
         :type volumeID: int
         
-        :param snapshotID: [required] [&#x27;ID of a previously created snapshot on the given volume.&#x27;]
+        :param snapshotID: [required] ID of a previously created snapshot on the given volume. 
         :type snapshotID: int
         
-        :param saveCurrentState: [required] [&#x27;&lt;br/&gt;&lt;b&gt;true&lt;/b&gt;: The previous active volume image is kept.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;false&lt;/b&gt;: (default) The previous active volume image is deleted.&#x27;][&#x27;&lt;br/&gt;&lt;b&gt;true&lt;/b&gt;: The previous active volume image is kept.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;false&lt;/b&gt;: (default) The previous active volume image is deleted.&#x27;]
+        :param saveCurrentState: [required] <br/><b>true</b>: The previous active volume image is kept. <br/><b>false</b>: (default) The previous active volume image is deleted. 
         :type saveCurrentState: bool
         
-        :param name:  [&#x27;Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with &#x27;, &#x27;&quot;-copy&quot; appended to the end of the name.&#x27;][&#x27;Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with &#x27;, &#x27;&quot;-copy&quot; appended to the end of the name.&#x27;]
+        :param name:  Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with  "-copy" appended to the end of the name. 
         :type name: str
         
-        :param attributes:  [&#x27;List of Name/Value pairs in JSON object format&#x27;]
+        :param attributes:  List of Name/Value pairs in JSON object format 
         :type attributes: dict
         """
 
@@ -2562,19 +2587,19 @@ class Element(ServiceBase):
         <br/><br/>
         <b>Note</b>: Creating a group snapshot is allowed if cluster fullness is at stage 2 or 3.
         Snapshots are not created when cluster fullness is at stage 4 or 5.
-        :param volumes: [required] Unique ID of the volume image from which to copy.
+        :param volumes: [required] Unique ID of the volume image from which to copy. 
         :type volumes: int
         
-        :param name:  [&#x27;A name for the snapshot.&#x27;, &#x27;If no name is provided, the date and time the snapshot was taken is used.&#x27;][&#x27;A name for the snapshot.&#x27;, &#x27;If no name is provided, the date and time the snapshot was taken is used.&#x27;]
+        :param name:  A name for the snapshot. If no name is provided, the date and time the snapshot was taken is used. 
         :type name: str
         
-        :param enableRemoteReplication:  Identifies if snapshot is enabled for remote replication.
+        :param enableRemoteReplication:  Identifies if snapshot is enabled for remote replication. 
         :type enableRemoteReplication: bool
         
-        :param retention:  [&#x27;The amount of time the snapshot will be retained. Enter in HH:mm:ss&#x27;]
+        :param retention:  The amount of time the snapshot will be retained. Enter in HH:mm:ss 
         :type retention: str
         
-        :param attributes:  List of Name/Value pairs in JSON object format.
+        :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
 
@@ -2607,10 +2632,10 @@ class Element(ServiceBase):
         DeleteGroupSnapshot is used to delete a group snapshot.
         The saveMembers parameter can be used to preserve all the snapshots that
         were made for the volumes in the group but the group association will be removed.
-        :param groupSnapshotID: [required] Unique ID of the group snapshot.
+        :param groupSnapshotID: [required] Unique ID of the group snapshot. 
         :type groupSnapshotID: int
         
-        :param saveMembers: [required] [&#x27;&lt;br/&gt;&lt;b&gt;true&lt;/b&gt;: Snapshots are kept, but group association is removed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;false&lt;/b&gt;: The group and snapshots are deleted.&#x27;][&#x27;&lt;br/&gt;&lt;b&gt;true&lt;/b&gt;: Snapshots are kept, but group association is removed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;false&lt;/b&gt;: The group and snapshots are deleted.&#x27;]
+        :param saveMembers: [required] <br/><b>true</b>: Snapshots are kept, but group association is removed. <br/><b>false</b>: The group and snapshots are deleted. 
         :type saveMembers: bool
         """
 
@@ -2633,7 +2658,7 @@ class Element(ServiceBase):
             volume_id=OPTIONAL,):
         """
         ListGroupSnapshots is used to return information about all group snapshots that have been created.
-        :param volumeID:  [&#x27;An array of unique volume IDs to query.&#x27;, &#x27;If this parameter is not specified, all group snapshots on the cluster will be included.&#x27;][&#x27;An array of unique volume IDs to query.&#x27;, &#x27;If this parameter is not specified, all group snapshots on the cluster will be included.&#x27;]
+        :param volumeID:  An array of unique volume IDs to query. If this parameter is not specified, all group snapshots on the cluster will be included. 
         :type volumeID: int
         """
 
@@ -2658,13 +2683,13 @@ class Element(ServiceBase):
             enable_remote_replication=OPTIONAL,):
         """
         ModifyGroupSnapshot is used to change the attributes currently assigned to a group snapshot.
-        :param groupSnapshotID: [required] ID of the snapshot.
+        :param groupSnapshotID: [required] ID of the snapshot. 
         :type groupSnapshotID: int
         
-        :param expirationTime:  Use to set the time when the snapshot should be removed.
+        :param expirationTime:  Use to set the time when the snapshot should be removed. 
         :type expirationTime: str
         
-        :param enableRemoteReplication:  [&#x27;Use to enable the snapshot created to be replicated to a remote SolidFire cluster.&#x27;, &#x27;Possible values:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;true&lt;/b&gt;: the snapshot will be replicated to remote storage.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;false&lt;/b&gt;: Default. No replication.&#x27;][&#x27;Use to enable the snapshot created to be replicated to a remote SolidFire cluster.&#x27;, &#x27;Possible values:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;true&lt;/b&gt;: the snapshot will be replicated to remote storage.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;false&lt;/b&gt;: Default. No replication.&#x27;][&#x27;Use to enable the snapshot created to be replicated to a remote SolidFire cluster.&#x27;, &#x27;Possible values:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;true&lt;/b&gt;: the snapshot will be replicated to remote storage.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;false&lt;/b&gt;: Default. No replication.&#x27;][&#x27;Use to enable the snapshot created to be replicated to a remote SolidFire cluster.&#x27;, &#x27;Possible values:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;true&lt;/b&gt;: the snapshot will be replicated to remote storage.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;false&lt;/b&gt;: Default. No replication.&#x27;]
+        :param enableRemoteReplication:  Use to enable the snapshot created to be replicated to a remote SolidFire cluster. Possible values: <br/><b>true</b>: the snapshot will be replicated to remote storage. <br/><b>false</b>: Default. No replication. 
         :type enableRemoteReplication: bool
         """
 
@@ -2697,16 +2722,16 @@ class Element(ServiceBase):
         <br/><br/>
         <b>Note</b>: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
         Snapshots are not created when cluster fullness is at stage 4 or 5.
-        :param groupSnapshotID: [required] [&#x27;Unique ID of the group snapshot.&#x27;]
+        :param groupSnapshotID: [required] Unique ID of the group snapshot. 
         :type groupSnapshotID: int
         
-        :param saveCurrentState: [required] [&#x27;&lt;br/&gt;&lt;b&gt;true&lt;/b&gt;: The previous active volume image is kept.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;false&lt;/b&gt;: (default) The previous active volume image is deleted.&#x27;][&#x27;&lt;br/&gt;&lt;b&gt;true&lt;/b&gt;: The previous active volume image is kept.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;false&lt;/b&gt;: (default) The previous active volume image is deleted.&#x27;]
+        :param saveCurrentState: [required] <br/><b>true</b>: The previous active volume image is kept. <br/><b>false</b>: (default) The previous active volume image is deleted. 
         :type saveCurrentState: bool
         
-        :param name:  [&#x27;Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with &#x27;, &#x27;&quot;-copy&quot; appended to the end of the name.&#x27;][&#x27;Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with &#x27;, &#x27;&quot;-copy&quot; appended to the end of the name.&#x27;]
+        :param name:  Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with  "-copy" appended to the end of the name. 
         :type name: str
         
-        :param attributes:  [&#x27;List of Name/Value pairs in JSON object format&#x27;]
+        :param attributes:  List of Name/Value pairs in JSON object format 
         :type attributes: dict
         """
 
@@ -2734,7 +2759,7 @@ class Element(ServiceBase):
             schedule_id,):
         """
         GetSchedule is used to return information about a scheduled snapshot that has been created. You can see information about a specified schedule if there are many snapshot schedules in the system. You can include more than one schedule with this method by specifying additional scheduleIDs to the parameter.
-        :param scheduleID: [required] [&#x27;Unique ID of the schedule or multiple schedules to display&#x27;]
+        :param scheduleID: [required] Unique ID of the schedule or multiple schedules to display 
         :type scheduleID: int
         """
 
@@ -2778,7 +2803,7 @@ class Element(ServiceBase):
         The snapshot created can be used later as a backup or rollback to ensure the data on a volume or group of volumes is consistent for the point in time in which the snapshot was created. <br/>
         <br/>
         <b>Note</b>: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is at stage 4 or 5.
-        :param schedule: [required] [&#x27;The &quot;Schedule&quot; object will be used to create a new schedule.&lt;br/&gt;&#x27;, &#x27;Do not set ScheduleID property, it will be ignored.&lt;br/&gt;&#x27;, &#x27;Frequency property must be of type that inherits from Frequency. Valid types are:&lt;br/&gt;&#x27;, &#x27;DaysOfMonthFrequency&lt;br/&gt;&#x27;, &#x27;DaysOrWeekFrequency&lt;br/&gt;&#x27;, &#x27;TimeIntervalFrequency&#x27;][&#x27;The &quot;Schedule&quot; object will be used to create a new schedule.&lt;br/&gt;&#x27;, &#x27;Do not set ScheduleID property, it will be ignored.&lt;br/&gt;&#x27;, &#x27;Frequency property must be of type that inherits from Frequency. Valid types are:&lt;br/&gt;&#x27;, &#x27;DaysOfMonthFrequency&lt;br/&gt;&#x27;, &#x27;DaysOrWeekFrequency&lt;br/&gt;&#x27;, &#x27;TimeIntervalFrequency&#x27;][&#x27;The &quot;Schedule&quot; object will be used to create a new schedule.&lt;br/&gt;&#x27;, &#x27;Do not set ScheduleID property, it will be ignored.&lt;br/&gt;&#x27;, &#x27;Frequency property must be of type that inherits from Frequency. Valid types are:&lt;br/&gt;&#x27;, &#x27;DaysOfMonthFrequency&lt;br/&gt;&#x27;, &#x27;DaysOrWeekFrequency&lt;br/&gt;&#x27;, &#x27;TimeIntervalFrequency&#x27;][&#x27;The &quot;Schedule&quot; object will be used to create a new schedule.&lt;br/&gt;&#x27;, &#x27;Do not set ScheduleID property, it will be ignored.&lt;br/&gt;&#x27;, &#x27;Frequency property must be of type that inherits from Frequency. Valid types are:&lt;br/&gt;&#x27;, &#x27;DaysOfMonthFrequency&lt;br/&gt;&#x27;, &#x27;DaysOrWeekFrequency&lt;br/&gt;&#x27;, &#x27;TimeIntervalFrequency&#x27;][&#x27;The &quot;Schedule&quot; object will be used to create a new schedule.&lt;br/&gt;&#x27;, &#x27;Do not set ScheduleID property, it will be ignored.&lt;br/&gt;&#x27;, &#x27;Frequency property must be of type that inherits from Frequency. Valid types are:&lt;br/&gt;&#x27;, &#x27;DaysOfMonthFrequency&lt;br/&gt;&#x27;, &#x27;DaysOrWeekFrequency&lt;br/&gt;&#x27;, &#x27;TimeIntervalFrequency&#x27;][&#x27;The &quot;Schedule&quot; object will be used to create a new schedule.&lt;br/&gt;&#x27;, &#x27;Do not set ScheduleID property, it will be ignored.&lt;br/&gt;&#x27;, &#x27;Frequency property must be of type that inherits from Frequency. Valid types are:&lt;br/&gt;&#x27;, &#x27;DaysOfMonthFrequency&lt;br/&gt;&#x27;, &#x27;DaysOrWeekFrequency&lt;br/&gt;&#x27;, &#x27;TimeIntervalFrequency&#x27;]
+        :param schedule: [required] The "Schedule" object will be used to create a new schedule.<br/> Do not set ScheduleID property, it will be ignored.<br/> Frequency property must be of type that inherits from Frequency. Valid types are:<br/> DaysOfMonthFrequency<br/> DaysOrWeekFrequency<br/> TimeIntervalFrequency 
         :type schedule: Schedule
         """
 
@@ -2800,7 +2825,7 @@ class Element(ServiceBase):
             schedule,):
         """
         ModifySchedule is used to change the intervals at which a scheduled snapshot occurs. This allows for adjustment to the snapshot frequency and retention.<br/>
-        :param schedule: [required] [&#x27;The &quot;Schedule&quot; object will be used to modify an existing schedule.&lt;br/&gt;&#x27;, &#x27;The ScheduleID property is required.&lt;br/&gt;&#x27;, &#x27;Frequency property must be of type that inherits from Frequency. Valid types are:&lt;br/&gt;&#x27;, &#x27;DaysOfMonthFrequency&lt;br/&gt;&#x27;, &#x27;DaysOrWeekFrequency&lt;br/&gt;&#x27;, &#x27;TimeIntervalFrequency&#x27;][&#x27;The &quot;Schedule&quot; object will be used to modify an existing schedule.&lt;br/&gt;&#x27;, &#x27;The ScheduleID property is required.&lt;br/&gt;&#x27;, &#x27;Frequency property must be of type that inherits from Frequency. Valid types are:&lt;br/&gt;&#x27;, &#x27;DaysOfMonthFrequency&lt;br/&gt;&#x27;, &#x27;DaysOrWeekFrequency&lt;br/&gt;&#x27;, &#x27;TimeIntervalFrequency&#x27;][&#x27;The &quot;Schedule&quot; object will be used to modify an existing schedule.&lt;br/&gt;&#x27;, &#x27;The ScheduleID property is required.&lt;br/&gt;&#x27;, &#x27;Frequency property must be of type that inherits from Frequency. Valid types are:&lt;br/&gt;&#x27;, &#x27;DaysOfMonthFrequency&lt;br/&gt;&#x27;, &#x27;DaysOrWeekFrequency&lt;br/&gt;&#x27;, &#x27;TimeIntervalFrequency&#x27;][&#x27;The &quot;Schedule&quot; object will be used to modify an existing schedule.&lt;br/&gt;&#x27;, &#x27;The ScheduleID property is required.&lt;br/&gt;&#x27;, &#x27;Frequency property must be of type that inherits from Frequency. Valid types are:&lt;br/&gt;&#x27;, &#x27;DaysOfMonthFrequency&lt;br/&gt;&#x27;, &#x27;DaysOrWeekFrequency&lt;br/&gt;&#x27;, &#x27;TimeIntervalFrequency&#x27;][&#x27;The &quot;Schedule&quot; object will be used to modify an existing schedule.&lt;br/&gt;&#x27;, &#x27;The ScheduleID property is required.&lt;br/&gt;&#x27;, &#x27;Frequency property must be of type that inherits from Frequency. Valid types are:&lt;br/&gt;&#x27;, &#x27;DaysOfMonthFrequency&lt;br/&gt;&#x27;, &#x27;DaysOrWeekFrequency&lt;br/&gt;&#x27;, &#x27;TimeIntervalFrequency&#x27;][&#x27;The &quot;Schedule&quot; object will be used to modify an existing schedule.&lt;br/&gt;&#x27;, &#x27;The ScheduleID property is required.&lt;br/&gt;&#x27;, &#x27;Frequency property must be of type that inherits from Frequency. Valid types are:&lt;br/&gt;&#x27;, &#x27;DaysOfMonthFrequency&lt;br/&gt;&#x27;, &#x27;DaysOrWeekFrequency&lt;br/&gt;&#x27;, &#x27;TimeIntervalFrequency&#x27;]
+        :param schedule: [required] The "Schedule" object will be used to modify an existing schedule.<br/> The ScheduleID property is required.<br/> Frequency property must be of type that inherits from Frequency. Valid types are:<br/> DaysOfMonthFrequency<br/> DaysOrWeekFrequency<br/> TimeIntervalFrequency 
         :type schedule: Schedule
         """
 
@@ -2860,13 +2885,13 @@ class Element(ServiceBase):
             target_secret=OPTIONAL,):
         """
         Creates a new VVols storage container.
-        :param name: [required] Name of the storage container.
+        :param name: [required] Name of the storage container. 
         :type name: str
         
-        :param initiatorSecret:  The secret for CHAP authentication for the initiator
+        :param initiatorSecret:  The secret for CHAP authentication for the initiator 
         :type initiatorSecret: str
         
-        :param targetSecret:  The secret for CHAP authentication for the target
+        :param targetSecret:  The secret for CHAP authentication for the target 
         :type targetSecret: str
         """
 
@@ -2893,7 +2918,7 @@ class Element(ServiceBase):
             storage_container_ids,):
         """
         Deletes a storage container from the system.
-        :param storageContainerIDs: [required] list of storageContainerID of the storage container to delete.
+        :param storageContainerIDs: [required] list of storageContainerID of the storage container to delete. 
         :type storageContainerIDs: UUID
         """
 
@@ -2951,7 +2976,7 @@ class Element(ServiceBase):
             storage_container_ids=OPTIONAL,):
         """
         Gets information for all storage containers currently in the system.
-        :param storageContainerIDs:  List of storage containers to get
+        :param storageContainerIDs:  List of storage containers to get 
         :type storageContainerIDs: UUID
         """
 
@@ -2975,7 +3000,7 @@ class Element(ServiceBase):
             storage_container_id,):
         """
         GetStorageContainerEfficiency enables you to retrieve efficiency information about a virtual volume storage container.
-        :param storageContainerID: [required] The ID of the storage container for which to retrieve efficiency information.
+        :param storageContainerID: [required] The ID of the storage container for which to retrieve efficiency information. 
         :type storageContainerID: UUID
         """
 
@@ -3035,7 +3060,7 @@ class Element(ServiceBase):
         """
         The TestConnectEnsemble API method is used to verify connectivity with a sepcified database ensemble. By default it uses the ensemble for the cluster the node is associated with. Alternatively you can provide a different ensemble to test connectivity with.
         <br/><b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
-        :param ensemble:  A comma-separated list of ensemble node CIPs for connectivity testing
+        :param ensemble:  A comma-separated list of ensemble node CIPs for connectivity testing 
         :type ensemble: str
         """
 
@@ -3059,7 +3084,7 @@ class Element(ServiceBase):
         """
         The TestConnectMvip API method is used to test the management connection to the cluster. The test pings the MVIP and executes a simple API method to verify connectivity.
         <br/><b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
-        :param mvip:  Optionally, use to test the management connection of a different MVIP. This is not needed to test the connection to the target cluster.
+        :param mvip:  Optionally, use to test the management connection of a different MVIP. This is not needed to test the connection to the target cluster. 
         :type mvip: str
         """
 
@@ -3083,7 +3108,7 @@ class Element(ServiceBase):
         """
         The TestConnectSvip API method is used to test the storage connection to the cluster. The test pings the SVIP using ICMP packets and when successful connects as an iSCSI initiator.
         <br/><b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
-        :param svip:  Optionally, use to test the storage connection of a different SVIP. This is not needed to test the connection to the target cluster.
+        :param svip:  Optionally, use to test the storage connection of a different SVIP. This is not needed to test the connection to the target cluster. 
         :type svip: str
         """
 
@@ -3111,19 +3136,19 @@ class Element(ServiceBase):
         """
         The TestPing API method is used to validate the connection to all nodes in the cluster on both 1G and 10G interfaces using ICMP packets. The test uses the appropriate MTU sizes for each packet based on the MTU settings in the network configuration.
         <br/><b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
-        :param attempts:  Specifies the number of times the system should repeat the test ping. Default is 5.
+        :param attempts:  Specifies the number of times the system should repeat the test ping. Default is 5. 
         :type attempts: int
         
-        :param hosts:  Specify address or hostnames of devices to ping.
+        :param hosts:  Specify address or hostnames of devices to ping. 
         :type hosts: str
         
-        :param totalTimeoutSec:  Specifies the length of time the ping should wait for a system response before issuing the next ping attempt or ending the process.
+        :param totalTimeoutSec:  Specifies the length of time the ping should wait for a system response before issuing the next ping attempt or ending the process. 
         :type totalTimeoutSec: int
         
-        :param packetSize:  Specify the number of bytes to send in the ICMP packet sent to each IP. Number be less than the maximum MTU specified in the network configuration.
+        :param packetSize:  Specify the number of bytes to send in the ICMP packet sent to each IP. Number be less than the maximum MTU specified in the network configuration. 
         :type packetSize: int
         
-        :param pingTimeoutMsec:  Specify the number of milliseconds to wait for each individual ping response. Default is 500ms.
+        :param pingTimeoutMsec:  Specify the number of milliseconds to wait for each individual ping response. Default is 500ms. 
         :type pingTimeoutMsec: int
         """
 
@@ -3159,16 +3184,16 @@ class Element(ServiceBase):
         ListVirtualNetworks is used to get a list of all the configured virtual networks for the cluster. This method can be used to verify the virtual network settings in the cluster.
         
         This method does not require any parameters to be passed. But, one or more VirtualNetworkIDs or VirtualNetworkTags can be passed in order to filter the results.
-        :param virtualNetworkID:  Network ID to filter the list for a single virtual network
+        :param virtualNetworkID:  Network ID to filter the list for a single virtual network 
         :type virtualNetworkID: int
         
-        :param virtualNetworkTag:  Network Tag to filter the list for a single virtual network
+        :param virtualNetworkTag:  Network Tag to filter the list for a single virtual network 
         :type virtualNetworkTag: int
         
-        :param virtualNetworkIDs:  NetworkIDs to include in the list.
+        :param virtualNetworkIDs:  NetworkIDs to include in the list. 
         :type virtualNetworkIDs: int
         
-        :param virtualNetworkTags:  Network Tags to include in the list.
+        :param virtualNetworkTags:  Network Tags to include in the list. 
         :type virtualNetworkTags: int
         """
 
@@ -3207,28 +3232,28 @@ class Element(ServiceBase):
         AddVirtualNetwork is used to add a new virtual network to a cluster configuration. When a virtual network is added, an interface for each node is created and each will require a virtual network IP address. The number of IP addresses specified as a parameter for this API method must be equal to or greater than the number of nodes in the cluster. Virtual network addresses are bulk provisioned by SolidFire and assigned to individual nodes automatically. Virtual network addresses do not need to be assigned to nodes manually.
         <br/><br/>
         <b>Note:</b> The AddVirtualNetwork method is used only to create a new virtual network. If you want to make changes to a virtual network, please use the ModifyVirtualNetwork method.
-        :param virtualNetworkTag: [required] A unique virtual network (VLAN) tag. Supported values are 1 to 4095 (the number zero (0) is not supported).
+        :param virtualNetworkTag: [required] A unique virtual network (VLAN) tag. Supported values are 1 to 4095 (the number zero (0) is not supported). 
         :type virtualNetworkTag: int
         
-        :param name: [required] User defined name for the new virtual network.
+        :param name: [required] User defined name for the new virtual network. 
         :type name: str
         
-        :param addressBlocks: [required] [&#x27;Unique Range of IP addresses to include in the virtual network.&#x27;, &#x27;Attributes for this parameter are:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;start:&lt;/b&gt; start of the IP address range. (String)&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;size:&lt;/b&gt; numbre of IP addresses to include in the block. (Integer)&#x27;][&#x27;Unique Range of IP addresses to include in the virtual network.&#x27;, &#x27;Attributes for this parameter are:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;start:&lt;/b&gt; start of the IP address range. (String)&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;size:&lt;/b&gt; numbre of IP addresses to include in the block. (Integer)&#x27;][&#x27;Unique Range of IP addresses to include in the virtual network.&#x27;, &#x27;Attributes for this parameter are:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;start:&lt;/b&gt; start of the IP address range. (String)&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;size:&lt;/b&gt; numbre of IP addresses to include in the block. (Integer)&#x27;][&#x27;Unique Range of IP addresses to include in the virtual network.&#x27;, &#x27;Attributes for this parameter are:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;start:&lt;/b&gt; start of the IP address range. (String)&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;size:&lt;/b&gt; numbre of IP addresses to include in the block. (Integer)&#x27;]
+        :param addressBlocks: [required] Unique Range of IP addresses to include in the virtual network. Attributes for this parameter are: <br/><b>start:</b> start of the IP address range. (String) <br/><b>size:</b> numbre of IP addresses to include in the block. (Integer) 
         :type addressBlocks: AddressBlock
         
-        :param netmask: [required] [&#x27;Unique netmask for the virtual network being created.&#x27;]
+        :param netmask: [required] Unique netmask for the virtual network being created. 
         :type netmask: str
         
-        :param svip: [required] [&#x27;Unique storage IP address for the virtual network being created.&#x27;]
+        :param svip: [required] Unique storage IP address for the virtual network being created. 
         :type svip: str
         
-        :param gateway:  [&#x27;&#x27;]
+        :param gateway:   
         :type gateway: str
         
-        :param namespace:  [&#x27;&#x27;]
+        :param namespace:   
         :type namespace: bool
         
-        :param attributes:  [&#x27;List of Name/Value pairs in JSON object format.&#x27;]
+        :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
 
@@ -3271,31 +3296,31 @@ class Element(ServiceBase):
         ModifyVirtualNetwork is used to change various attributes of a VirtualNetwork object. This method can be used to add or remove address blocks, change the netmask IP, or modify the name or description of the virtual network.
         <br/><br/>
         <b>Note:</b> This method requires either the VirtualNetworkID or the VirtualNetworkTag as a parameter, but not both.
-        :param virtualNetworkID:  Unique identifier of the virtual network to modify. This is the virtual network ID assigned by the SolidFire cluster.
+        :param virtualNetworkID:  Unique identifier of the virtual network to modify. This is the virtual network ID assigned by the SolidFire cluster. 
         :type virtualNetworkID: int
         
-        :param virtualNetworkTag:  Network Tag that identifies the virtual network to modify.
+        :param virtualNetworkTag:  Network Tag that identifies the virtual network to modify. 
         :type virtualNetworkTag: int
         
-        :param name:  New name for the virtual network.
+        :param name:  New name for the virtual network. 
         :type name: str
         
-        :param addressBlocks:  [&#x27;New addressBlock to set for this Virtual Network object. This may contain new address blocks to add to the existing object or it may omit unused address blocks that need to be removed. Alternatively, existing address blocks may be extended or reduced in size. The size of the starting addressBlocks for a Virtual Network object can only be increased, and can never be decreased.&#x27;, &#x27;Attributes for this parameter are:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;start:&lt;/b&gt; start of the IP address range. (String)&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;size:&lt;/b&gt; numbre of IP addresses to include in the block. (Integer)&#x27;][&#x27;New addressBlock to set for this Virtual Network object. This may contain new address blocks to add to the existing object or it may omit unused address blocks that need to be removed. Alternatively, existing address blocks may be extended or reduced in size. The size of the starting addressBlocks for a Virtual Network object can only be increased, and can never be decreased.&#x27;, &#x27;Attributes for this parameter are:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;start:&lt;/b&gt; start of the IP address range. (String)&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;size:&lt;/b&gt; numbre of IP addresses to include in the block. (Integer)&#x27;][&#x27;New addressBlock to set for this Virtual Network object. This may contain new address blocks to add to the existing object or it may omit unused address blocks that need to be removed. Alternatively, existing address blocks may be extended or reduced in size. The size of the starting addressBlocks for a Virtual Network object can only be increased, and can never be decreased.&#x27;, &#x27;Attributes for this parameter are:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;start:&lt;/b&gt; start of the IP address range. (String)&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;size:&lt;/b&gt; numbre of IP addresses to include in the block. (Integer)&#x27;][&#x27;New addressBlock to set for this Virtual Network object. This may contain new address blocks to add to the existing object or it may omit unused address blocks that need to be removed. Alternatively, existing address blocks may be extended or reduced in size. The size of the starting addressBlocks for a Virtual Network object can only be increased, and can never be decreased.&#x27;, &#x27;Attributes for this parameter are:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;start:&lt;/b&gt; start of the IP address range. (String)&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;size:&lt;/b&gt; numbre of IP addresses to include in the block. (Integer)&#x27;]
+        :param addressBlocks:  New addressBlock to set for this Virtual Network object. This may contain new address blocks to add to the existing object or it may omit unused address blocks that need to be removed. Alternatively, existing address blocks may be extended or reduced in size. The size of the starting addressBlocks for a Virtual Network object can only be increased, and can never be decreased. Attributes for this parameter are: <br/><b>start:</b> start of the IP address range. (String) <br/><b>size:</b> numbre of IP addresses to include in the block. (Integer) 
         :type addressBlocks: AddressBlock
         
-        :param netmask:  [&#x27;New netmask for this virtual network.&#x27;]
+        :param netmask:  New netmask for this virtual network. 
         :type netmask: str
         
-        :param svip:  [&#x27;The storage virtual IP address for this virtual network. The svip for Virtual Network cannot be changed. A new Virtual Network must be created in order to use a different svip address.&#x27;]
+        :param svip:  The storage virtual IP address for this virtual network. The svip for Virtual Network cannot be changed. A new Virtual Network must be created in order to use a different svip address. 
         :type svip: str
         
-        :param gateway:  [&#x27;&#x27;]
+        :param gateway:   
         :type gateway: str
         
-        :param namespace:  [&#x27;&#x27;]
+        :param namespace:   
         :type namespace: bool
         
-        :param attributes:  [&#x27;A new list of Name/Value pairs in JSON object format.&#x27;]
+        :param attributes:  A new list of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
 
@@ -3338,10 +3363,10 @@ class Element(ServiceBase):
         RemoveVirtualNetwork is used to remove a previously added virtual network.
         <br/><br/>
         <b>Note:</b> This method requires either the VirtualNetworkID of the VirtualNetworkTag as a parameter, but not both.
-        :param virtualNetworkID:  Network ID that identifies the virtual network to remove.
+        :param virtualNetworkID:  Network ID that identifies the virtual network to remove. 
         :type virtualNetworkID: int
         
-        :param virtualNetworkTag:  Network Tag that identifies the virtual network to remove.
+        :param virtualNetworkTag:  Network Tag that identifies the virtual network to remove. 
         :type virtualNetworkTag: int
         """
 
@@ -3362,6 +3387,46 @@ class Element(ServiceBase):
             since=7.0
         )
 
+    def list_virtual_volumes(
+            self,
+            start_virtual_volume_id=OPTIONAL,
+            limit=OPTIONAL,
+            virtual_volume_ids=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        :param startVirtualVolumeID:  The ID of the first Virtual Volume to list. This can be useful for paging results. By default, this lists all Virtual Volumes. 
+        :type startVirtualVolumeID: UUID
+        
+        :param limit:  The maximum number of volumes to return from the API. 
+        :type limit: int
+        
+        :param virtualVolumeIDs:  List of Virtual Volume IDs to get. 
+        :type virtualVolumeIDs: UUID
+        
+        :param callingVirtualVolumeHostID:  
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("list_virtual_volumes", "Cluster")
+
+        params = { 
+        }
+        if start_virtual_volume_id is not None:
+            params["startVirtualVolumeID"] = start_virtual_volume_id
+        if limit is not None:
+            params["limit"] = limit
+        if virtual_volume_ids is not None:
+            params["virtualVolumeIDs"] = virtual_volume_ids
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVirtualVolumes',
+            ListVirtualVolumesResult,
+            params
+        )
+
     def prepare_virtual_snapshot(
             self,
             virtual_volume_id,
@@ -3370,13 +3435,13 @@ class Element(ServiceBase):
             calling_virtual_volume_host_id=OPTIONAL,):
         """
         PrepareVirtualSnapshot is used to set up VMware Virtual Volume snapshot.
-        :param virtualVolumeID: [required] The ID of the Virtual Volume to clone.
+        :param virtualVolumeID: [required] The ID of the Virtual Volume to clone. 
         :type virtualVolumeID: UUID
         
-        :param name:  The name for the newly-created volume.
+        :param name:  The name for the newly-created volume. 
         :type name: str
         
-        :param writableSnapshot:  Will the snapshot be writable?
+        :param writableSnapshot:  Will the snapshot be writable? 
         :type writableSnapshot: bool
         
         :param callingVirtualVolumeHostID:  
@@ -3417,19 +3482,19 @@ class Element(ServiceBase):
         than 30 seconds. If the specified VVol and the base VVil are not related, an 
         error is thrown. If the offset/length combination is invalid or out fo range 
         an error is thrown.
-        :param virtualVolumeID: [required] The ID of the Virtual Volume.
+        :param virtualVolumeID: [required] The ID of the Virtual Volume. 
         :type virtualVolumeID: UUID
         
-        :param baseVirtualVolumeID: [required] The ID of the Virtual Volume to compare against.
+        :param baseVirtualVolumeID: [required] The ID of the Virtual Volume to compare against. 
         :type baseVirtualVolumeID: UUID
         
-        :param segmentStart: [required] Start Byte offset.
+        :param segmentStart: [required] Start Byte offset. 
         :type segmentStart: int
         
-        :param segmentLength: [required] Length of the scan segment in bytes.
+        :param segmentLength: [required] Length of the scan segment in bytes. 
         :type segmentLength: int
         
-        :param chunkSize: [required] Number of bytes represented by one bit in the bitmap.
+        :param chunkSize: [required] Number of bytes represented by one bit in the bitmap. 
         :type chunkSize: int
         
         :param callingVirtualVolumeHostID:  
@@ -3466,19 +3531,19 @@ class Element(ServiceBase):
             calling_virtual_volume_host_id=OPTIONAL,):
         """
         CreateVirtualVolumeHost creates a new ESX host.
-        :param virtualVolumeHostID: [required] The GUID of the ESX host.
+        :param virtualVolumeHostID: [required] The GUID of the ESX host. 
         :type virtualVolumeHostID: UUID
         
-        :param clusterID: [required] The GUID of the ESX Cluster.
+        :param clusterID: [required] The GUID of the ESX Cluster. 
         :type clusterID: UUID
         
         :param initiatorNames:  
         :type initiatorNames: str
         
-        :param visibleProtocolEndpointIDs:  A list of PEs the host is aware of.
+        :param visibleProtocolEndpointIDs:  A list of PEs the host is aware of. 
         :type visibleProtocolEndpointIDs: UUID
         
-        :param hostAddress:  IP or DNS name for the host.
+        :param hostAddress:  IP or DNS name for the host. 
         :type hostAddress: str
         
         :param callingVirtualVolumeHostID:  
@@ -3544,7 +3609,7 @@ class Element(ServiceBase):
             calling_virtual_volume_host_id=OPTIONAL,):
         """
         GetVirtualVolumeTaskUpdate checks the status of a VVol Async Task.
-        :param virtualVolumeTaskID: [required] The UUID of the VVol Task.
+        :param virtualVolumeTaskID: [required] The UUID of the VVol Task. 
         :type virtualVolumeTaskID: UUID
         
         :param callingVirtualVolumeHostID:  
@@ -3665,25 +3730,25 @@ class Element(ServiceBase):
         If different settings are required, they can be changed via ModifyVolume.
         <br/><br/>
         <b>Note</b>: Cloned volumes do not inherit volume access group memberships from the source volume.
-        :param volumeID: [required] The ID of the volume to clone.
+        :param volumeID: [required] The ID of the volume to clone. 
         :type volumeID: int
         
-        :param name: [required] The name for the newly-created volume.
+        :param name: [required] The name for the newly-created volume. 
         :type name: str
         
-        :param newAccountID:  [&#x27;AccountID for the owner of the new volume.&#x27;, &#x27;If unspecified, the AccountID of the owner of the volume being cloned is used.&#x27;][&#x27;AccountID for the owner of the new volume.&#x27;, &#x27;If unspecified, the AccountID of the owner of the volume being cloned is used.&#x27;]
+        :param newAccountID:  AccountID for the owner of the new volume. If unspecified, the AccountID of the owner of the volume being cloned is used. 
         :type newAccountID: int
         
-        :param newSize:  [&#x27;New size of the volume, in bytes.&#x27;, &#x27;May be greater or less than the size of the volume being cloned.&#x27;, &quot;If unspecified, the clone&#x27;s volume size will be the same as the source volume.&quot;, &#x27;Size is rounded up to the nearest 1 MiB.&#x27;][&#x27;New size of the volume, in bytes.&#x27;, &#x27;May be greater or less than the size of the volume being cloned.&#x27;, &quot;If unspecified, the clone&#x27;s volume size will be the same as the source volume.&quot;, &#x27;Size is rounded up to the nearest 1 MiB.&#x27;][&#x27;New size of the volume, in bytes.&#x27;, &#x27;May be greater or less than the size of the volume being cloned.&#x27;, &quot;If unspecified, the clone&#x27;s volume size will be the same as the source volume.&quot;, &#x27;Size is rounded up to the nearest 1 MiB.&#x27;][&#x27;New size of the volume, in bytes.&#x27;, &#x27;May be greater or less than the size of the volume being cloned.&#x27;, &quot;If unspecified, the clone&#x27;s volume size will be the same as the source volume.&quot;, &#x27;Size is rounded up to the nearest 1 MiB.&#x27;]
+        :param newSize:  New size of the volume, in bytes. May be greater or less than the size of the volume being cloned. If unspecified, the clone's volume size will be the same as the source volume. Size is rounded up to the nearest 1 MiB. 
         :type newSize: int
         
-        :param access:  [&#x27;Access settings for the new volume.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;][&#x27;Access settings for the new volume.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;][&#x27;Access settings for the new volume.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;][&#x27;Access settings for the new volume.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;][&#x27;Access settings for the new volume.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;][&#x27;Access settings for the new volume.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;][&#x27;Access settings for the new volume.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;]
+        :param access:  Access settings for the new volume. <br/><b>readOnly</b>: Only read operations are allowed. <br/><b>readWrite</b>: Reads and writes are allowed. <br/><b>locked</b>: No reads or writes are allowed. <br/><b>replicationTarget</b>: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked. <br/><br/> If unspecified, the access settings of the clone will be the same as the source. 
         :type access: str
         
-        :param snapshotID:  [&#x27;ID of the snapshot to use as the source of the clone.&#x27;, &#x27;If unspecified, the clone will be created with a snapshot of the active volume.&#x27;][&#x27;ID of the snapshot to use as the source of the clone.&#x27;, &#x27;If unspecified, the clone will be created with a snapshot of the active volume.&#x27;]
+        :param snapshotID:  ID of the snapshot to use as the source of the clone. If unspecified, the clone will be created with a snapshot of the active volume. 
         :type snapshotID: int
         
-        :param attributes:  List of Name/Value pairs in JSON object format.
+        :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
 
@@ -3722,16 +3787,16 @@ class Element(ServiceBase):
         If groupSnapshotID is going to be used to clone the volumes in a group snapshot, the group snapshot must be created first using the CreateGroupSnapshot API method or the SolidFire Element WebUI. Using groupSnapshotID is optional when cloning multiple volumes.
         <br/><br/>
         <b>Note</b>: Cloning multiple volumes is allowed if cluster fullness is at stage 2 or 3. Clones are not created when cluster fullness is at stage 4 or 5.
-        :param volumes: [required] Array of Unique ID for each volume to include in the clone with optional parameters. If optional parameters are not specified, the values will be inherited from the source volumes.
+        :param volumes: [required] Array of Unique ID for each volume to include in the clone with optional parameters. If optional parameters are not specified, the values will be inherited from the source volumes. 
         :type volumes: CloneMultipleVolumeParams
         
-        :param access:  [&#x27;New default access method for the new volumes if not overridden by information passed in the volumes array.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;][&#x27;New default access method for the new volumes if not overridden by information passed in the volumes array.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;][&#x27;New default access method for the new volumes if not overridden by information passed in the volumes array.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;][&#x27;New default access method for the new volumes if not overridden by information passed in the volumes array.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;][&#x27;New default access method for the new volumes if not overridden by information passed in the volumes array.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;][&#x27;New default access method for the new volumes if not overridden by information passed in the volumes array.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;][&#x27;New default access method for the new volumes if not overridden by information passed in the volumes array.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;]
+        :param access:  New default access method for the new volumes if not overridden by information passed in the volumes array. <br/><b>readOnly</b>: Only read operations are allowed. <br/><b>readWrite</b>: Reads and writes are allowed. <br/><b>locked</b>: No reads or writes are allowed. <br/><b>replicationTarget</b>: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked. <br/><br/> If unspecified, the access settings of the clone will be the same as the source. 
         :type access: str
         
-        :param groupSnapshotID:  ID of the group snapshot to use as a basis for the clone.
+        :param groupSnapshotID:  ID of the group snapshot to use as a basis for the clone. 
         :type groupSnapshotID: int
         
-        :param newAccountID:  New account ID for the volumes if not overridden by information passed in the volumes array.
+        :param newAccountID:  New account ID for the volumes if not overridden by information passed in the volumes array. 
         :type newAccountID: int
         """
 
@@ -3765,22 +3830,22 @@ class Element(ServiceBase):
         """
         CreateVolume is used to create a new (empty) volume on the cluster.
         When the volume is created successfully it is available for connection via iSCSI.
-        :param name: [required] [&#x27;Name of the volume.&#x27;, &#x27;Not required to be unique, but it is recommended.&#x27;, &#x27;May be 1 to 64 characters in length.&#x27;][&#x27;Name of the volume.&#x27;, &#x27;Not required to be unique, but it is recommended.&#x27;, &#x27;May be 1 to 64 characters in length.&#x27;][&#x27;Name of the volume.&#x27;, &#x27;Not required to be unique, but it is recommended.&#x27;, &#x27;May be 1 to 64 characters in length.&#x27;]
+        :param name: [required] Name of the volume. Not required to be unique, but it is recommended. May be 1 to 64 characters in length. 
         :type name: str
         
-        :param accountID: [required] AccountID for the owner of this volume.
+        :param accountID: [required] AccountID for the owner of this volume. 
         :type accountID: int
         
-        :param totalSize: [required] Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size.
+        :param totalSize: [required] Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size. 
         :type totalSize: int
         
-        :param enable512e: [required] Should the volume provides 512-byte sector emulation?
+        :param enable512e: [required] Should the volume provides 512-byte sector emulation? 
         :type enable512e: bool
         
-        :param qos:  [&#x27;Initial quality of service settings for this volume.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;Volumes created without specified QoS values are created with the default values for QoS.&#x27;, &#x27;Default values for a volume can be found by running the GetDefaultQoS method.&#x27;][&#x27;Initial quality of service settings for this volume.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;Volumes created without specified QoS values are created with the default values for QoS.&#x27;, &#x27;Default values for a volume can be found by running the GetDefaultQoS method.&#x27;][&#x27;Initial quality of service settings for this volume.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;Volumes created without specified QoS values are created with the default values for QoS.&#x27;, &#x27;Default values for a volume can be found by running the GetDefaultQoS method.&#x27;][&#x27;Initial quality of service settings for this volume.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;Volumes created without specified QoS values are created with the default values for QoS.&#x27;, &#x27;Default values for a volume can be found by running the GetDefaultQoS method.&#x27;]
+        :param qos:  Initial quality of service settings for this volume. <br/><br/> Volumes created without specified QoS values are created with the default values for QoS. Default values for a volume can be found by running the GetDefaultQoS method. 
         :type qos: QoS
         
-        :param attributes:  List of Name/Value pairs in JSON object format.
+        :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
 
@@ -3823,7 +3888,7 @@ class Element(ServiceBase):
         Until the deleted volume is purged, it can be restored and data transfers resumes.
         If the deleted volume gets purged from the system, the volume it was paired with enters into a StoppedMisconfigured state and the volume pairing status is removed.
         The purged volume becomes permanently unavailable.
-        :param volumeID: [required] The ID of the volume to delete.
+        :param volumeID: [required] The ID of the volume to delete. 
         :type volumeID: int
         """
 
@@ -3846,7 +3911,7 @@ class Element(ServiceBase):
         """
         GetVolumeStats is used to retrieve high-level activity measurements for a single volume.
         Values are cumulative from the creation of the volume.
-        :param volumeID: [required] Specifies the volume for which statistics is gathered.
+        :param volumeID: [required] Specifies the volume for which statistics is gathered. 
         :type volumeID: int
         """
 
@@ -3870,7 +3935,7 @@ class Element(ServiceBase):
         """
         GetVolumeEfficiency is used to retrieve information about a volume.
         Only the volume given as a parameter in this API method is used to compute the capacity.
-        :param volumeID: [required] Specifies the volume for which capacity is computed.
+        :param volumeID: [required] Specifies the volume for which capacity is computed. 
         :type volumeID: int
         
         :param force:  
@@ -3916,10 +3981,10 @@ class Element(ServiceBase):
         """
         ListActiveVolumes is used to return the list of active volumes currently in the system.
         The list of volumes is returned sorted in VolumeID order and can be returned in multiple parts (pages).
-        :param startVolumeID:  [&#x27;The ID of the first volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this starts at the lowest VolumeID.&#x27;][&#x27;The ID of the first volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this starts at the lowest VolumeID.&#x27;][&#x27;The ID of the first volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this starts at the lowest VolumeID.&#x27;]
+        :param startVolumeID:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
         :type startVolumeID: int
         
-        :param limit:  [&#x27;The maximum number of volumes to return from the API.&#x27;]
+        :param limit:  The maximum number of volumes to return from the API. 
         :type limit: int
         """
 
@@ -3984,22 +4049,22 @@ class Element(ServiceBase):
         """
         The ListVolumes method is used to return a list of volumes that are in a cluster.
         You can specify the volumes you want to return in the list by using the available parameters.
-        :param startVolumeID:  [&#x27;The ID of the first volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this starts at the lowest VolumeID.&#x27;][&#x27;The ID of the first volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this starts at the lowest VolumeID.&#x27;][&#x27;The ID of the first volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this starts at the lowest VolumeID.&#x27;]
+        :param startVolumeID:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
         :type startVolumeID: int
         
-        :param limit:  [&#x27;The maximum number of volumes to return from the API.&#x27;]
+        :param limit:  The maximum number of volumes to return from the API. 
         :type limit: int
         
-        :param volumeStatus:  [&#x27;If specified, filter to only volumes with the provided status.&#x27;, &#x27;By default, list all volumes.&#x27;][&#x27;If specified, filter to only volumes with the provided status.&#x27;, &#x27;By default, list all volumes.&#x27;]
+        :param volumeStatus:  If specified, filter to only volumes with the provided status. By default, list all volumes. 
         :type volumeStatus: str
         
-        :param accounts:  [&#x27;If specified, only fetch volumes which belong to the provided accounts.&#x27;, &#x27;By default, list volumes for all accounts.&#x27;][&#x27;If specified, only fetch volumes which belong to the provided accounts.&#x27;, &#x27;By default, list volumes for all accounts.&#x27;]
+        :param accounts:  If specified, only fetch volumes which belong to the provided accounts. By default, list volumes for all accounts. 
         :type accounts: int
         
-        :param isPaired:  [&#x27;If specified, only fetch volumes which are paired (if true) or non-paired (if false).&#x27;, &#x27;By default, list all volumes regardless of their pairing status.&#x27;][&#x27;If specified, only fetch volumes which are paired (if true) or non-paired (if false).&#x27;, &#x27;By default, list all volumes regardless of their pairing status.&#x27;]
+        :param isPaired:  If specified, only fetch volumes which are paired (if true) or non-paired (if false). By default, list all volumes regardless of their pairing status. 
         :type isPaired: bool
         
-        :param volumeIDs:  [&#x27;If specified, only fetch volumes specified in this list.&#x27;, &#x27;This option cannot be specified if startVolumeID, limit, or accounts option is specified.&#x27;][&#x27;If specified, only fetch volumes specified in this list.&#x27;, &#x27;This option cannot be specified if startVolumeID, limit, or accounts option is specified.&#x27;]
+        :param volumeIDs:  If specified, only fetch volumes specified in this list. This option cannot be specified if startVolumeID, limit, or accounts option is specified. 
         :type volumeIDs: int
         """
 
@@ -4035,13 +4100,13 @@ class Element(ServiceBase):
             limit=OPTIONAL,):
         """
         ListVolumesForAccount returns the list of active AND (pending) deleted volumes for an account.
-        :param accountID: [required] The ID of the account to list the volumes for.
+        :param accountID: [required] The ID of the account to list the volumes for. 
         :type accountID: int
         
-        :param startVolumeID:  [&#x27;The ID of the first volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this starts at the lowest VolumeID.&#x27;][&#x27;The ID of the first volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this starts at the lowest VolumeID.&#x27;][&#x27;The ID of the first volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this starts at the lowest VolumeID.&#x27;]
+        :param startVolumeID:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
         :type startVolumeID: int
         
-        :param limit:  [&#x27;The maximum number of volumes to return from the API.&#x27;]
+        :param limit:  The maximum number of volumes to return from the API. 
         :type limit: int
         """
 
@@ -4103,7 +4168,7 @@ class Element(ServiceBase):
             volume_access_groups=OPTIONAL,):
         """
         ListVolumeStatsByVolumeAccessGroup is used to get total activity measurements for all of the volumes that are a member of the specified volume access group(s).
-        :param volumeAccessGroups:  [&#x27;An array of VolumeAccessGroupIDs for which volume activity is returned.&#x27;, &#x27;If no VolumeAccessGroupID is specified, stats for all volume access groups is returned.&#x27;][&#x27;An array of VolumeAccessGroupIDs for which volume activity is returned.&#x27;, &#x27;If no VolumeAccessGroupID is specified, stats for all volume access groups is returned.&#x27;]
+        :param volumeAccessGroups:  An array of VolumeAccessGroupIDs for which volume activity is returned. If no VolumeAccessGroupID is specified, stats for all volume access groups is returned. 
         :type volumeAccessGroups: int
         """
 
@@ -4139,22 +4204,22 @@ class Element(ServiceBase):
         It is recommended that both the target and the source volumes be the same size.
         <br/><br/>
         <b>Note</b>: If you change access status to locked or target all existing iSCSI connections are terminated.
-        :param volumeID: [required] VolumeID for the volume to be modified.
+        :param volumeID: [required] VolumeID for the volume to be modified. 
         :type volumeID: int
         
-        :param accountID:  [&#x27;AccountID to which the volume is reassigned.&#x27;, &#x27;If none is specified, the previous account name is used.&#x27;][&#x27;AccountID to which the volume is reassigned.&#x27;, &#x27;If none is specified, the previous account name is used.&#x27;]
+        :param accountID:  AccountID to which the volume is reassigned. If none is specified, the previous account name is used. 
         :type accountID: int
         
-        :param access:  [&#x27;Access allowed for the volume.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;][&#x27;Access allowed for the volume.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;][&#x27;Access allowed for the volume.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;][&#x27;Access allowed for the volume.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;][&#x27;Access allowed for the volume.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;][&#x27;Access allowed for the volume.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;][&#x27;Access allowed for the volume.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;]
+        :param access:  Access allowed for the volume. <br/><b>readOnly</b>: Only read operations are allowed. <br/><b>readWrite</b>: Reads and writes are allowed. <br/><b>locked</b>: No reads or writes are allowed. <br/><b>replicationTarget</b>: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked. <br/><br/> If unspecified, the access settings of the clone will be the same as the source. 
         :type access: str
         
-        :param qos:  New quality of service settings for this volume.
+        :param qos:  New quality of service settings for this volume. 
         :type qos: QoS
         
-        :param totalSize:  [&#x27;New size of the volume in bytes.&#x27;, &#x27;Size is rounded up to the nearest 1MiB size.&#x27;, &#x27;This parameter can only be used to *increase* the size of a volume.&#x27;][&#x27;New size of the volume in bytes.&#x27;, &#x27;Size is rounded up to the nearest 1MiB size.&#x27;, &#x27;This parameter can only be used to *increase* the size of a volume.&#x27;][&#x27;New size of the volume in bytes.&#x27;, &#x27;Size is rounded up to the nearest 1MiB size.&#x27;, &#x27;This parameter can only be used to *increase* the size of a volume.&#x27;]
+        :param totalSize:  New size of the volume in bytes. Size is rounded up to the nearest 1MiB size. This parameter can only be used to *increase* the size of a volume. 
         :type totalSize: int
         
-        :param attributes:  List of Name/Value pairs in JSON object format.
+        :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
 
@@ -4188,7 +4253,7 @@ class Element(ServiceBase):
         PurgeDeletedVolume immediately and permanently purges a volume which has been deleted.
         A volume must be deleted using DeleteVolume before it can be purged.
         Volumes are purged automatically after a period of time, so usage of this method is not typically required.
-        :param volumeID: [required] The ID of the volume to purge.
+        :param volumeID: [required] The ID of the volume to purge. 
         :type volumeID: int
         """
 
@@ -4211,7 +4276,7 @@ class Element(ServiceBase):
         """
         RestoreDeletedVolume marks a deleted volume as active again.
         This action makes the volume immediately available for iSCSI connection.
-        :param volumeID: [required] VolumeID for the deleted volume to restore.
+        :param volumeID: [required] VolumeID for the deleted volume to restore. 
         :type volumeID: int
         """
 
@@ -4250,22 +4315,22 @@ class Element(ServiceBase):
         <b>Note</b>: This process creates a new snapshot if the ID of an existing snapshot is not provided.
         Snapshots can be created if cluster fullness is at stage 2 or 3.
         Snapshots are not created when cluster fullness is at stage 4 or 5.
-        :param volumeID: [required] ID of the volume to be read.
+        :param volumeID: [required] ID of the volume to be read. 
         :type volumeID: int
         
-        :param format: [required] [&#x27;The format of the volume data. Can be either:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;uncompressed&lt;/b&gt;: every byte of the volume is returned without any compression.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;native&lt;/b&gt;: opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write.&#x27;][&#x27;The format of the volume data. Can be either:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;uncompressed&lt;/b&gt;: every byte of the volume is returned without any compression.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;native&lt;/b&gt;: opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write.&#x27;][&#x27;The format of the volume data. Can be either:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;uncompressed&lt;/b&gt;: every byte of the volume is returned without any compression.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;native&lt;/b&gt;: opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write.&#x27;]
+        :param format: [required] The format of the volume data. Can be either: <br/><b>uncompressed</b>: every byte of the volume is returned without any compression. <br/><b>native</b>: opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. 
         :type format: str
         
-        :param snapshotID:  [&#x27;ID of a previously created snapshot used for bulk volume reads.&#x27;, &#x27;If no ID is entered, a snapshot of the current active volume image is made.&#x27;][&#x27;ID of a previously created snapshot used for bulk volume reads.&#x27;, &#x27;If no ID is entered, a snapshot of the current active volume image is made.&#x27;]
+        :param snapshotID:  ID of a previously created snapshot used for bulk volume reads. If no ID is entered, a snapshot of the current active volume image is made. 
         :type snapshotID: int
         
-        :param script:  [&#x27;Executable name of a script.&#x27;, &#x27;If no script name is given then the key and URL is necessary to access SolidFire nodes.&#x27;, &#x27;The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted.&#x27;][&#x27;Executable name of a script.&#x27;, &#x27;If no script name is given then the key and URL is necessary to access SolidFire nodes.&#x27;, &#x27;The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted.&#x27;][&#x27;Executable name of a script.&#x27;, &#x27;If no script name is given then the key and URL is necessary to access SolidFire nodes.&#x27;, &#x27;The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted.&#x27;]
+        :param script:  Executable name of a script. If no script name is given then the key and URL is necessary to access SolidFire nodes. The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted. 
         :type script: str
         
-        :param scriptParameters:  [&#x27;JSON parameters to pass to the script.&#x27;]
+        :param scriptParameters:  JSON parameters to pass to the script. 
         :type scriptParameters: str
         
-        :param attributes:  [&#x27;JSON attributes for the bulk volume job.&#x27;]
+        :param attributes:  JSON attributes for the bulk volume job. 
         :type attributes: dict
         """
 
@@ -4304,19 +4369,19 @@ class Element(ServiceBase):
         When the session is initialized, data can be written to a SolidFire storage volume from an external backup source.
         The external data is accessed by a web server running on a SolidFire node.
         Communications and server interaction information for external data access is passed by a script running on the SolidFire storage system.
-        :param volumeID: [required] ID of the volume to be written to.
+        :param volumeID: [required] ID of the volume to be written to. 
         :type volumeID: int
         
-        :param format: [required] [&#x27;The format of the volume data. Can be either:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;uncompressed&lt;/b&gt;: every byte of the volume is returned without any compression.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;native&lt;/b&gt;: opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write&#x27;][&#x27;The format of the volume data. Can be either:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;uncompressed&lt;/b&gt;: every byte of the volume is returned without any compression.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;native&lt;/b&gt;: opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write&#x27;][&#x27;The format of the volume data. Can be either:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;uncompressed&lt;/b&gt;: every byte of the volume is returned without any compression.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;native&lt;/b&gt;: opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write&#x27;]
+        :param format: [required] The format of the volume data. Can be either: <br/><b>uncompressed</b>: every byte of the volume is returned without any compression. <br/><b>native</b>: opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write 
         :type format: str
         
-        :param script:  [&#x27;Executable name of a script.&#x27;, &#x27;If no script name is given then the key and URL are necessary to access SolidFire nodes.&#x27;, &#x27;The script runs on the primary node and the key and URL is returned to the script so the local web server can be contacted.&#x27;][&#x27;Executable name of a script.&#x27;, &#x27;If no script name is given then the key and URL are necessary to access SolidFire nodes.&#x27;, &#x27;The script runs on the primary node and the key and URL is returned to the script so the local web server can be contacted.&#x27;][&#x27;Executable name of a script.&#x27;, &#x27;If no script name is given then the key and URL are necessary to access SolidFire nodes.&#x27;, &#x27;The script runs on the primary node and the key and URL is returned to the script so the local web server can be contacted.&#x27;]
+        :param script:  Executable name of a script. If no script name is given then the key and URL are necessary to access SolidFire nodes. The script runs on the primary node and the key and URL is returned to the script so the local web server can be contacted. 
         :type script: str
         
-        :param scriptParameters:  [&#x27;JSON parameters to pass to the script.&#x27;]
+        :param scriptParameters:  JSON parameters to pass to the script. 
         :type scriptParameters: str
         
-        :param attributes:  [&#x27;JSON attributes for the bulk volume job.&#x27;]
+        :param attributes:  JSON attributes for the bulk volume job. 
         :type attributes: dict
         """
 
@@ -4349,19 +4414,19 @@ class Element(ServiceBase):
             attributes=OPTIONAL,):
         """
         You can use UpdateBulkVolumeStatus in a script to return to the SolidFire system the status of a bulk volume job that you have started with the "StartBulkVolumeRead" or "StartBulkVolumeWrite" methods.
-        :param key: [required] The key assigned during initialization of a &quot;StartBulkVolumeRead&quot; or &quot;StartBulkVolumeWrite&quot; session.
+        :param key: [required] The key assigned during initialization of a "StartBulkVolumeRead" or "StartBulkVolumeWrite" session. 
         :type key: str
         
-        :param status: [required] [&#x27;The SolidFire system sets the status of the given bulk volume job.&lt;br/&gt;&#x27;, &#x27;Possible values:&lt;br/&gt;&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;running&lt;/b&gt;: jobs that are still active.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;complete&lt;/b&gt;: jobs that are done. failed - jobs that have failed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;failed&lt;/b&gt;: jobs that have failed.&#x27;][&#x27;The SolidFire system sets the status of the given bulk volume job.&lt;br/&gt;&#x27;, &#x27;Possible values:&lt;br/&gt;&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;running&lt;/b&gt;: jobs that are still active.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;complete&lt;/b&gt;: jobs that are done. failed - jobs that have failed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;failed&lt;/b&gt;: jobs that have failed.&#x27;][&#x27;The SolidFire system sets the status of the given bulk volume job.&lt;br/&gt;&#x27;, &#x27;Possible values:&lt;br/&gt;&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;running&lt;/b&gt;: jobs that are still active.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;complete&lt;/b&gt;: jobs that are done. failed - jobs that have failed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;failed&lt;/b&gt;: jobs that have failed.&#x27;][&#x27;The SolidFire system sets the status of the given bulk volume job.&lt;br/&gt;&#x27;, &#x27;Possible values:&lt;br/&gt;&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;running&lt;/b&gt;: jobs that are still active.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;complete&lt;/b&gt;: jobs that are done. failed - jobs that have failed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;failed&lt;/b&gt;: jobs that have failed.&#x27;][&#x27;The SolidFire system sets the status of the given bulk volume job.&lt;br/&gt;&#x27;, &#x27;Possible values:&lt;br/&gt;&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;running&lt;/b&gt;: jobs that are still active.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;complete&lt;/b&gt;: jobs that are done. failed - jobs that have failed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;failed&lt;/b&gt;: jobs that have failed.&#x27;]
+        :param status: [required] The SolidFire system sets the status of the given bulk volume job.<br/> Possible values:<br/> <br/><b>running</b>: jobs that are still active. <br/><b>complete</b>: jobs that are done. failed - jobs that have failed. <br/><b>failed</b>: jobs that have failed. 
         :type status: str
         
-        :param percentComplete:  [&#x27;The completed progress of the bulk volume job as a percentage.&#x27;]
+        :param percentComplete:  The completed progress of the bulk volume job as a percentage. 
         :type percentComplete: str
         
-        :param message:  [&#x27;Returns the status of the bulk volume job when the job has completed.&#x27;]
+        :param message:  Returns the status of the bulk volume job when the job has completed. 
         :type message: str
         
-        :param attributes:  [&#x27;JSON attributes  updates what is on the bulk volume job.&#x27;]
+        :param attributes:  JSON attributes  updates what is on the bulk volume job. 
         :type attributes: dict
         """
 
@@ -4399,22 +4464,22 @@ class Element(ServiceBase):
         Entering initiators and volumes are optional when creating a volume access group.
         Once the group is created volumes and initiator IQNs can be added.
         Any initiator IQN that is successfully added to the volume access group is able to access any volume in the group without CHAP authentication.
-        :param name: [required] [&#x27;Name of the volume access group.&#x27;, &#x27;It is not required to be unique, but recommended.&#x27;][&#x27;Name of the volume access group.&#x27;, &#x27;It is not required to be unique, but recommended.&#x27;]
+        :param name: [required] Name of the volume access group. It is not required to be unique, but recommended. 
         :type name: str
         
-        :param initiators:  [&#x27;List of initiators to include in the volume access group.&#x27;, &#x27;If unspecified, the access group will start out without configured initiators.&#x27;][&#x27;List of initiators to include in the volume access group.&#x27;, &#x27;If unspecified, the access group will start out without configured initiators.&#x27;]
+        :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group will start out without configured initiators. 
         :type initiators: str
         
-        :param volumes:  [&#x27;List of volumes to initially include in the volume access group.&#x27;, &#x27;If unspecified, the access group will start without any volumes.&#x27;][&#x27;List of volumes to initially include in the volume access group.&#x27;, &#x27;If unspecified, the access group will start without any volumes.&#x27;]
+        :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group will start without any volumes. 
         :type volumes: int
         
-        :param virtualNetworkID:  The ID of the SolidFire Virtual Network ID to associate the volume access group with.
+        :param virtualNetworkID:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
         :type virtualNetworkID: int
         
-        :param virtualNetworkTags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with.
+        :param virtualNetworkTags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
         :type virtualNetworkTags: int
         
-        :param attributes:  List of Name/Value pairs in JSON object format.
+        :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
 
@@ -4447,10 +4512,10 @@ class Element(ServiceBase):
             limit=OPTIONAL,):
         """
         ListVolumeAccessGroups is used to return information about the volume access groups that are currently in the system.
-        :param startVolumeAccessGroupID:  [&#x27;The lowest VolumeAccessGroupID to return.&#x27;, &#x27;This can be useful for paging.&#x27;, &#x27;If unspecified, there is no lower limit (implicitly 0).&#x27;][&#x27;The lowest VolumeAccessGroupID to return.&#x27;, &#x27;This can be useful for paging.&#x27;, &#x27;If unspecified, there is no lower limit (implicitly 0).&#x27;][&#x27;The lowest VolumeAccessGroupID to return.&#x27;, &#x27;This can be useful for paging.&#x27;, &#x27;If unspecified, there is no lower limit (implicitly 0).&#x27;]
+        :param startVolumeAccessGroupID:  The lowest VolumeAccessGroupID to return. This can be useful for paging. If unspecified, there is no lower limit (implicitly 0). 
         :type startVolumeAccessGroupID: int
         
-        :param limit:  [&#x27;The maximum number of results to return.&#x27;, &#x27;This can be useful for paging.&#x27;][&#x27;The maximum number of results to return.&#x27;, &#x27;This can be useful for paging.&#x27;]
+        :param limit:  The maximum number of results to return. This can be useful for paging. 
         :type limit: int
         """
 
@@ -4475,7 +4540,7 @@ class Element(ServiceBase):
             volume_access_group_id,):
         """
         Delete a volume access group from the system.
-        :param volumeAccessGroupID: [required] [&#x27;The ID of the volume access group to delete.&#x27;]
+        :param volumeAccessGroupID: [required] The ID of the volume access group to delete. 
         :type volumeAccessGroupID: int
         """
 
@@ -4512,25 +4577,25 @@ class Element(ServiceBase):
         RemoveInitiatorsFromVolumeAccessGroup<br/>
         AddVolumesToVolumeAccessGroup<br/>
         RemoveVolumesFromVolumeAccessGroup<br/>
-        :param volumeAccessGroupID: [required] The ID of the volume access group to modify.
+        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
         :type volumeAccessGroupID: int
         
-        :param virtualNetworkID:  The ID of the SolidFire Virtual Network ID to associate the volume access group with.
+        :param virtualNetworkID:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
         :type virtualNetworkID: int
         
-        :param virtualNetworkTags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with.
+        :param virtualNetworkTags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
         :type virtualNetworkTags: int
         
-        :param name:  [&#x27;Name of the volume access group.&#x27;, &#x27;It is not required to be unique, but recommended.&#x27;][&#x27;Name of the volume access group.&#x27;, &#x27;It is not required to be unique, but recommended.&#x27;]
+        :param name:  Name of the volume access group. It is not required to be unique, but recommended. 
         :type name: str
         
-        :param initiators:  [&#x27;List of initiators to include in the volume access group.&#x27;, &quot;If unspecified, the access group&#x27;s configured initiators will not be modified.&quot;][&#x27;List of initiators to include in the volume access group.&#x27;, &quot;If unspecified, the access group&#x27;s configured initiators will not be modified.&quot;]
+        :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group's configured initiators will not be modified. 
         :type initiators: str
         
-        :param volumes:  [&#x27;List of volumes to initially include in the volume access group.&#x27;, &quot;If unspecified, the access group&#x27;s volumes will not be modified.&quot;][&#x27;List of volumes to initially include in the volume access group.&#x27;, &quot;If unspecified, the access group&#x27;s volumes will not be modified.&quot;]
+        :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group's volumes will not be modified. 
         :type volumes: int
         
-        :param attributes:  List of Name/Value pairs in JSON object format.
+        :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
 
@@ -4565,10 +4630,10 @@ class Element(ServiceBase):
             initiators,):
         """
         Add initiators to a volume access group.
-        :param volumeAccessGroupID: [required] The ID of the volume access group to modify.
+        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
         :type volumeAccessGroupID: int
         
-        :param initiators: [required] [&#x27;List of initiators to add to the volume access group.&#x27;]
+        :param initiators: [required] List of initiators to add to the volume access group. 
         :type initiators: str
         """
 
@@ -4592,10 +4657,10 @@ class Element(ServiceBase):
             initiators,):
         """
         Remove initiators from a volume access group.
-        :param volumeAccessGroupID: [required] The ID of the volume access group to modify.
+        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
         :type volumeAccessGroupID: int
         
-        :param initiators: [required] [&#x27;List of initiators to remove from the volume access group.&#x27;]
+        :param initiators: [required] List of initiators to remove from the volume access group. 
         :type initiators: str
         """
 
@@ -4619,10 +4684,10 @@ class Element(ServiceBase):
             volumes,):
         """
         Add volumes to a volume access group.
-        :param volumeAccessGroupID: [required] The ID of the volume access group to modify.
+        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
         :type volumeAccessGroupID: int
         
-        :param volumes: [required] [&#x27;List of volumes to add to this volume access group.&#x27;]
+        :param volumes: [required] List of volumes to add to this volume access group. 
         :type volumes: int
         """
 
@@ -4646,10 +4711,10 @@ class Element(ServiceBase):
             volumes,):
         """
         Remove volumes from a volume access group.
-        :param volumeAccessGroupID: [required] The ID of the volume access group to modify.
+        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
         :type volumeAccessGroupID: int
         
-        :param volumes: [required] [&#x27;List of volumes to remove from this volume access group.&#x27;]
+        :param volumes: [required] List of volumes to remove from this volume access group. 
         :type volumes: int
         """
 
@@ -4672,7 +4737,7 @@ class Element(ServiceBase):
             volume_access_group_id,):
         """
         GetVolumeAccessGroupEfficiency is used to retrieve efficiency information about a volume access group. Only the volume access group provided as parameters in this API method is used to compute the capacity.
-        :param volumeAccessGroupID: [required] Specifies the volume access group for which capacity is computed.
+        :param volumeAccessGroupID: [required] Specifies the volume access group for which capacity is computed. 
         :type volumeAccessGroupID: int
         """
 
@@ -4694,7 +4759,7 @@ class Element(ServiceBase):
             volume_access_group_id,):
         """
         The GetVolumeAccessGroupLunAssignments is used to return information LUN mappings of a specified volume access group.
-        :param volumeAccessGroupID: [required] Unique volume access group ID used to return information.
+        :param volumeAccessGroupID: [required] Unique volume access group ID used to return information. 
         :type volumeAccessGroupID: int
         """
 
@@ -4723,10 +4788,10 @@ class Element(ServiceBase):
         <b>Note:</b> Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed. None of the specified LUN assignments will be modified if there is an exception.
         <br/><br/>
         <b>Caution:</b> If a LUN assignment is changed for a volume with active I/O, the I/O could be disrupted. Changes to the server configuration may be required in order to change volume LUN assignments.
-        :param volumeAccessGroupID: [required] Unique volume access group ID for which the LUN assignments will be modified.
+        :param volumeAccessGroupID: [required] Unique volume access group ID for which the LUN assignments will be modified. 
         :type volumeAccessGroupID: int
         
-        :param lunAssignments: [required] The volume IDs with new assigned LUN values.
+        :param lunAssignments: [required] The volume IDs with new assigned LUN values. 
         :type lunAssignments: LunAssignment
         """
 
