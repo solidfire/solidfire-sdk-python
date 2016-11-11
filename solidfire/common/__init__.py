@@ -486,17 +486,20 @@ class ServiceBase(object):
         """
 
         self._api_version = float(api_version)
-        if not dispatcher:
-            endpoint = str.format('https://{mvip}/json-rpc/{api_version}',
-                                  mvip=mvip, api_version=self._api_version)
-            dispatcher = CurlDispatcher(endpoint, username, password,
-                                        verify_ssl)
-        self._dispatcher = dispatcher
-        mvipArr = mvip.split(':')
-        if(len(mvipArr) == 2):
-            self._port = mvipArr[1]
-        else:
+        endpoint = str.format('https://{mvip}/json-rpc/{api_version}', mvip=mvip, api_version=self._api_version)
+        if 'https' in endpoint:
             self._port = 443
+        else:
+            self._port = ''
+
+        if not dispatcher:
+            dispatcher = CurlDispatcher(endpoint, username, password, verify_ssl)
+        self._dispatcher = dispatcher
+
+        if mvip is not None:
+            mvipArr = mvip.split(':')
+            if len(mvipArr) == 2:
+                self._port = mvipArr[1]
 
     def timeout(self, timeout_in_sec):
         """

@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 """Copyright (c) NetApp Inc. 2016."""
 
-from base_test import SolidFireBaseTest
 from solidfire.common import ApiServerError
 from solidfire.factory import ElementFactory
+from tests.base_test import SolidFireBaseTest
 
 
 class TestRequestsMod(SolidFireBaseTest):
@@ -16,3 +16,9 @@ class TestRequestsMod(SolidFireBaseTest):
         with self.assertRaises(ApiServerError) as context:
             ElementFactory.create(self.cluster, "foo", self.pwd)
         self.assertTrue('AuthorizationError' in str(context.exception))
+
+    def test_exception_handler(self):
+        with self.assertRaises(ApiServerError) as context:
+            sf = ElementFactory.create(self.cluster, self.user, self.pwd)
+            sf.add_drives(None)
+        self.assertTrue('ApiServerError' in str(context.exception))
