@@ -3389,36 +3389,43 @@ class Element(ServiceBase):
 
     def list_virtual_volumes(
             self,
-            start_virtual_volume_id=OPTIONAL,
+            details=OPTIONAL,
             limit=OPTIONAL,
-            virtual_volume_ids=OPTIONAL,
-            calling_virtual_volume_host_id=OPTIONAL,):
+            recursive=OPTIONAL,
+            start_virtual_volume_id=OPTIONAL,
+            virtual_volume_ids=OPTIONAL,):
         """
-        :param startVirtualVolumeID:  The ID of the first Virtual Volume to list. This can be useful for paging results. By default, this lists all Virtual Volumes. 
-        :type startVirtualVolumeID: UUID
+        ListVirtualVolumes enables you to list the virtual volumes currently in the system. You can use this method to list all virtual volumes, or only list a subset.
+        :param details:  Possible values:true: Include more details about each VVOL in the response.false: Include the standard level of detail about each VVOL in the response. 
+        :type details: bool
         
-        :param limit:  The maximum number of volumes to return from the API. 
+        :param limit:  The maximum number of virtual volumes to list. 
         :type limit: int
         
-        :param virtualVolumeIDs:  List of Virtual Volume IDs to get. 
-        :type virtualVolumeIDs: UUID
+        :param recursive:  Possible values:true: Include information about the children of each VVOL in the response.false: Do not include information about the children of each VVOL in the response. 
+        :type recursive: bool
         
-        :param callingVirtualVolumeHostID:  
-        :type callingVirtualVolumeHostID: UUID
+        :param startVirtualVolumeID:  The ID of the virtual volume at which to begin the list. 
+        :type startVirtualVolumeID: UUID
+        
+        :param virtualVolumeIDs:  A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
+        :type virtualVolumeIDs: UUID
         """
 
-        self._check_connection_type("list_virtual_volumes", "Cluster")
+        self._check_connection_type("list_virtual_volumes", "")
 
         params = { 
         }
-        if start_virtual_volume_id is not None:
-            params["startVirtualVolumeID"] = start_virtual_volume_id
+        if details is not None:
+            params["details"] = details
         if limit is not None:
             params["limit"] = limit
+        if recursive is not None:
+            params["recursive"] = recursive
+        if start_virtual_volume_id is not None:
+            params["startVirtualVolumeID"] = start_virtual_volume_id
         if virtual_volume_ids is not None:
             params["virtualVolumeIDs"] = virtual_volume_ids
-        if calling_virtual_volume_host_id is not None:
-            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
@@ -3819,6 +3826,110 @@ class Element(ServiceBase):
             params
         )
 
+    def copy_volume(
+            self,
+            volume_id,
+            dst_volume_id,
+            snapshot_id=OPTIONAL,):
+        """
+        Copies one volume to another.
+        :param volumeID: [required] Source volume to copy. 
+        :type volumeID: int
+        
+        :param dstVolumeID: [required] Destination volume for the copy. 
+        :type dstVolumeID: int
+        
+        :param snapshotID:  Snapshot ID of the source volume to create the copy from. 
+        :type snapshotID: int
+        """
+
+        self._check_connection_type("copy_volume", "Cluster")
+
+        params = { 
+            "volumeID": volume_id,
+            "dstVolumeID": dst_volume_id,
+        }
+        if snapshot_id is not None:
+            params["snapshotID"] = snapshot_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CopyVolume',
+            CopyVolumeResult,
+            params,
+            since=9.0
+        )
+
+    def cancel_clone(
+            self,
+            clone_id,):
+        """
+        Cancels a currently running clone operation.
+        :param cloneID: [required] 
+        :type cloneID: int
+        """
+
+        self._check_connection_type("cancel_clone", "Cluster")
+
+        params = { 
+            "cloneID": clone_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CancelClone',
+            CancelCloneResult,
+            params,
+            since=9.0
+        )
+
+    def cancel_group_clone(
+            self,
+            group_clone_id,):
+        """
+        CancelGroupClone enables you to stop an ongoing CloneMultipleVolumes process for a group of clones. When you cancel a group clone operation, the system completes and removes the operation's associated asyncHandle. 
+        :param groupCloneID: [required] cloneID for the ongoing clone process. 
+        :type groupCloneID: int
+        """
+
+        self._check_connection_type("cancel_group_clone", "")
+
+        params = { 
+            "groupCloneID": group_clone_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CancelGroupClone',
+            CancelGroupCloneResult,
+            params,
+            since=9.0
+        )
+
+    def list_async_results(
+            self,
+            async_result_types=OPTIONAL,):
+        """
+        You can use ListAsyncResults to list the results of all currently running and completed asynchronous methods on the system. Querying asynchronous results with ListAsyncResults does not cause completed asyncHandles to expire; you can use GetAsyncResult to query any of the asyncHandles returned by ListAsyncResults.
+        :param asyncResultTypes:  An optional list of types of results. You can use this list to restrict the results to only these types of operations. Possible values:BulkVolume: Copy operations between volumes, such as backups or restores.Clone: Volume cloning operations.DriveRemoval: Operations involving the system copying data from a drive in preparation to remove it from the cluster.RtfiPendingNode: Operations involving the system installing compatible software on a node before adding it to the cluster. 
+        :type asyncResultTypes: str
+        """
+
+        self._check_connection_type("list_async_results", "")
+
+        params = { 
+        }
+        if async_result_types is not None:
+            params["asyncResultTypes"] = async_result_types
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListAsyncResults',
+            ListAsyncResultsResult,
+            params,
+            since=9.0
+        )
+
     def create_volume(
             self,
             name,
@@ -3903,6 +4014,42 @@ class Element(ServiceBase):
             'DeleteVolume',
             DeleteVolumeResult,
             params
+        )
+
+    def delete_volumes(
+            self,
+            account_ids=OPTIONAL,
+            volume_access_group_ids=OPTIONAL,
+            volume_ids=OPTIONAL,):
+        """
+        DeleteVolumes marks multiple (up to 500) active volumes for deletion. Once marked, the volumes are purged (permanently deleted) after the cleanup interval elapses.The cleanup interval can be set in the SetClusterSettings method. For more information on using this method, see SetClusterSettings on page 1. After making a request to delete volumes, any active iSCSI connections to the volumes are immediately terminated and no further connections are allowed while the volumes are in this state. A marked volume is not returned in target discovery requests. Any snapshots of a volume that has been marked for deletion are not affected. Snapshots are kept until the volume is purged from the system. If a volume is marked for deletion and has a bulk volume read or bulk volume write operation in progress, the bulk volume read or write operation is stopped. If the volumes you delete are paired with a volume, replication between the paired volumes is suspended and no data is transferred to them or from them while in a deleted state. The remote volumes the deleted volumes were paired with enter into a PausedMisconfigured state and data is no longer sent to them or from the deleted volumes. Until the deleted volumes are purged, they can be restored and data transfers resume. If the deleted volumes are purged from the system, the volumes they were paired with enter into a StoppedMisconfigured state and the volume pairing status is removed. The purged volumes become permanently unavailable.
+        :param accountIDs:  A list of account IDs. All volumes from these accounts are deleted from the system.  
+        :type accountIDs: int
+        
+        :param volumeAccessGroupIDs:  A list of volume access group IDs. All of the volumes from all of the volume access groups you specify in this list are deleted from the system. 
+        :type volumeAccessGroupIDs: int
+        
+        :param volumeIDs:  The list of IDs of the volumes to delete from the system. 
+        :type volumeIDs: int
+        """
+
+        self._check_connection_type("delete_volumes", "")
+
+        params = { 
+        }
+        if account_ids is not None:
+            params["accountIDs"] = account_ids
+        if volume_access_group_ids is not None:
+            params["volumeAccessGroupIDs"] = volume_access_group_ids
+        if volume_ids is not None:
+            params["volumeIDs"] = volume_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DeleteVolumes',
+            DeleteVolumesResult,
+            params,
+            since=9.0
         )
 
     def get_volume_stats(
@@ -4246,6 +4393,71 @@ class Element(ServiceBase):
             params
         )
 
+    def modify_volumes(
+            self,
+            volume_ids,
+            account_id=OPTIONAL,
+            access=OPTIONAL,
+            attributes=OPTIONAL,
+            mode=OPTIONAL,
+            qos=OPTIONAL,
+            set_create_time=OPTIONAL,
+            total_size=OPTIONAL,):
+        """
+        ModifyVolumes allows you to configure up to 500 existing volumes at one time. Changes take place immediately. If ModifyVolumes fails to modify any of the specified volumes, none of the specified volumes are changed.If you do not specify QoS values when you modify volumes, the QoS values for each volume remain unchanged. You can retrieve default QoS values for a newly created volume by running the GetDefaultQoS method.When you need to increase the size of volumes that are being replicated, do so in the following order to prevent replication errors:Increase the size of the "Replication Target" volume.Increase the size of the source or "Read / Write" volume. recommends that both the target and source volumes be the same size.NOTE: If you change access status to locked or replicationTarget all existing iSCSI connections are terminated.
+        :param volumeIDs: [required] A list of volumeIDs for the volumes to be modified. 
+        :type volumeIDs: int
+        
+        :param accountID:  AccountID to which the volume is reassigned. If none is specified, the previous account name is used. 
+        :type accountID: int
+        
+        :param access:  Access allowed for the volume. Possible values:readOnly: Only read operations are allowed.readWrite: Reads and writes are allowed.locked: No reads or writes are allowed.If not specified, the access value does not change.replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.If a value is not specified, the access value does not change.  
+        :type access: str
+        
+        :param attributes:  
+        :type attributes: dict
+        
+        :param mode:  Volume replication mode. Possible values:asynch: Waits for system to acknowledge that data is stored on source before writing to the target.sync: Does not wait for data transmission acknowledgment from source to begin writing data to the target. 
+        :type mode: str
+        
+        :param qos:  New quality of service settings for this volume.If not specified, the QoS settings are not changed. 
+        :type qos: QoS
+        
+        :param setCreateTime:  Identify the time at which the volume was created. 
+        :type setCreateTime: str
+        
+        :param totalSize:  New size of the volume in bytes. 1000000000 is equal to 1GB. Size is rounded up to the nearest 1MB in size. This parameter can only be used to increase the size of a volume. 
+        :type totalSize: int
+        """
+
+        self._check_connection_type("modify_volumes", "")
+
+        params = { 
+            "volumeIDs": volume_ids,
+        }
+        if account_id is not None:
+            params["accountID"] = account_id
+        if access is not None:
+            params["access"] = access
+        if attributes is not None:
+            params["attributes"] = attributes
+        if mode is not None:
+            params["mode"] = mode
+        if qos is not None:
+            params["qos"] = qos
+        if set_create_time is not None:
+            params["setCreateTime"] = set_create_time
+        if total_size is not None:
+            params["totalSize"] = total_size
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyVolumes',
+            ModifyVolumesResult,
+            params,
+            since=9.0
+        )
+
     def purge_deleted_volume(
             self,
             volume_id,):
@@ -4268,6 +4480,42 @@ class Element(ServiceBase):
             'PurgeDeletedVolume',
             PurgeDeletedVolumeResult,
             params
+        )
+
+    def purge_deleted_volumes(
+            self,
+            volume_ids=OPTIONAL,
+            account_ids=OPTIONAL,
+            volume_access_group_ids=OPTIONAL,):
+        """
+        PurgeDeletedVolumes immediately and permanently purges volumes that have been deleted; you can use this method to purge up to 500 volumes at one time. You must delete volumes using DeleteVolumes before they can be purged. Volumes are purged by the system automatically after a period of time, so usage of this method is not typically required.
+        :param volumeIDs:  A list of volumeIDs of volumes to be purged from the system. 
+        :type volumeIDs: int
+        
+        :param accountIDs:  A list of accountIDs. All of the volumes from all of the specified accounts are purged from the system. 
+        :type accountIDs: int
+        
+        :param volumeAccessGroupIDs:  A list of volumeAccessGroupIDs. All of the volumes from all of the specified Volume Access Groups are purged from the system. 
+        :type volumeAccessGroupIDs: int
+        """
+
+        self._check_connection_type("purge_deleted_volumes", "")
+
+        params = { 
+        }
+        if volume_ids is not None:
+            params["volumeIDs"] = volume_ids
+        if account_ids is not None:
+            params["accountIDs"] = account_ids
+        if volume_access_group_ids is not None:
+            params["volumeAccessGroupIDs"] = volume_access_group_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'PurgeDeletedVolumes',
+            PurgeDeletedVolumesResult,
+            params,
+            since=9.0
         )
 
     def restore_deleted_volume(
@@ -4450,6 +4698,41 @@ class Element(ServiceBase):
             params
         )
 
+    def set_default_qo_s(
+            self,
+            min_iops=OPTIONAL,
+            max_iops=OPTIONAL,
+            burst_iops=OPTIONAL,):
+        """
+        SetDefaultQoS enables you to configure the default Quality of Service (QoS) values (measured in inputs and outputs per second, or IOPS) for a volume. For more information on QoS in a  cluster, see the . 
+        :param minIOPS:  The minimum number of sustained IOPS that are provided by the cluster to a volume. 
+        :type minIOPS: int
+        
+        :param maxIOPS:  The maximum number of sustained IOPS that are provided by the cluster to a volume. 
+        :type maxIOPS: int
+        
+        :param burstIOPS:  The maximum number of IOPS allowed in a short burst scenario. 
+        :type burstIOPS: int
+        """
+
+        self._check_connection_type("set_default_qo_s", "")
+
+        params = { 
+        }
+        if min_iops is not None:
+            params["minIOPS"] = min_iops
+        if max_iops is not None:
+            params["maxIOPS"] = max_iops
+        if burst_iops is not None:
+            params["burstIOPS"] = burst_iops
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetDefaultQoS',
+            SetDefaultQoSResult,
+            params
+        )
+
     def create_volume_access_group(
             self,
             name,
@@ -4503,7 +4786,8 @@ class Element(ServiceBase):
         return self.send_request(
             'CreateVolumeAccessGroup',
             CreateVolumeAccessGroupResult,
-            params
+            params,
+            since=9.0
         )
 
     def list_volume_access_groups(
@@ -4532,7 +4816,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListVolumeAccessGroups',
             ListVolumeAccessGroupsResult,
-            params
+            params,
+            since=9.0
         )
 
     def delete_volume_access_group(
@@ -4621,7 +4906,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ModifyVolumeAccessGroup',
             ModifyVolumeAccessGroupResult,
-            params
+            params,
+            since=9.0
         )
 
     def add_initiators_to_volume_access_group(
