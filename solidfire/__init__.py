@@ -1558,6 +1558,92 @@ class Element(ServiceBase):
             since=7.0
         )
 
+<<<<<<< HEAD
+=======
+    def get_cluster_hardware_info(
+            self,
+            type=OPTIONAL,):
+        """
+        You can use the GetClusterHardwareInfo method to retrieve the hardware status and information for all Fibre Channel nodes, iSCSI nodes and drives in the cluster. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
+        :param type:  Include only a certain type of hardware information in the response. Can be one of the following:drives: List only drive information in the response.nodes: List only node information in the response.all: Include both drive and node information in the response.If this parameter is omitted, a type of "all" is assumed. 
+        :type type: str
+        """
+
+        self._check_connection_type("get_cluster_hardware_info", "Cluster")
+
+        params = { 
+        }
+        if type is not None:
+            params["type"] = type
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetClusterHardwareInfo',
+            GetClusterHardwareInfoResult,
+            params,
+            since=1.0
+        )
+
+    def get_hardware_config(
+            self,):
+        """
+        GetHardwareConfig enables you to display the hardware configuration information for a node. NOTE: This method is available only through the per-node API endpoint 5.0 or later."""
+
+        self._check_connection_type("get_hardware_config", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetHardwareConfig',
+            GetHardwareConfigResult,
+            params,
+            since=5.0
+        )
+
+    def get_node_hardware_info(
+            self,
+            node_id,):
+        """
+        GetNodeHardwareInfo is used to return all the hardware info and status for the node specified. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
+        :param nodeID: [required] The ID of the node for which hardware information is being requested.  Information about a  node is returned if a   node is specified. 
+        :type nodeID: int
+        """
+
+        self._check_connection_type("get_node_hardware_info", "Cluster")
+
+        params = { 
+            "nodeID": node_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetNodeHardwareInfo',
+            GetNodeHardwareInfoResult,
+            params,
+            since=1.0
+        )
+
+    def get_nvram_info(
+            self,):
+        """
+        GetNvramInfo allows you to retrieve information from each node about the NVRAM card.  """
+
+        self._check_connection_type("get_nvram_info", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetNvramInfo',
+            GetNvramInfoResult,
+            params,
+            since=5.0
+        )
+
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
     def create_initiators(
             self,
             initiators,):
@@ -1897,6 +1983,277 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
+            'ListClusterPairs',
+            ListClusterPairsResult,
+            params,
+            since=6.0
+=======
+            'ListActiveNodes',
+            ListActiveNodesResult,
+            params,
+            since=1.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
+        )
+
+    def list_active_paired_volumes(
+            self,):
+        """
+        ListActivePairedVolumes is used to list all of the active volumes paired with a volume.
+        Volumes listed in the return for this method include volumes with active and pending pairings."""
+
+        self._check_connection_type("list_active_paired_volumes", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+<<<<<<< HEAD
+            'ListActivePairedVolumes',
+            ListActivePairedVolumesResult,
+            params,
+            since=6.0
+=======
+            'ListAllNodes',
+            ListAllNodesResult,
+            params,
+            since=1.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
+        )
+
+    def start_cluster_pairing(
+            self,):
+        """
+        StartClusterPairing is used to create an encoded key from a cluster that is used to pair with another cluster.
+        The key created from this API method is used in the "CompleteClusterPairing" API method to establish a cluster pairing.
+        You can pair a cluster with a maximum of four other SolidFire clusters."""
+
+        self._check_connection_type("start_cluster_pairing", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+<<<<<<< HEAD
+            'StartClusterPairing',
+            StartClusterPairingResult,
+            params,
+            since=6.0
+=======
+            'ListPendingNodes',
+            ListPendingNodesResult,
+            params,
+            since=1.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
+        )
+
+    def start_volume_pairing(
+            self,
+<<<<<<< HEAD
+=======
+            pending_nodes,):
+        """
+        AddNodes is used to add one or more new nodes to the cluster. When a node is not configured and starts up for the first time you are prompted to configure the node. Once a node is configured it is registered as a "pending node" with the cluster.
+        <br/><br/>
+        Adding a node to a cluster that has been set up for virtual networking will require a sufficient number of virtual storage IP addresses to allocate a virtual IP to the new node. If there are no virtual IP addresses available for the new node, the AddNode operation will not complete successfully. Use the "ModifyVirtualNetwork" method to add more storage IP addresses to your virtual network.
+        <br/><br/>
+        The software version on each node in a cluster must be compatible. Run the "ListAllNodes" API to see what versions of software are currently running on the cluster nodes. For an explanation of software version compatibility, see "Node Versioning and Compatibility" in the Element API guide.
+        <br/><br/>
+        Once a node has been added, the drives on the node are made available and can then be added via the "AddDrives" method to increase the storage capacity of the cluster.
+        <br/><br/>
+        <b>Note</b>: It may take several seconds after adding a new Node for it to start up and register the drives as being available.
+        :param pendingNodes: [required] List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method. 
+        :type pendingNodes: int
+        """
+
+        self._check_connection_type("add_nodes", "Cluster")
+
+        params = { 
+            "pendingNodes": pending_nodes,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'AddNodes',
+            AddNodesResult,
+            params,
+            since=1.0
+        )
+
+    def remove_nodes(
+            self,
+            nodes,):
+        """
+        RemoveNodes is used to remove one or more nodes that should no longer participate in the cluster. Before removing a node, all drives it contains must first be removed with "RemoveDrives" method. A node cannot be removed until the RemoveDrives process has completed and all data has been migrated away from the node.
+        <br/><br/>
+        Once removed, a node registers itself as a pending node and can be added again, or shut down which removes it from the "Pending Node" list.
+        :param nodes: [required] List of NodeIDs for the nodes to be removed. 
+        :type nodes: int
+        """
+
+        self._check_connection_type("remove_nodes", "Cluster")
+
+        params = { 
+            "nodes": nodes,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RemoveNodes',
+            RemoveNodesResult,
+            params,
+            since=1.0
+        )
+
+    def get_network_config(
+            self,):
+        """
+        The GetNetworkConfig API method is used to display the network configuration information for a node.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
+
+        self._check_connection_type("get_network_config", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetNetworkConfig',
+            GetNetworkConfigResult,
+            params,
+            since=5.0
+        )
+
+    def set_config(
+            self,
+            config,):
+        """
+        The SetConfig API method is used to set all the configuration information for the node. This includes the same information available via calls to SetClusterConfig and SetNetworkConfig in one API method.
+        <br/><br/>
+        <b>Warning!</b> Changing the 'bond-mode' on a node can cause a temporary loss of network connectivity. Caution should be taken when using this method.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
+        :param config: [required] Objects that you want changed for the cluster interface settings. 
+        :type config: Config
+        """
+
+        self._check_connection_type("set_config", "Node")
+
+        params = { 
+            "config": config,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetConfig',
+            SetConfigResult,
+            params,
+            since=5.0
+        )
+
+    def set_network_config(
+            self,
+            network,):
+        """
+        The "SetNetworkConfig" method is used to set the network configuration for a node. To see the states in which these objects can be modified, see "Network Object for 1G and 10G Interfaces" on page 109 of the Element API. To display the current network settings for a node, run the "GetNetworkConfig" method.
+        <br/><br/>
+        <b>WARNING!</b> Changing the "bond-mode" on a node can cause a temporary loss of network connectivity. Caution should be taken when using this method.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
+        :param network: [required] Objects that will be changed for the node network settings. 
+        :type network: Network
+        """
+
+        self._check_connection_type("set_network_config", "Node")
+
+        params = { 
+            "network": network,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetNetworkConfig',
+            SetNetworkConfigResult,
+            params,
+            since=5.0
+        )
+
+    def get_config(
+            self,):
+        """
+        The GetConfig API method is used to retrieve all the configuration information for the node. This one API method includes the same information available in both "GetClusterConfig" and "GetNetworkConfig" methods.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
+
+        self._check_connection_type("get_config", "Both")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetConfig',
+            GetConfigResult,
+            params,
+            since=5.0
+        )
+
+    def get_node_stats(
+            self,
+            node_id,):
+        """
+        GetNodeStats is used to return the high-level activity measurements for a single node.
+        :param nodeID: [required] Specifies the node for which statistics are gathered. 
+        :type nodeID: int
+        """
+
+        self._check_connection_type("get_node_stats", "Cluster")
+
+        params = { 
+            "nodeID": node_id,
+        }
+        
+        # There is an adaptor!
+        since = 1.0
+        deprecated = None
+
+        return ElementServiceAdaptor.get_node_stats(self, params,
+                                                  since, deprecated)
+
+    def list_node_stats(
+            self,):
+        """
+        ListNodeStats is used to return the high-level activity measurements for all nodes in a cluster."""
+
+        self._check_connection_type("list_node_stats", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListNodeStats',
+            ListNodeStatsResult,
+            params,
+            since=6.0
+        )
+
+    def list_cluster_pairs(
+            self,):
+        """
+        ListClusterPairs is used to list all of the clusters a cluster is paired with.
+        This method returns information about active and pending cluster pairings, such as statistics about the current pairing as well as the connectivity and latency (in milliseconds) of the cluster pairing."""
+
+        self._check_connection_type("list_cluster_pairs", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
             'ListClusterPairs',
             ListClusterPairsResult,
             params,
@@ -1944,6 +2301,7 @@ class Element(ServiceBase):
 
     def start_volume_pairing(
             self,
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
             volume_id,
             mode=OPTIONAL,):
         """
@@ -3228,7 +3586,11 @@ class Element(ServiceBase):
         :type initiators: str
         """
 
+<<<<<<< HEAD
         self._check_connection_type("remove_initiators_from_volume_access_group", "Cluster")
+=======
+        self._check_connection_type("list_virtual_volumes", "Cluster")
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
 
         params = { 
             "volumeAccessGroupID": volume_access_group_id,
@@ -3237,10 +3599,17 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'RemoveInitiatorsFromVolumeAccessGroup',
             ModifyVolumeAccessGroupResult,
             params,
             since=5.0
+=======
+            'ListVirtualVolumes',
+            ListVirtualVolumesResult,
+            params,
+            since=9.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def add_volumes_to_volume_access_group(
@@ -3474,8 +3843,13 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'ListActiveNodes',
             ListActiveNodesResult,
+=======
+            'CloneVolume',
+            CloneVolumeResult,
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
             params,
             since=1.0
         )
@@ -3492,10 +3866,17 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'ListAllNodes',
             ListAllNodesResult,
             params,
             since=1.0
+=======
+            'CloneMultipleVolumes',
+            CloneMultipleVolumesResult,
+            params,
+            since=7.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def list_pending_nodes(
@@ -3559,7 +3940,11 @@ class Element(ServiceBase):
         :type nodes: int
         """
 
+<<<<<<< HEAD
         self._check_connection_type("remove_nodes", "Cluster")
+=======
+        self._check_connection_type("cancel_group_clone", "Cluster")
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
 
         params = { 
             "nodes": nodes,
@@ -3580,7 +3965,11 @@ class Element(ServiceBase):
         <br/><br/>
         <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
 
+<<<<<<< HEAD
         self._check_connection_type("get_network_config", "Node")
+=======
+        self._check_connection_type("list_async_results", "Cluster")
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
 
         params = { 
         }
@@ -3614,10 +4003,17 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'SetConfig',
             SetConfigResult,
             params,
             since=5.0
+=======
+            'CreateVolume',
+            CreateVolumeResult,
+            params,
+            since=1.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def set_network_config(
@@ -3641,10 +4037,17 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'SetNetworkConfig',
             SetNetworkConfigResult,
             params,
             since=5.0
+=======
+            'DeleteVolume',
+            DeleteVolumeResult,
+            params,
+            since=1.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def get_config(
@@ -3654,7 +4057,11 @@ class Element(ServiceBase):
         <br/><br/>
         <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
 
+<<<<<<< HEAD
         self._check_connection_type("get_config", "Both")
+=======
+        self._check_connection_type("delete_volumes", "Cluster")
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
 
         params = { 
         }
@@ -3682,9 +4089,19 @@ class Element(ServiceBase):
             "nodeID": node_id,
         }
         
+<<<<<<< HEAD
         # There is an adaptor!
         since = 1.0
         deprecated = None
+=======
+        # There is no adaptor.
+        return self.send_request(
+            'GetVolumeStats',
+            GetVolumeStatsResult,
+            params,
+            since=1.0
+        )
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
 
         return ElementServiceAdaptor.get_node_stats(self, params,
                                                   since, deprecated)
@@ -3701,8 +4118,13 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'ListNodeStats',
             ListNodeStatsResult,
+=======
+            'GetVolumeEfficiency',
+            GetVolumeEfficiencyResult,
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
             params,
             since=6.0
         )
@@ -4197,10 +4619,17 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'ListVirtualVolumeTasks',
             ListVirtualVolumeTasksResult,
             params,
             since=9.0
+=======
+            'ListBulkVolumeJobs',
+            ListBulkVolumeJobsResult,
+            params,
+            since=6.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def list_virtual_volume_bindings(
@@ -4227,10 +4656,17 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'ListVirtualVolumeBindings',
             ListVirtualVolumeBindingsResult,
             params,
             since=9.0
+=======
+            'ListActiveVolumes',
+            ListActiveVolumesResult,
+            params,
+            since=1.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def get_virtual_volume_count(
@@ -4245,10 +4681,17 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'GetVirtualVolumeCount',
             GetVirtualVolumeCountResult,
             params,
             since=9.0
+=======
+            'ListDeletedVolumes',
+            ListDeletedVolumesResult,
+            params,
+            since=1.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def clone_volume(
@@ -4312,8 +4755,13 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'CloneVolume',
             CloneVolumeResult,
+=======
+            'ListISCSISessions',
+            ListISCSISessionsResult,
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
             params,
             since=1.0
         )
@@ -4390,10 +4838,17 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'CopyVolume',
             CopyVolumeResult,
             params,
             since=9.0
+=======
+            'ListVolumesForAccount',
+            ListVolumesForAccountResult,
+            params,
+            since=1.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def cancel_clone(
@@ -4413,10 +4868,17 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'CancelClone',
             CancelCloneResult,
             params,
             since=9.0
+=======
+            'ListVolumeStatsByAccount',
+            ListVolumeStatsByAccountResult,
+            params,
+            since=1.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def cancel_group_clone(
@@ -4436,10 +4898,17 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'CancelGroupClone',
             CancelGroupCloneResult,
             params,
             since=9.0
+=======
+            'ListVolumeStatsByVolume',
+            ListVolumeStatsByVolumeResult,
+            params,
+            since=1.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def list_async_results(
@@ -4460,10 +4929,17 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'ListAsyncResults',
             ListAsyncResultsResult,
             params,
             since=9.0
+=======
+            'ListVolumeStatsByVolumeAccessGroup',
+            ListVolumeStatsByVolumeAccessGroupResult,
+            params,
+            since=5.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def create_volume(
@@ -4511,8 +4987,13 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'CreateVolume',
             CreateVolumeResult,
+=======
+            'ModifyVolume',
+            ModifyVolumeResult,
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
             params,
             since=1.0
         )
@@ -4571,7 +5052,11 @@ class Element(ServiceBase):
         :type volumeIDs: int
         """
 
+<<<<<<< HEAD
         self._check_connection_type("delete_volumes", "Cluster")
+=======
+        self._check_connection_type("modify_volumes", "Cluster")
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
 
         params = { 
         }
@@ -4608,8 +5093,13 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'GetVolumeStats',
             GetVolumeStatsResult,
+=======
+            'PurgeDeletedVolume',
+            PurgeDeletedVolumeResult,
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
             params,
             since=1.0
         )
@@ -4628,7 +5118,11 @@ class Element(ServiceBase):
         :type force: bool
         """
 
+<<<<<<< HEAD
         self._check_connection_type("get_volume_efficiency", "Cluster")
+=======
+        self._check_connection_type("purge_deleted_volumes", "Cluster")
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
 
         params = { 
             "volumeID": volume_id,
@@ -4656,10 +5150,17 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'ListBulkVolumeJobs',
             ListBulkVolumeJobsResult,
             params,
             since=6.0
+=======
+            'RestoreDeletedVolume',
+            RestoreDeletedVolumeResult,
+            params,
+            since=1.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def list_active_volumes(
@@ -4687,10 +5188,17 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'ListActiveVolumes',
             ListActiveVolumesResult,
             params,
             since=1.0
+=======
+            'StartBulkVolumeRead',
+            StartBulkVolumeReadResult,
+            params,
+            since=6.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def list_deleted_volumes(
@@ -4705,10 +5213,17 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'ListDeletedVolumes',
             ListDeletedVolumesResult,
             params,
             since=1.0
+=======
+            'StartBulkVolumeWrite',
+            StartBulkVolumeWriteResult,
+            params,
+            since=6.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def list_iscsisessions(
@@ -4723,10 +5238,17 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'ListISCSISessions',
             ListISCSISessionsResult,
             params,
             since=1.0
+=======
+            'UpdateBulkVolumeStatus',
+            UpdateBulkVolumeStatusResult,
+            params,
+            since=6.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def list_volumes(
@@ -4759,7 +5281,11 @@ class Element(ServiceBase):
         :type volumeIDs: int
         """
 
+<<<<<<< HEAD
         self._check_connection_type("list_volumes", "Cluster")
+=======
+        self._check_connection_type("set_default_qo_s", "Cluster")
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
 
         params = { 
         }
@@ -4778,10 +5304,17 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'ListVolumes',
             ListVolumesResult,
             params,
             since=8.0
+=======
+            'SetDefaultQoS',
+            SetDefaultQoSResult,
+            params,
+            since=9.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def list_volumes_for_account(
@@ -4816,7 +5349,11 @@ class Element(ServiceBase):
             'ListVolumesForAccount',
             ListVolumesForAccountResult,
             params,
+<<<<<<< HEAD
             since=1.0
+=======
+            since=5.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def list_volume_stats_by_account(
@@ -4854,7 +5391,11 @@ class Element(ServiceBase):
             'ListVolumeStatsByVolume',
             ListVolumeStatsByVolumeResult,
             params,
+<<<<<<< HEAD
             since=1.0
+=======
+            since=5.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def list_volume_stats_by_volume_access_group(
@@ -4875,8 +5416,13 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'ListVolumeStatsByVolumeAccessGroup',
             ListVolumeStatsByVolumeAccessGroupResult,
+=======
+            'DeleteVolumeAccessGroup',
+            DeleteVolumeAccessGroupResult,
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
             params,
             since=5.0
         )
@@ -4939,7 +5485,11 @@ class Element(ServiceBase):
             'ModifyVolume',
             ModifyVolumeResult,
             params,
+<<<<<<< HEAD
             since=1.0
+=======
+            since=5.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def modify_volumes(
@@ -5020,10 +5570,17 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'PurgeDeletedVolume',
             PurgeDeletedVolumeResult,
             params,
             since=1.0
+=======
+            'AddInitiatorsToVolumeAccessGroup',
+            ModifyVolumeAccessGroupResult,
+            params,
+            since=5.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def purge_deleted_volumes(
@@ -5056,10 +5613,17 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'PurgeDeletedVolumes',
             PurgeDeletedVolumesResult,
             params,
             since=9.0
+=======
+            'RemoveInitiatorsFromVolumeAccessGroup',
+            ModifyVolumeAccessGroupResult,
+            params,
+            since=5.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def restore_deleted_volume(
@@ -5080,10 +5644,17 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'RestoreDeletedVolume',
             RestoreDeletedVolumeResult,
             params,
             since=1.0
+=======
+            'AddVolumesToVolumeAccessGroup',
+            ModifyVolumeAccessGroupResult,
+            params,
+            since=5.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def start_bulk_volume_read(
@@ -5144,10 +5715,17 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'StartBulkVolumeRead',
             StartBulkVolumeReadResult,
             params,
             since=6.0
+=======
+            'RemoveVolumesFromVolumeAccessGroup',
+            ModifyVolumeAccessGroupResult,
+            params,
+            since=5.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def start_bulk_volume_write(
@@ -5194,8 +5772,13 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'StartBulkVolumeWrite',
             StartBulkVolumeWriteResult,
+=======
+            'GetVolumeAccessGroupEfficiency',
+            GetEfficiencyResult,
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
             params,
             since=6.0
         )
@@ -5240,10 +5823,17 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'UpdateBulkVolumeStatus',
             UpdateBulkVolumeStatusResult,
             params,
             since=6.0
+=======
+            'GetVolumeAccessGroupLunAssignments',
+            GetVolumeAccessGroupLunAssignmentsResult,
+            params,
+            since=7.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 
     def set_default_qos(
@@ -5276,9 +5866,16 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< HEAD
             'SetDefaultQoS',
             SetDefaultQoSResult,
             params,
             since=9.0
+=======
+            'ModifyVolumeAccessGroupLunAssignments',
+            ModifyVolumeAccessGroupLunAssignmentsResult,
+            params,
+            since=7.0
+>>>>>>> 8d73f35... Set default max version to 9.0 and handle None parameters in ElementFactory.create
         )
 

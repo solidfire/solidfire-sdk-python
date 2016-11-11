@@ -26,7 +26,7 @@ Compatibility
 +------------------------+---------------+
 | Component              | Version       |
 +========================+===============+
-| SolidFire Element OS   | 7.0 - 8.4\*   |
+| SolidFire Element OS   | 7.0 - 9.0\*   |
 +------------------------+---------------+
 \* **Note**: *This version of the SDK will work with versions of Element OS greater then 8.4 but some features will not be supported in the API.*
 
@@ -56,47 +56,19 @@ SDK.
 +------------------------------------------------------------------+-----------+
 | Component                                                        | Version   |
 +==================================================================+===========+
-| `PycURL <http://pycurl.io/docs/latest/install.html#install>`__   | 7.34.0+   |
+| `Requests <http://docs.python-requests.org/en/master/>`__        | 2.12.1+   |
 +------------------------------------------------------------------+-----------+
 
 To install globally with ``pip`` (requires pip 1.3 or greater)
 
-PycURL
-~~~~~~
+Requests
+~~~~~~~~
 
-Instructions for installing PycURL.
-
-::
-
-    pip install pycurl
-
-The Solidfire Python SDK depends on the PycURL library which depends on
-an installed SSL library. If the PIP installation fails due to PycURL, this
-is most likely due to a missing SSL dependency. OpenSSL is the
-recomended SSL backend for all linux flavors.
-
-Instructions are Python 2.7 specific with examples of Python 3.3+
-examples in the comments.
-
-**Ubuntu Pre-Installation Steps**:
+Instructions for installing Requests.
 
 ::
 
-    sudo apt-get install python-pip                                  # or python3-pip
-    sudo apt-get install libffi-dev libssl-dev libcurl4-openssl-dev
-    sudo apt-get install python-dev                                  # or python3.3-dev python3.4-dev python3.5-dev
-    pip install pyopenssl ndg-httpsclient pyasn1                     # use the correct version of pip (i.e. pip3.3)
-
-**RHEL/CentOS Pre-Installation Steps**:
-
-::
-
-    yum install epel-release
-    yum groupinstall 'Development Tools'
-    yum -y install python-setuptools python-pip python-wheel         # or python3-setuptools python3-pip python3-wheel
-    yum -y install libffi-devel openssl-devel libcurl
-    yum -y install python-devel                                      # or python3.3-devel python3.4-devel python3.5-devel 
-    pip install pyopenssl ndg-httpsclient pyasn1                     # use the correct version of pip (i.e. pip3.3)
+    pip install requests
 
 Installation
 ------------

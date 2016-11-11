@@ -160,7 +160,7 @@ class ServiceBaseSendRequest(TestCase):
         service = ServiceBase(api_version=9.0, dispatcher=NoOpDispatcher)
         assert_that(
             calling(
-                service._send_request
+                service.send_request
             ).with_args("aMethod", None, since=10.0),
             raises(ApiMethodVersionError)
         )
