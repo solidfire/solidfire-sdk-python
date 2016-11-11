@@ -8,11 +8,14 @@
 # EXPRESS WRITTEN PERMISSION OF NETAPP, INC.
 """API Common Library"""
 
-import json
-from contextlib import closing
-
 import itertools
+import json
 import logging
+
+import requests
+from requests.auth import HTTPBasicAuth
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 from solidfire.common import model
 
@@ -372,8 +375,6 @@ class CurlDispatcher(object):
     The CurlDispatcher is responsible for connecting, sending, and receiving
     data to a server.
     """
-    import pycurl
-    pycurl.version_info()
 
     def __init__(self, endpoint, username, password, verify_ssl):
         """
@@ -443,31 +444,13 @@ class CurlDispatcher(object):
         :param data: the data to be posted.
         :type data: str or json
         """
-        try:
-            from io import BytesIO
-            assert BytesIO
-        except ImportError:
-            from io import StringIO as BytesIO
-
-        with closing(CurlDispatcher.pycurl.Curl()) as c:
-            c.setopt(c.URL, self._endpoint)
-            obuffer = BytesIO()
-            c.setopt(c.POSTFIELDS, data)
-            c.setopt(c.WRITEFUNCTION, obuffer.write)
-            c.setopt(c.CONNECTTIMEOUT, self._connect_timeout)
-            c.setopt(c.TIMEOUT, self._timeout)
-
-            if self._credentials:
-                c.setopt(c.HTTPAUTH, c.HTTPAUTH_BASIC)
-                c.setopt(c.USERPWD, self._credentials)
-
-            if not self._verify_ssl:
-                c.setopt(c.SSL_VERIFYPEER, 0)
-                c.setopt(c.SSL_VERIFYHOST, 0)
-
-            c.perform()
-
-            return obuffer.getvalue().decode('utf-8')
+        auth = None
+        if self._credentials is not None:
+            (usr, pwd) = self._credentials.split(':')
+            auth = HTTPBasicAuth(usr, pwd)
+        resp = requests.post(self._endpoint, data=data, json=None, verify=self._verify_ssl, timeout=self._timeout,
+                             auth=auth)
+        return resp.text
 
 
 class ServiceBase(object):
@@ -600,11 +583,10 @@ class ServiceBase(object):
              ),
         })
 
-        import pycurl
         try:
             LOG.info(msg=encoded)
             response_raw = self._dispatcher.post(encoded)
-        except pycurl.error as error:
+        except Exception as error:
             json_err = json.dumps(
                 {
                     'error':
