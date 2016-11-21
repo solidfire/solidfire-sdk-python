@@ -3228,14 +3228,14 @@ class UpdateBulkVolumeStatusRequest(data_model.DataObject):
 
 class ModifyVolumesResult(data_model.DataObject):
     """
-    :param curve: [required] 
-    :type curve: QoS
+    :param qos: [required] 
+    :type qos: QoS
     
     :param volumes: [required] 
     :type volumes: Volume
     """
-    curve = data_model.property(
-        "curve", QoS,
+    qos = data_model.property(
+        "qos", QoS,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
