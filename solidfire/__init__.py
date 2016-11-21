@@ -4519,17 +4519,7 @@ class Element(ServiceBase):
 
     def delete_volume(
             self,
-<<<<<<< develop
-            volume_ids,
-            account_id=OPTIONAL,
-            access=OPTIONAL,
-            attributes=OPTIONAL,
-            mode=OPTIONAL,
-            qos=OPTIONAL,
-            total_size=OPTIONAL,):
-=======
             volume_id,):
->>>>>>> local
         """
         DeleteVolume marks an active volume for deletion.
         It is purged (permanently deleted) after the cleanup interval elapses.
@@ -4574,43 +4564,23 @@ class Element(ServiceBase):
         :param accountIDs:  A list of account IDs. All volumes from these accounts are deleted from the system.  
         :type accountIDs: int
         
-<<<<<<< develop
-        :param totalSize:  New size of the volume in bytes. 1000000000 is equal to 1GB. Size is rounded up to the nearest 1MB in size. This parameter can only be used to increase the size of a volume. 
-        :type totalSize: int
-=======
         :param volumeAccessGroupIDs:  A list of volume access group IDs. All of the volumes from all of the volume access groups you specify in this list are deleted from the system. 
         :type volumeAccessGroupIDs: int
         
         :param volumeIDs:  The list of IDs of the volumes to delete from the system. 
         :type volumeIDs: int
->>>>>>> local
         """
 
         self._check_connection_type("delete_volumes", "Cluster")
 
         params = { 
         }
-<<<<<<< develop
-        if account_id is not None:
-            params["accountID"] = account_id
-        if access is not None:
-            params["access"] = access
-        if attributes is not None:
-            params["attributes"] = attributes
-        if mode is not None:
-            params["mode"] = mode
-        if qos is not None:
-            params["qos"] = qos
-        if total_size is not None:
-            params["totalSize"] = total_size
-=======
         if account_ids is not None:
             params["accountIDs"] = account_ids
         if volume_access_group_ids is not None:
             params["volumeAccessGroupIDs"] = volume_access_group_ids
         if volume_ids is not None:
             params["volumeIDs"] = volume_ids
->>>>>>> local
         
         # There is no adaptor.
         return self.send_request(
@@ -4759,11 +4729,7 @@ class Element(ServiceBase):
             since=1.0
         )
 
-<<<<<<< develop
-    def set_default_qos(
-=======
     def list_volumes(
->>>>>>> local
             self,
             start_volume_id=OPTIONAL,
             limit=OPTIONAL,
@@ -4793,11 +4759,7 @@ class Element(ServiceBase):
         :type volumeIDs: int
         """
 
-<<<<<<< develop
-        self._check_connection_type("set_default_qos", "Cluster")
-=======
         self._check_connection_type("list_volumes", "Cluster")
->>>>>>> local
 
         params = { 
         }

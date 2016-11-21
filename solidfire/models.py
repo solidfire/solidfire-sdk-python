@@ -7667,39 +7667,6 @@ class ModifyVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class StartBulkVolumeReadResult(data_model.DataObject):
-    """
-    :param async_handle: [required] ID of the async process to be checked for completion. 
-    :type async_handle: int
-    
-    :param key: [required] Opaque key uniquely identifying the session. 
-    :type key: str
-    
-    :param url: [required] URL to access the node's web server 
-    :type url: str
-    """
-    async_handle = data_model.property(
-        "asyncHandle", int,
-        array=False, optional=False,
-        documentation="ID of the async process to be checked for completion.",
-        dictionaryType=None
-    )
-    key = data_model.property(
-        "key", str,
-        array=False, optional=False,
-        documentation="Opaque key uniquely identifying the session.",
-        dictionaryType=None
-    )
-    url = data_model.property(
-        "url", str,
-        array=False, optional=False,
-        documentation="URL to access the node&#x27;s web server",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class PurgeDeletedVolumesRequest(data_model.DataObject):
     """
     :param volume_ids:  A list of volumeIDs of volumes to be purged from the system. 
@@ -8221,6 +8188,39 @@ class AddLdapClusterAdminRequest(data_model.DataObject):
         "attributes", dict,
         array=False, optional=True,
         documentation="List of Name/Value pairs in JSON object format.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class StartBulkVolumeReadResult(data_model.DataObject):
+    """
+    :param async_handle: [required] ID of the async process to be checked for completion. 
+    :type async_handle: int
+    
+    :param key: [required] Opaque key uniquely identifying the session. 
+    :type key: str
+    
+    :param url: [required] URL to access the node's web server 
+    :type url: str
+    """
+    async_handle = data_model.property(
+        "asyncHandle", int,
+        array=False, optional=False,
+        documentation="ID of the async process to be checked for completion.",
+        dictionaryType=None
+    )
+    key = data_model.property(
+        "key", str,
+        array=False, optional=False,
+        documentation="Opaque key uniquely identifying the session.",
+        dictionaryType=None
+    )
+    url = data_model.property(
+        "url", str,
+        array=False, optional=False,
+        documentation="URL to access the node&#x27;s web server",
         dictionaryType=None
     )
 
@@ -10326,55 +10326,6 @@ class CloneMultipleVolumesRequest(data_model.DataObject):
         "newAccountID", int,
         array=False, optional=True,
         documentation="New account ID for the volumes if not overridden by information passed in the volumes array.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class LunAssignment(data_model.DataObject):
-    """
-    VolumeID and Lun assignment.
-    :param volume_id: [required] The volume ID assigned to the Lun. 
-    :type volume_id: int
-    
-    :param lun: [required] Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed. 
-    :type lun: int
-    """
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=False,
-        documentation="The volume ID assigned to the Lun.",
-        dictionaryType=None
-    )
-    lun = data_model.property(
-        "lun", int,
-        array=False, optional=False,
-        documentation="Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ModifyVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
-    """
-    :param volume_access_group_id: [required] Unique volume access group ID for which the LUN assignments will be modified. 
-    :type volume_access_group_id: int
-    
-    :param lun_assignments: [required] The volume IDs with new assigned LUN values. 
-    :type lun_assignments: LunAssignment
-    """
-    volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
-        array=False, optional=False,
-        documentation="Unique volume access group ID for which the LUN assignments will be modified.",
-        dictionaryType=None
-    )
-    lun_assignments = data_model.property(
-        "lunAssignments", LunAssignment,
-        array=True, optional=False,
-        documentation="The volume IDs with new assigned LUN values.",
         dictionaryType=None
     )
 
