@@ -8,11 +8,14 @@
 # EXPRESS WRITTEN PERMISSION OF NETAPP, INC.
 """API Common Library"""
 
-import json
-from contextlib import closing
-
 import itertools
+import json
 import logging
+
+import requests
+from requests.auth import HTTPBasicAuth
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 from solidfire.common import model
 
@@ -372,8 +375,6 @@ class CurlDispatcher(object):
     The CurlDispatcher is responsible for connecting, sending, and receiving
     data to a server.
     """
-    import pycurl
-    pycurl.version_info()
 
     def __init__(self, endpoint, username, password, verify_ssl):
         """
@@ -443,31 +444,14 @@ class CurlDispatcher(object):
         :param data: the data to be posted.
         :type data: str or json
         """
-        try:
-            from io import BytesIO
-            assert BytesIO
-        except ImportError:
-            from io import StringIO as BytesIO
-
-        with closing(CurlDispatcher.pycurl.Curl()) as c:
-            c.setopt(c.URL, self._endpoint)
-            obuffer = BytesIO()
-            c.setopt(c.POSTFIELDS, data)
-            c.setopt(c.WRITEFUNCTION, obuffer.write)
-            c.setopt(c.CONNECTTIMEOUT, self._connect_timeout)
-            c.setopt(c.TIMEOUT, self._timeout)
-
-            if self._credentials:
-                c.setopt(c.HTTPAUTH, c.HTTPAUTH_BASIC)
-                c.setopt(c.USERPWD, self._credentials)
-
-            if not self._verify_ssl:
-                c.setopt(c.SSL_VERIFYPEER, 0)
-                c.setopt(c.SSL_VERIFYHOST, 0)
-
-            c.perform()
-
-            return obuffer.getvalue().decode('utf-8')
+        auth = None
+        if self._credentials is not None:
+            (usr, pwd) = self._credentials.split(':')
+            auth = HTTPBasicAuth(usr, pwd)
+        resp = requests.post(self._endpoint, data=data, json=None,
+                             verify=self._verify_ssl, timeout=self._timeout,
+                             auth=auth)
+        return resp.text
 
 
 class ServiceBase(object):
@@ -503,17 +487,22 @@ class ServiceBase(object):
         """
 
         self._api_version = float(api_version)
+        endpoint = str.format('https://{mvip}/json-rpc/{api_version}',
+                              mvip=mvip, api_version=self._api_version)
+        if 'https' in endpoint:
+            self._port = 443
+        else:
+            self._port = ''
+
         if not dispatcher:
-            endpoint = str.format('https://{mvip}/json-rpc/{api_version}',
-                                  mvip=mvip, api_version=self._api_version)
             dispatcher = CurlDispatcher(endpoint, username, password,
                                         verify_ssl)
         self._dispatcher = dispatcher
-        mvipArr = mvip.split(':')
-        if(len(mvipArr) == 2):
-            self._port = mvipArr[1]
-        else:
-            self._port = 443
+
+        if mvip is not None:
+            mvipArr = mvip.split(':')
+            if len(mvipArr) == 2:
+                self._port = mvipArr[1]
 
     def timeout(self, timeout_in_sec):
         """
@@ -600,11 +589,10 @@ class ServiceBase(object):
              ),
         })
 
-        import pycurl
         try:
             LOG.info(msg=encoded)
             response_raw = self._dispatcher.post(encoded)
-        except pycurl.error as error:
+        except Exception as error:
             json_err = json.dumps(
                 {
                     'error':
@@ -663,10 +651,12 @@ class ServiceBase(object):
 
         if(connection_type == "Cluster" and self._port == "442"):
             raise ApiConnectionError(method_name +
-                                     " cannot be called on a node connection. It is a cluster-only method.")
+                                     " cannot be called on a node connection. "
+                                     "It is a cluster-only method.")
         elif(connection_type == "Node" and self._port == "443"):
             raise ApiConnectionError(method_name +
-                                     " cannot be called on a cluster connection. It is a node-only method")
+                                     " cannot be called on a cluster "
+                                     "connection. It is a node-only method")
 
 
     def _check_method_version(self,

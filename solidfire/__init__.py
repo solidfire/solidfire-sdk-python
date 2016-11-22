@@ -1558,6 +1558,89 @@ class Element(ServiceBase):
             since=7.0
         )
 
+    def get_cluster_hardware_info(
+            self,
+            type=OPTIONAL,):
+        """
+        You can use the GetClusterHardwareInfo method to retrieve the hardware status and information for all Fibre Channel nodes, iSCSI nodes and drives in the cluster. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
+        :param type:  Include only a certain type of hardware information in the response. Can be one of the following:drives: List only drive information in the response.nodes: List only node information in the response.all: Include both drive and node information in the response.If this parameter is omitted, a type of "all" is assumed. 
+        :type type: str
+        """
+
+        self._check_connection_type("get_cluster_hardware_info", "Cluster")
+
+        params = { 
+        }
+        if type is not None:
+            params["type"] = type
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetClusterHardwareInfo',
+            GetClusterHardwareInfoResult,
+            params,
+            since=1.0
+        )
+
+    def get_hardware_config(
+            self,):
+        """
+        GetHardwareConfig enables you to display the hardware configuration information for a node. NOTE: This method is available only through the per-node API endpoint 5.0 or later."""
+
+        self._check_connection_type("get_hardware_config", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetHardwareConfig',
+            GetHardwareConfigResult,
+            params,
+            since=5.0
+        )
+
+    def get_node_hardware_info(
+            self,
+            node_id,):
+        """
+        GetNodeHardwareInfo is used to return all the hardware info and status for the node specified. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
+        :param nodeID: [required] The ID of the node for which hardware information is being requested.  Information about a  node is returned if a   node is specified. 
+        :type nodeID: int
+        """
+
+        self._check_connection_type("get_node_hardware_info", "Cluster")
+
+        params = { 
+            "nodeID": node_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetNodeHardwareInfo',
+            GetNodeHardwareInfoResult,
+            params,
+            since=1.0
+        )
+
+    def get_nvram_info(
+            self,):
+        """
+        GetNvramInfo allows you to retrieve information from each node about the NVRAM card.  """
+
+        self._check_connection_type("get_nvram_info", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetNvramInfo',
+            GetNvramInfoResult,
+            params,
+            since=5.0
+        )
+
     def create_initiators(
             self,
             initiators,):
@@ -1882,6 +1965,251 @@ class Element(ServiceBase):
             DisableLdapAuthenticationResult,
             params,
             since=7.0
+        )
+
+    def list_active_nodes(
+            self,):
+        """
+        ListActiveNodes returns the list of currently active nodes that are in the cluster."""
+
+        self._check_connection_type("list_active_nodes", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListActiveNodes',
+            ListActiveNodesResult,
+            params,
+            since=1.0
+        )
+
+    def list_all_nodes(
+            self,):
+        """
+        ListAllNodes enables you to retrieve a list of active and pending nodes in the cluster."""
+
+        self._check_connection_type("list_all_nodes", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListAllNodes',
+            ListAllNodesResult,
+            params,
+            since=1.0
+        )
+
+    def list_pending_nodes(
+            self,):
+        """
+        Gets the list of pending nodes.
+        Pending nodes are running and configured to join the cluster, but have not been added via the AddNodes method."""
+
+        self._check_connection_type("list_pending_nodes", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListPendingNodes',
+            ListPendingNodesResult,
+            params,
+            since=1.0
+        )
+
+    def add_nodes(
+            self,
+            pending_nodes,):
+        """
+        AddNodes is used to add one or more new nodes to the cluster. When a node is not configured and starts up for the first time you are prompted to configure the node. Once a node is configured it is registered as a "pending node" with the cluster.
+        <br/><br/>
+        Adding a node to a cluster that has been set up for virtual networking will require a sufficient number of virtual storage IP addresses to allocate a virtual IP to the new node. If there are no virtual IP addresses available for the new node, the AddNode operation will not complete successfully. Use the "ModifyVirtualNetwork" method to add more storage IP addresses to your virtual network.
+        <br/><br/>
+        The software version on each node in a cluster must be compatible. Run the "ListAllNodes" API to see what versions of software are currently running on the cluster nodes. For an explanation of software version compatibility, see "Node Versioning and Compatibility" in the Element API guide.
+        <br/><br/>
+        Once a node has been added, the drives on the node are made available and can then be added via the "AddDrives" method to increase the storage capacity of the cluster.
+        <br/><br/>
+        <b>Note</b>: It may take several seconds after adding a new Node for it to start up and register the drives as being available.
+        :param pendingNodes: [required] List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method. 
+        :type pendingNodes: int
+        """
+
+        self._check_connection_type("add_nodes", "Cluster")
+
+        params = { 
+            "pendingNodes": pending_nodes,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'AddNodes',
+            AddNodesResult,
+            params,
+            since=1.0
+        )
+
+    def remove_nodes(
+            self,
+            nodes,):
+        """
+        RemoveNodes is used to remove one or more nodes that should no longer participate in the cluster. Before removing a node, all drives it contains must first be removed with "RemoveDrives" method. A node cannot be removed until the RemoveDrives process has completed and all data has been migrated away from the node.
+        <br/><br/>
+        Once removed, a node registers itself as a pending node and can be added again, or shut down which removes it from the "Pending Node" list.
+        :param nodes: [required] List of NodeIDs for the nodes to be removed. 
+        :type nodes: int
+        """
+
+        self._check_connection_type("remove_nodes", "Cluster")
+
+        params = { 
+            "nodes": nodes,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RemoveNodes',
+            RemoveNodesResult,
+            params,
+            since=1.0
+        )
+
+    def get_network_config(
+            self,):
+        """
+        The GetNetworkConfig API method is used to display the network configuration information for a node.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
+
+        self._check_connection_type("get_network_config", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetNetworkConfig',
+            GetNetworkConfigResult,
+            params,
+            since=5.0
+        )
+
+    def set_config(
+            self,
+            config,):
+        """
+        The SetConfig API method is used to set all the configuration information for the node. This includes the same information available via calls to SetClusterConfig and SetNetworkConfig in one API method.
+        <br/><br/>
+        <b>Warning!</b> Changing the 'bond-mode' on a node can cause a temporary loss of network connectivity. Caution should be taken when using this method.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
+        :param config: [required] Objects that you want changed for the cluster interface settings. 
+        :type config: Config
+        """
+
+        self._check_connection_type("set_config", "Node")
+
+        params = { 
+            "config": config,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetConfig',
+            SetConfigResult,
+            params,
+            since=5.0
+        )
+
+    def set_network_config(
+            self,
+            network,):
+        """
+        The "SetNetworkConfig" method is used to set the network configuration for a node. To see the states in which these objects can be modified, see "Network Object for 1G and 10G Interfaces" on page 109 of the Element API. To display the current network settings for a node, run the "GetNetworkConfig" method.
+        <br/><br/>
+        <b>WARNING!</b> Changing the "bond-mode" on a node can cause a temporary loss of network connectivity. Caution should be taken when using this method.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
+        :param network: [required] Objects that will be changed for the node network settings. 
+        :type network: Network
+        """
+
+        self._check_connection_type("set_network_config", "Node")
+
+        params = { 
+            "network": network,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetNetworkConfig',
+            SetNetworkConfigResult,
+            params,
+            since=5.0
+        )
+
+    def get_config(
+            self,):
+        """
+        The GetConfig API method is used to retrieve all the configuration information for the node. This one API method includes the same information available in both "GetClusterConfig" and "GetNetworkConfig" methods.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
+
+        self._check_connection_type("get_config", "Both")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetConfig',
+            GetConfigResult,
+            params,
+            since=5.0
+        )
+
+    def get_node_stats(
+            self,
+            node_id,):
+        """
+        GetNodeStats is used to return the high-level activity measurements for a single node.
+        :param nodeID: [required] Specifies the node for which statistics are gathered. 
+        :type nodeID: int
+        """
+
+        self._check_connection_type("get_node_stats", "Cluster")
+
+        params = { 
+            "nodeID": node_id,
+        }
+        
+        # There is an adaptor!
+        since = 1.0
+        deprecated = None
+
+        return ElementServiceAdaptor.get_node_stats(self, params,
+                                                  since, deprecated)
+
+    def list_node_stats(
+            self,):
+        """
+        ListNodeStats is used to return the high-level activity measurements for all nodes in a cluster."""
+
+        self._check_connection_type("list_node_stats", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListNodeStats',
+            ListNodeStatsResult,
+            params,
+            since=6.0
         )
 
     def list_cluster_pairs(
@@ -3007,704 +3335,6 @@ class Element(ServiceBase):
             TestPingResult,
             params,
             since=5.0
-        )
-
-    def create_volume_access_group(
-            self,
-            name,
-            initiators=OPTIONAL,
-            volumes=OPTIONAL,
-            virtual_network_id=OPTIONAL,
-            virtual_network_tags=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        Creates a new volume access group.
-        The new volume access group must be given a name when it is created.
-        Entering initiators and volumes are optional when creating a volume access group.
-        Once the group is created volumes and initiator IQNs can be added.
-        Any initiator IQN that is successfully added to the volume access group is able to access any volume in the group without CHAP authentication.
-        :param name: [required] Name of the volume access group. It is not required to be unique, but recommended. 
-        :type name: str
-        
-        :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group will start out without configured initiators. 
-        :type initiators: str
-        
-        :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group will start without any volumes. 
-        :type volumes: int
-        
-        :param virtualNetworkID:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
-        :type virtualNetworkID: int
-        
-        :param virtualNetworkTags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
-        :type virtualNetworkTags: int
-        
-        :param attributes:  List of Name/Value pairs in JSON object format. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("create_volume_access_group", "Cluster")
-
-        params = { 
-            "name": name,
-        }
-        if initiators is not None:
-            params["initiators"] = initiators
-        if volumes is not None:
-            params["volumes"] = volumes
-        if virtual_network_id is not None:
-            params["virtualNetworkID"] = virtual_network_id
-        if virtual_network_tags is not None:
-            params["virtualNetworkTags"] = virtual_network_tags
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'CreateVolumeAccessGroup',
-            CreateVolumeAccessGroupResult,
-            params,
-            since=5.0
-        )
-
-    def list_volume_access_groups(
-            self,
-            start_volume_access_group_id=OPTIONAL,
-            limit=OPTIONAL,):
-        """
-        ListVolumeAccessGroups is used to return information about the volume access groups that are currently in the system.
-        :param startVolumeAccessGroupID:  The lowest VolumeAccessGroupID to return. This can be useful for paging. If unspecified, there is no lower limit (implicitly 0). 
-        :type startVolumeAccessGroupID: int
-        
-        :param limit:  The maximum number of results to return. This can be useful for paging. 
-        :type limit: int
-        """
-
-        self._check_connection_type("list_volume_access_groups", "Cluster")
-
-        params = { 
-        }
-        if start_volume_access_group_id is not None:
-            params["startVolumeAccessGroupID"] = start_volume_access_group_id
-        if limit is not None:
-            params["limit"] = limit
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVolumeAccessGroups',
-            ListVolumeAccessGroupsResult,
-            params,
-            since=5.0
-        )
-
-    def delete_volume_access_group(
-            self,
-            volume_access_group_id,):
-        """
-        Delete a volume access group from the system.
-        :param volumeAccessGroupID: [required] The ID of the volume access group to delete. 
-        :type volumeAccessGroupID: int
-        """
-
-        self._check_connection_type("delete_volume_access_group", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'DeleteVolumeAccessGroup',
-            DeleteVolumeAccessGroupResult,
-            params,
-            since=5.0
-        )
-
-    def modify_volume_access_group(
-            self,
-            volume_access_group_id,
-            virtual_network_id=OPTIONAL,
-            virtual_network_tags=OPTIONAL,
-            name=OPTIONAL,
-            initiators=OPTIONAL,
-            volumes=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        Update initiators and add or remove volumes from a volume access group.
-        A specified initiator or volume that duplicates an existing volume or initiator in a volume access group is left as-is.
-        If a value is not specified for volumes or initiators, the current list of initiators and volumes are not changed.
-        <br/><br/>
-        Often, it is easier to use the convenience functions to modify initiators and volumes independently:
-        <br/><br/>
-        AddInitiatorsToVolumeAccessGroup<br/>
-        RemoveInitiatorsFromVolumeAccessGroup<br/>
-        AddVolumesToVolumeAccessGroup<br/>
-        RemoveVolumesFromVolumeAccessGroup<br/>
-        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
-        :type volumeAccessGroupID: int
-        
-        :param virtualNetworkID:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
-        :type virtualNetworkID: int
-        
-        :param virtualNetworkTags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
-        :type virtualNetworkTags: int
-        
-        :param name:  Name of the volume access group. It is not required to be unique, but recommended. 
-        :type name: str
-        
-        :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group's configured initiators will not be modified. 
-        :type initiators: str
-        
-        :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group's volumes will not be modified. 
-        :type volumes: int
-        
-        :param attributes:  List of Name/Value pairs in JSON object format. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("modify_volume_access_group", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-        }
-        if virtual_network_id is not None:
-            params["virtualNetworkID"] = virtual_network_id
-        if virtual_network_tags is not None:
-            params["virtualNetworkTags"] = virtual_network_tags
-        if name is not None:
-            params["name"] = name
-        if initiators is not None:
-            params["initiators"] = initiators
-        if volumes is not None:
-            params["volumes"] = volumes
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ModifyVolumeAccessGroup',
-            ModifyVolumeAccessGroupResult,
-            params,
-            since=5.0
-        )
-
-    def add_initiators_to_volume_access_group(
-            self,
-            volume_access_group_id,
-            initiators,):
-        """
-        Add initiators to a volume access group.
-        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
-        :type volumeAccessGroupID: int
-        
-        :param initiators: [required] List of initiators to add to the volume access group. 
-        :type initiators: str
-        """
-
-        self._check_connection_type("add_initiators_to_volume_access_group", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-            "initiators": initiators,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'AddInitiatorsToVolumeAccessGroup',
-            ModifyVolumeAccessGroupResult,
-            params,
-            since=5.0
-        )
-
-    def remove_initiators_from_volume_access_group(
-            self,
-            volume_access_group_id,
-            initiators,):
-        """
-        Remove initiators from a volume access group.
-        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
-        :type volumeAccessGroupID: int
-        
-        :param initiators: [required] List of initiators to remove from the volume access group. 
-        :type initiators: str
-        """
-
-        self._check_connection_type("remove_initiators_from_volume_access_group", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-            "initiators": initiators,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'RemoveInitiatorsFromVolumeAccessGroup',
-            ModifyVolumeAccessGroupResult,
-            params,
-            since=5.0
-        )
-
-    def add_volumes_to_volume_access_group(
-            self,
-            volume_access_group_id,
-            volumes,):
-        """
-        Add volumes to a volume access group.
-        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
-        :type volumeAccessGroupID: int
-        
-        :param volumes: [required] List of volumes to add to this volume access group. 
-        :type volumes: int
-        """
-
-        self._check_connection_type("add_volumes_to_volume_access_group", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-            "volumes": volumes,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'AddVolumesToVolumeAccessGroup',
-            ModifyVolumeAccessGroupResult,
-            params,
-            since=5.0
-        )
-
-    def remove_volumes_from_volume_access_group(
-            self,
-            volume_access_group_id,
-            volumes,):
-        """
-        Remove volumes from a volume access group.
-        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
-        :type volumeAccessGroupID: int
-        
-        :param volumes: [required] List of volumes to remove from this volume access group. 
-        :type volumes: int
-        """
-
-        self._check_connection_type("remove_volumes_from_volume_access_group", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-            "volumes": volumes,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'RemoveVolumesFromVolumeAccessGroup',
-            ModifyVolumeAccessGroupResult,
-            params,
-            since=5.0
-        )
-
-    def get_volume_access_group_efficiency(
-            self,
-            volume_access_group_id,):
-        """
-        GetVolumeAccessGroupEfficiency is used to retrieve efficiency information about a volume access group. Only the volume access group provided as parameters in this API method is used to compute the capacity.
-        :param volumeAccessGroupID: [required] Specifies the volume access group for which capacity is computed. 
-        :type volumeAccessGroupID: int
-        """
-
-        self._check_connection_type("get_volume_access_group_efficiency", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetVolumeAccessGroupEfficiency',
-            GetEfficiencyResult,
-            params,
-            since=6.0
-        )
-
-    def get_volume_access_group_lun_assignments(
-            self,
-            volume_access_group_id,):
-        """
-        The GetVolumeAccessGroupLunAssignments is used to return information LUN mappings of a specified volume access group.
-        :param volumeAccessGroupID: [required] Unique volume access group ID used to return information. 
-        :type volumeAccessGroupID: int
-        """
-
-        self._check_connection_type("get_volume_access_group_lun_assignments", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetVolumeAccessGroupLunAssignments',
-            GetVolumeAccessGroupLunAssignmentsResult,
-            params,
-            since=7.0
-        )
-
-    def modify_volume_access_group_lun_assignments(
-            self,
-            volume_access_group_id,
-            lun_assignments,):
-        """
-        The ModifytVolumeAccessGroupLunAssignments is used to define custom LUN assignments for specific volumes. Only LUN values set on the lunAssignments parameter will be changed in the volume access group. All other LUN assignments will remain unchanged.
-        <br/><br/>
-        LUN assignment values must be unique for volumes in a volume access group. An exception will be seen if LUN assignments are duplicated in a volume access group. However, the same LUN values can be used again in different volume access groups.
-        <br/><br/>
-        <b>Note:</b> Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed. None of the specified LUN assignments will be modified if there is an exception.
-        <br/><br/>
-        <b>Caution:</b> If a LUN assignment is changed for a volume with active I/O, the I/O could be disrupted. Changes to the server configuration may be required in order to change volume LUN assignments.
-        :param volumeAccessGroupID: [required] Unique volume access group ID for which the LUN assignments will be modified. 
-        :type volumeAccessGroupID: int
-        
-        :param lunAssignments: [required] The volume IDs with new assigned LUN values. 
-        :type lunAssignments: LunAssignment
-        """
-
-        self._check_connection_type("modify_volume_access_group_lun_assignments", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-            "lunAssignments": lun_assignments,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ModifyVolumeAccessGroupLunAssignments',
-            ModifyVolumeAccessGroupLunAssignmentsResult,
-            params,
-            since=7.0
-        )
-
-    def get_cluster_hardware_info(
-            self,
-            type=OPTIONAL,):
-        """
-        You can use the GetClusterHardwareInfo method to retrieve the hardware status and information for all Fibre Channel nodes, iSCSI nodes and drives in the cluster. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
-        :param type:  Include only a certain type of hardware information in the response. Can be one of the following:drives: List only drive information in the response.nodes: List only node information in the response.all: Include both drive and node information in the response.If this parameter is omitted, a type of "all" is assumed. 
-        :type type: str
-        """
-
-        self._check_connection_type("get_cluster_hardware_info", "Cluster")
-
-        params = { 
-        }
-        if type is not None:
-            params["type"] = type
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetClusterHardwareInfo',
-            GetClusterHardwareInfoResult,
-            params,
-            since=1.0
-        )
-
-    def get_hardware_config(
-            self,):
-        """
-        GetHardwareConfig enables you to display the hardware configuration information for a node. NOTE: This method is available only through the per-node API endpoint 5.0 or later."""
-
-        self._check_connection_type("get_hardware_config", "Node")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetHardwareConfig',
-            GetHardwareConfigResult,
-            params,
-            since=5.0
-        )
-
-    def get_node_hardware_info(
-            self,
-            node_id,):
-        """
-        GetNodeHardwareInfo is used to return all the hardware info and status for the node specified. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
-        :param nodeID: [required] The ID of the node for which hardware information is being requested.  Information about a  node is returned if a   node is specified. 
-        :type nodeID: int
-        """
-
-        self._check_connection_type("get_node_hardware_info", "Cluster")
-
-        params = { 
-            "nodeID": node_id,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetNodeHardwareInfo',
-            GetNodeHardwareInfoResult,
-            params,
-            since=1.0
-        )
-
-    def get_nvram_info(
-            self,):
-        """
-        GetNvramInfo allows you to retrieve information from each node about the NVRAM card.  """
-
-        self._check_connection_type("get_nvram_info", "Node")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetNvramInfo',
-            GetNvramInfoResult,
-            params,
-            since=5.0
-        )
-
-    def list_active_nodes(
-            self,):
-        """
-        ListActiveNodes returns the list of currently active nodes that are in the cluster."""
-
-        self._check_connection_type("list_active_nodes", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListActiveNodes',
-            ListActiveNodesResult,
-            params,
-            since=1.0
-        )
-
-    def list_all_nodes(
-            self,):
-        """
-        ListAllNodes enables you to retrieve a list of active and pending nodes in the cluster."""
-
-        self._check_connection_type("list_all_nodes", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListAllNodes',
-            ListAllNodesResult,
-            params,
-            since=1.0
-        )
-
-    def list_pending_nodes(
-            self,):
-        """
-        Gets the list of pending nodes.
-        Pending nodes are running and configured to join the cluster, but have not been added via the AddNodes method."""
-
-        self._check_connection_type("list_pending_nodes", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListPendingNodes',
-            ListPendingNodesResult,
-            params,
-            since=1.0
-        )
-
-    def add_nodes(
-            self,
-            pending_nodes,):
-        """
-        AddNodes is used to add one or more new nodes to the cluster. When a node is not configured and starts up for the first time you are prompted to configure the node. Once a node is configured it is registered as a "pending node" with the cluster.
-        <br/><br/>
-        Adding a node to a cluster that has been set up for virtual networking will require a sufficient number of virtual storage IP addresses to allocate a virtual IP to the new node. If there are no virtual IP addresses available for the new node, the AddNode operation will not complete successfully. Use the "ModifyVirtualNetwork" method to add more storage IP addresses to your virtual network.
-        <br/><br/>
-        The software version on each node in a cluster must be compatible. Run the "ListAllNodes" API to see what versions of software are currently running on the cluster nodes. For an explanation of software version compatibility, see "Node Versioning and Compatibility" in the Element API guide.
-        <br/><br/>
-        Once a node has been added, the drives on the node are made available and can then be added via the "AddDrives" method to increase the storage capacity of the cluster.
-        <br/><br/>
-        <b>Note</b>: It may take several seconds after adding a new Node for it to start up and register the drives as being available.
-        :param pendingNodes: [required] List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method. 
-        :type pendingNodes: int
-        """
-
-        self._check_connection_type("add_nodes", "Cluster")
-
-        params = { 
-            "pendingNodes": pending_nodes,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'AddNodes',
-            AddNodesResult,
-            params,
-            since=1.0
-        )
-
-    def remove_nodes(
-            self,
-            nodes,):
-        """
-        RemoveNodes is used to remove one or more nodes that should no longer participate in the cluster. Before removing a node, all drives it contains must first be removed with "RemoveDrives" method. A node cannot be removed until the RemoveDrives process has completed and all data has been migrated away from the node.
-        <br/><br/>
-        Once removed, a node registers itself as a pending node and can be added again, or shut down which removes it from the "Pending Node" list.
-        :param nodes: [required] List of NodeIDs for the nodes to be removed. 
-        :type nodes: int
-        """
-
-        self._check_connection_type("remove_nodes", "Cluster")
-
-        params = { 
-            "nodes": nodes,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'RemoveNodes',
-            RemoveNodesResult,
-            params,
-            since=1.0
-        )
-
-    def get_network_config(
-            self,):
-        """
-        The GetNetworkConfig API method is used to display the network configuration information for a node.
-        <br/><br/>
-        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
-
-        self._check_connection_type("get_network_config", "Node")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetNetworkConfig',
-            GetNetworkConfigResult,
-            params,
-            since=5.0
-        )
-
-    def set_config(
-            self,
-            config,):
-        """
-        The SetConfig API method is used to set all the configuration information for the node. This includes the same information available via calls to SetClusterConfig and SetNetworkConfig in one API method.
-        <br/><br/>
-        <b>Warning!</b> Changing the 'bond-mode' on a node can cause a temporary loss of network connectivity. Caution should be taken when using this method.
-        <br/><br/>
-        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
-        :param config: [required] Objects that you want changed for the cluster interface settings. 
-        :type config: Config
-        """
-
-        self._check_connection_type("set_config", "Node")
-
-        params = { 
-            "config": config,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SetConfig',
-            SetConfigResult,
-            params,
-            since=5.0
-        )
-
-    def set_network_config(
-            self,
-            network,):
-        """
-        The "SetNetworkConfig" method is used to set the network configuration for a node. To see the states in which these objects can be modified, see "Network Object for 1G and 10G Interfaces" on page 109 of the Element API. To display the current network settings for a node, run the "GetNetworkConfig" method.
-        <br/><br/>
-        <b>WARNING!</b> Changing the "bond-mode" on a node can cause a temporary loss of network connectivity. Caution should be taken when using this method.
-        <br/><br/>
-        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
-        :param network: [required] Objects that will be changed for the node network settings. 
-        :type network: Network
-        """
-
-        self._check_connection_type("set_network_config", "Node")
-
-        params = { 
-            "network": network,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SetNetworkConfig',
-            SetNetworkConfigResult,
-            params,
-            since=5.0
-        )
-
-    def get_config(
-            self,):
-        """
-        The GetConfig API method is used to retrieve all the configuration information for the node. This one API method includes the same information available in both "GetClusterConfig" and "GetNetworkConfig" methods.
-        <br/><br/>
-        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
-
-        self._check_connection_type("get_config", "Both")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetConfig',
-            GetConfigResult,
-            params,
-            since=5.0
-        )
-
-    def get_node_stats(
-            self,
-            node_id,):
-        """
-        GetNodeStats is used to return the high-level activity measurements for a single node.
-        :param nodeID: [required] Specifies the node for which statistics are gathered. 
-        :type nodeID: int
-        """
-
-        self._check_connection_type("get_node_stats", "Cluster")
-
-        params = { 
-            "nodeID": node_id,
-        }
-        
-        # There is an adaptor!
-        since = 1.0
-        deprecated = None
-
-        return ElementServiceAdaptor.get_node_stats(self, params,
-                                                  since, deprecated)
-
-    def list_node_stats(
-            self,):
-        """
-        ListNodeStats is used to return the high-level activity measurements for all nodes in a cluster."""
-
-        self._check_connection_type("list_node_stats", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListNodeStats',
-            ListNodeStatsResult,
-            params,
-            since=6.0
         )
 
     def list_virtual_networks(
@@ -4950,6 +4580,7 @@ class Element(ServiceBase):
             attributes=OPTIONAL,
             mode=OPTIONAL,
             qos=OPTIONAL,
+            set_create_time=OPTIONAL,
             total_size=OPTIONAL,):
         """
         ModifyVolumes allows you to configure up to 500 existing volumes at one time. Changes take place immediately. If ModifyVolumes fails to modify any of the specified volumes, none of the specified volumes are changed.If you do not specify QoS values when you modify volumes, the QoS values for each volume remain unchanged. You can retrieve default QoS values for a newly created volume by running the GetDefaultQoS method.When you need to increase the size of volumes that are being replicated, do so in the following order to prevent replication errors:Increase the size of the "Replication Target" volume.Increase the size of the source or "Read / Write" volume. recommends that both the target and source volumes be the same size.NOTE: If you change access status to locked or replicationTarget all existing iSCSI connections are terminated.
@@ -4971,6 +4602,9 @@ class Element(ServiceBase):
         :param qos:  New quality of service settings for this volume.If not specified, the QoS settings are not changed. 
         :type qos: QoS
         
+        :param setCreateTime:  Identify the time at which the volume was created. 
+        :type setCreateTime: str
+        
         :param totalSize:  New size of the volume in bytes. 1000000000 is equal to 1GB. Size is rounded up to the nearest 1MB in size. This parameter can only be used to increase the size of a volume. 
         :type totalSize: int
         """
@@ -4990,6 +4624,8 @@ class Element(ServiceBase):
             params["mode"] = mode
         if qos is not None:
             params["qos"] = qos
+        if set_create_time is not None:
+            params["setCreateTime"] = set_create_time
         if total_size is not None:
             params["totalSize"] = total_size
         
@@ -5280,5 +4916,375 @@ class Element(ServiceBase):
             SetDefaultQoSResult,
             params,
             since=9.0
+        )
+
+    def create_volume_access_group(
+            self,
+            name,
+            initiators=OPTIONAL,
+            volumes=OPTIONAL,
+            virtual_network_id=OPTIONAL,
+            virtual_network_tags=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        Creates a new volume access group.
+        The new volume access group must be given a name when it is created.
+        Entering initiators and volumes are optional when creating a volume access group.
+        Once the group is created volumes and initiator IQNs can be added.
+        Any initiator IQN that is successfully added to the volume access group is able to access any volume in the group without CHAP authentication.
+        :param name: [required] Name of the volume access group. It is not required to be unique, but recommended. 
+        :type name: str
+        
+        :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group will start out without configured initiators. 
+        :type initiators: str
+        
+        :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group will start without any volumes. 
+        :type volumes: int
+        
+        :param virtualNetworkID:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
+        :type virtualNetworkID: int
+        
+        :param virtualNetworkTags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
+        :type virtualNetworkTags: int
+        
+        :param attributes:  List of Name/Value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("create_volume_access_group", "Cluster")
+
+        params = { 
+            "name": name,
+        }
+        if initiators is not None:
+            params["initiators"] = initiators
+        if volumes is not None:
+            params["volumes"] = volumes
+        if virtual_network_id is not None:
+            params["virtualNetworkID"] = virtual_network_id
+        if virtual_network_tags is not None:
+            params["virtualNetworkTags"] = virtual_network_tags
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateVolumeAccessGroup',
+            CreateVolumeAccessGroupResult,
+            params,
+            since=5.0
+        )
+
+    def list_volume_access_groups(
+            self,
+            start_volume_access_group_id=OPTIONAL,
+            limit=OPTIONAL,):
+        """
+        ListVolumeAccessGroups is used to return information about the volume access groups that are currently in the system.
+        :param startVolumeAccessGroupID:  The lowest VolumeAccessGroupID to return. This can be useful for paging. If unspecified, there is no lower limit (implicitly 0). 
+        :type startVolumeAccessGroupID: int
+        
+        :param limit:  The maximum number of results to return. This can be useful for paging. 
+        :type limit: int
+        """
+
+        self._check_connection_type("list_volume_access_groups", "Cluster")
+
+        params = { 
+        }
+        if start_volume_access_group_id is not None:
+            params["startVolumeAccessGroupID"] = start_volume_access_group_id
+        if limit is not None:
+            params["limit"] = limit
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVolumeAccessGroups',
+            ListVolumeAccessGroupsResult,
+            params,
+            since=5.0
+        )
+
+    def delete_volume_access_group(
+            self,
+            volume_access_group_id,):
+        """
+        Delete a volume access group from the system.
+        :param volumeAccessGroupID: [required] The ID of the volume access group to delete. 
+        :type volumeAccessGroupID: int
+        """
+
+        self._check_connection_type("delete_volume_access_group", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DeleteVolumeAccessGroup',
+            DeleteVolumeAccessGroupResult,
+            params,
+            since=5.0
+        )
+
+    def modify_volume_access_group(
+            self,
+            volume_access_group_id,
+            virtual_network_id=OPTIONAL,
+            virtual_network_tags=OPTIONAL,
+            name=OPTIONAL,
+            initiators=OPTIONAL,
+            volumes=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        Update initiators and add or remove volumes from a volume access group.
+        A specified initiator or volume that duplicates an existing volume or initiator in a volume access group is left as-is.
+        If a value is not specified for volumes or initiators, the current list of initiators and volumes are not changed.
+        <br/><br/>
+        Often, it is easier to use the convenience functions to modify initiators and volumes independently:
+        <br/><br/>
+        AddInitiatorsToVolumeAccessGroup<br/>
+        RemoveInitiatorsFromVolumeAccessGroup<br/>
+        AddVolumesToVolumeAccessGroup<br/>
+        RemoveVolumesFromVolumeAccessGroup<br/>
+        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
+        :type volumeAccessGroupID: int
+        
+        :param virtualNetworkID:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
+        :type virtualNetworkID: int
+        
+        :param virtualNetworkTags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
+        :type virtualNetworkTags: int
+        
+        :param name:  Name of the volume access group. It is not required to be unique, but recommended. 
+        :type name: str
+        
+        :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group's configured initiators will not be modified. 
+        :type initiators: str
+        
+        :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group's volumes will not be modified. 
+        :type volumes: int
+        
+        :param attributes:  List of Name/Value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("modify_volume_access_group", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+        }
+        if virtual_network_id is not None:
+            params["virtualNetworkID"] = virtual_network_id
+        if virtual_network_tags is not None:
+            params["virtualNetworkTags"] = virtual_network_tags
+        if name is not None:
+            params["name"] = name
+        if initiators is not None:
+            params["initiators"] = initiators
+        if volumes is not None:
+            params["volumes"] = volumes
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyVolumeAccessGroup',
+            ModifyVolumeAccessGroupResult,
+            params,
+            since=5.0
+        )
+
+    def add_initiators_to_volume_access_group(
+            self,
+            volume_access_group_id,
+            initiators,):
+        """
+        Add initiators to a volume access group.
+        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
+        :type volumeAccessGroupID: int
+        
+        :param initiators: [required] List of initiators to add to the volume access group. 
+        :type initiators: str
+        """
+
+        self._check_connection_type("add_initiators_to_volume_access_group", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+            "initiators": initiators,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'AddInitiatorsToVolumeAccessGroup',
+            ModifyVolumeAccessGroupResult,
+            params,
+            since=5.0
+        )
+
+    def remove_initiators_from_volume_access_group(
+            self,
+            volume_access_group_id,
+            initiators,):
+        """
+        Remove initiators from a volume access group.
+        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
+        :type volumeAccessGroupID: int
+        
+        :param initiators: [required] List of initiators to remove from the volume access group. 
+        :type initiators: str
+        """
+
+        self._check_connection_type("remove_initiators_from_volume_access_group", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+            "initiators": initiators,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RemoveInitiatorsFromVolumeAccessGroup',
+            ModifyVolumeAccessGroupResult,
+            params,
+            since=5.0
+        )
+
+    def add_volumes_to_volume_access_group(
+            self,
+            volume_access_group_id,
+            volumes,):
+        """
+        Add volumes to a volume access group.
+        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
+        :type volumeAccessGroupID: int
+        
+        :param volumes: [required] List of volumes to add to this volume access group. 
+        :type volumes: int
+        """
+
+        self._check_connection_type("add_volumes_to_volume_access_group", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+            "volumes": volumes,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'AddVolumesToVolumeAccessGroup',
+            ModifyVolumeAccessGroupResult,
+            params,
+            since=5.0
+        )
+
+    def remove_volumes_from_volume_access_group(
+            self,
+            volume_access_group_id,
+            volumes,):
+        """
+        Remove volumes from a volume access group.
+        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
+        :type volumeAccessGroupID: int
+        
+        :param volumes: [required] List of volumes to remove from this volume access group. 
+        :type volumes: int
+        """
+
+        self._check_connection_type("remove_volumes_from_volume_access_group", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+            "volumes": volumes,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RemoveVolumesFromVolumeAccessGroup',
+            ModifyVolumeAccessGroupResult,
+            params,
+            since=5.0
+        )
+
+    def get_volume_access_group_efficiency(
+            self,
+            volume_access_group_id,):
+        """
+        GetVolumeAccessGroupEfficiency is used to retrieve efficiency information about a volume access group. Only the volume access group provided as parameters in this API method is used to compute the capacity.
+        :param volumeAccessGroupID: [required] Specifies the volume access group for which capacity is computed. 
+        :type volumeAccessGroupID: int
+        """
+
+        self._check_connection_type("get_volume_access_group_efficiency", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetVolumeAccessGroupEfficiency',
+            GetEfficiencyResult,
+            params,
+            since=6.0
+        )
+
+    def get_volume_access_group_lun_assignments(
+            self,
+            volume_access_group_id,):
+        """
+        The GetVolumeAccessGroupLunAssignments is used to return information LUN mappings of a specified volume access group.
+        :param volumeAccessGroupID: [required] Unique volume access group ID used to return information. 
+        :type volumeAccessGroupID: int
+        """
+
+        self._check_connection_type("get_volume_access_group_lun_assignments", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetVolumeAccessGroupLunAssignments',
+            GetVolumeAccessGroupLunAssignmentsResult,
+            params,
+            since=7.0
+        )
+
+    def modify_volume_access_group_lun_assignments(
+            self,
+            volume_access_group_id,
+            lun_assignments,):
+        """
+        The ModifytVolumeAccessGroupLunAssignments is used to define custom LUN assignments for specific volumes. Only LUN values set on the lunAssignments parameter will be changed in the volume access group. All other LUN assignments will remain unchanged.
+        <br/><br/>
+        LUN assignment values must be unique for volumes in a volume access group. An exception will be seen if LUN assignments are duplicated in a volume access group. However, the same LUN values can be used again in different volume access groups.
+        <br/><br/>
+        <b>Note:</b> Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed. None of the specified LUN assignments will be modified if there is an exception.
+        <br/><br/>
+        <b>Caution:</b> If a LUN assignment is changed for a volume with active I/O, the I/O could be disrupted. Changes to the server configuration may be required in order to change volume LUN assignments.
+        :param volumeAccessGroupID: [required] Unique volume access group ID for which the LUN assignments will be modified. 
+        :type volumeAccessGroupID: int
+        
+        :param lunAssignments: [required] The volume IDs with new assigned LUN values. 
+        :type lunAssignments: LunAssignment
+        """
+
+        self._check_connection_type("modify_volume_access_group_lun_assignments", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+            "lunAssignments": lun_assignments,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyVolumeAccessGroupLunAssignments',
+            ModifyVolumeAccessGroupLunAssignmentsResult,
+            params,
+            since=7.0
         )
 

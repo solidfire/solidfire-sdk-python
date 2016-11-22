@@ -1,3 +1,4 @@
+import unittest
 from unittest.case import TestCase
 
 from hamcrest import \
@@ -11,6 +12,7 @@ from solidfire.factory import ElementFactory
 
 class TestSchedule(TestCase):
 
+    @unittest.skip
     def test_create_and_delete_schedule(self):
         sf = ElementFactory.create("172.26.64.48", "admin", "admin")
 

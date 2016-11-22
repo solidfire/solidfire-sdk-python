@@ -16,7 +16,7 @@ import logging
 LOG = logging.getLogger('solidfire.Element')
 
 min_sdk_version = 7.0
-max_sdk_version = 8.4
+max_sdk_version = 9.0
 
 
 class ElementFactory:
@@ -67,6 +67,12 @@ class ElementFactory:
             raise SdkOperationError("Cannot verify SSL when target is an IP "
                                     "address. Set verify_ssl to false or use "
                                     "a fully qualified domain name.")
+
+        if port is None:
+            port = 443
+
+        if verify_ssl is None:
+            verify_ssl = False
 
         if port != 443:
             target = target + ":" + str(port)
