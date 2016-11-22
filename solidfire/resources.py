@@ -1,14 +1,14 @@
-RESP_CancelClone_v9 = """{
+RESP_CancelClone_v9_0 = """{
   "id" : 1,
   "result" : {}
 }"""
 
-RESP_CancelGroupClone_v9 = """{
+RESP_CancelGroupClone_v9_0 = """{
   "id" : 1,
   "result" : {}
 }"""
 
-RESP_CopyVolume_v9 = """{
+RESP_CopyVolume_v9_0 = """{
   "id": 1,
   "result": {
     "asyncHandle": 9,
@@ -16,7 +16,7 @@ RESP_CopyVolume_v9 = """{
   }
 }"""
 
-RESP_CreateStorageContainer_v9 = """{
+RESP_CreateStorageContainer_v9_0 = """{
   "id": null,
   "result": {
     "storageContainer": {
@@ -31,7 +31,7 @@ RESP_CreateStorageContainer_v9 = """{
   }
 }"""
 
-RESP_CreateVolumeAccessGroup_v9 = """{
+RESP_CreateVolumeAccessGroup_v9_0 = """{
   "id": null,
   "result": {
     "volumeAccessGroup": {
@@ -53,12 +53,12 @@ RESP_CreateVolumeAccessGroup_v9 = """{
   }
 }"""
 
-RESP_DeleteStorageContainers_v9 = """{
+RESP_DeleteStorageContainers_v9_0 = """{
   "id": null,
   "result": {}
 }"""
 
-RESP_DeleteVolumes_v9 = """ {
+RESP_DeleteVolumes_v9_0 = """ {
   "id" : 1,
   "result": {
     "volumes" : [ {
@@ -92,12 +92,12 @@ RESP_DeleteVolumes_v9 = """ {
   }
 }"""
 
-RESP_EnableFeature_v9 = """{
+RESP_EnableFeature_v9_0 = """{
   "id": null,
   "result": {}
 }"""
 
-RESP_GetClusterHardwareInfo_v9 = """{
+RESP_GetClusterHardwareInfo_v9_0 = """{
   "id": null,
   "result": {
     "clusterHardwareInfo": {
@@ -1459,7 +1459,7 @@ RESP_GetClusterHardwareInfo_v9 = """{
   }
 }"""
 
-RESP_GetFeatureStatus_v9 = """{
+RESP_GetFeatureStatus_v9_0 = """{
   "id": null,
   "result": {
     "features": [
@@ -1471,7 +1471,7 @@ RESP_GetFeatureStatus_v9 = """{
   }
 }"""
 
-RESP_GetHardwareConfig_v9 = """{
+RESP_GetHardwareConfig_v9_0 = """{
   "id": null,
   "result": {
     "hardwareConfig": {
@@ -1542,7 +1542,7 @@ RESP_GetHardwareConfig_v9 = """{
   }
 }"""
 
-RESP_GetHardwareInfo_v9 = """{
+RESP_GetHardwareInfo_v9_0 = """{
   "id": 1,
   "result": {
     "hardwareInfo": {
@@ -1592,7 +1592,7 @@ RESP_GetHardwareInfo_v9 = """{
   }
 }"""
 
-RESP_GetLimits_v9 = """{
+RESP_GetLimits_v9_0 = """{
   "id": 1,
   "result": {
     "accountCountMax": 5000,
@@ -1634,7 +1634,7 @@ RESP_GetLimits_v9 = """{
   }
 }"""
 
-RESP_GetNetworkConfig_v9 = """{
+RESP_GetNetworkConfig_v9_0 = """{
   "id": null,
   "result":
   {
@@ -1830,7 +1830,7 @@ RESP_GetNetworkConfig_v9 = """{
   }
 }"""
 
-RESP_GetNodeHardwareInfo_v9 = """{
+RESP_GetNodeHardwareInfo_v9_0 = """{
   "id": null,
   "result": {
     "nodeHardwareInfo": {
@@ -2999,7 +2999,7 @@ RESP_GetNodeHardwareInfo_v9 = """{
   }
 }"""
 
-RESP_GetNvramInfo_v9 = """{
+RESP_GetNvramInfo_v9_0 = """{
   "id": null,
   "result": {
     "nvramInfo": {
@@ -3436,7 +3436,7 @@ RESP_GetNvramInfo_v9 = """{
   }
 }"""
 
-RESP_GetStorageContainerEfficiency_v9 = """{
+RESP_GetStorageContainerEfficiency_v9_0 = """{
   "id": null,
   "result": {
     "compression": 1,
@@ -3447,14 +3447,14 @@ RESP_GetStorageContainerEfficiency_v9 = """{
   }
 }"""
 
-RESP_GetVirtualVolumeCount_v9 = """{
+RESP_GetVirtualVolumeCount_v9_0 = """{
   "id": null,
   "result": {
     "count": 0
   }
 }"""
 
-RESP_ListAsyncResults_v9 = """{
+RESP_ListAsyncResults_v9_0 = """{
   "id": 1,
   "result": {
     "asyncHandles": [
@@ -3498,7 +3498,7 @@ RESP_ListAsyncResults_v9 = """{
   }
 }"""
 
-RESP_ListDriveStats_v9 = """{
+RESP_ListDriveStats_v9_0 = """{
   "id": 1,
   "result": {
     "driveStats": [
@@ -3533,7 +3533,7 @@ RESP_ListDriveStats_v9 = """{
   }
 }"""
 
-RESP_ListFibreChannelSessions_v9 = """{
+RESP_ListFibreChannelSessions_v9_0 = """{
   "id" : 1,
   "result" : {
      "sessions" : [
@@ -3555,7 +3555,7 @@ RESP_ListFibreChannelSessions_v9 = """{
   }
 }"""
 
-RESP_ListISCSISessions_v9 = """{
+RESP_ListISCSISessions_v9_0 = """{
   "id": 7,
   "result": {
     "sessions": [
@@ -3619,7 +3619,7 @@ RESP_ListISCSISessions_v9 = """{
   }
 }"""
 
-RESP_ListProtocolEndpoints_v9 = """{
+RESP_ListProtocolEndpoints_v9_0 = """{
   "id": 1,
   "result": {
     "protocolEndpoints": [
@@ -3659,7 +3659,7 @@ RESP_ListProtocolEndpoints_v9 = """{
   }
 }"""
 
-RESP_ListVirtualVolumeBindings_v9 = """{
+RESP_ListVirtualVolumeBindings_v9_0 = """{
   "id": 1,
   "result": {
     "bindings": [
@@ -3676,7 +3676,7 @@ RESP_ListVirtualVolumeBindings_v9 = """{
   }
 }"""
 
-RESP_ListVirtualVolumeHosts_v9 = """{
+RESP_ListVirtualVolumeHosts_v9_0 = """{
   "id": 1,
   "result": {
     "hosts": [
@@ -3697,7 +3697,7 @@ RESP_ListVirtualVolumeHosts_v9 = """{
   }
 }"""
 
-RESP_ListVirtualVolumes_v9 = """{
+RESP_ListVirtualVolumes_v9_0 = """{
   "id": 1,
   "result": {
     "nextVirtualVolumeID": "00000000-0000-0000-0000-000000000000",
@@ -3738,7 +3738,9 @@ RESP_ListVirtualVolumes_v9 = """{
   }
 }"""
 
-RESP_ListVirtualVolumeTasks_v9 = """{
+RESP_ListVirtualVolumes_v9_1 = """{"id":2,"result":{"nextVirtualVolumeID":"00000000-0000-0000-0000-000000000000","virtualVolumes":[{"bindings":[],"children":[],"metadata":{"SFGenerationId":"0","SFProfileId":"f4e5bade-15a2-4805-bf8e-52318c4ce443","VMW_ContainerId":"f8ee427e-f858-420d-bd38-762ad1cb6cc3","VMW_GosType":"windows7Server64Guest","VMW_VVolName":"VM1_3.vmdk","VMW_VVolNamespace":"/vmfs/volumes/vvol:f8ee427ef858420d-bd38762ad1cb6cc3/rfc4122.5630cccd-0bc5-4fcd-a4d7-6f5d66da295a","VMW_VVolType":"Data","VMW_VmID":"50071f6b-2c72-50c7-eec9-f7e2bfb6f2f2","VMW_VvolAllocationType":"4","VMW_VvolProfile":"f4e5bade-15a2-4805-bf8e-52318c4ce443:0"},"parentVirtualVolumeID":"00000000-0000-0000-0000-000000000000","snapshotID":0,"snapshotInfo":null,"status":"done","storageContainer":{"accountID":2,"initiatorSecret":"0&%Q2f$61(3#1TX%","name":"akcluster1","protocolEndpointType":"SCSI","status":"active","storageContainerID":"f8ee427e-f858-420d-bd38-762ad1cb6cc3","targetSecret":"']6~98n1ltWn<cl%"},"virtualVolumeID":"10c24f95-336d-4173-a19f-93ffbd852585","virtualVolumeType":"data","volumeID":6,"volumeInfo":null},{"bindings":[38],"children":[],"metadata":{"SFGenerationId":"0","SFProfileId":"f4e5bade-15a2-4805-bf8e-52318c4ce443","VMW_ContainerId":"76bbb2b4-8936-4c98-814d-d16f9249c156","VMW_GosType":"winNetEnterpriseGuest","VMW_VVolName":"ErikVM001.vmdk","VMW_VVolNamespace":"/vmfs/volumes/vvol:76bbb2b489364c98-814dd16f9249c156/rfc4122.1e09b208-80ee-43fa-8dad-6ffc2a013072","VMW_VVolType":"Data","VMW_VmID":"5007856a-7a81-92a8-3bcf-979c4fbab711","VMW_VvolAllocationType":"4","VMW_VvolProfile":"f4e5bade-15a2-4805-bf8e-52318c4ce443:0"},"parentVirtualVolumeID":"00000000-0000-0000-0000-000000000000","snapshotID":0,"snapshotInfo":null,"status":"done","storageContainer":{"accountID":4,"initiatorSecret":"n]shaq.ju!z>5{0X","name":"ErikSC","protocolEndpointType":"SCSI","status":"active","storageContainerID":"76bbb2b4-8936-4c98-814d-d16f9249c156","targetSecret":"037<BCYs^|iB%y,b"},"virtualVolumeID":"1dfe1cb3-bdd6-4051-a92c-43a0184d483d","virtualVolumeType":"data","volumeID":13,"volumeInfo":null},{"bindings":[36],"children":[],"metadata":{"SFGenerationId":"0","SFProfileId":"f4e5bade-15a2-4805-bf8e-52318c4ce443","VMW_ContainerId":"76bbb2b4-8936-4c98-814d-d16f9249c156","VMW_VVolName":"ErikVM001","VMW_VVolType":"Config","VMW_VmID":"5007856a-7a81-92a8-3bcf-979c4fbab711","VMW_VvolProfile":"f4e5bade-15a2-4805-bf8e-52318c4ce443:0"},"parentVirtualVolumeID":"00000000-0000-0000-0000-000000000000","snapshotID":0,"snapshotInfo":null,"status":"done","storageContainer":{"accountID":4,"initiatorSecret":"n]shaq.ju!z>5{0X","name":"ErikSC","protocolEndpointType":"SCSI","status":"active","storageContainerID":"76bbb2b4-8936-4c98-814d-d16f9249c156","targetSecret":"037<BCYs^|iB%y,b"},"virtualVolumeID":"1e09b208-80ee-43fa-8dad-6ffc2a013072","virtualVolumeType":"config","volumeID":12,"volumeInfo":null},{"bindings":[],"children":[],"metadata":{"SFGenerationId":"0","SFProfileId":"f4e5bade-15a2-4805-bf8e-52318c4ce443","VMW_ContainerId":"f8ee427e-f858-420d-bd38-762ad1cb6cc3","VMW_GosType":"windows7Server64Guest","VMW_VVolName":"VM1_1.vmdk","VMW_VVolNamespace":"/vmfs/volumes/vvol:f8ee427ef858420d-bd38762ad1cb6cc3/rfc4122.5630cccd-0bc5-4fcd-a4d7-6f5d66da295a","VMW_VVolType":"Data","VMW_VmID":"50071f6b-2c72-50c7-eec9-f7e2bfb6f2f2","VMW_VvolAllocationType":"4","VMW_VvolProfile":"f4e5bade-15a2-4805-bf8e-52318c4ce443:0"},"parentVirtualVolumeID":"00000000-0000-0000-0000-000000000000","snapshotID":0,"snapshotInfo":null,"status":"done","storageContainer":{"accountID":2,"initiatorSecret":"0&%Q2f$61(3#1TX%","name":"akcluster1","protocolEndpointType":"SCSI","status":"active","storageContainerID":"f8ee427e-f858-420d-bd38-762ad1cb6cc3","targetSecret":"']6~98n1ltWn<cl%"},"virtualVolumeID":"25081b2e-0656-428d-b4a3-6dddb0255d51","virtualVolumeType":"data","volumeID":4,"volumeInfo":null},{"bindings":[],"children":[],"metadata":{"SFGenerationId":"0","SFProfileId":"f4e5bade-15a2-4805-bf8e-52318c4ce443","VMW_ContainerId":"f8ee427e-f858-420d-bd38-762ad1cb6cc3","VMW_GosType":"windows7Server64Guest","VMW_VVolName":"VM1.vmdk","VMW_VVolNamespace":"/vmfs/volumes/vvol:f8ee427ef858420d-bd38762ad1cb6cc3/rfc4122.5630cccd-0bc5-4fcd-a4d7-6f5d66da295a","VMW_VVolType":"Data","VMW_VmID":"50071f6b-2c72-50c7-eec9-f7e2bfb6f2f2","VMW_VvolAllocationType":"4","VMW_VvolProfile":"f4e5bade-15a2-4805-bf8e-52318c4ce443:0"},"parentVirtualVolumeID":"00000000-0000-0000-0000-000000000000","snapshotID":0,"snapshotInfo":null,"status":"done","storageContainer":{"accountID":2,"initiatorSecret":"0&%Q2f$61(3#1TX%","name":"akcluster1","protocolEndpointType":"SCSI","status":"active","storageContainerID":"f8ee427e-f858-420d-bd38-762ad1cb6cc3","targetSecret":"']6~98n1ltWn<cl%"},"virtualVolumeID":"4a2fa09f-8eb7-4151-be39-27bae2f8100f","virtualVolumeType":"data","volumeID":3,"volumeInfo":null},{"bindings":[],"children":[],"metadata":{"SFGenerationId":"0","SFProfileId":"f4e5bade-15a2-4805-bf8e-52318c4ce443","VMW_ContainerId":"f8ee427e-f858-420d-bd38-762ad1cb6cc3","VMW_VVolName":"VM1","VMW_VVolType":"Config","VMW_VmID":"50071f6b-2c72-50c7-eec9-f7e2bfb6f2f2","VMW_VvolProfile":"f4e5bade-15a2-4805-bf8e-52318c4ce443:0"},"parentVirtualVolumeID":"00000000-0000-0000-0000-000000000000","snapshotID":0,"snapshotInfo":null,"status":"done","storageContainer":{"accountID":2,"initiatorSecret":"0&%Q2f$61(3#1TX%","name":"akcluster1","protocolEndpointType":"SCSI","status":"active","storageContainerID":"f8ee427e-f858-420d-bd38-762ad1cb6cc3","targetSecret":"']6~98n1ltWn<cl%"},"virtualVolumeID":"5630cccd-0bc5-4fcd-a4d7-6f5d66da295a","virtualVolumeType":"config","volumeID":2,"volumeInfo":null},{"bindings":[],"children":[],"metadata":{"SFGenerationId":"0","SFProfileId":"f4e5bade-15a2-4805-bf8e-52318c4ce443","VMW_ContainerId":"f8ee427e-f858-420d-bd38-762ad1cb6cc3","VMW_VVolName":"vvolVM1","VMW_VVolType":"Config","VMW_VmID":"50073c1f-e7d7-88be-4c13-8ef84026ffb1","VMW_VvolProfile":"f4e5bade-15a2-4805-bf8e-52318c4ce443:0"},"parentVirtualVolumeID":"00000000-0000-0000-0000-000000000000","snapshotID":0,"snapshotInfo":null,"status":"done","storageContainer":{"accountID":2,"initiatorSecret":"0&%Q2f$61(3#1TX%","name":"akcluster1","protocolEndpointType":"SCSI","status":"active","storageContainerID":"f8ee427e-f858-420d-bd38-762ad1cb6cc3","targetSecret":"']6~98n1ltWn<cl%"},"virtualVolumeID":"6664a13e-a525-47a2-a58b-47231a5ecfea","virtualVolumeType":"config","volumeID":8,"volumeInfo":null},{"bindings":[37],"children":[],"metadata":{"SFGenerationId":"0","SFProfileId":"7508ed62-e4a9-4cf1-9ef9-fb1f07b72bc1","VMW_ContainerId":"76bbb2b4-8936-4c98-814d-d16f9249c156","VMW_GosType":"winNetEnterpriseGuest","VMW_VVolName":"ErikVM001-59835ac3.vswp","VMW_VVolNamespace":"/vmfs/volumes/vvol:76bbb2b489364c98-814dd16f9249c156/rfc4122.1e09b208-80ee-43fa-8dad-6ffc2a013072","VMW_VVolType":"Swap","VMW_VmID":"5007856a-7a81-92a8-3bcf-979c4fbab711","VMW_VvolAllocationType":"3","VMW_VvolProfile":"7508ed62-e4a9-4cf1-9ef9-fb1f07b72bc1:0"},"parentVirtualVolumeID":"00000000-0000-0000-0000-000000000000","snapshotID":0,"snapshotInfo":null,"status":"done","storageContainer":{"accountID":4,"initiatorSecret":"n]shaq.ju!z>5{0X","name":"ErikSC","protocolEndpointType":"SCSI","status":"active","storageContainerID":"76bbb2b4-8936-4c98-814d-d16f9249c156","targetSecret":"037<BCYs^|iB%y,b"},"virtualVolumeID":"8182ae66-7cdb-4df4-be00-e1b93a5b8364","virtualVolumeType":"swap","volumeID":14,"volumeInfo":null},{"bindings":[],"children":[],"metadata":{"SFGenerationId":"0","SFProfileId":"f4e5bade-15a2-4805-bf8e-52318c4ce443","VMW_ContainerId":"f8ee427e-f858-420d-bd38-762ad1cb6cc3","VMW_GosType":"rhel7_64Guest","VMW_VVolName":"vvolVM1.vmdk","VMW_VVolNamespace":"/vmfs/volumes/vvol:f8ee427ef858420d-bd38762ad1cb6cc3/rfc4122.6664a13e-a525-47a2-a58b-47231a5ecfea","VMW_VVolType":"Data","VMW_VmID":"50073c1f-e7d7-88be-4c13-8ef84026ffb1","VMW_VvolAllocationType":"4","VMW_VvolProfile":"f4e5bade-15a2-4805-bf8e-52318c4ce443:0"},"parentVirtualVolumeID":"00000000-0000-0000-0000-000000000000","snapshotID":0,"snapshotInfo":null,"status":"done","storageContainer":{"accountID":2,"initiatorSecret":"0&%Q2f$61(3#1TX%","name":"akcluster1","protocolEndpointType":"SCSI","status":"active","storageContainerID":"f8ee427e-f858-420d-bd38-762ad1cb6cc3","targetSecret":"']6~98n1ltWn<cl%"},"virtualVolumeID":"83345d1c-70ab-4d99-8177-d96f67570594","virtualVolumeType":"data","volumeID":9,"volumeInfo":null},{"bindings":[],"children":[],"metadata":{"SFGenerationId":"0","SFProfileId":"f4e5bade-15a2-4805-bf8e-52318c4ce443","VMW_ContainerId":"f8ee427e-f858-420d-bd38-762ad1cb6cc3","VMW_GosType":"windows7Server64Guest","VMW_VVolName":"VM1_2.vmdk","VMW_VVolNamespace":"/vmfs/volumes/vvol:f8ee427ef858420d-bd38762ad1cb6cc3/rfc4122.5630cccd-0bc5-4fcd-a4d7-6f5d66da295a","VMW_VVolType":"Data","VMW_VmID":"50071f6b-2c72-50c7-eec9-f7e2bfb6f2f2","VMW_VvolAllocationType":"4","VMW_VvolProfile":"f4e5bade-15a2-4805-bf8e-52318c4ce443:0"},"parentVirtualVolumeID":"00000000-0000-0000-0000-000000000000","snapshotID":0,"snapshotInfo":null,"status":"done","storageContainer":{"accountID":2,"initiatorSecret":"0&%Q2f$61(3#1TX%","name":"akcluster1","protocolEndpointType":"SCSI","status":"active","storageContainerID":"f8ee427e-f858-420d-bd38-762ad1cb6cc3","targetSecret":"']6~98n1ltWn<cl%"},"virtualVolumeID":"c983e671-23dd-45a1-9b7e-9b4f94c13534","virtualVolumeType":"data","volumeID":5,"volumeInfo":null}]}}"""
+
+RESP_ListVirtualVolumeTasks_v9_0 = """{
   "id": 1,
   "result": {
     "tasks": [
@@ -3769,7 +3771,7 @@ RESP_ListVirtualVolumeTasks_v9 = """{
   }
 }"""
 
-RESP_ListVolumeAccessGroups_v9 = """{
+RESP_ListVolumeAccessGroups_v9_0 = """{
   "id": 1,
   "result": {
     "volumeAccessGroups": [
@@ -3810,7 +3812,9 @@ RESP_ListVolumeAccessGroups_v9 = """{
   }
 }"""
 
-RESP_ModifyStorageContainer_v9 = """{
+RESP_ListVolumeStatsByVirtualVolume_v9_0 = """{"id":1,"result":{"volumeStats":[]}}"""
+
+RESP_ModifyStorageContainer_v9_0 = """{
   "id": null,
   "result": {
     "storageContainer": {
@@ -3825,7 +3829,7 @@ RESP_ModifyStorageContainer_v9 = """{
   }
 }"""
 
-RESP_ModifyVolumeAccessGroup_v9 = """{
+RESP_ModifyVolumeAccessGroup_v9_0 = """{
   "id": null,
   "result": {
     "volumeAccessGroup": {
@@ -3850,7 +3854,7 @@ RESP_ModifyVolumeAccessGroup_v9 = """{
   }
 }"""
 
-RESP_ModifyVolumes_v9 = """{
+RESP_ModifyVolumes_v9_0 = """{
   "id": 1,
   "result": {
     "volumes": [
@@ -3942,12 +3946,12 @@ RESP_ModifyVolumes_v9 = """{
   }
 }"""
 
-RESP_PurgeDeletedVolumes_v9 = """{
+RESP_PurgeDeletedVolumes_v9_0 = """{
   "id" : 1,
   "result": {}
 }"""
 
-RESP_SetDefaultQoS_v9 = """{
+RESP_SetDefaultQoS_v9_0 = """{
     "id":1,
     "result": {
         "burstIOPS":8000,
