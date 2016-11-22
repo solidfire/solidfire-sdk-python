@@ -406,6 +406,797 @@ class Element(ServiceBase):
             since=6.0
         )
 
+    def get_cluster_capacity(
+            self,):
+        """
+        Return the high-level capacity measurements for an entire cluster.
+        The fields returned from this method can be used to calculate the efficiency rates that are displayed in the Element User Interface."""
+
+        self._check_connection_type("get_cluster_capacity", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetClusterCapacity',
+            GetClusterCapacityResult,
+            params,
+            since=1.0
+        )
+
+    def get_cluster_info(
+            self,):
+        """
+        Return configuration information about the cluster."""
+
+        self._check_connection_type("get_cluster_info", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetClusterInfo',
+            GetClusterInfoResult,
+            params,
+            since=1.0
+        )
+
+    def get_cluster_version_info(
+            self,):
+        """
+        Return information about the Element software version running on each node in the cluster.
+        Information about the nodes that are currently in the process of upgrading software is also returned."""
+
+        self._check_connection_type("get_cluster_version_info", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetClusterVersionInfo',
+            GetClusterVersionInfoResult,
+            params,
+            since=1.0
+        )
+
+    def get_limits(
+            self,):
+        """
+        GetLimits enables you to retrieve the limit values set by the API. These values might change between releases of  Element, but do not change without an update to the system. Knowing the limit values set by the API can be useful when writing API scripts for user-facing tools.NOTE: The GetLimits method returns the limits for the current software version regardless of the API endpoint version used to pass the method."""
+
+        self._check_connection_type("get_limits", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetLimits',
+            GetLimitsResult,
+            params,
+            since=1.0
+        )
+
+    def list_events(
+            self,
+            max_events=OPTIONAL,
+            start_event_id=OPTIONAL,
+            end_event_id=OPTIONAL,
+            event_queue_type=OPTIONAL,):
+        """
+        ListEvents returns events detected on the cluster, sorted from oldest to newest.
+        :param maxEvents:  Specifies the maximum number of events to return. 
+        :type maxEvents: int
+        
+        :param startEventID:  Identifies the beginning of a range of events to return. 
+        :type startEventID: int
+        
+        :param endEventID:  Identifies the end of a range of events to return. 
+        :type endEventID: int
+        
+        :param eventQueueType:  
+        :type eventQueueType: str
+        """
+
+        self._check_connection_type("list_events", "Cluster")
+
+        params = { 
+        }
+        if max_events is not None:
+            params["maxEvents"] = max_events
+        if start_event_id is not None:
+            params["startEventID"] = start_event_id
+        if end_event_id is not None:
+            params["endEventID"] = end_event_id
+        if event_queue_type is not None:
+            params["eventQueueType"] = event_queue_type
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListEvents',
+            ListEventsResult,
+            params,
+            since=1.0
+        )
+
+    def list_cluster_faults(
+            self,
+            exceptions=OPTIONAL,
+            best_practices=OPTIONAL,
+            update=OPTIONAL,
+            fault_types=OPTIONAL,):
+        """
+        ListClusterFaults is used to retrieve information about any faults detected on the cluster.
+        With this method, both current and resolved faults can be retrieved. The system caches faults every 30 seconds.
+        :param exceptions:  
+        :type exceptions: bool
+        
+        :param bestPractices:  Include faults triggered by sub-optimal system configuration. Possible values: true, false 
+        :type bestPractices: bool
+        
+        :param update:  
+        :type update: bool
+        
+        :param faultTypes:  Determines the types of faults returned: current: List active, unresolved faults. <b>resolved</b>: List faults that were previously detected and resolved. <b>all</b>: (Default) List both current and resolved faults. You can see the fault status in the 'resolved' field of the Cluster Fault object. 
+        :type faultTypes: str
+        """
+
+        self._check_connection_type("list_cluster_faults", "Cluster")
+
+        params = { 
+        }
+        if exceptions is not None:
+            params["exceptions"] = exceptions
+        if best_practices is not None:
+            params["bestPractices"] = best_practices
+        if update is not None:
+            params["update"] = update
+        if fault_types is not None:
+            params["faultTypes"] = fault_types
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListClusterFaults',
+            ListClusterFaultsResult,
+            params,
+            since=1.0
+        )
+
+    def clear_cluster_faults(
+            self,
+            fault_types=OPTIONAL,):
+        """
+        ClearClusterFaults is used to clear information about both current faults that are resolved as well as faults that were previously detected and resolved can be cleared.
+        :param faultTypes:  Determines the types of faults cleared:<br/> <b>current</b>: Faults that are currently detected and have not been resolved.<br/> <b>resolved</b>: Faults that were previously detected and resolved.<br/> <b>all</b>: Both current and resolved faults are cleared. The fault status can be determined by the "resolved" field of the fault object. 
+        :type faultTypes: str
+        """
+
+        self._check_connection_type("clear_cluster_faults", "Cluster")
+
+        params = { 
+        }
+        if fault_types is not None:
+            params["faultTypes"] = fault_types
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ClearClusterFaults',
+            ClearClusterFaultsResult,
+            params,
+            since=1.0
+        )
+
+    def get_cluster_config(
+            self,):
+        """
+        The GetClusterConfig API method is used to return information about the cluster configuration this node uses to communicate with the cluster it is a part of.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
+
+        self._check_connection_type("get_cluster_config", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetClusterConfig',
+            GetClusterConfigResult,
+            params,
+            since=5.0
+        )
+
+    def get_cluster_full_threshold(
+            self,):
+        """
+        GetClusterFullThreshold is used to view the stages set for cluster fullness levels. All levels are returned when this method is entered."""
+
+        self._check_connection_type("get_cluster_full_threshold", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetClusterFullThreshold',
+            GetClusterFullThresholdResult,
+            params,
+            since=1.0
+        )
+
+    def modify_cluster_full_threshold(
+            self,
+            stage2_aware_threshold=OPTIONAL,
+            stage3_block_threshold_percent=OPTIONAL,
+            max_metadata_over_provision_factor=OPTIONAL,):
+        """
+        ModifyClusterFullThreshold is used to change the level at which an event is generated when the storage cluster approaches the capacity utilization requested. The number entered in this setting is used to indicate the number of node failures the system is required to recover from. For example, on a 10 node cluster, if you want to be alerted when the system cannot recover from 3 nodes failures, enter the value of "3". When this number is reached, a message alert is sent to the Event Log in the Cluster Management Console.
+        :param stage2AwareThreshold:  Number of nodes worth of capacity remaining on the cluster that triggers a notification. 
+        :type stage2AwareThreshold: int
+        
+        :param stage3BlockThresholdPercent:  Percent below "Error" state to raise a cluster "Warning" alert. 
+        :type stage3BlockThresholdPercent: int
+        
+        :param maxMetadataOverProvisionFactor:  A value representative of the number of times metadata space can be over provisioned relative to the amount of space available. For example, if there was enough metadata space to store 100 TiB of volumes and this number was set to 5, then 500 TiB worth of volumes could be created. 
+        :type maxMetadataOverProvisionFactor: int
+        """
+
+        self._check_connection_type("modify_cluster_full_threshold", "Cluster")
+
+        params = { 
+        }
+        if stage2_aware_threshold is not None:
+            params["stage2AwareThreshold"] = stage2_aware_threshold
+        if stage3_block_threshold_percent is not None:
+            params["stage3BlockThresholdPercent"] = stage3_block_threshold_percent
+        if max_metadata_over_provision_factor is not None:
+            params["maxMetadataOverProvisionFactor"] = max_metadata_over_provision_factor
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyClusterFullThreshold',
+            ModifyClusterFullThresholdResult,
+            params,
+            since=1.0
+        )
+
+    def get_cluster_stats(
+            self,):
+        """
+        GetClusterStats is used to return high-level activity measurements for the cluster. Values returned are cumulative from the creation of the cluster."""
+
+        self._check_connection_type("get_cluster_stats", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetClusterStats',
+            GetClusterStatsResult,
+            params,
+            since=1.0
+        )
+
+    def list_cluster_admins(
+            self,):
+        """
+        ListClusterAdmins returns the list of all cluster administrators for the cluster. There can be several cluster administrators that have different levels of permissions. There can be only one primary cluster administrator in the system. The primary Cluster Admin is the administrator that was created when the cluster was created. LDAP administrators can also be created when setting up an LDAP system on the cluster."""
+
+        self._check_connection_type("list_cluster_admins", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListClusterAdmins',
+            ListClusterAdminsResult,
+            params,
+            since=1.0
+        )
+
+    def add_cluster_admin(
+            self,
+            username,
+            password,
+            access,
+            accept_eula=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        AddClusterAdmin adds a new Cluster Admin. A Cluster Admin can be used to manage the cluster via the API and management tools. Cluster Admins are completely separate and unrelated to standard tenant accounts.
+        <br/><br/>
+        Each Cluster Admin can be restricted to a sub-set of the API. SolidFire recommends using multiple Cluster Admins for different users and applications. Each Cluster Admin should be given the minimal permissions necessary to reduce the potential impact of credential compromise.
+        :param username: [required] Unique username for this Cluster Admin. 
+        :type username: str
+        
+        :param password: [required] Password used to authenticate this Cluster Admin. 
+        :type password: str
+        
+        :param access: [required] Controls which methods this Cluster Admin can use. For more details on the levels of access, see "Access Control" in the Element API Guide. 
+        :type access: str
+        
+        :param acceptEula:  Indicate your acceptance of the End User License Agreement when creating this cluster admin. To accept the EULA, set this parameter to true. 
+        :type acceptEula: bool
+        
+        :param attributes:  List of Name/Value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("add_cluster_admin", "Cluster")
+
+        params = { 
+            "username": username,
+            "password": password,
+            "access": access,
+        }
+        if accept_eula is not None:
+            params["acceptEula"] = accept_eula
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'AddClusterAdmin',
+            AddClusterAdminResult,
+            params,
+            since=1.0
+        )
+
+    def modify_cluster_admin(
+            self,
+            cluster_admin_id,
+            password=OPTIONAL,
+            access=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        ModifyClusterAdmin is used to change the settings for a Cluster Admin or LDAP Cluster Admin. Access for the administrator Cluster Admin account cannot be changed.
+        :param clusterAdminID: [required] ClusterAdminID for the Cluster Admin or LDAP Cluster Admin to modify. 
+        :type clusterAdminID: int
+        
+        :param password:  Password used to authenticate this Cluster Admin. 
+        :type password: str
+        
+        :param access:  Controls which methods this Cluster Admin can use. For more details on the levels of access, see "Access Control" in the Element API Guide. 
+        :type access: str
+        
+        :param attributes:  List of Name/Value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("modify_cluster_admin", "Cluster")
+
+        params = { 
+            "clusterAdminID": cluster_admin_id,
+        }
+        if password is not None:
+            params["password"] = password
+        if access is not None:
+            params["access"] = access
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyClusterAdmin',
+            ModifyClusterAdminResult,
+            params,
+            since=1.0
+        )
+
+    def remove_cluster_admin(
+            self,
+            cluster_admin_id,):
+        """
+        RemoveClusterAdmin is used to remove a Cluster Admin. The "admin" Cluster Admin cannot be removed.
+        :param clusterAdminID: [required] ClusterAdminID for the Cluster Admin to remove. 
+        :type clusterAdminID: int
+        """
+
+        self._check_connection_type("remove_cluster_admin", "Cluster")
+
+        params = { 
+            "clusterAdminID": cluster_admin_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RemoveClusterAdmin',
+            RemoveClusterAdminResult,
+            params,
+            since=1.0
+        )
+
+    def set_cluster_config(
+            self,
+            cluster,):
+        """
+        The SetClusterConfig API method is used to set the configuration this node uses to communicate with the cluster it is associated with. To see the states in which these objects can be modified see Cluster Object on page 109. To display the current cluster interface settings for a node, run the GetClusterConfig API method.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
+        :param cluster: [required] Objects that are changed for the cluster interface settings. Only the fields you want changed need to be added to this method as objects in the "cluster" parameter. 
+        :type cluster: ClusterConfig
+        """
+
+        self._check_connection_type("set_cluster_config", "Node")
+
+        params = { 
+            "cluster": cluster,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetClusterConfig',
+            SetClusterConfigResult,
+            params,
+            since=5.0
+        )
+
+    def get_snmp_acl(
+            self,):
+        """
+        GetSnmpACL is used to return the current SNMP access permissions on the cluster nodes."""
+
+        self._check_connection_type("get_snmp_acl", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetSnmpACL',
+            GetSnmpACLResult,
+            params,
+            since=8.0
+        )
+
+    def set_snmp_acl(
+            self,
+            networks,
+            usm_users,):
+        """
+        SetSnmpACL is used to configure SNMP access permissions on the cluster nodes. The values set with this interface apply to all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpACL. Also note that the values set with this interface replace all "network" or "usmUsers" values set with the older SetSnmpInfo.
+        :param networks: [required] List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. REQUIRED if SNMP v# is disabled. 
+        :type networks: SnmpNetwork
+        
+        :param usmUsers: [required] List of users and the type of access they have to the SNMP servers running on the cluster nodes. REQUIRED if SNMP v3 is enabled. 
+        :type usmUsers: SnmpV3UsmUser
+        """
+
+        self._check_connection_type("set_snmp_acl", "Cluster")
+
+        params = { 
+            "networks": networks,
+            "usmUsers": usm_users,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetSnmpACL',
+            SetSnmpACLResult,
+            params,
+            since=8.0
+        )
+
+    def get_snmp_trap_info(
+            self,):
+        """
+        GetSnmpTrapInfo is used to return current SNMP trap configuration information."""
+
+        self._check_connection_type("get_snmp_trap_info", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetSnmpTrapInfo',
+            GetSnmpTrapInfoResult,
+            params,
+            since=5.0
+        )
+
+    def set_snmp_trap_info(
+            self,
+            trap_recipients,
+            cluster_fault_traps_enabled,
+            cluster_fault_resolved_traps_enabled,
+            cluster_event_traps_enabled,):
+        """
+        SetSnmpTrapInfo is used to enable and disable the generation of SolidFire SNMP notifications (traps) and to specify the set of network host computers that are to receive the notifications. The values passed with each SetSnmpTrapInfo method replaces all values set in any previous method to SetSnmpTrapInfo.
+        :param trapRecipients: [required] List of hosts that are to receive the traps generated by the Cluster Master. At least one object is required if any one of the trap types is enabled. 
+        :type trapRecipients: SnmpTrapRecipient
+        
+        :param clusterFaultTrapsEnabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterFaultNotification is sent to the configured list of trap recipients. 
+        :type clusterFaultTrapsEnabled: bool
+        
+        :param clusterFaultResolvedTrapsEnabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterFaultResolvedNotification is sent to the configured list of trap recipients. 
+        :type clusterFaultResolvedTrapsEnabled: bool
+        
+        :param clusterEventTrapsEnabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterEventNotification is sent to the configured list of trap recipients. 
+        :type clusterEventTrapsEnabled: bool
+        """
+
+        self._check_connection_type("set_snmp_trap_info", "Cluster")
+
+        params = { 
+            "trapRecipients": trap_recipients,
+            "clusterFaultTrapsEnabled": cluster_fault_traps_enabled,
+            "clusterFaultResolvedTrapsEnabled": cluster_fault_resolved_traps_enabled,
+            "clusterEventTrapsEnabled": cluster_event_traps_enabled,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetSnmpTrapInfo',
+            SetSnmpTrapInfoResult,
+            params,
+            since=5.0
+        )
+
+    def enable_snmp(
+            self,
+            snmp_v3_enabled,):
+        """
+        EnableSnmp is used to enable SNMP on the cluster nodes. The values set with this interface apply to all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to EnableSnmp.
+        :param snmpV3Enabled: [required] If set to "true", then SNMP v3 is enabled on each node in the cluster. If set to "false", then SNMP v2 is enabled. 
+        :type snmpV3Enabled: bool
+        """
+
+        self._check_connection_type("enable_snmp", "Cluster")
+
+        params = { 
+            "snmpV3Enabled": snmp_v3_enabled,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'EnableSnmp',
+            EnableSnmpResult,
+            params,
+            since=8.0
+        )
+
+    def disable_snmp(
+            self,):
+        """
+        DisableSnmp is used to disable SNMP on the cluster nodes."""
+
+        self._check_connection_type("disable_snmp", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DisableSnmp',
+            DisableSnmpResult,
+            params,
+            since=8.0
+        )
+
+    def get_snmp_info(
+            self,):
+        """
+        GetSnmpInfo is used to return the current simple network management protocol (SNMP) configuration information.
+        <br/><br/>
+        <b>Note</b>: GetSnmpInfo will be available for Element OS 8 and prior releases. It will be deprecated after Element OS 8. There are two new SNMP API methods that you should migrate over to. They are GetSnmpState and GetSnmpACL. Please see details in this document for their descriptions and usage."""
+
+        self._check_connection_type("get_snmp_info", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetSnmpInfo',
+            GetSnmpInfoResult,
+            params,
+            since=1.0
+        )
+
+    def set_snmp_info(
+            self,
+            networks=OPTIONAL,
+            enabled=OPTIONAL,
+            snmp_v3_enabled=OPTIONAL,
+            usm_users=OPTIONAL,):
+        """
+        SetSnmpInfo is used to configure SNMP v2 and v3 on the cluster nodes. The values set with this interface apply to all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpInfo.
+        <br/><br/>
+        <b>Note</b>: EnableSnmp and SetSnmpACL methods can be used to accomplish the same results as SetSnmpInfo. SetSnmpInfo will no longer be available after the Element 8 release. Please use EnableSnmp and SetSnmpACL in the future.
+        :param networks:  List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. SNMP v2 only. 
+        :type networks: SnmpNetwork
+        
+        :param enabled:  If set to "true", then SNMP is enabled on each node in the cluster. 
+        :type enabled: bool
+        
+        :param snmpV3Enabled:  If set to "true", then SNMP v3 is enabled on each node in the cluster. 
+        :type snmpV3Enabled: bool
+        
+        :param usmUsers:  If SNMP v3 is enabled, this value must be passed in place of the "networks" parameter. SNMP v3 only. 
+        :type usmUsers: SnmpV3UsmUser
+        """
+
+        self._check_connection_type("set_snmp_info", "Cluster")
+
+        params = { 
+        }
+        if networks is not None:
+            params["networks"] = networks
+        if enabled is not None:
+            params["enabled"] = enabled
+        if snmp_v3_enabled is not None:
+            params["snmpV3Enabled"] = snmp_v3_enabled
+        if usm_users is not None:
+            params["usmUsers"] = usm_users
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetSnmpInfo',
+            SetSnmpInfoResult,
+            params,
+            since=1.0
+        )
+
+    def get_snmp_state(
+            self,):
+        """
+        GetSnmpState is used to return the current state of the SNMP feature.
+        <br/><br/>
+        <b>Note</b>: GetSnmpState is new for Element OS 8. Please use this method and SetSnmpACL to migrate your SNMP functionality in the future."""
+
+        self._check_connection_type("get_snmp_state", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetSnmpState',
+            GetSnmpStateResult,
+            params,
+            since=8.0
+        )
+
+    def get_api(
+            self,):
+        """
+        Retrieves the current version of the API and a list of all supported versions."""
+
+        self._check_connection_type("get_api", "Both")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetAPI',
+            GetAPIResult,
+            params
+        )
+
+    def get_ntp_info(
+            self,):
+        """
+        GetNtpInfo is used to return the current network time protocol (NTP) configuration information."""
+
+        self._check_connection_type("get_ntp_info", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetNtpInfo',
+            GetNtpInfoResult,
+            params,
+            since=1.0
+        )
+
+    def get_cluster_state(
+            self,
+            force=OPTIONAL,):
+        """
+        The GetClusterState method is used to indicate if a node is part of a cluster or not. The three states are: <br><strong>Available:</strong> Node has not been configured with a cluster name.<br><strong>Pending:</strong> Node is pending for a specific named cluster and can be added.<br><strong>Active:</strong> Node is active and a member of a cluster and may not be added to another cluster.
+        :param force:  
+        :type force: bool
+        """
+
+        self._check_connection_type("get_cluster_state", "Both")
+
+        params = { 
+        }
+        if force is not None:
+            params["force"] = force
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetClusterState',
+            GetClusterStateResult,
+            params,
+            since=5.0
+        )
+
+    def get_current_cluster_admin(
+            self,):
+        """
+        GetCurrentClusterAdmin returns information for the current primary cluster administrator. The primary Cluster Admin was ncreated when the cluster was created."""
+
+        self._check_connection_type("get_current_cluster_admin", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetCurrentClusterAdmin',
+            GetCurrentClusterAdminResult,
+            params,
+            since=6.0
+        )
+
+    def enable_encryption_at_rest(
+            self,):
+        """
+        The EnableEncryptionAtRest method is used to enable the Advanced Encryption Standard (AES) 256-bit encryption at rest on the cluster so that the cluster can manage the encryption key used for the drives on each node. This feature is not enabled by default. Enabling this operation allows the cluster to automatically manage encryption keys internally for the drives on each node in the cluster. Nodes do not store the keys to unlock drives and the keys are never passed over the network. Two nodes participating in a cluster are required to access the key to disable encryption on a drive. The encryption management does not affect performance or efficiency on the cluster. If an encryption-enabled drive or node is removed from the cluster with the API, all data is secure erased and any data left on the drive cannot be read or accessed.
+        Enabling or disabling encryption should be performed when the cluster is running and in a healthy state. Encryption can be enabled or disabled at your discretion and can be performed as often as you need.
+        <br/><b>Note</b>: This process is asynchronous and returns a response before encryption is enabled. The GetClusterInfo method can be used to poll the system to see when the process has completed."""
+
+        self._check_connection_type("enable_encryption_at_rest", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'EnableEncryptionAtRest',
+            EnableEncryptionAtRestResult,
+            params,
+            since=5.0
+        )
+
+    def disable_encryption_at_rest(
+            self,):
+        """
+        The DisableEncryptionAtRest method enables you to remove the encryption that was previously applied to the cluster using the EnableEncryptionAtRest method.
+        This disable method is asynchronous and returns a response before encryption is disabled.
+        You can use the GetClusterInfo method to poll the system to see when the process has completed."""
+
+        self._check_connection_type("disable_encryption_at_rest", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DisableEncryptionAtRest',
+            DisableEncryptionAtRestResult,
+            params,
+            since=5.0
+        )
+
+    def snmp_send_test_traps(
+            self,):
+        """
+        SnmpSendTestTraps enables you to test SNMP functionality for a cluster. This method instructs the cluster to send test SNMP traps to the currently configured SNMP manager."""
+
+        self._check_connection_type("snmp_send_test_traps", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SnmpSendTestTraps',
+            SnmpSendTestTrapsResult,
+            params,
+            since=6.0
+        )
+
     def get_async_result(
             self,
             async_handle,):
@@ -791,6 +1582,89 @@ class Element(ServiceBase):
             since=7.0
         )
 
+    def get_cluster_hardware_info(
+            self,
+            type=OPTIONAL,):
+        """
+        You can use the GetClusterHardwareInfo method to retrieve the hardware status and information for all Fibre Channel nodes, iSCSI nodes and drives in the cluster. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
+        :param type:  Include only a certain type of hardware information in the response. Can be one of the following:drives: List only drive information in the response.nodes: List only node information in the response.all: Include both drive and node information in the response.If this parameter is omitted, a type of "all" is assumed. 
+        :type type: str
+        """
+
+        self._check_connection_type("get_cluster_hardware_info", "Cluster")
+
+        params = { 
+        }
+        if type is not None:
+            params["type"] = type
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetClusterHardwareInfo',
+            GetClusterHardwareInfoResult,
+            params,
+            since=1.0
+        )
+
+    def get_hardware_config(
+            self,):
+        """
+        GetHardwareConfig enables you to display the hardware configuration information for a node. NOTE: This method is available only through the per-node API endpoint 5.0 or later."""
+
+        self._check_connection_type("get_hardware_config", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetHardwareConfig',
+            GetHardwareConfigResult,
+            params,
+            since=5.0
+        )
+
+    def get_node_hardware_info(
+            self,
+            node_id,):
+        """
+        GetNodeHardwareInfo is used to return all the hardware info and status for the node specified. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
+        :param nodeID: [required] The ID of the node for which hardware information is being requested.  Information about a  node is returned if a   node is specified. 
+        :type nodeID: int
+        """
+
+        self._check_connection_type("get_node_hardware_info", "Cluster")
+
+        params = { 
+            "nodeID": node_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetNodeHardwareInfo',
+            GetNodeHardwareInfoResult,
+            params,
+            since=1.0
+        )
+
+    def get_nvram_info(
+            self,):
+        """
+        GetNvramInfo allows you to retrieve information from each node about the NVRAM card.  """
+
+        self._check_connection_type("get_nvram_info", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetNvramInfo',
+            GetNvramInfoResult,
+            params,
+            since=5.0
+        )
+
     def create_initiators(
             self,
             initiators,):
@@ -1115,6 +1989,251 @@ class Element(ServiceBase):
             DisableLdapAuthenticationResult,
             params,
             since=7.0
+        )
+
+    def list_active_nodes(
+            self,):
+        """
+        ListActiveNodes returns the list of currently active nodes that are in the cluster."""
+
+        self._check_connection_type("list_active_nodes", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListActiveNodes',
+            ListActiveNodesResult,
+            params,
+            since=1.0
+        )
+
+    def list_all_nodes(
+            self,):
+        """
+        ListAllNodes enables you to retrieve a list of active and pending nodes in the cluster."""
+
+        self._check_connection_type("list_all_nodes", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListAllNodes',
+            ListAllNodesResult,
+            params,
+            since=1.0
+        )
+
+    def list_pending_nodes(
+            self,):
+        """
+        Gets the list of pending nodes.
+        Pending nodes are running and configured to join the cluster, but have not been added via the AddNodes method."""
+
+        self._check_connection_type("list_pending_nodes", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListPendingNodes',
+            ListPendingNodesResult,
+            params,
+            since=1.0
+        )
+
+    def add_nodes(
+            self,
+            pending_nodes,):
+        """
+        AddNodes is used to add one or more new nodes to the cluster. When a node is not configured and starts up for the first time you are prompted to configure the node. Once a node is configured it is registered as a "pending node" with the cluster.
+        <br/><br/>
+        Adding a node to a cluster that has been set up for virtual networking will require a sufficient number of virtual storage IP addresses to allocate a virtual IP to the new node. If there are no virtual IP addresses available for the new node, the AddNode operation will not complete successfully. Use the "ModifyVirtualNetwork" method to add more storage IP addresses to your virtual network.
+        <br/><br/>
+        The software version on each node in a cluster must be compatible. Run the "ListAllNodes" API to see what versions of software are currently running on the cluster nodes. For an explanation of software version compatibility, see "Node Versioning and Compatibility" in the Element API guide.
+        <br/><br/>
+        Once a node has been added, the drives on the node are made available and can then be added via the "AddDrives" method to increase the storage capacity of the cluster.
+        <br/><br/>
+        <b>Note</b>: It may take several seconds after adding a new Node for it to start up and register the drives as being available.
+        :param pendingNodes: [required] List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method. 
+        :type pendingNodes: int
+        """
+
+        self._check_connection_type("add_nodes", "Cluster")
+
+        params = { 
+            "pendingNodes": pending_nodes,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'AddNodes',
+            AddNodesResult,
+            params,
+            since=1.0
+        )
+
+    def remove_nodes(
+            self,
+            nodes,):
+        """
+        RemoveNodes is used to remove one or more nodes that should no longer participate in the cluster. Before removing a node, all drives it contains must first be removed with "RemoveDrives" method. A node cannot be removed until the RemoveDrives process has completed and all data has been migrated away from the node.
+        <br/><br/>
+        Once removed, a node registers itself as a pending node and can be added again, or shut down which removes it from the "Pending Node" list.
+        :param nodes: [required] List of NodeIDs for the nodes to be removed. 
+        :type nodes: int
+        """
+
+        self._check_connection_type("remove_nodes", "Cluster")
+
+        params = { 
+            "nodes": nodes,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RemoveNodes',
+            RemoveNodesResult,
+            params,
+            since=1.0
+        )
+
+    def get_network_config(
+            self,):
+        """
+        The GetNetworkConfig API method is used to display the network configuration information for a node.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
+
+        self._check_connection_type("get_network_config", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetNetworkConfig',
+            GetNetworkConfigResult,
+            params,
+            since=5.0
+        )
+
+    def set_config(
+            self,
+            config,):
+        """
+        The SetConfig API method is used to set all the configuration information for the node. This includes the same information available via calls to SetClusterConfig and SetNetworkConfig in one API method.
+        <br/><br/>
+        <b>Warning!</b> Changing the 'bond-mode' on a node can cause a temporary loss of network connectivity. Caution should be taken when using this method.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
+        :param config: [required] Objects that you want changed for the cluster interface settings. 
+        :type config: Config
+        """
+
+        self._check_connection_type("set_config", "Node")
+
+        params = { 
+            "config": config,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetConfig',
+            SetConfigResult,
+            params,
+            since=5.0
+        )
+
+    def set_network_config(
+            self,
+            network,):
+        """
+        The "SetNetworkConfig" method is used to set the network configuration for a node. To see the states in which these objects can be modified, see "Network Object for 1G and 10G Interfaces" on page 109 of the Element API. To display the current network settings for a node, run the "GetNetworkConfig" method.
+        <br/><br/>
+        <b>WARNING!</b> Changing the "bond-mode" on a node can cause a temporary loss of network connectivity. Caution should be taken when using this method.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
+        :param network: [required] Objects that will be changed for the node network settings. 
+        :type network: Network
+        """
+
+        self._check_connection_type("set_network_config", "Node")
+
+        params = { 
+            "network": network,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetNetworkConfig',
+            SetNetworkConfigResult,
+            params,
+            since=5.0
+        )
+
+    def get_config(
+            self,):
+        """
+        The GetConfig API method is used to retrieve all the configuration information for the node. This one API method includes the same information available in both "GetClusterConfig" and "GetNetworkConfig" methods.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
+
+        self._check_connection_type("get_config", "Both")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetConfig',
+            GetConfigResult,
+            params,
+            since=5.0
+        )
+
+    def get_node_stats(
+            self,
+            node_id,):
+        """
+        GetNodeStats is used to return the high-level activity measurements for a single node.
+        :param nodeID: [required] Specifies the node for which statistics are gathered. 
+        :type nodeID: int
+        """
+
+        self._check_connection_type("get_node_stats", "Cluster")
+
+        params = { 
+            "nodeID": node_id,
+        }
+        
+        # There is an adaptor!
+        since = 1.0
+        deprecated = None
+
+        return ElementServiceAdaptor.get_node_stats(self, params,
+                                                  since, deprecated)
+
+    def list_node_stats(
+            self,):
+        """
+        ListNodeStats is used to return the high-level activity measurements for all nodes in a cluster."""
+
+        self._check_connection_type("list_node_stats", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListNodeStats',
+            ListNodeStatsResult,
+            params,
+            since=6.0
         )
 
     def list_cluster_pairs(
@@ -2242,704 +3361,6 @@ class Element(ServiceBase):
             since=5.0
         )
 
-    def create_volume_access_group(
-            self,
-            name,
-            initiators=OPTIONAL,
-            volumes=OPTIONAL,
-            virtual_network_id=OPTIONAL,
-            virtual_network_tags=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        Creates a new volume access group.
-        The new volume access group must be given a name when it is created.
-        Entering initiators and volumes are optional when creating a volume access group.
-        Once the group is created volumes and initiator IQNs can be added.
-        Any initiator IQN that is successfully added to the volume access group is able to access any volume in the group without CHAP authentication.
-        :param name: [required] Name of the volume access group. It is not required to be unique, but recommended. 
-        :type name: str
-        
-        :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group will start out without configured initiators. 
-        :type initiators: str
-        
-        :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group will start without any volumes. 
-        :type volumes: int
-        
-        :param virtualNetworkID:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
-        :type virtualNetworkID: int
-        
-        :param virtualNetworkTags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
-        :type virtualNetworkTags: int
-        
-        :param attributes:  List of Name/Value pairs in JSON object format. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("create_volume_access_group", "Cluster")
-
-        params = { 
-            "name": name,
-        }
-        if initiators is not None:
-            params["initiators"] = initiators
-        if volumes is not None:
-            params["volumes"] = volumes
-        if virtual_network_id is not None:
-            params["virtualNetworkID"] = virtual_network_id
-        if virtual_network_tags is not None:
-            params["virtualNetworkTags"] = virtual_network_tags
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'CreateVolumeAccessGroup',
-            CreateVolumeAccessGroupResult,
-            params,
-            since=5.0
-        )
-
-    def list_volume_access_groups(
-            self,
-            start_volume_access_group_id=OPTIONAL,
-            limit=OPTIONAL,):
-        """
-        ListVolumeAccessGroups is used to return information about the volume access groups that are currently in the system.
-        :param startVolumeAccessGroupID:  The lowest VolumeAccessGroupID to return. This can be useful for paging. If unspecified, there is no lower limit (implicitly 0). 
-        :type startVolumeAccessGroupID: int
-        
-        :param limit:  The maximum number of results to return. This can be useful for paging. 
-        :type limit: int
-        """
-
-        self._check_connection_type("list_volume_access_groups", "Cluster")
-
-        params = { 
-        }
-        if start_volume_access_group_id is not None:
-            params["startVolumeAccessGroupID"] = start_volume_access_group_id
-        if limit is not None:
-            params["limit"] = limit
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVolumeAccessGroups',
-            ListVolumeAccessGroupsResult,
-            params,
-            since=5.0
-        )
-
-    def delete_volume_access_group(
-            self,
-            volume_access_group_id,):
-        """
-        Delete a volume access group from the system.
-        :param volumeAccessGroupID: [required] The ID of the volume access group to delete. 
-        :type volumeAccessGroupID: int
-        """
-
-        self._check_connection_type("delete_volume_access_group", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'DeleteVolumeAccessGroup',
-            DeleteVolumeAccessGroupResult,
-            params,
-            since=5.0
-        )
-
-    def modify_volume_access_group(
-            self,
-            volume_access_group_id,
-            virtual_network_id=OPTIONAL,
-            virtual_network_tags=OPTIONAL,
-            name=OPTIONAL,
-            initiators=OPTIONAL,
-            volumes=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        Update initiators and add or remove volumes from a volume access group.
-        A specified initiator or volume that duplicates an existing volume or initiator in a volume access group is left as-is.
-        If a value is not specified for volumes or initiators, the current list of initiators and volumes are not changed.
-        <br/><br/>
-        Often, it is easier to use the convenience functions to modify initiators and volumes independently:
-        <br/><br/>
-        AddInitiatorsToVolumeAccessGroup<br/>
-        RemoveInitiatorsFromVolumeAccessGroup<br/>
-        AddVolumesToVolumeAccessGroup<br/>
-        RemoveVolumesFromVolumeAccessGroup<br/>
-        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
-        :type volumeAccessGroupID: int
-        
-        :param virtualNetworkID:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
-        :type virtualNetworkID: int
-        
-        :param virtualNetworkTags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
-        :type virtualNetworkTags: int
-        
-        :param name:  Name of the volume access group. It is not required to be unique, but recommended. 
-        :type name: str
-        
-        :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group's configured initiators will not be modified. 
-        :type initiators: str
-        
-        :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group's volumes will not be modified. 
-        :type volumes: int
-        
-        :param attributes:  List of Name/Value pairs in JSON object format. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("modify_volume_access_group", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-        }
-        if virtual_network_id is not None:
-            params["virtualNetworkID"] = virtual_network_id
-        if virtual_network_tags is not None:
-            params["virtualNetworkTags"] = virtual_network_tags
-        if name is not None:
-            params["name"] = name
-        if initiators is not None:
-            params["initiators"] = initiators
-        if volumes is not None:
-            params["volumes"] = volumes
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ModifyVolumeAccessGroup',
-            ModifyVolumeAccessGroupResult,
-            params,
-            since=5.0
-        )
-
-    def add_initiators_to_volume_access_group(
-            self,
-            volume_access_group_id,
-            initiators,):
-        """
-        Add initiators to a volume access group.
-        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
-        :type volumeAccessGroupID: int
-        
-        :param initiators: [required] List of initiators to add to the volume access group. 
-        :type initiators: str
-        """
-
-        self._check_connection_type("add_initiators_to_volume_access_group", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-            "initiators": initiators,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'AddInitiatorsToVolumeAccessGroup',
-            ModifyVolumeAccessGroupResult,
-            params,
-            since=5.0
-        )
-
-    def remove_initiators_from_volume_access_group(
-            self,
-            volume_access_group_id,
-            initiators,):
-        """
-        Remove initiators from a volume access group.
-        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
-        :type volumeAccessGroupID: int
-        
-        :param initiators: [required] List of initiators to remove from the volume access group. 
-        :type initiators: str
-        """
-
-        self._check_connection_type("remove_initiators_from_volume_access_group", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-            "initiators": initiators,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'RemoveInitiatorsFromVolumeAccessGroup',
-            ModifyVolumeAccessGroupResult,
-            params,
-            since=5.0
-        )
-
-    def add_volumes_to_volume_access_group(
-            self,
-            volume_access_group_id,
-            volumes,):
-        """
-        Add volumes to a volume access group.
-        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
-        :type volumeAccessGroupID: int
-        
-        :param volumes: [required] List of volumes to add to this volume access group. 
-        :type volumes: int
-        """
-
-        self._check_connection_type("add_volumes_to_volume_access_group", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-            "volumes": volumes,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'AddVolumesToVolumeAccessGroup',
-            ModifyVolumeAccessGroupResult,
-            params,
-            since=5.0
-        )
-
-    def remove_volumes_from_volume_access_group(
-            self,
-            volume_access_group_id,
-            volumes,):
-        """
-        Remove volumes from a volume access group.
-        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
-        :type volumeAccessGroupID: int
-        
-        :param volumes: [required] List of volumes to remove from this volume access group. 
-        :type volumes: int
-        """
-
-        self._check_connection_type("remove_volumes_from_volume_access_group", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-            "volumes": volumes,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'RemoveVolumesFromVolumeAccessGroup',
-            ModifyVolumeAccessGroupResult,
-            params,
-            since=5.0
-        )
-
-    def get_volume_access_group_efficiency(
-            self,
-            volume_access_group_id,):
-        """
-        GetVolumeAccessGroupEfficiency is used to retrieve efficiency information about a volume access group. Only the volume access group provided as parameters in this API method is used to compute the capacity.
-        :param volumeAccessGroupID: [required] Specifies the volume access group for which capacity is computed. 
-        :type volumeAccessGroupID: int
-        """
-
-        self._check_connection_type("get_volume_access_group_efficiency", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetVolumeAccessGroupEfficiency',
-            GetEfficiencyResult,
-            params,
-            since=6.0
-        )
-
-    def get_volume_access_group_lun_assignments(
-            self,
-            volume_access_group_id,):
-        """
-        The GetVolumeAccessGroupLunAssignments is used to return information LUN mappings of a specified volume access group.
-        :param volumeAccessGroupID: [required] Unique volume access group ID used to return information. 
-        :type volumeAccessGroupID: int
-        """
-
-        self._check_connection_type("get_volume_access_group_lun_assignments", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetVolumeAccessGroupLunAssignments',
-            GetVolumeAccessGroupLunAssignmentsResult,
-            params,
-            since=7.0
-        )
-
-    def modify_volume_access_group_lun_assignments(
-            self,
-            volume_access_group_id,
-            lun_assignments,):
-        """
-        The ModifytVolumeAccessGroupLunAssignments is used to define custom LUN assignments for specific volumes. Only LUN values set on the lunAssignments parameter will be changed in the volume access group. All other LUN assignments will remain unchanged.
-        <br/><br/>
-        LUN assignment values must be unique for volumes in a volume access group. An exception will be seen if LUN assignments are duplicated in a volume access group. However, the same LUN values can be used again in different volume access groups.
-        <br/><br/>
-        <b>Note:</b> Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed. None of the specified LUN assignments will be modified if there is an exception.
-        <br/><br/>
-        <b>Caution:</b> If a LUN assignment is changed for a volume with active I/O, the I/O could be disrupted. Changes to the server configuration may be required in order to change volume LUN assignments.
-        :param volumeAccessGroupID: [required] Unique volume access group ID for which the LUN assignments will be modified. 
-        :type volumeAccessGroupID: int
-        
-        :param lunAssignments: [required] The volume IDs with new assigned LUN values. 
-        :type lunAssignments: LunAssignment
-        """
-
-        self._check_connection_type("modify_volume_access_group_lun_assignments", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-            "lunAssignments": lun_assignments,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ModifyVolumeAccessGroupLunAssignments',
-            ModifyVolumeAccessGroupLunAssignmentsResult,
-            params,
-            since=7.0
-        )
-
-    def get_cluster_hardware_info(
-            self,
-            type=OPTIONAL,):
-        """
-        You can use the GetClusterHardwareInfo method to retrieve the hardware status and information for all Fibre Channel nodes, iSCSI nodes and drives in the cluster. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
-        :param type:  Include only a certain type of hardware information in the response. Can be one of the following:drives: List only drive information in the response.nodes: List only node information in the response.all: Include both drive and node information in the response.If this parameter is omitted, a type of "all" is assumed. 
-        :type type: str
-        """
-
-        self._check_connection_type("get_cluster_hardware_info", "Cluster")
-
-        params = { 
-        }
-        if type is not None:
-            params["type"] = type
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetClusterHardwareInfo',
-            GetClusterHardwareInfoResult,
-            params,
-            since=1.0
-        )
-
-    def get_hardware_config(
-            self,):
-        """
-        GetHardwareConfig enables you to display the hardware configuration information for a node. NOTE: This method is available only through the per-node API endpoint 5.0 or later."""
-
-        self._check_connection_type("get_hardware_config", "Node")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetHardwareConfig',
-            GetHardwareConfigResult,
-            params,
-            since=5.0
-        )
-
-    def get_node_hardware_info(
-            self,
-            node_id,):
-        """
-        GetNodeHardwareInfo is used to return all the hardware info and status for the node specified. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
-        :param nodeID: [required] The ID of the node for which hardware information is being requested.  Information about a  node is returned if a   node is specified. 
-        :type nodeID: int
-        """
-
-        self._check_connection_type("get_node_hardware_info", "Cluster")
-
-        params = { 
-            "nodeID": node_id,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetNodeHardwareInfo',
-            GetNodeHardwareInfoResult,
-            params,
-            since=1.0
-        )
-
-    def get_nvram_info(
-            self,):
-        """
-        GetNvramInfo allows you to retrieve information from each node about the NVRAM card.  """
-
-        self._check_connection_type("get_nvram_info", "Node")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetNvramInfo',
-            GetNvramInfoResult,
-            params,
-            since=5.0
-        )
-
-    def list_active_nodes(
-            self,):
-        """
-        ListActiveNodes returns the list of currently active nodes that are in the cluster."""
-
-        self._check_connection_type("list_active_nodes", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListActiveNodes',
-            ListActiveNodesResult,
-            params,
-            since=1.0
-        )
-
-    def list_all_nodes(
-            self,):
-        """
-        ListAllNodes enables you to retrieve a list of active and pending nodes in the cluster."""
-
-        self._check_connection_type("list_all_nodes", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListAllNodes',
-            ListAllNodesResult,
-            params,
-            since=1.0
-        )
-
-    def list_pending_nodes(
-            self,):
-        """
-        Gets the list of pending nodes.
-        Pending nodes are running and configured to join the cluster, but have not been added via the AddNodes method."""
-
-        self._check_connection_type("list_pending_nodes", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListPendingNodes',
-            ListPendingNodesResult,
-            params,
-            since=1.0
-        )
-
-    def add_nodes(
-            self,
-            pending_nodes,):
-        """
-        AddNodes is used to add one or more new nodes to the cluster. When a node is not configured and starts up for the first time you are prompted to configure the node. Once a node is configured it is registered as a "pending node" with the cluster.
-        <br/><br/>
-        Adding a node to a cluster that has been set up for virtual networking will require a sufficient number of virtual storage IP addresses to allocate a virtual IP to the new node. If there are no virtual IP addresses available for the new node, the AddNode operation will not complete successfully. Use the "ModifyVirtualNetwork" method to add more storage IP addresses to your virtual network.
-        <br/><br/>
-        The software version on each node in a cluster must be compatible. Run the "ListAllNodes" API to see what versions of software are currently running on the cluster nodes. For an explanation of software version compatibility, see "Node Versioning and Compatibility" in the Element API guide.
-        <br/><br/>
-        Once a node has been added, the drives on the node are made available and can then be added via the "AddDrives" method to increase the storage capacity of the cluster.
-        <br/><br/>
-        <b>Note</b>: It may take several seconds after adding a new Node for it to start up and register the drives as being available.
-        :param pendingNodes: [required] List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method. 
-        :type pendingNodes: int
-        """
-
-        self._check_connection_type("add_nodes", "Cluster")
-
-        params = { 
-            "pendingNodes": pending_nodes,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'AddNodes',
-            AddNodesResult,
-            params,
-            since=1.0
-        )
-
-    def remove_nodes(
-            self,
-            nodes,):
-        """
-        RemoveNodes is used to remove one or more nodes that should no longer participate in the cluster. Before removing a node, all drives it contains must first be removed with "RemoveDrives" method. A node cannot be removed until the RemoveDrives process has completed and all data has been migrated away from the node.
-        <br/><br/>
-        Once removed, a node registers itself as a pending node and can be added again, or shut down which removes it from the "Pending Node" list.
-        :param nodes: [required] List of NodeIDs for the nodes to be removed. 
-        :type nodes: int
-        """
-
-        self._check_connection_type("remove_nodes", "Cluster")
-
-        params = { 
-            "nodes": nodes,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'RemoveNodes',
-            RemoveNodesResult,
-            params,
-            since=1.0
-        )
-
-    def get_network_config(
-            self,):
-        """
-        The GetNetworkConfig API method is used to display the network configuration information for a node.
-        <br/><br/>
-        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
-
-        self._check_connection_type("get_network_config", "Node")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetNetworkConfig',
-            GetNetworkConfigResult,
-            params,
-            since=5.0
-        )
-
-    def set_config(
-            self,
-            config,):
-        """
-        The SetConfig API method is used to set all the configuration information for the node. This includes the same information available via calls to SetClusterConfig and SetNetworkConfig in one API method.
-        <br/><br/>
-        <b>Warning!</b> Changing the 'bond-mode' on a node can cause a temporary loss of network connectivity. Caution should be taken when using this method.
-        <br/><br/>
-        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
-        :param config: [required] Objects that you want changed for the cluster interface settings. 
-        :type config: Config
-        """
-
-        self._check_connection_type("set_config", "Node")
-
-        params = { 
-            "config": config,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SetConfig',
-            SetConfigResult,
-            params,
-            since=5.0
-        )
-
-    def set_network_config(
-            self,
-            network,):
-        """
-        The "SetNetworkConfig" method is used to set the network configuration for a node. To see the states in which these objects can be modified, see "Network Object for 1G and 10G Interfaces" on page 109 of the Element API. To display the current network settings for a node, run the "GetNetworkConfig" method.
-        <br/><br/>
-        <b>WARNING!</b> Changing the "bond-mode" on a node can cause a temporary loss of network connectivity. Caution should be taken when using this method.
-        <br/><br/>
-        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
-        :param network: [required] Objects that will be changed for the node network settings. 
-        :type network: Network
-        """
-
-        self._check_connection_type("set_network_config", "Node")
-
-        params = { 
-            "network": network,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SetNetworkConfig',
-            SetNetworkConfigResult,
-            params,
-            since=5.0
-        )
-
-    def get_config(
-            self,):
-        """
-        The GetConfig API method is used to retrieve all the configuration information for the node. This one API method includes the same information available in both "GetClusterConfig" and "GetNetworkConfig" methods.
-        <br/><br/>
-        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
-
-        self._check_connection_type("get_config", "Both")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetConfig',
-            GetConfigResult,
-            params,
-            since=5.0
-        )
-
-    def get_node_stats(
-            self,
-            node_id,):
-        """
-        GetNodeStats is used to return the high-level activity measurements for a single node.
-        :param nodeID: [required] Specifies the node for which statistics are gathered. 
-        :type nodeID: int
-        """
-
-        self._check_connection_type("get_node_stats", "Cluster")
-
-        params = { 
-            "nodeID": node_id,
-        }
-        
-        # There is an adaptor!
-        since = 1.0
-        deprecated = None
-
-        return ElementServiceAdaptor.get_node_stats(self, params,
-                                                  since, deprecated)
-
-    def list_node_stats(
-            self,):
-        """
-        ListNodeStats is used to return the high-level activity measurements for all nodes in a cluster."""
-
-        self._check_connection_type("list_node_stats", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListNodeStats',
-            ListNodeStatsResult,
-            params,
-            since=6.0
-        )
-
     def list_virtual_networks(
             self,
             virtual_network_id=OPTIONAL,
@@ -3482,797 +3903,6 @@ class Element(ServiceBase):
             GetVirtualVolumeCountResult,
             params,
             since=9.0
-        )
-
-    def get_cluster_capacity(
-            self,):
-        """
-        Return the high-level capacity measurements for an entire cluster.
-        The fields returned from this method can be used to calculate the efficiency rates that are displayed in the Element User Interface."""
-
-        self._check_connection_type("get_cluster_capacity", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetClusterCapacity',
-            GetClusterCapacityResult,
-            params,
-            since=1.0
-        )
-
-    def get_cluster_info(
-            self,):
-        """
-        Return configuration information about the cluster."""
-
-        self._check_connection_type("get_cluster_info", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetClusterInfo',
-            GetClusterInfoResult,
-            params,
-            since=1.0
-        )
-
-    def get_cluster_version_info(
-            self,):
-        """
-        Return information about the Element software version running on each node in the cluster.
-        Information about the nodes that are currently in the process of upgrading software is also returned."""
-
-        self._check_connection_type("get_cluster_version_info", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetClusterVersionInfo',
-            GetClusterVersionInfoResult,
-            params,
-            since=1.0
-        )
-
-    def get_limits(
-            self,):
-        """
-        GetLimits enables you to retrieve the limit values set by the API. These values might change between releases of  Element, but do not change without an update to the system. Knowing the limit values set by the API can be useful when writing API scripts for user-facing tools.NOTE: The GetLimits method returns the limits for the current software version regardless of the API endpoint version used to pass the method."""
-
-        self._check_connection_type("get_limits", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetLimits',
-            GetLimitsResult,
-            params,
-            since=1.0
-        )
-
-    def list_events(
-            self,
-            max_events=OPTIONAL,
-            start_event_id=OPTIONAL,
-            end_event_id=OPTIONAL,
-            event_queue_type=OPTIONAL,):
-        """
-        ListEvents returns events detected on the cluster, sorted from oldest to newest.
-        :param maxEvents:  Specifies the maximum number of events to return. 
-        :type maxEvents: int
-        
-        :param startEventID:  Identifies the beginning of a range of events to return. 
-        :type startEventID: int
-        
-        :param endEventID:  Identifies the end of a range of events to return. 
-        :type endEventID: int
-        
-        :param eventQueueType:  
-        :type eventQueueType: str
-        """
-
-        self._check_connection_type("list_events", "Cluster")
-
-        params = { 
-        }
-        if max_events is not None:
-            params["maxEvents"] = max_events
-        if start_event_id is not None:
-            params["startEventID"] = start_event_id
-        if end_event_id is not None:
-            params["endEventID"] = end_event_id
-        if event_queue_type is not None:
-            params["eventQueueType"] = event_queue_type
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListEvents',
-            ListEventsResult,
-            params,
-            since=1.0
-        )
-
-    def list_cluster_faults(
-            self,
-            exceptions=OPTIONAL,
-            best_practices=OPTIONAL,
-            update=OPTIONAL,
-            fault_types=OPTIONAL,):
-        """
-        ListClusterFaults is used to retrieve information about any faults detected on the cluster.
-        With this method, both current and resolved faults can be retrieved. The system caches faults every 30 seconds.
-        :param exceptions:  
-        :type exceptions: bool
-        
-        :param bestPractices:  Include faults triggered by sub-optimal system configuration. Possible values: true, false 
-        :type bestPractices: bool
-        
-        :param update:  
-        :type update: bool
-        
-        :param faultTypes:  Determines the types of faults returned: current: List active, unresolved faults. <b>resolved</b>: List faults that were previously detected and resolved. <b>all</b>: (Default) List both current and resolved faults. You can see the fault status in the 'resolved' field of the Cluster Fault object. 
-        :type faultTypes: str
-        """
-
-        self._check_connection_type("list_cluster_faults", "Cluster")
-
-        params = { 
-        }
-        if exceptions is not None:
-            params["exceptions"] = exceptions
-        if best_practices is not None:
-            params["bestPractices"] = best_practices
-        if update is not None:
-            params["update"] = update
-        if fault_types is not None:
-            params["faultTypes"] = fault_types
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListClusterFaults',
-            ListClusterFaultsResult,
-            params,
-            since=1.0
-        )
-
-    def clear_cluster_faults(
-            self,
-            fault_types=OPTIONAL,):
-        """
-        ClearClusterFaults is used to clear information about both current faults that are resolved as well as faults that were previously detected and resolved can be cleared.
-        :param faultTypes:  Determines the types of faults cleared:<br/> <b>current</b>: Faults that are currently detected and have not been resolved.<br/> <b>resolved</b>: Faults that were previously detected and resolved.<br/> <b>all</b>: Both current and resolved faults are cleared. The fault status can be determined by the "resolved" field of the fault object. 
-        :type faultTypes: str
-        """
-
-        self._check_connection_type("clear_cluster_faults", "Cluster")
-
-        params = { 
-        }
-        if fault_types is not None:
-            params["faultTypes"] = fault_types
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ClearClusterFaults',
-            ClearClusterFaultsResult,
-            params,
-            since=1.0
-        )
-
-    def get_cluster_config(
-            self,):
-        """
-        The GetClusterConfig API method is used to return information about the cluster configuration this node uses to communicate with the cluster it is a part of.
-        <br/><br/>
-        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
-
-        self._check_connection_type("get_cluster_config", "Node")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetClusterConfig',
-            GetClusterConfigResult,
-            params,
-            since=5.0
-        )
-
-    def get_cluster_full_threshold(
-            self,):
-        """
-        GetClusterFullThreshold is used to view the stages set for cluster fullness levels. All levels are returned when this method is entered."""
-
-        self._check_connection_type("get_cluster_full_threshold", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetClusterFullThreshold',
-            GetClusterFullThresholdResult,
-            params,
-            since=1.0
-        )
-
-    def modify_cluster_full_threshold(
-            self,
-            stage2_aware_threshold=OPTIONAL,
-            stage3_block_threshold_percent=OPTIONAL,
-            max_metadata_over_provision_factor=OPTIONAL,):
-        """
-        ModifyClusterFullThreshold is used to change the level at which an event is generated when the storage cluster approaches the capacity utilization requested. The number entered in this setting is used to indicate the number of node failures the system is required to recover from. For example, on a 10 node cluster, if you want to be alerted when the system cannot recover from 3 nodes failures, enter the value of "3". When this number is reached, a message alert is sent to the Event Log in the Cluster Management Console.
-        :param stage2AwareThreshold:  Number of nodes worth of capacity remaining on the cluster that triggers a notification. 
-        :type stage2AwareThreshold: int
-        
-        :param stage3BlockThresholdPercent:  Percent below "Error" state to raise a cluster "Warning" alert. 
-        :type stage3BlockThresholdPercent: int
-        
-        :param maxMetadataOverProvisionFactor:  A value representative of the number of times metadata space can be over provisioned relative to the amount of space available. For example, if there was enough metadata space to store 100 TiB of volumes and this number was set to 5, then 500 TiB worth of volumes could be created. 
-        :type maxMetadataOverProvisionFactor: int
-        """
-
-        self._check_connection_type("modify_cluster_full_threshold", "Cluster")
-
-        params = { 
-        }
-        if stage2_aware_threshold is not None:
-            params["stage2AwareThreshold"] = stage2_aware_threshold
-        if stage3_block_threshold_percent is not None:
-            params["stage3BlockThresholdPercent"] = stage3_block_threshold_percent
-        if max_metadata_over_provision_factor is not None:
-            params["maxMetadataOverProvisionFactor"] = max_metadata_over_provision_factor
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ModifyClusterFullThreshold',
-            ModifyClusterFullThresholdResult,
-            params,
-            since=1.0
-        )
-
-    def get_cluster_stats(
-            self,):
-        """
-        GetClusterStats is used to return high-level activity measurements for the cluster. Values returned are cumulative from the creation of the cluster."""
-
-        self._check_connection_type("get_cluster_stats", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetClusterStats',
-            GetClusterStatsResult,
-            params,
-            since=1.0
-        )
-
-    def list_cluster_admins(
-            self,):
-        """
-        ListClusterAdmins returns the list of all cluster administrators for the cluster. There can be several cluster administrators that have different levels of permissions. There can be only one primary cluster administrator in the system. The primary Cluster Admin is the administrator that was created when the cluster was created. LDAP administrators can also be created when setting up an LDAP system on the cluster."""
-
-        self._check_connection_type("list_cluster_admins", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListClusterAdmins',
-            ListClusterAdminsResult,
-            params,
-            since=1.0
-        )
-
-    def add_cluster_admin(
-            self,
-            username,
-            password,
-            access,
-            accept_eula=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        AddClusterAdmin adds a new Cluster Admin. A Cluster Admin can be used to manage the cluster via the API and management tools. Cluster Admins are completely separate and unrelated to standard tenant accounts.
-        <br/><br/>
-        Each Cluster Admin can be restricted to a sub-set of the API. SolidFire recommends using multiple Cluster Admins for different users and applications. Each Cluster Admin should be given the minimal permissions necessary to reduce the potential impact of credential compromise.
-        :param username: [required] Unique username for this Cluster Admin. 
-        :type username: str
-        
-        :param password: [required] Password used to authenticate this Cluster Admin. 
-        :type password: str
-        
-        :param access: [required] Controls which methods this Cluster Admin can use. For more details on the levels of access, see "Access Control" in the Element API Guide. 
-        :type access: str
-        
-        :param acceptEula:  Indicate your acceptance of the End User License Agreement when creating this cluster admin. To accept the EULA, set this parameter to true. 
-        :type acceptEula: bool
-        
-        :param attributes:  List of Name/Value pairs in JSON object format. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("add_cluster_admin", "Cluster")
-
-        params = { 
-            "username": username,
-            "password": password,
-            "access": access,
-        }
-        if accept_eula is not None:
-            params["acceptEula"] = accept_eula
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'AddClusterAdmin',
-            AddClusterAdminResult,
-            params,
-            since=1.0
-        )
-
-    def modify_cluster_admin(
-            self,
-            cluster_admin_id,
-            password=OPTIONAL,
-            access=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        ModifyClusterAdmin is used to change the settings for a Cluster Admin or LDAP Cluster Admin. Access for the administrator Cluster Admin account cannot be changed.
-        :param clusterAdminID: [required] ClusterAdminID for the Cluster Admin or LDAP Cluster Admin to modify. 
-        :type clusterAdminID: int
-        
-        :param password:  Password used to authenticate this Cluster Admin. 
-        :type password: str
-        
-        :param access:  Controls which methods this Cluster Admin can use. For more details on the levels of access, see "Access Control" in the Element API Guide. 
-        :type access: str
-        
-        :param attributes:  List of Name/Value pairs in JSON object format. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("modify_cluster_admin", "Cluster")
-
-        params = { 
-            "clusterAdminID": cluster_admin_id,
-        }
-        if password is not None:
-            params["password"] = password
-        if access is not None:
-            params["access"] = access
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ModifyClusterAdmin',
-            ModifyClusterAdminResult,
-            params,
-            since=1.0
-        )
-
-    def remove_cluster_admin(
-            self,
-            cluster_admin_id,):
-        """
-        RemoveClusterAdmin is used to remove a Cluster Admin. The "admin" Cluster Admin cannot be removed.
-        :param clusterAdminID: [required] ClusterAdminID for the Cluster Admin to remove. 
-        :type clusterAdminID: int
-        """
-
-        self._check_connection_type("remove_cluster_admin", "Cluster")
-
-        params = { 
-            "clusterAdminID": cluster_admin_id,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'RemoveClusterAdmin',
-            RemoveClusterAdminResult,
-            params,
-            since=1.0
-        )
-
-    def set_cluster_config(
-            self,
-            cluster,):
-        """
-        The SetClusterConfig API method is used to set the configuration this node uses to communicate with the cluster it is associated with. To see the states in which these objects can be modified see Cluster Object on page 109. To display the current cluster interface settings for a node, run the GetClusterConfig API method.
-        <br/><br/>
-        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
-        :param cluster: [required] Objects that are changed for the cluster interface settings. Only the fields you want changed need to be added to this method as objects in the "cluster" parameter. 
-        :type cluster: ClusterConfig
-        """
-
-        self._check_connection_type("set_cluster_config", "Node")
-
-        params = { 
-            "cluster": cluster,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SetClusterConfig',
-            SetClusterConfigResult,
-            params,
-            since=5.0
-        )
-
-    def get_snmp_acl(
-            self,):
-        """
-        GetSnmpACL is used to return the current SNMP access permissions on the cluster nodes."""
-
-        self._check_connection_type("get_snmp_acl", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetSnmpACL',
-            GetSnmpACLResult,
-            params,
-            since=8.0
-        )
-
-    def set_snmp_acl(
-            self,
-            networks,
-            usm_users,):
-        """
-        SetSnmpACL is used to configure SNMP access permissions on the cluster nodes. The values set with this interface apply to all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpACL. Also note that the values set with this interface replace all "network" or "usmUsers" values set with the older SetSnmpInfo.
-        :param networks: [required] List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. REQUIRED if SNMP v# is disabled. 
-        :type networks: SnmpNetwork
-        
-        :param usmUsers: [required] List of users and the type of access they have to the SNMP servers running on the cluster nodes. REQUIRED if SNMP v3 is enabled. 
-        :type usmUsers: SnmpV3UsmUser
-        """
-
-        self._check_connection_type("set_snmp_acl", "Cluster")
-
-        params = { 
-            "networks": networks,
-            "usmUsers": usm_users,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SetSnmpACL',
-            SetSnmpACLResult,
-            params,
-            since=8.0
-        )
-
-    def get_snmp_trap_info(
-            self,):
-        """
-        GetSnmpTrapInfo is used to return current SNMP trap configuration information."""
-
-        self._check_connection_type("get_snmp_trap_info", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetSnmpTrapInfo',
-            GetSnmpTrapInfoResult,
-            params,
-            since=5.0
-        )
-
-    def set_snmp_trap_info(
-            self,
-            trap_recipients,
-            cluster_fault_traps_enabled,
-            cluster_fault_resolved_traps_enabled,
-            cluster_event_traps_enabled,):
-        """
-        SetSnmpTrapInfo is used to enable and disable the generation of SolidFire SNMP notifications (traps) and to specify the set of network host computers that are to receive the notifications. The values passed with each SetSnmpTrapInfo method replaces all values set in any previous method to SetSnmpTrapInfo.
-        :param trapRecipients: [required] List of hosts that are to receive the traps generated by the Cluster Master. At least one object is required if any one of the trap types is enabled. 
-        :type trapRecipients: SnmpTrapRecipient
-        
-        :param clusterFaultTrapsEnabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterFaultNotification is sent to the configured list of trap recipients. 
-        :type clusterFaultTrapsEnabled: bool
-        
-        :param clusterFaultResolvedTrapsEnabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterFaultResolvedNotification is sent to the configured list of trap recipients. 
-        :type clusterFaultResolvedTrapsEnabled: bool
-        
-        :param clusterEventTrapsEnabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterEventNotification is sent to the configured list of trap recipients. 
-        :type clusterEventTrapsEnabled: bool
-        """
-
-        self._check_connection_type("set_snmp_trap_info", "Cluster")
-
-        params = { 
-            "trapRecipients": trap_recipients,
-            "clusterFaultTrapsEnabled": cluster_fault_traps_enabled,
-            "clusterFaultResolvedTrapsEnabled": cluster_fault_resolved_traps_enabled,
-            "clusterEventTrapsEnabled": cluster_event_traps_enabled,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SetSnmpTrapInfo',
-            SetSnmpTrapInfoResult,
-            params,
-            since=5.0
-        )
-
-    def enable_snmp(
-            self,
-            snmp_v3_enabled,):
-        """
-        EnableSnmp is used to enable SNMP on the cluster nodes. The values set with this interface apply to all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to EnableSnmp.
-        :param snmpV3Enabled: [required] If set to "true", then SNMP v3 is enabled on each node in the cluster. If set to "false", then SNMP v2 is enabled. 
-        :type snmpV3Enabled: bool
-        """
-
-        self._check_connection_type("enable_snmp", "Cluster")
-
-        params = { 
-            "snmpV3Enabled": snmp_v3_enabled,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'EnableSnmp',
-            EnableSnmpResult,
-            params,
-            since=8.0
-        )
-
-    def disable_snmp(
-            self,):
-        """
-        DisableSnmp is used to disable SNMP on the cluster nodes."""
-
-        self._check_connection_type("disable_snmp", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'DisableSnmp',
-            DisableSnmpResult,
-            params,
-            since=8.0
-        )
-
-    def get_snmp_info(
-            self,):
-        """
-        GetSnmpInfo is used to return the current simple network management protocol (SNMP) configuration information.
-        <br/><br/>
-        <b>Note</b>: GetSnmpInfo will be available for Element OS 8 and prior releases. It will be deprecated after Element OS 8. There are two new SNMP API methods that you should migrate over to. They are GetSnmpState and GetSnmpACL. Please see details in this document for their descriptions and usage."""
-
-        self._check_connection_type("get_snmp_info", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetSnmpInfo',
-            GetSnmpInfoResult,
-            params,
-            since=1.0
-        )
-
-    def set_snmp_info(
-            self,
-            networks=OPTIONAL,
-            enabled=OPTIONAL,
-            snmp_v3_enabled=OPTIONAL,
-            usm_users=OPTIONAL,):
-        """
-        SetSnmpInfo is used to configure SNMP v2 and v3 on the cluster nodes. The values set with this interface apply to all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpInfo.
-        <br/><br/>
-        <b>Note</b>: EnableSnmp and SetSnmpACL methods can be used to accomplish the same results as SetSnmpInfo. SetSnmpInfo will no longer be available after the Element 8 release. Please use EnableSnmp and SetSnmpACL in the future.
-        :param networks:  List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. SNMP v2 only. 
-        :type networks: SnmpNetwork
-        
-        :param enabled:  If set to "true", then SNMP is enabled on each node in the cluster. 
-        :type enabled: bool
-        
-        :param snmpV3Enabled:  If set to "true", then SNMP v3 is enabled on each node in the cluster. 
-        :type snmpV3Enabled: bool
-        
-        :param usmUsers:  If SNMP v3 is enabled, this value must be passed in place of the "networks" parameter. SNMP v3 only. 
-        :type usmUsers: SnmpV3UsmUser
-        """
-
-        self._check_connection_type("set_snmp_info", "Cluster")
-
-        params = { 
-        }
-        if networks is not None:
-            params["networks"] = networks
-        if enabled is not None:
-            params["enabled"] = enabled
-        if snmp_v3_enabled is not None:
-            params["snmpV3Enabled"] = snmp_v3_enabled
-        if usm_users is not None:
-            params["usmUsers"] = usm_users
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SetSnmpInfo',
-            SetSnmpInfoResult,
-            params,
-            since=1.0
-        )
-
-    def get_snmp_state(
-            self,):
-        """
-        GetSnmpState is used to return the current state of the SNMP feature.
-        <br/><br/>
-        <b>Note</b>: GetSnmpState is new for Element OS 8. Please use this method and SetSnmpACL to migrate your SNMP functionality in the future."""
-
-        self._check_connection_type("get_snmp_state", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetSnmpState',
-            GetSnmpStateResult,
-            params,
-            since=8.0
-        )
-
-    def get_api(
-            self,):
-        """
-        Retrieves the current version of the API and a list of all supported versions."""
-
-        self._check_connection_type("get_api", "Both")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetAPI',
-            GetAPIResult,
-            params
-        )
-
-    def get_ntp_info(
-            self,):
-        """
-        GetNtpInfo is used to return the current network time protocol (NTP) configuration information."""
-
-        self._check_connection_type("get_ntp_info", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetNtpInfo',
-            GetNtpInfoResult,
-            params,
-            since=1.0
-        )
-
-    def get_cluster_state(
-            self,
-            force=OPTIONAL,):
-        """
-        The GetClusterState method is used to indicate if a node is part of a cluster or not. The three states are: <br><strong>Available:</strong> Node has not been configured with a cluster name.<br><strong>Pending:</strong> Node is pending for a specific named cluster and can be added.<br><strong>Active:</strong> Node is active and a member of a cluster and may not be added to another cluster.
-        :param force:  
-        :type force: bool
-        """
-
-        self._check_connection_type("get_cluster_state", "Both")
-
-        params = { 
-        }
-        if force is not None:
-            params["force"] = force
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetClusterState',
-            GetClusterStateResult,
-            params,
-            since=5.0
-        )
-
-    def get_current_cluster_admin(
-            self,):
-        """
-        GetCurrentClusterAdmin returns information for the current primary cluster administrator. The primary Cluster Admin was ncreated when the cluster was created."""
-
-        self._check_connection_type("get_current_cluster_admin", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetCurrentClusterAdmin',
-            GetCurrentClusterAdminResult,
-            params,
-            since=6.0
-        )
-
-    def enable_encryption_at_rest(
-            self,):
-        """
-        The EnableEncryptionAtRest method is used to enable the Advanced Encryption Standard (AES) 256-bit encryption at rest on the cluster so that the cluster can manage the encryption key used for the drives on each node. This feature is not enabled by default. Enabling this operation allows the cluster to automatically manage encryption keys internally for the drives on each node in the cluster. Nodes do not store the keys to unlock drives and the keys are never passed over the network. Two nodes participating in a cluster are required to access the key to disable encryption on a drive. The encryption management does not affect performance or efficiency on the cluster. If an encryption-enabled drive or node is removed from the cluster with the API, all data is secure erased and any data left on the drive cannot be read or accessed.
-        Enabling or disabling encryption should be performed when the cluster is running and in a healthy state. Encryption can be enabled or disabled at your discretion and can be performed as often as you need.
-        <br/><b>Note</b>: This process is asynchronous and returns a response before encryption is enabled. The GetClusterInfo method can be used to poll the system to see when the process has completed."""
-
-        self._check_connection_type("enable_encryption_at_rest", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'EnableEncryptionAtRest',
-            EnableEncryptionAtRestResult,
-            params,
-            since=5.0
-        )
-
-    def disable_encryption_at_rest(
-            self,):
-        """
-        The DisableEncryptionAtRest method enables you to remove the encryption that was previously applied to the cluster using the EnableEncryptionAtRest method.
-        This disable method is asynchronous and returns a response before encryption is disabled.
-        You can use the GetClusterInfo method to poll the system to see when the process has completed."""
-
-        self._check_connection_type("disable_encryption_at_rest", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'DisableEncryptionAtRest',
-            DisableEncryptionAtRestResult,
-            params,
-            since=5.0
-        )
-
-    def snmp_send_test_traps(
-            self,):
-        """
-        SnmpSendTestTraps enables you to test SNMP functionality for a cluster. This method instructs the cluster to send test SNMP traps to the currently configured SNMP manager."""
-
-        self._check_connection_type("snmp_send_test_traps", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SnmpSendTestTraps',
-            SnmpSendTestTrapsResult,
-            params,
-            since=6.0
         )
 
     def clone_volume(
@@ -4993,7 +4623,7 @@ class Element(ServiceBase):
         :type mode: str
         
         :param qos:  New quality of service settings for this volume.If not specified, the QoS settings are not changed. 
-        :type qos: QoS
+        :type qos: VolumeQOS
         
         :param totalSize:  New size of the volume in bytes. 1000000000 is equal to 1GB. Size is rounded up to the nearest 1MB in size. This parameter can only be used to increase the size of a volume. 
         :type totalSize: int
@@ -5304,5 +4934,375 @@ class Element(ServiceBase):
             SetDefaultQoSResult,
             params,
             since=9.0
+        )
+
+    def create_volume_access_group(
+            self,
+            name,
+            initiators=OPTIONAL,
+            volumes=OPTIONAL,
+            virtual_network_id=OPTIONAL,
+            virtual_network_tags=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        Creates a new volume access group.
+        The new volume access group must be given a name when it is created.
+        Entering initiators and volumes are optional when creating a volume access group.
+        Once the group is created volumes and initiator IQNs can be added.
+        Any initiator IQN that is successfully added to the volume access group is able to access any volume in the group without CHAP authentication.
+        :param name: [required] Name of the volume access group. It is not required to be unique, but recommended. 
+        :type name: str
+        
+        :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group will start out without configured initiators. 
+        :type initiators: str
+        
+        :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group will start without any volumes. 
+        :type volumes: int
+        
+        :param virtualNetworkID:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
+        :type virtualNetworkID: int
+        
+        :param virtualNetworkTags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
+        :type virtualNetworkTags: int
+        
+        :param attributes:  List of Name/Value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("create_volume_access_group", "Cluster")
+
+        params = { 
+            "name": name,
+        }
+        if initiators is not None:
+            params["initiators"] = initiators
+        if volumes is not None:
+            params["volumes"] = volumes
+        if virtual_network_id is not None:
+            params["virtualNetworkID"] = virtual_network_id
+        if virtual_network_tags is not None:
+            params["virtualNetworkTags"] = virtual_network_tags
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateVolumeAccessGroup',
+            CreateVolumeAccessGroupResult,
+            params,
+            since=5.0
+        )
+
+    def list_volume_access_groups(
+            self,
+            start_volume_access_group_id=OPTIONAL,
+            limit=OPTIONAL,):
+        """
+        ListVolumeAccessGroups is used to return information about the volume access groups that are currently in the system.
+        :param startVolumeAccessGroupID:  The lowest VolumeAccessGroupID to return. This can be useful for paging. If unspecified, there is no lower limit (implicitly 0). 
+        :type startVolumeAccessGroupID: int
+        
+        :param limit:  The maximum number of results to return. This can be useful for paging. 
+        :type limit: int
+        """
+
+        self._check_connection_type("list_volume_access_groups", "Cluster")
+
+        params = { 
+        }
+        if start_volume_access_group_id is not None:
+            params["startVolumeAccessGroupID"] = start_volume_access_group_id
+        if limit is not None:
+            params["limit"] = limit
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVolumeAccessGroups',
+            ListVolumeAccessGroupsResult,
+            params,
+            since=5.0
+        )
+
+    def delete_volume_access_group(
+            self,
+            volume_access_group_id,):
+        """
+        Delete a volume access group from the system.
+        :param volumeAccessGroupID: [required] The ID of the volume access group to delete. 
+        :type volumeAccessGroupID: int
+        """
+
+        self._check_connection_type("delete_volume_access_group", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DeleteVolumeAccessGroup',
+            DeleteVolumeAccessGroupResult,
+            params,
+            since=5.0
+        )
+
+    def modify_volume_access_group(
+            self,
+            volume_access_group_id,
+            virtual_network_id=OPTIONAL,
+            virtual_network_tags=OPTIONAL,
+            name=OPTIONAL,
+            initiators=OPTIONAL,
+            volumes=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        Update initiators and add or remove volumes from a volume access group.
+        A specified initiator or volume that duplicates an existing volume or initiator in a volume access group is left as-is.
+        If a value is not specified for volumes or initiators, the current list of initiators and volumes are not changed.
+        <br/><br/>
+        Often, it is easier to use the convenience functions to modify initiators and volumes independently:
+        <br/><br/>
+        AddInitiatorsToVolumeAccessGroup<br/>
+        RemoveInitiatorsFromVolumeAccessGroup<br/>
+        AddVolumesToVolumeAccessGroup<br/>
+        RemoveVolumesFromVolumeAccessGroup<br/>
+        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
+        :type volumeAccessGroupID: int
+        
+        :param virtualNetworkID:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
+        :type virtualNetworkID: int
+        
+        :param virtualNetworkTags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
+        :type virtualNetworkTags: int
+        
+        :param name:  Name of the volume access group. It is not required to be unique, but recommended. 
+        :type name: str
+        
+        :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group's configured initiators will not be modified. 
+        :type initiators: str
+        
+        :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group's volumes will not be modified. 
+        :type volumes: int
+        
+        :param attributes:  List of Name/Value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("modify_volume_access_group", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+        }
+        if virtual_network_id is not None:
+            params["virtualNetworkID"] = virtual_network_id
+        if virtual_network_tags is not None:
+            params["virtualNetworkTags"] = virtual_network_tags
+        if name is not None:
+            params["name"] = name
+        if initiators is not None:
+            params["initiators"] = initiators
+        if volumes is not None:
+            params["volumes"] = volumes
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyVolumeAccessGroup',
+            ModifyVolumeAccessGroupResult,
+            params,
+            since=5.0
+        )
+
+    def add_initiators_to_volume_access_group(
+            self,
+            volume_access_group_id,
+            initiators,):
+        """
+        Add initiators to a volume access group.
+        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
+        :type volumeAccessGroupID: int
+        
+        :param initiators: [required] List of initiators to add to the volume access group. 
+        :type initiators: str
+        """
+
+        self._check_connection_type("add_initiators_to_volume_access_group", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+            "initiators": initiators,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'AddInitiatorsToVolumeAccessGroup',
+            ModifyVolumeAccessGroupResult,
+            params,
+            since=5.0
+        )
+
+    def remove_initiators_from_volume_access_group(
+            self,
+            volume_access_group_id,
+            initiators,):
+        """
+        Remove initiators from a volume access group.
+        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
+        :type volumeAccessGroupID: int
+        
+        :param initiators: [required] List of initiators to remove from the volume access group. 
+        :type initiators: str
+        """
+
+        self._check_connection_type("remove_initiators_from_volume_access_group", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+            "initiators": initiators,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RemoveInitiatorsFromVolumeAccessGroup',
+            ModifyVolumeAccessGroupResult,
+            params,
+            since=5.0
+        )
+
+    def add_volumes_to_volume_access_group(
+            self,
+            volume_access_group_id,
+            volumes,):
+        """
+        Add volumes to a volume access group.
+        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
+        :type volumeAccessGroupID: int
+        
+        :param volumes: [required] List of volumes to add to this volume access group. 
+        :type volumes: int
+        """
+
+        self._check_connection_type("add_volumes_to_volume_access_group", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+            "volumes": volumes,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'AddVolumesToVolumeAccessGroup',
+            ModifyVolumeAccessGroupResult,
+            params,
+            since=5.0
+        )
+
+    def remove_volumes_from_volume_access_group(
+            self,
+            volume_access_group_id,
+            volumes,):
+        """
+        Remove volumes from a volume access group.
+        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
+        :type volumeAccessGroupID: int
+        
+        :param volumes: [required] List of volumes to remove from this volume access group. 
+        :type volumes: int
+        """
+
+        self._check_connection_type("remove_volumes_from_volume_access_group", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+            "volumes": volumes,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RemoveVolumesFromVolumeAccessGroup',
+            ModifyVolumeAccessGroupResult,
+            params,
+            since=5.0
+        )
+
+    def get_volume_access_group_efficiency(
+            self,
+            volume_access_group_id,):
+        """
+        GetVolumeAccessGroupEfficiency is used to retrieve efficiency information about a volume access group. Only the volume access group provided as parameters in this API method is used to compute the capacity.
+        :param volumeAccessGroupID: [required] Specifies the volume access group for which capacity is computed. 
+        :type volumeAccessGroupID: int
+        """
+
+        self._check_connection_type("get_volume_access_group_efficiency", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetVolumeAccessGroupEfficiency',
+            GetEfficiencyResult,
+            params,
+            since=6.0
+        )
+
+    def get_volume_access_group_lun_assignments(
+            self,
+            volume_access_group_id,):
+        """
+        The GetVolumeAccessGroupLunAssignments is used to return information LUN mappings of a specified volume access group.
+        :param volumeAccessGroupID: [required] Unique volume access group ID used to return information. 
+        :type volumeAccessGroupID: int
+        """
+
+        self._check_connection_type("get_volume_access_group_lun_assignments", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetVolumeAccessGroupLunAssignments',
+            GetVolumeAccessGroupLunAssignmentsResult,
+            params,
+            since=7.0
+        )
+
+    def modify_volume_access_group_lun_assignments(
+            self,
+            volume_access_group_id,
+            lun_assignments,):
+        """
+        The ModifytVolumeAccessGroupLunAssignments is used to define custom LUN assignments for specific volumes. Only LUN values set on the lunAssignments parameter will be changed in the volume access group. All other LUN assignments will remain unchanged.
+        <br/><br/>
+        LUN assignment values must be unique for volumes in a volume access group. An exception will be seen if LUN assignments are duplicated in a volume access group. However, the same LUN values can be used again in different volume access groups.
+        <br/><br/>
+        <b>Note:</b> Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed. None of the specified LUN assignments will be modified if there is an exception.
+        <br/><br/>
+        <b>Caution:</b> If a LUN assignment is changed for a volume with active I/O, the I/O could be disrupted. Changes to the server configuration may be required in order to change volume LUN assignments.
+        :param volumeAccessGroupID: [required] Unique volume access group ID for which the LUN assignments will be modified. 
+        :type volumeAccessGroupID: int
+        
+        :param lunAssignments: [required] The volume IDs with new assigned LUN values. 
+        :type lunAssignments: LunAssignment
+        """
+
+        self._check_connection_type("modify_volume_access_group_lun_assignments", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+            "lunAssignments": lun_assignments,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyVolumeAccessGroupLunAssignments',
+            ModifyVolumeAccessGroupLunAssignmentsResult,
+            params,
+            since=7.0
         )
 
