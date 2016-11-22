@@ -4580,7 +4580,6 @@ class Element(ServiceBase):
             attributes=OPTIONAL,
             mode=OPTIONAL,
             qos=OPTIONAL,
-            set_create_time=OPTIONAL,
             total_size=OPTIONAL,):
         """
         ModifyVolumes allows you to configure up to 500 existing volumes at one time. Changes take place immediately. If ModifyVolumes fails to modify any of the specified volumes, none of the specified volumes are changed.If you do not specify QoS values when you modify volumes, the QoS values for each volume remain unchanged. You can retrieve default QoS values for a newly created volume by running the GetDefaultQoS method.When you need to increase the size of volumes that are being replicated, do so in the following order to prevent replication errors:Increase the size of the "Replication Target" volume.Increase the size of the source or "Read / Write" volume. recommends that both the target and source volumes be the same size.NOTE: If you change access status to locked or replicationTarget all existing iSCSI connections are terminated.
@@ -4602,9 +4601,6 @@ class Element(ServiceBase):
         :param qos:  New quality of service settings for this volume.If not specified, the QoS settings are not changed. 
         :type qos: QoS
         
-        :param setCreateTime:  Identify the time at which the volume was created. 
-        :type setCreateTime: str
-        
         :param totalSize:  New size of the volume in bytes. 1000000000 is equal to 1GB. Size is rounded up to the nearest 1MB in size. This parameter can only be used to increase the size of a volume. 
         :type totalSize: int
         """
@@ -4624,8 +4620,6 @@ class Element(ServiceBase):
             params["mode"] = mode
         if qos is not None:
             params["qos"] = qos
-        if set_create_time is not None:
-            params["setCreateTime"] = set_create_time
         if total_size is not None:
             params["totalSize"] = total_size
         
