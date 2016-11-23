@@ -3717,6 +3717,21 @@ class GetAPIResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class ListVolumeStatsRequest(data_model.DataObject):
+    """
+    :param volume_ids:  
+    :type volume_ids: int
+    """
+    volume_ids = data_model.property(
+        "volumeIDs", int,
+        array=True, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class RollbackToGroupSnapshotRequest(data_model.DataObject):
     """
     :param group_snapshot_id: [required] Unique ID of the group snapshot. 
@@ -10826,6 +10841,21 @@ class CopyVolumeResult(data_model.DataObject):
         "asyncHandle", int,
         array=False, optional=False,
         documentation="Handle value used to track the progress of the volume copy.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListVolumeStatsResult(data_model.DataObject):
+    """
+    :param volume_stats: [required] List of volume activity information. 
+    :type volume_stats: VolumeStats
+    """
+    volume_stats = data_model.property(
+        "volumeStats", VolumeStats,
+        array=True, optional=False,
+        documentation="List of volume activity information.",
         dictionaryType=None
     )
 

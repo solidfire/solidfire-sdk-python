@@ -5307,3 +5307,26 @@ class Element(ServiceBase):
             since=9.0
         )
 
+    def list_volume_stats(
+            self,
+            volume_ids=OPTIONAL,):
+        """
+        :param volumeIDs:  
+        :type volumeIDs: int
+        """
+
+        self._check_connection_type("list_volume_stats", "")
+
+        params = { 
+        }
+        if volume_ids is not None:
+            params["volumeIDs"] = volume_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVolumeStats',
+            ListVolumeStatsResult,
+            params,
+            since=9.0
+        )
+
