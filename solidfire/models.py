@@ -542,264 +542,6 @@ class GetHardwareInfoResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class DriveStats(data_model.DataObject):
-    """
-    :param active_sessions: [required] 
-    :type active_sessions: int
-    
-    :param drive_id:  
-    :type drive_id: int
-    
-    :param failed_die_count: [required] 
-    :type failed_die_count: int
-    
-    :param life_remaining_percent: [required] 
-    :type life_remaining_percent: int
-    
-    :param lifetime_read_bytes: [required] 
-    :type lifetime_read_bytes: int
-    
-    :param lifetime_write_bytes: [required] 
-    :type lifetime_write_bytes: int
-    
-    :param power_on_hours: [required] 
-    :type power_on_hours: int
-    
-    :param read_bytes: [required] 
-    :type read_bytes: int
-    
-    :param read_ops: [required] 
-    :type read_ops: int
-    
-    :param reallocated_sectors: [required] 
-    :type reallocated_sectors: int
-    
-    :param reserve_capacity_percent: [required] 
-    :type reserve_capacity_percent: int
-    
-    :param timestamp: [required] 
-    :type timestamp: str
-    
-    :param total_capacity: [required] 
-    :type total_capacity: int
-    
-    :param used_capacity:  
-    :type used_capacity: int
-    
-    :param used_memory: [required] 
-    :type used_memory: int
-    
-    :param write_bytes: [required] 
-    :type write_bytes: int
-    
-    :param write_ops: [required] 
-    :type write_ops: int
-    """
-    active_sessions = data_model.property(
-        "activeSessions", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    drive_id = data_model.property(
-        "driveID", int,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    failed_die_count = data_model.property(
-        "failedDieCount", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    life_remaining_percent = data_model.property(
-        "lifeRemainingPercent", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    lifetime_read_bytes = data_model.property(
-        "lifetimeReadBytes", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    lifetime_write_bytes = data_model.property(
-        "lifetimeWriteBytes", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    power_on_hours = data_model.property(
-        "powerOnHours", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    read_bytes = data_model.property(
-        "readBytes", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    read_ops = data_model.property(
-        "readOps", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    reallocated_sectors = data_model.property(
-        "reallocatedSectors", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    reserve_capacity_percent = data_model.property(
-        "reserveCapacityPercent", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    timestamp = data_model.property(
-        "timestamp", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    total_capacity = data_model.property(
-        "totalCapacity", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    used_capacity = data_model.property(
-        "usedCapacity", int,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    used_memory = data_model.property(
-        "usedMemory", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    write_bytes = data_model.property(
-        "writeBytes", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    write_ops = data_model.property(
-        "writeOps", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListDriveStatsResult(data_model.DataObject):
-    """
-    :param drive_stats: [required] List of drive activity information for each drive. 
-    :type drive_stats: DriveStats
-    
-    :param errors: [required] If there are errors retrieving information about a drive, this list contains the driveID and associated error message. Always present, and empty if there are no errors. 
-    :type errors: dict
-    """
-    drive_stats = data_model.property(
-        "driveStats", DriveStats,
-        array=True, optional=False,
-        documentation="List of drive activity information for each drive.",
-        dictionaryType=None
-    )
-    errors = data_model.property(
-        "errors", dict,
-        array=True, optional=False,
-        documentation="If there are errors retrieving information about a drive, this list contains the driveID and associated error message. Always present, and empty if there are no errors.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class VirtualVolumeHost(data_model.DataObject):
-    """
-    :param virtual_volume_host_id: [required] 
-    :type virtual_volume_host_id: UUID
-    
-    :param cluster_id: [required] 
-    :type cluster_id: UUID
-    
-    :param visible_protocol_endpoint_ids: [required] 
-    :type visible_protocol_endpoint_ids: UUID
-    
-    :param bindings: [required] 
-    :type bindings: int
-    
-    :param initiator_names: [required] 
-    :type initiator_names: str
-    
-    :param host_address: [required] 
-    :type host_address: str
-    """
-    virtual_volume_host_id = data_model.property(
-        "virtualVolumeHostID", UUID,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    cluster_id = data_model.property(
-        "clusterID", UUID,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    visible_protocol_endpoint_ids = data_model.property(
-        "visibleProtocolEndpointIDs", UUID,
-        array=True, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    bindings = data_model.property(
-        "bindings", int,
-        array=True, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    initiator_names = data_model.property(
-        "initiatorNames", str,
-        array=True, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    host_address = data_model.property(
-        "hostAddress", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListVirtualVolumeHostsResult(data_model.DataObject):
-    """
-    :param hosts: [required] List of known ESX hosts. 
-    :type hosts: VirtualVolumeHost
-    """
-    hosts = data_model.property(
-        "hosts", VirtualVolumeHost,
-        array=True, optional=False,
-        documentation="List of known ESX hosts.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class VolumeQOS(data_model.DataObject):
     """
     Quality of Service (QoS) Result values are used on SolidFire volumes to provision performance expectations.
@@ -1197,6 +939,96 @@ class Volume(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class ListVolumesResult(data_model.DataObject):
+    """
+    :param volumes: [required] List of volumes. 
+    :type volumes: Volume
+    """
+    volumes = data_model.property(
+        "volumes", Volume,
+        array=True, optional=False,
+        documentation="List of volumes.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class VirtualVolumeHost(data_model.DataObject):
+    """
+    :param virtual_volume_host_id: [required] 
+    :type virtual_volume_host_id: UUID
+    
+    :param cluster_id: [required] 
+    :type cluster_id: UUID
+    
+    :param visible_protocol_endpoint_ids: [required] 
+    :type visible_protocol_endpoint_ids: UUID
+    
+    :param bindings: [required] 
+    :type bindings: int
+    
+    :param initiator_names: [required] 
+    :type initiator_names: str
+    
+    :param host_address: [required] 
+    :type host_address: str
+    """
+    virtual_volume_host_id = data_model.property(
+        "virtualVolumeHostID", UUID,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    cluster_id = data_model.property(
+        "clusterID", UUID,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    visible_protocol_endpoint_ids = data_model.property(
+        "visibleProtocolEndpointIDs", UUID,
+        array=True, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    bindings = data_model.property(
+        "bindings", int,
+        array=True, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    initiator_names = data_model.property(
+        "initiatorNames", str,
+        array=True, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    host_address = data_model.property(
+        "hostAddress", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListVirtualVolumeHostsResult(data_model.DataObject):
+    """
+    :param hosts: [required] List of known ESX hosts. 
+    :type hosts: VirtualVolumeHost
+    """
+    hosts = data_model.property(
+        "hosts", VirtualVolumeHost,
+        array=True, optional=False,
+        documentation="List of known ESX hosts.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListActivePairedVolumesResult(data_model.DataObject):
     """
     :param volumes: [required] Volume information for the paired volumes. 
@@ -1343,17 +1175,8 @@ class AddVolumesToVolumeAccessGroupRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVolumesForAccountResult(data_model.DataObject):
-    """
-    :param volumes: [required] List of volumes. 
-    :type volumes: Volume
-    """
-    volumes = data_model.property(
-        "volumes", Volume,
-        array=True, optional=False,
-        documentation="List of volumes.",
-        dictionaryType=None
-    )
+class ClearClusterFaultsResult(data_model.DataObject):
+    """"""
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -4867,6 +4690,30 @@ class GetLdapConfigurationResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class ListVolumeStatsByVirtualVolumeRequest(data_model.DataObject):
+    """
+    :param start_virtual_volume_id:  The ID of the virtual volume at which to begin the list. 
+    :type start_virtual_volume_id: UUID
+    
+    :param virtual_volume_ids:  A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
+    :type virtual_volume_ids: UUID
+    """
+    start_virtual_volume_id = data_model.property(
+        "startVirtualVolumeID", UUID,
+        array=False, optional=True,
+        documentation="The ID of the virtual volume at which to begin the list.",
+        dictionaryType=None
+    )
+    virtual_volume_ids = data_model.property(
+        "virtualVolumeIDs", UUID,
+        array=True, optional=True,
+        documentation="A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class RestoreDeletedVolumeResult(data_model.DataObject):
     """"""
 
@@ -5177,12 +5024,12 @@ class GetNtpInfoResult(data_model.DataObject):
 
 class ListDriveStatsRequest(data_model.DataObject):
     """
-    :param drives: [required] Optional list of DriveIDs for which to return drive statistics. If you omit this parameter, measurements for all drives are returned. 
+    :param drives:  Optional list of DriveIDs for which to return drive statistics. If you omit this parameter, measurements for all drives are returned. 
     :type drives: int
     """
     drives = data_model.property(
         "drives", int,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="Optional list of DriveIDs for which to return drive statistics. If you omit this parameter, measurements for all drives are returned.",
         dictionaryType=None
     )
@@ -6864,24 +6711,15 @@ class ModifyClusterAdminResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVolumeStatsByVirtualVolumeRequest(data_model.DataObject):
+class ListVolumesForAccountResult(data_model.DataObject):
     """
-    :param start_virtual_volume_id:  The ID of the virtual volume at which to begin the list. 
-    :type start_virtual_volume_id: UUID
-    
-    :param virtual_volume_ids:  A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
-    :type virtual_volume_ids: UUID
+    :param volumes: [required] List of volumes. 
+    :type volumes: Volume
     """
-    start_virtual_volume_id = data_model.property(
-        "startVirtualVolumeID", UUID,
-        array=False, optional=True,
-        documentation="The ID of the virtual volume at which to begin the list.",
-        dictionaryType=None
-    )
-    virtual_volume_ids = data_model.property(
-        "virtualVolumeIDs", UUID,
-        array=True, optional=True,
-        documentation="A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes.",
+    volumes = data_model.property(
+        "volumes", Volume,
+        array=True, optional=False,
+        documentation="List of volumes.",
         dictionaryType=None
     )
 
@@ -8481,12 +8319,6 @@ class AddInitiatorsToVolumeAccessGroupRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ClearClusterFaultsResult(data_model.DataObject):
-    """"""
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class ModifyInitiatorsResult(data_model.DataObject):
     """
     :param initiators: [required] List of objects containing details about the modified initiators 
@@ -8561,6 +8393,189 @@ class AddLdapClusterAdminRequest(data_model.DataObject):
 
 class CancelCloneResult(data_model.DataObject):
     """"""
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class DriveStats(data_model.DataObject):
+    """
+    :param active_sessions: [required] 
+    :type active_sessions: int
+    
+    :param drive_id:  
+    :type drive_id: int
+    
+    :param failed_die_count: [required] 
+    :type failed_die_count: int
+    
+    :param life_remaining_percent: [required] 
+    :type life_remaining_percent: int
+    
+    :param lifetime_read_bytes: [required] 
+    :type lifetime_read_bytes: int
+    
+    :param lifetime_write_bytes: [required] 
+    :type lifetime_write_bytes: int
+    
+    :param power_on_hours: [required] 
+    :type power_on_hours: int
+    
+    :param read_bytes: [required] 
+    :type read_bytes: int
+    
+    :param read_ops: [required] 
+    :type read_ops: int
+    
+    :param reallocated_sectors: [required] 
+    :type reallocated_sectors: int
+    
+    :param reserve_capacity_percent: [required] 
+    :type reserve_capacity_percent: int
+    
+    :param timestamp: [required] 
+    :type timestamp: str
+    
+    :param total_capacity: [required] 
+    :type total_capacity: int
+    
+    :param used_capacity:  
+    :type used_capacity: int
+    
+    :param used_memory: [required] 
+    :type used_memory: int
+    
+    :param write_bytes: [required] 
+    :type write_bytes: int
+    
+    :param write_ops: [required] 
+    :type write_ops: int
+    """
+    active_sessions = data_model.property(
+        "activeSessions", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    drive_id = data_model.property(
+        "driveID", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    failed_die_count = data_model.property(
+        "failedDieCount", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    life_remaining_percent = data_model.property(
+        "lifeRemainingPercent", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    lifetime_read_bytes = data_model.property(
+        "lifetimeReadBytes", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    lifetime_write_bytes = data_model.property(
+        "lifetimeWriteBytes", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    power_on_hours = data_model.property(
+        "powerOnHours", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    read_bytes = data_model.property(
+        "readBytes", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    read_ops = data_model.property(
+        "readOps", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    reallocated_sectors = data_model.property(
+        "reallocatedSectors", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    reserve_capacity_percent = data_model.property(
+        "reserveCapacityPercent", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    timestamp = data_model.property(
+        "timestamp", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    total_capacity = data_model.property(
+        "totalCapacity", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    used_capacity = data_model.property(
+        "usedCapacity", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    used_memory = data_model.property(
+        "usedMemory", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    write_bytes = data_model.property(
+        "writeBytes", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    write_ops = data_model.property(
+        "writeOps", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListDriveStatsResult(data_model.DataObject):
+    """
+    :param drive_stats: [required] List of drive activity information for each drive. 
+    :type drive_stats: DriveStats
+    
+    :param errors: [required] If there are errors retrieving information about a drive, this list contains the driveID and associated error message. Always present, and empty if there are no errors. 
+    :type errors: dict
+    """
+    drive_stats = data_model.property(
+        "driveStats", DriveStats,
+        array=True, optional=False,
+        documentation="List of drive activity information for each drive.",
+        dictionaryType=None
+    )
+    errors = data_model.property(
+        "errors", dict,
+        array=True, optional=False,
+        documentation="If there are errors retrieving information about a drive, this list contains the driveID and associated error message. Always present, and empty if there are no errors.",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -10823,15 +10838,15 @@ class EnableLdapAuthenticationResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVolumesResult(data_model.DataObject):
+class ListVolumeStatsByAccountResult(data_model.DataObject):
     """
-    :param volumes: [required] List of volumes. 
-    :type volumes: Volume
+    :param volume_stats: [required] List of account activity information. <br/><b>Note</b>: The volumeID member is 0 for each entry, as the values represent the summation of all volumes owned by the account. 
+    :type volume_stats: VolumeStats
     """
-    volumes = data_model.property(
-        "volumes", Volume,
+    volume_stats = data_model.property(
+        "volumeStats", VolumeStats,
         array=True, optional=False,
-        documentation="List of volumes.",
+        documentation="[&#x27;List of account activity information.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;Note&lt;/b&gt;: The volumeID member is 0 for each entry, as the values represent the summation of all volumes owned by the account.&#x27;]",
         dictionaryType=None
     )
 
@@ -11205,21 +11220,6 @@ class ListAsyncResultsRequest(data_model.DataObject):
 
 class ModifyAccountResult(data_model.DataObject):
     """"""
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListVolumeStatsByAccountResult(data_model.DataObject):
-    """
-    :param volume_stats: [required] List of account activity information. <br/><b>Note</b>: The volumeID member is 0 for each entry, as the values represent the summation of all volumes owned by the account. 
-    :type volume_stats: VolumeStats
-    """
-    volume_stats = data_model.property(
-        "volumeStats", VolumeStats,
-        array=True, optional=False,
-        documentation="[&#x27;List of account activity information.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;Note&lt;/b&gt;: The volumeID member is 0 for each entry, as the values represent the summation of all volumes owned by the account.&#x27;]",
-        dictionaryType=None
-    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)

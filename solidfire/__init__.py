@@ -1831,115 +1831,6 @@ class Element(ServiceBase):
         return ElementServiceAdaptor.modify_schedule(self, params,
                                                   since, deprecated)
 
-    def list_volume_stats_by_virtual_volume(
-            self,
-            start_virtual_volume_id=OPTIONAL,
-            virtual_volume_ids=OPTIONAL,):
-        """
-        ListVolumeStatsByVirtualVolume enables you to list statistics for volumes, sorted by virtual volumes.
-        :param startVirtualVolumeID:  The ID of the virtual volume at which to begin the list. 
-        :type startVirtualVolumeID: UUID
-        
-        :param virtualVolumeIDs:  A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
-        :type virtualVolumeIDs: UUID
-        """
-
-        self._check_connection_type("list_volume_stats_by_virtual_volume", "Cluster")
-
-        params = { 
-        }
-        if start_virtual_volume_id is not None:
-            params["startVirtualVolumeID"] = start_virtual_volume_id
-        if virtual_volume_ids is not None:
-            params["virtualVolumeIDs"] = virtual_volume_ids
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVolumeStatsByVirtualVolume',
-            ListVolumeStatsByVirtualVolumeResult,
-            params,
-            since=9.0
-        )
-
-    def get_raw_stats(
-            self,):
-        """
-        The GetRawStats call is used by SolidFire engineering to troubleshoot new features. The data returned from GetRawStats is not documented, it changes frequently, and is not guaranteed to be accurate. It is not recommended to ever use GetRawStats for collecting performance data or any other management integration with a SolidFire cluster.
-        The data returned from GetRawStats changes frequently, and is not guaranteed to accurately show performance from the system. It is not recommended to ever use GetRawStats for collecting performance data or any other management integration with a SolidFire cluster."""
-
-        self._check_connection_type("get_raw_stats", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetRawStats',
-            str,
-            params,
-            since=1.0
-        )
-
-    def get_hardware_info(
-            self,):
-        """
-        GetHardwareInfo allows you to return hardware information and status for a single node. This generally includes manufacturers, vendors, versions, drives, and other associated hardware identification information."""
-
-        self._check_connection_type("get_hardware_info", "Node")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetHardwareInfo',
-            GetHardwareInfoResult,
-            params,
-            since=9.0
-        )
-
-    def get_complete_stats(
-            self,):
-        """
-        The GetCompleteStats API method is used by SolidFire engineering to troubleshoot new features. The data returned from GetCompleteStats is not documented, changes frequently, and is not guaranteed to be accurate. It is not recommended to ever use GetCompleteStats for collecting performance data or any other management integration with a SolidFire cluster.
-        The data returned from GetCompleteStats changes frequently, and is not guaranteed to accurately show performance from the system. It is not recommended to ever use GetCompleteStats for collecting performance data or any other management integration with a SolidFire cluster."""
-
-        self._check_connection_type("get_complete_stats", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetCompleteStats',
-            str,
-            params,
-            since=1.0
-        )
-
-    def list_drive_stats(
-            self,
-            drives,):
-        """
-        ListDriveStats enables you to retrieve  high-level activity measurements for multiple drives in the cluster. By default, this method returns statistics for all drives in the cluster, and these measurements are cumulative from the addition of the drive to the cluster. Some values this method returns are specific to block drives, and some are specific to metadata drives. For more information on what data each drive type returns, see the response examples for the GetDriveStats method.
-        :param drives: [required] Optional list of DriveIDs for which to return drive statistics. If you omit this parameter, measurements for all drives are returned. 
-        :type drives: int
-        """
-
-        self._check_connection_type("list_drive_stats", "Cluster")
-
-        params = { 
-            "drives": drives,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListDriveStats',
-            ListDriveStatsResult,
-            params,
-            since=9.0
-        )
-
     def create_storage_container(
             self,
             name,
@@ -5304,5 +5195,115 @@ class Element(ServiceBase):
             SnmpSendTestTrapsResult,
             params,
             since=6.0
+        )
+
+    def list_volume_stats_by_virtual_volume(
+            self,
+            start_virtual_volume_id=OPTIONAL,
+            virtual_volume_ids=OPTIONAL,):
+        """
+        ListVolumeStatsByVirtualVolume enables you to list statistics for volumes, sorted by virtual volumes.
+        :param startVirtualVolumeID:  The ID of the virtual volume at which to begin the list. 
+        :type startVirtualVolumeID: UUID
+        
+        :param virtualVolumeIDs:  A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
+        :type virtualVolumeIDs: UUID
+        """
+
+        self._check_connection_type("list_volume_stats_by_virtual_volume", "Cluster")
+
+        params = { 
+        }
+        if start_virtual_volume_id is not None:
+            params["startVirtualVolumeID"] = start_virtual_volume_id
+        if virtual_volume_ids is not None:
+            params["virtualVolumeIDs"] = virtual_volume_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVolumeStatsByVirtualVolume',
+            ListVolumeStatsByVirtualVolumeResult,
+            params,
+            since=9.0
+        )
+
+    def get_raw_stats(
+            self,):
+        """
+        The GetRawStats call is used by SolidFire engineering to troubleshoot new features. The data returned from GetRawStats is not documented, it changes frequently, and is not guaranteed to be accurate. It is not recommended to ever use GetRawStats for collecting performance data or any other management integration with a SolidFire cluster.
+        The data returned from GetRawStats changes frequently, and is not guaranteed to accurately show performance from the system. It is not recommended to ever use GetRawStats for collecting performance data or any other management integration with a SolidFire cluster."""
+
+        self._check_connection_type("get_raw_stats", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetRawStats',
+            str,
+            params,
+            since=1.0
+        )
+
+    def get_hardware_info(
+            self,):
+        """
+        GetHardwareInfo allows you to return hardware information and status for a single node. This generally includes manufacturers, vendors, versions, drives, and other associated hardware identification information."""
+
+        self._check_connection_type("get_hardware_info", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetHardwareInfo',
+            GetHardwareInfoResult,
+            params,
+            since=9.0
+        )
+
+    def get_complete_stats(
+            self,):
+        """
+        The GetCompleteStats API method is used by SolidFire engineering to troubleshoot new features. The data returned from GetCompleteStats is not documented, changes frequently, and is not guaranteed to be accurate. It is not recommended to ever use GetCompleteStats for collecting performance data or any other management integration with a SolidFire cluster.
+        The data returned from GetCompleteStats changes frequently, and is not guaranteed to accurately show performance from the system. It is not recommended to ever use GetCompleteStats for collecting performance data or any other management integration with a SolidFire cluster."""
+
+        self._check_connection_type("get_complete_stats", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetCompleteStats',
+            str,
+            params,
+            since=1.0
+        )
+
+    def list_drive_stats(
+            self,
+            drives=OPTIONAL,):
+        """
+        ListDriveStats enables you to retrieve  high-level activity measurements for multiple drives in the cluster. By default, this method returns statistics for all drives in the cluster, and these measurements are cumulative from the addition of the drive to the cluster. Some values this method returns are specific to block drives, and some are specific to metadata drives. For more information on what data each drive type returns, see the response examples for the GetDriveStats method.
+        :param drives:  Optional list of DriveIDs for which to return drive statistics. If you omit this parameter, measurements for all drives are returned. 
+        :type drives: int
+        """
+
+        self._check_connection_type("list_drive_stats", "Cluster")
+
+        params = { 
+        }
+        if drives is not None:
+            params["drives"] = drives
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListDriveStats',
+            ListDriveStatsResult,
+            params,
+            since=9.0
         )
 

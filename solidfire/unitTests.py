@@ -458,7 +458,7 @@ def test_list_drive_stats_v9_0():
 
     
     drives = 42 # drives
-    result = ef.list_drive_stats(drives,)
+    result = ef.list_drive_stats()
     assert result.drive_stats[0].reserve_capacity_percent == 100, "Died on +.drive_stats[0].reserve_capacity_percent"
     assert result.drive_stats[0].total_capacity == 300069052416, "Died on +.drive_stats[0].total_capacity"
     assert result.drive_stats[0].write_bytes == 2462169894, "Died on +.drive_stats[0].write_bytes"
