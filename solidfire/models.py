@@ -376,6 +376,40 @@ class DriveHardware(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class SystemMemory(data_model.DataObject):
+    """
+    The amount of total, free, and used memory on the system.
+    :param free: [required] 
+    :type free: int
+    
+    :param total: [required] 
+    :type total: int
+    
+    :param used: [required] 
+    :type used: int
+    """
+    free = data_model.property(
+        "free", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    total = data_model.property(
+        "total", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    used = data_model.property(
+        "used", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class HardwareInfo(data_model.DataObject):
     """
     The hardwareInfo object contains detailed information about the hardware and status of each node in the cluster.  You can retrieve this information with the API method GetHardwareInfo. 
@@ -407,7 +441,7 @@ class HardwareInfo(data_model.DataObject):
     :type nvram: dict
     
     :param origin: [required] The vendor of the motherboard. 
-    :type origin: str
+    :type origin: dict
     
     :param platform: [required] A description of the chassis platform. 
     :type platform: dict
@@ -426,6 +460,12 @@ class HardwareInfo(data_model.DataObject):
     
     :param uuid: [required] The unique ID of the node. 
     :type uuid: UUID
+    
+    :param system_memory: [required] 
+    :type system_memory: SystemMemory
+    
+    :param file_system_usage: [required] 
+    :type file_system_usage: dict
     """
     bus = data_model.property(
         "bus", dict,
@@ -482,7 +522,7 @@ class HardwareInfo(data_model.DataObject):
         dictionaryType=None
     )
     origin = data_model.property(
-        "origin", str,
+        "origin", dict,
         array=False, optional=False,
         documentation="The vendor of the motherboard.",
         dictionaryType=None
@@ -521,6 +561,18 @@ class HardwareInfo(data_model.DataObject):
         "uuid", UUID,
         array=False, optional=False,
         documentation="The unique ID of the node.",
+        dictionaryType=None
+    )
+    system_memory = data_model.property(
+        "systemMemory", SystemMemory,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    file_system_usage = data_model.property(
+        "fileSystemUsage", dict,
+        array=False, optional=False,
+        documentation="",
         dictionaryType=None
     )
 
@@ -5340,51 +5392,85 @@ class CloneMultipleVolumeParams(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class UpdateBulkVolumeStatusRequest(data_model.DataObject):
+class SnmpNetwork(data_model.DataObject):
     """
-    :param key: [required] The key assigned during initialization of a "StartBulkVolumeRead" or "StartBulkVolumeWrite" session. 
-    :type key: str
+    The SNMP network object contains information about SNMP configuration for the cluster nodes. SNMP v3 is supported on SolidFire clusters.
+    :param access: [required] <br/><b>ro</b>: read-only access.* <br/><b>rw</b>: for read-write access. <br/><b>rosys</b>: for read-only access to a restricted set of system information *SolidFire recommends that all networks other than the default "localhost" be set to "ro" access, because all SolidFire MIB objects are read-only. 
+    :type access: str
     
-    :param status: [required] The SolidFire system sets the status of the given bulk volume job.<br/> Possible values:<br/> <br/><b>running</b>: jobs that are still active. <br/><b>complete</b>: jobs that are done. failed - jobs that have failed. <br/><b>failed</b>: jobs that have failed. 
-    :type status: str
+    :param cidr: [required] A CIDR network mask. This network mask must be an integer greater than or equal to 0, and less than or equal to 32. It must also not be equal to 31. 
+    :type cidr: int
     
-    :param percent_complete:  The completed progress of the bulk volume job as a percentage. 
-    :type percent_complete: str
+    :param community: [required] SNMP community string. 
+    :type community: str
     
-    :param message:  Returns the status of the bulk volume job when the job has completed. 
-    :type message: str
-    
-    :param attributes:  JSON attributes  updates what is on the bulk volume job. 
-    :type attributes: dict
+    :param network: [required] This parameter along with the cidr variable is used to control which network the access and community string apply to. The special value of "default" is used to specify an entry that applies to all networks. The cidr mask is ignored when network value is either a host name or default. 
+    :type network: str
     """
-    key = data_model.property(
-        "key", str,
+    access = data_model.property(
+        "access", str,
         array=False, optional=False,
-        documentation="The key assigned during initialization of a &quot;StartBulkVolumeRead&quot; or &quot;StartBulkVolumeWrite&quot; session.",
+        documentation="[&#x27;&lt;br/&gt;&lt;b&gt;ro&lt;/b&gt;: read-only access.*&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;rw&lt;/b&gt;: for read-write access.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;rosys&lt;/b&gt;: for read-only access to a restricted set of system information&#x27;, &#x27;*SolidFire recommends that all networks other than the default &quot;localhost&quot; be set to &quot;ro&quot; access, because all SolidFire MIB objects are read-only.&#x27;]",
         dictionaryType=None
     )
-    status = data_model.property(
-        "status", str,
+    cidr = data_model.property(
+        "cidr", int,
         array=False, optional=False,
-        documentation="[&#x27;The SolidFire system sets the status of the given bulk volume job.&lt;br/&gt;&#x27;, &#x27;Possible values:&lt;br/&gt;&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;running&lt;/b&gt;: jobs that are still active.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;complete&lt;/b&gt;: jobs that are done. failed - jobs that have failed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;failed&lt;/b&gt;: jobs that have failed.&#x27;]",
+        documentation="[&#x27;A CIDR network mask. This network mask must be an integer greater than or equal to 0, and less than or equal to 32. It must also not be equal to 31.&#x27;]",
         dictionaryType=None
     )
-    percent_complete = data_model.property(
-        "percentComplete", str,
-        array=False, optional=True,
-        documentation="[&#x27;The completed progress of the bulk volume job as a percentage.&#x27;]",
+    community = data_model.property(
+        "community", str,
+        array=False, optional=False,
+        documentation="[&#x27;SNMP community string.&#x27;]",
         dictionaryType=None
     )
-    message = data_model.property(
-        "message", str,
-        array=False, optional=True,
-        documentation="[&#x27;Returns the status of the bulk volume job when the job has completed.&#x27;]",
+    network = data_model.property(
+        "network", str,
+        array=False, optional=False,
+        documentation="[&#x27;This parameter along with the cidr variable is used to control which network the access and community string apply to. The special value of &quot;default&quot; is used to specify an entry that applies to all networks. The cidr mask is ignored when network value is either a host name or default.&#x27;]",
         dictionaryType=None
     )
-    attributes = data_model.property(
-        "attributes", dict,
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class SetSnmpInfoRequest(data_model.DataObject):
+    """
+    :param networks:  List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. SNMP v2 only. 
+    :type networks: SnmpNetwork
+    
+    :param enabled:  If set to "true", then SNMP is enabled on each node in the cluster. 
+    :type enabled: bool
+    
+    :param snmp_v3_enabled:  If set to "true", then SNMP v3 is enabled on each node in the cluster. 
+    :type snmp_v3_enabled: bool
+    
+    :param usm_users:  If SNMP v3 is enabled, this value must be passed in place of the "networks" parameter. SNMP v3 only. 
+    :type usm_users: SnmpV3UsmUser
+    """
+    networks = data_model.property(
+        "networks", SnmpNetwork,
+        array=True, optional=True,
+        documentation="List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible &quot;networks&quot; values. SNMP v2 only.",
+        dictionaryType=None
+    )
+    enabled = data_model.property(
+        "enabled", bool,
         array=False, optional=True,
-        documentation="[&#x27;JSON attributes  updates what is on the bulk volume job.&#x27;]",
+        documentation="If set to &quot;true&quot;, then SNMP is enabled on each node in the cluster.",
+        dictionaryType=None
+    )
+    snmp_v3_enabled = data_model.property(
+        "snmpV3Enabled", bool,
+        array=False, optional=True,
+        documentation="If set to &quot;true&quot;, then SNMP v3 is enabled on each node in the cluster.",
+        dictionaryType=None
+    )
+    usm_users = data_model.property(
+        "usmUsers", SnmpV3UsmUser,
+        array=True, optional=True,
+        documentation="If SNMP v3 is enabled, this value must be passed in place of the &quot;networks&quot; parameter. SNMP v3 only.",
         dictionaryType=None
     )
 
@@ -5611,8 +5697,17 @@ class GetFeatureStatusRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ModifyVolumePairResult(data_model.DataObject):
-    """"""
+class ListInitiatorsResult(data_model.DataObject):
+    """
+    :param initiators: [required] List of the initiator information. 
+    :type initiators: Initiator
+    """
+    initiators = data_model.property(
+        "initiators", Initiator,
+        array=True, optional=False,
+        documentation="List of the initiator information.",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -6232,49 +6327,6 @@ class ModifyScheduleRequest(data_model.DataObject):
         "schedule", Schedule,
         array=False, optional=False,
         documentation="[&#x27;The &quot;Schedule&quot; object will be used to modify an existing schedule.&lt;br/&gt;&#x27;, &#x27;The ScheduleID property is required.&lt;br/&gt;&#x27;, &#x27;Frequency property must be of type that inherits from Frequency. Valid types are:&lt;br/&gt;&#x27;, &#x27;DaysOfMonthFrequency&lt;br/&gt;&#x27;, &#x27;DaysOrWeekFrequency&lt;br/&gt;&#x27;, &#x27;TimeIntervalFrequency&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class SnmpNetwork(data_model.DataObject):
-    """
-    The SNMP network object contains information about SNMP configuration for the cluster nodes. SNMP v3 is supported on SolidFire clusters.
-    :param access: [required] <br/><b>ro</b>: read-only access.* <br/><b>rw</b>: for read-write access. <br/><b>rosys</b>: for read-only access to a restricted set of system information *SolidFire recommends that all networks other than the default "localhost" be set to "ro" access, because all SolidFire MIB objects are read-only. 
-    :type access: str
-    
-    :param cidr: [required] A CIDR network mask. This network mask must be an integer greater than or equal to 0, and less than or equal to 32. It must also not be equal to 31. 
-    :type cidr: int
-    
-    :param community: [required] SNMP community string. 
-    :type community: str
-    
-    :param network: [required] This parameter along with the cidr variable is used to control which network the access and community string apply to. The special value of "default" is used to specify an entry that applies to all networks. The cidr mask is ignored when network value is either a host name or default. 
-    :type network: str
-    """
-    access = data_model.property(
-        "access", str,
-        array=False, optional=False,
-        documentation="[&#x27;&lt;br/&gt;&lt;b&gt;ro&lt;/b&gt;: read-only access.*&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;rw&lt;/b&gt;: for read-write access.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;rosys&lt;/b&gt;: for read-only access to a restricted set of system information&#x27;, &#x27;*SolidFire recommends that all networks other than the default &quot;localhost&quot; be set to &quot;ro&quot; access, because all SolidFire MIB objects are read-only.&#x27;]",
-        dictionaryType=None
-    )
-    cidr = data_model.property(
-        "cidr", int,
-        array=False, optional=False,
-        documentation="[&#x27;A CIDR network mask. This network mask must be an integer greater than or equal to 0, and less than or equal to 32. It must also not be equal to 31.&#x27;]",
-        dictionaryType=None
-    )
-    community = data_model.property(
-        "community", str,
-        array=False, optional=False,
-        documentation="[&#x27;SNMP community string.&#x27;]",
-        dictionaryType=None
-    )
-    network = data_model.property(
-        "network", str,
-        array=False, optional=False,
-        documentation="[&#x27;This parameter along with the cidr variable is used to control which network the access and community string apply to. The special value of &quot;default&quot; is used to specify an entry that applies to all networks. The cidr mask is ignored when network value is either a host name or default.&#x27;]",
         dictionaryType=None
     )
 
@@ -7161,23 +7213,14 @@ class ListDrivesResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVirtualVolumeBindingsRequest(data_model.DataObject):
+class ListVolumeStatsRequest(data_model.DataObject):
     """
-    :param virtual_volume_binding_ids:  
-    :type virtual_volume_binding_ids: int
-    
-    :param calling_virtual_volume_host_id:  
-    :type calling_virtual_volume_host_id: UUID
+    :param volume_ids:  
+    :type volume_ids: int
     """
-    virtual_volume_binding_ids = data_model.property(
-        "virtualVolumeBindingIDs", int,
+    volume_ids = data_model.property(
+        "volumeIDs", int,
         array=True, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    calling_virtual_volume_host_id = data_model.property(
-        "callingVirtualVolumeHostID", UUID,
-        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -7643,15 +7686,60 @@ class ListVirtualVolumeBindingsResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVolumeStatsRequest(data_model.DataObject):
+class ListVolumesRequest(data_model.DataObject):
     """
-    :param volume_ids:  
+    :param start_volume_id:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
+    :type start_volume_id: int
+    
+    :param limit:  The maximum number of volumes to return from the API. 
+    :type limit: int
+    
+    :param volume_status:  If specified, filter to only volumes with the provided status. By default, list all volumes. 
+    :type volume_status: str
+    
+    :param accounts:  If specified, only fetch volumes which belong to the provided accounts. By default, list volumes for all accounts. 
+    :type accounts: int
+    
+    :param is_paired:  If specified, only fetch volumes which are paired (if true) or non-paired (if false). By default, list all volumes regardless of their pairing status. 
+    :type is_paired: bool
+    
+    :param volume_ids:  If specified, only fetch volumes specified in this list. This option cannot be specified if startVolumeID, limit, or accounts option is specified. 
     :type volume_ids: int
     """
+    start_volume_id = data_model.property(
+        "startVolumeID", int,
+        array=False, optional=True,
+        documentation="[&#x27;The ID of the first volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this starts at the lowest VolumeID.&#x27;]",
+        dictionaryType=None
+    )
+    limit = data_model.property(
+        "limit", int,
+        array=False, optional=True,
+        documentation="[&#x27;The maximum number of volumes to return from the API.&#x27;]",
+        dictionaryType=None
+    )
+    volume_status = data_model.property(
+        "volumeStatus", str,
+        array=False, optional=True,
+        documentation="[&#x27;If specified, filter to only volumes with the provided status.&#x27;, &#x27;By default, list all volumes.&#x27;]",
+        dictionaryType=None
+    )
+    accounts = data_model.property(
+        "accounts", int,
+        array=True, optional=True,
+        documentation="[&#x27;If specified, only fetch volumes which belong to the provided accounts.&#x27;, &#x27;By default, list volumes for all accounts.&#x27;]",
+        dictionaryType=None
+    )
+    is_paired = data_model.property(
+        "isPaired", bool,
+        array=False, optional=True,
+        documentation="[&#x27;If specified, only fetch volumes which are paired (if true) or non-paired (if false).&#x27;, &#x27;By default, list all volumes regardless of their pairing status.&#x27;]",
+        dictionaryType=None
+    )
     volume_ids = data_model.property(
         "volumeIDs", int,
         array=True, optional=True,
-        documentation="",
+        documentation="[&#x27;If specified, only fetch volumes specified in this list.&#x27;, &#x27;This option cannot be specified if startVolumeID, limit, or accounts option is specified.&#x27;]",
         dictionaryType=None
     )
 
@@ -7784,15 +7872,15 @@ class RemoveVirtualNetworkResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class EnableSnmpRequest(data_model.DataObject):
+class ListVolumeStatsResult(data_model.DataObject):
     """
-    :param snmp_v3_enabled: [required] If set to "true", then SNMP v3 is enabled on each node in the cluster. If set to "false", then SNMP v2 is enabled. 
-    :type snmp_v3_enabled: bool
+    :param volume_stats: [required] List of volume activity information. 
+    :type volume_stats: VolumeStats
     """
-    snmp_v3_enabled = data_model.property(
-        "snmpV3Enabled", bool,
-        array=False, optional=False,
-        documentation="If set to &quot;true&quot;, then SNMP v3 is enabled on each node in the cluster. If set to &quot;false&quot;, then SNMP v2 is enabled.",
+    volume_stats = data_model.property(
+        "volumeStats", VolumeStats,
+        array=True, optional=False,
+        documentation="List of volume activity information.",
         dictionaryType=None
     )
 
@@ -7816,6 +7904,235 @@ class CreateBackupTargetResult(data_model.DataObject):
 
 class DisableLdapAuthenticationResult(data_model.DataObject):
     """"""
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ClusterCapacity(data_model.DataObject):
+    """
+    High level capacity measurements for the entire cluster.
+    :param active_block_space: [required] The amount of space on the block drives. This includes additional information such as metadata entries and space which can be cleaned up. 
+    :type active_block_space: int
+    
+    :param active_sessions: [required] Number of active iSCSI sessions communicating with the cluster 
+    :type active_sessions: int
+    
+    :param average_iops: [required] Average IPS for the cluster since midnight Coordinated Universal Time (UTC). 
+    :type average_iops: int
+    
+    :param cluster_recent_iosize: [required] The average size of IOPS to all volumes in the cluster. 
+    :type cluster_recent_iosize: int
+    
+    :param current_iops: [required] Average IOPS for all volumes in the cluster over the last 5 seconds. 
+    :type current_iops: int
+    
+    :param max_iops: [required] Estimated maximum IOPS capability of the current cluster. 
+    :type max_iops: int
+    
+    :param max_over_provisionable_space: [required] The maximum amount of provisionable space. This is a computed value. You cannot create new volumes if the current provisioned space plus the new volume size would exceed this number: maxOverProvisionableSpace = maxProvisionedSpace * GetClusterFull 
+    :type max_over_provisionable_space: int
+    
+    :param max_provisioned_space: [required] The total amount of provisionable space if all volumes are 100% filled (no thin provisioned metadata). 
+    :type max_provisioned_space: int
+    
+    :param max_used_metadata_space: [required] The amount of bytes on volume drives used to store metadata. 
+    :type max_used_metadata_space: int
+    
+    :param max_used_space: [required] The total amount of space on all active block drives. 
+    :type max_used_space: int
+    
+    :param non_zero_blocks: [required] Total number of 4KiB blocks with data after the last garbage collection operation has completed. 
+    :type non_zero_blocks: int
+    
+    :param peak_active_sessions: [required] Peak number of iSCSI connections since midnight UTC. 
+    :type peak_active_sessions: int
+    
+    :param peak_iops: [required] The highest value for currentIOPS since midnight UTC. 
+    :type peak_iops: int
+    
+    :param provisioned_space: [required] Total amount of space provisioned in all volumes on the cluster. 
+    :type provisioned_space: int
+    
+    :param snapshot_non_zero_blocks: [required] Total number of 4KiB blocks in snapshots with data. 
+    :type snapshot_non_zero_blocks: int
+    
+    :param timestamp: [required] The date and time this cluster capacity sample was taken. 
+    :type timestamp: str
+    
+    :param total_ops: [required] The total number of I/O operations performed throughout the lifetime of the cluster 
+    :type total_ops: int
+    
+    :param unique_blocks: [required] The total number of blocks stored on the block drives. The value includes replicated blocks. 
+    :type unique_blocks: int
+    
+    :param unique_blocks_used_space: [required] The total amount of data the uniqueBlocks take up on the block drives. This number is always consistent with the uniqueBlocks value. 
+    :type unique_blocks_used_space: int
+    
+    :param used_metadata_space: [required] The total amount of bytes on volume drives used to store metadata 
+    :type used_metadata_space: int
+    
+    :param used_metadata_space_in_snapshots: [required] The amount of bytes on volume drives used for storing unique data in snapshots. This number provides an estimate of how much metadata space would be regained by deleting all snapshots on the system. 
+    :type used_metadata_space_in_snapshots: int
+    
+    :param used_space: [required] Total amount of space used by all block drives in the system. 
+    :type used_space: int
+    
+    :param zero_blocks: [required] Total number of 4KiB blocks without data after the last round of garabage collection operation has completed. 
+    :type zero_blocks: int
+    """
+    active_block_space = data_model.property(
+        "activeBlockSpace", int,
+        array=False, optional=False,
+        documentation="[&#x27;The amount of space on the block drives.&#x27;, &#x27;This includes additional information such as metadata entries and space which can be cleaned up.&#x27;]",
+        dictionaryType=None
+    )
+    active_sessions = data_model.property(
+        "activeSessions", int,
+        array=False, optional=False,
+        documentation="Number of active iSCSI sessions communicating with the cluster",
+        dictionaryType=None
+    )
+    average_iops = data_model.property(
+        "averageIOPS", int,
+        array=False, optional=False,
+        documentation="Average IPS for the cluster since midnight Coordinated Universal Time (UTC).",
+        dictionaryType=None
+    )
+    cluster_recent_iosize = data_model.property(
+        "clusterRecentIOSize", int,
+        array=False, optional=False,
+        documentation="The average size of IOPS to all volumes in the cluster.",
+        dictionaryType=None
+    )
+    current_iops = data_model.property(
+        "currentIOPS", int,
+        array=False, optional=False,
+        documentation="Average IOPS for all volumes in the cluster over the last 5 seconds.",
+        dictionaryType=None
+    )
+    max_iops = data_model.property(
+        "maxIOPS", int,
+        array=False, optional=False,
+        documentation="Estimated maximum IOPS capability of the current cluster.",
+        dictionaryType=None
+    )
+    max_over_provisionable_space = data_model.property(
+        "maxOverProvisionableSpace", int,
+        array=False, optional=False,
+        documentation="[&#x27;The maximum amount of provisionable space.&#x27;, &#x27;This is a computed value.&#x27;, &#x27;You cannot create new volumes if the current provisioned space plus the new volume size would exceed this number:&#x27;, &#x27;maxOverProvisionableSpace = maxProvisionedSpace * GetClusterFull&#x27;]",
+        dictionaryType=None
+    )
+    max_provisioned_space = data_model.property(
+        "maxProvisionedSpace", int,
+        array=False, optional=False,
+        documentation="The total amount of provisionable space if all volumes are 100% filled (no thin provisioned metadata).",
+        dictionaryType=None
+    )
+    max_used_metadata_space = data_model.property(
+        "maxUsedMetadataSpace", int,
+        array=False, optional=False,
+        documentation="The amount of bytes on volume drives used to store metadata.",
+        dictionaryType=None
+    )
+    max_used_space = data_model.property(
+        "maxUsedSpace", int,
+        array=False, optional=False,
+        documentation="The total amount of space on all active block drives.",
+        dictionaryType=None
+    )
+    non_zero_blocks = data_model.property(
+        "nonZeroBlocks", int,
+        array=False, optional=False,
+        documentation="Total number of 4KiB blocks with data after the last garbage collection operation has completed.",
+        dictionaryType=None
+    )
+    peak_active_sessions = data_model.property(
+        "peakActiveSessions", int,
+        array=False, optional=False,
+        documentation="Peak number of iSCSI connections since midnight UTC.",
+        dictionaryType=None
+    )
+    peak_iops = data_model.property(
+        "peakIOPS", int,
+        array=False, optional=False,
+        documentation="The highest value for currentIOPS since midnight UTC.",
+        dictionaryType=None
+    )
+    provisioned_space = data_model.property(
+        "provisionedSpace", int,
+        array=False, optional=False,
+        documentation="Total amount of space provisioned in all volumes on the cluster.",
+        dictionaryType=None
+    )
+    snapshot_non_zero_blocks = data_model.property(
+        "snapshotNonZeroBlocks", int,
+        array=False, optional=False,
+        documentation="Total number of 4KiB blocks in snapshots with data.",
+        dictionaryType=None
+    )
+    timestamp = data_model.property(
+        "timestamp", str,
+        array=False, optional=False,
+        documentation="The date and time this cluster capacity sample was taken.",
+        dictionaryType=None
+    )
+    total_ops = data_model.property(
+        "totalOps", int,
+        array=False, optional=False,
+        documentation="The total number of I/O operations performed throughout the lifetime of the cluster",
+        dictionaryType=None
+    )
+    unique_blocks = data_model.property(
+        "uniqueBlocks", int,
+        array=False, optional=False,
+        documentation="[&#x27;The total number of blocks stored on the block drives.&#x27;, &#x27;The value includes replicated blocks.&#x27;]",
+        dictionaryType=None
+    )
+    unique_blocks_used_space = data_model.property(
+        "uniqueBlocksUsedSpace", int,
+        array=False, optional=False,
+        documentation="[&#x27;The total amount of data the uniqueBlocks take up on the block drives.&#x27;, &#x27;This number is always consistent with the uniqueBlocks value.&#x27;]",
+        dictionaryType=None
+    )
+    used_metadata_space = data_model.property(
+        "usedMetadataSpace", int,
+        array=False, optional=False,
+        documentation="The total amount of bytes on volume drives used to store metadata",
+        dictionaryType=None
+    )
+    used_metadata_space_in_snapshots = data_model.property(
+        "usedMetadataSpaceInSnapshots", int,
+        array=False, optional=False,
+        documentation="[&#x27;The amount of bytes on volume drives used for storing unique data in snapshots.&#x27;, &#x27;This number provides an estimate of how much metadata space would be regained by deleting all snapshots on the system.&#x27;]",
+        dictionaryType=None
+    )
+    used_space = data_model.property(
+        "usedSpace", int,
+        array=False, optional=False,
+        documentation="Total amount of space used by all block drives in the system.",
+        dictionaryType=None
+    )
+    zero_blocks = data_model.property(
+        "zeroBlocks", int,
+        array=False, optional=False,
+        documentation="Total number of 4KiB blocks without data after the last round of garabage collection operation has completed.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetClusterCapacityResult(data_model.DataObject):
+    """
+    :param cluster_capacity: [required] 
+    :type cluster_capacity: ClusterCapacity
+    """
+    cluster_capacity = data_model.property(
+        "clusterCapacity", ClusterCapacity,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -9756,15 +10073,51 @@ class EnableFeatureRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVolumeStatsResult(data_model.DataObject):
+class UpdateBulkVolumeStatusRequest(data_model.DataObject):
     """
-    :param volume_stats: [required] List of volume activity information. 
-    :type volume_stats: VolumeStats
+    :param key: [required] The key assigned during initialization of a "StartBulkVolumeRead" or "StartBulkVolumeWrite" session. 
+    :type key: str
+    
+    :param status: [required] The SolidFire system sets the status of the given bulk volume job.<br/> Possible values:<br/> <br/><b>running</b>: jobs that are still active. <br/><b>complete</b>: jobs that are done. failed - jobs that have failed. <br/><b>failed</b>: jobs that have failed. 
+    :type status: str
+    
+    :param percent_complete:  The completed progress of the bulk volume job as a percentage. 
+    :type percent_complete: str
+    
+    :param message:  Returns the status of the bulk volume job when the job has completed. 
+    :type message: str
+    
+    :param attributes:  JSON attributes  updates what is on the bulk volume job. 
+    :type attributes: dict
     """
-    volume_stats = data_model.property(
-        "volumeStats", VolumeStats,
-        array=True, optional=False,
-        documentation="List of volume activity information.",
+    key = data_model.property(
+        "key", str,
+        array=False, optional=False,
+        documentation="The key assigned during initialization of a &quot;StartBulkVolumeRead&quot; or &quot;StartBulkVolumeWrite&quot; session.",
+        dictionaryType=None
+    )
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation="[&#x27;The SolidFire system sets the status of the given bulk volume job.&lt;br/&gt;&#x27;, &#x27;Possible values:&lt;br/&gt;&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;running&lt;/b&gt;: jobs that are still active.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;complete&lt;/b&gt;: jobs that are done. failed - jobs that have failed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;failed&lt;/b&gt;: jobs that have failed.&#x27;]",
+        dictionaryType=None
+    )
+    percent_complete = data_model.property(
+        "percentComplete", str,
+        array=False, optional=True,
+        documentation="[&#x27;The completed progress of the bulk volume job as a percentage.&#x27;]",
+        dictionaryType=None
+    )
+    message = data_model.property(
+        "message", str,
+        array=False, optional=True,
+        documentation="[&#x27;Returns the status of the bulk volume job when the job has completed.&#x27;]",
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="[&#x27;JSON attributes  updates what is on the bulk volume job.&#x27;]",
         dictionaryType=None
     )
 
@@ -10002,66 +10355,6 @@ class RemoveVirtualNetworkRequest(data_model.DataObject):
         "virtualNetworkTag", int,
         array=False, optional=True,
         documentation="Network Tag that identifies the virtual network to remove.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListVolumesRequest(data_model.DataObject):
-    """
-    :param start_volume_id:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
-    :type start_volume_id: int
-    
-    :param limit:  The maximum number of volumes to return from the API. 
-    :type limit: int
-    
-    :param volume_status:  If specified, filter to only volumes with the provided status. By default, list all volumes. 
-    :type volume_status: str
-    
-    :param accounts:  If specified, only fetch volumes which belong to the provided accounts. By default, list volumes for all accounts. 
-    :type accounts: int
-    
-    :param is_paired:  If specified, only fetch volumes which are paired (if true) or non-paired (if false). By default, list all volumes regardless of their pairing status. 
-    :type is_paired: bool
-    
-    :param volume_ids:  If specified, only fetch volumes specified in this list. This option cannot be specified if startVolumeID, limit, or accounts option is specified. 
-    :type volume_ids: int
-    """
-    start_volume_id = data_model.property(
-        "startVolumeID", int,
-        array=False, optional=True,
-        documentation="[&#x27;The ID of the first volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this starts at the lowest VolumeID.&#x27;]",
-        dictionaryType=None
-    )
-    limit = data_model.property(
-        "limit", int,
-        array=False, optional=True,
-        documentation="[&#x27;The maximum number of volumes to return from the API.&#x27;]",
-        dictionaryType=None
-    )
-    volume_status = data_model.property(
-        "volumeStatus", str,
-        array=False, optional=True,
-        documentation="[&#x27;If specified, filter to only volumes with the provided status.&#x27;, &#x27;By default, list all volumes.&#x27;]",
-        dictionaryType=None
-    )
-    accounts = data_model.property(
-        "accounts", int,
-        array=True, optional=True,
-        documentation="[&#x27;If specified, only fetch volumes which belong to the provided accounts.&#x27;, &#x27;By default, list volumes for all accounts.&#x27;]",
-        dictionaryType=None
-    )
-    is_paired = data_model.property(
-        "isPaired", bool,
-        array=False, optional=True,
-        documentation="[&#x27;If specified, only fetch volumes which are paired (if true) or non-paired (if false).&#x27;, &#x27;By default, list all volumes regardless of their pairing status.&#x27;]",
-        dictionaryType=None
-    )
-    volume_ids = data_model.property(
-        "volumeIDs", int,
-        array=True, optional=True,
-        documentation="[&#x27;If specified, only fetch volumes specified in this list.&#x27;, &#x27;This option cannot be specified if startVolumeID, limit, or accounts option is specified.&#x27;]",
         dictionaryType=None
     )
 
@@ -10852,228 +11145,23 @@ class TestConnectSvipResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ClusterCapacity(data_model.DataObject):
+class ListVirtualVolumeBindingsRequest(data_model.DataObject):
     """
-    High level capacity measurements for the entire cluster.
-    :param active_block_space: [required] The amount of space on the block drives. This includes additional information such as metadata entries and space which can be cleaned up. 
-    :type active_block_space: int
+    :param virtual_volume_binding_ids:  
+    :type virtual_volume_binding_ids: int
     
-    :param active_sessions: [required] Number of active iSCSI sessions communicating with the cluster 
-    :type active_sessions: int
-    
-    :param average_iops: [required] Average IPS for the cluster since midnight Coordinated Universal Time (UTC). 
-    :type average_iops: int
-    
-    :param cluster_recent_iosize: [required] The average size of IOPS to all volumes in the cluster. 
-    :type cluster_recent_iosize: int
-    
-    :param current_iops: [required] Average IOPS for all volumes in the cluster over the last 5 seconds. 
-    :type current_iops: int
-    
-    :param max_iops: [required] Estimated maximum IOPS capability of the current cluster. 
-    :type max_iops: int
-    
-    :param max_over_provisionable_space: [required] The maximum amount of provisionable space. This is a computed value. You cannot create new volumes if the current provisioned space plus the new volume size would exceed this number: maxOverProvisionableSpace = maxProvisionedSpace * GetClusterFull 
-    :type max_over_provisionable_space: int
-    
-    :param max_provisioned_space: [required] The total amount of provisionable space if all volumes are 100% filled (no thin provisioned metadata). 
-    :type max_provisioned_space: int
-    
-    :param max_used_metadata_space: [required] The amount of bytes on volume drives used to store metadata. 
-    :type max_used_metadata_space: int
-    
-    :param max_used_space: [required] The total amount of space on all active block drives. 
-    :type max_used_space: int
-    
-    :param non_zero_blocks: [required] Total number of 4KiB blocks with data after the last garbage collection operation has completed. 
-    :type non_zero_blocks: int
-    
-    :param peak_active_sessions: [required] Peak number of iSCSI connections since midnight UTC. 
-    :type peak_active_sessions: int
-    
-    :param peak_iops: [required] The highest value for currentIOPS since midnight UTC. 
-    :type peak_iops: int
-    
-    :param provisioned_space: [required] Total amount of space provisioned in all volumes on the cluster. 
-    :type provisioned_space: int
-    
-    :param snapshot_non_zero_blocks: [required] Total number of 4KiB blocks in snapshots with data. 
-    :type snapshot_non_zero_blocks: int
-    
-    :param timestamp: [required] The date and time this cluster capacity sample was taken. 
-    :type timestamp: str
-    
-    :param total_ops: [required] The total number of I/O operations performed throughout the lifetime of the cluster 
-    :type total_ops: int
-    
-    :param unique_blocks: [required] The total number of blocks stored on the block drives. The value includes replicated blocks. 
-    :type unique_blocks: int
-    
-    :param unique_blocks_used_space: [required] The total amount of data the uniqueBlocks take up on the block drives. This number is always consistent with the uniqueBlocks value. 
-    :type unique_blocks_used_space: int
-    
-    :param used_metadata_space: [required] The total amount of bytes on volume drives used to store metadata 
-    :type used_metadata_space: int
-    
-    :param used_metadata_space_in_snapshots: [required] The amount of bytes on volume drives used for storing unique data in snapshots. This number provides an estimate of how much metadata space would be regained by deleting all snapshots on the system. 
-    :type used_metadata_space_in_snapshots: int
-    
-    :param used_space: [required] Total amount of space used by all block drives in the system. 
-    :type used_space: int
-    
-    :param zero_blocks: [required] Total number of 4KiB blocks without data after the last round of garabage collection operation has completed. 
-    :type zero_blocks: int
+    :param calling_virtual_volume_host_id:  
+    :type calling_virtual_volume_host_id: UUID
     """
-    active_block_space = data_model.property(
-        "activeBlockSpace", int,
-        array=False, optional=False,
-        documentation="[&#x27;The amount of space on the block drives.&#x27;, &#x27;This includes additional information such as metadata entries and space which can be cleaned up.&#x27;]",
+    virtual_volume_binding_ids = data_model.property(
+        "virtualVolumeBindingIDs", int,
+        array=True, optional=True,
+        documentation="",
         dictionaryType=None
     )
-    active_sessions = data_model.property(
-        "activeSessions", int,
-        array=False, optional=False,
-        documentation="Number of active iSCSI sessions communicating with the cluster",
-        dictionaryType=None
-    )
-    average_iops = data_model.property(
-        "averageIOPS", int,
-        array=False, optional=False,
-        documentation="Average IPS for the cluster since midnight Coordinated Universal Time (UTC).",
-        dictionaryType=None
-    )
-    cluster_recent_iosize = data_model.property(
-        "clusterRecentIOSize", int,
-        array=False, optional=False,
-        documentation="The average size of IOPS to all volumes in the cluster.",
-        dictionaryType=None
-    )
-    current_iops = data_model.property(
-        "currentIOPS", int,
-        array=False, optional=False,
-        documentation="Average IOPS for all volumes in the cluster over the last 5 seconds.",
-        dictionaryType=None
-    )
-    max_iops = data_model.property(
-        "maxIOPS", int,
-        array=False, optional=False,
-        documentation="Estimated maximum IOPS capability of the current cluster.",
-        dictionaryType=None
-    )
-    max_over_provisionable_space = data_model.property(
-        "maxOverProvisionableSpace", int,
-        array=False, optional=False,
-        documentation="[&#x27;The maximum amount of provisionable space.&#x27;, &#x27;This is a computed value.&#x27;, &#x27;You cannot create new volumes if the current provisioned space plus the new volume size would exceed this number:&#x27;, &#x27;maxOverProvisionableSpace = maxProvisionedSpace * GetClusterFull&#x27;]",
-        dictionaryType=None
-    )
-    max_provisioned_space = data_model.property(
-        "maxProvisionedSpace", int,
-        array=False, optional=False,
-        documentation="The total amount of provisionable space if all volumes are 100% filled (no thin provisioned metadata).",
-        dictionaryType=None
-    )
-    max_used_metadata_space = data_model.property(
-        "maxUsedMetadataSpace", int,
-        array=False, optional=False,
-        documentation="The amount of bytes on volume drives used to store metadata.",
-        dictionaryType=None
-    )
-    max_used_space = data_model.property(
-        "maxUsedSpace", int,
-        array=False, optional=False,
-        documentation="The total amount of space on all active block drives.",
-        dictionaryType=None
-    )
-    non_zero_blocks = data_model.property(
-        "nonZeroBlocks", int,
-        array=False, optional=False,
-        documentation="Total number of 4KiB blocks with data after the last garbage collection operation has completed.",
-        dictionaryType=None
-    )
-    peak_active_sessions = data_model.property(
-        "peakActiveSessions", int,
-        array=False, optional=False,
-        documentation="Peak number of iSCSI connections since midnight UTC.",
-        dictionaryType=None
-    )
-    peak_iops = data_model.property(
-        "peakIOPS", int,
-        array=False, optional=False,
-        documentation="The highest value for currentIOPS since midnight UTC.",
-        dictionaryType=None
-    )
-    provisioned_space = data_model.property(
-        "provisionedSpace", int,
-        array=False, optional=False,
-        documentation="Total amount of space provisioned in all volumes on the cluster.",
-        dictionaryType=None
-    )
-    snapshot_non_zero_blocks = data_model.property(
-        "snapshotNonZeroBlocks", int,
-        array=False, optional=False,
-        documentation="Total number of 4KiB blocks in snapshots with data.",
-        dictionaryType=None
-    )
-    timestamp = data_model.property(
-        "timestamp", str,
-        array=False, optional=False,
-        documentation="The date and time this cluster capacity sample was taken.",
-        dictionaryType=None
-    )
-    total_ops = data_model.property(
-        "totalOps", int,
-        array=False, optional=False,
-        documentation="The total number of I/O operations performed throughout the lifetime of the cluster",
-        dictionaryType=None
-    )
-    unique_blocks = data_model.property(
-        "uniqueBlocks", int,
-        array=False, optional=False,
-        documentation="[&#x27;The total number of blocks stored on the block drives.&#x27;, &#x27;The value includes replicated blocks.&#x27;]",
-        dictionaryType=None
-    )
-    unique_blocks_used_space = data_model.property(
-        "uniqueBlocksUsedSpace", int,
-        array=False, optional=False,
-        documentation="[&#x27;The total amount of data the uniqueBlocks take up on the block drives.&#x27;, &#x27;This number is always consistent with the uniqueBlocks value.&#x27;]",
-        dictionaryType=None
-    )
-    used_metadata_space = data_model.property(
-        "usedMetadataSpace", int,
-        array=False, optional=False,
-        documentation="The total amount of bytes on volume drives used to store metadata",
-        dictionaryType=None
-    )
-    used_metadata_space_in_snapshots = data_model.property(
-        "usedMetadataSpaceInSnapshots", int,
-        array=False, optional=False,
-        documentation="[&#x27;The amount of bytes on volume drives used for storing unique data in snapshots.&#x27;, &#x27;This number provides an estimate of how much metadata space would be regained by deleting all snapshots on the system.&#x27;]",
-        dictionaryType=None
-    )
-    used_space = data_model.property(
-        "usedSpace", int,
-        array=False, optional=False,
-        documentation="Total amount of space used by all block drives in the system.",
-        dictionaryType=None
-    )
-    zero_blocks = data_model.property(
-        "zeroBlocks", int,
-        array=False, optional=False,
-        documentation="Total number of 4KiB blocks without data after the last round of garabage collection operation has completed.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetClusterCapacityResult(data_model.DataObject):
-    """
-    :param cluster_capacity: [required] 
-    :type cluster_capacity: ClusterCapacity
-    """
-    cluster_capacity = data_model.property(
-        "clusterCapacity", ClusterCapacity,
-        array=False, optional=False,
+    calling_virtual_volume_host_id = data_model.property(
+        "callingVirtualVolumeHostID", UUID,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -13195,42 +13283,15 @@ class GetAccountResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class SetSnmpInfoRequest(data_model.DataObject):
+class EnableSnmpRequest(data_model.DataObject):
     """
-    :param networks:  List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. SNMP v2 only. 
-    :type networks: SnmpNetwork
-    
-    :param enabled:  If set to "true", then SNMP is enabled on each node in the cluster. 
-    :type enabled: bool
-    
-    :param snmp_v3_enabled:  If set to "true", then SNMP v3 is enabled on each node in the cluster. 
+    :param snmp_v3_enabled: [required] If set to "true", then SNMP v3 is enabled on each node in the cluster. If set to "false", then SNMP v2 is enabled. 
     :type snmp_v3_enabled: bool
-    
-    :param usm_users:  If SNMP v3 is enabled, this value must be passed in place of the "networks" parameter. SNMP v3 only. 
-    :type usm_users: SnmpV3UsmUser
     """
-    networks = data_model.property(
-        "networks", SnmpNetwork,
-        array=True, optional=True,
-        documentation="List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible &quot;networks&quot; values. SNMP v2 only.",
-        dictionaryType=None
-    )
-    enabled = data_model.property(
-        "enabled", bool,
-        array=False, optional=True,
-        documentation="If set to &quot;true&quot;, then SNMP is enabled on each node in the cluster.",
-        dictionaryType=None
-    )
     snmp_v3_enabled = data_model.property(
         "snmpV3Enabled", bool,
-        array=False, optional=True,
-        documentation="If set to &quot;true&quot;, then SNMP v3 is enabled on each node in the cluster.",
-        dictionaryType=None
-    )
-    usm_users = data_model.property(
-        "usmUsers", SnmpV3UsmUser,
-        array=True, optional=True,
-        documentation="If SNMP v3 is enabled, this value must be passed in place of the &quot;networks&quot; parameter. SNMP v3 only.",
+        array=False, optional=False,
+        documentation="If set to &quot;true&quot;, then SNMP v3 is enabled on each node in the cluster. If set to &quot;false&quot;, then SNMP v2 is enabled.",
         dictionaryType=None
     )
 
@@ -13324,17 +13385,8 @@ class SetDefaultQoSResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListInitiatorsResult(data_model.DataObject):
-    """
-    :param initiators: [required] List of the initiator information. 
-    :type initiators: Initiator
-    """
-    initiators = data_model.property(
-        "initiators", Initiator,
-        array=True, optional=False,
-        documentation="List of the initiator information.",
-        dictionaryType=None
-    )
+class ModifyVolumePairResult(data_model.DataObject):
+    """"""
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
