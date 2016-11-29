@@ -4448,7 +4448,7 @@ class Element(ServiceBase):
             self,
             clone_id,):
         """
-        Cancels a currently running clone operation.
+        Cancels a currently running clone operation. This method does not return anything.
         :param cloneID: [required] 
         :type cloneID: int
         """
@@ -4471,7 +4471,7 @@ class Element(ServiceBase):
             self,
             group_clone_id,):
         """
-        CancelGroupClone enables you to stop an ongoing CloneMultipleVolumes process for a group of clones. When you cancel a group clone operation, the system completes and removes the operation's associated asyncHandle. 
+        CancelGroupClone enables you to stop an ongoing CloneMultipleVolumes process for a group of clones. When you cancel a group clone operation, the system completes and removes the operation's associated asyncHandle. This method does not return anything.
         :param groupCloneID: [required] cloneID for the ongoing clone process. 
         :type groupCloneID: int
         """
@@ -5294,7 +5294,7 @@ class Element(ServiceBase):
             max_iops=OPTIONAL,
             burst_iops=OPTIONAL,):
         """
-        SetDefaultQoS enables you to configure the default Quality of Service (QoS) values (measured in inputs and outputs per second, or IOPS) for a volume. For more information on QoS in a  cluster, see the . 
+        SetDefaultQoS enables you to configure the default Quality of Service (QoS) values (measured in inputs and outputs per second, or IOPS) for all volumes not yet created.
         :param minIOPS:  The minimum number of sustained IOPS that are provided by the cluster to a volume. 
         :type minIOPS: int
         
