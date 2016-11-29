@@ -14,8 +14,8 @@ master_doc = 'index'
 project = 'solidfire-sdk-python'
 copyright = '2014-2016, NetApp, Inc.  All Rights Reserved.'
 author = 'Jason Ryan Womack'
-version = '1.2.0.24'
-release = '1.2.0.24'
+version = '1.2.0.25'
+release = '1.2.0.25'
 language = 'en'
 
 exclude_patterns = ['_build']
