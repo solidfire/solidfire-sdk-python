@@ -376,6 +376,112 @@ class DriveHardware(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class FibreChannelPortInfo(data_model.DataObject):
+    """
+    Fibre Channel Node Port Info object returns information about all Fibre Channel ports on a node, or for one node in the cluster. The same information is returned for all ports or port information for one node. This information is returned with the API method ListNodeFibreChannelPortInfo (in the SolidFire API Guide).
+    :param firmware: [required] The version of the firmware installed on the Fibre Channel port. 
+    :type firmware: str
+    
+    :param hba_port: [required] The ID of the individual HBA port. 
+    :type hba_port: int
+    
+    :param model: [required] Model of the HBA on the port. 
+    :type model: str
+    
+    :param n_port_id: [required] Unique SolidFire port node ID. 
+    :type n_port_id: str
+    
+    :param pci_slot: [required] Slot in which the pci card resides on the Fibre Channel node hardware. 
+    :type pci_slot: int
+    
+    :param serial: [required] Serial number on the Fibre Channel port. 
+    :type serial: str
+    
+    :param speed: [required] Speed of the HBA on the port. 
+    :type speed: str
+    
+    :param state: [required] Possible values: <br/><br/> <strong>Unknown<br/>NotPresent<br/>Online<br/>Offline<br/>Blocked<br/>Bypassed<br/>Diagnostics<br/>Linkdown<br/>Error<br/>Loopback<br/>Deleted</strong> 
+    :type state: str
+    
+    :param switch_wwn: [required] The World Wide Name of the Fibre Channel switch port. 
+    :type switch_wwn: str
+    
+    :param wwnn: [required] World Wide Node Name of the HBA node. 
+    :type wwnn: str
+    
+    :param wwpn: [required] World Wide Port Name assigned to the physical port of the HBA. 
+    :type wwpn: str
+    """
+    firmware = data_model.property(
+        "firmware", str,
+        array=False, optional=False,
+        documentation="The version of the firmware installed on the Fibre Channel port.",
+        dictionaryType=None
+    )
+    hba_port = data_model.property(
+        "hbaPort", int,
+        array=False, optional=False,
+        documentation="The ID of the individual HBA port.",
+        dictionaryType=None
+    )
+    model = data_model.property(
+        "model", str,
+        array=False, optional=False,
+        documentation="Model of the HBA on the port.",
+        dictionaryType=None
+    )
+    n_port_id = data_model.property(
+        "nPortID", str,
+        array=False, optional=False,
+        documentation="Unique SolidFire port node ID.",
+        dictionaryType=None
+    )
+    pci_slot = data_model.property(
+        "pciSlot", int,
+        array=False, optional=False,
+        documentation="Slot in which the pci card resides on the Fibre Channel node hardware.",
+        dictionaryType=None
+    )
+    serial = data_model.property(
+        "serial", str,
+        array=False, optional=False,
+        documentation="Serial number on the Fibre Channel port.",
+        dictionaryType=None
+    )
+    speed = data_model.property(
+        "speed", str,
+        array=False, optional=False,
+        documentation="Speed of the HBA on the port.",
+        dictionaryType=None
+    )
+    state = data_model.property(
+        "state", str,
+        array=False, optional=False,
+        documentation="[&#x27;Possible values:&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;strong&gt;Unknown&lt;br/&gt;NotPresent&lt;br/&gt;Online&lt;br/&gt;Offline&lt;br/&gt;Blocked&lt;br/&gt;Bypassed&lt;br/&gt;Diagnostics&lt;br/&gt;Linkdown&lt;br/&gt;Error&lt;br/&gt;Loopback&lt;br/&gt;Deleted&lt;/strong&gt;&#x27;]",
+        dictionaryType=None
+    )
+    switch_wwn = data_model.property(
+        "switchWwn", str,
+        array=False, optional=False,
+        documentation="The World Wide Name of the Fibre Channel switch port.",
+        dictionaryType=None
+    )
+    wwnn = data_model.property(
+        "wwnn", str,
+        array=False, optional=False,
+        documentation="World Wide Node Name of the HBA node.",
+        dictionaryType=None
+    )
+    wwpn = data_model.property(
+        "wwpn", str,
+        array=False, optional=False,
+        documentation="World Wide Port Name assigned to the physical port of the HBA.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class SystemMemory(data_model.DataObject):
     """
     The amount of total, free, and used memory on the system.
@@ -420,7 +526,7 @@ class HardwareInfo(data_model.DataObject):
     :type drive_hardware: DriveHardware
     
     :param fibre_channel_ports: [required] A list of  ports on the node. 
-    :type fibre_channel_ports: int
+    :type fibre_channel_ports: FibreChannelPortInfo
     
     :param hardware_config: [required] Motherboard peripheral configuration information. 
     :type hardware_config: dict
@@ -480,7 +586,7 @@ class HardwareInfo(data_model.DataObject):
         dictionaryType=None
     )
     fibre_channel_ports = data_model.property(
-        "fibreChannelPorts", int,
+        "fibreChannelPorts", FibreChannelPortInfo,
         array=True, optional=False,
         documentation="A list of  ports on the node.",
         dictionaryType=None
@@ -10709,112 +10815,6 @@ class CreateSnapshotResult(data_model.DataObject):
         "checksum", str,
         array=False, optional=False,
         documentation="[&#x27;A string that represents the correct digits in the stored snapshot.&#x27;, &#x27;This checksum can be used later to compare other snapshots to detect errors in the data.&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class FibreChannelPortInfo(data_model.DataObject):
-    """
-    Fibre Channel Node Port Info object returns information about all Fibre Channel ports on a node, or for one node in the cluster. The same information is returned for all ports or port information for one node. This information is returned with the API method ListNodeFibreChannelPortInfo (in the SolidFire API Guide).
-    :param firmware: [required] The version of the firmware installed on the Fibre Channel port. 
-    :type firmware: str
-    
-    :param hba_port: [required] The ID of the individual HBA port. 
-    :type hba_port: int
-    
-    :param model: [required] Model of the HBA on the port. 
-    :type model: str
-    
-    :param n_port_id: [required] Unique SolidFire port node ID. 
-    :type n_port_id: str
-    
-    :param pci_slot: [required] Slot in which the pci card resides on the Fibre Channel node hardware. 
-    :type pci_slot: int
-    
-    :param serial: [required] Serial number on the Fibre Channel port. 
-    :type serial: str
-    
-    :param speed: [required] Speed of the HBA on the port. 
-    :type speed: str
-    
-    :param state: [required] Possible values: <br/><br/> <strong>Unknown<br/>NotPresent<br/>Online<br/>Offline<br/>Blocked<br/>Bypassed<br/>Diagnostics<br/>Linkdown<br/>Error<br/>Loopback<br/>Deleted</strong> 
-    :type state: str
-    
-    :param switch_wwn: [required] The World Wide Name of the Fibre Channel switch port. 
-    :type switch_wwn: str
-    
-    :param wwnn: [required] World Wide Node Name of the HBA node. 
-    :type wwnn: str
-    
-    :param wwpn: [required] World Wide Port Name assigned to the physical port of the HBA. 
-    :type wwpn: str
-    """
-    firmware = data_model.property(
-        "firmware", str,
-        array=False, optional=False,
-        documentation="The version of the firmware installed on the Fibre Channel port.",
-        dictionaryType=None
-    )
-    hba_port = data_model.property(
-        "hbaPort", int,
-        array=False, optional=False,
-        documentation="The ID of the individual HBA port.",
-        dictionaryType=None
-    )
-    model = data_model.property(
-        "model", str,
-        array=False, optional=False,
-        documentation="Model of the HBA on the port.",
-        dictionaryType=None
-    )
-    n_port_id = data_model.property(
-        "nPortID", str,
-        array=False, optional=False,
-        documentation="Unique SolidFire port node ID.",
-        dictionaryType=None
-    )
-    pci_slot = data_model.property(
-        "pciSlot", int,
-        array=False, optional=False,
-        documentation="Slot in which the pci card resides on the Fibre Channel node hardware.",
-        dictionaryType=None
-    )
-    serial = data_model.property(
-        "serial", str,
-        array=False, optional=False,
-        documentation="Serial number on the Fibre Channel port.",
-        dictionaryType=None
-    )
-    speed = data_model.property(
-        "speed", str,
-        array=False, optional=False,
-        documentation="Speed of the HBA on the port.",
-        dictionaryType=None
-    )
-    state = data_model.property(
-        "state", str,
-        array=False, optional=False,
-        documentation="[&#x27;Possible values:&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;strong&gt;Unknown&lt;br/&gt;NotPresent&lt;br/&gt;Online&lt;br/&gt;Offline&lt;br/&gt;Blocked&lt;br/&gt;Bypassed&lt;br/&gt;Diagnostics&lt;br/&gt;Linkdown&lt;br/&gt;Error&lt;br/&gt;Loopback&lt;br/&gt;Deleted&lt;/strong&gt;&#x27;]",
-        dictionaryType=None
-    )
-    switch_wwn = data_model.property(
-        "switchWwn", str,
-        array=False, optional=False,
-        documentation="The World Wide Name of the Fibre Channel switch port.",
-        dictionaryType=None
-    )
-    wwnn = data_model.property(
-        "wwnn", str,
-        array=False, optional=False,
-        documentation="World Wide Node Name of the HBA node.",
-        dictionaryType=None
-    )
-    wwpn = data_model.property(
-        "wwpn", str,
-        array=False, optional=False,
-        documentation="World Wide Port Name assigned to the physical port of the HBA.",
         dictionaryType=None
     )
 
