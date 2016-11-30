@@ -700,264 +700,6 @@ class GetHardwareInfoResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class DriveStats(data_model.DataObject):
-    """
-    :param active_sessions: [required] 
-    :type active_sessions: int
-    
-    :param drive_id:  
-    :type drive_id: int
-    
-    :param failed_die_count: [required] 
-    :type failed_die_count: int
-    
-    :param life_remaining_percent: [required] 
-    :type life_remaining_percent: int
-    
-    :param lifetime_read_bytes: [required] 
-    :type lifetime_read_bytes: int
-    
-    :param lifetime_write_bytes: [required] 
-    :type lifetime_write_bytes: int
-    
-    :param power_on_hours: [required] 
-    :type power_on_hours: int
-    
-    :param read_bytes: [required] 
-    :type read_bytes: int
-    
-    :param read_ops: [required] 
-    :type read_ops: int
-    
-    :param reallocated_sectors: [required] 
-    :type reallocated_sectors: int
-    
-    :param reserve_capacity_percent: [required] 
-    :type reserve_capacity_percent: int
-    
-    :param timestamp: [required] 
-    :type timestamp: str
-    
-    :param total_capacity: [required] 
-    :type total_capacity: int
-    
-    :param used_capacity:  
-    :type used_capacity: int
-    
-    :param used_memory: [required] 
-    :type used_memory: int
-    
-    :param write_bytes: [required] 
-    :type write_bytes: int
-    
-    :param write_ops: [required] 
-    :type write_ops: int
-    """
-    active_sessions = data_model.property(
-        "activeSessions", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    drive_id = data_model.property(
-        "driveID", int,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    failed_die_count = data_model.property(
-        "failedDieCount", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    life_remaining_percent = data_model.property(
-        "lifeRemainingPercent", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    lifetime_read_bytes = data_model.property(
-        "lifetimeReadBytes", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    lifetime_write_bytes = data_model.property(
-        "lifetimeWriteBytes", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    power_on_hours = data_model.property(
-        "powerOnHours", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    read_bytes = data_model.property(
-        "readBytes", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    read_ops = data_model.property(
-        "readOps", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    reallocated_sectors = data_model.property(
-        "reallocatedSectors", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    reserve_capacity_percent = data_model.property(
-        "reserveCapacityPercent", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    timestamp = data_model.property(
-        "timestamp", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    total_capacity = data_model.property(
-        "totalCapacity", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    used_capacity = data_model.property(
-        "usedCapacity", int,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    used_memory = data_model.property(
-        "usedMemory", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    write_bytes = data_model.property(
-        "writeBytes", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    write_ops = data_model.property(
-        "writeOps", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListDriveStatsResult(data_model.DataObject):
-    """
-    :param drive_stats: [required] List of drive activity information for each drive. 
-    :type drive_stats: DriveStats
-    
-    :param errors: [required] If there are errors retrieving information about a drive, this list contains the driveID and associated error message. Always present, and empty if there are no errors. 
-    :type errors: dict
-    """
-    drive_stats = data_model.property(
-        "driveStats", DriveStats,
-        array=True, optional=False,
-        documentation="List of drive activity information for each drive.",
-        dictionaryType=None
-    )
-    errors = data_model.property(
-        "errors", dict,
-        array=True, optional=False,
-        documentation="If there are errors retrieving information about a drive, this list contains the driveID and associated error message. Always present, and empty if there are no errors.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class VirtualVolumeHost(data_model.DataObject):
-    """
-    :param virtual_volume_host_id: [required] 
-    :type virtual_volume_host_id: UUID
-    
-    :param cluster_id: [required] 
-    :type cluster_id: UUID
-    
-    :param visible_protocol_endpoint_ids: [required] 
-    :type visible_protocol_endpoint_ids: UUID
-    
-    :param bindings: [required] 
-    :type bindings: int
-    
-    :param initiator_names: [required] 
-    :type initiator_names: str
-    
-    :param host_address: [required] 
-    :type host_address: str
-    """
-    virtual_volume_host_id = data_model.property(
-        "virtualVolumeHostID", UUID,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    cluster_id = data_model.property(
-        "clusterID", UUID,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    visible_protocol_endpoint_ids = data_model.property(
-        "visibleProtocolEndpointIDs", UUID,
-        array=True, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    bindings = data_model.property(
-        "bindings", int,
-        array=True, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    initiator_names = data_model.property(
-        "initiatorNames", str,
-        array=True, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    host_address = data_model.property(
-        "hostAddress", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListVirtualVolumeHostsResult(data_model.DataObject):
-    """
-    :param hosts: [required] List of known ESX hosts. 
-    :type hosts: VirtualVolumeHost
-    """
-    hosts = data_model.property(
-        "hosts", VirtualVolumeHost,
-        array=True, optional=False,
-        documentation="List of known ESX hosts.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class VolumeQOS(data_model.DataObject):
     """
     Quality of Service (QoS) Result values are used on SolidFire volumes to provision performance expectations.
@@ -1349,6 +1091,96 @@ class Volume(data_model.DataObject):
         "attributes", dict,
         array=False, optional=False,
         documentation="List of Name/Value pairs in JSON object format.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListVolumesResult(data_model.DataObject):
+    """
+    :param volumes: [required] List of volumes. 
+    :type volumes: Volume
+    """
+    volumes = data_model.property(
+        "volumes", Volume,
+        array=True, optional=False,
+        documentation="List of volumes.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class VirtualVolumeHost(data_model.DataObject):
+    """
+    :param virtual_volume_host_id: [required] 
+    :type virtual_volume_host_id: UUID
+    
+    :param cluster_id: [required] 
+    :type cluster_id: UUID
+    
+    :param visible_protocol_endpoint_ids: [required] 
+    :type visible_protocol_endpoint_ids: UUID
+    
+    :param bindings: [required] 
+    :type bindings: int
+    
+    :param initiator_names: [required] 
+    :type initiator_names: str
+    
+    :param host_address: [required] 
+    :type host_address: str
+    """
+    virtual_volume_host_id = data_model.property(
+        "virtualVolumeHostID", UUID,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    cluster_id = data_model.property(
+        "clusterID", UUID,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    visible_protocol_endpoint_ids = data_model.property(
+        "visibleProtocolEndpointIDs", UUID,
+        array=True, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    bindings = data_model.property(
+        "bindings", int,
+        array=True, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    initiator_names = data_model.property(
+        "initiatorNames", str,
+        array=True, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    host_address = data_model.property(
+        "hostAddress", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListVirtualVolumeHostsResult(data_model.DataObject):
+    """
+    :param hosts: [required] List of known ESX hosts. 
+    :type hosts: VirtualVolumeHost
+    """
+    hosts = data_model.property(
+        "hosts", VirtualVolumeHost,
+        array=True, optional=False,
+        documentation="List of known ESX hosts.",
         dictionaryType=None
     )
 
@@ -1839,21 +1671,6 @@ class AddVolumesToVolumeAccessGroupRequest(data_model.DataObject):
         "volumes", int,
         array=True, optional=False,
         documentation="[&#x27;List of volumes to add to this volume access group.&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListVolumesForAccountResult(data_model.DataObject):
-    """
-    :param volumes: [required] List of volumes. 
-    :type volumes: Volume
-    """
-    volumes = data_model.property(
-        "volumes", Volume,
-        array=True, optional=False,
-        documentation="List of volumes.",
         dictionaryType=None
     )
 
@@ -2446,15 +2263,377 @@ class StorageContainer(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ModifyStorageContainerResult(data_model.DataObject):
+class Snapshot(data_model.DataObject):
     """
+    Snapshots is an object containing information about each snapshot made for a volume.
+    The return object includes information for the active snapshot as well as each snapshot created for the volume.
+    :param snapshot_id: [required] Unique ID for this snapshot. 
+    :type snapshot_id: int
+    
+    :param volume_id: [required] The volume this snapshot was taken of. 
+    :type volume_id: int
+    
+    :param name: [required] A name for this snapshot. It is not necessarily unique. 
+    :type name: str
+    
+    :param checksum: [required] A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. 
+    :type checksum: str
+    
+    :param enable_remote_replication: [required] Identifies if snapshot is enabled for remote replication. 
+    :type enable_remote_replication: bool
+    
+    :param expiration_reason: [required] Indicates how the snapshot expiration was set. Possible values: <br/><b>api</b>: expiration time was set by using the API. <br/><b>none</b>: there is no expiration time set. <br/><b>test</b>: expiration time was set for testing. 
+    :type expiration_reason: str
+    
+    :param expiration_time: [required] The time at which this snapshot will expire and be purged from the cluster. 
+    :type expiration_time: str
+    
+    :param remote_statuses: [required] Current remote status of the snapshot remoteStatus: Possible values: <br/><b>Present</b>: Snapshot exists on a remote cluster <br/><b>Not Present</b>: Snapshot does not exist on remote cluster <br/><b>Syncing</b>: This is a target cluster and it is currently replicating the snapshot <br/><b>Deleted</b>: This is a target cluster, the snapshot has been deleted, and it still exists on the source. <br/><b>volumePairUUID</b>: universal identifier of the volume pair 
+    :type remote_statuses: str
+    
+    :param status: [required] Current status of the snapshot <br/><b>Preparing</b>: A snapshot that is being prepared for use and is not yet writable. <br/><b>Done</b>: A snapshot that has finished being prepared and is now usable. <br/><b>Active</b>: This snapshot is the active branch. 
+    :type status: str
+    
+    :param snapshot_uuid: [required] Universal Unique ID of an existing snapshot. 
+    :type snapshot_uuid: UUID
+    
+    :param total_size: [required] Total size of this snapshot in bytes. It is equivalent to totalSize of the volume when this snapshot was taken. 
+    :type total_size: int
+    
+    :param group_id:  If present, the ID of the group this snapshot is a part of. If not present, this snapshot is not part of a group. 
+    :type group_id: int
+    
+    :param group_snapshot_uuid: [required] The current "members" results contains information about each snapshot in the group. Each of these members will have a "uuid" parameter for the snapshot's UUID. 
+    :type group_snapshot_uuid: UUID
+    
+    :param create_time: [required] The time this snapshot was taken. 
+    :type create_time: str
+    
+    :param attributes: [required] List of Name/Value pairs in JSON object format. 
+    :type attributes: dict
+    """
+    snapshot_id = data_model.property(
+        "snapshotID", int,
+        array=False, optional=False,
+        documentation="Unique ID for this snapshot.",
+        dictionaryType=None
+    )
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="The volume this snapshot was taken of.",
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="[&#x27;A name for this snapshot.&#x27;, &#x27;It is not necessarily unique.&#x27;]",
+        dictionaryType=None
+    )
+    checksum = data_model.property(
+        "checksum", str,
+        array=False, optional=False,
+        documentation="[&#x27;A string that represents the correct digits in the stored snapshot.&#x27;, &#x27;This checksum can be used later to compare other snapshots to detect errors in the data.&#x27;]",
+        dictionaryType=None
+    )
+    enable_remote_replication = data_model.property(
+        "enableRemoteReplication", bool,
+        array=False, optional=False,
+        documentation="Identifies if snapshot is enabled for remote replication.",
+        dictionaryType=None
+    )
+    expiration_reason = data_model.property(
+        "expirationReason", str,
+        array=False, optional=False,
+        documentation="[&#x27;Indicates how the snapshot expiration was set. Possible values:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;api&lt;/b&gt;: expiration time was set by using the API.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;none&lt;/b&gt;: there is no expiration time set.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;test&lt;/b&gt;: expiration time was set for testing.&#x27;]",
+        dictionaryType=None
+    )
+    expiration_time = data_model.property(
+        "expirationTime", str,
+        array=False, optional=False,
+        documentation="The time at which this snapshot will expire and be purged from the cluster.",
+        dictionaryType=None
+    )
+    remote_statuses = data_model.property(
+        "remoteStatuses", str,
+        array=False, optional=False,
+        documentation="[&#x27;Current remote status of the snapshot remoteStatus: Possible values:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;Present&lt;/b&gt;: Snapshot exists on a remote cluster&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;Not Present&lt;/b&gt;: Snapshot does not exist on remote cluster&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;Syncing&lt;/b&gt;: This is a target cluster and it is currently replicating the snapshot&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;Deleted&lt;/b&gt;: This is a target cluster, the snapshot has been deleted, and it still exists on the source.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;volumePairUUID&lt;/b&gt;: universal identifier of the volume pair&#x27;]",
+        dictionaryType=None
+    )
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation="[&#x27;Current status of the snapshot&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;Preparing&lt;/b&gt;: A snapshot that is being prepared for use and is not yet writable.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;Done&lt;/b&gt;: A snapshot that has finished being prepared and is now usable.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;Active&lt;/b&gt;: This snapshot is the active branch.&#x27;]",
+        dictionaryType=None
+    )
+    snapshot_uuid = data_model.property(
+        "snapshotUUID", UUID,
+        array=False, optional=False,
+        documentation="Universal Unique ID of an existing snapshot.",
+        dictionaryType=None
+    )
+    total_size = data_model.property(
+        "totalSize", int,
+        array=False, optional=False,
+        documentation="[&#x27;Total size of this snapshot in bytes.&#x27;, &#x27;It is equivalent to totalSize of the volume when this snapshot was taken.&#x27;]",
+        dictionaryType=None
+    )
+    group_id = data_model.property(
+        "groupID", int,
+        array=False, optional=True,
+        documentation="[&#x27;If present, the ID of the group this snapshot is a part of.&#x27;, &#x27;If not present, this snapshot is not part of a group.&#x27;]",
+        dictionaryType=None
+    )
+    group_snapshot_uuid = data_model.property(
+        "groupSnapshotUUID", UUID,
+        array=False, optional=False,
+        documentation="[&#x27;The current &quot;members&quot; results contains information about each snapshot in the group.&#x27;, &#x27;Each of these members will have a &quot;uuid&quot; parameter for the snapshot\&#x27;s UUID.&#x27;]",
+        dictionaryType=None
+    )
+    create_time = data_model.property(
+        "createTime", str,
+        array=False, optional=False,
+        documentation="The time this snapshot was taken.",
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=False,
+        documentation="List of Name/Value pairs in JSON object format.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class VirtualVolumeInfo(data_model.DataObject):
+    """
+    :param virtual_volume_id: [required] 
+    :type virtual_volume_id: UUID
+    
+    :param parent_virtual_volume_id: [required] 
+    :type parent_virtual_volume_id: UUID
+    
+    :param storage_container_id: [required] 
+    :type storage_container_id: UUID
+    
     :param storage_container: [required] 
     :type storage_container: StorageContainer
+    
+    :param volume_id: [required] 
+    :type volume_id: int
+    
+    :param snapshot_id: [required] 
+    :type snapshot_id: int
+    
+    :param virtual_volume_type: [required] 
+    :type virtual_volume_type: str
+    
+    :param status: [required] 
+    :type status: str
+    
+    :param bindings: [required] 
+    :type bindings: int
+    
+    :param children: [required] 
+    :type children: UUID
+    
+    :param metadata: [required] 
+    :type metadata: dict
+    
+    :param snapshot_info: [required] 
+    :type snapshot_info: Snapshot
+    
+    :param volume_info: [required] 
+    :type volume_info: Volume
     """
+    virtual_volume_id = data_model.property(
+        "virtualVolumeID", UUID,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    parent_virtual_volume_id = data_model.property(
+        "parentVirtualVolumeID", UUID,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    storage_container_id = data_model.property(
+        "storageContainerID", UUID,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
     storage_container = data_model.property(
         "storageContainer", StorageContainer,
         array=False, optional=False,
         documentation="",
+        dictionaryType=None
+    )
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    snapshot_id = data_model.property(
+        "snapshotID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    virtual_volume_type = data_model.property(
+        "virtualVolumeType", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    bindings = data_model.property(
+        "bindings", int,
+        array=True, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    children = data_model.property(
+        "children", UUID,
+        array=True, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    metadata = data_model.property(
+        "metadata", dict,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    snapshot_info = data_model.property(
+        "snapshotInfo", Snapshot,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    volume_info = data_model.property(
+        "volumeInfo", Volume,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class VirtualVolumeBinding(data_model.DataObject):
+    """
+    :param protocol_endpoint_id: [required] The unique ID of the protocol endpoint. 
+    :type protocol_endpoint_id: UUID
+    
+    :param protocol_endpoint_in_band_id: [required] The scsiNAADeviceID of the protocol endpoint. For more information, see protocolEndpoint. 
+    :type protocol_endpoint_in_band_id: str
+    
+    :param protocol_endpoint_type: [required] The type of protocol endpoint. SCSI is the only value returned for the protocol endpoint type. 
+    :type protocol_endpoint_type: str
+    
+    :param virtual_volume_binding_id: [required] The unique ID of the virtual volume binding object. 
+    :type virtual_volume_binding_id: int
+    
+    :param virtual_volume_host_id: [required] The unique ID of the virtual volume host. 
+    :type virtual_volume_host_id: UUID
+    
+    :param virtual_volume_id: [required] The unique ID of the virtual volume. 
+    :type virtual_volume_id: UUID
+    
+    :param virtual_volume_secondary_id: [required] The secondary ID of the virtual volume. 
+    :type virtual_volume_secondary_id: str
+    
+    :param virtual_volume: [required] An object describing the bound volume or snapshot. 
+    :type virtual_volume: VirtualVolumeInfo
+    
+    :param protocol_endpoint: [required] An object describing the protocol endpoint to which the virtual volume is bound. 
+    :type protocol_endpoint: UUID
+    
+    :param virtual_volume_host: [required] An object describing the host to which this binding corresponds. 
+    :type virtual_volume_host: VirtualVolumeHost
+    """
+    protocol_endpoint_id = data_model.property(
+        "protocolEndpointID", UUID,
+        array=False, optional=False,
+        documentation="The unique ID of the protocol endpoint.",
+        dictionaryType=None
+    )
+    protocol_endpoint_in_band_id = data_model.property(
+        "protocolEndpointInBandID", str,
+        array=False, optional=False,
+        documentation="The scsiNAADeviceID of the protocol endpoint. For more information, see protocolEndpoint.",
+        dictionaryType=None
+    )
+    protocol_endpoint_type = data_model.property(
+        "protocolEndpointType", str,
+        array=False, optional=False,
+        documentation="The type of protocol endpoint. SCSI is the only value returned for the protocol endpoint type.",
+        dictionaryType=None
+    )
+    virtual_volume_binding_id = data_model.property(
+        "virtualVolumeBindingID", int,
+        array=False, optional=False,
+        documentation="The unique ID of the virtual volume binding object.",
+        dictionaryType=None
+    )
+    virtual_volume_host_id = data_model.property(
+        "virtualVolumeHostID", UUID,
+        array=False, optional=False,
+        documentation="The unique ID of the virtual volume host.",
+        dictionaryType=None
+    )
+    virtual_volume_id = data_model.property(
+        "virtualVolumeID", UUID,
+        array=False, optional=False,
+        documentation="The unique ID of the virtual volume.",
+        dictionaryType=None
+    )
+    virtual_volume_secondary_id = data_model.property(
+        "virtualVolumeSecondaryID", str,
+        array=False, optional=False,
+        documentation="The secondary ID of the virtual volume.",
+        dictionaryType=None
+    )
+    virtual_volume = data_model.property(
+        "virtualVolume", VirtualVolumeInfo,
+        array=False, optional=False,
+        documentation="An object describing the bound volume or snapshot.",
+        dictionaryType=None
+    )
+    protocol_endpoint = data_model.property(
+        "protocolEndpoint", UUID,
+        array=False, optional=False,
+        documentation="An object describing the protocol endpoint to which the virtual volume is bound.",
+        dictionaryType=None
+    )
+    virtual_volume_host = data_model.property(
+        "virtualVolumeHost", VirtualVolumeHost,
+        array=False, optional=False,
+        documentation="An object describing the host to which this binding corresponds.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListVirtualVolumeBindingsResult(data_model.DataObject):
+    """
+    :param bindings: [required] Describes the VVol <-> Host binding. 
+    :type bindings: VirtualVolumeBinding
+    """
+    bindings = data_model.property(
+        "bindings", VirtualVolumeBinding,
+        array=True, optional=False,
+        documentation="Describes the VVol &lt;-&gt; Host binding.",
         dictionaryType=None
     )
 
@@ -4456,44 +4635,23 @@ class GetAPIResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class RollbackToGroupSnapshotRequest(data_model.DataObject):
+class ListVolumeStatsRequest(data_model.DataObject):
     """
-    :param group_snapshot_id: [required] Unique ID of the group snapshot. 
-    :type group_snapshot_id: int
-    
-    :param save_current_state: [required] <br/><b>true</b>: The previous active volume image is kept. <br/><b>false</b>: (default) The previous active volume image is deleted. 
-    :type save_current_state: bool
-    
-    :param name:  Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with  "-copy" appended to the end of the name. 
-    :type name: str
-    
-    :param attributes:  List of Name/Value pairs in JSON object format 
-    :type attributes: dict
+    :param volume_ids:  
+    :type volume_ids: int
     """
-    group_snapshot_id = data_model.property(
-        "groupSnapshotID", int,
-        array=False, optional=False,
-        documentation="[&#x27;Unique ID of the group snapshot.&#x27;]",
+    volume_ids = data_model.property(
+        "volumeIDs", int,
+        array=True, optional=True,
+        documentation="",
         dictionaryType=None
     )
-    save_current_state = data_model.property(
-        "saveCurrentState", bool,
-        array=False, optional=False,
-        documentation="[&#x27;&lt;br/&gt;&lt;b&gt;true&lt;/b&gt;: The previous active volume image is kept.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;false&lt;/b&gt;: (default) The previous active volume image is deleted.&#x27;]",
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=True,
-        documentation="[&#x27;Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with &#x27;, &#x27;&quot;-copy&quot; appended to the end of the name.&#x27;]",
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format&#x27;]",
-        dictionaryType=None
-    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class DeleteSnapshotResult(data_model.DataObject):
+    """"""
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -4510,53 +4668,8 @@ class PurgeDeletedVolumesResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVirtualVolumesRequest(data_model.DataObject):
-    """
-    :param details:  Possible values:true: Include more details about each VVOL in the response.false: Include the standard level of detail about each VVOL in the response. 
-    :type details: bool
-    
-    :param limit:  The maximum number of virtual volumes to list. 
-    :type limit: int
-    
-    :param recursive:  Possible values:true: Include information about the children of each VVOL in the response.false: Do not include information about the children of each VVOL in the response. 
-    :type recursive: bool
-    
-    :param start_virtual_volume_id:  The ID of the virtual volume at which to begin the list. 
-    :type start_virtual_volume_id: UUID
-    
-    :param virtual_volume_ids:  A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
-    :type virtual_volume_ids: UUID
-    """
-    details = data_model.property(
-        "details", bool,
-        array=False, optional=True,
-        documentation="Possible values:true: Include more details about each VVOL in the response.false: Include the standard level of detail about each VVOL in the response.",
-        dictionaryType=None
-    )
-    limit = data_model.property(
-        "limit", int,
-        array=False, optional=True,
-        documentation="The maximum number of virtual volumes to list.",
-        dictionaryType=None
-    )
-    recursive = data_model.property(
-        "recursive", bool,
-        array=False, optional=True,
-        documentation="Possible values:true: Include information about the children of each VVOL in the response.false: Do not include information about the children of each VVOL in the response.",
-        dictionaryType=None
-    )
-    start_virtual_volume_id = data_model.property(
-        "startVirtualVolumeID", UUID,
-        array=False, optional=True,
-        documentation="The ID of the virtual volume at which to begin the list.",
-        dictionaryType=None
-    )
-    virtual_volume_ids = data_model.property(
-        "virtualVolumeIDs", UUID,
-        array=True, optional=True,
-        documentation="A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes.",
-        dictionaryType=None
-    )
+class DeleteGroupSnapshotResult(data_model.DataObject):
+    """"""
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -4804,8 +4917,53 @@ class GetBackupTargetRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class DeleteGroupSnapshotResult(data_model.DataObject):
-    """"""
+class ListVirtualVolumesRequest(data_model.DataObject):
+    """
+    :param details:  Possible values:true: Include more details about each VVOL in the response.false: Include the standard level of detail about each VVOL in the response. 
+    :type details: bool
+    
+    :param limit:  The maximum number of virtual volumes to list. 
+    :type limit: int
+    
+    :param recursive:  Possible values:true: Include information about the children of each VVOL in the response.false: Do not include information about the children of each VVOL in the response. 
+    :type recursive: bool
+    
+    :param start_virtual_volume_id:  The ID of the virtual volume at which to begin the list. 
+    :type start_virtual_volume_id: UUID
+    
+    :param virtual_volume_ids:  A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
+    :type virtual_volume_ids: UUID
+    """
+    details = data_model.property(
+        "details", bool,
+        array=False, optional=True,
+        documentation="Possible values:true: Include more details about each VVOL in the response.false: Include the standard level of detail about each VVOL in the response.",
+        dictionaryType=None
+    )
+    limit = data_model.property(
+        "limit", int,
+        array=False, optional=True,
+        documentation="The maximum number of virtual volumes to list.",
+        dictionaryType=None
+    )
+    recursive = data_model.property(
+        "recursive", bool,
+        array=False, optional=True,
+        documentation="Possible values:true: Include information about the children of each VVOL in the response.false: Do not include information about the children of each VVOL in the response.",
+        dictionaryType=None
+    )
+    start_virtual_volume_id = data_model.property(
+        "startVirtualVolumeID", UUID,
+        array=False, optional=True,
+        documentation="The ID of the virtual volume at which to begin the list.",
+        dictionaryType=None
+    )
+    virtual_volume_ids = data_model.property(
+        "virtualVolumeIDs", UUID,
+        array=True, optional=True,
+        documentation="A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes.",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -4955,8 +5113,17 @@ class GetScheduleResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class DeleteSnapshotResult(data_model.DataObject):
-    """"""
+class ModifyInitiatorsRequest(data_model.DataObject):
+    """
+    :param initiators: [required] A list of Initiator objects containing characteristics of each initiator to modify. 
+    :type initiators: ModifyInitiator
+    """
+    initiators = data_model.property(
+        "initiators", ModifyInitiator,
+        array=True, optional=False,
+        documentation="[&#x27;A list of Initiator objects containing characteristics of each initiator to modify.&#x27;]",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -4973,8 +5140,17 @@ class SetSnmpInfoResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class DeleteStorageContainerResult(data_model.DataObject):
-    """"""
+class CreateScheduleRequest(data_model.DataObject):
+    """
+    :param schedule: [required] The "Schedule" object will be used to create a new schedule.<br/> Do not set ScheduleID property, it will be ignored.<br/> Frequency property must be of type that inherits from Frequency. Valid types are:<br/> DaysOfMonthFrequency<br/> DaysOrWeekFrequency<br/> TimeIntervalFrequency 
+    :type schedule: Schedule
+    """
+    schedule = data_model.property(
+        "schedule", Schedule,
+        array=False, optional=False,
+        documentation="[&#x27;The &quot;Schedule&quot; object will be used to create a new schedule.&lt;br/&gt;&#x27;, &#x27;Do not set ScheduleID property, it will be ignored.&lt;br/&gt;&#x27;, &#x27;Frequency property must be of type that inherits from Frequency. Valid types are:&lt;br/&gt;&#x27;, &#x27;DaysOfMonthFrequency&lt;br/&gt;&#x27;, &#x27;DaysOrWeekFrequency&lt;br/&gt;&#x27;, &#x27;TimeIntervalFrequency&#x27;]",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -5180,19 +5356,10 @@ class ListVirtualVolumeTasksRequest(data_model.DataObject):
     """
     :param virtual_volume_task_ids:  
     :type virtual_volume_task_ids: UUID
-    
-    :param calling_virtual_volume_host_id:  
-    :type calling_virtual_volume_host_id: UUID
     """
     virtual_volume_task_ids = data_model.property(
         "virtualVolumeTaskIDs", UUID,
         array=True, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    calling_virtual_volume_host_id = data_model.property(
-        "callingVirtualVolumeHostID", UUID,
-        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -5384,6 +5551,21 @@ class GetLdapConfigurationResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class ListVolumeStatsByVirtualVolumeRequest(data_model.DataObject):
+    """
+    :param virtual_volume_ids:  A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
+    :type virtual_volume_ids: UUID
+    """
+    virtual_volume_ids = data_model.property(
+        "virtualVolumeIDs", UUID,
+        array=True, optional=True,
+        documentation="A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class CloneVolumeResult(data_model.DataObject):
     """
     :param clone_id: [required] The ID of the newly-created clone. 
@@ -5492,91 +5674,6 @@ class CloneMultipleVolumeParams(data_model.DataObject):
         "attributes", dict,
         array=False, optional=True,
         documentation="List of Name/Value pairs in JSON object format.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class SnmpNetwork(data_model.DataObject):
-    """
-    The SNMP network object contains information about SNMP configuration for the cluster nodes. SNMP v3 is supported on SolidFire clusters.
-    :param access: [required] <br/><b>ro</b>: read-only access.* <br/><b>rw</b>: for read-write access. <br/><b>rosys</b>: for read-only access to a restricted set of system information *SolidFire recommends that all networks other than the default "localhost" be set to "ro" access, because all SolidFire MIB objects are read-only. 
-    :type access: str
-    
-    :param cidr: [required] A CIDR network mask. This network mask must be an integer greater than or equal to 0, and less than or equal to 32. It must also not be equal to 31. 
-    :type cidr: int
-    
-    :param community: [required] SNMP community string. 
-    :type community: str
-    
-    :param network: [required] This parameter along with the cidr variable is used to control which network the access and community string apply to. The special value of "default" is used to specify an entry that applies to all networks. The cidr mask is ignored when network value is either a host name or default. 
-    :type network: str
-    """
-    access = data_model.property(
-        "access", str,
-        array=False, optional=False,
-        documentation="[&#x27;&lt;br/&gt;&lt;b&gt;ro&lt;/b&gt;: read-only access.*&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;rw&lt;/b&gt;: for read-write access.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;rosys&lt;/b&gt;: for read-only access to a restricted set of system information&#x27;, &#x27;*SolidFire recommends that all networks other than the default &quot;localhost&quot; be set to &quot;ro&quot; access, because all SolidFire MIB objects are read-only.&#x27;]",
-        dictionaryType=None
-    )
-    cidr = data_model.property(
-        "cidr", int,
-        array=False, optional=False,
-        documentation="[&#x27;A CIDR network mask. This network mask must be an integer greater than or equal to 0, and less than or equal to 32. It must also not be equal to 31.&#x27;]",
-        dictionaryType=None
-    )
-    community = data_model.property(
-        "community", str,
-        array=False, optional=False,
-        documentation="[&#x27;SNMP community string.&#x27;]",
-        dictionaryType=None
-    )
-    network = data_model.property(
-        "network", str,
-        array=False, optional=False,
-        documentation="[&#x27;This parameter along with the cidr variable is used to control which network the access and community string apply to. The special value of &quot;default&quot; is used to specify an entry that applies to all networks. The cidr mask is ignored when network value is either a host name or default.&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class SetSnmpInfoRequest(data_model.DataObject):
-    """
-    :param networks:  List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. SNMP v2 only. 
-    :type networks: SnmpNetwork
-    
-    :param enabled:  If set to "true", then SNMP is enabled on each node in the cluster. 
-    :type enabled: bool
-    
-    :param snmp_v3_enabled:  If set to "true", then SNMP v3 is enabled on each node in the cluster. 
-    :type snmp_v3_enabled: bool
-    
-    :param usm_users:  If SNMP v3 is enabled, this value must be passed in place of the "networks" parameter. SNMP v3 only. 
-    :type usm_users: SnmpV3UsmUser
-    """
-    networks = data_model.property(
-        "networks", SnmpNetwork,
-        array=True, optional=True,
-        documentation="List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible &quot;networks&quot; values. SNMP v2 only.",
-        dictionaryType=None
-    )
-    enabled = data_model.property(
-        "enabled", bool,
-        array=False, optional=True,
-        documentation="If set to &quot;true&quot;, then SNMP is enabled on each node in the cluster.",
-        dictionaryType=None
-    )
-    snmp_v3_enabled = data_model.property(
-        "snmpV3Enabled", bool,
-        array=False, optional=True,
-        documentation="If set to &quot;true&quot;, then SNMP v3 is enabled on each node in the cluster.",
-        dictionaryType=None
-    )
-    usm_users = data_model.property(
-        "usmUsers", SnmpV3UsmUser,
-        array=True, optional=True,
-        documentation="If SNMP v3 is enabled, this value must be passed in place of the &quot;networks&quot; parameter. SNMP v3 only.",
         dictionaryType=None
     )
 
@@ -6100,15 +6197,69 @@ class ModifySnapshotRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class AddVirtualNetworkResult(data_model.DataObject):
+class ModifyVolumeAccessGroupRequest(data_model.DataObject):
     """
-    :param virtual_network_id: [required] The virtual network ID of the new virtual network. 
+    :param volume_access_group_id: [required] The ID of the volume access group to modify. 
+    :type volume_access_group_id: int
+    
+    :param virtual_network_id:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
     :type virtual_network_id: int
+    
+    :param virtual_network_tags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
+    :type virtual_network_tags: int
+    
+    :param name:  Name of the volume access group. It is not required to be unique, but recommended. 
+    :type name: str
+    
+    :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group's configured initiators will not be modified. 
+    :type initiators: str
+    
+    :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group's volumes will not be modified. 
+    :type volumes: int
+    
+    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :type attributes: dict
     """
+    volume_access_group_id = data_model.property(
+        "volumeAccessGroupID", int,
+        array=False, optional=False,
+        documentation="The ID of the volume access group to modify.",
+        dictionaryType=None
+    )
     virtual_network_id = data_model.property(
         "virtualNetworkID", int,
-        array=False, optional=False,
-        documentation="The virtual network ID of the new virtual network.",
+        array=True, optional=True,
+        documentation="The ID of the SolidFire Virtual Network ID to associate the volume access group with.",
+        dictionaryType=None
+    )
+    virtual_network_tags = data_model.property(
+        "virtualNetworkTags", int,
+        array=True, optional=True,
+        documentation="The ID of the VLAN Virtual Network Tag to associate the volume access group with.",
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=True,
+        documentation="[&#x27;Name of the volume access group.&#x27;, &#x27;It is not required to be unique, but recommended.&#x27;]",
+        dictionaryType=None
+    )
+    initiators = data_model.property(
+        "initiators", str,
+        array=True, optional=True,
+        documentation="[&#x27;List of initiators to include in the volume access group.&#x27;, &quot;If unspecified, the access group&#x27;s configured initiators will not be modified.&quot;]",
+        dictionaryType=None
+    )
+    volumes = data_model.property(
+        "volumes", int,
+        array=True, optional=True,
+        documentation="[&#x27;List of volumes to initially include in the volume access group.&#x27;, &quot;If unspecified, the access group&#x27;s volumes will not be modified.&quot;]",
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="List of Name/Value pairs in JSON object format.",
         dictionaryType=None
     )
 
@@ -6433,6 +6584,49 @@ class ModifyScheduleRequest(data_model.DataObject):
         "schedule", Schedule,
         array=False, optional=False,
         documentation="[&#x27;The &quot;Schedule&quot; object will be used to modify an existing schedule.&lt;br/&gt;&#x27;, &#x27;The ScheduleID property is required.&lt;br/&gt;&#x27;, &#x27;Frequency property must be of type that inherits from Frequency. Valid types are:&lt;br/&gt;&#x27;, &#x27;DaysOfMonthFrequency&lt;br/&gt;&#x27;, &#x27;DaysOrWeekFrequency&lt;br/&gt;&#x27;, &#x27;TimeIntervalFrequency&#x27;]",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class SnmpNetwork(data_model.DataObject):
+    """
+    The SNMP network object contains information about SNMP configuration for the cluster nodes. SNMP v3 is supported on SolidFire clusters.
+    :param access: [required] <br/><b>ro</b>: read-only access.* <br/><b>rw</b>: for read-write access. <br/><b>rosys</b>: for read-only access to a restricted set of system information *SolidFire recommends that all networks other than the default "localhost" be set to "ro" access, because all SolidFire MIB objects are read-only. 
+    :type access: str
+    
+    :param cidr: [required] A CIDR network mask. This network mask must be an integer greater than or equal to 0, and less than or equal to 32. It must also not be equal to 31. 
+    :type cidr: int
+    
+    :param community: [required] SNMP community string. 
+    :type community: str
+    
+    :param network: [required] This parameter along with the cidr variable is used to control which network the access and community string apply to. The special value of "default" is used to specify an entry that applies to all networks. The cidr mask is ignored when network value is either a host name or default. 
+    :type network: str
+    """
+    access = data_model.property(
+        "access", str,
+        array=False, optional=False,
+        documentation="[&#x27;&lt;br/&gt;&lt;b&gt;ro&lt;/b&gt;: read-only access.*&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;rw&lt;/b&gt;: for read-write access.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;rosys&lt;/b&gt;: for read-only access to a restricted set of system information&#x27;, &#x27;*SolidFire recommends that all networks other than the default &quot;localhost&quot; be set to &quot;ro&quot; access, because all SolidFire MIB objects are read-only.&#x27;]",
+        dictionaryType=None
+    )
+    cidr = data_model.property(
+        "cidr", int,
+        array=False, optional=False,
+        documentation="[&#x27;A CIDR network mask. This network mask must be an integer greater than or equal to 0, and less than or equal to 32. It must also not be equal to 31.&#x27;]",
+        dictionaryType=None
+    )
+    community = data_model.property(
+        "community", str,
+        array=False, optional=False,
+        documentation="[&#x27;SNMP community string.&#x27;]",
+        dictionaryType=None
+    )
+    network = data_model.property(
+        "network", str,
+        array=False, optional=False,
+        documentation="[&#x27;This parameter along with the cidr variable is used to control which network the access and community string apply to. The special value of &quot;default&quot; is used to specify an entry that applies to all networks. The cidr mask is ignored when network value is either a host name or default.&#x27;]",
         dictionaryType=None
     )
 
@@ -6920,71 +7114,8 @@ class AddVirtualNetworkRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ModifyVolumeAccessGroupRequest(data_model.DataObject):
-    """
-    :param volume_access_group_id: [required] The ID of the volume access group to modify. 
-    :type volume_access_group_id: int
-    
-    :param virtual_network_id:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
-    :type virtual_network_id: int
-    
-    :param virtual_network_tags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
-    :type virtual_network_tags: int
-    
-    :param name:  Name of the volume access group. It is not required to be unique, but recommended. 
-    :type name: str
-    
-    :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group's configured initiators will not be modified. 
-    :type initiators: str
-    
-    :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group's volumes will not be modified. 
-    :type volumes: int
-    
-    :param attributes:  List of Name/Value pairs in JSON object format. 
-    :type attributes: dict
-    """
-    volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
-        array=False, optional=False,
-        documentation="The ID of the volume access group to modify.",
-        dictionaryType=None
-    )
-    virtual_network_id = data_model.property(
-        "virtualNetworkID", int,
-        array=True, optional=True,
-        documentation="The ID of the SolidFire Virtual Network ID to associate the volume access group with.",
-        dictionaryType=None
-    )
-    virtual_network_tags = data_model.property(
-        "virtualNetworkTags", int,
-        array=True, optional=True,
-        documentation="The ID of the VLAN Virtual Network Tag to associate the volume access group with.",
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=True,
-        documentation="[&#x27;Name of the volume access group.&#x27;, &#x27;It is not required to be unique, but recommended.&#x27;]",
-        dictionaryType=None
-    )
-    initiators = data_model.property(
-        "initiators", str,
-        array=True, optional=True,
-        documentation="[&#x27;List of initiators to include in the volume access group.&#x27;, &quot;If unspecified, the access group&#x27;s configured initiators will not be modified.&quot;]",
-        dictionaryType=None
-    )
-    volumes = data_model.property(
-        "volumes", int,
-        array=True, optional=True,
-        documentation="[&#x27;List of volumes to initially include in the volume access group.&#x27;, &quot;If unspecified, the access group&#x27;s volumes will not be modified.&quot;]",
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="List of Name/Value pairs in JSON object format.",
-        dictionaryType=None
-    )
+class VirtualVolumeNullResult(data_model.DataObject):
+    """"""
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -7094,24 +7225,15 @@ class GetDriveStatsRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVolumeStatsByVirtualVolumeRequest(data_model.DataObject):
+class ListVolumesForAccountResult(data_model.DataObject):
     """
-    :param start_virtual_volume_id:  The ID of the virtual volume at which to begin the list. 
-    :type start_virtual_volume_id: UUID
-    
-    :param virtual_volume_ids:  A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
-    :type virtual_volume_ids: UUID
+    :param volumes: [required] List of volumes. 
+    :type volumes: Volume
     """
-    start_virtual_volume_id = data_model.property(
-        "startVirtualVolumeID", UUID,
-        array=False, optional=True,
-        documentation="The ID of the virtual volume at which to begin the list.",
-        dictionaryType=None
-    )
-    virtual_volume_ids = data_model.property(
-        "virtualVolumeIDs", UUID,
-        array=True, optional=True,
-        documentation="A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes.",
+    volumes = data_model.property(
+        "volumes", Volume,
+        array=True, optional=False,
+        documentation="List of volumes.",
         dictionaryType=None
     )
 
@@ -7181,15 +7303,42 @@ class VirtualVolumeUnsharedChunkResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVirtualVolumeTasksResult(data_model.DataObject):
+class PrepareVirtualSnapshotRequest(data_model.DataObject):
     """
-    :param tasks: [required] List of VVol Async Tasks. 
-    :type tasks: VirtualVolumeTask
+    :param virtual_volume_id: [required] The ID of the Virtual Volume to clone. 
+    :type virtual_volume_id: UUID
+    
+    :param name:  The name for the newly-created volume. 
+    :type name: str
+    
+    :param writable_snapshot:  Will the snapshot be writable? 
+    :type writable_snapshot: bool
+    
+    :param calling_virtual_volume_host_id:  
+    :type calling_virtual_volume_host_id: UUID
     """
-    tasks = data_model.property(
-        "tasks", VirtualVolumeTask,
-        array=True, optional=False,
-        documentation="List of VVol Async Tasks.",
+    virtual_volume_id = data_model.property(
+        "virtualVolumeID", UUID,
+        array=False, optional=False,
+        documentation="The ID of the Virtual Volume to clone.",
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=True,
+        documentation="The name for the newly-created volume.",
+        dictionaryType=None
+    )
+    writable_snapshot = data_model.property(
+        "writableSnapshot", bool,
+        array=False, optional=True,
+        documentation="Will the snapshot be writable?",
+        dictionaryType=None
+    )
+    calling_virtual_volume_host_id = data_model.property(
+        "callingVirtualVolumeHostID", UUID,
+        array=False, optional=True,
+        documentation="",
         dictionaryType=None
     )
 
@@ -7319,13 +7468,13 @@ class ListDrivesResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVolumeStatsRequest(data_model.DataObject):
+class ListVirtualVolumeBindingsRequest(data_model.DataObject):
     """
-    :param volume_ids:  
-    :type volume_ids: int
+    :param virtual_volume_binding_ids:  
+    :type virtual_volume_binding_ids: int
     """
-    volume_ids = data_model.property(
-        "volumeIDs", int,
+    virtual_volume_binding_ids = data_model.property(
+        "virtualVolumeBindingIDs", int,
         array=True, optional=True,
         documentation="",
         dictionaryType=None
@@ -7415,439 +7564,8 @@ class ModifyVolumeResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class Snapshot(data_model.DataObject):
-    """
-    Snapshots is an object containing information about each snapshot made for a volume.
-    The return object includes information for the active snapshot as well as each snapshot created for the volume.
-    :param snapshot_id: [required] Unique ID for this snapshot. 
-    :type snapshot_id: int
-    
-    :param volume_id: [required] The volume this snapshot was taken of. 
-    :type volume_id: int
-    
-    :param name: [required] A name for this snapshot. It is not necessarily unique. 
-    :type name: str
-    
-    :param checksum: [required] A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. 
-    :type checksum: str
-    
-    :param enable_remote_replication: [required] Identifies if snapshot is enabled for remote replication. 
-    :type enable_remote_replication: bool
-    
-    :param expiration_reason: [required] Indicates how the snapshot expiration was set. Possible values: <br/><b>api</b>: expiration time was set by using the API. <br/><b>none</b>: there is no expiration time set. <br/><b>test</b>: expiration time was set for testing. 
-    :type expiration_reason: str
-    
-    :param expiration_time: [required] The time at which this snapshot will expire and be purged from the cluster. 
-    :type expiration_time: str
-    
-    :param remote_statuses: [required] Current remote status of the snapshot remoteStatus: Possible values: <br/><b>Present</b>: Snapshot exists on a remote cluster <br/><b>Not Present</b>: Snapshot does not exist on remote cluster <br/><b>Syncing</b>: This is a target cluster and it is currently replicating the snapshot <br/><b>Deleted</b>: This is a target cluster, the snapshot has been deleted, and it still exists on the source. <br/><b>volumePairUUID</b>: universal identifier of the volume pair 
-    :type remote_statuses: str
-    
-    :param status: [required] Current status of the snapshot <br/><b>Preparing</b>: A snapshot that is being prepared for use and is not yet writable. <br/><b>Done</b>: A snapshot that has finished being prepared and is now usable. <br/><b>Active</b>: This snapshot is the active branch. 
-    :type status: str
-    
-    :param snapshot_uuid: [required] Universal Unique ID of an existing snapshot. 
-    :type snapshot_uuid: UUID
-    
-    :param total_size: [required] Total size of this snapshot in bytes. It is equivalent to totalSize of the volume when this snapshot was taken. 
-    :type total_size: int
-    
-    :param group_id:  If present, the ID of the group this snapshot is a part of. If not present, this snapshot is not part of a group. 
-    :type group_id: int
-    
-    :param group_snapshot_uuid: [required] The current "members" results contains information about each snapshot in the group. Each of these members will have a "uuid" parameter for the snapshot's UUID. 
-    :type group_snapshot_uuid: UUID
-    
-    :param create_time: [required] The time this snapshot was taken. 
-    :type create_time: str
-    
-    :param attributes: [required] List of Name/Value pairs in JSON object format. 
-    :type attributes: dict
-    """
-    snapshot_id = data_model.property(
-        "snapshotID", int,
-        array=False, optional=False,
-        documentation="Unique ID for this snapshot.",
-        dictionaryType=None
-    )
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=False,
-        documentation="The volume this snapshot was taken of.",
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation="[&#x27;A name for this snapshot.&#x27;, &#x27;It is not necessarily unique.&#x27;]",
-        dictionaryType=None
-    )
-    checksum = data_model.property(
-        "checksum", str,
-        array=False, optional=False,
-        documentation="[&#x27;A string that represents the correct digits in the stored snapshot.&#x27;, &#x27;This checksum can be used later to compare other snapshots to detect errors in the data.&#x27;]",
-        dictionaryType=None
-    )
-    enable_remote_replication = data_model.property(
-        "enableRemoteReplication", bool,
-        array=False, optional=False,
-        documentation="Identifies if snapshot is enabled for remote replication.",
-        dictionaryType=None
-    )
-    expiration_reason = data_model.property(
-        "expirationReason", str,
-        array=False, optional=False,
-        documentation="[&#x27;Indicates how the snapshot expiration was set. Possible values:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;api&lt;/b&gt;: expiration time was set by using the API.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;none&lt;/b&gt;: there is no expiration time set.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;test&lt;/b&gt;: expiration time was set for testing.&#x27;]",
-        dictionaryType=None
-    )
-    expiration_time = data_model.property(
-        "expirationTime", str,
-        array=False, optional=False,
-        documentation="The time at which this snapshot will expire and be purged from the cluster.",
-        dictionaryType=None
-    )
-    remote_statuses = data_model.property(
-        "remoteStatuses", str,
-        array=False, optional=False,
-        documentation="[&#x27;Current remote status of the snapshot remoteStatus: Possible values:&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;Present&lt;/b&gt;: Snapshot exists on a remote cluster&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;Not Present&lt;/b&gt;: Snapshot does not exist on remote cluster&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;Syncing&lt;/b&gt;: This is a target cluster and it is currently replicating the snapshot&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;Deleted&lt;/b&gt;: This is a target cluster, the snapshot has been deleted, and it still exists on the source.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;volumePairUUID&lt;/b&gt;: universal identifier of the volume pair&#x27;]",
-        dictionaryType=None
-    )
-    status = data_model.property(
-        "status", str,
-        array=False, optional=False,
-        documentation="[&#x27;Current status of the snapshot&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;Preparing&lt;/b&gt;: A snapshot that is being prepared for use and is not yet writable.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;Done&lt;/b&gt;: A snapshot that has finished being prepared and is now usable.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;Active&lt;/b&gt;: This snapshot is the active branch.&#x27;]",
-        dictionaryType=None
-    )
-    snapshot_uuid = data_model.property(
-        "snapshotUUID", UUID,
-        array=False, optional=False,
-        documentation="Universal Unique ID of an existing snapshot.",
-        dictionaryType=None
-    )
-    total_size = data_model.property(
-        "totalSize", int,
-        array=False, optional=False,
-        documentation="[&#x27;Total size of this snapshot in bytes.&#x27;, &#x27;It is equivalent to totalSize of the volume when this snapshot was taken.&#x27;]",
-        dictionaryType=None
-    )
-    group_id = data_model.property(
-        "groupID", int,
-        array=False, optional=True,
-        documentation="[&#x27;If present, the ID of the group this snapshot is a part of.&#x27;, &#x27;If not present, this snapshot is not part of a group.&#x27;]",
-        dictionaryType=None
-    )
-    group_snapshot_uuid = data_model.property(
-        "groupSnapshotUUID", UUID,
-        array=False, optional=False,
-        documentation="[&#x27;The current &quot;members&quot; results contains information about each snapshot in the group.&#x27;, &#x27;Each of these members will have a &quot;uuid&quot; parameter for the snapshot\&#x27;s UUID.&#x27;]",
-        dictionaryType=None
-    )
-    create_time = data_model.property(
-        "createTime", str,
-        array=False, optional=False,
-        documentation="The time this snapshot was taken.",
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=False,
-        documentation="List of Name/Value pairs in JSON object format.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class VirtualVolumeInfo(data_model.DataObject):
-    """
-    :param virtual_volume_id: [required] 
-    :type virtual_volume_id: UUID
-    
-    :param parent_virtual_volume_id: [required] 
-    :type parent_virtual_volume_id: UUID
-    
-    :param storage_container_id: [required] 
-    :type storage_container_id: UUID
-    
-    :param storage_container: [required] 
-    :type storage_container: StorageContainer
-    
-    :param volume_id: [required] 
-    :type volume_id: int
-    
-    :param snapshot_id: [required] 
-    :type snapshot_id: int
-    
-    :param virtual_volume_type: [required] 
-    :type virtual_volume_type: str
-    
-    :param status: [required] 
-    :type status: str
-    
-    :param bindings: [required] 
-    :type bindings: int
-    
-    :param children: [required] 
-    :type children: UUID
-    
-    :param metadata: [required] 
-    :type metadata: dict
-    
-    :param snapshot_info: [required] 
-    :type snapshot_info: Snapshot
-    
-    :param volume_info: [required] 
-    :type volume_info: Volume
-    """
-    virtual_volume_id = data_model.property(
-        "virtualVolumeID", UUID,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    parent_virtual_volume_id = data_model.property(
-        "parentVirtualVolumeID", UUID,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    storage_container_id = data_model.property(
-        "storageContainerID", UUID,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    storage_container = data_model.property(
-        "storageContainer", StorageContainer,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    snapshot_id = data_model.property(
-        "snapshotID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    virtual_volume_type = data_model.property(
-        "virtualVolumeType", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    status = data_model.property(
-        "status", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    bindings = data_model.property(
-        "bindings", int,
-        array=True, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    children = data_model.property(
-        "children", UUID,
-        array=True, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    metadata = data_model.property(
-        "metadata", dict,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    snapshot_info = data_model.property(
-        "snapshotInfo", Snapshot,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    volume_info = data_model.property(
-        "volumeInfo", Volume,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class VirtualVolumeBinding(data_model.DataObject):
-    """
-    :param protocol_endpoint_id: [required] The unique ID of the protocol endpoint. 
-    :type protocol_endpoint_id: UUID
-    
-    :param protocol_endpoint_in_band_id: [required] The scsiNAADeviceID of the protocol endpoint. For more information, see protocolEndpoint. 
-    :type protocol_endpoint_in_band_id: str
-    
-    :param protocol_endpoint_type: [required] The type of protocol endpoint. SCSI is the only value returned for the protocol endpoint type. 
-    :type protocol_endpoint_type: str
-    
-    :param virtual_volume_binding_id: [required] The unique ID of the virtual volume binding object. 
-    :type virtual_volume_binding_id: int
-    
-    :param virtual_volume_host_id: [required] The unique ID of the virtual volume host. 
-    :type virtual_volume_host_id: UUID
-    
-    :param virtual_volume_id: [required] The unique ID of the virtual volume. 
-    :type virtual_volume_id: UUID
-    
-    :param virtual_volume_secondary_id: [required] The secondary ID of the virtual volume. 
-    :type virtual_volume_secondary_id: str
-    
-    :param virtual_volume: [required] An object describing the bound volume or snapshot. 
-    :type virtual_volume: VirtualVolumeInfo
-    
-    :param protocol_endpoint: [required] An object describing the protocol endpoint to which the virtual volume is bound. 
-    :type protocol_endpoint: UUID
-    
-    :param virtual_volume_host: [required] An object describing the host to which this binding corresponds. 
-    :type virtual_volume_host: VirtualVolumeHost
-    """
-    protocol_endpoint_id = data_model.property(
-        "protocolEndpointID", UUID,
-        array=False, optional=False,
-        documentation="The unique ID of the protocol endpoint.",
-        dictionaryType=None
-    )
-    protocol_endpoint_in_band_id = data_model.property(
-        "protocolEndpointInBandID", str,
-        array=False, optional=False,
-        documentation="The scsiNAADeviceID of the protocol endpoint. For more information, see protocolEndpoint.",
-        dictionaryType=None
-    )
-    protocol_endpoint_type = data_model.property(
-        "protocolEndpointType", str,
-        array=False, optional=False,
-        documentation="The type of protocol endpoint. SCSI is the only value returned for the protocol endpoint type.",
-        dictionaryType=None
-    )
-    virtual_volume_binding_id = data_model.property(
-        "virtualVolumeBindingID", int,
-        array=False, optional=False,
-        documentation="The unique ID of the virtual volume binding object.",
-        dictionaryType=None
-    )
-    virtual_volume_host_id = data_model.property(
-        "virtualVolumeHostID", UUID,
-        array=False, optional=False,
-        documentation="The unique ID of the virtual volume host.",
-        dictionaryType=None
-    )
-    virtual_volume_id = data_model.property(
-        "virtualVolumeID", UUID,
-        array=False, optional=False,
-        documentation="The unique ID of the virtual volume.",
-        dictionaryType=None
-    )
-    virtual_volume_secondary_id = data_model.property(
-        "virtualVolumeSecondaryID", str,
-        array=False, optional=False,
-        documentation="The secondary ID of the virtual volume.",
-        dictionaryType=None
-    )
-    virtual_volume = data_model.property(
-        "virtualVolume", VirtualVolumeInfo,
-        array=False, optional=False,
-        documentation="An object describing the bound volume or snapshot.",
-        dictionaryType=None
-    )
-    protocol_endpoint = data_model.property(
-        "protocolEndpoint", UUID,
-        array=False, optional=False,
-        documentation="An object describing the protocol endpoint to which the virtual volume is bound.",
-        dictionaryType=None
-    )
-    virtual_volume_host = data_model.property(
-        "virtualVolumeHost", VirtualVolumeHost,
-        array=False, optional=False,
-        documentation="An object describing the host to which this binding corresponds.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListVirtualVolumeBindingsResult(data_model.DataObject):
-    """
-    :param bindings: [required] Describes the VVol <-> Host binding. 
-    :type bindings: VirtualVolumeBinding
-    """
-    bindings = data_model.property(
-        "bindings", VirtualVolumeBinding,
-        array=True, optional=False,
-        documentation="Describes the VVol &lt;-&gt; Host binding.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListVolumesRequest(data_model.DataObject):
-    """
-    :param start_volume_id:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
-    :type start_volume_id: int
-    
-    :param limit:  The maximum number of volumes to return from the API. 
-    :type limit: int
-    
-    :param volume_status:  If specified, filter to only volumes with the provided status. By default, list all volumes. 
-    :type volume_status: str
-    
-    :param accounts:  If specified, only fetch volumes which belong to the provided accounts. By default, list volumes for all accounts. 
-    :type accounts: int
-    
-    :param is_paired:  If specified, only fetch volumes which are paired (if true) or non-paired (if false). By default, list all volumes regardless of their pairing status. 
-    :type is_paired: bool
-    
-    :param volume_ids:  If specified, only fetch volumes specified in this list. This option cannot be specified if startVolumeID, limit, or accounts option is specified. 
-    :type volume_ids: int
-    """
-    start_volume_id = data_model.property(
-        "startVolumeID", int,
-        array=False, optional=True,
-        documentation="[&#x27;The ID of the first volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this starts at the lowest VolumeID.&#x27;]",
-        dictionaryType=None
-    )
-    limit = data_model.property(
-        "limit", int,
-        array=False, optional=True,
-        documentation="[&#x27;The maximum number of volumes to return from the API.&#x27;]",
-        dictionaryType=None
-    )
-    volume_status = data_model.property(
-        "volumeStatus", str,
-        array=False, optional=True,
-        documentation="[&#x27;If specified, filter to only volumes with the provided status.&#x27;, &#x27;By default, list all volumes.&#x27;]",
-        dictionaryType=None
-    )
-    accounts = data_model.property(
-        "accounts", int,
-        array=True, optional=True,
-        documentation="[&#x27;If specified, only fetch volumes which belong to the provided accounts.&#x27;, &#x27;By default, list volumes for all accounts.&#x27;]",
-        dictionaryType=None
-    )
-    is_paired = data_model.property(
-        "isPaired", bool,
-        array=False, optional=True,
-        documentation="[&#x27;If specified, only fetch volumes which are paired (if true) or non-paired (if false).&#x27;, &#x27;By default, list all volumes regardless of their pairing status.&#x27;]",
-        dictionaryType=None
-    )
-    volume_ids = data_model.property(
-        "volumeIDs", int,
-        array=True, optional=True,
-        documentation="[&#x27;If specified, only fetch volumes specified in this list.&#x27;, &#x27;This option cannot be specified if startVolumeID, limit, or accounts option is specified.&#x27;]",
-        dictionaryType=None
-    )
+class DeleteStorageContainerResult(data_model.DataObject):
+    """"""
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -7978,15 +7696,15 @@ class RemoveVirtualNetworkResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVolumeStatsResult(data_model.DataObject):
+class EnableSnmpRequest(data_model.DataObject):
     """
-    :param volume_stats: [required] List of volume activity information. 
-    :type volume_stats: VolumeStats
+    :param snmp_v3_enabled: [required] If set to "true", then SNMP v3 is enabled on each node in the cluster. If set to "false", then SNMP v2 is enabled. 
+    :type snmp_v3_enabled: bool
     """
-    volume_stats = data_model.property(
-        "volumeStats", VolumeStats,
-        array=True, optional=False,
-        documentation="List of volume activity information.",
+    snmp_v3_enabled = data_model.property(
+        "snmpV3Enabled", bool,
+        array=False, optional=False,
+        documentation="If set to &quot;true&quot;, then SNMP v3 is enabled on each node in the cluster. If set to &quot;false&quot;, then SNMP v2 is enabled.",
         dictionaryType=None
     )
 
@@ -8010,235 +7728,6 @@ class CreateBackupTargetResult(data_model.DataObject):
 
 class DisableLdapAuthenticationResult(data_model.DataObject):
     """"""
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ClusterCapacity(data_model.DataObject):
-    """
-    High level capacity measurements for the entire cluster.
-    :param active_block_space: [required] The amount of space on the block drives. This includes additional information such as metadata entries and space which can be cleaned up. 
-    :type active_block_space: int
-    
-    :param active_sessions: [required] Number of active iSCSI sessions communicating with the cluster 
-    :type active_sessions: int
-    
-    :param average_iops: [required] Average IPS for the cluster since midnight Coordinated Universal Time (UTC). 
-    :type average_iops: int
-    
-    :param cluster_recent_iosize: [required] The average size of IOPS to all volumes in the cluster. 
-    :type cluster_recent_iosize: int
-    
-    :param current_iops: [required] Average IOPS for all volumes in the cluster over the last 5 seconds. 
-    :type current_iops: int
-    
-    :param max_iops: [required] Estimated maximum IOPS capability of the current cluster. 
-    :type max_iops: int
-    
-    :param max_over_provisionable_space: [required] The maximum amount of provisionable space. This is a computed value. You cannot create new volumes if the current provisioned space plus the new volume size would exceed this number: maxOverProvisionableSpace = maxProvisionedSpace * GetClusterFull 
-    :type max_over_provisionable_space: int
-    
-    :param max_provisioned_space: [required] The total amount of provisionable space if all volumes are 100% filled (no thin provisioned metadata). 
-    :type max_provisioned_space: int
-    
-    :param max_used_metadata_space: [required] The amount of bytes on volume drives used to store metadata. 
-    :type max_used_metadata_space: int
-    
-    :param max_used_space: [required] The total amount of space on all active block drives. 
-    :type max_used_space: int
-    
-    :param non_zero_blocks: [required] Total number of 4KiB blocks with data after the last garbage collection operation has completed. 
-    :type non_zero_blocks: int
-    
-    :param peak_active_sessions: [required] Peak number of iSCSI connections since midnight UTC. 
-    :type peak_active_sessions: int
-    
-    :param peak_iops: [required] The highest value for currentIOPS since midnight UTC. 
-    :type peak_iops: int
-    
-    :param provisioned_space: [required] Total amount of space provisioned in all volumes on the cluster. 
-    :type provisioned_space: int
-    
-    :param snapshot_non_zero_blocks: [required] Total number of 4KiB blocks in snapshots with data. 
-    :type snapshot_non_zero_blocks: int
-    
-    :param timestamp: [required] The date and time this cluster capacity sample was taken. 
-    :type timestamp: str
-    
-    :param total_ops: [required] The total number of I/O operations performed throughout the lifetime of the cluster 
-    :type total_ops: int
-    
-    :param unique_blocks: [required] The total number of blocks stored on the block drives. The value includes replicated blocks. 
-    :type unique_blocks: int
-    
-    :param unique_blocks_used_space: [required] The total amount of data the uniqueBlocks take up on the block drives. This number is always consistent with the uniqueBlocks value. 
-    :type unique_blocks_used_space: int
-    
-    :param used_metadata_space: [required] The total amount of bytes on volume drives used to store metadata 
-    :type used_metadata_space: int
-    
-    :param used_metadata_space_in_snapshots: [required] The amount of bytes on volume drives used for storing unique data in snapshots. This number provides an estimate of how much metadata space would be regained by deleting all snapshots on the system. 
-    :type used_metadata_space_in_snapshots: int
-    
-    :param used_space: [required] Total amount of space used by all block drives in the system. 
-    :type used_space: int
-    
-    :param zero_blocks: [required] Total number of 4KiB blocks without data after the last round of garabage collection operation has completed. 
-    :type zero_blocks: int
-    """
-    active_block_space = data_model.property(
-        "activeBlockSpace", int,
-        array=False, optional=False,
-        documentation="[&#x27;The amount of space on the block drives.&#x27;, &#x27;This includes additional information such as metadata entries and space which can be cleaned up.&#x27;]",
-        dictionaryType=None
-    )
-    active_sessions = data_model.property(
-        "activeSessions", int,
-        array=False, optional=False,
-        documentation="Number of active iSCSI sessions communicating with the cluster",
-        dictionaryType=None
-    )
-    average_iops = data_model.property(
-        "averageIOPS", int,
-        array=False, optional=False,
-        documentation="Average IPS for the cluster since midnight Coordinated Universal Time (UTC).",
-        dictionaryType=None
-    )
-    cluster_recent_iosize = data_model.property(
-        "clusterRecentIOSize", int,
-        array=False, optional=False,
-        documentation="The average size of IOPS to all volumes in the cluster.",
-        dictionaryType=None
-    )
-    current_iops = data_model.property(
-        "currentIOPS", int,
-        array=False, optional=False,
-        documentation="Average IOPS for all volumes in the cluster over the last 5 seconds.",
-        dictionaryType=None
-    )
-    max_iops = data_model.property(
-        "maxIOPS", int,
-        array=False, optional=False,
-        documentation="Estimated maximum IOPS capability of the current cluster.",
-        dictionaryType=None
-    )
-    max_over_provisionable_space = data_model.property(
-        "maxOverProvisionableSpace", int,
-        array=False, optional=False,
-        documentation="[&#x27;The maximum amount of provisionable space.&#x27;, &#x27;This is a computed value.&#x27;, &#x27;You cannot create new volumes if the current provisioned space plus the new volume size would exceed this number:&#x27;, &#x27;maxOverProvisionableSpace = maxProvisionedSpace * GetClusterFull&#x27;]",
-        dictionaryType=None
-    )
-    max_provisioned_space = data_model.property(
-        "maxProvisionedSpace", int,
-        array=False, optional=False,
-        documentation="The total amount of provisionable space if all volumes are 100% filled (no thin provisioned metadata).",
-        dictionaryType=None
-    )
-    max_used_metadata_space = data_model.property(
-        "maxUsedMetadataSpace", int,
-        array=False, optional=False,
-        documentation="The amount of bytes on volume drives used to store metadata.",
-        dictionaryType=None
-    )
-    max_used_space = data_model.property(
-        "maxUsedSpace", int,
-        array=False, optional=False,
-        documentation="The total amount of space on all active block drives.",
-        dictionaryType=None
-    )
-    non_zero_blocks = data_model.property(
-        "nonZeroBlocks", int,
-        array=False, optional=False,
-        documentation="Total number of 4KiB blocks with data after the last garbage collection operation has completed.",
-        dictionaryType=None
-    )
-    peak_active_sessions = data_model.property(
-        "peakActiveSessions", int,
-        array=False, optional=False,
-        documentation="Peak number of iSCSI connections since midnight UTC.",
-        dictionaryType=None
-    )
-    peak_iops = data_model.property(
-        "peakIOPS", int,
-        array=False, optional=False,
-        documentation="The highest value for currentIOPS since midnight UTC.",
-        dictionaryType=None
-    )
-    provisioned_space = data_model.property(
-        "provisionedSpace", int,
-        array=False, optional=False,
-        documentation="Total amount of space provisioned in all volumes on the cluster.",
-        dictionaryType=None
-    )
-    snapshot_non_zero_blocks = data_model.property(
-        "snapshotNonZeroBlocks", int,
-        array=False, optional=False,
-        documentation="Total number of 4KiB blocks in snapshots with data.",
-        dictionaryType=None
-    )
-    timestamp = data_model.property(
-        "timestamp", str,
-        array=False, optional=False,
-        documentation="The date and time this cluster capacity sample was taken.",
-        dictionaryType=None
-    )
-    total_ops = data_model.property(
-        "totalOps", int,
-        array=False, optional=False,
-        documentation="The total number of I/O operations performed throughout the lifetime of the cluster",
-        dictionaryType=None
-    )
-    unique_blocks = data_model.property(
-        "uniqueBlocks", int,
-        array=False, optional=False,
-        documentation="[&#x27;The total number of blocks stored on the block drives.&#x27;, &#x27;The value includes replicated blocks.&#x27;]",
-        dictionaryType=None
-    )
-    unique_blocks_used_space = data_model.property(
-        "uniqueBlocksUsedSpace", int,
-        array=False, optional=False,
-        documentation="[&#x27;The total amount of data the uniqueBlocks take up on the block drives.&#x27;, &#x27;This number is always consistent with the uniqueBlocks value.&#x27;]",
-        dictionaryType=None
-    )
-    used_metadata_space = data_model.property(
-        "usedMetadataSpace", int,
-        array=False, optional=False,
-        documentation="The total amount of bytes on volume drives used to store metadata",
-        dictionaryType=None
-    )
-    used_metadata_space_in_snapshots = data_model.property(
-        "usedMetadataSpaceInSnapshots", int,
-        array=False, optional=False,
-        documentation="[&#x27;The amount of bytes on volume drives used for storing unique data in snapshots.&#x27;, &#x27;This number provides an estimate of how much metadata space would be regained by deleting all snapshots on the system.&#x27;]",
-        dictionaryType=None
-    )
-    used_space = data_model.property(
-        "usedSpace", int,
-        array=False, optional=False,
-        documentation="Total amount of space used by all block drives in the system.",
-        dictionaryType=None
-    )
-    zero_blocks = data_model.property(
-        "zeroBlocks", int,
-        array=False, optional=False,
-        documentation="Total number of 4KiB blocks without data after the last round of garabage collection operation has completed.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetClusterCapacityResult(data_model.DataObject):
-    """
-    :param cluster_capacity: [required] 
-    :type cluster_capacity: ClusterCapacity
-    """
-    cluster_capacity = data_model.property(
-        "clusterCapacity", ClusterCapacity,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -8370,19 +7859,10 @@ class ListVirtualVolumeHostsRequest(data_model.DataObject):
     """
     :param virtual_volume_host_ids:  
     :type virtual_volume_host_ids: UUID
-    
-    :param calling_virtual_volume_host_id:  
-    :type calling_virtual_volume_host_id: UUID
     """
     virtual_volume_host_ids = data_model.property(
         "virtualVolumeHostIDs", UUID,
         array=True, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    calling_virtual_volume_host_id = data_model.property(
-        "callingVirtualVolumeHostID", UUID,
-        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -8728,6 +8208,204 @@ class AddLdapClusterAdminRequest(data_model.DataObject):
 
 class CancelCloneResult(data_model.DataObject):
     """"""
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class DriveStats(data_model.DataObject):
+    """
+    :param active_sessions: [required] 
+    :type active_sessions: int
+    
+    :param drive_id:  
+    :type drive_id: int
+    
+    :param failed_die_count: [required] 
+    :type failed_die_count: int
+    
+    :param life_remaining_percent: [required] 
+    :type life_remaining_percent: int
+    
+    :param lifetime_read_bytes: [required] 
+    :type lifetime_read_bytes: int
+    
+    :param lifetime_write_bytes: [required] 
+    :type lifetime_write_bytes: int
+    
+    :param power_on_hours: [required] 
+    :type power_on_hours: int
+    
+    :param read_bytes: [required] 
+    :type read_bytes: int
+    
+    :param read_ops: [required] 
+    :type read_ops: int
+    
+    :param reallocated_sectors: [required] 
+    :type reallocated_sectors: int
+    
+    :param reserve_capacity_percent: [required] 
+    :type reserve_capacity_percent: int
+    
+    :param timestamp: [required] 
+    :type timestamp: str
+    
+    :param total_capacity: [required] 
+    :type total_capacity: int
+    
+    :param used_capacity:  
+    :type used_capacity: int
+    
+    :param used_memory: [required] 
+    :type used_memory: int
+    
+    :param write_bytes: [required] 
+    :type write_bytes: int
+    
+    :param write_ops: [required] 
+    :type write_ops: int
+    """
+    active_sessions = data_model.property(
+        "activeSessions", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    drive_id = data_model.property(
+        "driveID", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    failed_die_count = data_model.property(
+        "failedDieCount", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    life_remaining_percent = data_model.property(
+        "lifeRemainingPercent", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    lifetime_read_bytes = data_model.property(
+        "lifetimeReadBytes", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    lifetime_write_bytes = data_model.property(
+        "lifetimeWriteBytes", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    power_on_hours = data_model.property(
+        "powerOnHours", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    read_bytes = data_model.property(
+        "readBytes", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    read_ops = data_model.property(
+        "readOps", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    reallocated_sectors = data_model.property(
+        "reallocatedSectors", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    reserve_capacity_percent = data_model.property(
+        "reserveCapacityPercent", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    timestamp = data_model.property(
+        "timestamp", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    total_capacity = data_model.property(
+        "totalCapacity", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    used_capacity = data_model.property(
+        "usedCapacity", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    used_memory = data_model.property(
+        "usedMemory", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    write_bytes = data_model.property(
+        "writeBytes", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    write_ops = data_model.property(
+        "writeOps", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListDriveStatsResult(data_model.DataObject):
+    """
+    :param drive_stats: [required] List of drive activity information for each drive. 
+    :type drive_stats: DriveStats
+    
+    :param errors: [required] If there are errors retrieving information about a drive, this list contains the driveID and associated error message. Always present, and empty if there are no errors. 
+    :type errors: dict
+    """
+    drive_stats = data_model.property(
+        "driveStats", DriveStats,
+        array=True, optional=False,
+        documentation="List of drive activity information for each drive.",
+        dictionaryType=None
+    )
+    errors = data_model.property(
+        "errors", dict,
+        array=True, optional=False,
+        documentation="If there are errors retrieving information about a drive, this list contains the driveID and associated error message. Always present, and empty if there are no errors.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ModifyStorageContainerResult(data_model.DataObject):
+    """
+    :param storage_container: [required] 
+    :type storage_container: StorageContainer
+    """
+    storage_container = data_model.property(
+        "storageContainer", StorageContainer,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -10140,24 +9818,15 @@ class GetAsyncResultResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class CreateBackupTargetRequest(data_model.DataObject):
+class DeleteInitiatorsRequest(data_model.DataObject):
     """
-    :param name: [required] Name for the backup target. 
-    :type name: str
-    
-    :param attributes:  List of Name/Value pairs in JSON object format. 
-    :type attributes: dict
+    :param initiators: [required] An array of IDs of initiators to delete. 
+    :type initiators: int
     """
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation="[&#x27;Name for the backup target.&#x27;]",
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="List of Name/Value pairs in JSON object format.",
+    initiators = data_model.property(
+        "initiators", int,
+        array=True, optional=False,
+        documentation="[&#x27;An array of IDs of initiators to delete.&#x27;]",
         dictionaryType=None
     )
 
@@ -10461,6 +10130,66 @@ class RemoveVirtualNetworkRequest(data_model.DataObject):
         "virtualNetworkTag", int,
         array=False, optional=True,
         documentation="Network Tag that identifies the virtual network to remove.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListVolumesRequest(data_model.DataObject):
+    """
+    :param start_volume_id:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
+    :type start_volume_id: int
+    
+    :param limit:  The maximum number of volumes to return from the API. 
+    :type limit: int
+    
+    :param volume_status:  If specified, filter to only volumes with the provided status. By default, list all volumes. 
+    :type volume_status: str
+    
+    :param accounts:  If specified, only fetch volumes which belong to the provided accounts. By default, list volumes for all accounts. 
+    :type accounts: int
+    
+    :param is_paired:  If specified, only fetch volumes which are paired (if true) or non-paired (if false). By default, list all volumes regardless of their pairing status. 
+    :type is_paired: bool
+    
+    :param volume_ids:  If specified, only fetch volumes specified in this list. This option cannot be specified if startVolumeID, limit, or accounts option is specified. 
+    :type volume_ids: int
+    """
+    start_volume_id = data_model.property(
+        "startVolumeID", int,
+        array=False, optional=True,
+        documentation="[&#x27;The ID of the first volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this starts at the lowest VolumeID.&#x27;]",
+        dictionaryType=None
+    )
+    limit = data_model.property(
+        "limit", int,
+        array=False, optional=True,
+        documentation="[&#x27;The maximum number of volumes to return from the API.&#x27;]",
+        dictionaryType=None
+    )
+    volume_status = data_model.property(
+        "volumeStatus", str,
+        array=False, optional=True,
+        documentation="[&#x27;If specified, filter to only volumes with the provided status.&#x27;, &#x27;By default, list all volumes.&#x27;]",
+        dictionaryType=None
+    )
+    accounts = data_model.property(
+        "accounts", int,
+        array=True, optional=True,
+        documentation="[&#x27;If specified, only fetch volumes which belong to the provided accounts.&#x27;, &#x27;By default, list volumes for all accounts.&#x27;]",
+        dictionaryType=None
+    )
+    is_paired = data_model.property(
+        "isPaired", bool,
+        array=False, optional=True,
+        documentation="[&#x27;If specified, only fetch volumes which are paired (if true) or non-paired (if false).&#x27;, &#x27;By default, list all volumes regardless of their pairing status.&#x27;]",
+        dictionaryType=None
+    )
+    volume_ids = data_model.property(
+        "volumeIDs", int,
+        array=True, optional=True,
+        documentation="[&#x27;If specified, only fetch volumes specified in this list.&#x27;, &#x27;This option cannot be specified if startVolumeID, limit, or accounts option is specified.&#x27;]",
         dictionaryType=None
     )
 
@@ -10893,21 +10622,36 @@ class CopyVolumeResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class ListVolumeStatsResult(data_model.DataObject):
+    """
+    :param volume_stats: [required] List of volume activity information. 
+    :type volume_stats: VolumeStats
+    """
+    volume_stats = data_model.property(
+        "volumeStats", VolumeStats,
+        array=True, optional=False,
+        documentation="List of volume activity information.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class EnableLdapAuthenticationResult(data_model.DataObject):
     """"""
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVolumesResult(data_model.DataObject):
+class ListVolumeStatsByAccountResult(data_model.DataObject):
     """
-    :param volumes: [required] List of volumes. 
-    :type volumes: Volume
+    :param volume_stats: [required] List of account activity information. <br/><b>Note</b>: The volumeID member is 0 for each entry, as the values represent the summation of all volumes owned by the account. 
+    :type volume_stats: VolumeStats
     """
-    volumes = data_model.property(
-        "volumes", Volume,
+    volume_stats = data_model.property(
+        "volumeStats", VolumeStats,
         array=True, optional=False,
-        documentation="List of volumes.",
+        documentation="[&#x27;List of account activity information.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;Note&lt;/b&gt;: The volumeID member is 0 for each entry, as the values represent the summation of all volumes owned by the account.&#x27;]",
         dictionaryType=None
     )
 
@@ -11145,23 +10889,228 @@ class TestConnectSvipResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVirtualVolumeBindingsRequest(data_model.DataObject):
+class ClusterCapacity(data_model.DataObject):
     """
-    :param virtual_volume_binding_ids:  
-    :type virtual_volume_binding_ids: int
+    High level capacity measurements for the entire cluster.
+    :param active_block_space: [required] The amount of space on the block drives. This includes additional information such as metadata entries and space which can be cleaned up. 
+    :type active_block_space: int
     
-    :param calling_virtual_volume_host_id:  
-    :type calling_virtual_volume_host_id: UUID
+    :param active_sessions: [required] Number of active iSCSI sessions communicating with the cluster 
+    :type active_sessions: int
+    
+    :param average_iops: [required] Average IPS for the cluster since midnight Coordinated Universal Time (UTC). 
+    :type average_iops: int
+    
+    :param cluster_recent_iosize: [required] The average size of IOPS to all volumes in the cluster. 
+    :type cluster_recent_iosize: int
+    
+    :param current_iops: [required] Average IOPS for all volumes in the cluster over the last 5 seconds. 
+    :type current_iops: int
+    
+    :param max_iops: [required] Estimated maximum IOPS capability of the current cluster. 
+    :type max_iops: int
+    
+    :param max_over_provisionable_space: [required] The maximum amount of provisionable space. This is a computed value. You cannot create new volumes if the current provisioned space plus the new volume size would exceed this number: maxOverProvisionableSpace = maxProvisionedSpace * GetClusterFull 
+    :type max_over_provisionable_space: int
+    
+    :param max_provisioned_space: [required] The total amount of provisionable space if all volumes are 100% filled (no thin provisioned metadata). 
+    :type max_provisioned_space: int
+    
+    :param max_used_metadata_space: [required] The amount of bytes on volume drives used to store metadata. 
+    :type max_used_metadata_space: int
+    
+    :param max_used_space: [required] The total amount of space on all active block drives. 
+    :type max_used_space: int
+    
+    :param non_zero_blocks: [required] Total number of 4KiB blocks with data after the last garbage collection operation has completed. 
+    :type non_zero_blocks: int
+    
+    :param peak_active_sessions: [required] Peak number of iSCSI connections since midnight UTC. 
+    :type peak_active_sessions: int
+    
+    :param peak_iops: [required] The highest value for currentIOPS since midnight UTC. 
+    :type peak_iops: int
+    
+    :param provisioned_space: [required] Total amount of space provisioned in all volumes on the cluster. 
+    :type provisioned_space: int
+    
+    :param snapshot_non_zero_blocks: [required] Total number of 4KiB blocks in snapshots with data. 
+    :type snapshot_non_zero_blocks: int
+    
+    :param timestamp: [required] The date and time this cluster capacity sample was taken. 
+    :type timestamp: str
+    
+    :param total_ops: [required] The total number of I/O operations performed throughout the lifetime of the cluster 
+    :type total_ops: int
+    
+    :param unique_blocks: [required] The total number of blocks stored on the block drives. The value includes replicated blocks. 
+    :type unique_blocks: int
+    
+    :param unique_blocks_used_space: [required] The total amount of data the uniqueBlocks take up on the block drives. This number is always consistent with the uniqueBlocks value. 
+    :type unique_blocks_used_space: int
+    
+    :param used_metadata_space: [required] The total amount of bytes on volume drives used to store metadata 
+    :type used_metadata_space: int
+    
+    :param used_metadata_space_in_snapshots: [required] The amount of bytes on volume drives used for storing unique data in snapshots. This number provides an estimate of how much metadata space would be regained by deleting all snapshots on the system. 
+    :type used_metadata_space_in_snapshots: int
+    
+    :param used_space: [required] Total amount of space used by all block drives in the system. 
+    :type used_space: int
+    
+    :param zero_blocks: [required] Total number of 4KiB blocks without data after the last round of garabage collection operation has completed. 
+    :type zero_blocks: int
     """
-    virtual_volume_binding_ids = data_model.property(
-        "virtualVolumeBindingIDs", int,
-        array=True, optional=True,
-        documentation="",
+    active_block_space = data_model.property(
+        "activeBlockSpace", int,
+        array=False, optional=False,
+        documentation="[&#x27;The amount of space on the block drives.&#x27;, &#x27;This includes additional information such as metadata entries and space which can be cleaned up.&#x27;]",
         dictionaryType=None
     )
-    calling_virtual_volume_host_id = data_model.property(
-        "callingVirtualVolumeHostID", UUID,
-        array=False, optional=True,
+    active_sessions = data_model.property(
+        "activeSessions", int,
+        array=False, optional=False,
+        documentation="Number of active iSCSI sessions communicating with the cluster",
+        dictionaryType=None
+    )
+    average_iops = data_model.property(
+        "averageIOPS", int,
+        array=False, optional=False,
+        documentation="Average IPS for the cluster since midnight Coordinated Universal Time (UTC).",
+        dictionaryType=None
+    )
+    cluster_recent_iosize = data_model.property(
+        "clusterRecentIOSize", int,
+        array=False, optional=False,
+        documentation="The average size of IOPS to all volumes in the cluster.",
+        dictionaryType=None
+    )
+    current_iops = data_model.property(
+        "currentIOPS", int,
+        array=False, optional=False,
+        documentation="Average IOPS for all volumes in the cluster over the last 5 seconds.",
+        dictionaryType=None
+    )
+    max_iops = data_model.property(
+        "maxIOPS", int,
+        array=False, optional=False,
+        documentation="Estimated maximum IOPS capability of the current cluster.",
+        dictionaryType=None
+    )
+    max_over_provisionable_space = data_model.property(
+        "maxOverProvisionableSpace", int,
+        array=False, optional=False,
+        documentation="[&#x27;The maximum amount of provisionable space.&#x27;, &#x27;This is a computed value.&#x27;, &#x27;You cannot create new volumes if the current provisioned space plus the new volume size would exceed this number:&#x27;, &#x27;maxOverProvisionableSpace = maxProvisionedSpace * GetClusterFull&#x27;]",
+        dictionaryType=None
+    )
+    max_provisioned_space = data_model.property(
+        "maxProvisionedSpace", int,
+        array=False, optional=False,
+        documentation="The total amount of provisionable space if all volumes are 100% filled (no thin provisioned metadata).",
+        dictionaryType=None
+    )
+    max_used_metadata_space = data_model.property(
+        "maxUsedMetadataSpace", int,
+        array=False, optional=False,
+        documentation="The amount of bytes on volume drives used to store metadata.",
+        dictionaryType=None
+    )
+    max_used_space = data_model.property(
+        "maxUsedSpace", int,
+        array=False, optional=False,
+        documentation="The total amount of space on all active block drives.",
+        dictionaryType=None
+    )
+    non_zero_blocks = data_model.property(
+        "nonZeroBlocks", int,
+        array=False, optional=False,
+        documentation="Total number of 4KiB blocks with data after the last garbage collection operation has completed.",
+        dictionaryType=None
+    )
+    peak_active_sessions = data_model.property(
+        "peakActiveSessions", int,
+        array=False, optional=False,
+        documentation="Peak number of iSCSI connections since midnight UTC.",
+        dictionaryType=None
+    )
+    peak_iops = data_model.property(
+        "peakIOPS", int,
+        array=False, optional=False,
+        documentation="The highest value for currentIOPS since midnight UTC.",
+        dictionaryType=None
+    )
+    provisioned_space = data_model.property(
+        "provisionedSpace", int,
+        array=False, optional=False,
+        documentation="Total amount of space provisioned in all volumes on the cluster.",
+        dictionaryType=None
+    )
+    snapshot_non_zero_blocks = data_model.property(
+        "snapshotNonZeroBlocks", int,
+        array=False, optional=False,
+        documentation="Total number of 4KiB blocks in snapshots with data.",
+        dictionaryType=None
+    )
+    timestamp = data_model.property(
+        "timestamp", str,
+        array=False, optional=False,
+        documentation="The date and time this cluster capacity sample was taken.",
+        dictionaryType=None
+    )
+    total_ops = data_model.property(
+        "totalOps", int,
+        array=False, optional=False,
+        documentation="The total number of I/O operations performed throughout the lifetime of the cluster",
+        dictionaryType=None
+    )
+    unique_blocks = data_model.property(
+        "uniqueBlocks", int,
+        array=False, optional=False,
+        documentation="[&#x27;The total number of blocks stored on the block drives.&#x27;, &#x27;The value includes replicated blocks.&#x27;]",
+        dictionaryType=None
+    )
+    unique_blocks_used_space = data_model.property(
+        "uniqueBlocksUsedSpace", int,
+        array=False, optional=False,
+        documentation="[&#x27;The total amount of data the uniqueBlocks take up on the block drives.&#x27;, &#x27;This number is always consistent with the uniqueBlocks value.&#x27;]",
+        dictionaryType=None
+    )
+    used_metadata_space = data_model.property(
+        "usedMetadataSpace", int,
+        array=False, optional=False,
+        documentation="The total amount of bytes on volume drives used to store metadata",
+        dictionaryType=None
+    )
+    used_metadata_space_in_snapshots = data_model.property(
+        "usedMetadataSpaceInSnapshots", int,
+        array=False, optional=False,
+        documentation="[&#x27;The amount of bytes on volume drives used for storing unique data in snapshots.&#x27;, &#x27;This number provides an estimate of how much metadata space would be regained by deleting all snapshots on the system.&#x27;]",
+        dictionaryType=None
+    )
+    used_space = data_model.property(
+        "usedSpace", int,
+        array=False, optional=False,
+        documentation="Total amount of space used by all block drives in the system.",
+        dictionaryType=None
+    )
+    zero_blocks = data_model.property(
+        "zeroBlocks", int,
+        array=False, optional=False,
+        documentation="Total number of 4KiB blocks without data after the last round of garabage collection operation has completed.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetClusterCapacityResult(data_model.DataObject):
+    """
+    :param cluster_capacity: [required] 
+    :type cluster_capacity: ClusterCapacity
+    """
+    cluster_capacity = data_model.property(
+        "clusterCapacity", ClusterCapacity,
+        array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
@@ -11327,54 +11276,30 @@ class ModifyAccountResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVolumeStatsByAccountResult(data_model.DataObject):
+class GetAccountResult(data_model.DataObject):
     """
-    :param volume_stats: [required] List of account activity information. <br/><b>Note</b>: The volumeID member is 0 for each entry, as the values represent the summation of all volumes owned by the account. 
-    :type volume_stats: VolumeStats
+    :param account: [required] Account details. 
+    :type account: Account
     """
-    volume_stats = data_model.property(
-        "volumeStats", VolumeStats,
-        array=True, optional=False,
-        documentation="[&#x27;List of account activity information.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;Note&lt;/b&gt;: The volumeID member is 0 for each entry, as the values represent the summation of all volumes owned by the account.&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetAccountEfficiencyRequest(data_model.DataObject):
-    """
-    :param account_id: [required] Specifies the volume account for which capacity is computed. 
-    :type account_id: int
-    
-    :param force:  
-    :type force: bool
-    """
-    account_id = data_model.property(
-        "accountID", int,
+    account = data_model.property(
+        "account", Account,
         array=False, optional=False,
-        documentation="Specifies the volume account for which capacity is computed.",
-        dictionaryType=None
-    )
-    force = data_model.property(
-        "force", bool,
-        array=False, optional=True,
-        documentation="",
+        documentation="Account details.",
         dictionaryType=None
     )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ModifyInitiatorsRequest(data_model.DataObject):
+class GetVirtualVolumeCountResult(data_model.DataObject):
     """
-    :param initiators: [required] A list of Initiator objects containing characteristics of each initiator to modify. 
-    :type initiators: ModifyInitiator
+    :param count: [required] The number of virtual volumes currently in the system. 
+    :type count: int
     """
-    initiators = data_model.property(
-        "initiators", ModifyInitiator,
-        array=True, optional=False,
-        documentation="[&#x27;A list of Initiator objects containing characteristics of each initiator to modify.&#x27;]",
+    count = data_model.property(
+        "count", int,
+        array=False, optional=False,
+        documentation="The number of virtual volumes currently in the system.",
         dictionaryType=None
     )
 
@@ -11937,12 +11862,6 @@ class ListAsyncResultsResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class VirtualVolumeNullResult(data_model.DataObject):
-    """"""
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class ListGroupSnapshotsRequest(data_model.DataObject):
     """
     :param volume_id:  An array of unique volume IDs to query. If this parameter is not specified, all group snapshots on the cluster will be included. 
@@ -11960,21 +11879,6 @@ class ListGroupSnapshotsRequest(data_model.DataObject):
 
 class RestoreDeletedVolumeResult(data_model.DataObject):
     """"""
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetVirtualVolumeCountResult(data_model.DataObject):
-    """
-    :param count: [required] The number of virtual volumes currently in the system. 
-    :type count: int
-    """
-    count = data_model.property(
-        "count", int,
-        array=False, optional=False,
-        documentation="The number of virtual volumes currently in the system.",
-        dictionaryType=None
-    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -12185,42 +12089,15 @@ class GetAsyncResultRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class PrepareVirtualSnapshotRequest(data_model.DataObject):
+class ListVirtualVolumeTasksResult(data_model.DataObject):
     """
-    :param virtual_volume_id: [required] The ID of the Virtual Volume to clone. 
-    :type virtual_volume_id: UUID
-    
-    :param name:  The name for the newly-created volume. 
-    :type name: str
-    
-    :param writable_snapshot:  Will the snapshot be writable? 
-    :type writable_snapshot: bool
-    
-    :param calling_virtual_volume_host_id:  
-    :type calling_virtual_volume_host_id: UUID
+    :param tasks: [required] List of VVol Async Tasks. 
+    :type tasks: VirtualVolumeTask
     """
-    virtual_volume_id = data_model.property(
-        "virtualVolumeID", UUID,
-        array=False, optional=False,
-        documentation="The ID of the Virtual Volume to clone.",
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=True,
-        documentation="The name for the newly-created volume.",
-        dictionaryType=None
-    )
-    writable_snapshot = data_model.property(
-        "writableSnapshot", bool,
-        array=False, optional=True,
-        documentation="Will the snapshot be writable?",
-        dictionaryType=None
-    )
-    calling_virtual_volume_host_id = data_model.property(
-        "callingVirtualVolumeHostID", UUID,
-        array=False, optional=True,
-        documentation="",
+    tasks = data_model.property(
+        "tasks", VirtualVolumeTask,
+        array=True, optional=False,
+        documentation="List of VVol Async Tasks.",
         dictionaryType=None
     )
 
@@ -13142,15 +13019,24 @@ class EnableEncryptionAtRestResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class DeleteInitiatorsRequest(data_model.DataObject):
+class CreateBackupTargetRequest(data_model.DataObject):
     """
-    :param initiators: [required] An array of IDs of initiators to delete. 
-    :type initiators: int
+    :param name: [required] Name for the backup target. 
+    :type name: str
+    
+    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :type attributes: dict
     """
-    initiators = data_model.property(
-        "initiators", int,
-        array=True, optional=False,
-        documentation="[&#x27;An array of IDs of initiators to delete.&#x27;]",
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="[&#x27;Name for the backup target.&#x27;]",
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="List of Name/Value pairs in JSON object format.",
         dictionaryType=None
     )
 
@@ -13268,30 +13154,66 @@ class GetClusterHardwareInfoResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetAccountResult(data_model.DataObject):
+class GetAccountEfficiencyRequest(data_model.DataObject):
     """
-    :param account: [required] Account details. 
-    :type account: Account
+    :param account_id: [required] Specifies the volume account for which capacity is computed. 
+    :type account_id: int
+    
+    :param force:  
+    :type force: bool
     """
-    account = data_model.property(
-        "account", Account,
+    account_id = data_model.property(
+        "accountID", int,
         array=False, optional=False,
-        documentation="Account details.",
+        documentation="Specifies the volume account for which capacity is computed.",
+        dictionaryType=None
+    )
+    force = data_model.property(
+        "force", bool,
+        array=False, optional=True,
+        documentation="",
         dictionaryType=None
     )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class EnableSnmpRequest(data_model.DataObject):
+class SetSnmpInfoRequest(data_model.DataObject):
     """
-    :param snmp_v3_enabled: [required] If set to "true", then SNMP v3 is enabled on each node in the cluster. If set to "false", then SNMP v2 is enabled. 
+    :param networks:  List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. SNMP v2 only. 
+    :type networks: SnmpNetwork
+    
+    :param enabled:  If set to "true", then SNMP is enabled on each node in the cluster. 
+    :type enabled: bool
+    
+    :param snmp_v3_enabled:  If set to "true", then SNMP v3 is enabled on each node in the cluster. 
     :type snmp_v3_enabled: bool
+    
+    :param usm_users:  If SNMP v3 is enabled, this value must be passed in place of the "networks" parameter. SNMP v3 only. 
+    :type usm_users: SnmpV3UsmUser
     """
+    networks = data_model.property(
+        "networks", SnmpNetwork,
+        array=True, optional=True,
+        documentation="List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible &quot;networks&quot; values. SNMP v2 only.",
+        dictionaryType=None
+    )
+    enabled = data_model.property(
+        "enabled", bool,
+        array=False, optional=True,
+        documentation="If set to &quot;true&quot;, then SNMP is enabled on each node in the cluster.",
+        dictionaryType=None
+    )
     snmp_v3_enabled = data_model.property(
         "snmpV3Enabled", bool,
-        array=False, optional=False,
-        documentation="If set to &quot;true&quot;, then SNMP v3 is enabled on each node in the cluster. If set to &quot;false&quot;, then SNMP v2 is enabled.",
+        array=False, optional=True,
+        documentation="If set to &quot;true&quot;, then SNMP v3 is enabled on each node in the cluster.",
+        dictionaryType=None
+    )
+    usm_users = data_model.property(
+        "usmUsers", SnmpV3UsmUser,
+        array=True, optional=True,
+        documentation="If SNMP v3 is enabled, this value must be passed in place of the &quot;networks&quot; parameter. SNMP v3 only.",
         dictionaryType=None
     )
 
@@ -13307,6 +13229,21 @@ class GetAccountByIDRequest(data_model.DataObject):
         "accountID", int,
         array=False, optional=False,
         documentation="Specifies the account for which details are gathered.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class AddVirtualNetworkResult(data_model.DataObject):
+    """
+    :param virtual_network_id: [required] The virtual network ID of the new virtual network. 
+    :type virtual_network_id: int
+    """
+    virtual_network_id = data_model.property(
+        "virtualNetworkID", int,
+        array=False, optional=False,
+        documentation="The virtual network ID of the new virtual network.",
         dictionaryType=None
     )
 
@@ -13508,15 +13445,42 @@ class GetVolumeStatsResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class CreateScheduleRequest(data_model.DataObject):
+class RollbackToGroupSnapshotRequest(data_model.DataObject):
     """
-    :param schedule: [required] The "Schedule" object will be used to create a new schedule.<br/> Do not set ScheduleID property, it will be ignored.<br/> Frequency property must be of type that inherits from Frequency. Valid types are:<br/> DaysOfMonthFrequency<br/> DaysOrWeekFrequency<br/> TimeIntervalFrequency 
-    :type schedule: Schedule
+    :param group_snapshot_id: [required] Unique ID of the group snapshot. 
+    :type group_snapshot_id: int
+    
+    :param save_current_state: [required] <br/><b>true</b>: The previous active volume image is kept. <br/><b>false</b>: (default) The previous active volume image is deleted. 
+    :type save_current_state: bool
+    
+    :param name:  Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with  "-copy" appended to the end of the name. 
+    :type name: str
+    
+    :param attributes:  List of Name/Value pairs in JSON object format 
+    :type attributes: dict
     """
-    schedule = data_model.property(
-        "schedule", Schedule,
+    group_snapshot_id = data_model.property(
+        "groupSnapshotID", int,
         array=False, optional=False,
-        documentation="[&#x27;The &quot;Schedule&quot; object will be used to create a new schedule.&lt;br/&gt;&#x27;, &#x27;Do not set ScheduleID property, it will be ignored.&lt;br/&gt;&#x27;, &#x27;Frequency property must be of type that inherits from Frequency. Valid types are:&lt;br/&gt;&#x27;, &#x27;DaysOfMonthFrequency&lt;br/&gt;&#x27;, &#x27;DaysOrWeekFrequency&lt;br/&gt;&#x27;, &#x27;TimeIntervalFrequency&#x27;]",
+        documentation="[&#x27;Unique ID of the group snapshot.&#x27;]",
+        dictionaryType=None
+    )
+    save_current_state = data_model.property(
+        "saveCurrentState", bool,
+        array=False, optional=False,
+        documentation="[&#x27;&lt;br/&gt;&lt;b&gt;true&lt;/b&gt;: The previous active volume image is kept.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;false&lt;/b&gt;: (default) The previous active volume image is deleted.&#x27;]",
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=True,
+        documentation="[&#x27;Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with &#x27;, &#x27;&quot;-copy&quot; appended to the end of the name.&#x27;]",
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="[&#x27;List of Name/Value pairs in JSON object format&#x27;]",
         dictionaryType=None
     )
 

@@ -1592,6 +1592,1202 @@ RESP_GetHardwareInfo_v9_0 = """{
   }
 }"""
 
+RESP_GetHardwareInfo_v9_1 = """{
+   "id":1,
+   "result":{
+      "hardwareInfo":{
+         "bus":{
+            "core_DMI:0200":{
+               "description":"Motherboard",
+               "physid":"0",
+               "product":"086D43",
+               "serial":".JXBM382.CN7475163N0293.",
+               "vendor":"SolidFire",
+               "version":"A08"
+            }
+         },
+         "driveHardware":[
+            {
+               "canonicalName":"sda",
+               "connected":true,
+               "dev":2048,
+               "devPath":"/dev/slot0",
+               "driveType":"Slice",
+               "lifeRemainingPercent":100,
+               "lifetimeReadBytes":26388279066624,
+               "lifetimeWriteBytes":8796093022208,
+               "name":"scsi-SATA_SDLFNCAR-960G-1_A0042192",
+               "path":"/dev/sda",
+               "pathLink":"/dev/slot0",
+               "powerOnHours":1360,
+               "product":"SDLFNCAR-960G-1HA2",
+               "reallocatedSectors":0,
+               "reserveCapacityPercent":100,
+               "scsiCompatId":"scsi-SATA_SDLFNCAR-960G-1_A0042192",
+               "scsiState":"Running",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":true,
+               "serial":"A0042192",
+               "size":960197124096,
+               "slot":0,
+               "uuid":"cd3c63b7-e769-4bdc-6453-7454f363a6bf",
+               "vendor":"SanDisk",
+               "version":"ZZ39RC93"
+            },
+            {
+               "canonicalName":"sdb",
+               "connected":true,
+               "dev":2064,
+               "devPath":"/dev/slot1",
+               "driveType":"Block",
+               "lifeRemainingPercent":100,
+               "lifetimeReadBytes":26388279066624,
+               "lifetimeWriteBytes":8796093022208,
+               "name":"scsi-SATA_SDLFNCAR-960G-1_A00422F8",
+               "path":"/dev/sdb",
+               "pathLink":"/dev/slot1",
+               "powerOnHours":1359,
+               "product":"SDLFNCAR-960G-1HA2",
+               "reallocatedSectors":0,
+               "reserveCapacityPercent":100,
+               "scsiCompatId":"scsi-SATA_SDLFNCAR-960G-1_A00422F8",
+               "scsiState":"Running",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":true,
+               "serial":"A00422F8",
+               "size":960197124096,
+               "slot":1,
+               "uuid":"559cfb7f-12ff-a9ec-b238-61e62735d3ab",
+               "vendor":"SanDisk",
+               "version":"ZZ39RC93"
+            },
+            {
+               "canonicalName":"sdc",
+               "connected":true,
+               "dev":2080,
+               "devPath":"/dev/slot2",
+               "driveType":"Block",
+               "lifeRemainingPercent":100,
+               "lifetimeReadBytes":26388279066624,
+               "lifetimeWriteBytes":8796093022208,
+               "name":"scsi-SATA_SDLFNCAR-960G-1_A0041F64",
+               "path":"/dev/sdc",
+               "pathLink":"/dev/slot2",
+               "powerOnHours":1360,
+               "product":"SDLFNCAR-960G-1HA2",
+               "reallocatedSectors":0,
+               "reserveCapacityPercent":100,
+               "scsiCompatId":"scsi-SATA_SDLFNCAR-960G-1_A0041F64",
+               "scsiState":"Running",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":true,
+               "serial":"A0041F64",
+               "size":960197124096,
+               "slot":2,
+               "uuid":"58b1771b-af45-636c-94a1-78bf7a96d3cb",
+               "vendor":"SanDisk",
+               "version":"ZZ39RC93"
+            },
+            {
+               "canonicalName":"sdd",
+               "connected":true,
+               "dev":2096,
+               "devPath":"/dev/slot3",
+               "driveType":"Block",
+               "lifeRemainingPercent":100,
+               "lifetimeReadBytes":26388279066624,
+               "lifetimeWriteBytes":8796093022208,
+               "name":"scsi-SATA_SDLFNCAR-960G-1_A0042105",
+               "path":"/dev/sdd",
+               "pathLink":"/dev/slot3",
+               "powerOnHours":1359,
+               "product":"SDLFNCAR-960G-1HA2",
+               "reallocatedSectors":0,
+               "reserveCapacityPercent":100,
+               "scsiCompatId":"scsi-SATA_SDLFNCAR-960G-1_A0042105",
+               "scsiState":"Running",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":true,
+               "serial":"A0042105",
+               "size":960197124096,
+               "slot":3,
+               "uuid":"337011b3-3339-7ff6-161a-b9e872acf033",
+               "vendor":"SanDisk",
+               "version":"ZZ39RC93"
+            },
+            {
+               "canonicalName":"sde",
+               "connected":true,
+               "dev":2112,
+               "devPath":"/dev/slot4",
+               "driveType":"Block",
+               "lifeRemainingPercent":100,
+               "lifetimeReadBytes":26388279066624,
+               "lifetimeWriteBytes":8796093022208,
+               "name":"scsi-SATA_SDLFNCAR-960G-1_A004220B",
+               "path":"/dev/sde",
+               "pathLink":"/dev/slot4",
+               "powerOnHours":1360,
+               "product":"SDLFNCAR-960G-1HA2",
+               "reallocatedSectors":0,
+               "reserveCapacityPercent":100,
+               "scsiCompatId":"scsi-SATA_SDLFNCAR-960G-1_A004220B",
+               "scsiState":"Running",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":true,
+               "serial":"A004220B",
+               "size":960197124096,
+               "slot":4,
+               "uuid":"774f2b16-d765-0cb6-ee0d-5e137a48c313",
+               "vendor":"SanDisk",
+               "version":"ZZ39RC93"
+            },
+            {
+               "canonicalName":"sdf",
+               "connected":true,
+               "dev":2128,
+               "devPath":"/dev/slot5",
+               "driveType":"Block",
+               "lifeRemainingPercent":100,
+               "lifetimeReadBytes":26388279066624,
+               "lifetimeWriteBytes":8796093022208,
+               "name":"scsi-SATA_SDLFNCAR-960G-1_A004214D",
+               "path":"/dev/sdf",
+               "pathLink":"/dev/slot5",
+               "powerOnHours":1360,
+               "product":"SDLFNCAR-960G-1HA2",
+               "reallocatedSectors":0,
+               "reserveCapacityPercent":100,
+               "scsiCompatId":"scsi-SATA_SDLFNCAR-960G-1_A004214D",
+               "scsiState":"Running",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":true,
+               "serial":"A004214D",
+               "size":960197124096,
+               "slot":5,
+               "uuid":"f09d575a-8b1c-cd29-95e9-6a059f090f40",
+               "vendor":"SanDisk",
+               "version":"ZZ39RC93"
+            },
+            {
+               "canonicalName":"sdg",
+               "connected":true,
+               "dev":2144,
+               "devPath":"/dev/slot6",
+               "driveType":"Block",
+               "lifeRemainingPercent":100,
+               "lifetimeReadBytes":26388279066624,
+               "lifetimeWriteBytes":8796093022208,
+               "name":"scsi-SATA_SDLFNCAR-960G-1_A0042245",
+               "path":"/dev/sdg",
+               "pathLink":"/dev/slot6",
+               "powerOnHours":1360,
+               "product":"SDLFNCAR-960G-1HA2",
+               "reallocatedSectors":0,
+               "reserveCapacityPercent":100,
+               "scsiCompatId":"scsi-SATA_SDLFNCAR-960G-1_A0042245",
+               "scsiState":"Running",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":true,
+               "serial":"A0042245",
+               "size":960197124096,
+               "slot":6,
+               "uuid":"142a1090-4f4c-e0a9-28a7-76f9f5735c3d",
+               "vendor":"SanDisk",
+               "version":"ZZ39RC93"
+            },
+            {
+               "canonicalName":"sdh",
+               "connected":true,
+               "dev":2160,
+               "devPath":"/dev/slot7",
+               "driveType":"Block",
+               "lifeRemainingPercent":100,
+               "lifetimeReadBytes":26388279066624,
+               "lifetimeWriteBytes":8796093022208,
+               "name":"scsi-SATA_SDLFNCAR-960G-1_A0041F78",
+               "path":"/dev/sdh",
+               "pathLink":"/dev/slot7",
+               "powerOnHours":1360,
+               "product":"SDLFNCAR-960G-1HA2",
+               "reallocatedSectors":0,
+               "reserveCapacityPercent":100,
+               "scsiCompatId":"scsi-SATA_SDLFNCAR-960G-1_A0041F78",
+               "scsiState":"Running",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":true,
+               "serial":"A0041F78",
+               "size":960197124096,
+               "slot":7,
+               "uuid":"d0919cb3-bd2a-10e5-1ac6-9b13d7baae5d",
+               "vendor":"SanDisk",
+               "version":"ZZ39RC93"
+            },
+            {
+               "canonicalName":"sdi",
+               "connected":true,
+               "dev":2176,
+               "devPath":"/dev/slot8",
+               "driveType":"Block",
+               "lifeRemainingPercent":100,
+               "lifetimeReadBytes":26388279066624,
+               "lifetimeWriteBytes":8796093022208,
+               "name":"scsi-SATA_SDLFNCAR-960G-1_A00422DB",
+               "path":"/dev/sdi",
+               "pathLink":"/dev/slot8",
+               "powerOnHours":1359,
+               "product":"SDLFNCAR-960G-1HA2",
+               "reallocatedSectors":0,
+               "reserveCapacityPercent":100,
+               "scsiCompatId":"scsi-SATA_SDLFNCAR-960G-1_A00422DB",
+               "scsiState":"Running",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":true,
+               "serial":"A00422DB",
+               "size":960197124096,
+               "slot":8,
+               "uuid":"872a8610-f7dc-c07c-e181-e5b27f49dc51",
+               "vendor":"SanDisk",
+               "version":"ZZ39RC93"
+            },
+            {
+               "canonicalName":"sdj",
+               "connected":true,
+               "dev":2192,
+               "devPath":"/dev/slot9",
+               "driveType":"Block",
+               "lifeRemainingPercent":100,
+               "lifetimeReadBytes":26388279066624,
+               "lifetimeWriteBytes":8796093022208,
+               "name":"scsi-SATA_SDLFNCAR-960G-1_A0042195",
+               "path":"/dev/sdj",
+               "pathLink":"/dev/slot9",
+               "powerOnHours":1360,
+               "product":"SDLFNCAR-960G-1HA2",
+               "reallocatedSectors":0,
+               "reserveCapacityPercent":100,
+               "scsiCompatId":"scsi-SATA_SDLFNCAR-960G-1_A0042195",
+               "scsiState":"Running",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":true,
+               "serial":"A0042195",
+               "size":960197124096,
+               "slot":9,
+               "uuid":"97e3f7a6-9a7a-05c1-ff4c-ebe017783ec6",
+               "vendor":"SanDisk",
+               "version":"ZZ39RC93"
+            }
+         ],
+         "fibreChannelPorts":[
+
+         ],
+         "fileSystemUsage":{
+
+         },
+         "hardwareConfig":null,
+         "kernelCrashDumpState":"EnabledByDefault",
+         "memory":{
+            "firmware_":{
+               "capacity":"16711680",
+               "date":"03/09/2015",
+               "description":"BIOS",
+               "physid":"0",
+               "size":"65536",
+               "vendor":"SolidFire",
+               "version":"1.2.10"
+            },
+            "memory_DMI:1000":{
+               "description":"System Memory",
+               "physid":"1000",
+               "size":"274877906944",
+               "slot":"System board or motherboard"
+            }
+         },
+         "network":{
+            "network:0_":{
+               "description":"Ethernet interface",
+               "logicalname":"Bond1G",
+               "physid":"1",
+               "serial":"14:18:77:71:7d:dd"
+            },
+            "network:0_PCI:0000:01:00.0":{
+               "businfo":"pci@0000:01:00.0",
+               "capacity":"1000000000",
+               "clock":"33000000",
+               "description":"Ethernet interface",
+               "logicalname":"eth0",
+               "physid":"0",
+               "product":"NetXtreme II BCM57800 1/10 Gigabit Ethernet",
+               "serial":"14:18:77:71:7d:d9",
+               "vendor":"Broadcom Corporation",
+               "version":"10",
+               "width":"64"
+            },
+            "network:1_":{
+               "description":"Ethernet interface",
+               "logicalname":"Bond10G",
+               "physid":"2",
+               "serial":"14:18:77:71:7d:d9"
+            },
+            "network:1_PCI:0000:01:00.1":{
+               "businfo":"pci@0000:01:00.1",
+               "capacity":"1000000000",
+               "clock":"33000000",
+               "description":"Ethernet interface",
+               "logicalname":"eth1",
+               "physid":"0.1",
+               "product":"NetXtreme II BCM57800 1/10 Gigabit Ethernet",
+               "serial":"14:18:77:71:7d:d9",
+               "vendor":"Broadcom Corporation",
+               "version":"10",
+               "width":"64"
+            },
+            "network:2_PCI:0000:01:00.2":{
+               "businfo":"pci@0000:01:00.2",
+               "capacity":"1000000000",
+               "clock":"33000000",
+               "description":"Ethernet interface",
+               "logicalname":"eth2",
+               "physid":"0.2",
+               "product":"NetXtreme II BCM57800 1/10 Gigabit Ethernet",
+               "serial":"14:18:77:71:7d:dd",
+               "size":"1000000000",
+               "vendor":"Broadcom Corporation",
+               "version":"10",
+               "width":"64"
+            },
+            "network:3_PCI:0000:01:00.3":{
+               "businfo":"pci@0000:01:00.3",
+               "capacity":"1000000000",
+               "clock":"33000000",
+               "description":"Ethernet interface",
+               "logicalname":"eth3",
+               "physid":"0.3",
+               "product":"NetXtreme II BCM57800 1/10 Gigabit Ethernet",
+               "serial":"14:18:77:71:7d:dd",
+               "size":"1000000000",
+               "vendor":"Broadcom Corporation",
+               "version":"10",
+               "width":"64"
+            }
+         },
+         "networkInterfaces":{
+            "Bond10G":{
+               "isConfigured":true,
+               "isUp":true
+            },
+            "Bond1G":{
+               "isConfigured":true,
+               "isUp":true
+            },
+            "eth0":{
+               "isConfigured":true,
+               "isUp":true
+            },
+            "eth1":{
+               "isConfigured":true,
+               "isUp":true
+            },
+            "eth2":{
+               "isConfigured":true,
+               "isUp":true
+            },
+            "eth3":{
+               "isConfigured":true,
+               "isUp":true
+            }
+         },
+         "nvram":{
+            "errors":{
+               "numOfErrorLogEntries":"0"
+            },
+            "extended":{
+               "dialogVersion":"4",
+               "event":[
+                  {
+                     "name":"flushToFlash",
+                     "time":"1948-05-19 10:51:42",
+                     "value":"0"
+                  },
+                  {
+                     "name":"flushToFlash",
+                     "time":"1948-05-19 10:52:05",
+                     "value":"0"
+                  },
+                  {
+                     "name":"flushToFlash",
+                     "time":"1948-05-19 10:52:05",
+                     "value":"0"
+                  },
+                  {
+                     "name":"flushToFlash",
+                     "time":"1948-05-19 10:52:28",
+                     "value":"0"
+                  },
+                  {
+                     "name":"flushToFlash",
+                     "time":"1948-05-19 10:52:28",
+                     "value":"0"
+                  },
+                  {
+                     "name":"flushToFlash",
+                     "time":"2016-06-06 21:17:48",
+                     "value":"0"
+                  },
+                  {
+                     "name":"flushToFlash",
+                     "time":"2016-11-11 17:46:27",
+                     "value":"0"
+                  },
+                  {
+                     "name":"flushToFlash",
+                     "time":"2016-11-11 18:06:36",
+                     "value":"0"
+                  }
+               ],
+               "eventOccurrences":[
+                  {
+                     "count":"33",
+                     "name":"flushToFlash"
+                  }
+               ],
+               "initialCapacitance":"7.230 F",
+               "initialEsr":"0.094 Ohm",
+               "measurement":[
+                  {
+                     "level_0":" 0",
+                     "level_1":" 248",
+                     "level_2":" 81248",
+                     "level_3":" 115282",
+                     "level_4":" 1452745",
+                     "level_5":" 2656",
+                     "level_6":" 0",
+                     "level_7":" 0",
+                     "level_8":" 0",
+                     "level_9":" 0",
+                     "name":"enterpriseFlashControllerTemperature",
+                     "recent":"71 C"
+                  },
+                  {
+                     "level_0":" 0",
+                     "level_1":" 19",
+                     "level_2":" 17817",
+                     "level_3":" 172973",
+                     "level_4":" 86276",
+                     "level_5":" 1371833",
+                     "level_6":" 3261",
+                     "level_7":" 0",
+                     "level_8":" 0",
+                     "level_9":" 0",
+                     "name":"capacitor1And2Temperature",
+                     "recent":"36.85 C"
+                  },
+                  {
+                     "level_0":" 0",
+                     "level_1":" 93",
+                     "level_2":" 169360",
+                     "level_3":" 79108",
+                     "level_4":" 1335529",
+                     "level_5":" 68089",
+                     "level_6":" 0",
+                     "level_7":" 0",
+                     "level_8":" 0",
+                     "level_9":" 0",
+                     "name":"capacitor3And4Temperature",
+                     "recent":"32.39 C"
+                  },
+                  {
+                     "level_0":" 0",
+                     "level_1":" 74000",
+                     "level_2":" 12628",
+                     "level_3":" 87751",
+                     "level_4":" 177086",
+                     "level_5":" 1298124",
+                     "level_6":" 2590",
+                     "level_7":" 0",
+                     "level_8":" 0",
+                     "level_9":" 0",
+                     "name":"rearVentAmbientTemperature",
+                     "recent":"40.97 C"
+                  },
+                  {
+                     "level_0":" 0",
+                     "level_1":" 143951",
+                     "level_2":" 1211634",
+                     "level_3":" 296594",
+                     "level_4":" 0",
+                     "level_5":" 0",
+                     "level_6":" 0",
+                     "level_7":" 0",
+                     "level_8":" 0",
+                     "level_9":" 0",
+                     "name":"rms200BoardTemperature",
+                     "recent":"54.81 C"
+                  },
+                  {
+                     "name":"voltageOfCapacitor1",
+                     "recent":"2.281 V"
+                  },
+                  {
+                     "name":"voltageOfCapacitor2",
+                     "recent":"2.267 V"
+                  },
+                  {
+                     "name":"voltageOfCapacitor3",
+                     "recent":"2.283 V"
+                  },
+                  {
+                     "name":"voltageOfCapacitor4",
+                     "recent":"2.251 V"
+                  },
+                  {
+                     "level_0":" 81187",
+                     "level_1":" 286238",
+                     "level_2":" 1064490",
+                     "level_3":" 171445",
+                     "level_4":" 19579",
+                     "level_5":" 12403",
+                     "level_6":" 16837",
+                     "level_7":" 0",
+                     "level_8":" 0",
+                     "level_9":" 0",
+                     "name":"capacitorPackVoltage",
+                     "recent":"9.082 V"
+                  },
+                  {
+                     "level_0":" 0",
+                     "level_1":" 0",
+                     "level_2":" 0",
+                     "level_3":" 0",
+                     "level_4":" 0",
+                     "level_5":" 23",
+                     "level_6":" 3",
+                     "level_7":" 0",
+                     "level_8":" 0",
+                     "level_9":" 7",
+                     "name":"capacitorPackVoltageAtEndOfFlushToFlash",
+                     "recent":"5.748 V"
+                  },
+                  {
+                     "name":"currentDerivedFromV3V4",
+                     "recent":"-0.002 A"
+                  },
+                  {
+                     "level_0":" 12",
+                     "level_1":" 20",
+                     "level_2":" 1",
+                     "level_3":" 0",
+                     "level_4":" 0",
+                     "level_5":" 0",
+                     "level_6":" 0",
+                     "level_7":" 0",
+                     "level_8":" 0",
+                     "level_9":" 0",
+                     "name":"derivedEnergy",
+                     "recent":"165 Joules"
+                  },
+                  {
+                     "level_0":" 0",
+                     "level_1":" 0",
+                     "level_2":" 0",
+                     "level_3":" 0",
+                     "level_4":" 0",
+                     "level_5":" 0",
+                     "level_6":" 0",
+                     "level_7":" 0",
+                     "level_8":" 1",
+                     "level_9":" 17",
+                     "name":"derivedCapacitanceOfThePack",
+                     "recent":"6.755 F"
+                  },
+                  {
+                     "level_0":" 0",
+                     "level_1":" 18",
+                     "level_2":" 0",
+                     "level_3":" 0",
+                     "level_4":" 0",
+                     "level_5":" 0",
+                     "level_6":" 0",
+                     "level_7":" 0",
+                     "level_8":" 0",
+                     "level_9":" 0",
+                     "name":"derivedEsrOfCapacitorPack",
+                     "recent":"0.096 Ohm"
+                  },
+                  {
+                     "level_0":" 0",
+                     "level_1":" 0",
+                     "level_2":" 1",
+                     "level_3":" 0",
+                     "level_4":" 4",
+                     "level_5":" 28",
+                     "level_6":" 0",
+                     "level_7":" 0",
+                     "level_8":" 0",
+                     "level_9":" 0",
+                     "name":"timeToRunFlushToFlash",
+                     "recent":"22.94 Seconds"
+                  },
+                  {
+                     "level_0":" 0",
+                     "level_1":" 0",
+                     "level_2":" 16",
+                     "level_3":" 0",
+                     "level_4":" 0",
+                     "level_5":" 0",
+                     "level_6":" 0",
+                     "level_7":" 0",
+                     "level_8":" 0",
+                     "level_9":" 0",
+                     "name":"timeToRunRestore",
+                     "recent":"20.40 Seconds"
+                  },
+                  {
+                     "level_0":" 0",
+                     "level_1":" 14",
+                     "level_2":" 0",
+                     "level_3":" 1",
+                     "level_4":" 0",
+                     "level_5":" 0",
+                     "level_6":" 0",
+                     "level_7":" 0",
+                     "level_8":" 0",
+                     "level_9":" 0",
+                     "name":"timeToChargeCapacitors",
+                     "recent":"42 Seconds"
+                  },
+                  {
+                     "level_0":" 963010",
+                     "level_1":" 69182",
+                     "level_2":" 0",
+                     "level_3":" 0",
+                     "level_4":" 0",
+                     "level_5":" 0",
+                     "level_6":" 0",
+                     "level_7":" 0",
+                     "level_8":" 0",
+                     "level_9":" 0",
+                     "name":"correctableBitsInErrorOnReadingAPage"
+                  },
+                  {
+                     "level_0":" 69182",
+                     "level_1":" 0",
+                     "level_2":" 0",
+                     "level_3":" 0",
+                     "level_4":" 0",
+                     "level_5":" 0",
+                     "level_6":" 0",
+                     "level_7":" 0",
+                     "level_8":" 0",
+                     "level_9":" 0",
+                     "name":"correctableBitsInErrorOnReadingTheWorstBchRegionOfAPage"
+                  },
+                  {
+                     "level_0":" 0",
+                     "level_1":" 116",
+                     "level_2":" 79454",
+                     "level_3":" 2959",
+                     "level_4":" 60469",
+                     "level_5":" 100691",
+                     "level_6":" 1402834",
+                     "level_7":" 5656",
+                     "level_8":" 0",
+                     "level_9":" 0",
+                     "name":"fanInletAmbientTemperature",
+                     "recent":"47.76 C"
+                  }
+               ],
+               "smartCounters":[
+                  {
+                     "name":"numberOf512ByteBlocksReadFromDdr",
+                     "value":"100583400471"
+                  },
+                  {
+                     "name":"numberOf512ByteBlocksWrittenToDdr",
+                     "value":"100461106048"
+                  },
+                  {
+                     "name":"numberOfHostReadCommands",
+                     "value":"440796905"
+                  },
+                  {
+                     "name":"numberOfHostWriteCommands",
+                     "value":"423222231"
+                  },
+                  {
+                     "name":"controllerBusyTimeMinutes",
+                     "value":"347"
+                  },
+                  {
+                     "name":"numberOfPowerCycles",
+                     "value":"13"
+                  },
+                  {
+                     "name":"powerOnHours",
+                     "value":"1318"
+                  },
+                  {
+                     "name":"unsafeShutdowns",
+                     "value":"7"
+                  },
+                  {
+                     "name":"mediaErrors",
+                     "value":"0"
+                  },
+                  {
+                     "name":"numberOfErrorLogs",
+                     "value":"16"
+                  }
+               ],
+               "snapshotTime":"2016-11-29 16:16:09"
+            },
+            "firmware":{
+               "activeSlotNumber":"2",
+               "slot1Version":"5fb7565c",
+               "slot2Version":"5fb7565c",
+               "slot3Version":"5fb7565c",
+               "slot4Version":"5fb7565c"
+            },
+            "identify":{
+               "firmwareVersion":"5fb7565c on slot 2",
+               "hardwareRevision":"B04",
+               "modelNumber":"RMS-200",
+               "serialNumber":"0038931"
+            },
+            "smart":{
+               "availableSpace":"0%",
+               "availableSpaceThreshold":"0%",
+               "controllerBusyTimeMinutes":"347",
+               "criticalErrorVector":"0x0",
+               "mediaErrors":"0",
+               "numberOf512ByteBlocksRead":"100583400471",
+               "numberOf512ByteBlocksWritten":"100461106048",
+               "numberOfErrorInfoLogs":"16",
+               "numberOfHostReadCommands":"440796905",
+               "numberOfHostWriteCommands":"423222231",
+               "numberOfPowerCycles":"13",
+               "powerOnHours":"1318",
+               "temperature":"327 Kelvin",
+               "unsafeShutdowns":"7"
+            }
+         },
+         "origin":{
+            "<signature>":{
+               "data":"eiPNNA3TpfgO0bl+SnhjaO1ZEKJUPZJDG1PFZrbOmUu5JXfQ012Aq0RzhMSKIb8MVTgesZ/+urfzuVD9Zf1JKwnfv7h3UZLMzE7eC6rJnLNi+AgHEYvqBLLKMJ39HNj+xEOogpQmBIn5jKv7U05pk4tsQwbxv4HtoQNMEl+PdQuVdDGLD9ipU3jgAw5sHFFZ+hLq8Uk3fzUiiR7LcW2b9aAw4KEQdSj/OhCNB4/7IcKOq8YBpP3ONWb+N6jrqSfMtnD4sa7vzSX7vI0z++zBeUd6E0hJz7atonS6oAqtyT4F48giO6hBSfkqt0KLvvC1Mcgh0LQrQG+XZnQ5KWBIuQ==",
+               "pubkey":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxmKgEBzyZv2jFZpucao7HT9lYuR3g/18thP/7arwflrtDauIaPaIbnsuDVWgbPKHsqBkth9XCnDF16yBOFYoJLZ+vW0kNS7Z/CiCiLlmAXIa4voeEqLsQ55IbAhjMXfrGauyUHZYunMBhUG3xDJxdrs4Rgp24VqB/oBxihleyotIX+dLpv7nd7qbVA3juLMAy7cfgxUX7mAEmPAcx3gNiNw7SBBZaeFVrNSiXv3+Zrw5wLkLH1QDWwuBRK+3yGTkzVwD5QgLw0qkRMkFobBhk96Z7CQbf4B/8zi3bhvowoyaK+4Cv/jmEjs2TS0QFW0PQHKIjyC3ckkcLaZZ2DQcLQIDAQAB",
+               "version":1
+            },
+            "contract-date":"10/1/2015",
+            "contract-name":"00002265",
+            "contract-quantity":0,
+            "contract-type":"Master",
+            "integrator":"StackVelocity",
+            "location":"Memphis, Tennessee",
+            "organization":"none",
+            "type":"appliance"
+         },
+         "platform":{
+            "chassisType":"R630",
+            "cpuModel":"Intel(R) Xeon(R) CPU E5-2620 v3 @ 2.40GHz",
+            "nodeMemoryGB":256,
+            "nodeType":"SF9605"
+         },
+         "serial":"JXBM382",
+         "storage":{
+            "storage:0_PCI:0000:00:11.4":{
+               "businfo":"pci@0000:00:11.4",
+               "clock":"66000000",
+               "description":"SATA controller",
+               "physid":"11.4",
+               "product":"Wellsburg sSATA Controller [AHCI mode]",
+               "vendor":"Intel Corporation",
+               "version":"05",
+               "width":"32"
+            },
+            "storage:1_PCI:0000:00:1f.2":{
+               "businfo":"pci@0000:00:1f.2",
+               "clock":"66000000",
+               "description":"SATA controller",
+               "physid":"1f.2",
+               "product":"Wellsburg 6-Port SATA Controller [AHCI mode]",
+               "vendor":"Intel Corporation",
+               "version":"05",
+               "width":"32"
+            },
+            "storage_PCI:0000:03:00.0":{
+               "businfo":"pci@0000:03:00.0",
+               "clock":"33000000",
+               "description":"Non-Volatile memory controller",
+               "physid":"0",
+               "version":"05",
+               "width":"64"
+            },
+            "storage_PCI:0000:82:00.0":{
+               "businfo":"pci@0000:82:00.0",
+               "clock":"33000000",
+               "description":"Serial Attached SCSI controller",
+               "physid":"0",
+               "product":"SAS2008 PCI-Express Fusion-MPT SAS-2 [Falcon]",
+               "vendor":"LSI Logic / Symbios Logic",
+               "version":"03",
+               "width":"64"
+            }
+         },
+         "system":{
+            "vcpnode4_DMI:0100":{
+               "description":"Rack Mount Chassis",
+               "product":"Storage System (SKU=NotProvided;ModelName=Storage System)",
+               "serial":"JXBM382",
+               "vendor":"SolidFire",
+               "width":"64"
+            }
+         },
+         "systemMemory":{
+            "free":216479330304,
+            "total":269981622272,
+            "used":53502291968
+         },
+         "uuid":"4C4C4544-0058-4210-804D-CAC04F333832"
+      }
+   }
+}"""
+
+RESP_GetHardwareInfo_v9_2 = """{
+   "id":3,
+   "result":{
+      "hardwareInfo":{
+         "bus":{
+            "core_DMI:0200":{
+               "description":"Motherboard",
+               "physid":"0",
+               "product":"0H47HH",
+               "serial":"..CN747513450302.",
+               "vendor":"SolidFire",
+               "version":"A09"
+            },
+            "fiber:0_PCI:0000:04:00.0":{
+               "businfo":"pci@0000:04:00.0",
+               "clock":"33000000",
+               "description":"Fibre Channel",
+               "physid":"0",
+               "product":"ISP8324-based 16Gb Fibre Channel to PCI Express Adapter",
+               "vendor":"QLogic Corp.",
+               "version":"02",
+               "width":"64"
+            },
+            "fiber:0_PCI:0000:42:00.0":{
+               "businfo":"pci@0000:42:00.0",
+               "clock":"33000000",
+               "description":"Fibre Channel",
+               "physid":"0",
+               "product":"ISP8324-based 16Gb Fibre Channel to PCI Express Adapter",
+               "vendor":"QLogic Corp.",
+               "version":"02",
+               "width":"64"
+            },
+            "fiber:1_PCI:0000:04:00.1":{
+               "businfo":"pci@0000:04:00.1",
+               "clock":"33000000",
+               "description":"Fibre Channel",
+               "physid":"0.1",
+               "product":"ISP8324-based 16Gb Fibre Channel to PCI Express Adapter",
+               "vendor":"QLogic Corp.",
+               "version":"02",
+               "width":"64"
+            },
+            "fiber:1_PCI:0000:42:00.1":{
+               "businfo":"pci@0000:42:00.1",
+               "clock":"33000000",
+               "description":"Fibre Channel",
+               "physid":"0.1",
+               "product":"ISP8324-based 16Gb Fibre Channel to PCI Express Adapter",
+               "vendor":"QLogic Corp.",
+               "version":"02",
+               "width":"64"
+            }
+         },
+         "driveHardware":[
+
+         ],
+         "fibreChannelPorts":[
+            {
+               "firmware":"8.02.03 (d0d5)",
+               "hbaPort":1,
+               "model":"QLE2672",
+               "nPortID":"0x8d0200",
+               "pciSlot":3,
+               "serial":"BFE1435K26421",
+               "speed":"16 Gbit",
+               "state":"Online",
+               "switchWwn":"20:01:8c:60:4f:f1:55:91",
+               "wwnn":"5f:47:ac:c8:8d:08:96:00",
+               "wwpn":"5f:47:ac:c0:8d:08:96:02"
+            },
+            {
+               "firmware":"8.02.03 (d0d5)",
+               "hbaPort":2,
+               "model":"QLE2672",
+               "nPortID":"0x6d0400",
+               "pciSlot":3,
+               "serial":"BFE1435K26421",
+               "speed":"16 Gbit",
+               "state":"Online",
+               "switchWwn":"20:01:8c:60:4f:f1:5c:61",
+               "wwnn":"5f:47:ac:c8:8d:08:96:00",
+               "wwpn":"5f:47:ac:c0:8d:08:96:03"
+            },
+            {
+               "firmware":"8.02.03 (d0d5)",
+               "hbaPort":1,
+               "model":"QLE2672",
+               "nPortID":"0x6d0500",
+               "pciSlot":2,
+               "serial":"BFE1435K26220",
+               "speed":"16 Gbit",
+               "state":"Online",
+               "switchWwn":"20:01:8c:60:4f:f1:5c:61",
+               "wwnn":"5f:47:ac:c8:8d:08:96:00",
+               "wwpn":"5f:47:ac:c0:8d:08:96:00"
+            },
+            {
+               "firmware":"8.02.03 (d0d5)",
+               "hbaPort":2,
+               "model":"QLE2672",
+               "nPortID":"0x8d0300",
+               "pciSlot":2,
+               "serial":"BFE1435K26220",
+               "speed":"16 Gbit",
+               "state":"Online",
+               "switchWwn":"20:01:8c:60:4f:f1:55:91",
+               "wwnn":"5f:47:ac:c8:8d:08:96:00",
+               "wwpn":"5f:47:ac:c0:8d:08:96:01"
+            }
+         ],
+         "fileSystemUsage":{
+
+         },
+         "hardwareConfig":null,
+         "kernelCrashDumpState":"EnabledByDefault",
+         "memory":{
+            "firmware_":{
+               "capacity":"8323072",
+               "date":"01/16/2014",
+               "description":"BIOS",
+               "physid":"0",
+               "size":"65536",
+               "vendor":"SolidFire",
+               "version":"2.2.2"
+            },
+            "memory_DMI:1000":{
+               "description":"System Memory",
+               "physid":"1000",
+               "size":"34359738368",
+               "slot":"System board or motherboard"
+            }
+         },
+         "network":{
+            "network:0_":{
+               "description":"Ethernet interface",
+               "logicalname":"Bond1G",
+               "physid":"1",
+               "serial":"b8:2a:72:cf:af:46"
+            },
+            "network:0_PCI:0000:01:00.0":{
+               "businfo":"pci@0000:01:00.0",
+               "capacity":"1000000000",
+               "clock":"33000000",
+               "description":"Ethernet interface",
+               "logicalname":"eth0",
+               "physid":"0",
+               "product":"NetXtreme II BCM57800 1/10 Gigabit Ethernet",
+               "serial":"b8:2a:72:cf:af:42",
+               "vendor":"Broadcom Corporation",
+               "version":"10",
+               "width":"64"
+            },
+            "network:0_PCI:0000:41:00.0":{
+               "businfo":"pci@0000:41:00.0",
+               "capacity":"1000000000",
+               "clock":"33000000",
+               "description":"Ethernet interface",
+               "logicalname":"eth4",
+               "physid":"0",
+               "product":"NetXtreme II BCM57810 10 Gigabit Ethernet",
+               "serial":"b8:2a:72:cf:af:42",
+               "vendor":"Broadcom Corporation",
+               "version":"10",
+               "width":"64"
+            },
+            "network:1_":{
+               "description":"Ethernet interface",
+               "logicalname":"Bond10G",
+               "physid":"2",
+               "serial":"b8:2a:72:cf:af:42"
+            },
+            "network:1_PCI:0000:01:00.1":{
+               "businfo":"pci@0000:01:00.1",
+               "capacity":"1000000000",
+               "clock":"33000000",
+               "description":"Ethernet interface",
+               "logicalname":"eth1",
+               "physid":"0.1",
+               "product":"NetXtreme II BCM57800 1/10 Gigabit Ethernet",
+               "serial":"b8:2a:72:cf:af:42",
+               "vendor":"Broadcom Corporation",
+               "version":"10",
+               "width":"64"
+            },
+            "network:1_PCI:0000:41:00.1":{
+               "businfo":"pci@0000:41:00.1",
+               "capacity":"1000000000",
+               "clock":"33000000",
+               "description":"Ethernet interface",
+               "logicalname":"eth5",
+               "physid":"0.1",
+               "product":"NetXtreme II BCM57810 10 Gigabit Ethernet",
+               "serial":"b8:2a:72:cf:af:42",
+               "vendor":"Broadcom Corporation",
+               "version":"10",
+               "width":"64"
+            },
+            "network:2_PCI:0000:01:00.2":{
+               "businfo":"pci@0000:01:00.2",
+               "capacity":"1000000000",
+               "clock":"33000000",
+               "description":"Ethernet interface",
+               "logicalname":"eth2",
+               "physid":"0.2",
+               "product":"NetXtreme II BCM57800 1/10 Gigabit Ethernet",
+               "serial":"b8:2a:72:cf:af:46",
+               "size":"1000000000",
+               "vendor":"Broadcom Corporation",
+               "version":"10",
+               "width":"64"
+            },
+            "network:3_PCI:0000:01:00.3":{
+               "businfo":"pci@0000:01:00.3",
+               "capacity":"1000000000",
+               "clock":"33000000",
+               "description":"Ethernet interface",
+               "logicalname":"eth3",
+               "physid":"0.3",
+               "product":"NetXtreme II BCM57800 1/10 Gigabit Ethernet",
+               "serial":"b8:2a:72:cf:af:46",
+               "size":"1000000000",
+               "vendor":"Broadcom Corporation",
+               "version":"10",
+               "width":"64"
+            }
+         },
+         "networkInterfaces":{
+            "Bond10G":{
+               "isConfigured":true,
+               "isUp":true
+            },
+            "Bond1G":{
+               "isConfigured":true,
+               "isUp":true
+            },
+            "eth0":{
+               "isConfigured":true,
+               "isUp":true
+            },
+            "eth1":{
+               "isConfigured":true,
+               "isUp":true
+            },
+            "eth2":{
+               "isConfigured":true,
+               "isUp":true
+            },
+            "eth3":{
+               "isConfigured":true,
+               "isUp":true
+            },
+            "eth4":{
+               "isConfigured":true,
+               "isUp":false
+            },
+            "eth5":{
+               "isConfigured":true,
+               "isUp":false
+            }
+         },
+         "nvram":{
+            "info":"No device found",
+            "raw":"No device found",
+            "status":"Error",
+            "version":"1.0"
+         },
+         "origin":null,
+         "platform":{
+            "chassisType":"R620",
+            "cpuModel":"Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB":32,
+            "nodeType":"FC0025"
+         },
+         "serial":"B2K8Q22",
+         "storage":{
+            "storage_PCI:0000:00:1f.2":{
+               "businfo":"pci@0000:00:1f.2",
+               "clock":"66000000",
+               "description":"SATA controller",
+               "physid":"1f.2",
+               "product":"C600/X79 series chipset 6-Port SATA AHCI Controller",
+               "vendor":"Intel Corporation",
+               "version":"05",
+               "width":"32"
+            }
+         },
+         "system":{
+            "sf-5391_DMI:0100":{
+               "description":"Rack Mount Chassis",
+               "product":"SFx010 (SKU=NotProvided;ModelName=SFx010)",
+               "serial":"B2K8Q22",
+               "vendor":"SolidFire",
+               "width":"64"
+            }
+         },
+         "systemMemory":{
+            "free":25261801472,
+            "total":33286406144,
+            "used":8024604672
+         },
+         "uuid":"4C4C4544-0032-4B10-8038-C2C04F513232"
+      }
+   }
+}"""
+
 RESP_GetLimits_v9_0 = """{
   "id": 1,
   "result": {
