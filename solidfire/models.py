@@ -109,589 +109,13 @@ class TestDrivesResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class DriveHardware(data_model.DataObject):
-    """
-    :param canonical_name: [required] 
-    :type canonical_name: str
-    
-    :param connected: [required] 
-    :type connected: bool
-    
-    :param dev: [required] 
-    :type dev: int
-    
-    :param dev_path: [required] 
-    :type dev_path: str
-    
-    :param drive_type: [required] 
-    :type drive_type: str
-    
-    :param life_remaining_percent: [required] 
-    :type life_remaining_percent: int
-    
-    :param lifetime_read_bytes: [required] 
-    :type lifetime_read_bytes: int
-    
-    :param lifetime_write_bytes: [required] 
-    :type lifetime_write_bytes: int
-    
-    :param name: [required] 
-    :type name: str
-    
-    :param path: [required] 
-    :type path: str
-    
-    :param path_link: [required] 
-    :type path_link: str
-    
-    :param power_on_hours: [required] 
-    :type power_on_hours: int
-    
-    :param product: [required] 
-    :type product: str
-    
-    :param reallocated_sectors: [required] 
-    :type reallocated_sectors: int
-    
-    :param reserve_capacity_percent: [required] 
-    :type reserve_capacity_percent: int
-    
-    :param scsi_compat_id: [required] 
-    :type scsi_compat_id: str
-    
-    :param scsi_state: [required] 
-    :type scsi_state: str
-    
-    :param security_at_maximum: [required] 
-    :type security_at_maximum: bool
-    
-    :param security_enabled: [required] 
-    :type security_enabled: bool
-    
-    :param security_frozen: [required] 
-    :type security_frozen: bool
-    
-    :param security_locked: [required] 
-    :type security_locked: bool
-    
-    :param security_supported: [required] 
-    :type security_supported: bool
-    
-    :param serial: [required] 
-    :type serial: str
-    
-    :param size: [required] 
-    :type size: int
-    
-    :param slot: [required] 
-    :type slot: int
-    
-    :param smart_ssd_write_capable:  
-    :type smart_ssd_write_capable: bool
-    
-    :param uuid: [required] 
-    :type uuid: UUID
-    
-    :param vendor: [required] 
-    :type vendor: str
-    
-    :param version: [required] 
-    :type version: str
-    """
-    canonical_name = data_model.property(
-        "canonicalName", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    connected = data_model.property(
-        "connected", bool,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    dev = data_model.property(
-        "dev", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    dev_path = data_model.property(
-        "devPath", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    drive_type = data_model.property(
-        "driveType", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    life_remaining_percent = data_model.property(
-        "lifeRemainingPercent", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    lifetime_read_bytes = data_model.property(
-        "lifetimeReadBytes", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    lifetime_write_bytes = data_model.property(
-        "lifetimeWriteBytes", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    path = data_model.property(
-        "path", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    path_link = data_model.property(
-        "pathLink", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    power_on_hours = data_model.property(
-        "powerOnHours", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    product = data_model.property(
-        "product", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    reallocated_sectors = data_model.property(
-        "reallocatedSectors", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    reserve_capacity_percent = data_model.property(
-        "reserveCapacityPercent", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    scsi_compat_id = data_model.property(
-        "scsiCompatId", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    scsi_state = data_model.property(
-        "scsiState", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    security_at_maximum = data_model.property(
-        "securityAtMaximum", bool,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    security_enabled = data_model.property(
-        "securityEnabled", bool,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    security_frozen = data_model.property(
-        "securityFrozen", bool,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    security_locked = data_model.property(
-        "securityLocked", bool,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    security_supported = data_model.property(
-        "securitySupported", bool,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    serial = data_model.property(
-        "serial", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    size = data_model.property(
-        "size", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    slot = data_model.property(
-        "slot", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    smart_ssd_write_capable = data_model.property(
-        "smartSsdWriteCapable", bool,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    uuid = data_model.property(
-        "uuid", UUID,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    vendor = data_model.property(
-        "vendor", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    version = data_model.property(
-        "version", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class FibreChannelPortInfo(data_model.DataObject):
-    """
-    Fibre Channel Node Port Info object returns information about all Fibre Channel ports on a node, or for one node in the cluster. The same information is returned for all ports or port information for one node. This information is returned with the API method ListNodeFibreChannelPortInfo (in the SolidFire API Guide).
-    :param firmware: [required] The version of the firmware installed on the Fibre Channel port. 
-    :type firmware: str
-    
-    :param hba_port: [required] The ID of the individual HBA port. 
-    :type hba_port: int
-    
-    :param model: [required] Model of the HBA on the port. 
-    :type model: str
-    
-    :param n_port_id: [required] Unique SolidFire port node ID. 
-    :type n_port_id: str
-    
-    :param pci_slot: [required] Slot in which the pci card resides on the Fibre Channel node hardware. 
-    :type pci_slot: int
-    
-    :param serial: [required] Serial number on the Fibre Channel port. 
-    :type serial: str
-    
-    :param speed: [required] Speed of the HBA on the port. 
-    :type speed: str
-    
-    :param state: [required] Possible values: <br/><br/> <strong>Unknown<br/>NotPresent<br/>Online<br/>Offline<br/>Blocked<br/>Bypassed<br/>Diagnostics<br/>Linkdown<br/>Error<br/>Loopback<br/>Deleted</strong> 
-    :type state: str
-    
-    :param switch_wwn: [required] The World Wide Name of the Fibre Channel switch port. 
-    :type switch_wwn: str
-    
-    :param wwnn: [required] World Wide Node Name of the HBA node. 
-    :type wwnn: str
-    
-    :param wwpn: [required] World Wide Port Name assigned to the physical port of the HBA. 
-    :type wwpn: str
-    """
-    firmware = data_model.property(
-        "firmware", str,
-        array=False, optional=False,
-        documentation="The version of the firmware installed on the Fibre Channel port.",
-        dictionaryType=None
-    )
-    hba_port = data_model.property(
-        "hbaPort", int,
-        array=False, optional=False,
-        documentation="The ID of the individual HBA port.",
-        dictionaryType=None
-    )
-    model = data_model.property(
-        "model", str,
-        array=False, optional=False,
-        documentation="Model of the HBA on the port.",
-        dictionaryType=None
-    )
-    n_port_id = data_model.property(
-        "nPortID", str,
-        array=False, optional=False,
-        documentation="Unique SolidFire port node ID.",
-        dictionaryType=None
-    )
-    pci_slot = data_model.property(
-        "pciSlot", int,
-        array=False, optional=False,
-        documentation="Slot in which the pci card resides on the Fibre Channel node hardware.",
-        dictionaryType=None
-    )
-    serial = data_model.property(
-        "serial", str,
-        array=False, optional=False,
-        documentation="Serial number on the Fibre Channel port.",
-        dictionaryType=None
-    )
-    speed = data_model.property(
-        "speed", str,
-        array=False, optional=False,
-        documentation="Speed of the HBA on the port.",
-        dictionaryType=None
-    )
-    state = data_model.property(
-        "state", str,
-        array=False, optional=False,
-        documentation="[&#x27;Possible values:&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;strong&gt;Unknown&lt;br/&gt;NotPresent&lt;br/&gt;Online&lt;br/&gt;Offline&lt;br/&gt;Blocked&lt;br/&gt;Bypassed&lt;br/&gt;Diagnostics&lt;br/&gt;Linkdown&lt;br/&gt;Error&lt;br/&gt;Loopback&lt;br/&gt;Deleted&lt;/strong&gt;&#x27;]",
-        dictionaryType=None
-    )
-    switch_wwn = data_model.property(
-        "switchWwn", str,
-        array=False, optional=False,
-        documentation="The World Wide Name of the Fibre Channel switch port.",
-        dictionaryType=None
-    )
-    wwnn = data_model.property(
-        "wwnn", str,
-        array=False, optional=False,
-        documentation="World Wide Node Name of the HBA node.",
-        dictionaryType=None
-    )
-    wwpn = data_model.property(
-        "wwpn", str,
-        array=False, optional=False,
-        documentation="World Wide Port Name assigned to the physical port of the HBA.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class SystemMemory(data_model.DataObject):
-    """
-    The amount of total, free, and used memory on the system.
-    :param free: [required] 
-    :type free: int
-    
-    :param total: [required] 
-    :type total: int
-    
-    :param used: [required] 
-    :type used: int
-    """
-    free = data_model.property(
-        "free", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    total = data_model.property(
-        "total", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    used = data_model.property(
-        "used", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class HardwareInfo(data_model.DataObject):
-    """
-    The hardwareInfo object contains detailed information about the hardware and status of each node in the cluster.  You can retrieve this information with the API method GetHardwareInfo. 
-    :param bus: [required] Motherboard media bus information. 
-    :type bus: dict
-    
-    :param drive_hardware: [required] A list of information for each drive in the node. 
-    :type drive_hardware: DriveHardware
-    
-    :param fibre_channel_ports: [required] A list of  ports on the node. 
-    :type fibre_channel_ports: FibreChannelPortInfo
-    
-    :param hardware_config: [required] Motherboard peripheral configuration information. 
-    :type hardware_config: dict
-    
-    :param kernel_crash_dump_state: [required] The crash dump configuration of the operating system kernel. 
-    :type kernel_crash_dump_state: str
-    
-    :param memory: [required] Firmware and system memory hardware information. 
-    :type memory: dict
-    
-    :param network: [required] Descriptions of the hardware of each of the node's network interfaces. 
-    :type network: dict
-    
-    :param network_interfaces: [required] The status of the node's network interfaces. 
-    :type network_interfaces: dict
-    
-    :param nvram: [required] NVRAM statistics for the node. 
-    :type nvram: dict
-    
-    :param origin: [required] The vendor of the motherboard. 
-    :type origin: dict
-    
-    :param platform: [required] A description of the chassis platform. 
-    :type platform: dict
-    
-    :param serial: [required] The serial number of the chassis. 
-    :type serial: str
-    
-    :param storage: [required] Storage controller information. 
-    :type storage: dict
-    
-    :param sysinfo: [required] Operating system memory usage and performance information. 
-    :type sysinfo: dict
-    
-    :param system: [required] The type of node chassis. 
-    :type system: dict
-    
-    :param uuid: [required] The unique ID of the node. 
-    :type uuid: UUID
-    
-    :param system_memory: [required] 
-    :type system_memory: SystemMemory
-    
-    :param file_system_usage: [required] 
-    :type file_system_usage: dict
-    """
-    bus = data_model.property(
-        "bus", dict,
-        array=False, optional=False,
-        documentation="Motherboard media bus information.",
-        dictionaryType=None
-    )
-    drive_hardware = data_model.property(
-        "driveHardware", DriveHardware,
-        array=True, optional=False,
-        documentation="A list of information for each drive in the node.",
-        dictionaryType=None
-    )
-    fibre_channel_ports = data_model.property(
-        "fibreChannelPorts", FibreChannelPortInfo,
-        array=True, optional=False,
-        documentation="A list of  ports on the node.",
-        dictionaryType=None
-    )
-    hardware_config = data_model.property(
-        "hardwareConfig", dict,
-        array=False, optional=False,
-        documentation="Motherboard peripheral configuration information.",
-        dictionaryType=None
-    )
-    kernel_crash_dump_state = data_model.property(
-        "kernelCrashDumpState", str,
-        array=False, optional=False,
-        documentation="The crash dump configuration of the operating system kernel.",
-        dictionaryType=None
-    )
-    memory = data_model.property(
-        "memory", dict,
-        array=False, optional=False,
-        documentation="Firmware and system memory hardware information.",
-        dictionaryType=None
-    )
-    network = data_model.property(
-        "network", dict,
-        array=False, optional=False,
-        documentation="Descriptions of the hardware of each of the node&#x27;s network interfaces.",
-        dictionaryType=None
-    )
-    network_interfaces = data_model.property(
-        "networkInterfaces", dict,
-        array=False, optional=False,
-        documentation="The status of the node&#x27;s network interfaces.",
-        dictionaryType=None
-    )
-    nvram = data_model.property(
-        "nvram", dict,
-        array=False, optional=False,
-        documentation="NVRAM statistics for the node.",
-        dictionaryType=None
-    )
-    origin = data_model.property(
-        "origin", dict,
-        array=False, optional=False,
-        documentation="The vendor of the motherboard.",
-        dictionaryType=None
-    )
-    platform = data_model.property(
-        "platform", dict,
-        array=False, optional=False,
-        documentation="A description of the chassis platform.",
-        dictionaryType=None
-    )
-    serial = data_model.property(
-        "serial", str,
-        array=False, optional=False,
-        documentation="The serial number of the chassis.",
-        dictionaryType=None
-    )
-    storage = data_model.property(
-        "storage", dict,
-        array=False, optional=False,
-        documentation="Storage controller information.",
-        dictionaryType=None
-    )
-    sysinfo = data_model.property(
-        "sysinfo", dict,
-        array=False, optional=False,
-        documentation="Operating system memory usage and performance information.",
-        dictionaryType=None
-    )
-    system = data_model.property(
-        "system", dict,
-        array=False, optional=False,
-        documentation="The type of node chassis.",
-        dictionaryType=None
-    )
-    uuid = data_model.property(
-        "uuid", UUID,
-        array=False, optional=False,
-        documentation="The unique ID of the node.",
-        dictionaryType=None
-    )
-    system_memory = data_model.property(
-        "systemMemory", SystemMemory,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    file_system_usage = data_model.property(
-        "fileSystemUsage", dict,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class GetHardwareInfoResult(data_model.DataObject):
     """
     :param hardware_info: [required] Hardware information for this node.  
-    :type hardware_info: HardwareInfo
+    :type hardware_info: dict
     """
     hardware_info = data_model.property(
-        "hardwareInfo", HardwareInfo,
+        "hardwareInfo", dict,
         array=False, optional=False,
         documentation="Hardware information for this node. ",
         dictionaryType=None
@@ -10550,6 +9974,112 @@ class CreateSnapshotResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class FibreChannelPortInfo(data_model.DataObject):
+    """
+    Fibre Channel Node Port Info object returns information about all Fibre Channel ports on a node, or for one node in the cluster. The same information is returned for all ports or port information for one node. This information is returned with the API method ListNodeFibreChannelPortInfo (in the SolidFire API Guide).
+    :param firmware: [required] The version of the firmware installed on the Fibre Channel port. 
+    :type firmware: str
+    
+    :param hba_port: [required] The ID of the individual HBA port. 
+    :type hba_port: int
+    
+    :param model: [required] Model of the HBA on the port. 
+    :type model: str
+    
+    :param n_port_id: [required] Unique SolidFire port node ID. 
+    :type n_port_id: str
+    
+    :param pci_slot: [required] Slot in which the pci card resides on the Fibre Channel node hardware. 
+    :type pci_slot: int
+    
+    :param serial: [required] Serial number on the Fibre Channel port. 
+    :type serial: str
+    
+    :param speed: [required] Speed of the HBA on the port. 
+    :type speed: str
+    
+    :param state: [required] Possible values: <br/><br/> <strong>Unknown<br/>NotPresent<br/>Online<br/>Offline<br/>Blocked<br/>Bypassed<br/>Diagnostics<br/>Linkdown<br/>Error<br/>Loopback<br/>Deleted</strong> 
+    :type state: str
+    
+    :param switch_wwn: [required] The World Wide Name of the Fibre Channel switch port. 
+    :type switch_wwn: str
+    
+    :param wwnn: [required] World Wide Node Name of the HBA node. 
+    :type wwnn: str
+    
+    :param wwpn: [required] World Wide Port Name assigned to the physical port of the HBA. 
+    :type wwpn: str
+    """
+    firmware = data_model.property(
+        "firmware", str,
+        array=False, optional=False,
+        documentation="The version of the firmware installed on the Fibre Channel port.",
+        dictionaryType=None
+    )
+    hba_port = data_model.property(
+        "hbaPort", int,
+        array=False, optional=False,
+        documentation="The ID of the individual HBA port.",
+        dictionaryType=None
+    )
+    model = data_model.property(
+        "model", str,
+        array=False, optional=False,
+        documentation="Model of the HBA on the port.",
+        dictionaryType=None
+    )
+    n_port_id = data_model.property(
+        "nPortID", str,
+        array=False, optional=False,
+        documentation="Unique SolidFire port node ID.",
+        dictionaryType=None
+    )
+    pci_slot = data_model.property(
+        "pciSlot", int,
+        array=False, optional=False,
+        documentation="Slot in which the pci card resides on the Fibre Channel node hardware.",
+        dictionaryType=None
+    )
+    serial = data_model.property(
+        "serial", str,
+        array=False, optional=False,
+        documentation="Serial number on the Fibre Channel port.",
+        dictionaryType=None
+    )
+    speed = data_model.property(
+        "speed", str,
+        array=False, optional=False,
+        documentation="Speed of the HBA on the port.",
+        dictionaryType=None
+    )
+    state = data_model.property(
+        "state", str,
+        array=False, optional=False,
+        documentation="[&#x27;Possible values:&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;strong&gt;Unknown&lt;br/&gt;NotPresent&lt;br/&gt;Online&lt;br/&gt;Offline&lt;br/&gt;Blocked&lt;br/&gt;Bypassed&lt;br/&gt;Diagnostics&lt;br/&gt;Linkdown&lt;br/&gt;Error&lt;br/&gt;Loopback&lt;br/&gt;Deleted&lt;/strong&gt;&#x27;]",
+        dictionaryType=None
+    )
+    switch_wwn = data_model.property(
+        "switchWwn", str,
+        array=False, optional=False,
+        documentation="The World Wide Name of the Fibre Channel switch port.",
+        dictionaryType=None
+    )
+    wwnn = data_model.property(
+        "wwnn", str,
+        array=False, optional=False,
+        documentation="World Wide Node Name of the HBA node.",
+        dictionaryType=None
+    )
+    wwpn = data_model.property(
+        "wwpn", str,
+        array=False, optional=False,
+        documentation="World Wide Port Name assigned to the physical port of the HBA.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class FibreChannelPortList(data_model.DataObject):
     """
     List of all Fibre Channel ports.
@@ -11330,6 +10860,273 @@ class ListDriveHardwareRequest(data_model.DataObject):
         "force", bool,
         array=False, optional=False,
         documentation="This must be set to true in order to retrieve the drive hardware stats from the cluster.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class DriveHardware(data_model.DataObject):
+    """
+    :param canonical_name: [required] 
+    :type canonical_name: str
+    
+    :param connected: [required] 
+    :type connected: bool
+    
+    :param dev: [required] 
+    :type dev: int
+    
+    :param dev_path: [required] 
+    :type dev_path: str
+    
+    :param drive_type: [required] 
+    :type drive_type: str
+    
+    :param life_remaining_percent: [required] 
+    :type life_remaining_percent: int
+    
+    :param lifetime_read_bytes: [required] 
+    :type lifetime_read_bytes: int
+    
+    :param lifetime_write_bytes: [required] 
+    :type lifetime_write_bytes: int
+    
+    :param name: [required] 
+    :type name: str
+    
+    :param path: [required] 
+    :type path: str
+    
+    :param path_link: [required] 
+    :type path_link: str
+    
+    :param power_on_hours: [required] 
+    :type power_on_hours: int
+    
+    :param product: [required] 
+    :type product: str
+    
+    :param reallocated_sectors: [required] 
+    :type reallocated_sectors: int
+    
+    :param reserve_capacity_percent: [required] 
+    :type reserve_capacity_percent: int
+    
+    :param scsi_compat_id: [required] 
+    :type scsi_compat_id: str
+    
+    :param scsi_state: [required] 
+    :type scsi_state: str
+    
+    :param security_at_maximum: [required] 
+    :type security_at_maximum: bool
+    
+    :param security_enabled: [required] 
+    :type security_enabled: bool
+    
+    :param security_frozen: [required] 
+    :type security_frozen: bool
+    
+    :param security_locked: [required] 
+    :type security_locked: bool
+    
+    :param security_supported: [required] 
+    :type security_supported: bool
+    
+    :param serial: [required] 
+    :type serial: str
+    
+    :param size: [required] 
+    :type size: int
+    
+    :param slot: [required] 
+    :type slot: int
+    
+    :param smart_ssd_write_capable:  
+    :type smart_ssd_write_capable: bool
+    
+    :param uuid: [required] 
+    :type uuid: UUID
+    
+    :param vendor: [required] 
+    :type vendor: str
+    
+    :param version: [required] 
+    :type version: str
+    """
+    canonical_name = data_model.property(
+        "canonicalName", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    connected = data_model.property(
+        "connected", bool,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    dev = data_model.property(
+        "dev", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    dev_path = data_model.property(
+        "devPath", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    drive_type = data_model.property(
+        "driveType", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    life_remaining_percent = data_model.property(
+        "lifeRemainingPercent", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    lifetime_read_bytes = data_model.property(
+        "lifetimeReadBytes", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    lifetime_write_bytes = data_model.property(
+        "lifetimeWriteBytes", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    path = data_model.property(
+        "path", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    path_link = data_model.property(
+        "pathLink", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    power_on_hours = data_model.property(
+        "powerOnHours", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    product = data_model.property(
+        "product", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    reallocated_sectors = data_model.property(
+        "reallocatedSectors", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    reserve_capacity_percent = data_model.property(
+        "reserveCapacityPercent", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    scsi_compat_id = data_model.property(
+        "scsiCompatId", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    scsi_state = data_model.property(
+        "scsiState", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    security_at_maximum = data_model.property(
+        "securityAtMaximum", bool,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    security_enabled = data_model.property(
+        "securityEnabled", bool,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    security_frozen = data_model.property(
+        "securityFrozen", bool,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    security_locked = data_model.property(
+        "securityLocked", bool,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    security_supported = data_model.property(
+        "securitySupported", bool,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    serial = data_model.property(
+        "serial", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    size = data_model.property(
+        "size", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    slot = data_model.property(
+        "slot", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    smart_ssd_write_capable = data_model.property(
+        "smartSsdWriteCapable", bool,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    uuid = data_model.property(
+        "uuid", UUID,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    vendor = data_model.property(
+        "vendor", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    version = data_model.property(
+        "version", str,
+        array=False, optional=False,
+        documentation="",
         dictionaryType=None
     )
 
