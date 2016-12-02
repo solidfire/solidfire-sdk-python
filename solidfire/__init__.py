@@ -607,6 +607,66 @@ class Element(ServiceBase):
             since=6.0
         )
 
+    def list_fibre_channel_port_info(
+            self,):
+        """
+        The ListFibreChannelPortInfo is used to return information about the Fibre Channel ports. The API method is intended for use on individual nodes; userid and password is required for access to individual Fibre Channel nodes. However, this method can be used on the cluster if the force=true parameter is included in the method call. When used on the cluster, all Fibre Channel interfaces are listed."""
+
+        self._check_connection_type("list_fibre_channel_port_info", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListFibreChannelPortInfo',
+            ListFibreChannelPortInfoResult,
+            params,
+            since=8.0
+        )
+
+    def list_node_fibre_channel_port_info(
+            self,
+            force=OPTIONAL,):
+        """
+        The ListNodeFibreChannelPortInfo is used to return information about the Fibre Channel ports. The API method is intended for use on individual nodes; userid and password is required for access to individual Fibre Channel nodes. However, this method can be used on the cluster if the force=true parameter is included in the method call. When used on the cluster, all Fibre Channel interfaces are listed.
+        :param force:  Specify force=true to call method on all member nodes of the cluster. 
+        :type force: bool
+        """
+
+        self._check_connection_type("list_node_fibre_channel_port_info", "Node")
+
+        params = { 
+        }
+        if force is not None:
+            params["force"] = force
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListNodeFibreChannelPortInfo',
+            ListNodeFibreChannelPortInfoResult,
+            params,
+            since=7.0
+        )
+
+    def list_fibre_channel_sessions(
+            self,):
+        """
+        The ListFibreChannelSessions is used to return information about the active Fibre Channel sessions on a cluster."""
+
+        self._check_connection_type("list_fibre_channel_sessions", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListFibreChannelSessions',
+            ListFibreChannelSessionsResult,
+            params,
+            since=7.0
+        )
+
     def add_account(
             self,
             username,
@@ -1040,66 +1100,6 @@ class Element(ServiceBase):
             EnableFeatureResult,
             params,
             since=9.0
-        )
-
-    def list_fibre_channel_port_info(
-            self,):
-        """
-        The ListFibreChannelPortInfo is used to return information about the Fibre Channel ports. The API method is intended for use on individual nodes; userid and password is required for access to individual Fibre Channel nodes. However, this method can be used on the cluster if the force=true parameter is included in the method call. When used on the cluster, all Fibre Channel interfaces are listed."""
-
-        self._check_connection_type("list_fibre_channel_port_info", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListFibreChannelPortInfo',
-            ListFibreChannelPortInfoResult,
-            params,
-            since=8.0
-        )
-
-    def list_node_fibre_channel_port_info(
-            self,
-            force=OPTIONAL,):
-        """
-        The ListNodeFibreChannelPortInfo is used to return information about the Fibre Channel ports. The API method is intended for use on individual nodes; userid and password is required for access to individual Fibre Channel nodes. However, this method can be used on the cluster if the force=true parameter is included in the method call. When used on the cluster, all Fibre Channel interfaces are listed.
-        :param force:  Specify force=true to call method on all member nodes of the cluster. 
-        :type force: bool
-        """
-
-        self._check_connection_type("list_node_fibre_channel_port_info", "Node")
-
-        params = { 
-        }
-        if force is not None:
-            params["force"] = force
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListNodeFibreChannelPortInfo',
-            ListNodeFibreChannelPortInfoResult,
-            params,
-            since=7.0
-        )
-
-    def list_fibre_channel_sessions(
-            self,):
-        """
-        The ListFibreChannelSessions is used to return information about the active Fibre Channel sessions on a cluster."""
-
-        self._check_connection_type("list_fibre_channel_sessions", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListFibreChannelSessions',
-            ListFibreChannelSessionsResult,
-            params,
-            since=7.0
         )
 
     def create_initiators(

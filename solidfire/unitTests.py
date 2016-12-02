@@ -213,6 +213,14 @@ def test_get_hardware_info_v9_2():
     result = ef.get_hardware_info()
     assert type(result.hardware_info) is dict, "Died on .hardware_info"
 
+def test_get_hardware_info_v9_3():
+    ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
+    ef._dispatcher.post = MagicMock(return_value = Resources.RESP_GetHardwareInfo_v9_3)
+
+    
+    result = ef.get_hardware_info()
+    assert type(result.hardware_info) is dict, "Died on .hardware_info"
+
 def test_get_limits_v9_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
     ef._dispatcher.post = MagicMock(return_value = Resources.RESP_GetLimits_v9_0)
@@ -1496,6 +1504,7 @@ if __name__ == "__main__":
     test_get_hardware_info_v9_0()
     test_get_hardware_info_v9_1()
     test_get_hardware_info_v9_2()
+    test_get_hardware_info_v9_3()
     test_get_limits_v9_0()
     test_get_network_config_v9_0()
     test_get_node_hardware_info_v9_0()

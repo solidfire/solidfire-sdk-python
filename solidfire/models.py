@@ -11828,7 +11828,7 @@ class FibreChannelSession(data_model.DataObject):
     :type target_wwpn: str
     
     :param volume_access_group_id: [required] The ID of the volume access group to which the initiatorWWPN belongs. If not in a volume access group, the value will be null. 
-    :type volume_access_group_id: int
+    :type volume_access_group_id: UUID
     """
     initiator_wwpn = data_model.property(
         "initiatorWWPN", str,
@@ -11855,7 +11855,7 @@ class FibreChannelSession(data_model.DataObject):
         dictionaryType=None
     )
     volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
+        "volumeAccessGroupID", UUID,
         array=False, optional=False,
         documentation="The ID of the volume access group to which the initiatorWWPN belongs. If not in a volume access group, the value will be null.",
         dictionaryType=None
