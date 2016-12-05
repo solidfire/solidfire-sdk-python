@@ -5285,7 +5285,7 @@ class Element(ServiceBase):
         :type volumeIDs: int
         """
 
-        self._check_connection_type("list_volume_stats", "")
+        self._check_connection_type("list_volume_stats", "Cluster")
 
         params = { 
         }
