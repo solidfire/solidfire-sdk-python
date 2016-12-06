@@ -1678,470 +1678,6 @@ class Element(ServiceBase):
             since=9.0
         )
 
-    def create_snapshot(
-            self,
-            volume_id,
-            snapshot_id=OPTIONAL,
-            name=OPTIONAL,
-            enable_remote_replication=OPTIONAL,
-            retention=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        CreateSnapshot is used to create a point-in-time copy of a volume.
-        A snapshot can be created from any volume or from an existing snapshot.
-        <br/><br/>
-        <b>Note</b>: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
-        Snapshots are not created when cluster fullness is at stage 4 or 5.
-        :param volumeID: [required] ID of the volume image from which to copy. 
-        :type volumeID: int
-        
-        :param snapshotID:  Unique ID of a snapshot from which the new snapshot is made. The snapshotID passed must be a snapshot on the given volume. If a SnapshotID is not provided, a snapshot is created from the volume's active branch. 
-        :type snapshotID: int
-        
-        :param name:  A name for the snapshot. If no name is provided, the date and time the snapshot was taken is used. 
-        :type name: str
-        
-        :param enableRemoteReplication:  Identifies if snapshot is enabled for remote replication. 
-        :type enableRemoteReplication: bool
-        
-        :param retention:  The amount of time the snapshot will be retained. Enter in HH:mm:ss 
-        :type retention: str
-        
-        :param attributes:  List of Name/Value pairs in JSON object format. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("create_snapshot", "Cluster")
-
-        params = { 
-            "volumeID": volume_id,
-        }
-        if snapshot_id is not None:
-            params["snapshotID"] = snapshot_id
-        if name is not None:
-            params["name"] = name
-        if enable_remote_replication is not None:
-            params["enableRemoteReplication"] = enable_remote_replication
-        if retention is not None:
-            params["retention"] = retention
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'CreateSnapshot',
-            CreateSnapshotResult,
-            params,
-            since=6.0
-        )
-
-    def delete_snapshot(
-            self,
-            snapshot_id,):
-        """
-        DeleteSnapshot is used to delete a snapshot.
-        A snapshot that is currently the "active" snapshot cannot be deleted.
-        You must rollback and make another snapshot "active" before the current snapshot can be deleted.
-        To rollback a snapshot, use RollbackToSnapshot.
-        :param snapshotID: [required] The ID of the snapshot to delete. 
-        :type snapshotID: int
-        """
-
-        self._check_connection_type("delete_snapshot", "Cluster")
-
-        params = { 
-            "snapshotID": snapshot_id,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'DeleteSnapshot',
-            DeleteSnapshotResult,
-            params,
-            since=6.0
-        )
-
-    def list_snapshots(
-            self,
-            volume_id=OPTIONAL,):
-        """
-        ListSnapshots is used to return the attributes of each snapshot taken on the volume.
-        :param volumeID:  The volume to list snapshots for. If not provided, all snapshots for all volumes are returned. 
-        :type volumeID: int
-        """
-
-        self._check_connection_type("list_snapshots", "Cluster")
-
-        params = { 
-        }
-        if volume_id is not None:
-            params["volumeID"] = volume_id
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListSnapshots',
-            ListSnapshotsResult,
-            params,
-            since=6.0
-        )
-
-    def modify_snapshot(
-            self,
-            snapshot_id,
-            expiration_time=OPTIONAL,
-            enable_remote_replication=OPTIONAL,):
-        """
-        ModifySnapshot is used to change the attributes currently assigned to a snapshot.
-        Use this API method to enable the snapshots created on the Read/Write (source) volume to be remotely replicated to a target SolidFire storage system.
-        :param snapshotID: [required] ID of the snapshot. 
-        :type snapshotID: int
-        
-        :param expirationTime:  Use to set the time when the snapshot should be removed. 
-        :type expirationTime: str
-        
-        :param enableRemoteReplication:  Use to enable the snapshot created to be replicated to a remote SolidFire cluster. Possible values: <br/><b>true</b>: the snapshot will be replicated to remote storage. <br/><b>false</b>: Default. No replication. 
-        :type enableRemoteReplication: bool
-        """
-
-        self._check_connection_type("modify_snapshot", "Cluster")
-
-        params = { 
-            "snapshotID": snapshot_id,
-        }
-        if expiration_time is not None:
-            params["expirationTime"] = expiration_time
-        if enable_remote_replication is not None:
-            params["enableRemoteReplication"] = enable_remote_replication
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ModifySnapshot',
-            ModifySnapshotResult,
-            params,
-            since=8.0
-        )
-
-    def rollback_to_snapshot(
-            self,
-            volume_id,
-            snapshot_id,
-            save_current_state,
-            name=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        RollbackToSnapshot is used to make an existing snapshot the "active" volume image. This method creates a new 
-        snapshot from an existing snapshot. The new snapshot becomes "active" and the existing snapshot is preserved until 
-        it is manually deleted. The previously "active" snapshot is deleted unless the parameter saveCurrentState is set with 
-        a value of "true."
-        <b>Note</b>: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
-        Snapshots are not created when cluster fullness is at stage 4 or 5.
-        :param volumeID: [required] VolumeID for the volume. 
-        :type volumeID: int
-        
-        :param snapshotID: [required] ID of a previously created snapshot on the given volume. 
-        :type snapshotID: int
-        
-        :param saveCurrentState: [required] <br/><b>true</b>: The previous active volume image is kept. <br/><b>false</b>: (default) The previous active volume image is deleted. 
-        :type saveCurrentState: bool
-        
-        :param name:  Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with  "-copy" appended to the end of the name. 
-        :type name: str
-        
-        :param attributes:  List of Name/Value pairs in JSON object format 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("rollback_to_snapshot", "Cluster")
-
-        params = { 
-            "volumeID": volume_id,
-            "snapshotID": snapshot_id,
-            "saveCurrentState": save_current_state,
-        }
-        if name is not None:
-            params["name"] = name
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'RollbackToSnapshot',
-            CreateSnapshotResult,
-            params,
-            since=6.0
-        )
-
-    def create_group_snapshot(
-            self,
-            volumes,
-            name=OPTIONAL,
-            enable_remote_replication=OPTIONAL,
-            retention=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        CreateGroupSnapshot is used to create a point-in-time copy of a group of volumes.
-        The snapshot created can then be used later as a backup or rollback to ensure the data on the group of volumes is consistent for the point in time in which the snapshot was created.
-        <br/><br/>
-        <b>Note</b>: Creating a group snapshot is allowed if cluster fullness is at stage 2 or 3.
-        Snapshots are not created when cluster fullness is at stage 4 or 5.
-        :param volumes: [required] Unique ID of the volume image from which to copy. 
-        :type volumes: int
-        
-        :param name:  A name for the snapshot. If no name is provided, the date and time the snapshot was taken is used. 
-        :type name: str
-        
-        :param enableRemoteReplication:  Identifies if snapshot is enabled for remote replication. 
-        :type enableRemoteReplication: bool
-        
-        :param retention:  The amount of time the snapshot will be retained. Enter in HH:mm:ss 
-        :type retention: str
-        
-        :param attributes:  List of Name/Value pairs in JSON object format. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("create_group_snapshot", "Cluster")
-
-        params = { 
-            "volumes": volumes,
-        }
-        if name is not None:
-            params["name"] = name
-        if enable_remote_replication is not None:
-            params["enableRemoteReplication"] = enable_remote_replication
-        if retention is not None:
-            params["retention"] = retention
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'CreateGroupSnapshot',
-            CreateGroupSnapshotResult,
-            params,
-            since=7.0
-        )
-
-    def delete_group_snapshot(
-            self,
-            group_snapshot_id,
-            save_members,):
-        """
-        DeleteGroupSnapshot is used to delete a group snapshot.
-        The saveMembers parameter can be used to preserve all the snapshots that
-        were made for the volumes in the group but the group association will be removed.
-        :param groupSnapshotID: [required] Unique ID of the group snapshot. 
-        :type groupSnapshotID: int
-        
-        :param saveMembers: [required] <br/><b>true</b>: Snapshots are kept, but group association is removed. <br/><b>false</b>: The group and snapshots are deleted. 
-        :type saveMembers: bool
-        """
-
-        self._check_connection_type("delete_group_snapshot", "Cluster")
-
-        params = { 
-            "groupSnapshotID": group_snapshot_id,
-            "saveMembers": save_members,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'DeleteGroupSnapshot',
-            DeleteGroupSnapshotResult,
-            params,
-            since=7.0
-        )
-
-    def list_group_snapshots(
-            self,
-            volume_id=OPTIONAL,):
-        """
-        ListGroupSnapshots is used to return information about all group snapshots that have been created.
-        :param volumeID:  An array of unique volume IDs to query. If this parameter is not specified, all group snapshots on the cluster will be included. 
-        :type volumeID: int
-        """
-
-        self._check_connection_type("list_group_snapshots", "Cluster")
-
-        params = { 
-        }
-        if volume_id is not None:
-            params["volumeID"] = volume_id
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListGroupSnapshots',
-            ListGroupSnapshotsResult,
-            params,
-            since=7.0
-        )
-
-    def modify_group_snapshot(
-            self,
-            group_snapshot_id,
-            expiration_time=OPTIONAL,
-            enable_remote_replication=OPTIONAL,):
-        """
-        ModifyGroupSnapshot is used to change the attributes currently assigned to a group snapshot.
-        :param groupSnapshotID: [required] ID of the snapshot. 
-        :type groupSnapshotID: int
-        
-        :param expirationTime:  Use to set the time when the snapshot should be removed. 
-        :type expirationTime: str
-        
-        :param enableRemoteReplication:  Use to enable the snapshot created to be replicated to a remote SolidFire cluster. Possible values: <br/><b>true</b>: the snapshot will be replicated to remote storage. <br/><b>false</b>: Default. No replication. 
-        :type enableRemoteReplication: bool
-        """
-
-        self._check_connection_type("modify_group_snapshot", "Cluster")
-
-        params = { 
-            "groupSnapshotID": group_snapshot_id,
-        }
-        if expiration_time is not None:
-            params["expirationTime"] = expiration_time
-        if enable_remote_replication is not None:
-            params["enableRemoteReplication"] = enable_remote_replication
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ModifyGroupSnapshot',
-            ModifyGroupSnapshotResult,
-            params,
-            since=8.0
-        )
-
-    def rollback_to_group_snapshot(
-            self,
-            group_snapshot_id,
-            save_current_state,
-            name=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        RollbackToGroupSnapshot is used to roll back each individual volume in a snapshot group to a copy of their individual snapshots.
-        <br/><br/>
-        <b>Note</b>: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
-        Snapshots are not created when cluster fullness is at stage 4 or 5.
-        :param groupSnapshotID: [required] Unique ID of the group snapshot. 
-        :type groupSnapshotID: int
-        
-        :param saveCurrentState: [required] <br/><b>true</b>: The previous active volume image is kept. <br/><b>false</b>: (default) The previous active volume image is deleted. 
-        :type saveCurrentState: bool
-        
-        :param name:  Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with  "-copy" appended to the end of the name. 
-        :type name: str
-        
-        :param attributes:  List of Name/Value pairs in JSON object format 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("rollback_to_group_snapshot", "Cluster")
-
-        params = { 
-            "groupSnapshotID": group_snapshot_id,
-            "saveCurrentState": save_current_state,
-        }
-        if name is not None:
-            params["name"] = name
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'RollbackToGroupSnapshot',
-            CreateGroupSnapshotResult,
-            params,
-            since=7.0
-        )
-
-    def get_schedule(
-            self,
-            schedule_id,):
-        """
-        GetSchedule is used to return information about a scheduled snapshot that has been created. You can see information about a specified schedule if there are many snapshot schedules in the system. You can include more than one schedule with this method by specifying additional scheduleIDs to the parameter.
-        :param scheduleID: [required] Unique ID of the schedule or multiple schedules to display 
-        :type scheduleID: int
-        """
-
-        self._check_connection_type("get_schedule", "Cluster")
-
-        params = { 
-            "scheduleID": schedule_id,
-        }
-        
-        # There is an adaptor!
-        since = 8.0
-        deprecated = None
-
-        return ElementServiceAdaptor.get_schedule(self, params,
-                                                  since, deprecated)
-
-    def list_schedules(
-            self,):
-        """
-        ListSchedule is used to return information about all scheduled snapshots that have been created."""
-
-        self._check_connection_type("list_schedules", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListSchedules',
-            ListSchedulesResult,
-            params,
-            since=8.0
-        )
-
-    def create_schedule(
-            self,
-            schedule,):
-        """
-        CreateSchedule is used to create a schedule that will autonomously make a snapshot of a volume at a defined interval.<br/>
-        <br/>
-        The snapshot created can be used later as a backup or rollback to ensure the data on a volume or group of volumes is consistent for the point in time in which the snapshot was created. <br/>
-        <br/>
-        <b>Note</b>: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is at stage 4 or 5.
-        :param schedule: [required] The "Schedule" object will be used to create a new schedule.<br/> Do not set ScheduleID property, it will be ignored.<br/> Frequency property must be of type that inherits from Frequency. Valid types are:<br/> DaysOfMonthFrequency<br/> DaysOrWeekFrequency<br/> TimeIntervalFrequency 
-        :type schedule: Schedule
-        """
-
-        self._check_connection_type("create_schedule", "Cluster")
-
-        params = { 
-            "schedule": schedule,
-        }
-        
-        # There is an adaptor!
-        since = 8.0
-        deprecated = None
-
-        return ElementServiceAdaptor.create_schedule(self, params,
-                                                  since, deprecated)
-
-    def modify_schedule(
-            self,
-            schedule,):
-        """
-        ModifySchedule is used to change the intervals at which a scheduled snapshot occurs. This allows for adjustment to the snapshot frequency and retention.<br/>
-        :param schedule: [required] The "Schedule" object will be used to modify an existing schedule.<br/> The ScheduleID property is required.<br/> Frequency property must be of type that inherits from Frequency. Valid types are:<br/> DaysOfMonthFrequency<br/> DaysOrWeekFrequency<br/> TimeIntervalFrequency 
-        :type schedule: Schedule
-        """
-
-        self._check_connection_type("modify_schedule", "Cluster")
-
-        params = { 
-            "schedule": schedule,
-        }
-        
-        # There is an adaptor!
-        since = 8.0
-        deprecated = None
-
-        return ElementServiceAdaptor.modify_schedule(self, params,
-                                                  since, deprecated)
-
     def create_storage_container(
             self,
             name,
@@ -5300,4 +4836,468 @@ class Element(ServiceBase):
             params,
             since=6.0
         )
+
+    def create_snapshot(
+            self,
+            volume_id,
+            snapshot_id=OPTIONAL,
+            name=OPTIONAL,
+            enable_remote_replication=OPTIONAL,
+            retention=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        CreateSnapshot is used to create a point-in-time copy of a volume.
+        A snapshot can be created from any volume or from an existing snapshot.
+        <br/><br/>
+        <b>Note</b>: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
+        Snapshots are not created when cluster fullness is at stage 4 or 5.
+        :param volumeID: [required] ID of the volume image from which to copy. 
+        :type volumeID: int
+        
+        :param snapshotID:  Unique ID of a snapshot from which the new snapshot is made. The snapshotID passed must be a snapshot on the given volume. If a SnapshotID is not provided, a snapshot is created from the volume's active branch. 
+        :type snapshotID: int
+        
+        :param name:  A name for the snapshot. If no name is provided, the date and time the snapshot was taken is used. 
+        :type name: str
+        
+        :param enableRemoteReplication:  Identifies if snapshot is enabled for remote replication. 
+        :type enableRemoteReplication: bool
+        
+        :param retention:  The amount of time the snapshot will be retained. Enter in HH:mm:ss 
+        :type retention: str
+        
+        :param attributes:  List of Name/Value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("create_snapshot", "Cluster")
+
+        params = { 
+            "volumeID": volume_id,
+        }
+        if snapshot_id is not None:
+            params["snapshotID"] = snapshot_id
+        if name is not None:
+            params["name"] = name
+        if enable_remote_replication is not None:
+            params["enableRemoteReplication"] = enable_remote_replication
+        if retention is not None:
+            params["retention"] = retention
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateSnapshot',
+            CreateSnapshotResult,
+            params,
+            since=6.0
+        )
+
+    def delete_snapshot(
+            self,
+            snapshot_id,):
+        """
+        DeleteSnapshot is used to delete a snapshot.
+        A snapshot that is currently the "active" snapshot cannot be deleted.
+        You must rollback and make another snapshot "active" before the current snapshot can be deleted.
+        To rollback a snapshot, use RollbackToSnapshot.
+        :param snapshotID: [required] The ID of the snapshot to delete. 
+        :type snapshotID: int
+        """
+
+        self._check_connection_type("delete_snapshot", "Cluster")
+
+        params = { 
+            "snapshotID": snapshot_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DeleteSnapshot',
+            DeleteSnapshotResult,
+            params,
+            since=6.0
+        )
+
+    def list_snapshots(
+            self,
+            volume_id=OPTIONAL,):
+        """
+        ListSnapshots is used to return the attributes of each snapshot taken on the volume.
+        :param volumeID:  The volume to list snapshots for. If not provided, all snapshots for all volumes are returned. 
+        :type volumeID: int
+        """
+
+        self._check_connection_type("list_snapshots", "Cluster")
+
+        params = { 
+        }
+        if volume_id is not None:
+            params["volumeID"] = volume_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListSnapshots',
+            ListSnapshotsResult,
+            params,
+            since=6.0
+        )
+
+    def modify_snapshot(
+            self,
+            snapshot_id,
+            expiration_time=OPTIONAL,
+            enable_remote_replication=OPTIONAL,):
+        """
+        ModifySnapshot is used to change the attributes currently assigned to a snapshot.
+        Use this API method to enable the snapshots created on the Read/Write (source) volume to be remotely replicated to a target SolidFire storage system.
+        :param snapshotID: [required] ID of the snapshot. 
+        :type snapshotID: int
+        
+        :param expirationTime:  Use to set the time when the snapshot should be removed. 
+        :type expirationTime: str
+        
+        :param enableRemoteReplication:  Use to enable the snapshot created to be replicated to a remote SolidFire cluster. Possible values: <br/><b>true</b>: the snapshot will be replicated to remote storage. <br/><b>false</b>: Default. No replication. 
+        :type enableRemoteReplication: bool
+        """
+
+        self._check_connection_type("modify_snapshot", "Cluster")
+
+        params = { 
+            "snapshotID": snapshot_id,
+        }
+        if expiration_time is not None:
+            params["expirationTime"] = expiration_time
+        if enable_remote_replication is not None:
+            params["enableRemoteReplication"] = enable_remote_replication
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifySnapshot',
+            ModifySnapshotResult,
+            params,
+            since=8.0
+        )
+
+    def rollback_to_snapshot(
+            self,
+            volume_id,
+            snapshot_id,
+            save_current_state,
+            name=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        RollbackToSnapshot is used to make an existing snapshot the "active" volume image. This method creates a new 
+        snapshot from an existing snapshot. The new snapshot becomes "active" and the existing snapshot is preserved until 
+        it is manually deleted. The previously "active" snapshot is deleted unless the parameter saveCurrentState is set with 
+        a value of "true."
+        <b>Note</b>: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
+        Snapshots are not created when cluster fullness is at stage 4 or 5.
+        :param volumeID: [required] VolumeID for the volume. 
+        :type volumeID: int
+        
+        :param snapshotID: [required] ID of a previously created snapshot on the given volume. 
+        :type snapshotID: int
+        
+        :param saveCurrentState: [required] <br/><b>true</b>: The previous active volume image is kept. <br/><b>false</b>: (default) The previous active volume image is deleted. 
+        :type saveCurrentState: bool
+        
+        :param name:  Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with  "-copy" appended to the end of the name. 
+        :type name: str
+        
+        :param attributes:  List of Name/Value pairs in JSON object format 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("rollback_to_snapshot", "Cluster")
+
+        params = { 
+            "volumeID": volume_id,
+            "snapshotID": snapshot_id,
+            "saveCurrentState": save_current_state,
+        }
+        if name is not None:
+            params["name"] = name
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RollbackToSnapshot',
+            CreateSnapshotResult,
+            params,
+            since=6.0
+        )
+
+    def create_group_snapshot(
+            self,
+            volumes,
+            name=OPTIONAL,
+            enable_remote_replication=OPTIONAL,
+            retention=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        CreateGroupSnapshot is used to create a point-in-time copy of a group of volumes.
+        The snapshot created can then be used later as a backup or rollback to ensure the data on the group of volumes is consistent for the point in time in which the snapshot was created.
+        <br/><br/>
+        <b>Note</b>: Creating a group snapshot is allowed if cluster fullness is at stage 2 or 3.
+        Snapshots are not created when cluster fullness is at stage 4 or 5.
+        :param volumes: [required] Unique ID of the volume image from which to copy. 
+        :type volumes: int
+        
+        :param name:  A name for the snapshot. If no name is provided, the date and time the snapshot was taken is used. 
+        :type name: str
+        
+        :param enableRemoteReplication:  Identifies if snapshot is enabled for remote replication. 
+        :type enableRemoteReplication: bool
+        
+        :param retention:  The amount of time the snapshot will be retained. Enter in HH:mm:ss 
+        :type retention: str
+        
+        :param attributes:  List of Name/Value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("create_group_snapshot", "Cluster")
+
+        params = { 
+            "volumes": volumes,
+        }
+        if name is not None:
+            params["name"] = name
+        if enable_remote_replication is not None:
+            params["enableRemoteReplication"] = enable_remote_replication
+        if retention is not None:
+            params["retention"] = retention
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateGroupSnapshot',
+            CreateGroupSnapshotResult,
+            params,
+            since=7.0
+        )
+
+    def delete_group_snapshot(
+            self,
+            group_snapshot_id,
+            save_members,):
+        """
+        DeleteGroupSnapshot is used to delete a group snapshot.
+        The saveMembers parameter can be used to preserve all the snapshots that
+        were made for the volumes in the group but the group association will be removed.
+        :param groupSnapshotID: [required] Unique ID of the group snapshot. 
+        :type groupSnapshotID: int
+        
+        :param saveMembers: [required] <br/><b>true</b>: Snapshots are kept, but group association is removed. <br/><b>false</b>: The group and snapshots are deleted. 
+        :type saveMembers: bool
+        """
+
+        self._check_connection_type("delete_group_snapshot", "Cluster")
+
+        params = { 
+            "groupSnapshotID": group_snapshot_id,
+            "saveMembers": save_members,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DeleteGroupSnapshot',
+            DeleteGroupSnapshotResult,
+            params,
+            since=7.0
+        )
+
+    def list_group_snapshots(
+            self,
+            volume_id=OPTIONAL,):
+        """
+        ListGroupSnapshots is used to return information about all group snapshots that have been created.
+        :param volumeID:  An array of unique volume IDs to query. If this parameter is not specified, all group snapshots on the cluster will be included. 
+        :type volumeID: int
+        """
+
+        self._check_connection_type("list_group_snapshots", "Cluster")
+
+        params = { 
+        }
+        if volume_id is not None:
+            params["volumeID"] = volume_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListGroupSnapshots',
+            ListGroupSnapshotsResult,
+            params,
+            since=7.0
+        )
+
+    def modify_group_snapshot(
+            self,
+            group_snapshot_id,
+            expiration_time=OPTIONAL,
+            enable_remote_replication=OPTIONAL,):
+        """
+        ModifyGroupSnapshot is used to change the attributes currently assigned to a group snapshot.
+        :param groupSnapshotID: [required] ID of the snapshot. 
+        :type groupSnapshotID: int
+        
+        :param expirationTime:  Use to set the time when the snapshot should be removed. 
+        :type expirationTime: str
+        
+        :param enableRemoteReplication:  Use to enable the snapshot created to be replicated to a remote SolidFire cluster. Possible values: <br/><b>true</b>: the snapshot will be replicated to remote storage. <br/><b>false</b>: Default. No replication. 
+        :type enableRemoteReplication: bool
+        """
+
+        self._check_connection_type("modify_group_snapshot", "Cluster")
+
+        params = { 
+            "groupSnapshotID": group_snapshot_id,
+        }
+        if expiration_time is not None:
+            params["expirationTime"] = expiration_time
+        if enable_remote_replication is not None:
+            params["enableRemoteReplication"] = enable_remote_replication
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyGroupSnapshot',
+            ModifyGroupSnapshotResult,
+            params,
+            since=8.0
+        )
+
+    def rollback_to_group_snapshot(
+            self,
+            group_snapshot_id,
+            save_current_state,
+            name=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        RollbackToGroupSnapshot is used to roll back each individual volume in a snapshot group to a copy of their individual snapshots.
+        <br/><br/>
+        <b>Note</b>: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
+        Snapshots are not created when cluster fullness is at stage 4 or 5.
+        :param groupSnapshotID: [required] Unique ID of the group snapshot. 
+        :type groupSnapshotID: int
+        
+        :param saveCurrentState: [required] <br/><b>true</b>: The previous active volume image is kept. <br/><b>false</b>: (default) The previous active volume image is deleted. 
+        :type saveCurrentState: bool
+        
+        :param name:  Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with  "-copy" appended to the end of the name. 
+        :type name: str
+        
+        :param attributes:  List of Name/Value pairs in JSON object format 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("rollback_to_group_snapshot", "Cluster")
+
+        params = { 
+            "groupSnapshotID": group_snapshot_id,
+            "saveCurrentState": save_current_state,
+        }
+        if name is not None:
+            params["name"] = name
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RollbackToGroupSnapshot',
+            CreateGroupSnapshotResult,
+            params,
+            since=7.0
+        )
+
+    def get_schedule(
+            self,
+            schedule_id,):
+        """
+        GetSchedule is used to return information about a scheduled snapshot that has been created. You can see information about a specified schedule if there are many snapshot schedules in the system. You can include more than one schedule with this method by specifying additional scheduleIDs to the parameter.
+        :param scheduleID: [required] Unique ID of the schedule or multiple schedules to display 
+        :type scheduleID: int
+        """
+
+        self._check_connection_type("get_schedule", "Cluster")
+
+        params = { 
+            "scheduleID": schedule_id,
+        }
+        
+        # There is an adaptor!
+        since = 8.0
+        deprecated = None
+
+        return ElementServiceAdaptor.get_schedule(self, params,
+                                                  since, deprecated)
+
+    def list_schedules(
+            self,):
+        """
+        ListSchedule is used to return information about all scheduled snapshots that have been created."""
+
+        self._check_connection_type("list_schedules", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListSchedules',
+            ListSchedulesResult,
+            params,
+            since=8.0
+        )
+
+    def create_schedule(
+            self,
+            schedule,):
+        """
+        CreateSchedule is used to create a schedule that will autonomously make a snapshot of a volume at a defined interval.<br/>
+        <br/>
+        The snapshot created can be used later as a backup or rollback to ensure the data on a volume or group of volumes is consistent for the point in time in which the snapshot was created. <br/>
+        <br/>
+        <b>Note</b>: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is at stage 4 or 5.
+        :param schedule: [required] The "Schedule" object will be used to create a new schedule.<br/> Do not set ScheduleID property, it will be ignored.<br/> Frequency property must be of type that inherits from Frequency. Valid types are:<br/> DaysOfMonthFrequency<br/> DaysOrWeekFrequency<br/> TimeIntervalFrequency 
+        :type schedule: Schedule
+        """
+
+        self._check_connection_type("create_schedule", "Cluster")
+
+        params = { 
+            "schedule": schedule,
+        }
+        
+        # There is an adaptor!
+        since = 8.0
+        deprecated = None
+
+        return ElementServiceAdaptor.create_schedule(self, params,
+                                                  since, deprecated)
+
+    def modify_schedule(
+            self,
+            schedule,):
+        """
+        ModifySchedule is used to change the intervals at which a scheduled snapshot occurs. This allows for adjustment to the snapshot frequency and retention.<br/>
+        :param schedule: [required] The "Schedule" object will be used to modify an existing schedule.<br/> The ScheduleID property is required.<br/> Frequency property must be of type that inherits from Frequency. Valid types are:<br/> DaysOfMonthFrequency<br/> DaysOrWeekFrequency<br/> TimeIntervalFrequency 
+        :type schedule: Schedule
+        """
+
+        self._check_connection_type("modify_schedule", "Cluster")
+
+        params = { 
+            "schedule": schedule,
+        }
+        
+        # There is an adaptor!
+        since = 8.0
+        deprecated = None
+
+        return ElementServiceAdaptor.modify_schedule(self, params,
+                                                  since, deprecated)
 
