@@ -113,6 +113,13 @@ def test_enable_feature_v9_0():
     feature = "" # feature
     result = ef.enable_feature(feature,)
 
+def test_get_api_v9_0():
+    ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
+    ef._dispatcher.post = MagicMock(return_value = Resources.RESP_GetAPI_v9_0)
+
+    
+    result = ef.get_api()
+
 def test_get_cluster_hardware_info_v9_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
     ef._dispatcher.post = MagicMock(return_value = Resources.RESP_GetClusterHardwareInfo_v9_0)
@@ -577,6 +584,31 @@ def test_list_protocol_endpoints_v9_0():
     assert result.protocol_endpoints[0].protocol_endpoint_id == UUID("1387e257-d2e3-4446-be6d-39db71583e7b"), "Died on .protocol_endpoints[0].protocol_endpoint_id"
     assert result.protocol_endpoints[0].secondary_provider_id == 2, "Died on +.protocol_endpoints[0].secondary_provider_id"
     assert result.protocol_endpoints[0].scsi_naadevice_id == """6f47acc2000000016970687200000000""", "Died on +.protocol_endpoints[0].scsi_naadevice_id"
+
+def test_list_snapshots_v9_0():
+    ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
+    ef._dispatcher.post = MagicMock(return_value = Resources.RESP_ListSnapshots_v9_0)
+
+    
+    volume_id = 42 # volume_id
+    result = ef.list_snapshots()
+    assert result.snapshots[0].status == """done""", "Died on +.snapshots[0].status"
+    assert result.snapshots[0].name == """2016-12-06T22:49:03Z""", "Died on +.snapshots[0].name"
+    assert result.snapshots[0].total_size == 20000538624, "Died on +.snapshots[0].total_size"
+    assert result.snapshots[0].checksum == """0xc683fe2c00e085c3""", "Died on +.snapshots[0].checksum"
+    assert result.snapshots[0].remote_statuses[0].volume_pair_uuid == UUID("cb44f772-bb26-40f8-ab3b-8577282eb785"), "Died on .snapshots[0].remote_statuses[0].volume_pair_uuid"
+    assert result.snapshots[0].remote_statuses[0].remote_status == """Syncing""", "Died on +.snapshots[0].remote_statuses[0].remote_status"
+    assert result.snapshots[0].expiration_reason == """None""", "Died on +.snapshots[0].expiration_reason"
+    assert result.snapshots[0].enable_remote_replication == True, "Died on +.snapshots[0].enable_remote_replication"
+    assert result.snapshots[0].volume_id == 4, "Died on +.snapshots[0].volume_id"
+    assert result.snapshots[0].create_time == """2016-12-06T22:49:03Z""", "Died on +.snapshots[0].create_time"
+    assert result.snapshots[0].group_snapshot_uuid == UUID("00000000-0000-0000-0000-000000000000"), "Died on .snapshots[0].group_snapshot_uuid"
+    assert result.snapshots[0].snapshot_uuid == UUID("db5633bc-d1e8-4674-b598-d58a3f265167"), "Died on .snapshots[0].snapshot_uuid"
+    assert result.snapshots[0].snapshot_id == 2235, "Died on +.snapshots[0].snapshot_id"
+    assert result.snapshots[0].expiration_time == """2016-12-07T22:49:03Z""", "Died on +.snapshots[0].expiration_time"
+    assert type(result.snapshots[0].attributes) is dict, "Died on .snapshots[0].attributes"
+    assert result.snapshots[0].group_id == 0, "Died on +.snapshots[0].group_id"
+    assert result.snapshots[0].virtual_volume_id is None, "Died on .snapshots[0].virtual_volume_id"
 
 def test_list_virtual_volume_bindings_v9_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -1498,6 +1530,7 @@ if __name__ == "__main__":
     test_delete_storage_containers_v9_0()
     test_delete_volumes_v9_0()
     test_enable_feature_v9_0()
+    test_get_api_v9_0()
     test_get_cluster_hardware_info_v9_0()
     test_get_feature_status_v9_0()
     test_get_hardware_config_v9_0()
@@ -1516,6 +1549,7 @@ if __name__ == "__main__":
     test_list_fibre_channel_sessions_v9_0()
     test_list_iscsisessions_v9_0()
     test_list_protocol_endpoints_v9_0()
+    test_list_snapshots_v9_0()
     test_list_virtual_volume_bindings_v9_0()
     test_list_virtual_volume_hosts_v9_0()
     test_list_virtual_volumes_v9_0()
