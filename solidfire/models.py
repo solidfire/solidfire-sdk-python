@@ -1395,6 +1395,9 @@ class Snapshot(data_model.DataObject):
     
     :param attributes: [required] List of Name/Value pairs in JSON object format. 
     :type attributes: dict
+    
+    :param virtual_volume_id: [required] The ID of the virtual volume with which the snapshot is associated. 
+    :type virtual_volume_id: UUID
     """
     snapshot_id = data_model.property(
         "snapshotID", int,
@@ -1484,6 +1487,12 @@ class Snapshot(data_model.DataObject):
         "attributes", dict,
         array=False, optional=False,
         documentation="List of Name/Value pairs in JSON object format.",
+        dictionaryType=None
+    )
+    virtual_volume_id = data_model.property(
+        "virtualVolumeID", UUID,
+        array=False, optional=False,
+        documentation="The ID of the virtual volume with which the snapshot is associated.",
         dictionaryType=None
     )
 
