@@ -796,12 +796,12 @@ class ListActivePairedVolumesResult(data_model.DataObject):
 
 class GetConfigRequest(data_model.DataObject):
     """
-    :param force:  To run this command, the force parameter must be set to true. 
+    :param force: [required] To run this command, the force parameter must be set to true. 
     :type force: bool
     """
     force = data_model.property(
         "force", bool,
-        array=False, optional=false,
+        array=False, optional=False,
         documentation="To run this command, the force parameter must be set to true.",
         dictionaryType=None
     )
@@ -11319,12 +11319,12 @@ class GetVirtualVolumeCountResult(data_model.DataObject):
 
 class GetClusterStateRequest(data_model.DataObject):
     """
-    :param force:  To run this command, the force parameter must be set to true. 
+    :param force: [required] To run this command, the force parameter must be set to true. 
     :type force: bool
     """
     force = data_model.property(
         "force", bool,
-        array=False, optional=false,
+        array=False, optional=False,
         documentation="To run this command, the force parameter must be set to true.",
         dictionaryType=None
     )

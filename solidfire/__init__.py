@@ -2057,21 +2057,20 @@ class Element(ServiceBase):
 
     def get_config(
             self,
-            force=OPTIONAL,):
+            force,):
         """
         The GetConfig API method is used to retrieve all the configuration information for the node. This one API method includes the same information available in both "GetClusterConfig" and "GetNetworkConfig" methods.
         <br/><br/>
         <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
-        :param force:  To run this command, the force parameter must be set to true. 
+        :param force: [required] To run this command, the force parameter must be set to true. 
         :type force: bool
         """
 
         self._check_connection_type("get_config", "Both")
 
         params = { 
+            "force": force,
         }
-        if force is not None:
-            params["force"] = force
         
         # There is no adaptor.
         return self.send_request(
@@ -5180,19 +5179,18 @@ class Element(ServiceBase):
 
     def get_cluster_state(
             self,
-            force=OPTIONAL,):
+            force,):
         """
         The GetClusterState method is used to indicate if a node is part of a cluster or not. The three states are: <br><strong>Available:</strong> Node has not been configured with a cluster name.<br><strong>Pending:</strong> Node is pending for a specific named cluster and can be added.<br><strong>Active:</strong> Node is active and a member of a cluster and may not be added to another cluster.
-        :param force:  To run this command, the force parameter must be set to true. 
+        :param force: [required] To run this command, the force parameter must be set to true. 
         :type force: bool
         """
 
         self._check_connection_type("get_cluster_state", "Cluster")
 
         params = { 
+            "force": force,
         }
-        if force is not None:
-            params["force"] = force
         
         # There is no adaptor.
         return self.send_request(
