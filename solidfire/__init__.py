@@ -614,239 +614,84 @@ class Element(ServiceBase):
             since=6.0
         )
 
-    def add_drives(
-            self,
-            drives,):
-        """
-        AddDrives is used to add one or more available drives to the cluster enabling the drives to host a portion of the cluster's data.
-        When you add a node to the cluster or install new drives in an existing node, the new drives are marked as "available" and must be added via AddDrives before they can be utilized.
-        Use the "ListDrives" method to display drives that are "available" to be added.
-        When you add multiple drives, it is more efficient to add them in a single "AddDrives" method call rather than multiple individual methods with a single drive each.
-        This reduces the amount of data balancing that must occur to stabilize the storage load on the cluster.
-        <br/><br/>
-        When you add a drive, the system automatically determines the "type" of drive it should be.
-        <br/><br/>
-        The method returns immediately. However, it may take some time for the data in the cluster to be rebalanced using the newly added drives.
-        As the new drive(s) are syncing on the system, you can use the "ListSyncJobs" method to see how the drive(s) are being rebalanced and the progress of adding the new drive.
-        :param drives: [required] List of drives to add to the cluster. 
-        :type drives: NewDrive
-        """
-
-        self._check_connection_type("add_drives", "Cluster")
-
-        params = { 
-            "drives": drives,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'AddDrives',
-            AddDrivesResult,
-            params,
-            since=1.0
-        )
-
-    def list_drives(
+    def get_login_session_info(
             self,):
         """
-        ListDrives allows you to retrieve the list of the drives that exist in the cluster's active nodes.
-        This method returns drives that have been added as volume metadata or block drives as well as drives that have not been added and are available."""
+        GetLoginSessionInfo is used to return the period of time a log in authentication is valid for both log in shells and the TUI."""
 
-        self._check_connection_type("list_drives", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListDrives',
-            ListDrivesResult,
-            params,
-            since=1.0
-        )
-
-    def get_drive_hardware_info(
-            self,
-            drive_id,):
-        """
-        GetDriveHardwareInfo returns all the hardware info for the given drive. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
-        :param driveID: [required] DriveID for the drive information requested. DriveIDs can be obtained via the "ListDrives" method. 
-        :type driveID: int
-        """
-
-        self._check_connection_type("get_drive_hardware_info", "Cluster")
-
-        params = { 
-            "driveID": drive_id,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetDriveHardwareInfo',
-            GetDriveHardwareInfoResult,
-            params,
-            since=1.0
-        )
-
-    def list_drive_hardware(
-            self,):
-        """
-        ListDriveHardware returns all the drives connected to a node. Use this method on the cluster to return drive hardware information for all the drives on all nodes."""
-
-        self._check_connection_type("list_drive_hardware", "Node")
+        self._check_connection_type("get_login_session_info", "Cluster")
 
         params = { 
         }
         
         # There is no adaptor.
         return self.send_request(
-            'ListDriveHardware',
-            ListDriveHardwareResult,
+            'GetLoginSessionInfo',
+            GetLoginSessionInfoResult,
             params,
             since=7.0
         )
 
-    def reset_drives(
+    def set_login_session_info(
             self,
-            drives,
-            force,):
+            timeout,):
         """
-        ResetDrives is used to pro-actively initialize drives and remove all data currently residing on the drive. The drive can then be reused in an existing node or used in an upgraded SolidFire node. This method requires the force=true parameter to be included in the method call.
-        <br/><br/>
-        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
-        :param drives: [required] List of device names (not driveIDs) to reset. 
-        :type drives: str
-        
-        :param force: [required] The "force" parameter must be included on this method to successfully reset a drive. 
-        :type force: bool
+        SetLoginSessionInfo is used to set the period of time a log in authentication is valid. After the log in period elapses without activity on the system the authentication will expire. New log in credentials will be required for continued access to the cluster once the timeout period has elapsed.
+        :param timeout: [required] Cluster authentication expiration period. Formatted in HH:mm:ss. For example: 01:30:00, 00:90:00, and 00:00:5400 can all be used to equal a 90 minute timeout period. Default is 30 minutes. 
+        :type timeout: str
         """
 
-        self._check_connection_type("reset_drives", "Node")
+        self._check_connection_type("set_login_session_info", "Cluster")
 
         params = { 
-            "drives": drives,
-            "force": force,
+            "timeout": timeout,
         }
         
         # There is no adaptor.
         return self.send_request(
-            'ResetDrives',
-            ResetDrivesResult,
+            'SetLoginSessionInfo',
+            SetLoginSessionInfoResult,
             params,
-            since=6.0
+            since=7.0
         )
 
-    def test_drives(
-            self,
-            minutes=OPTIONAL,):
+    def get_remote_logging_hosts(
+            self,):
         """
-        The TestDrives API method is used to run a hardware validation on all the drives on the node. Hardware failures on the drives are detected if present and they are reported in the results of the validation tests.
-        <br/><br/>
-        <b>Note</b>: This test takes approximately 10 minutes.
-        <br/><br/>
-        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
-        :param minutes:  The number of minutes to run the test can be specified. 
-        :type minutes: int
-        """
+        GetRemoteLoggingHosts is used to retrieve the current list of log servers."""
 
-        self._check_connection_type("test_drives", "Node")
+        self._check_connection_type("get_remote_logging_hosts", "Cluster")
 
         params = { 
-        }
-        if minutes is not None:
-            params["minutes"] = minutes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'TestDrives',
-            TestDrivesResult,
-            params,
-            since=5.0
-        )
-
-    def get_drive_stats(
-            self,
-            drive_id,):
-        """
-        GetDriveStats return high-level activity measurements for a single drive. Values are cumulative from the addition of the drive to the cluster. Some values are specific to Block Drives. Statistical data may not be returned for both block and metadata drives when running this method.
-        For more information on which drive type returns which data, see Response Example (Block Drive) and Response Example (Volume Metadata Drive) in the SolidFire API guide.
-        :param driveID: [required] Specifies the drive for which statistics are gathered. 
-        :type driveID: int
-        """
-
-        self._check_connection_type("get_drive_stats", "Cluster")
-
-        params = { 
-            "driveID": drive_id,
         }
         
         # There is no adaptor.
         return self.send_request(
-            'GetDriveStats',
-            GetDriveStatsResult,
+            'GetRemoteLoggingHosts',
+            GetRemoteLoggingHostsResult,
             params,
             since=1.0
         )
 
-    def secure_erase_drives(
+    def set_remote_logging_hosts(
             self,
-            drives,):
+            remote_hosts,):
         """
-        SecureEraseDrives is used to remove any residual data from drives that have a status of "available." For example, when replacing a drive at its end-of-life that contained sensitive data.
-        It uses a Security Erase Unit command to write a predetermined pattern to the drive and resets the encryption key on the drive. The method may take up to two minutes to complete, so it is an asynchronous method.
-        The GetAsyncResult method can be used to check on the status of the secure erase operation.
-        <br/><br/>
-        Use the "ListDrives" method to obtain the driveIDs for the drives you want to secure erase.
-        :param drives: [required] List of driveIDs to secure erase. 
-        :type drives: int
+        RemoteLoggingHosts is used to configure remote logging from the nodes in the storage cluster to a centralized log server or servers. Remote logging is performed over TCP using the default port 514. This API does not add to the existing logging hosts. Rather, it replaces what currently exists with new values specified by this API method. You can use the GetRemoteLoggingHosts to determine what the current logging hosts are and then use the SetRemoteLoggingHosts to set the desired list of current and new logging hosts.
+        :param remoteHosts: [required] List of hosts to send log messages to. 
+        :type remoteHosts: LoggingServer
         """
 
-        self._check_connection_type("secure_erase_drives", "Cluster")
+        self._check_connection_type("set_remote_logging_hosts", "Cluster")
 
         params = { 
-            "drives": drives,
+            "remoteHosts": remote_hosts,
         }
         
         # There is no adaptor.
         return self.send_request(
-            'SecureEraseDrives',
-            AsyncHandleResult,
-            params,
-            since=5.0
-        )
-
-    def remove_drives(
-            self,
-            drives,):
-        """
-        You can use RemoveDrives to proactively remove drives that are part of the cluster.
-        You may want to use this method when reducing cluster capacity or preparing to replace drives nearing the end of their service life.
-        Any data on the drives is removed and migrated to other drives in the cluster before the drive is removed from the cluster. This is an asynchronous method.
-        Depending on the total capacity of the drives being removed, it may take several minutes to migrate all of the data.
-        Use the "GetAsyncResult" method to check the status of the remove operation.
-        <br/><br/>
-        When removing multiple drives, use a single "RemoveDrives" method call rather than multiple individual methods with a single drive each.
-        This reduces the amount of data balancing that must occur to even stabilize the storage load on the cluster.
-        <br/><br/>
-        You can also remove drives with a "failed" status using "RemoveDrives".
-        When you remove a drive with a "failed" status it is not returned to an "available" or "active" status.
-        The drive is unavailable for use in the cluster.
-        <br/><br/>
-        Use the "ListDrives" method to obtain the driveIDs for the drives you want to remove.
-        :param drives: [required] List of driveIDs to remove from the cluster. 
-        :type drives: int
-        """
-
-        self._check_connection_type("remove_drives", "Cluster")
-
-        params = { 
-            "drives": drives,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'RemoveDrives',
-            AsyncHandleResult,
+            'SetRemoteLoggingHosts',
+            SetRemoteLoggingHostsResult,
             params,
             since=1.0
         )
@@ -1188,6 +1033,24 @@ class Element(ServiceBase):
             DeleteVolumesResult,
             params,
             since=9.0
+        )
+
+    def get_default_qos(
+            self,):
+        """
+        GetDefaultQoS is used to retrieve the default QoS values that are set for a volume if QoS is not supplied."""
+
+        self._check_connection_type("get_default_qos", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetDefaultQoS',
+            VolumeQOS,
+            params,
+            since=1.0
         )
 
     def get_volume_stats(
@@ -1868,256 +1731,6 @@ class Element(ServiceBase):
             SetDefaultQoSResult,
             params,
             since=9.0
-        )
-
-    def list_active_nodes(
-            self,):
-        """
-        ListActiveNodes returns the list of currently active nodes that are in the cluster."""
-
-        self._check_connection_type("list_active_nodes", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListActiveNodes',
-            ListActiveNodesResult,
-            params,
-            since=1.0
-        )
-
-    def list_all_nodes(
-            self,):
-        """
-        ListAllNodes enables you to retrieve a list of active and pending nodes in the cluster."""
-
-        self._check_connection_type("list_all_nodes", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListAllNodes',
-            ListAllNodesResult,
-            params,
-            since=1.0
-        )
-
-    def list_pending_nodes(
-            self,):
-        """
-        Gets the list of pending nodes.
-        Pending nodes are running and configured to join the cluster, but have not been added via the AddNodes method."""
-
-        self._check_connection_type("list_pending_nodes", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListPendingNodes',
-            ListPendingNodesResult,
-            params,
-            since=1.0
-        )
-
-    def add_nodes(
-            self,
-            pending_nodes,):
-        """
-        AddNodes is used to add one or more new nodes to the cluster. When a node is not configured and starts up for the first time you are prompted to configure the node. Once a node is configured it is registered as a "pending node" with the cluster.
-        <br/><br/>
-        Adding a node to a cluster that has been set up for virtual networking will require a sufficient number of virtual storage IP addresses to allocate a virtual IP to the new node. If there are no virtual IP addresses available for the new node, the AddNode operation will not complete successfully. Use the "ModifyVirtualNetwork" method to add more storage IP addresses to your virtual network.
-        <br/><br/>
-        The software version on each node in a cluster must be compatible. Run the "ListAllNodes" API to see what versions of software are currently running on the cluster nodes. For an explanation of software version compatibility, see "Node Versioning and Compatibility" in the Element API guide.
-        <br/><br/>
-        Once a node has been added, the drives on the node are made available and can then be added via the "AddDrives" method to increase the storage capacity of the cluster.
-        <br/><br/>
-        <b>Note</b>: It may take several seconds after adding a new Node for it to start up and register the drives as being available.
-        :param pendingNodes: [required] List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method. 
-        :type pendingNodes: int
-        """
-
-        self._check_connection_type("add_nodes", "Cluster")
-
-        params = { 
-            "pendingNodes": pending_nodes,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'AddNodes',
-            AddNodesResult,
-            params,
-            since=1.0
-        )
-
-    def remove_nodes(
-            self,
-            nodes,):
-        """
-        RemoveNodes is used to remove one or more nodes that should no longer participate in the cluster. Before removing a node, all drives it contains must first be removed with "RemoveDrives" method. A node cannot be removed until the RemoveDrives process has completed and all data has been migrated away from the node.
-        <br/><br/>
-        Once removed, a node registers itself as a pending node and can be added again, or shut down which removes it from the "Pending Node" list.
-        :param nodes: [required] List of NodeIDs for the nodes to be removed. 
-        :type nodes: int
-        """
-
-        self._check_connection_type("remove_nodes", "Cluster")
-
-        params = { 
-            "nodes": nodes,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'RemoveNodes',
-            RemoveNodesResult,
-            params,
-            since=1.0
-        )
-
-    def get_network_config(
-            self,):
-        """
-        The GetNetworkConfig API method is used to display the network configuration information for a node.
-        <br/><br/>
-        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
-
-        self._check_connection_type("get_network_config", "Node")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetNetworkConfig',
-            GetNetworkConfigResult,
-            params,
-            since=5.0
-        )
-
-    def set_config(
-            self,
-            config,):
-        """
-        The SetConfig API method is used to set all the configuration information for the node. This includes the same information available via calls to SetClusterConfig and SetNetworkConfig in one API method.
-        <br/><br/>
-        <b>Warning!</b> Changing the 'bond-mode' on a node can cause a temporary loss of network connectivity. Caution should be taken when using this method.
-        <br/><br/>
-        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
-        :param config: [required] Objects that you want changed for the cluster interface settings. 
-        :type config: Config
-        """
-
-        self._check_connection_type("set_config", "Node")
-
-        params = { 
-            "config": config,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SetConfig',
-            SetConfigResult,
-            params,
-            since=5.0
-        )
-
-    def set_network_config(
-            self,
-            network,):
-        """
-        The "SetNetworkConfig" method is used to set the network configuration for a node. To see the states in which these objects can be modified, see "Network Object for 1G and 10G Interfaces" on page 109 of the Element API. To display the current network settings for a node, run the "GetNetworkConfig" method.
-        <br/><br/>
-        <b>WARNING!</b> Changing the "bond-mode" on a node can cause a temporary loss of network connectivity. Caution should be taken when using this method.
-        <br/><br/>
-        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
-        :param network: [required] Objects that will be changed for the node network settings. 
-        :type network: Network
-        """
-
-        self._check_connection_type("set_network_config", "Node")
-
-        params = { 
-            "network": network,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SetNetworkConfig',
-            SetNetworkConfigResult,
-            params,
-            since=5.0
-        )
-
-    def get_config(
-            self,
-            force,):
-        """
-        The GetConfig API method is used to retrieve all the configuration information for the node. This one API method includes the same information available in both "GetClusterConfig" and "GetNetworkConfig" methods.
-        <br/><br/>
-        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
-        :param force: [required] To run this command, the force parameter must be set to true. 
-        :type force: bool
-        """
-
-        self._check_connection_type("get_config", "Both")
-
-        params = { 
-            "force": force,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetConfig',
-            GetConfigResult,
-            params,
-            since=5.0
-        )
-
-    def get_node_stats(
-            self,
-            node_id,):
-        """
-        GetNodeStats is used to return the high-level activity measurements for a single node.
-        :param nodeID: [required] Specifies the node for which statistics are gathered. 
-        :type nodeID: int
-        """
-
-        self._check_connection_type("get_node_stats", "Cluster")
-
-        params = { 
-            "nodeID": node_id,
-        }
-        
-        # There is an adaptor!
-        since = 1.0
-        deprecated = None
-
-        return ElementServiceAdaptor.get_node_stats(self, params,
-                                                  since, deprecated)
-
-    def list_node_stats(
-            self,):
-        """
-        ListNodeStats is used to return the high-level activity measurements for all nodes in a cluster."""
-
-        self._check_connection_type("list_node_stats", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListNodeStats',
-            ListNodeStatsResult,
-            params,
-            since=6.0
         )
 
     def create_backup_target(
@@ -4742,6 +4355,24 @@ class Element(ServiceBase):
             since=1.0
         )
 
+    def get_cluster_master_node_id(
+            self,):
+        """
+        GetClusterMasterNodeID is used to return the ID of the node that can perform cluster-wide administration tasks and holds the storage virtual IP (SVIP) and management virtual IP (MVIP)."""
+
+        self._check_connection_type("get_cluster_master_node_id", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetClusterMasterNodeID',
+            GetClusterMasterNodeIDResult,
+            params,
+            since=1.0
+        )
+
     def get_cluster_stats(
             self,):
         """
@@ -4758,6 +4389,67 @@ class Element(ServiceBase):
             GetClusterStatsResult,
             params,
             since=1.0
+        )
+
+    def create_cluster(
+            self,
+            mvip,
+            svip,
+            rep_count,
+            username,
+            password,
+            nodes,
+            accept_eula=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        The CreateCluster method is used to initialize the node in a cluster that has ownership of the "mvip" and "svip" addresses. Each new cluster is initialized using the MIP of the first node in the cluster. This method also automatically adds all the nodes being configured into the cluster. The method is used only once each time a new cluster is initialized.
+        <br/><br/>
+        <b>Note</b>: You need to log into the node that is used as the master node for the cluster. Once logged in, run the GetBootstrapConfig method on the node to get the IP addresses for the rest of the nodes that you want to include in the cluster. Then run the CreateCluster method.
+        :param acceptEula:  Indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. 
+        :type acceptEula: bool
+        
+        :param mvip: [required] Floating (virtual) IP address for the cluster on the management network. 
+        :type mvip: str
+        
+        :param svip: [required] Floating (virtual) IP address for the cluster on the storage (iSCSI) network. 
+        :type svip: str
+        
+        :param repCount: [required] Number of replicas of each piece of data to store in the cluster. Valid value is "2". 
+        :type repCount: int
+        
+        :param username: [required] User name for the cluster admin. 
+        :type username: str
+        
+        :param password: [required] Initial password for the cluster admin account. 
+        :type password: str
+        
+        :param nodes: [required] CIP/SIP addresses of the initial set of nodes making up the cluster. This node's IP must be in the list. 
+        :type nodes: str
+        
+        :param attributes:  List of Name/Value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("create_cluster", "Node")
+
+        params = { 
+            "mvip": mvip,
+            "svip": svip,
+            "repCount": rep_count,
+            "username": username,
+            "password": password,
+            "nodes": nodes,
+        }
+        if accept_eula is not None:
+            params["acceptEula"] = accept_eula
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateCluster',
+            CreateClusterResult,
+            params
         )
 
     def list_cluster_admins(
@@ -5141,6 +4833,24 @@ class Element(ServiceBase):
             since=8.0
         )
 
+    def list_sync_jobs(
+            self,):
+        """
+        ListSyncJobs is used to return information about synchronization jobs that are running on a SolidFire cluster. Synchronization jobs that are returned with this method are, "slice," "clone" and "remote.""""
+
+        self._check_connection_type("list_sync_jobs", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListSyncJobs',
+            ListSyncJobsResult,
+            params,
+            since=1.0
+        )
+
     def get_api(
             self,):
         """
@@ -5173,6 +4883,35 @@ class Element(ServiceBase):
         return self.send_request(
             'GetNtpInfo',
             GetNtpInfoResult,
+            params,
+            since=1.0
+        )
+
+    def set_ntp_info(
+            self,
+            servers,
+            broadcastclient=OPTIONAL,):
+        """
+        SetNtpInfo is used to configure the NTP on cluster nodes. The values set with this interface apply to all nodes in the cluster. The nodes can only be configured as a server where a host is selected to administrate the networking and/or a broadcast client where each host sends each message to each peer.
+        :param servers: [required] List of NTP servers to add to each node's NTP configuration. 
+        :type servers: str
+        
+        :param broadcastclient:  Enable every node in the cluster as a broadcase client. 
+        :type broadcastclient: bool
+        """
+
+        self._check_connection_type("set_ntp_info", "Cluster")
+
+        params = { 
+            "servers": servers,
+        }
+        if broadcastclient is not None:
+            params["broadcastclient"] = broadcastclient
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetNtpInfo',
+            SetNtpInfoResult,
             params,
             since=1.0
         )
@@ -5218,6 +4957,60 @@ class Element(ServiceBase):
             since=6.0
         )
 
+    def create_support_bundle(
+            self,
+            bundle_name=OPTIONAL,
+            extra_args=OPTIONAL,
+            timeout_sec=OPTIONAL,):
+        """
+        CreateSupportBundle is used to create a support bundle file under the node's directory. When the bundle has been successfully created, the bundle is stored on the node as a tar.gz file.
+        :param bundleName:  Unique name for each support bundle created. If no name is provided, then 'supportbundle' and the node name is used as a file name. 
+        :type bundleName: str
+        
+        :param extraArgs:  This parameter is fed to the sf_make_support_bundle script. Should be used only at the request of SolidFire Support. 
+        :type extraArgs: str
+        
+        :param timeoutSec:  The number of seconds to let the support bundle script run before timing out and stopping. Default is 1500 seconds. 
+        :type timeoutSec: int
+        """
+
+        self._check_connection_type("create_support_bundle", "Node")
+
+        params = { 
+        }
+        if bundle_name is not None:
+            params["bundleName"] = bundle_name
+        if extra_args is not None:
+            params["extraArgs"] = extra_args
+        if timeout_sec is not None:
+            params["timeoutSec"] = timeout_sec
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateSupportBundle',
+            CreateSupportBundleResult,
+            params,
+            since=8.0
+        )
+
+    def delete_all_support_bundles(
+            self,):
+        """
+        DeleteAllSupportBundles is used to delete all support bundles generated with the CreateSupportBundle API method."""
+
+        self._check_connection_type("delete_all_support_bundles", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DeleteAllSupportBundles',
+            DeleteAllSupportBundlesResult,
+            params,
+            since=8.0
+        )
+
     def enable_encryption_at_rest(
             self,):
         """
@@ -5258,6 +5051,23 @@ class Element(ServiceBase):
             since=5.0
         )
 
+    def get_system_status(
+            self,):
+        """"""
+
+        self._check_connection_type("get_system_status", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetSystemStatus',
+            GetSystemStatusResult,
+            params,
+            since=5.0
+        )
+
     def snmp_send_test_traps(
             self,):
         """
@@ -5274,5 +5084,548 @@ class Element(ServiceBase):
             SnmpSendTestTrapsResult,
             params,
             since=6.0
+        )
+
+    def add_drives(
+            self,
+            drives,):
+        """
+        AddDrives is used to add one or more available drives to the cluster enabling the drives to host a portion of the cluster's data.
+        When you add a node to the cluster or install new drives in an existing node, the new drives are marked as "available" and must be added via AddDrives before they can be utilized.
+        Use the "ListDrives" method to display drives that are "available" to be added.
+        When you add multiple drives, it is more efficient to add them in a single "AddDrives" method call rather than multiple individual methods with a single drive each.
+        This reduces the amount of data balancing that must occur to stabilize the storage load on the cluster.
+        <br/><br/>
+        When you add a drive, the system automatically determines the "type" of drive it should be.
+        <br/><br/>
+        The method returns immediately. However, it may take some time for the data in the cluster to be rebalanced using the newly added drives.
+        As the new drive(s) are syncing on the system, you can use the "ListSyncJobs" method to see how the drive(s) are being rebalanced and the progress of adding the new drive.
+        :param drives: [required] List of drives to add to the cluster. 
+        :type drives: NewDrive
+        """
+
+        self._check_connection_type("add_drives", "Cluster")
+
+        params = { 
+            "drives": drives,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'AddDrives',
+            AddDrivesResult,
+            params,
+            since=1.0
+        )
+
+    def list_drives(
+            self,):
+        """
+        ListDrives allows you to retrieve the list of the drives that exist in the cluster's active nodes.
+        This method returns drives that have been added as volume metadata or block drives as well as drives that have not been added and are available."""
+
+        self._check_connection_type("list_drives", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListDrives',
+            ListDrivesResult,
+            params,
+            since=1.0
+        )
+
+    def get_drive_config(
+            self,):
+        """
+        GetDriveConfig is used to display drive information for expected slice and block drive counts as well as the number of slices and block drives that are currently connected to the node.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
+
+        self._check_connection_type("get_drive_config", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetDriveConfig',
+            GetDriveConfigResult,
+            params
+        )
+
+    def get_drive_hardware_info(
+            self,
+            drive_id,):
+        """
+        GetDriveHardwareInfo returns all the hardware info for the given drive. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
+        :param driveID: [required] DriveID for the drive information requested. DriveIDs can be obtained via the "ListDrives" method. 
+        :type driveID: int
+        """
+
+        self._check_connection_type("get_drive_hardware_info", "Cluster")
+
+        params = { 
+            "driveID": drive_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetDriveHardwareInfo',
+            GetDriveHardwareInfoResult,
+            params,
+            since=1.0
+        )
+
+    def list_drive_hardware(
+            self,):
+        """
+        ListDriveHardware returns all the drives connected to a node. Use this method on the cluster to return drive hardware information for all the drives on all nodes."""
+
+        self._check_connection_type("list_drive_hardware", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListDriveHardware',
+            ListDriveHardwareResult,
+            params,
+            since=7.0
+        )
+
+    def reset_drives(
+            self,
+            drives,
+            force,):
+        """
+        ResetDrives is used to pro-actively initialize drives and remove all data currently residing on the drive. The drive can then be reused in an existing node or used in an upgraded SolidFire node. This method requires the force=true parameter to be included in the method call.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
+        :param drives: [required] List of device names (not driveIDs) to reset. 
+        :type drives: str
+        
+        :param force: [required] The "force" parameter must be included on this method to successfully reset a drive. 
+        :type force: bool
+        """
+
+        self._check_connection_type("reset_drives", "Node")
+
+        params = { 
+            "drives": drives,
+            "force": force,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ResetDrives',
+            ResetDrivesResult,
+            params,
+            since=6.0
+        )
+
+    def test_drives(
+            self,
+            minutes=OPTIONAL,):
+        """
+        The TestDrives API method is used to run a hardware validation on all the drives on the node. Hardware failures on the drives are detected if present and they are reported in the results of the validation tests.
+        <br/><br/>
+        <b>Note</b>: This test takes approximately 10 minutes.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
+        :param minutes:  The number of minutes to run the test can be specified. 
+        :type minutes: int
+        """
+
+        self._check_connection_type("test_drives", "Node")
+
+        params = { 
+        }
+        if minutes is not None:
+            params["minutes"] = minutes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'TestDrives',
+            TestDrivesResult,
+            params,
+            since=5.0
+        )
+
+    def get_drive_stats(
+            self,
+            drive_id,):
+        """
+        GetDriveStats return high-level activity measurements for a single drive. Values are cumulative from the addition of the drive to the cluster. Some values are specific to Block Drives. Statistical data may not be returned for both block and metadata drives when running this method.
+        For more information on which drive type returns which data, see Response Example (Block Drive) and Response Example (Volume Metadata Drive) in the SolidFire API guide.
+        :param driveID: [required] Specifies the drive for which statistics are gathered. 
+        :type driveID: int
+        """
+
+        self._check_connection_type("get_drive_stats", "Cluster")
+
+        params = { 
+            "driveID": drive_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetDriveStats',
+            GetDriveStatsResult,
+            params,
+            since=1.0
+        )
+
+    def secure_erase_drives(
+            self,
+            drives,):
+        """
+        SecureEraseDrives is used to remove any residual data from drives that have a status of "available." For example, when replacing a drive at its end-of-life that contained sensitive data.
+        It uses a Security Erase Unit command to write a predetermined pattern to the drive and resets the encryption key on the drive. The method may take up to two minutes to complete, so it is an asynchronous method.
+        The GetAsyncResult method can be used to check on the status of the secure erase operation.
+        <br/><br/>
+        Use the "ListDrives" method to obtain the driveIDs for the drives you want to secure erase.
+        :param drives: [required] List of driveIDs to secure erase. 
+        :type drives: int
+        """
+
+        self._check_connection_type("secure_erase_drives", "Cluster")
+
+        params = { 
+            "drives": drives,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SecureEraseDrives',
+            AsyncHandleResult,
+            params,
+            since=5.0
+        )
+
+    def remove_drives(
+            self,
+            drives,):
+        """
+        You can use RemoveDrives to proactively remove drives that are part of the cluster.
+        You may want to use this method when reducing cluster capacity or preparing to replace drives nearing the end of their service life.
+        Any data on the drives is removed and migrated to other drives in the cluster before the drive is removed from the cluster. This is an asynchronous method.
+        Depending on the total capacity of the drives being removed, it may take several minutes to migrate all of the data.
+        Use the "GetAsyncResult" method to check the status of the remove operation.
+        <br/><br/>
+        When removing multiple drives, use a single "RemoveDrives" method call rather than multiple individual methods with a single drive each.
+        This reduces the amount of data balancing that must occur to even stabilize the storage load on the cluster.
+        <br/><br/>
+        You can also remove drives with a "failed" status using "RemoveDrives".
+        When you remove a drive with a "failed" status it is not returned to an "available" or "active" status.
+        The drive is unavailable for use in the cluster.
+        <br/><br/>
+        Use the "ListDrives" method to obtain the driveIDs for the drives you want to remove.
+        :param drives: [required] List of driveIDs to remove from the cluster. 
+        :type drives: int
+        """
+
+        self._check_connection_type("remove_drives", "Cluster")
+
+        params = { 
+            "drives": drives,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RemoveDrives',
+            AsyncHandleResult,
+            params,
+            since=1.0
+        )
+
+    def list_active_nodes(
+            self,):
+        """
+        ListActiveNodes returns the list of currently active nodes that are in the cluster."""
+
+        self._check_connection_type("list_active_nodes", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListActiveNodes',
+            ListActiveNodesResult,
+            params,
+            since=1.0
+        )
+
+    def list_all_nodes(
+            self,):
+        """
+        ListAllNodes enables you to retrieve a list of active and pending nodes in the cluster."""
+
+        self._check_connection_type("list_all_nodes", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListAllNodes',
+            ListAllNodesResult,
+            params,
+            since=1.0
+        )
+
+    def list_pending_nodes(
+            self,):
+        """
+        Gets the list of pending nodes.
+        Pending nodes are running and configured to join the cluster, but have not been added via the AddNodes method."""
+
+        self._check_connection_type("list_pending_nodes", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListPendingNodes',
+            ListPendingNodesResult,
+            params,
+            since=1.0
+        )
+
+    def add_nodes(
+            self,
+            pending_nodes,):
+        """
+        AddNodes is used to add one or more new nodes to the cluster. When a node is not configured and starts up for the first time you are prompted to configure the node. Once a node is configured it is registered as a "pending node" with the cluster.
+        <br/><br/>
+        Adding a node to a cluster that has been set up for virtual networking will require a sufficient number of virtual storage IP addresses to allocate a virtual IP to the new node. If there are no virtual IP addresses available for the new node, the AddNode operation will not complete successfully. Use the "ModifyVirtualNetwork" method to add more storage IP addresses to your virtual network.
+        <br/><br/>
+        The software version on each node in a cluster must be compatible. Run the "ListAllNodes" API to see what versions of software are currently running on the cluster nodes. For an explanation of software version compatibility, see "Node Versioning and Compatibility" in the Element API guide.
+        <br/><br/>
+        Once a node has been added, the drives on the node are made available and can then be added via the "AddDrives" method to increase the storage capacity of the cluster.
+        <br/><br/>
+        <b>Note</b>: It may take several seconds after adding a new Node for it to start up and register the drives as being available.
+        :param pendingNodes: [required] List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method. 
+        :type pendingNodes: int
+        """
+
+        self._check_connection_type("add_nodes", "Cluster")
+
+        params = { 
+            "pendingNodes": pending_nodes,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'AddNodes',
+            AddNodesResult,
+            params,
+            since=1.0
+        )
+
+    def remove_nodes(
+            self,
+            nodes,):
+        """
+        RemoveNodes is used to remove one or more nodes that should no longer participate in the cluster. Before removing a node, all drives it contains must first be removed with "RemoveDrives" method. A node cannot be removed until the RemoveDrives process has completed and all data has been migrated away from the node.
+        <br/><br/>
+        Once removed, a node registers itself as a pending node and can be added again, or shut down which removes it from the "Pending Node" list.
+        :param nodes: [required] List of NodeIDs for the nodes to be removed. 
+        :type nodes: int
+        """
+
+        self._check_connection_type("remove_nodes", "Cluster")
+
+        params = { 
+            "nodes": nodes,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RemoveNodes',
+            RemoveNodesResult,
+            params,
+            since=1.0
+        )
+
+    def get_network_config(
+            self,):
+        """
+        The GetNetworkConfig API method is used to display the network configuration information for a node.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
+
+        self._check_connection_type("get_network_config", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetNetworkConfig',
+            GetNetworkConfigResult,
+            params,
+            since=5.0
+        )
+
+    def set_config(
+            self,
+            config,):
+        """
+        The SetConfig API method is used to set all the configuration information for the node. This includes the same information available via calls to SetClusterConfig and SetNetworkConfig in one API method.
+        <br/><br/>
+        <b>Warning!</b> Changing the 'bond-mode' on a node can cause a temporary loss of network connectivity. Caution should be taken when using this method.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
+        :param config: [required] Objects that you want changed for the cluster interface settings. 
+        :type config: Config
+        """
+
+        self._check_connection_type("set_config", "Node")
+
+        params = { 
+            "config": config,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetConfig',
+            SetConfigResult,
+            params,
+            since=5.0
+        )
+
+    def set_network_config(
+            self,
+            network,):
+        """
+        The "SetNetworkConfig" method is used to set the network configuration for a node. To see the states in which these objects can be modified, see "Network Object for 1G and 10G Interfaces" on page 109 of the Element API. To display the current network settings for a node, run the "GetNetworkConfig" method.
+        <br/><br/>
+        <b>WARNING!</b> Changing the "bond-mode" on a node can cause a temporary loss of network connectivity. Caution should be taken when using this method.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
+        :param network: [required] Objects that will be changed for the node network settings. 
+        :type network: Network
+        """
+
+        self._check_connection_type("set_network_config", "Node")
+
+        params = { 
+            "network": network,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetNetworkConfig',
+            SetNetworkConfigResult,
+            params,
+            since=5.0
+        )
+
+    def get_config(
+            self,
+            force,):
+        """
+        The GetConfig API method is used to retrieve all the configuration information for the node. This one API method includes the same information available in both "GetClusterConfig" and "GetNetworkConfig" methods.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
+        :param force: [required] To run this command, the force parameter must be set to true. 
+        :type force: bool
+        """
+
+        self._check_connection_type("get_config", "Both")
+
+        params = { 
+            "force": force,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetConfig',
+            GetConfigResult,
+            params,
+            since=5.0
+        )
+
+    def get_bootstrap_config(
+            self,):
+        """
+        GetBootstrapConfig returns the cluster name and node name from the bootstrap configuration file. This API method should be performed on an individual node before it has been configured into a cluster. The resulting information from this method is used in the Cluster Configuration UI when the cluster is eventually created."""
+
+        self._check_connection_type("get_bootstrap_config", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetBootstrapConfig',
+            GetBootstrapConfigResult,
+            params
+        )
+
+    def get_node_stats(
+            self,
+            node_id,):
+        """
+        GetNodeStats is used to return the high-level activity measurements for a single node.
+        :param nodeID: [required] Specifies the node for which statistics are gathered. 
+        :type nodeID: int
+        """
+
+        self._check_connection_type("get_node_stats", "Cluster")
+
+        params = { 
+            "nodeID": node_id,
+        }
+        
+        # There is an adaptor!
+        since = 1.0
+        deprecated = None
+
+        return ElementServiceAdaptor.get_node_stats(self, params,
+                                                  since, deprecated)
+
+    def list_node_stats(
+            self,):
+        """
+        ListNodeStats is used to return the high-level activity measurements for all nodes in a cluster."""
+
+        self._check_connection_type("list_node_stats", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListNodeStats',
+            ListNodeStatsResult,
+            params,
+            since=6.0
+        )
+
+    def get_pending_operation(
+            self,):
+        """
+        GetPendingOperation is used to detect an operation on a node that is currently in progress. This method can also be used to report back when an operation has completed.<br/>
+        <br/>
+        Note: This method is available only through the per-node API endpoint 5.0 or later."""
+
+        self._check_connection_type("get_pending_operation", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetPendingOperation',
+            GetPendingOperationResult,
+            params,
+            since=5.0
         )
 

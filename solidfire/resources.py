@@ -97,6 +97,8 @@ RESP_EnableFeature_v9_0 = """{
   "result": {}
 }"""
 
+RESP_GetAccountEfficiency_v9_0 = """{"id":null,"result":{"compression":29.73816415189271,"deduplication":1.048435171385991,"missingVolumes":[],"thinProvisioning":7295.454157782516,"timestamp":"2016-12-08T16:00:03Z"}}"""
+
 RESP_GetClusterHardwareInfo_v9_0 = """{
   "id": null,
   "result": {
@@ -5354,96 +5356,6 @@ RESP_ListProtocolEndpoints_v9_0 = """{
     ]
   }
 }"""
-
-RESP_ListSchedules_v9_0 = """{
-  "id": 1,
-  "result": {
-    "schedules": [
-      {
-        "attributes": {
-          "frequency": "Time Interval"
-        },
-        "hasError": false,
-        "hours": 24,
-        "lastRunStatus": "Success",
-        "lastRunTimeStarted": null,
-        "minutes": 0,
-        "monthdays": [],
-        "paused": false,
-        "recurring": true,
-        "runNextInterval": false,
-        "scheduleID": 421,
-        "scheduleInfo": {
-          "volumeID": "601"
-        },
-        "scheduleName": "test",
-        "scheduleType": "Snapshot",
-        "startingDate": null,
-        "toBeDeleted": false,
-        "weekdays": []
-      },
-      {
-        "attributes": {
-          "frequency": "Days Of Month"
-        },
-        "hasError": false,
-        "hours": 0,
-        "lastRunStatus": "Success",
-        "lastRunTimeStarted": null,
-        "minutes": 0,
-        "monthdays": [
-          1,
-          15
-        ],
-        "paused": false,
-        "recurring": true,
-        "runNextInterval": false,
-        "scheduleID": 422,
-        "scheduleInfo": {
-          "volumeID": "601"
-        },
-        "scheduleName": "testMonth",
-        "scheduleType": "Snapshot",
-        "startingDate": null,
-        "toBeDeleted": false,
-        "weekdays": []
-      },
-      {
-        "attributes": {
-          "frequency": "Days Of Week"
-        },
-        "hasError": false,
-        "hours": 0,
-        "lastRunStatus": "Success",
-        "lastRunTimeStarted": null,
-        "minutes": 0,
-        "monthdays": [],
-        "paused": false,
-        "recurring": true,
-        "runNextInterval": false,
-        "scheduleID": 423,
-        "scheduleInfo": {
-          "volumeID": "601"
-        },
-        "scheduleName": "testWeek",
-        "scheduleType": "Snapshot",
-        "startingDate": null,
-        "toBeDeleted": false,
-        "weekdays": [
-          {
-            "day": 2,
-            "offset": 1
-          },
-          {
-            "day": 4,
-            "offset": 1
-          }
-        ]
-      }
-    ]
-  }
-}
-"""
 
 RESP_ListSnapshots_v9_0 = """{
    "id":9,
