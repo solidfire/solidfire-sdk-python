@@ -794,6 +794,21 @@ class ListActivePairedVolumesResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class GetConfigRequest(data_model.DataObject):
+    """
+    :param force:  To run this command, the force parameter must be set to true. 
+    :type force: bool
+    """
+    force = data_model.property(
+        "force", bool,
+        array=False, optional=false,
+        documentation="To run this command, the force parameter must be set to true.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class GetClusterHardwareInfoRequest(data_model.DataObject):
     """
     :param type:  Include only a certain type of hardware information in the response. Can be one of the following:drives: List only drive information in the response.nodes: List only node information in the response.all: Include both drive and node information in the response.If this parameter is omitted, a type of "all" is assumed. 
@@ -2513,39 +2528,6 @@ class GetConfigResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class StartBulkVolumeWriteResult(data_model.DataObject):
-    """
-    :param async_handle: [required] ID of the async process to be checked for completion. 
-    :type async_handle: int
-    
-    :param key: [required] Opaque key uniquely identifying the session. 
-    :type key: str
-    
-    :param url: [required] URL to access the node's web server 
-    :type url: str
-    """
-    async_handle = data_model.property(
-        "asyncHandle", int,
-        array=False, optional=False,
-        documentation="ID of the async process to be checked for completion.",
-        dictionaryType=None
-    )
-    key = data_model.property(
-        "key", str,
-        array=False, optional=False,
-        documentation="Opaque key uniquely identifying the session.",
-        dictionaryType=None
-    )
-    url = data_model.property(
-        "url", str,
-        array=False, optional=False,
-        documentation="URL to access the node&#x27;s web server",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class SetConfigRequest(data_model.DataObject):
     """
     :param config: [required] Objects that you want changed for the cluster interface settings. 
@@ -3139,182 +3121,33 @@ class GetClusterInfoResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class Platform(data_model.DataObject):
+class StartBulkVolumeWriteResult(data_model.DataObject):
     """
-    :param node_type: [required] SolidFire's name for this platform. 
-    :type node_type: str
+    :param async_handle: [required] ID of the async process to be checked for completion. 
+    :type async_handle: int
     
-    :param chassis_type: [required] Name of the chassis (example: "R620"). 
-    :type chassis_type: str
+    :param key: [required] Opaque key uniquely identifying the session. 
+    :type key: str
     
-    :param cpu_model: [required] The model of CPU used on this platform. 
-    :type cpu_model: str
-    
-    :param node_memory_gb: [required] The amount of memory on this platform in GiB. 
-    :type node_memory_gb: int
+    :param url: [required] URL to access the node's web server 
+    :type url: str
     """
-    node_type = data_model.property(
-        "nodeType", str,
+    async_handle = data_model.property(
+        "asyncHandle", int,
         array=False, optional=False,
-        documentation="SolidFire&#x27;s name for this platform.",
+        documentation="ID of the async process to be checked for completion.",
         dictionaryType=None
     )
-    chassis_type = data_model.property(
-        "chassisType", str,
+    key = data_model.property(
+        "key", str,
         array=False, optional=False,
-        documentation="Name of the chassis (example: &quot;R620&quot;).",
+        documentation="Opaque key uniquely identifying the session.",
         dictionaryType=None
     )
-    cpu_model = data_model.property(
-        "cpuModel", str,
+    url = data_model.property(
+        "url", str,
         array=False, optional=False,
-        documentation="The model of CPU used on this platform.",
-        dictionaryType=None
-    )
-    node_memory_gb = data_model.property(
-        "nodeMemoryGB", int,
-        array=False, optional=False,
-        documentation="The amount of memory on this platform in GiB.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class PendingNode(data_model.DataObject):
-    """
-    A "pending node" is one that has not yet joined the cluster.
-    It can be added to a cluster using the AddNode method.
-    :param pending_node_id: [required] 
-    :type pending_node_id: int
-    
-    :param assigned_node_id: [required] 
-    :type assigned_node_id: int
-    
-    :param name: [required] The host name for this node. 
-    :type name: str
-    
-    :param compatible: [required] 
-    :type compatible: bool
-    
-    :param platform_info: [required] Information about the platform this node is. 
-    :type platform_info: Platform
-    
-    :param cip: [required] IP address used for both intra- and inter-cluster communication. 
-    :type cip: str
-    
-    :param cipi: [required] The machine's name for the "cip" interface. 
-    :type cipi: str
-    
-    :param mip: [required] IP address used for cluster management (hosting the API and web site). 
-    :type mip: str
-    
-    :param mipi: [required] The machine's name for the "mip" interface. 
-    :type mipi: str
-    
-    :param sip: [required] IP address used for iSCSI traffic. 
-    :type sip: str
-    
-    :param sipi: [required] The machine's name for the "sip" interface. 
-    :type sipi: str
-    
-    :param software_version: [required] The version of SolidFire software this node is currently running. 
-    :type software_version: str
-    
-    :param uuid: [required] UUID of node. 
-    :type uuid: UUID
-    """
-    pending_node_id = data_model.property(
-        "pendingNodeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    assigned_node_id = data_model.property(
-        "AssignedNodeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation="The host name for this node.",
-        dictionaryType=None
-    )
-    compatible = data_model.property(
-        "compatible", bool,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    platform_info = data_model.property(
-        "platformInfo", Platform,
-        array=False, optional=False,
-        documentation="Information about the platform this node is.",
-        dictionaryType=None
-    )
-    cip = data_model.property(
-        "cip", str,
-        array=False, optional=False,
-        documentation="[&#x27;IP address used for both intra- and inter-cluster communication.&#x27;]",
-        dictionaryType=None
-    )
-    cipi = data_model.property(
-        "cipi", str,
-        array=False, optional=False,
-        documentation="The machine&#x27;s name for the &quot;cip&quot; interface.",
-        dictionaryType=None
-    )
-    mip = data_model.property(
-        "mip", str,
-        array=False, optional=False,
-        documentation="[&#x27;IP address used for cluster management (hosting the API and web site).&#x27;]",
-        dictionaryType=None
-    )
-    mipi = data_model.property(
-        "mipi", str,
-        array=False, optional=False,
-        documentation="The machine&#x27;s name for the &quot;mip&quot; interface.",
-        dictionaryType=None
-    )
-    sip = data_model.property(
-        "sip", str,
-        array=False, optional=False,
-        documentation="[&#x27;IP address used for iSCSI traffic.&#x27;]",
-        dictionaryType=None
-    )
-    sipi = data_model.property(
-        "sipi", str,
-        array=False, optional=False,
-        documentation="The machine&#x27;s name for the &quot;sip&quot; interface.",
-        dictionaryType=None
-    )
-    software_version = data_model.property(
-        "softwareVersion", str,
-        array=False, optional=False,
-        documentation="The version of SolidFire software this node is currently running.",
-        dictionaryType=None
-    )
-    uuid = data_model.property(
-        "uuid", UUID,
-        array=False, optional=False,
-        documentation="UUID of node.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListPendingNodesResult(data_model.DataObject):
-    """
-    :param pending_nodes: [required] 
-    :type pending_nodes: PendingNode
-    """
-    pending_nodes = data_model.property(
-        "pendingNodes", PendingNode,
-        array=True, optional=False,
-        documentation="",
+        documentation="URL to access the node&#x27;s web server",
         dictionaryType=None
     )
 
@@ -3327,8 +3160,17 @@ class RemoveClusterPairResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class CancelGroupCloneResult(data_model.DataObject):
-    """"""
+class ListVolumesResult(data_model.DataObject):
+    """
+    :param volumes: [required] List of volumes. 
+    :type volumes: Volume
+    """
+    volumes = data_model.property(
+        "volumes", Volume,
+        array=True, optional=False,
+        documentation="List of volumes.",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -3339,8 +3181,17 @@ class EnableSnmpResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class RemoveAccountResult(data_model.DataObject):
-    """"""
+class ListVolumeStatsByVolumeAccessGroupRequest(data_model.DataObject):
+    """
+    :param volume_access_groups:  An array of VolumeAccessGroupIDs for which volume activity is returned. If no VolumeAccessGroupID is specified, stats for all volume access groups is returned. 
+    :type volume_access_groups: int
+    """
+    volume_access_groups = data_model.property(
+        "volumeAccessGroups", int,
+        array=True, optional=True,
+        documentation="[&#x27;An array of VolumeAccessGroupIDs for which volume activity is returned.&#x27;, &#x27;If no VolumeAccessGroupID is specified, stats for all volume access groups is returned.&#x27;]",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -3394,39 +3245,15 @@ class SetSnmpTrapInfoResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class AddedNode(data_model.DataObject):
+class RestoreDeletedVolumeRequest(data_model.DataObject):
     """
-    :param node_id: [required] 
-    :type node_id: int
-    
-    :param pending_node_id: [required] 
-    :type pending_node_id: int
+    :param volume_id: [required] VolumeID for the deleted volume to restore. 
+    :type volume_id: int
     """
-    node_id = data_model.property(
-        "nodeID", int,
+    volume_id = data_model.property(
+        "volumeID", int,
         array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    pending_node_id = data_model.property(
-        "pendingNodeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class AddNodesResult(data_model.DataObject):
-    """
-    :param nodes: [required] An array of objects mapping the previous "pendingNodeID" to the "nodeID". 
-    :type nodes: AddedNode
-    """
-    nodes = data_model.property(
-        "nodes", AddedNode,
-        array=True, optional=False,
-        documentation="An array of objects mapping the previous &quot;pendingNodeID&quot; to the &quot;nodeID&quot;.",
+        documentation="VolumeID for the deleted volume to restore.",
         dictionaryType=None
     )
 
@@ -3902,6 +3729,300 @@ class RemoveVolumePairResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class ListVirtualVolumesRequest(data_model.DataObject):
+    """
+    :param details:  Possible values:true: Include more details about each VVOL in the response.false: Include the standard level of detail about each VVOL in the response. 
+    :type details: bool
+    
+    :param limit:  The maximum number of virtual volumes to list. 
+    :type limit: int
+    
+    :param recursive:  Possible values:true: Include information about the children of each VVOL in the response.false: Do not include information about the children of each VVOL in the response. 
+    :type recursive: bool
+    
+    :param start_virtual_volume_id:  The ID of the virtual volume at which to begin the list. 
+    :type start_virtual_volume_id: UUID
+    
+    :param virtual_volume_ids:  A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
+    :type virtual_volume_ids: UUID
+    """
+    details = data_model.property(
+        "details", bool,
+        array=False, optional=True,
+        documentation="Possible values:true: Include more details about each VVOL in the response.false: Include the standard level of detail about each VVOL in the response.",
+        dictionaryType=None
+    )
+    limit = data_model.property(
+        "limit", int,
+        array=False, optional=True,
+        documentation="The maximum number of virtual volumes to list.",
+        dictionaryType=None
+    )
+    recursive = data_model.property(
+        "recursive", bool,
+        array=False, optional=True,
+        documentation="Possible values:true: Include information about the children of each VVOL in the response.false: Do not include information about the children of each VVOL in the response.",
+        dictionaryType=None
+    )
+    start_virtual_volume_id = data_model.property(
+        "startVirtualVolumeID", UUID,
+        array=False, optional=True,
+        documentation="The ID of the virtual volume at which to begin the list.",
+        dictionaryType=None
+    )
+    virtual_volume_ids = data_model.property(
+        "virtualVolumeIDs", UUID,
+        array=True, optional=True,
+        documentation="A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class RemoveAccountRequest(data_model.DataObject):
+    """
+    :param account_id: [required] AccountID for the account to remove. 
+    :type account_id: int
+    """
+    account_id = data_model.property(
+        "accountID", int,
+        array=False, optional=False,
+        documentation="AccountID for the account to remove.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetStorageContainerEfficiencyRequest(data_model.DataObject):
+    """
+    :param storage_container_id: [required] The ID of the storage container for which to retrieve efficiency information. 
+    :type storage_container_id: UUID
+    """
+    storage_container_id = data_model.property(
+        "storageContainerID", UUID,
+        array=False, optional=False,
+        documentation="The ID of the storage container for which to retrieve efficiency information.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class CreateStorageContainerResult(data_model.DataObject):
+    """
+    :param storage_container: [required] 
+    :type storage_container: StorageContainer
+    """
+    storage_container = data_model.property(
+        "storageContainer", StorageContainer,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ISCSISession(data_model.DataObject):
+    """
+    :param account_id: [required] 
+    :type account_id: int
+    
+    :param initiator: [required] 
+    :type initiator: Initiator
+    
+    :param account_name: [required] 
+    :type account_name: str
+    
+    :param drive_id: [required] 
+    :type drive_id: int
+    
+    :param initiator_ip: [required] 
+    :type initiator_ip: str
+    
+    :param initiator_port_name: [required] 
+    :type initiator_port_name: str
+    
+    :param target_port_name: [required] 
+    :type target_port_name: str
+    
+    :param initiator_name: [required] 
+    :type initiator_name: str
+    
+    :param node_id: [required] 
+    :type node_id: int
+    
+    :param service_id: [required] 
+    :type service_id: int
+    
+    :param session_id: [required] 
+    :type session_id: int
+    
+    :param target_name: [required] 
+    :type target_name: str
+    
+    :param target_ip: [required] 
+    :type target_ip: str
+    
+    :param virtual_network_id: [required] 
+    :type virtual_network_id: int
+    
+    :param volume_id: [required] 
+    :type volume_id: int
+    
+    :param create_time: [required] 
+    :type create_time: str
+    
+    :param volume_instance: [required] 
+    :type volume_instance: int
+    
+    :param initiator_session_id: [required] 
+    :type initiator_session_id: int
+    """
+    account_id = data_model.property(
+        "accountID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    initiator = data_model.property(
+        "initiator", Initiator,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    account_name = data_model.property(
+        "accountName", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    drive_id = data_model.property(
+        "driveID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    initiator_ip = data_model.property(
+        "initiatorIP", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    initiator_port_name = data_model.property(
+        "initiatorPortName", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    target_port_name = data_model.property(
+        "targetPortName", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    initiator_name = data_model.property(
+        "initiatorName", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    service_id = data_model.property(
+        "serviceID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    session_id = data_model.property(
+        "sessionID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    target_name = data_model.property(
+        "targetName", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    target_ip = data_model.property(
+        "targetIP", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    virtual_network_id = data_model.property(
+        "virtualNetworkID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    create_time = data_model.property(
+        "createTime", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    volume_instance = data_model.property(
+        "volumeInstance", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    initiator_session_id = data_model.property(
+        "initiatorSessionID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListISCSISessionsResult(data_model.DataObject):
+    """
+    :param sessions: [required] 
+    :type sessions: ISCSISession
+    """
+    sessions = data_model.property(
+        "sessions", ISCSISession,
+        array=True, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetBackupTargetRequest(data_model.DataObject):
+    """
+    :param backup_target_id: [required] Unique identifier assigned to the backup target. 
+    :type backup_target_id: int
+    """
+    backup_target_id = data_model.property(
+        "backupTargetID", int,
+        array=False, optional=False,
+        documentation="[&#x27;Unique identifier assigned to the backup target.&#x27;]",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class MetadataHosts(data_model.DataObject):
     """
     The volume services on which the volume metadata resides.
@@ -4246,300 +4367,6 @@ class ListVolumeStatsByAccountResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class RemoveAccountRequest(data_model.DataObject):
-    """
-    :param account_id: [required] AccountID for the account to remove. 
-    :type account_id: int
-    """
-    account_id = data_model.property(
-        "accountID", int,
-        array=False, optional=False,
-        documentation="AccountID for the account to remove.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetStorageContainerEfficiencyRequest(data_model.DataObject):
-    """
-    :param storage_container_id: [required] The ID of the storage container for which to retrieve efficiency information. 
-    :type storage_container_id: UUID
-    """
-    storage_container_id = data_model.property(
-        "storageContainerID", UUID,
-        array=False, optional=False,
-        documentation="The ID of the storage container for which to retrieve efficiency information.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class CreateStorageContainerResult(data_model.DataObject):
-    """
-    :param storage_container: [required] 
-    :type storage_container: StorageContainer
-    """
-    storage_container = data_model.property(
-        "storageContainer", StorageContainer,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ISCSISession(data_model.DataObject):
-    """
-    :param account_id: [required] 
-    :type account_id: int
-    
-    :param initiator: [required] 
-    :type initiator: Initiator
-    
-    :param account_name: [required] 
-    :type account_name: str
-    
-    :param drive_id: [required] 
-    :type drive_id: int
-    
-    :param initiator_ip: [required] 
-    :type initiator_ip: str
-    
-    :param initiator_port_name: [required] 
-    :type initiator_port_name: str
-    
-    :param target_port_name: [required] 
-    :type target_port_name: str
-    
-    :param initiator_name: [required] 
-    :type initiator_name: str
-    
-    :param node_id: [required] 
-    :type node_id: int
-    
-    :param service_id: [required] 
-    :type service_id: int
-    
-    :param session_id: [required] 
-    :type session_id: int
-    
-    :param target_name: [required] 
-    :type target_name: str
-    
-    :param target_ip: [required] 
-    :type target_ip: str
-    
-    :param virtual_network_id: [required] 
-    :type virtual_network_id: int
-    
-    :param volume_id: [required] 
-    :type volume_id: int
-    
-    :param create_time: [required] 
-    :type create_time: str
-    
-    :param volume_instance: [required] 
-    :type volume_instance: int
-    
-    :param initiator_session_id: [required] 
-    :type initiator_session_id: int
-    """
-    account_id = data_model.property(
-        "accountID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    initiator = data_model.property(
-        "initiator", Initiator,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    account_name = data_model.property(
-        "accountName", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    drive_id = data_model.property(
-        "driveID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    initiator_ip = data_model.property(
-        "initiatorIP", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    initiator_port_name = data_model.property(
-        "initiatorPortName", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    target_port_name = data_model.property(
-        "targetPortName", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    initiator_name = data_model.property(
-        "initiatorName", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    node_id = data_model.property(
-        "nodeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    service_id = data_model.property(
-        "serviceID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    session_id = data_model.property(
-        "sessionID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    target_name = data_model.property(
-        "targetName", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    target_ip = data_model.property(
-        "targetIP", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    virtual_network_id = data_model.property(
-        "virtualNetworkID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    create_time = data_model.property(
-        "createTime", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    volume_instance = data_model.property(
-        "volumeInstance", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    initiator_session_id = data_model.property(
-        "initiatorSessionID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListISCSISessionsResult(data_model.DataObject):
-    """
-    :param sessions: [required] 
-    :type sessions: ISCSISession
-    """
-    sessions = data_model.property(
-        "sessions", ISCSISession,
-        array=True, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetBackupTargetRequest(data_model.DataObject):
-    """
-    :param backup_target_id: [required] Unique identifier assigned to the backup target. 
-    :type backup_target_id: int
-    """
-    backup_target_id = data_model.property(
-        "backupTargetID", int,
-        array=False, optional=False,
-        documentation="[&#x27;Unique identifier assigned to the backup target.&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListVirtualVolumesRequest(data_model.DataObject):
-    """
-    :param details:  Possible values:true: Include more details about each VVOL in the response.false: Include the standard level of detail about each VVOL in the response. 
-    :type details: bool
-    
-    :param limit:  The maximum number of virtual volumes to list. 
-    :type limit: int
-    
-    :param recursive:  Possible values:true: Include information about the children of each VVOL in the response.false: Do not include information about the children of each VVOL in the response. 
-    :type recursive: bool
-    
-    :param start_virtual_volume_id:  The ID of the virtual volume at which to begin the list. 
-    :type start_virtual_volume_id: UUID
-    
-    :param virtual_volume_ids:  A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
-    :type virtual_volume_ids: UUID
-    """
-    details = data_model.property(
-        "details", bool,
-        array=False, optional=True,
-        documentation="Possible values:true: Include more details about each VVOL in the response.false: Include the standard level of detail about each VVOL in the response.",
-        dictionaryType=None
-    )
-    limit = data_model.property(
-        "limit", int,
-        array=False, optional=True,
-        documentation="The maximum number of virtual volumes to list.",
-        dictionaryType=None
-    )
-    recursive = data_model.property(
-        "recursive", bool,
-        array=False, optional=True,
-        documentation="Possible values:true: Include information about the children of each VVOL in the response.false: Do not include information about the children of each VVOL in the response.",
-        dictionaryType=None
-    )
-    start_virtual_volume_id = data_model.property(
-        "startVirtualVolumeID", UUID,
-        array=False, optional=True,
-        documentation="The ID of the virtual volume at which to begin the list.",
-        dictionaryType=None
-    )
-    virtual_volume_ids = data_model.property(
-        "virtualVolumeIDs", UUID,
-        array=True, optional=True,
-        documentation="A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class ModifyGroupSnapshotRequest(data_model.DataObject):
     """
     :param group_snapshot_id: [required] ID of the snapshot. 
@@ -4667,169 +4494,6 @@ class SnmpV3UsmUser(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class FibreChannelPortInfo(data_model.DataObject):
-    """
-    Fibre Channel Node Port Info object returns information about all Fibre Channel ports on a node, or for one node in the cluster. The same information is returned for all ports or port information for one node. This information is returned with the API method ListNodeFibreChannelPortInfo (in the SolidFire API Guide).
-    :param firmware: [required] The version of the firmware installed on the Fibre Channel port. 
-    :type firmware: str
-    
-    :param hba_port: [required] The ID of the individual HBA port. 
-    :type hba_port: int
-    
-    :param model: [required] Model of the HBA on the port. 
-    :type model: str
-    
-    :param n_port_id: [required] Unique SolidFire port node ID. 
-    :type n_port_id: str
-    
-    :param pci_slot: [required] Slot in which the pci card resides on the Fibre Channel node hardware. 
-    :type pci_slot: int
-    
-    :param serial: [required] Serial number on the Fibre Channel port. 
-    :type serial: str
-    
-    :param speed: [required] Speed of the HBA on the port. 
-    :type speed: str
-    
-    :param state: [required] Possible values: <br/><br/> <strong>Unknown<br/>NotPresent<br/>Online<br/>Offline<br/>Blocked<br/>Bypassed<br/>Diagnostics<br/>Linkdown<br/>Error<br/>Loopback<br/>Deleted</strong> 
-    :type state: str
-    
-    :param switch_wwn: [required] The World Wide Name of the Fibre Channel switch port. 
-    :type switch_wwn: str
-    
-    :param wwnn: [required] World Wide Node Name of the HBA node. 
-    :type wwnn: str
-    
-    :param wwpn: [required] World Wide Port Name assigned to the physical port of the HBA. 
-    :type wwpn: str
-    """
-    firmware = data_model.property(
-        "firmware", str,
-        array=False, optional=False,
-        documentation="The version of the firmware installed on the Fibre Channel port.",
-        dictionaryType=None
-    )
-    hba_port = data_model.property(
-        "hbaPort", int,
-        array=False, optional=False,
-        documentation="The ID of the individual HBA port.",
-        dictionaryType=None
-    )
-    model = data_model.property(
-        "model", str,
-        array=False, optional=False,
-        documentation="Model of the HBA on the port.",
-        dictionaryType=None
-    )
-    n_port_id = data_model.property(
-        "nPortID", str,
-        array=False, optional=False,
-        documentation="Unique SolidFire port node ID.",
-        dictionaryType=None
-    )
-    pci_slot = data_model.property(
-        "pciSlot", int,
-        array=False, optional=False,
-        documentation="Slot in which the pci card resides on the Fibre Channel node hardware.",
-        dictionaryType=None
-    )
-    serial = data_model.property(
-        "serial", str,
-        array=False, optional=False,
-        documentation="Serial number on the Fibre Channel port.",
-        dictionaryType=None
-    )
-    speed = data_model.property(
-        "speed", str,
-        array=False, optional=False,
-        documentation="Speed of the HBA on the port.",
-        dictionaryType=None
-    )
-    state = data_model.property(
-        "state", str,
-        array=False, optional=False,
-        documentation="[&#x27;Possible values:&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;strong&gt;Unknown&lt;br/&gt;NotPresent&lt;br/&gt;Online&lt;br/&gt;Offline&lt;br/&gt;Blocked&lt;br/&gt;Bypassed&lt;br/&gt;Diagnostics&lt;br/&gt;Linkdown&lt;br/&gt;Error&lt;br/&gt;Loopback&lt;br/&gt;Deleted&lt;/strong&gt;&#x27;]",
-        dictionaryType=None
-    )
-    switch_wwn = data_model.property(
-        "switchWwn", str,
-        array=False, optional=False,
-        documentation="The World Wide Name of the Fibre Channel switch port.",
-        dictionaryType=None
-    )
-    wwnn = data_model.property(
-        "wwnn", str,
-        array=False, optional=False,
-        documentation="World Wide Node Name of the HBA node.",
-        dictionaryType=None
-    )
-    wwpn = data_model.property(
-        "wwpn", str,
-        array=False, optional=False,
-        documentation="World Wide Port Name assigned to the physical port of the HBA.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class FibreChannelPortList(data_model.DataObject):
-    """
-    List of all Fibre Channel ports.
-    :param fibre_channel_ports: [required] List of all physical Fibre Channel ports. 
-    :type fibre_channel_ports: FibreChannelPortInfo
-    """
-    fibre_channel_ports = data_model.property(
-        "fibreChannelPorts", FibreChannelPortInfo,
-        array=True, optional=False,
-        documentation="List of all physical Fibre Channel ports.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class NodeFibreChannelPortInfoResult(data_model.DataObject):
-    """
-    Fibre channel port info results for a node.
-    :param node_id: [required] The ID of the Fibre Channel node. 
-    :type node_id: int
-    
-    :param result: [required] Contains a list of information about the Fibre Channel ports. 
-    :type result: FibreChannelPortList
-    """
-    node_id = data_model.property(
-        "nodeID", int,
-        array=False, optional=False,
-        documentation="The ID of the Fibre Channel node.",
-        dictionaryType=None
-    )
-    result = data_model.property(
-        "result", FibreChannelPortList,
-        array=False, optional=False,
-        documentation="Contains a list of information about the Fibre Channel ports.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListNodeFibreChannelPortInfoResult(data_model.DataObject):
-    """
-    List of fibre channel port info results grouped by node.
-    :param nodes: [required] List of fibre channel port info results grouped by node. 
-    :type nodes: NodeFibreChannelPortInfoResult
-    """
-    nodes = data_model.property(
-        "nodes", NodeFibreChannelPortInfoResult,
-        array=True, optional=False,
-        documentation="List of fibre channel port info results grouped by node.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class GetScheduleResult(data_model.DataObject):
     """
     :param schedule: [required] The schedule attributes. 
@@ -4851,62 +4515,8 @@ class DeleteSnapshotResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ModifyVolumeRequest(data_model.DataObject):
-    """
-    :param volume_id: [required] VolumeID for the volume to be modified. 
-    :type volume_id: int
-    
-    :param account_id:  AccountID to which the volume is reassigned. If none is specified, the previous account name is used. 
-    :type account_id: int
-    
-    :param access:  Access allowed for the volume. <br/><b>readOnly</b>: Only read operations are allowed. <br/><b>readWrite</b>: Reads and writes are allowed. <br/><b>locked</b>: No reads or writes are allowed. <br/><b>replicationTarget</b>: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked. <br/><br/> If unspecified, the access settings of the clone will be the same as the source. 
-    :type access: str
-    
-    :param qos:  New quality of service settings for this volume. 
-    :type qos: QoS
-    
-    :param total_size:  New size of the volume in bytes. Size is rounded up to the nearest 1MiB size. This parameter can only be used to *increase* the size of a volume. 
-    :type total_size: int
-    
-    :param attributes:  List of Name/Value pairs in JSON object format. 
-    :type attributes: dict
-    """
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=False,
-        documentation="VolumeID for the volume to be modified.",
-        dictionaryType=None
-    )
-    account_id = data_model.property(
-        "accountID", int,
-        array=False, optional=True,
-        documentation="[&#x27;AccountID to which the volume is reassigned.&#x27;, &#x27;If none is specified, the previous account name is used.&#x27;]",
-        dictionaryType=None
-    )
-    access = data_model.property(
-        "access", str,
-        array=False, optional=True,
-        documentation="[&#x27;Access allowed for the volume.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;]",
-        dictionaryType=None
-    )
-    qos = data_model.property(
-        "qos", QoS,
-        array=False, optional=True,
-        documentation="New quality of service settings for this volume.",
-        dictionaryType=None
-    )
-    total_size = data_model.property(
-        "totalSize", int,
-        array=False, optional=True,
-        documentation="[&#x27;New size of the volume in bytes.&#x27;, &#x27;Size is rounded up to the nearest 1MiB size.&#x27;, &#x27;This parameter can only be used to *increase* the size of a volume.&#x27;]",
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="List of Name/Value pairs in JSON object format.",
-        dictionaryType=None
-    )
+class CompleteVolumePairingResult(data_model.DataObject):
+    """"""
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -5549,6 +5159,30 @@ class ListAsyncResultsResult(data_model.DataObject):
         "asyncHandles", AsyncHandle,
         array=True, optional=False,
         documentation="An array of serialized asynchronous method results.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetNtpInfoResult(data_model.DataObject):
+    """
+    :param broadcastclient: [required] Indicates whether or not the nodes in the cluster are listening for broadcast NTP messages. Possible values: true false 
+    :type broadcastclient: bool
+    
+    :param servers: [required] List of NTP servers. 
+    :type servers: str
+    """
+    broadcastclient = data_model.property(
+        "broadcastclient", bool,
+        array=False, optional=False,
+        documentation="[&#x27;Indicates whether or not the nodes in the cluster are listening for broadcast NTP messages. Possible values:&#x27;, &#x27;true&#x27;, &#x27;false&#x27;]",
+        dictionaryType=None
+    )
+    servers = data_model.property(
+        "servers", str,
+        array=True, optional=False,
+        documentation="List of NTP servers.",
         dictionaryType=None
     )
 
@@ -6527,6 +6161,48 @@ class NewDrive(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class Platform(data_model.DataObject):
+    """
+    :param node_type: [required] SolidFire's name for this platform. 
+    :type node_type: str
+    
+    :param chassis_type: [required] Name of the chassis (example: "R620"). 
+    :type chassis_type: str
+    
+    :param cpu_model: [required] The model of CPU used on this platform. 
+    :type cpu_model: str
+    
+    :param node_memory_gb: [required] The amount of memory on this platform in GiB. 
+    :type node_memory_gb: int
+    """
+    node_type = data_model.property(
+        "nodeType", str,
+        array=False, optional=False,
+        documentation="SolidFire&#x27;s name for this platform.",
+        dictionaryType=None
+    )
+    chassis_type = data_model.property(
+        "chassisType", str,
+        array=False, optional=False,
+        documentation="Name of the chassis (example: &quot;R620&quot;).",
+        dictionaryType=None
+    )
+    cpu_model = data_model.property(
+        "cpuModel", str,
+        array=False, optional=False,
+        documentation="The model of CPU used on this platform.",
+        dictionaryType=None
+    )
+    node_memory_gb = data_model.property(
+        "nodeMemoryGB", int,
+        array=False, optional=False,
+        documentation="The amount of memory on this platform in GiB.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class Node(data_model.DataObject):
     """
     A node refers to an individual machine in a cluster.
@@ -7260,15 +6936,15 @@ class ListDrivesResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVirtualVolumeBindingsRequest(data_model.DataObject):
+class ListVolumeStatsByVolumeResult(data_model.DataObject):
     """
-    :param virtual_volume_binding_ids:  
-    :type virtual_volume_binding_ids: int
+    :param volume_stats: [required] List of account activity information. 
+    :type volume_stats: VolumeStats
     """
-    virtual_volume_binding_ids = data_model.property(
-        "virtualVolumeBindingIDs", int,
-        array=True, optional=True,
-        documentation="",
+    volume_stats = data_model.property(
+        "volumeStats", VolumeStats,
+        array=True, optional=False,
+        documentation="[&#x27;List of account activity information.&#x27;]",
         dictionaryType=None
     )
 
@@ -7320,6 +6996,21 @@ class StartBulkVolumeWriteRequest(data_model.DataObject):
         "attributes", dict,
         array=False, optional=True,
         documentation="[&#x27;JSON attributes for the bulk volume job.&#x27;]",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetClusterConfigResult(data_model.DataObject):
+    """
+    :param cluster: [required] Cluster configuration information the node uses to communicate with the cluster. 
+    :type cluster: ClusterConfig
+    """
+    cluster = data_model.property(
+        "cluster", ClusterConfig,
+        array=False, optional=False,
+        documentation="Cluster configuration information the node uses to communicate with the cluster.",
         dictionaryType=None
     )
 
@@ -8342,6 +8033,12 @@ class GetHardwareConfigResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class DisableSnmpResult(data_model.DataObject):
+    """"""
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class TestConnectSvipRequest(data_model.DataObject):
     """
     :param svip:  Optionally, use to test the storage connection of a different SVIP. This is not needed to test the connection to the target cluster. 
@@ -8770,8 +8467,17 @@ class RemoveDrivesRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class PurgeDeletedVolumesResult(data_model.DataObject):
-    """"""
+class GetNodeStatsRequest(data_model.DataObject):
+    """
+    :param node_id: [required] Specifies the node for which statistics are gathered. 
+    :type node_id: int
+    """
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation="Specifies the node for which statistics are gathered.",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -9019,17 +8725,8 @@ class ListVolumeAccessGroupsRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetNodeStatsRequest(data_model.DataObject):
-    """
-    :param node_id: [required] Specifies the node for which statistics are gathered. 
-    :type node_id: int
-    """
-    node_id = data_model.property(
-        "nodeID", int,
-        array=False, optional=False,
-        documentation="Specifies the node for which statistics are gathered.",
-        dictionaryType=None
-    )
+class PurgeDeletedVolumesResult(data_model.DataObject):
+    """"""
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -9327,6 +9024,131 @@ class ListEventsResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class PendingNode(data_model.DataObject):
+    """
+    A "pending node" is one that has not yet joined the cluster.
+    It can be added to a cluster using the AddNode method.
+    :param pending_node_id: [required] 
+    :type pending_node_id: int
+    
+    :param assigned_node_id: [required] 
+    :type assigned_node_id: int
+    
+    :param name: [required] The host name for this node. 
+    :type name: str
+    
+    :param compatible: [required] 
+    :type compatible: bool
+    
+    :param platform_info: [required] Information about the platform this node is. 
+    :type platform_info: Platform
+    
+    :param cip: [required] IP address used for both intra- and inter-cluster communication. 
+    :type cip: str
+    
+    :param cipi: [required] The machine's name for the "cip" interface. 
+    :type cipi: str
+    
+    :param mip: [required] IP address used for cluster management (hosting the API and web site). 
+    :type mip: str
+    
+    :param mipi: [required] The machine's name for the "mip" interface. 
+    :type mipi: str
+    
+    :param sip: [required] IP address used for iSCSI traffic. 
+    :type sip: str
+    
+    :param sipi: [required] The machine's name for the "sip" interface. 
+    :type sipi: str
+    
+    :param software_version: [required] The version of SolidFire software this node is currently running. 
+    :type software_version: str
+    
+    :param uuid: [required] UUID of node. 
+    :type uuid: UUID
+    """
+    pending_node_id = data_model.property(
+        "pendingNodeID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    assigned_node_id = data_model.property(
+        "AssignedNodeID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="The host name for this node.",
+        dictionaryType=None
+    )
+    compatible = data_model.property(
+        "compatible", bool,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    platform_info = data_model.property(
+        "platformInfo", Platform,
+        array=False, optional=False,
+        documentation="Information about the platform this node is.",
+        dictionaryType=None
+    )
+    cip = data_model.property(
+        "cip", str,
+        array=False, optional=False,
+        documentation="[&#x27;IP address used for both intra- and inter-cluster communication.&#x27;]",
+        dictionaryType=None
+    )
+    cipi = data_model.property(
+        "cipi", str,
+        array=False, optional=False,
+        documentation="The machine&#x27;s name for the &quot;cip&quot; interface.",
+        dictionaryType=None
+    )
+    mip = data_model.property(
+        "mip", str,
+        array=False, optional=False,
+        documentation="[&#x27;IP address used for cluster management (hosting the API and web site).&#x27;]",
+        dictionaryType=None
+    )
+    mipi = data_model.property(
+        "mipi", str,
+        array=False, optional=False,
+        documentation="The machine&#x27;s name for the &quot;mip&quot; interface.",
+        dictionaryType=None
+    )
+    sip = data_model.property(
+        "sip", str,
+        array=False, optional=False,
+        documentation="[&#x27;IP address used for iSCSI traffic.&#x27;]",
+        dictionaryType=None
+    )
+    sipi = data_model.property(
+        "sipi", str,
+        array=False, optional=False,
+        documentation="The machine&#x27;s name for the &quot;sip&quot; interface.",
+        dictionaryType=None
+    )
+    software_version = data_model.property(
+        "softwareVersion", str,
+        array=False, optional=False,
+        documentation="The version of SolidFire software this node is currently running.",
+        dictionaryType=None
+    )
+    uuid = data_model.property(
+        "uuid", UUID,
+        array=False, optional=False,
+        documentation="UUID of node.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListAllNodesResult(data_model.DataObject):
     """
     :param nodes: [required] 
@@ -9351,24 +9173,15 @@ class ListAllNodesResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class RemoveInitiatorsFromVolumeAccessGroupRequest(data_model.DataObject):
+class ListSchedulesResult(data_model.DataObject):
     """
-    :param volume_access_group_id: [required] The ID of the volume access group to modify. 
-    :type volume_access_group_id: int
-    
-    :param initiators: [required] List of initiators to remove from the volume access group. 
-    :type initiators: str
+    :param schedules: [required] The list of schedules currently on the cluster. 
+    :type schedules: Schedule
     """
-    volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
-        array=False, optional=False,
-        documentation="The ID of the volume access group to modify.",
-        dictionaryType=None
-    )
-    initiators = data_model.property(
-        "initiators", str,
+    schedules = data_model.property(
+        "schedules", Schedule,
         array=True, optional=False,
-        documentation="[&#x27;List of initiators to remove from the volume access group.&#x27;]",
+        documentation="The list of schedules currently on the cluster.",
         dictionaryType=None
     )
 
@@ -9932,12 +9745,6 @@ class CreateScheduleResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class CompleteVolumePairingResult(data_model.DataObject):
-    """"""
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class AsyncHandleResult(data_model.DataObject):
     """
     :param async_handle: [required] 
@@ -10220,21 +10027,6 @@ class GetAsyncResultResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListSchedulesResult(data_model.DataObject):
-    """
-    :param schedules: [required] The list of schedules currently on the cluster. 
-    :type schedules: Schedule
-    """
-    schedules = data_model.property(
-        "schedules", Schedule,
-        array=True, optional=False,
-        documentation="The list of schedules currently on the cluster.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class DeleteInitiatorsRequest(data_model.DataObject):
     """
     :param initiators: [required] An array of IDs of initiators to delete. 
@@ -10478,24 +10270,163 @@ class ModifyAccountRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetNtpInfoResult(data_model.DataObject):
+class FibreChannelPortInfo(data_model.DataObject):
     """
-    :param broadcastclient: [required] Indicates whether or not the nodes in the cluster are listening for broadcast NTP messages. Possible values: true false 
-    :type broadcastclient: bool
+    Fibre Channel Node Port Info object returns information about all Fibre Channel ports on a node, or for one node in the cluster. The same information is returned for all ports or port information for one node. This information is returned with the API method ListNodeFibreChannelPortInfo (in the SolidFire API Guide).
+    :param firmware: [required] The version of the firmware installed on the Fibre Channel port. 
+    :type firmware: str
     
-    :param servers: [required] List of NTP servers. 
-    :type servers: str
+    :param hba_port: [required] The ID of the individual HBA port. 
+    :type hba_port: int
+    
+    :param model: [required] Model of the HBA on the port. 
+    :type model: str
+    
+    :param n_port_id: [required] Unique SolidFire port node ID. 
+    :type n_port_id: str
+    
+    :param pci_slot: [required] Slot in which the pci card resides on the Fibre Channel node hardware. 
+    :type pci_slot: int
+    
+    :param serial: [required] Serial number on the Fibre Channel port. 
+    :type serial: str
+    
+    :param speed: [required] Speed of the HBA on the port. 
+    :type speed: str
+    
+    :param state: [required] Possible values: <br/><br/> <strong>Unknown<br/>NotPresent<br/>Online<br/>Offline<br/>Blocked<br/>Bypassed<br/>Diagnostics<br/>Linkdown<br/>Error<br/>Loopback<br/>Deleted</strong> 
+    :type state: str
+    
+    :param switch_wwn: [required] The World Wide Name of the Fibre Channel switch port. 
+    :type switch_wwn: str
+    
+    :param wwnn: [required] World Wide Node Name of the HBA node. 
+    :type wwnn: str
+    
+    :param wwpn: [required] World Wide Port Name assigned to the physical port of the HBA. 
+    :type wwpn: str
     """
-    broadcastclient = data_model.property(
-        "broadcastclient", bool,
+    firmware = data_model.property(
+        "firmware", str,
         array=False, optional=False,
-        documentation="[&#x27;Indicates whether or not the nodes in the cluster are listening for broadcast NTP messages. Possible values:&#x27;, &#x27;true&#x27;, &#x27;false&#x27;]",
+        documentation="The version of the firmware installed on the Fibre Channel port.",
         dictionaryType=None
     )
-    servers = data_model.property(
-        "servers", str,
+    hba_port = data_model.property(
+        "hbaPort", int,
+        array=False, optional=False,
+        documentation="The ID of the individual HBA port.",
+        dictionaryType=None
+    )
+    model = data_model.property(
+        "model", str,
+        array=False, optional=False,
+        documentation="Model of the HBA on the port.",
+        dictionaryType=None
+    )
+    n_port_id = data_model.property(
+        "nPortID", str,
+        array=False, optional=False,
+        documentation="Unique SolidFire port node ID.",
+        dictionaryType=None
+    )
+    pci_slot = data_model.property(
+        "pciSlot", int,
+        array=False, optional=False,
+        documentation="Slot in which the pci card resides on the Fibre Channel node hardware.",
+        dictionaryType=None
+    )
+    serial = data_model.property(
+        "serial", str,
+        array=False, optional=False,
+        documentation="Serial number on the Fibre Channel port.",
+        dictionaryType=None
+    )
+    speed = data_model.property(
+        "speed", str,
+        array=False, optional=False,
+        documentation="Speed of the HBA on the port.",
+        dictionaryType=None
+    )
+    state = data_model.property(
+        "state", str,
+        array=False, optional=False,
+        documentation="[&#x27;Possible values:&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;strong&gt;Unknown&lt;br/&gt;NotPresent&lt;br/&gt;Online&lt;br/&gt;Offline&lt;br/&gt;Blocked&lt;br/&gt;Bypassed&lt;br/&gt;Diagnostics&lt;br/&gt;Linkdown&lt;br/&gt;Error&lt;br/&gt;Loopback&lt;br/&gt;Deleted&lt;/strong&gt;&#x27;]",
+        dictionaryType=None
+    )
+    switch_wwn = data_model.property(
+        "switchWwn", str,
+        array=False, optional=False,
+        documentation="The World Wide Name of the Fibre Channel switch port.",
+        dictionaryType=None
+    )
+    wwnn = data_model.property(
+        "wwnn", str,
+        array=False, optional=False,
+        documentation="World Wide Node Name of the HBA node.",
+        dictionaryType=None
+    )
+    wwpn = data_model.property(
+        "wwpn", str,
+        array=False, optional=False,
+        documentation="World Wide Port Name assigned to the physical port of the HBA.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class FibreChannelPortList(data_model.DataObject):
+    """
+    List of all Fibre Channel ports.
+    :param fibre_channel_ports: [required] List of all physical Fibre Channel ports. 
+    :type fibre_channel_ports: FibreChannelPortInfo
+    """
+    fibre_channel_ports = data_model.property(
+        "fibreChannelPorts", FibreChannelPortInfo,
         array=True, optional=False,
-        documentation="List of NTP servers.",
+        documentation="List of all physical Fibre Channel ports.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class NodeFibreChannelPortInfoResult(data_model.DataObject):
+    """
+    Fibre channel port info results for a node.
+    :param node_id: [required] The ID of the Fibre Channel node. 
+    :type node_id: int
+    
+    :param result: [required] Contains a list of information about the Fibre Channel ports. 
+    :type result: FibreChannelPortList
+    """
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation="The ID of the Fibre Channel node.",
+        dictionaryType=None
+    )
+    result = data_model.property(
+        "result", FibreChannelPortList,
+        array=False, optional=False,
+        documentation="Contains a list of information about the Fibre Channel ports.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListNodeFibreChannelPortInfoResult(data_model.DataObject):
+    """
+    List of fibre channel port info results grouped by node.
+    :param nodes: [required] List of fibre channel port info results grouped by node. 
+    :type nodes: NodeFibreChannelPortInfoResult
+    """
+    nodes = data_model.property(
+        "nodes", NodeFibreChannelPortInfoResult,
+        array=True, optional=False,
+        documentation="List of fibre channel port info results grouped by node.",
         dictionaryType=None
     )
 
@@ -11200,15 +11131,15 @@ class TestConnectSvipResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVolumeStatsByVolumeResult(data_model.DataObject):
+class ListVirtualVolumeBindingsRequest(data_model.DataObject):
     """
-    :param volume_stats: [required] List of account activity information. 
-    :type volume_stats: VolumeStats
+    :param virtual_volume_binding_ids:  
+    :type virtual_volume_binding_ids: int
     """
-    volume_stats = data_model.property(
-        "volumeStats", VolumeStats,
-        array=True, optional=False,
-        documentation="[&#x27;List of account activity information.&#x27;]",
+    virtual_volume_binding_ids = data_model.property(
+        "virtualVolumeBindingIDs", int,
+        array=True, optional=True,
+        documentation="",
         dictionaryType=None
     )
 
@@ -11380,6 +11311,21 @@ class GetVirtualVolumeCountResult(data_model.DataObject):
         "count", int,
         array=False, optional=False,
         documentation="The number of virtual volumes currently in the system.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetClusterStateRequest(data_model.DataObject):
+    """
+    :param force:  To run this command, the force parameter must be set to true. 
+    :type force: bool
+    """
+    force = data_model.property(
+        "force", bool,
+        array=False, optional=false,
+        documentation="To run this command, the force parameter must be set to true.",
         dictionaryType=None
     )
 
@@ -11728,8 +11674,17 @@ class DeleteVolumeResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class DisableSnmpResult(data_model.DataObject):
-    """"""
+class ListPendingNodesResult(data_model.DataObject):
+    """
+    :param pending_nodes: [required] 
+    :type pending_nodes: PendingNode
+    """
+    pending_nodes = data_model.property(
+        "pendingNodes", PendingNode,
+        array=True, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -11825,15 +11780,24 @@ class GetSnmpTrapInfoResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVolumeStatsByVolumeAccessGroupRequest(data_model.DataObject):
+class RemoveInitiatorsFromVolumeAccessGroupRequest(data_model.DataObject):
     """
-    :param volume_access_groups:  An array of VolumeAccessGroupIDs for which volume activity is returned. If no VolumeAccessGroupID is specified, stats for all volume access groups is returned. 
-    :type volume_access_groups: int
+    :param volume_access_group_id: [required] The ID of the volume access group to modify. 
+    :type volume_access_group_id: int
+    
+    :param initiators: [required] List of initiators to remove from the volume access group. 
+    :type initiators: str
     """
-    volume_access_groups = data_model.property(
-        "volumeAccessGroups", int,
-        array=True, optional=True,
-        documentation="[&#x27;An array of VolumeAccessGroupIDs for which volume activity is returned.&#x27;, &#x27;If no VolumeAccessGroupID is specified, stats for all volume access groups is returned.&#x27;]",
+    volume_access_group_id = data_model.property(
+        "volumeAccessGroupID", int,
+        array=False, optional=False,
+        documentation="The ID of the volume access group to modify.",
+        dictionaryType=None
+    )
+    initiators = data_model.property(
+        "initiators", str,
+        array=True, optional=False,
+        documentation="[&#x27;List of initiators to remove from the volume access group.&#x27;]",
         dictionaryType=None
     )
 
@@ -11870,17 +11834,8 @@ class ListUtilitiesResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVolumesResult(data_model.DataObject):
-    """
-    :param volumes: [required] List of volumes. 
-    :type volumes: Volume
-    """
-    volumes = data_model.property(
-        "volumes", Volume,
-        array=True, optional=False,
-        documentation="List of volumes.",
-        dictionaryType=None
-    )
+class CancelGroupCloneResult(data_model.DataObject):
+    """"""
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -11900,33 +11855,39 @@ class AddClusterAdminResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class SetDefaultQoSRequest(data_model.DataObject):
+class AddedNode(data_model.DataObject):
     """
-    :param min_iops:  The minimum number of sustained IOPS that are provided by the cluster to a volume. 
-    :type min_iops: int
+    :param node_id: [required] 
+    :type node_id: int
     
-    :param max_iops:  The maximum number of sustained IOPS that are provided by the cluster to a volume. 
-    :type max_iops: int
-    
-    :param burst_iops:  The maximum number of IOPS allowed in a short burst scenario. 
-    :type burst_iops: int
+    :param pending_node_id: [required] 
+    :type pending_node_id: int
     """
-    min_iops = data_model.property(
-        "minIOPS", int,
-        array=False, optional=True,
-        documentation="The minimum number of sustained IOPS that are provided by the cluster to a volume.",
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation="",
         dictionaryType=None
     )
-    max_iops = data_model.property(
-        "maxIOPS", int,
-        array=False, optional=True,
-        documentation="The maximum number of sustained IOPS that are provided by the cluster to a volume.",
+    pending_node_id = data_model.property(
+        "pendingNodeID", int,
+        array=False, optional=False,
+        documentation="",
         dictionaryType=None
     )
-    burst_iops = data_model.property(
-        "burstIOPS", int,
-        array=False, optional=True,
-        documentation="The maximum number of IOPS allowed in a short burst scenario.",
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class AddNodesResult(data_model.DataObject):
+    """
+    :param nodes: [required] An array of objects mapping the previous "pendingNodeID" to the "nodeID". 
+    :type nodes: AddedNode
+    """
+    nodes = data_model.property(
+        "nodes", AddedNode,
+        array=True, optional=False,
+        documentation="An array of objects mapping the previous &quot;pendingNodeID&quot; to the &quot;nodeID&quot;.",
         dictionaryType=None
     )
 
@@ -11996,35 +11957,8 @@ class GetNodeHardwareInfoResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class CopyVolumeRequest(data_model.DataObject):
-    """
-    :param volume_id: [required] Source volume to copy. 
-    :type volume_id: int
-    
-    :param dst_volume_id: [required] Destination volume for the copy. 
-    :type dst_volume_id: int
-    
-    :param snapshot_id:  Snapshot ID of the source volume to create the copy from. 
-    :type snapshot_id: int
-    """
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=False,
-        documentation="Source volume to copy.",
-        dictionaryType=None
-    )
-    dst_volume_id = data_model.property(
-        "dstVolumeID", int,
-        array=False, optional=False,
-        documentation="Destination volume for the copy.",
-        dictionaryType=None
-    )
-    snapshot_id = data_model.property(
-        "snapshotID", int,
-        array=False, optional=True,
-        documentation="Snapshot ID of the source volume to create the copy from.",
-        dictionaryType=None
-    )
+class RemoveAccountResult(data_model.DataObject):
+    """"""
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -12203,15 +12137,15 @@ class CreateVolumeAccessGroupResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetClusterConfigResult(data_model.DataObject):
+class GetVolumeStatsResult(data_model.DataObject):
     """
-    :param cluster: [required] Cluster configuration information the node uses to communicate with the cluster. 
-    :type cluster: ClusterConfig
+    :param volume_stats: [required] Volume activity information. 
+    :type volume_stats: VolumeStats
     """
-    cluster = data_model.property(
-        "cluster", ClusterConfig,
+    volume_stats = data_model.property(
+        "volumeStats", VolumeStats,
         array=False, optional=False,
-        documentation="Cluster configuration information the node uses to communicate with the cluster.",
+        documentation="Volume activity information.",
         dictionaryType=None
     )
 
@@ -12278,15 +12212,33 @@ class EnableFeatureResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class RestoreDeletedVolumeRequest(data_model.DataObject):
+class SetDefaultQoSRequest(data_model.DataObject):
     """
-    :param volume_id: [required] VolumeID for the deleted volume to restore. 
-    :type volume_id: int
+    :param min_iops:  The minimum number of sustained IOPS that are provided by the cluster to a volume. 
+    :type min_iops: int
+    
+    :param max_iops:  The maximum number of sustained IOPS that are provided by the cluster to a volume. 
+    :type max_iops: int
+    
+    :param burst_iops:  The maximum number of IOPS allowed in a short burst scenario. 
+    :type burst_iops: int
     """
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=False,
-        documentation="VolumeID for the deleted volume to restore.",
+    min_iops = data_model.property(
+        "minIOPS", int,
+        array=False, optional=True,
+        documentation="The minimum number of sustained IOPS that are provided by the cluster to a volume.",
+        dictionaryType=None
+    )
+    max_iops = data_model.property(
+        "maxIOPS", int,
+        array=False, optional=True,
+        documentation="The maximum number of sustained IOPS that are provided by the cluster to a volume.",
+        dictionaryType=None
+    )
+    burst_iops = data_model.property(
+        "burstIOPS", int,
+        array=False, optional=True,
+        documentation="The maximum number of IOPS allowed in a short burst scenario.",
         dictionaryType=None
     )
 
@@ -12494,6 +12446,39 @@ class ListVolumeStatsByVolumeAccessGroupResult(data_model.DataObject):
         "volumeStats", VolumeStats,
         array=True, optional=False,
         documentation="[&#x27;List of account activity information.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;Note&lt;/b&gt;: The volumeID member is 0 for each entry, as the values represent the summation of all volumes owned by the account.&#x27;]",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class CopyVolumeRequest(data_model.DataObject):
+    """
+    :param volume_id: [required] Source volume to copy. 
+    :type volume_id: int
+    
+    :param dst_volume_id: [required] Destination volume for the copy. 
+    :type dst_volume_id: int
+    
+    :param snapshot_id:  Snapshot ID of the source volume to create the copy from. 
+    :type snapshot_id: int
+    """
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="Source volume to copy.",
+        dictionaryType=None
+    )
+    dst_volume_id = data_model.property(
+        "dstVolumeID", int,
+        array=False, optional=False,
+        documentation="Destination volume for the copy.",
+        dictionaryType=None
+    )
+    snapshot_id = data_model.property(
+        "snapshotID", int,
+        array=False, optional=True,
+        documentation="Snapshot ID of the source volume to create the copy from.",
         dictionaryType=None
     )
 
@@ -12839,15 +12824,60 @@ class SetSnmpTrapInfoRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetVolumeStatsResult(data_model.DataObject):
+class ModifyVolumeRequest(data_model.DataObject):
     """
-    :param volume_stats: [required] Volume activity information. 
-    :type volume_stats: VolumeStats
+    :param volume_id: [required] VolumeID for the volume to be modified. 
+    :type volume_id: int
+    
+    :param account_id:  AccountID to which the volume is reassigned. If none is specified, the previous account name is used. 
+    :type account_id: int
+    
+    :param access:  Access allowed for the volume. <br/><b>readOnly</b>: Only read operations are allowed. <br/><b>readWrite</b>: Reads and writes are allowed. <br/><b>locked</b>: No reads or writes are allowed. <br/><b>replicationTarget</b>: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked. <br/><br/> If unspecified, the access settings of the clone will be the same as the source. 
+    :type access: str
+    
+    :param qos:  New quality of service settings for this volume. 
+    :type qos: QoS
+    
+    :param total_size:  New size of the volume in bytes. Size is rounded up to the nearest 1MiB size. This parameter can only be used to *increase* the size of a volume. 
+    :type total_size: int
+    
+    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :type attributes: dict
     """
-    volume_stats = data_model.property(
-        "volumeStats", VolumeStats,
+    volume_id = data_model.property(
+        "volumeID", int,
         array=False, optional=False,
-        documentation="Volume activity information.",
+        documentation="VolumeID for the volume to be modified.",
+        dictionaryType=None
+    )
+    account_id = data_model.property(
+        "accountID", int,
+        array=False, optional=True,
+        documentation="[&#x27;AccountID to which the volume is reassigned.&#x27;, &#x27;If none is specified, the previous account name is used.&#x27;]",
+        dictionaryType=None
+    )
+    access = data_model.property(
+        "access", str,
+        array=False, optional=True,
+        documentation="[&#x27;Access allowed for the volume.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readOnly&lt;/b&gt;: Only read operations are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;readWrite&lt;/b&gt;: Reads and writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;locked&lt;/b&gt;: No reads or writes are allowed.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;replicationTarget&lt;/b&gt;: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;]",
+        dictionaryType=None
+    )
+    qos = data_model.property(
+        "qos", QoS,
+        array=False, optional=True,
+        documentation="New quality of service settings for this volume.",
+        dictionaryType=None
+    )
+    total_size = data_model.property(
+        "totalSize", int,
+        array=False, optional=True,
+        documentation="[&#x27;New size of the volume in bytes.&#x27;, &#x27;Size is rounded up to the nearest 1MiB size.&#x27;, &#x27;This parameter can only be used to *increase* the size of a volume.&#x27;]",
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="List of Name/Value pairs in JSON object format.",
         dictionaryType=None
     )
 
