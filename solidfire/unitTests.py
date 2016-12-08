@@ -113,13 +113,6 @@ def test_enable_feature_v9_0():
     feature = "" # feature
     result = ef.enable_feature(feature,)
 
-def test_get_api_v9_0():
-    ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
-    ef._dispatcher.post = MagicMock(return_value = Resources.RESP_GetAPI_v9_0)
-
-    
-    result = ef.get_api()
-
 def test_get_cluster_hardware_info_v9_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
     ef._dispatcher.post = MagicMock(return_value = Resources.RESP_GetClusterHardwareInfo_v9_0)
@@ -584,6 +577,37 @@ def test_list_protocol_endpoints_v9_0():
     assert result.protocol_endpoints[0].protocol_endpoint_id == UUID("1387e257-d2e3-4446-be6d-39db71583e7b"), "Died on .protocol_endpoints[0].protocol_endpoint_id"
     assert result.protocol_endpoints[0].secondary_provider_id == 2, "Died on +.protocol_endpoints[0].secondary_provider_id"
     assert result.protocol_endpoints[0].scsi_naadevice_id == """6f47acc2000000016970687200000000""", "Died on +.protocol_endpoints[0].scsi_naadevice_id"
+
+def test_list_schedules_v9_0():
+    ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
+    ef._dispatcher.post = MagicMock(return_value = Resources.RESP_ListSchedules_v9_0)
+
+    
+    result = ef.list_schedules()
+    assert result.schedules[2].has_error == False, "Died on +.schedules[2].has_error"
+    assert result.schedules[2].run_next_interval == False, "Died on +.schedules[2].run_next_interval"
+    assert result.schedules[2].schedule_id == 423, "Died on +.schedules[2].schedule_id"
+    assert result.schedules[2].last_run_status == """Success""", "Died on +.schedules[2].last_run_status"
+    assert result.schedules[2].to_be_deleted == False, "Died on +.schedules[2].to_be_deleted"
+    assert result.schedules[2].paused == False, "Died on +.schedules[2].paused"
+    assert result.schedules[2].starting_date is None, "Died on .schedules[2].starting_date"
+    assert result.schedules[2].recurring == True, "Died on +.schedules[2].recurring"
+    assert result.schedules[1].has_error == False, "Died on +.schedules[1].has_error"
+    assert result.schedules[1].run_next_interval == False, "Died on +.schedules[1].run_next_interval"
+    assert result.schedules[1].schedule_id == 422, "Died on +.schedules[1].schedule_id"
+    assert result.schedules[1].last_run_status == """Success""", "Died on +.schedules[1].last_run_status"
+    assert result.schedules[1].to_be_deleted == False, "Died on +.schedules[1].to_be_deleted"
+    assert result.schedules[1].paused == False, "Died on +.schedules[1].paused"
+    assert result.schedules[1].starting_date is None, "Died on .schedules[1].starting_date"
+    assert result.schedules[1].recurring == True, "Died on +.schedules[1].recurring"
+    assert result.schedules[0].has_error == False, "Died on +.schedules[0].has_error"
+    assert result.schedules[0].run_next_interval == False, "Died on +.schedules[0].run_next_interval"
+    assert result.schedules[0].schedule_id == 421, "Died on +.schedules[0].schedule_id"
+    assert result.schedules[0].last_run_status == """Success""", "Died on +.schedules[0].last_run_status"
+    assert result.schedules[0].to_be_deleted == False, "Died on +.schedules[0].to_be_deleted"
+    assert result.schedules[0].paused == False, "Died on +.schedules[0].paused"
+    assert result.schedules[0].starting_date is None, "Died on .schedules[0].starting_date"
+    assert result.schedules[0].recurring == True, "Died on +.schedules[0].recurring"
 
 def test_list_snapshots_v9_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -1530,7 +1554,6 @@ if __name__ == "__main__":
     test_delete_storage_containers_v9_0()
     test_delete_volumes_v9_0()
     test_enable_feature_v9_0()
-    test_get_api_v9_0()
     test_get_cluster_hardware_info_v9_0()
     test_get_feature_status_v9_0()
     test_get_hardware_config_v9_0()
@@ -1549,6 +1572,7 @@ if __name__ == "__main__":
     test_list_fibre_channel_sessions_v9_0()
     test_list_iscsisessions_v9_0()
     test_list_protocol_endpoints_v9_0()
+    test_list_schedules_v9_0()
     test_list_snapshots_v9_0()
     test_list_virtual_volume_bindings_v9_0()
     test_list_virtual_volume_hosts_v9_0()

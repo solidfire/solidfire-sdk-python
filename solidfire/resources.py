@@ -97,245 +97,6 @@ RESP_EnableFeature_v9_0 = """{
   "result": {}
 }"""
 
-RESP_GetAPI_v9_0 = """{
-  "id": null,
-  "result": {
-    "9.0": [
-      "AddAccount",
-      "AddClusterAdmin",
-      "AddDrives",
-      "AddInitiatorsToVolumeAccessGroup",
-      "AddLdapClusterAdmin",
-      "AddNodes",
-      "AddVirtualNetwork",
-      "AddVolumesToVolumeAccessGroup",
-      "CancelClone",
-      "CancelGroupClone",
-      "ClearClusterFaults",
-      "CloneMultipleVolumes",
-      "CloneVolume",
-      "CompleteClusterPairing",
-      "CompleteVolumePairing",
-      "CopyVolume",
-      "CreateBackupTarget",
-      "CreateClusterSupportBundle",
-      "CreateGroupSnapshot",
-      "CreateInitiators",
-      "CreateSchedule",
-      "CreateSnapshot",
-      "CreateStorageContainer",
-      "CreateSupportBundle",
-      "CreateVolume",
-      "CreateVolumeAccessGroup",
-      "DeleteAllSupportBundles",
-      "DeleteGroupSnapshot",
-      "DeleteInitiators",
-      "DeleteSnapshot",
-      "DeleteStorageContainers",
-      "DeleteVolume",
-      "DeleteVolumeAccessGroup",
-      "DeleteVolumes",
-      "DisableEncryptionAtRest",
-      "DisableLdapAuthentication",
-      "DisableSnmp",
-      "EnableEncryptionAtRest",
-      "EnableFeature",
-      "EnableLdapAuthentication",
-      "EnableSnmp",
-      "GetAccountByID",
-      "GetAccountByName",
-      "GetAccountEfficiency",
-      "GetAsyncResult",
-      "GetBackupTarget",
-      "GetClusterCapacity",
-      "GetClusterConfig",
-      "GetClusterFullThreshold",
-      "GetClusterHardwareInfo",
-      "GetClusterInfo",
-      "GetClusterMasterNodeID",
-      "GetClusterState",
-      "GetClusterStats",
-      "GetClusterVersionInfo",
-      "GetCompleteStats",
-      "GetConfig",
-      "GetCurrentClusterAdmin",
-      "GetDefaultQoS",
-      "GetDriveHardwareInfo",
-      "GetDriveStats",
-      "GetFeatureStatus",
-      "GetHardwareConfig",
-      "GetHardwareInfo",
-      "GetIpmiConfig",
-      "GetIpmiInfo",
-      "GetLdapConfiguration",
-      "GetLimits",
-      "GetLoginSessionInfo",
-      "GetNetworkConfig",
-      "GetNetworkInterface",
-      "GetNodeHardwareInfo",
-      "GetNodeStats",
-      "GetNtpInfo",
-      "GetNvramInfo",
-      "GetOrigin",
-      "GetPendingOperation",
-      "GetRawStats",
-      "GetRemoteLoggingHosts",
-      "GetSchedule",
-      "GetSnmpACL",
-      "GetSnmpInfo",
-      "GetSnmpState",
-      "GetSnmpTrapInfo",
-      "GetStorageContainerEfficiency",
-      "GetSystemStatus",
-      "GetVirtualVolumeCount",
-      "GetVolumeAccessGroupEfficiency",
-      "GetVolumeAccessGroupLunAssignments",
-      "GetVolumeCount",
-      "GetVolumeEfficiency",
-      "GetVolumeStats",
-      "ListAccounts",
-      "ListActiveNodes",
-      "ListActivePairedVolumes",
-      "ListActiveVolumes",
-      "ListAllNodes",
-      "ListAsyncResults",
-      "ListBackupTargets",
-      "ListBulkVolumeJobs",
-      "ListClusterAdmins",
-      "ListClusterFaults",
-      "ListClusterPairs",
-      "ListDeletedVolumes",
-      "ListDriveHardware",
-      "ListDriveStats",
-      "ListDrives",
-      "ListEvents",
-      "ListFibreChannelPortInfo",
-      "ListFibreChannelSessions",
-      "ListGroupSnapshots",
-      "ListISCSISessions",
-      "ListInitiators",
-      "ListNetworkInterfaces",
-      "ListNodeFibreChannelPortInfo",
-      "ListNodeStats",
-      "ListPendingActiveNodes",
-      "ListPendingNodes",
-      "ListProtocolEndpoints",
-      "ListSchedules",
-      "ListServices",
-      "ListSnapshots",
-      "ListStorageContainers",
-      "ListSyncJobs",
-      "ListTests",
-      "ListUtilities",
-      "ListVirtualNetworks",
-      "ListVirtualVolumeBindings",
-      "ListVirtualVolumeHosts",
-      "ListVirtualVolumeTasks",
-      "ListVirtualVolumes",
-      "ListVolumeAccessGroups",
-      "ListVolumeStats",
-      "ListVolumeStatsByAccount",
-      "ListVolumeStatsByVirtualVolume",
-      "ListVolumeStatsByVolume",
-      "ListVolumeStatsByVolumeAccessGroup",
-      "ListVolumes",
-      "ListVolumesForAccount",
-      "ModifyAccount",
-      "ModifyBackupTarget",
-      "ModifyClusterAdmin",
-      "ModifyClusterFullThreshold",
-      "ModifyGroupSnapshot",
-      "ModifyInitiators",
-      "ModifySchedule",
-      "ModifySnapshot",
-      "ModifyStorageContainer",
-      "ModifyVirtualNetwork",
-      "ModifyVolume",
-      "ModifyVolumeAccessGroup",
-      "ModifyVolumeAccessGroupLunAssignments",
-      "ModifyVolumePair",
-      "ModifyVolumes",
-      "PurgeDeletedVolume",
-      "PurgeDeletedVolumes",
-      "RemoveAccount",
-      "RemoveBackupTarget",
-      "RemoveClusterAdmin",
-      "RemoveClusterPair",
-      "RemoveDrives",
-      "RemoveInitiatorsFromVolumeAccessGroup",
-      "RemoveNodes",
-      "RemoveVirtualNetwork",
-      "RemoveVolumePair",
-      "RemoveVolumesFromVolumeAccessGroup",
-      "ResetDrives",
-      "ResetNode",
-      "RestartNetworking",
-      "RestartServices",
-      "RestoreDeletedVolume",
-      "RollbackToGroupSnapshot",
-      "RollbackToSnapshot",
-      "SecureEraseDrives",
-      "SetClusterConfig",
-      "SetConfig",
-      "SetDefaultQoS",
-      "SetLoginSessionInfo",
-      "SetNetworkConfig",
-      "SetNtpInfo",
-      "SetRemoteLoggingHosts",
-      "SetSnmpACL",
-      "SetSnmpInfo",
-      "SetSnmpTrapInfo",
-      "Shutdown",
-      "SnmpSendTestTraps",
-      "StartBulkVolumeRead",
-      "StartBulkVolumeWrite",
-      "StartClusterPairing",
-      "StartVolumePairing",
-      "TestConnectEnsemble",
-      "TestConnectMvip",
-      "TestConnectSvip",
-      "TestDrives",
-      "TestHardwareConfig",
-      "TestLdapAuthentication",
-      "TestLocalConnectivity",
-      "TestLocateCluster",
-      "TestNetworkConfig",
-      "TestPing",
-      "TestRemoteConnectivity",
-      "UpdateBulkVolumeStatus"
-    ],
-    "currentVersion": "9.0",
-    "supportedVersions": [
-      "1.0",
-      "2.0",
-      "3.0",
-      "4.0",
-      "5.0",
-      "5.1",
-      "6.0",
-      "7.0",
-      "7.1",
-      "7.2",
-      "7.3",
-      "7.4",
-      "8.0",
-      "8.1",
-      "8.2",
-      "8.3",
-      "8.4",
-      "8.5",
-      "8.6",
-      "8.7",
-      "9.0"
-    ]
-  },
-  "warning": {
-    "unusedParameters": {
-      "accountID": 13
-    }
-  }
-}"""
-
 RESP_GetClusterHardwareInfo_v9_0 = """{
   "id": null,
   "result": {
@@ -5594,7 +5355,128 @@ RESP_ListProtocolEndpoints_v9_0 = """{
   }
 }"""
 
-RESP_ListSnapshots_v9_0 = """{"id":9,"result":{"snapshots":[{"attributes":{"SRA_SYNCONCE":"cb44f772-bb26-40f8-ab3b-8577282eb785"},"checksum":"0xc683fe2c00e085c3","createTime":"2016-12-06T22:49:03Z","enableRemoteReplication":true,"expirationReason":"None","expirationTime":"2016-12-07T22:49:03Z","groupID":0,"groupSnapshotUUID":"00000000-0000-0000-0000-000000000000","name":"2016-12-06T22:49:03Z","remoteStatuses":[{"remoteStatus":"Syncing","volumePairUUID":"cb44f772-bb26-40f8-ab3b-8577282eb785"}],"snapshotID":2235,"snapshotUUID":"db5633bc-d1e8-4674-b598-d58a3f265167","status":"done","totalSize":20000538624,"virtualVolumeID":null,"volumeID":4}]}}"""
+RESP_ListSchedules_v9_0 = """{
+  "id": 1,
+  "result": {
+    "schedules": [
+      {
+        "attributes": {
+          "frequency": "Time Interval"
+        },
+        "hasError": false,
+        "hours": 24,
+        "lastRunStatus": "Success",
+        "lastRunTimeStarted": null,
+        "minutes": 0,
+        "monthdays": [],
+        "paused": false,
+        "recurring": true,
+        "runNextInterval": false,
+        "scheduleID": 421,
+        "scheduleInfo": {
+          "volumeID": "601"
+        },
+        "scheduleName": "test",
+        "scheduleType": "Snapshot",
+        "startingDate": null,
+        "toBeDeleted": false,
+        "weekdays": []
+      },
+      {
+        "attributes": {
+          "frequency": "Days Of Month"
+        },
+        "hasError": false,
+        "hours": 0,
+        "lastRunStatus": "Success",
+        "lastRunTimeStarted": null,
+        "minutes": 0,
+        "monthdays": [
+          1,
+          15
+        ],
+        "paused": false,
+        "recurring": true,
+        "runNextInterval": false,
+        "scheduleID": 422,
+        "scheduleInfo": {
+          "volumeID": "601"
+        },
+        "scheduleName": "testMonth",
+        "scheduleType": "Snapshot",
+        "startingDate": null,
+        "toBeDeleted": false,
+        "weekdays": []
+      },
+      {
+        "attributes": {
+          "frequency": "Days Of Week"
+        },
+        "hasError": false,
+        "hours": 0,
+        "lastRunStatus": "Success",
+        "lastRunTimeStarted": null,
+        "minutes": 0,
+        "monthdays": [],
+        "paused": false,
+        "recurring": true,
+        "runNextInterval": false,
+        "scheduleID": 423,
+        "scheduleInfo": {
+          "volumeID": "601"
+        },
+        "scheduleName": "testWeek",
+        "scheduleType": "Snapshot",
+        "startingDate": null,
+        "toBeDeleted": false,
+        "weekdays": [
+          {
+            "day": 2,
+            "offset": 1
+          },
+          {
+            "day": 4,
+            "offset": 1
+          }
+        ]
+      }
+    ]
+  }
+}
+"""
+
+RESP_ListSnapshots_v9_0 = """{
+   "id":9,
+   "result":{
+      "snapshots":[
+         {
+            "attributes":{
+               "SRA_SYNCONCE":"cb44f772-bb26-40f8-ab3b-8577282eb785"
+            },
+            "checksum":"0xc683fe2c00e085c3",
+            "createTime":"2016-12-06T22:49:03Z",
+            "enableRemoteReplication":true,
+            "expirationReason":"None",
+            "expirationTime":"2016-12-07T22:49:03Z",
+            "groupID":0,
+            "groupSnapshotUUID":"00000000-0000-0000-0000-000000000000",
+            "name":"2016-12-06T22:49:03Z",
+            "remoteStatuses":[
+               {
+                  "remoteStatus":"Syncing",
+                  "volumePairUUID":"cb44f772-bb26-40f8-ab3b-8577282eb785"
+               }
+            ],
+            "snapshotID":2235,
+            "snapshotUUID":"db5633bc-d1e8-4674-b598-d58a3f265167",
+            "status":"done",
+            "totalSize":20000538624,
+            "virtualVolumeID":null,
+            "volumeID":4
+         }
+      ]
+   }
+}"""
 
 RESP_ListVirtualVolumeBindings_v9_0 = """{
   "id": 1,

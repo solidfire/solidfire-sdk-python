@@ -4371,13 +4371,12 @@ class Element(ServiceBase):
         params = { 
         }
         
-        # There is no adaptor.
-        return self.send_request(
-            'ListSchedules',
-            ListSchedulesResult,
-            params,
-            since=8.0
-        )
+        # There is an adaptor!
+        since = 8.0
+        deprecated = None
+
+        return ElementServiceAdaptor.list_schedules(self, params,
+                                                  since, deprecated)
 
     def create_schedule(
             self,
