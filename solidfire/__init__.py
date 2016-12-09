@@ -60,16 +60,16 @@ class Element(ServiceBase):
         ListVirtualVolumes enables you to list the virtual volumes currently in the system. You can use this method to list all virtual volumes, or only list a subset.
         :param details:  Possible values:true: Include more details about each VVOL in the response.false: Include the standard level of detail about each VVOL in the response. 
         :type details: bool
-        
+
         :param limit:  The maximum number of virtual volumes to list. 
         :type limit: int
-        
+
         :param recursive:  Possible values:true: Include information about the children of each VVOL in the response.false: Do not include information about the children of each VVOL in the response. 
         :type recursive: bool
-        
+
         :param startVirtualVolumeID:  The ID of the virtual volume at which to begin the list. 
         :type startVirtualVolumeID: UUID
-        
+
         :param virtualVolumeIDs:  A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
         :type virtualVolumeIDs: UUID
         """
@@ -107,13 +107,13 @@ class Element(ServiceBase):
         PrepareVirtualSnapshot is used to set up VMware Virtual Volume snapshot.
         :param virtualVolumeID: [required] The ID of the Virtual Volume to clone. 
         :type virtualVolumeID: UUID
-        
+
         :param name:  The name for the newly-created volume. 
         :type name: str
-        
+
         :param writableSnapshot:  Will the snapshot be writable? 
         :type writableSnapshot: bool
-        
+
         :param callingVirtualVolumeHostID:  
         :type callingVirtualVolumeHostID: UUID
         """
@@ -154,19 +154,19 @@ class Element(ServiceBase):
         an error is thrown.
         :param virtualVolumeID: [required] The ID of the Virtual Volume. 
         :type virtualVolumeID: UUID
-        
+
         :param baseVirtualVolumeID: [required] The ID of the Virtual Volume to compare against. 
         :type baseVirtualVolumeID: UUID
-        
+
         :param segmentStart: [required] Start Byte offset. 
         :type segmentStart: int
-        
+
         :param segmentLength: [required] Length of the scan segment in bytes. 
         :type segmentLength: int
-        
+
         :param chunkSize: [required] Number of bytes represented by one bit in the bitmap. 
         :type chunkSize: int
-        
+
         :param callingVirtualVolumeHostID:  
         :type callingVirtualVolumeHostID: UUID
         """
@@ -203,19 +203,19 @@ class Element(ServiceBase):
         CreateVirtualVolumeHost creates a new ESX host.
         :param virtualVolumeHostID: [required] The GUID of the ESX host. 
         :type virtualVolumeHostID: UUID
-        
+
         :param clusterID: [required] The GUID of the ESX Cluster. 
         :type clusterID: UUID
-        
+
         :param initiatorNames:  
         :type initiatorNames: str
-        
+
         :param visibleProtocolEndpointIDs:  A list of PEs the host is aware of. 
         :type visibleProtocolEndpointIDs: UUID
-        
+
         :param hostAddress:  IP or DNS name for the host. 
         :type hostAddress: str
-        
+
         :param callingVirtualVolumeHostID:  
         :type callingVirtualVolumeHostID: UUID
         """
@@ -275,7 +275,7 @@ class Element(ServiceBase):
         GetVirtualVolumeTaskUpdate checks the status of a VVol Async Task.
         :param virtualVolumeTaskID: [required] The UUID of the VVol Task. 
         :type virtualVolumeTaskID: UUID
-        
+
         :param callingVirtualVolumeHostID:  
         :type callingVirtualVolumeHostID: UUID
         """
@@ -347,7 +347,7 @@ class Element(ServiceBase):
     def get_virtual_volume_count(
             self,):
         """
-        Enables retrieval of the number of virtual volumes currently in the system."""
+        Enables retrieval of the number of virtual volumes currently in the system.        """
 
         self._check_connection_type("get_virtual_volume_count", "Cluster")
 
@@ -371,7 +371,7 @@ class Element(ServiceBase):
         Returns a nested hashtable of key/value pairs that contain the result of the invoked method.
         :param method: [required] The name of the method to invoke. This is case sensitive. 
         :type method: str
-        
+
         :param parameters:  An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked. 
         :type parameters: dict
         """
@@ -403,13 +403,13 @@ class Element(ServiceBase):
         The CHAP settings specified for the account applies to all volumes owned by the account.
         :param username: [required] Unique username for this account. (May be 1 to 64 characters in length). 
         :type username: str
-        
+
         :param initiatorSecret:  CHAP secret to use for the initiator. Should be 12-16 characters long and impenetrable. The CHAP initiator secrets must be unique and cannot be the same as the target CHAP secret. <br/><br/> If not specified, a random secret is created. 
         :type initiatorSecret: CHAPSecret
-        
+
         :param targetSecret:  CHAP secret to use for the target (mutual CHAP authentication). Should be 12-16 characters long and impenetrable. The CHAP target secrets must be unique and cannot be the same as the initiator CHAP secret. <br/><br/> If not specified, a random secret is created. 
         :type targetSecret: CHAPSecret
-        
+
         :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
@@ -488,7 +488,7 @@ class Element(ServiceBase):
         Returns the entire list of accounts, with optional paging support.
         :param startAccountID:  Starting AccountID to return. If no Account exists with this AccountID, the next Account by AccountID order is used as the start of the list. To page through the list, pass the AccountID of the last Account in the previous response + 1 
         :type startAccountID: int
-        
+
         :param limit:  Maximum number of AccountInfo objects to return. 
         :type limit: int
         """
@@ -525,19 +525,19 @@ class Element(ServiceBase):
         and the new CHAP values are only used on subsequent connection or reconnection.
         :param accountID: [required] AccountID for the account to modify. 
         :type accountID: int
-        
+
         :param username:  Change the username of the account to this value. 
         :type username: str
-        
+
         :param status:  Status of the account. 
         :type status: str
-        
+
         :param initiatorSecret:  CHAP secret to use for the initiator. Should be 12-16 characters long and impenetrable. 
         :type initiatorSecret: CHAPSecret
-        
+
         :param targetSecret:  CHAP secret to use for the target (mutual CHAP authentication). Should be 12-16 characters long and impenetrable. 
         :type targetSecret: CHAPSecret
-        
+
         :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
@@ -617,7 +617,7 @@ class Element(ServiceBase):
     def get_login_session_info(
             self,):
         """
-        GetLoginSessionInfo is used to return the period of time a log in authentication is valid for both log in shells and the TUI."""
+        GetLoginSessionInfo is used to return the period of time a log in authentication is valid for both log in shells and the TUI.        """
 
         self._check_connection_type("get_login_session_info", "Cluster")
 
@@ -658,7 +658,7 @@ class Element(ServiceBase):
     def get_remote_logging_hosts(
             self,):
         """
-        GetRemoteLoggingHosts is used to retrieve the current list of log servers."""
+        GetRemoteLoggingHosts is used to retrieve the current list of log servers.        """
 
         self._check_connection_type("get_remote_logging_hosts", "Cluster")
 
@@ -718,22 +718,22 @@ class Element(ServiceBase):
         <b>Note</b>: Cloned volumes do not inherit volume access group memberships from the source volume.
         :param volumeID: [required] The ID of the volume to clone. 
         :type volumeID: int
-        
+
         :param name: [required] The name for the newly-created volume. 
         :type name: str
-        
+
         :param newAccountID:  AccountID for the owner of the new volume. If unspecified, the AccountID of the owner of the volume being cloned is used. 
         :type newAccountID: int
-        
+
         :param newSize:  New size of the volume, in bytes. May be greater or less than the size of the volume being cloned. If unspecified, the clone's volume size will be the same as the source volume. Size is rounded up to the nearest 1 MiB. 
         :type newSize: int
-        
+
         :param access:  Access settings for the new volume. <br/><b>readOnly</b>: Only read operations are allowed. <br/><b>readWrite</b>: Reads and writes are allowed. <br/><b>locked</b>: No reads or writes are allowed. <br/><b>replicationTarget</b>: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked. <br/><br/> If unspecified, the access settings of the clone will be the same as the source. 
         :type access: str
-        
+
         :param snapshotID:  ID of the snapshot to use as the source of the clone. If unspecified, the clone will be created with a snapshot of the active volume. 
         :type snapshotID: int
-        
+
         :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
@@ -776,13 +776,13 @@ class Element(ServiceBase):
         <b>Note</b>: Cloning multiple volumes is allowed if cluster fullness is at stage 2 or 3. Clones are not created when cluster fullness is at stage 4 or 5.
         :param volumes: [required] Array of Unique ID for each volume to include in the clone with optional parameters. If optional parameters are not specified, the values will be inherited from the source volumes. 
         :type volumes: CloneMultipleVolumeParams
-        
+
         :param access:  New default access method for the new volumes if not overridden by information passed in the volumes array. <br/><b>readOnly</b>: Only read operations are allowed. <br/><b>readWrite</b>: Reads and writes are allowed. <br/><b>locked</b>: No reads or writes are allowed. <br/><b>replicationTarget</b>: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked. <br/><br/> If unspecified, the access settings of the clone will be the same as the source. 
         :type access: str
-        
+
         :param groupSnapshotID:  ID of the group snapshot to use as a basis for the clone. 
         :type groupSnapshotID: int
-        
+
         :param newAccountID:  New account ID for the volumes if not overridden by information passed in the volumes array. 
         :type newAccountID: int
         """
@@ -816,10 +816,10 @@ class Element(ServiceBase):
         Copies one volume to another.
         :param volumeID: [required] Source volume to copy. 
         :type volumeID: int
-        
+
         :param dstVolumeID: [required] Destination volume for the copy. 
         :type dstVolumeID: int
-        
+
         :param snapshotID:  Snapshot ID of the source volume to create the copy from. 
         :type snapshotID: int
         """
@@ -924,19 +924,19 @@ class Element(ServiceBase):
         When the volume is created successfully it is available for connection via iSCSI.
         :param name: [required] Name of the volume. Not required to be unique, but it is recommended. May be 1 to 64 characters in length. 
         :type name: str
-        
+
         :param accountID: [required] AccountID for the owner of this volume. 
         :type accountID: int
-        
+
         :param totalSize: [required] Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size. 
         :type totalSize: int
-        
+
         :param enable512e: [required] Should the volume provides 512-byte sector emulation? 
         :type enable512e: bool
-        
+
         :param qos:  Initial quality of service settings for this volume. <br/><br/> Volumes created without specified QoS values are created with the default values for QoS. Default values for a volume can be found by running the GetDefaultQoS method. 
         :type qos: QoS
-        
+
         :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
@@ -1008,10 +1008,10 @@ class Element(ServiceBase):
         DeleteVolumes marks multiple (up to 500) active volumes for deletion. Once marked, the volumes are purged (permanently deleted) after the cleanup interval elapses.The cleanup interval can be set in the SetClusterSettings method. For more information on using this method, see SetClusterSettings on page 1. After making a request to delete volumes, any active iSCSI connections to the volumes are immediately terminated and no further connections are allowed while the volumes are in this state. A marked volume is not returned in target discovery requests. Any snapshots of a volume that has been marked for deletion are not affected. Snapshots are kept until the volume is purged from the system. If a volume is marked for deletion and has a bulk volume read or bulk volume write operation in progress, the bulk volume read or write operation is stopped. If the volumes you delete are paired with a volume, replication between the paired volumes is suspended and no data is transferred to them or from them while in a deleted state. The remote volumes the deleted volumes were paired with enter into a PausedMisconfigured state and data is no longer sent to them or from the deleted volumes. Until the deleted volumes are purged, they can be restored and data transfers resume. If the deleted volumes are purged from the system, the volumes they were paired with enter into a StoppedMisconfigured state and the volume pairing status is removed. The purged volumes become permanently unavailable.
         :param accountIDs:  A list of account IDs. All volumes from these accounts are deleted from the system.  
         :type accountIDs: int
-        
+
         :param volumeAccessGroupIDs:  A list of volume access group IDs. All of the volumes from all of the volume access groups you specify in this list are deleted from the system. 
         :type volumeAccessGroupIDs: int
-        
+
         :param volumeIDs:  The list of IDs of the volumes to delete from the system. 
         :type volumeIDs: int
         """
@@ -1038,7 +1038,7 @@ class Element(ServiceBase):
     def get_default_qos(
             self,):
         """
-        GetDefaultQoS is used to retrieve the default QoS values that are set for a volume if QoS is not supplied."""
+        GetDefaultQoS is used to retrieve the default QoS values that are set for a volume if QoS is not supplied.        """
 
         self._check_connection_type("get_default_qos", "Cluster")
 
@@ -1104,7 +1104,7 @@ class Element(ServiceBase):
     def list_bulk_volume_jobs(
             self,):
         """
-        ListBulkVolumeJobs is used to return information about each bulk volume read or write operation that is occurring in the system."""
+        ListBulkVolumeJobs is used to return information about each bulk volume read or write operation that is occurring in the system.        """
 
         self._check_connection_type("list_bulk_volume_jobs", "Cluster")
 
@@ -1128,7 +1128,7 @@ class Element(ServiceBase):
         The list of volumes is returned sorted in VolumeID order and can be returned in multiple parts (pages).
         :param startVolumeID:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
         :type startVolumeID: int
-        
+
         :param limit:  The maximum number of volumes to return from the API. 
         :type limit: int
         """
@@ -1153,7 +1153,7 @@ class Element(ServiceBase):
     def list_deleted_volumes(
             self,):
         """
-        ListDeletedVolumes is used to return the entire list of volumes that have been marked for deletion and is purged from the system."""
+        ListDeletedVolumes is used to return the entire list of volumes that have been marked for deletion and is purged from the system.        """
 
         self._check_connection_type("list_deleted_volumes", "Cluster")
 
@@ -1171,7 +1171,7 @@ class Element(ServiceBase):
     def list_iscsisessions(
             self,):
         """
-        ListISCSISessions is used to return iSCSI connection information for volumes in the cluster."""
+        ListISCSISessions is used to return iSCSI connection information for volumes in the cluster.        """
 
         self._check_connection_type("list_iscsisessions", "Cluster")
 
@@ -1199,19 +1199,19 @@ class Element(ServiceBase):
         You can specify the volumes you want to return in the list by using the available parameters.
         :param startVolumeID:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
         :type startVolumeID: int
-        
+
         :param limit:  The maximum number of volumes to return from the API. 
         :type limit: int
-        
+
         :param volumeStatus:  If specified, filter to only volumes with the provided status. By default, list all volumes. 
         :type volumeStatus: str
-        
+
         :param accounts:  If specified, only fetch volumes which belong to the provided accounts. By default, list volumes for all accounts. 
         :type accounts: int
-        
+
         :param isPaired:  If specified, only fetch volumes which are paired (if true) or non-paired (if false). By default, list all volumes regardless of their pairing status. 
         :type isPaired: bool
-        
+
         :param volumeIDs:  If specified, only fetch volumes specified in this list. This option cannot be specified if startVolumeID, limit, or accounts option is specified. 
         :type volumeIDs: int
         """
@@ -1250,10 +1250,10 @@ class Element(ServiceBase):
         ListVolumesForAccount returns the list of active AND (pending) deleted volumes for an account.
         :param accountID: [required] The ID of the account to list the volumes for. 
         :type accountID: int
-        
+
         :param startVolumeID:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
         :type startVolumeID: int
-        
+
         :param limit:  The maximum number of volumes to return from the API. 
         :type limit: int
         """
@@ -1280,7 +1280,7 @@ class Element(ServiceBase):
             self,):
         """
         ListVolumeStatsByAccount returns high-level activity measurements for every account.
-        Values are summed from all the volumes owned by the account."""
+        Values are summed from all the volumes owned by the account.        """
 
         self._check_connection_type("list_volume_stats_by_account", "Cluster")
 
@@ -1299,7 +1299,7 @@ class Element(ServiceBase):
             self,):
         """
         ListVolumeStatsByVolume returns high-level activity measurements for every volume, by volume.
-        Values are cumulative from the creation of the volume."""
+        Values are cumulative from the creation of the volume.        """
 
         self._check_connection_type("list_volume_stats_by_volume", "Cluster")
 
@@ -1358,19 +1358,19 @@ class Element(ServiceBase):
         <b>Note</b>: If you change access status to locked or target all existing iSCSI connections are terminated.
         :param volumeID: [required] VolumeID for the volume to be modified. 
         :type volumeID: int
-        
+
         :param accountID:  AccountID to which the volume is reassigned. If none is specified, the previous account name is used. 
         :type accountID: int
-        
+
         :param access:  Access allowed for the volume. <br/><b>readOnly</b>: Only read operations are allowed. <br/><b>readWrite</b>: Reads and writes are allowed. <br/><b>locked</b>: No reads or writes are allowed. <br/><b>replicationTarget</b>: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked. <br/><br/> If unspecified, the access settings of the clone will be the same as the source. 
         :type access: str
-        
+
         :param qos:  New quality of service settings for this volume. 
         :type qos: QoS
-        
+
         :param totalSize:  New size of the volume in bytes. Size is rounded up to the nearest 1MiB size. This parameter can only be used to *increase* the size of a volume. 
         :type totalSize: int
-        
+
         :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
@@ -1411,19 +1411,19 @@ class Element(ServiceBase):
         ModifyVolumes allows you to configure up to 500 existing volumes at one time. Changes take place immediately. If ModifyVolumes fails to modify any of the specified volumes, none of the specified volumes are changed.If you do not specify QoS values when you modify volumes, the QoS values for each volume remain unchanged. You can retrieve default QoS values for a newly created volume by running the GetDefaultQoS method.When you need to increase the size of volumes that are being replicated, do so in the following order to prevent replication errors:Increase the size of the "Replication Target" volume.Increase the size of the source or "Read / Write" volume. recommends that both the target and source volumes be the same size.NOTE: If you change access status to locked or replicationTarget all existing iSCSI connections are terminated.
         :param volumeIDs: [required] A list of volumeIDs for the volumes to be modified. 
         :type volumeIDs: int
-        
+
         :param accountID:  AccountID to which the volume is reassigned. If none is specified, the previous account name is used. 
         :type accountID: int
-        
+
         :param access:  Access allowed for the volume. Possible values:readOnly: Only read operations are allowed.readWrite: Reads and writes are allowed.locked: No reads or writes are allowed.If not specified, the access value does not change.replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.If a value is not specified, the access value does not change.  
         :type access: str
-        
+
         :param attributes:  
         :type attributes: dict
-        
+
         :param qos:  New quality of service settings for this volume.If not specified, the QoS settings are not changed. 
         :type qos: QoS
-        
+
         :param totalSize:  New size of the volume in bytes. 1000000000 is equal to 1GB. Size is rounded up to the nearest 1MB in size. This parameter can only be used to increase the size of a volume. 
         :type totalSize: int
         """
@@ -1486,10 +1486,10 @@ class Element(ServiceBase):
         PurgeDeletedVolumes immediately and permanently purges volumes that have been deleted; you can use this method to purge up to 500 volumes at one time. You must delete volumes using DeleteVolumes before they can be purged. Volumes are purged by the system automatically after a period of time, so usage of this method is not typically required.
         :param volumeIDs:  A list of volumeIDs of volumes to be purged from the system. 
         :type volumeIDs: int
-        
+
         :param accountIDs:  A list of accountIDs. All of the volumes from all of the specified accounts are purged from the system. 
         :type accountIDs: int
-        
+
         :param volumeAccessGroupIDs:  A list of volumeAccessGroupIDs. All of the volumes from all of the specified Volume Access Groups are purged from the system. 
         :type volumeAccessGroupIDs: int
         """
@@ -1561,19 +1561,19 @@ class Element(ServiceBase):
         Snapshots are not created when cluster fullness is at stage 4 or 5.
         :param volumeID: [required] ID of the volume to be read. 
         :type volumeID: int
-        
+
         :param format: [required] The format of the volume data. Can be either: <br/><b>uncompressed</b>: every byte of the volume is returned without any compression. <br/><b>native</b>: opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. 
         :type format: str
-        
+
         :param snapshotID:  ID of a previously created snapshot used for bulk volume reads. If no ID is entered, a snapshot of the current active volume image is made. 
         :type snapshotID: int
-        
+
         :param script:  Executable name of a script. If no script name is given then the key and URL is necessary to access SolidFire nodes. The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted. 
         :type script: str
-        
+
         :param scriptParameters:  JSON parameters to pass to the script. 
         :type scriptParameters: str
-        
+
         :param attributes:  JSON attributes for the bulk volume job. 
         :type attributes: dict
         """
@@ -1616,16 +1616,16 @@ class Element(ServiceBase):
         Communications and server interaction information for external data access is passed by a script running on the SolidFire storage system.
         :param volumeID: [required] ID of the volume to be written to. 
         :type volumeID: int
-        
+
         :param format: [required] The format of the volume data. Can be either: <br/><b>uncompressed</b>: every byte of the volume is returned without any compression. <br/><b>native</b>: opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write 
         :type format: str
-        
+
         :param script:  Executable name of a script. If no script name is given then the key and URL are necessary to access SolidFire nodes. The script runs on the primary node and the key and URL is returned to the script so the local web server can be contacted. 
         :type script: str
-        
+
         :param scriptParameters:  JSON parameters to pass to the script. 
         :type scriptParameters: str
-        
+
         :param attributes:  JSON attributes for the bulk volume job. 
         :type attributes: dict
         """
@@ -1662,16 +1662,16 @@ class Element(ServiceBase):
         You can use UpdateBulkVolumeStatus in a script to return to the SolidFire system the status of a bulk volume job that you have started with the "StartBulkVolumeRead" or "StartBulkVolumeWrite" methods.
         :param key: [required] The key assigned during initialization of a "StartBulkVolumeRead" or "StartBulkVolumeWrite" session. 
         :type key: str
-        
+
         :param status: [required] The SolidFire system sets the status of the given bulk volume job.<br/> Possible values:<br/> <br/><b>running</b>: jobs that are still active. <br/><b>complete</b>: jobs that are done. failed - jobs that have failed. <br/><b>failed</b>: jobs that have failed. 
         :type status: str
-        
+
         :param percentComplete:  The completed progress of the bulk volume job as a percentage. 
         :type percentComplete: str
-        
+
         :param message:  Returns the status of the bulk volume job when the job has completed. 
         :type message: str
-        
+
         :param attributes:  JSON attributes  updates what is on the bulk volume job. 
         :type attributes: dict
         """
@@ -1706,10 +1706,10 @@ class Element(ServiceBase):
         SetDefaultQoS enables you to configure the default Quality of Service (QoS) values (measured in inputs and outputs per second, or IOPS) for all volumes not yet created.
         :param minIOPS:  The minimum number of sustained IOPS that are provided by the cluster to a volume. 
         :type minIOPS: int
-        
+
         :param maxIOPS:  The maximum number of sustained IOPS that are provided by the cluster to a volume. 
         :type maxIOPS: int
-        
+
         :param burstIOPS:  The maximum number of IOPS allowed in a short burst scenario. 
         :type burstIOPS: int
         """
@@ -1741,7 +1741,7 @@ class Element(ServiceBase):
         CreateBackupTarget allows you to create and store backup target information so that you do not need to re-enter it each time a backup is created.
         :param name: [required] Name for the backup target. 
         :type name: str
-        
+
         :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
@@ -1788,7 +1788,7 @@ class Element(ServiceBase):
     def list_backup_targets(
             self,):
         """
-        You can use ListBackupTargets to retrieve information about all backup targets that have been created."""
+        You can use ListBackupTargets to retrieve information about all backup targets that have been created.        """
 
         self._check_connection_type("list_backup_targets", "Cluster")
 
@@ -1812,10 +1812,10 @@ class Element(ServiceBase):
         ModifyBackupTarget is used to change attributes of a backup target.
         :param backupTargetID: [required] Unique identifier assigned to the backup target. 
         :type backupTargetID: int
-        
+
         :param name:  Name for the backup target. 
         :type name: str
-        
+
         :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
@@ -2020,10 +2020,10 @@ class Element(ServiceBase):
         ListInitiators enables you to list initiator IQNs or World Wide Port Names (WWPNs).
         :param startInitiatorID:  The initiator ID at which to begin the listing. You can supply this parameter or the "initiators" parameter, but not both. 
         :type startInitiatorID: int
-        
+
         :param limit:  The maximum number of initiator objects to return. 
         :type limit: int
-        
+
         :param initiators:  A list of initiator IDs to retrieve. You can supply this parameter or the "startInitiatorID" parameter, but not both. 
         :type initiators: int
         """
@@ -2059,13 +2059,13 @@ class Element(ServiceBase):
         An LDAP group that has been defined in Active Directory can also be added using this API method. The access level that is given to the group will be passed to the individual users in the LDAP group.
         :param username: [required] The distinguished user name for the new LDAP cluster admin. 
         :type username: str
-        
+
         :param access: [required] Controls which methods this Cluster Admin can use. For more details on the levels of access, see the Access Control appendix in the SolidFire API Reference. 
         :type access: str
-        
+
         :param acceptEula:  Indicate your acceptance of the End User License Agreement when creating this cluster admin. To accept the EULA, set this parameter to true. 
         :type acceptEula: bool
-        
+
         :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
@@ -2098,10 +2098,10 @@ class Element(ServiceBase):
         The TestLdapAuthentication is used to verify the currently enabled LDAP authentication configuration settings are correct. If the configuration settings are correct, the API call returns a list of the groups the tested user is a member of.
         :param username: [required] The username to be tested. 
         :type username: str
-        
+
         :param password: [required] The password for the username to be tester. 
         :type password: str
-        
+
         :param ldapConfiguration:  An ldapConfiguration object to be tested. If this parameter is provided, the API call will test the provided configuration even if LDAP authentication is currently disabled. 
         :type ldapConfiguration: LdapConfiguration
         """
@@ -2126,7 +2126,7 @@ class Element(ServiceBase):
     def get_ldap_configuration(
             self,):
         """
-        The GetLdapConfiguration is used to get the LDAP configuration currently active on the cluster."""
+        The GetLdapConfiguration is used to get the LDAP configuration currently active on the cluster.        """
 
         self._check_connection_type("get_ldap_configuration", "Cluster")
 
@@ -2157,31 +2157,31 @@ class Element(ServiceBase):
         The EnableLdapAuthentication method is used to configure an LDAP server connection to use for LDAP authentication to a SolidFire cluster. Users that are members on the LDAP server can then log in to a SolidFire storage system using their LDAP authentication userid and password.
         :param authType:  Identifies which user authentcation method will be used. <br/> Must be one of the following:<br/> <b>DirectBind</b><br/> <b>SearchAndBind</b> (default) 
         :type authType: str
-        
+
         :param groupSearchBaseDN:  The base DN of the tree to start the group search (will do a subtree search from here). 
         :type groupSearchBaseDN: str
-        
+
         :param groupSearchCustomFilter:  REQUIRED for CustomFilter<br/> For use with the CustomFilter search type, an LDAP filter to use to return the DNs of a user's groups.<br/> The string can have placeholder text of %USERNAME% and %USERDN% to be replaced with their username and full userDN as needed. 
         :type groupSearchCustomFilter: str
-        
+
         :param groupSearchType:  Controls the default group search filter used, can be one of the following:<br/> <b>NoGroups</b>: No group support.<br/> <b>ActiveDirectory</b>: (default) Nested membership of all of a user's AD groups.<br/> <b>MemberDN</b>: MemberDN style groups (single-level). 
         :type groupSearchType: str
-        
+
         :param searchBindDN:  REQUIRED for SearchAndBind<br/> A fully qualified DN to log in with to perform an LDAP search for the user (needs read access to the LDAP directory). 
         :type searchBindDN: str
-        
+
         :param searchBindPassword:  REQUIRED for SearchAndBind<br/> The password for the searchBindDN account used for searching. 
         :type searchBindPassword: str
-        
+
         :param serverURIs: [required] A list of LDAP server URIs (examples: "ldap://1.2.3.4" and ldaps://1.2.3.4:123") 
         :type serverURIs: str
-        
+
         :param userDNTemplate:  REQUIRED for DirectBind<br/> A string that is used to form a fully qualified user DN.<br/> The string should have the placeholder text "%USERNAME%" which will be replaced with the username of the authenticating user. 
         :type userDNTemplate: str
-        
+
         :param userSearchBaseDN:  REQUIRED for SearchAndBind The base DN of the tree used to start the search (will do a subtree search from here). 
         :type userSearchBaseDN: str
-        
+
         :param userSearchFilter:  REQUIRED for SearchAndBind.<br/> The LDAP filter to use.<br/> The string should have the placeholder text "%USERNAME%" which will be replaced with the username of the authenticating user.<br/> Example: (&(objectClass=person) (sAMAccountName=%USERNAME%)) will use the sAMAccountName field in Active Directory to match the nusername entered at cluster login. 
         :type userSearchFilter: str
         """
@@ -2221,7 +2221,7 @@ class Element(ServiceBase):
     def disable_ldap_authentication(
             self,):
         """
-        The DisableLdapAuthentication method is used disable LDAP authentication and remove all LDAP configuration settings. This call will not remove any configured cluster admin accounts (user or group). However, those cluster admin accounts will no longer be able to log in."""
+        The DisableLdapAuthentication method is used disable LDAP authentication and remove all LDAP configuration settings. This call will not remove any configured cluster admin accounts (user or group). However, those cluster admin accounts will no longer be able to log in.        """
 
         self._check_connection_type("disable_ldap_authentication", "Cluster")
 
@@ -2240,7 +2240,7 @@ class Element(ServiceBase):
             self,):
         """
         ListClusterPairs is used to list all of the clusters a cluster is paired with.
-        This method returns information about active and pending cluster pairings, such as statistics about the current pairing as well as the connectivity and latency (in milliseconds) of the cluster pairing."""
+        This method returns information about active and pending cluster pairings, such as statistics about the current pairing as well as the connectivity and latency (in milliseconds) of the cluster pairing.        """
 
         self._check_connection_type("list_cluster_pairs", "Cluster")
 
@@ -2259,7 +2259,7 @@ class Element(ServiceBase):
             self,):
         """
         ListActivePairedVolumes is used to list all of the active volumes paired with a volume.
-        Volumes listed in the return for this method include volumes with active and pending pairings."""
+        Volumes listed in the return for this method include volumes with active and pending pairings.        """
 
         self._check_connection_type("list_active_paired_volumes", "Cluster")
 
@@ -2279,7 +2279,7 @@ class Element(ServiceBase):
         """
         StartClusterPairing is used to create an encoded key from a cluster that is used to pair with another cluster.
         The key created from this API method is used in the "CompleteClusterPairing" API method to establish a cluster pairing.
-        You can pair a cluster with a maximum of four other SolidFire clusters."""
+        You can pair a cluster with a maximum of four other SolidFire clusters.        """
 
         self._check_connection_type("start_cluster_pairing", "Cluster")
 
@@ -2303,7 +2303,7 @@ class Element(ServiceBase):
         The key that this method creates is used in the "CompleteVolumePairing" API method to establish a volume pairing.
         :param volumeID: [required] The ID of the volume on which to start the pairing process. 
         :type volumeID: int
-        
+
         :param mode:  The mode of the volume on which to start the pairing process. The mode can only be set if the volume is the source volume.<br/> Possible values:<br/> <b>Async</b>: (default if no mode parameter specified) Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.<br/> <b>Sync</b>: Source acknowledges write when the data is stored locally and on the remote cluster.<br/> <b>SnapshotsOnly</b>: Only snapshots created on the source cluster will be replicated. Active writes from the source volume will not be replicated.<br/> 
         :type mode: str
         """
@@ -2356,7 +2356,7 @@ class Element(ServiceBase):
         CompleteVolumePairing is used to complete the pairing of two volumes.
         :param volumePairingKey: [required] The key returned from the "StartVolumePairing" API method. 
         :type volumePairingKey: str
-        
+
         :param volumeID: [required] The ID of volume on which to complete the pairing process. 
         :type volumeID: int
         """
@@ -2434,10 +2434,10 @@ class Element(ServiceBase):
         ModifyVolumePair is used to pause or restart replication between a pair of volumes.
         :param volumeID: [required] Identification number of the volume to be modified. 
         :type volumeID: int
-        
+
         :param pausedManual:  Valid values that can be entered:<br/> <b>true</b>: to pause volume replication.<br/> <b>false</b>: to restart volume replication.<br/> If no value is specified, no change in replication is performed. 
         :type pausedManual: bool
-        
+
         :param mode:  Volume replication mode.<br/> Possible values:<br/> <b>Async</b>: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.<br/> <b>Sync</b>: The source acknowledges the write when the data is stored locally and on the remote cluster.<br/> <b>SnapshotsOnly</b>: Only snapshots created on the source cluster will be replicated. Active writes from the source volume are not replicated.<br/> 
         :type mode: str
         """
@@ -2495,10 +2495,10 @@ class Element(ServiceBase):
         Creates a new VVols storage container.
         :param name: [required] Name of the storage container. 
         :type name: str
-        
+
         :param initiatorSecret:  The secret for CHAP authentication for the initiator 
         :type initiatorSecret: str
-        
+
         :param targetSecret:  The secret for CHAP authentication for the target 
         :type targetSecret: str
         """
@@ -2553,10 +2553,10 @@ class Element(ServiceBase):
         Modifies an existing storage container.
         :param storageContainerID: [required] 
         :type storageContainerID: UUID
-        
+
         :param initiatorSecret:  
         :type initiatorSecret: str
-        
+
         :param targetSecret:  
         :type targetSecret: str
         """
@@ -2630,7 +2630,7 @@ class Element(ServiceBase):
             self,):
         """
         The ListTests API method is used to return the tests that are available to run on a node.
-        <br/><b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
+        <br/><b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.        """
 
         self._check_connection_type("list_tests", "Node")
 
@@ -2649,7 +2649,7 @@ class Element(ServiceBase):
             self,):
         """
         The ListUtilities API method is used to return the tests that are available to run on a node.
-        <br/><b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
+        <br/><b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.        """
 
         self._check_connection_type("list_utilities", "Node")
 
@@ -2751,16 +2751,16 @@ class Element(ServiceBase):
         <br/><b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
         :param attempts:  Specifies the number of times the system should repeat the test ping. Default is 5. 
         :type attempts: int
-        
+
         :param hosts:  Specify address or hostnames of devices to ping. 
         :type hosts: str
-        
+
         :param totalTimeoutSec:  Specifies the length of time the ping should wait for a system response before issuing the next ping attempt or ending the process. 
         :type totalTimeoutSec: int
-        
+
         :param packetSize:  Specify the number of bytes to send in the ICMP packet sent to each IP. Number be less than the maximum MTU specified in the network configuration. 
         :type packetSize: int
-        
+
         :param pingTimeoutMsec:  Specify the number of milliseconds to wait for each individual ping response. Default is 500ms. 
         :type pingTimeoutMsec: int
         """
@@ -2804,19 +2804,19 @@ class Element(ServiceBase):
         Any initiator IQN that is successfully added to the volume access group is able to access any volume in the group without CHAP authentication.
         :param name: [required] Name of the volume access group. It is not required to be unique, but recommended. 
         :type name: str
-        
+
         :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group will start out without configured initiators. 
         :type initiators: str
-        
+
         :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group will start without any volumes. 
         :type volumes: int
-        
+
         :param virtualNetworkID:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
         :type virtualNetworkID: int
-        
+
         :param virtualNetworkTags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
         :type virtualNetworkTags: int
-        
+
         :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
@@ -2853,7 +2853,7 @@ class Element(ServiceBase):
         ListVolumeAccessGroups is used to return information about the volume access groups that are currently in the system.
         :param startVolumeAccessGroupID:  The lowest VolumeAccessGroupID to return. This can be useful for paging. If unspecified, there is no lower limit (implicitly 0). 
         :type startVolumeAccessGroupID: int
-        
+
         :param limit:  The maximum number of results to return. This can be useful for paging. 
         :type limit: int
         """
@@ -2920,22 +2920,22 @@ class Element(ServiceBase):
         RemoveVolumesFromVolumeAccessGroup<br/>
         :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
         :type volumeAccessGroupID: int
-        
+
         :param virtualNetworkID:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
         :type virtualNetworkID: int
-        
+
         :param virtualNetworkTags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
         :type virtualNetworkTags: int
-        
+
         :param name:  Name of the volume access group. It is not required to be unique, but recommended. 
         :type name: str
-        
+
         :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group's configured initiators will not be modified. 
         :type initiators: str
-        
+
         :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group's volumes will not be modified. 
         :type volumes: int
-        
+
         :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
@@ -2974,7 +2974,7 @@ class Element(ServiceBase):
         Add initiators to a volume access group.
         :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
         :type volumeAccessGroupID: int
-        
+
         :param initiators: [required] List of initiators to add to the volume access group. 
         :type initiators: str
         """
@@ -3002,7 +3002,7 @@ class Element(ServiceBase):
         Remove initiators from a volume access group.
         :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
         :type volumeAccessGroupID: int
-        
+
         :param initiators: [required] List of initiators to remove from the volume access group. 
         :type initiators: str
         """
@@ -3030,7 +3030,7 @@ class Element(ServiceBase):
         Add volumes to a volume access group.
         :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
         :type volumeAccessGroupID: int
-        
+
         :param volumes: [required] List of volumes to add to this volume access group. 
         :type volumes: int
         """
@@ -3058,7 +3058,7 @@ class Element(ServiceBase):
         Remove volumes from a volume access group.
         :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
         :type volumeAccessGroupID: int
-        
+
         :param volumes: [required] List of volumes to remove from this volume access group. 
         :type volumes: int
         """
@@ -3138,7 +3138,7 @@ class Element(ServiceBase):
         <b>Caution:</b> If a LUN assignment is changed for a volume with active I/O, the I/O could be disrupted. Changes to the server configuration may be required in order to change volume LUN assignments.
         :param volumeAccessGroupID: [required] Unique volume access group ID for which the LUN assignments will be modified. 
         :type volumeAccessGroupID: int
-        
+
         :param lunAssignments: [required] The volume IDs with new assigned LUN values. 
         :type lunAssignments: LunAssignment
         """
@@ -3185,7 +3185,7 @@ class Element(ServiceBase):
     def get_hardware_config(
             self,):
         """
-        GetHardwareConfig enables you to display the hardware configuration information for a node. NOTE: This method is available only through the per-node API endpoint 5.0 or later."""
+        GetHardwareConfig enables you to display the hardware configuration information for a node. NOTE: This method is available only through the per-node API endpoint 5.0 or later.        """
 
         self._check_connection_type("get_hardware_config", "Node")
 
@@ -3226,7 +3226,7 @@ class Element(ServiceBase):
     def get_nvram_info(
             self,):
         """
-        GetNvramInfo allows you to retrieve information from each node about the NVRAM card.  """
+        GetNvramInfo allows you to retrieve information from each node about the NVRAM card.          """
 
         self._check_connection_type("get_nvram_info", "Node")
 
@@ -3253,13 +3253,13 @@ class Element(ServiceBase):
         This method does not require any parameters to be passed. But, one or more VirtualNetworkIDs or VirtualNetworkTags can be passed in order to filter the results.
         :param virtualNetworkID:  Network ID to filter the list for a single virtual network 
         :type virtualNetworkID: int
-        
+
         :param virtualNetworkTag:  Network Tag to filter the list for a single virtual network 
         :type virtualNetworkTag: int
-        
+
         :param virtualNetworkIDs:  NetworkIDs to include in the list. 
         :type virtualNetworkIDs: int
-        
+
         :param virtualNetworkTags:  Network Tags to include in the list. 
         :type virtualNetworkTags: int
         """
@@ -3301,25 +3301,25 @@ class Element(ServiceBase):
         <b>Note:</b> The AddVirtualNetwork method is used only to create a new virtual network. If you want to make changes to a virtual network, please use the ModifyVirtualNetwork method.
         :param virtualNetworkTag: [required] A unique virtual network (VLAN) tag. Supported values are 1 to 4095 (the number zero (0) is not supported). 
         :type virtualNetworkTag: int
-        
+
         :param name: [required] User defined name for the new virtual network. 
         :type name: str
-        
+
         :param addressBlocks: [required] Unique Range of IP addresses to include in the virtual network. Attributes for this parameter are: <br/><b>start:</b> start of the IP address range. (String) <br/><b>size:</b> numbre of IP addresses to include in the block. (Integer) 
         :type addressBlocks: AddressBlock
-        
+
         :param netmask: [required] Unique netmask for the virtual network being created. 
         :type netmask: str
-        
+
         :param svip: [required] Unique storage IP address for the virtual network being created. 
         :type svip: str
-        
+
         :param gateway:   
         :type gateway: str
-        
+
         :param namespace:   
         :type namespace: bool
-        
+
         :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
@@ -3365,28 +3365,28 @@ class Element(ServiceBase):
         <b>Note:</b> This method requires either the VirtualNetworkID or the VirtualNetworkTag as a parameter, but not both.
         :param virtualNetworkID:  Unique identifier of the virtual network to modify. This is the virtual network ID assigned by the SolidFire cluster. 
         :type virtualNetworkID: int
-        
+
         :param virtualNetworkTag:  Network Tag that identifies the virtual network to modify. 
         :type virtualNetworkTag: int
-        
+
         :param name:  New name for the virtual network. 
         :type name: str
-        
+
         :param addressBlocks:  New addressBlock to set for this Virtual Network object. This may contain new address blocks to add to the existing object or it may omit unused address blocks that need to be removed. Alternatively, existing address blocks may be extended or reduced in size. The size of the starting addressBlocks for a Virtual Network object can only be increased, and can never be decreased. Attributes for this parameter are: <br/><b>start:</b> start of the IP address range. (String) <br/><b>size:</b> numbre of IP addresses to include in the block. (Integer) 
         :type addressBlocks: AddressBlock
-        
+
         :param netmask:  New netmask for this virtual network. 
         :type netmask: str
-        
+
         :param svip:  The storage virtual IP address for this virtual network. The svip for Virtual Network cannot be changed. A new Virtual Network must be created in order to use a different svip address. 
         :type svip: str
-        
+
         :param gateway:   
         :type gateway: str
-        
+
         :param namespace:   
         :type namespace: bool
-        
+
         :param attributes:  A new list of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
@@ -3432,7 +3432,7 @@ class Element(ServiceBase):
         <b>Note:</b> This method requires either the VirtualNetworkID of the VirtualNetworkTag as a parameter, but not both.
         :param virtualNetworkID:  Network ID that identifies the virtual network to remove. 
         :type virtualNetworkID: int
-        
+
         :param virtualNetworkTag:  Network Tag that identifies the virtual network to remove. 
         :type virtualNetworkTag: int
         """
@@ -3482,7 +3482,7 @@ class Element(ServiceBase):
             self,):
         """
         The GetRawStats call is used by SolidFire engineering to troubleshoot new features. The data returned from GetRawStats is not documented, it changes frequently, and is not guaranteed to be accurate. It is not recommended to ever use GetRawStats for collecting performance data or any other management integration with a SolidFire cluster.
-        The data returned from GetRawStats changes frequently, and is not guaranteed to accurately show performance from the system. It is not recommended to ever use GetRawStats for collecting performance data or any other management integration with a SolidFire cluster."""
+        The data returned from GetRawStats changes frequently, and is not guaranteed to accurately show performance from the system. It is not recommended to ever use GetRawStats for collecting performance data or any other management integration with a SolidFire cluster.        """
 
         self._check_connection_type("get_raw_stats", "Cluster")
 
@@ -3500,7 +3500,7 @@ class Element(ServiceBase):
     def get_hardware_info(
             self,):
         """
-        GetHardwareInfo allows you to return hardware information and status for a single node. This generally includes manufacturers, vendors, versions, drives, and other associated hardware identification information."""
+        GetHardwareInfo allows you to return hardware information and status for a single node. This generally includes manufacturers, vendors, versions, drives, and other associated hardware identification information.        """
 
         self._check_connection_type("get_hardware_info", "Node")
 
@@ -3519,7 +3519,7 @@ class Element(ServiceBase):
             self,):
         """
         The GetCompleteStats API method is used by SolidFire engineering to troubleshoot new features. The data returned from GetCompleteStats is not documented, changes frequently, and is not guaranteed to be accurate. It is not recommended to ever use GetCompleteStats for collecting performance data or any other management integration with a SolidFire cluster.
-        The data returned from GetCompleteStats changes frequently, and is not guaranteed to accurately show performance from the system. It is not recommended to ever use GetCompleteStats for collecting performance data or any other management integration with a SolidFire cluster."""
+        The data returned from GetCompleteStats changes frequently, and is not guaranteed to accurately show performance from the system. It is not recommended to ever use GetCompleteStats for collecting performance data or any other management integration with a SolidFire cluster.        """
 
         self._check_connection_type("get_complete_stats", "Cluster")
 
@@ -3597,19 +3597,19 @@ class Element(ServiceBase):
         Snapshots are not created when cluster fullness is at stage 4 or 5.
         :param volumeID: [required] ID of the volume image from which to copy. 
         :type volumeID: int
-        
+
         :param snapshotID:  Unique ID of a snapshot from which the new snapshot is made. The snapshotID passed must be a snapshot on the given volume. If a SnapshotID is not provided, a snapshot is created from the volume's active branch. 
         :type snapshotID: int
-        
+
         :param name:  A name for the snapshot. If no name is provided, the date and time the snapshot was taken is used. 
         :type name: str
-        
+
         :param enableRemoteReplication:  Identifies if snapshot is enabled for remote replication. 
         :type enableRemoteReplication: bool
-        
+
         :param retention:  The amount of time the snapshot will be retained. Enter in HH:mm:ss 
         :type retention: str
-        
+
         :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
@@ -3698,10 +3698,10 @@ class Element(ServiceBase):
         Use this API method to enable the snapshots created on the Read/Write (source) volume to be remotely replicated to a target SolidFire storage system.
         :param snapshotID: [required] ID of the snapshot. 
         :type snapshotID: int
-        
+
         :param expirationTime:  Use to set the time when the snapshot should be removed. 
         :type expirationTime: str
-        
+
         :param enableRemoteReplication:  Use to enable the snapshot created to be replicated to a remote SolidFire cluster. Possible values: <br/><b>true</b>: the snapshot will be replicated to remote storage. <br/><b>false</b>: Default. No replication. 
         :type enableRemoteReplication: bool
         """
@@ -3740,16 +3740,16 @@ class Element(ServiceBase):
         Snapshots are not created when cluster fullness is at stage 4 or 5.
         :param volumeID: [required] VolumeID for the volume. 
         :type volumeID: int
-        
+
         :param snapshotID: [required] ID of a previously created snapshot on the given volume. 
         :type snapshotID: int
-        
+
         :param saveCurrentState: [required] <br/><b>true</b>: The previous active volume image is kept. <br/><b>false</b>: (default) The previous active volume image is deleted. 
         :type saveCurrentState: bool
-        
+
         :param name:  Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with  "-copy" appended to the end of the name. 
         :type name: str
-        
+
         :param attributes:  List of Name/Value pairs in JSON object format 
         :type attributes: dict
         """
@@ -3789,16 +3789,16 @@ class Element(ServiceBase):
         Snapshots are not created when cluster fullness is at stage 4 or 5.
         :param volumes: [required] Unique ID of the volume image from which to copy. 
         :type volumes: int
-        
+
         :param name:  A name for the snapshot. If no name is provided, the date and time the snapshot was taken is used. 
         :type name: str
-        
+
         :param enableRemoteReplication:  Identifies if snapshot is enabled for remote replication. 
         :type enableRemoteReplication: bool
-        
+
         :param retention:  The amount of time the snapshot will be retained. Enter in HH:mm:ss 
         :type retention: str
-        
+
         :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
@@ -3835,7 +3835,7 @@ class Element(ServiceBase):
         were made for the volumes in the group but the group association will be removed.
         :param groupSnapshotID: [required] Unique ID of the group snapshot. 
         :type groupSnapshotID: int
-        
+
         :param saveMembers: [required] <br/><b>true</b>: Snapshots are kept, but group association is removed. <br/><b>false</b>: The group and snapshots are deleted. 
         :type saveMembers: bool
         """
@@ -3888,10 +3888,10 @@ class Element(ServiceBase):
         ModifyGroupSnapshot is used to change the attributes currently assigned to a group snapshot.
         :param groupSnapshotID: [required] ID of the snapshot. 
         :type groupSnapshotID: int
-        
+
         :param expirationTime:  Use to set the time when the snapshot should be removed. 
         :type expirationTime: str
-        
+
         :param enableRemoteReplication:  Use to enable the snapshot created to be replicated to a remote SolidFire cluster. Possible values: <br/><b>true</b>: the snapshot will be replicated to remote storage. <br/><b>false</b>: Default. No replication. 
         :type enableRemoteReplication: bool
         """
@@ -3927,13 +3927,13 @@ class Element(ServiceBase):
         Snapshots are not created when cluster fullness is at stage 4 or 5.
         :param groupSnapshotID: [required] Unique ID of the group snapshot. 
         :type groupSnapshotID: int
-        
+
         :param saveCurrentState: [required] <br/><b>true</b>: The previous active volume image is kept. <br/><b>false</b>: (default) The previous active volume image is deleted. 
         :type saveCurrentState: bool
-        
+
         :param name:  Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with  "-copy" appended to the end of the name. 
         :type name: str
-        
+
         :param attributes:  List of Name/Value pairs in JSON object format 
         :type attributes: dict
         """
@@ -3982,7 +3982,7 @@ class Element(ServiceBase):
     def list_schedules(
             self,):
         """
-        ListSchedule is used to return information about all scheduled snapshots that have been created."""
+        ListSchedule is used to return information about all scheduled snapshots that have been created.        """
 
         self._check_connection_type("list_schedules", "Cluster")
 
@@ -4047,7 +4047,7 @@ class Element(ServiceBase):
     def list_fibre_channel_port_info(
             self,):
         """
-        The ListFibreChannelPortInfo is used to return information about the Fibre Channel ports. The API method is intended for use on individual nodes; userid and password is required for access to individual Fibre Channel nodes."""
+        The ListFibreChannelPortInfo is used to return information about the Fibre Channel ports. The API method is intended for use on individual nodes; userid and password is required for access to individual Fibre Channel nodes.        """
 
         self._check_connection_type("list_fibre_channel_port_info", "Cluster")
 
@@ -4065,7 +4065,7 @@ class Element(ServiceBase):
     def list_node_fibre_channel_port_info(
             self,):
         """
-        The ListNodeFibreChannelPortInfo is used to return information about the Fibre Channel ports. The API method is intended for use on individual nodes; userid and password is required for access to individual Fibre Channel nodes."""
+        The ListNodeFibreChannelPortInfo is used to return information about the Fibre Channel ports. The API method is intended for use on individual nodes; userid and password is required for access to individual Fibre Channel nodes.        """
 
         self._check_connection_type("list_node_fibre_channel_port_info", "Node")
 
@@ -4083,7 +4083,7 @@ class Element(ServiceBase):
     def list_fibre_channel_sessions(
             self,):
         """
-        The ListFibreChannelSessions is used to return information about the active Fibre Channel sessions on a cluster."""
+        The ListFibreChannelSessions is used to return information about the active Fibre Channel sessions on a cluster.        """
 
         self._check_connection_type("list_fibre_channel_sessions", "Cluster")
 
@@ -4102,7 +4102,7 @@ class Element(ServiceBase):
             self,):
         """
         Return the high-level capacity measurements for an entire cluster.
-        The fields returned from this method can be used to calculate the efficiency rates that are displayed in the Element User Interface."""
+        The fields returned from this method can be used to calculate the efficiency rates that are displayed in the Element User Interface.        """
 
         self._check_connection_type("get_cluster_capacity", "Cluster")
 
@@ -4120,7 +4120,7 @@ class Element(ServiceBase):
     def get_cluster_info(
             self,):
         """
-        Return configuration information about the cluster."""
+        Return configuration information about the cluster.        """
 
         self._check_connection_type("get_cluster_info", "Cluster")
 
@@ -4139,7 +4139,7 @@ class Element(ServiceBase):
             self,):
         """
         Return information about the Element software version running on each node in the cluster.
-        Information about the nodes that are currently in the process of upgrading software is also returned."""
+        Information about the nodes that are currently in the process of upgrading software is also returned.        """
 
         self._check_connection_type("get_cluster_version_info", "Cluster")
 
@@ -4157,7 +4157,7 @@ class Element(ServiceBase):
     def get_limits(
             self,):
         """
-        GetLimits enables you to retrieve the limit values set by the API. These values might change between releases of  Element, but do not change without an update to the system. Knowing the limit values set by the API can be useful when writing API scripts for user-facing tools.NOTE: The GetLimits method returns the limits for the current software version regardless of the API endpoint version used to pass the method."""
+        GetLimits enables you to retrieve the limit values set by the API. These values might change between releases of  Element, but do not change without an update to the system. Knowing the limit values set by the API can be useful when writing API scripts for user-facing tools.NOTE: The GetLimits method returns the limits for the current software version regardless of the API endpoint version used to pass the method.        """
 
         self._check_connection_type("get_limits", "Cluster")
 
@@ -4182,13 +4182,13 @@ class Element(ServiceBase):
         ListEvents returns events detected on the cluster, sorted from oldest to newest.
         :param maxEvents:  Specifies the maximum number of events to return. 
         :type maxEvents: int
-        
+
         :param startEventID:  Identifies the beginning of a range of events to return. 
         :type startEventID: int
-        
+
         :param endEventID:  Identifies the end of a range of events to return. 
         :type endEventID: int
-        
+
         :param eventQueueType:  
         :type eventQueueType: str
         """
@@ -4225,13 +4225,13 @@ class Element(ServiceBase):
         With this method, both current and resolved faults can be retrieved. The system caches faults every 30 seconds.
         :param exceptions:  
         :type exceptions: bool
-        
+
         :param bestPractices:  Include faults triggered by sub-optimal system configuration. Possible values: true, false 
         :type bestPractices: bool
-        
+
         :param update:  
         :type update: bool
-        
+
         :param faultTypes:  Determines the types of faults returned: current: List active, unresolved faults. <b>resolved</b>: List faults that were previously detected and resolved. <b>all</b>: (Default) List both current and resolved faults. You can see the fault status in the 'resolved' field of the Cluster Fault object. 
         :type faultTypes: str
         """
@@ -4286,7 +4286,7 @@ class Element(ServiceBase):
         """
         The GetClusterConfig API method is used to return information about the cluster configuration this node uses to communicate with the cluster it is a part of.
         <br/><br/>
-        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.        """
 
         self._check_connection_type("get_cluster_config", "Node")
 
@@ -4304,7 +4304,7 @@ class Element(ServiceBase):
     def get_cluster_full_threshold(
             self,):
         """
-        GetClusterFullThreshold is used to view the stages set for cluster fullness levels. All levels are returned when this method is entered."""
+        GetClusterFullThreshold is used to view the stages set for cluster fullness levels. All levels are returned when this method is entered.        """
 
         self._check_connection_type("get_cluster_full_threshold", "Cluster")
 
@@ -4328,10 +4328,10 @@ class Element(ServiceBase):
         ModifyClusterFullThreshold is used to change the level at which an event is generated when the storage cluster approaches the capacity utilization requested. The number entered in this setting is used to indicate the number of node failures the system is required to recover from. For example, on a 10 node cluster, if you want to be alerted when the system cannot recover from 3 nodes failures, enter the value of "3". When this number is reached, a message alert is sent to the Event Log in the Cluster Management Console.
         :param stage2AwareThreshold:  Number of nodes worth of capacity remaining on the cluster that triggers a notification. 
         :type stage2AwareThreshold: int
-        
+
         :param stage3BlockThresholdPercent:  Percent below "Error" state to raise a cluster "Warning" alert. 
         :type stage3BlockThresholdPercent: int
-        
+
         :param maxMetadataOverProvisionFactor:  A value representative of the number of times metadata space can be over provisioned relative to the amount of space available. For example, if there was enough metadata space to store 100 TiB of volumes and this number was set to 5, then 500 TiB worth of volumes could be created. 
         :type maxMetadataOverProvisionFactor: int
         """
@@ -4358,7 +4358,7 @@ class Element(ServiceBase):
     def get_cluster_master_node_id(
             self,):
         """
-        GetClusterMasterNodeID is used to return the ID of the node that can perform cluster-wide administration tasks and holds the storage virtual IP (SVIP) and management virtual IP (MVIP)."""
+        GetClusterMasterNodeID is used to return the ID of the node that can perform cluster-wide administration tasks and holds the storage virtual IP (SVIP) and management virtual IP (MVIP).        """
 
         self._check_connection_type("get_cluster_master_node_id", "Cluster")
 
@@ -4376,7 +4376,7 @@ class Element(ServiceBase):
     def get_cluster_stats(
             self,):
         """
-        GetClusterStats is used to return high-level activity measurements for the cluster. Values returned are cumulative from the creation of the cluster."""
+        GetClusterStats is used to return high-level activity measurements for the cluster. Values returned are cumulative from the creation of the cluster.        """
 
         self._check_connection_type("get_cluster_stats", "Cluster")
 
@@ -4407,25 +4407,25 @@ class Element(ServiceBase):
         <b>Note</b>: You need to log into the node that is used as the master node for the cluster. Once logged in, run the GetBootstrapConfig method on the node to get the IP addresses for the rest of the nodes that you want to include in the cluster. Then run the CreateCluster method.
         :param acceptEula:  Indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. 
         :type acceptEula: bool
-        
+
         :param mvip: [required] Floating (virtual) IP address for the cluster on the management network. 
         :type mvip: str
-        
+
         :param svip: [required] Floating (virtual) IP address for the cluster on the storage (iSCSI) network. 
         :type svip: str
-        
+
         :param repCount: [required] Number of replicas of each piece of data to store in the cluster. Valid value is "2". 
         :type repCount: int
-        
+
         :param username: [required] User name for the cluster admin. 
         :type username: str
-        
+
         :param password: [required] Initial password for the cluster admin account. 
         :type password: str
-        
+
         :param nodes: [required] CIP/SIP addresses of the initial set of nodes making up the cluster. This node's IP must be in the list. 
         :type nodes: str
-        
+
         :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
@@ -4455,7 +4455,7 @@ class Element(ServiceBase):
     def list_cluster_admins(
             self,):
         """
-        ListClusterAdmins returns the list of all cluster administrators for the cluster. There can be several cluster administrators that have different levels of permissions. There can be only one primary cluster administrator in the system. The primary Cluster Admin is the administrator that was created when the cluster was created. LDAP administrators can also be created when setting up an LDAP system on the cluster."""
+        ListClusterAdmins returns the list of all cluster administrators for the cluster. There can be several cluster administrators that have different levels of permissions. There can be only one primary cluster administrator in the system. The primary Cluster Admin is the administrator that was created when the cluster was created. LDAP administrators can also be created when setting up an LDAP system on the cluster.        """
 
         self._check_connection_type("list_cluster_admins", "Cluster")
 
@@ -4483,16 +4483,16 @@ class Element(ServiceBase):
         Each Cluster Admin can be restricted to a sub-set of the API. SolidFire recommends using multiple Cluster Admins for different users and applications. Each Cluster Admin should be given the minimal permissions necessary to reduce the potential impact of credential compromise.
         :param username: [required] Unique username for this Cluster Admin. 
         :type username: str
-        
+
         :param password: [required] Password used to authenticate this Cluster Admin. 
         :type password: str
-        
+
         :param access: [required] Controls which methods this Cluster Admin can use. For more details on the levels of access, see "Access Control" in the Element API Guide. 
         :type access: str
-        
+
         :param acceptEula:  Indicate your acceptance of the End User License Agreement when creating this cluster admin. To accept the EULA, set this parameter to true. 
         :type acceptEula: bool
-        
+
         :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
@@ -4527,13 +4527,13 @@ class Element(ServiceBase):
         ModifyClusterAdmin is used to change the settings for a Cluster Admin or LDAP Cluster Admin. Access for the administrator Cluster Admin account cannot be changed.
         :param clusterAdminID: [required] ClusterAdminID for the Cluster Admin or LDAP Cluster Admin to modify. 
         :type clusterAdminID: int
-        
+
         :param password:  Password used to authenticate this Cluster Admin. 
         :type password: str
-        
+
         :param access:  Controls which methods this Cluster Admin can use. For more details on the levels of access, see "Access Control" in the Element API Guide. 
         :type access: str
-        
+
         :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
         """
@@ -4609,7 +4609,7 @@ class Element(ServiceBase):
     def get_snmp_acl(
             self,):
         """
-        GetSnmpACL is used to return the current SNMP access permissions on the cluster nodes."""
+        GetSnmpACL is used to return the current SNMP access permissions on the cluster nodes.        """
 
         self._check_connection_type("get_snmp_acl", "Cluster")
 
@@ -4632,7 +4632,7 @@ class Element(ServiceBase):
         SetSnmpACL is used to configure SNMP access permissions on the cluster nodes. The values set with this interface apply to all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpACL. Also note that the values set with this interface replace all "network" or "usmUsers" values set with the older SetSnmpInfo.
         :param networks: [required] List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. REQUIRED if SNMP v# is disabled. 
         :type networks: SnmpNetwork
-        
+
         :param usmUsers: [required] List of users and the type of access they have to the SNMP servers running on the cluster nodes. REQUIRED if SNMP v3 is enabled. 
         :type usmUsers: SnmpV3UsmUser
         """
@@ -4655,7 +4655,7 @@ class Element(ServiceBase):
     def get_snmp_trap_info(
             self,):
         """
-        GetSnmpTrapInfo is used to return current SNMP trap configuration information."""
+        GetSnmpTrapInfo is used to return current SNMP trap configuration information.        """
 
         self._check_connection_type("get_snmp_trap_info", "Cluster")
 
@@ -4680,13 +4680,13 @@ class Element(ServiceBase):
         SetSnmpTrapInfo is used to enable and disable the generation of SolidFire SNMP notifications (traps) and to specify the set of network host computers that are to receive the notifications. The values passed with each SetSnmpTrapInfo method replaces all values set in any previous method to SetSnmpTrapInfo.
         :param trapRecipients: [required] List of hosts that are to receive the traps generated by the Cluster Master. At least one object is required if any one of the trap types is enabled. 
         :type trapRecipients: SnmpTrapRecipient
-        
+
         :param clusterFaultTrapsEnabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterFaultNotification is sent to the configured list of trap recipients. 
         :type clusterFaultTrapsEnabled: bool
-        
+
         :param clusterFaultResolvedTrapsEnabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterFaultResolvedNotification is sent to the configured list of trap recipients. 
         :type clusterFaultResolvedTrapsEnabled: bool
-        
+
         :param clusterEventTrapsEnabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterEventNotification is sent to the configured list of trap recipients. 
         :type clusterEventTrapsEnabled: bool
         """
@@ -4734,7 +4734,7 @@ class Element(ServiceBase):
     def disable_snmp(
             self,):
         """
-        DisableSnmp is used to disable SNMP on the cluster nodes."""
+        DisableSnmp is used to disable SNMP on the cluster nodes.        """
 
         self._check_connection_type("disable_snmp", "Cluster")
 
@@ -4754,7 +4754,7 @@ class Element(ServiceBase):
         """
         GetSnmpInfo is used to return the current simple network management protocol (SNMP) configuration information.
         <br/><br/>
-        <b>Note</b>: GetSnmpInfo will be available for Element OS 8 and prior releases. It will be deprecated after Element OS 8. There are two new SNMP API methods that you should migrate over to. They are GetSnmpState and GetSnmpACL. Please see details in this document for their descriptions and usage."""
+        <b>Note</b>: GetSnmpInfo will be available for Element OS 8 and prior releases. It will be deprecated after Element OS 8. There are two new SNMP API methods that you should migrate over to. They are GetSnmpState and GetSnmpACL. Please see details in this document for their descriptions and usage.        """
 
         self._check_connection_type("get_snmp_info", "Cluster")
 
@@ -4781,13 +4781,13 @@ class Element(ServiceBase):
         <b>Note</b>: EnableSnmp and SetSnmpACL methods can be used to accomplish the same results as SetSnmpInfo. SetSnmpInfo will no longer be available after the Element 8 release. Please use EnableSnmp and SetSnmpACL in the future.
         :param networks:  List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. SNMP v2 only. 
         :type networks: SnmpNetwork
-        
+
         :param enabled:  If set to "true", then SNMP is enabled on each node in the cluster. 
         :type enabled: bool
-        
+
         :param snmpV3Enabled:  If set to "true", then SNMP v3 is enabled on each node in the cluster. 
         :type snmpV3Enabled: bool
-        
+
         :param usmUsers:  If SNMP v3 is enabled, this value must be passed in place of the "networks" parameter. SNMP v3 only. 
         :type usmUsers: SnmpV3UsmUser
         """
@@ -4818,7 +4818,7 @@ class Element(ServiceBase):
         """
         GetSnmpState is used to return the current state of the SNMP feature.
         <br/><br/>
-        <b>Note</b>: GetSnmpState is new for Element OS 8. Please use this method and SetSnmpACL to migrate your SNMP functionality in the future."""
+        <b>Note</b>: GetSnmpState is new for Element OS 8. Please use this method and SetSnmpACL to migrate your SNMP functionality in the future.        """
 
         self._check_connection_type("get_snmp_state", "Cluster")
 
@@ -4836,7 +4836,7 @@ class Element(ServiceBase):
     def list_sync_jobs(
             self,):
         """
-        ListSyncJobs is used to return information about synchronization jobs that are running on a SolidFire cluster. Synchronization jobs that are returned with this method are, "slice," "clone" and "remote.""""
+        ListSyncJobs is used to return information about synchronization jobs that are running on a SolidFire cluster. Synchronization jobs that are returned with this method are, "slice," "clone" and "remote."        """
 
         self._check_connection_type("list_sync_jobs", "Cluster")
 
@@ -4854,7 +4854,7 @@ class Element(ServiceBase):
     def get_api(
             self,):
         """
-        Retrieves the current version of the API and a list of all supported versions."""
+        Retrieves the current version of the API and a list of all supported versions.        """
 
         self._check_connection_type("get_api", "Both")
 
@@ -4872,7 +4872,7 @@ class Element(ServiceBase):
     def get_ntp_info(
             self,):
         """
-        GetNtpInfo is used to return the current network time protocol (NTP) configuration information."""
+        GetNtpInfo is used to return the current network time protocol (NTP) configuration information.        """
 
         self._check_connection_type("get_ntp_info", "Cluster")
 
@@ -4895,7 +4895,7 @@ class Element(ServiceBase):
         SetNtpInfo is used to configure the NTP on cluster nodes. The values set with this interface apply to all nodes in the cluster. The nodes can only be configured as a server where a host is selected to administrate the networking and/or a broadcast client where each host sends each message to each peer.
         :param servers: [required] List of NTP servers to add to each node's NTP configuration. 
         :type servers: str
-        
+
         :param broadcastclient:  Enable every node in the cluster as a broadcase client. 
         :type broadcastclient: bool
         """
@@ -4942,7 +4942,7 @@ class Element(ServiceBase):
     def get_current_cluster_admin(
             self,):
         """
-        GetCurrentClusterAdmin returns information for the current primary cluster administrator. The primary Cluster Admin was ncreated when the cluster was created."""
+        GetCurrentClusterAdmin returns information for the current primary cluster administrator. The primary Cluster Admin was ncreated when the cluster was created.        """
 
         self._check_connection_type("get_current_cluster_admin", "Cluster")
 
@@ -4966,10 +4966,10 @@ class Element(ServiceBase):
         CreateSupportBundle is used to create a support bundle file under the node's directory. When the bundle has been successfully created, the bundle is stored on the node as a tar.gz file.
         :param bundleName:  Unique name for each support bundle created. If no name is provided, then 'supportbundle' and the node name is used as a file name. 
         :type bundleName: str
-        
+
         :param extraArgs:  This parameter is fed to the sf_make_support_bundle script. Should be used only at the request of SolidFire Support. 
         :type extraArgs: str
-        
+
         :param timeoutSec:  The number of seconds to let the support bundle script run before timing out and stopping. Default is 1500 seconds. 
         :type timeoutSec: int
         """
@@ -4996,7 +4996,7 @@ class Element(ServiceBase):
     def delete_all_support_bundles(
             self,):
         """
-        DeleteAllSupportBundles is used to delete all support bundles generated with the CreateSupportBundle API method."""
+        DeleteAllSupportBundles is used to delete all support bundles generated with the CreateSupportBundle API method.        """
 
         self._check_connection_type("delete_all_support_bundles", "Node")
 
@@ -5016,7 +5016,7 @@ class Element(ServiceBase):
         """
         The EnableEncryptionAtRest method is used to enable the Advanced Encryption Standard (AES) 256-bit encryption at rest on the cluster so that the cluster can manage the encryption key used for the drives on each node. This feature is not enabled by default. Enabling this operation allows the cluster to automatically manage encryption keys internally for the drives on each node in the cluster. Nodes do not store the keys to unlock drives and the keys are never passed over the network. Two nodes participating in a cluster are required to access the key to disable encryption on a drive. The encryption management does not affect performance or efficiency on the cluster. If an encryption-enabled drive or node is removed from the cluster with the API, all data is secure erased and any data left on the drive cannot be read or accessed.
         Enabling or disabling encryption should be performed when the cluster is running and in a healthy state. Encryption can be enabled or disabled at your discretion and can be performed as often as you need.
-        <br/><b>Note</b>: This process is asynchronous and returns a response before encryption is enabled. The GetClusterInfo method can be used to poll the system to see when the process has completed."""
+        <br/><b>Note</b>: This process is asynchronous and returns a response before encryption is enabled. The GetClusterInfo method can be used to poll the system to see when the process has completed.        """
 
         self._check_connection_type("enable_encryption_at_rest", "Cluster")
 
@@ -5036,7 +5036,7 @@ class Element(ServiceBase):
         """
         The DisableEncryptionAtRest method enables you to remove the encryption that was previously applied to the cluster using the EnableEncryptionAtRest method.
         This disable method is asynchronous and returns a response before encryption is disabled.
-        You can use the GetClusterInfo method to poll the system to see when the process has completed."""
+        You can use the GetClusterInfo method to poll the system to see when the process has completed.        """
 
         self._check_connection_type("disable_encryption_at_rest", "Cluster")
 
@@ -5053,7 +5053,7 @@ class Element(ServiceBase):
 
     def get_system_status(
             self,):
-        """"""
+        """        """
 
         self._check_connection_type("get_system_status", "Node")
 
@@ -5071,7 +5071,7 @@ class Element(ServiceBase):
     def snmp_send_test_traps(
             self,):
         """
-        SnmpSendTestTraps enables you to test SNMP functionality for a cluster. This method instructs the cluster to send test SNMP traps to the currently configured SNMP manager."""
+        SnmpSendTestTraps enables you to test SNMP functionality for a cluster. This method instructs the cluster to send test SNMP traps to the currently configured SNMP manager.        """
 
         self._check_connection_type("snmp_send_test_traps", "Cluster")
 
@@ -5089,7 +5089,7 @@ class Element(ServiceBase):
     def list_active_nodes(
             self,):
         """
-        ListActiveNodes returns the list of currently active nodes that are in the cluster."""
+        ListActiveNodes returns the list of currently active nodes that are in the cluster.        """
 
         self._check_connection_type("list_active_nodes", "Cluster")
 
@@ -5107,7 +5107,7 @@ class Element(ServiceBase):
     def list_all_nodes(
             self,):
         """
-        ListAllNodes enables you to retrieve a list of active and pending nodes in the cluster."""
+        ListAllNodes enables you to retrieve a list of active and pending nodes in the cluster.        """
 
         self._check_connection_type("list_all_nodes", "Cluster")
 
@@ -5126,7 +5126,7 @@ class Element(ServiceBase):
             self,):
         """
         Gets the list of pending nodes.
-        Pending nodes are running and configured to join the cluster, but have not been added via the AddNodes method."""
+        Pending nodes are running and configured to join the cluster, but have not been added via the AddNodes method.        """
 
         self._check_connection_type("list_pending_nodes", "Cluster")
 
@@ -5202,7 +5202,7 @@ class Element(ServiceBase):
         """
         The GetNetworkConfig API method is used to display the network configuration information for a node.
         <br/><br/>
-        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.        """
 
         self._check_connection_type("get_network_config", "Node")
 
@@ -5299,7 +5299,7 @@ class Element(ServiceBase):
     def get_bootstrap_config(
             self,):
         """
-        GetBootstrapConfig returns the cluster name and node name from the bootstrap configuration file. This API method should be performed on an individual node before it has been configured into a cluster. The resulting information from this method is used in the Cluster Configuration UI when the cluster is eventually created."""
+        GetBootstrapConfig returns the cluster name and node name from the bootstrap configuration file. This API method should be performed on an individual node before it has been configured into a cluster. The resulting information from this method is used in the Cluster Configuration UI when the cluster is eventually created.        """
 
         self._check_connection_type("get_bootstrap_config", "Node")
 
@@ -5338,7 +5338,7 @@ class Element(ServiceBase):
     def list_node_stats(
             self,):
         """
-        ListNodeStats is used to return the high-level activity measurements for all nodes in a cluster."""
+        ListNodeStats is used to return the high-level activity measurements for all nodes in a cluster.        """
 
         self._check_connection_type("list_node_stats", "Cluster")
 
@@ -5358,7 +5358,7 @@ class Element(ServiceBase):
         """
         GetPendingOperation is used to detect an operation on a node that is currently in progress. This method can also be used to report back when an operation has completed.<br/>
         <br/>
-        Note: This method is available only through the per-node API endpoint 5.0 or later."""
+        Note: This method is available only through the per-node API endpoint 5.0 or later.        """
 
         self._check_connection_type("get_pending_operation", "Node")
 
@@ -5409,7 +5409,7 @@ class Element(ServiceBase):
             self,):
         """
         ListDrives allows you to retrieve the list of the drives that exist in the cluster's active nodes.
-        This method returns drives that have been added as volume metadata or block drives as well as drives that have not been added and are available."""
+        This method returns drives that have been added as volume metadata or block drives as well as drives that have not been added and are available.        """
 
         self._check_connection_type("list_drives", "Cluster")
 
@@ -5429,7 +5429,7 @@ class Element(ServiceBase):
         """
         GetDriveConfig is used to display drive information for expected slice and block drive counts as well as the number of slices and block drives that are currently connected to the node.
         <br/><br/>
-        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.        """
 
         self._check_connection_type("get_drive_config", "Node")
 
@@ -5499,7 +5499,7 @@ class Element(ServiceBase):
         <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
         :param drives: [required] List of device names (not driveIDs) to reset. 
         :type drives: str
-        
+
         :param force: [required] The "force" parameter must be included on this method to successfully reset a drive. 
         :type force: bool
         """

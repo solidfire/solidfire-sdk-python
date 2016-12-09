@@ -26,13 +26,13 @@ class CreateInitiator(data_model.DataObject):
     Object containing characteristics of each new initiator.
     :param name: [required] (Required) The name of the initiator (IQN or WWPN) to create. (String) 
     :type name: str
-    
+
     :param alias:  (Optional) The friendly name to assign to this initiator. (String) 
     :type alias: str
-    
+
     :param volume_access_group_id:  (Optional) The ID of the volume access group into to which this newly created initiator will be added. (Integer) 
     :type volume_access_group_id: int
-    
+
     :param attributes:  (Optional) A set of JSON attributes assigned to this initiator. (JSON Object) 
     :type attributes: dict
     """
@@ -128,52 +128,52 @@ class DriveStats(data_model.DataObject):
     """
     :param active_sessions:  
     :type active_sessions: int
-    
+
     :param drive_id:  
     :type drive_id: int
-    
+
     :param failed_die_count: [required] 
     :type failed_die_count: int
-    
+
     :param life_remaining_percent: [required] 
     :type life_remaining_percent: int
-    
+
     :param lifetime_read_bytes: [required] 
     :type lifetime_read_bytes: int
-    
+
     :param lifetime_write_bytes: [required] 
     :type lifetime_write_bytes: int
-    
+
     :param power_on_hours: [required] 
     :type power_on_hours: int
-    
+
     :param read_bytes: [required] 
     :type read_bytes: int
-    
+
     :param read_ops: [required] 
     :type read_ops: int
-    
+
     :param reallocated_sectors: [required] 
     :type reallocated_sectors: int
-    
+
     :param reserve_capacity_percent: [required] 
     :type reserve_capacity_percent: int
-    
+
     :param timestamp: [required] 
     :type timestamp: str
-    
+
     :param total_capacity: [required] 
     :type total_capacity: int
-    
+
     :param used_capacity:  
     :type used_capacity: int
-    
+
     :param used_memory: [required] 
     :type used_memory: int
-    
+
     :param write_bytes: [required] 
     :type write_bytes: int
-    
+
     :param write_ops: [required] 
     :type write_ops: int
     """
@@ -287,7 +287,7 @@ class ListDriveStatsResult(data_model.DataObject):
     """
     :param drive_stats: [required] List of drive activity information for each drive. 
     :type drive_stats: DriveStats
-    
+
     :param errors: [required] If there are errors retrieving information about a drive, this list contains the driveID and associated error message. Always present, and empty if there are no errors. 
     :type errors: dict
     """
@@ -311,19 +311,19 @@ class VirtualVolumeHost(data_model.DataObject):
     """
     :param virtual_volume_host_id: [required] 
     :type virtual_volume_host_id: UUID
-    
+
     :param cluster_id: [required] 
     :type cluster_id: UUID
-    
+
     :param visible_protocol_endpoint_ids: [required] 
     :type visible_protocol_endpoint_ids: UUID
-    
+
     :param bindings: [required] 
     :type bindings: int
-    
+
     :param initiator_names: [required] 
     :type initiator_names: str
-    
+
     :param host_address: [required] 
     :type host_address: str
     """
@@ -387,16 +387,16 @@ class VolumeQOS(data_model.DataObject):
     Quality of Service (QoS) Result values are used on SolidFire volumes to provision performance expectations.
     :param min_iops: [required] Desired minimum 4KB IOPS to guarantee. The allowed IOPS will only drop below this level if all volumes have been capped at their min IOPS value and there is still insufficient performance capacity. 
     :type min_iops: int
-    
+
     :param max_iops: [required] Desired maximum 4KB IOPS allowed over an extended period of time. 
     :type max_iops: int
-    
+
     :param burst_iops: [required] Maximum "peak" 4KB IOPS allowed for short periods of time. Allows for bursts of I/O activity over the normal max IOPS value. 
     :type burst_iops: int
-    
+
     :param burst_time: [required] The length of time burst IOPS is allowed. The value returned is represented in time units of seconds. <br/><b>Note</b>: this value is calculated by the system based on IOPS set for QoS. 
     :type burst_time: int
-    
+
     :param curve: [required] The curve is a set of key-value pairs. The keys are I/O sizes in bytes. The values represent the cost performing an IOP at a specific I/O size. The curve is calculated relative to a 4096 byte operation set at 100 IOPS. 
     :type curve: dict
     """
@@ -438,7 +438,7 @@ class SnapshotReplication(data_model.DataObject):
     """
     :param state: [required] The state of the snapshot replication. 
     :type state: str
-    
+
     :param state_details: [required] Reserved for future use. 
     :type state_details: str
     """
@@ -463,22 +463,22 @@ class RemoteReplication(data_model.DataObject):
     Details on the volume replication.
     :param mode: [required] Volume replication mode.<br/> Possible values:<br/> <b>Async</b>: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.<br/> <b>Sync</b>: Source acknowledges write when the data is stored locally and on the remote cluster.<br/> <b>SnapshotsOnly</b>: Only snapshots created on the source cluster will be replicated. Active writes from the source volume will not be replicated.<br/> 
     :type mode: str
-    
+
     :param pause_limit: [required] The number of occurring write ops before auto-pausing, on a per volume pair level. 
     :type pause_limit: int
-    
+
     :param remote_service_id: [required] The remote slice service ID. 
     :type remote_service_id: int
-    
+
     :param resume_details: [required] Reserved for future use. 
     :type resume_details: str
-    
+
     :param snapshot_replication: [required] The details of snapshot replication. 
     :type snapshot_replication: SnapshotReplication
-    
+
     :param state: [required] The state of the volume replication. 
     :type state: str
-    
+
     :param state_details: [required] Reserved for future use. 
     :type state_details: str
     """
@@ -534,19 +534,19 @@ class VolumePair(data_model.DataObject):
     If the volume is not paired, this object is null.
     :param cluster_pair_id: [required] The remote cluster a volume is paired with. 
     :type cluster_pair_id: int
-    
+
     :param remote_volume_id: [required] The VolumeID on the remote cluster a volume is paired with. 
     :type remote_volume_id: int
-    
+
     :param remote_slice_id: [required] The SliceID on the remote cluster a volume is paired with. 
     :type remote_slice_id: int
-    
+
     :param remote_volume_name: [required] The last-observed name of the volume on the remote cluster a volume is paired with. 
     :type remote_volume_name: str
-    
+
     :param volume_pair_uuid: [required] A UUID in canonical form. 
     :type volume_pair_uuid: UUID
-    
+
     :param remote_replication: [required] Details about the replication configuration for this volume pair. 
     :type remote_replication: RemoteReplication
     """
@@ -597,61 +597,61 @@ class Volume(data_model.DataObject):
     Information about paired volumes will also be returned.
     :param volume_id: [required] Unique VolumeID for the volume. 
     :type volume_id: int
-    
+
     :param name: [required] Name of the volume as provided at creation time. 
     :type name: str
-    
+
     :param account_id: [required] Unique AccountID for the account. 
     :type account_id: int
-    
+
     :param create_time: [required] UTC formatted time the volume was created. 
     :type create_time: str
-    
+
     :param status: [required] Current status of the volume init: A volume that is being initialized and is not ready for connections. active: An active volume ready for connections. 
     :type status: str
-    
+
     :param access: [required] Access allowed for the volume <br/><b>readOnly</b>: Only read operations are allowed. <br/><b>readWrite</b>: Reads and writes are allowed. <br/><b>locked</b>: No reads or writes are allowed. <br/><b>replicationTarget</b>: Designated as a target volume in a replicated volume pair. 
     :type access: str
-    
+
     :param enable512e: [required] If "true", the volume provides 512 byte sector emulation. 
     :type enable512e: bool
-    
+
     :param iqn: [required] Volume iSCSI Qualified Name. 
     :type iqn: str
-    
+
     :param scsi_euidevice_id: [required] Globally unique SCSI device identifier for the volume in EUI-64 based 16-byte format. 
     :type scsi_euidevice_id: str
-    
+
     :param scsi_naadevice_id: [required] Globally unique SCSI device identifier for the volume in NAA IEEE Registered Extended format. 
     :type scsi_naadevice_id: str
-    
+
     :param qos: [required] Quality of service settings for this volume. 
     :type qos: VolumeQOS
-    
+
     :param volume_access_groups: [required] List of volume access groups to which a volume belongs. 
     :type volume_access_groups: int
-    
+
     :param volume_pairs: [required] Information about a paired volume. Available only if a volume is paired. @see VolumePairs for return values. 
     :type volume_pairs: VolumePair
-    
+
     :param delete_time:  The time this volume was deleted. If this has no value, the volume has not yet been deleted. 
     :type delete_time: str
-    
+
     :param purge_time:  The time this volume will be purged from the system. If this has no value, the volume has not yet been deleted (and is not scheduled for purging). 
     :type purge_time: str
-    
+
     :param slice_count: [required] The number of slices backing this volume. In the current software, this value will always be 1. 
     :type slice_count: int
-    
+
     :param total_size: [required] Total size of this volume in bytes. 
     :type total_size: int
-    
+
     :param block_size: [required] Size of the blocks on the volume. 
     :type block_size: int
-    
+
     :param virtual_volume_id: [required] Virtual volume ID this volume backs. 
     :type virtual_volume_id: UUID
-    
+
     :param attributes: [required] List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -836,22 +836,22 @@ class VolumeAccessGroup(data_model.DataObject):
     - Each volume access group can belong to a maximum of four other volume access groups.
     :param attributes: [required] List of name/value pairs 
     :type attributes: dict
-    
+
     :param deleted_volumes: [required] A list of deleted volumes that have yet to be purged from the VAG. 
     :type deleted_volumes: int
-    
+
     :param volume_access_group_id: [required] Unique ID for this volume access group. 
     :type volume_access_group_id: int
-    
+
     :param name: [required] Name of the volume access group. 
     :type name: str
-    
+
     :param initiator_ids: [required] A list of IDs of initiators that are mapped to the VAG. 
     :type initiator_ids: int
-    
+
     :param initiators: [required] List of unique initiator names belonging to the volume access group. 
     :type initiators: str
-    
+
     :param volumes: [required] List of volumes belonging to the volume access group. 
     :type volumes: int
     """
@@ -950,7 +950,7 @@ class AddVolumesToVolumeAccessGroupRequest(data_model.DataObject):
     """
     :param volume_access_group_id: [required] The ID of the volume access group to modify. 
     :type volume_access_group_id: int
-    
+
     :param volumes: [required] List of volumes to add to this volume access group. 
     :type volumes: int
     """
@@ -971,7 +971,7 @@ class AddVolumesToVolumeAccessGroupRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ClearClusterFaultsResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -980,16 +980,16 @@ class CreateGroupSnapshotRequest(data_model.DataObject):
     """
     :param volumes: [required] Unique ID of the volume image from which to copy. 
     :type volumes: int
-    
+
     :param name:  A name for the snapshot. If no name is provided, the date and time the snapshot was taken is used. 
     :type name: str
-    
+
     :param enable_remote_replication:  Identifies if snapshot is enabled for remote replication. 
     :type enable_remote_replication: bool
-    
+
     :param retention:  The amount of time the snapshot will be retained. Enter in HH:mm:ss 
     :type retention: str
-    
+
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -1031,10 +1031,10 @@ class ModifySnapshotRequest(data_model.DataObject):
     """
     :param snapshot_id: [required] ID of the snapshot. 
     :type snapshot_id: int
-    
+
     :param expiration_time:  Use to set the time when the snapshot should be removed. 
     :type expiration_time: str
-    
+
     :param enable_remote_replication:  Use to enable the snapshot created to be replicated to a remote SolidFire cluster. Possible values: <br/><b>true</b>: the snapshot will be replicated to remote storage. <br/><b>false</b>: Default. No replication. 
     :type enable_remote_replication: bool
     """
@@ -1064,19 +1064,19 @@ class GetVirtualVolumeUnsharedChunksRequest(data_model.DataObject):
     """
     :param virtual_volume_id: [required] The ID of the Virtual Volume. 
     :type virtual_volume_id: UUID
-    
+
     :param base_virtual_volume_id: [required] The ID of the Virtual Volume to compare against. 
     :type base_virtual_volume_id: UUID
-    
+
     :param segment_start: [required] Start Byte offset. 
     :type segment_start: int
-    
+
     :param segment_length: [required] Length of the scan segment in bytes. 
     :type segment_length: int
-    
+
     :param chunk_size: [required] Number of bytes represented by one bit in the bitmap. 
     :type chunk_size: int
-    
+
     :param calling_virtual_volume_host_id:  
     :type calling_virtual_volume_host_id: UUID
     """
@@ -1124,13 +1124,13 @@ class Platform(data_model.DataObject):
     """
     :param node_type: [required] SolidFire's name for this platform. 
     :type node_type: str
-    
+
     :param chassis_type: [required] Name of the chassis (example: "R620"). 
     :type chassis_type: str
-    
+
     :param cpu_model: [required] The model of CPU used on this platform. 
     :type cpu_model: str
-    
+
     :param node_memory_gb: [required] The amount of memory on this platform in GiB. 
     :type node_memory_gb: int
     """
@@ -1169,46 +1169,46 @@ class Node(data_model.DataObject):
     After a node is made active, its drives will become available for addition to the cluster.
     :param node_id: [required] The unique identifier for this node. 
     :type node_id: int
-    
+
     :param associated_master_service_id: [required] The master service responsible for controlling other services on this node. 
     :type associated_master_service_id: int
-    
+
     :param associated_fservice_id: [required] 
     :type associated_fservice_id: int
-    
+
     :param fibre_channel_target_port_group: [required] 
     :type fibre_channel_target_port_group: str
-    
+
     :param name: [required] 
     :type name: str
-    
+
     :param platform_info: [required] Information about the platform this node is. 
     :type platform_info: Platform
-    
+
     :param software_version: [required] The version of SolidFire software this node is currently running. 
     :type software_version: str
-    
+
     :param cip: [required] IP address used for both intra- and inter-cluster communication. 
     :type cip: str
-    
+
     :param cipi: [required] The machine's name for the "cip" interface. 
     :type cipi: str
-    
+
     :param mip: [required] IP address used for cluster management (hosting the API and web site). 
     :type mip: str
-    
+
     :param mipi: [required] The machine's name for the "mip" interface. 
     :type mipi: str
-    
+
     :param sip: [required] IP address used for iSCSI traffic. 
     :type sip: str
-    
+
     :param sipi: [required] The machine's name for the "sip" interface. 
     :type sipi: str
-    
+
     :param uuid: [required] UUID of node. 
     :type uuid: UUID
-    
+
     :param attributes: [required] 
     :type attributes: dict
     """
@@ -1312,40 +1312,40 @@ class PendingNode(data_model.DataObject):
     It can be added to a cluster using the AddNode method.
     :param pending_node_id: [required] 
     :type pending_node_id: int
-    
+
     :param assigned_node_id: [required] 
     :type assigned_node_id: int
-    
+
     :param name: [required] The host name for this node. 
     :type name: str
-    
+
     :param compatible: [required] 
     :type compatible: bool
-    
+
     :param platform_info: [required] Information about the platform this node is. 
     :type platform_info: Platform
-    
+
     :param cip: [required] IP address used for both intra- and inter-cluster communication. 
     :type cip: str
-    
+
     :param cipi: [required] The machine's name for the "cip" interface. 
     :type cipi: str
-    
+
     :param mip: [required] IP address used for cluster management (hosting the API and web site). 
     :type mip: str
-    
+
     :param mipi: [required] The machine's name for the "mip" interface. 
     :type mipi: str
-    
+
     :param sip: [required] IP address used for iSCSI traffic. 
     :type sip: str
-    
+
     :param sipi: [required] The machine's name for the "sip" interface. 
     :type sipi: str
-    
+
     :param software_version: [required] The version of SolidFire software this node is currently running. 
     :type software_version: str
-    
+
     :param uuid: [required] UUID of node. 
     :type uuid: UUID
     """
@@ -1435,7 +1435,7 @@ class ListAllNodesResult(data_model.DataObject):
     """
     :param nodes: [required] 
     :type nodes: Node
-    
+
     :param pending_nodes: [required] 
     :type pending_nodes: PendingNode
     """
@@ -1474,19 +1474,19 @@ class CreateVirtualVolumeHostRequest(data_model.DataObject):
     """
     :param virtual_volume_host_id: [required] The GUID of the ESX host. 
     :type virtual_volume_host_id: UUID
-    
+
     :param cluster_id: [required] The GUID of the ESX Cluster. 
     :type cluster_id: UUID
-    
+
     :param initiator_names:  
     :type initiator_names: str
-    
+
     :param visible_protocol_endpoint_ids:  A list of PEs the host is aware of. 
     :type visible_protocol_endpoint_ids: UUID
-    
+
     :param host_address:  IP or DNS name for the host. 
     :type host_address: str
-    
+
     :param calling_virtual_volume_host_id:  
     :type calling_virtual_volume_host_id: UUID
     """
@@ -1535,31 +1535,31 @@ class ClusterConfig(data_model.DataObject):
     Cluster Config object returns information the node uses to communicate with the cluster.
     :param cipi:  Network interface used for cluster communication. 
     :type cipi: str
-    
+
     :param cluster:  Unique cluster name. 
     :type cluster: str
-    
+
     :param ensemble:  Nodes that are participating in the cluster. 
     :type ensemble: str
-    
+
     :param mipi:  Network interface used for node management. 
     :type mipi: str
-    
+
     :param name:  Unique cluster name. 
     :type name: str
-    
+
     :param node_id:  
     :type node_id: int
-    
+
     :param pending_node_id:  
     :type pending_node_id: int
-    
+
     :param role:  Identifies the role of the node 
     :type role: str
-    
+
     :param sipi:  Network interface used for storage. 
     :type sipi: str
-    
+
     :param state:  
     :type state: str
     """
@@ -1646,22 +1646,22 @@ class NodeWaitingToJoin(data_model.DataObject):
     """
     :param name: [required] 
     :type name: str
-    
+
     :param version: [required] 
     :type version: str
-    
+
     :param node_id: [required] 
     :type node_id: int
-    
+
     :param pending_node_id: [required] 
     :type pending_node_id: int
-    
+
     :param mip: [required] 
     :type mip: str
-    
+
     :param cip: [required] 
     :type cip: str
-    
+
     :param sip: [required] 
     :type sip: str
     """
@@ -1715,13 +1715,13 @@ class GetBootstrapConfigResult(data_model.DataObject):
     """
     :param cluster_name: [required] Name of the cluster. 
     :type cluster_name: str
-    
+
     :param node_name: [required] Name of the node. 
     :type node_name: str
-    
+
     :param nodes: [required] List of descriptions for each node that is actively waiting to join this cluster: compatible - Indicates if the listed node is compatible with the node the API call was executed against. name - IP address of each node. version - version of SolidFire Element software currently installed on the node. 
     :type nodes: NodeWaitingToJoin
-    
+
     :param version: [required] Version of the SolidFire Element software currently installed. 
     :type version: str
     """
@@ -1757,13 +1757,13 @@ class ScheduleInfo(data_model.DataObject):
     """
     :param volume_ids:  A list of volume IDs to be included in the group snapshot. 
     :type volume_ids: int
-    
+
     :param snapshot_name:  The snapshot name to be used.  
     :type snapshot_name: str
-    
+
     :param enable_remote_replication:  Indicates if the snapshot should be included in remote replication. 
     :type enable_remote_replication: bool
-    
+
     :param retention:  The amount of time the snapshot will be retained in HH:mm:ss. 
     :type retention: str
     """
@@ -1800,37 +1800,37 @@ class Schedule(data_model.DataObject):
     Schedule is an object containing information about each schedule created to autonomously make a snapshot of a volume. The return object includes information for all schedules. If scheduleID is used to identify a specific schedule then only information for that scheduleID is returned. Schedules information is returned with the API method, see ListSchedules on the SolidFire API guide page 245.
     :param frequency: [required] Indicates the frequency of the schedule occurrence. Set this to a type that inherits from Frequency.<br/> Valid types are:<br/> DayOfWeekFrequency<br/> DayOfMonthFrequency<br/> TimeIntervalFrequency 
     :type frequency: Frequency
-    
+
     :param has_error:  Indicates whether or not the schedule has errors. 
     :type has_error: bool
-    
+
     :param last_run_status: [required] Indicates the status of the last scheduled snapshot.<br/> Valid values are:<br/> Success<br/> Failed 
     :type last_run_status: str
-    
+
     :param last_run_time_start: [required] Indicates the last time the schedule started n ISO 8601 date string. Valid values are:<br/> Success<br/> Failed 
     :type last_run_time_start: str
-    
+
     :param paused:  Indicates whether or not the schedule is paused. 
     :type paused: bool
-    
+
     :param recurring:  Indicates whether or not the schedule is recurring. 
     :type recurring: bool
-    
+
     :param run_next_interval:  Indicates whether or not the schedule will run the next time the scheduler is active. When set to "true", the schedule will run the next time the scheduler is active and then reset back to "false". 
     :type run_next_interval: bool
-    
+
     :param schedule_id:  Unique ID of the schedule 
     :type schedule_id: int
-    
+
     :param schedule_info: [required] Includes the unique name given to the schedule, the retention period for the snapshot that was created, and the volume ID of the volume from which the snapshot was created. 
     :type schedule_info: ScheduleInfo
-    
+
     :param name: [required] Unique name assigned to the schedule. 
     :type name: str
-    
+
     :param starting_date: [required] Indicates the date the first time the schedule began of will begin. Formatted in UTC time. 
     :type starting_date: str
-    
+
     :param to_be_deleted:  Indicates if the schedule is marked for deletion. 
     :type to_be_deleted: bool
     """
@@ -1929,22 +1929,22 @@ class StorageContainer(data_model.DataObject):
     """
     :param name: [required] 
     :type name: str
-    
+
     :param storage_container_id: [required] 
     :type storage_container_id: UUID
-    
+
     :param account_id: [required] 
     :type account_id: int
-    
+
     :param protocol_endpoint_type: [required] 
     :type protocol_endpoint_type: str
-    
+
     :param initiator_secret: [required] 
     :type initiator_secret: str
-    
+
     :param target_secret: [required] 
     :type target_secret: str
-    
+
     :param status: [required] 
     :type status: str
     """
@@ -1998,7 +1998,7 @@ class SnapshotRemoteStatus(data_model.DataObject):
     """
     :param remote_status: [required] 
     :type remote_status: str
-    
+
     :param volume_pair_uuid: [required] The snapshot is done and is writable (the active branch of the slice). 
     :type volume_pair_uuid: UUID
     """
@@ -2024,49 +2024,49 @@ class Snapshot(data_model.DataObject):
     The return object includes information for the active snapshot as well as each snapshot created for the volume.
     :param snapshot_id: [required] Unique ID for this snapshot. 
     :type snapshot_id: int
-    
+
     :param volume_id: [required] The volume this snapshot was taken of. 
     :type volume_id: int
-    
+
     :param name: [required] A name for this snapshot. It is not necessarily unique. 
     :type name: str
-    
+
     :param checksum: [required] A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. 
     :type checksum: str
-    
+
     :param enable_remote_replication: [required] Identifies if snapshot is enabled for remote replication. 
     :type enable_remote_replication: bool
-    
+
     :param expiration_reason: [required] Indicates how the snapshot expiration was set. Possible values: <br/><b>api</b>: expiration time was set by using the API. <br/><b>none</b>: there is no expiration time set. <br/><b>test</b>: expiration time was set for testing. 
     :type expiration_reason: str
-    
+
     :param expiration_time: [required] The time at which this snapshot will expire and be purged from the cluster. 
     :type expiration_time: str
-    
+
     :param remote_statuses: [required] Current remote status of the snapshot remoteStatus: Possible values: <br/><b>Present</b>: Snapshot exists on a remote cluster <br/><b>Not Present</b>: Snapshot does not exist on remote cluster <br/><b>Syncing</b>: This is a target cluster and it is currently replicating the snapshot <br/><b>Deleted</b>: This is a target cluster, the snapshot has been deleted, and it still exists on the source. <br/><b>volumePairUUID</b>: universal identifier of the volume pair 
     :type remote_statuses: SnapshotRemoteStatus
-    
+
     :param status: [required] Current status of the snapshot <br/><b>Preparing</b>: A snapshot that is being prepared for use and is not yet writable. <br/><b>Done</b>: A snapshot that has finished being prepared and is now usable. <br/><b>Active</b>: This snapshot is the active branch. 
     :type status: str
-    
+
     :param snapshot_uuid: [required] Universal Unique ID of an existing snapshot. 
     :type snapshot_uuid: UUID
-    
+
     :param total_size: [required] Total size of this snapshot in bytes. It is equivalent to totalSize of the volume when this snapshot was taken. 
     :type total_size: int
-    
+
     :param group_id:  If present, the ID of the group this snapshot is a part of. If not present, this snapshot is not part of a group. 
     :type group_id: int
-    
+
     :param group_snapshot_uuid: [required] The current "members" results contains information about each snapshot in the group. Each of these members will have a "uuid" parameter for the snapshot's UUID. 
     :type group_snapshot_uuid: UUID
-    
+
     :param create_time: [required] The time this snapshot was taken. 
     :type create_time: str
-    
+
     :param attributes: [required] List of Name/Value pairs in JSON object format. 
     :type attributes: dict
-    
+
     :param virtual_volume_id: [required] The ID of the virtual volume with which the snapshot is associated. 
     :type virtual_volume_id: UUID
     """
@@ -2174,40 +2174,40 @@ class VirtualVolumeInfo(data_model.DataObject):
     """
     :param virtual_volume_id: [required] 
     :type virtual_volume_id: UUID
-    
+
     :param parent_virtual_volume_id: [required] 
     :type parent_virtual_volume_id: UUID
-    
+
     :param storage_container_id: [required] 
     :type storage_container_id: UUID
-    
+
     :param storage_container: [required] 
     :type storage_container: StorageContainer
-    
+
     :param volume_id: [required] 
     :type volume_id: int
-    
+
     :param snapshot_id: [required] 
     :type snapshot_id: int
-    
+
     :param virtual_volume_type: [required] 
     :type virtual_volume_type: str
-    
+
     :param status: [required] 
     :type status: str
-    
+
     :param bindings: [required] 
     :type bindings: int
-    
+
     :param children: [required] 
     :type children: UUID
-    
+
     :param metadata: [required] 
     :type metadata: dict
-    
+
     :param snapshot_info: [required] 
     :type snapshot_info: Snapshot
-    
+
     :param volume_info: [required] 
     :type volume_info: Volume
     """
@@ -2297,31 +2297,31 @@ class VirtualVolumeBinding(data_model.DataObject):
     """
     :param protocol_endpoint_id: [required] The unique ID of the protocol endpoint. 
     :type protocol_endpoint_id: UUID
-    
+
     :param protocol_endpoint_in_band_id: [required] The scsiNAADeviceID of the protocol endpoint. For more information, see protocolEndpoint. 
     :type protocol_endpoint_in_band_id: str
-    
+
     :param protocol_endpoint_type: [required] The type of protocol endpoint. SCSI is the only value returned for the protocol endpoint type. 
     :type protocol_endpoint_type: str
-    
+
     :param virtual_volume_binding_id: [required] The unique ID of the virtual volume binding object. 
     :type virtual_volume_binding_id: int
-    
+
     :param virtual_volume_host_id: [required] The unique ID of the virtual volume host. 
     :type virtual_volume_host_id: UUID
-    
+
     :param virtual_volume_id: [required] The unique ID of the virtual volume. 
     :type virtual_volume_id: UUID
-    
+
     :param virtual_volume_secondary_id: [required] The secondary ID of the virtual volume. 
     :type virtual_volume_secondary_id: str
-    
+
     :param virtual_volume: [required] An object describing the bound volume or snapshot. 
     :type virtual_volume: VirtualVolumeInfo
-    
+
     :param protocol_endpoint: [required] An object describing the protocol endpoint to which the virtual volume is bound. 
     :type protocol_endpoint: UUID
-    
+
     :param virtual_volume_host: [required] An object describing the host to which this binding corresponds. 
     :type virtual_volume_host: VirtualVolumeHost
     """
@@ -2417,13 +2417,13 @@ class QoS(data_model.DataObject):
     <b>burstIOPS</b> Min: 100/50 (v7.0/v8.0), Default: 15,000, Max: 100,000<br/>
     :param min_iops:  Desired minimum 4KB IOPS to guarantee. The allowed IOPS will only drop below this level if all volumes have been capped at their minimum IOPS value and there is still insufficient performance capacity. 
     :type min_iops: int
-    
+
     :param max_iops:  Desired maximum 4KB IOPS allowed over an extended period of time. 
     :type max_iops: int
-    
+
     :param burst_iops:  Maximum "peak" 4KB IOPS allowed for short periods of time. Allows for bursts of I/O activity over the normal max IOPS value. 
     :type burst_iops: int
-    
+
     :param burst_time:  The length of time burst IOPS is allowed. The value returned is represented in time units of seconds. <br/><b>Note</b>: this value is calculated by the system based on IOPS set for QoS. 
     :type burst_time: int
     """
@@ -2459,19 +2459,19 @@ class CreateVolumeRequest(data_model.DataObject):
     """
     :param name: [required] Name of the volume. Not required to be unique, but it is recommended. May be 1 to 64 characters in length. 
     :type name: str
-    
+
     :param account_id: [required] AccountID for the owner of this volume. 
     :type account_id: int
-    
+
     :param total_size: [required] Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size. 
     :type total_size: int
-    
+
     :param enable512e: [required] Should the volume provides 512-byte sector emulation? 
     :type enable512e: bool
-    
+
     :param qos:  Initial quality of service settings for this volume. <br/><br/> Volumes created without specified QoS values are created with the default values for QoS. Default values for a volume can be found by running the GetDefaultQoS method. 
     :type qos: QoS
-    
+
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -2531,7 +2531,7 @@ class ListSnapshotsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateClusterResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -2555,7 +2555,7 @@ class InvokeSFApiRequest(data_model.DataObject):
     """
     :param method: [required] The name of the method to invoke. This is case sensitive. 
     :type method: str
-    
+
     :param parameters:  An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked. 
     :type parameters: dict
     """
@@ -2579,37 +2579,37 @@ class NodeStatsInfo(data_model.DataObject):
     """
     :param c_bytes_in: [required] Bytes in on the cluster interface. 
     :type c_bytes_in: int
-    
+
     :param c_bytes_out: [required] Bytes out on the cluster interface. 
     :type c_bytes_out: int
-    
+
     :param cpu: [required] CPU Usage % 
     :type cpu: int
-    
+
     :param m_bytes_in: [required] Bytes in on the management interface. 
     :type m_bytes_in: int
-    
+
     :param m_bytes_out: [required] Bytes out on the management interface. 
     :type m_bytes_out: int
-    
+
     :param network_utilization_cluster: [required] Network interface utilization (in %) for the cluster network interface. 
     :type network_utilization_cluster: int
-    
+
     :param network_utilization_storage: [required] Network interface utilization (in %) for the storage network interface. 
     :type network_utilization_storage: int
-    
+
     :param node_id: [required] 
     :type node_id: int
-    
+
     :param s_bytes_in: [required] Bytes in on the storage interface. 
     :type s_bytes_in: int
-    
+
     :param s_bytes_out: [required] Bytes out on the storage interface. 
     :type s_bytes_out: int
-    
+
     :param timestamp: [required] Current time in UTC format ISO 8691 date string. 
     :type timestamp: str
-    
+
     :param used_memory: [required] Total memory usage in bytes. 
     :type used_memory: int
     """
@@ -2709,16 +2709,16 @@ class Initiator(data_model.DataObject):
     Object containing characteristics of each initiator
     :param alias: [required] The friendly name assigned to this initiator. (String) 
     :type alias: str
-    
+
     :param initiator_id: [required] The numeric ID of the initiator that has been created. (Integer) 
     :type initiator_id: int
-    
+
     :param initiator_name: [required] The name of the initiator that has been created. (String) 
     :type initiator_name: str
-    
+
     :param volume_access_groups: [required] A list of volumeAccessGroupIDs to which this initiator belongs. (Array of Integers) 
     :type volume_access_groups: int
-    
+
     :param attributes: [required] A set of JSON attributes assigned to this initiator. (JSON Object) 
     :type attributes: dict
     """
@@ -2775,16 +2775,16 @@ class UpdateBulkVolumeStatusRequest(data_model.DataObject):
     """
     :param key: [required] The key assigned during initialization of a "StartBulkVolumeRead" or "StartBulkVolumeWrite" session. 
     :type key: str
-    
+
     :param status: [required] The SolidFire system sets the status of the given bulk volume job.<br/> Possible values:<br/> <br/><b>running</b>: jobs that are still active. <br/><b>complete</b>: jobs that are done. failed - jobs that have failed. <br/><b>failed</b>: jobs that have failed. 
     :type status: str
-    
+
     :param percent_complete:  The completed progress of the bulk volume job as a percentage. 
     :type percent_complete: str
-    
+
     :param message:  Returns the status of the bulk volume job when the job has completed. 
     :type message: str
-    
+
     :param attributes:  JSON attributes  updates what is on the bulk volume job. 
     :type attributes: dict
     """
@@ -2823,7 +2823,7 @@ class UpdateBulkVolumeStatusRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifySnapshotResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -2832,19 +2832,19 @@ class ModifyVolumesRequest(data_model.DataObject):
     """
     :param volume_ids: [required] A list of volumeIDs for the volumes to be modified. 
     :type volume_ids: int
-    
+
     :param account_id:  AccountID to which the volume is reassigned. If none is specified, the previous account name is used. 
     :type account_id: int
-    
+
     :param access:  Access allowed for the volume. Possible values:readOnly: Only read operations are allowed.readWrite: Reads and writes are allowed.locked: No reads or writes are allowed.If not specified, the access value does not change.replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.If a value is not specified, the access value does not change.  
     :type access: str
-    
+
     :param attributes:  
     :type attributes: dict
-    
+
     :param qos:  New quality of service settings for this volume.If not specified, the QoS settings are not changed. 
     :type qos: QoS
-    
+
     :param total_size:  New size of the volume in bytes. 1000000000 is equal to 1GB. Size is rounded up to the nearest 1MB in size. This parameter can only be used to increase the size of a volume. 
     :type total_size: int
     """
@@ -2892,31 +2892,31 @@ class VirtualVolumeTask(data_model.DataObject):
     """
     :param virtual_volume_task_id: [required] 
     :type virtual_volume_task_id: UUID
-    
+
     :param virtualvolume_id: [required] 
     :type virtualvolume_id: UUID
-    
+
     :param clone_virtual_volume_id: [required] 
     :type clone_virtual_volume_id: UUID
-    
+
     :param status: [required] 
     :type status: str
-    
+
     :param operation: [required] 
     :type operation: str
-    
+
     :param virtual_volume_host_id: [required] 
     :type virtual_volume_host_id: UUID
-    
+
     :param parent_metadata: [required] 
     :type parent_metadata: dict
-    
+
     :param parent_total_size: [required] 
     :type parent_total_size: int
-    
+
     :param parent_used_size: [required] 
     :type parent_used_size: int
-    
+
     :param cancelled: [required] 
     :type cancelled: bool
     """
@@ -3004,37 +3004,37 @@ class ClusterInfo(data_model.DataObject):
     Cluster Info object returns information the node uses to communicate with the cluster.
     :param attributes: [required] List of Name/Value pairs in JSON object format. 
     :type attributes: dict
-    
+
     :param encryption_at_rest_state: [required] Encryption at rest state. 
     :type encryption_at_rest_state: str
-    
+
     :param ensemble: [required] Array of Node IP addresses that are participating in the cluster. 
     :type ensemble: str
-    
+
     :param mvip: [required] Management network interface. 
     :type mvip: str
-    
+
     :param mvip_node_id: [required] Node holding the master MVIP address 
     :type mvip_node_id: int
-    
+
     :param name: [required] Unique cluster name. 
     :type name: str
-    
+
     :param rep_count: [required] Number of replicas of each piece of data to store in the cluster. Valid value is 2 
     :type rep_count: int
-    
+
     :param state: [required] 
     :type state: str
-    
+
     :param svip: [required] Storage virtual IP 
     :type svip: str
-    
+
     :param svip_node_id: [required] Node holding the master SVIP address. 
     :type svip_node_id: int
-    
+
     :param unique_id: [required] Unique ID for the cluster. 
     :type unique_id: str
-    
+
     :param uuid: [required] 
     :type uuid: UUID
     """
@@ -3133,7 +3133,7 @@ class LoggingServer(data_model.DataObject):
     """
     :param host: [required] Hostname or IP address of the log server. 
     :type host: str
-    
+
     :param port: [required] Port number that the log server is listening on. 
     :type port: int
     """
@@ -3172,10 +3172,10 @@ class StartBulkVolumeWriteResult(data_model.DataObject):
     """
     :param async_handle: [required] ID of the async process to be checked for completion. 
     :type async_handle: int
-    
+
     :param key: [required] Opaque key uniquely identifying the session. 
     :type key: str
-    
+
     :param url: [required] URL to access the node's web server 
     :type url: str
     """
@@ -3202,7 +3202,7 @@ class StartBulkVolumeWriteResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveClusterPairResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -3223,13 +3223,13 @@ class ListVolumesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class EnableSnmpResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveAccountResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -3239,13 +3239,13 @@ class ModifyInitiator(data_model.DataObject):
     Object containing characteristics of each initiator to modify
     :param initiator_id: [required] (Required) The numeric ID of the initiator to modify. (Integer) 
     :type initiator_id: int
-    
+
     :param alias:  (Optional) A new friendly name to assign to the initiator. (String) 
     :type alias: str
-    
+
     :param volume_access_group_id:  (Optional) The ID of the volume access group into to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
     :type volume_access_group_id: int
-    
+
     :param attributes:  (Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) 
     :type attributes: dict
     """
@@ -3278,7 +3278,7 @@ class ModifyInitiator(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetSnmpTrapInfoResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -3302,16 +3302,16 @@ class GetEfficiencyResult(data_model.DataObject):
     """
     :param compression:  The amount of space being saved by compressing data on a single volume. Stated as a ratio where "1" means data has been stored without being compressed. 
     :type compression: float
-    
+
     :param deduplication:  The amount of space being saved on a single volume by not duplicating data. Stated as a ratio. 
     :type deduplication: float
-    
+
     :param thin_provisioning:  The ratio of space used to the amount of space allocated for storing data. Stated as a ratio. 
     :type thin_provisioning: float
-    
+
     :param timestamp: [required] The last time efficiency data was collected after Garbage Collection (GC). ISO 8601 data string. 
     :type timestamp: str
-    
+
     :param missing_volumes: [required] The volumes that could not be queried for efficiency data. Missing volumes can be caused by GC being less than hour old, temporary network loss or restarted services since the GC cycle. 
     :type missing_volumes: int
     """
@@ -3354,109 +3354,109 @@ class GetLimitsResult(data_model.DataObject):
     Limits for the cluster
     :param account_count_max: [required] 
     :type account_count_max: int
-    
+
     :param account_name_length_max: [required] 
     :type account_name_length_max: int
-    
+
     :param account_name_length_min: [required] 
     :type account_name_length_min: int
-    
+
     :param bulk_volume_jobs_per_node_max: [required] 
     :type bulk_volume_jobs_per_node_max: int
-    
+
     :param bulk_volume_jobs_per_volume_max: [required] 
     :type bulk_volume_jobs_per_volume_max: int
-    
+
     :param clone_jobs_per_volume_max: [required] 
     :type clone_jobs_per_volume_max: int
-    
+
     :param cluster_pairs_count_max: [required] 
     :type cluster_pairs_count_max: int
-    
+
     :param initiator_name_length_max: [required] 
     :type initiator_name_length_max: int
-    
+
     :param initiator_count_max: [required] 
     :type initiator_count_max: int
-    
+
     :param initiators_per_volume_access_group_count_max: [required] 
     :type initiators_per_volume_access_group_count_max: int
-    
+
     :param iscsi_sessions_from_fibre_channel_nodes_max: [required] 
     :type iscsi_sessions_from_fibre_channel_nodes_max: int
-    
+
     :param secret_length_max: [required] 
     :type secret_length_max: int
-    
+
     :param secret_length_min: [required] 
     :type secret_length_min: int
-    
+
     :param snapshot_name_length_max: [required] 
     :type snapshot_name_length_max: int
-    
+
     :param snapshots_per_volume_max: [required] 
     :type snapshots_per_volume_max: int
-    
+
     :param volume_access_group_count_max: [required] 
     :type volume_access_group_count_max: int
-    
+
     :param volume_access_group_lun_max: [required] 
     :type volume_access_group_lun_max: int
-    
+
     :param volume_access_group_name_length_max: [required] 
     :type volume_access_group_name_length_max: int
-    
+
     :param volume_access_group_name_length_min: [required] 
     :type volume_access_group_name_length_min: int
-    
+
     :param volume_access_groups_per_initiator_count_max: [required] 
     :type volume_access_groups_per_initiator_count_max: int
-    
+
     :param volume_access_groups_per_volume_count_max: [required] 
     :type volume_access_groups_per_volume_count_max: int
-    
+
     :param initiator_alias_length_max: [required] 
     :type initiator_alias_length_max: int
-    
+
     :param volume_burst_iopsmax: [required] 
     :type volume_burst_iopsmax: int
-    
+
     :param volume_burst_iopsmin: [required] 
     :type volume_burst_iopsmin: int
-    
+
     :param volume_count_max: [required] 
     :type volume_count_max: int
-    
+
     :param volume_max_iopsmax: [required] 
     :type volume_max_iopsmax: int
-    
+
     :param volume_max_iopsmin: [required] 
     :type volume_max_iopsmin: int
-    
+
     :param volume_min_iopsmax: [required] 
     :type volume_min_iopsmax: int
-    
+
     :param volume_min_iopsmin: [required] 
     :type volume_min_iopsmin: int
-    
+
     :param volume_name_length_max: [required] 
     :type volume_name_length_max: int
-    
+
     :param volume_name_length_min: [required] 
     :type volume_name_length_min: int
-    
+
     :param volume_size_max: [required] 
     :type volume_size_max: int
-    
+
     :param volume_size_min: [required] 
     :type volume_size_min: int
-    
+
     :param volumes_per_account_count_max: [required] 
     :type volumes_per_account_count_max: int
-    
+
     :param volumes_per_group_snapshot_max: [required] 
     :type volumes_per_group_snapshot_max: int
-    
+
     :param volumes_per_volume_access_group_count_max: [required] 
     :type volumes_per_volume_access_group_count_max: int
     """
@@ -3684,7 +3684,7 @@ class GetAPIResult(data_model.DataObject):
     """
     :param current_version: [required] 
     :type current_version: float
-    
+
     :param supported_versions: [required] 
     :type supported_versions: float
     """
@@ -3723,13 +3723,13 @@ class RollbackToGroupSnapshotRequest(data_model.DataObject):
     """
     :param group_snapshot_id: [required] Unique ID of the group snapshot. 
     :type group_snapshot_id: int
-    
+
     :param save_current_state: [required] <br/><b>true</b>: The previous active volume image is kept. <br/><b>false</b>: (default) The previous active volume image is deleted. 
     :type save_current_state: bool
-    
+
     :param name:  Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with  "-copy" appended to the end of the name. 
     :type name: str
-    
+
     :param attributes:  List of Name/Value pairs in JSON object format 
     :type attributes: dict
     """
@@ -3762,7 +3762,7 @@ class RollbackToGroupSnapshotRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveVolumePairResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -3771,16 +3771,16 @@ class ListVirtualVolumesRequest(data_model.DataObject):
     """
     :param details:  Possible values:true: Include more details about each VVOL in the response.false: Include the standard level of detail about each VVOL in the response. 
     :type details: bool
-    
+
     :param limit:  The maximum number of virtual volumes to list. 
     :type limit: int
-    
+
     :param recursive:  Possible values:true: Include information about the children of each VVOL in the response.false: Do not include information about the children of each VVOL in the response. 
     :type recursive: bool
-    
+
     :param start_virtual_volume_id:  The ID of the virtual volume at which to begin the list. 
     :type start_virtual_volume_id: UUID
-    
+
     :param virtual_volume_ids:  A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
     :type virtual_volume_ids: UUID
     """
@@ -3867,55 +3867,55 @@ class ISCSISession(data_model.DataObject):
     """
     :param account_id: [required] 
     :type account_id: int
-    
+
     :param initiator: [required] 
     :type initiator: Initiator
-    
+
     :param account_name: [required] 
     :type account_name: str
-    
+
     :param drive_id: [required] 
     :type drive_id: int
-    
+
     :param initiator_ip: [required] 
     :type initiator_ip: str
-    
+
     :param initiator_port_name: [required] 
     :type initiator_port_name: str
-    
+
     :param target_port_name: [required] 
     :type target_port_name: str
-    
+
     :param initiator_name: [required] 
     :type initiator_name: str
-    
+
     :param node_id: [required] 
     :type node_id: int
-    
+
     :param service_id: [required] 
     :type service_id: int
-    
+
     :param session_id: [required] 
     :type session_id: int
-    
+
     :param target_name: [required] 
     :type target_name: str
-    
+
     :param target_ip: [required] 
     :type target_ip: str
-    
+
     :param virtual_network_id: [required] 
     :type virtual_network_id: int
-    
+
     :param volume_id: [required] 
     :type volume_id: int
-    
+
     :param create_time: [required] 
     :type create_time: str
-    
+
     :param volume_instance: [required] 
     :type volume_instance: int
-    
+
     :param initiator_session_id: [required] 
     :type initiator_session_id: int
     """
@@ -4066,10 +4066,10 @@ class MetadataHosts(data_model.DataObject):
     The volume services on which the volume metadata resides.
     :param dead_secondaries: [required] Secondary metadata (slice) services that are in a dead state. 
     :type dead_secondaries: int
-    
+
     :param live_secondaries: [required] Secondary metadata (slice) services that are currently in a "live" state. 
     :type live_secondaries: int
-    
+
     :param primary: [required] The primary metadata (slice) services hosting the volume. 
     :type primary: int
     """
@@ -4100,97 +4100,97 @@ class VolumeStats(data_model.DataObject):
     Contains statistical data for an individual volume.
     :param account_id: [required] AccountID of the volume owner. 
     :type account_id: int
-    
+
     :param actual_iops: [required] Current actual IOPS to the volume in the last 500 milliseconds. 
     :type actual_iops: int
-    
+
     :param async_delay:  The length of time since the volume was last synced with the remote cluster. If the volume is not paired, this is null. <br/><br/> <br/><b>Note</b>: A target volume in an active replication state always has an async delay of 0 (zero). <br/>Target volumes are system-aware during replication and assume async delay is accurate at all times. 
     :type async_delay: str
-    
+
     :param average_iopsize: [required] Average size in bytes of recent I/O to the volume in the last 500 milliseconds. 
     :type average_iopsize: int
-    
+
     :param burst_iopscredit: [required] The total number of IOP credits available to the user. When users are not using up to the max IOPS, credits are accrued. 
     :type burst_iopscredit: int
-    
+
     :param client_queue_depth: [required] The number of outstanding read and write operations to the cluster. 
     :type client_queue_depth: int
-    
+
     :param desired_metadata_hosts: [required] The volume services being migrated to if the volume metadata is getting migrated between volume services. A "null" value means the volume is not migrating. 
     :type desired_metadata_hosts: MetadataHosts
-    
+
     :param latency_usec: [required] The observed latency time, in microseconds, to complete operations to a volume.<br/> A "0" (zero) value means there is no I/O to the volume. 
     :type latency_usec: int
-    
+
     :param metadata_hosts: [required] The volume services on which the volume metadata resides. 
     :type metadata_hosts: MetadataHosts
-    
+
     :param non_zero_blocks: [required] The number of 4KiB blocks with data after the last garbage collection operation has completed. 
     :type non_zero_blocks: int
-    
+
     :param read_bytes: [required] Total bytes read by clients. 
     :type read_bytes: int
-    
+
     :param read_latency_usec: [required] The average time, in microseconds, to complete read operations. 
     :type read_latency_usec: int
-    
+
     :param read_ops: [required] Total read operations. 
     :type read_ops: int
-    
+
     :param throttle: [required] A floating value between 0 and 1 that represents how much the system is throttling clients below their max IOPS because of re-replication of data, transient errors and snapshots taken. 
     :type throttle: float
-    
+
     :param timestamp: [required] The current time in UTC. 
     :type timestamp: str
-    
+
     :param total_latency_usec: [required] The average time, in microseconds, to complete read and write operations to a volume. 
     :type total_latency_usec: int
-    
+
     :param unaligned_reads: [required] For 512e volumes, the number of read operations that were not on a 4k sector boundary. High numbers of unaligned reads may indicate improper partition alignment. 
     :type unaligned_reads: int
-    
+
     :param unaligned_writes: [required] For 512e volumes, the number of write operations that were not on a 4k sector boundary. High numbers of unaligned writes may indicate improper partition alignment. 
     :type unaligned_writes: int
-    
+
     :param volume_access_groups: [required] List of volume access group(s) to which a volume belongs. 
     :type volume_access_groups: int
-    
+
     :param volume_id: [required] Volume ID of the volume. 
     :type volume_id: int
-    
+
     :param volume_size: [required] Total provisioned capacity in bytes. 
     :type volume_size: int
-    
+
     :param volume_utilization: [required] A floating value that describes how much the client is using the volume. <br/><br/> Values:<br/>  0 = Client is not using the volume<br/> 1 = Client is using their max<br/> >1 = Client is using their burst 
     :type volume_utilization: float
-    
+
     :param write_bytes: [required] Total bytes written by clients. 
     :type write_bytes: int
-    
+
     :param write_latency_usec: [required] The average time, in microseconds, to complete write operations. 
     :type write_latency_usec: int
-    
+
     :param write_ops: [required] Total write operations occurring on the volume. 
     :type write_ops: int
-    
+
     :param zero_blocks: [required] Total number of 4KiB blocks without data after the last round of garbage collection operation has completed. 
     :type zero_blocks: int
-    
+
     :param write_bytes_last_sample: [required] The total number of bytes written to the volume during the last sample period. 
     :type write_bytes_last_sample: int
-    
+
     :param sample_period_msec: [required] The length of the sample period in milliseconds. 
     :type sample_period_msec: int
-    
+
     :param read_bytes_last_sample: [required] The total number of bytes read from the volume during the last sample period. 
     :type read_bytes_last_sample: int
-    
+
     :param read_ops_last_sample: [required] The total number of read operations durin gth elast sample period. 
     :type read_ops_last_sample: int
-    
+
     :param write_ops_last_sample: [required] The total number of write operations during the last sample period. 
     :type write_ops_last_sample: int
-    
+
     :param virtual_volume_id: [required] If the volume of interest is associated with a virtual volume, this is the virtual volume ID. 
     :type virtual_volume_id: UUID
     """
@@ -4409,22 +4409,22 @@ class PhysicalAdapter(data_model.DataObject):
     """
     :param address:  
     :type address: str
-    
+
     :param mac_address:  
     :type mac_address: str
-    
+
     :param mac_address_permanent:  
     :type mac_address_permanent: str
-    
+
     :param mtu:  
     :type mtu: str
-    
+
     :param netmask:  
     :type netmask: str
-    
+
     :param network:  
     :type network: str
-    
+
     :param up_and_running:  
     :type up_and_running: bool
     """
@@ -4478,88 +4478,88 @@ class NetworkConfig(data_model.DataObject):
     """
     :param _default:  
     :type _default: bool
-    
+
     :param bond_master: [required] 
     :type bond_master: str
-    
+
     :param virtual_network_tag: [required] 
     :type virtual_network_tag: str
-    
+
     :param address:  
     :type address: str
-    
+
     :param auto:  
     :type auto: bool
-    
+
     :param bond_downdelay:  
     :type bond_downdelay: str
-    
+
     :param bond_fail_over_mac:  
     :type bond_fail_over_mac: str
-    
+
     :param bond_primary_reselect:  
     :type bond_primary_reselect: str
-    
+
     :param bond_lacp_rate:  
     :type bond_lacp_rate: str
-    
+
     :param bond_miimon:  
     :type bond_miimon: str
-    
+
     :param bond_mode:  
     :type bond_mode: str
-    
+
     :param bond_slaves:  
     :type bond_slaves: str
-    
+
     :param bond_updelay:  
     :type bond_updelay: str
-    
+
     :param broadcast:  
     :type broadcast: str
-    
+
     :param dns_nameservers:  
     :type dns_nameservers: str
-    
+
     :param dns_search:  
     :type dns_search: str
-    
+
     :param family:  
     :type family: str
-    
+
     :param gateway:  
     :type gateway: str
-    
+
     :param mac_address:  
     :type mac_address: str
-    
+
     :param mac_address_permanent:  
     :type mac_address_permanent: str
-    
+
     :param method:  
     :type method: str
-    
+
     :param mtu:  
     :type mtu: str
-    
+
     :param netmask:  
     :type netmask: str
-    
+
     :param network:  
     :type network: str
-    
+
     :param physical:  
     :type physical: PhysicalAdapter
-    
+
     :param routes:  
     :type routes: str
-    
+
     :param status:  
     :type status: str
-    
+
     :param symmetric_route_rules:  
     :type symmetric_route_rules: str
-    
+
     :param up_and_running:  
     :type up_and_running: bool
     """
@@ -4745,22 +4745,22 @@ class Network(data_model.DataObject):
     """
     :param bond10_g:  
     :type bond10_g: NetworkConfig
-    
+
     :param bond1_g:  
     :type bond1_g: NetworkConfig
-    
+
     :param eth0:  
     :type eth0: NetworkConfig
-    
+
     :param eth1:  
     :type eth1: NetworkConfig
-    
+
     :param eth2:  
     :type eth2: NetworkConfig
-    
+
     :param eth3:  
     :type eth3: NetworkConfig
-    
+
     :param lo:  
     :type lo: NetworkConfig
     """
@@ -4814,7 +4814,7 @@ class Config(data_model.DataObject):
     """
     :param cluster: [required] 
     :type cluster: ClusterConfig
-    
+
     :param network: [required] 
     :type network: Network
     """
@@ -4868,10 +4868,10 @@ class ModifyGroupSnapshotRequest(data_model.DataObject):
     """
     :param group_snapshot_id: [required] ID of the snapshot. 
     :type group_snapshot_id: int
-    
+
     :param expiration_time:  Use to set the time when the snapshot should be removed. 
     :type expiration_time: str
-    
+
     :param enable_remote_replication:  Use to enable the snapshot created to be replicated to a remote SolidFire cluster. Possible values: <br/><b>true</b>: the snapshot will be replicated to remote storage. <br/><b>false</b>: Default. No replication. 
     :type enable_remote_replication: bool
     """
@@ -4917,16 +4917,16 @@ class SnmpV3UsmUser(data_model.DataObject):
     The SNMP v3 usmUser object is used with the API method SetSnmpInfo to configure SNMP on the cluster.
     :param access: [required] <br/><b>rouser</b>: read-only access.* <br/><b>rwuser</b>: for read-write access. <br/><b>rosys</b>: for read-only access to a restricted set of system information *SolidFire recommends that all USM users be set to "rouser" access, because all SolidFire MIB objects are read-only. 
     :type access: str
-    
+
     :param name: [required] The name of the user. Must contain at least one character, but no more than 32 characters. Blank spaces are not allowed. 
     :type name: str
-    
+
     :param password: [required] The password of the user. Must be between 8 and 255 characters long (inclusive). Blank spaces are not allowed. Required if "secLevel" is "auth" or "priv." 
     :type password: str
-    
+
     :param passphrase: [required] The passphrase of the user. Must be between 8 and 255 characters long (inclusive). Blank spaces are not allowed. Required if "secLevel" is "priv." 
     :type passphrase: str
-    
+
     :param sec_level: [required] <br/><b>noauth</b>: No password or passphrase is required. <br/><b>auth</b>: A password is required for user access. <br/><b>priv</b>: A password and passphrase is required for user access. 
     :type sec_level: str
     """
@@ -4980,13 +4980,13 @@ class GetScheduleResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteSnapshotResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CompleteVolumePairingResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -4995,88 +4995,88 @@ class DriveHardware(data_model.DataObject):
     """
     :param canonical_name: [required] 
     :type canonical_name: str
-    
+
     :param connected: [required] 
     :type connected: bool
-    
+
     :param dev: [required] 
     :type dev: int
-    
+
     :param dev_path: [required] 
     :type dev_path: str
-    
+
     :param drive_type: [required] 
     :type drive_type: str
-    
+
     :param life_remaining_percent: [required] 
     :type life_remaining_percent: int
-    
+
     :param lifetime_read_bytes: [required] 
     :type lifetime_read_bytes: int
-    
+
     :param lifetime_write_bytes: [required] 
     :type lifetime_write_bytes: int
-    
+
     :param name: [required] 
     :type name: str
-    
+
     :param path: [required] 
     :type path: str
-    
+
     :param path_link: [required] 
     :type path_link: str
-    
+
     :param power_on_hours: [required] 
     :type power_on_hours: int
-    
+
     :param product: [required] 
     :type product: str
-    
+
     :param reallocated_sectors: [required] 
     :type reallocated_sectors: int
-    
+
     :param reserve_capacity_percent: [required] 
     :type reserve_capacity_percent: int
-    
+
     :param scsi_compat_id: [required] 
     :type scsi_compat_id: str
-    
+
     :param scsi_state: [required] 
     :type scsi_state: str
-    
+
     :param security_at_maximum: [required] 
     :type security_at_maximum: bool
-    
+
     :param security_enabled: [required] 
     :type security_enabled: bool
-    
+
     :param security_frozen: [required] 
     :type security_frozen: bool
-    
+
     :param security_locked: [required] 
     :type security_locked: bool
-    
+
     :param security_supported: [required] 
     :type security_supported: bool
-    
+
     :param serial: [required] 
     :type serial: str
-    
+
     :param size: [required] 
     :type size: int
-    
+
     :param slot: [required] 
     :type slot: int
-    
+
     :param smart_ssd_write_capable:  
     :type smart_ssd_write_capable: bool
-    
+
     :param uuid: [required] 
     :type uuid: UUID
-    
+
     :param vendor: [required] 
     :type vendor: str
-    
+
     :param version: [required] 
     :type version: str
     """
@@ -5277,7 +5277,7 @@ class NodeDriveHardware(data_model.DataObject):
     """
     :param node_id: [required] 
     :type node_id: int
-    
+
     :param result: [required] 
     :type result: DrivesHardware
     """
@@ -5313,7 +5313,7 @@ class ListDriveHardwareResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetSnmpInfoResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -5322,19 +5322,19 @@ class ListVolumesRequest(data_model.DataObject):
     """
     :param start_volume_id:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
     :type start_volume_id: int
-    
+
     :param limit:  The maximum number of volumes to return from the API. 
     :type limit: int
-    
+
     :param volume_status:  If specified, filter to only volumes with the provided status. By default, list all volumes. 
     :type volume_status: str
-    
+
     :param accounts:  If specified, only fetch volumes which belong to the provided accounts. By default, list volumes for all accounts. 
     :type accounts: int
-    
+
     :param is_paired:  If specified, only fetch volumes which are paired (if true) or non-paired (if false). By default, list all volumes regardless of their pairing status. 
     :type is_paired: bool
-    
+
     :param volume_ids:  If specified, only fetch volumes specified in this list. This option cannot be specified if startVolumeID, limit, or accounts option is specified. 
     :type volume_ids: int
     """
@@ -5394,7 +5394,7 @@ class GetScheduleRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyScheduleResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -5403,7 +5403,7 @@ class DeleteGroupSnapshotRequest(data_model.DataObject):
     """
     :param group_snapshot_id: [required] Unique ID of the group snapshot. 
     :type group_snapshot_id: int
-    
+
     :param save_members: [required] <br/><b>true</b>: Snapshots are kept, but group association is removed. <br/><b>false</b>: The group and snapshots are deleted. 
     :type save_members: bool
     """
@@ -5442,7 +5442,7 @@ class SetNtpInfoRequest(data_model.DataObject):
     """
     :param servers: [required] List of NTP servers to add to each node's NTP configuration. 
     :type servers: str
-    
+
     :param broadcastclient:  Enable every node in the cluster as a broadcase client. 
     :type broadcastclient: bool
     """
@@ -5481,13 +5481,13 @@ class ListClusterFaultsRequest(data_model.DataObject):
     """
     :param exceptions:  
     :type exceptions: bool
-    
+
     :param best_practices:  Include faults triggered by sub-optimal system configuration. Possible values: true, false 
     :type best_practices: bool
-    
+
     :param update:  
     :type update: bool
-    
+
     :param fault_types:  Determines the types of faults returned: current: List active, unresolved faults. <b>resolved</b>: List faults that were previously detected and resolved. <b>all</b>: (Default) List both current and resolved faults. You can see the fault status in the 'resolved' field of the Cluster Fault object. 
     :type fault_types: str
     """
@@ -5523,16 +5523,16 @@ class AddClusterAdminRequest(data_model.DataObject):
     """
     :param username: [required] Unique username for this Cluster Admin. 
     :type username: str
-    
+
     :param password: [required] Password used to authenticate this Cluster Admin. 
     :type password: str
-    
+
     :param access: [required] Controls which methods this Cluster Admin can use. For more details on the levels of access, see "Access Control" in the Element API Guide. 
     :type access: str
-    
+
     :param accept_eula:  Indicate your acceptance of the End User License Agreement when creating this cluster admin. To accept the EULA, set this parameter to true. 
     :type accept_eula: bool
-    
+
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -5574,16 +5574,16 @@ class GetVolumeEfficiencyResult(data_model.DataObject):
     """
     :param compression: [required] The amount of space being saved by compressing data on a single volume. Stated as a ratio where "1" means data has been stored without being compressed. 
     :type compression: float
-    
+
     :param deduplication: [required] The amount of space being saved on a single volume by not duplicating data. Stated as a ratio. 
     :type deduplication: float
-    
+
     :param missing_volumes: [required] The volumes that could not be queried for efficiency data. Missing volumes can be caused by GC being less than hour old, temporary network loss or restarted services since the GC cycle. 
     :type missing_volumes: int
-    
+
     :param thin_provisioning: [required] The ratio of space used to the amount of space allocated for storing data. Stated as a ratio. 
     :type thin_provisioning: float
-    
+
     :param timestamp: [required] The last time efficiency data was collected after Garbage Collection (GC). 
     :type timestamp: str
     """
@@ -5622,7 +5622,7 @@ class GetVolumeEfficiencyResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveClusterAdminResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -5647,31 +5647,31 @@ class LdapConfiguration(data_model.DataObject):
     LDAP Configuration object returns information about the LDAP configuration on SolidFire storage. LDAP information is returned with the API method GetLdapConfiguration.
     :param auth_type: [required] Identifies which user authentcation method will be used. <br/> Valid values:<br/> <b>DirectBind</b><br/> <b>SearchAndBind</b> 
     :type auth_type: str
-    
+
     :param enabled: [required] Identifies whether or not the system is enabled for LDAP. <br/> Valid values:<br/> <b>true</b><br/> <b>false</b> 
     :type enabled: bool
-    
+
     :param group_search_base_dn: [required] The base DN of the tree to start the group search (will do a subtree search from here). 
     :type group_search_base_dn: str
-    
+
     :param group_search_custom_filter: [required] The custom search filter used. 
     :type group_search_custom_filter: str
-    
+
     :param group_search_type: [required] Controls the default group search filter used, can be one of the following:<br/> <b>NoGroups</b>: No group support.<br/> <b>ActiveDirectory</b>: Nested membership of all of a user's AD groups.<br/> <b>MemberDN</b>: MemberDN style groups (single-level). 
     :type group_search_type: str
-    
+
     :param search_bind_dn: [required] A fully qualified DN to log in with to perform an LDAP search for the user (needs read access to the LDAP directory). 
     :type search_bind_dn: str
-    
+
     :param server_uris: [required] A comma-separated list of LDAP server URIs (examples: "ldap://1.2.3.4" and ldaps://1.2.3.4:123") 
     :type server_uris: str
-    
+
     :param user_dntemplate: [required] A string that is used to form a fully qualified user DN. 
     :type user_dntemplate: str
-    
+
     :param user_search_base_dn: [required] The base DN of the tree used to start the search (will do a subtree search from here). 
     :type user_search_base_dn: str
-    
+
     :param user_search_filter: [required] The LDAP filter used. 
     :type user_search_filter: str
     """
@@ -5770,7 +5770,7 @@ class SetNetworkConfigResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RestoreDeletedVolumeResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -5791,7 +5791,7 @@ class RemoveDrivesRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyGroupSnapshotResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -5800,19 +5800,19 @@ class CloneMultipleVolumeParams(data_model.DataObject):
     """
     :param volume_id: [required] Required parameter for "volumes" array: volumeID. 
     :type volume_id: int
-    
+
     :param access:  Access settings for the new volume. <br/><b>readOnly</b>: Only read operations are allowed. <br/><b>readWrite</b>: Reads and writes are allowed. <br/><b>locked</b>: No reads or writes are allowed. <br/><b>replicationTarget</b>: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked. <br/><br/> If unspecified, the access settings of the clone will be the same as the source. 
     :type access: str
-    
+
     :param name:  New name for the clone. 
     :type name: str
-    
+
     :param new_account_id:  Account ID for the new volume. 
     :type new_account_id: int
-    
+
     :param new_size:  New size Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size. 
     :type new_size: int
-    
+
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -5861,13 +5861,13 @@ class SnmpNetwork(data_model.DataObject):
     The SNMP network object contains information about SNMP configuration for the cluster nodes. SNMP v3 is supported on SolidFire clusters.
     :param access: [required] <br/><b>ro</b>: read-only access.* <br/><b>rw</b>: for read-write access. <br/><b>rosys</b>: for read-only access to a restricted set of system information *SolidFire recommends that all networks other than the default "localhost" be set to "ro" access, because all SolidFire MIB objects are read-only. 
     :type access: str
-    
+
     :param cidr: [required] A CIDR network mask. This network mask must be an integer greater than or equal to 0, and less than or equal to 32. It must also not be equal to 31. 
     :type cidr: int
-    
+
     :param community: [required] SNMP community string. 
     :type community: str
-    
+
     :param network: [required] This parameter along with the cidr variable is used to control which network the access and community string apply to. The special value of "default" is used to specify an entry that applies to all networks. The cidr mask is ignored when network value is either a host name or default. 
     :type network: str
     """
@@ -5903,13 +5903,13 @@ class SetSnmpInfoRequest(data_model.DataObject):
     """
     :param networks:  List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. SNMP v2 only. 
     :type networks: SnmpNetwork
-    
+
     :param enabled:  If set to "true", then SNMP is enabled on each node in the cluster. 
     :type enabled: bool
-    
+
     :param snmp_v3_enabled:  If set to "true", then SNMP v3 is enabled on each node in the cluster. 
     :type snmp_v3_enabled: bool
-    
+
     :param usm_users:  If SNMP v3 is enabled, this value must be passed in place of the "networks" parameter. SNMP v3 only. 
     :type usm_users: SnmpV3UsmUser
     """
@@ -5942,7 +5942,7 @@ class SetSnmpInfoRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetNtpInfoResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -5951,22 +5951,22 @@ class AsyncHandle(data_model.DataObject):
     """
     :param async_result_id: [required] The ID of the result. 
     :type async_result_id: int
-    
+
     :param completed: [required] Returns true if it is completed and false if it isn't. 
     :type completed: bool
-    
+
     :param create_time: [required] The time at which the asyncronous result was created 
     :type create_time: str
-    
+
     :param data: [required] Attributes related to the result 
     :type data: dict
-    
+
     :param last_update_time: [required] Time at which the result was last updated 
     :type last_update_time: str
-    
+
     :param result_type: [required] The type of result. Could be Clone, DriveAdd, etc. 
     :type result_type: str
-    
+
     :param success: [required] Returns whether the result was a success or failure. 
     :type success: bool
     """
@@ -6035,7 +6035,7 @@ class GetNtpInfoResult(data_model.DataObject):
     """
     :param broadcastclient: [required] Indicates whether or not the nodes in the cluster are listening for broadcast NTP messages. Possible values: true false 
     :type broadcastclient: bool
-    
+
     :param servers: [required] List of NTP servers. 
     :type servers: str
     """
@@ -6071,7 +6071,7 @@ class ListDriveStatsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVolumeAccessGroupLunAssignmentsResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -6080,10 +6080,10 @@ class ListInitiatorsRequest(data_model.DataObject):
     """
     :param start_initiator_id:  The initiator ID at which to begin the listing. You can supply this parameter or the "initiators" parameter, but not both. 
     :type start_initiator_id: int
-    
+
     :param limit:  The maximum number of initiator objects to return. 
     :type limit: int
-    
+
     :param initiators:  A list of initiator IDs to retrieve. You can supply this parameter or the "startInitiatorID" parameter, but not both. 
     :type initiators: int
     """
@@ -6129,7 +6129,7 @@ class AddressBlock(data_model.DataObject):
     Unique Range of IP addresses to include in the virtual network.
     :param start: [required] Start of the IP address range. 
     :type start: str
-    
+
     :param size: [required] Number of IP addresses to include in the block. 
     :type size: int
     """
@@ -6198,25 +6198,25 @@ class AddVirtualNetworkRequest(data_model.DataObject):
     """
     :param virtual_network_tag: [required] A unique virtual network (VLAN) tag. Supported values are 1 to 4095 (the number zero (0) is not supported). 
     :type virtual_network_tag: int
-    
+
     :param name: [required] User defined name for the new virtual network. 
     :type name: str
-    
+
     :param address_blocks: [required] Unique Range of IP addresses to include in the virtual network. Attributes for this parameter are: <br/><b>start:</b> start of the IP address range. (String) <br/><b>size:</b> numbre of IP addresses to include in the block. (Integer) 
     :type address_blocks: AddressBlock
-    
+
     :param netmask: [required] Unique netmask for the virtual network being created. 
     :type netmask: str
-    
+
     :param svip: [required] Unique storage IP address for the virtual network being created. 
     :type svip: str
-    
+
     :param gateway:   
     :type gateway: str
-    
+
     :param namespace:   
     :type namespace: bool
-    
+
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -6276,52 +6276,52 @@ class GetClusterFullThresholdResult(data_model.DataObject):
     """
     :param block_fullness: [required] Current computed level of block fullness of the cluster. Possible values: <br/><b>stage1Happy</b>: No alerts or error conditions. <br/><b>stage2Aware</b>: 3 nodes of capacity available. <br/><b>stage3Low</b>: 2 nodes of capacity available. <br/><b>stage4Critical</b>: 1 node of capacity available. No new volumes or clones can be created. <br/><b>stage5CompletelyConsumed</b>: Completely consumed. Cluster is read-only, iSCSI connection is maintained but all writes are suspended. 
     :type block_fullness: str
-    
+
     :param fullness: [required] Reflects the highest level of fullness between "blockFullness" and "metadataFullness". 
     :type fullness: str
-    
+
     :param max_metadata_over_provision_factor: [required] A value representative of the number of times metadata space can be over provisioned relative to the amount of space available. For example, if there was enough metadata space to store 100 TiB of volumes and this number was set to 5, then 500 TiB worth of volumes could be created. 
     :type max_metadata_over_provision_factor: int
-    
+
     :param metadata_fullness: [required] Current computed level of metadata fullness of the cluster. 
     :type metadata_fullness: str
-    
+
     :param slice_reserve_used_threshold_pct: [required] Error condition; message sent to "Alerts" if the reserved slice utilization is greater than the sliceReserveUsedThresholdPct value returned. 
     :type slice_reserve_used_threshold_pct: int
-    
+
     :param stage2_aware_threshold: [required] Awareness condition: Value that is set for "Stage 2" cluster threshold level. 
     :type stage2_aware_threshold: int
-    
+
     :param stage2_block_threshold_bytes: [required] Number of bytes being used by the cluster at which a stage2 condition will exist. 
     :type stage2_block_threshold_bytes: int
-    
+
     :param stage3_block_threshold_bytes: [required] Number of bytes being used by the cluster at which a stage3 condition will exist. 
     :type stage3_block_threshold_bytes: int
-    
+
     :param stage3_block_threshold_percent: [required] The percent value set for stage3. At this percent full, a warning will be posted in the Alerts log. 
     :type stage3_block_threshold_percent: int
-    
+
     :param stage3_low_threshold: [required] Error condition; message sent to "Alerts" that capacity on a cluster is getting low. 
     :type stage3_low_threshold: int
-    
+
     :param stage4_critical_threshold: [required] Error condition; message sent to "Alerts" that capacity on a cluster is critically low. 
     :type stage4_critical_threshold: int
-    
+
     :param stage4_block_threshold_bytes: [required] Number of bytes being used by the cluster at which a stage4 condition will exist. 
     :type stage4_block_threshold_bytes: int
-    
+
     :param stage5_block_threshold_bytes: [required] Number of bytes being used by the cluster at which a stage5 condition will exist. 
     :type stage5_block_threshold_bytes: int
-    
+
     :param sum_total_cluster_bytes: [required] Physical capacity of the cluster measured in bytes. 
     :type sum_total_cluster_bytes: int
-    
+
     :param sum_total_metadata_cluster_bytes: [required] Total amount of space that can be used to store metadata. 
     :type sum_total_metadata_cluster_bytes: int
-    
+
     :param sum_used_cluster_bytes: [required] Number of bytes used on the cluster. 
     :type sum_used_cluster_bytes: int
-    
+
     :param sum_used_metadata_cluster_bytes: [required] Amount of space used on volume drives to store metadata. 
     :type sum_used_metadata_cluster_bytes: int
     """
@@ -6435,13 +6435,13 @@ class PrepareVirtualSnapshotResult(data_model.DataObject):
     """
     :param virtual_volume_task_id: [required] The ID of the clone task. 
     :type virtual_volume_task_id: UUID
-    
+
     :param volume_id: [required] The volume ID of the newly-created clone. 
     :type volume_id: int
-    
+
     :param snapshot_id: [required] snapshotID for the prepared VVol snapshot. 
     :type snapshot_id: int
-    
+
     :param virtual_volume_id: [required] virtualVolumeID for the newly created clone. 
     :type virtual_volume_id: UUID
     """
@@ -6477,10 +6477,10 @@ class ListVolumesForAccountRequest(data_model.DataObject):
     """
     :param account_id: [required] The ID of the account to list the volumes for. 
     :type account_id: int
-    
+
     :param start_volume_id:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
     :type start_volume_id: int
-    
+
     :param limit:  The maximum number of volumes to return from the API. 
     :type limit: int
     """
@@ -6510,13 +6510,13 @@ class CloneMultipleVolumesRequest(data_model.DataObject):
     """
     :param volumes: [required] Array of Unique ID for each volume to include in the clone with optional parameters. If optional parameters are not specified, the values will be inherited from the source volumes. 
     :type volumes: CloneMultipleVolumeParams
-    
+
     :param access:  New default access method for the new volumes if not overridden by information passed in the volumes array. <br/><b>readOnly</b>: Only read operations are allowed. <br/><b>readWrite</b>: Reads and writes are allowed. <br/><b>locked</b>: No reads or writes are allowed. <br/><b>replicationTarget</b>: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked. <br/><br/> If unspecified, the access settings of the clone will be the same as the source. 
     :type access: str
-    
+
     :param group_snapshot_id:  ID of the group snapshot to use as a basis for the clone. 
     :type group_snapshot_id: int
-    
+
     :param new_account_id:  New account ID for the volumes if not overridden by information passed in the volumes array. 
     :type new_account_id: int
     """
@@ -6552,22 +6552,22 @@ class ModifyVolumeAccessGroupRequest(data_model.DataObject):
     """
     :param volume_access_group_id: [required] The ID of the volume access group to modify. 
     :type volume_access_group_id: int
-    
+
     :param virtual_network_id:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
     :type virtual_network_id: int
-    
+
     :param virtual_network_tags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
     :type virtual_network_tags: int
-    
+
     :param name:  Name of the volume access group. It is not required to be unique, but recommended. 
     :type name: str
-    
+
     :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group's configured initiators will not be modified. 
     :type initiators: str
-    
+
     :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group's volumes will not be modified. 
     :type volumes: int
-    
+
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -6621,28 +6621,28 @@ class VirtualNetwork(data_model.DataObject):
     """
     :param virtual_network_id: [required] SolidFire unique identifier for a virtual network. 
     :type virtual_network_id: int
-    
+
     :param virtual_network_tag: [required] VLAN Tag identifier. 
     :type virtual_network_tag: int
-    
+
     :param address_blocks: [required] Range of address blocks currently assigned to the virtual network. <br/><b>available:</b> Binary string in "1"s and "0"s. 1 equals the IP is available and 0 equals the IP is not available. The string is read from right to left with the digit to the far right being the first IP address in the list of addressBlocks. <br/><b>size:</b> the size of this block of addresses. <br/><b>start:</b> first IP address in the block. 
     :type address_blocks: AddressBlock
-    
+
     :param name: [required] The name assigned to the virtual network. 
     :type name: str
-    
+
     :param netmask: [required] IP address of the netmask for the virtual network. 
     :type netmask: str
-    
+
     :param svip: [required] Storage IP address for the virtual network. 
     :type svip: str
-    
+
     :param gateway:   
     :type gateway: str
-    
+
     :param namespace:   
     :type namespace: bool
-    
+
     :param attributes: [required] List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -6723,52 +6723,52 @@ class ModifyClusterFullThresholdResult(data_model.DataObject):
     """
     :param block_fullness: [required] Current computed level of block fullness of the cluster. Possible values: <br/><b>stage1Happy</b>: No alerts or error conditions. <br/><b>stage2Aware</b>: 3 nodes of capacity available. <br/><b>stage3Low</b>: 2 nodes of capacity available. <br/><b>stage4Critical</b>: 1 node of capacity available. No new volumes or clones can be created. <br/><b>stage5CompletelyConsumed</b>: Completely consumed. Cluster is read-only, iSCSI connection is maintained but all writes are suspended. 
     :type block_fullness: str
-    
+
     :param fullness: [required] Reflects the highest level of fullness between "blockFullness" and "metadataFullness". 
     :type fullness: str
-    
+
     :param max_metadata_over_provision_factor: [required] A value representative of the number of times metadata space can be over provisioned relative to the amount of space available. For example, if there was enough metadata space to store 100 TiB of volumes and this number was set to 5, then 500 TiB worth of volumes could be created. 
     :type max_metadata_over_provision_factor: int
-    
+
     :param metadata_fullness: [required] Current computed level of metadata fullness of the cluster. 
     :type metadata_fullness: str
-    
+
     :param slice_reserve_used_threshold_pct: [required] Error condition; message sent to "Alerts" if the reserved slice utilization is greater than the sliceReserveUsedThresholdPct value returned. 
     :type slice_reserve_used_threshold_pct: int
-    
+
     :param stage2_aware_threshold: [required] Awareness condition: Value that is set for "Stage 2" cluster threshold level. 
     :type stage2_aware_threshold: int
-    
+
     :param stage2_block_threshold_bytes: [required] Number of bytes being used by the cluster at which a stage2 condition will exist. 
     :type stage2_block_threshold_bytes: int
-    
+
     :param stage3_block_threshold_bytes: [required] Number of bytes being used by the cluster at which a stage3 condition will exist. 
     :type stage3_block_threshold_bytes: int
-    
+
     :param stage3_block_threshold_percent: [required] The percent value set for stage3. At this percent full, a warning will be posted in the Alerts log. 
     :type stage3_block_threshold_percent: int
-    
+
     :param stage3_low_threshold: [required] Error condition; message sent to "Alerts" that capacity on a cluster is getting low. 
     :type stage3_low_threshold: int
-    
+
     :param stage4_critical_threshold: [required] Error condition; message sent to "Alerts" that capacity on a cluster is critically low. 
     :type stage4_critical_threshold: int
-    
+
     :param stage4_block_threshold_bytes: [required] Number of bytes being used by the cluster at which a stage4 condition will exist. 
     :type stage4_block_threshold_bytes: int
-    
+
     :param stage5_block_threshold_bytes: [required] Number of bytes being used by the cluster at which a stage5 condition will exist. 
     :type stage5_block_threshold_bytes: int
-    
+
     :param sum_total_cluster_bytes: [required] Physical capacity of the cluster measured in bytes. 
     :type sum_total_cluster_bytes: int
-    
+
     :param sum_total_metadata_cluster_bytes: [required] Total amount of space that can be used to store metadata. 
     :type sum_total_metadata_cluster_bytes: int
-    
+
     :param sum_used_cluster_bytes: [required] Number of bytes used on the cluster. 
     :type sum_used_cluster_bytes: int
-    
+
     :param sum_used_metadata_cluster_bytes: [required] Amount of space used on volume drives to store metadata. 
     :type sum_used_metadata_cluster_bytes: int
     """
@@ -6898,16 +6898,16 @@ class FibreChannelSession(data_model.DataObject):
     FibreChannelSession contains information about each Fibre Channel session that is visible to the cluster and what target ports it is visible on.
     :param initiator_wwpn: [required] The WWPN of the initiator which is logged into the target port. 
     :type initiator_wwpn: str
-    
+
     :param node_id: [required] The node owning the Fibre Channel session. 
     :type node_id: int
-    
+
     :param service_id: [required] The service ID of the FService owning this Fibre Channel session 
     :type service_id: int
-    
+
     :param target_wwpn: [required] The WWPN of the target port involved in this session. 
     :type target_wwpn: str
-    
+
     :param volume_access_group_id:  The ID of the volume access group to which the initiatorWWPN belongs. If not in a volume access group, the value will be null. 
     :type volume_access_group_id: int
     """
@@ -6980,13 +6980,13 @@ class GetSnmpInfoResult(data_model.DataObject):
     """
     :param networks: [required] List of networks and access types enabled for SNMP. <br/><br/> <b>Note</b>: "networks" will only be present if SNMP V3 is disabled. 
     :type networks: SnmpNetwork
-    
+
     :param enabled: [required] If the nodes in the cluster are configured for SNMP. 
     :type enabled: bool
-    
+
     :param snmp_v3_enabled: [required] If the nodes in the cluster are configured for SNMP v3. 
     :type snmp_v3_enabled: bool
-    
+
     :param usm_users: [required] If SNMP v3 is enabled, the values returned is a list of user access parameters for SNMP information from the cluster. This will be returned instead of the "networks" parameter. 
     :type usm_users: SnmpV3UsmUser
     """
@@ -7022,7 +7022,7 @@ class StartVolumePairingRequest(data_model.DataObject):
     """
     :param volume_id: [required] The ID of the volume on which to start the pairing process. 
     :type volume_id: int
-    
+
     :param mode:  The mode of the volume on which to start the pairing process. The mode can only be set if the volume is the source volume.<br/> Possible values:<br/> <b>Async</b>: (default if no mode parameter specified) Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.<br/> <b>Sync</b>: Source acknowledges write when the data is stored locally and on the remote cluster.<br/> <b>SnapshotsOnly</b>: Only snapshots created on the source cluster will be replicated. Active writes from the source volume will not be replicated.<br/> 
     :type mode: str
     """
@@ -7046,10 +7046,10 @@ class ModifyClusterFullThresholdRequest(data_model.DataObject):
     """
     :param stage2_aware_threshold:  Number of nodes worth of capacity remaining on the cluster that triggers a notification. 
     :type stage2_aware_threshold: int
-    
+
     :param stage3_block_threshold_percent:  Percent below "Error" state to raise a cluster "Warning" alert. 
     :type stage3_block_threshold_percent: int
-    
+
     :param max_metadata_over_provision_factor:  A value representative of the number of times metadata space can be over provisioned relative to the amount of space available. For example, if there was enough metadata space to store 100 TiB of volumes and this number was set to 5, then 500 TiB worth of volumes could be created. 
     :type max_metadata_over_provision_factor: int
     """
@@ -7076,7 +7076,7 @@ class ModifyClusterFullThresholdRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DisableSnmpResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -7101,10 +7101,10 @@ class BackupTarget(data_model.DataObject):
     The object containing information about a backup target.
     :param name: [required] Name for the backup target. 
     :type name: str
-    
+
     :param backup_target_id: [required] Unique identifier assigned to the backup target. 
     :type backup_target_id: int
-    
+
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -7164,10 +7164,10 @@ class TestConnectMvipDetails(data_model.DataObject):
     """
     :param ping_bytes: [required] Details of the ping tests with 56 Bytes and 1500 Bytes. 
     :type ping_bytes: str
-    
+
     :param mvip: [required] The MVIP tested against. 
     :type mvip: str
-    
+
     :param connected: [required] Whether the test could connect to the MVIP. 
     :type connected: bool
     """
@@ -7197,10 +7197,10 @@ class TestConnectMvipResult(data_model.DataObject):
     """
     :param details: [required] Information about the test operation 
     :type details: TestConnectMvipDetails
-    
+
     :param duration: [required] The length of time required to run the test. 
     :type duration: str
-    
+
     :param result: [required] The results of the entire test 
     :type result: str
     """
@@ -7242,7 +7242,7 @@ class SnmpSendTestTrapsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class VirtualVolumeNullResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -7251,10 +7251,10 @@ class TestPingResult(data_model.DataObject):
     """
     :param result: [required] Result of the ping test. 
     :type result: str
-    
+
     :param duration: [required] The total duration of the ping test. 
     :type duration: str
-    
+
     :param details: [required] List of each IP the node was able to communicate with. 
     :type details: str
     """
@@ -7284,10 +7284,10 @@ class CloneVolumeResult(data_model.DataObject):
     """
     :param clone_id: [required] The ID of the newly-created clone. 
     :type clone_id: int
-    
+
     :param volume_id: [required] The volume ID of the newly-created clone. 
     :type volume_id: int
-    
+
     :param async_handle: [required] Handle value used to track the progress of the clone. 
     :type async_handle: int
     """
@@ -7314,7 +7314,7 @@ class CloneVolumeResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DisableEncryptionAtRestResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -7368,7 +7368,7 @@ class NodeSystemStatus(data_model.DataObject):
     """
     :param node_id: [required] 
     :type node_id: int
-    
+
     :param result: [required] 
     :type result: NodeSystemStatusInfo
     """
@@ -7434,7 +7434,7 @@ class GetDriveStatsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyClusterAdminResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -7503,10 +7503,10 @@ class VirtualVolumeUnsharedChunkResult(data_model.DataObject):
     """
     :param chunks: [required] Number of allocated/unshared chunks. 
     :type chunks: int
-    
+
     :param scanned_chunks: [required] Number of chunks scanned. 
     :type scanned_chunks: int
-    
+
     :param chunk_size: [required] Size of each chunk. 
     :type chunk_size: int
     """
@@ -7536,13 +7536,13 @@ class PrepareVirtualSnapshotRequest(data_model.DataObject):
     """
     :param virtual_volume_id: [required] The ID of the Virtual Volume to clone. 
     :type virtual_volume_id: UUID
-    
+
     :param name:  The name for the newly-created volume. 
     :type name: str
-    
+
     :param writable_snapshot:  Will the snapshot be writable? 
     :type writable_snapshot: bool
-    
+
     :param calling_virtual_volume_host_id:  
     :type calling_virtual_volume_host_id: UUID
     """
@@ -7623,7 +7623,7 @@ class GetSnmpACLResult(data_model.DataObject):
     """
     :param networks: [required] List of networks and what type of access they have to the SNMP servers running on the cluster nodes. Present if SNMP v3 is disabled. 
     :type networks: SnmpNetwork
-    
+
     :param usm_users: [required] List of users and the type of access they have to the SNMP servers running on the cluster nodes. Present if SNMP v3 is enabled. 
     :type usm_users: SnmpV3UsmUser
     """
@@ -7647,25 +7647,25 @@ class DriveInfo(data_model.DataObject):
     """
     :param capacity: [required] Total capacity of the drive, in bytes. 
     :type capacity: int
-    
+
     :param drive_id: [required] DriveID for this drive. 
     :type drive_id: int
-    
+
     :param node_id: [required] NodeID where this drive is located. 
     :type node_id: int
-    
+
     :param serial: [required] Drive serial number. 
     :type serial: str
-    
+
     :param slot: [required] Slot number in the server chassis where this drive is located, or -1 if SATADimm used for internal metadata drive. 
     :type slot: int
-    
+
     :param status: [required] 
     :type status: str
-    
+
     :param type: [required] 
     :type type: str
-    
+
     :param attributes: [required] List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -7755,16 +7755,16 @@ class StartBulkVolumeWriteRequest(data_model.DataObject):
     """
     :param volume_id: [required] ID of the volume to be written to. 
     :type volume_id: int
-    
+
     :param format: [required] The format of the volume data. Can be either: <br/><b>uncompressed</b>: every byte of the volume is returned without any compression. <br/><b>native</b>: opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write 
     :type format: str
-    
+
     :param script:  Executable name of a script. If no script name is given then the key and URL are necessary to access SolidFire nodes. The script runs on the primary node and the key and URL is returned to the script so the local web server can be contacted. 
     :type script: str
-    
+
     :param script_parameters:  JSON parameters to pass to the script. 
     :type script_parameters: str
-    
+
     :param attributes:  JSON attributes for the bulk volume job. 
     :type attributes: dict
     """
@@ -7806,13 +7806,13 @@ class ClusterAdmin(data_model.DataObject):
     """
     :param access: [required] 
     :type access: str
-    
+
     :param cluster_admin_id: [required] 
     :type cluster_admin_id: int
-    
+
     :param username: [required] 
     :type username: str
-    
+
     :param attributes: [required] List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -7878,7 +7878,7 @@ class PendingOperation(data_model.DataObject):
     """
     :param pending: [required] <br/><b>true</b>: operation is still in progress. <br/><b>false</b>: operation is no longer in progress. 
     :type pending: bool
-    
+
     :param operation: [required] Name of operation that is in progress or has completed. 
     :type operation: str
     """
@@ -7917,10 +7917,10 @@ class CreateStorageContainerRequest(data_model.DataObject):
     """
     :param name: [required] Name of the storage container. 
     :type name: str
-    
+
     :param initiator_secret:  The secret for CHAP authentication for the initiator 
     :type initiator_secret: str
-    
+
     :param target_secret:  The secret for CHAP authentication for the target 
     :type target_secret: str
     """
@@ -7947,7 +7947,7 @@ class CreateStorageContainerRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteStorageContainerResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -7956,7 +7956,7 @@ class FeatureObject(data_model.DataObject):
     """
     :param enabled: [required] True if the feature is enabled, otherwise false. 
     :type enabled: bool
-    
+
     :param feature: [required] The name of the feature. 
     :type feature: str
     """
@@ -7995,13 +7995,13 @@ class AddAccountRequest(data_model.DataObject):
     """
     :param username: [required] Unique username for this account. (May be 1 to 64 characters in length). 
     :type username: str
-    
+
     :param initiator_secret:  CHAP secret to use for the initiator. Should be 12-16 characters long and impenetrable. The CHAP initiator secrets must be unique and cannot be the same as the target CHAP secret. <br/><br/> If not specified, a random secret is created. 
     :type initiator_secret: CHAPSecret
-    
+
     :param target_secret:  CHAP secret to use for the target (mutual CHAP authentication). Should be 12-16 characters long and impenetrable. The CHAP target secrets must be unique and cannot be the same as the initiator CHAP secret. <br/><br/> If not specified, a random secret is created. 
     :type target_secret: CHAPSecret
-    
+
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -8067,16 +8067,16 @@ class RollbackToSnapshotRequest(data_model.DataObject):
     """
     :param volume_id: [required] VolumeID for the volume. 
     :type volume_id: int
-    
+
     :param snapshot_id: [required] ID of a previously created snapshot on the given volume. 
     :type snapshot_id: int
-    
+
     :param save_current_state: [required] <br/><b>true</b>: The previous active volume image is kept. <br/><b>false</b>: (default) The previous active volume image is deleted. 
     :type save_current_state: bool
-    
+
     :param name:  Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with  "-copy" appended to the end of the name. 
     :type name: str
-    
+
     :param attributes:  List of Name/Value pairs in JSON object format 
     :type attributes: dict
     """
@@ -8115,7 +8115,7 @@ class RollbackToSnapshotRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveVirtualNetworkResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -8151,7 +8151,7 @@ class CreateBackupTargetResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DisableLdapAuthenticationResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -8175,16 +8175,16 @@ class KernelCrashDump(data_model.DataObject):
     """
     :param kernel_crash_dump_min_free_gb: [required] 
     :type kernel_crash_dump_min_free_gb: int
-    
+
     :param kernel_crash_dump_directory: [required] 
     :type kernel_crash_dump_directory: str
-    
+
     :param kernel_crash_dump_kernel_options: [required] 
     :type kernel_crash_dump_kernel_options: str
-    
+
     :param kernel_crash_dump_makedumpfile_level: [required] 
     :type kernel_crash_dump_makedumpfile_level: int
-    
+
     :param kernel_crash_dump_default_state: [required] 
     :type kernel_crash_dump_default_state: str
     """
@@ -8226,28 +8226,28 @@ class SolidfireDefaults(data_model.DataObject):
     """
     :param slice_file_log_file_capacity: [required] 
     :type slice_file_log_file_capacity: int
-    
+
     :param post_callback_thread_count: [required] 
     :type post_callback_thread_count: int
-    
+
     :param cpu_dma_latency: [required] 
     :type cpu_dma_latency: int
-    
+
     :param buffer_cache_gb: [required] 
     :type buffer_cache_gb: int
-    
+
     :param max_incoming_slice_syncs: [required] 
     :type max_incoming_slice_syncs: int
-    
+
     :param configured_iops: [required] 
     :type configured_iops: int
-    
+
     :param s_cache_file_capacity: [required] 
     :type s_cache_file_capacity: int
-    
+
     :param max_drive_write_throughput_mbper_sec: [required] 
     :type max_drive_write_throughput_mbper_sec: int
-    
+
     :param drive_write_throughput_mbper_sleep: [required] 
     :type drive_write_throughput_mbper_sleep: int
     """
@@ -8313,97 +8313,97 @@ class HardwareConfig(data_model.DataObject):
     """
     :param scsi_bus_internal_driver: [required] 
     :type scsi_bus_internal_driver: str
-    
+
     :param network_driver: [required] 
     :type network_driver: str
-    
+
     :param bios_revision: [required] 
     :type bios_revision: str
-    
+
     :param slot_offset: [required] 
     :type slot_offset: int
-    
+
     :param num_cpu: [required] 
     :type num_cpu: int
-    
+
     :param slice_drives: [required] 
     :type slice_drives: str
-    
+
     :param num_drives: [required] 
     :type num_drives: int
-    
+
     :param kernel_crash_dump: [required] 
     :type kernel_crash_dump: KernelCrashDump
-    
+
     :param block_drive_size_bytes: [required] 
     :type block_drive_size_bytes: int
-    
+
     :param cpu_model: [required] 
     :type cpu_model: str
-    
+
     :param bmc_firmware_revision: [required] 
     :type bmc_firmware_revision: str
-    
+
     :param cpu_cores_enabled: [required] 
     :type cpu_cores_enabled: int
-    
+
     :param fibre_channel_model: [required] 
     :type fibre_channel_model: str
-    
+
     :param chassis_type: [required] 
     :type chassis_type: str
-    
+
     :param bmc_ipmi_version: [required] 
     :type bmc_ipmi_version: str
-    
+
     :param node_type: [required] 
     :type node_type: str
-    
+
     :param solidfire_defaults: [required] 
     :type solidfire_defaults: SolidfireDefaults
-    
+
     :param idrac_version: [required] 
     :type idrac_version: str
-    
+
     :param block_drives: [required] 
     :type block_drives: str
-    
+
     :param bios_vendor: [required] 
     :type bios_vendor: str
-    
+
     :param fibre_channel_firmware_revision: [required] 
     :type fibre_channel_firmware_revision: str
-    
+
     :param scsi_bus_external_driver: [required] 
     :type scsi_bus_external_driver: str
-    
+
     :param num_drives_internal: [required] 
     :type num_drives_internal: int
-    
+
     :param slice_drive_size_bytes: [required] 
     :type slice_drive_size_bytes: int
-    
+
     :param bios_version: [required] 
     :type bios_version: str
-    
+
     :param memory_mhz: [required] 
     :type memory_mhz: int
-    
+
     :param cpu_cores: [required] 
     :type cpu_cores: int
-    
+
     :param root_drive: [required] 
     :type root_drive: str
-    
+
     :param drive_size_bytes_internal: [required] 
     :type drive_size_bytes_internal: int
-    
+
     :param lifecycle_version: [required] 
     :type lifecycle_version: str
-    
+
     :param memory_gb: [required] 
     :type memory_gb: int
-    
+
     :param cpu_threads: [required] 
     :type cpu_threads: int
     """
@@ -8637,16 +8637,16 @@ class TestPingRequest(data_model.DataObject):
     """
     :param attempts:  Specifies the number of times the system should repeat the test ping. Default is 5. 
     :type attempts: int
-    
+
     :param hosts:  Specify address or hostnames of devices to ping. 
     :type hosts: str
-    
+
     :param total_timeout_sec:  Specifies the length of time the ping should wait for a system response before issuing the next ping attempt or ending the process. 
     :type total_timeout_sec: int
-    
+
     :param packet_size:  Specify the number of bytes to send in the ICMP packet sent to each IP. Number be less than the maximum MTU specified in the network configuration. 
     :type packet_size: int
-    
+
     :param ping_timeout_msec:  Specify the number of milliseconds to wait for each individual ping response. Default is 500ms. 
     :type ping_timeout_msec: int
     """
@@ -8703,88 +8703,88 @@ class DriveConfigInfo(data_model.DataObject):
     """
     :param canonical_name: [required] 
     :type canonical_name: str
-    
+
     :param connected: [required] 
     :type connected: bool
-    
+
     :param dev: [required] 
     :type dev: int
-    
+
     :param dev_path: [required] 
     :type dev_path: str
-    
+
     :param drive_type: [required] 
     :type drive_type: str
-    
+
     :param fs_type: [required] 
     :type fs_type: str
-    
+
     :param is_mounted: [required] 
     :type is_mounted: bool
-    
+
     :param product: [required] 
     :type product: str
-    
+
     :param mount_point: [required] 
     :type mount_point: str
-    
+
     :param name: [required] 
     :type name: str
-    
+
     :param path: [required] 
     :type path: str
-    
+
     :param path_link: [required] 
     :type path_link: str
-    
+
     :param scsi_compat_id: [required] 
     :type scsi_compat_id: str
-    
+
     :param smart_ssd_write_capable: [required] 
     :type smart_ssd_write_capable: bool
-    
+
     :param security_enabled: [required] 
     :type security_enabled: bool
-    
+
     :param security_frozen: [required] 
     :type security_frozen: bool
-    
+
     :param security_locked: [required] 
     :type security_locked: bool
-    
+
     :param security_supported: [required] 
     :type security_supported: bool
-    
+
     :param size: [required] 
     :type size: int
-    
+
     :param slot: [required] 
     :type slot: int
-    
+
     :param uuid: [required] 
     :type uuid: UUID
-    
+
     :param vendor: [required] 
     :type vendor: str
-    
+
     :param version: [required] 
     :type version: str
-    
+
     :param num_block_actual: [required] 
     :type num_block_actual: int
-    
+
     :param num_block_expected: [required] 
     :type num_block_expected: int
-    
+
     :param num_slice_actual: [required] 
     :type num_slice_actual: int
-    
+
     :param num_slice_expected: [required] 
     :type num_slice_expected: int
-    
+
     :param num_total_actual: [required] 
     :type num_total_actual: int
-    
+
     :param num_total_expected: [required] 
     :type num_total_expected: int
     """
@@ -9031,13 +9031,13 @@ class GroupSnapshotMembers(data_model.DataObject):
     List of checksum, volumeIDs and snapshotIDs for each member of the group.
     :param volume_id: [required] The source volume ID for the snapshot. 
     :type volume_id: int
-    
+
     :param snapshot_id: [required] Unique ID of a snapshot from which the new snapshot is made. The snapshotID passed must be a snapshot on the given volume. 
     :type snapshot_id: int
-    
+
     :param snapshot_uuid: [required] Universal Unique ID of an existing snapshot. 
     :type snapshot_uuid: str
-    
+
     :param checksum: [required] A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. 
     :type checksum: str
     """
@@ -9074,22 +9074,22 @@ class GroupSnapshot(data_model.DataObject):
     Group Snapshot object represents a point-in-time copy of a group of volumes.
     :param group_snapshot_id: [required] Unique ID of the new group snapshot. 
     :type group_snapshot_id: int
-    
+
     :param group_snapshot_uuid: [required] UUID of the group snapshot. 
     :type group_snapshot_uuid: UUID
-    
+
     :param members: [required] List of volumeIDs and snapshotIDs for each member of the group. 
     :type members: GroupSnapshotMembers
-    
+
     :param name: [required] Name of the group snapshot, or, if none was given, the UTC formatted day and time on which the snapshot was created. 
     :type name: str
-    
+
     :param create_time: [required] The UTC formatted day and time on which the snapshot was created. 
     :type create_time: str
-    
+
     :param status: [required] Status of the snapshot. Possible values: <br/><b>Preparing</b>: A snapshot that is being prepared for use and is not yet writable. <br/><b>Done</b>: A snapshot that has finished being prepared and is now usable 
     :type status: str
-    
+
     :param attributes: [required] List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -9155,7 +9155,7 @@ class ListGroupSnapshotsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteVolumeAccessGroupResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -9164,40 +9164,40 @@ class ClusterFaultInfo(data_model.DataObject):
     """
     :param severity: [required] 
     :type severity: str
-    
+
     :param type: [required] 
     :type type: str
-    
+
     :param code: [required] 
     :type code: str
-    
+
     :param details: [required] 
     :type details: str
-    
+
     :param node_hardware_fault_id: [required] 
     :type node_hardware_fault_id: int
-    
+
     :param node_id: [required] 
     :type node_id: int
-    
+
     :param service_id: [required] 
     :type service_id: int
-    
+
     :param drive_id: [required] 
     :type drive_id: int
-    
+
     :param resolved: [required] 
     :type resolved: bool
-    
+
     :param cluster_fault_id: [required] 
     :type cluster_fault_id: int
-    
+
     :param date: [required] 
     :type date: str
-    
+
     :param resolved_date: [required] 
     :type resolved_date: str
-    
+
     :param data: [required] 
     :type data: str
     """
@@ -9299,7 +9299,7 @@ class ListClusterFaultsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteInitiatorsResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -9308,7 +9308,7 @@ class AddInitiatorsToVolumeAccessGroupRequest(data_model.DataObject):
     """
     :param volume_access_group_id: [required] The ID of the volume access group to modify. 
     :type volume_access_group_id: int
-    
+
     :param initiators: [required] List of initiators to add to the volume access group. 
     :type initiators: str
     """
@@ -9362,19 +9362,19 @@ class SupportBundleDetails(data_model.DataObject):
     """
     :param bundle_name: [required] The name specified in the 'CreateSupportBundle API method. If no name was specified, 'supportbundle' will be used. 
     :type bundle_name: str
-    
+
     :param extra_args: [required] The arguments passed with this method. 
     :type extra_args: str
-    
+
     :param files: [required] A list of the support bundle files that were created. 
     :type files: str
-    
+
     :param url: [required] The URL that you can use to download the bundle file(s). Should correspond 1:1 with files list. 
     :type url: str
-    
+
     :param output: [required] The commands that were run and their output, with newlines replaced by HTML <br> elements. 
     :type output: str
-    
+
     :param timeout_sec: [required] The timeout specified for the support bundle creation process. 
     :type timeout_sec: int
     """
@@ -9422,10 +9422,10 @@ class CreateSupportBundleResult(data_model.DataObject):
     """
     :param details: [required] The details of the support bundle.  
     :type details: SupportBundleDetails
-    
+
     :param duration: [required] The amount of time required to create the support bundle in the format HH:MM:SS.ssssss 
     :type duration: str
-    
+
     :param result: [required] Whether the support bundle creation passed of failed. 
     :type result: str
     """
@@ -9455,13 +9455,13 @@ class AddLdapClusterAdminRequest(data_model.DataObject):
     """
     :param username: [required] The distinguished user name for the new LDAP cluster admin. 
     :type username: str
-    
+
     :param access: [required] Controls which methods this Cluster Admin can use. For more details on the levels of access, see the Access Control appendix in the SolidFire API Reference. 
     :type access: str
-    
+
     :param accept_eula:  Indicate your acceptance of the End User License Agreement when creating this cluster admin. To accept the EULA, set this parameter to true. 
     :type accept_eula: bool
-    
+
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -9509,7 +9509,7 @@ class RemoveNodesRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CancelCloneResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -9533,10 +9533,10 @@ class TestLdapAuthenticationRequest(data_model.DataObject):
     """
     :param username: [required] The username to be tested. 
     :type username: str
-    
+
     :param password: [required] The password for the username to be tester. 
     :type password: str
-    
+
     :param ldap_configuration:  An ldapConfiguration object to be tested. If this parameter is provided, the API call will test the provided configuration even if LDAP authentication is currently disabled. 
     :type ldap_configuration: LdapConfiguration
     """
@@ -9566,10 +9566,10 @@ class ModifyVolumePairRequest(data_model.DataObject):
     """
     :param volume_id: [required] Identification number of the volume to be modified. 
     :type volume_id: int
-    
+
     :param paused_manual:  Valid values that can be entered:<br/> <b>true</b>: to pause volume replication.<br/> <b>false</b>: to restart volume replication.<br/> If no value is specified, no change in replication is performed. 
     :type paused_manual: bool
-    
+
     :param mode:  Volume replication mode.<br/> Possible values:<br/> <b>Async</b>: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.<br/> <b>Sync</b>: The source acknowledges the write when the data is stored locally and on the remote cluster.<br/> <b>SnapshotsOnly</b>: Only snapshots created on the source cluster will be replicated. Active writes from the source volume are not replicated.<br/> 
     :type mode: str
     """
@@ -9596,7 +9596,7 @@ class ModifyVolumePairRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class PurgeDeletedVolumeResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -9605,13 +9605,13 @@ class ModifyClusterAdminRequest(data_model.DataObject):
     """
     :param cluster_admin_id: [required] ClusterAdminID for the Cluster Admin or LDAP Cluster Admin to modify. 
     :type cluster_admin_id: int
-    
+
     :param password:  Password used to authenticate this Cluster Admin. 
     :type password: str
-    
+
     :param access:  Controls which methods this Cluster Admin can use. For more details on the levels of access, see "Access Control" in the Element API Guide. 
     :type access: str
-    
+
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -9647,13 +9647,13 @@ class ListEventsRequest(data_model.DataObject):
     """
     :param max_events:  Specifies the maximum number of events to return. 
     :type max_events: int
-    
+
     :param start_event_id:  Identifies the beginning of a range of events to return. 
     :type start_event_id: int
-    
+
     :param end_event_id:  Identifies the end of a range of events to return. 
     :type end_event_id: int
-    
+
     :param event_queue_type:  
     :type event_queue_type: str
     """
@@ -9689,7 +9689,7 @@ class ListVolumeAccessGroupsRequest(data_model.DataObject):
     """
     :param start_volume_access_group_id:  The lowest VolumeAccessGroupID to return. This can be useful for paging. If unspecified, there is no lower limit (implicitly 0). 
     :type start_volume_access_group_id: int
-    
+
     :param limit:  The maximum number of results to return. This can be useful for paging. 
     :type limit: int
     """
@@ -9710,7 +9710,7 @@ class ListVolumeAccessGroupsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class PurgeDeletedVolumesResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -9734,7 +9734,7 @@ class ListVolumeAccessGroupsResult(data_model.DataObject):
     """
     :param volume_access_groups: [required] A list of objects describing each volume access group. 
     :type volume_access_groups: VolumeAccessGroup
-    
+
     :param volume_access_groups_not_found: [required] A list of volume access groups not found by the system. Present if you used the "volumeAccessGroups" parameter and the system was unable to find one or more volume access groups that you specified. 
     :type volume_access_groups_not_found: int
     """
@@ -9758,7 +9758,7 @@ class TestLdapAuthenticationResult(data_model.DataObject):
     """
     :param groups: [required] List of LDAP groups that the tested user is a member of. 
     :type groups: str
-    
+
     :param user_dn: [required] The tested user's full LDAP distinguished name. 
     :type user_dn: str
     """
@@ -9784,22 +9784,22 @@ class Account(data_model.DataObject):
     This object only includes "configured" information about the account, not any runtime or usage information.
     :param account_id: [required] Unique AccountID for the account. 
     :type account_id: int
-    
+
     :param username: [required] User name for the account. 
     :type username: str
-    
+
     :param status: [required] Current status of the account. 
     :type status: str
-    
+
     :param volumes: [required] List of VolumeIDs for Volumes owned by this account. 
     :type volumes: int
-    
+
     :param initiator_secret:  CHAP secret to use for the initiator. 
     :type initiator_secret: CHAPSecret
-    
+
     :param target_secret:  CHAP secret to use for the target (mutual CHAP authentication). 
     :type target_secret: CHAPSecret
-    
+
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -9869,70 +9869,70 @@ class ClusterCapacity(data_model.DataObject):
     High level capacity measurements for the entire cluster.
     :param active_block_space: [required] The amount of space on the block drives. This includes additional information such as metadata entries and space which can be cleaned up. 
     :type active_block_space: int
-    
+
     :param active_sessions: [required] Number of active iSCSI sessions communicating with the cluster 
     :type active_sessions: int
-    
+
     :param average_iops: [required] Average IPS for the cluster since midnight Coordinated Universal Time (UTC). 
     :type average_iops: int
-    
+
     :param cluster_recent_iosize: [required] The average size of IOPS to all volumes in the cluster. 
     :type cluster_recent_iosize: int
-    
+
     :param current_iops: [required] Average IOPS for all volumes in the cluster over the last 5 seconds. 
     :type current_iops: int
-    
+
     :param max_iops: [required] Estimated maximum IOPS capability of the current cluster. 
     :type max_iops: int
-    
+
     :param max_over_provisionable_space: [required] The maximum amount of provisionable space. This is a computed value. You cannot create new volumes if the current provisioned space plus the new volume size would exceed this number: maxOverProvisionableSpace = maxProvisionedSpace * GetClusterFull 
     :type max_over_provisionable_space: int
-    
+
     :param max_provisioned_space: [required] The total amount of provisionable space if all volumes are 100% filled (no thin provisioned metadata). 
     :type max_provisioned_space: int
-    
+
     :param max_used_metadata_space: [required] The amount of bytes on volume drives used to store metadata. 
     :type max_used_metadata_space: int
-    
+
     :param max_used_space: [required] The total amount of space on all active block drives. 
     :type max_used_space: int
-    
+
     :param non_zero_blocks: [required] Total number of 4KiB blocks with data after the last garbage collection operation has completed. 
     :type non_zero_blocks: int
-    
+
     :param peak_active_sessions: [required] Peak number of iSCSI connections since midnight UTC. 
     :type peak_active_sessions: int
-    
+
     :param peak_iops: [required] The highest value for currentIOPS since midnight UTC. 
     :type peak_iops: int
-    
+
     :param provisioned_space: [required] Total amount of space provisioned in all volumes on the cluster. 
     :type provisioned_space: int
-    
+
     :param snapshot_non_zero_blocks: [required] Total number of 4KiB blocks in snapshots with data. 
     :type snapshot_non_zero_blocks: int
-    
+
     :param timestamp: [required] The date and time this cluster capacity sample was taken. 
     :type timestamp: str
-    
+
     :param total_ops: [required] The total number of I/O operations performed throughout the lifetime of the cluster 
     :type total_ops: int
-    
+
     :param unique_blocks: [required] The total number of blocks stored on the block drives. The value includes replicated blocks. 
     :type unique_blocks: int
-    
+
     :param unique_blocks_used_space: [required] The total amount of data the uniqueBlocks take up on the block drives. This number is always consistent with the uniqueBlocks value. 
     :type unique_blocks_used_space: int
-    
+
     :param used_metadata_space: [required] The total amount of bytes on volume drives used to store metadata 
     :type used_metadata_space: int
-    
+
     :param used_metadata_space_in_snapshots: [required] The amount of bytes on volume drives used for storing unique data in snapshots. This number provides an estimate of how much metadata space would be regained by deleting all snapshots on the system. 
     :type used_metadata_space_in_snapshots: int
-    
+
     :param used_space: [required] Total amount of space used by all block drives in the system. 
     :type used_space: int
-    
+
     :param zero_blocks: [required] Total number of 4KiB blocks without data after the last round of garabage collection operation has completed. 
     :type zero_blocks: int
     """
@@ -10097,31 +10097,31 @@ class EventInfo(data_model.DataObject):
     """
     :param event_id: [required] 
     :type event_id: int
-    
+
     :param severity: [required] 
     :type severity: int
-    
+
     :param event_info_type: [required] 
     :type event_info_type: str
-    
+
     :param message: [required] 
     :type message: str
-    
+
     :param service_id: [required] 
     :type service_id: int
-    
+
     :param node_id: [required] 
     :type node_id: int
-    
+
     :param drive_id: [required] 
     :type drive_id: int
-    
+
     :param time_of_report: [required] 
     :type time_of_report: str
-    
+
     :param time_of_publish: [required] 
     :type time_of_publish: str
-    
+
     :param details: [required] 
     :type details: str
     """
@@ -10193,7 +10193,7 @@ class ListEventsResult(data_model.DataObject):
     """
     :param event_queue_type: [required] 
     :type event_queue_type: str
-    
+
     :param events: [required] 
     :type events: EventInfo
     """
@@ -10217,13 +10217,13 @@ class ListVirtualNetworksRequest(data_model.DataObject):
     """
     :param virtual_network_id:  Network ID to filter the list for a single virtual network 
     :type virtual_network_id: int
-    
+
     :param virtual_network_tag:  Network Tag to filter the list for a single virtual network 
     :type virtual_network_tag: int
-    
+
     :param virtual_network_ids:  NetworkIDs to include in the list. 
     :type virtual_network_ids: int
-    
+
     :param virtual_network_tags:  Network Tags to include in the list. 
     :type virtual_network_tags: int
     """
@@ -10259,7 +10259,7 @@ class RemoveInitiatorsFromVolumeAccessGroupRequest(data_model.DataObject):
     """
     :param volume_access_group_id: [required] The ID of the volume access group to modify. 
     :type volume_access_group_id: int
-    
+
     :param initiators: [required] List of initiators to remove from the volume access group. 
     :type initiators: str
     """
@@ -10283,10 +10283,10 @@ class ModifyBackupTargetRequest(data_model.DataObject):
     """
     :param backup_target_id: [required] Unique identifier assigned to the backup target. 
     :type backup_target_id: int
-    
+
     :param name:  Name for the backup target. 
     :type name: str
-    
+
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -10346,19 +10346,19 @@ class StartBulkVolumeReadRequest(data_model.DataObject):
     """
     :param volume_id: [required] ID of the volume to be read. 
     :type volume_id: int
-    
+
     :param format: [required] The format of the volume data. Can be either: <br/><b>uncompressed</b>: every byte of the volume is returned without any compression. <br/><b>native</b>: opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. 
     :type format: str
-    
+
     :param snapshot_id:  ID of a previously created snapshot used for bulk volume reads. If no ID is entered, a snapshot of the current active volume image is made. 
     :type snapshot_id: int
-    
+
     :param script:  Executable name of a script. If no script name is given then the key and URL is necessary to access SolidFire nodes. The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted. 
     :type script: str
-    
+
     :param script_parameters:  JSON parameters to pass to the script. 
     :type script_parameters: str
-    
+
     :param attributes:  JSON attributes for the bulk volume job. 
     :type attributes: dict
     """
@@ -10406,22 +10406,22 @@ class PairedCluster(data_model.DataObject):
     """
     :param cluster_name: [required] Name of the other cluster in the pair 
     :type cluster_name: str
-    
+
     :param cluster_pair_id: [required] Unique ID given to each cluster in the pair. 
     :type cluster_pair_id: int
-    
+
     :param cluster_pair_uuid: [required] Universally unique identifier. 
     :type cluster_pair_uuid: UUID
-    
+
     :param latency: [required] Number, in milliseconds, of latency between clusters. 
     :type latency: int
-    
+
     :param mvip: [required] IP of the management connection for paired clusters. 
     :type mvip: str
-    
+
     :param status: [required] Can be one of the following: <br/><b>Connected</b> <br/><b>Misconfigured</b> <br/><b>Disconnected</b> 
     :type status: str
-    
+
     :param version: [required] The Element OS version of the other cluster in the pair. 
     :type version: str
     """
@@ -10491,10 +10491,10 @@ class ClusterVersionInfo(data_model.DataObject):
     Version information for a node in the cluster.
     :param node_id: [required] 
     :type node_id: int
-    
+
     :param node_version: [required] 
     :type node_version: str
-    
+
     :param node_internal_revision: [required] 
     :type node_internal_revision: str
     """
@@ -10524,16 +10524,16 @@ class SoftwareVersionInfo(data_model.DataObject):
     """
     :param current_version: [required] 
     :type current_version: str
-    
+
     :param node_id: [required] 
     :type node_id: int
-    
+
     :param package_name: [required] 
     :type package_name: str
-    
+
     :param pending_version: [required] 
     :type pending_version: str
-    
+
     :param start_time: [required] 
     :type start_time: str
     """
@@ -10575,13 +10575,13 @@ class GetClusterVersionInfoResult(data_model.DataObject):
     """
     :param cluster_apiversion: [required] 
     :type cluster_apiversion: str
-    
+
     :param cluster_version: [required] 
     :type cluster_version: str
-    
+
     :param cluster_version_info: [required] 
     :type cluster_version_info: ClusterVersionInfo
-    
+
     :param software_version_info: [required] 
     :type software_version_info: SoftwareVersionInfo
     """
@@ -10647,7 +10647,7 @@ class SetSnmpACLRequest(data_model.DataObject):
     """
     :param networks: [required] List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. REQUIRED if SNMP v# is disabled. 
     :type networks: SnmpNetwork
-    
+
     :param usm_users: [required] List of users and the type of access they have to the SNMP servers running on the cluster nodes. REQUIRED if SNMP v3 is enabled. 
     :type usm_users: SnmpV3UsmUser
     """
@@ -10668,7 +10668,7 @@ class SetSnmpACLRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetSnmpACLResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -10678,7 +10678,7 @@ class GroupCloneVolumeMember(data_model.DataObject):
     Represents the relationship between the source Volume and cloned Volume IDs.
     :param volume_id: [required] The VolumeID of the cloned volume. 
     :type volume_id: int
-    
+
     :param src_volume_id: [required] The VolumeID of the source volume. 
     :type src_volume_id: int
     """
@@ -10702,10 +10702,10 @@ class CloneMultipleVolumesResult(data_model.DataObject):
     """
     :param async_handle: [required] A value returned from an asynchronous method call. 
     :type async_handle: int
-    
+
     :param group_clone_id: [required] Unique ID of the new group clone. 
     :type group_clone_id: int
-    
+
     :param members: [required] List of volumeIDs for the source and destination volume pairs. 
     :type members: GroupCloneVolumeMember
     """
@@ -10750,16 +10750,16 @@ class GetStorageContainerEfficiencyResult(data_model.DataObject):
     """
     :param compression: [required] 
     :type compression: float
-    
+
     :param deduplication: [required] 
     :type deduplication: float
-    
+
     :param missing_volumes: [required] The volumes that could not be queried for efficiency data. Missing volumes can be caused by the Garbage Collection (GC) cycle being less than an hour old, temporary loss of network connectivity, or restarted services since the GC cycle. 
     :type missing_volumes: int
-    
+
     :param thin_provisioning: [required] 
     :type thin_provisioning: float
-    
+
     :param timestamp: [required] The last time efficiency data was collected after Garbage Collection (GC). 
     :type timestamp: str
     """
@@ -10813,7 +10813,7 @@ class CreateScheduleResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetLoginSessionInfoResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -10852,7 +10852,7 @@ class NodeStateInfo(data_model.DataObject):
     """
     :param cluster: [required] Name of the cluster. 
     :type cluster: str
-    
+
     :param state: [required] <strong>Available:</strong> Node has not been configured with a cluster name.<br><strong>Pending:</strong> Node is pending for a specific named cluster and can be added.<br><strong>Active:</strong> Node is active and a member of a cluster and may not be added to another cluster. 
     :type state: str
     """
@@ -10876,7 +10876,7 @@ class NodeStateResult(data_model.DataObject):
     """
     :param node_id: [required] ID of the node. 
     :type node_id: int
-    
+
     :param result: [required] NodeStateInfo object. 
     :type result: NodeStateInfo
     """
@@ -10927,7 +10927,7 @@ class PurgeDeletedVolumeRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyBackupTargetResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -10951,7 +10951,7 @@ class CreateVolumeResult(data_model.DataObject):
     """
     :param volume_id: [required] VolumeID for the newly created volume. 
     :type volume_id: int
-    
+
     :param curve: [required] The curve is a set of key-value pairs. The keys are I/O sizes in bytes. The values represent the cost performing an IOP at a specific I/O size. The curve is calculated relative to a 4096 byte operation set at 100 IOPS. 
     :type curve: dict
     """
@@ -11026,7 +11026,7 @@ class GetAsyncResultResult(data_model.DataObject):
     <b>Note</b>: The return value of GetAsyncResult is essentially a nested version of the standard JSON response with an additional status field.
     :param result: [required] The resulting message for the original method call if the call was completed successfully. 
     :type result: AsyncResult
-    
+
     :param status: [required] Status of the asynchronous method call <br/><b>running</b>: The method is still running. <br/><b>complete</b>: The method is complete and the result or error is available. 
     :type status: str
     """
@@ -11095,52 +11095,52 @@ class SyncJob(data_model.DataObject):
     """
     :param bytes_per_second: [required] 
     :type bytes_per_second: float
-    
+
     :param current_bytes: [required] 
     :type current_bytes: int
-    
+
     :param dst_service_id: [required] 
     :type dst_service_id: int
-    
+
     :param elapsed_time: [required] 
     :type elapsed_time: float
-    
+
     :param percent_complete: [required] 
     :type percent_complete: float
-    
+
     :param remaining_time: [required] 
     :type remaining_time: float
-    
+
     :param slice_id: [required] 
     :type slice_id: int
-    
+
     :param src_service_id: [required] 
     :type src_service_id: int
-    
+
     :param total_bytes: [required] 
     :type total_bytes: int
-    
+
     :param type: [required] 
     :type type: str
-    
+
     :param clone_id: [required] 
     :type clone_id: int
-    
+
     :param dst_volume_id: [required] 
     :type dst_volume_id: int
-    
+
     :param node_id: [required] 
     :type node_id: int
-    
+
     :param snapshot_id: [required] 
     :type snapshot_id: int
-    
+
     :param src_volume_id: [required] 
     :type src_volume_id: int
-    
+
     :param blocks_per_second: [required] 
     :type blocks_per_second: float
-    
+
     :param stage: [required] 
     :type stage: int
     """
@@ -11269,40 +11269,40 @@ class BulkVolumeJob(data_model.DataObject):
     """
     :param bulk_volume_id: [required] The internal bulk volume job ID. 
     :type bulk_volume_id: int
-    
+
     :param create_time: [required] Timestamp created for the bulk volume job. 
     :type create_time: str
-    
+
     :param elapsed_time: [required] The number of seconds since the job began. 
     :type elapsed_time: int
-    
+
     :param format: [required] Format is either "compressed" or "native". 
     :type format: str
-    
+
     :param key: [required] The unique key created by the bulk volume session. 
     :type key: str
-    
+
     :param percent_complete: [required] The completed percentage reported by the operation. 
     :type percent_complete: int
-    
+
     :param remaining_time: [required] The estimated time remaining in seconds. 
     :type remaining_time: int
-    
+
     :param src_volume_id: [required] The source volume ID. 
     :type src_volume_id: int
-    
+
     :param status: [required] Can be one of the following: <br/><b>preparing</b> <br/><b>active</b> <br/><b>done</b> <br/><b>failed</b> 
     :type status: str
-    
+
     :param script: [required] The name of the script if one is provided. 
     :type script: str
-    
+
     :param snapshot_id: [required] ID of the snapshot if a snapshot is in the source of the bulk volume job. 
     :type snapshot_id: int
-    
+
     :param type: [required] Can be one of the following: <br/><b>read</b> <br/><b>write</b> 
     :type type: str
-    
+
     :param attributes: [required] JSON attributes on the bulk volume job. 
     :type attributes: dict
     """
@@ -11407,19 +11407,19 @@ class ModifyAccountRequest(data_model.DataObject):
     """
     :param account_id: [required] AccountID for the account to modify. 
     :type account_id: int
-    
+
     :param username:  Change the username of the account to this value. 
     :type username: str
-    
+
     :param status:  Status of the account. 
     :type status: str
-    
+
     :param initiator_secret:  CHAP secret to use for the initiator. Should be 12-16 characters long and impenetrable. 
     :type initiator_secret: CHAPSecret
-    
+
     :param target_secret:  CHAP secret to use for the target (mutual CHAP authentication). Should be 12-16 characters long and impenetrable. 
     :type target_secret: CHAPSecret
-    
+
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -11468,34 +11468,34 @@ class FibreChannelPortInfo(data_model.DataObject):
     Fibre Channel Node Port Info object returns information about all Fibre Channel ports on a node, or for one node in the cluster. The same information is returned for all ports or port information for one node. This information is returned with the API method ListNodeFibreChannelPortInfo (in the SolidFire API Guide).
     :param firmware: [required] The version of the firmware installed on the Fibre Channel port. 
     :type firmware: str
-    
+
     :param hba_port: [required] The ID of the individual HBA port. 
     :type hba_port: int
-    
+
     :param model: [required] Model of the HBA on the port. 
     :type model: str
-    
+
     :param n_port_id: [required] Unique SolidFire port node ID. 
     :type n_port_id: str
-    
+
     :param pci_slot: [required] Slot in which the pci card resides on the Fibre Channel node hardware. 
     :type pci_slot: int
-    
+
     :param serial: [required] Serial number on the Fibre Channel port. 
     :type serial: str
-    
+
     :param speed: [required] Speed of the HBA on the port. 
     :type speed: str
-    
+
     :param state: [required] Possible values: <br/><br/> <strong>Unknown<br/>NotPresent<br/>Online<br/>Offline<br/>Blocked<br/>Bypassed<br/>Diagnostics<br/>Linkdown<br/>Error<br/>Loopback<br/>Deleted</strong> 
     :type state: str
-    
+
     :param switch_wwn: [required] The World Wide Name of the Fibre Channel switch port. 
     :type switch_wwn: str
-    
+
     :param wwnn: [required] World Wide Node Name of the HBA node. 
     :type wwnn: str
-    
+
     :param wwpn: [required] World Wide Port Name assigned to the physical port of the HBA. 
     :type wwpn: str
     """
@@ -11590,7 +11590,7 @@ class NodeFibreChannelPortInfoResult(data_model.DataObject):
     Fibre channel port info results for a node.
     :param node_id: [required] The ID of the Fibre Channel node. 
     :type node_id: int
-    
+
     :param result: [required] Contains a list of information about the Fibre Channel ports. 
     :type result: FibreChannelPortList
     """
@@ -11660,19 +11660,19 @@ class CreateVolumeAccessGroupRequest(data_model.DataObject):
     """
     :param name: [required] Name of the volume access group. It is not required to be unique, but recommended. 
     :type name: str
-    
+
     :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group will start out without configured initiators. 
     :type initiators: str
-    
+
     :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group will start without any volumes. 
     :type volumes: int
-    
+
     :param virtual_network_id:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
     :type virtual_network_id: int
-    
+
     :param virtual_network_tags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
     :type virtual_network_tags: int
-    
+
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -11720,7 +11720,7 @@ class RemoveVirtualNetworkRequest(data_model.DataObject):
     """
     :param virtual_network_id:  Network ID that identifies the virtual network to remove. 
     :type virtual_network_id: int
-    
+
     :param virtual_network_tag:  Network Tag that identifies the virtual network to remove. 
     :type virtual_network_tag: int
     """
@@ -11759,19 +11759,19 @@ class CreateSnapshotRequest(data_model.DataObject):
     """
     :param volume_id: [required] ID of the volume image from which to copy. 
     :type volume_id: int
-    
+
     :param snapshot_id:  Unique ID of a snapshot from which the new snapshot is made. The snapshotID passed must be a snapshot on the given volume. If a SnapshotID is not provided, a snapshot is created from the volume's active branch. 
     :type snapshot_id: int
-    
+
     :param name:  A name for the snapshot. If no name is provided, the date and time the snapshot was taken is used. 
     :type name: str
-    
+
     :param enable_remote_replication:  Identifies if snapshot is enabled for remote replication. 
     :type enable_remote_replication: bool
-    
+
     :param retention:  The amount of time the snapshot will be retained. Enter in HH:mm:ss 
     :type retention: str
-    
+
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -11816,7 +11816,7 @@ class CreateSnapshotRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveNodesResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -11825,7 +11825,7 @@ class RemoveVolumesFromVolumeAccessGroupRequest(data_model.DataObject):
     """
     :param volume_access_group_id: [required] The ID of the volume access group to modify. 
     :type volume_access_group_id: int
-    
+
     :param volumes: [required] List of volumes to remove from this volume access group. 
     :type volumes: int
     """
@@ -11849,10 +11849,10 @@ class DeleteVolumesRequest(data_model.DataObject):
     """
     :param account_ids:  A list of account IDs. All volumes from these accounts are deleted from the system.  
     :type account_ids: int
-    
+
     :param volume_access_group_ids:  A list of volume access group IDs. All of the volumes from all of the volume access groups you specify in this list are deleted from the system. 
     :type volume_access_group_ids: int
-    
+
     :param volume_ids:  The list of IDs of the volumes to delete from the system. 
     :type volume_ids: int
     """
@@ -11882,10 +11882,10 @@ class ModifyStorageContainerRequest(data_model.DataObject):
     """
     :param storage_container_id: [required] 
     :type storage_container_id: UUID
-    
+
     :param initiator_secret:  
     :type initiator_secret: str
-    
+
     :param target_secret:  
     :type target_secret: str
     """
@@ -11930,7 +11930,7 @@ class CreateSnapshotResult(data_model.DataObject):
     """
     :param snapshot_id: [required] ID of the newly-created snapshot. 
     :type snapshot_id: int
-    
+
     :param checksum: [required] A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. 
     :type checksum: str
     """
@@ -11951,7 +11951,7 @@ class CreateSnapshotResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddDrivesResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -11992,7 +11992,7 @@ class CopyVolumeResult(data_model.DataObject):
     """
     :param clone_id: [required] 
     :type clone_id: int
-    
+
     :param async_handle: [required] Handle value used to track the progress of the volume copy. 
     :type async_handle: int
     """
@@ -12031,25 +12031,25 @@ class CreateClusterRequest(data_model.DataObject):
     """
     :param accept_eula:  Indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. 
     :type accept_eula: bool
-    
+
     :param mvip: [required] Floating (virtual) IP address for the cluster on the management network. 
     :type mvip: str
-    
+
     :param svip: [required] Floating (virtual) IP address for the cluster on the storage (iSCSI) network. 
     :type svip: str
-    
+
     :param rep_count: [required] Number of replicas of each piece of data to store in the cluster. Valid value is "2". 
     :type rep_count: int
-    
+
     :param username: [required] User name for the cluster admin. 
     :type username: str
-    
+
     :param password: [required] Initial password for the cluster admin account. 
     :type password: str
-    
+
     :param nodes: [required] CIP/SIP addresses of the initial set of nodes making up the cluster. This node's IP must be in the list. 
     :type nodes: str
-    
+
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -12121,7 +12121,7 @@ class ClearClusterFaultsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class EnableLdapAuthenticationResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -12130,28 +12130,28 @@ class ModifyVirtualNetworkRequest(data_model.DataObject):
     """
     :param virtual_network_id:  Unique identifier of the virtual network to modify. This is the virtual network ID assigned by the SolidFire cluster. 
     :type virtual_network_id: int
-    
+
     :param virtual_network_tag:  Network Tag that identifies the virtual network to modify. 
     :type virtual_network_tag: int
-    
+
     :param name:  New name for the virtual network. 
     :type name: str
-    
+
     :param address_blocks:  New addressBlock to set for this Virtual Network object. This may contain new address blocks to add to the existing object or it may omit unused address blocks that need to be removed. Alternatively, existing address blocks may be extended or reduced in size. The size of the starting addressBlocks for a Virtual Network object can only be increased, and can never be decreased. Attributes for this parameter are: <br/><b>start:</b> start of the IP address range. (String) <br/><b>size:</b> numbre of IP addresses to include in the block. (Integer) 
     :type address_blocks: AddressBlock
-    
+
     :param netmask:  New netmask for this virtual network. 
     :type netmask: str
-    
+
     :param svip:  The storage virtual IP address for this virtual network. The svip for Virtual Network cannot be changed. A new Virtual Network must be created in order to use a different svip address. 
     :type svip: str
-    
+
     :param gateway:   
     :type gateway: str
-    
+
     :param namespace:   
     :type namespace: bool
-    
+
     :param attributes:  A new list of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -12217,22 +12217,22 @@ class ClusterStats(data_model.DataObject):
     """
     :param cluster_utilization: [required] The amount of cluster capacity being utilized. 
     :type cluster_utilization: float
-    
+
     :param client_queue_depth: [required] 
     :type client_queue_depth: int
-    
+
     :param read_bytes: [required] Total bytes read by clients. 
     :type read_bytes: int
-    
+
     :param read_ops: [required] Total read operations. 
     :type read_ops: int
-    
+
     :param timestamp: [required] Current time in UTC format. ISO 8601 date string. 
     :type timestamp: str
-    
+
     :param write_bytes: [required] Total bytes written by clients. 
     :type write_bytes: int
-    
+
     :param write_ops: [required] Total write operations. 
     :type write_ops: int
     """
@@ -12301,7 +12301,7 @@ class GetSnmpStateResult(data_model.DataObject):
     """
     :param enabled: [required] If the nodes in the cluster are configured for SNMP. 
     :type enabled: bool
-    
+
     :param snmp_v3_enabled: [required] If the node in the cluster is configured for SNMP v3. 
     :type snmp_v3_enabled: bool
     """
@@ -12340,10 +12340,10 @@ class TestConnectSvipDetails(data_model.DataObject):
     """
     :param ping_bytes: [required] Details of the ping tests with 56 Bytes and 1500 Bytes. 
     :type ping_bytes: str
-    
+
     :param svip: [required] The SVIP tested against. 
     :type svip: str
-    
+
     :param connected: [required] Whether the test could connect to the MVIP. 
     :type connected: bool
     """
@@ -12373,10 +12373,10 @@ class TestConnectSvipResult(data_model.DataObject):
     """
     :param details: [required] Information about the test operation 
     :type details: TestConnectSvipDetails
-    
+
     :param duration: [required] The length of time required to run the test. 
     :type duration: str
-    
+
     :param result: [required] The results of the entire test 
     :type result: str
     """
@@ -12421,19 +12421,19 @@ class ProtocolEndpoint(data_model.DataObject):
     """
     :param protocol_endpoint_id: [required] 
     :type protocol_endpoint_id: UUID
-    
+
     :param protocol_endpoint_state: [required] 
     :type protocol_endpoint_state: str
-    
+
     :param provider_type: [required] 
     :type provider_type: str
-    
+
     :param primary_provider_id: [required] 
     :type primary_provider_id: int
-    
+
     :param secondary_provider_id: [required] 
     :type secondary_provider_id: int
-    
+
     :param scsi_naadevice_id: [required] 
     :type scsi_naadevice_id: str
     """
@@ -12496,7 +12496,7 @@ class ModifyVolumesResult(data_model.DataObject):
     """
     :param qos: [required] 
     :type qos: QoS
-    
+
     :param volumes: [required] 
     :type volumes: Volume
     """
@@ -12577,7 +12577,7 @@ class ListAsyncResultsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyAccountResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -12601,10 +12601,10 @@ class CreateSupportBundleRequest(data_model.DataObject):
     """
     :param bundle_name:  Unique name for each support bundle created. If no name is provided, then 'supportbundle' and the node name is used as a file name. 
     :type bundle_name: str
-    
+
     :param extra_args:  This parameter is fed to the sf_make_support_bundle script. Should be used only at the request of SolidFire Support. 
     :type extra_args: str
-    
+
     :param timeout_sec:  The number of seconds to let the support bundle script run before timing out and stopping. Default is 1500 seconds. 
     :type timeout_sec: int
     """
@@ -12691,7 +12691,7 @@ class ListUtilitiesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteVolumeResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -12731,10 +12731,10 @@ class SnmpTrapRecipient(data_model.DataObject):
     Host that is to receive the traps generated by the cluster.
     :param host: [required] The IP address or host name of the target network management station. 
     :type host: str
-    
+
     :param community: [required] SNMP community string. 
     :type community: str
-    
+
     :param port: [required] The UDP port number on the host where the trap is to be sent. Valid range is 1 - 65535. 0 (zero) is not a valid port number. Default is 162. 
     :type port: int
     """
@@ -12764,13 +12764,13 @@ class GetSnmpTrapInfoResult(data_model.DataObject):
     """
     :param trap_recipients: [required] List of hosts that are to receive the traps generated by the cluster. 
     :type trap_recipients: SnmpTrapRecipient
-    
+
     :param cluster_fault_traps_enabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterFaultNotification is sent to the configured list of trap recipients. 
     :type cluster_fault_traps_enabled: bool
-    
+
     :param cluster_fault_resolved_traps_enabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterFaultResolvedNotification is sent to the configured list of trap recipients. 
     :type cluster_fault_resolved_traps_enabled: bool
-    
+
     :param cluster_event_traps_enabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterEventNotification is sent to the configured list of trap recipients. 
     :type cluster_event_traps_enabled: bool
     """
@@ -12806,7 +12806,7 @@ class ResetDrivesRequest(data_model.DataObject):
     """
     :param drives: [required] List of device names (not driveIDs) to reset. 
     :type drives: str
-    
+
     :param force: [required] The "force" parameter must be included on this method to successfully reset a drive. 
     :type force: bool
     """
@@ -12827,7 +12827,7 @@ class ResetDrivesRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetRemoteLoggingHostsResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -12852,7 +12852,7 @@ class LunAssignment(data_model.DataObject):
     VolumeID and Lun assignment.
     :param volume_id: [required] The volume ID assigned to the Lun. 
     :type volume_id: int
-    
+
     :param lun: [required] Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed. 
     :type lun: int
     """
@@ -12876,7 +12876,7 @@ class ModifyVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
     """
     :param volume_access_group_id: [required] Unique volume access group ID for which the LUN assignments will be modified. 
     :type volume_access_group_id: int
-    
+
     :param lun_assignments: [required] The volume IDs with new assigned LUN values. 
     :type lun_assignments: LunAssignment
     """
@@ -12897,7 +12897,7 @@ class ModifyVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CancelGroupCloneResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -12921,7 +12921,7 @@ class AddedNode(data_model.DataObject):
     """
     :param node_id: [required] 
     :type node_id: int
-    
+
     :param pending_node_id: [required] 
     :type pending_node_id: int
     """
@@ -12960,10 +12960,10 @@ class StartBulkVolumeReadResult(data_model.DataObject):
     """
     :param async_handle: [required] ID of the async process to be checked for completion. 
     :type async_handle: int
-    
+
     :param key: [required] Opaque key uniquely identifying the session. 
     :type key: str
-    
+
     :param url: [required] URL to access the node's web server 
     :type url: str
     """
@@ -13008,46 +13008,46 @@ class DriveHardwareInfo(data_model.DataObject):
     """
     :param description: [required] 
     :type description: str
-    
+
     :param dev: [required] 
     :type dev: str
-    
+
     :param devpath: [required] 
     :type devpath: str
-    
+
     :param drive_security_at_maximum: [required] 
     :type drive_security_at_maximum: bool
-    
+
     :param drive_security_frozen: [required] 
     :type drive_security_frozen: bool
-    
+
     :param drive_security_locked: [required] 
     :type drive_security_locked: bool
-    
+
     :param logicalname: [required] 
     :type logicalname: str
-    
+
     :param product: [required] 
     :type product: str
-    
+
     :param scsi_compat_id: [required] 
     :type scsi_compat_id: str
-    
+
     :param security_feature_enabled: [required] 
     :type security_feature_enabled: bool
-    
+
     :param security_feature_supported: [required] 
     :type security_feature_supported: bool
-    
+
     :param serial: [required] 
     :type serial: str
-    
+
     :param size: [required] 
     :type size: int
-    
+
     :param uuid: [required] 
     :type uuid: UUID
-    
+
     :param version: [required] 
     :type version: str
     """
@@ -13179,10 +13179,10 @@ class CopyVolumeRequest(data_model.DataObject):
     """
     :param volume_id: [required] Source volume to copy. 
     :type volume_id: int
-    
+
     :param dst_volume_id: [required] Destination volume for the copy. 
     :type dst_volume_id: int
-    
+
     :param snapshot_id:  Snapshot ID of the source volume to create the copy from. 
     :type snapshot_id: int
     """
@@ -13212,13 +13212,13 @@ class ResetDriveDetails(data_model.DataObject):
     """
     :param drive: [required] Drive name 
     :type drive: str
-    
+
     :param return_code: [required] 
     :type return_code: int
-    
+
     :param stderr: [required] 
     :type stderr: str
-    
+
     :param stdout: [required] 
     :type stdout: str
     """
@@ -13326,7 +13326,7 @@ class ListGroupSnapshotsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteAllSupportBundlesResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -13335,10 +13335,10 @@ class UpdateBulkVolumeStatusResult(data_model.DataObject):
     """
     :param status: [required] Status of the session requested. Returned status:<br/> <br/><b>preparing</b> <br/><b>active</b> <br/><b>done</b> <br/><b>failed</b> 
     :type status: str
-    
+
     :param url: [required] The URL to access the node's web server provided only if the session is still active. 
     :type url: str
-    
+
     :param attributes: [required] Returns attributes that were specified in the BulkVolumeStatusUpdate method. Values are returned if they have changed or not. 
     :type attributes: dict
     """
@@ -13383,7 +13383,7 @@ class CreateVolumeAccessGroupResult(data_model.DataObject):
     """
     :param volume_access_group_id: [required] The ID for the newly-created volume access group. 
     :type volume_access_group_id: int
-    
+
     :param volume_access_group: [required] 
     :type volume_access_group: VolumeAccessGroup
     """
@@ -13422,7 +13422,7 @@ class StartClusterPairingResult(data_model.DataObject):
     """
     :param cluster_pairing_key: [required] A string of characters that is used by the "CompleteClusterPairing" API method. 
     :type cluster_pairing_key: str
-    
+
     :param cluster_pair_id: [required] Unique identifier for the cluster pair. 
     :type cluster_pair_id: int
     """
@@ -13446,7 +13446,7 @@ class CompleteVolumePairingRequest(data_model.DataObject):
     """
     :param volume_pairing_key: [required] The key returned from the "StartVolumePairing" API method. 
     :type volume_pairing_key: str
-    
+
     :param volume_id: [required] The ID of volume on which to complete the pairing process. 
     :type volume_id: int
     """
@@ -13467,13 +13467,13 @@ class CompleteVolumePairingRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddLdapClusterAdminResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class EnableFeatureResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -13482,10 +13482,10 @@ class SetDefaultQoSRequest(data_model.DataObject):
     """
     :param min_iops:  The minimum number of sustained IOPS that are provided by the cluster to a volume. 
     :type min_iops: int
-    
+
     :param max_iops:  The maximum number of sustained IOPS that are provided by the cluster to a volume. 
     :type max_iops: int
-    
+
     :param burst_iops:  The maximum number of IOPS allowed in a short burst scenario. 
     :type burst_iops: int
     """
@@ -13527,7 +13527,7 @@ class ListVirtualVolumeTasksResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveBackupTargetResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -13551,10 +13551,10 @@ class PurgeDeletedVolumesRequest(data_model.DataObject):
     """
     :param volume_ids:  A list of volumeIDs of volumes to be purged from the system. 
     :type volume_ids: int
-    
+
     :param account_ids:  A list of accountIDs. All of the volumes from all of the specified accounts are purged from the system. 
     :type account_ids: int
-    
+
     :param volume_access_group_ids:  A list of volumeAccessGroupIDs. All of the volumes from all of the specified Volume Access Groups are purged from the system. 
     :type volume_access_group_ids: int
     """
@@ -13584,7 +13584,7 @@ class ListVirtualVolumesResult(data_model.DataObject):
     """
     :param virtual_volumes: [required] 
     :type virtual_volumes: VirtualVolumeInfo
-    
+
     :param next_virtual_volume_id: [required] 
     :type next_virtual_volume_id: UUID
     """
@@ -13608,22 +13608,22 @@ class CloneVolumeRequest(data_model.DataObject):
     """
     :param volume_id: [required] The ID of the volume to clone. 
     :type volume_id: int
-    
+
     :param name: [required] The name for the newly-created volume. 
     :type name: str
-    
+
     :param new_account_id:  AccountID for the owner of the new volume. If unspecified, the AccountID of the owner of the volume being cloned is used. 
     :type new_account_id: int
-    
+
     :param new_size:  New size of the volume, in bytes. May be greater or less than the size of the volume being cloned. If unspecified, the clone's volume size will be the same as the source volume. Size is rounded up to the nearest 1 MiB. 
     :type new_size: int
-    
+
     :param access:  Access settings for the new volume. <br/><b>readOnly</b>: Only read operations are allowed. <br/><b>readWrite</b>: Reads and writes are allowed. <br/><b>locked</b>: No reads or writes are allowed. <br/><b>replicationTarget</b>: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked. <br/><br/> If unspecified, the access settings of the clone will be the same as the source. 
     :type access: str
-    
+
     :param snapshot_id:  ID of the snapshot to use as the source of the clone. If unspecified, the clone will be created with a snapshot of the active volume. 
     :type snapshot_id: int
-    
+
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -13692,7 +13692,7 @@ class DeleteVolumesResult(data_model.DataObject):
     """
     :param volumes: [required] Information about the newly deleted volume. 
     :type volumes: Volume
-    
+
     :param curve: [required] 
     :type curve: VolumeQOS
     """
@@ -13713,7 +13713,7 @@ class DeleteVolumesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteGroupSnapshotResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -13722,31 +13722,31 @@ class EnableLdapAuthenticationRequest(data_model.DataObject):
     """
     :param auth_type:  Identifies which user authentcation method will be used. <br/> Must be one of the following:<br/> <b>DirectBind</b><br/> <b>SearchAndBind</b> (default) 
     :type auth_type: str
-    
+
     :param group_search_base_dn:  The base DN of the tree to start the group search (will do a subtree search from here). 
     :type group_search_base_dn: str
-    
+
     :param group_search_custom_filter:  REQUIRED for CustomFilter<br/> For use with the CustomFilter search type, an LDAP filter to use to return the DNs of a user's groups.<br/> The string can have placeholder text of %USERNAME% and %USERDN% to be replaced with their username and full userDN as needed. 
     :type group_search_custom_filter: str
-    
+
     :param group_search_type:  Controls the default group search filter used, can be one of the following:<br/> <b>NoGroups</b>: No group support.<br/> <b>ActiveDirectory</b>: (default) Nested membership of all of a user's AD groups.<br/> <b>MemberDN</b>: MemberDN style groups (single-level). 
     :type group_search_type: str
-    
+
     :param search_bind_dn:  REQUIRED for SearchAndBind<br/> A fully qualified DN to log in with to perform an LDAP search for the user (needs read access to the LDAP directory). 
     :type search_bind_dn: str
-    
+
     :param search_bind_password:  REQUIRED for SearchAndBind<br/> The password for the searchBindDN account used for searching. 
     :type search_bind_password: str
-    
+
     :param server_uris: [required] A list of LDAP server URIs (examples: "ldap://1.2.3.4" and ldaps://1.2.3.4:123") 
     :type server_uris: str
-    
+
     :param user_dntemplate:  REQUIRED for DirectBind<br/> A string that is used to form a fully qualified user DN.<br/> The string should have the placeholder text "%USERNAME%" which will be replaced with the username of the authenticating user. 
     :type user_dntemplate: str
-    
+
     :param user_search_base_dn:  REQUIRED for SearchAndBind The base DN of the tree used to start the search (will do a subtree search from here). 
     :type user_search_base_dn: str
-    
+
     :param user_search_filter:  REQUIRED for SearchAndBind.<br/> The LDAP filter to use.<br/> The string should have the placeholder text "%USERNAME%" which will be replaced with the username of the authenticating user.<br/> Example: (&(objectClass=person) (sAMAccountName=%USERNAME%)) will use the sAMAccountName field in Active Directory to match the nusername entered at cluster login. 
     :type user_search_filter: str
     """
@@ -13830,7 +13830,7 @@ class ListClusterAdminsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class EnableEncryptionAtRestResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -13839,7 +13839,7 @@ class CreateBackupTargetRequest(data_model.DataObject):
     """
     :param name: [required] Name for the backup target. 
     :type name: str
-    
+
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -13863,13 +13863,13 @@ class SetSnmpTrapInfoRequest(data_model.DataObject):
     """
     :param trap_recipients: [required] List of hosts that are to receive the traps generated by the Cluster Master. At least one object is required if any one of the trap types is enabled. 
     :type trap_recipients: SnmpTrapRecipient
-    
+
     :param cluster_fault_traps_enabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterFaultNotification is sent to the configured list of trap recipients. 
     :type cluster_fault_traps_enabled: bool
-    
+
     :param cluster_fault_resolved_traps_enabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterFaultResolvedNotification is sent to the configured list of trap recipients. 
     :type cluster_fault_resolved_traps_enabled: bool
-    
+
     :param cluster_event_traps_enabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterEventNotification is sent to the configured list of trap recipients. 
     :type cluster_event_traps_enabled: bool
     """
@@ -13905,19 +13905,19 @@ class ModifyVolumeRequest(data_model.DataObject):
     """
     :param volume_id: [required] VolumeID for the volume to be modified. 
     :type volume_id: int
-    
+
     :param account_id:  AccountID to which the volume is reassigned. If none is specified, the previous account name is used. 
     :type account_id: int
-    
+
     :param access:  Access allowed for the volume. <br/><b>readOnly</b>: Only read operations are allowed. <br/><b>readWrite</b>: Reads and writes are allowed. <br/><b>locked</b>: No reads or writes are allowed. <br/><b>replicationTarget</b>: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked. <br/><br/> If unspecified, the access settings of the clone will be the same as the source. 
     :type access: str
-    
+
     :param qos:  New quality of service settings for this volume. 
     :type qos: QoS
-    
+
     :param total_size:  New size of the volume in bytes. Size is rounded up to the nearest 1MiB size. This parameter can only be used to *increase* the size of a volume. 
     :type total_size: int
-    
+
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
@@ -13966,10 +13966,10 @@ class VolumeAccessGroupLunAssignments(data_model.DataObject):
     VolumeAccessGroup ID and Lun to be assigned to all volumes within it.
     :param volume_access_group_id: [required] Unique volume access group ID for which the LUN assignments will be modified. 
     :type volume_access_group_id: int
-    
+
     :param lun_assignments: [required] The volume IDs with assigned LUN values. 
     :type lun_assignments: LunAssignment
-    
+
     :param deleted_lun_assignments: [required] The volume IDs with deleted LUN values. 
     :type deleted_lun_assignments: LunAssignment
     """
@@ -14014,7 +14014,7 @@ class CreateGroupSnapshotResult(data_model.DataObject):
     """
     :param group_snapshot_id: [required] Unique ID of the new group snapshot. 
     :type group_snapshot_id: int
-    
+
     :param members: [required] List of checksum, volumeIDs and snapshotIDs for each member of the group. 
     :type members: GroupSnapshotMembers
     """
@@ -14038,7 +14038,7 @@ class ClusterHardwareInfo(data_model.DataObject):
     """
     :param drives: [required] 
     :type drives: dict
-    
+
     :param nodes: [required] 
     :type nodes: dict
     """
@@ -14122,7 +14122,7 @@ class ListAccountsRequest(data_model.DataObject):
     """
     :param start_account_id:  Starting AccountID to return. If no Account exists with this AccountID, the next Account by AccountID order is used as the start of the list. To page through the list, pass the AccountID of the last Account in the previous response + 1 
     :type start_account_id: int
-    
+
     :param limit:  Maximum number of AccountInfo objects to return. 
     :type limit: int
     """
@@ -14161,10 +14161,10 @@ class SetDefaultQoSResult(data_model.DataObject):
     """
     :param min_iops: [required] The minimum number of sustained IOPS that are provided by the cluster to a volume.  
     :type min_iops: int
-    
+
     :param max_iops: [required] The maximum number of sustained IOPS that are provided by the cluster to a volume. 
     :type max_iops: int
-    
+
     :param burst_iops: [required] The maximum number of IOPS allowed in a short burst scenario. 
     :type burst_iops: int
     """
@@ -14191,7 +14191,7 @@ class SetDefaultQoSResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVolumePairResult(data_model.DataObject):
-    """"""
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -14215,7 +14215,7 @@ class GetVirtualVolumeTaskUpdateRequest(data_model.DataObject):
     """
     :param virtual_volume_task_id: [required] The UUID of the VVol Task. 
     :type virtual_volume_task_id: UUID
-    
+
     :param calling_virtual_volume_host_id:  
     :type calling_virtual_volume_host_id: UUID
     """
@@ -14269,10 +14269,10 @@ class TestConnectEnsembleResult(data_model.DataObject):
     """
     :param details: [required] 
     :type details: TestConnectEnsembleDetails
-    
+
     :param duration: [required] The length of time required to run the test. 
     :type duration: str
-    
+
     :param result: [required] The results of the entire test 
     :type result: str
     """
@@ -14302,7 +14302,7 @@ class ListActiveVolumesRequest(data_model.DataObject):
     """
     :param start_volume_id:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
     :type start_volume_id: int
-    
+
     :param limit:  The maximum number of volumes to return from the API. 
     :type limit: int
     """
