@@ -5086,262 +5086,6 @@ class Element(ServiceBase):
             since=6.0
         )
 
-    def add_drives(
-            self,
-            drives,):
-        """
-        AddDrives is used to add one or more available drives to the cluster enabling the drives to host a portion of the cluster's data.
-        When you add a node to the cluster or install new drives in an existing node, the new drives are marked as "available" and must be added via AddDrives before they can be utilized.
-        Use the "ListDrives" method to display drives that are "available" to be added.
-        When you add multiple drives, it is more efficient to add them in a single "AddDrives" method call rather than multiple individual methods with a single drive each.
-        This reduces the amount of data balancing that must occur to stabilize the storage load on the cluster.
-        <br/><br/>
-        When you add a drive, the system automatically determines the "type" of drive it should be.
-        <br/><br/>
-        The method returns immediately. However, it may take some time for the data in the cluster to be rebalanced using the newly added drives.
-        As the new drive(s) are syncing on the system, you can use the "ListSyncJobs" method to see how the drive(s) are being rebalanced and the progress of adding the new drive.
-        :param drives: [required] List of drives to add to the cluster. 
-        :type drives: NewDrive
-        """
-
-        self._check_connection_type("add_drives", "Cluster")
-
-        params = { 
-            "drives": drives,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'AddDrives',
-            AddDrivesResult,
-            params,
-            since=1.0
-        )
-
-    def list_drives(
-            self,):
-        """
-        ListDrives allows you to retrieve the list of the drives that exist in the cluster's active nodes.
-        This method returns drives that have been added as volume metadata or block drives as well as drives that have not been added and are available."""
-
-        self._check_connection_type("list_drives", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListDrives',
-            ListDrivesResult,
-            params,
-            since=1.0
-        )
-
-    def get_drive_config(
-            self,):
-        """
-        GetDriveConfig is used to display drive information for expected slice and block drive counts as well as the number of slices and block drives that are currently connected to the node.
-        <br/><br/>
-        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
-
-        self._check_connection_type("get_drive_config", "Node")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetDriveConfig',
-            GetDriveConfigResult,
-            params
-        )
-
-    def get_drive_hardware_info(
-            self,
-            drive_id,):
-        """
-        GetDriveHardwareInfo returns all the hardware info for the given drive. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
-        :param driveID: [required] DriveID for the drive information requested. DriveIDs can be obtained via the "ListDrives" method. 
-        :type driveID: int
-        """
-
-        self._check_connection_type("get_drive_hardware_info", "Cluster")
-
-        params = { 
-            "driveID": drive_id,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetDriveHardwareInfo',
-            GetDriveHardwareInfoResult,
-            params,
-            since=1.0
-        )
-
-    def list_drive_hardware(
-            self,):
-        """
-        ListDriveHardware returns all the drives connected to a node. Use this method on the cluster to return drive hardware information for all the drives on all nodes."""
-
-        self._check_connection_type("list_drive_hardware", "Node")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListDriveHardware',
-            ListDriveHardwareResult,
-            params,
-            since=7.0
-        )
-
-    def reset_drives(
-            self,
-            drives,
-            force,):
-        """
-        ResetDrives is used to pro-actively initialize drives and remove all data currently residing on the drive. The drive can then be reused in an existing node or used in an upgraded SolidFire node. This method requires the force=true parameter to be included in the method call.
-        <br/><br/>
-        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
-        :param drives: [required] List of device names (not driveIDs) to reset. 
-        :type drives: str
-        
-        :param force: [required] The "force" parameter must be included on this method to successfully reset a drive. 
-        :type force: bool
-        """
-
-        self._check_connection_type("reset_drives", "Node")
-
-        params = { 
-            "drives": drives,
-            "force": force,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ResetDrives',
-            ResetDrivesResult,
-            params,
-            since=6.0
-        )
-
-    def test_drives(
-            self,
-            minutes=OPTIONAL,):
-        """
-        The TestDrives API method is used to run a hardware validation on all the drives on the node. Hardware failures on the drives are detected if present and they are reported in the results of the validation tests.
-        <br/><br/>
-        <b>Note</b>: This test takes approximately 10 minutes.
-        <br/><br/>
-        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
-        :param minutes:  The number of minutes to run the test can be specified. 
-        :type minutes: int
-        """
-
-        self._check_connection_type("test_drives", "Node")
-
-        params = { 
-        }
-        if minutes is not None:
-            params["minutes"] = minutes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'TestDrives',
-            TestDrivesResult,
-            params,
-            since=5.0
-        )
-
-    def get_drive_stats(
-            self,
-            drive_id,):
-        """
-        GetDriveStats return high-level activity measurements for a single drive. Values are cumulative from the addition of the drive to the cluster. Some values are specific to Block Drives. Statistical data may not be returned for both block and metadata drives when running this method.
-        For more information on which drive type returns which data, see Response Example (Block Drive) and Response Example (Volume Metadata Drive) in the SolidFire API guide.
-        :param driveID: [required] Specifies the drive for which statistics are gathered. 
-        :type driveID: int
-        """
-
-        self._check_connection_type("get_drive_stats", "Cluster")
-
-        params = { 
-            "driveID": drive_id,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetDriveStats',
-            GetDriveStatsResult,
-            params,
-            since=1.0
-        )
-
-    def secure_erase_drives(
-            self,
-            drives,):
-        """
-        SecureEraseDrives is used to remove any residual data from drives that have a status of "available." For example, when replacing a drive at its end-of-life that contained sensitive data.
-        It uses a Security Erase Unit command to write a predetermined pattern to the drive and resets the encryption key on the drive. The method may take up to two minutes to complete, so it is an asynchronous method.
-        The GetAsyncResult method can be used to check on the status of the secure erase operation.
-        <br/><br/>
-        Use the "ListDrives" method to obtain the driveIDs for the drives you want to secure erase.
-        :param drives: [required] List of driveIDs to secure erase. 
-        :type drives: int
-        """
-
-        self._check_connection_type("secure_erase_drives", "Cluster")
-
-        params = { 
-            "drives": drives,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SecureEraseDrives',
-            AsyncHandleResult,
-            params,
-            since=5.0
-        )
-
-    def remove_drives(
-            self,
-            drives,):
-        """
-        You can use RemoveDrives to proactively remove drives that are part of the cluster.
-        You may want to use this method when reducing cluster capacity or preparing to replace drives nearing the end of their service life.
-        Any data on the drives is removed and migrated to other drives in the cluster before the drive is removed from the cluster. This is an asynchronous method.
-        Depending on the total capacity of the drives being removed, it may take several minutes to migrate all of the data.
-        Use the "GetAsyncResult" method to check the status of the remove operation.
-        <br/><br/>
-        When removing multiple drives, use a single "RemoveDrives" method call rather than multiple individual methods with a single drive each.
-        This reduces the amount of data balancing that must occur to even stabilize the storage load on the cluster.
-        <br/><br/>
-        You can also remove drives with a "failed" status using "RemoveDrives".
-        When you remove a drive with a "failed" status it is not returned to an "available" or "active" status.
-        The drive is unavailable for use in the cluster.
-        <br/><br/>
-        Use the "ListDrives" method to obtain the driveIDs for the drives you want to remove.
-        :param drives: [required] List of driveIDs to remove from the cluster. 
-        :type drives: int
-        """
-
-        self._check_connection_type("remove_drives", "Cluster")
-
-        params = { 
-            "drives": drives,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'RemoveDrives',
-            AsyncHandleResult,
-            params,
-            since=1.0
-        )
-
     def list_active_nodes(
             self,):
         """
@@ -5627,5 +5371,266 @@ class Element(ServiceBase):
             GetPendingOperationResult,
             params,
             since=5.0
+        )
+
+    def add_drives(
+            self,
+            drives,):
+        """
+        AddDrives is used to add one or more available drives to the cluster enabling the drives to host a portion of the cluster's data.
+        When you add a node to the cluster or install new drives in an existing node, the new drives are marked as "available" and must be added via AddDrives before they can be utilized.
+        Use the "ListDrives" method to display drives that are "available" to be added.
+        When you add multiple drives, it is more efficient to add them in a single "AddDrives" method call rather than multiple individual methods with a single drive each.
+        This reduces the amount of data balancing that must occur to stabilize the storage load on the cluster.
+        <br/><br/>
+        When you add a drive, the system automatically determines the "type" of drive it should be.
+        <br/><br/>
+        The method returns immediately. However, it may take some time for the data in the cluster to be rebalanced using the newly added drives.
+        As the new drive(s) are syncing on the system, you can use the "ListSyncJobs" method to see how the drive(s) are being rebalanced and the progress of adding the new drive.
+        :param drives: [required] List of drives to add to the cluster. 
+        :type drives: NewDrive
+        """
+
+        self._check_connection_type("add_drives", "Cluster")
+
+        params = { 
+            "drives": drives,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'AddDrives',
+            AddDrivesResult,
+            params,
+            since=1.0
+        )
+
+    def list_drives(
+            self,):
+        """
+        ListDrives allows you to retrieve the list of the drives that exist in the cluster's active nodes.
+        This method returns drives that have been added as volume metadata or block drives as well as drives that have not been added and are available."""
+
+        self._check_connection_type("list_drives", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListDrives',
+            ListDrivesResult,
+            params,
+            since=1.0
+        )
+
+    def get_drive_config(
+            self,):
+        """
+        GetDriveConfig is used to display drive information for expected slice and block drive counts as well as the number of slices and block drives that are currently connected to the node.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later."""
+
+        self._check_connection_type("get_drive_config", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetDriveConfig',
+            GetDriveConfigResult,
+            params
+        )
+
+    def get_drive_hardware_info(
+            self,
+            drive_id,):
+        """
+        GetDriveHardwareInfo returns all the hardware info for the given drive. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
+        :param driveID: [required] DriveID for the drive information requested. DriveIDs can be obtained via the "ListDrives" method. 
+        :type driveID: int
+        """
+
+        self._check_connection_type("get_drive_hardware_info", "Cluster")
+
+        params = { 
+            "driveID": drive_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetDriveHardwareInfo',
+            GetDriveHardwareInfoResult,
+            params,
+            since=1.0
+        )
+
+    def list_drive_hardware(
+            self,
+            force,):
+        """
+        ListDriveHardware returns all the drives connected to a node. Use this method on the cluster to return drive hardware information for all the drives on all nodes.
+        :param force: [required] To run this command, the force parameter must be set to true. 
+        :type force: bool
+        """
+
+        self._check_connection_type("list_drive_hardware", "Cluster")
+
+        params = { 
+            "force": force,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListDriveHardware',
+            ListDriveHardwareResult,
+            params,
+            since=7.0
+        )
+
+    def reset_drives(
+            self,
+            drives,
+            force,):
+        """
+        ResetDrives is used to pro-actively initialize drives and remove all data currently residing on the drive. The drive can then be reused in an existing node or used in an upgraded SolidFire node. This method requires the force=true parameter to be included in the method call.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
+        :param drives: [required] List of device names (not driveIDs) to reset. 
+        :type drives: str
+        
+        :param force: [required] The "force" parameter must be included on this method to successfully reset a drive. 
+        :type force: bool
+        """
+
+        self._check_connection_type("reset_drives", "Node")
+
+        params = { 
+            "drives": drives,
+            "force": force,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ResetDrives',
+            ResetDrivesResult,
+            params,
+            since=6.0
+        )
+
+    def test_drives(
+            self,
+            minutes=OPTIONAL,):
+        """
+        The TestDrives API method is used to run a hardware validation on all the drives on the node. Hardware failures on the drives are detected if present and they are reported in the results of the validation tests.
+        <br/><br/>
+        <b>Note</b>: This test takes approximately 10 minutes.
+        <br/><br/>
+        <b>Note</b>: This method is available only through the per-node API endpoint 5.0 or later.
+        :param minutes:  The number of minutes to run the test can be specified. 
+        :type minutes: int
+        """
+
+        self._check_connection_type("test_drives", "Node")
+
+        params = { 
+        }
+        if minutes is not None:
+            params["minutes"] = minutes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'TestDrives',
+            TestDrivesResult,
+            params,
+            since=5.0
+        )
+
+    def get_drive_stats(
+            self,
+            drive_id,):
+        """
+        GetDriveStats return high-level activity measurements for a single drive. Values are cumulative from the addition of the drive to the cluster. Some values are specific to Block Drives. Statistical data may not be returned for both block and metadata drives when running this method.
+        For more information on which drive type returns which data, see Response Example (Block Drive) and Response Example (Volume Metadata Drive) in the SolidFire API guide.
+        :param driveID: [required] Specifies the drive for which statistics are gathered. 
+        :type driveID: int
+        """
+
+        self._check_connection_type("get_drive_stats", "Cluster")
+
+        params = { 
+            "driveID": drive_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetDriveStats',
+            GetDriveStatsResult,
+            params,
+            since=1.0
+        )
+
+    def secure_erase_drives(
+            self,
+            drives,):
+        """
+        SecureEraseDrives is used to remove any residual data from drives that have a status of "available." For example, when replacing a drive at its end-of-life that contained sensitive data.
+        It uses a Security Erase Unit command to write a predetermined pattern to the drive and resets the encryption key on the drive. The method may take up to two minutes to complete, so it is an asynchronous method.
+        The GetAsyncResult method can be used to check on the status of the secure erase operation.
+        <br/><br/>
+        Use the "ListDrives" method to obtain the driveIDs for the drives you want to secure erase.
+        :param drives: [required] List of driveIDs to secure erase. 
+        :type drives: int
+        """
+
+        self._check_connection_type("secure_erase_drives", "Cluster")
+
+        params = { 
+            "drives": drives,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SecureEraseDrives',
+            AsyncHandleResult,
+            params,
+            since=5.0
+        )
+
+    def remove_drives(
+            self,
+            drives,):
+        """
+        You can use RemoveDrives to proactively remove drives that are part of the cluster.
+        You may want to use this method when reducing cluster capacity or preparing to replace drives nearing the end of their service life.
+        Any data on the drives is removed and migrated to other drives in the cluster before the drive is removed from the cluster. This is an asynchronous method.
+        Depending on the total capacity of the drives being removed, it may take several minutes to migrate all of the data.
+        Use the "GetAsyncResult" method to check the status of the remove operation.
+        <br/><br/>
+        When removing multiple drives, use a single "RemoveDrives" method call rather than multiple individual methods with a single drive each.
+        This reduces the amount of data balancing that must occur to even stabilize the storage load on the cluster.
+        <br/><br/>
+        You can also remove drives with a "failed" status using "RemoveDrives".
+        When you remove a drive with a "failed" status it is not returned to an "available" or "active" status.
+        The drive is unavailable for use in the cluster.
+        <br/><br/>
+        Use the "ListDrives" method to obtain the driveIDs for the drives you want to remove.
+        :param drives: [required] List of driveIDs to remove from the cluster. 
+        :type drives: int
+        """
+
+        self._check_connection_type("remove_drives", "Cluster")
+
+        params = { 
+            "drives": drives,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RemoveDrives',
+            AsyncHandleResult,
+            params,
+            since=1.0
         )
 

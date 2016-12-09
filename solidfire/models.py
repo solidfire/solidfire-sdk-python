@@ -794,15 +794,15 @@ class ListActivePairedVolumesResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class NewDrive(data_model.DataObject):
+class GetConfigRequest(data_model.DataObject):
     """
-    :param drive_id: [required] A unique identifier for this drive. 
-    :type drive_id: int
+    :param force: [required] To run this command, the force parameter must be set to true. 
+    :type force: bool
     """
-    drive_id = data_model.property(
-        "driveID", int,
+    force = data_model.property(
+        "force", bool,
         array=False, optional=False,
-        documentation="[&#x27;A unique identifier for this drive.&#x27;]",
+        documentation="To run this command, the force parameter must be set to true.",
         dictionaryType=None
     )
 
@@ -4964,21 +4964,6 @@ class SnmpV3UsmUser(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetConfigRequest(data_model.DataObject):
-    """
-    :param force: [required] To run this command, the force parameter must be set to true. 
-    :type force: bool
-    """
-    force = data_model.property(
-        "force", bool,
-        array=False, optional=False,
-        documentation="To run this command, the force parameter must be set to true.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class GetScheduleResult(data_model.DataObject):
     """
     :param schedule: [required] The schedule attributes. 
@@ -5002,6 +4987,327 @@ class DeleteSnapshotResult(data_model.DataObject):
 
 class CompleteVolumePairingResult(data_model.DataObject):
     """"""
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class DriveHardware(data_model.DataObject):
+    """
+    :param canonical_name: [required] 
+    :type canonical_name: str
+    
+    :param connected: [required] 
+    :type connected: bool
+    
+    :param dev: [required] 
+    :type dev: int
+    
+    :param dev_path: [required] 
+    :type dev_path: str
+    
+    :param drive_type: [required] 
+    :type drive_type: str
+    
+    :param life_remaining_percent: [required] 
+    :type life_remaining_percent: int
+    
+    :param lifetime_read_bytes: [required] 
+    :type lifetime_read_bytes: int
+    
+    :param lifetime_write_bytes: [required] 
+    :type lifetime_write_bytes: int
+    
+    :param name: [required] 
+    :type name: str
+    
+    :param path: [required] 
+    :type path: str
+    
+    :param path_link: [required] 
+    :type path_link: str
+    
+    :param power_on_hours: [required] 
+    :type power_on_hours: int
+    
+    :param product: [required] 
+    :type product: str
+    
+    :param reallocated_sectors: [required] 
+    :type reallocated_sectors: int
+    
+    :param reserve_capacity_percent: [required] 
+    :type reserve_capacity_percent: int
+    
+    :param scsi_compat_id: [required] 
+    :type scsi_compat_id: str
+    
+    :param scsi_state: [required] 
+    :type scsi_state: str
+    
+    :param security_at_maximum: [required] 
+    :type security_at_maximum: bool
+    
+    :param security_enabled: [required] 
+    :type security_enabled: bool
+    
+    :param security_frozen: [required] 
+    :type security_frozen: bool
+    
+    :param security_locked: [required] 
+    :type security_locked: bool
+    
+    :param security_supported: [required] 
+    :type security_supported: bool
+    
+    :param serial: [required] 
+    :type serial: str
+    
+    :param size: [required] 
+    :type size: int
+    
+    :param slot: [required] 
+    :type slot: int
+    
+    :param smart_ssd_write_capable:  
+    :type smart_ssd_write_capable: bool
+    
+    :param uuid: [required] 
+    :type uuid: UUID
+    
+    :param vendor: [required] 
+    :type vendor: str
+    
+    :param version: [required] 
+    :type version: str
+    """
+    canonical_name = data_model.property(
+        "canonicalName", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    connected = data_model.property(
+        "connected", bool,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    dev = data_model.property(
+        "dev", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    dev_path = data_model.property(
+        "devPath", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    drive_type = data_model.property(
+        "driveType", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    life_remaining_percent = data_model.property(
+        "lifeRemainingPercent", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    lifetime_read_bytes = data_model.property(
+        "lifetimeReadBytes", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    lifetime_write_bytes = data_model.property(
+        "lifetimeWriteBytes", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    path = data_model.property(
+        "path", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    path_link = data_model.property(
+        "pathLink", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    power_on_hours = data_model.property(
+        "powerOnHours", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    product = data_model.property(
+        "product", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    reallocated_sectors = data_model.property(
+        "reallocatedSectors", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    reserve_capacity_percent = data_model.property(
+        "reserveCapacityPercent", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    scsi_compat_id = data_model.property(
+        "scsiCompatId", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    scsi_state = data_model.property(
+        "scsiState", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    security_at_maximum = data_model.property(
+        "securityAtMaximum", bool,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    security_enabled = data_model.property(
+        "securityEnabled", bool,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    security_frozen = data_model.property(
+        "securityFrozen", bool,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    security_locked = data_model.property(
+        "securityLocked", bool,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    security_supported = data_model.property(
+        "securitySupported", bool,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    serial = data_model.property(
+        "serial", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    size = data_model.property(
+        "size", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    slot = data_model.property(
+        "slot", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    smart_ssd_write_capable = data_model.property(
+        "smartSsdWriteCapable", bool,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    uuid = data_model.property(
+        "uuid", UUID,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    vendor = data_model.property(
+        "vendor", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    version = data_model.property(
+        "version", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class DrivesHardware(data_model.DataObject):
+    """
+    :param drive_hardware: [required] 
+    :type drive_hardware: DriveHardware
+    """
+    drive_hardware = data_model.property(
+        "driveHardware", DriveHardware,
+        array=True, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class NodeDriveHardware(data_model.DataObject):
+    """
+    :param node_id: [required] 
+    :type node_id: int
+    
+    :param result: [required] 
+    :type result: DrivesHardware
+    """
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    result = data_model.property(
+        "result", DrivesHardware,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListDriveHardwareResult(data_model.DataObject):
+    """
+    :param nodes: [required] 
+    :type nodes: NodeDriveHardware
+    """
+    nodes = data_model.property(
+        "nodes", NodeDriveHardware,
+        array=True, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -9052,327 +9358,6 @@ class DeleteVolumeAccessGroupRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class DriveHardware(data_model.DataObject):
-    """
-    :param canonical_name: [required] 
-    :type canonical_name: str
-    
-    :param connected: [required] 
-    :type connected: bool
-    
-    :param dev: [required] 
-    :type dev: int
-    
-    :param dev_path: [required] 
-    :type dev_path: str
-    
-    :param drive_type: [required] 
-    :type drive_type: str
-    
-    :param life_remaining_percent: [required] 
-    :type life_remaining_percent: int
-    
-    :param lifetime_read_bytes: [required] 
-    :type lifetime_read_bytes: int
-    
-    :param lifetime_write_bytes: [required] 
-    :type lifetime_write_bytes: int
-    
-    :param name: [required] 
-    :type name: str
-    
-    :param path: [required] 
-    :type path: str
-    
-    :param path_link: [required] 
-    :type path_link: str
-    
-    :param power_on_hours: [required] 
-    :type power_on_hours: int
-    
-    :param product: [required] 
-    :type product: str
-    
-    :param reallocated_sectors: [required] 
-    :type reallocated_sectors: int
-    
-    :param reserve_capacity_percent: [required] 
-    :type reserve_capacity_percent: int
-    
-    :param scsi_compat_id: [required] 
-    :type scsi_compat_id: str
-    
-    :param scsi_state: [required] 
-    :type scsi_state: str
-    
-    :param security_at_maximum: [required] 
-    :type security_at_maximum: bool
-    
-    :param security_enabled: [required] 
-    :type security_enabled: bool
-    
-    :param security_frozen: [required] 
-    :type security_frozen: bool
-    
-    :param security_locked: [required] 
-    :type security_locked: bool
-    
-    :param security_supported: [required] 
-    :type security_supported: bool
-    
-    :param serial: [required] 
-    :type serial: str
-    
-    :param size: [required] 
-    :type size: int
-    
-    :param slot: [required] 
-    :type slot: int
-    
-    :param smart_ssd_write_capable:  
-    :type smart_ssd_write_capable: bool
-    
-    :param uuid: [required] 
-    :type uuid: UUID
-    
-    :param vendor: [required] 
-    :type vendor: str
-    
-    :param version: [required] 
-    :type version: str
-    """
-    canonical_name = data_model.property(
-        "canonicalName", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    connected = data_model.property(
-        "connected", bool,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    dev = data_model.property(
-        "dev", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    dev_path = data_model.property(
-        "devPath", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    drive_type = data_model.property(
-        "driveType", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    life_remaining_percent = data_model.property(
-        "lifeRemainingPercent", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    lifetime_read_bytes = data_model.property(
-        "lifetimeReadBytes", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    lifetime_write_bytes = data_model.property(
-        "lifetimeWriteBytes", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    path = data_model.property(
-        "path", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    path_link = data_model.property(
-        "pathLink", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    power_on_hours = data_model.property(
-        "powerOnHours", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    product = data_model.property(
-        "product", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    reallocated_sectors = data_model.property(
-        "reallocatedSectors", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    reserve_capacity_percent = data_model.property(
-        "reserveCapacityPercent", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    scsi_compat_id = data_model.property(
-        "scsiCompatId", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    scsi_state = data_model.property(
-        "scsiState", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    security_at_maximum = data_model.property(
-        "securityAtMaximum", bool,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    security_enabled = data_model.property(
-        "securityEnabled", bool,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    security_frozen = data_model.property(
-        "securityFrozen", bool,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    security_locked = data_model.property(
-        "securityLocked", bool,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    security_supported = data_model.property(
-        "securitySupported", bool,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    serial = data_model.property(
-        "serial", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    size = data_model.property(
-        "size", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    slot = data_model.property(
-        "slot", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    smart_ssd_write_capable = data_model.property(
-        "smartSsdWriteCapable", bool,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    uuid = data_model.property(
-        "uuid", UUID,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    vendor = data_model.property(
-        "vendor", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    version = data_model.property(
-        "version", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class DrivesHardware(data_model.DataObject):
-    """
-    :param drive_hardware: [required] 
-    :type drive_hardware: DriveHardware
-    """
-    drive_hardware = data_model.property(
-        "driveHardware", DriveHardware,
-        array=True, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class NodeDriveHardware(data_model.DataObject):
-    """
-    :param node_id: [required] 
-    :type node_id: int
-    
-    :param result: [required] 
-    :type result: DrivesHardware
-    """
-    node_id = data_model.property(
-        "nodeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    result = data_model.property(
-        "result", DrivesHardware,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListDriveHardwareResult(data_model.DataObject):
-    """
-    :param nodes: [required] 
-    :type nodes: NodeDriveHardware
-    """
-    nodes = data_model.property(
-        "nodes", NodeDriveHardware,
-        array=True, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class SupportBundleDetails(data_model.DataObject):
     """
     :param bundle_name: [required] The name specified in the 'CreateSupportBundle API method. If no name was specified, 'supportbundle' will be used. 
@@ -10986,6 +10971,21 @@ class CreateVolumeResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class TestDrivesRequest(data_model.DataObject):
+    """
+    :param minutes:  The number of minutes to run the test can be specified. 
+    :type minutes: int
+    """
+    minutes = data_model.property(
+        "minutes", int,
+        array=False, optional=True,
+        documentation="The number of minutes to run the test can be specified.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListStorageContainersResult(data_model.DataObject):
     """
     :param storage_containers: [required] 
@@ -11620,6 +11620,21 @@ class ListNodeFibreChannelPortInfoResult(data_model.DataObject):
         "nodes", NodeFibreChannelPortInfoResult,
         array=True, optional=False,
         documentation="List of fibre channel port info results grouped by node.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class NewDrive(data_model.DataObject):
+    """
+    :param drive_id: [required] A unique identifier for this drive. 
+    :type drive_id: int
+    """
+    drive_id = data_model.property(
+        "driveID", int,
+        array=False, optional=False,
+        documentation="[&#x27;A unique identifier for this drive.&#x27;]",
         dictionaryType=None
     )
 
@@ -13280,15 +13295,15 @@ class TestConnectEnsembleRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class TestDrivesRequest(data_model.DataObject):
+class ListDriveHardwareRequest(data_model.DataObject):
     """
-    :param minutes:  The number of minutes to run the test can be specified. 
-    :type minutes: int
+    :param force: [required] To run this command, the force parameter must be set to true. 
+    :type force: bool
     """
-    minutes = data_model.property(
-        "minutes", int,
-        array=False, optional=True,
-        documentation="The number of minutes to run the test can be specified.",
+    force = data_model.property(
+        "force", bool,
+        array=False, optional=False,
+        documentation="To run this command, the force parameter must be set to true.",
         dictionaryType=None
     )
 
