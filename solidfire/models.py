@@ -794,15 +794,15 @@ class ListActivePairedVolumesResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetConfigRequest(data_model.DataObject):
+class NewDrive(data_model.DataObject):
     """
-    :param force: [required] To run this command, the force parameter must be set to true. 
-    :type force: bool
+    :param drive_id: [required] A unique identifier for this drive. 
+    :type drive_id: int
     """
-    force = data_model.property(
-        "force", bool,
+    drive_id = data_model.property(
+        "driveID", int,
         array=False, optional=False,
-        documentation="To run this command, the force parameter must be set to true.",
+        documentation="[&#x27;A unique identifier for this drive.&#x27;]",
         dictionaryType=None
     )
 
@@ -1120,341 +1120,6 @@ class GetVirtualVolumeUnsharedChunksRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class Platform(data_model.DataObject):
-    """
-    :param node_type: [required] SolidFire's name for this platform. 
-    :type node_type: str
-
-    :param chassis_type: [required] Name of the chassis (example: "R620"). 
-    :type chassis_type: str
-
-    :param cpu_model: [required] The model of CPU used on this platform. 
-    :type cpu_model: str
-
-    :param node_memory_gb: [required] The amount of memory on this platform in GiB. 
-    :type node_memory_gb: int
-    """
-    node_type = data_model.property(
-        "nodeType", str,
-        array=False, optional=False,
-        documentation="SolidFire&#x27;s name for this platform.",
-        dictionaryType=None
-    )
-    chassis_type = data_model.property(
-        "chassisType", str,
-        array=False, optional=False,
-        documentation="Name of the chassis (example: &quot;R620&quot;).",
-        dictionaryType=None
-    )
-    cpu_model = data_model.property(
-        "cpuModel", str,
-        array=False, optional=False,
-        documentation="The model of CPU used on this platform.",
-        dictionaryType=None
-    )
-    node_memory_gb = data_model.property(
-        "nodeMemoryGB", int,
-        array=False, optional=False,
-        documentation="The amount of memory on this platform in GiB.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class Node(data_model.DataObject):
-    """
-    A node refers to an individual machine in a cluster.
-    Each active node hosts a master service, which is responsible for managing the drives and other services on its node.
-    After a node is made active, its drives will become available for addition to the cluster.
-    :param node_id: [required] The unique identifier for this node. 
-    :type node_id: int
-
-    :param associated_master_service_id: [required] The master service responsible for controlling other services on this node. 
-    :type associated_master_service_id: int
-
-    :param associated_fservice_id: [required] 
-    :type associated_fservice_id: int
-
-    :param fibre_channel_target_port_group: [required] 
-    :type fibre_channel_target_port_group: str
-
-    :param name: [required] 
-    :type name: str
-
-    :param platform_info: [required] Information about the platform this node is. 
-    :type platform_info: Platform
-
-    :param software_version: [required] The version of SolidFire software this node is currently running. 
-    :type software_version: str
-
-    :param cip: [required] IP address used for both intra- and inter-cluster communication. 
-    :type cip: str
-
-    :param cipi: [required] The machine's name for the "cip" interface. 
-    :type cipi: str
-
-    :param mip: [required] IP address used for cluster management (hosting the API and web site). 
-    :type mip: str
-
-    :param mipi: [required] The machine's name for the "mip" interface. 
-    :type mipi: str
-
-    :param sip: [required] IP address used for iSCSI traffic. 
-    :type sip: str
-
-    :param sipi: [required] The machine's name for the "sip" interface. 
-    :type sipi: str
-
-    :param uuid: [required] UUID of node. 
-    :type uuid: UUID
-
-    :param attributes: [required] 
-    :type attributes: dict
-    """
-    node_id = data_model.property(
-        "nodeID", int,
-        array=False, optional=False,
-        documentation="[&#x27;The unique identifier for this node.&#x27;]",
-        dictionaryType=None
-    )
-    associated_master_service_id = data_model.property(
-        "associatedMasterServiceID", int,
-        array=False, optional=False,
-        documentation="[&#x27;The master service responsible for controlling other services on this node.&#x27;]",
-        dictionaryType=None
-    )
-    associated_fservice_id = data_model.property(
-        "associatedFServiceID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    fibre_channel_target_port_group = data_model.property(
-        "fibreChannelTargetPortGroup", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    platform_info = data_model.property(
-        "platformInfo", Platform,
-        array=False, optional=False,
-        documentation="Information about the platform this node is.",
-        dictionaryType=None
-    )
-    software_version = data_model.property(
-        "softwareVersion", str,
-        array=False, optional=False,
-        documentation="The version of SolidFire software this node is currently running.",
-        dictionaryType=None
-    )
-    cip = data_model.property(
-        "cip", str,
-        array=False, optional=False,
-        documentation="IP address used for both intra- and inter-cluster communication.",
-        dictionaryType=None
-    )
-    cipi = data_model.property(
-        "cipi", str,
-        array=False, optional=False,
-        documentation="The machine&#x27;s name for the &quot;cip&quot; interface.",
-        dictionaryType=None
-    )
-    mip = data_model.property(
-        "mip", str,
-        array=False, optional=False,
-        documentation="[&#x27;IP address used for cluster management (hosting the API and web site).&#x27;]",
-        dictionaryType=None
-    )
-    mipi = data_model.property(
-        "mipi", str,
-        array=False, optional=False,
-        documentation="The machine&#x27;s name for the &quot;mip&quot; interface.",
-        dictionaryType=None
-    )
-    sip = data_model.property(
-        "sip", str,
-        array=False, optional=False,
-        documentation="[&#x27;IP address used for iSCSI traffic.&#x27;]",
-        dictionaryType=None
-    )
-    sipi = data_model.property(
-        "sipi", str,
-        array=False, optional=False,
-        documentation="The machine&#x27;s name for the &quot;sip&quot; interface.",
-        dictionaryType=None
-    )
-    uuid = data_model.property(
-        "uuid", UUID,
-        array=False, optional=False,
-        documentation="UUID of node.",
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class PendingNode(data_model.DataObject):
-    """
-    A "pending node" is one that has not yet joined the cluster.
-    It can be added to a cluster using the AddNode method.
-    :param pending_node_id: [required] 
-    :type pending_node_id: int
-
-    :param assigned_node_id: [required] 
-    :type assigned_node_id: int
-
-    :param name: [required] The host name for this node. 
-    :type name: str
-
-    :param compatible: [required] 
-    :type compatible: bool
-
-    :param platform_info: [required] Information about the platform this node is. 
-    :type platform_info: Platform
-
-    :param cip: [required] IP address used for both intra- and inter-cluster communication. 
-    :type cip: str
-
-    :param cipi: [required] The machine's name for the "cip" interface. 
-    :type cipi: str
-
-    :param mip: [required] IP address used for cluster management (hosting the API and web site). 
-    :type mip: str
-
-    :param mipi: [required] The machine's name for the "mip" interface. 
-    :type mipi: str
-
-    :param sip: [required] IP address used for iSCSI traffic. 
-    :type sip: str
-
-    :param sipi: [required] The machine's name for the "sip" interface. 
-    :type sipi: str
-
-    :param software_version: [required] The version of SolidFire software this node is currently running. 
-    :type software_version: str
-
-    :param uuid: [required] UUID of node. 
-    :type uuid: UUID
-    """
-    pending_node_id = data_model.property(
-        "pendingNodeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    assigned_node_id = data_model.property(
-        "AssignedNodeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation="The host name for this node.",
-        dictionaryType=None
-    )
-    compatible = data_model.property(
-        "compatible", bool,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    platform_info = data_model.property(
-        "platformInfo", Platform,
-        array=False, optional=False,
-        documentation="Information about the platform this node is.",
-        dictionaryType=None
-    )
-    cip = data_model.property(
-        "cip", str,
-        array=False, optional=False,
-        documentation="[&#x27;IP address used for both intra- and inter-cluster communication.&#x27;]",
-        dictionaryType=None
-    )
-    cipi = data_model.property(
-        "cipi", str,
-        array=False, optional=False,
-        documentation="The machine&#x27;s name for the &quot;cip&quot; interface.",
-        dictionaryType=None
-    )
-    mip = data_model.property(
-        "mip", str,
-        array=False, optional=False,
-        documentation="[&#x27;IP address used for cluster management (hosting the API and web site).&#x27;]",
-        dictionaryType=None
-    )
-    mipi = data_model.property(
-        "mipi", str,
-        array=False, optional=False,
-        documentation="The machine&#x27;s name for the &quot;mip&quot; interface.",
-        dictionaryType=None
-    )
-    sip = data_model.property(
-        "sip", str,
-        array=False, optional=False,
-        documentation="[&#x27;IP address used for iSCSI traffic.&#x27;]",
-        dictionaryType=None
-    )
-    sipi = data_model.property(
-        "sipi", str,
-        array=False, optional=False,
-        documentation="The machine&#x27;s name for the &quot;sip&quot; interface.",
-        dictionaryType=None
-    )
-    software_version = data_model.property(
-        "softwareVersion", str,
-        array=False, optional=False,
-        documentation="The version of SolidFire software this node is currently running.",
-        dictionaryType=None
-    )
-    uuid = data_model.property(
-        "uuid", UUID,
-        array=False, optional=False,
-        documentation="UUID of node.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListAllNodesResult(data_model.DataObject):
-    """
-    :param nodes: [required] 
-    :type nodes: Node
-
-    :param pending_nodes: [required] 
-    :type pending_nodes: PendingNode
-    """
-    nodes = data_model.property(
-        "nodes", Node,
-        array=True, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    pending_nodes = data_model.property(
-        "pendingNodes", PendingNode,
-        array=True, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class RemoveBackupTargetRequest(data_model.DataObject):
     """
     :param backup_target_id: [required] Unique target ID of the target to remove. 
@@ -1642,111 +1307,15 @@ class SetClusterConfigRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class NodeWaitingToJoin(data_model.DataObject):
+class StartVolumePairingResult(data_model.DataObject):
     """
-    :param name: [required] 
-    :type name: str
-
-    :param version: [required] 
-    :type version: str
-
-    :param node_id: [required] 
-    :type node_id: int
-
-    :param pending_node_id: [required] 
-    :type pending_node_id: int
-
-    :param mip: [required] 
-    :type mip: str
-
-    :param cip: [required] 
-    :type cip: str
-
-    :param sip: [required] 
-    :type sip: str
+    :param volume_pairing_key: [required] A string of characters that is used by the "CompleteVolumePairing" API method. 
+    :type volume_pairing_key: str
     """
-    name = data_model.property(
-        "name", str,
+    volume_pairing_key = data_model.property(
+        "volumePairingKey", str,
         array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    version = data_model.property(
-        "version", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    node_id = data_model.property(
-        "nodeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    pending_node_id = data_model.property(
-        "pendingNodeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    mip = data_model.property(
-        "mip", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    cip = data_model.property(
-        "cip", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    sip = data_model.property(
-        "sip", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetBootstrapConfigResult(data_model.DataObject):
-    """
-    :param cluster_name: [required] Name of the cluster. 
-    :type cluster_name: str
-
-    :param node_name: [required] Name of the node. 
-    :type node_name: str
-
-    :param nodes: [required] List of descriptions for each node that is actively waiting to join this cluster: compatible - Indicates if the listed node is compatible with the node the API call was executed against. name - IP address of each node. version - version of SolidFire Element software currently installed on the node. 
-    :type nodes: NodeWaitingToJoin
-
-    :param version: [required] Version of the SolidFire Element software currently installed. 
-    :type version: str
-    """
-    cluster_name = data_model.property(
-        "clusterName", str,
-        array=False, optional=False,
-        documentation="Name of the cluster.",
-        dictionaryType=None
-    )
-    node_name = data_model.property(
-        "nodeName", str,
-        array=False, optional=False,
-        documentation="Name of the node.",
-        dictionaryType=None
-    )
-    nodes = data_model.property(
-        "nodes", NodeWaitingToJoin,
-        array=True, optional=False,
-        documentation="List of descriptions for each node that is actively waiting to join this cluster: compatible - Indicates if the listed node is compatible with the node the API call was executed against. name - IP address of each node. version - version of SolidFire Element software currently installed on the node.",
-        dictionaryType=None
-    )
-    version = data_model.property(
-        "version", str,
-        array=False, optional=False,
-        documentation="Version of the SolidFire Element software currently installed.",
+        documentation="A string of characters that is used by the &quot;CompleteVolumePairing&quot; API method.",
         dictionaryType=None
     )
 
@@ -2530,21 +2099,525 @@ class ListSnapshotsResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class CreateClusterResult(data_model.DataObject):
-    """    """
+class PhysicalAdapter(data_model.DataObject):
+    """
+    :param address:  
+    :type address: str
+
+    :param mac_address:  
+    :type mac_address: str
+
+    :param mac_address_permanent:  
+    :type mac_address_permanent: str
+
+    :param mtu:  
+    :type mtu: str
+
+    :param netmask:  
+    :type netmask: str
+
+    :param network:  
+    :type network: str
+
+    :param up_and_running:  
+    :type up_and_running: bool
+    """
+    address = data_model.property(
+        "address", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    mac_address = data_model.property(
+        "macAddress", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    mac_address_permanent = data_model.property(
+        "macAddressPermanent", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    mtu = data_model.property(
+        "mtu", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    netmask = data_model.property(
+        "netmask", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    network = data_model.property(
+        "network", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    up_and_running = data_model.property(
+        "upAndRunning", bool,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class StartVolumePairingResult(data_model.DataObject):
+class NetworkConfig(data_model.DataObject):
     """
-    :param volume_pairing_key: [required] A string of characters that is used by the "CompleteVolumePairing" API method. 
-    :type volume_pairing_key: str
+    :param _default:  
+    :type _default: bool
+
+    :param bond_master: [required] 
+    :type bond_master: str
+
+    :param virtual_network_tag: [required] 
+    :type virtual_network_tag: str
+
+    :param address:  
+    :type address: str
+
+    :param auto:  
+    :type auto: bool
+
+    :param bond_downdelay:  
+    :type bond_downdelay: str
+
+    :param bond_fail_over_mac:  
+    :type bond_fail_over_mac: str
+
+    :param bond_primary_reselect:  
+    :type bond_primary_reselect: str
+
+    :param bond_lacp_rate:  
+    :type bond_lacp_rate: str
+
+    :param bond_miimon:  
+    :type bond_miimon: str
+
+    :param bond_mode:  
+    :type bond_mode: str
+
+    :param bond_slaves:  
+    :type bond_slaves: str
+
+    :param bond_updelay:  
+    :type bond_updelay: str
+
+    :param broadcast:  
+    :type broadcast: str
+
+    :param dns_nameservers:  
+    :type dns_nameservers: str
+
+    :param dns_search:  
+    :type dns_search: str
+
+    :param family:  
+    :type family: str
+
+    :param gateway:  
+    :type gateway: str
+
+    :param mac_address:  
+    :type mac_address: str
+
+    :param mac_address_permanent:  
+    :type mac_address_permanent: str
+
+    :param method:  
+    :type method: str
+
+    :param mtu:  
+    :type mtu: str
+
+    :param netmask:  
+    :type netmask: str
+
+    :param network:  
+    :type network: str
+
+    :param physical:  
+    :type physical: PhysicalAdapter
+
+    :param routes:  
+    :type routes: str
+
+    :param status:  
+    :type status: str
+
+    :param symmetric_route_rules:  
+    :type symmetric_route_rules: str
+
+    :param up_and_running:  
+    :type up_and_running: bool
     """
-    volume_pairing_key = data_model.property(
-        "volumePairingKey", str,
+    _default = data_model.property(
+        "#default", bool,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    bond_master = data_model.property(
+        "bond-master", str,
         array=False, optional=False,
-        documentation="A string of characters that is used by the &quot;CompleteVolumePairing&quot; API method.",
+        documentation="",
+        dictionaryType=None
+    )
+    virtual_network_tag = data_model.property(
+        "virtualNetworkTag", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    address = data_model.property(
+        "address", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    auto = data_model.property(
+        "auto", bool,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    bond_downdelay = data_model.property(
+        "bond-downdelay", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    bond_fail_over_mac = data_model.property(
+        "bond-fail_over_mac", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    bond_primary_reselect = data_model.property(
+        "bond-primary_reselect", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    bond_lacp_rate = data_model.property(
+        "bond-lacp_rate", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    bond_miimon = data_model.property(
+        "bond-miimon", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    bond_mode = data_model.property(
+        "bond-mode", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    bond_slaves = data_model.property(
+        "bond-slaves", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    bond_updelay = data_model.property(
+        "bond-updelay", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    broadcast = data_model.property(
+        "broadcast", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    dns_nameservers = data_model.property(
+        "dns-nameservers", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    dns_search = data_model.property(
+        "dns-search", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    family = data_model.property(
+        "family", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    gateway = data_model.property(
+        "gateway", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    mac_address = data_model.property(
+        "macAddress", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    mac_address_permanent = data_model.property(
+        "macAddressPermanent", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    method = data_model.property(
+        "method", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    mtu = data_model.property(
+        "mtu", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    netmask = data_model.property(
+        "netmask", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    network = data_model.property(
+        "network", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    physical = data_model.property(
+        "physical", PhysicalAdapter,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    routes = data_model.property(
+        "routes", str,
+        array=True, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    status = data_model.property(
+        "status", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    symmetric_route_rules = data_model.property(
+        "symmetricRouteRules", str,
+        array=True, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    up_and_running = data_model.property(
+        "upAndRunning", bool,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class Network(data_model.DataObject):
+    """
+    :param bond10_g:  
+    :type bond10_g: NetworkConfig
+
+    :param bond1_g:  
+    :type bond1_g: NetworkConfig
+
+    :param eth0:  
+    :type eth0: NetworkConfig
+
+    :param eth1:  
+    :type eth1: NetworkConfig
+
+    :param eth2:  
+    :type eth2: NetworkConfig
+
+    :param eth3:  
+    :type eth3: NetworkConfig
+
+    :param lo:  
+    :type lo: NetworkConfig
+    """
+    bond10_g = data_model.property(
+        "Bond10G", NetworkConfig,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    bond1_g = data_model.property(
+        "Bond1G", NetworkConfig,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    eth0 = data_model.property(
+        "eth0", NetworkConfig,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    eth1 = data_model.property(
+        "eth1", NetworkConfig,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    eth2 = data_model.property(
+        "eth2", NetworkConfig,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    eth3 = data_model.property(
+        "eth3", NetworkConfig,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    lo = data_model.property(
+        "lo", NetworkConfig,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class Config(data_model.DataObject):
+    """
+    :param cluster: [required] 
+    :type cluster: ClusterConfig
+
+    :param network: [required] 
+    :type network: Network
+    """
+    cluster = data_model.property(
+        "cluster", ClusterConfig,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    network = data_model.property(
+        "network", Network,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetConfigResult(data_model.DataObject):
+    """
+    :param config: [required] The details of the cluster. Values returned in "config": cluster- Cluster information that identifies how the node communicates with the cluster it is associated with. (Object) network - Network information for bonding and Ethernet connections. (Object) 
+    :type config: Config
+    """
+    config = data_model.property(
+        "config", Config,
+        array=False, optional=False,
+        documentation="The details of the cluster. Values returned in &quot;config&quot;: cluster- Cluster information that identifies how the node communicates with the cluster it is associated with. (Object) network - Network information for bonding and Ethernet connections. (Object)",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class TestConnectMvipDetails(data_model.DataObject):
+    """
+    :param ping_bytes: [required] Details of the ping tests with 56 Bytes and 1500 Bytes. 
+    :type ping_bytes: str
+
+    :param mvip: [required] The MVIP tested against. 
+    :type mvip: str
+
+    :param connected: [required] Whether the test could connect to the MVIP. 
+    :type connected: bool
+    """
+    ping_bytes = data_model.property(
+        "pingBytes", str,
+        array=False, optional=False,
+        documentation="Details of the ping tests with 56 Bytes and 1500 Bytes.",
+        dictionaryType=None
+    )
+    mvip = data_model.property(
+        "mvip", str,
+        array=False, optional=False,
+        documentation="The MVIP tested against.",
+        dictionaryType=None
+    )
+    connected = data_model.property(
+        "connected", bool,
+        array=False, optional=False,
+        documentation="Whether the test could connect to the MVIP.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class TestConnectMvipResult(data_model.DataObject):
+    """
+    :param details: [required] Information about the test operation 
+    :type details: TestConnectMvipDetails
+
+    :param duration: [required] The length of time required to run the test. 
+    :type duration: str
+
+    :param result: [required] The results of the entire test 
+    :type result: str
+    """
+    details = data_model.property(
+        "details", TestConnectMvipDetails,
+        array=False, optional=False,
+        documentation="Information about the test operation",
+        dictionaryType=None
+    )
+    duration = data_model.property(
+        "duration", str,
+        array=False, optional=False,
+        documentation="The length of time required to run the test.",
+        dictionaryType=None
+    )
+    result = data_model.property(
+        "result", str,
+        array=False, optional=False,
+        documentation="The results of the entire test",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class SetConfigRequest(data_model.DataObject):
+    """
+    :param config: [required] Objects that you want changed for the cluster interface settings. 
+    :type config: Config
+    """
+    config = data_model.property(
+        "config", Config,
+        array=False, optional=False,
+        documentation="Objects that you want changed for the cluster interface settings.",
         dictionaryType=None
     )
 
@@ -2822,7 +2895,7 @@ class UpdateBulkVolumeStatusRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ModifySnapshotResult(data_model.DataObject):
+class RemoveNodesResult(data_model.DataObject):
     """    """
 
     def __init__(self, **kwargs):
@@ -3277,7 +3350,7 @@ class ModifyInitiator(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class SetSnmpTrapInfoResult(data_model.DataObject):
+class CreateClusterResult(data_model.DataObject):
     """    """
 
     def __init__(self, **kwargs):
@@ -3680,24 +3753,15 @@ class GetLimitsResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetAPIResult(data_model.DataObject):
+class SetClusterConfigResult(data_model.DataObject):
     """
-    :param current_version: [required] 
-    :type current_version: float
-
-    :param supported_versions: [required] 
-    :type supported_versions: float
+    :param cluster: [required] Settings for the cluster. All new and current settings are returned. 
+    :type cluster: ClusterConfig
     """
-    current_version = data_model.property(
-        "currentVersion", float,
+    cluster = data_model.property(
+        "cluster", ClusterConfig,
         array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    supported_versions = data_model.property(
-        "supportedVersions", float,
-        array=True, optional=False,
-        documentation="",
+        documentation="Settings for the cluster. All new and current settings are returned.",
         dictionaryType=None
     )
 
@@ -4405,450 +4469,6 @@ class ListVolumeStatsByAccountResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class PhysicalAdapter(data_model.DataObject):
-    """
-    :param address:  
-    :type address: str
-
-    :param mac_address:  
-    :type mac_address: str
-
-    :param mac_address_permanent:  
-    :type mac_address_permanent: str
-
-    :param mtu:  
-    :type mtu: str
-
-    :param netmask:  
-    :type netmask: str
-
-    :param network:  
-    :type network: str
-
-    :param up_and_running:  
-    :type up_and_running: bool
-    """
-    address = data_model.property(
-        "address", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    mac_address = data_model.property(
-        "macAddress", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    mac_address_permanent = data_model.property(
-        "macAddressPermanent", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    mtu = data_model.property(
-        "mtu", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    netmask = data_model.property(
-        "netmask", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    network = data_model.property(
-        "network", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    up_and_running = data_model.property(
-        "upAndRunning", bool,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class NetworkConfig(data_model.DataObject):
-    """
-    :param _default:  
-    :type _default: bool
-
-    :param bond_master: [required] 
-    :type bond_master: str
-
-    :param virtual_network_tag: [required] 
-    :type virtual_network_tag: str
-
-    :param address:  
-    :type address: str
-
-    :param auto:  
-    :type auto: bool
-
-    :param bond_downdelay:  
-    :type bond_downdelay: str
-
-    :param bond_fail_over_mac:  
-    :type bond_fail_over_mac: str
-
-    :param bond_primary_reselect:  
-    :type bond_primary_reselect: str
-
-    :param bond_lacp_rate:  
-    :type bond_lacp_rate: str
-
-    :param bond_miimon:  
-    :type bond_miimon: str
-
-    :param bond_mode:  
-    :type bond_mode: str
-
-    :param bond_slaves:  
-    :type bond_slaves: str
-
-    :param bond_updelay:  
-    :type bond_updelay: str
-
-    :param broadcast:  
-    :type broadcast: str
-
-    :param dns_nameservers:  
-    :type dns_nameservers: str
-
-    :param dns_search:  
-    :type dns_search: str
-
-    :param family:  
-    :type family: str
-
-    :param gateway:  
-    :type gateway: str
-
-    :param mac_address:  
-    :type mac_address: str
-
-    :param mac_address_permanent:  
-    :type mac_address_permanent: str
-
-    :param method:  
-    :type method: str
-
-    :param mtu:  
-    :type mtu: str
-
-    :param netmask:  
-    :type netmask: str
-
-    :param network:  
-    :type network: str
-
-    :param physical:  
-    :type physical: PhysicalAdapter
-
-    :param routes:  
-    :type routes: str
-
-    :param status:  
-    :type status: str
-
-    :param symmetric_route_rules:  
-    :type symmetric_route_rules: str
-
-    :param up_and_running:  
-    :type up_and_running: bool
-    """
-    _default = data_model.property(
-        "#default", bool,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    bond_master = data_model.property(
-        "bond-master", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    virtual_network_tag = data_model.property(
-        "virtualNetworkTag", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    address = data_model.property(
-        "address", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    auto = data_model.property(
-        "auto", bool,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    bond_downdelay = data_model.property(
-        "bond-downdelay", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    bond_fail_over_mac = data_model.property(
-        "bond-fail_over_mac", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    bond_primary_reselect = data_model.property(
-        "bond-primary_reselect", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    bond_lacp_rate = data_model.property(
-        "bond-lacp_rate", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    bond_miimon = data_model.property(
-        "bond-miimon", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    bond_mode = data_model.property(
-        "bond-mode", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    bond_slaves = data_model.property(
-        "bond-slaves", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    bond_updelay = data_model.property(
-        "bond-updelay", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    broadcast = data_model.property(
-        "broadcast", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    dns_nameservers = data_model.property(
-        "dns-nameservers", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    dns_search = data_model.property(
-        "dns-search", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    family = data_model.property(
-        "family", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    gateway = data_model.property(
-        "gateway", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    mac_address = data_model.property(
-        "macAddress", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    mac_address_permanent = data_model.property(
-        "macAddressPermanent", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    method = data_model.property(
-        "method", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    mtu = data_model.property(
-        "mtu", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    netmask = data_model.property(
-        "netmask", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    network = data_model.property(
-        "network", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    physical = data_model.property(
-        "physical", PhysicalAdapter,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    routes = data_model.property(
-        "routes", str,
-        array=True, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    status = data_model.property(
-        "status", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    symmetric_route_rules = data_model.property(
-        "symmetricRouteRules", str,
-        array=True, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    up_and_running = data_model.property(
-        "upAndRunning", bool,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class Network(data_model.DataObject):
-    """
-    :param bond10_g:  
-    :type bond10_g: NetworkConfig
-
-    :param bond1_g:  
-    :type bond1_g: NetworkConfig
-
-    :param eth0:  
-    :type eth0: NetworkConfig
-
-    :param eth1:  
-    :type eth1: NetworkConfig
-
-    :param eth2:  
-    :type eth2: NetworkConfig
-
-    :param eth3:  
-    :type eth3: NetworkConfig
-
-    :param lo:  
-    :type lo: NetworkConfig
-    """
-    bond10_g = data_model.property(
-        "Bond10G", NetworkConfig,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    bond1_g = data_model.property(
-        "Bond1G", NetworkConfig,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    eth0 = data_model.property(
-        "eth0", NetworkConfig,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    eth1 = data_model.property(
-        "eth1", NetworkConfig,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    eth2 = data_model.property(
-        "eth2", NetworkConfig,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    eth3 = data_model.property(
-        "eth3", NetworkConfig,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    lo = data_model.property(
-        "lo", NetworkConfig,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class Config(data_model.DataObject):
-    """
-    :param cluster: [required] 
-    :type cluster: ClusterConfig
-
-    :param network: [required] 
-    :type network: Network
-    """
-    cluster = data_model.property(
-        "cluster", ClusterConfig,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    network = data_model.property(
-        "network", Network,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class SetConfigRequest(data_model.DataObject):
-    """
-    :param config: [required] Objects that you want changed for the cluster interface settings. 
-    :type config: Config
-    """
-    config = data_model.property(
-        "config", Config,
-        array=False, optional=False,
-        documentation="Objects that you want changed for the cluster interface settings.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class ListVolumeStatsByVolumeAccessGroupRequest(data_model.DataObject):
     """
     :param volume_access_groups:  An array of VolumeAccessGroupIDs for which volume activity is returned. If no VolumeAccessGroupID is specified, stats for all volume access groups is returned. 
@@ -4897,15 +4517,42 @@ class ModifyGroupSnapshotRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class DeleteSnapshotRequest(data_model.DataObject):
+class ListVirtualNetworksRequest(data_model.DataObject):
     """
-    :param snapshot_id: [required] The ID of the snapshot to delete. 
-    :type snapshot_id: int
+    :param virtual_network_id:  Network ID to filter the list for a single virtual network 
+    :type virtual_network_id: int
+
+    :param virtual_network_tag:  Network Tag to filter the list for a single virtual network 
+    :type virtual_network_tag: int
+
+    :param virtual_network_ids:  NetworkIDs to include in the list. 
+    :type virtual_network_ids: int
+
+    :param virtual_network_tags:  Network Tags to include in the list. 
+    :type virtual_network_tags: int
     """
-    snapshot_id = data_model.property(
-        "snapshotID", int,
-        array=False, optional=False,
-        documentation="The ID of the snapshot to delete.",
+    virtual_network_id = data_model.property(
+        "virtualNetworkID", int,
+        array=False, optional=True,
+        documentation="Network ID to filter the list for a single virtual network",
+        dictionaryType=None
+    )
+    virtual_network_tag = data_model.property(
+        "virtualNetworkTag", int,
+        array=False, optional=True,
+        documentation="Network Tag to filter the list for a single virtual network",
+        dictionaryType=None
+    )
+    virtual_network_ids = data_model.property(
+        "virtualNetworkIDs", int,
+        array=True, optional=True,
+        documentation="NetworkIDs to include in the list.",
+        dictionaryType=None
+    )
+    virtual_network_tags = data_model.property(
+        "virtualNetworkTags", int,
+        array=True, optional=True,
+        documentation="Network Tags to include in the list.",
         dictionaryType=None
     )
 
@@ -4987,6 +4634,21 @@ class DeleteSnapshotResult(data_model.DataObject):
 
 class CompleteVolumePairingResult(data_model.DataObject):
     """    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class DeleteSnapshotRequest(data_model.DataObject):
+    """
+    :param snapshot_id: [required] The ID of the snapshot to delete. 
+    :type snapshot_id: int
+    """
+    snapshot_id = data_model.property(
+        "snapshotID", int,
+        array=False, optional=False,
+        documentation="The ID of the snapshot to delete.",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -5318,6 +4980,12 @@ class SetSnmpInfoResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class ModifyClusterAdminResult(data_model.DataObject):
+    """    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListVolumesRequest(data_model.DataObject):
     """
     :param start_volume_id:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
@@ -5627,21 +5295,6 @@ class RemoveClusterAdminResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetNodeStatsRequest(data_model.DataObject):
-    """
-    :param node_id: [required] Specifies the node for which statistics are gathered. 
-    :type node_id: int
-    """
-    node_id = data_model.property(
-        "nodeID", int,
-        array=False, optional=False,
-        documentation="Specifies the node for which statistics are gathered.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class LdapConfiguration(data_model.DataObject):
     """
     LDAP Configuration object returns information about the LDAP configuration on SolidFire storage. LDAP information is returned with the API method GetLdapConfiguration.
@@ -5748,21 +5401,6 @@ class GetLdapConfigurationResult(data_model.DataObject):
         "ldapConfiguration", LdapConfiguration,
         array=False, optional=False,
         documentation="[&#x27;List of the current LDAP configuration settings. This API call will not return the plain text of the search account password.&#x27;, &#x27;&lt;br/&gt;&lt;br/&gt;&#x27;, &#x27;&lt;b&gt;Note&lt;/b&gt;: If LDAP authentication is currently disabled, all the returned settings will be empty with the exception of &quot;authType&quot;, and &quot;groupSearchType&quot; which are set to &quot;SearchAndBind&quot; and &quot;ActiveDirectory&quot; respectively.&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class SetNetworkConfigResult(data_model.DataObject):
-    """
-    :param network: [required] 
-    :type network: Network
-    """
-    network = data_model.property(
-        "network", Network,
-        array=False, optional=False,
-        documentation="",
         dictionaryType=None
     )
 
@@ -6072,6 +5710,21 @@ class ListDriveStatsRequest(data_model.DataObject):
 
 class ModifyVolumeAccessGroupLunAssignmentsResult(data_model.DataObject):
     """    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class DeleteVolumeAccessGroupRequest(data_model.DataObject):
+    """
+    :param volume_access_group_id: [required] The ID of the volume access group to delete. 
+    :type volume_access_group_id: int
+    """
+    volume_access_group_id = data_model.property(
+        "volumeAccessGroupID", int,
+        array=False, optional=False,
+        documentation="[&#x27;The ID of the volume access group to delete.&#x27;]",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -7081,6 +6734,192 @@ class DisableSnmpResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class Platform(data_model.DataObject):
+    """
+    :param node_type: [required] SolidFire's name for this platform. 
+    :type node_type: str
+
+    :param chassis_type: [required] Name of the chassis (example: "R620"). 
+    :type chassis_type: str
+
+    :param cpu_model: [required] The model of CPU used on this platform. 
+    :type cpu_model: str
+
+    :param node_memory_gb: [required] The amount of memory on this platform in GiB. 
+    :type node_memory_gb: int
+    """
+    node_type = data_model.property(
+        "nodeType", str,
+        array=False, optional=False,
+        documentation="SolidFire&#x27;s name for this platform.",
+        dictionaryType=None
+    )
+    chassis_type = data_model.property(
+        "chassisType", str,
+        array=False, optional=False,
+        documentation="Name of the chassis (example: &quot;R620&quot;).",
+        dictionaryType=None
+    )
+    cpu_model = data_model.property(
+        "cpuModel", str,
+        array=False, optional=False,
+        documentation="The model of CPU used on this platform.",
+        dictionaryType=None
+    )
+    node_memory_gb = data_model.property(
+        "nodeMemoryGB", int,
+        array=False, optional=False,
+        documentation="The amount of memory on this platform in GiB.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class Node(data_model.DataObject):
+    """
+    A node refers to an individual machine in a cluster.
+    Each active node hosts a master service, which is responsible for managing the drives and other services on its node.
+    After a node is made active, its drives will become available for addition to the cluster.
+    :param node_id: [required] The unique identifier for this node. 
+    :type node_id: int
+
+    :param associated_master_service_id: [required] The master service responsible for controlling other services on this node. 
+    :type associated_master_service_id: int
+
+    :param associated_fservice_id: [required] 
+    :type associated_fservice_id: int
+
+    :param fibre_channel_target_port_group: [required] 
+    :type fibre_channel_target_port_group: str
+
+    :param name: [required] 
+    :type name: str
+
+    :param platform_info: [required] Information about the platform this node is. 
+    :type platform_info: Platform
+
+    :param software_version: [required] The version of SolidFire software this node is currently running. 
+    :type software_version: str
+
+    :param cip: [required] IP address used for both intra- and inter-cluster communication. 
+    :type cip: str
+
+    :param cipi: [required] The machine's name for the "cip" interface. 
+    :type cipi: str
+
+    :param mip: [required] IP address used for cluster management (hosting the API and web site). 
+    :type mip: str
+
+    :param mipi: [required] The machine's name for the "mip" interface. 
+    :type mipi: str
+
+    :param sip: [required] IP address used for iSCSI traffic. 
+    :type sip: str
+
+    :param sipi: [required] The machine's name for the "sip" interface. 
+    :type sipi: str
+
+    :param uuid: [required] UUID of node. 
+    :type uuid: UUID
+
+    :param attributes: [required] 
+    :type attributes: dict
+    """
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation="[&#x27;The unique identifier for this node.&#x27;]",
+        dictionaryType=None
+    )
+    associated_master_service_id = data_model.property(
+        "associatedMasterServiceID", int,
+        array=False, optional=False,
+        documentation="[&#x27;The master service responsible for controlling other services on this node.&#x27;]",
+        dictionaryType=None
+    )
+    associated_fservice_id = data_model.property(
+        "associatedFServiceID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    fibre_channel_target_port_group = data_model.property(
+        "fibreChannelTargetPortGroup", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    platform_info = data_model.property(
+        "platformInfo", Platform,
+        array=False, optional=False,
+        documentation="Information about the platform this node is.",
+        dictionaryType=None
+    )
+    software_version = data_model.property(
+        "softwareVersion", str,
+        array=False, optional=False,
+        documentation="The version of SolidFire software this node is currently running.",
+        dictionaryType=None
+    )
+    cip = data_model.property(
+        "cip", str,
+        array=False, optional=False,
+        documentation="IP address used for both intra- and inter-cluster communication.",
+        dictionaryType=None
+    )
+    cipi = data_model.property(
+        "cipi", str,
+        array=False, optional=False,
+        documentation="The machine&#x27;s name for the &quot;cip&quot; interface.",
+        dictionaryType=None
+    )
+    mip = data_model.property(
+        "mip", str,
+        array=False, optional=False,
+        documentation="[&#x27;IP address used for cluster management (hosting the API and web site).&#x27;]",
+        dictionaryType=None
+    )
+    mipi = data_model.property(
+        "mipi", str,
+        array=False, optional=False,
+        documentation="The machine&#x27;s name for the &quot;mip&quot; interface.",
+        dictionaryType=None
+    )
+    sip = data_model.property(
+        "sip", str,
+        array=False, optional=False,
+        documentation="[&#x27;IP address used for iSCSI traffic.&#x27;]",
+        dictionaryType=None
+    )
+    sipi = data_model.property(
+        "sipi", str,
+        array=False, optional=False,
+        documentation="The machine&#x27;s name for the &quot;sip&quot; interface.",
+        dictionaryType=None
+    )
+    uuid = data_model.property(
+        "uuid", UUID,
+        array=False, optional=False,
+        documentation="UUID of node.",
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListActiveNodesResult(data_model.DataObject):
     """
     :param nodes: [required] 
@@ -7160,66 +6999,15 @@ class GetBackupTargetResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class TestConnectMvipDetails(data_model.DataObject):
+class SetNetworkConfigResult(data_model.DataObject):
     """
-    :param ping_bytes: [required] Details of the ping tests with 56 Bytes and 1500 Bytes. 
-    :type ping_bytes: str
-
-    :param mvip: [required] The MVIP tested against. 
-    :type mvip: str
-
-    :param connected: [required] Whether the test could connect to the MVIP. 
-    :type connected: bool
+    :param network: [required] 
+    :type network: Network
     """
-    ping_bytes = data_model.property(
-        "pingBytes", str,
+    network = data_model.property(
+        "network", Network,
         array=False, optional=False,
-        documentation="Details of the ping tests with 56 Bytes and 1500 Bytes.",
-        dictionaryType=None
-    )
-    mvip = data_model.property(
-        "mvip", str,
-        array=False, optional=False,
-        documentation="The MVIP tested against.",
-        dictionaryType=None
-    )
-    connected = data_model.property(
-        "connected", bool,
-        array=False, optional=False,
-        documentation="Whether the test could connect to the MVIP.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class TestConnectMvipResult(data_model.DataObject):
-    """
-    :param details: [required] Information about the test operation 
-    :type details: TestConnectMvipDetails
-
-    :param duration: [required] The length of time required to run the test. 
-    :type duration: str
-
-    :param result: [required] The results of the entire test 
-    :type result: str
-    """
-    details = data_model.property(
-        "details", TestConnectMvipDetails,
-        array=False, optional=False,
-        documentation="Information about the test operation",
-        dictionaryType=None
-    )
-    duration = data_model.property(
-        "duration", str,
-        array=False, optional=False,
-        documentation="The length of time required to run the test.",
-        dictionaryType=None
-    )
-    result = data_model.property(
-        "result", str,
-        array=False, optional=False,
-        documentation="The results of the entire test",
+        documentation="",
         dictionaryType=None
     )
 
@@ -7349,37 +7137,157 @@ class RemoveClusterAdminRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class NodeSystemStatusInfo(data_model.DataObject):
+class SyncJob(data_model.DataObject):
     """
-    :param reboot_required: [required] 
-    :type reboot_required: bool
+    :param bytes_per_second: [required] 
+    :type bytes_per_second: float
+
+    :param current_bytes: [required] 
+    :type current_bytes: int
+
+    :param dst_service_id: [required] 
+    :type dst_service_id: int
+
+    :param elapsed_time: [required] 
+    :type elapsed_time: float
+
+    :param percent_complete: [required] 
+    :type percent_complete: float
+
+    :param remaining_time: [required] 
+    :type remaining_time: float
+
+    :param slice_id: [required] 
+    :type slice_id: int
+
+    :param src_service_id: [required] 
+    :type src_service_id: int
+
+    :param total_bytes: [required] 
+    :type total_bytes: int
+
+    :param type: [required] 
+    :type type: str
+
+    :param clone_id: [required] 
+    :type clone_id: int
+
+    :param dst_volume_id: [required] 
+    :type dst_volume_id: int
+
+    :param node_id: [required] 
+    :type node_id: int
+
+    :param snapshot_id: [required] 
+    :type snapshot_id: int
+
+    :param src_volume_id: [required] 
+    :type src_volume_id: int
+
+    :param blocks_per_second: [required] 
+    :type blocks_per_second: float
+
+    :param stage: [required] 
+    :type stage: int
     """
-    reboot_required = data_model.property(
-        "rebootRequired", bool,
+    bytes_per_second = data_model.property(
+        "bytesPerSecond", float,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class NodeSystemStatus(data_model.DataObject):
-    """
-    :param node_id: [required] 
-    :type node_id: int
-
-    :param result: [required] 
-    :type result: NodeSystemStatusInfo
-    """
+    current_bytes = data_model.property(
+        "currentBytes", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    dst_service_id = data_model.property(
+        "dstServiceID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    elapsed_time = data_model.property(
+        "elapsedTime", float,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    percent_complete = data_model.property(
+        "percentComplete", float,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    remaining_time = data_model.property(
+        "remainingTime", float,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    slice_id = data_model.property(
+        "sliceID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    src_service_id = data_model.property(
+        "srcServiceID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    total_bytes = data_model.property(
+        "totalBytes", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    type = data_model.property(
+        "type", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    clone_id = data_model.property(
+        "cloneID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    dst_volume_id = data_model.property(
+        "dstVolumeID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
-    result = data_model.property(
-        "result", NodeSystemStatusInfo,
+    snapshot_id = data_model.property(
+        "snapshotID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    src_volume_id = data_model.property(
+        "srcVolumeID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    blocks_per_second = data_model.property(
+        "blocksPerSecond", float,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    stage = data_model.property(
+        "stage", int,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -7388,13 +7296,13 @@ class NodeSystemStatus(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetSystemStatusResult(data_model.DataObject):
+class ListSyncJobsResult(data_model.DataObject):
     """
-    :param nodes: [required] 
-    :type nodes: NodeSystemStatus
+    :param sync_jobs: [required] 
+    :type sync_jobs: SyncJob
     """
-    nodes = data_model.property(
-        "nodes", NodeSystemStatus,
+    sync_jobs = data_model.property(
+        "syncJobs", SyncJob,
         array=True, optional=False,
         documentation="",
         dictionaryType=None
@@ -7433,21 +7341,90 @@ class GetDriveStatsRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ModifyClusterAdminResult(data_model.DataObject):
+class SetSnmpTrapInfoResult(data_model.DataObject):
     """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetConfigResult(data_model.DataObject):
+class ClusterStats(data_model.DataObject):
     """
-    :param config: [required] The details of the cluster. Values returned in "config": cluster- Cluster information that identifies how the node communicates with the cluster it is associated with. (Object) network - Network information for bonding and Ethernet connections. (Object) 
-    :type config: Config
+    :param cluster_utilization: [required] The amount of cluster capacity being utilized. 
+    :type cluster_utilization: float
+
+    :param client_queue_depth: [required] 
+    :type client_queue_depth: int
+
+    :param read_bytes: [required] Total bytes read by clients. 
+    :type read_bytes: int
+
+    :param read_ops: [required] Total read operations. 
+    :type read_ops: int
+
+    :param timestamp: [required] Current time in UTC format. ISO 8601 date string. 
+    :type timestamp: str
+
+    :param write_bytes: [required] Total bytes written by clients. 
+    :type write_bytes: int
+
+    :param write_ops: [required] Total write operations. 
+    :type write_ops: int
     """
-    config = data_model.property(
-        "config", Config,
+    cluster_utilization = data_model.property(
+        "clusterUtilization", float,
         array=False, optional=False,
-        documentation="The details of the cluster. Values returned in &quot;config&quot;: cluster- Cluster information that identifies how the node communicates with the cluster it is associated with. (Object) network - Network information for bonding and Ethernet connections. (Object)",
+        documentation="The amount of cluster capacity being utilized.",
+        dictionaryType=None
+    )
+    client_queue_depth = data_model.property(
+        "clientQueueDepth", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    read_bytes = data_model.property(
+        "readBytes", int,
+        array=False, optional=False,
+        documentation="Total bytes read by clients.",
+        dictionaryType=None
+    )
+    read_ops = data_model.property(
+        "readOps", int,
+        array=False, optional=False,
+        documentation="Total read operations.",
+        dictionaryType=None
+    )
+    timestamp = data_model.property(
+        "timestamp", str,
+        array=False, optional=False,
+        documentation="Current time in UTC format. ISO 8601 date string.",
+        dictionaryType=None
+    )
+    write_bytes = data_model.property(
+        "writeBytes", int,
+        array=False, optional=False,
+        documentation="Total bytes written by clients.",
+        dictionaryType=None
+    )
+    write_ops = data_model.property(
+        "writeOps", int,
+        array=False, optional=False,
+        documentation="Total write operations.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetClusterStatsResult(data_model.DataObject):
+    """
+    :param cluster_stats: [required] 
+    :type cluster_stats: ClusterStats
+    """
+    cluster_stats = data_model.property(
+        "clusterStats", ClusterStats,
+        array=False, optional=False,
+        documentation="",
         dictionaryType=None
     )
 
@@ -7598,21 +7575,6 @@ class SecureEraseDrivesRequest(data_model.DataObject):
         "drives", int,
         array=True, optional=False,
         documentation="List of driveIDs to secure erase.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListPendingNodesResult(data_model.DataObject):
-    """
-    :param pending_nodes: [required] 
-    :type pending_nodes: PendingNode
-    """
-    pending_nodes = data_model.property(
-        "pendingNodes", PendingNode,
-        array=True, optional=False,
-        documentation="",
         dictionaryType=None
     )
 
@@ -7802,6 +7764,21 @@ class StartBulkVolumeWriteRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class GetClusterConfigResult(data_model.DataObject):
+    """
+    :param cluster: [required] Cluster configuration information the node uses to communicate with the cluster. 
+    :type cluster: ClusterConfig
+    """
+    cluster = data_model.property(
+        "cluster", ClusterConfig,
+        array=False, optional=False,
+        documentation="Cluster configuration information the node uses to communicate with the cluster.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ClusterAdmin(data_model.DataObject):
     """
     :param access: [required] 
@@ -7868,45 +7845,6 @@ class ModifyVolumeResult(data_model.DataObject):
         "volume", Volume,
         array=False, optional=False,
         documentation="Object containing information about the newly modified volume.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class PendingOperation(data_model.DataObject):
-    """
-    :param pending: [required] <br/><b>true</b>: operation is still in progress. <br/><b>false</b>: operation is no longer in progress. 
-    :type pending: bool
-
-    :param operation: [required] Name of operation that is in progress or has completed. 
-    :type operation: str
-    """
-    pending = data_model.property(
-        "pending", bool,
-        array=False, optional=False,
-        documentation="[&#x27;&lt;br/&gt;&lt;b&gt;true&lt;/b&gt;: operation is still in progress.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;false&lt;/b&gt;: operation is no longer in progress.&#x27;]",
-        dictionaryType=None
-    )
-    operation = data_model.property(
-        "operation", str,
-        array=False, optional=False,
-        documentation="Name of operation that is in progress or has completed.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetPendingOperationResult(data_model.DataObject):
-    """
-    :param pending_operation: [required] 
-    :type pending_operation: PendingOperation
-    """
-    pending_operation = data_model.property(
-        "pendingOperation", PendingOperation,
-        array=False, optional=False,
-        documentation="",
         dictionaryType=None
     )
 
@@ -9343,15 +9281,15 @@ class ModifyInitiatorsResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class DeleteVolumeAccessGroupRequest(data_model.DataObject):
+class GetNodeStatsRequest(data_model.DataObject):
     """
-    :param volume_access_group_id: [required] The ID of the volume access group to delete. 
-    :type volume_access_group_id: int
+    :param node_id: [required] Specifies the node for which statistics are gathered. 
+    :type node_id: int
     """
-    volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
+    node_id = data_model.property(
+        "nodeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume access group to delete.&#x27;]",
+        documentation="Specifies the node for which statistics are gathered.",
         dictionaryType=None
     )
 
@@ -9487,21 +9425,6 @@ class AddLdapClusterAdminRequest(data_model.DataObject):
         "attributes", dict,
         array=False, optional=True,
         documentation="List of Name/Value pairs in JSON object format.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class RemoveNodesRequest(data_model.DataObject):
-    """
-    :param nodes: [required] List of NodeIDs for the nodes to be removed. 
-    :type nodes: int
-    """
-    nodes = data_model.property(
-        "nodes", int,
-        array=True, optional=False,
-        documentation="List of NodeIDs for the nodes to be removed.",
         dictionaryType=None
     )
 
@@ -10213,42 +10136,149 @@ class ListEventsResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVirtualNetworksRequest(data_model.DataObject):
+class PendingNode(data_model.DataObject):
     """
-    :param virtual_network_id:  Network ID to filter the list for a single virtual network 
-    :type virtual_network_id: int
+    A "pending node" is one that has not yet joined the cluster.
+    It can be added to a cluster using the AddNode method.
+    :param pending_node_id: [required] 
+    :type pending_node_id: int
 
-    :param virtual_network_tag:  Network Tag to filter the list for a single virtual network 
-    :type virtual_network_tag: int
+    :param assigned_node_id: [required] 
+    :type assigned_node_id: int
 
-    :param virtual_network_ids:  NetworkIDs to include in the list. 
-    :type virtual_network_ids: int
+    :param name: [required] The host name for this node. 
+    :type name: str
 
-    :param virtual_network_tags:  Network Tags to include in the list. 
-    :type virtual_network_tags: int
+    :param compatible: [required] 
+    :type compatible: bool
+
+    :param platform_info: [required] Information about the platform this node is. 
+    :type platform_info: Platform
+
+    :param cip: [required] IP address used for both intra- and inter-cluster communication. 
+    :type cip: str
+
+    :param cipi: [required] The machine's name for the "cip" interface. 
+    :type cipi: str
+
+    :param mip: [required] IP address used for cluster management (hosting the API and web site). 
+    :type mip: str
+
+    :param mipi: [required] The machine's name for the "mip" interface. 
+    :type mipi: str
+
+    :param sip: [required] IP address used for iSCSI traffic. 
+    :type sip: str
+
+    :param sipi: [required] The machine's name for the "sip" interface. 
+    :type sipi: str
+
+    :param software_version: [required] The version of SolidFire software this node is currently running. 
+    :type software_version: str
+
+    :param uuid: [required] UUID of node. 
+    :type uuid: UUID
     """
-    virtual_network_id = data_model.property(
-        "virtualNetworkID", int,
-        array=False, optional=True,
-        documentation="Network ID to filter the list for a single virtual network",
+    pending_node_id = data_model.property(
+        "pendingNodeID", int,
+        array=False, optional=False,
+        documentation="",
         dictionaryType=None
     )
-    virtual_network_tag = data_model.property(
-        "virtualNetworkTag", int,
-        array=False, optional=True,
-        documentation="Network Tag to filter the list for a single virtual network",
+    assigned_node_id = data_model.property(
+        "AssignedNodeID", int,
+        array=False, optional=False,
+        documentation="",
         dictionaryType=None
     )
-    virtual_network_ids = data_model.property(
-        "virtualNetworkIDs", int,
-        array=True, optional=True,
-        documentation="NetworkIDs to include in the list.",
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="The host name for this node.",
         dictionaryType=None
     )
-    virtual_network_tags = data_model.property(
-        "virtualNetworkTags", int,
-        array=True, optional=True,
-        documentation="Network Tags to include in the list.",
+    compatible = data_model.property(
+        "compatible", bool,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    platform_info = data_model.property(
+        "platformInfo", Platform,
+        array=False, optional=False,
+        documentation="Information about the platform this node is.",
+        dictionaryType=None
+    )
+    cip = data_model.property(
+        "cip", str,
+        array=False, optional=False,
+        documentation="[&#x27;IP address used for both intra- and inter-cluster communication.&#x27;]",
+        dictionaryType=None
+    )
+    cipi = data_model.property(
+        "cipi", str,
+        array=False, optional=False,
+        documentation="The machine&#x27;s name for the &quot;cip&quot; interface.",
+        dictionaryType=None
+    )
+    mip = data_model.property(
+        "mip", str,
+        array=False, optional=False,
+        documentation="[&#x27;IP address used for cluster management (hosting the API and web site).&#x27;]",
+        dictionaryType=None
+    )
+    mipi = data_model.property(
+        "mipi", str,
+        array=False, optional=False,
+        documentation="The machine&#x27;s name for the &quot;mip&quot; interface.",
+        dictionaryType=None
+    )
+    sip = data_model.property(
+        "sip", str,
+        array=False, optional=False,
+        documentation="[&#x27;IP address used for iSCSI traffic.&#x27;]",
+        dictionaryType=None
+    )
+    sipi = data_model.property(
+        "sipi", str,
+        array=False, optional=False,
+        documentation="The machine&#x27;s name for the &quot;sip&quot; interface.",
+        dictionaryType=None
+    )
+    software_version = data_model.property(
+        "softwareVersion", str,
+        array=False, optional=False,
+        documentation="The version of SolidFire software this node is currently running.",
+        dictionaryType=None
+    )
+    uuid = data_model.property(
+        "uuid", UUID,
+        array=False, optional=False,
+        documentation="UUID of node.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListAllNodesResult(data_model.DataObject):
+    """
+    :param nodes: [required] 
+    :type nodes: Node
+
+    :param pending_nodes: [required] 
+    :type pending_nodes: PendingNode
+    """
+    nodes = data_model.property(
+        "nodes", Node,
+        array=True, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    pending_nodes = data_model.property(
+        "pendingNodes", PendingNode,
+        array=True, optional=False,
+        documentation="",
         dictionaryType=None
     )
 
@@ -11091,174 +11121,15 @@ class EnableFeatureRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class SyncJob(data_model.DataObject):
+class RemoveNodesRequest(data_model.DataObject):
     """
-    :param bytes_per_second: [required] 
-    :type bytes_per_second: float
-
-    :param current_bytes: [required] 
-    :type current_bytes: int
-
-    :param dst_service_id: [required] 
-    :type dst_service_id: int
-
-    :param elapsed_time: [required] 
-    :type elapsed_time: float
-
-    :param percent_complete: [required] 
-    :type percent_complete: float
-
-    :param remaining_time: [required] 
-    :type remaining_time: float
-
-    :param slice_id: [required] 
-    :type slice_id: int
-
-    :param src_service_id: [required] 
-    :type src_service_id: int
-
-    :param total_bytes: [required] 
-    :type total_bytes: int
-
-    :param type: [required] 
-    :type type: str
-
-    :param clone_id: [required] 
-    :type clone_id: int
-
-    :param dst_volume_id: [required] 
-    :type dst_volume_id: int
-
-    :param node_id: [required] 
-    :type node_id: int
-
-    :param snapshot_id: [required] 
-    :type snapshot_id: int
-
-    :param src_volume_id: [required] 
-    :type src_volume_id: int
-
-    :param blocks_per_second: [required] 
-    :type blocks_per_second: float
-
-    :param stage: [required] 
-    :type stage: int
+    :param nodes: [required] List of NodeIDs for the nodes to be removed. 
+    :type nodes: int
     """
-    bytes_per_second = data_model.property(
-        "bytesPerSecond", float,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    current_bytes = data_model.property(
-        "currentBytes", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    dst_service_id = data_model.property(
-        "dstServiceID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    elapsed_time = data_model.property(
-        "elapsedTime", float,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    percent_complete = data_model.property(
-        "percentComplete", float,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    remaining_time = data_model.property(
-        "remainingTime", float,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    slice_id = data_model.property(
-        "sliceID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    src_service_id = data_model.property(
-        "srcServiceID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    total_bytes = data_model.property(
-        "totalBytes", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    type = data_model.property(
-        "type", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    clone_id = data_model.property(
-        "cloneID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    dst_volume_id = data_model.property(
-        "dstVolumeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    node_id = data_model.property(
-        "nodeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    snapshot_id = data_model.property(
-        "snapshotID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    src_volume_id = data_model.property(
-        "srcVolumeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    blocks_per_second = data_model.property(
-        "blocksPerSecond", float,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    stage = data_model.property(
-        "stage", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListSyncJobsResult(data_model.DataObject):
-    """
-    :param sync_jobs: [required] 
-    :type sync_jobs: SyncJob
-    """
-    sync_jobs = data_model.property(
-        "syncJobs", SyncJob,
+    nodes = data_model.property(
+        "nodes", int,
         array=True, optional=False,
-        documentation="",
+        documentation="List of NodeIDs for the nodes to be removed.",
         dictionaryType=None
     )
 
@@ -11626,21 +11497,6 @@ class ListNodeFibreChannelPortInfoResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class NewDrive(data_model.DataObject):
-    """
-    :param drive_id: [required] A unique identifier for this drive. 
-    :type drive_id: int
-    """
-    drive_id = data_model.property(
-        "driveID", int,
-        array=False, optional=False,
-        documentation="[&#x27;A unique identifier for this drive.&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class AddDrivesRequest(data_model.DataObject):
     """
     :param drives: [required] List of drives to add to the cluster. 
@@ -11815,7 +11671,7 @@ class CreateSnapshotRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class RemoveNodesResult(data_model.DataObject):
+class ModifySnapshotResult(data_model.DataObject):
     """    """
 
     def __init__(self, **kwargs):
@@ -12012,21 +11868,6 @@ class CopyVolumeResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class AddNodesRequest(data_model.DataObject):
-    """
-    :param pending_nodes: [required] List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method. 
-    :type pending_nodes: int
-    """
-    pending_nodes = data_model.property(
-        "pendingNodes", int,
-        array=True, optional=False,
-        documentation="List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class CreateClusterRequest(data_model.DataObject):
     """
     :param accept_eula:  Indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. 
@@ -12213,82 +12054,37 @@ class ModifyVirtualNetworkRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ClusterStats(data_model.DataObject):
+class PendingOperation(data_model.DataObject):
     """
-    :param cluster_utilization: [required] The amount of cluster capacity being utilized. 
-    :type cluster_utilization: float
+    :param pending: [required] <br/><b>true</b>: operation is still in progress. <br/><b>false</b>: operation is no longer in progress. 
+    :type pending: bool
 
-    :param client_queue_depth: [required] 
-    :type client_queue_depth: int
-
-    :param read_bytes: [required] Total bytes read by clients. 
-    :type read_bytes: int
-
-    :param read_ops: [required] Total read operations. 
-    :type read_ops: int
-
-    :param timestamp: [required] Current time in UTC format. ISO 8601 date string. 
-    :type timestamp: str
-
-    :param write_bytes: [required] Total bytes written by clients. 
-    :type write_bytes: int
-
-    :param write_ops: [required] Total write operations. 
-    :type write_ops: int
+    :param operation: [required] Name of operation that is in progress or has completed. 
+    :type operation: str
     """
-    cluster_utilization = data_model.property(
-        "clusterUtilization", float,
+    pending = data_model.property(
+        "pending", bool,
         array=False, optional=False,
-        documentation="The amount of cluster capacity being utilized.",
+        documentation="[&#x27;&lt;br/&gt;&lt;b&gt;true&lt;/b&gt;: operation is still in progress.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;false&lt;/b&gt;: operation is no longer in progress.&#x27;]",
         dictionaryType=None
     )
-    client_queue_depth = data_model.property(
-        "clientQueueDepth", int,
+    operation = data_model.property(
+        "operation", str,
         array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    read_bytes = data_model.property(
-        "readBytes", int,
-        array=False, optional=False,
-        documentation="Total bytes read by clients.",
-        dictionaryType=None
-    )
-    read_ops = data_model.property(
-        "readOps", int,
-        array=False, optional=False,
-        documentation="Total read operations.",
-        dictionaryType=None
-    )
-    timestamp = data_model.property(
-        "timestamp", str,
-        array=False, optional=False,
-        documentation="Current time in UTC format. ISO 8601 date string.",
-        dictionaryType=None
-    )
-    write_bytes = data_model.property(
-        "writeBytes", int,
-        array=False, optional=False,
-        documentation="Total bytes written by clients.",
-        dictionaryType=None
-    )
-    write_ops = data_model.property(
-        "writeOps", int,
-        array=False, optional=False,
-        documentation="Total write operations.",
+        documentation="Name of operation that is in progress or has completed.",
         dictionaryType=None
     )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetClusterStatsResult(data_model.DataObject):
+class GetPendingOperationResult(data_model.DataObject):
     """
-    :param cluster_stats: [required] 
-    :type cluster_stats: ClusterStats
+    :param pending_operation: [required] 
+    :type pending_operation: PendingOperation
     """
-    cluster_stats = data_model.property(
-        "clusterStats", ClusterStats,
+    pending_operation = data_model.property(
+        "pendingOperation", PendingOperation,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -12696,15 +12492,15 @@ class DeleteVolumeResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetClusterConfigResult(data_model.DataObject):
+class ListPendingNodesResult(data_model.DataObject):
     """
-    :param cluster: [required] Cluster configuration information the node uses to communicate with the cluster. 
-    :type cluster: ClusterConfig
+    :param pending_nodes: [required] 
+    :type pending_nodes: PendingNode
     """
-    cluster = data_model.property(
-        "cluster", ClusterConfig,
-        array=False, optional=False,
-        documentation="Cluster configuration information the node uses to communicate with the cluster.",
+    pending_nodes = data_model.property(
+        "pendingNodes", PendingNode,
+        array=True, optional=False,
+        documentation="",
         dictionaryType=None
     )
 
@@ -12832,15 +12628,111 @@ class SetRemoteLoggingHostsResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class SetClusterConfigResult(data_model.DataObject):
+class NodeWaitingToJoin(data_model.DataObject):
     """
-    :param cluster: [required] Settings for the cluster. All new and current settings are returned. 
-    :type cluster: ClusterConfig
+    :param name: [required] 
+    :type name: str
+
+    :param version: [required] 
+    :type version: str
+
+    :param node_id: [required] 
+    :type node_id: int
+
+    :param pending_node_id: [required] 
+    :type pending_node_id: int
+
+    :param mip: [required] 
+    :type mip: str
+
+    :param cip: [required] 
+    :type cip: str
+
+    :param sip: [required] 
+    :type sip: str
     """
-    cluster = data_model.property(
-        "cluster", ClusterConfig,
+    name = data_model.property(
+        "name", str,
         array=False, optional=False,
-        documentation="Settings for the cluster. All new and current settings are returned.",
+        documentation="",
+        dictionaryType=None
+    )
+    version = data_model.property(
+        "version", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    pending_node_id = data_model.property(
+        "pendingNodeID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    mip = data_model.property(
+        "mip", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    cip = data_model.property(
+        "cip", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    sip = data_model.property(
+        "sip", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetBootstrapConfigResult(data_model.DataObject):
+    """
+    :param cluster_name: [required] Name of the cluster. 
+    :type cluster_name: str
+
+    :param node_name: [required] Name of the node. 
+    :type node_name: str
+
+    :param nodes: [required] List of descriptions for each node that is actively waiting to join this cluster: compatible - Indicates if the listed node is compatible with the node the API call was executed against. name - IP address of each node. version - version of SolidFire Element software currently installed on the node. 
+    :type nodes: NodeWaitingToJoin
+
+    :param version: [required] Version of the SolidFire Element software currently installed. 
+    :type version: str
+    """
+    cluster_name = data_model.property(
+        "clusterName", str,
+        array=False, optional=False,
+        documentation="Name of the cluster.",
+        dictionaryType=None
+    )
+    node_name = data_model.property(
+        "nodeName", str,
+        array=False, optional=False,
+        documentation="Name of the node.",
+        dictionaryType=None
+    )
+    nodes = data_model.property(
+        "nodes", NodeWaitingToJoin,
+        array=True, optional=False,
+        documentation="List of descriptions for each node that is actively waiting to join this cluster: compatible - Indicates if the listed node is compatible with the node the API call was executed against. name - IP address of each node. version - version of SolidFire Element software currently installed on the node.",
+        dictionaryType=None
+    )
+    version = data_model.property(
+        "version", str,
+        array=False, optional=False,
+        documentation="Version of the SolidFire Element software currently installed.",
         dictionaryType=None
     )
 
@@ -12898,6 +12790,21 @@ class ModifyVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
 
 class CancelGroupCloneResult(data_model.DataObject):
     """    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class AddClusterAdminResult(data_model.DataObject):
+    """
+    :param cluster_admin_id: [required] ClusterAdminID for the newly created Cluster Admin. 
+    :type cluster_admin_id: int
+    """
+    cluster_admin_id = data_model.property(
+        "clusterAdminID", int,
+        array=False, optional=False,
+        documentation="ClusterAdminID for the newly created Cluster Admin.",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -13169,6 +13076,60 @@ class GetNodeHardwareInfoResult(data_model.DataObject):
         "nodeHardwareInfo", dict,
         array=False, optional=False,
         documentation="Hardware information for the specified nodeID.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class NodeSystemStatusInfo(data_model.DataObject):
+    """
+    :param reboot_required: [required] 
+    :type reboot_required: bool
+    """
+    reboot_required = data_model.property(
+        "rebootRequired", bool,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class NodeSystemStatus(data_model.DataObject):
+    """
+    :param node_id: [required] 
+    :type node_id: int
+
+    :param result: [required] 
+    :type result: NodeSystemStatusInfo
+    """
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    result = data_model.property(
+        "result", NodeSystemStatusInfo,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetSystemStatusResult(data_model.DataObject):
+    """
+    :param nodes: [required] 
+    :type nodes: NodeSystemStatus
+    """
+    nodes = data_model.property(
+        "nodes", NodeSystemStatus,
+        array=True, optional=False,
+        documentation="",
         dictionaryType=None
     )
 
@@ -13532,15 +13493,15 @@ class RemoveBackupTargetResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class AddClusterAdminResult(data_model.DataObject):
+class AddNodesRequest(data_model.DataObject):
     """
-    :param cluster_admin_id: [required] ClusterAdminID for the newly created Cluster Admin. 
-    :type cluster_admin_id: int
+    :param pending_nodes: [required] List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method. 
+    :type pending_nodes: int
     """
-    cluster_admin_id = data_model.property(
-        "clusterAdminID", int,
-        array=False, optional=False,
-        documentation="ClusterAdminID for the newly created Cluster Admin.",
+    pending_nodes = data_model.property(
+        "pendingNodes", int,
+        array=True, optional=False,
+        documentation="List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method.",
         dictionaryType=None
     )
 
@@ -14112,6 +14073,30 @@ class GetAccountByIDRequest(data_model.DataObject):
         "accountID", int,
         array=False, optional=False,
         documentation="Specifies the account for which details are gathered.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetAPIResult(data_model.DataObject):
+    """
+    :param current_version: [required] 
+    :type current_version: float
+
+    :param supported_versions: [required] 
+    :type supported_versions: float
+    """
+    current_version = data_model.property(
+        "currentVersion", float,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    supported_versions = data_model.property(
+        "supportedVersions", float,
+        array=True, optional=False,
+        documentation="",
         dictionaryType=None
     )
 
