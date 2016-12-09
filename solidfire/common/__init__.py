@@ -594,6 +594,8 @@ class ServiceBase(object):
             response_raw = self._dispatcher.post(encoded)
         except requests.ConnectionError:
             raise ApiConnectionError("Was not able to connect to the specified target as a result of timing out.")
+        except requests.ReadTimeout:
+            raise ApiConnectionError("Read timed out.")
         except Exception as error:
             json_err = json.dumps(
                 {
