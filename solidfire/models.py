@@ -3753,15 +3753,24 @@ class GetLimitsResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class SetClusterConfigResult(data_model.DataObject):
+class GetAPIResult(data_model.DataObject):
     """
-    :param cluster: [required] Settings for the cluster. All new and current settings are returned. 
-    :type cluster: ClusterConfig
+    :param current_version: [required] 
+    :type current_version: float
+
+    :param supported_versions: [required] 
+    :type supported_versions: float
     """
-    cluster = data_model.property(
-        "cluster", ClusterConfig,
+    current_version = data_model.property(
+        "currentVersion", float,
         array=False, optional=False,
-        documentation="Settings for the cluster. All new and current settings are returned.",
+        documentation="",
+        dictionaryType=None
+    )
+    supported_versions = data_model.property(
+        "supportedVersions", float,
+        array=True, optional=False,
+        documentation="",
         dictionaryType=None
     )
 
@@ -12628,111 +12637,15 @@ class SetRemoteLoggingHostsResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class NodeWaitingToJoin(data_model.DataObject):
+class SetClusterConfigResult(data_model.DataObject):
     """
-    :param name: [required] 
-    :type name: str
-
-    :param version: [required] 
-    :type version: str
-
-    :param node_id: [required] 
-    :type node_id: int
-
-    :param pending_node_id: [required] 
-    :type pending_node_id: int
-
-    :param mip: [required] 
-    :type mip: str
-
-    :param cip: [required] 
-    :type cip: str
-
-    :param sip: [required] 
-    :type sip: str
+    :param cluster: [required] Settings for the cluster. All new and current settings are returned. 
+    :type cluster: ClusterConfig
     """
-    name = data_model.property(
-        "name", str,
+    cluster = data_model.property(
+        "cluster", ClusterConfig,
         array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    version = data_model.property(
-        "version", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    node_id = data_model.property(
-        "nodeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    pending_node_id = data_model.property(
-        "pendingNodeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    mip = data_model.property(
-        "mip", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    cip = data_model.property(
-        "cip", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    sip = data_model.property(
-        "sip", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetBootstrapConfigResult(data_model.DataObject):
-    """
-    :param cluster_name: [required] Name of the cluster. 
-    :type cluster_name: str
-
-    :param node_name: [required] Name of the node. 
-    :type node_name: str
-
-    :param nodes: [required] List of descriptions for each node that is actively waiting to join this cluster: compatible - Indicates if the listed node is compatible with the node the API call was executed against. name - IP address of each node. version - version of SolidFire Element software currently installed on the node. 
-    :type nodes: NodeWaitingToJoin
-
-    :param version: [required] Version of the SolidFire Element software currently installed. 
-    :type version: str
-    """
-    cluster_name = data_model.property(
-        "clusterName", str,
-        array=False, optional=False,
-        documentation="Name of the cluster.",
-        dictionaryType=None
-    )
-    node_name = data_model.property(
-        "nodeName", str,
-        array=False, optional=False,
-        documentation="Name of the node.",
-        dictionaryType=None
-    )
-    nodes = data_model.property(
-        "nodes", NodeWaitingToJoin,
-        array=True, optional=False,
-        documentation="List of descriptions for each node that is actively waiting to join this cluster: compatible - Indicates if the listed node is compatible with the node the API call was executed against. name - IP address of each node. version - version of SolidFire Element software currently installed on the node.",
-        dictionaryType=None
-    )
-    version = data_model.property(
-        "version", str,
-        array=False, optional=False,
-        documentation="Version of the SolidFire Element software currently installed.",
+        documentation="Settings for the cluster. All new and current settings are returned.",
         dictionaryType=None
     )
 
@@ -14073,30 +13986,6 @@ class GetAccountByIDRequest(data_model.DataObject):
         "accountID", int,
         array=False, optional=False,
         documentation="Specifies the account for which details are gathered.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetAPIResult(data_model.DataObject):
-    """
-    :param current_version: [required] 
-    :type current_version: float
-
-    :param supported_versions: [required] 
-    :type supported_versions: float
-    """
-    current_version = data_model.property(
-        "currentVersion", float,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    supported_versions = data_model.property(
-        "supportedVersions", float,
-        array=True, optional=False,
-        documentation="",
         dictionaryType=None
     )
 
