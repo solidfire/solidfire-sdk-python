@@ -124,6 +124,21 @@ class GetHardwareInfoResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class GetOriginRequest(data_model.DataObject):
+    """
+    :param force: [required] 
+    :type force: bool
+    """
+    force = data_model.property(
+        "force", bool,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class DriveStats(data_model.DataObject):
     """
     :param active_sessions:  
@@ -3341,6 +3356,180 @@ class CreateClusterResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class Signature(data_model.DataObject):
+    """
+    :param data: [required] 
+    :type data: str
+
+    :param pubkey: [required] 
+    :type pubkey: str
+
+    :param version: [required] 
+    :type version: int
+    """
+    data = data_model.property(
+        "data", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    pubkey = data_model.property(
+        "pubkey", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    version = data_model.property(
+        "version", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class Origin(data_model.DataObject):
+    """
+    :param &lt;signature&gt;: [required] 
+    :type &lt;signature&gt;: Signature
+
+    :param contract_date: [required] 
+    :type contract_date: str
+
+    :param contract_name: [required] 
+    :type contract_name: str
+
+    :param contract_quantity: [required] 
+    :type contract_quantity: int
+
+    :param contract_type: [required] 
+    :type contract_type: str
+
+    :param integrator: [required] 
+    :type integrator: str
+
+    :param location: [required] 
+    :type location: str
+
+    :param organization: [required] 
+    :type organization: str
+
+    :param type: [required] 
+    :type type: str
+    """
+    &lt;signature&gt; = data_model.property(
+        "&lt;signature&gt;", Signature,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    contract_date = data_model.property(
+        "contract-date", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    contract_name = data_model.property(
+        "contract-name", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    contract_quantity = data_model.property(
+        "contract-quantity", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    contract_type = data_model.property(
+        "contract-type", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    integrator = data_model.property(
+        "integrator", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    location = data_model.property(
+        "location", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    organization = data_model.property(
+        "organization", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    type = data_model.property(
+        "type", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetOriginNodeResult(data_model.DataObject):
+    """
+    :param origin: [required] 
+    :type origin: Origin
+    """
+    origin = data_model.property(
+        "origin", Origin,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetOriginNode(data_model.DataObject):
+    """
+    :param node_id: [required] 
+    :type node_id: int
+
+    :param result: [required] 
+    :type result: GetOriginNodeResult
+    """
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    result = data_model.property(
+        "result", GetOriginNodeResult,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetOriginResult(data_model.DataObject):
+    """
+    :param nodes: [required] 
+    :type nodes: GetOriginNode
+    """
+    nodes = data_model.property(
+        "nodes", GetOriginNode,
+        array=True, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class RestoreDeletedVolumeRequest(data_model.DataObject):
     """
     :param volume_id: [required] VolumeID for the deleted volume to restore. 
@@ -4605,6 +4794,30 @@ class SnmpV3UsmUser(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class GetIpmiConfigRequest(data_model.DataObject):
+    """
+    :param chassis_type: [required] Used to display information for each node chassis type. Valid values:all - returns sensor information for each chassis type. {chassis type} - returns sensor information for a specified chassis type. 
+    :type chassis_type: str
+
+    :param force: [required] 
+    :type force: bool
+    """
+    chassis_type = data_model.property(
+        "chassisType", str,
+        array=False, optional=False,
+        documentation="Used to display information for each node chassis type. Valid values:all - returns sensor information for each chassis type. {chassis type} - returns sensor information for a specified chassis type.",
+        dictionaryType=None
+    )
+    force = data_model.property(
+        "force", bool,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class GetScheduleResult(data_model.DataObject):
     """
     :param schedule: [required] The schedule attributes. 
@@ -4622,6 +4835,75 @@ class GetScheduleResult(data_model.DataObject):
 
 class DeleteSnapshotResult(data_model.DataObject):
     """    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class IpmiInfo(data_model.DataObject):
+    """
+    :param sensors: [required] 
+    :type sensors: dict
+    """
+    sensors = data_model.property(
+        "sensors", dict,
+        array=True, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetIpmiInfoNodesResultObject(data_model.DataObject):
+    """
+    :param ipmi_info: [required] 
+    :type ipmi_info: IpmiInfo
+    """
+    ipmi_info = data_model.property(
+        "ipmiInfo", IpmiInfo,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetIpmiInfoNodesResult(data_model.DataObject):
+    """
+    :param node_id: [required] 
+    :type node_id: int
+
+    :param result: [required] 
+    :type result: GetIpmiInfoNodesResultObject
+    """
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    result = data_model.property(
+        "result", GetIpmiInfoNodesResultObject,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetIpmiInfoResult(data_model.DataObject):
+    """
+    :param nodes: [required] Detailed information from each sensor within a node.  
+    :type nodes: GetIpmiInfoNodesResult
+    """
+    nodes = data_model.property(
+        "nodes", GetIpmiInfoNodesResult,
+        array=True, optional=False,
+        documentation="Detailed information from each sensor within a node. ",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -11990,6 +12272,108 @@ class CreateSnapshotResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class PendingActiveNode(data_model.DataObject):
+    """
+    :param active_node_key: [required] 
+    :type active_node_key: str
+
+    :param assigned_node_id: [required] 
+    :type assigned_node_id: int
+
+    :param async_handle: [required] 
+    :type async_handle: int
+
+    :param cip: [required] 
+    :type cip: str
+
+    :param mip: [required] 
+    :type mip: str
+
+    :param pending_node_id: [required] 
+    :type pending_node_id: int
+
+    :param platform_info: [required] 
+    :type platform_info: Platform
+
+    :param sip: [required] 
+    :type sip: str
+
+    :param software_version: [required] 
+    :type software_version: str
+    """
+    active_node_key = data_model.property(
+        "activeNodeKey", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    assigned_node_id = data_model.property(
+        "assignedNodeID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    async_handle = data_model.property(
+        "asyncHandle", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    cip = data_model.property(
+        "cip", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    mip = data_model.property(
+        "mip", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    pending_node_id = data_model.property(
+        "pendingNodeID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    platform_info = data_model.property(
+        "platformInfo", Platform,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    sip = data_model.property(
+        "sip", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    software_version = data_model.property(
+        "softwareVersion", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListPendingActiveNodesResult(data_model.DataObject):
+    """
+    :param pending_active_nodes: [required] List of objects detailing information about all PendingActive nodes in the system. 
+    :type pending_active_nodes: PendingActiveNode
+    """
+    pending_active_nodes = data_model.property(
+        "pendingActiveNodes", PendingActiveNode,
+        array=True, optional=False,
+        documentation="List of objects detailing information about all PendingActive nodes in the system.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class FibreChannelPortInfoResult(data_model.DataObject):
     """
     Used to return information about the Fibre Channel ports.
@@ -12913,6 +13297,21 @@ class GetDriveStatsResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class GetIpmiInfoRequest(data_model.DataObject):
+    """
+    :param force: [required] 
+    :type force: bool
+    """
+    force = data_model.property(
+        "force", bool,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListDriveHardwareRequest(data_model.DataObject):
     """
     :param force: [required] To run this command, the force parameter must be set to true. 
@@ -13304,6 +13703,84 @@ class TestConnectEnsembleRequest(data_model.DataObject):
         "ensemble", str,
         array=False, optional=True,
         documentation="A comma-separated list of ensemble node CIPs for connectivity testing",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class IpmiConfig(data_model.DataObject):
+    """
+    :param sensor_name: [required] Name of the sensor that has been found. 
+    :type sensor_name: str
+
+    :param unique_sensor_id: [required] Unique identifier for the sensor. 
+    :type unique_sensor_id: str
+    """
+    sensor_name = data_model.property(
+        "sensorName", str,
+        array=False, optional=False,
+        documentation="Name of the sensor that has been found.",
+        dictionaryType=None
+    )
+    unique_sensor_id = data_model.property(
+        "uniqueSensorID", str,
+        array=False, optional=False,
+        documentation="Unique identifier for the sensor.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class IpmiConfigs(data_model.DataObject):
+    """
+    :param ipmi_config: [required] 
+    :type ipmi_config: IpmiConfig
+    """
+    ipmi_config = data_model.property(
+        "ipmiConfig", IpmiConfig,
+        array=True, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetIpmiConfigNodesResult(data_model.DataObject):
+    """
+    :param node_id: [required] 
+    :type node_id: int
+
+    :param result: [required] 
+    :type result: IpmiConfigs
+    """
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    result = data_model.property(
+        "result", IpmiConfigs,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetIpmiConfigResult(data_model.DataObject):
+    """
+    :param nodes: [required] 
+    :type nodes: GetIpmiConfigNodesResult
+    """
+    nodes = data_model.property(
+        "nodes", GetIpmiConfigNodesResult,
+        array=False, optional=False,
+        documentation="",
         dictionaryType=None
     )
 
@@ -14351,6 +14828,21 @@ class SetDefaultQoSResult(data_model.DataObject):
 
 class ModifyVolumePairResult(data_model.DataObject):
     """    """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetVolumeCountResult(data_model.DataObject):
+    """
+    :param count: [required] The number of volumes currently in the system. 
+    :type count: int
+    """
+    count = data_model.property(
+        "count", int,
+        array=False, optional=False,
+        documentation="The number of volumes currently in the system.",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
