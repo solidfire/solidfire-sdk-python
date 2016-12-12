@@ -3391,8 +3391,8 @@ class Signature(data_model.DataObject):
 
 class Origin(data_model.DataObject):
     """
-    :param &lt;signature&gt;: [required] 
-    :type &lt;signature&gt;: Signature
+    :param signature: [required] 
+    :type signature: Signature
 
     :param contract_date: [required] 
     :type contract_date: str
@@ -3418,7 +3418,7 @@ class Origin(data_model.DataObject):
     :param type: [required] 
     :type type: str
     """
-    &lt;signature&gt; = data_model.property(
+    signature = data_model.property(
         "&lt;signature&gt;", Signature,
         array=False, optional=False,
         documentation="",
