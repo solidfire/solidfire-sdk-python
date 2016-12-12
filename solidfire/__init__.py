@@ -2857,64 +2857,6 @@ class Element(ServiceBase):
             since=6.0
         )
 
-    def create_cluster_support_bundle(
-            self,
-            password,
-            username,
-            allow_incomplete=OPTIONAL,
-            bundle_name=OPTIONAL,
-            extra_args=OPTIONAL,
-            mvip=OPTIONAL,
-            nodes=OPTIONAL,):
-        """
-        CreateClusterSupportBundle is used to gather support bundles from all the nodes in a cluster. When the bundle has been successfully created, the bundle is stored on the node as a tar.gz file.
-        :param allowIncomplete:  Allows the script to continue to run if bundles cannot be gathered from one or more of the nodes. 
-        :type allowIncomplete: bool
-
-        :param bundleName:  Unique name for each support bundle created. If no name is provided, then 'supportbundle' and the node name is used as a file name. 
-        :type bundleName: str
-
-        :param extraArgs:  This parameter is fed to the sf_make_support_bundle script. Should be used only at the request of SolidFire Support. 
-        :type extraArgs: str
-
-        :param mvip:  The mvip of the cluster. Bundles will be gathered from all nodes in the cluster. REQUIRED if 'nodes' are not specified. 
-        :type mvip: str
-
-        :param nodes:  The IP addresses of the nodes from which to gather bundles. Use either 'nodes' or 'mvip', but not both to specify which nodes to gather from. REQUIRED if 'nodes' are not specified. 
-        :type nodes: str
-
-        :param password: [required] The cluster password. Note: This password will be visible as text when entered. 
-        :type password: str
-
-        :param username: [required] The admin user name. Any level of 'admin' can be used. 
-        :type username: str
-        """
-
-        self._check_connection_type("create_cluster_support_bundle", "Node")
-
-        params = { 
-            "password": password,
-            "username": username,
-        }
-        if allow_incomplete is not None:
-            params["allowIncomplete"] = allow_incomplete
-        if bundle_name is not None:
-            params["bundleName"] = bundle_name
-        if extra_args is not None:
-            params["extraArgs"] = extra_args
-        if mvip is not None:
-            params["mvip"] = mvip
-        if nodes is not None:
-            params["nodes"] = nodes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'CreateClusterSupportBundle',
-            CreateClusterSupportBundleResult,
-            params,
-            since=8.0
-        )
-
     def create_support_bundle(
             self,
             bundle_name=OPTIONAL,
@@ -3042,6 +2984,62 @@ class Element(ServiceBase):
             SnmpSendTestTrapsResult,
             params,
             since=6.0
+        )
+
+    def restart_networking(
+            self,
+            force,):
+        """
+        The RestartNetworking API method is used to restart the networking services on a node.WARNING! This method restarts all networking services on a node, causing temporary loss of networking connectivity. Exercise caution when using this method.
+        :param force: [required] The "force" parameter must be included on this method to successfully restart the networking. 
+        :type force: bool
+        """
+
+        self._check_connection_type("restart_networking", "Node")
+
+        params = { 
+            "force": force,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RestartNetworking',
+            RestartNetworkingResult,
+            params
+        )
+
+    def restart_services(
+            self,
+            force,
+            service=OPTIONAL,
+            action=OPTIONAL,):
+        """
+        The RestartServices API method is used to restart the  Element services on a node.Caution: This method causes temporary node services interruption. Exercise caution when using this method.
+        :param force: [required] The "force" parameter must be included on this method to successfully restart services on a node.    
+        :type force: bool
+
+        :param service:  Service name to be restarted. 
+        :type service: str
+
+        :param action:  Action to perform on the service (start, stop, restart). 
+        :type action: str
+        """
+
+        self._check_connection_type("restart_services", "Node")
+
+        params = { 
+            "force": force,
+        }
+        if service is not None:
+            params["service"] = service
+        if action is not None:
+            params["action"] = action
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RestartServices',
+            RestartServicesResult,
+            params
         )
 
     def create_backup_target(
