@@ -1461,6 +1461,382 @@ RESP_GetClusterHardwareInfo_v9_0 = """{
   }
 }"""
 
+RESP_GetDriveConfig_v9_0 = """{
+   "id":9,
+   "result":{
+      "driveConfig":{
+         "drives":[
+            {
+               "canonicalName":"boot",
+               "connected":false,
+               "dev":0,
+               "devPath":"/boot",
+               "driveType":"System",
+               "name":"boot",
+               "path":"/boot",
+               "pathLink":"/boot",
+               "product":"Unknown",
+               "scsiCompatId":"boot",
+               "scsiState":"Unknown",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":false,
+               "serial":"boot",
+               "size":1024,
+               "slot":-2,
+               "uuid":"881cc415-7ed6-41a3-65a8-6452f27ed745",
+               "vendor":"Unknown",
+               "version":"Unknown"
+            },
+            {
+               "canonicalName":"/",
+               "connected":false,
+               "dev":0,
+               "devPath":"/",
+               "driveType":"System",
+               "name":"/",
+               "path":"/",
+               "pathLink":"/",
+               "product":"Unknown",
+               "scsiCompatId":"/",
+               "scsiState":"Unknown",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":false,
+               "serial":"/",
+               "size":9223372036854775807,
+               "slot":-2,
+               "uuid":"6666cd76-f969-5646-9e7b-e39d750cc7d9",
+               "vendor":"Unknown",
+               "version":"Unknown"
+            },
+            {
+               "canonicalName":"log",
+               "connected":false,
+               "dev":0,
+               "devPath":"/var/log",
+               "driveType":"System",
+               "name":"log",
+               "path":"/var/log",
+               "pathLink":"/var/log",
+               "product":"Unknown",
+               "scsiCompatId":"log",
+               "scsiState":"Unknown",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":false,
+               "serial":"log",
+               "size":9223372036854775807,
+               "slot":-2,
+               "uuid":"dc1d71bb-b5c4-d2a5-e936-db79ef10c19f",
+               "vendor":"Unknown",
+               "version":"Unknown"
+            },
+            {
+               "canonicalName":"pendingDirtyBlocks",
+               "connected":false,
+               "dev":0,
+               "devPath":"/mnt/pendingDirtyBlocks",
+               "driveType":"System",
+               "name":"pendingDirtyBlocks",
+               "path":"/mnt/pendingDirtyBlocks",
+               "pathLink":"/mnt/pendingDirtyBlocks",
+               "product":"Unknown",
+               "scsiCompatId":"pendingDirtyBlocks",
+               "scsiState":"Unknown",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":false,
+               "serial":"pendingDirtyBlocks",
+               "size":9223372036854775807,
+               "slot":-2,
+               "uuid":"00abd0dc-ff28-2825-7faa-38e9a49d66a4",
+               "vendor":"Unknown",
+               "version":"Unknown"
+            },
+            {
+               "canonicalName":"sda",
+               "connected":true,
+               "dev":2054,
+               "devPath":"/dev/slot0p6",
+               "driveType":"Slice",
+               "name":"scsi-36000c29551932b43ba5bb11c3cd54c1e-part6",
+               "path":"/dev/sda6",
+               "pathLink":"/dev/slot0p6",
+               "product":"Unknown",
+               "scsiCompatId":"scsi-36000c29551932b43ba5bb11c3cd54c1e-part6",
+               "scsiState":"Running",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":false,
+               "serial":"scsi-36000c29551932b43ba5bb11c3cd54c1e-part6",
+               "size":216787845120,
+               "slot":0,
+               "uuid":"38b3c943-9e45-88e9-1ebe-130b4186d8da",
+               "vendor":"Unknown",
+               "version":"Unknown"
+            },
+            {
+               "canonicalName":"sdb",
+               "connected":true,
+               "dev":2064,
+               "devPath":"/dev/slot1",
+               "driveType":"Block",
+               "name":"scsi-36000c29b0d225d4342d5750a81af4ea6",
+               "path":"/dev/sdb",
+               "pathLink":"/dev/slot1",
+               "product":"Unknown",
+               "scsiCompatId":"scsi-36000c29b0d225d4342d5750a81af4ea6",
+               "scsiState":"Running",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":false,
+               "serial":"scsi-36000c29b0d225d4342d5750a81af4ea6",
+               "size":268435456000,
+               "slot":1,
+               "uuid":"a6944a6f-46f4-addb-ba1e-4c237b5fedc5",
+               "vendor":"Unknown",
+               "version":"Unknown"
+            },
+            {
+               "canonicalName":"",
+               "connected":false,
+               "dev":0,
+               "devPath":"/dev/slot2",
+               "driveType":"Block",
+               "name":"slot2",
+               "path":"/dev/slot2",
+               "pathLink":"/dev/slot2",
+               "product":"Unknown",
+               "scsiCompatId":"slot2",
+               "scsiState":"Unknown",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":false,
+               "serial":"slot2",
+               "size":0,
+               "slot":2,
+               "uuid":"d92f909d-c606-4c27-d17a-4cb6db95a35c",
+               "vendor":"Unknown",
+               "version":"Unknown"
+            },
+            {
+               "canonicalName":"",
+               "connected":false,
+               "dev":0,
+               "devPath":"/dev/slot3",
+               "driveType":"Block",
+               "name":"slot3",
+               "path":"/dev/slot3",
+               "pathLink":"/dev/slot3",
+               "product":"Unknown",
+               "scsiCompatId":"slot3",
+               "scsiState":"Unknown",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":false,
+               "serial":"slot3",
+               "size":0,
+               "slot":3,
+               "uuid":"25b903d1-3b55-d53f-a556-47b28f91b728",
+               "vendor":"Unknown",
+               "version":"Unknown"
+            },
+            {
+               "canonicalName":"",
+               "connected":false,
+               "dev":0,
+               "devPath":"/dev/slot4",
+               "driveType":"Block",
+               "name":"slot4",
+               "path":"/dev/slot4",
+               "pathLink":"/dev/slot4",
+               "product":"Unknown",
+               "scsiCompatId":"slot4",
+               "scsiState":"Unknown",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":false,
+               "serial":"slot4",
+               "size":0,
+               "slot":4,
+               "uuid":"76e3d13f-88c5-c334-8f0b-8486964d369e",
+               "vendor":"Unknown",
+               "version":"Unknown"
+            },
+            {
+               "canonicalName":"",
+               "connected":false,
+               "dev":0,
+               "devPath":"/dev/slot5",
+               "driveType":"Block",
+               "name":"slot5",
+               "path":"/dev/slot5",
+               "pathLink":"/dev/slot5",
+               "product":"Unknown",
+               "scsiCompatId":"slot5",
+               "scsiState":"Unknown",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":false,
+               "serial":"slot5",
+               "size":0,
+               "slot":5,
+               "uuid":"b31123fa-9a17-0ccd-deab-deac32a58371",
+               "vendor":"Unknown",
+               "version":"Unknown"
+            },
+            {
+               "canonicalName":"",
+               "connected":false,
+               "dev":0,
+               "devPath":"/dev/slot6",
+               "driveType":"Block",
+               "name":"slot6",
+               "path":"/dev/slot6",
+               "pathLink":"/dev/slot6",
+               "product":"Unknown",
+               "scsiCompatId":"slot6",
+               "scsiState":"Unknown",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":false,
+               "serial":"slot6",
+               "size":0,
+               "slot":6,
+               "uuid":"c1b04a69-49a0-fdee-b818-c6cdfafd6cd5",
+               "vendor":"Unknown",
+               "version":"Unknown"
+            },
+            {
+               "canonicalName":"",
+               "connected":false,
+               "dev":0,
+               "devPath":"/dev/slot7",
+               "driveType":"Block",
+               "name":"slot7",
+               "path":"/dev/slot7",
+               "pathLink":"/dev/slot7",
+               "product":"Unknown",
+               "scsiCompatId":"slot7",
+               "scsiState":"Unknown",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":false,
+               "serial":"slot7",
+               "size":0,
+               "slot":7,
+               "uuid":"76c29a96-68a6-2d8e-6416-392f9fd07919",
+               "vendor":"Unknown",
+               "version":"Unknown"
+            },
+            {
+               "canonicalName":"",
+               "connected":false,
+               "dev":0,
+               "devPath":"/dev/slot8",
+               "driveType":"Block",
+               "name":"slot8",
+               "path":"/dev/slot8",
+               "pathLink":"/dev/slot8",
+               "product":"Unknown",
+               "scsiCompatId":"slot8",
+               "scsiState":"Unknown",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":false,
+               "serial":"slot8",
+               "size":0,
+               "slot":8,
+               "uuid":"28384068-fdee-1dae-21e3-493558121657",
+               "vendor":"Unknown",
+               "version":"Unknown"
+            },
+            {
+               "canonicalName":"",
+               "connected":false,
+               "dev":0,
+               "devPath":"/dev/slot9",
+               "driveType":"Block",
+               "name":"slot9",
+               "path":"/dev/slot9",
+               "pathLink":"/dev/slot9",
+               "product":"Unknown",
+               "scsiCompatId":"slot9",
+               "scsiState":"Unknown",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":false,
+               "serial":"slot9",
+               "size":0,
+               "slot":9,
+               "uuid":"612e2106-7032-850a-a16d-4980b53ffb23",
+               "vendor":"Unknown",
+               "version":"Unknown"
+            },
+            {
+               "canonicalName":"",
+               "connected":false,
+               "dev":0,
+               "devPath":"/dev/slot10",
+               "driveType":"Block",
+               "name":"slot10",
+               "path":"/dev/slot10",
+               "pathLink":"/dev/slot10",
+               "product":"Unknown",
+               "scsiCompatId":"slot10",
+               "scsiState":"Unknown",
+               "securityAtMaximum":false,
+               "securityEnabled":false,
+               "securityFrozen":false,
+               "securityLocked":false,
+               "securitySupported":false,
+               "serial":"slot10",
+               "size":0,
+               "slot":10,
+               "uuid":"9d62ad9e-a097-d5d6-d4f7-1d27193270a1",
+               "vendor":"Unknown",
+               "version":"Unknown"
+            }
+         ],
+         "numBlockActual":1,
+         "numBlockExpected":10,
+         "numSliceActual":1,
+         "numSliceExpected":1,
+         "numTotalActual":2,
+         "numTotalExpected":11
+      }
+   }
+}"""
+
 RESP_GetFeatureStatus_v9_0 = """{
   "id": null,
   "result": {
@@ -3288,6 +3664,8563 @@ RESP_GetHardwareInfo_v9_3 = """{
 		  "uuid":"4233D576-5941-8538-CAC2-68FD9947171B"
 	   }
 	}
+}"""
+
+RESP_GetIpmiConfig_v9_0 = """{
+  "id": null,
+  "result": {
+    "nodes": [
+      {
+        "nodeID": 1,
+        "result": {
+          "ipmiConfig": [
+            {
+              "sensorName": "Fan1A RPM",
+              "uniqueSensorID": "7.1:0x30"
+            },
+            {
+              "sensorName": "Fan1B RPM",
+              "uniqueSensorID": "7.1:0x31"
+            },
+            {
+              "sensorName": "Fan2A RPM",
+              "uniqueSensorID": "7.1:0x32"
+            },
+            {
+              "sensorName": "Fan2B RPM",
+              "uniqueSensorID": "7.1:0x33"
+            },
+            {
+              "sensorName": "Fan3A RPM",
+              "uniqueSensorID": "7.1:0x34"
+            },
+            {
+              "sensorName": "Fan3B RPM",
+              "uniqueSensorID": "7.1:0x35"
+            },
+            {
+              "sensorName": "Fan4A RPM",
+              "uniqueSensorID": "7.1:0x36"
+            },
+            {
+              "sensorName": "Fan4B RPM",
+              "uniqueSensorID": "7.1:0x37"
+            },
+            {
+              "sensorName": "Fan5A RPM",
+              "uniqueSensorID": "7.1:0x38"
+            },
+            {
+              "sensorName": "Fan5B RPM",
+              "uniqueSensorID": "7.1:0x39"
+            },
+            {
+              "sensorName": "Fan6A RPM",
+              "uniqueSensorID": "7.1:0x3a"
+            },
+            {
+              "sensorName": "Fan6B RPM",
+              "uniqueSensorID": "7.1:0x3b"
+            },
+            {
+              "sensorName": "Fan7A RPM",
+              "uniqueSensorID": "7.1:0x3c"
+            },
+            {
+              "sensorName": "Fan7B RPM",
+              "uniqueSensorID": "7.1:0x3d"
+            },
+            {
+              "sensorName": "Exhaust Temp",
+              "uniqueSensorID": "7.1:0x1"
+            },
+            {
+              "sensorName": "Inlet Temp",
+              "uniqueSensorID": "7.1:0x4"
+            },
+            {
+              "sensorName": "PS1",
+              "uniqueSensorID": "10.1:0x62"
+            },
+            {
+              "sensorName": "PS2",
+              "uniqueSensorID": "10.2:0x63"
+            }
+          ]
+        }
+      },
+      {
+        "nodeID": 2,
+        "result": {
+          "ipmiConfig": [
+            {
+              "sensorName": "Fan1A RPM",
+              "uniqueSensorID": "7.1:0x30"
+            },
+            {
+              "sensorName": "Fan1B RPM",
+              "uniqueSensorID": "7.1:0x31"
+            },
+            {
+              "sensorName": "Fan2A RPM",
+              "uniqueSensorID": "7.1:0x32"
+            },
+            {
+              "sensorName": "Fan2B RPM",
+              "uniqueSensorID": "7.1:0x33"
+            },
+            {
+              "sensorName": "Fan3A RPM",
+              "uniqueSensorID": "7.1:0x34"
+            },
+            {
+              "sensorName": "Fan3B RPM",
+              "uniqueSensorID": "7.1:0x35"
+            },
+            {
+              "sensorName": "Fan4A RPM",
+              "uniqueSensorID": "7.1:0x36"
+            },
+            {
+              "sensorName": "Fan4B RPM",
+              "uniqueSensorID": "7.1:0x37"
+            },
+            {
+              "sensorName": "Fan5A RPM",
+              "uniqueSensorID": "7.1:0x38"
+            },
+            {
+              "sensorName": "Fan5B RPM",
+              "uniqueSensorID": "7.1:0x39"
+            },
+            {
+              "sensorName": "Fan6A RPM",
+              "uniqueSensorID": "7.1:0x3a"
+            },
+            {
+              "sensorName": "Fan6B RPM",
+              "uniqueSensorID": "7.1:0x3b"
+            },
+            {
+              "sensorName": "Fan7A RPM",
+              "uniqueSensorID": "7.1:0x3c"
+            },
+            {
+              "sensorName": "Fan7B RPM",
+              "uniqueSensorID": "7.1:0x3d"
+            },
+            {
+              "sensorName": "Exhaust Temp",
+              "uniqueSensorID": "7.1:0x1"
+            },
+            {
+              "sensorName": "Inlet Temp",
+              "uniqueSensorID": "7.1:0x4"
+            },
+            {
+              "sensorName": "PS1",
+              "uniqueSensorID": "10.1:0x62"
+            },
+            {
+              "sensorName": "PS2",
+              "uniqueSensorID": "10.2:0x63"
+            }
+          ]
+        }
+      },
+      {
+        "nodeID": 3,
+        "result": {
+          "ipmiConfig": [
+            {
+              "sensorName": "Fan1A RPM",
+              "uniqueSensorID": "7.1:0x30"
+            },
+            {
+              "sensorName": "Fan1B RPM",
+              "uniqueSensorID": "7.1:0x31"
+            },
+            {
+              "sensorName": "Fan2A RPM",
+              "uniqueSensorID": "7.1:0x32"
+            },
+            {
+              "sensorName": "Fan2B RPM",
+              "uniqueSensorID": "7.1:0x33"
+            },
+            {
+              "sensorName": "Fan3A RPM",
+              "uniqueSensorID": "7.1:0x34"
+            },
+            {
+              "sensorName": "Fan3B RPM",
+              "uniqueSensorID": "7.1:0x35"
+            },
+            {
+              "sensorName": "Fan4A RPM",
+              "uniqueSensorID": "7.1:0x36"
+            },
+            {
+              "sensorName": "Fan4B RPM",
+              "uniqueSensorID": "7.1:0x37"
+            },
+            {
+              "sensorName": "Fan5A RPM",
+              "uniqueSensorID": "7.1:0x38"
+            },
+            {
+              "sensorName": "Fan5B RPM",
+              "uniqueSensorID": "7.1:0x39"
+            },
+            {
+              "sensorName": "Fan6A RPM",
+              "uniqueSensorID": "7.1:0x3a"
+            },
+            {
+              "sensorName": "Fan6B RPM",
+              "uniqueSensorID": "7.1:0x3b"
+            },
+            {
+              "sensorName": "Fan7A RPM",
+              "uniqueSensorID": "7.1:0x3c"
+            },
+            {
+              "sensorName": "Fan7B RPM",
+              "uniqueSensorID": "7.1:0x3d"
+            },
+            {
+              "sensorName": "Exhaust Temp",
+              "uniqueSensorID": "7.1:0x1"
+            },
+            {
+              "sensorName": "Inlet Temp",
+              "uniqueSensorID": "7.1:0x4"
+            },
+            {
+              "sensorName": "PS1",
+              "uniqueSensorID": "10.1:0x62"
+            },
+            {
+              "sensorName": "PS2",
+              "uniqueSensorID": "10.2:0x63"
+            }
+          ]
+        }
+      },
+      {
+        "nodeID": 4,
+        "result": {
+          "ipmiConfig": [
+            {
+              "sensorName": "Fan1A RPM",
+              "uniqueSensorID": "7.1:0x30"
+            },
+            {
+              "sensorName": "Fan1B RPM",
+              "uniqueSensorID": "7.1:0x31"
+            },
+            {
+              "sensorName": "Fan2A RPM",
+              "uniqueSensorID": "7.1:0x32"
+            },
+            {
+              "sensorName": "Fan2B RPM",
+              "uniqueSensorID": "7.1:0x33"
+            },
+            {
+              "sensorName": "Fan3A RPM",
+              "uniqueSensorID": "7.1:0x34"
+            },
+            {
+              "sensorName": "Fan3B RPM",
+              "uniqueSensorID": "7.1:0x35"
+            },
+            {
+              "sensorName": "Fan4A RPM",
+              "uniqueSensorID": "7.1:0x36"
+            },
+            {
+              "sensorName": "Fan4B RPM",
+              "uniqueSensorID": "7.1:0x37"
+            },
+            {
+              "sensorName": "Fan5A RPM",
+              "uniqueSensorID": "7.1:0x38"
+            },
+            {
+              "sensorName": "Fan5B RPM",
+              "uniqueSensorID": "7.1:0x39"
+            },
+            {
+              "sensorName": "Fan6A RPM",
+              "uniqueSensorID": "7.1:0x3a"
+            },
+            {
+              "sensorName": "Fan6B RPM",
+              "uniqueSensorID": "7.1:0x3b"
+            },
+            {
+              "sensorName": "Fan7A RPM",
+              "uniqueSensorID": "7.1:0x3c"
+            },
+            {
+              "sensorName": "Fan7B RPM",
+              "uniqueSensorID": "7.1:0x3d"
+            },
+            {
+              "sensorName": "Exhaust Temp",
+              "uniqueSensorID": "7.1:0x1"
+            },
+            {
+              "sensorName": "Inlet Temp",
+              "uniqueSensorID": "7.1:0x4"
+            },
+            {
+              "sensorName": "PS1",
+              "uniqueSensorID": "10.1:0x62"
+            },
+            {
+              "sensorName": "PS2",
+              "uniqueSensorID": "10.2:0x63"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}"""
+
+RESP_GetIpmiInfo_v9_0 = """{
+  "id": null,
+  "result": {
+    "nodes": [
+      {
+        "nodeID": 1,
+        "result": {
+          "ipmiInfo": {
+            "sensors": [
+              {
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x72",
+                "sensorName": "SEL",
+                "sensorType": "Event Logging Disabled",
+                "uniqueSensorID": "7.1:0x72"
+              },
+              {
+                "assertionsEnabled": [
+                  "General Chassis intrusion"
+                ],
+                "deassertionsEnabled": [
+                  "General Chassis intrusion"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x73",
+                "sensorName": "Intrusion",
+                "sensorType": "Physical Security",
+                "uniqueSensorID": "7.1:0x73"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "10080.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x30",
+                "sensorName": "Fan1A RPM",
+                "sensorReading": "4560 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x30"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "10080.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x32",
+                "sensorName": "Fan2A RPM",
+                "sensorReading": "4440 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x32"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "10080.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x34",
+                "sensorName": "Fan3A RPM",
+                "sensorReading": "4680 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x34"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "10080.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x36",
+                "sensorName": "Fan4A RPM",
+                "sensorReading": "4560 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x36"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x38",
+                "sensorName": "Fan5A RPM",
+                "sensorReading": "4800 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x38"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x3a",
+                "sensorName": "Fan6A RPM",
+                "sensorReading": "4680 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x3a"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "-7.000",
+                "lowerNonCritical": "3.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "1.000",
+                "nominalReading": "23.000",
+                "normalMaximum": "69.000",
+                "normalMinimum": "11.000",
+                "positiveHysteresis": "1.000",
+                "readableThresholds": "lcr lnc unc ucr",
+                "sensorID": "0x4",
+                "sensorName": "Inlet Temp",
+                "sensorReading": "22 (+/- 1) degrees C",
+                "sensorType": "Temperature",
+                "settableThresholds": "lcr lnc unc ucr",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc unc ucr",
+                "uniqueSensorID": "7.1:0x4",
+                "upperCritical": "47.000",
+                "upperNonCritical": "42.000"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "3.000",
+                "lowerNonCritical": "8.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "1.000",
+                "nominalReading": "23.000",
+                "normalMaximum": "69.000",
+                "normalMinimum": "11.000",
+                "positiveHysteresis": "1.000",
+                "readableThresholds": "lcr lnc unc ucr",
+                "sensorID": "0x1",
+                "sensorName": "Exhaust Temp",
+                "sensorReading": "38 (+/- 1) degrees C",
+                "sensorType": "Temperature",
+                "settableThresholds": "",
+                "status": "ok",
+                "uniqueSensorID": "7.1:0x1",
+                "upperCritical": "75.000",
+                "upperNonCritical": "70.000"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "3.1 (Processor)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "3.000",
+                "lowerNonCritical": "8.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "1.000",
+                "nominalReading": "23.000",
+                "normalMaximum": "69.000",
+                "normalMinimum": "11.000",
+                "positiveHysteresis": "1.000",
+                "readableThresholds": "No Thresholds",
+                "sensorID": "0xe",
+                "sensorName": "Temp",
+                "sensorReading": "46 (+/- 1) degrees C",
+                "sensorType": "Temperature",
+                "settableThresholds": "No Thresholds",
+                "status": "ok",
+                "uniqueSensorID": "3.1:0xe",
+                "upperCritical": "83.000",
+                "upperNonCritical": "77.000"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "3.2 (Processor)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "3.000",
+                "lowerNonCritical": "8.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "1.000",
+                "nominalReading": "23.000",
+                "normalMaximum": "69.000",
+                "normalMinimum": "11.000",
+                "positiveHysteresis": "1.000",
+                "readableThresholds": "No Thresholds",
+                "sensorID": "0xf",
+                "sensorName": "Temp",
+                "sensorReading": "45 (+/- 1) degrees C",
+                "sensorType": "Temperature",
+                "settableThresholds": "No Thresholds",
+                "status": "ok",
+                "uniqueSensorID": "3.2:0xf",
+                "upperCritical": "83.000",
+                "upperNonCritical": "77.000"
+              },
+              {
+                "assertionsEnabled": [
+                  "Timer expired",
+                  "Hard reset",
+                  "Power down",
+                  "Power cycle"
+                ],
+                "deassertionsEnabled": [
+                  "Timer expired",
+                  "Hard reset",
+                  "Power down",
+                  "Power cycle"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x71",
+                "sensorName": "OS Watchdog",
+                "sensorType": "Watchdog",
+                "uniqueSensorID": "7.1:0x71"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "deassertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x23",
+                "sensorName": "VCORE PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x23"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x24",
+                "sensorName": "VCORE PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x24"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x19",
+                "sensorName": "3.3V PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x19"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x1a",
+                "sensorName": "5V PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x1a"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x50",
+                "sensorName": "USB Cable Pres",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "7.1:0x50"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x51",
+                "sensorName": "VGA Cable Pres",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "7.1:0x51"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x70",
+                "sensorName": "Dedicated NIC",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "7.1:0x70"
+              },
+              {
+                "assertionEvents": [
+                  "Absent"
+                ],
+                "entityID": "11.2 (Add-in Card)",
+                "sensorID": "0x49",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Absent"
+                ],
+                "uniqueSensorID": "11.2:0x49"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x40",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "3.1:0x40"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x41",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "3.2:0x41"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x22",
+                "sensorName": "PLL PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x22"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x25",
+                "sensorName": "PLL PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x25"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x27",
+                "sensorName": "1.1V PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x27"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x15",
+                "sensorName": "M23 VDDQ PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x15"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x16",
+                "sensorName": "M23 VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x16"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x21",
+                "sensorName": "FETDRV PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x21"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "10.2 (Power Supply)",
+                "sensorID": "0x43",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "10.2:0x43"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x29",
+                "sensorName": "VSA PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x29"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x2b",
+                "sensorName": "VSA PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x2b"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x1b",
+                "sensorName": "M01 VDDQ PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x1b"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x1e",
+                "sensorName": "M01 VDDQ PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x1e"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x2e",
+                "sensorName": "M23 VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x2e"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x1c",
+                "sensorName": "M01 VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x1c"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x2f",
+                "sensorName": "NDC PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x2f"
+              },
+              {
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x4c",
+                "sensorName": "LCD Cable Pres",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "7.1:0x4c"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x1f",
+                "sensorName": "VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x1f"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x20",
+                "sensorName": "VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x20"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x1d",
+                "sensorName": "M23 VDDQ PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x1d"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "assertionsEnabled": [
+                  "Present",
+                  "Absent"
+                ],
+                "entityID": "11.1 (Add-in Card)",
+                "sensorID": "0x4a",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "11.1:0x4a"
+              },
+              {
+                "assertionEvents": [
+                  "Absent"
+                ],
+                "entityID": "11.3 (Add-in Card)",
+                "sensorID": "0x48",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Absent"
+                ],
+                "uniqueSensorID": "11.3:0x48"
+              },
+              {
+                "assertionEvents": [
+                  "Presence detected"
+                ],
+                "assertionsEnabled": [
+                  "IERR",
+                  "Thermal Trip",
+                  "Configuration Error",
+                  "Presence detected",
+                  "Throttled"
+                ],
+                "deassertionsEnabled": [
+                  "IERR",
+                  "Thermal Trip",
+                  "Configuration Error",
+                  "Presence detected",
+                  "Throttled"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x60",
+                "sensorName": "Status",
+                "sensorType": "Processor",
+                "statesAsserted": [
+                  "Presence detected"
+                ],
+                "uniqueSensorID": "3.1:0x60"
+              },
+              {
+                "assertionEvents": [
+                  "Presence detected"
+                ],
+                "assertionsEnabled": [
+                  "IERR",
+                  "Thermal Trip",
+                  "Configuration Error",
+                  "Throttled"
+                ],
+                "deassertionsEnabled": [
+                  "IERR",
+                  "Thermal Trip",
+                  "Configuration Error",
+                  "Throttled"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x61",
+                "sensorName": "Status",
+                "sensorType": "Processor",
+                "statesAsserted": [
+                  "Presence detected"
+                ],
+                "uniqueSensorID": "3.2:0x61"
+              },
+              {
+                "assertionEvents": [
+                  "Fully Redundant"
+                ],
+                "assertionsEnabled": [
+                  "Fully Redundant",
+                  "Redundancy Lost"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x75",
+                "sensorName": "Fan Redundancy",
+                "sensorType": "Fan",
+                "statesAsserted": [
+                  "Fully Redundant"
+                ],
+                "uniqueSensorID": "7.1:0x75"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x64",
+                "sensorName": "Riser Config Err",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "7.1:0x64"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x4f",
+                "sensorName": "Riser 3 Presence",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "7.1:0x4f"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x28",
+                "sensorName": "1.5V PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x28"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x2c",
+                "sensorName": "PS2 PG Fail",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x2c"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x2d",
+                "sensorName": "PS1 PG Fail",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x2d"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0xf6",
+                "sensorName": "BP1 5V PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0xf6"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0xf7",
+                "sensorName": "BP2 5V PG",
+                "sensorType": "Voltage",
+                "uniqueSensorID": "7.1:0xf7"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x14",
+                "sensorName": "M01 VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x14"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "10.1 (Power Supply)",
+                "sensorID": "0x42",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "10.1:0x42"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x90",
+                "sensorName": "PCIe Slot1",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x90"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x91",
+                "sensorName": "PCIe Slot2",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x91"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x92",
+                "sensorName": "PCIe Slot3",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x92"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x93",
+                "sensorName": "PCIe Slot4",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x93"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x94",
+                "sensorName": "PCIe Slot5",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x94"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x95",
+                "sensorName": "PCIe Slot6",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x95"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x96",
+                "sensorName": "PCIe Slot7",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x96"
+              },
+              {
+                "entityID": "0.1 (Unspecified)",
+                "sensorID": "0xfa",
+                "sensorName": "vFlash",
+                "sensorType": "Module / Board",
+                "uniqueSensorID": "0.1:0xfa"
+              },
+              {
+                "assertionsEnabled": [
+                  "Failed"
+                ],
+                "deassertionsEnabled": [
+                  "Failed"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x65",
+                "sensorName": "CMOS Battery",
+                "sensorType": "Battery",
+                "uniqueSensorID": "7.1:0x65"
+              },
+              {
+                "assertionsEnabled": [
+                  "Failed"
+                ],
+                "deassertionsEnabled": [
+                  "Failed"
+                ],
+                "entityID": "11.2 (Add-in Card)",
+                "eventStatus": "Unavailable",
+                "sensorID": "0x68",
+                "sensorName": "ROMB Battery",
+                "sensorType": "Battery",
+                "uniqueSensorID": "11.2:0x68"
+              },
+              {
+                "assertionsEnabled": [
+                  "Failed"
+                ],
+                "deassertionsEnabled": [
+                  "Failed"
+                ],
+                "entityID": "11.4 (Add-in Card)",
+                "eventStatus": "Unavailable",
+                "sensorID": "0x69",
+                "sensorName": "ROMB Battery",
+                "sensorType": "Battery",
+                "uniqueSensorID": "11.4:0x69"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "sensorID": "0x54",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "26.1:0x54"
+              },
+              {
+                "assertionEvents": [
+                  "Absent"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0x55",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Absent"
+                ],
+                "uniqueSensorID": "26.2:0x55"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "10.1 (Power Supply)",
+                "eventMessageControl": "Per-threshold",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "Unspecified",
+                "nominalReading": "0.000",
+                "normalMaximum": "0.000",
+                "positiveHysteresis": "Unspecified",
+                "readableThresholds": "No Thresholds",
+                "sensorID": "0x6a",
+                "sensorName": "Current 1",
+                "sensorReading": "1 (+/- 0) Amps",
+                "sensorType": "Current",
+                "settableThresholds": "No Thresholds",
+                "status": "ok",
+                "uniqueSensorID": "10.1:0x6a"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "10.2 (Power Supply)",
+                "eventMessageControl": "Per-threshold",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "Unspecified",
+                "nominalReading": "0.000",
+                "normalMaximum": "0.000",
+                "positiveHysteresis": "Unspecified",
+                "readableThresholds": "No Thresholds",
+                "sensorID": "0x6b",
+                "sensorName": "Current 2",
+                "sensorReading": "0 (+/- 0) Amps",
+                "sensorType": "Current",
+                "settableThresholds": "No Thresholds",
+                "status": "ok",
+                "uniqueSensorID": "10.2:0x6b"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "10.1 (Power Supply)",
+                "eventMessageControl": "Per-threshold",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "Unspecified",
+                "nominalReading": "0.000",
+                "normalMaximum": "0.000",
+                "positiveHysteresis": "Unspecified",
+                "readableThresholds": "No Thresholds",
+                "sensorID": "0x6c",
+                "sensorName": "Voltage 1",
+                "sensorReading": "118 (+/- 0) Volts",
+                "sensorType": "Voltage",
+                "settableThresholds": "No Thresholds",
+                "status": "ok",
+                "uniqueSensorID": "10.1:0x6c"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "10.2 (Power Supply)",
+                "eventMessageControl": "Per-threshold",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "Unspecified",
+                "nominalReading": "0.000",
+                "normalMaximum": "0.000",
+                "positiveHysteresis": "Unspecified",
+                "readableThresholds": "No Thresholds",
+                "sensorID": "0x6d",
+                "sensorName": "Voltage 2",
+                "sensorReading": "118 (+/- 0) Volts",
+                "sensorType": "Voltage",
+                "settableThresholds": "No Thresholds",
+                "status": "ok",
+                "uniqueSensorID": "10.2:0x6d"
+              },
+              {
+                "assertionEvents": [
+                  "Fully Redundant"
+                ],
+                "assertionsEnabled": [
+                  "Fully Redundant",
+                  "Redundancy Lost"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x74",
+                "sensorName": "PS Redundancy",
+                "sensorType": "Power Supply",
+                "statesAsserted": [
+                  "Fully Redundant"
+                ],
+                "uniqueSensorID": "7.1:0x74"
+              },
+              {
+                "assertionEvents": [
+                  "Presence detected"
+                ],
+                "assertionsEnabled": [
+                  "Presence detected",
+                  "Failure detected",
+                  "Predictive failure",
+                  "Power Supply AC lost",
+                  "Config Error: Vendor Mismatch",
+                  "Config Error: Revision Mismatch",
+                  "Config Error: Processor Missing",
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Presence detected",
+                  "Failure detected",
+                  "Predictive failure",
+                  "Power Supply AC lost",
+                  "Config Error: Vendor Mismatch",
+                  "Config Error: Revision Mismatch",
+                  "Config Error: Processor Missing",
+                  "Config Error"
+                ],
+                "entityID": "10.1 (Power Supply)",
+                "sensorID": "0x62",
+                "sensorName": "Status",
+                "sensorType": "Power Supply",
+                "statesAsserted": [
+                  "Presence detected"
+                ],
+                "uniqueSensorID": "10.1:0x62"
+              },
+              {
+                "assertionEvents": [
+                  "Presence detected"
+                ],
+                "assertionsEnabled": [
+                  "Presence detected",
+                  "Failure detected",
+                  "Predictive failure",
+                  "Power Supply AC lost",
+                  "Config Error: Vendor Mismatch",
+                  "Config Error: Revision Mismatch",
+                  "Config Error: Processor Missing",
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Presence detected",
+                  "Failure detected",
+                  "Predictive failure",
+                  "Power Supply AC lost",
+                  "Config Error: Vendor Mismatch",
+                  "Config Error: Revision Mismatch",
+                  "Config Error: Processor Missing",
+                  "Config Error"
+                ],
+                "entityID": "10.2 (Power Supply)",
+                "sensorID": "0x63",
+                "sensorName": "Status",
+                "sensorType": "Power Supply",
+                "statesAsserted": [
+                  "Presence detected"
+                ],
+                "uniqueSensorID": "10.2:0x63"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "maximumSensorRange": "3556.000",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "Unspecified",
+                "nominalReading": "658.000",
+                "normalMaximum": "672.000",
+                "positiveHysteresis": "Unspecified",
+                "readableThresholds": "unc ucr",
+                "sensorID": "0x77",
+                "sensorName": "Pwr Consumption",
+                "sensorReading": "126 (+/- 0) Watts",
+                "sensorType": "Current",
+                "settableThresholds": "unc",
+                "status": "ok",
+                "uniqueSensorID": "7.1:0x77",
+                "upperCritical": "1218.000",
+                "upperNonCritical": "1106.000"
+              },
+              {
+                "assertionEvents": [
+                  "OEM Specific"
+                ],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x76",
+                "sensorName": "Power Optimized",
+                "sensorType": "Unknown (0xC0)",
+                "statesAsserted": [
+                  "OEM Specific"
+                ],
+                "uniqueSensorID": "7.1:0x76"
+              },
+              {
+                "entityID": "11.3 (Add-in Card)",
+                "sensorID": "0xf4",
+                "sensorName": "SD1",
+                "sensorType": "Unknown (0xC9)",
+                "uniqueSensorID": "11.3:0xf4"
+              },
+              {
+                "entityID": "11.3 (Add-in Card)",
+                "sensorID": "0xf5",
+                "sensorName": "SD2",
+                "sensorType": "Unknown (0xC9)",
+                "uniqueSensorID": "11.3:0xf5"
+              },
+              {
+                "assertionEvents": [
+                  "Fully Redundant"
+                ],
+                "assertionsEnabled": [
+                  "Fully Redundant",
+                  "Redundancy Lost"
+                ],
+                "entityID": "11.3 (Add-in Card)",
+                "sensorID": "0x78",
+                "sensorName": "Redundancy",
+                "sensorType": "Unknown (0xC9)",
+                "uniqueSensorID": "11.3:0x78"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1",
+                "sensorName": "ECC Corr Err",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x1"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x2",
+                "sensorName": "ECC Uncorr Err",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x2"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x3",
+                "sensorName": "I/O Channel Chk",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "34.1:0x3"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x4",
+                "sensorName": "PCI Parity Err",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "34.1:0x4"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x5",
+                "sensorName": "PCI System Err",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "34.1:0x5"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x6",
+                "sensorName": "SBE Log Disabled",
+                "sensorType": "Event Logging Disabled",
+                "uniqueSensorID": "34.1:0x6"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x7",
+                "sensorName": "Logging Disabled",
+                "sensorType": "Event Logging Disabled",
+                "uniqueSensorID": "34.1:0x7"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x8",
+                "sensorName": "Unknown",
+                "sensorType": "System Event",
+                "uniqueSensorID": "34.1:0x8"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0xa",
+                "sensorName": "CPU Protocol Err",
+                "sensorType": "Processor",
+                "uniqueSensorID": "34.1:0xa"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0xb",
+                "sensorName": "CPU Bus PERR",
+                "sensorType": "Processor",
+                "uniqueSensorID": "34.1:0xb"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0xc",
+                "sensorName": "CPU Init Err",
+                "sensorType": "Processor",
+                "uniqueSensorID": "34.1:0xc"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0xd",
+                "sensorName": "CPU Machine Chk",
+                "sensorType": "Processor",
+                "uniqueSensorID": "34.1:0xd"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x11",
+                "sensorName": "Memory Spared",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x11"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x12",
+                "sensorName": "Memory Mirrored",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x12"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x13",
+                "sensorName": "Memory RAID",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x13"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x14",
+                "sensorName": "Memory Added",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x14"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x15",
+                "sensorName": "Memory Removed",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x15"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x16",
+                "sensorName": "Memory Cfg Err",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x16"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x17",
+                "sensorName": "Mem Redun Gain",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x17"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x18",
+                "sensorName": "PCIE Fatal Err",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "34.1:0x18"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x19",
+                "sensorName": "Chipset Err",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "34.1:0x19"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1a",
+                "sensorName": "Err Reg Pointer",
+                "sensorType": "Unknown (0xC1)",
+                "uniqueSensorID": "34.1:0x1a"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1b",
+                "sensorName": "Mem ECC Warning",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x1b"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1c",
+                "sensorName": "Mem CRC Err",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x1c"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1d",
+                "sensorName": "USB Over-current",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x1d"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1e",
+                "sensorName": "POST Err",
+                "sensorType": "System Firmwares",
+                "uniqueSensorID": "34.1:0x1e"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1f",
+                "sensorName": "Hdwr version err",
+                "sensorType": "Version Change",
+                "uniqueSensorID": "34.1:0x1f"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x20",
+                "sensorName": "Mem Overtemp",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x20"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x21",
+                "sensorName": "Mem Fatal SB CRC",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x21"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x22",
+                "sensorName": "Mem Fatal NB CRC",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x22"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x71",
+                "sensorName": "OS Watchdog Time",
+                "sensorType": "Watchdog",
+                "uniqueSensorID": "34.1:0x71"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x26",
+                "sensorName": "Non Fatal PCI Er",
+                "sensorType": "Unknown (0xC2)",
+                "uniqueSensorID": "34.1:0x26"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x27",
+                "sensorName": "Fatal IO Error",
+                "sensorType": "Unknown (0xC3)",
+                "uniqueSensorID": "34.1:0x27"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x28",
+                "sensorName": "MSR Info Log",
+                "sensorType": "Unknown (0xC1)",
+                "uniqueSensorID": "34.1:0x28"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x2a",
+                "sensorName": "TXT Status",
+                "sensorType": "OS Critical Stop",
+                "uniqueSensorID": "34.1:0x2a"
+              },
+              {
+                "assertionsEnabled": [
+                  "Drive Present",
+                  "Drive Fault"
+                ],
+                "deassertionsEnabled": [
+                  "Drive Present",
+                  "Drive Fault"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0xa0",
+                "sensorName": "Drive 0",
+                "sensorType": "Drive Slot / Bay",
+                "uniqueSensorID": "7.1:0xa0"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "sensorID": "0xe0",
+                "sensorName": "Cable SAS A",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "26.1:0xe0"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "sensorID": "0xe1",
+                "sensorName": "Cable SAS B",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "26.1:0xe1"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "sensorID": "0xe2",
+                "sensorName": "Cable SAS C",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.1:0xe2"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "sensorID": "0xe3",
+                "sensorName": "Cable SAS D",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.1:0xe3"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0xe4",
+                "sensorName": "Cable SAS A",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0xe4"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0xe5",
+                "sensorName": "Cable SAS B",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0xe5"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0xe6",
+                "sensorName": "Cable SAS C",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0xe6"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0xe7",
+                "sensorName": "Cable SAS D",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0xe7"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "sensorID": "0x58",
+                "sensorName": "Power Cable",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "26.1:0x58"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "sensorID": "0x59",
+                "sensorName": "Signal Cable",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "26.1:0x59"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0x5a",
+                "sensorName": "Power Cable",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0x5a"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0x5b",
+                "sensorName": "Signal Cable",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0x5b"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x3c",
+                "sensorName": "Fan7A RPM",
+                "sensorReading": "4800 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x3c"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x31",
+                "sensorName": "Fan1B RPM",
+                "sensorReading": "4320 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x31"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x33",
+                "sensorName": "Fan2B RPM",
+                "sensorReading": "4200 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x33"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x35",
+                "sensorName": "Fan3B RPM",
+                "sensorReading": "4320 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x35"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x37",
+                "sensorName": "Fan4B RPM",
+                "sensorReading": "4200 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x37"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x39",
+                "sensorName": "Fan5B RPM",
+                "sensorReading": "4320 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x39"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x3b",
+                "sensorName": "Fan6B RPM",
+                "sensorReading": "4320 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x3b"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x3d",
+                "sensorName": "Fan7B RPM",
+                "sensorReading": "4320 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x3d"
+              },
+              {
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x66",
+                "sensorName": "PFault Fail Safe",
+                "sensorType": "Voltage",
+                "uniqueSensorID": "7.1:0x66"
+              },
+              {
+                "assertionEvents": [
+                  "Presence Detected"
+                ],
+                "entityID": "32.1 (Memory Device)",
+                "sensorID": "0xc0",
+                "sensorName": "A",
+                "sensorType": "Memory",
+                "statesAsserted": [
+                  "Presence Detected"
+                ],
+                "uniqueSensorID": "32.1:0xc0"
+              },
+              {
+                "assertionEvents": [
+                  "Presence Detected"
+                ],
+                "entityID": "32.1 (Memory Device)",
+                "sensorID": "0xcc",
+                "sensorName": "B",
+                "sensorType": "Memory",
+                "statesAsserted": [
+                  "Presence Detected"
+                ],
+                "uniqueSensorID": "32.1:0xcc"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "nodeID": 2,
+        "result": {
+          "ipmiInfo": {
+            "sensors": [
+              {
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x72",
+                "sensorName": "SEL",
+                "sensorType": "Event Logging Disabled",
+                "uniqueSensorID": "7.1:0x72"
+              },
+              {
+                "assertionsEnabled": [
+                  "General Chassis intrusion"
+                ],
+                "deassertionsEnabled": [
+                  "General Chassis intrusion"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x73",
+                "sensorName": "Intrusion",
+                "sensorType": "Physical Security",
+                "uniqueSensorID": "7.1:0x73"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "10080.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x30",
+                "sensorName": "Fan1A RPM",
+                "sensorReading": "4800 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x30"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "10080.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x32",
+                "sensorName": "Fan2A RPM",
+                "sensorReading": "4800 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x32"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "10080.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x34",
+                "sensorName": "Fan3A RPM",
+                "sensorReading": "4680 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x34"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "10080.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x36",
+                "sensorName": "Fan4A RPM",
+                "sensorReading": "4560 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x36"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x38",
+                "sensorName": "Fan5A RPM",
+                "sensorReading": "4800 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x38"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x3a",
+                "sensorName": "Fan6A RPM",
+                "sensorReading": "4560 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x3a"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "-7.000",
+                "lowerNonCritical": "3.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "1.000",
+                "nominalReading": "23.000",
+                "normalMaximum": "69.000",
+                "normalMinimum": "11.000",
+                "positiveHysteresis": "1.000",
+                "readableThresholds": "lcr lnc unc ucr",
+                "sensorID": "0x4",
+                "sensorName": "Inlet Temp",
+                "sensorReading": "22 (+/- 1) degrees C",
+                "sensorType": "Temperature",
+                "settableThresholds": "lcr lnc unc ucr",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc unc ucr",
+                "uniqueSensorID": "7.1:0x4",
+                "upperCritical": "47.000",
+                "upperNonCritical": "42.000"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "3.000",
+                "lowerNonCritical": "8.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "1.000",
+                "nominalReading": "23.000",
+                "normalMaximum": "69.000",
+                "normalMinimum": "11.000",
+                "positiveHysteresis": "1.000",
+                "readableThresholds": "lcr lnc unc ucr",
+                "sensorID": "0x1",
+                "sensorName": "Exhaust Temp",
+                "sensorReading": "36 (+/- 1) degrees C",
+                "sensorType": "Temperature",
+                "settableThresholds": "",
+                "status": "ok",
+                "uniqueSensorID": "7.1:0x1",
+                "upperCritical": "75.000",
+                "upperNonCritical": "70.000"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "3.1 (Processor)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "3.000",
+                "lowerNonCritical": "8.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "1.000",
+                "nominalReading": "23.000",
+                "normalMaximum": "69.000",
+                "normalMinimum": "11.000",
+                "positiveHysteresis": "1.000",
+                "readableThresholds": "No Thresholds",
+                "sensorID": "0xe",
+                "sensorName": "Temp",
+                "sensorReading": "45 (+/- 1) degrees C",
+                "sensorType": "Temperature",
+                "settableThresholds": "No Thresholds",
+                "status": "ok",
+                "uniqueSensorID": "3.1:0xe",
+                "upperCritical": "83.000",
+                "upperNonCritical": "77.000"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "3.2 (Processor)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "3.000",
+                "lowerNonCritical": "8.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "1.000",
+                "nominalReading": "23.000",
+                "normalMaximum": "69.000",
+                "normalMinimum": "11.000",
+                "positiveHysteresis": "1.000",
+                "readableThresholds": "No Thresholds",
+                "sensorID": "0xf",
+                "sensorName": "Temp",
+                "sensorReading": "45 (+/- 1) degrees C",
+                "sensorType": "Temperature",
+                "settableThresholds": "No Thresholds",
+                "status": "ok",
+                "uniqueSensorID": "3.2:0xf",
+                "upperCritical": "83.000",
+                "upperNonCritical": "77.000"
+              },
+              {
+                "assertionsEnabled": [
+                  "Timer expired",
+                  "Hard reset",
+                  "Power down",
+                  "Power cycle"
+                ],
+                "deassertionsEnabled": [
+                  "Timer expired",
+                  "Hard reset",
+                  "Power down",
+                  "Power cycle"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x71",
+                "sensorName": "OS Watchdog",
+                "sensorType": "Watchdog",
+                "uniqueSensorID": "7.1:0x71"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "deassertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x23",
+                "sensorName": "VCORE PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x23"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x24",
+                "sensorName": "VCORE PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x24"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x19",
+                "sensorName": "3.3V PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x19"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x1a",
+                "sensorName": "5V PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x1a"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x50",
+                "sensorName": "USB Cable Pres",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "7.1:0x50"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x51",
+                "sensorName": "VGA Cable Pres",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "7.1:0x51"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x70",
+                "sensorName": "Dedicated NIC",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "7.1:0x70"
+              },
+              {
+                "assertionEvents": [
+                  "Absent"
+                ],
+                "entityID": "11.2 (Add-in Card)",
+                "sensorID": "0x49",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Absent"
+                ],
+                "uniqueSensorID": "11.2:0x49"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x40",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "3.1:0x40"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x41",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "3.2:0x41"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x22",
+                "sensorName": "PLL PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x22"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x25",
+                "sensorName": "PLL PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x25"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x27",
+                "sensorName": "1.1V PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x27"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x15",
+                "sensorName": "M23 VDDQ PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x15"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x16",
+                "sensorName": "M23 VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x16"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x21",
+                "sensorName": "FETDRV PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x21"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "10.2 (Power Supply)",
+                "sensorID": "0x43",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "10.2:0x43"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x29",
+                "sensorName": "VSA PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x29"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x2b",
+                "sensorName": "VSA PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x2b"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x1b",
+                "sensorName": "M01 VDDQ PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x1b"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x1e",
+                "sensorName": "M01 VDDQ PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x1e"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x2e",
+                "sensorName": "M23 VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x2e"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x1c",
+                "sensorName": "M01 VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x1c"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x2f",
+                "sensorName": "NDC PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x2f"
+              },
+              {
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x4c",
+                "sensorName": "LCD Cable Pres",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "7.1:0x4c"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x1f",
+                "sensorName": "VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x1f"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x20",
+                "sensorName": "VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x20"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x1d",
+                "sensorName": "M23 VDDQ PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x1d"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "assertionsEnabled": [
+                  "Present",
+                  "Absent"
+                ],
+                "entityID": "11.1 (Add-in Card)",
+                "sensorID": "0x4a",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "11.1:0x4a"
+              },
+              {
+                "assertionEvents": [
+                  "Absent"
+                ],
+                "entityID": "11.3 (Add-in Card)",
+                "sensorID": "0x48",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Absent"
+                ],
+                "uniqueSensorID": "11.3:0x48"
+              },
+              {
+                "assertionEvents": [
+                  "Presence detected"
+                ],
+                "assertionsEnabled": [
+                  "IERR",
+                  "Thermal Trip",
+                  "Configuration Error",
+                  "Presence detected",
+                  "Throttled"
+                ],
+                "deassertionsEnabled": [
+                  "IERR",
+                  "Thermal Trip",
+                  "Configuration Error",
+                  "Presence detected",
+                  "Throttled"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x60",
+                "sensorName": "Status",
+                "sensorType": "Processor",
+                "statesAsserted": [
+                  "Presence detected"
+                ],
+                "uniqueSensorID": "3.1:0x60"
+              },
+              {
+                "assertionEvents": [
+                  "Presence detected"
+                ],
+                "assertionsEnabled": [
+                  "IERR",
+                  "Thermal Trip",
+                  "Configuration Error",
+                  "Throttled"
+                ],
+                "deassertionsEnabled": [
+                  "IERR",
+                  "Thermal Trip",
+                  "Configuration Error",
+                  "Throttled"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x61",
+                "sensorName": "Status",
+                "sensorType": "Processor",
+                "statesAsserted": [
+                  "Presence detected"
+                ],
+                "uniqueSensorID": "3.2:0x61"
+              },
+              {
+                "assertionEvents": [
+                  "Fully Redundant"
+                ],
+                "assertionsEnabled": [
+                  "Fully Redundant",
+                  "Redundancy Lost"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x75",
+                "sensorName": "Fan Redundancy",
+                "sensorType": "Fan",
+                "statesAsserted": [
+                  "Fully Redundant"
+                ],
+                "uniqueSensorID": "7.1:0x75"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x64",
+                "sensorName": "Riser Config Err",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "7.1:0x64"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x4f",
+                "sensorName": "Riser 3 Presence",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "7.1:0x4f"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x28",
+                "sensorName": "1.5V PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x28"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x2c",
+                "sensorName": "PS2 PG Fail",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x2c"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x2d",
+                "sensorName": "PS1 PG Fail",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x2d"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0xf6",
+                "sensorName": "BP1 5V PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0xf6"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0xf7",
+                "sensorName": "BP2 5V PG",
+                "sensorType": "Voltage",
+                "uniqueSensorID": "7.1:0xf7"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x14",
+                "sensorName": "M01 VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x14"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "10.1 (Power Supply)",
+                "sensorID": "0x42",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "10.1:0x42"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x90",
+                "sensorName": "PCIe Slot1",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x90"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x91",
+                "sensorName": "PCIe Slot2",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x91"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x92",
+                "sensorName": "PCIe Slot3",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x92"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x93",
+                "sensorName": "PCIe Slot4",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x93"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x94",
+                "sensorName": "PCIe Slot5",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x94"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x95",
+                "sensorName": "PCIe Slot6",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x95"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x96",
+                "sensorName": "PCIe Slot7",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x96"
+              },
+              {
+                "entityID": "0.1 (Unspecified)",
+                "sensorID": "0xfa",
+                "sensorName": "vFlash",
+                "sensorType": "Module / Board",
+                "uniqueSensorID": "0.1:0xfa"
+              },
+              {
+                "assertionsEnabled": [
+                  "Failed"
+                ],
+                "deassertionsEnabled": [
+                  "Failed"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x65",
+                "sensorName": "CMOS Battery",
+                "sensorType": "Battery",
+                "uniqueSensorID": "7.1:0x65"
+              },
+              {
+                "assertionsEnabled": [
+                  "Failed"
+                ],
+                "deassertionsEnabled": [
+                  "Failed"
+                ],
+                "entityID": "11.2 (Add-in Card)",
+                "eventStatus": "Unavailable",
+                "sensorID": "0x68",
+                "sensorName": "ROMB Battery",
+                "sensorType": "Battery",
+                "uniqueSensorID": "11.2:0x68"
+              },
+              {
+                "assertionsEnabled": [
+                  "Failed"
+                ],
+                "deassertionsEnabled": [
+                  "Failed"
+                ],
+                "entityID": "11.4 (Add-in Card)",
+                "eventStatus": "Unavailable",
+                "sensorID": "0x69",
+                "sensorName": "ROMB Battery",
+                "sensorType": "Battery",
+                "uniqueSensorID": "11.4:0x69"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "sensorID": "0x54",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "26.1:0x54"
+              },
+              {
+                "assertionEvents": [
+                  "Absent"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0x55",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Absent"
+                ],
+                "uniqueSensorID": "26.2:0x55"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "10.1 (Power Supply)",
+                "eventMessageControl": "Per-threshold",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "Unspecified",
+                "nominalReading": "0.000",
+                "normalMaximum": "0.000",
+                "positiveHysteresis": "Unspecified",
+                "readableThresholds": "No Thresholds",
+                "sensorID": "0x6a",
+                "sensorName": "Current 1",
+                "sensorReading": "0.600 (+/- 0) Amps",
+                "sensorType": "Current",
+                "settableThresholds": "No Thresholds",
+                "status": "ok",
+                "uniqueSensorID": "10.1:0x6a"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "10.2 (Power Supply)",
+                "eventMessageControl": "Per-threshold",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "Unspecified",
+                "nominalReading": "0.000",
+                "normalMaximum": "0.000",
+                "positiveHysteresis": "Unspecified",
+                "readableThresholds": "No Thresholds",
+                "sensorID": "0x6b",
+                "sensorName": "Current 2",
+                "sensorReading": "0.400 (+/- 0) Amps",
+                "sensorType": "Current",
+                "settableThresholds": "No Thresholds",
+                "status": "ok",
+                "uniqueSensorID": "10.2:0x6b"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "10.1 (Power Supply)",
+                "eventMessageControl": "Per-threshold",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "Unspecified",
+                "nominalReading": "0.000",
+                "normalMaximum": "0.000",
+                "positiveHysteresis": "Unspecified",
+                "readableThresholds": "No Thresholds",
+                "sensorID": "0x6c",
+                "sensorName": "Voltage 1",
+                "sensorReading": "118 (+/- 0) Volts",
+                "sensorType": "Voltage",
+                "settableThresholds": "No Thresholds",
+                "status": "ok",
+                "uniqueSensorID": "10.1:0x6c"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "10.2 (Power Supply)",
+                "eventMessageControl": "Per-threshold",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "Unspecified",
+                "nominalReading": "0.000",
+                "normalMaximum": "0.000",
+                "positiveHysteresis": "Unspecified",
+                "readableThresholds": "No Thresholds",
+                "sensorID": "0x6d",
+                "sensorName": "Voltage 2",
+                "sensorReading": "118 (+/- 0) Volts",
+                "sensorType": "Voltage",
+                "settableThresholds": "No Thresholds",
+                "status": "ok",
+                "uniqueSensorID": "10.2:0x6d"
+              },
+              {
+                "assertionsEnabled": [
+                  "Fully Redundant",
+                  "Redundancy Lost"
+                ],
+                "entityID": "7.1 (System Board)",
+                "eventStatus": "Unavailable",
+                "sensorID": "0x74",
+                "sensorName": "PS Redundancy",
+                "sensorType": "Power Supply",
+                "uniqueSensorID": "7.1:0x74"
+              },
+              {
+                "assertionEvents": [
+                  "Presence detected"
+                ],
+                "assertionsEnabled": [
+                  "Presence detected",
+                  "Failure detected",
+                  "Predictive failure",
+                  "Power Supply AC lost",
+                  "Config Error: Vendor Mismatch",
+                  "Config Error: Revision Mismatch",
+                  "Config Error: Processor Missing",
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Presence detected",
+                  "Failure detected",
+                  "Predictive failure",
+                  "Power Supply AC lost",
+                  "Config Error: Vendor Mismatch",
+                  "Config Error: Revision Mismatch",
+                  "Config Error: Processor Missing",
+                  "Config Error"
+                ],
+                "entityID": "10.1 (Power Supply)",
+                "sensorID": "0x62",
+                "sensorName": "Status",
+                "sensorType": "Power Supply",
+                "statesAsserted": [
+                  "Presence detected"
+                ],
+                "uniqueSensorID": "10.1:0x62"
+              },
+              {
+                "assertionEvents": [
+                  "Presence detected"
+                ],
+                "assertionsEnabled": [
+                  "Presence detected",
+                  "Failure detected",
+                  "Predictive failure",
+                  "Power Supply AC lost",
+                  "Config Error: Vendor Mismatch",
+                  "Config Error: Revision Mismatch",
+                  "Config Error: Processor Missing",
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Presence detected",
+                  "Failure detected",
+                  "Predictive failure",
+                  "Power Supply AC lost",
+                  "Config Error: Vendor Mismatch",
+                  "Config Error: Revision Mismatch",
+                  "Config Error: Processor Missing",
+                  "Config Error"
+                ],
+                "entityID": "10.2 (Power Supply)",
+                "sensorID": "0x63",
+                "sensorName": "Status",
+                "sensorType": "Power Supply",
+                "statesAsserted": [
+                  "Presence detected"
+                ],
+                "uniqueSensorID": "10.2:0x63"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "maximumSensorRange": "3556.000",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "Unspecified",
+                "nominalReading": "658.000",
+                "normalMaximum": "672.000",
+                "positiveHysteresis": "Unspecified",
+                "readableThresholds": "unc ucr",
+                "sensorID": "0x77",
+                "sensorName": "Pwr Consumption",
+                "sensorReading": "126 (+/- 0) Watts",
+                "sensorType": "Current",
+                "settableThresholds": "unc",
+                "status": "ok",
+                "uniqueSensorID": "7.1:0x77",
+                "upperCritical": "1218.000",
+                "upperNonCritical": "1106.000"
+              },
+              {
+                "assertionEvents": [
+                  "OEM Specific"
+                ],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x76",
+                "sensorName": "Power Optimized",
+                "sensorType": "Unknown (0xC0)",
+                "statesAsserted": [
+                  "OEM Specific"
+                ],
+                "uniqueSensorID": "7.1:0x76"
+              },
+              {
+                "entityID": "11.3 (Add-in Card)",
+                "sensorID": "0xf4",
+                "sensorName": "SD1",
+                "sensorType": "Unknown (0xC9)",
+                "uniqueSensorID": "11.3:0xf4"
+              },
+              {
+                "entityID": "11.3 (Add-in Card)",
+                "sensorID": "0xf5",
+                "sensorName": "SD2",
+                "sensorType": "Unknown (0xC9)",
+                "uniqueSensorID": "11.3:0xf5"
+              },
+              {
+                "assertionEvents": [
+                  "Fully Redundant"
+                ],
+                "assertionsEnabled": [
+                  "Fully Redundant",
+                  "Redundancy Lost"
+                ],
+                "entityID": "11.3 (Add-in Card)",
+                "sensorID": "0x78",
+                "sensorName": "Redundancy",
+                "sensorType": "Unknown (0xC9)",
+                "uniqueSensorID": "11.3:0x78"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1",
+                "sensorName": "ECC Corr Err",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x1"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x2",
+                "sensorName": "ECC Uncorr Err",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x2"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x3",
+                "sensorName": "I/O Channel Chk",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "34.1:0x3"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x4",
+                "sensorName": "PCI Parity Err",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "34.1:0x4"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x5",
+                "sensorName": "PCI System Err",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "34.1:0x5"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x6",
+                "sensorName": "SBE Log Disabled",
+                "sensorType": "Event Logging Disabled",
+                "uniqueSensorID": "34.1:0x6"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x7",
+                "sensorName": "Logging Disabled",
+                "sensorType": "Event Logging Disabled",
+                "uniqueSensorID": "34.1:0x7"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x8",
+                "sensorName": "Unknown",
+                "sensorType": "System Event",
+                "uniqueSensorID": "34.1:0x8"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0xa",
+                "sensorName": "CPU Protocol Err",
+                "sensorType": "Processor",
+                "uniqueSensorID": "34.1:0xa"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0xb",
+                "sensorName": "CPU Bus PERR",
+                "sensorType": "Processor",
+                "uniqueSensorID": "34.1:0xb"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0xc",
+                "sensorName": "CPU Init Err",
+                "sensorType": "Processor",
+                "uniqueSensorID": "34.1:0xc"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0xd",
+                "sensorName": "CPU Machine Chk",
+                "sensorType": "Processor",
+                "uniqueSensorID": "34.1:0xd"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x11",
+                "sensorName": "Memory Spared",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x11"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x12",
+                "sensorName": "Memory Mirrored",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x12"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x13",
+                "sensorName": "Memory RAID",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x13"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x14",
+                "sensorName": "Memory Added",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x14"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x15",
+                "sensorName": "Memory Removed",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x15"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x16",
+                "sensorName": "Memory Cfg Err",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x16"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x17",
+                "sensorName": "Mem Redun Gain",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x17"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x18",
+                "sensorName": "PCIE Fatal Err",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "34.1:0x18"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x19",
+                "sensorName": "Chipset Err",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "34.1:0x19"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1a",
+                "sensorName": "Err Reg Pointer",
+                "sensorType": "Unknown (0xC1)",
+                "uniqueSensorID": "34.1:0x1a"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1b",
+                "sensorName": "Mem ECC Warning",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x1b"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1c",
+                "sensorName": "Mem CRC Err",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x1c"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1d",
+                "sensorName": "USB Over-current",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x1d"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1e",
+                "sensorName": "POST Err",
+                "sensorType": "System Firmwares",
+                "uniqueSensorID": "34.1:0x1e"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1f",
+                "sensorName": "Hdwr version err",
+                "sensorType": "Version Change",
+                "uniqueSensorID": "34.1:0x1f"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x20",
+                "sensorName": "Mem Overtemp",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x20"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x21",
+                "sensorName": "Mem Fatal SB CRC",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x21"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x22",
+                "sensorName": "Mem Fatal NB CRC",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x22"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x71",
+                "sensorName": "OS Watchdog Time",
+                "sensorType": "Watchdog",
+                "uniqueSensorID": "34.1:0x71"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x26",
+                "sensorName": "Non Fatal PCI Er",
+                "sensorType": "Unknown (0xC2)",
+                "uniqueSensorID": "34.1:0x26"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x27",
+                "sensorName": "Fatal IO Error",
+                "sensorType": "Unknown (0xC3)",
+                "uniqueSensorID": "34.1:0x27"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x28",
+                "sensorName": "MSR Info Log",
+                "sensorType": "Unknown (0xC1)",
+                "uniqueSensorID": "34.1:0x28"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x2a",
+                "sensorName": "TXT Status",
+                "sensorType": "OS Critical Stop",
+                "uniqueSensorID": "34.1:0x2a"
+              },
+              {
+                "assertionsEnabled": [
+                  "Drive Present",
+                  "Drive Fault"
+                ],
+                "deassertionsEnabled": [
+                  "Drive Present",
+                  "Drive Fault"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0xa0",
+                "sensorName": "Drive 0",
+                "sensorType": "Drive Slot / Bay",
+                "uniqueSensorID": "7.1:0xa0"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "sensorID": "0xe0",
+                "sensorName": "Cable SAS A",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "26.1:0xe0"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "sensorID": "0xe1",
+                "sensorName": "Cable SAS B",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "26.1:0xe1"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "sensorID": "0xe2",
+                "sensorName": "Cable SAS C",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.1:0xe2"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "sensorID": "0xe3",
+                "sensorName": "Cable SAS D",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.1:0xe3"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0xe4",
+                "sensorName": "Cable SAS A",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0xe4"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0xe5",
+                "sensorName": "Cable SAS B",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0xe5"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0xe6",
+                "sensorName": "Cable SAS C",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0xe6"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0xe7",
+                "sensorName": "Cable SAS D",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0xe7"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "sensorID": "0x58",
+                "sensorName": "Power Cable",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "26.1:0x58"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "sensorID": "0x59",
+                "sensorName": "Signal Cable",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "26.1:0x59"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0x5a",
+                "sensorName": "Power Cable",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0x5a"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0x5b",
+                "sensorName": "Signal Cable",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0x5b"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x3c",
+                "sensorName": "Fan7A RPM",
+                "sensorReading": "4800 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x3c"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x31",
+                "sensorName": "Fan1B RPM",
+                "sensorReading": "4320 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x31"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x33",
+                "sensorName": "Fan2B RPM",
+                "sensorReading": "4320 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x33"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x35",
+                "sensorName": "Fan3B RPM",
+                "sensorReading": "4320 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x35"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x37",
+                "sensorName": "Fan4B RPM",
+                "sensorReading": "4320 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x37"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x39",
+                "sensorName": "Fan5B RPM",
+                "sensorReading": "4320 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x39"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x3b",
+                "sensorName": "Fan6B RPM",
+                "sensorReading": "4320 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x3b"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x3d",
+                "sensorName": "Fan7B RPM",
+                "sensorReading": "4320 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x3d"
+              },
+              {
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x66",
+                "sensorName": "PFault Fail Safe",
+                "sensorType": "Voltage",
+                "uniqueSensorID": "7.1:0x66"
+              },
+              {
+                "assertionEvents": [
+                  "Presence Detected"
+                ],
+                "entityID": "32.1 (Memory Device)",
+                "sensorID": "0xc0",
+                "sensorName": "A",
+                "sensorType": "Memory",
+                "statesAsserted": [
+                  "Presence Detected"
+                ],
+                "uniqueSensorID": "32.1:0xc0"
+              },
+              {
+                "assertionEvents": [
+                  "Presence Detected"
+                ],
+                "entityID": "32.1 (Memory Device)",
+                "sensorID": "0xcc",
+                "sensorName": "B",
+                "sensorType": "Memory",
+                "statesAsserted": [
+                  "Presence Detected"
+                ],
+                "uniqueSensorID": "32.1:0xcc"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "nodeID": 3,
+        "result": {
+          "ipmiInfo": {
+            "sensors": [
+              {
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x72",
+                "sensorName": "SEL",
+                "sensorType": "Event Logging Disabled",
+                "uniqueSensorID": "7.1:0x72"
+              },
+              {
+                "assertionsEnabled": [
+                  "General Chassis intrusion"
+                ],
+                "deassertionsEnabled": [
+                  "General Chassis intrusion"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x73",
+                "sensorName": "Intrusion",
+                "sensorType": "Physical Security",
+                "uniqueSensorID": "7.1:0x73"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "600.000",
+                "nominalReading": "10080.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "600.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x30",
+                "sensorName": "Fan1A RPM",
+                "sensorReading": "4320 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x30"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "600.000",
+                "nominalReading": "10080.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "600.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x32",
+                "sensorName": "Fan2A RPM",
+                "sensorReading": "4440 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x32"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "600.000",
+                "nominalReading": "10080.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "600.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x34",
+                "sensorName": "Fan3A RPM",
+                "sensorReading": "4320 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x34"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "600.000",
+                "nominalReading": "10080.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "600.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x36",
+                "sensorName": "Fan4A RPM",
+                "sensorReading": "4200 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x36"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "600.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "600.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x38",
+                "sensorName": "Fan5A RPM",
+                "sensorReading": "4320 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x38"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "600.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "600.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x3a",
+                "sensorName": "Fan6A RPM",
+                "sensorReading": "4320 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x3a"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "-7.000",
+                "lowerNonCritical": "3.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "1.000",
+                "nominalReading": "23.000",
+                "normalMaximum": "69.000",
+                "normalMinimum": "11.000",
+                "positiveHysteresis": "1.000",
+                "readableThresholds": "lcr lnc unc ucr",
+                "sensorID": "0x4",
+                "sensorName": "Inlet Temp",
+                "sensorReading": "21 (+/- 1) degrees C",
+                "sensorType": "Temperature",
+                "settableThresholds": "lcr lnc unc ucr",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc unc ucr",
+                "uniqueSensorID": "7.1:0x4",
+                "upperCritical": "47.000",
+                "upperNonCritical": "42.000"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "3.000",
+                "lowerNonCritical": "8.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "1.000",
+                "nominalReading": "23.000",
+                "normalMaximum": "69.000",
+                "normalMinimum": "11.000",
+                "positiveHysteresis": "1.000",
+                "readableThresholds": "lcr lnc unc ucr",
+                "sensorID": "0x1",
+                "sensorName": "Exhaust Temp",
+                "sensorReading": "38 (+/- 1) degrees C",
+                "sensorType": "Temperature",
+                "settableThresholds": "",
+                "status": "ok",
+                "uniqueSensorID": "7.1:0x1",
+                "upperCritical": "75.000",
+                "upperNonCritical": "70.000"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "3.1 (Processor)",
+                "eventMessageControl": "Per-threshold",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "1.000",
+                "nominalReading": "23.000",
+                "normalMaximum": "69.000",
+                "normalMinimum": "11.000",
+                "positiveHysteresis": "1.000",
+                "readableThresholds": "unc",
+                "sensorID": "0xe",
+                "sensorName": "Temp",
+                "sensorReading": "-80 (+/- 1) unspecified",
+                "sensorType": "Temperature",
+                "settableThresholds": "",
+                "status": "ok",
+                "uniqueSensorID": "3.1:0xe",
+                "upperNonCritical": "0.000"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "3.2 (Processor)",
+                "eventMessageControl": "Per-threshold",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "1.000",
+                "nominalReading": "23.000",
+                "normalMaximum": "69.000",
+                "normalMinimum": "11.000",
+                "positiveHysteresis": "1.000",
+                "readableThresholds": "unc",
+                "sensorID": "0xf",
+                "sensorName": "Temp",
+                "sensorReading": "-80 (+/- 1) unspecified",
+                "sensorType": "Temperature",
+                "settableThresholds": "",
+                "status": "ok",
+                "uniqueSensorID": "3.2:0xf",
+                "upperNonCritical": "0.000"
+              },
+              {
+                "assertionsEnabled": [
+                  "Timer expired",
+                  "Hard reset",
+                  "Power down",
+                  "Power cycle"
+                ],
+                "deassertionsEnabled": [
+                  "Timer expired",
+                  "Hard reset",
+                  "Power down",
+                  "Power cycle"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x71",
+                "sensorName": "OS Watchdog",
+                "sensorType": "Watchdog",
+                "uniqueSensorID": "7.1:0x71"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "deassertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x23",
+                "sensorName": "VCORE PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x23"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x24",
+                "sensorName": "VCORE PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x24"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x19",
+                "sensorName": "3.3V PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x19"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x1a",
+                "sensorName": "5V PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x1a"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x50",
+                "sensorName": "USB Cable Pres",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "7.1:0x50"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x51",
+                "sensorName": "VGA Cable Pres",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "7.1:0x51"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x70",
+                "sensorName": "Dedicated NIC",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "7.1:0x70"
+              },
+              {
+                "assertionEvents": [
+                  "Absent"
+                ],
+                "entityID": "11.2 (Add-in Card)",
+                "sensorID": "0x49",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Absent"
+                ],
+                "uniqueSensorID": "11.2:0x49"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x40",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "3.1:0x40"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x41",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "3.2:0x41"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x22",
+                "sensorName": "PLL PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x22"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x25",
+                "sensorName": "PLL PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x25"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x27",
+                "sensorName": "1.1V PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x27"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x15",
+                "sensorName": "M23 VDDQ PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x15"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x16",
+                "sensorName": "M23 VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x16"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x21",
+                "sensorName": "FETDRV PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x21"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "10.2 (Power Supply)",
+                "sensorID": "0x43",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "10.2:0x43"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x29",
+                "sensorName": "VSA PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x29"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x2b",
+                "sensorName": "VSA PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x2b"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x1b",
+                "sensorName": "M01 VDDQ PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x1b"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x1e",
+                "sensorName": "M01 VDDQ PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x1e"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x2e",
+                "sensorName": "M23 VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x2e"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x1c",
+                "sensorName": "M01 VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x1c"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x2f",
+                "sensorName": "NDC PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x2f"
+              },
+              {
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x4c",
+                "sensorName": "LCD Cable Pres",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "7.1:0x4c"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x1f",
+                "sensorName": "VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x1f"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x20",
+                "sensorName": "VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x20"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x1d",
+                "sensorName": "M23 VDDQ PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x1d"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "assertionsEnabled": [
+                  "Present",
+                  "Absent"
+                ],
+                "entityID": "11.1 (Add-in Card)",
+                "sensorID": "0x4a",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "11.1:0x4a"
+              },
+              {
+                "assertionEvents": [
+                  "Absent"
+                ],
+                "entityID": "11.3 (Add-in Card)",
+                "sensorID": "0x48",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Absent"
+                ],
+                "uniqueSensorID": "11.3:0x48"
+              },
+              {
+                "assertionEvents": [
+                  "Presence detected"
+                ],
+                "assertionsEnabled": [
+                  "IERR",
+                  "Thermal Trip",
+                  "Configuration Error",
+                  "Presence detected",
+                  "Throttled"
+                ],
+                "deassertionsEnabled": [
+                  "IERR",
+                  "Thermal Trip",
+                  "Configuration Error",
+                  "Presence detected",
+                  "Throttled"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x60",
+                "sensorName": "Status",
+                "sensorType": "Processor",
+                "statesAsserted": [
+                  "Presence detected"
+                ],
+                "uniqueSensorID": "3.1:0x60"
+              },
+              {
+                "assertionEvents": [
+                  "Presence detected"
+                ],
+                "assertionsEnabled": [
+                  "IERR",
+                  "Thermal Trip",
+                  "Configuration Error",
+                  "Throttled"
+                ],
+                "deassertionsEnabled": [
+                  "IERR",
+                  "Thermal Trip",
+                  "Configuration Error",
+                  "Throttled"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x61",
+                "sensorName": "Status",
+                "sensorType": "Processor",
+                "statesAsserted": [
+                  "Presence detected"
+                ],
+                "uniqueSensorID": "3.2:0x61"
+              },
+              {
+                "assertionEvents": [
+                  "Fully Redundant"
+                ],
+                "assertionsEnabled": [
+                  "Fully Redundant",
+                  "Redundancy Lost"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x75",
+                "sensorName": "Fan Redundancy",
+                "sensorType": "Fan",
+                "statesAsserted": [
+                  "Fully Redundant"
+                ],
+                "uniqueSensorID": "7.1:0x75"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x64",
+                "sensorName": "Riser Config Err",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "7.1:0x64"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x4f",
+                "sensorName": "Riser 3 Presence",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "7.1:0x4f"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x28",
+                "sensorName": "1.5V PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x28"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0xf6",
+                "sensorName": "BP1 5V PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0xf6"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0xf7",
+                "sensorName": "BP2 5V PG",
+                "sensorType": "Voltage",
+                "uniqueSensorID": "7.1:0xf7"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x14",
+                "sensorName": "M01 VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x14"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "10.1 (Power Supply)",
+                "sensorID": "0x42",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "10.1:0x42"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x90",
+                "sensorName": "PCIe Slot1",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x90"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x91",
+                "sensorName": "PCIe Slot2",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x91"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x92",
+                "sensorName": "PCIe Slot3",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x92"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x93",
+                "sensorName": "PCIe Slot4",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x93"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x94",
+                "sensorName": "PCIe Slot5",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x94"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x95",
+                "sensorName": "PCIe Slot6",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x95"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x96",
+                "sensorName": "PCIe Slot7",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x96"
+              },
+              {
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0xfa",
+                "sensorName": "vFlash",
+                "sensorType": "Module / Board",
+                "uniqueSensorID": "7.1:0xfa"
+              },
+              {
+                "assertionsEnabled": [
+                  "Failed"
+                ],
+                "deassertionsEnabled": [
+                  "Failed"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x65",
+                "sensorName": "CMOS Battery",
+                "sensorType": "Battery",
+                "uniqueSensorID": "7.1:0x65"
+              },
+              {
+                "assertionsEnabled": [
+                  "Failed"
+                ],
+                "deassertionsEnabled": [
+                  "Failed"
+                ],
+                "entityID": "11.2 (Add-in Card)",
+                "eventStatus": "Unavailable",
+                "sensorID": "0x68",
+                "sensorName": "ROMB Battery",
+                "sensorType": "Battery",
+                "uniqueSensorID": "11.2:0x68"
+              },
+              {
+                "assertionsEnabled": [
+                  "Failed"
+                ],
+                "deassertionsEnabled": [
+                  "Failed"
+                ],
+                "entityID": "11.4 (Add-in Card)",
+                "eventStatus": "Unavailable",
+                "sensorID": "0x69",
+                "sensorName": "ROMB Battery",
+                "sensorType": "Battery",
+                "uniqueSensorID": "11.4:0x69"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "sensorID": "0x54",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "26.1:0x54"
+              },
+              {
+                "assertionEvents": [
+                  "Absent"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0x55",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Absent"
+                ],
+                "uniqueSensorID": "26.2:0x55"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "10.1 (Power Supply)",
+                "eventMessageControl": "Per-threshold",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "Unspecified",
+                "nominalReading": "0.000",
+                "normalMaximum": "0.000",
+                "positiveHysteresis": "Unspecified",
+                "readableThresholds": "No Thresholds",
+                "sensorID": "0x6a",
+                "sensorName": "Current 1",
+                "sensorReading": "1.200 (+/- 0) Amps",
+                "sensorType": "Current",
+                "settableThresholds": "No Thresholds",
+                "status": "ok",
+                "uniqueSensorID": "10.1:0x6a"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "10.2 (Power Supply)",
+                "eventMessageControl": "Per-threshold",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "Unspecified",
+                "nominalReading": "0.000",
+                "normalMaximum": "0.000",
+                "positiveHysteresis": "Unspecified",
+                "readableThresholds": "No Thresholds",
+                "sensorID": "0x6b",
+                "sensorName": "Current 2",
+                "sensorReading": "0.200 (+/- 0) Amps",
+                "sensorType": "Current",
+                "settableThresholds": "No Thresholds",
+                "status": "ok",
+                "uniqueSensorID": "10.2:0x6b"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "10.1 (Power Supply)",
+                "eventMessageControl": "Per-threshold",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "Unspecified",
+                "nominalReading": "0.000",
+                "normalMaximum": "0.000",
+                "positiveHysteresis": "Unspecified",
+                "readableThresholds": "No Thresholds",
+                "sensorID": "0x6c",
+                "sensorName": "Voltage 1",
+                "sensorReading": "118 (+/- 0) Volts",
+                "sensorType": "Voltage",
+                "settableThresholds": "No Thresholds",
+                "status": "ok",
+                "uniqueSensorID": "10.1:0x6c"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "10.2 (Power Supply)",
+                "eventMessageControl": "Per-threshold",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "Unspecified",
+                "nominalReading": "0.000",
+                "normalMaximum": "0.000",
+                "positiveHysteresis": "Unspecified",
+                "readableThresholds": "No Thresholds",
+                "sensorID": "0x6d",
+                "sensorName": "Voltage 2",
+                "sensorReading": "118 (+/- 0) Volts",
+                "sensorType": "Voltage",
+                "settableThresholds": "No Thresholds",
+                "status": "ok",
+                "uniqueSensorID": "10.2:0x6d"
+              },
+              {
+                "assertionEvents": [
+                  "Fully Redundant"
+                ],
+                "assertionsEnabled": [
+                  "Fully Redundant",
+                  "Redundancy Lost"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x74",
+                "sensorName": "PS Redundancy",
+                "sensorType": "Power Supply",
+                "statesAsserted": [
+                  "Fully Redundant"
+                ],
+                "uniqueSensorID": "7.1:0x74"
+              },
+              {
+                "assertionEvents": [
+                  "Presence detected"
+                ],
+                "assertionsEnabled": [
+                  "Presence detected",
+                  "Failure detected",
+                  "Predictive failure",
+                  "Power Supply AC lost",
+                  "Config Error: Vendor Mismatch",
+                  "Config Error: Revision Mismatch",
+                  "Config Error: Processor Missing",
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Presence detected",
+                  "Failure detected",
+                  "Predictive failure",
+                  "Power Supply AC lost",
+                  "Config Error: Vendor Mismatch",
+                  "Config Error: Revision Mismatch",
+                  "Config Error: Processor Missing",
+                  "Config Error"
+                ],
+                "entityID": "10.1 (Power Supply)",
+                "sensorID": "0x62",
+                "sensorName": "Status",
+                "sensorType": "Power Supply",
+                "statesAsserted": [
+                  "Presence detected"
+                ],
+                "uniqueSensorID": "10.1:0x62"
+              },
+              {
+                "assertionEvents": [
+                  "Presence detected"
+                ],
+                "assertionsEnabled": [
+                  "Presence detected",
+                  "Failure detected",
+                  "Predictive failure",
+                  "Power Supply AC lost",
+                  "Config Error: Vendor Mismatch",
+                  "Config Error: Revision Mismatch",
+                  "Config Error: Processor Missing",
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Presence detected",
+                  "Failure detected",
+                  "Predictive failure",
+                  "Power Supply AC lost",
+                  "Config Error: Vendor Mismatch",
+                  "Config Error: Revision Mismatch",
+                  "Config Error: Processor Missing",
+                  "Config Error"
+                ],
+                "entityID": "10.2 (Power Supply)",
+                "sensorID": "0x63",
+                "sensorName": "Status",
+                "sensorType": "Power Supply",
+                "statesAsserted": [
+                  "Presence detected"
+                ],
+                "uniqueSensorID": "10.2:0x63"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "maximumSensorRange": "3556.000",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "Unspecified",
+                "nominalReading": "658.000",
+                "normalMaximum": "672.000",
+                "positiveHysteresis": "Unspecified",
+                "readableThresholds": "unc ucr",
+                "sensorID": "0x77",
+                "sensorName": "Pwr Consumption",
+                "sensorReading": "140 (+/- 0) Watts",
+                "sensorType": "Current",
+                "settableThresholds": "unc",
+                "status": "ok",
+                "uniqueSensorID": "7.1:0x77",
+                "upperCritical": "1218.000",
+                "upperNonCritical": "1106.000"
+              },
+              {
+                "assertionEvents": [
+                  "OEM Specific"
+                ],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x76",
+                "sensorName": "Power Optimized",
+                "sensorType": "Unknown (0xC0)",
+                "statesAsserted": [
+                  "OEM Specific"
+                ],
+                "uniqueSensorID": "7.1:0x76"
+              },
+              {
+                "entityID": "11.3 (Add-in Card)",
+                "sensorID": "0xf4",
+                "sensorName": "SD1",
+                "sensorType": "Unknown (0xC9)",
+                "uniqueSensorID": "11.3:0xf4"
+              },
+              {
+                "entityID": "11.3 (Add-in Card)",
+                "sensorID": "0xf5",
+                "sensorName": "SD2",
+                "sensorType": "Unknown (0xC9)",
+                "uniqueSensorID": "11.3:0xf5"
+              },
+              {
+                "assertionEvents": [
+                  "Fully Redundant"
+                ],
+                "assertionsEnabled": [
+                  "Fully Redundant",
+                  "Redundancy Lost"
+                ],
+                "entityID": "11.3 (Add-in Card)",
+                "sensorID": "0x78",
+                "sensorName": "Redundancy",
+                "sensorType": "Unknown (0xC9)",
+                "uniqueSensorID": "11.3:0x78"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1",
+                "sensorName": "ECC Corr Err",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x1"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x2",
+                "sensorName": "ECC Uncorr Err",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x2"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x3",
+                "sensorName": "I/O Channel Chk",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "34.1:0x3"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x4",
+                "sensorName": "PCI Parity Err",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "34.1:0x4"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x5",
+                "sensorName": "PCI System Err",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "34.1:0x5"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x6",
+                "sensorName": "SBE Log Disabled",
+                "sensorType": "Event Logging Disabled",
+                "uniqueSensorID": "34.1:0x6"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x7",
+                "sensorName": "Logging Disabled",
+                "sensorType": "Event Logging Disabled",
+                "uniqueSensorID": "34.1:0x7"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x8",
+                "sensorName": "Unknown",
+                "sensorType": "System Event",
+                "uniqueSensorID": "34.1:0x8"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0xa",
+                "sensorName": "CPU Protocol Err",
+                "sensorType": "Processor",
+                "uniqueSensorID": "34.1:0xa"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0xb",
+                "sensorName": "CPU Bus PERR",
+                "sensorType": "Processor",
+                "uniqueSensorID": "34.1:0xb"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0xc",
+                "sensorName": "CPU Init Err",
+                "sensorType": "Processor",
+                "uniqueSensorID": "34.1:0xc"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0xd",
+                "sensorName": "CPU Machine Chk",
+                "sensorType": "Processor",
+                "uniqueSensorID": "34.1:0xd"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x11",
+                "sensorName": "Memory Spared",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x11"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x12",
+                "sensorName": "Memory Mirrored",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x12"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x13",
+                "sensorName": "Memory RAID",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x13"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x14",
+                "sensorName": "Memory Added",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x14"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x15",
+                "sensorName": "Memory Removed",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x15"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x16",
+                "sensorName": "Memory Cfg Err",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x16"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x17",
+                "sensorName": "Mem Redun Gain",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x17"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x18",
+                "sensorName": "PCIE Fatal Err",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "34.1:0x18"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x19",
+                "sensorName": "Chipset Err",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "34.1:0x19"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1a",
+                "sensorName": "Err Reg Pointer",
+                "sensorType": "Unknown (0xC1)",
+                "uniqueSensorID": "34.1:0x1a"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1b",
+                "sensorName": "Mem ECC Warning",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x1b"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1c",
+                "sensorName": "Mem CRC Err",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x1c"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1d",
+                "sensorName": "USB Over-current",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x1d"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1e",
+                "sensorName": "POST Err",
+                "sensorType": "System Firmwares",
+                "uniqueSensorID": "34.1:0x1e"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1f",
+                "sensorName": "Hdwr version err",
+                "sensorType": "Version Change",
+                "uniqueSensorID": "34.1:0x1f"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x20",
+                "sensorName": "Mem Overtemp",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x20"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x21",
+                "sensorName": "Mem Fatal SB CRC",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x21"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x22",
+                "sensorName": "Mem Fatal NB CRC",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x22"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x71",
+                "sensorName": "OS Watchdog Time",
+                "sensorType": "Watchdog",
+                "uniqueSensorID": "34.1:0x71"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x26",
+                "sensorName": "Non Fatal PCI Er",
+                "sensorType": "Unknown (0xC2)",
+                "uniqueSensorID": "34.1:0x26"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x27",
+                "sensorName": "Fatal IO Error",
+                "sensorType": "Unknown (0xC3)",
+                "uniqueSensorID": "34.1:0x27"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x28",
+                "sensorName": "MSR Info Log",
+                "sensorType": "Unknown (0xC1)",
+                "uniqueSensorID": "34.1:0x28"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x2a",
+                "sensorName": "TXT Status",
+                "sensorType": "OS Critical Stop",
+                "uniqueSensorID": "34.1:0x2a"
+              },
+              {
+                "assertionEvents": [
+                  "Drive Present"
+                ],
+                "assertionsEnabled": [
+                  "Drive Present",
+                  "Drive Fault"
+                ],
+                "deassertionsEnabled": [
+                  "Drive Present",
+                  "Drive Fault"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0xa0",
+                "sensorName": "Drive 0",
+                "sensorType": "Drive Slot / Bay",
+                "uniqueSensorID": "7.1:0xa0"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "eventStatus": "Unavailable",
+                "sensorID": "0xe0",
+                "sensorName": "Cable SAS A",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.1:0xe0"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "eventStatus": "Unavailable",
+                "sensorID": "0xe1",
+                "sensorName": "Cable SAS B",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.1:0xe1"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "eventStatus": "Unavailable",
+                "sensorID": "0xe2",
+                "sensorName": "Cable SAS C",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.1:0xe2"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "eventStatus": "Unavailable",
+                "sensorID": "0xe3",
+                "sensorName": "Cable SAS D",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.1:0xe3"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0xe4",
+                "sensorName": "Cable SAS A",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0xe4"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0xe5",
+                "sensorName": "Cable SAS B",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0xe5"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0xe6",
+                "sensorName": "Cable SAS C",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0xe6"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0xe7",
+                "sensorName": "Cable SAS D",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0xe7"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "sensorID": "0x58",
+                "sensorName": "Power Cable",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "26.1:0x58"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "sensorID": "0x59",
+                "sensorName": "Signal Cable",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "26.1:0x59"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0x5a",
+                "sensorName": "Power Cable",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0x5a"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0x5b",
+                "sensorName": "Signal Cable",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0x5b"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "600.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "600.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x3c",
+                "sensorName": "Fan7A RPM",
+                "sensorReading": "4320 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x3c"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "600.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "600.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x31",
+                "sensorName": "Fan1B RPM",
+                "sensorReading": "4080 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x31"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "600.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "600.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x33",
+                "sensorName": "Fan2B RPM",
+                "sensorReading": "4080 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x33"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "600.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "600.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x35",
+                "sensorName": "Fan3B RPM",
+                "sensorReading": "4080 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x35"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "600.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "600.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x37",
+                "sensorName": "Fan4B RPM",
+                "sensorReading": "3960 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x37"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "600.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "600.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x39",
+                "sensorName": "Fan5B RPM",
+                "sensorReading": "4080 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x39"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "600.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "600.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x3b",
+                "sensorName": "Fan6B RPM",
+                "sensorReading": "4080 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x3b"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "600.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "600.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x3d",
+                "sensorName": "Fan7B RPM",
+                "sensorReading": "4080 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x3d"
+              },
+              {
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x66",
+                "sensorName": "PFault Fail Safe",
+                "sensorType": "Voltage",
+                "uniqueSensorID": "7.1:0x66"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "nodeID": 4,
+        "result": {
+          "ipmiInfo": {
+            "sensors": [
+              {
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x72",
+                "sensorName": "SEL",
+                "sensorType": "Event Logging Disabled",
+                "uniqueSensorID": "7.1:0x72"
+              },
+              {
+                "assertionsEnabled": [
+                  "General Chassis intrusion"
+                ],
+                "deassertionsEnabled": [
+                  "General Chassis intrusion"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x73",
+                "sensorName": "Intrusion",
+                "sensorType": "Physical Security",
+                "uniqueSensorID": "7.1:0x73"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "10080.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x30",
+                "sensorName": "Fan1A RPM",
+                "sensorReading": "5640 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x30"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "10080.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x32",
+                "sensorName": "Fan2A RPM",
+                "sensorReading": "5760 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x32"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "10080.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x34",
+                "sensorName": "Fan3A RPM",
+                "sensorReading": "5760 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x34"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "10080.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x36",
+                "sensorName": "Fan4A RPM",
+                "sensorReading": "5760 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x36"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x38",
+                "sensorName": "Fan5A RPM",
+                "sensorReading": "5760 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x38"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x3a",
+                "sensorName": "Fan6A RPM",
+                "sensorReading": "5760 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x3a"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "-7.000",
+                "lowerNonCritical": "3.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "1.000",
+                "nominalReading": "23.000",
+                "normalMaximum": "69.000",
+                "normalMinimum": "11.000",
+                "positiveHysteresis": "1.000",
+                "readableThresholds": "lcr lnc unc ucr",
+                "sensorID": "0x4",
+                "sensorName": "Inlet Temp",
+                "sensorReading": "21 (+/- 1) degrees C",
+                "sensorType": "Temperature",
+                "settableThresholds": "lcr lnc unc ucr",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc unc ucr",
+                "uniqueSensorID": "7.1:0x4",
+                "upperCritical": "47.000",
+                "upperNonCritical": "42.000"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "3.000",
+                "lowerNonCritical": "8.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "1.000",
+                "nominalReading": "23.000",
+                "normalMaximum": "69.000",
+                "normalMinimum": "11.000",
+                "positiveHysteresis": "1.000",
+                "readableThresholds": "lcr lnc unc ucr",
+                "sensorID": "0x1",
+                "sensorName": "Exhaust Temp",
+                "sensorReading": "33 (+/- 1) degrees C",
+                "sensorType": "Temperature",
+                "settableThresholds": "",
+                "status": "ok",
+                "uniqueSensorID": "7.1:0x1",
+                "upperCritical": "75.000",
+                "upperNonCritical": "70.000"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "3.1 (Processor)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "3.000",
+                "lowerNonCritical": "8.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "1.000",
+                "nominalReading": "23.000",
+                "normalMaximum": "69.000",
+                "normalMinimum": "11.000",
+                "positiveHysteresis": "1.000",
+                "readableThresholds": "No Thresholds",
+                "sensorID": "0xe",
+                "sensorName": "Temp",
+                "sensorReading": "42 (+/- 1) degrees C",
+                "sensorType": "Temperature",
+                "settableThresholds": "No Thresholds",
+                "status": "ok",
+                "uniqueSensorID": "3.1:0xe",
+                "upperCritical": "83.000",
+                "upperNonCritical": "77.000"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "3.2 (Processor)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "3.000",
+                "lowerNonCritical": "8.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "1.000",
+                "nominalReading": "23.000",
+                "normalMaximum": "69.000",
+                "normalMinimum": "11.000",
+                "positiveHysteresis": "1.000",
+                "readableThresholds": "No Thresholds",
+                "sensorID": "0xf",
+                "sensorName": "Temp",
+                "sensorReading": "41 (+/- 1) degrees C",
+                "sensorType": "Temperature",
+                "settableThresholds": "No Thresholds",
+                "status": "ok",
+                "uniqueSensorID": "3.2:0xf",
+                "upperCritical": "83.000",
+                "upperNonCritical": "77.000"
+              },
+              {
+                "assertionsEnabled": [
+                  "Timer expired",
+                  "Hard reset",
+                  "Power down",
+                  "Power cycle"
+                ],
+                "deassertionsEnabled": [
+                  "Timer expired",
+                  "Hard reset",
+                  "Power down",
+                  "Power cycle"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x71",
+                "sensorName": "OS Watchdog",
+                "sensorType": "Watchdog",
+                "uniqueSensorID": "7.1:0x71"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "deassertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x23",
+                "sensorName": "VCORE PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x23"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x24",
+                "sensorName": "VCORE PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x24"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x19",
+                "sensorName": "3.3V PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x19"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x1a",
+                "sensorName": "5V PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x1a"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x50",
+                "sensorName": "USB Cable Pres",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "7.1:0x50"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x51",
+                "sensorName": "VGA Cable Pres",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "7.1:0x51"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x70",
+                "sensorName": "Dedicated NIC",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "7.1:0x70"
+              },
+              {
+                "assertionEvents": [
+                  "Absent"
+                ],
+                "entityID": "11.2 (Add-in Card)",
+                "sensorID": "0x49",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Absent"
+                ],
+                "uniqueSensorID": "11.2:0x49"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x40",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "3.1:0x40"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x41",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "3.2:0x41"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x22",
+                "sensorName": "PLL PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x22"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x25",
+                "sensorName": "PLL PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x25"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x27",
+                "sensorName": "1.1V PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x27"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x15",
+                "sensorName": "M23 VDDQ PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x15"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x16",
+                "sensorName": "M23 VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x16"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x21",
+                "sensorName": "FETDRV PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x21"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "10.2 (Power Supply)",
+                "sensorID": "0x43",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "10.2:0x43"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x29",
+                "sensorName": "VSA PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x29"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x2b",
+                "sensorName": "VSA PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x2b"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x1b",
+                "sensorName": "M01 VDDQ PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x1b"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x1e",
+                "sensorName": "M01 VDDQ PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x1e"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x2e",
+                "sensorName": "M23 VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x2e"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x1c",
+                "sensorName": "M01 VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x1c"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x2f",
+                "sensorName": "NDC PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x2f"
+              },
+              {
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x4c",
+                "sensorName": "LCD Cable Pres",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "7.1:0x4c"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x1f",
+                "sensorName": "VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x1f"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x20",
+                "sensorName": "VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x20"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x1d",
+                "sensorName": "M23 VDDQ PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.2:0x1d"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "assertionsEnabled": [
+                  "Present",
+                  "Absent"
+                ],
+                "entityID": "11.1 (Add-in Card)",
+                "sensorID": "0x4a",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "11.1:0x4a"
+              },
+              {
+                "assertionEvents": [
+                  "Absent"
+                ],
+                "entityID": "11.3 (Add-in Card)",
+                "sensorID": "0x48",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Absent"
+                ],
+                "uniqueSensorID": "11.3:0x48"
+              },
+              {
+                "assertionEvents": [
+                  "Presence detected"
+                ],
+                "assertionsEnabled": [
+                  "IERR",
+                  "Thermal Trip",
+                  "Configuration Error",
+                  "Presence detected",
+                  "Throttled"
+                ],
+                "deassertionsEnabled": [
+                  "IERR",
+                  "Thermal Trip",
+                  "Configuration Error",
+                  "Presence detected",
+                  "Throttled"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x60",
+                "sensorName": "Status",
+                "sensorType": "Processor",
+                "statesAsserted": [
+                  "Presence detected"
+                ],
+                "uniqueSensorID": "3.1:0x60"
+              },
+              {
+                "assertionEvents": [
+                  "Presence detected"
+                ],
+                "assertionsEnabled": [
+                  "IERR",
+                  "Thermal Trip",
+                  "Configuration Error",
+                  "Throttled"
+                ],
+                "deassertionsEnabled": [
+                  "IERR",
+                  "Thermal Trip",
+                  "Configuration Error",
+                  "Throttled"
+                ],
+                "entityID": "3.2 (Processor)",
+                "sensorID": "0x61",
+                "sensorName": "Status",
+                "sensorType": "Processor",
+                "statesAsserted": [
+                  "Presence detected"
+                ],
+                "uniqueSensorID": "3.2:0x61"
+              },
+              {
+                "assertionEvents": [
+                  "Fully Redundant"
+                ],
+                "assertionsEnabled": [
+                  "Fully Redundant",
+                  "Redundancy Lost"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x75",
+                "sensorName": "Fan Redundancy",
+                "sensorType": "Fan",
+                "statesAsserted": [
+                  "Fully Redundant"
+                ],
+                "uniqueSensorID": "7.1:0x75"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x64",
+                "sensorName": "Riser Config Err",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "7.1:0x64"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x4f",
+                "sensorName": "Riser 3 Presence",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "7.1:0x4f"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x28",
+                "sensorName": "1.5V PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x28"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x2c",
+                "sensorName": "PS2 PG Fail",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x2c"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x2d",
+                "sensorName": "PS1 PG Fail",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0x2d"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0xf6",
+                "sensorName": "BP1 5V PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "7.1:0xf6"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0xf7",
+                "sensorName": "BP2 5V PG",
+                "sensorType": "Voltage",
+                "uniqueSensorID": "7.1:0xf7"
+              },
+              {
+                "assertionEvents": [
+                  "State Deasserted"
+                ],
+                "assertionsEnabled": [
+                  "State Deasserted",
+                  "State Asserted"
+                ],
+                "entityID": "3.1 (Processor)",
+                "sensorID": "0x14",
+                "sensorName": "M01 VTT PG",
+                "sensorType": "Voltage",
+                "statesAsserted": [
+                  "State Deasserted"
+                ],
+                "uniqueSensorID": "3.1:0x14"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "10.1 (Power Supply)",
+                "sensorID": "0x42",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "10.1:0x42"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x90",
+                "sensorName": "PCIe Slot1",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x90"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x91",
+                "sensorName": "PCIe Slot2",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x91"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x92",
+                "sensorName": "PCIe Slot3",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x92"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x93",
+                "sensorName": "PCIe Slot4",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x93"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x94",
+                "sensorName": "PCIe Slot5",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x94"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x95",
+                "sensorName": "PCIe Slot6",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x95"
+              },
+              {
+                "assertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "deassertionsEnabled": [
+                  "NMI/Diag Interrupt",
+                  "Bus Timeout"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x96",
+                "sensorName": "PCIe Slot7",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "7.1:0x96"
+              },
+              {
+                "entityID": "0.1 (Unspecified)",
+                "sensorID": "0xfa",
+                "sensorName": "vFlash",
+                "sensorType": "Module / Board",
+                "uniqueSensorID": "0.1:0xfa"
+              },
+              {
+                "assertionsEnabled": [
+                  "Failed"
+                ],
+                "deassertionsEnabled": [
+                  "Failed"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x65",
+                "sensorName": "CMOS Battery",
+                "sensorType": "Battery",
+                "uniqueSensorID": "7.1:0x65"
+              },
+              {
+                "assertionsEnabled": [
+                  "Failed"
+                ],
+                "deassertionsEnabled": [
+                  "Failed"
+                ],
+                "entityID": "11.2 (Add-in Card)",
+                "eventStatus": "Unavailable",
+                "sensorID": "0x68",
+                "sensorName": "ROMB Battery",
+                "sensorType": "Battery",
+                "uniqueSensorID": "11.2:0x68"
+              },
+              {
+                "assertionsEnabled": [
+                  "Failed"
+                ],
+                "deassertionsEnabled": [
+                  "Failed"
+                ],
+                "entityID": "11.4 (Add-in Card)",
+                "eventStatus": "Unavailable",
+                "sensorID": "0x69",
+                "sensorName": "ROMB Battery",
+                "sensorType": "Battery",
+                "uniqueSensorID": "11.4:0x69"
+              },
+              {
+                "assertionEvents": [
+                  "Present"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "sensorID": "0x54",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Present"
+                ],
+                "uniqueSensorID": "26.1:0x54"
+              },
+              {
+                "assertionEvents": [
+                  "Absent"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0x55",
+                "sensorName": "Presence",
+                "sensorType": "Entity Presence",
+                "statesAsserted": [
+                  "Absent"
+                ],
+                "uniqueSensorID": "26.2:0x55"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "10.1 (Power Supply)",
+                "eventMessageControl": "Per-threshold",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "Unspecified",
+                "nominalReading": "0.000",
+                "normalMaximum": "0.000",
+                "positiveHysteresis": "Unspecified",
+                "readableThresholds": "No Thresholds",
+                "sensorID": "0x6a",
+                "sensorName": "Current 1",
+                "sensorReading": "1.200 (+/- 0) Amps",
+                "sensorType": "Current",
+                "settableThresholds": "No Thresholds",
+                "status": "ok",
+                "uniqueSensorID": "10.1:0x6a"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "10.2 (Power Supply)",
+                "eventMessageControl": "Per-threshold",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "Unspecified",
+                "nominalReading": "0.000",
+                "normalMaximum": "0.000",
+                "positiveHysteresis": "Unspecified",
+                "readableThresholds": "No Thresholds",
+                "sensorID": "0x6b",
+                "sensorName": "Current 2",
+                "sensorReading": "0.200 (+/- 0) Amps",
+                "sensorType": "Current",
+                "settableThresholds": "No Thresholds",
+                "status": "ok",
+                "uniqueSensorID": "10.2:0x6b"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "10.1 (Power Supply)",
+                "eventMessageControl": "Per-threshold",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "Unspecified",
+                "nominalReading": "0.000",
+                "normalMaximum": "0.000",
+                "positiveHysteresis": "Unspecified",
+                "readableThresholds": "No Thresholds",
+                "sensorID": "0x6c",
+                "sensorName": "Voltage 1",
+                "sensorReading": "118 (+/- 0) Volts",
+                "sensorType": "Voltage",
+                "settableThresholds": "No Thresholds",
+                "status": "ok",
+                "uniqueSensorID": "10.1:0x6c"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "entityID": "10.2 (Power Supply)",
+                "eventMessageControl": "Per-threshold",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "Unspecified",
+                "nominalReading": "0.000",
+                "normalMaximum": "0.000",
+                "positiveHysteresis": "Unspecified",
+                "readableThresholds": "No Thresholds",
+                "sensorID": "0x6d",
+                "sensorName": "Voltage 2",
+                "sensorReading": "118 (+/- 0) Volts",
+                "sensorType": "Voltage",
+                "settableThresholds": "No Thresholds",
+                "status": "ok",
+                "uniqueSensorID": "10.2:0x6d"
+              },
+              {
+                "assertionEvents": [
+                  "Fully Redundant"
+                ],
+                "assertionsEnabled": [
+                  "Fully Redundant",
+                  "Redundancy Lost"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x74",
+                "sensorName": "PS Redundancy",
+                "sensorType": "Power Supply",
+                "statesAsserted": [
+                  "Fully Redundant"
+                ],
+                "uniqueSensorID": "7.1:0x74"
+              },
+              {
+                "assertionEvents": [
+                  "Presence detected"
+                ],
+                "assertionsEnabled": [
+                  "Presence detected",
+                  "Failure detected",
+                  "Predictive failure",
+                  "Power Supply AC lost",
+                  "Config Error: Vendor Mismatch",
+                  "Config Error: Revision Mismatch",
+                  "Config Error: Processor Missing",
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Presence detected",
+                  "Failure detected",
+                  "Predictive failure",
+                  "Power Supply AC lost",
+                  "Config Error: Vendor Mismatch",
+                  "Config Error: Revision Mismatch",
+                  "Config Error: Processor Missing",
+                  "Config Error"
+                ],
+                "entityID": "10.1 (Power Supply)",
+                "sensorID": "0x62",
+                "sensorName": "Status",
+                "sensorType": "Power Supply",
+                "statesAsserted": [
+                  "Presence detected"
+                ],
+                "uniqueSensorID": "10.1:0x62"
+              },
+              {
+                "assertionEvents": [
+                  "Presence detected"
+                ],
+                "assertionsEnabled": [
+                  "Presence detected",
+                  "Failure detected",
+                  "Predictive failure",
+                  "Power Supply AC lost",
+                  "Config Error: Vendor Mismatch",
+                  "Config Error: Revision Mismatch",
+                  "Config Error: Processor Missing",
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Presence detected",
+                  "Failure detected",
+                  "Predictive failure",
+                  "Power Supply AC lost",
+                  "Config Error: Vendor Mismatch",
+                  "Config Error: Revision Mismatch",
+                  "Config Error: Processor Missing",
+                  "Config Error"
+                ],
+                "entityID": "10.2 (Power Supply)",
+                "sensorID": "0x63",
+                "sensorName": "Status",
+                "sensorType": "Power Supply",
+                "statesAsserted": [
+                  "Presence detected"
+                ],
+                "uniqueSensorID": "10.2:0x63"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "maximumSensorRange": "3556.000",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "Unspecified",
+                "nominalReading": "658.000",
+                "normalMaximum": "672.000",
+                "positiveHysteresis": "Unspecified",
+                "readableThresholds": "unc ucr",
+                "sensorID": "0x77",
+                "sensorName": "Pwr Consumption",
+                "sensorReading": "140 (+/- 0) Watts",
+                "sensorType": "Current",
+                "settableThresholds": "unc",
+                "status": "ok",
+                "uniqueSensorID": "7.1:0x77",
+                "upperCritical": "1218.000",
+                "upperNonCritical": "1106.000"
+              },
+              {
+                "assertionEvents": [
+                  "OEM Specific"
+                ],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x76",
+                "sensorName": "Power Optimized",
+                "sensorType": "Unknown (0xC0)",
+                "statesAsserted": [
+                  "OEM Specific"
+                ],
+                "uniqueSensorID": "7.1:0x76"
+              },
+              {
+                "entityID": "11.3 (Add-in Card)",
+                "sensorID": "0xf4",
+                "sensorName": "SD1",
+                "sensorType": "Unknown (0xC9)",
+                "uniqueSensorID": "11.3:0xf4"
+              },
+              {
+                "entityID": "11.3 (Add-in Card)",
+                "sensorID": "0xf5",
+                "sensorName": "SD2",
+                "sensorType": "Unknown (0xC9)",
+                "uniqueSensorID": "11.3:0xf5"
+              },
+              {
+                "assertionEvents": [
+                  "Fully Redundant"
+                ],
+                "assertionsEnabled": [
+                  "Fully Redundant",
+                  "Redundancy Lost"
+                ],
+                "entityID": "11.3 (Add-in Card)",
+                "sensorID": "0x78",
+                "sensorName": "Redundancy",
+                "sensorType": "Unknown (0xC9)",
+                "uniqueSensorID": "11.3:0x78"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1",
+                "sensorName": "ECC Corr Err",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x1"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x2",
+                "sensorName": "ECC Uncorr Err",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x2"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x3",
+                "sensorName": "I/O Channel Chk",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "34.1:0x3"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x4",
+                "sensorName": "PCI Parity Err",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "34.1:0x4"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x5",
+                "sensorName": "PCI System Err",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "34.1:0x5"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x6",
+                "sensorName": "SBE Log Disabled",
+                "sensorType": "Event Logging Disabled",
+                "uniqueSensorID": "34.1:0x6"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x7",
+                "sensorName": "Logging Disabled",
+                "sensorType": "Event Logging Disabled",
+                "uniqueSensorID": "34.1:0x7"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x8",
+                "sensorName": "Unknown",
+                "sensorType": "System Event",
+                "uniqueSensorID": "34.1:0x8"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0xa",
+                "sensorName": "CPU Protocol Err",
+                "sensorType": "Processor",
+                "uniqueSensorID": "34.1:0xa"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0xb",
+                "sensorName": "CPU Bus PERR",
+                "sensorType": "Processor",
+                "uniqueSensorID": "34.1:0xb"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0xc",
+                "sensorName": "CPU Init Err",
+                "sensorType": "Processor",
+                "uniqueSensorID": "34.1:0xc"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0xd",
+                "sensorName": "CPU Machine Chk",
+                "sensorType": "Processor",
+                "uniqueSensorID": "34.1:0xd"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x11",
+                "sensorName": "Memory Spared",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x11"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x12",
+                "sensorName": "Memory Mirrored",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x12"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x13",
+                "sensorName": "Memory RAID",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x13"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x14",
+                "sensorName": "Memory Added",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x14"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x15",
+                "sensorName": "Memory Removed",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x15"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x16",
+                "sensorName": "Memory Cfg Err",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x16"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x17",
+                "sensorName": "Mem Redun Gain",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x17"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x18",
+                "sensorName": "PCIE Fatal Err",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "34.1:0x18"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x19",
+                "sensorName": "Chipset Err",
+                "sensorType": "Critical Interrupt",
+                "uniqueSensorID": "34.1:0x19"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1a",
+                "sensorName": "Err Reg Pointer",
+                "sensorType": "Unknown (0xC1)",
+                "uniqueSensorID": "34.1:0x1a"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1b",
+                "sensorName": "Mem ECC Warning",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x1b"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1c",
+                "sensorName": "Mem CRC Err",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x1c"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1d",
+                "sensorName": "USB Over-current",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x1d"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1e",
+                "sensorName": "POST Err",
+                "sensorType": "System Firmwares",
+                "uniqueSensorID": "34.1:0x1e"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x1f",
+                "sensorName": "Hdwr version err",
+                "sensorType": "Version Change",
+                "uniqueSensorID": "34.1:0x1f"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x20",
+                "sensorName": "Mem Overtemp",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x20"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x21",
+                "sensorName": "Mem Fatal SB CRC",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x21"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x22",
+                "sensorName": "Mem Fatal NB CRC",
+                "sensorType": "Memory",
+                "uniqueSensorID": "34.1:0x22"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x71",
+                "sensorName": "OS Watchdog Time",
+                "sensorType": "Watchdog",
+                "uniqueSensorID": "34.1:0x71"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x26",
+                "sensorName": "Non Fatal PCI Er",
+                "sensorType": "Unknown (0xC2)",
+                "uniqueSensorID": "34.1:0x26"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x27",
+                "sensorName": "Fatal IO Error",
+                "sensorType": "Unknown (0xC3)",
+                "uniqueSensorID": "34.1:0x27"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x28",
+                "sensorName": "MSR Info Log",
+                "sensorType": "Unknown (0xC1)",
+                "uniqueSensorID": "34.1:0x28"
+              },
+              {
+                "entityID": "34.1 (BIOS)",
+                "sensorID": "0x2a",
+                "sensorName": "TXT Status",
+                "sensorType": "OS Critical Stop",
+                "uniqueSensorID": "34.1:0x2a"
+              },
+              {
+                "assertionEvents": [
+                  "Drive Present"
+                ],
+                "assertionsEnabled": [
+                  "Drive Present",
+                  "Drive Fault"
+                ],
+                "deassertionsEnabled": [
+                  "Drive Present",
+                  "Drive Fault"
+                ],
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0xa0",
+                "sensorName": "Drive 0",
+                "sensorType": "Drive Slot / Bay",
+                "uniqueSensorID": "7.1:0xa0"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "eventStatus": "Unavailable",
+                "sensorID": "0xe0",
+                "sensorName": "Cable SAS A",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.1:0xe0"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "eventStatus": "Unavailable",
+                "sensorID": "0xe1",
+                "sensorName": "Cable SAS B",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.1:0xe1"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "eventStatus": "Unavailable",
+                "sensorID": "0xe2",
+                "sensorName": "Cable SAS C",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.1:0xe2"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "eventStatus": "Unavailable",
+                "sensorID": "0xe3",
+                "sensorName": "Cable SAS D",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.1:0xe3"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0xe4",
+                "sensorName": "Cable SAS A",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0xe4"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0xe5",
+                "sensorName": "Cable SAS B",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0xe5"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0xe6",
+                "sensorName": "Cable SAS C",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0xe6"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0xe7",
+                "sensorName": "Cable SAS D",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0xe7"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "sensorID": "0x58",
+                "sensorName": "Power Cable",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "26.1:0x58"
+              },
+              {
+                "assertionEvents": [
+                  "Connected"
+                ],
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.1 (Disk Drive Bay)",
+                "sensorID": "0x59",
+                "sensorName": "Signal Cable",
+                "sensorType": "Cable / Interconnect",
+                "statesAsserted": [
+                  "Connected"
+                ],
+                "uniqueSensorID": "26.1:0x59"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0x5a",
+                "sensorName": "Power Cable",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0x5a"
+              },
+              {
+                "assertionsEnabled": [
+                  "Config Error"
+                ],
+                "deassertionsEnabled": [
+                  "Config Error"
+                ],
+                "entityID": "26.2 (Disk Drive Bay)",
+                "sensorID": "0x5b",
+                "sensorName": "Signal Cable",
+                "sensorType": "Cable / Interconnect",
+                "uniqueSensorID": "26.2:0x5b"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x3c",
+                "sensorName": "Fan7A RPM",
+                "sensorReading": "5880 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x3c"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x31",
+                "sensorName": "Fan1B RPM",
+                "sensorReading": "5400 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x31"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x33",
+                "sensorName": "Fan2B RPM",
+                "sensorReading": "5400 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x33"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x35",
+                "sensorName": "Fan3B RPM",
+                "sensorReading": "5520 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x35"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x37",
+                "sensorName": "Fan4B RPM",
+                "sensorReading": "5280 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x37"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x39",
+                "sensorName": "Fan5B RPM",
+                "sensorReading": "5280 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x39"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x3b",
+                "sensorName": "Fan6B RPM",
+                "sensorReading": "5640 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x3b"
+              },
+              {
+                "assertionEvents": [],
+                "assertionsEnabled": [],
+                "deassertionsEnabled": [],
+                "entityID": "7.1 (System Board)",
+                "eventMessageControl": "Per-threshold",
+                "lowerCritical": "720.000",
+                "lowerNonCritical": "840.000",
+                "maximumSensorRange": "Unspecified",
+                "minimumSensorRange": "Unspecified",
+                "negativeHysteresis": "120.000",
+                "nominalReading": "6720.000",
+                "normalMaximum": "23640.000",
+                "normalMinimum": "16680.000",
+                "positiveHysteresis": "120.000",
+                "readableThresholds": "lcr lnc",
+                "sensorID": "0x3d",
+                "sensorName": "Fan7B RPM",
+                "sensorReading": "5520 (+/- 120) RPM",
+                "sensorType": "Fan",
+                "settableThresholds": "",
+                "status": "ok",
+                "thresholdReadMask": "lcr lnc",
+                "uniqueSensorID": "7.1:0x3d"
+              },
+              {
+                "entityID": "7.1 (System Board)",
+                "sensorID": "0x66",
+                "sensorName": "PFault Fail Safe",
+                "sensorType": "Voltage",
+                "uniqueSensorID": "7.1:0x66"
+              },
+              {
+                "assertionEvents": [
+                  "Presence Detected"
+                ],
+                "entityID": "32.1 (Memory Device)",
+                "sensorID": "0xc0",
+                "sensorName": "A",
+                "sensorType": "Memory",
+                "statesAsserted": [
+                  "Presence Detected"
+                ],
+                "uniqueSensorID": "32.1:0xc0"
+              },
+              {
+                "assertionEvents": [
+                  "Presence Detected"
+                ],
+                "entityID": "32.1 (Memory Device)",
+                "sensorID": "0xcc",
+                "sensorName": "B",
+                "sensorType": "Memory",
+                "statesAsserted": [
+                  "Presence Detected"
+                ],
+                "uniqueSensorID": "32.1:0xcc"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
 }"""
 
 RESP_GetLimits_v9_0 = """{
@@ -5134,6 +14067,80 @@ RESP_GetNvramInfo_v9_0 = """{
   }
 }"""
 
+RESP_GetOrigin_v9_0 = """{
+  "id": null,
+  "result": {
+    "nodes": [
+      {
+        "nodeID": 1,
+        "result": {
+          "origin": {
+            "<signature>": {
+              "data": "eiPNNA3TpfgO0bl+SnhjaO1ZEKJUPZJDG1PFZrbOmUu5JXfQ012Aq0RzhMSKIb8MVTgesZ/+urfzuVD9Zf1JKwnfv7h3UZLMzE7eC6rJnLNi+AgHEYvqBLLKMJ39HNj+xEOogpQmBIn5jKv7U05pk4tsQwbxv4HtoQNMEl+PdQuVdDGLD9ipU3jgAw5sHFFZ+hLq8Uk3fzUiiR7LcW2b9aAw4KEQdSj/OhCNB4/7IcKOq8YBpP3ONWb+N6jrqSfMtnD4sa7vzSX7vI0z++zBeUd6E0hJz7atonS6oAqtyT4F48giO6hBSfkqt0KLvvC1Mcgh0LQrQG+XZnQ5KWBIuQ==",
+              "pubkey": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxmKgEBzyZv2jFZpucao7HT9lYuR3g/18thP/7arwflrtDauIaPaIbnsuDVWgbPKHsqBkth9XCnDF16yBOFYoJLZ+vW0kNS7Z/CiCiLlmAXIa4voeEqLsQ55IbAhjMXfrGauyUHZYunMBhUG3xDJxdrs4Rgp24VqB/oBxihleyotIX+dLpv7nd7qbVA3juLMAy7cfgxUX7mAEmPAcx3gNiNw7SBBZaeFVrNSiXv3+Zrw5wLkLH1QDWwuBRK+3yGTkzVwD5QgLw0qkRMkFobBhk96Z7CQbf4B/8zi3bhvowoyaK+4Cv/jmEjs2TS0QFW0PQHKIjyC3ckkcLaZZ2DQcLQIDAQAB",
+              "version": 1
+            },
+            "contract-date": "10/1/2015",
+            "contract-name": "00002265",
+            "contract-quantity": 0,
+            "contract-type": "Master",
+            "integrator": "StackVelocity",
+            "location": "Memphis, Tennessee",
+            "organization": "none",
+            "type": "appliance"
+          }
+        }
+      },
+      {
+        "nodeID": 2,
+        "result": {
+          "origin": {
+            "<signature>": {
+              "data": "eiPNNA3TpfgO0bl+SnhjaO1ZEKJUPZJDG1PFZrbOmUu5JXfQ012Aq0RzhMSKIb8MVTgesZ/+urfzuVD9Zf1JKwnfv7h3UZLMzE7eC6rJnLNi+AgHEYvqBLLKMJ39HNj+xEOogpQmBIn5jKv7U05pk4tsQwbxv4HtoQNMEl+PdQuVdDGLD9ipU3jgAw5sHFFZ+hLq8Uk3fzUiiR7LcW2b9aAw4KEQdSj/OhCNB4/7IcKOq8YBpP3ONWb+N6jrqSfMtnD4sa7vzSX7vI0z++zBeUd6E0hJz7atonS6oAqtyT4F48giO6hBSfkqt0KLvvC1Mcgh0LQrQG+XZnQ5KWBIuQ==",
+              "pubkey": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxmKgEBzyZv2jFZpucao7HT9lYuR3g/18thP/7arwflrtDauIaPaIbnsuDVWgbPKHsqBkth9XCnDF16yBOFYoJLZ+vW0kNS7Z/CiCiLlmAXIa4voeEqLsQ55IbAhjMXfrGauyUHZYunMBhUG3xDJxdrs4Rgp24VqB/oBxihleyotIX+dLpv7nd7qbVA3juLMAy7cfgxUX7mAEmPAcx3gNiNw7SBBZaeFVrNSiXv3+Zrw5wLkLH1QDWwuBRK+3yGTkzVwD5QgLw0qkRMkFobBhk96Z7CQbf4B/8zi3bhvowoyaK+4Cv/jmEjs2TS0QFW0PQHKIjyC3ckkcLaZZ2DQcLQIDAQAB",
+              "version": 1
+            },
+            "contract-date": "10/1/2015",
+            "contract-name": "00002265",
+            "contract-quantity": 0,
+            "contract-type": "Master",
+            "integrator": "StackVelocity",
+            "location": "Memphis, Tennessee",
+            "organization": "none",
+            "type": "appliance"
+          }
+        }
+      },
+      {
+        "nodeID": 3,
+        "result": {
+          "origin": {
+            "<signature>": {
+              "data": "eiPNNA3TpfgO0bl+SnhjaO1ZEKJUPZJDG1PFZrbOmUu5JXfQ012Aq0RzhMSKIb8MVTgesZ/+urfzuVD9Zf1JKwnfv7h3UZLMzE7eC6rJnLNi+AgHEYvqBLLKMJ39HNj+xEOogpQmBIn5jKv7U05pk4tsQwbxv4HtoQNMEl+PdQuVdDGLD9ipU3jgAw5sHFFZ+hLq8Uk3fzUiiR7LcW2b9aAw4KEQdSj/OhCNB4/7IcKOq8YBpP3ONWb+N6jrqSfMtnD4sa7vzSX7vI0z++zBeUd6E0hJz7atonS6oAqtyT4F48giO6hBSfkqt0KLvvC1Mcgh0LQrQG+XZnQ5KWBIuQ==",
+              "pubkey": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxmKgEBzyZv2jFZpucao7HT9lYuR3g/18thP/7arwflrtDauIaPaIbnsuDVWgbPKHsqBkth9XCnDF16yBOFYoJLZ+vW0kNS7Z/CiCiLlmAXIa4voeEqLsQ55IbAhjMXfrGauyUHZYunMBhUG3xDJxdrs4Rgp24VqB/oBxihleyotIX+dLpv7nd7qbVA3juLMAy7cfgxUX7mAEmPAcx3gNiNw7SBBZaeFVrNSiXv3+Zrw5wLkLH1QDWwuBRK+3yGTkzVwD5QgLw0qkRMkFobBhk96Z7CQbf4B/8zi3bhvowoyaK+4Cv/jmEjs2TS0QFW0PQHKIjyC3ckkcLaZZ2DQcLQIDAQAB",
+              "version": 1
+            },
+            "contract-date": "10/1/2015",
+            "contract-name": "00002265",
+            "contract-quantity": 0,
+            "contract-type": "Master",
+            "integrator": "StackVelocity",
+            "location": "Memphis, Tennessee",
+            "organization": "none",
+            "type": "appliance"
+          }
+        }
+      },
+      {
+        "nodeID": 4,
+        "result": {
+          "origin": null
+        }
+      }
+    ]
+  }
+}"""
+
 RESP_GetStorageContainerEfficiency_v9_0 = """{
   "id": null,
   "result": {
@@ -5149,6 +14156,13 @@ RESP_GetVirtualVolumeCount_v9_0 = """{
   "id": null,
   "result": {
     "count": 0
+  }
+}"""
+
+RESP_GetVolumeCount_v9_0 = """{
+  "id": null,
+  "result": {
+    "count": 736
   }
 }"""
 
@@ -5313,6 +14327,30 @@ RESP_ListISCSISessions_v9_0 = """{
         "volumeID": 9,
         "volumeInstance": 139922531221504
       }
+    ]
+  }
+}"""
+
+RESP_ListPendingActiveNodes_v9_0 = """{
+  "id": null,
+  "result": {
+    "pendingActiveNodes": [
+		{
+		  "activeNodeKey": "5rPHP3lTAO",
+		  "assignedNodeID": 5,
+		  "asyncHandle": 2,
+		  "cip": "10.10.5.106",
+		  "mip": "192.168.133.106",
+		  "pendingNodeID": 1,
+		  "platformInfo": {
+			"chassisType": "R620",
+			"cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+			"nodeMemoryGB": 72,
+			"nodeType": "SF3010"
+		  },
+		 "sip": "10.10.5.106",
+		 "softwareVersion": "9.0.0.1077"
+		}
     ]
   }
 }"""
