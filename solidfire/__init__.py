@@ -5425,111 +5425,6 @@ class Element(ServiceBase):
             since=7.0
         )
 
-    def get_ipmi_config(
-            self,
-            chassis_type,
-            force,):
-        """
-        GetIpmiConfig enables you to retrieve hardware sensor information from sensors that are in your node.
-        :param chassisType: [required] Used to display information for each node chassis type. Valid values:all - returns sensor information for each chassis type. {chassis type} - returns sensor information for a specified chassis type. 
-        :type chassisType: str
-
-        :param force: [required] 
-        :type force: bool
-        """
-
-        self._check_connection_type("get_ipmi_config", "Cluster")
-
-        params = { 
-            "chassisType": chassis_type,
-            "force": force,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetIpmiConfig',
-            GetIpmiConfigResult,
-            params
-        )
-
-    def get_ipmi_info(
-            self,
-            force,):
-        """
-        GetIpmiInfo allows you to display a detailed reporting of sensors (objects) for node fans, intake and exhaust temperatures, and power supplies  that are monitored by . 
-        :param force: [required] 
-        :type force: bool
-        """
-
-        self._check_connection_type("get_ipmi_info", "Cluster")
-
-        params = { 
-            "force": force,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetIpmiInfo',
-            GetIpmiInfoResult,
-            params
-        )
-
-    def get_origin(
-            self,
-            force,):
-        """
-        GetOrigin enables you to retrieve the origination certificate for where the node was built.NOTE: The GetOrigin method may return "null" if there is no origination certification.
-        :param force: [required] 
-        :type force: bool
-        """
-
-        self._check_connection_type("get_origin", "Cluster")
-
-        params = { 
-            "force": force,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetOrigin',
-            GetOriginResult,
-            params
-        )
-
-    def get_volume_count(
-            self,):
-        """
-        GetVolumeCount enables you to retrieve the number of volumes currently in the system.        """
-
-        self._check_connection_type("get_volume_count", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetVolumeCount',
-            GetVolumeCountResult,
-            params
-        )
-
-    def list_pending_active_nodes(
-            self,):
-        """
-        ListPendingActiveNodes returns the list of nodes in the cluster that are currently in the PendingActive state, between the pending and active states. These are nodes that are currently being returned to the factory image.        """
-
-        self._check_connection_type("list_pending_active_nodes", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListPendingActiveNodes',
-            ListPendingActiveNodesResult,
-            params
-        )
-
     def add_drives(
             self,
             drives,):
@@ -5789,5 +5684,111 @@ class Element(ServiceBase):
             AsyncHandleResult,
             params,
             since=1.0
+        )
+
+    def get_ipmi_config(
+            self,
+            force,
+            chassis_type=OPTIONAL,):
+        """
+        GetIpmiConfig enables you to retrieve hardware sensor information from sensors that are in your node.
+        :param chassisType:  Used to display information for each node chassis type. Valid values:all - returns sensor information for each chassis type. {chassis type} - returns sensor information for a specified chassis type. 
+        :type chassisType: str
+
+        :param force: [required] 
+        :type force: bool
+        """
+
+        self._check_connection_type("get_ipmi_config", "Cluster")
+
+        params = { 
+            "force": force,
+        }
+        if chassis_type is not None:
+            params["chassisType"] = chassis_type
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetIpmiConfig',
+            GetIpmiConfigResult,
+            params
+        )
+
+    def get_ipmi_info(
+            self,
+            force,):
+        """
+        GetIpmiInfo allows you to display a detailed reporting of sensors (objects) for node fans, intake and exhaust temperatures, and power supplies  that are monitored by . 
+        :param force: [required] 
+        :type force: bool
+        """
+
+        self._check_connection_type("get_ipmi_info", "Cluster")
+
+        params = { 
+            "force": force,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetIpmiInfo',
+            GetIpmiInfoResult,
+            params
+        )
+
+    def get_origin(
+            self,
+            force,):
+        """
+        GetOrigin enables you to retrieve the origination certificate for where the node was built.NOTE: The GetOrigin method may return "null" if there is no origination certification.
+        :param force: [required] 
+        :type force: bool
+        """
+
+        self._check_connection_type("get_origin", "Cluster")
+
+        params = { 
+            "force": force,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetOrigin',
+            GetOriginResult,
+            params
+        )
+
+    def get_volume_count(
+            self,):
+        """
+        GetVolumeCount enables you to retrieve the number of volumes currently in the system.        """
+
+        self._check_connection_type("get_volume_count", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetVolumeCount',
+            GetVolumeCountResult,
+            params
+        )
+
+    def list_pending_active_nodes(
+            self,):
+        """
+        ListPendingActiveNodes returns the list of nodes in the cluster that are currently in the PendingActive state, between the pending and active states. These are nodes that are currently being returned to the factory image.        """
+
+        self._check_connection_type("list_pending_active_nodes", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListPendingActiveNodes',
+            ListPendingActiveNodesResult,
+            params
         )
 
