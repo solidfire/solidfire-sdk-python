@@ -2986,59 +2986,109 @@ class Element(ServiceBase):
             since=6.0
         )
 
-    def restart_networking(
+    def get_ipmi_config(
             self,
-            force,):
+            force,
+            chassis_type=OPTIONAL,):
         """
-        The RestartNetworking API method is used to restart the networking services on a node.WARNING! This method restarts all networking services on a node, causing temporary loss of networking connectivity. Exercise caution when using this method.
-        :param force: [required] The "force" parameter must be included on this method to successfully restart the networking. 
+        GetIpmiConfig enables you to retrieve hardware sensor information from sensors that are in your node.
+        :param chassisType:  Used to display information for each node chassis type. Valid values:all - returns sensor information for each chassis type. {chassis type} - returns sensor information for a specified chassis type. 
+        :type chassisType: str
+
+        :param force: [required] 
         :type force: bool
         """
 
-        self._check_connection_type("restart_networking", "Node")
+        self._check_connection_type("get_ipmi_config", "Cluster")
 
         params = { 
             "force": force,
         }
+        if chassis_type is not None:
+            params["chassisType"] = chassis_type
         
         # There is no adaptor.
         return self.send_request(
-            'RestartNetworking',
-            RestartNetworkingResult,
+            'GetIpmiConfig',
+            GetIpmiConfigResult,
             params
         )
 
-    def restart_services(
+    def get_ipmi_info(
             self,
-            force,
-            service=OPTIONAL,
-            action=OPTIONAL,):
+            force,):
         """
-        The RestartServices API method is used to restart the  Element services on a node.Caution: This method causes temporary node services interruption. Exercise caution when using this method.
-        :param force: [required] The "force" parameter must be included on this method to successfully restart services on a node.    
+        GetIpmiInfo allows you to display a detailed reporting of sensors (objects) for node fans, intake and exhaust temperatures, and power supplies  that are monitored by . 
+        :param force: [required] 
         :type force: bool
-
-        :param service:  Service name to be restarted. 
-        :type service: str
-
-        :param action:  Action to perform on the service (start, stop, restart). 
-        :type action: str
         """
 
-        self._check_connection_type("restart_services", "Node")
+        self._check_connection_type("get_ipmi_info", "Cluster")
 
         params = { 
             "force": force,
         }
-        if service is not None:
-            params["service"] = service
-        if action is not None:
-            params["action"] = action
         
         # There is no adaptor.
         return self.send_request(
-            'RestartServices',
-            RestartServicesResult,
+            'GetIpmiInfo',
+            GetIpmiInfoResult,
+            params
+        )
+
+    def get_origin(
+            self,
+            force,):
+        """
+        GetOrigin enables you to retrieve the origination certificate for where the node was built.NOTE: The GetOrigin method may return "null" if there is no origination certification.
+        :param force: [required] 
+        :type force: bool
+        """
+
+        self._check_connection_type("get_origin", "Cluster")
+
+        params = { 
+            "force": force,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetOrigin',
+            GetOriginResult,
+            params
+        )
+
+    def get_volume_count(
+            self,):
+        """
+        GetVolumeCount enables you to retrieve the number of volumes currently in the system.        """
+
+        self._check_connection_type("get_volume_count", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetVolumeCount',
+            GetVolumeCountResult,
+            params
+        )
+
+    def list_pending_active_nodes(
+            self,):
+        """
+        ListPendingActiveNodes returns the list of nodes in the cluster that are currently in the PendingActive state, between the pending and active states. These are nodes that are currently being returned to the factory image.        """
+
+        self._check_connection_type("list_pending_active_nodes", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListPendingActiveNodes',
+            ListPendingActiveNodesResult,
             params
         )
 
@@ -5686,109 +5736,59 @@ class Element(ServiceBase):
             since=1.0
         )
 
-    def get_ipmi_config(
+    def restart_networking(
+            self,
+            force,):
+        """
+        The RestartNetworking API method is used to restart the networking services on a node.WARNING! This method restarts all networking services on a node, causing temporary loss of networking connectivity. Exercise caution when using this method.
+        :param force: [required] The "force" parameter must be included on this method to successfully restart the networking. 
+        :type force: bool
+        """
+
+        self._check_connection_type("restart_networking", "Node")
+
+        params = { 
+            "force": force,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RestartNetworking',
+            RestartNetworkingResult,
+            params
+        )
+
+    def restart_services(
             self,
             force,
-            chassis_type=OPTIONAL,):
+            service=OPTIONAL,
+            action=OPTIONAL,):
         """
-        GetIpmiConfig enables you to retrieve hardware sensor information from sensors that are in your node.
-        :param chassisType:  Used to display information for each node chassis type. Valid values:all - returns sensor information for each chassis type. {chassis type} - returns sensor information for a specified chassis type. 
-        :type chassisType: str
-
-        :param force: [required] 
+        The RestartServices API method is used to restart the  Element services on a node.Caution: This method causes temporary node services interruption. Exercise caution when using this method.
+        :param force: [required] The "force" parameter must be included on this method to successfully restart services on a node.    
         :type force: bool
+
+        :param service:  Service name to be restarted. 
+        :type service: str
+
+        :param action:  Action to perform on the service (start, stop, restart). 
+        :type action: str
         """
 
-        self._check_connection_type("get_ipmi_config", "Cluster")
+        self._check_connection_type("restart_services", "Node")
 
         params = { 
             "force": force,
         }
-        if chassis_type is not None:
-            params["chassisType"] = chassis_type
+        if service is not None:
+            params["service"] = service
+        if action is not None:
+            params["action"] = action
         
         # There is no adaptor.
         return self.send_request(
-            'GetIpmiConfig',
-            GetIpmiConfigResult,
-            params
-        )
-
-    def get_ipmi_info(
-            self,
-            force,):
-        """
-        GetIpmiInfo allows you to display a detailed reporting of sensors (objects) for node fans, intake and exhaust temperatures, and power supplies  that are monitored by . 
-        :param force: [required] 
-        :type force: bool
-        """
-
-        self._check_connection_type("get_ipmi_info", "Cluster")
-
-        params = { 
-            "force": force,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetIpmiInfo',
-            GetIpmiInfoResult,
-            params
-        )
-
-    def get_origin(
-            self,
-            force,):
-        """
-        GetOrigin enables you to retrieve the origination certificate for where the node was built.NOTE: The GetOrigin method may return "null" if there is no origination certification.
-        :param force: [required] 
-        :type force: bool
-        """
-
-        self._check_connection_type("get_origin", "Cluster")
-
-        params = { 
-            "force": force,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetOrigin',
-            GetOriginResult,
-            params
-        )
-
-    def get_volume_count(
-            self,):
-        """
-        GetVolumeCount enables you to retrieve the number of volumes currently in the system.        """
-
-        self._check_connection_type("get_volume_count", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetVolumeCount',
-            GetVolumeCountResult,
-            params
-        )
-
-    def list_pending_active_nodes(
-            self,):
-        """
-        ListPendingActiveNodes returns the list of nodes in the cluster that are currently in the PendingActive state, between the pending and active states. These are nodes that are currently being returned to the factory image.        """
-
-        self._check_connection_type("list_pending_active_nodes", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListPendingActiveNodes',
-            ListPendingActiveNodesResult,
+            'RestartServices',
+            RestartServicesResult,
             params
         )
 
