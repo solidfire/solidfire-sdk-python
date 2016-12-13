@@ -4742,6 +4742,241 @@ RESP_GetIpmiConfig_v9_0 = """{
   }
 }"""
 
+RESP_GetIpmiConfig_v9_1 = """{
+   "id":169,
+   "result":{
+      "nodes":[
+         {
+            "nodeID":1,
+            "result":{
+               "ipmiConfig":{
+                  "C220M4":[
+                     {
+                        "sensorName":"Fan1A RPM",
+                        "uniqueSensorID":"29.1:0xf"
+                     },
+                     {
+                        "sensorName":"Fan1B RPM",
+                        "uniqueSensorID":"29.1:0x10"
+                     },
+                     {
+                        "sensorName":"Fan2A RPM",
+                        "uniqueSensorID":"29.2:0x11"
+                     },
+                     {
+                        "sensorName":"Fan2B RPM",
+                        "uniqueSensorID":"29.2:0x12"
+                     },
+                     {
+                        "sensorName":"Fan3A RPM",
+                        "uniqueSensorID":"29.3:0x13"
+                     },
+                     {
+                        "sensorName":"Fan3B RPM",
+                        "uniqueSensorID":"29.3:0x14"
+                     },
+                     {
+                        "sensorName":"Fan4A RPM",
+                        "uniqueSensorID":"29.4:0x15"
+                     },
+                     {
+                        "sensorName":"Fan4B RPM",
+                        "uniqueSensorID":"29.4:0x16"
+                     },
+                     {
+                        "sensorName":"Fan5A RPM",
+                        "uniqueSensorID":"29.5:0x17"
+                     },
+                     {
+                        "sensorName":"Fan5B RPM",
+                        "uniqueSensorID":"29.5:0x18"
+                     },
+                     {
+                        "sensorName":"Fan6A RPM",
+                        "uniqueSensorID":"29.6:0x19"
+                     },
+                     {
+                        "sensorName":"Fan6B RPM",
+                        "uniqueSensorID":"29.6:0x1a"
+                     },
+                     {
+                        "sensorName":"Exhaust Temp",
+                        "uniqueSensorID":"7.4:0xd6"
+                     },
+                     {
+                        "sensorName":"Inlet Temp",
+                        "uniqueSensorID":"12.1:0x43"
+                     },
+                     {
+                        "sensorName":"PS1",
+                        "uniqueSensorID":"10.1:0x26"
+                     },
+                     {
+                        "sensorName":"PS2",
+                        "uniqueSensorID":"10.2:0x2c"
+                     }
+                  ],
+                  "R620":[
+                     {
+                        "sensorName":"Fan1A RPM",
+                        "uniqueSensorID":"7.1:0x30"
+                     },
+                     {
+                        "sensorName":"Fan1B RPM",
+                        "uniqueSensorID":"7.1:0x31"
+                     },
+                     {
+                        "sensorName":"Fan2A RPM",
+                        "uniqueSensorID":"7.1:0x32"
+                     },
+                     {
+                        "sensorName":"Fan2B RPM",
+                        "uniqueSensorID":"7.1:0x33"
+                     },
+                     {
+                        "sensorName":"Fan3A RPM",
+                        "uniqueSensorID":"7.1:0x34"
+                     },
+                     {
+                        "sensorName":"Fan3B RPM",
+                        "uniqueSensorID":"7.1:0x35"
+                     },
+                     {
+                        "sensorName":"Fan4A RPM",
+                        "uniqueSensorID":"7.1:0x36"
+                     },
+                     {
+                        "sensorName":"Fan4B RPM",
+                        "uniqueSensorID":"7.1:0x37"
+                     },
+                     {
+                        "sensorName":"Fan5A RPM",
+                        "uniqueSensorID":"7.1:0x38"
+                     },
+                     {
+                        "sensorName":"Fan5B RPM",
+                        "uniqueSensorID":"7.1:0x39"
+                     },
+                     {
+                        "sensorName":"Fan6A RPM",
+                        "uniqueSensorID":"7.1:0x3a"
+                     },
+                     {
+                        "sensorName":"Fan6B RPM",
+                        "uniqueSensorID":"7.1:0x3b"
+                     },
+                     {
+                        "sensorName":"Fan7A RPM",
+                        "uniqueSensorID":"7.1:0x3c"
+                     },
+                     {
+                        "sensorName":"Fan7B RPM",
+                        "uniqueSensorID":"7.1:0x3d"
+                     },
+                     {
+                        "sensorName":"Exhaust Temp",
+                        "uniqueSensorID":"7.1:0x1"
+                     },
+                     {
+                        "sensorName":"Inlet Temp",
+                        "uniqueSensorID":"7.1:0x4"
+                     },
+                     {
+                        "sensorName":"PS1",
+                        "uniqueSensorID":"10.1:0x62"
+                     },
+                     {
+                        "sensorName":"PS2",
+                        "uniqueSensorID":"10.2:0x63"
+                     }
+                  ],
+                  "R630":[
+                     {
+                        "sensorName":"Fan1A RPM",
+                        "uniqueSensorID":"7.1:0x30"
+                     },
+                     {
+                        "sensorName":"Fan1B RPM",
+                        "uniqueSensorID":"7.1:0x31"
+                     },
+                     {
+                        "sensorName":"Fan2A RPM",
+                        "uniqueSensorID":"7.1:0x32"
+                     },
+                     {
+                        "sensorName":"Fan2B RPM",
+                        "uniqueSensorID":"7.1:0x33"
+                     },
+                     {
+                        "sensorName":"Fan3A RPM",
+                        "uniqueSensorID":"7.1:0x34"
+                     },
+                     {
+                        "sensorName":"Fan3B RPM",
+                        "uniqueSensorID":"7.1:0x35"
+                     },
+                     {
+                        "sensorName":"Fan4A RPM",
+                        "uniqueSensorID":"7.1:0x36"
+                     },
+                     {
+                        "sensorName":"Fan4B RPM",
+                        "uniqueSensorID":"7.1:0x37"
+                     },
+                     {
+                        "sensorName":"Fan5A RPM",
+                        "uniqueSensorID":"7.1:0x38"
+                     },
+                     {
+                        "sensorName":"Fan5B RPM",
+                        "uniqueSensorID":"7.1:0x39"
+                     },
+                     {
+                        "sensorName":"Fan6A RPM",
+                        "uniqueSensorID":"7.1:0x3a"
+                     },
+                     {
+                        "sensorName":"Fan6B RPM",
+                        "uniqueSensorID":"7.1:0x3b"
+                     },
+                     {
+                        "sensorName":"Fan7A RPM",
+                        "uniqueSensorID":"7.1:0x3c"
+                     },
+                     {
+                        "sensorName":"Fan7B RPM",
+                        "uniqueSensorID":"7.1:0x3d"
+                     },
+                     {
+                        "sensorName":"Exhaust Temp",
+                        "uniqueSensorID":"7.1:0x1"
+                     },
+                     {
+                        "sensorName":"Inlet Temp",
+                        "uniqueSensorID":"7.1:0x4"
+                     },
+                     {
+                        "sensorName":"PS1",
+                        "uniqueSensorID":"10.1:0x62"
+                     },
+                     {
+                        "sensorName":"PS2",
+                        "uniqueSensorID":"10.2:0x63"
+                     }
+                  ],
+                  "SFVIRT":[
+
+                  ],
+                  "Unknown":[
+
+                  ]
+               }
+            }
+         }
+      ]
+   }
+}"""
+
 RESP_GetIpmiInfo_v9_0 = """{
   "id": null,
   "result": {
@@ -15493,6 +15728,8 @@ RESP_RestartServices_v9_0 = """{
       "result": "Passed"
    }
 }"""
+
+RESP_RestartServices_v9_1 = """{"id":9,"result":{"details":"solidfire stop/waiting\nsolidfire start/running, process 55253\n","duration":"00:00:02.044584","result":"Passed"}}"""
 
 RESP_SetDefaultQoS_v9_0 = """{
     "id":1,

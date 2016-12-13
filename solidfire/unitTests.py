@@ -1249,6 +1249,17 @@ def test_get_ipmi_config_v9_0():
     assert result.nodes[0].node_id == 1, "Died on +.nodes[0].node_id"
     assert type(result.nodes[0].result) is dict, "Died on .nodes[0].result"
 
+def test_get_ipmi_config_v9_1():
+    ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
+    ef._dispatcher.post = MagicMock(return_value = Resources.RESP_GetIpmiConfig_v9_1)
+
+    
+    chassis_type = "" # chassis_type
+    force = True # force
+    result = ef.get_ipmi_config(force,)
+    assert result.nodes[0].node_id == 1, "Died on +.nodes[0].node_id"
+    assert type(result.nodes[0].result) is dict, "Died on .nodes[0].result"
+
 def test_get_ipmi_info_v9_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
     ef._dispatcher.post = MagicMock(return_value = Resources.RESP_GetIpmiInfo_v9_0)
@@ -3183,6 +3194,16 @@ def test_restart_services_v9_0():
     action = "" # action
     result = ef.restart_services(force,)
 
+def test_restart_services_v9_1():
+    ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
+    ef._dispatcher.post = MagicMock(return_value = Resources.RESP_RestartServices_v9_1)
+
+    
+    force = True # force
+    service = "" # service
+    action = "" # action
+    result = ef.restart_services(force,)
+
 def test_set_default_qos_v9_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
     ef._dispatcher.post = MagicMock(return_value = Resources.RESP_SetDefaultQoS_v9_0)
@@ -3218,6 +3239,7 @@ if __name__ == "__main__":
     test_get_hardware_info_v9_2()
     test_get_hardware_info_v9_3()
     test_get_ipmi_config_v9_0()
+    test_get_ipmi_config_v9_1()
     test_get_ipmi_info_v9_0()
     test_get_limits_v9_0()
     test_get_network_config_v9_0()
@@ -3249,4 +3271,5 @@ if __name__ == "__main__":
     test_purge_deleted_volumes_v9_0()
     test_restart_networking_v9_0()
     test_restart_services_v9_0()
+    test_restart_services_v9_1()
     test_set_default_qos_v9_0()
