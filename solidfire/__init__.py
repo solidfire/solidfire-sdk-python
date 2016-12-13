@@ -49,319 +49,6 @@ class Element(ServiceBase):
         ServiceBase.__init__(self, mvip, username, password, api_version,
                              verify_ssl, dispatcher)
 
-    def list_virtual_volumes(
-            self,
-            details=OPTIONAL,
-            limit=OPTIONAL,
-            recursive=OPTIONAL,
-            start_virtual_volume_id=OPTIONAL,
-            virtual_volume_ids=OPTIONAL,):
-        """
-        ListVirtualVolumes enables you to list the virtual volumes currently in the system. You can use this method to list all virtual volumes, or only list a subset.
-        :param details:  Possible values:true: Include more details about each VVOL in the response.false: Include the standard level of detail about each VVOL in the response. 
-        :type details: bool
-
-        :param limit:  The maximum number of virtual volumes to list. 
-        :type limit: int
-
-        :param recursive:  Possible values:true: Include information about the children of each VVOL in the response.false: Do not include information about the children of each VVOL in the response. 
-        :type recursive: bool
-
-        :param startVirtualVolumeID:  The ID of the virtual volume at which to begin the list. 
-        :type startVirtualVolumeID: UUID
-
-        :param virtualVolumeIDs:  A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
-        :type virtualVolumeIDs: UUID
-        """
-
-        self._check_connection_type("list_virtual_volumes", "Cluster")
-
-        params = { 
-        }
-        if details is not None:
-            params["details"] = details
-        if limit is not None:
-            params["limit"] = limit
-        if recursive is not None:
-            params["recursive"] = recursive
-        if start_virtual_volume_id is not None:
-            params["startVirtualVolumeID"] = start_virtual_volume_id
-        if virtual_volume_ids is not None:
-            params["virtualVolumeIDs"] = virtual_volume_ids
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVirtualVolumes',
-            ListVirtualVolumesResult,
-            params,
-            since=9.0
-        )
-
-    def prepare_virtual_snapshot(
-            self,
-            virtual_volume_id,
-            name=OPTIONAL,
-            writable_snapshot=OPTIONAL,
-            calling_virtual_volume_host_id=OPTIONAL,):
-        """
-        PrepareVirtualSnapshot is used to set up VMware Virtual Volume snapshot.
-        :param virtualVolumeID: [required] The ID of the Virtual Volume to clone. 
-        :type virtualVolumeID: UUID
-
-        :param name:  The name for the newly-created volume. 
-        :type name: str
-
-        :param writableSnapshot:  Will the snapshot be writable? 
-        :type writableSnapshot: bool
-
-        :param callingVirtualVolumeHostID:  
-        :type callingVirtualVolumeHostID: UUID
-        """
-
-        self._check_connection_type("prepare_virtual_snapshot", "Cluster")
-
-        params = { 
-            "virtualVolumeID": virtual_volume_id,
-        }
-        if name is not None:
-            params["name"] = name
-        if writable_snapshot is not None:
-            params["writableSnapshot"] = writable_snapshot
-        if calling_virtual_volume_host_id is not None:
-            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
-        
-        # There is no adaptor.
-        return self.send_request(
-            'PrepareVirtualSnapshot',
-            PrepareVirtualSnapshotResult,
-            params,
-            since=9.0
-        )
-
-    def get_virtual_volume_unshared_chunks(
-            self,
-            virtual_volume_id,
-            base_virtual_volume_id,
-            segment_start,
-            segment_length,
-            chunk_size,
-            calling_virtual_volume_host_id=OPTIONAL,):
-        """
-        GetVirtualVolumeAllocatedBitmap scans a VVol segment and returns the number of 
-        chunks not shared between two volumes. This call will return results in less 
-        than 30 seconds. If the specified VVol and the base VVil are not related, an 
-        error is thrown. If the offset/length combination is invalid or out fo range 
-        an error is thrown.
-        :param virtualVolumeID: [required] The ID of the Virtual Volume. 
-        :type virtualVolumeID: UUID
-
-        :param baseVirtualVolumeID: [required] The ID of the Virtual Volume to compare against. 
-        :type baseVirtualVolumeID: UUID
-
-        :param segmentStart: [required] Start Byte offset. 
-        :type segmentStart: int
-
-        :param segmentLength: [required] Length of the scan segment in bytes. 
-        :type segmentLength: int
-
-        :param chunkSize: [required] Number of bytes represented by one bit in the bitmap. 
-        :type chunkSize: int
-
-        :param callingVirtualVolumeHostID:  
-        :type callingVirtualVolumeHostID: UUID
-        """
-
-        self._check_connection_type("get_virtual_volume_unshared_chunks", "Cluster")
-
-        params = { 
-            "virtualVolumeID": virtual_volume_id,
-            "baseVirtualVolumeID": base_virtual_volume_id,
-            "segmentStart": segment_start,
-            "segmentLength": segment_length,
-            "chunkSize": chunk_size,
-        }
-        if calling_virtual_volume_host_id is not None:
-            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetVirtualVolumeUnsharedChunks',
-            VirtualVolumeUnsharedChunkResult,
-            params,
-            since=9.0
-        )
-
-    def create_virtual_volume_host(
-            self,
-            virtual_volume_host_id,
-            cluster_id,
-            initiator_names=OPTIONAL,
-            visible_protocol_endpoint_ids=OPTIONAL,
-            host_address=OPTIONAL,
-            calling_virtual_volume_host_id=OPTIONAL,):
-        """
-        CreateVirtualVolumeHost creates a new ESX host.
-        :param virtualVolumeHostID: [required] The GUID of the ESX host. 
-        :type virtualVolumeHostID: UUID
-
-        :param clusterID: [required] The GUID of the ESX Cluster. 
-        :type clusterID: UUID
-
-        :param initiatorNames:  
-        :type initiatorNames: str
-
-        :param visibleProtocolEndpointIDs:  A list of PEs the host is aware of. 
-        :type visibleProtocolEndpointIDs: UUID
-
-        :param hostAddress:  IP or DNS name for the host. 
-        :type hostAddress: str
-
-        :param callingVirtualVolumeHostID:  
-        :type callingVirtualVolumeHostID: UUID
-        """
-
-        self._check_connection_type("create_virtual_volume_host", "Cluster")
-
-        params = { 
-            "virtualVolumeHostID": virtual_volume_host_id,
-            "clusterID": cluster_id,
-        }
-        if initiator_names is not None:
-            params["initiatorNames"] = initiator_names
-        if visible_protocol_endpoint_ids is not None:
-            params["visibleProtocolEndpointIDs"] = visible_protocol_endpoint_ids
-        if host_address is not None:
-            params["hostAddress"] = host_address
-        if calling_virtual_volume_host_id is not None:
-            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
-        
-        # There is no adaptor.
-        return self.send_request(
-            'CreateVirtualVolumeHost',
-            VirtualVolumeNullResult,
-            params,
-            since=9.0
-        )
-
-    def list_virtual_volume_hosts(
-            self,
-            virtual_volume_host_ids=OPTIONAL,):
-        """
-        ListVirtualVolumeHosts returns a list of known ESX hosts.
-        :param virtualVolumeHostIDs:  
-        :type virtualVolumeHostIDs: UUID
-        """
-
-        self._check_connection_type("list_virtual_volume_hosts", "Cluster")
-
-        params = { 
-        }
-        if virtual_volume_host_ids is not None:
-            params["virtualVolumeHostIDs"] = virtual_volume_host_ids
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVirtualVolumeHosts',
-            ListVirtualVolumeHostsResult,
-            params,
-            since=9.0
-        )
-
-    def get_virtual_volume_task_update(
-            self,
-            virtual_volume_task_id,
-            calling_virtual_volume_host_id=OPTIONAL,):
-        """
-        GetVirtualVolumeTaskUpdate checks the status of a VVol Async Task.
-        :param virtualVolumeTaskID: [required] The UUID of the VVol Task. 
-        :type virtualVolumeTaskID: UUID
-
-        :param callingVirtualVolumeHostID:  
-        :type callingVirtualVolumeHostID: UUID
-        """
-
-        self._check_connection_type("get_virtual_volume_task_update", "Cluster")
-
-        params = { 
-            "virtualVolumeTaskID": virtual_volume_task_id,
-        }
-        if calling_virtual_volume_host_id is not None:
-            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetVirtualVolumeTaskUpdate',
-            VirtualVolumeTaskResult,
-            params,
-            since=9.0
-        )
-
-    def list_virtual_volume_tasks(
-            self,
-            virtual_volume_task_ids=OPTIONAL,):
-        """
-        ListVirtualVolumeTasks returns a list of VVol Async Tasks.
-        :param virtualVolumeTaskIDs:  
-        :type virtualVolumeTaskIDs: UUID
-        """
-
-        self._check_connection_type("list_virtual_volume_tasks", "Cluster")
-
-        params = { 
-        }
-        if virtual_volume_task_ids is not None:
-            params["virtualVolumeTaskIDs"] = virtual_volume_task_ids
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVirtualVolumeTasks',
-            ListVirtualVolumeTasksResult,
-            params,
-            since=9.0
-        )
-
-    def list_virtual_volume_bindings(
-            self,
-            virtual_volume_binding_ids=OPTIONAL,):
-        """
-        ListVirtualVolumeBindings returns a list of VVol bindings.
-        :param virtualVolumeBindingIDs:  
-        :type virtualVolumeBindingIDs: int
-        """
-
-        self._check_connection_type("list_virtual_volume_bindings", "Cluster")
-
-        params = { 
-        }
-        if virtual_volume_binding_ids is not None:
-            params["virtualVolumeBindingIDs"] = virtual_volume_binding_ids
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVirtualVolumeBindings',
-            ListVirtualVolumeBindingsResult,
-            params,
-            since=9.0
-        )
-
-    def get_virtual_volume_count(
-            self,):
-        """
-        Enables retrieval of the number of virtual volumes currently in the system.        """
-
-        self._check_connection_type("get_virtual_volume_count", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetVirtualVolumeCount',
-            GetVirtualVolumeCountResult,
-            params,
-            since=9.0
-        )
-
     def invoke_sfapi(
             self,
             method,
@@ -5808,5 +5495,318 @@ class Element(ServiceBase):
             GetPendingOperationResult,
             params,
             since=5.0
+        )
+
+    def list_virtual_volumes(
+            self,
+            details=OPTIONAL,
+            limit=OPTIONAL,
+            recursive=OPTIONAL,
+            start_virtual_volume_id=OPTIONAL,
+            virtual_volume_ids=OPTIONAL,):
+        """
+        ListVirtualVolumes enables you to list the virtual volumes currently in the system. You can use this method to list all virtual volumes, or only list a subset.
+        :param details:  Possible values:true: Include more details about each VVOL in the response.false: Include the standard level of detail about each VVOL in the response. 
+        :type details: bool
+
+        :param limit:  The maximum number of virtual volumes to list. 
+        :type limit: int
+
+        :param recursive:  Possible values:true: Include information about the children of each VVOL in the response.false: Do not include information about the children of each VVOL in the response. 
+        :type recursive: bool
+
+        :param startVirtualVolumeID:  The ID of the virtual volume at which to begin the list. 
+        :type startVirtualVolumeID: UUID
+
+        :param virtualVolumeIDs:  A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
+        :type virtualVolumeIDs: UUID
+        """
+
+        self._check_connection_type("list_virtual_volumes", "Cluster")
+
+        params = { 
+        }
+        if details is not None:
+            params["details"] = details
+        if limit is not None:
+            params["limit"] = limit
+        if recursive is not None:
+            params["recursive"] = recursive
+        if start_virtual_volume_id is not None:
+            params["startVirtualVolumeID"] = start_virtual_volume_id
+        if virtual_volume_ids is not None:
+            params["virtualVolumeIDs"] = virtual_volume_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVirtualVolumes',
+            ListVirtualVolumesResult,
+            params,
+            since=9.0
+        )
+
+    def prepare_virtual_snapshot(
+            self,
+            virtual_volume_id,
+            name=OPTIONAL,
+            writable_snapshot=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        PrepareVirtualSnapshot is used to set up VMware Virtual Volume snapshot.
+        :param virtualVolumeID: [required] The ID of the Virtual Volume to clone. 
+        :type virtualVolumeID: UUID
+
+        :param name:  The name for the newly-created volume. 
+        :type name: str
+
+        :param writableSnapshot:  Will the snapshot be writable? 
+        :type writableSnapshot: bool
+
+        :param callingVirtualVolumeHostID:  
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("prepare_virtual_snapshot", "Cluster")
+
+        params = { 
+            "virtualVolumeID": virtual_volume_id,
+        }
+        if name is not None:
+            params["name"] = name
+        if writable_snapshot is not None:
+            params["writableSnapshot"] = writable_snapshot
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'PrepareVirtualSnapshot',
+            PrepareVirtualSnapshotResult,
+            params,
+            since=9.0
+        )
+
+    def get_virtual_volume_unshared_chunks(
+            self,
+            virtual_volume_id,
+            base_virtual_volume_id,
+            segment_start,
+            segment_length,
+            chunk_size,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        GetVirtualVolumeAllocatedBitmap scans a VVol segment and returns the number of 
+        chunks not shared between two volumes. This call will return results in less 
+        than 30 seconds. If the specified VVol and the base VVil are not related, an 
+        error is thrown. If the offset/length combination is invalid or out fo range 
+        an error is thrown.
+        :param virtualVolumeID: [required] The ID of the Virtual Volume. 
+        :type virtualVolumeID: UUID
+
+        :param baseVirtualVolumeID: [required] The ID of the Virtual Volume to compare against. 
+        :type baseVirtualVolumeID: UUID
+
+        :param segmentStart: [required] Start Byte offset. 
+        :type segmentStart: int
+
+        :param segmentLength: [required] Length of the scan segment in bytes. 
+        :type segmentLength: int
+
+        :param chunkSize: [required] Number of bytes represented by one bit in the bitmap. 
+        :type chunkSize: int
+
+        :param callingVirtualVolumeHostID:  
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("get_virtual_volume_unshared_chunks", "Cluster")
+
+        params = { 
+            "virtualVolumeID": virtual_volume_id,
+            "baseVirtualVolumeID": base_virtual_volume_id,
+            "segmentStart": segment_start,
+            "segmentLength": segment_length,
+            "chunkSize": chunk_size,
+        }
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetVirtualVolumeUnsharedChunks',
+            VirtualVolumeUnsharedChunkResult,
+            params,
+            since=9.0
+        )
+
+    def create_virtual_volume_host(
+            self,
+            virtual_volume_host_id,
+            cluster_id,
+            initiator_names=OPTIONAL,
+            visible_protocol_endpoint_ids=OPTIONAL,
+            host_address=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        CreateVirtualVolumeHost creates a new ESX host.
+        :param virtualVolumeHostID: [required] The GUID of the ESX host. 
+        :type virtualVolumeHostID: UUID
+
+        :param clusterID: [required] The GUID of the ESX Cluster. 
+        :type clusterID: UUID
+
+        :param initiatorNames:  
+        :type initiatorNames: str
+
+        :param visibleProtocolEndpointIDs:  A list of PEs the host is aware of. 
+        :type visibleProtocolEndpointIDs: UUID
+
+        :param hostAddress:  IP or DNS name for the host. 
+        :type hostAddress: str
+
+        :param callingVirtualVolumeHostID:  
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("create_virtual_volume_host", "Cluster")
+
+        params = { 
+            "virtualVolumeHostID": virtual_volume_host_id,
+            "clusterID": cluster_id,
+        }
+        if initiator_names is not None:
+            params["initiatorNames"] = initiator_names
+        if visible_protocol_endpoint_ids is not None:
+            params["visibleProtocolEndpointIDs"] = visible_protocol_endpoint_ids
+        if host_address is not None:
+            params["hostAddress"] = host_address
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateVirtualVolumeHost',
+            VirtualVolumeNullResult,
+            params,
+            since=9.0
+        )
+
+    def list_virtual_volume_hosts(
+            self,
+            virtual_volume_host_ids=OPTIONAL,):
+        """
+        ListVirtualVolumeHosts returns a list of known ESX hosts.
+        :param virtualVolumeHostIDs:  
+        :type virtualVolumeHostIDs: UUID
+        """
+
+        self._check_connection_type("list_virtual_volume_hosts", "Cluster")
+
+        params = { 
+        }
+        if virtual_volume_host_ids is not None:
+            params["virtualVolumeHostIDs"] = virtual_volume_host_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVirtualVolumeHosts',
+            ListVirtualVolumeHostsResult,
+            params,
+            since=9.0
+        )
+
+    def get_virtual_volume_task_update(
+            self,
+            virtual_volume_task_id,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        GetVirtualVolumeTaskUpdate checks the status of a VVol Async Task.
+        :param virtualVolumeTaskID: [required] The UUID of the VVol Task. 
+        :type virtualVolumeTaskID: UUID
+
+        :param callingVirtualVolumeHostID:  
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("get_virtual_volume_task_update", "Cluster")
+
+        params = { 
+            "virtualVolumeTaskID": virtual_volume_task_id,
+        }
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetVirtualVolumeTaskUpdate',
+            VirtualVolumeTaskResult,
+            params,
+            since=9.0
+        )
+
+    def list_virtual_volume_tasks(
+            self,
+            virtual_volume_task_ids=OPTIONAL,):
+        """
+        ListVirtualVolumeTasks returns a list of VVol Async Tasks.
+        :param virtualVolumeTaskIDs:  
+        :type virtualVolumeTaskIDs: UUID
+        """
+
+        self._check_connection_type("list_virtual_volume_tasks", "Cluster")
+
+        params = { 
+        }
+        if virtual_volume_task_ids is not None:
+            params["virtualVolumeTaskIDs"] = virtual_volume_task_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVirtualVolumeTasks',
+            ListVirtualVolumeTasksResult,
+            params,
+            since=9.0
+        )
+
+    def list_virtual_volume_bindings(
+            self,
+            virtual_volume_binding_ids=OPTIONAL,):
+        """
+        ListVirtualVolumeBindings returns a list of VVol bindings.
+        :param virtualVolumeBindingIDs:  
+        :type virtualVolumeBindingIDs: int
+        """
+
+        self._check_connection_type("list_virtual_volume_bindings", "Cluster")
+
+        params = { 
+        }
+        if virtual_volume_binding_ids is not None:
+            params["virtualVolumeBindingIDs"] = virtual_volume_binding_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVirtualVolumeBindings',
+            ListVirtualVolumeBindingsResult,
+            params,
+            since=9.0
+        )
+
+    def get_virtual_volume_count(
+            self,):
+        """
+        Enables retrieval of the number of virtual volumes currently in the system.        """
+
+        self._check_connection_type("get_virtual_volume_count", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetVirtualVolumeCount',
+            GetVirtualVolumeCountResult,
+            params,
+            since=9.0
         )
 

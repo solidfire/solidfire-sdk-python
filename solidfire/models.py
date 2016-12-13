@@ -808,21 +808,6 @@ class UpdateBulkVolumeStatusRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetAccountEfficiencyRequest(data_model.DataObject):
-    """
-    :param account_id: [required] Specifies the volume account for which capacity is computed. 
-    :type account_id: int
-    """
-    account_id = data_model.property(
-        "accountID", int,
-        array=False, optional=False,
-        documentation="Specifies the volume account for which capacity is computed.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class CompleteClusterPairingRequest(data_model.DataObject):
     """
     :param cluster_pairing_key: [required] A string of characters that is returned from the "StartClusterPairing" API method. 
@@ -1494,6 +1479,64 @@ class GetScheduleResult(data_model.DataObject):
         "schedule", Schedule,
         array=False, optional=False,
         documentation="The schedule attributes.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ModifyInitiator(data_model.DataObject):
+    """
+    Object containing characteristics of each initiator to modify
+    :param initiator_id: [required] (Required) The numeric ID of the initiator to modify. (Integer) 
+    :type initiator_id: int
+
+    :param alias:  (Optional) A new friendly name to assign to the initiator. (String) 
+    :type alias: str
+
+    :param volume_access_group_id:  (Optional) The ID of the volume access group into to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
+    :type volume_access_group_id: int
+
+    :param attributes:  (Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) 
+    :type attributes: dict
+    """
+    initiator_id = data_model.property(
+        "initiatorID", int,
+        array=False, optional=False,
+        documentation="(Required) The numeric ID of the initiator to modify. (Integer)",
+        dictionaryType=None
+    )
+    alias = data_model.property(
+        "alias", str,
+        array=False, optional=True,
+        documentation="[&#x27;(Optional) A new friendly name to assign to the initiator. (String)&#x27;]",
+        dictionaryType=None
+    )
+    volume_access_group_id = data_model.property(
+        "volumeAccessGroupID", int,
+        array=False, optional=True,
+        documentation="(Optional) The ID of the volume access group into to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer)",
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="(Optional) A new set of JSON attributes assigned to this initiator. (JSON Object)",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ModifyInitiatorsRequest(data_model.DataObject):
+    """
+    :param initiators: [required] A list of Initiator objects containing characteristics of each initiator to modify. 
+    :type initiators: ModifyInitiator
+    """
+    initiators = data_model.property(
+        "initiators", ModifyInitiator,
+        array=True, optional=False,
+        documentation="[&#x27;A list of Initiator objects containing characteristics of each initiator to modify.&#x27;]",
         dictionaryType=None
     )
 
@@ -2740,229 +2783,24 @@ class GetNodeStatsRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ClusterCapacity(data_model.DataObject):
+class ResetDrivesRequest(data_model.DataObject):
     """
-    High level capacity measurements for the entire cluster.
-    :param active_block_space: [required] The amount of space on the block drives. This includes additional information such as metadata entries and space which can be cleaned up. 
-    :type active_block_space: int
+    :param drives: [required] List of device names (not driveIDs) to reset. 
+    :type drives: str
 
-    :param active_sessions: [required] Number of active iSCSI sessions communicating with the cluster 
-    :type active_sessions: int
-
-    :param average_iops: [required] Average IPS for the cluster since midnight Coordinated Universal Time (UTC). 
-    :type average_iops: int
-
-    :param cluster_recent_iosize: [required] The average size of IOPS to all volumes in the cluster. 
-    :type cluster_recent_iosize: int
-
-    :param current_iops: [required] Average IOPS for all volumes in the cluster over the last 5 seconds. 
-    :type current_iops: int
-
-    :param max_iops: [required] Estimated maximum IOPS capability of the current cluster. 
-    :type max_iops: int
-
-    :param max_over_provisionable_space: [required] The maximum amount of provisionable space. This is a computed value. You cannot create new volumes if the current provisioned space plus the new volume size would exceed this number: maxOverProvisionableSpace = maxProvisionedSpace * GetClusterFull 
-    :type max_over_provisionable_space: int
-
-    :param max_provisioned_space: [required] The total amount of provisionable space if all volumes are 100% filled (no thin provisioned metadata). 
-    :type max_provisioned_space: int
-
-    :param max_used_metadata_space: [required] The amount of bytes on volume drives used to store metadata. 
-    :type max_used_metadata_space: int
-
-    :param max_used_space: [required] The total amount of space on all active block drives. 
-    :type max_used_space: int
-
-    :param non_zero_blocks: [required] Total number of 4KiB blocks with data after the last garbage collection operation has completed. 
-    :type non_zero_blocks: int
-
-    :param peak_active_sessions: [required] Peak number of iSCSI connections since midnight UTC. 
-    :type peak_active_sessions: int
-
-    :param peak_iops: [required] The highest value for currentIOPS since midnight UTC. 
-    :type peak_iops: int
-
-    :param provisioned_space: [required] Total amount of space provisioned in all volumes on the cluster. 
-    :type provisioned_space: int
-
-    :param snapshot_non_zero_blocks: [required] Total number of 4KiB blocks in snapshots with data. 
-    :type snapshot_non_zero_blocks: int
-
-    :param timestamp: [required] The date and time this cluster capacity sample was taken. 
-    :type timestamp: str
-
-    :param total_ops: [required] The total number of I/O operations performed throughout the lifetime of the cluster 
-    :type total_ops: int
-
-    :param unique_blocks: [required] The total number of blocks stored on the block drives. The value includes replicated blocks. 
-    :type unique_blocks: int
-
-    :param unique_blocks_used_space: [required] The total amount of data the uniqueBlocks take up on the block drives. This number is always consistent with the uniqueBlocks value. 
-    :type unique_blocks_used_space: int
-
-    :param used_metadata_space: [required] The total amount of bytes on volume drives used to store metadata 
-    :type used_metadata_space: int
-
-    :param used_metadata_space_in_snapshots: [required] The amount of bytes on volume drives used for storing unique data in snapshots. This number provides an estimate of how much metadata space would be regained by deleting all snapshots on the system. 
-    :type used_metadata_space_in_snapshots: int
-
-    :param used_space: [required] Total amount of space used by all block drives in the system. 
-    :type used_space: int
-
-    :param zero_blocks: [required] Total number of 4KiB blocks without data after the last round of garabage collection operation has completed. 
-    :type zero_blocks: int
+    :param force: [required] The "force" parameter must be included on this method to successfully reset a drive. 
+    :type force: bool
     """
-    active_block_space = data_model.property(
-        "activeBlockSpace", int,
+    drives = data_model.property(
+        "drives", str,
         array=False, optional=False,
-        documentation="[&#x27;The amount of space on the block drives.&#x27;, &#x27;This includes additional information such as metadata entries and space which can be cleaned up.&#x27;]",
+        documentation="List of device names (not driveIDs) to reset.",
         dictionaryType=None
     )
-    active_sessions = data_model.property(
-        "activeSessions", int,
+    force = data_model.property(
+        "force", bool,
         array=False, optional=False,
-        documentation="Number of active iSCSI sessions communicating with the cluster",
-        dictionaryType=None
-    )
-    average_iops = data_model.property(
-        "averageIOPS", int,
-        array=False, optional=False,
-        documentation="Average IPS for the cluster since midnight Coordinated Universal Time (UTC).",
-        dictionaryType=None
-    )
-    cluster_recent_iosize = data_model.property(
-        "clusterRecentIOSize", int,
-        array=False, optional=False,
-        documentation="The average size of IOPS to all volumes in the cluster.",
-        dictionaryType=None
-    )
-    current_iops = data_model.property(
-        "currentIOPS", int,
-        array=False, optional=False,
-        documentation="Average IOPS for all volumes in the cluster over the last 5 seconds.",
-        dictionaryType=None
-    )
-    max_iops = data_model.property(
-        "maxIOPS", int,
-        array=False, optional=False,
-        documentation="Estimated maximum IOPS capability of the current cluster.",
-        dictionaryType=None
-    )
-    max_over_provisionable_space = data_model.property(
-        "maxOverProvisionableSpace", int,
-        array=False, optional=False,
-        documentation="[&#x27;The maximum amount of provisionable space.&#x27;, &#x27;This is a computed value.&#x27;, &#x27;You cannot create new volumes if the current provisioned space plus the new volume size would exceed this number:&#x27;, &#x27;maxOverProvisionableSpace = maxProvisionedSpace * GetClusterFull&#x27;]",
-        dictionaryType=None
-    )
-    max_provisioned_space = data_model.property(
-        "maxProvisionedSpace", int,
-        array=False, optional=False,
-        documentation="The total amount of provisionable space if all volumes are 100% filled (no thin provisioned metadata).",
-        dictionaryType=None
-    )
-    max_used_metadata_space = data_model.property(
-        "maxUsedMetadataSpace", int,
-        array=False, optional=False,
-        documentation="The amount of bytes on volume drives used to store metadata.",
-        dictionaryType=None
-    )
-    max_used_space = data_model.property(
-        "maxUsedSpace", int,
-        array=False, optional=False,
-        documentation="The total amount of space on all active block drives.",
-        dictionaryType=None
-    )
-    non_zero_blocks = data_model.property(
-        "nonZeroBlocks", int,
-        array=False, optional=False,
-        documentation="Total number of 4KiB blocks with data after the last garbage collection operation has completed.",
-        dictionaryType=None
-    )
-    peak_active_sessions = data_model.property(
-        "peakActiveSessions", int,
-        array=False, optional=False,
-        documentation="Peak number of iSCSI connections since midnight UTC.",
-        dictionaryType=None
-    )
-    peak_iops = data_model.property(
-        "peakIOPS", int,
-        array=False, optional=False,
-        documentation="The highest value for currentIOPS since midnight UTC.",
-        dictionaryType=None
-    )
-    provisioned_space = data_model.property(
-        "provisionedSpace", int,
-        array=False, optional=False,
-        documentation="Total amount of space provisioned in all volumes on the cluster.",
-        dictionaryType=None
-    )
-    snapshot_non_zero_blocks = data_model.property(
-        "snapshotNonZeroBlocks", int,
-        array=False, optional=False,
-        documentation="Total number of 4KiB blocks in snapshots with data.",
-        dictionaryType=None
-    )
-    timestamp = data_model.property(
-        "timestamp", str,
-        array=False, optional=False,
-        documentation="The date and time this cluster capacity sample was taken.",
-        dictionaryType=None
-    )
-    total_ops = data_model.property(
-        "totalOps", int,
-        array=False, optional=False,
-        documentation="The total number of I/O operations performed throughout the lifetime of the cluster",
-        dictionaryType=None
-    )
-    unique_blocks = data_model.property(
-        "uniqueBlocks", int,
-        array=False, optional=False,
-        documentation="[&#x27;The total number of blocks stored on the block drives.&#x27;, &#x27;The value includes replicated blocks.&#x27;]",
-        dictionaryType=None
-    )
-    unique_blocks_used_space = data_model.property(
-        "uniqueBlocksUsedSpace", int,
-        array=False, optional=False,
-        documentation="[&#x27;The total amount of data the uniqueBlocks take up on the block drives.&#x27;, &#x27;This number is always consistent with the uniqueBlocks value.&#x27;]",
-        dictionaryType=None
-    )
-    used_metadata_space = data_model.property(
-        "usedMetadataSpace", int,
-        array=False, optional=False,
-        documentation="The total amount of bytes on volume drives used to store metadata",
-        dictionaryType=None
-    )
-    used_metadata_space_in_snapshots = data_model.property(
-        "usedMetadataSpaceInSnapshots", int,
-        array=False, optional=False,
-        documentation="[&#x27;The amount of bytes on volume drives used for storing unique data in snapshots.&#x27;, &#x27;This number provides an estimate of how much metadata space would be regained by deleting all snapshots on the system.&#x27;]",
-        dictionaryType=None
-    )
-    used_space = data_model.property(
-        "usedSpace", int,
-        array=False, optional=False,
-        documentation="Total amount of space used by all block drives in the system.",
-        dictionaryType=None
-    )
-    zero_blocks = data_model.property(
-        "zeroBlocks", int,
-        array=False, optional=False,
-        documentation="Total number of 4KiB blocks without data after the last round of garabage collection operation has completed.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetClusterCapacityResult(data_model.DataObject):
-    """
-    :param cluster_capacity: [required] 
-    :type cluster_capacity: ClusterCapacity
-    """
-    cluster_capacity = data_model.property(
-        "clusterCapacity", ClusterCapacity,
-        array=False, optional=False,
-        documentation="",
+        documentation="The &quot;force&quot; parameter must be included on this method to successfully reset a drive.",
         dictionaryType=None
     )
 
@@ -6169,6 +6007,235 @@ class DeleteVolumesResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class ClusterCapacity(data_model.DataObject):
+    """
+    High level capacity measurements for the entire cluster.
+    :param active_block_space: [required] The amount of space on the block drives. This includes additional information such as metadata entries and space which can be cleaned up. 
+    :type active_block_space: int
+
+    :param active_sessions: [required] Number of active iSCSI sessions communicating with the cluster 
+    :type active_sessions: int
+
+    :param average_iops: [required] Average IPS for the cluster since midnight Coordinated Universal Time (UTC). 
+    :type average_iops: int
+
+    :param cluster_recent_iosize: [required] The average size of IOPS to all volumes in the cluster. 
+    :type cluster_recent_iosize: int
+
+    :param current_iops: [required] Average IOPS for all volumes in the cluster over the last 5 seconds. 
+    :type current_iops: int
+
+    :param max_iops: [required] Estimated maximum IOPS capability of the current cluster. 
+    :type max_iops: int
+
+    :param max_over_provisionable_space: [required] The maximum amount of provisionable space. This is a computed value. You cannot create new volumes if the current provisioned space plus the new volume size would exceed this number: maxOverProvisionableSpace = maxProvisionedSpace * GetClusterFull 
+    :type max_over_provisionable_space: int
+
+    :param max_provisioned_space: [required] The total amount of provisionable space if all volumes are 100% filled (no thin provisioned metadata). 
+    :type max_provisioned_space: int
+
+    :param max_used_metadata_space: [required] The amount of bytes on volume drives used to store metadata. 
+    :type max_used_metadata_space: int
+
+    :param max_used_space: [required] The total amount of space on all active block drives. 
+    :type max_used_space: int
+
+    :param non_zero_blocks: [required] Total number of 4KiB blocks with data after the last garbage collection operation has completed. 
+    :type non_zero_blocks: int
+
+    :param peak_active_sessions: [required] Peak number of iSCSI connections since midnight UTC. 
+    :type peak_active_sessions: int
+
+    :param peak_iops: [required] The highest value for currentIOPS since midnight UTC. 
+    :type peak_iops: int
+
+    :param provisioned_space: [required] Total amount of space provisioned in all volumes on the cluster. 
+    :type provisioned_space: int
+
+    :param snapshot_non_zero_blocks: [required] Total number of 4KiB blocks in snapshots with data. 
+    :type snapshot_non_zero_blocks: int
+
+    :param timestamp: [required] The date and time this cluster capacity sample was taken. 
+    :type timestamp: str
+
+    :param total_ops: [required] The total number of I/O operations performed throughout the lifetime of the cluster 
+    :type total_ops: int
+
+    :param unique_blocks: [required] The total number of blocks stored on the block drives. The value includes replicated blocks. 
+    :type unique_blocks: int
+
+    :param unique_blocks_used_space: [required] The total amount of data the uniqueBlocks take up on the block drives. This number is always consistent with the uniqueBlocks value. 
+    :type unique_blocks_used_space: int
+
+    :param used_metadata_space: [required] The total amount of bytes on volume drives used to store metadata 
+    :type used_metadata_space: int
+
+    :param used_metadata_space_in_snapshots: [required] The amount of bytes on volume drives used for storing unique data in snapshots. This number provides an estimate of how much metadata space would be regained by deleting all snapshots on the system. 
+    :type used_metadata_space_in_snapshots: int
+
+    :param used_space: [required] Total amount of space used by all block drives in the system. 
+    :type used_space: int
+
+    :param zero_blocks: [required] Total number of 4KiB blocks without data after the last round of garabage collection operation has completed. 
+    :type zero_blocks: int
+    """
+    active_block_space = data_model.property(
+        "activeBlockSpace", int,
+        array=False, optional=False,
+        documentation="[&#x27;The amount of space on the block drives.&#x27;, &#x27;This includes additional information such as metadata entries and space which can be cleaned up.&#x27;]",
+        dictionaryType=None
+    )
+    active_sessions = data_model.property(
+        "activeSessions", int,
+        array=False, optional=False,
+        documentation="Number of active iSCSI sessions communicating with the cluster",
+        dictionaryType=None
+    )
+    average_iops = data_model.property(
+        "averageIOPS", int,
+        array=False, optional=False,
+        documentation="Average IPS for the cluster since midnight Coordinated Universal Time (UTC).",
+        dictionaryType=None
+    )
+    cluster_recent_iosize = data_model.property(
+        "clusterRecentIOSize", int,
+        array=False, optional=False,
+        documentation="The average size of IOPS to all volumes in the cluster.",
+        dictionaryType=None
+    )
+    current_iops = data_model.property(
+        "currentIOPS", int,
+        array=False, optional=False,
+        documentation="Average IOPS for all volumes in the cluster over the last 5 seconds.",
+        dictionaryType=None
+    )
+    max_iops = data_model.property(
+        "maxIOPS", int,
+        array=False, optional=False,
+        documentation="Estimated maximum IOPS capability of the current cluster.",
+        dictionaryType=None
+    )
+    max_over_provisionable_space = data_model.property(
+        "maxOverProvisionableSpace", int,
+        array=False, optional=False,
+        documentation="[&#x27;The maximum amount of provisionable space.&#x27;, &#x27;This is a computed value.&#x27;, &#x27;You cannot create new volumes if the current provisioned space plus the new volume size would exceed this number:&#x27;, &#x27;maxOverProvisionableSpace = maxProvisionedSpace * GetClusterFull&#x27;]",
+        dictionaryType=None
+    )
+    max_provisioned_space = data_model.property(
+        "maxProvisionedSpace", int,
+        array=False, optional=False,
+        documentation="The total amount of provisionable space if all volumes are 100% filled (no thin provisioned metadata).",
+        dictionaryType=None
+    )
+    max_used_metadata_space = data_model.property(
+        "maxUsedMetadataSpace", int,
+        array=False, optional=False,
+        documentation="The amount of bytes on volume drives used to store metadata.",
+        dictionaryType=None
+    )
+    max_used_space = data_model.property(
+        "maxUsedSpace", int,
+        array=False, optional=False,
+        documentation="The total amount of space on all active block drives.",
+        dictionaryType=None
+    )
+    non_zero_blocks = data_model.property(
+        "nonZeroBlocks", int,
+        array=False, optional=False,
+        documentation="Total number of 4KiB blocks with data after the last garbage collection operation has completed.",
+        dictionaryType=None
+    )
+    peak_active_sessions = data_model.property(
+        "peakActiveSessions", int,
+        array=False, optional=False,
+        documentation="Peak number of iSCSI connections since midnight UTC.",
+        dictionaryType=None
+    )
+    peak_iops = data_model.property(
+        "peakIOPS", int,
+        array=False, optional=False,
+        documentation="The highest value for currentIOPS since midnight UTC.",
+        dictionaryType=None
+    )
+    provisioned_space = data_model.property(
+        "provisionedSpace", int,
+        array=False, optional=False,
+        documentation="Total amount of space provisioned in all volumes on the cluster.",
+        dictionaryType=None
+    )
+    snapshot_non_zero_blocks = data_model.property(
+        "snapshotNonZeroBlocks", int,
+        array=False, optional=False,
+        documentation="Total number of 4KiB blocks in snapshots with data.",
+        dictionaryType=None
+    )
+    timestamp = data_model.property(
+        "timestamp", str,
+        array=False, optional=False,
+        documentation="The date and time this cluster capacity sample was taken.",
+        dictionaryType=None
+    )
+    total_ops = data_model.property(
+        "totalOps", int,
+        array=False, optional=False,
+        documentation="The total number of I/O operations performed throughout the lifetime of the cluster",
+        dictionaryType=None
+    )
+    unique_blocks = data_model.property(
+        "uniqueBlocks", int,
+        array=False, optional=False,
+        documentation="[&#x27;The total number of blocks stored on the block drives.&#x27;, &#x27;The value includes replicated blocks.&#x27;]",
+        dictionaryType=None
+    )
+    unique_blocks_used_space = data_model.property(
+        "uniqueBlocksUsedSpace", int,
+        array=False, optional=False,
+        documentation="[&#x27;The total amount of data the uniqueBlocks take up on the block drives.&#x27;, &#x27;This number is always consistent with the uniqueBlocks value.&#x27;]",
+        dictionaryType=None
+    )
+    used_metadata_space = data_model.property(
+        "usedMetadataSpace", int,
+        array=False, optional=False,
+        documentation="The total amount of bytes on volume drives used to store metadata",
+        dictionaryType=None
+    )
+    used_metadata_space_in_snapshots = data_model.property(
+        "usedMetadataSpaceInSnapshots", int,
+        array=False, optional=False,
+        documentation="[&#x27;The amount of bytes on volume drives used for storing unique data in snapshots.&#x27;, &#x27;This number provides an estimate of how much metadata space would be regained by deleting all snapshots on the system.&#x27;]",
+        dictionaryType=None
+    )
+    used_space = data_model.property(
+        "usedSpace", int,
+        array=False, optional=False,
+        documentation="Total amount of space used by all block drives in the system.",
+        dictionaryType=None
+    )
+    zero_blocks = data_model.property(
+        "zeroBlocks", int,
+        array=False, optional=False,
+        documentation="Total number of 4KiB blocks without data after the last round of garabage collection operation has completed.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetClusterCapacityResult(data_model.DataObject):
+    """
+    :param cluster_capacity: [required] 
+    :type cluster_capacity: ClusterCapacity
+    """
+    cluster_capacity = data_model.property(
+        "clusterCapacity", ClusterCapacity,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class PurgeDeletedVolumesRequest(data_model.DataObject):
     """
     :param volume_ids:  A list of volumeIDs of volumes to be purged from the system. 
@@ -7543,58 +7610,15 @@ class ModifyAccountResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ModifyInitiator(data_model.DataObject):
+class GetVirtualVolumeCountResult(data_model.DataObject):
     """
-    Object containing characteristics of each initiator to modify
-    :param initiator_id: [required] (Required) The numeric ID of the initiator to modify. (Integer) 
-    :type initiator_id: int
-
-    :param alias:  (Optional) A new friendly name to assign to the initiator. (String) 
-    :type alias: str
-
-    :param volume_access_group_id:  (Optional) The ID of the volume access group into to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
-    :type volume_access_group_id: int
-
-    :param attributes:  (Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) 
-    :type attributes: dict
+    :param count: [required] The number of virtual volumes currently in the system. 
+    :type count: int
     """
-    initiator_id = data_model.property(
-        "initiatorID", int,
+    count = data_model.property(
+        "count", int,
         array=False, optional=False,
-        documentation="(Required) The numeric ID of the initiator to modify. (Integer)",
-        dictionaryType=None
-    )
-    alias = data_model.property(
-        "alias", str,
-        array=False, optional=True,
-        documentation="[&#x27;(Optional) A new friendly name to assign to the initiator. (String)&#x27;]",
-        dictionaryType=None
-    )
-    volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
-        array=False, optional=True,
-        documentation="(Optional) The ID of the volume access group into to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer)",
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="(Optional) A new set of JSON attributes assigned to this initiator. (JSON Object)",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ModifyInitiatorsRequest(data_model.DataObject):
-    """
-    :param initiators: [required] A list of Initiator objects containing characteristics of each initiator to modify. 
-    :type initiators: ModifyInitiator
-    """
-    initiators = data_model.property(
-        "initiators", ModifyInitiator,
-        array=True, optional=False,
-        documentation="[&#x27;A list of Initiator objects containing characteristics of each initiator to modify.&#x27;]",
+        documentation="The number of virtual volumes currently in the system.",
         dictionaryType=None
     )
 
@@ -7852,57 +7876,6 @@ class StartClusterPairingResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetStorageContainerEfficiencyResult(data_model.DataObject):
-    """
-    :param compression: [required] 
-    :type compression: float
-
-    :param deduplication: [required] 
-    :type deduplication: float
-
-    :param missing_volumes: [required] The volumes that could not be queried for efficiency data. Missing volumes can be caused by the Garbage Collection (GC) cycle being less than an hour old, temporary loss of network connectivity, or restarted services since the GC cycle. 
-    :type missing_volumes: int
-
-    :param thin_provisioning: [required] 
-    :type thin_provisioning: float
-
-    :param timestamp: [required] The last time efficiency data was collected after Garbage Collection (GC). 
-    :type timestamp: str
-    """
-    compression = data_model.property(
-        "compression", float,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    deduplication = data_model.property(
-        "deduplication", float,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    missing_volumes = data_model.property(
-        "missingVolumes", int,
-        array=True, optional=False,
-        documentation="The volumes that could not be queried for efficiency data. Missing volumes can be caused by the Garbage Collection (GC) cycle being less than an hour old, temporary loss of network connectivity, or restarted services since the GC cycle.",
-        dictionaryType=None
-    )
-    thin_provisioning = data_model.property(
-        "thinProvisioning", float,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    timestamp = data_model.property(
-        "timestamp", str,
-        array=False, optional=False,
-        documentation="The last time efficiency data was collected after Garbage Collection (GC).",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class AddNodesRequest(data_model.DataObject):
     """
     :param pending_nodes: [required] List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method. 
@@ -8128,86 +8101,15 @@ class GetFeatureStatusResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class Account(data_model.DataObject):
+class GetAccountEfficiencyRequest(data_model.DataObject):
     """
-    The object containing information about an account.
-    This object only includes "configured" information about the account, not any runtime or usage information.
-    :param account_id: [required] Unique AccountID for the account. 
+    :param account_id: [required] Specifies the volume account for which capacity is computed. 
     :type account_id: int
-
-    :param username: [required] User name for the account. 
-    :type username: str
-
-    :param status: [required] Current status of the account. 
-    :type status: str
-
-    :param volumes: [required] List of VolumeIDs for Volumes owned by this account. 
-    :type volumes: int
-
-    :param initiator_secret:  CHAP secret to use for the initiator. 
-    :type initiator_secret: CHAPSecret
-
-    :param target_secret:  CHAP secret to use for the target (mutual CHAP authentication). 
-    :type target_secret: CHAPSecret
-
-    :param attributes:  List of Name/Value pairs in JSON object format. 
-    :type attributes: dict
     """
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=False,
-        documentation="Unique AccountID for the account.",
-        dictionaryType=None
-    )
-    username = data_model.property(
-        "username", str,
-        array=False, optional=False,
-        documentation="User name for the account.",
-        dictionaryType=None
-    )
-    status = data_model.property(
-        "status", str,
-        array=False, optional=False,
-        documentation="Current status of the account.",
-        dictionaryType=None
-    )
-    volumes = data_model.property(
-        "volumes", int,
-        array=True, optional=False,
-        documentation="List of VolumeIDs for Volumes owned by this account.",
-        dictionaryType=None
-    )
-    initiator_secret = data_model.property(
-        "initiatorSecret", CHAPSecret,
-        array=False, optional=True,
-        documentation="CHAP secret to use for the initiator.",
-        dictionaryType=None
-    )
-    target_secret = data_model.property(
-        "targetSecret", CHAPSecret,
-        array=False, optional=True,
-        documentation="CHAP secret to use for the target (mutual CHAP authentication).",
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="List of Name/Value pairs in JSON object format.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetAccountResult(data_model.DataObject):
-    """
-    :param account: [required] Account details. 
-    :type account: Account
-    """
-    account = data_model.property(
-        "account", Account,
-        array=False, optional=False,
-        documentation="Account details.",
+        documentation="Specifies the volume account for which capacity is computed.",
         dictionaryType=None
     )
 
@@ -8741,21 +8643,6 @@ class CreateStorageContainerResult(data_model.DataObject):
 
 class DeleteGroupSnapshotResult(data_model.DataObject):
     """    """
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetVirtualVolumeCountResult(data_model.DataObject):
-    """
-    :param count: [required] The number of virtual volumes currently in the system. 
-    :type count: int
-    """
-    count = data_model.property(
-        "count", int,
-        array=False, optional=False,
-        documentation="The number of virtual volumes currently in the system.",
-        dictionaryType=None
-    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -13598,6 +13485,77 @@ class TestLdapAuthenticationResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class Account(data_model.DataObject):
+    """
+    The object containing information about an account.
+    This object only includes "configured" information about the account, not any runtime or usage information.
+    :param account_id: [required] Unique AccountID for the account. 
+    :type account_id: int
+
+    :param username: [required] User name for the account. 
+    :type username: str
+
+    :param status: [required] Current status of the account. 
+    :type status: str
+
+    :param volumes: [required] List of VolumeIDs for Volumes owned by this account. 
+    :type volumes: int
+
+    :param initiator_secret:  CHAP secret to use for the initiator. 
+    :type initiator_secret: CHAPSecret
+
+    :param target_secret:  CHAP secret to use for the target (mutual CHAP authentication). 
+    :type target_secret: CHAPSecret
+
+    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :type attributes: dict
+    """
+    account_id = data_model.property(
+        "accountID", int,
+        array=False, optional=False,
+        documentation="Unique AccountID for the account.",
+        dictionaryType=None
+    )
+    username = data_model.property(
+        "username", str,
+        array=False, optional=False,
+        documentation="User name for the account.",
+        dictionaryType=None
+    )
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation="Current status of the account.",
+        dictionaryType=None
+    )
+    volumes = data_model.property(
+        "volumes", int,
+        array=True, optional=False,
+        documentation="List of VolumeIDs for Volumes owned by this account.",
+        dictionaryType=None
+    )
+    initiator_secret = data_model.property(
+        "initiatorSecret", CHAPSecret,
+        array=False, optional=True,
+        documentation="CHAP secret to use for the initiator.",
+        dictionaryType=None
+    )
+    target_secret = data_model.property(
+        "targetSecret", CHAPSecret,
+        array=False, optional=True,
+        documentation="CHAP secret to use for the target (mutual CHAP authentication).",
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="List of Name/Value pairs in JSON object format.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListAccountsResult(data_model.DataObject):
     """
     :param accounts: [required] List of accounts. 
@@ -13710,24 +13668,51 @@ class RemoveVolumePairRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ResetDrivesRequest(data_model.DataObject):
+class GetStorageContainerEfficiencyResult(data_model.DataObject):
     """
-    :param drives: [required] List of device names (not driveIDs) to reset. 
-    :type drives: str
+    :param compression: [required] 
+    :type compression: float
 
-    :param force: [required] The "force" parameter must be included on this method to successfully reset a drive. 
-    :type force: bool
+    :param deduplication: [required] 
+    :type deduplication: float
+
+    :param missing_volumes: [required] The volumes that could not be queried for efficiency data. Missing volumes can be caused by the Garbage Collection (GC) cycle being less than an hour old, temporary loss of network connectivity, or restarted services since the GC cycle. 
+    :type missing_volumes: int
+
+    :param thin_provisioning: [required] 
+    :type thin_provisioning: float
+
+    :param timestamp: [required] The last time efficiency data was collected after Garbage Collection (GC). 
+    :type timestamp: str
     """
-    drives = data_model.property(
-        "drives", str,
+    compression = data_model.property(
+        "compression", float,
         array=False, optional=False,
-        documentation="List of device names (not driveIDs) to reset.",
+        documentation="",
         dictionaryType=None
     )
-    force = data_model.property(
-        "force", bool,
+    deduplication = data_model.property(
+        "deduplication", float,
         array=False, optional=False,
-        documentation="The &quot;force&quot; parameter must be included on this method to successfully reset a drive.",
+        documentation="",
+        dictionaryType=None
+    )
+    missing_volumes = data_model.property(
+        "missingVolumes", int,
+        array=True, optional=False,
+        documentation="The volumes that could not be queried for efficiency data. Missing volumes can be caused by the Garbage Collection (GC) cycle being less than an hour old, temporary loss of network connectivity, or restarted services since the GC cycle.",
+        dictionaryType=None
+    )
+    thin_provisioning = data_model.property(
+        "thinProvisioning", float,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    timestamp = data_model.property(
+        "timestamp", str,
+        array=False, optional=False,
+        documentation="The last time efficiency data was collected after Garbage Collection (GC).",
         dictionaryType=None
     )
 
@@ -14850,6 +14835,21 @@ class ListAccountsRequest(data_model.DataObject):
         "limit", int,
         array=False, optional=True,
         documentation="Maximum number of AccountInfo objects to return.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetAccountResult(data_model.DataObject):
+    """
+    :param account: [required] Account details. 
+    :type account: Account
+    """
+    account = data_model.property(
+        "account", Account,
+        array=False, optional=False,
+        documentation="Account details.",
         dictionaryType=None
     )
 
