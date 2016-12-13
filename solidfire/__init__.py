@@ -5754,7 +5754,7 @@ class Element(ServiceBase):
         # There is no adaptor.
         return self.send_request(
             'RestartNetworking',
-            RestartNetworkingResult,
+            dict,
             params
         )
 
@@ -5788,7 +5788,7 @@ class Element(ServiceBase):
         # There is no adaptor.
         return self.send_request(
             'RestartServices',
-            RestartServicesResult,
+            dict,
             params
         )
 

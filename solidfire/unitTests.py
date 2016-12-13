@@ -3172,8 +3172,6 @@ def test_restart_networking_v9_0():
     
     force = True # force
     result = ef.restart_networking(force,)
-    assert result.duration == """00:00:02.548688""", "Died on +.duration"
-    assert result.result == """Passed""", "Died on +.result"
 
 def test_restart_services_v9_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -3184,8 +3182,6 @@ def test_restart_services_v9_0():
     service = "" # service
     action = "" # action
     result = ef.restart_services(force,)
-    assert result.duration == """00:00:06.617292""", "Died on +.duration"
-    assert result.result == """Passed""", "Died on +.result"
 
 def test_set_default_qos_v9_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
