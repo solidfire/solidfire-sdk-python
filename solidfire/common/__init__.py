@@ -652,12 +652,11 @@ class ServiceBase(object):
         :param connection_type: connection type the method expects.
         :type connection_type: str
         """
-
-        if(connection_type == "Cluster" and self._port == 442):
+        if(connection_type == "Cluster" and int(self._port) == 442):
             raise ApiConnectionError(method_name +
                                      " cannot be called on a node connection. "
                                      "It is a cluster-only method.")
-        elif(connection_type == "Node" and self._port == 443):
+        elif(connection_type == "Node" and int(self._port) == 443):
             raise ApiConnectionError(method_name +
                                      " cannot be called on a cluster "
                                      "connection. It is a node-only method")
