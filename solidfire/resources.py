@@ -15382,6 +15382,2168 @@ RESP_ListProtocolEndpoints_v9_0 = """{
   }
 }"""
 
+RESP_ListServices_v9_0 = """{
+  "id": null,
+  "result": {
+    "services": [
+      {
+        "drive": {
+          "assignedService": 22,
+          "asyncResultIDs": [],
+          "attributes": {},
+          "capacity": 300069052416,
+          "customerSliceFileCapacity": 0,
+          "driveID": 5,
+          "driveStatus": "assigned",
+          "driveType": "block",
+          "nodeID": 4,
+          "reservedSliceFileCapacity": 0,
+          "serial": "scsi-SATA_INTEL_SSDSA2CW3CVPR132402D3300EGN",
+          "slot": 3
+        },
+        "drives": [
+          {
+            "assignedService": 22,
+            "asyncResultIDs": [],
+            "attributes": {},
+            "capacity": 300069052416,
+            "customerSliceFileCapacity": 0,
+            "driveID": 5,
+            "driveStatus": "assigned",
+            "driveType": "Block",
+            "nodeID": 4,
+            "reservedSliceFileCapacity": 0,
+            "serial": "scsi-SATA_INTEL_SSDSA2CW3CVPR132402D3300EGN",
+            "slot": 3
+          }
+        ],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 3,
+          "attributes": {},
+          "cip": "10.117.62.26",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.26",
+          "mipi": "Bond1G",
+          "name": "SF-1713",
+          "nodeID": 4,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.26",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3210-8054-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 5,
+          "driveIDs": [
+            5
+          ],
+          "firstTimeStartup": false,
+          "ipcPort": 4008,
+          "iscsiPort": 0,
+          "nodeID": 4,
+          "serviceID": 22,
+          "serviceType": "block",
+          "startedDriveIDs": [
+            5
+          ],
+          "status": "healthy"
+        }
+      },
+      {
+        "drive": {
+          "assignedService": 23,
+          "asyncResultIDs": [],
+          "attributes": {},
+          "capacity": 300069052416,
+          "customerSliceFileCapacity": 0,
+          "driveID": 17,
+          "driveStatus": "assigned",
+          "driveType": "block",
+          "nodeID": 3,
+          "reservedSliceFileCapacity": 0,
+          "serial": "scsi-SATA_INTEL_SSDSC2BB3BTWL311300X7300PGN",
+          "slot": 4
+        },
+        "drives": [
+          {
+            "assignedService": 23,
+            "asyncResultIDs": [],
+            "attributes": {},
+            "capacity": 300069052416,
+            "customerSliceFileCapacity": 0,
+            "driveID": 17,
+            "driveStatus": "assigned",
+            "driveType": "Block",
+            "nodeID": 3,
+            "reservedSliceFileCapacity": 0,
+            "serial": "scsi-SATA_INTEL_SSDSC2BB3BTWL311300X7300PGN",
+            "slot": 4
+          }
+        ],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 4,
+          "attributes": {},
+          "cip": "10.117.62.25",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.25",
+          "mipi": "Bond1G",
+          "name": "SF-F2A3",
+          "nodeID": 3,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.25",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3310-8053-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 17,
+          "driveIDs": [
+            17
+          ],
+          "firstTimeStartup": false,
+          "ipcPort": 4009,
+          "iscsiPort": 0,
+          "nodeID": 3,
+          "serviceID": 23,
+          "serviceType": "block",
+          "startedDriveIDs": [
+            17
+          ],
+          "status": "healthy"
+        }
+      },
+      {
+        "drive": {
+          "assignedService": 24,
+          "asyncResultIDs": [],
+          "attributes": {},
+          "capacity": 300069052416,
+          "customerSliceFileCapacity": 0,
+          "driveID": 6,
+          "driveStatus": "assigned",
+          "driveType": "block",
+          "nodeID": 4,
+          "reservedSliceFileCapacity": 0,
+          "serial": "scsi-SATA_INTEL_SSDSA2CW3BTPR227401VN300EGN",
+          "slot": 4
+        },
+        "drives": [
+          {
+            "assignedService": 24,
+            "asyncResultIDs": [],
+            "attributes": {},
+            "capacity": 300069052416,
+            "customerSliceFileCapacity": 0,
+            "driveID": 6,
+            "driveStatus": "assigned",
+            "driveType": "Block",
+            "nodeID": 4,
+            "reservedSliceFileCapacity": 0,
+            "serial": "scsi-SATA_INTEL_SSDSA2CW3BTPR227401VN300EGN",
+            "slot": 4
+          }
+        ],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 3,
+          "attributes": {},
+          "cip": "10.117.62.26",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.26",
+          "mipi": "Bond1G",
+          "name": "SF-1713",
+          "nodeID": 4,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.26",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3210-8054-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 6,
+          "driveIDs": [
+            6
+          ],
+          "firstTimeStartup": false,
+          "ipcPort": 4009,
+          "iscsiPort": 0,
+          "nodeID": 4,
+          "serviceID": 24,
+          "serviceType": "block",
+          "startedDriveIDs": [
+            6
+          ],
+          "status": "healthy"
+        }
+      },
+      {
+        "drive": {
+          "assignedService": 25,
+          "asyncResultIDs": [],
+          "attributes": {},
+          "capacity": 300069052416,
+          "customerSliceFileCapacity": 0,
+          "driveID": 18,
+          "driveStatus": "assigned",
+          "driveType": "block",
+          "nodeID": 3,
+          "reservedSliceFileCapacity": 0,
+          "serial": "scsi-SATA_INTEL_SSDSC2BB3BTWL31130138300PGN",
+          "slot": 5
+        },
+        "drives": [
+          {
+            "assignedService": 25,
+            "asyncResultIDs": [],
+            "attributes": {},
+            "capacity": 300069052416,
+            "customerSliceFileCapacity": 0,
+            "driveID": 18,
+            "driveStatus": "assigned",
+            "driveType": "Block",
+            "nodeID": 3,
+            "reservedSliceFileCapacity": 0,
+            "serial": "scsi-SATA_INTEL_SSDSC2BB3BTWL31130138300PGN",
+            "slot": 5
+          }
+        ],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 4,
+          "attributes": {},
+          "cip": "10.117.62.25",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.25",
+          "mipi": "Bond1G",
+          "name": "SF-F2A3",
+          "nodeID": 3,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.25",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3310-8053-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 18,
+          "driveIDs": [
+            18
+          ],
+          "firstTimeStartup": false,
+          "ipcPort": 4010,
+          "iscsiPort": 0,
+          "nodeID": 3,
+          "serviceID": 25,
+          "serviceType": "block",
+          "startedDriveIDs": [
+            18
+          ],
+          "status": "healthy"
+        }
+      },
+      {
+        "drive": {
+          "assignedService": 26,
+          "asyncResultIDs": [],
+          "attributes": {},
+          "capacity": 300069052416,
+          "customerSliceFileCapacity": 0,
+          "driveID": 7,
+          "driveStatus": "assigned",
+          "driveType": "block",
+          "nodeID": 4,
+          "reservedSliceFileCapacity": 0,
+          "serial": "scsi-SATA_INTEL_SSDSA2BW3CVPR120504CK300EGN",
+          "slot": 5
+        },
+        "drives": [
+          {
+            "assignedService": 26,
+            "asyncResultIDs": [],
+            "attributes": {},
+            "capacity": 300069052416,
+            "customerSliceFileCapacity": 0,
+            "driveID": 7,
+            "driveStatus": "assigned",
+            "driveType": "Block",
+            "nodeID": 4,
+            "reservedSliceFileCapacity": 0,
+            "serial": "scsi-SATA_INTEL_SSDSA2BW3CVPR120504CK300EGN",
+            "slot": 5
+          }
+        ],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 3,
+          "attributes": {},
+          "cip": "10.117.62.26",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.26",
+          "mipi": "Bond1G",
+          "name": "SF-1713",
+          "nodeID": 4,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.26",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3210-8054-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 7,
+          "driveIDs": [
+            7
+          ],
+          "firstTimeStartup": false,
+          "ipcPort": 4010,
+          "iscsiPort": 0,
+          "nodeID": 4,
+          "serviceID": 26,
+          "serviceType": "block",
+          "startedDriveIDs": [
+            7
+          ],
+          "status": "healthy"
+        }
+      },
+      {
+        "drive": {
+          "assignedService": 27,
+          "asyncResultIDs": [],
+          "attributes": {},
+          "capacity": 300069052416,
+          "customerSliceFileCapacity": 0,
+          "driveID": 19,
+          "driveStatus": "assigned",
+          "driveType": "block",
+          "nodeID": 3,
+          "reservedSliceFileCapacity": 0,
+          "serial": "scsi-SATA_INTEL_SSDSC2BB3BTWL307103KD300PGN",
+          "slot": 6
+        },
+        "drives": [
+          {
+            "assignedService": 27,
+            "asyncResultIDs": [],
+            "attributes": {},
+            "capacity": 300069052416,
+            "customerSliceFileCapacity": 0,
+            "driveID": 19,
+            "driveStatus": "assigned",
+            "driveType": "Block",
+            "nodeID": 3,
+            "reservedSliceFileCapacity": 0,
+            "serial": "scsi-SATA_INTEL_SSDSC2BB3BTWL307103KD300PGN",
+            "slot": 6
+          }
+        ],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 4,
+          "attributes": {},
+          "cip": "10.117.62.25",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.25",
+          "mipi": "Bond1G",
+          "name": "SF-F2A3",
+          "nodeID": 3,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.25",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3310-8053-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 19,
+          "driveIDs": [
+            19
+          ],
+          "firstTimeStartup": false,
+          "ipcPort": 4011,
+          "iscsiPort": 0,
+          "nodeID": 3,
+          "serviceID": 27,
+          "serviceType": "block",
+          "startedDriveIDs": [
+            19
+          ],
+          "status": "healthy"
+        }
+      },
+      {
+        "drive": {
+          "assignedService": 28,
+          "asyncResultIDs": [],
+          "attributes": {},
+          "capacity": 300069052416,
+          "customerSliceFileCapacity": 0,
+          "driveID": 8,
+          "driveStatus": "assigned",
+          "driveType": "block",
+          "nodeID": 4,
+          "reservedSliceFileCapacity": 0,
+          "serial": "scsi-SATA_INTEL_SSDSA2CW3BTPR227401S0300EGN",
+          "slot": 6
+        },
+        "drives": [
+          {
+            "assignedService": 28,
+            "asyncResultIDs": [],
+            "attributes": {},
+            "capacity": 300069052416,
+            "customerSliceFileCapacity": 0,
+            "driveID": 8,
+            "driveStatus": "assigned",
+            "driveType": "Block",
+            "nodeID": 4,
+            "reservedSliceFileCapacity": 0,
+            "serial": "scsi-SATA_INTEL_SSDSA2CW3BTPR227401S0300EGN",
+            "slot": 6
+          }
+        ],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 3,
+          "attributes": {},
+          "cip": "10.117.62.26",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.26",
+          "mipi": "Bond1G",
+          "name": "SF-1713",
+          "nodeID": 4,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.26",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3210-8054-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 8,
+          "driveIDs": [
+            8
+          ],
+          "firstTimeStartup": false,
+          "ipcPort": 4011,
+          "iscsiPort": 0,
+          "nodeID": 4,
+          "serviceID": 28,
+          "serviceType": "block",
+          "startedDriveIDs": [
+            8
+          ],
+          "status": "healthy"
+        }
+      },
+      {
+        "drive": {
+          "assignedService": 29,
+          "asyncResultIDs": [],
+          "attributes": {},
+          "capacity": 300069052416,
+          "customerSliceFileCapacity": 0,
+          "driveID": 20,
+          "driveStatus": "assigned",
+          "driveType": "block",
+          "nodeID": 3,
+          "reservedSliceFileCapacity": 0,
+          "serial": "scsi-SATA_INTEL_SSDSC2BB3BTWL305101U0300JGN",
+          "slot": 7
+        },
+        "drives": [
+          {
+            "assignedService": 29,
+            "asyncResultIDs": [],
+            "attributes": {},
+            "capacity": 300069052416,
+            "customerSliceFileCapacity": 0,
+            "driveID": 20,
+            "driveStatus": "assigned",
+            "driveType": "Block",
+            "nodeID": 3,
+            "reservedSliceFileCapacity": 0,
+            "serial": "scsi-SATA_INTEL_SSDSC2BB3BTWL305101U0300JGN",
+            "slot": 7
+          }
+        ],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 4,
+          "attributes": {},
+          "cip": "10.117.62.25",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.25",
+          "mipi": "Bond1G",
+          "name": "SF-F2A3",
+          "nodeID": 3,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.25",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3310-8053-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 20,
+          "driveIDs": [
+            20
+          ],
+          "firstTimeStartup": false,
+          "ipcPort": 4012,
+          "iscsiPort": 0,
+          "nodeID": 3,
+          "serviceID": 29,
+          "serviceType": "block",
+          "startedDriveIDs": [
+            20
+          ],
+          "status": "healthy"
+        }
+      },
+      {
+        "drive": {
+          "assignedService": 30,
+          "asyncResultIDs": [],
+          "attributes": {},
+          "capacity": 300069052416,
+          "customerSliceFileCapacity": 0,
+          "driveID": 9,
+          "driveStatus": "assigned",
+          "driveType": "block",
+          "nodeID": 4,
+          "reservedSliceFileCapacity": 0,
+          "serial": "scsi-SATA_INTEL_SSDSA2CW3BTPR227400QG300EGN",
+          "slot": 7
+        },
+        "drives": [
+          {
+            "assignedService": 30,
+            "asyncResultIDs": [],
+            "attributes": {},
+            "capacity": 300069052416,
+            "customerSliceFileCapacity": 0,
+            "driveID": 9,
+            "driveStatus": "assigned",
+            "driveType": "Block",
+            "nodeID": 4,
+            "reservedSliceFileCapacity": 0,
+            "serial": "scsi-SATA_INTEL_SSDSA2CW3BTPR227400QG300EGN",
+            "slot": 7
+          }
+        ],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 3,
+          "attributes": {},
+          "cip": "10.117.62.26",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.26",
+          "mipi": "Bond1G",
+          "name": "SF-1713",
+          "nodeID": 4,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.26",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3210-8054-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 9,
+          "driveIDs": [
+            9
+          ],
+          "firstTimeStartup": false,
+          "ipcPort": 4012,
+          "iscsiPort": 0,
+          "nodeID": 4,
+          "serviceID": 30,
+          "serviceType": "block",
+          "startedDriveIDs": [
+            9
+          ],
+          "status": "healthy"
+        }
+      },
+      {
+        "drive": {
+          "assignedService": 31,
+          "asyncResultIDs": [],
+          "attributes": {},
+          "capacity": 300069052416,
+          "customerSliceFileCapacity": 0,
+          "driveID": 10,
+          "driveStatus": "assigned",
+          "driveType": "block",
+          "nodeID": 4,
+          "reservedSliceFileCapacity": 0,
+          "serial": "scsi-SATA_INTEL_SSDSA2CW3BTPR2275018Z300EGN",
+          "slot": 8
+        },
+        "drives": [
+          {
+            "assignedService": 31,
+            "asyncResultIDs": [],
+            "attributes": {},
+            "capacity": 300069052416,
+            "customerSliceFileCapacity": 0,
+            "driveID": 10,
+            "driveStatus": "assigned",
+            "driveType": "Block",
+            "nodeID": 4,
+            "reservedSliceFileCapacity": 0,
+            "serial": "scsi-SATA_INTEL_SSDSA2CW3BTPR2275018Z300EGN",
+            "slot": 8
+          }
+        ],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 3,
+          "attributes": {},
+          "cip": "10.117.62.26",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.26",
+          "mipi": "Bond1G",
+          "name": "SF-1713",
+          "nodeID": 4,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.26",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3210-8054-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 10,
+          "driveIDs": [
+            10
+          ],
+          "firstTimeStartup": false,
+          "ipcPort": 4013,
+          "iscsiPort": 0,
+          "nodeID": 4,
+          "serviceID": 31,
+          "serviceType": "block",
+          "startedDriveIDs": [
+            10
+          ],
+          "status": "healthy"
+        }
+      },
+      {
+        "drive": {
+          "assignedService": 10,
+          "asyncResultIDs": [],
+          "attributes": {},
+          "capacity": 299988156416,
+          "customerSliceFileCapacity": 134994670387,
+          "driveID": 1,
+          "driveStatus": "assigned",
+          "driveType": "volume",
+          "nodeID": 4,
+          "reservedSliceFileCapacity": 67497335193,
+          "serial": "scsi-SATA_VRFSD3400GNCVMT205121574-part4",
+          "slot": -1
+        },
+        "drives": [
+          {
+            "assignedService": 10,
+            "asyncResultIDs": [],
+            "attributes": {},
+            "capacity": 299988156416,
+            "customerSliceFileCapacity": 134994670387,
+            "driveID": 1,
+            "driveStatus": "assigned",
+            "driveType": "Slice",
+            "nodeID": 4,
+            "reservedSliceFileCapacity": 67497335193,
+            "serial": "scsi-SATA_VRFSD3400GNCVMT205121574-part4",
+            "slot": -1
+          }
+        ],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 3,
+          "attributes": {},
+          "cip": "10.117.62.26",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.26",
+          "mipi": "Bond1G",
+          "name": "SF-1713",
+          "nodeID": 4,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.26",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3210-8054-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 7,
+          "associatedTS": 9,
+          "associatedVS": 8,
+          "asyncResultIDs": [],
+          "driveID": 1,
+          "driveIDs": [
+            1
+          ],
+          "firstTimeStartup": false,
+          "ipcPort": 4002,
+          "iscsiPort": 0,
+          "nodeID": 4,
+          "serviceID": 10,
+          "serviceType": "slice",
+          "startedDriveIDs": [
+            1
+          ],
+          "status": "healthy"
+        }
+      },
+      {
+        "drive": {
+          "assignedService": 32,
+          "asyncResultIDs": [],
+          "attributes": {},
+          "capacity": 300069052416,
+          "customerSliceFileCapacity": 0,
+          "driveID": 21,
+          "driveStatus": "assigned",
+          "driveType": "block",
+          "nodeID": 3,
+          "reservedSliceFileCapacity": 0,
+          "serial": "scsi-SATA_INTEL_SSDSC2BB3BTWL3072006A300PGN",
+          "slot": 8
+        },
+        "drives": [
+          {
+            "assignedService": 32,
+            "asyncResultIDs": [],
+            "attributes": {},
+            "capacity": 300069052416,
+            "customerSliceFileCapacity": 0,
+            "driveID": 21,
+            "driveStatus": "assigned",
+            "driveType": "Block",
+            "nodeID": 3,
+            "reservedSliceFileCapacity": 0,
+            "serial": "scsi-SATA_INTEL_SSDSC2BB3BTWL3072006A300PGN",
+            "slot": 8
+          }
+        ],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 4,
+          "attributes": {},
+          "cip": "10.117.62.25",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.25",
+          "mipi": "Bond1G",
+          "name": "SF-F2A3",
+          "nodeID": 3,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.25",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3310-8053-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 21,
+          "driveIDs": [
+            21
+          ],
+          "firstTimeStartup": false,
+          "ipcPort": 4013,
+          "iscsiPort": 0,
+          "nodeID": 3,
+          "serviceID": 32,
+          "serviceType": "block",
+          "startedDriveIDs": [
+            21
+          ],
+          "status": "healthy"
+        }
+      },
+      {
+        "drives": [],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 4,
+          "attributes": {},
+          "cip": "10.117.62.25",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.25",
+          "mipi": "Bond1G",
+          "name": "SF-F2A3",
+          "nodeID": 3,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.25",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3310-8053-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 0,
+          "driveIDs": [],
+          "firstTimeStartup": true,
+          "ipcPort": 4001,
+          "iscsiPort": 0,
+          "nodeID": 3,
+          "serviceID": 11,
+          "serviceType": "bulkvolume",
+          "startedDriveIDs": [],
+          "status": "healthy"
+        }
+      },
+      {
+        "drive": {
+          "assignedService": 33,
+          "asyncResultIDs": [],
+          "attributes": {},
+          "capacity": 300069052416,
+          "customerSliceFileCapacity": 0,
+          "driveID": 11,
+          "driveStatus": "assigned",
+          "driveType": "block",
+          "nodeID": 4,
+          "reservedSliceFileCapacity": 0,
+          "serial": "scsi-SATA_INTEL_SSDSA2CW3BTPR227500TS300EGN",
+          "slot": 9
+        },
+        "drives": [
+          {
+            "assignedService": 33,
+            "asyncResultIDs": [],
+            "attributes": {},
+            "capacity": 300069052416,
+            "customerSliceFileCapacity": 0,
+            "driveID": 11,
+            "driveStatus": "assigned",
+            "driveType": "Block",
+            "nodeID": 4,
+            "reservedSliceFileCapacity": 0,
+            "serial": "scsi-SATA_INTEL_SSDSA2CW3BTPR227500TS300EGN",
+            "slot": 9
+          }
+        ],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 3,
+          "attributes": {},
+          "cip": "10.117.62.26",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.26",
+          "mipi": "Bond1G",
+          "name": "SF-1713",
+          "nodeID": 4,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.26",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3210-8054-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 11,
+          "driveIDs": [
+            11
+          ],
+          "firstTimeStartup": false,
+          "ipcPort": 4014,
+          "iscsiPort": 0,
+          "nodeID": 4,
+          "serviceID": 33,
+          "serviceType": "block",
+          "startedDriveIDs": [
+            11
+          ],
+          "status": "healthy"
+        }
+      },
+      {
+        "drives": [],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 4,
+          "attributes": {},
+          "cip": "10.117.62.25",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.25",
+          "mipi": "Bond1G",
+          "name": "SF-F2A3",
+          "nodeID": 3,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.25",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3310-8053-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 0,
+          "driveIDs": [],
+          "firstTimeStartup": true,
+          "ipcPort": 4003,
+          "iscsiPort": 0,
+          "nodeID": 3,
+          "serviceID": 12,
+          "serviceType": "volume",
+          "startedDriveIDs": [],
+          "status": "healthy"
+        }
+      },
+      {
+        "drive": {
+          "assignedService": 34,
+          "asyncResultIDs": [],
+          "attributes": {},
+          "capacity": 300069052416,
+          "customerSliceFileCapacity": 0,
+          "driveID": 22,
+          "driveStatus": "assigned",
+          "driveType": "block",
+          "nodeID": 3,
+          "reservedSliceFileCapacity": 0,
+          "serial": "scsi-SATA_INTEL_SSDSC2BB3BTWL3071045B300PGN",
+          "slot": 9
+        },
+        "drives": [
+          {
+            "assignedService": 34,
+            "asyncResultIDs": [],
+            "attributes": {},
+            "capacity": 300069052416,
+            "customerSliceFileCapacity": 0,
+            "driveID": 22,
+            "driveStatus": "assigned",
+            "driveType": "Block",
+            "nodeID": 3,
+            "reservedSliceFileCapacity": 0,
+            "serial": "scsi-SATA_INTEL_SSDSC2BB3BTWL3071045B300PGN",
+            "slot": 9
+          }
+        ],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 4,
+          "attributes": {},
+          "cip": "10.117.62.25",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.25",
+          "mipi": "Bond1G",
+          "name": "SF-F2A3",
+          "nodeID": 3,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.25",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3310-8053-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 22,
+          "driveIDs": [
+            22
+          ],
+          "firstTimeStartup": false,
+          "ipcPort": 4014,
+          "iscsiPort": 0,
+          "nodeID": 3,
+          "serviceID": 34,
+          "serviceType": "block",
+          "startedDriveIDs": [
+            22
+          ],
+          "status": "healthy"
+        }
+      },
+      {
+        "drives": [],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 4,
+          "attributes": {},
+          "cip": "10.117.62.25",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.25",
+          "mipi": "Bond1G",
+          "name": "SF-F2A3",
+          "nodeID": 3,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.25",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3310-8053-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 0,
+          "driveIDs": [],
+          "firstTimeStartup": true,
+          "ipcPort": 4004,
+          "iscsiPort": 3260,
+          "nodeID": 3,
+          "serviceID": 13,
+          "serviceType": "transport",
+          "startedDriveIDs": [],
+          "status": "healthy"
+        }
+      },
+      {
+        "drive": {
+          "assignedService": 14,
+          "asyncResultIDs": [],
+          "attributes": {},
+          "capacity": 299988156416,
+          "customerSliceFileCapacity": 134994670387,
+          "driveID": 12,
+          "driveStatus": "assigned",
+          "driveType": "volume",
+          "nodeID": 3,
+          "reservedSliceFileCapacity": 67497335193,
+          "serial": "scsi-SATA_VRFSD3400GNCVMT205121578-part4",
+          "slot": -1
+        },
+        "drives": [
+          {
+            "assignedService": 14,
+            "asyncResultIDs": [],
+            "attributes": {},
+            "capacity": 299988156416,
+            "customerSliceFileCapacity": 134994670387,
+            "driveID": 12,
+            "driveStatus": "assigned",
+            "driveType": "Slice",
+            "nodeID": 3,
+            "reservedSliceFileCapacity": 67497335193,
+            "serial": "scsi-SATA_VRFSD3400GNCVMT205121578-part4",
+            "slot": -1
+          }
+        ],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 4,
+          "attributes": {},
+          "cip": "10.117.62.25",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.25",
+          "mipi": "Bond1G",
+          "name": "SF-F2A3",
+          "nodeID": 3,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.25",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3310-8053-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 11,
+          "associatedTS": 13,
+          "associatedVS": 12,
+          "asyncResultIDs": [],
+          "driveID": 12,
+          "driveIDs": [
+            12
+          ],
+          "firstTimeStartup": false,
+          "ipcPort": 4002,
+          "iscsiPort": 0,
+          "nodeID": 3,
+          "serviceID": 14,
+          "serviceType": "slice",
+          "startedDriveIDs": [
+            12
+          ],
+          "status": "healthy"
+        }
+      },
+      {
+        "drive": {
+          "assignedService": 15,
+          "asyncResultIDs": [],
+          "attributes": {},
+          "capacity": 300069052416,
+          "customerSliceFileCapacity": 0,
+          "driveID": 2,
+          "driveStatus": "assigned",
+          "driveType": "block",
+          "nodeID": 4,
+          "reservedSliceFileCapacity": 0,
+          "serial": "scsi-SATA_INTEL_SSDSA2CW3CVPR121400NA300EGN",
+          "slot": 0
+        },
+        "drives": [
+          {
+            "assignedService": 15,
+            "asyncResultIDs": [],
+            "attributes": {},
+            "capacity": 300069052416,
+            "customerSliceFileCapacity": 0,
+            "driveID": 2,
+            "driveStatus": "assigned",
+            "driveType": "Block",
+            "nodeID": 4,
+            "reservedSliceFileCapacity": 0,
+            "serial": "scsi-SATA_INTEL_SSDSA2CW3CVPR121400NA300EGN",
+            "slot": 0
+          }
+        ],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 3,
+          "attributes": {},
+          "cip": "10.117.62.26",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.26",
+          "mipi": "Bond1G",
+          "name": "SF-1713",
+          "nodeID": 4,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.26",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3210-8054-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 2,
+          "driveIDs": [
+            2
+          ],
+          "firstTimeStartup": false,
+          "ipcPort": 4005,
+          "iscsiPort": 0,
+          "nodeID": 4,
+          "serviceID": 15,
+          "serviceType": "block",
+          "startedDriveIDs": [
+            2
+          ],
+          "status": "healthy"
+        }
+      },
+      {
+        "drive": {
+          "assignedService": 16,
+          "asyncResultIDs": [],
+          "attributes": {},
+          "capacity": 300069052416,
+          "customerSliceFileCapacity": 0,
+          "driveID": 13,
+          "driveStatus": "assigned",
+          "driveType": "block",
+          "nodeID": 3,
+          "reservedSliceFileCapacity": 0,
+          "serial": "scsi-SATA_INTEL_SSDSA2CW3CVPR1214002J300EGN",
+          "slot": 0
+        },
+        "drives": [
+          {
+            "assignedService": 16,
+            "asyncResultIDs": [],
+            "attributes": {},
+            "capacity": 300069052416,
+            "customerSliceFileCapacity": 0,
+            "driveID": 13,
+            "driveStatus": "assigned",
+            "driveType": "Block",
+            "nodeID": 3,
+            "reservedSliceFileCapacity": 0,
+            "serial": "scsi-SATA_INTEL_SSDSA2CW3CVPR1214002J300EGN",
+            "slot": 0
+          }
+        ],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 4,
+          "attributes": {},
+          "cip": "10.117.62.25",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.25",
+          "mipi": "Bond1G",
+          "name": "SF-F2A3",
+          "nodeID": 3,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.25",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3310-8053-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 13,
+          "driveIDs": [
+            13
+          ],
+          "firstTimeStartup": false,
+          "ipcPort": 4005,
+          "iscsiPort": 0,
+          "nodeID": 3,
+          "serviceID": 16,
+          "serviceType": "block",
+          "startedDriveIDs": [
+            13
+          ],
+          "status": "healthy"
+        }
+      },
+      {
+        "drive": {
+          "assignedService": 17,
+          "asyncResultIDs": [],
+          "attributes": {},
+          "capacity": 300069052416,
+          "customerSliceFileCapacity": 0,
+          "driveID": 14,
+          "driveStatus": "assigned",
+          "driveType": "block",
+          "nodeID": 3,
+          "reservedSliceFileCapacity": 0,
+          "serial": "scsi-SATA_INTEL_SSDSC2BB3BTWL311301EL300PGN",
+          "slot": 1
+        },
+        "drives": [
+          {
+            "assignedService": 17,
+            "asyncResultIDs": [],
+            "attributes": {},
+            "capacity": 300069052416,
+            "customerSliceFileCapacity": 0,
+            "driveID": 14,
+            "driveStatus": "assigned",
+            "driveType": "Block",
+            "nodeID": 3,
+            "reservedSliceFileCapacity": 0,
+            "serial": "scsi-SATA_INTEL_SSDSC2BB3BTWL311301EL300PGN",
+            "slot": 1
+          }
+        ],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 4,
+          "attributes": {},
+          "cip": "10.117.62.25",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.25",
+          "mipi": "Bond1G",
+          "name": "SF-F2A3",
+          "nodeID": 3,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.25",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3310-8053-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 14,
+          "driveIDs": [
+            14
+          ],
+          "firstTimeStartup": false,
+          "ipcPort": 4006,
+          "iscsiPort": 0,
+          "nodeID": 3,
+          "serviceID": 17,
+          "serviceType": "block",
+          "startedDriveIDs": [
+            14
+          ],
+          "status": "healthy"
+        }
+      },
+      {
+        "drive": {
+          "assignedService": 18,
+          "asyncResultIDs": [],
+          "attributes": {},
+          "capacity": 300069052416,
+          "customerSliceFileCapacity": 0,
+          "driveID": 3,
+          "driveStatus": "assigned",
+          "driveType": "block",
+          "nodeID": 4,
+          "reservedSliceFileCapacity": 0,
+          "serial": "scsi-SATA_INTEL_SSDSA2CW3CVPR1214010M300EGN",
+          "slot": 1
+        },
+        "drives": [
+          {
+            "assignedService": 18,
+            "asyncResultIDs": [],
+            "attributes": {},
+            "capacity": 300069052416,
+            "customerSliceFileCapacity": 0,
+            "driveID": 3,
+            "driveStatus": "assigned",
+            "driveType": "Block",
+            "nodeID": 4,
+            "reservedSliceFileCapacity": 0,
+            "serial": "scsi-SATA_INTEL_SSDSA2CW3CVPR1214010M300EGN",
+            "slot": 1
+          }
+        ],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 3,
+          "attributes": {},
+          "cip": "10.117.62.26",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.26",
+          "mipi": "Bond1G",
+          "name": "SF-1713",
+          "nodeID": 4,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.26",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3210-8054-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 3,
+          "driveIDs": [
+            3
+          ],
+          "firstTimeStartup": false,
+          "ipcPort": 4006,
+          "iscsiPort": 0,
+          "nodeID": 4,
+          "serviceID": 18,
+          "serviceType": "block",
+          "startedDriveIDs": [
+            3
+          ],
+          "status": "healthy"
+        }
+      },
+      {
+        "drive": {
+          "assignedService": 19,
+          "asyncResultIDs": [],
+          "attributes": {},
+          "capacity": 300069052416,
+          "customerSliceFileCapacity": 0,
+          "driveID": 15,
+          "driveStatus": "assigned",
+          "driveType": "block",
+          "nodeID": 3,
+          "reservedSliceFileCapacity": 0,
+          "serial": "scsi-SATA_INTEL_SSDSC2BB3BTWL3113015C300PGN",
+          "slot": 2
+        },
+        "drives": [
+          {
+            "assignedService": 19,
+            "asyncResultIDs": [],
+            "attributes": {},
+            "capacity": 300069052416,
+            "customerSliceFileCapacity": 0,
+            "driveID": 15,
+            "driveStatus": "assigned",
+            "driveType": "Block",
+            "nodeID": 3,
+            "reservedSliceFileCapacity": 0,
+            "serial": "scsi-SATA_INTEL_SSDSC2BB3BTWL3113015C300PGN",
+            "slot": 2
+          }
+        ],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 4,
+          "attributes": {},
+          "cip": "10.117.62.25",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.25",
+          "mipi": "Bond1G",
+          "name": "SF-F2A3",
+          "nodeID": 3,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.25",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3310-8053-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 15,
+          "driveIDs": [
+            15
+          ],
+          "firstTimeStartup": false,
+          "ipcPort": 4007,
+          "iscsiPort": 0,
+          "nodeID": 3,
+          "serviceID": 19,
+          "serviceType": "block",
+          "startedDriveIDs": [
+            15
+          ],
+          "status": "healthy"
+        }
+      },
+      {
+        "drives": [],
+        "node": {
+          "associatedFServiceID": 2,
+          "associatedMasterServiceID": 1,
+          "attributes": {},
+          "cip": "10.117.62.23",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": 0,
+          "mip": "10.117.60.23",
+          "mipi": "Bond1G",
+          "name": "SF-5391",
+          "nodeID": 1,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 32,
+            "nodeType": "FC0025"
+          },
+          "sip": "10.117.62.23",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0032-4B10-8038-C2C04F513232",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 8000,
+          "asyncResultIDs": [],
+          "driveID": 0,
+          "driveIDs": [],
+          "firstTimeStartup": true,
+          "ipcPort": 4000,
+          "iscsiPort": 0,
+          "nodeID": 1,
+          "serviceID": 1,
+          "serviceType": "master",
+          "startedDriveIDs": [],
+          "status": "healthy"
+        }
+      },
+      {
+        "drives": [],
+        "node": {
+          "associatedFServiceID": 2,
+          "associatedMasterServiceID": 1,
+          "attributes": {},
+          "cip": "10.117.62.23",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": 0,
+          "mip": "10.117.60.23",
+          "mipi": "Bond1G",
+          "name": "SF-5391",
+          "nodeID": 1,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 32,
+            "nodeType": "FC0025"
+          },
+          "sip": "10.117.62.23",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0032-4B10-8038-C2C04F513232",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 0,
+          "driveIDs": [],
+          "firstTimeStartup": true,
+          "ipcPort": 4001,
+          "iscsiPort": 0,
+          "nodeID": 1,
+          "serviceID": 2,
+          "serviceType": "fibre",
+          "startedDriveIDs": [],
+          "status": "healthy"
+        }
+      },
+      {
+        "drives": [],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 3,
+          "attributes": {},
+          "cip": "10.117.62.26",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.26",
+          "mipi": "Bond1G",
+          "name": "SF-1713",
+          "nodeID": 4,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.26",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3210-8054-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 8000,
+          "asyncResultIDs": [],
+          "driveID": 0,
+          "driveIDs": [],
+          "firstTimeStartup": true,
+          "ipcPort": 4000,
+          "iscsiPort": 0,
+          "nodeID": 4,
+          "serviceID": 3,
+          "serviceType": "master",
+          "startedDriveIDs": [],
+          "status": "healthy"
+        }
+      },
+      {
+        "drives": [],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 4,
+          "attributes": {},
+          "cip": "10.117.62.25",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.25",
+          "mipi": "Bond1G",
+          "name": "SF-F2A3",
+          "nodeID": 3,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.25",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3310-8053-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 8000,
+          "asyncResultIDs": [],
+          "driveID": 0,
+          "driveIDs": [],
+          "firstTimeStartup": true,
+          "ipcPort": 4000,
+          "iscsiPort": 0,
+          "nodeID": 3,
+          "serviceID": 4,
+          "serviceType": "master",
+          "startedDriveIDs": [],
+          "status": "healthy"
+        }
+      },
+      {
+        "drives": [],
+        "node": {
+          "associatedFServiceID": 6,
+          "associatedMasterServiceID": 5,
+          "attributes": {},
+          "cip": "10.117.62.24",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": 1,
+          "mip": "10.117.60.24",
+          "mipi": "Bond1G",
+          "name": "SF-918D",
+          "nodeID": 2,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 32,
+            "nodeType": "FC0025"
+          },
+          "sip": "10.117.62.24",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0034-5910-8033-B1C04F503232",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 8000,
+          "asyncResultIDs": [],
+          "driveID": 0,
+          "driveIDs": [],
+          "firstTimeStartup": true,
+          "ipcPort": 4000,
+          "iscsiPort": 0,
+          "nodeID": 2,
+          "serviceID": 5,
+          "serviceType": "master",
+          "startedDriveIDs": [],
+          "status": "healthy"
+        }
+      },
+      {
+        "drives": [],
+        "node": {
+          "associatedFServiceID": 6,
+          "associatedMasterServiceID": 5,
+          "attributes": {},
+          "cip": "10.117.62.24",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": 1,
+          "mip": "10.117.60.24",
+          "mipi": "Bond1G",
+          "name": "SF-918D",
+          "nodeID": 2,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 32,
+            "nodeType": "FC0025"
+          },
+          "sip": "10.117.62.24",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0034-5910-8033-B1C04F503232",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 0,
+          "driveIDs": [],
+          "firstTimeStartup": true,
+          "ipcPort": 4001,
+          "iscsiPort": 0,
+          "nodeID": 2,
+          "serviceID": 6,
+          "serviceType": "fibre",
+          "startedDriveIDs": [],
+          "status": "healthy"
+        }
+      },
+      {
+        "drives": [],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 3,
+          "attributes": {},
+          "cip": "10.117.62.26",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.26",
+          "mipi": "Bond1G",
+          "name": "SF-1713",
+          "nodeID": 4,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.26",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3210-8054-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 0,
+          "driveIDs": [],
+          "firstTimeStartup": true,
+          "ipcPort": 4001,
+          "iscsiPort": 0,
+          "nodeID": 4,
+          "serviceID": 7,
+          "serviceType": "bulkvolume",
+          "startedDriveIDs": [],
+          "status": "healthy"
+        }
+      },
+      {
+        "drives": [],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 3,
+          "attributes": {},
+          "cip": "10.117.62.26",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.26",
+          "mipi": "Bond1G",
+          "name": "SF-1713",
+          "nodeID": 4,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.26",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3210-8054-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 0,
+          "driveIDs": [],
+          "firstTimeStartup": true,
+          "ipcPort": 4003,
+          "iscsiPort": 0,
+          "nodeID": 4,
+          "serviceID": 8,
+          "serviceType": "volume",
+          "startedDriveIDs": [],
+          "status": "healthy"
+        }
+      },
+      {
+        "drives": [],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 3,
+          "attributes": {},
+          "cip": "10.117.62.26",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.26",
+          "mipi": "Bond1G",
+          "name": "SF-1713",
+          "nodeID": 4,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.26",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3210-8054-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 0,
+          "driveIDs": [],
+          "firstTimeStartup": true,
+          "ipcPort": 4004,
+          "iscsiPort": 3260,
+          "nodeID": 4,
+          "serviceID": 9,
+          "serviceType": "transport",
+          "startedDriveIDs": [],
+          "status": "healthy"
+        }
+      },
+      {
+        "drive": {
+          "assignedService": 20,
+          "asyncResultIDs": [],
+          "attributes": {},
+          "capacity": 300069052416,
+          "customerSliceFileCapacity": 0,
+          "driveID": 4,
+          "driveStatus": "assigned",
+          "driveType": "block",
+          "nodeID": 4,
+          "reservedSliceFileCapacity": 0,
+          "serial": "scsi-SATA_INTEL_SSDSA2BW3CVPR120504U8300EGN",
+          "slot": 2
+        },
+        "drives": [
+          {
+            "assignedService": 20,
+            "asyncResultIDs": [],
+            "attributes": {},
+            "capacity": 300069052416,
+            "customerSliceFileCapacity": 0,
+            "driveID": 4,
+            "driveStatus": "assigned",
+            "driveType": "Block",
+            "nodeID": 4,
+            "reservedSliceFileCapacity": 0,
+            "serial": "scsi-SATA_INTEL_SSDSA2BW3CVPR120504U8300EGN",
+            "slot": 2
+          }
+        ],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 3,
+          "attributes": {},
+          "cip": "10.117.62.26",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.26",
+          "mipi": "Bond1G",
+          "name": "SF-1713",
+          "nodeID": 4,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.26",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3210-8054-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 4,
+          "driveIDs": [
+            4
+          ],
+          "firstTimeStartup": false,
+          "ipcPort": 4007,
+          "iscsiPort": 0,
+          "nodeID": 4,
+          "serviceID": 20,
+          "serviceType": "block",
+          "startedDriveIDs": [
+            4
+          ],
+          "status": "healthy"
+        }
+      },
+      {
+        "drive": {
+          "assignedService": 21,
+          "asyncResultIDs": [],
+          "attributes": {},
+          "capacity": 300069052416,
+          "customerSliceFileCapacity": 0,
+          "driveID": 16,
+          "driveStatus": "assigned",
+          "driveType": "block",
+          "nodeID": 3,
+          "reservedSliceFileCapacity": 0,
+          "serial": "scsi-SATA_INTEL_SSDSC2BB3BTWL311604K4300PGN",
+          "slot": 3
+        },
+        "drives": [
+          {
+            "assignedService": 21,
+            "asyncResultIDs": [],
+            "attributes": {},
+            "capacity": 300069052416,
+            "customerSliceFileCapacity": 0,
+            "driveID": 16,
+            "driveStatus": "assigned",
+            "driveType": "Block",
+            "nodeID": 3,
+            "reservedSliceFileCapacity": 0,
+            "serial": "scsi-SATA_INTEL_SSDSC2BB3BTWL311604K4300PGN",
+            "slot": 3
+          }
+        ],
+        "node": {
+          "associatedFServiceID": 0,
+          "associatedMasterServiceID": 4,
+          "attributes": {},
+          "cip": "10.117.62.25",
+          "cipi": "Bond10G",
+          "fibreChannelTargetPortGroup": null,
+          "mip": "10.117.60.25",
+          "mipi": "Bond1G",
+          "name": "SF-F2A3",
+          "nodeID": 3,
+          "platformInfo": {
+            "chassisType": "R620",
+            "cpuModel": "Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz",
+            "nodeMemoryGB": 72,
+            "nodeType": "SF3010"
+          },
+          "sip": "10.117.62.25",
+          "sipi": "Bond10G",
+          "softwareVersion": "9.0.0.1554",
+          "uuid": "4C4C4544-0053-3310-8053-B6C04F435831",
+          "virtualNetworks": []
+        },
+        "service": {
+          "associatedBV": 0,
+          "associatedTS": 0,
+          "associatedVS": 0,
+          "asyncResultIDs": [],
+          "driveID": 16,
+          "driveIDs": [
+            16
+          ],
+          "firstTimeStartup": false,
+          "ipcPort": 4008,
+          "iscsiPort": 0,
+          "nodeID": 3,
+          "serviceID": 21,
+          "serviceType": "block",
+          "startedDriveIDs": [
+            16
+          ],
+          "status": "healthy"
+        }
+      }
+    ]
+  }
+}"""
+
 RESP_ListSnapshots_v9_0 = """{
    "id":9,
    "result":{
