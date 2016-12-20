@@ -4441,9 +4441,9 @@ def test_modify_volumes_v9_0():
     volume_ids = 42 # volume_ids
     account_id = 42 # account_id
     access = "" # access
-    attributes = dict() # attributes
     qos = dict() # qos
     total_size = 42 # total_size
+    attributes = dict() # attributes
     result = ef.modify_volumes(volume_ids,)
     assert result.volumes[1].status == """active""", "Died on +.volumes[1].status"
     assert result.volumes[1].enable512e == False, "Died on +.volumes[1].enable512e"
@@ -4492,9 +4492,9 @@ def test_modify_volumes_v9_1():
     volume_ids = 42 # volume_ids
     account_id = 42 # account_id
     access = "" # access
-    attributes = dict() # attributes
     qos = dict() # qos
     total_size = 42 # total_size
+    attributes = dict() # attributes
     result = ef.modify_volumes(volume_ids,)
     assert result.volumes[9].status == """active""", "Died on +.volumes[9].status"
     assert result.volumes[9].enable512e == False, "Died on +.volumes[9].enable512e"
