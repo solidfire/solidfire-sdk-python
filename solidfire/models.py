@@ -51,6 +51,45 @@ class TestDrivesResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class FeatureObject(data_model.DataObject):
+    """
+    :param enabled: [required] True if the feature is enabled, otherwise false. 
+    :type enabled: bool
+
+    :param feature: [required] The name of the feature. 
+    :type feature: str
+    """
+    enabled = data_model.property(
+        "enabled", bool,
+        array=False, optional=False,
+        documentation="True if the feature is enabled, otherwise false.",
+        dictionaryType=None
+    )
+    feature = data_model.property(
+        "feature", str,
+        array=False, optional=False,
+        documentation="The name of the feature.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetFeatureStatusResult(data_model.DataObject):
+    """
+    :param features: [required] An array of feature objects indicating the feature name and its status. 
+    :type features: FeatureObject
+    """
+    features = data_model.property(
+        "features", FeatureObject,
+        array=True, optional=False,
+        documentation="An array of feature objects indicating the feature name and its status.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class VirtualVolumeHost(data_model.DataObject):
     """
     :param virtual_volume_host_id: [required] 
@@ -1167,17 +1206,8 @@ class ListAllNodesResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class CompleteClusterPairingRequest(data_model.DataObject):
-    """
-    :param cluster_pairing_key: [required] A string of characters that is returned from the "StartClusterPairing" API method. 
-    :type cluster_pairing_key: str
-    """
-    cluster_pairing_key = data_model.property(
-        "clusterPairingKey", str,
-        array=False, optional=False,
-        documentation="A string of characters that is returned from the &quot;StartClusterPairing&quot; API method.",
-        dictionaryType=None
-    )
+class ShutdownResult(data_model.DataObject):
+    """    """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -4401,6 +4431,21 @@ class AddClusterAdminResult(data_model.DataObject):
         "clusterAdminID", int,
         array=False, optional=False,
         documentation="ClusterAdminID for the newly created Cluster Admin.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class CompleteClusterPairingRequest(data_model.DataObject):
+    """
+    :param cluster_pairing_key: [required] A string of characters that is returned from the "StartClusterPairing" API method. 
+    :type cluster_pairing_key: str
+    """
+    cluster_pairing_key = data_model.property(
+        "clusterPairingKey", str,
+        array=False, optional=False,
+        documentation="A string of characters that is returned from the &quot;StartClusterPairing&quot; API method.",
         dictionaryType=None
     )
 
@@ -7747,15 +7792,15 @@ class CreateScheduleResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class CancelCloneRequest(data_model.DataObject):
+class ShutdownRequest(data_model.DataObject):
     """
-    :param clone_id: [required] 
-    :type clone_id: int
+    :param option: [required] Action to take for the node shutdown:restart: Restarts the node.halt: Performs full power-off of the node. 
+    :type option: str
     """
-    clone_id = data_model.property(
-        "cloneID", int,
+    option = data_model.property(
+        "option", str,
         array=False, optional=False,
-        documentation="",
+        documentation="Action to take for the node shutdown:restart: Restarts the node.halt: Performs full power-off of the node.",
         dictionaryType=None
     )
 
@@ -7912,6 +7957,39 @@ class GetCurrentClusterAdminResult(data_model.DataObject):
         "clusterAdmin", ClusterAdmin,
         array=False, optional=False,
         documentation="Information about all cluster and LDAP administrators that exist for a cluster.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ResetNodeRequest(data_model.DataObject):
+    """
+    :param build: [required] Used to specify the URL to a remote Element software image to which the node will be reset. 
+    :type build: str
+
+    :param force: [required] The force parameter must be included in order to successfully reset the node. 
+    :type force: bool
+
+    :param option: [required] Used to enter specifications for running the reset operation. 
+    :type option: str
+    """
+    build = data_model.property(
+        "build", str,
+        array=False, optional=False,
+        documentation="Used to specify the URL to a remote Element software image to which the node will be reset.",
+        dictionaryType=None
+    )
+    force = data_model.property(
+        "force", bool,
+        array=False, optional=False,
+        documentation="The force parameter must be included in order to successfully reset the node.",
+        dictionaryType=None
+    )
+    option = data_model.property(
+        "option", str,
+        array=False, optional=False,
+        documentation="Used to enter specifications for running the reset operation.",
         dictionaryType=None
     )
 
@@ -8530,6 +8608,21 @@ class AddNodesRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class ResetNodeResult(data_model.DataObject):
+    """
+    :param rtfi_info: [required] Details of nodes that are being reset. 
+    :type rtfi_info: dict
+    """
+    rtfi_info = data_model.property(
+        "rtfiInfo", dict,
+        array=False, optional=False,
+        documentation="Details of nodes that are being reset.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class EnableLdapAuthenticationRequest(data_model.DataObject):
     """
     :param auth_type:  Identifies which user authentcation method will be used. <br/> Must be one of the following:<br/> <b>DirectBind</b><br/> <b>SearchAndBind</b> (default) 
@@ -8701,39 +8794,15 @@ class ModifyBackupTargetResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class FeatureObject(data_model.DataObject):
+class CancelCloneRequest(data_model.DataObject):
     """
-    :param enabled: [required] True if the feature is enabled, otherwise false. 
-    :type enabled: bool
-
-    :param feature: [required] The name of the feature. 
-    :type feature: str
+    :param clone_id: [required] 
+    :type clone_id: int
     """
-    enabled = data_model.property(
-        "enabled", bool,
+    clone_id = data_model.property(
+        "cloneID", int,
         array=False, optional=False,
-        documentation="True if the feature is enabled, otherwise false.",
-        dictionaryType=None
-    )
-    feature = data_model.property(
-        "feature", str,
-        array=False, optional=False,
-        documentation="The name of the feature.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetFeatureStatusResult(data_model.DataObject):
-    """
-    :param features: [required] An array of feature objects indicating the feature name and its status. 
-    :type features: FeatureObject
-    """
-    features = data_model.property(
-        "features", FeatureObject,
-        array=True, optional=False,
-        documentation="An array of feature objects indicating the feature name and its status.",
+        documentation="",
         dictionaryType=None
     )
 

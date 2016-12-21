@@ -2984,6 +2984,60 @@ class Element(ServiceBase):
             params
         )
 
+    def reset_node(
+            self,
+            build,
+            force,
+            option,):
+        """
+        Allows you to reset a node to the SolidFire factory settings. All data will be deleted from the node when you call this method. A node participating in a cluster cannot be reset.
+        :param build: [required] Used to specify the URL to a remote Element software image to which the node will be reset. 
+        :type build: str
+
+        :param force: [required] The force parameter must be included in order to successfully reset the node. 
+        :type force: bool
+
+        :param option: [required] Used to enter specifications for running the reset operation. 
+        :type option: str
+        """
+
+        self._check_connection_type("reset_node", "Cluster")
+
+        params = { 
+            "build": build,
+            "force": force,
+            "option": option,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ResetNode',
+            ResetNodeResult,
+            params
+        )
+
+    def shutdown(
+            self,
+            option,):
+        """
+        The Shutdown API method enables you to restart or shutdown a node that has not yet been added to a cluster. To use this method, login in to the MIP for the pending node and enter the "shutdown" method with either the "restart" or "halt" options in the following table.
+        :param option: [required] Action to take for the node shutdown:restart: Restarts the node.halt: Performs full power-off of the node. 
+        :type option: str
+        """
+
+        self._check_connection_type("shutdown", "Cluster")
+
+        params = { 
+            "option": option,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'Shutdown',
+            ShutdownResult,
+            params
+        )
+
     def list_services(
             self,):
         """
