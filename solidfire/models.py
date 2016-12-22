@@ -51,45 +51,6 @@ class TestDrivesResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class FeatureObject(data_model.DataObject):
-    """
-    :param enabled: [required] True if the feature is enabled, otherwise false. 
-    :type enabled: bool
-
-    :param feature: [required] The name of the feature. 
-    :type feature: str
-    """
-    enabled = data_model.property(
-        "enabled", bool,
-        array=False, optional=False,
-        documentation="True if the feature is enabled, otherwise false.",
-        dictionaryType=None
-    )
-    feature = data_model.property(
-        "feature", str,
-        array=False, optional=False,
-        documentation="The name of the feature.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetFeatureStatusResult(data_model.DataObject):
-    """
-    :param features: [required] An array of feature objects indicating the feature name and its status. 
-    :type features: FeatureObject
-    """
-    features = data_model.property(
-        "features", FeatureObject,
-        array=True, optional=False,
-        documentation="An array of feature objects indicating the feature name and its status.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class VirtualVolumeHost(data_model.DataObject):
     """
     :param virtual_volume_host_id: [required] 
@@ -847,21 +808,6 @@ class UpdateBulkVolumeStatusRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetAccountEfficiencyRequest(data_model.DataObject):
-    """
-    :param account_id: [required] Specifies the volume account for which capacity is computed. 
-    :type account_id: int
-    """
-    account_id = data_model.property(
-        "accountID", int,
-        array=False, optional=False,
-        documentation="Specifies the volume account for which capacity is computed.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class Platform(data_model.DataObject):
     """
     :param node_type: [required] SolidFire's name for this platform. 
@@ -1206,8 +1152,17 @@ class ListAllNodesResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ShutdownResult(data_model.DataObject):
-    """    """
+class CompleteClusterPairingRequest(data_model.DataObject):
+    """
+    :param cluster_pairing_key: [required] A string of characters that is returned from the "StartClusterPairing" API method. 
+    :type cluster_pairing_key: str
+    """
+    cluster_pairing_key = data_model.property(
+        "clusterPairingKey", str,
+        array=False, optional=False,
+        documentation="A string of characters that is returned from the &quot;StartClusterPairing&quot; API method.",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -4431,21 +4386,6 @@ class AddClusterAdminResult(data_model.DataObject):
         "clusterAdminID", int,
         array=False, optional=False,
         documentation="ClusterAdminID for the newly created Cluster Admin.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class CompleteClusterPairingRequest(data_model.DataObject):
-    """
-    :param cluster_pairing_key: [required] A string of characters that is returned from the "StartClusterPairing" API method. 
-    :type cluster_pairing_key: str
-    """
-    cluster_pairing_key = data_model.property(
-        "clusterPairingKey", str,
-        array=False, optional=False,
-        documentation="A string of characters that is returned from the &quot;StartClusterPairing&quot; API method.",
         dictionaryType=None
     )
 
@@ -7792,15 +7732,15 @@ class CreateScheduleResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ShutdownRequest(data_model.DataObject):
+class CancelCloneRequest(data_model.DataObject):
     """
-    :param option: [required] Action to take for the node shutdown:restart: Restarts the node.halt: Performs full power-off of the node. 
-    :type option: str
+    :param clone_id: [required] 
+    :type clone_id: int
     """
-    option = data_model.property(
-        "option", str,
+    clone_id = data_model.property(
+        "cloneID", int,
         array=False, optional=False,
-        documentation="Action to take for the node shutdown:restart: Restarts the node.halt: Performs full power-off of the node.",
+        documentation="",
         dictionaryType=None
     )
 
@@ -7957,39 +7897,6 @@ class GetCurrentClusterAdminResult(data_model.DataObject):
         "clusterAdmin", ClusterAdmin,
         array=False, optional=False,
         documentation="Information about all cluster and LDAP administrators that exist for a cluster.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ResetNodeRequest(data_model.DataObject):
-    """
-    :param build: [required] Used to specify the URL to a remote Element software image to which the node will be reset. 
-    :type build: str
-
-    :param force: [required] The force parameter must be included in order to successfully reset the node. 
-    :type force: bool
-
-    :param option: [required] Used to enter specifications for running the reset operation. 
-    :type option: str
-    """
-    build = data_model.property(
-        "build", str,
-        array=False, optional=False,
-        documentation="Used to specify the URL to a remote Element software image to which the node will be reset.",
-        dictionaryType=None
-    )
-    force = data_model.property(
-        "force", bool,
-        array=False, optional=False,
-        documentation="The force parameter must be included in order to successfully reset the node.",
-        dictionaryType=None
-    )
-    option = data_model.property(
-        "option", str,
-        array=False, optional=False,
-        documentation="Used to enter specifications for running the reset operation.",
         dictionaryType=None
     )
 
@@ -8608,21 +8515,6 @@ class AddNodesRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ResetNodeResult(data_model.DataObject):
-    """
-    :param rtfi_info: [required] Details of nodes that are being reset. 
-    :type rtfi_info: dict
-    """
-    rtfi_info = data_model.property(
-        "rtfiInfo", dict,
-        array=False, optional=False,
-        documentation="Details of nodes that are being reset.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class EnableLdapAuthenticationRequest(data_model.DataObject):
     """
     :param auth_type:  Identifies which user authentcation method will be used. <br/> Must be one of the following:<br/> <b>DirectBind</b><br/> <b>SearchAndBind</b> (default) 
@@ -8794,101 +8686,54 @@ class ModifyBackupTargetResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class CancelCloneRequest(data_model.DataObject):
+class FeatureObject(data_model.DataObject):
     """
-    :param clone_id: [required] 
-    :type clone_id: int
+    :param enabled: [required] True if the feature is enabled, otherwise false. 
+    :type enabled: bool
+
+    :param feature: [required] The name of the feature. 
+    :type feature: str
     """
-    clone_id = data_model.property(
-        "cloneID", int,
+    enabled = data_model.property(
+        "enabled", bool,
         array=False, optional=False,
-        documentation="",
+        documentation="True if the feature is enabled, otherwise false.",
+        dictionaryType=None
+    )
+    feature = data_model.property(
+        "feature", str,
+        array=False, optional=False,
+        documentation="The name of the feature.",
         dictionaryType=None
     )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class Account(data_model.DataObject):
+class GetFeatureStatusResult(data_model.DataObject):
     """
-    The object containing information about an account.
-    This object only includes "configured" information about the account, not any runtime or usage information.
-    :param account_id: [required] Unique AccountID for the account. 
+    :param features: [required] An array of feature objects indicating the feature name and its status. 
+    :type features: FeatureObject
+    """
+    features = data_model.property(
+        "features", FeatureObject,
+        array=True, optional=False,
+        documentation="An array of feature objects indicating the feature name and its status.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetAccountEfficiencyRequest(data_model.DataObject):
+    """
+    :param account_id: [required] Specifies the volume account for which capacity is computed. 
     :type account_id: int
-
-    :param username: [required] User name for the account. 
-    :type username: str
-
-    :param status: [required] Current status of the account. 
-    :type status: str
-
-    :param volumes: [required] List of VolumeIDs for Volumes owned by this account. 
-    :type volumes: int
-
-    :param initiator_secret:  CHAP secret to use for the initiator. 
-    :type initiator_secret: CHAPSecret
-
-    :param target_secret:  CHAP secret to use for the target (mutual CHAP authentication). 
-    :type target_secret: CHAPSecret
-
-    :param attributes:  List of Name/Value pairs in JSON object format. 
-    :type attributes: dict
     """
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=False,
-        documentation="Unique AccountID for the account.",
-        dictionaryType=None
-    )
-    username = data_model.property(
-        "username", str,
-        array=False, optional=False,
-        documentation="User name for the account.",
-        dictionaryType=None
-    )
-    status = data_model.property(
-        "status", str,
-        array=False, optional=False,
-        documentation="Current status of the account.",
-        dictionaryType=None
-    )
-    volumes = data_model.property(
-        "volumes", int,
-        array=True, optional=False,
-        documentation="List of VolumeIDs for Volumes owned by this account.",
-        dictionaryType=None
-    )
-    initiator_secret = data_model.property(
-        "initiatorSecret", CHAPSecret,
-        array=False, optional=True,
-        documentation="CHAP secret to use for the initiator.",
-        dictionaryType=None
-    )
-    target_secret = data_model.property(
-        "targetSecret", CHAPSecret,
-        array=False, optional=True,
-        documentation="CHAP secret to use for the target (mutual CHAP authentication).",
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="List of Name/Value pairs in JSON object format.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetAccountResult(data_model.DataObject):
-    """
-    :param account: [required] Account details. 
-    :type account: Account
-    """
-    account = data_model.property(
-        "account", Account,
-        array=False, optional=False,
-        documentation="Account details.",
+        documentation="Specifies the volume account for which capacity is computed.",
         dictionaryType=None
     )
 
@@ -8925,7 +8770,7 @@ class TestConnectEnsembleRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class NodeSystemStatusInfo(data_model.DataObject):
+class GetSystemStatusResult(data_model.DataObject):
     """
     :param reboot_required: [required] 
     :type reboot_required: bool
@@ -8933,45 +8778,6 @@ class NodeSystemStatusInfo(data_model.DataObject):
     reboot_required = data_model.property(
         "rebootRequired", bool,
         array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class NodeSystemStatus(data_model.DataObject):
-    """
-    :param node_id: [required] 
-    :type node_id: int
-
-    :param result: [required] 
-    :type result: NodeSystemStatusInfo
-    """
-    node_id = data_model.property(
-        "nodeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    result = data_model.property(
-        "result", NodeSystemStatusInfo,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetSystemStatusResult(data_model.DataObject):
-    """
-    :param nodes: [required] 
-    :type nodes: NodeSystemStatus
-    """
-    nodes = data_model.property(
-        "nodes", NodeSystemStatus,
-        array=True, optional=False,
         documentation="",
         dictionaryType=None
     )
@@ -13790,6 +13596,77 @@ class TestLdapAuthenticationResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class Account(data_model.DataObject):
+    """
+    The object containing information about an account.
+    This object only includes "configured" information about the account, not any runtime or usage information.
+    :param account_id: [required] Unique AccountID for the account. 
+    :type account_id: int
+
+    :param username: [required] User name for the account. 
+    :type username: str
+
+    :param status: [required] Current status of the account. 
+    :type status: str
+
+    :param volumes: [required] List of VolumeIDs for Volumes owned by this account. 
+    :type volumes: int
+
+    :param initiator_secret:  CHAP secret to use for the initiator. 
+    :type initiator_secret: CHAPSecret
+
+    :param target_secret:  CHAP secret to use for the target (mutual CHAP authentication). 
+    :type target_secret: CHAPSecret
+
+    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :type attributes: dict
+    """
+    account_id = data_model.property(
+        "accountID", int,
+        array=False, optional=False,
+        documentation="Unique AccountID for the account.",
+        dictionaryType=None
+    )
+    username = data_model.property(
+        "username", str,
+        array=False, optional=False,
+        documentation="User name for the account.",
+        dictionaryType=None
+    )
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation="Current status of the account.",
+        dictionaryType=None
+    )
+    volumes = data_model.property(
+        "volumes", int,
+        array=True, optional=False,
+        documentation="List of VolumeIDs for Volumes owned by this account.",
+        dictionaryType=None
+    )
+    initiator_secret = data_model.property(
+        "initiatorSecret", CHAPSecret,
+        array=False, optional=True,
+        documentation="CHAP secret to use for the initiator.",
+        dictionaryType=None
+    )
+    target_secret = data_model.property(
+        "targetSecret", CHAPSecret,
+        array=False, optional=True,
+        documentation="CHAP secret to use for the target (mutual CHAP authentication).",
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="List of Name/Value pairs in JSON object format.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListAccountsResult(data_model.DataObject):
     """
     :param accounts: [required] List of accounts. 
@@ -15030,6 +14907,21 @@ class ListAccountsRequest(data_model.DataObject):
         "limit", int,
         array=False, optional=True,
         documentation="Maximum number of AccountInfo objects to return.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetAccountResult(data_model.DataObject):
+    """
+    :param account: [required] Account details. 
+    :type account: Account
+    """
+    account = data_model.property(
+        "account", Account,
+        array=False, optional=False,
+        documentation="Account details.",
         dictionaryType=None
     )
 

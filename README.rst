@@ -8,7 +8,7 @@ Python SDK library for interacting with SolidFire Element API
 Current Release
 ---------------
 
-Version 1.2.0.0
+Version 1.2.0.79
 
 Description
 -----------
@@ -26,10 +26,8 @@ Compatibility
 +------------------------+---------------+
 | Component              | Version       |
 +========================+===============+
-| SolidFire Element OS   | 7.0 - 9.0\*   |
+| SolidFire Element OS   | 7.0 - 9.0     |
 +------------------------+---------------+
-\* **Note**: *This version of the SDK will work with versions of Element OS greater then 8.4 but some features will not be supported in the API.*
-
 
 Getting Help
 ------------
@@ -232,7 +230,7 @@ Read timeout (useful for extending time for a service call to return):
 **License**
 -----------
 
-Copyright © 2016 NetApp, Inc. All rights reserved.
+Copyright © 2016, 2017 NetApp, Inc. All rights reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may
 not use this file except in compliance with the License. You may obtain
