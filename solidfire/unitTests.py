@@ -4697,6 +4697,17 @@ def test_purge_deleted_volumes_v9_0():
     volume_access_group_ids = 42 # volume_access_group_ids
     result = ef.purge_deleted_volumes()
 
+def test_reset_node_v9_0():
+    ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
+    ef._dispatcher.post = MagicMock(return_value = Resources.RESP_ResetNode_v9_0)
+
+    
+    build = "" # build
+    force = True # force
+    option = "" # option
+    result = ef.reset_node(build,force,option,)
+    assert type(result.rtfi_info) is dict, "Died on .rtfi_info"
+
 def test_restart_networking_v9_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
     ef._dispatcher.post = MagicMock(return_value = Resources.RESP_RestartNetworking_v9_0)
@@ -4791,6 +4802,7 @@ if __name__ == "__main__":
     test_modify_volumes_v9_0()
     test_modify_volumes_v9_1()
     test_purge_deleted_volumes_v9_0()
+    test_reset_node_v9_0()
     test_restart_networking_v9_0()
     test_restart_services_v9_0()
     test_restart_services_v9_1()
