@@ -1388,37 +1388,6 @@ class Element(ServiceBase):
             since=6.0
         )
 
-    def get_async_result(
-            self,
-            async_handle,):
-        """
-        Used to retrieve the result of asynchronous method calls.
-        Some method calls are long running and do not complete when the initial response is sent.
-        To obtain the result of the method call, polling with GetAsyncResult is required.
-        <br/><br/>
-        GetAsyncResult returns the overall status of the operation (in progress, completed, or error) in a standard fashion,
-        but the actual data returned for the operation depends on the original method call and the return data is documented with each method.
-        <br/><br/>
-        The result for a completed asynchronous method call can only be retrieved once.
-        Once the final result has been returned, later attempts returns an error.
-        :param asyncHandle: [required] A value that was returned from the original asynchronous method call. 
-        :type asyncHandle: int
-        """
-
-        self._check_connection_type("get_async_result", "Cluster")
-
-        params = { 
-            "asyncHandle": async_handle,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetAsyncResult',
-            GetAsyncResultResult,
-            params,
-            since=1.0
-        )
-
     def add_drives(
             self,
             drives,):
@@ -1678,213 +1647,6 @@ class Element(ServiceBase):
             TestDrivesResult,
             params,
             since=5.0
-        )
-
-    def get_ipmi_config(
-            self,
-            force,
-            chassis_type=OPTIONAL,):
-        """
-        GetIpmiConfig enables you to retrieve hardware sensor information from sensors that are in your node.
-        :param chassisType:  Used to display information for each node chassis type. Valid values:all - returns sensor information for each chassis type. {chassis type} - returns sensor information for a specified chassis type. 
-        :type chassisType: str
-
-        :param force: [required] 
-        :type force: bool
-        """
-
-        self._check_connection_type("get_ipmi_config", "Cluster")
-
-        params = { 
-            "force": force,
-        }
-        if chassis_type is not None:
-            params["chassisType"] = chassis_type
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetIpmiConfig',
-            GetIpmiConfigResult,
-            params
-        )
-
-    def get_ipmi_info(
-            self,
-            force,):
-        """
-        GetIpmiInfo allows you to display a detailed reporting of sensors (objects) for node fans, intake and exhaust temperatures, and power supplies  that are monitored by . 
-        :param force: [required] 
-        :type force: bool
-        """
-
-        self._check_connection_type("get_ipmi_info", "Cluster")
-
-        params = { 
-            "force": force,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetIpmiInfo',
-            GetIpmiInfoResult,
-            params
-        )
-
-    def get_origin(
-            self,
-            force,):
-        """
-        GetOrigin enables you to retrieve the origination certificate for where the node was built.NOTE: The GetOrigin method may return "null" if there is no origination certification.
-        :param force: [required] 
-        :type force: bool
-        """
-
-        self._check_connection_type("get_origin", "Cluster")
-
-        params = { 
-            "force": force,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetOrigin',
-            GetOriginResult,
-            params
-        )
-
-    def get_volume_count(
-            self,):
-        """
-        GetVolumeCount enables you to retrieve the number of volumes currently in the system.        """
-
-        self._check_connection_type("get_volume_count", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetVolumeCount',
-            GetVolumeCountResult,
-            params
-        )
-
-    def list_pending_active_nodes(
-            self,):
-        """
-        ListPendingActiveNodes returns the list of nodes in the cluster that are currently in the PendingActive state, between the pending and active states. These are nodes that are currently being returned to the factory image.        """
-
-        self._check_connection_type("list_pending_active_nodes", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListPendingActiveNodes',
-            ListPendingActiveNodesResult,
-            params
-        )
-
-    def enable_feature(
-            self,
-            feature,):
-        """
-        EnableFeature allows you to enable cluster features that are disabled by default.
-        :param feature: [required] Valid values: vvols: Enable the Virtual Volumes (VVOLs) cluster feature. 
-        :type feature: str
-        """
-
-        self._check_connection_type("enable_feature", "Cluster")
-
-        params = { 
-            "feature": feature,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'EnableFeature',
-            EnableFeatureResult,
-            params,
-            since=9.0
-        )
-
-    def get_feature_status(
-            self,
-            feature=OPTIONAL,):
-        """
-        GetFeatureStatus allows you to retrieve the status of a cluster feature.
-        :param feature:  Valid values: vvols: Find the status of the Virtual Volumes (VVOLs) cluster feature. 
-        :type feature: str
-        """
-
-        self._check_connection_type("get_feature_status", "Cluster")
-
-        params = { 
-        }
-        if feature is not None:
-            params["feature"] = feature
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetFeatureStatus',
-            GetFeatureStatusResult,
-            params,
-            since=9.0
-        )
-
-    def list_fibre_channel_port_info(
-            self,):
-        """
-        The ListFibreChannelPortInfo is used to return information about the Fibre Channel ports. The API method is intended for use on individual nodes; userid and password is required for access to individual Fibre Channel nodes.        """
-
-        self._check_connection_type("list_fibre_channel_port_info", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListFibreChannelPortInfo',
-            ListFibreChannelPortInfoResult,
-            params,
-            since=8.0
-        )
-
-    def list_fibre_channel_sessions(
-            self,):
-        """
-        The ListFibreChannelSessions is used to return information about the active Fibre Channel sessions on a cluster.        """
-
-        self._check_connection_type("list_fibre_channel_sessions", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListFibreChannelSessions',
-            ListFibreChannelSessionsResult,
-            params,
-            since=7.0
-        )
-
-    def list_node_fibre_channel_port_info(
-            self,):
-        """
-        The ListNodeFibreChannelPortInfo is used to return information about the Fibre Channel ports. The API method is intended for use on individual nodes; userid and password is required for access to individual Fibre Channel nodes.        """
-
-        self._check_connection_type("list_node_fibre_channel_port_info", "Node")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListNodeFibreChannelPortInfo',
-            ListNodeFibreChannelPortInfoResult,
-            params,
-            since=7.0
         )
 
     def get_cluster_hardware_info(
@@ -2396,6 +2158,78 @@ class Element(ServiceBase):
             since=7.0
         )
 
+    def list_fibre_channel_port_info(
+            self,):
+        """
+        The ListFibreChannelPortInfo is used to return information about the Fibre Channel ports. The API method is intended for use on individual nodes; userid and password is required for access to individual Fibre Channel nodes.        """
+
+        self._check_connection_type("list_fibre_channel_port_info", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListFibreChannelPortInfo',
+            ListFibreChannelPortInfoResult,
+            params,
+            since=8.0
+        )
+
+    def list_fibre_channel_sessions(
+            self,):
+        """
+        The ListFibreChannelSessions is used to return information about the active Fibre Channel sessions on a cluster.        """
+
+        self._check_connection_type("list_fibre_channel_sessions", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListFibreChannelSessions',
+            ListFibreChannelSessionsResult,
+            params,
+            since=7.0
+        )
+
+    def list_iscsisessions(
+            self,):
+        """
+        ListISCSISessions is used to return iSCSI connection information for volumes in the cluster.        """
+
+        self._check_connection_type("list_iscsisessions", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListISCSISessions',
+            ListISCSISessionsResult,
+            params,
+            since=1.0
+        )
+
+    def list_node_fibre_channel_port_info(
+            self,):
+        """
+        The ListNodeFibreChannelPortInfo is used to return information about the Fibre Channel ports. The API method is intended for use on individual nodes; userid and password is required for access to individual Fibre Channel nodes.        """
+
+        self._check_connection_type("list_node_fibre_channel_port_info", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListNodeFibreChannelPortInfo',
+            ListNodeFibreChannelPortInfoResult,
+            params,
+            since=7.0
+        )
+
     def add_nodes(
             self,
             pending_nodes,):
@@ -2676,6 +2510,45 @@ class Element(ServiceBase):
             SetNetworkConfigResult,
             params,
             since=5.0
+        )
+
+    def get_origin(
+            self,
+            force,):
+        """
+        GetOrigin enables you to retrieve the origination certificate for where the node was built.NOTE: The GetOrigin method may return "null" if there is no origination certification.
+        :param force: [required] 
+        :type force: bool
+        """
+
+        self._check_connection_type("get_origin", "Cluster")
+
+        params = { 
+            "force": force,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetOrigin',
+            GetOriginResult,
+            params
+        )
+
+    def list_pending_active_nodes(
+            self,):
+        """
+        ListPendingActiveNodes returns the list of nodes in the cluster that are currently in the PendingActive state, between the pending and active states. These are nodes that are currently being returned to the factory image.        """
+
+        self._check_connection_type("list_pending_active_nodes", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListPendingActiveNodes',
+            ListPendingActiveNodesResult,
+            params
         )
 
     def complete_cluster_pairing(
@@ -4474,6 +4347,53 @@ class Element(ServiceBase):
             since=9.0
         )
 
+    def enable_feature(
+            self,
+            feature,):
+        """
+        EnableFeature allows you to enable cluster features that are disabled by default.
+        :param feature: [required] Valid values: vvols: Enable the Virtual Volumes (VVOLs) cluster feature. 
+        :type feature: str
+        """
+
+        self._check_connection_type("enable_feature", "Cluster")
+
+        params = { 
+            "feature": feature,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'EnableFeature',
+            EnableFeatureResult,
+            params,
+            since=9.0
+        )
+
+    def get_feature_status(
+            self,
+            feature=OPTIONAL,):
+        """
+        GetFeatureStatus allows you to retrieve the status of a cluster feature.
+        :param feature:  Valid values: vvols: Find the status of the Virtual Volumes (VVOLs) cluster feature. 
+        :type feature: str
+        """
+
+        self._check_connection_type("get_feature_status", "Cluster")
+
+        params = { 
+        }
+        if feature is not None:
+            params["feature"] = feature
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetFeatureStatus',
+            GetFeatureStatusResult,
+            params,
+            since=9.0
+        )
+
     def cancel_clone(
             self,
             clone_id,):
@@ -4942,24 +4862,6 @@ class Element(ServiceBase):
         return self.send_request(
             'ListDeletedVolumes',
             ListDeletedVolumesResult,
-            params,
-            since=1.0
-        )
-
-    def list_iscsisessions(
-            self,):
-        """
-        ListISCSISessions is used to return iSCSI connection information for volumes in the cluster.        """
-
-        self._check_connection_type("list_iscsisessions", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListISCSISessions',
-            ListISCSISessionsResult,
             params,
             since=1.0
         )
@@ -5511,6 +5413,54 @@ class Element(ServiceBase):
             since=6.0
         )
 
+    def get_async_result(
+            self,
+            async_handle,):
+        """
+        Used to retrieve the result of asynchronous method calls.
+        Some method calls are long running and do not complete when the initial response is sent.
+        To obtain the result of the method call, polling with GetAsyncResult is required.
+        <br/><br/>
+        GetAsyncResult returns the overall status of the operation (in progress, completed, or error) in a standard fashion,
+        but the actual data returned for the operation depends on the original method call and the return data is documented with each method.
+        <br/><br/>
+        The result for a completed asynchronous method call can only be retrieved once.
+        Once the final result has been returned, later attempts returns an error.
+        :param asyncHandle: [required] A value that was returned from the original asynchronous method call. 
+        :type asyncHandle: int
+        """
+
+        self._check_connection_type("get_async_result", "Cluster")
+
+        params = { 
+            "asyncHandle": async_handle,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetAsyncResult',
+            GetAsyncResultResult,
+            params,
+            since=1.0
+        )
+
+    def get_volume_count(
+            self,):
+        """
+        GetVolumeCount enables you to retrieve the number of volumes currently in the system.        """
+
+        self._check_connection_type("get_volume_count", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetVolumeCount',
+            GetVolumeCountResult,
+            params
+        )
+
     def add_initiators_to_volume_access_group(
             self,
             volume_access_group_id,
@@ -5879,5 +5829,55 @@ class Element(ServiceBase):
             ModifyVolumeAccessGroupResult,
             params,
             since=5.0
+        )
+
+    def get_ipmi_config(
+            self,
+            force,
+            chassis_type=OPTIONAL,):
+        """
+        GetIpmiConfig enables you to retrieve hardware sensor information from sensors that are in your node.
+        :param chassisType:  Used to display information for each node chassis type. Valid values:all - returns sensor information for each chassis type. {chassis type} - returns sensor information for a specified chassis type. 
+        :type chassisType: str
+
+        :param force: [required] 
+        :type force: bool
+        """
+
+        self._check_connection_type("get_ipmi_config", "Cluster")
+
+        params = { 
+            "force": force,
+        }
+        if chassis_type is not None:
+            params["chassisType"] = chassis_type
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetIpmiConfig',
+            GetIpmiConfigResult,
+            params
+        )
+
+    def get_ipmi_info(
+            self,
+            force,):
+        """
+        GetIpmiInfo allows you to display a detailed reporting of sensors (objects) for node fans, intake and exhaust temperatures, and power supplies  that are monitored by . 
+        :param force: [required] 
+        :type force: bool
+        """
+
+        self._check_connection_type("get_ipmi_info", "Cluster")
+
+        params = { 
+            "force": force,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetIpmiInfo',
+            GetIpmiInfoResult,
+            params
         )
 
