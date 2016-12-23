@@ -17873,6 +17873,56 @@ RESP_PurgeDeletedVolumes_v9_0 = """{
   "result": {}
 }"""
 
+RESP_ResetNode_v9_0 = """{
+  "id": null,
+  "result": {
+    "rtfiInfo": {
+      "build": "file:///sf/rtfi/image/filesystem.squashfs",
+      "generation": "9",
+      "options": {
+        "edebug": "",
+        "sf_auto": "0",
+        "sf_bond_mode": "ActivePassive",
+        "sf_check_hardware": "0",
+        "sf_disable_otpw": "0",
+        "sf_fa_host": "",
+        "sf_hostname": "SF-FA18",
+        "sf_inplace": "1",
+        "sf_inplace_die_action": "kexec",
+        "sf_inplace_safe": "0",
+        "sf_keep_cluster_config": "0",
+        "sf_keep_data": "0",
+        "sf_keep_hostname": "0",
+        "sf_keep_network_config": "0",
+        "sf_keep_paths": "\"/var/log/hardware.xml\"",
+        "sf_max_archives": "5",
+        "sf_nvram_size": "",
+        "sf_oldroot": "",
+        "sf_postinst_erase_root_drive": "0",
+        "sf_root_drive": "",
+        "sf_rtfi_cleanup_state": "",
+        "sf_secure_erase": "1",
+        "sf_secure_erase_retries": "5",
+        "sf_slice_size": "",
+        "sf_ssh_key": "1",
+        "sf_ssh_root": "1",
+        "sf_start_rtfi": "1",
+        "sf_status_httpserver": "1",
+        "sf_status_httpserver_stop_delay": "5m",
+        "sf_status_inject_failure": "",
+        "sf_status_json": "0",
+        "sf_support_host": "sfsupport.solidfire.com",
+        "sf_test_hardware": "0",
+        "sf_upgrade": "0",
+        "sf_upgrade_firmware": "0",
+        "sf_upload_logs_url": ""
+     },
+      "statusUrlAll": "http://192.168.130.20/status/all.json",
+      "statusUrlCurrent": "http://192.168.130.20/status/current.json"
+    }
+  }
+}"""
+
 RESP_RestartNetworking_v9_0 = """{
   "id": null,
   "result": {
