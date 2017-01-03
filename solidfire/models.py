@@ -8799,53 +8799,14 @@ class TestConnectEnsembleRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class NodeSystemStatusInfo(data_model.DataObject):
-    """NodeSystemStatusInfo  
+class GetSystemStatusResult(data_model.DataObject):
+    """GetSystemStatusResult  
     :param reboot_required: [required] 
     :type reboot_required: bool
     """
     reboot_required = data_model.property(
         "rebootRequired", bool,
         array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class NodeSystemStatus(data_model.DataObject):
-    """NodeSystemStatus  
-    :param node_id: [required] 
-    :type node_id: int
-
-    :param result: [required] 
-    :type result: NodeSystemStatusInfo
-    """
-    node_id = data_model.property(
-        "nodeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    result = data_model.property(
-        "result", NodeSystemStatusInfo,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetSystemStatusResult(data_model.DataObject):
-    """GetSystemStatusResult  
-    :param nodes: [required] 
-    :type nodes: NodeSystemStatus
-    """
-    nodes = data_model.property(
-        "nodes", NodeSystemStatus,
-        array=True, optional=False,
         documentation="",
         dictionaryType=None
     )
