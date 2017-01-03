@@ -22,7 +22,7 @@ class CHAPSecret(UserDefinedCHAPSecret):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveClusterAdminRequest(data_model.DataObject):
-    """
+    """RemoveClusterAdminRequest  
     :param cluster_admin_id: [required] ClusterAdminID for the Cluster Admin to remove. 
     :type cluster_admin_id: int
     """
@@ -37,7 +37,7 @@ class RemoveClusterAdminRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestDrivesResult(data_model.DataObject):
-    """
+    """TestDrivesResult  
     :param details: [required] 
     :type details: str
     """
@@ -52,7 +52,7 @@ class TestDrivesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class VirtualVolumeHost(data_model.DataObject):
-    """
+    """VirtualVolumeHost  
     :param virtual_volume_host_id: [required] 
     :type virtual_volume_host_id: UUID
 
@@ -112,7 +112,7 @@ class VirtualVolumeHost(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVirtualVolumeHostsResult(data_model.DataObject):
-    """
+    """ListVirtualVolumeHostsResult  
     :param hosts: [required] List of known ESX hosts. 
     :type hosts: VirtualVolumeHost
     """
@@ -127,7 +127,7 @@ class ListVirtualVolumeHostsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddVolumesToVolumeAccessGroupRequest(data_model.DataObject):
-    """
+    """AddVolumesToVolumeAccessGroupRequest  
     :param volume_access_group_id: [required] The ID of the volume access group to modify. 
     :type volume_access_group_id: int
 
@@ -151,7 +151,7 @@ class AddVolumesToVolumeAccessGroupRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateGroupSnapshotRequest(data_model.DataObject):
-    """
+    """CreateGroupSnapshotRequest  
     :param volumes: [required] Unique ID of the volume image from which to copy. 
     :type volumes: int
 
@@ -202,7 +202,7 @@ class CreateGroupSnapshotRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ClusterConfig(data_model.DataObject):
-    """
+    """ClusterConfig  
     Cluster Config object returns information the node uses to communicate with the cluster.
     :param cipi:  Network interface used for cluster communication. 
     :type cipi: str
@@ -299,7 +299,7 @@ class ClusterConfig(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class PhysicalAdapter(data_model.DataObject):
-    """
+    """PhysicalAdapter  
     :param address:  
     :type address: str
 
@@ -368,7 +368,7 @@ class PhysicalAdapter(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class NetworkConfig(data_model.DataObject):
-    """
+    """NetworkConfig  
     :param _default:  
     :type _default: bool
 
@@ -635,7 +635,7 @@ class NetworkConfig(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class Network(data_model.DataObject):
-    """
+    """Network  
     :param bond10_g:  
     :type bond10_g: NetworkConfig
 
@@ -704,7 +704,7 @@ class Network(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class Config(data_model.DataObject):
-    """
+    """Config  
     :param cluster: [required] 
     :type cluster: ClusterConfig
 
@@ -728,7 +728,7 @@ class Config(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetConfigResult(data_model.DataObject):
-    """
+    """GetConfigResult  
     :param config: [required] The details of the cluster. Values returned in "config": cluster- Cluster information that identifies how the node communicates with the cluster it is associated with. (Object) network - Network information for bonding and Ethernet connections. (Object) 
     :type config: Config
     """
@@ -743,7 +743,7 @@ class GetConfigResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class StartVolumePairingResult(data_model.DataObject):
-    """
+    """StartVolumePairingResult  
     :param volume_pairing_key: [required] A string of characters that is used by the "CompleteVolumePairing" API method. 
     :type volume_pairing_key: str
     """
@@ -758,7 +758,7 @@ class StartVolumePairingResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class UpdateBulkVolumeStatusRequest(data_model.DataObject):
-    """
+    """UpdateBulkVolumeStatusRequest  
     :param key: [required] The key assigned during initialization of a "StartBulkVolumeRead" or "StartBulkVolumeWrite" session. 
     :type key: str
 
@@ -809,7 +809,7 @@ class UpdateBulkVolumeStatusRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetAccountEfficiencyRequest(data_model.DataObject):
-    """
+    """GetAccountEfficiencyRequest  
     :param account_id: [required] Specifies the volume account for which capacity is computed. 
     :type account_id: int
     """
@@ -824,7 +824,7 @@ class GetAccountEfficiencyRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class Platform(data_model.DataObject):
-    """
+    """Platform  
     :param node_type: [required] SolidFire's name for this platform. 
     :type node_type: str
 
@@ -866,7 +866,7 @@ class Platform(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class Node(data_model.DataObject):
-    """
+    """Node  
     A node refers to an individual machine in a cluster.
     Each active node hosts a master service, which is responsible for managing the drives and other services on its node.
     After a node is made active, its drives will become available for addition to the cluster.
@@ -1019,7 +1019,7 @@ class Node(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class PendingNode(data_model.DataObject):
-    """
+    """PendingNode  
     A "pending node" is one that has not yet joined the cluster.
     It can be added to a cluster using the AddNode method.
     :param pending_node_id: [required] 
@@ -1144,7 +1144,7 @@ class PendingNode(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListAllNodesResult(data_model.DataObject):
-    """
+    """ListAllNodesResult  
     :param nodes: [required] 
     :type nodes: Node
 
@@ -1168,13 +1168,13 @@ class ListAllNodesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ShutdownResult(data_model.DataObject):
-    """    """
+    """ShutdownResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetAPIResult(data_model.DataObject):
-    """
+    """GetAPIResult  
     :param current_version: [required] 
     :type current_version: float
 
@@ -1198,7 +1198,7 @@ class GetAPIResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class LunAssignment(data_model.DataObject):
-    """
+    """LunAssignment  
     VolumeID and Lun assignment.
     :param volume_id: [required] The volume ID assigned to the Lun. 
     :type volume_id: int
@@ -1223,7 +1223,7 @@ class LunAssignment(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class VolumeAccessGroupLunAssignments(data_model.DataObject):
-    """
+    """VolumeAccessGroupLunAssignments  
     VolumeAccessGroup ID and Lun to be assigned to all volumes within it.
     :param volume_access_group_id: [required] Unique volume access group ID for which the LUN assignments will be modified. 
     :type volume_access_group_id: int
@@ -1257,7 +1257,7 @@ class VolumeAccessGroupLunAssignments(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetVolumeAccessGroupLunAssignmentsResult(data_model.DataObject):
-    """
+    """GetVolumeAccessGroupLunAssignmentsResult  
     :param volume_access_group_lun_assignments: [required] List of all physical Fibre Channel ports, or a port for a single node. 
     :type volume_access_group_lun_assignments: VolumeAccessGroupLunAssignments
     """
@@ -1272,7 +1272,7 @@ class GetVolumeAccessGroupLunAssignmentsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class MetadataHosts(data_model.DataObject):
-    """
+    """MetadataHosts  
     The volume services on which the volume metadata resides.
     :param dead_secondaries: [required] Secondary metadata (slice) services that are in a dead state. 
     :type dead_secondaries: int
@@ -1306,7 +1306,7 @@ class MetadataHosts(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class VolumeStats(data_model.DataObject):
-    """
+    """VolumeStats  
     Contains statistical data for an individual volume.
     :param account_id: [required] AccountID of the volume owner. 
     :type account_id: int
@@ -1601,7 +1601,7 @@ class VolumeStats(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumeStatsByAccountResult(data_model.DataObject):
-    """
+    """ListVolumeStatsByAccountResult  
     :param volume_stats: [required] List of account activity information. <br/><b>Note</b>: The volumeID member is 0 for each entry, as the values represent the summation of all volumes owned by the account. 
     :type volume_stats: VolumeStats
     """
@@ -1616,7 +1616,7 @@ class ListVolumeStatsByAccountResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyGroupSnapshotRequest(data_model.DataObject):
-    """
+    """ModifyGroupSnapshotRequest  
     :param group_snapshot_id: [required] ID of the snapshot. 
     :type group_snapshot_id: int
 
@@ -1649,7 +1649,7 @@ class ModifyGroupSnapshotRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteSnapshotRequest(data_model.DataObject):
-    """
+    """DeleteSnapshotRequest  
     :param snapshot_id: [required] The ID of the snapshot to delete. 
     :type snapshot_id: int
     """
@@ -1664,7 +1664,7 @@ class DeleteSnapshotRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ScheduleInfo(data_model.DataObject):
-    """
+    """ScheduleInfo  
     :param volume_ids:  A list of volume IDs to be included in the group snapshot. 
     :type volume_ids: int
 
@@ -1706,7 +1706,7 @@ class ScheduleInfo(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class Schedule(data_model.DataObject):
-    """
+    """Schedule  
     Schedule is an object containing information about each schedule created to autonomously make a snapshot of a volume. The return object includes information for all schedules. If scheduleID is used to identify a specific schedule then only information for that scheduleID is returned. Schedules information is returned with the API method, see ListSchedules on the SolidFire API guide page 245.
     :param frequency: [required] Indicates the frequency of the schedule occurrence. Set this to a type that inherits from Frequency.<br/> Valid types are:<br/> DayOfWeekFrequency<br/> DayOfMonthFrequency<br/> TimeIntervalFrequency 
     :type frequency: Frequency
@@ -1821,7 +1821,7 @@ class Schedule(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetScheduleResult(data_model.DataObject):
-    """
+    """GetScheduleResult  
     :param schedule: [required] The schedule attributes. 
     :type schedule: Schedule
     """
@@ -1836,7 +1836,7 @@ class GetScheduleResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyInitiator(data_model.DataObject):
-    """
+    """ModifyInitiator  
     Object containing characteristics of each initiator to modify
     :param initiator_id: [required] (Required) The numeric ID of the initiator to modify. (Integer) 
     :type initiator_id: int
@@ -1879,7 +1879,7 @@ class ModifyInitiator(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyInitiatorsRequest(data_model.DataObject):
-    """
+    """ModifyInitiatorsRequest  
     :param initiators: [required] A list of Initiator objects containing characteristics of each initiator to modify. 
     :type initiators: ModifyInitiator
     """
@@ -1894,7 +1894,7 @@ class ModifyInitiatorsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumesRequest(data_model.DataObject):
-    """
+    """ListVolumesRequest  
     :param start_volume_id:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
     :type start_volume_id: int
 
@@ -1954,13 +1954,13 @@ class ListVolumesRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyScheduleResult(data_model.DataObject):
-    """    """
+    """ModifyScheduleResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ClearClusterFaultsRequest(data_model.DataObject):
-    """
+    """ClearClusterFaultsRequest  
     :param fault_types:  Determines the types of faults cleared:<br/> <b>current</b>: Faults that are currently detected and have not been resolved.<br/> <b>resolved</b>: Faults that were previously detected and resolved.<br/> <b>all</b>: Both current and resolved faults are cleared. The fault status can be determined by the "resolved" field of the fault object. 
     :type fault_types: str
     """
@@ -1975,13 +1975,13 @@ class ClearClusterFaultsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveClusterAdminResult(data_model.DataObject):
-    """    """
+    """RemoveClusterAdminResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class AsyncHandle(data_model.DataObject):
-    """
+    """AsyncHandle  
     :param async_result_id: [required] The ID of the result. 
     :type async_result_id: int
 
@@ -2050,7 +2050,7 @@ class AsyncHandle(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListAsyncResultsResult(data_model.DataObject):
-    """
+    """ListAsyncResultsResult  
     :param async_handles: [required] An array of serialized asynchronous method results. 
     :type async_handles: AsyncHandle
     """
@@ -2065,7 +2065,7 @@ class ListAsyncResultsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddAccountResult(data_model.DataObject):
-    """
+    """AddAccountResult  
     :param account_id: [required] AccountID for the newly created Account. 
     :type account_id: int
     """
@@ -2080,7 +2080,7 @@ class AddAccountResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetFeatureStatusRequest(data_model.DataObject):
-    """
+    """GetFeatureStatusRequest  
     :param feature:  Valid values: vvols: Find the status of the Virtual Volumes (VVOLs) cluster feature. 
     :type feature: str
     """
@@ -2095,7 +2095,7 @@ class GetFeatureStatusRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetIpmiConfigRequest(data_model.DataObject):
-    """
+    """GetIpmiConfigRequest  
     :param chassis_type:  Used to display information for each node chassis type. Valid values:all - returns sensor information for each chassis type. {chassis type} - returns sensor information for a specified chassis type. 
     :type chassis_type: str
 
@@ -2119,7 +2119,7 @@ class GetIpmiConfigRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifySnapshotRequest(data_model.DataObject):
-    """
+    """ModifySnapshotRequest  
     :param snapshot_id: [required] ID of the snapshot. 
     :type snapshot_id: int
 
@@ -2152,7 +2152,7 @@ class ModifySnapshotRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyClusterFullThresholdResult(data_model.DataObject):
-    """
+    """ModifyClusterFullThresholdResult  
     :param block_fullness: [required] Current computed level of block fullness of the cluster. Possible values: <br/><b>stage1Happy</b>: No alerts or error conditions. <br/><b>stage2Aware</b>: 3 nodes of capacity available. <br/><b>stage3Low</b>: 2 nodes of capacity available. <br/><b>stage4Critical</b>: 1 node of capacity available. No new volumes or clones can be created. <br/><b>stage5CompletelyConsumed</b>: Completely consumed. Cluster is read-only, iSCSI connection is maintained but all writes are suspended. 
     :type block_fullness: str
 
@@ -2311,7 +2311,7 @@ class ModifyClusterFullThresholdResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyScheduleRequest(data_model.DataObject):
-    """
+    """ModifyScheduleRequest  
     :param schedule: [required] The "Schedule" object will be used to modify an existing schedule.<br/> The ScheduleID property is required.<br/> Frequency property must be of type that inherits from Frequency. Valid types are:<br/> DaysOfMonthFrequency<br/> DaysOrWeekFrequency<br/> TimeIntervalFrequency 
     :type schedule: Schedule
     """
@@ -2326,7 +2326,7 @@ class ModifyScheduleRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class NewDrive(data_model.DataObject):
-    """
+    """NewDrive  
     :param drive_id: [required] A unique identifier for this drive. 
     :type drive_id: int
     """
@@ -2341,7 +2341,7 @@ class NewDrive(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ClusterStats(data_model.DataObject):
-    """
+    """ClusterStats  
     :param cluster_utilization: [required] The amount of cluster capacity being utilized. 
     :type cluster_utilization: float
 
@@ -2410,7 +2410,7 @@ class ClusterStats(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetClusterStatsResult(data_model.DataObject):
-    """
+    """GetClusterStatsResult  
     :param cluster_stats: [required] 
     :type cluster_stats: ClusterStats
     """
@@ -2425,7 +2425,7 @@ class GetClusterStatsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVolumeAccessGroupRequest(data_model.DataObject):
-    """
+    """ModifyVolumeAccessGroupRequest  
     :param volume_access_group_id: [required] The ID of the volume access group to modify. 
     :type volume_access_group_id: int
 
@@ -2494,7 +2494,7 @@ class ModifyVolumeAccessGroupRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CloneVolumeResult(data_model.DataObject):
-    """
+    """CloneVolumeResult  
     :param clone_id: [required] The ID of the newly-created clone. 
     :type clone_id: int
 
@@ -2527,7 +2527,7 @@ class CloneVolumeResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetVolumeStatsRequest(data_model.DataObject):
-    """
+    """GetVolumeStatsRequest  
     :param volume_id: [required] Specifies the volume for which statistics is gathered. 
     :type volume_id: int
     """
@@ -2542,7 +2542,7 @@ class GetVolumeStatsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetDriveStatsRequest(data_model.DataObject):
-    """
+    """GetDriveStatsRequest  
     :param drive_id: [required] Specifies the drive for which statistics are gathered. 
     :type drive_id: int
     """
@@ -2557,7 +2557,7 @@ class GetDriveStatsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
-    """
+    """GetVolumeAccessGroupLunAssignmentsRequest  
     :param volume_access_group_id: [required] Unique volume access group ID used to return information. 
     :type volume_access_group_id: int
     """
@@ -2572,7 +2572,7 @@ class GetVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class VirtualVolumeUnsharedChunkResult(data_model.DataObject):
-    """
+    """VirtualVolumeUnsharedChunkResult  
     :param chunks: [required] Number of allocated/unshared chunks. 
     :type chunks: int
 
@@ -2605,7 +2605,7 @@ class VirtualVolumeUnsharedChunkResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumeStatsRequest(data_model.DataObject):
-    """
+    """ListVolumeStatsRequest  
     :param volume_ids:  
     :type volume_ids: int
     """
@@ -2620,7 +2620,7 @@ class ListVolumeStatsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddAccountRequest(data_model.DataObject):
-    """
+    """AddAccountRequest  
     :param username: [required] Unique username for this account. (May be 1 to 64 characters in length). 
     :type username: str
 
@@ -2662,7 +2662,7 @@ class AddAccountRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetAccountByNameRequest(data_model.DataObject):
-    """
+    """GetAccountByNameRequest  
     :param username: [required] Username for the account. 
     :type username: str
     """
@@ -2677,7 +2677,7 @@ class GetAccountByNameRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumeStatsByVolumeAccessGroupResult(data_model.DataObject):
-    """
+    """ListVolumeStatsByVolumeAccessGroupResult  
     :param volume_stats: [required] List of account activity information. <br/><b>Note</b>: The volumeID member is 0 for each entry, as the values represent the summation of all volumes owned by the account. 
     :type volume_stats: VolumeStats
     """
@@ -2692,7 +2692,7 @@ class ListVolumeStatsByVolumeAccessGroupResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateBackupTargetResult(data_model.DataObject):
-    """
+    """CreateBackupTargetResult  
     :param backup_target_id: [required] Unique identifier assigned to the backup target. 
     :type backup_target_id: int
     """
@@ -2707,7 +2707,7 @@ class CreateBackupTargetResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVirtualVolumeHostsRequest(data_model.DataObject):
-    """
+    """ListVirtualVolumeHostsRequest  
     :param virtual_volume_host_ids:  
     :type virtual_volume_host_ids: UUID
     """
@@ -2722,7 +2722,7 @@ class ListVirtualVolumeHostsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveDrivesRequest(data_model.DataObject):
-    """
+    """RemoveDrivesRequest  
     :param drives: [required] List of driveIDs to remove from the cluster. 
     :type drives: int
     """
@@ -2737,13 +2737,13 @@ class RemoveDrivesRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CancelCloneResult(data_model.DataObject):
-    """    """
+    """CancelCloneResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class LdapConfiguration(data_model.DataObject):
-    """
+    """LdapConfiguration  
     LDAP Configuration object returns information about the LDAP configuration on SolidFire storage. LDAP information is returned with the API method GetLdapConfiguration.
     :param auth_type: [required] Identifies which user authentcation method will be used. <br/> Valid values:<br/> <b>DirectBind</b><br/> <b>SearchAndBind</b> 
     :type auth_type: str
@@ -2840,7 +2840,7 @@ class LdapConfiguration(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestLdapAuthenticationRequest(data_model.DataObject):
-    """
+    """TestLdapAuthenticationRequest  
     :param username: [required] The username to be tested. 
     :type username: str
 
@@ -2873,7 +2873,7 @@ class TestLdapAuthenticationRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DriveConfigInfo(data_model.DataObject):
-    """
+    """DriveConfigInfo  
     :param canonical_name: [required] 
     :type canonical_name: str
 
@@ -3167,7 +3167,7 @@ class DriveConfigInfo(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DrivesConfigInfo(data_model.DataObject):
-    """
+    """DrivesConfigInfo  
     :param drives: [required] 
     :type drives: DriveConfigInfo
 
@@ -3236,7 +3236,7 @@ class DrivesConfigInfo(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetDriveConfigResult(data_model.DataObject):
-    """
+    """GetDriveConfigResult  
     :param drive_config: [required] Configuration information for the drives that are connected to the cluster 
     :type drive_config: DrivesConfigInfo
     """
@@ -3251,7 +3251,7 @@ class GetDriveConfigResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetNodeStatsRequest(data_model.DataObject):
-    """
+    """GetNodeStatsRequest  
     :param node_id: [required] Specifies the node for which statistics are gathered. 
     :type node_id: int
     """
@@ -3266,7 +3266,7 @@ class GetNodeStatsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ResetDrivesRequest(data_model.DataObject):
-    """
+    """ResetDrivesRequest  
     :param drives: [required] List of device names (not driveIDs) to reset. 
     :type drives: str
 
@@ -3290,7 +3290,7 @@ class ResetDrivesRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class EventInfo(data_model.DataObject):
-    """
+    """EventInfo  
     :param event_id: [required] 
     :type event_id: int
 
@@ -3386,7 +3386,7 @@ class EventInfo(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListEventsResult(data_model.DataObject):
-    """
+    """ListEventsResult  
     :param event_queue_type: [required] 
     :type event_queue_type: str
 
@@ -3410,7 +3410,7 @@ class ListEventsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyBackupTargetRequest(data_model.DataObject):
-    """
+    """ModifyBackupTargetRequest  
     :param backup_target_id: [required] Unique identifier assigned to the backup target. 
     :type backup_target_id: int
 
@@ -3443,7 +3443,7 @@ class ModifyBackupTargetRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class PairedCluster(data_model.DataObject):
-    """
+    """PairedCluster  
     :param cluster_name: [required] Name of the other cluster in the pair 
     :type cluster_name: str
 
@@ -3512,7 +3512,7 @@ class PairedCluster(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListClusterPairsResult(data_model.DataObject):
-    """
+    """ListClusterPairsResult  
     :param cluster_pairs: [required] Information about each paired cluster. 
     :type cluster_pairs: PairedCluster
     """
@@ -3527,7 +3527,7 @@ class ListClusterPairsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ClusterVersionInfo(data_model.DataObject):
-    """
+    """ClusterVersionInfo  
     Version information for a node in the cluster.
     :param node_id: [required] 
     :type node_id: int
@@ -3561,7 +3561,7 @@ class ClusterVersionInfo(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SoftwareVersionInfo(data_model.DataObject):
-    """
+    """SoftwareVersionInfo  
     :param current_version: [required] 
     :type current_version: str
 
@@ -3612,7 +3612,7 @@ class SoftwareVersionInfo(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetClusterVersionInfoResult(data_model.DataObject):
-    """
+    """GetClusterVersionInfoResult  
     :param cluster_apiversion: [required] 
     :type cluster_apiversion: str
 
@@ -3654,7 +3654,7 @@ class GetClusterVersionInfoResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CopyVolumeRequest(data_model.DataObject):
-    """
+    """CopyVolumeRequest  
     :param volume_id: [required] Source volume to copy. 
     :type volume_id: int
 
@@ -3687,7 +3687,7 @@ class CopyVolumeRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class NetworkInterface(data_model.DataObject):
-    """
+    """NetworkInterface  
     :param address: [required] IP address of the network. 
     :type address: str
 
@@ -3774,7 +3774,7 @@ class NetworkInterface(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListNetworkInterfacesResult(data_model.DataObject):
-    """
+    """ListNetworkInterfacesResult  
     :param interfaces: [required] 
     :type interfaces: NetworkInterface
     """
@@ -3789,7 +3789,7 @@ class ListNetworkInterfacesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateVolumeAccessGroupRequest(data_model.DataObject):
-    """
+    """CreateVolumeAccessGroupRequest  
     :param name: [required] Name of the volume access group. It is not required to be unique, but recommended. 
     :type name: str
 
@@ -3849,7 +3849,7 @@ class CreateVolumeAccessGroupRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateSnapshotRequest(data_model.DataObject):
-    """
+    """CreateSnapshotRequest  
     :param volume_id: [required] ID of the volume image from which to copy. 
     :type volume_id: int
 
@@ -3909,7 +3909,7 @@ class CreateSnapshotRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteVolumesRequest(data_model.DataObject):
-    """
+    """DeleteVolumesRequest  
     :param account_ids:  A list of account IDs. All volumes from these accounts are deleted from the system.  
     :type account_ids: int
 
@@ -3942,7 +3942,7 @@ class DeleteVolumesRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CopyVolumeResult(data_model.DataObject):
-    """
+    """CopyVolumeResult  
     :param clone_id: [required] 
     :type clone_id: int
 
@@ -3966,7 +3966,7 @@ class CopyVolumeResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RestartServicesRequest(data_model.DataObject):
-    """
+    """RestartServicesRequest  
     :param force: [required] The "force" parameter must be included on this method to successfully restart services on a node.    
     :type force: bool
 
@@ -3999,7 +3999,7 @@ class RestartServicesRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetNvramInfoResult(data_model.DataObject):
-    """
+    """GetNvramInfoResult  
     :param nvram_info: [required] Arrays of events and errors detected on the NVRAM card. 
     :type nvram_info: dict
     """
@@ -4014,7 +4014,7 @@ class GetNvramInfoResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetClusterMasterNodeIDResult(data_model.DataObject):
-    """
+    """GetClusterMasterNodeIDResult  
     :param node_id: [required] ID of the master node. 
     :type node_id: int
     """
@@ -4029,7 +4029,7 @@ class GetClusterMasterNodeIDResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListDriveHardwareRequest(data_model.DataObject):
-    """
+    """ListDriveHardwareRequest  
     :param force: [required] To run this command, the force parameter must be set to true. 
     :type force: bool
     """
@@ -4044,13 +4044,13 @@ class ListDriveHardwareRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteVolumeResult(data_model.DataObject):
-    """    """
+    """DeleteVolumeResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class NodeWaitingToJoin(data_model.DataObject):
-    """
+    """NodeWaitingToJoin  
     :param name: [required] 
     :type name: str
 
@@ -4119,7 +4119,7 @@ class NodeWaitingToJoin(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetBootstrapConfigResult(data_model.DataObject):
-    """
+    """GetBootstrapConfigResult  
     :param cluster_name: [required] Name of the cluster. 
     :type cluster_name: str
 
@@ -4161,7 +4161,7 @@ class GetBootstrapConfigResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListTestsResult(data_model.DataObject):
-    """
+    """ListTestsResult  
     :param tests: [required] List of tests that can be performed on the node. 
     :type tests: str
     """
@@ -4176,7 +4176,7 @@ class ListTestsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class LoggingServer(data_model.DataObject):
-    """
+    """LoggingServer  
     :param host: [required] Hostname or IP address of the log server. 
     :type host: str
 
@@ -4200,7 +4200,7 @@ class LoggingServer(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetRemoteLoggingHostsRequest(data_model.DataObject):
-    """
+    """SetRemoteLoggingHostsRequest  
     :param remote_hosts: [required] List of hosts to send log messages to. 
     :type remote_hosts: LoggingServer
     """
@@ -4215,7 +4215,7 @@ class SetRemoteLoggingHostsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetIpmiConfigNodesResult(data_model.DataObject):
-    """
+    """GetIpmiConfigNodesResult  
     :param node_id: [required] 
     :type node_id: int
 
@@ -4239,7 +4239,7 @@ class GetIpmiConfigNodesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetIpmiConfigResult(data_model.DataObject):
-    """
+    """GetIpmiConfigResult  
     :param nodes: [required] 
     :type nodes: GetIpmiConfigNodesResult
     """
@@ -4254,7 +4254,7 @@ class GetIpmiConfigResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetScheduleRequest(data_model.DataObject):
-    """
+    """GetScheduleRequest  
     :param schedule_id: [required] Unique ID of the schedule or multiple schedules to display 
     :type schedule_id: int
     """
@@ -4269,7 +4269,7 @@ class GetScheduleRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetDefaultQoSRequest(data_model.DataObject):
-    """
+    """SetDefaultQoSRequest  
     :param min_iops:  The minimum number of sustained IOPS that are provided by the cluster to a volume. 
     :type min_iops: int
 
@@ -4302,7 +4302,7 @@ class SetDefaultQoSRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class PrepareVirtualSnapshotRequest(data_model.DataObject):
-    """
+    """PrepareVirtualSnapshotRequest  
     :param virtual_volume_id: [required] The ID of the Virtual Volume to clone. 
     :type virtual_volume_id: UUID
 
@@ -4344,7 +4344,7 @@ class PrepareVirtualSnapshotRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SnmpTrapRecipient(data_model.DataObject):
-    """
+    """SnmpTrapRecipient  
     Host that is to receive the traps generated by the cluster.
     :param host: [required] The IP address or host name of the target network management station. 
     :type host: str
@@ -4378,7 +4378,7 @@ class SnmpTrapRecipient(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddClusterAdminResult(data_model.DataObject):
-    """
+    """AddClusterAdminResult  
     :param cluster_admin_id: [required] ClusterAdminID for the newly created Cluster Admin. 
     :type cluster_admin_id: int
     """
@@ -4393,7 +4393,7 @@ class AddClusterAdminResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CompleteClusterPairingRequest(data_model.DataObject):
-    """
+    """CompleteClusterPairingRequest  
     :param cluster_pairing_key: [required] A string of characters that is returned from the "StartClusterPairing" API method. 
     :type cluster_pairing_key: str
     """
@@ -4408,7 +4408,7 @@ class CompleteClusterPairingRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DriveHardwareInfo(data_model.DataObject):
-    """
+    """DriveHardwareInfo  
     :param description: [required] 
     :type description: str
 
@@ -4549,7 +4549,7 @@ class DriveHardwareInfo(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetDriveHardwareInfoResult(data_model.DataObject):
-    """
+    """GetDriveHardwareInfoResult  
     :param drive_hardware_info: [required] 
     :type drive_hardware_info: DriveHardwareInfo
     """
@@ -4564,7 +4564,7 @@ class GetDriveHardwareInfoResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteInitiatorsRequest(data_model.DataObject):
-    """
+    """DeleteInitiatorsRequest  
     :param initiators: [required] An array of IDs of initiators to delete. 
     :type initiators: int
     """
@@ -4579,7 +4579,7 @@ class DeleteInitiatorsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetSnmpTrapInfoRequest(data_model.DataObject):
-    """
+    """SetSnmpTrapInfoRequest  
     :param trap_recipients: [required] List of hosts that are to receive the traps generated by the Cluster Master. At least one object is required if any one of the trap types is enabled. 
     :type trap_recipients: SnmpTrapRecipient
 
@@ -4621,7 +4621,7 @@ class SetSnmpTrapInfoRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveVirtualNetworkRequest(data_model.DataObject):
-    """
+    """RemoveVirtualNetworkRequest  
     :param virtual_network_id:  Network ID that identifies the virtual network to remove. 
     :type virtual_network_id: int
 
@@ -4645,7 +4645,7 @@ class RemoveVirtualNetworkRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumeStatsResult(data_model.DataObject):
-    """
+    """ListVolumeStatsResult  
     :param volume_stats: [required] List of volume activity information. 
     :type volume_stats: VolumeStats
     """
@@ -4660,7 +4660,7 @@ class ListVolumeStatsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetClusterConfigResult(data_model.DataObject):
-    """
+    """SetClusterConfigResult  
     :param cluster: [required] Settings for the cluster. All new and current settings are returned. 
     :type cluster: ClusterConfig
     """
@@ -4675,7 +4675,7 @@ class SetClusterConfigResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CancelGroupCloneRequest(data_model.DataObject):
-    """
+    """CancelGroupCloneRequest  
     :param group_clone_id: [required] cloneID for the ongoing clone process. 
     :type group_clone_id: int
     """
@@ -4690,7 +4690,7 @@ class CancelGroupCloneRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetVirtualVolumeTaskUpdateRequest(data_model.DataObject):
-    """
+    """GetVirtualVolumeTaskUpdateRequest  
     :param virtual_volume_task_id: [required] The UUID of the VVol Task. 
     :type virtual_volume_task_id: UUID
 
@@ -4714,7 +4714,7 @@ class GetVirtualVolumeTaskUpdateRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListActiveVolumesRequest(data_model.DataObject):
-    """
+    """ListActiveVolumesRequest  
     :param start_volume_id:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
     :type start_volume_id: int
 
@@ -4738,7 +4738,7 @@ class ListActiveVolumesRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateScheduleRequest(data_model.DataObject):
-    """
+    """CreateScheduleRequest  
     :param schedule: [required] The "Schedule" object will be used to create a new schedule.<br/> Do not set ScheduleID property, it will be ignored.<br/> Frequency property must be of type that inherits from Frequency. Valid types are:<br/> DaysOfMonthFrequency<br/> DaysOrWeekFrequency<br/> TimeIntervalFrequency 
     :type schedule: Schedule
     """
@@ -4753,13 +4753,13 @@ class CreateScheduleRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteAllSupportBundlesResult(data_model.DataObject):
-    """    """
+    """DeleteAllSupportBundlesResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetDriveHardwareInfoRequest(data_model.DataObject):
-    """
+    """GetDriveHardwareInfoRequest  
     :param drive_id: [required] DriveID for the drive information requested. DriveIDs can be obtained via the "ListDrives" method. 
     :type drive_id: int
     """
@@ -4774,7 +4774,7 @@ class GetDriveHardwareInfoRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class StorageContainer(data_model.DataObject):
-    """
+    """StorageContainer  
     :param name: [required] 
     :type name: str
 
@@ -4843,7 +4843,7 @@ class StorageContainer(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyStorageContainerResult(data_model.DataObject):
-    """
+    """ModifyStorageContainerResult  
     :param storage_container: [required] 
     :type storage_container: StorageContainer
     """
@@ -4858,7 +4858,7 @@ class ModifyStorageContainerResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class InvokeSFApiRequest(data_model.DataObject):
-    """
+    """InvokeSFApiRequest  
     :param method: [required] The name of the method to invoke. This is case sensitive. 
     :type method: str
 
@@ -4882,19 +4882,19 @@ class InvokeSFApiRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveNodesResult(data_model.DataObject):
-    """    """
+    """RemoveNodesResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveAccountResult(data_model.DataObject):
-    """    """
+    """RemoveAccountResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetVolumeCountResult(data_model.DataObject):
-    """
+    """GetVolumeCountResult  
     :param count: [required] The number of volumes currently in the system. 
     :type count: int
     """
@@ -4909,7 +4909,7 @@ class GetVolumeCountResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetStorageContainerEfficiencyRequest(data_model.DataObject):
-    """
+    """GetStorageContainerEfficiencyRequest  
     :param storage_container_id: [required] The ID of the storage container for which to retrieve efficiency information. 
     :type storage_container_id: UUID
     """
@@ -4924,7 +4924,7 @@ class GetStorageContainerEfficiencyRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class Initiator(data_model.DataObject):
-    """
+    """Initiator  
     Object containing characteristics of each initiator
     :param alias: [required] The friendly name assigned to this initiator. (String) 
     :type alias: str
@@ -4976,7 +4976,7 @@ class Initiator(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ISCSISession(data_model.DataObject):
-    """
+    """ISCSISession  
     :param account_id: [required] 
     :type account_id: int
 
@@ -5144,7 +5144,7 @@ class ISCSISession(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListISCSISessionsResult(data_model.DataObject):
-    """
+    """ListISCSISessionsResult  
     :param sessions: [required] 
     :type sessions: ISCSISession
     """
@@ -5159,7 +5159,7 @@ class ListISCSISessionsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVirtualVolumesRequest(data_model.DataObject):
-    """
+    """ListVirtualVolumesRequest  
     :param details:  Possible values:true: Include more details about each VVOL in the response.false: Include the standard level of detail about each VVOL in the response. 
     :type details: bool
 
@@ -5210,13 +5210,13 @@ class ListVirtualVolumesRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CompleteVolumePairingResult(data_model.DataObject):
-    """    """
+    """CompleteVolumePairingResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListStorageContainersResult(data_model.DataObject):
-    """
+    """ListStorageContainersResult  
     :param storage_containers: [required] 
     :type storage_containers: StorageContainer
     """
@@ -5231,7 +5231,7 @@ class ListStorageContainersResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetLdapConfigurationResult(data_model.DataObject):
-    """
+    """GetLdapConfigurationResult  
     :param ldap_configuration: [required] List of the current LDAP configuration settings. This API call will not return the plain text of the search account password. <br/><br/> <b>Note</b>: If LDAP authentication is currently disabled, all the returned settings will be empty with the exception of "authType", and "groupSearchType" which are set to "SearchAndBind" and "ActiveDirectory" respectively. 
     :type ldap_configuration: LdapConfiguration
     """
@@ -5246,13 +5246,13 @@ class GetLdapConfigurationResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyGroupSnapshotResult(data_model.DataObject):
-    """    """
+    """ModifyGroupSnapshotResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListDriveStatsRequest(data_model.DataObject):
-    """
+    """ListDriveStatsRequest  
     :param drives:  Optional list of DriveIDs for which to return drive statistics. If you omit this parameter, measurements for all drives are returned. 
     :type drives: int
     """
@@ -5267,7 +5267,7 @@ class ListDriveStatsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListInitiatorsRequest(data_model.DataObject):
-    """
+    """ListInitiatorsRequest  
     :param start_initiator_id:  The initiator ID at which to begin the listing. You can supply this parameter or the "initiators" parameter, but not both. 
     :type start_initiator_id: int
 
@@ -5300,7 +5300,7 @@ class ListInitiatorsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListInitiatorsResult(data_model.DataObject):
-    """
+    """ListInitiatorsResult  
     :param initiators: [required] List of the initiator information. 
     :type initiators: Initiator
     """
@@ -5315,7 +5315,7 @@ class ListInitiatorsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddressBlock(data_model.DataObject):
-    """
+    """AddressBlock  
     Unique Range of IP addresses to include in the virtual network.
     :param start: [required] Start of the IP address range. 
     :type start: str
@@ -5340,7 +5340,7 @@ class AddressBlock(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class VirtualNetwork(data_model.DataObject):
-    """
+    """VirtualNetwork  
     :param virtual_network_id: [required] SolidFire unique identifier for a virtual network. 
     :type virtual_network_id: int
 
@@ -5427,7 +5427,7 @@ class VirtualNetwork(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVirtualNetworksResult(data_model.DataObject):
-    """
+    """ListVirtualNetworksResult  
     :param virtual_networks: [required] Object containing virtual network IP addresses. 
     :type virtual_networks: VirtualNetwork
     """
@@ -5442,7 +5442,7 @@ class ListVirtualNetworksResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class StartVolumePairingRequest(data_model.DataObject):
-    """
+    """StartVolumePairingRequest  
     :param volume_id: [required] The ID of the volume on which to start the pairing process. 
     :type volume_id: int
 
@@ -5466,13 +5466,13 @@ class StartVolumePairingRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DisableSnmpResult(data_model.DataObject):
-    """    """
+    """DisableSnmpResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class QoS(data_model.DataObject):
-    """
+    """QoS  
     Quality of Service (QoS) values are used on SolidFire volumes to provision performance expectations.
     Minimum, maximum and burst QoS values can be set within the ranges specified in the QoS table below.
     <br/><br/>
@@ -5523,7 +5523,7 @@ class QoS(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetNetworkConfigResult(data_model.DataObject):
-    """
+    """SetNetworkConfigResult  
     :param network: [required] 
     :type network: Network
     """
@@ -5538,7 +5538,7 @@ class SetNetworkConfigResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddVirtualNetworkRequest(data_model.DataObject):
-    """
+    """AddVirtualNetworkRequest  
     :param virtual_network_tag: [required] A unique virtual network (VLAN) tag. Supported values are 1 to 4095 (the number zero (0) is not supported). 
     :type virtual_network_tag: int
 
@@ -5616,7 +5616,7 @@ class AddVirtualNetworkRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListClusterFaultsRequest(data_model.DataObject):
-    """
+    """ListClusterFaultsRequest  
     :param exceptions:  
     :type exceptions: bool
 
@@ -5658,7 +5658,7 @@ class ListClusterFaultsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestPingResult(data_model.DataObject):
-    """
+    """TestPingResult  
     :param result: [required] Result of the ping test. 
     :type result: str
 
@@ -5691,7 +5691,7 @@ class TestPingResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class BackupTarget(data_model.DataObject):
-    """
+    """BackupTarget  
     The object containing information about a backup target.
     :param name: [required] Name for the backup target. 
     :type name: str
@@ -5725,7 +5725,7 @@ class BackupTarget(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetBackupTargetResult(data_model.DataObject):
-    """
+    """GetBackupTargetResult  
     :param backup_target: [required] Object returned for backup target. 
     :type backup_target: BackupTarget
     """
@@ -5740,13 +5740,13 @@ class GetBackupTargetResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddDrivesResult(data_model.DataObject):
-    """    """
+    """AddDrivesResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumeStatsByVirtualVolumeRequest(data_model.DataObject):
-    """
+    """ListVolumeStatsByVirtualVolumeRequest  
     :param virtual_volume_ids:  A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
     :type virtual_volume_ids: UUID
     """
@@ -5761,7 +5761,7 @@ class ListVolumeStatsByVirtualVolumeRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetConfigResult(data_model.DataObject):
-    """
+    """SetConfigResult  
     :param config: [required] The new and current configuration for the node. 
     :type config: Config
     """
@@ -5776,7 +5776,7 @@ class SetConfigResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class StartBulkVolumeWriteRequest(data_model.DataObject):
-    """
+    """StartBulkVolumeWriteRequest  
     :param volume_id: [required] ID of the volume to be written to. 
     :type volume_id: int
 
@@ -5827,7 +5827,7 @@ class StartBulkVolumeWriteRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class VolumeQOS(data_model.DataObject):
-    """
+    """VolumeQOS  
     Quality of Service (QoS) Result values are used on SolidFire volumes to provision performance expectations.
     :param min_iops: [required] Desired minimum 4KB IOPS to guarantee. The allowed IOPS will only drop below this level if all volumes have been capped at their min IOPS value and there is still insufficient performance capacity. 
     :type min_iops: int
@@ -5879,7 +5879,7 @@ class VolumeQOS(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SnapshotReplication(data_model.DataObject):
-    """
+    """SnapshotReplication  
     :param state: [required] The state of the snapshot replication. 
     :type state: str
 
@@ -5903,7 +5903,7 @@ class SnapshotReplication(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoteReplication(data_model.DataObject):
-    """
+    """RemoteReplication  
     Details on the volume replication.
     :param mode: [required] Volume replication mode.<br/> Possible values:<br/> <b>Async</b>: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.<br/> <b>Sync</b>: Source acknowledges write when the data is stored locally and on the remote cluster.<br/> <b>SnapshotsOnly</b>: Only snapshots created on the source cluster will be replicated. Active writes from the source volume will not be replicated.<br/> 
     :type mode: str
@@ -5973,7 +5973,7 @@ class RemoteReplication(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class VolumePair(data_model.DataObject):
-    """
+    """VolumePair  
     The Volume Pair Info is an object containing information about a volume that is paired on a remote cluster.
     If the volume is not paired, this object is null.
     :param cluster_pair_id: [required] The remote cluster a volume is paired with. 
@@ -6035,7 +6035,7 @@ class VolumePair(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class Volume(data_model.DataObject):
-    """
+    """Volume  
     Volumes Info is an object containing information about a volume.
     The return objects only include "configured" information about the volume and not runtime or usage information.
     Information about paired volumes will also be returned.
@@ -6224,7 +6224,7 @@ class Volume(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVolumeResult(data_model.DataObject):
-    """
+    """ModifyVolumeResult  
     :param volume: [required] Object containing information about the newly modified volume. 
     :type volume: Volume
     """
@@ -6239,13 +6239,13 @@ class ModifyVolumeResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class PurgeDeletedVolumeResult(data_model.DataObject):
-    """    """
+    """PurgeDeletedVolumeResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SnapshotRemoteStatus(data_model.DataObject):
-    """
+    """SnapshotRemoteStatus  
     :param remote_status: [required] 
     :type remote_status: str
 
@@ -6269,7 +6269,7 @@ class SnapshotRemoteStatus(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class Snapshot(data_model.DataObject):
-    """
+    """Snapshot  
     Snapshots is an object containing information about each snapshot made for a volume.
     The return object includes information for the active snapshot as well as each snapshot created for the volume.
     :param snapshot_id: [required] Unique ID for this snapshot. 
@@ -6421,7 +6421,7 @@ class Snapshot(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class VirtualVolumeInfo(data_model.DataObject):
-    """
+    """VirtualVolumeInfo  
     :param virtual_volume_id: [required] 
     :type virtual_volume_id: UUID
 
@@ -6544,7 +6544,7 @@ class VirtualVolumeInfo(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVirtualVolumesResult(data_model.DataObject):
-    """
+    """ListVirtualVolumesResult  
     :param virtual_volumes: [required] 
     :type virtual_volumes: VirtualVolumeInfo
 
@@ -6568,7 +6568,7 @@ class ListVirtualVolumesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteVolumesResult(data_model.DataObject):
-    """
+    """DeleteVolumesResult  
     :param volumes: [required] Information about the newly deleted volume. 
     :type volumes: Volume
 
@@ -6592,7 +6592,7 @@ class DeleteVolumesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ClusterCapacity(data_model.DataObject):
-    """
+    """ClusterCapacity  
     High level capacity measurements for the entire cluster.
     :param active_block_space: [required] The amount of space on the block drives. This includes additional information such as metadata entries and space which can be cleaned up. 
     :type active_block_space: int
@@ -6806,7 +6806,7 @@ class ClusterCapacity(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetClusterCapacityResult(data_model.DataObject):
-    """
+    """GetClusterCapacityResult  
     :param cluster_capacity: [required] 
     :type cluster_capacity: ClusterCapacity
     """
@@ -6821,7 +6821,7 @@ class GetClusterCapacityResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class KernelCrashDump(data_model.DataObject):
-    """
+    """KernelCrashDump  
     :param kernel_crash_dump_min_free_gb: [required] 
     :type kernel_crash_dump_min_free_gb: int
 
@@ -6872,7 +6872,7 @@ class KernelCrashDump(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SolidfireDefaults(data_model.DataObject):
-    """
+    """SolidfireDefaults  
     :param slice_file_log_file_capacity: [required] 
     :type slice_file_log_file_capacity: int
 
@@ -6959,7 +6959,7 @@ class SolidfireDefaults(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class HardwareConfig(data_model.DataObject):
-    """
+    """HardwareConfig  
     :param scsi_bus_internal_driver: [required] 
     :type scsi_bus_internal_driver: str
 
@@ -7253,7 +7253,7 @@ class HardwareConfig(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetHardwareConfigResult(data_model.DataObject):
-    """
+    """GetHardwareConfigResult  
     :param hardware_config: [required] List of hardware information and current settings. 
     :type hardware_config: HardwareConfig
     """
@@ -7268,7 +7268,7 @@ class GetHardwareConfigResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestConnectSvipRequest(data_model.DataObject):
-    """
+    """TestConnectSvipRequest  
     :param svip:  Optionally, use to test the storage connection of a different SVIP. This is not needed to test the connection to the target cluster. 
     :type svip: str
     """
@@ -7283,7 +7283,7 @@ class TestConnectSvipRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestPingRequest(data_model.DataObject):
-    """
+    """TestPingRequest  
     :param attempts:  Specifies the number of times the system should repeat the test ping. Default is 5. 
     :type attempts: int
 
@@ -7334,7 +7334,7 @@ class TestPingRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class NodeStatsInfo(data_model.DataObject):
-    """
+    """NodeStatsInfo  
     :param c_bytes_in: [required] Bytes in on the cluster interface. 
     :type c_bytes_in: int
 
@@ -7448,7 +7448,7 @@ class NodeStatsInfo(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class NodeStatsNodes(data_model.DataObject):
-    """
+    """NodeStatsNodes  
     :param nodes: [required] Node activity information for a single node. 
     :type nodes: NodeStatsInfo
     """
@@ -7463,7 +7463,7 @@ class NodeStatsNodes(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListNodeStatsResult(data_model.DataObject):
-    """
+    """ListNodeStatsResult  
     :param node_stats: [required] Node activity information for all nodes. 
     :type node_stats: NodeStatsNodes
     """
@@ -7478,19 +7478,19 @@ class ListNodeStatsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteVolumeAccessGroupResult(data_model.DataObject):
-    """    """
+    """DeleteVolumeAccessGroupResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteInitiatorsResult(data_model.DataObject):
-    """    """
+    """DeleteInitiatorsResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddInitiatorsToVolumeAccessGroupRequest(data_model.DataObject):
-    """
+    """AddInitiatorsToVolumeAccessGroupRequest  
     :param volume_access_group_id: [required] The ID of the volume access group to modify. 
     :type volume_access_group_id: int
 
@@ -7514,7 +7514,7 @@ class AddInitiatorsToVolumeAccessGroupRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteVolumeAccessGroupRequest(data_model.DataObject):
-    """
+    """DeleteVolumeAccessGroupRequest  
     :param volume_access_group_id: [required] The ID of the volume access group to delete. 
     :type volume_access_group_id: int
     """
@@ -7529,7 +7529,7 @@ class DeleteVolumeAccessGroupRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class FeatureObject(data_model.DataObject):
-    """
+    """FeatureObject  
     :param enabled: [required] True if the feature is enabled, otherwise false. 
     :type enabled: bool
 
@@ -7553,7 +7553,7 @@ class FeatureObject(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetFeatureStatusResult(data_model.DataObject):
-    """
+    """GetFeatureStatusResult  
     :param features: [required] An array of feature objects indicating the feature name and its status. 
     :type features: FeatureObject
     """
@@ -7568,7 +7568,7 @@ class GetFeatureStatusResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVirtualNetworksRequest(data_model.DataObject):
-    """
+    """ListVirtualNetworksRequest  
     :param virtual_network_id:  Network ID to filter the list for a single virtual network 
     :type virtual_network_id: int
 
@@ -7610,7 +7610,7 @@ class ListVirtualNetworksRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListSchedulesResult(data_model.DataObject):
-    """
+    """ListSchedulesResult  
     :param schedules: [required] The list of schedules currently on the cluster. 
     :type schedules: Schedule
     """
@@ -7625,7 +7625,7 @@ class ListSchedulesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetNetworkConfigRequest(data_model.DataObject):
-    """
+    """SetNetworkConfigRequest  
     :param network: [required] Objects that will be changed for the node network settings. 
     :type network: Network
     """
@@ -7640,7 +7640,7 @@ class SetNetworkConfigRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class StartBulkVolumeReadRequest(data_model.DataObject):
-    """
+    """StartBulkVolumeReadRequest  
     :param volume_id: [required] ID of the volume to be read. 
     :type volume_id: int
 
@@ -7700,7 +7700,7 @@ class StartBulkVolumeReadRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddDrivesRequest(data_model.DataObject):
-    """
+    """AddDrivesRequest  
     :param drives: [required] List of drives to add to the cluster. 
     :type drives: NewDrive
     """
@@ -7715,7 +7715,7 @@ class AddDrivesRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteVolumeRequest(data_model.DataObject):
-    """
+    """DeleteVolumeRequest  
     :param volume_id: [required] The ID of the volume to delete. 
     :type volume_id: int
     """
@@ -7730,7 +7730,7 @@ class DeleteVolumeRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateScheduleResult(data_model.DataObject):
-    """
+    """CreateScheduleResult  
     :param schedule_id: [required] 
     :type schedule_id: int
     """
@@ -7745,7 +7745,7 @@ class CreateScheduleResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ShutdownRequest(data_model.DataObject):
-    """
+    """ShutdownRequest  
     :param option: [required] Action to take for the node shutdown:restart: Restarts the node.halt: Performs full power-off of the node. 
     :type option: str
     """
@@ -7760,7 +7760,7 @@ class ShutdownRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetAsyncResultRequest(data_model.DataObject):
-    """
+    """GetAsyncResultRequest  
     :param async_handle: [required] A value that was returned from the original asynchronous method call. 
     :type async_handle: int
     """
@@ -7775,7 +7775,7 @@ class GetAsyncResultRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateVolumeResult(data_model.DataObject):
-    """
+    """CreateVolumeResult  
     :param volume_id: [required] VolumeID for the newly created volume. 
     :type volume_id: int
 
@@ -7799,7 +7799,7 @@ class CreateVolumeResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyAccountRequest(data_model.DataObject):
-    """
+    """ModifyAccountRequest  
     :param account_id: [required] AccountID for the account to modify. 
     :type account_id: int
 
@@ -7859,7 +7859,7 @@ class ModifyAccountRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ClusterAdmin(data_model.DataObject):
-    """
+    """ClusterAdmin  
     :param access: [required] 
     :type access: str
 
@@ -7901,7 +7901,7 @@ class ClusterAdmin(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetCurrentClusterAdminResult(data_model.DataObject):
-    """
+    """GetCurrentClusterAdminResult  
     :param cluster_admin: [required] Information about all cluster and LDAP administrators that exist for a cluster. 
     :type cluster_admin: ClusterAdmin
     """
@@ -7916,7 +7916,7 @@ class GetCurrentClusterAdminResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ResetNodeRequest(data_model.DataObject):
-    """
+    """ResetNodeRequest  
     :param build: [required] Used to specify the URL to a remote Element software image to which the node will be reset. 
     :type build: str
 
@@ -7949,7 +7949,7 @@ class ResetNodeRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetLoginSessionInfoRequest(data_model.DataObject):
-    """
+    """SetLoginSessionInfoRequest  
     :param timeout: [required] Cluster authentication expiration period. Formatted in HH:mm:ss. For example: 01:30:00, 00:90:00, and 00:00:5400 can all be used to equal a 90 minute timeout period. Default is 30 minutes. 
     :type timeout: str
     """
@@ -7964,7 +7964,7 @@ class SetLoginSessionInfoRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateSnapshotResult(data_model.DataObject):
-    """
+    """CreateSnapshotResult  
     :param snapshot_id: [required] ID of the newly-created snapshot. 
     :type snapshot_id: int
 
@@ -7988,7 +7988,7 @@ class CreateSnapshotResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class FibreChannelPortInfo(data_model.DataObject):
-    """
+    """FibreChannelPortInfo  
     Fibre Channel Node Port Info object returns information about all Fibre Channel ports on a node, or for one node in the cluster. The same information is returned for all ports or port information for one node. This information is returned with the API method ListNodeFibreChannelPortInfo (in the SolidFire API Guide).
     :param firmware: [required] The version of the firmware installed on the Fibre Channel port. 
     :type firmware: str
@@ -8094,7 +8094,7 @@ class FibreChannelPortInfo(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class FibreChannelPortList(data_model.DataObject):
-    """
+    """FibreChannelPortList  
     List of all Fibre Channel ports.
     :param fibre_channel_ports: [required] List of all physical Fibre Channel ports. 
     :type fibre_channel_ports: FibreChannelPortInfo
@@ -8110,7 +8110,7 @@ class FibreChannelPortList(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class FibreChannelPortInfoResult(data_model.DataObject):
-    """
+    """FibreChannelPortInfoResult  
     Used to return information about the Fibre Channel ports.
     :param result: [required] Used to return information about the Fibre Channel ports. 
     :type result: FibreChannelPortList
@@ -8126,7 +8126,7 @@ class FibreChannelPortInfoResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListFibreChannelPortInfoResult(data_model.DataObject):
-    """
+    """ListFibreChannelPortInfoResult  
     ListFibreChannelPortInfoResult is used to return information about the Fibre Channel ports.
     :param fibre_channel_port_info: [required] Used to return information about the Fibre Channel ports. 
     :type fibre_channel_port_info: dict
@@ -8142,19 +8142,19 @@ class ListFibreChannelPortInfoResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class EnableLdapAuthenticationResult(data_model.DataObject):
-    """    """
+    """EnableLdapAuthenticationResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RestoreDeletedVolumeResult(data_model.DataObject):
-    """    """
+    """RestoreDeletedVolumeResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListDeletedVolumesResult(data_model.DataObject):
-    """
+    """ListDeletedVolumesResult  
     :param volumes: [required] List of deleted volumes. 
     :type volumes: Volume
     """
@@ -8169,7 +8169,7 @@ class ListDeletedVolumesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListSnapshotsRequest(data_model.DataObject):
-    """
+    """ListSnapshotsRequest  
     :param volume_id:  The volume to list snapshots for. If not provided, all snapshots for all volumes are returned. 
     :type volume_id: int
     """
@@ -8184,7 +8184,7 @@ class ListSnapshotsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListActiveVolumesResult(data_model.DataObject):
-    """
+    """ListActiveVolumesResult  
     :param volumes: [required] List of active volumes. 
     :type volumes: Volume
     """
@@ -8199,7 +8199,7 @@ class ListActiveVolumesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetNtpInfoResult(data_model.DataObject):
-    """
+    """GetNtpInfoResult  
     :param broadcastclient: [required] Indicates whether or not the nodes in the cluster are listening for broadcast NTP messages. Possible values: true false 
     :type broadcastclient: bool
 
@@ -8223,7 +8223,7 @@ class GetNtpInfoResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListAsyncResultsRequest(data_model.DataObject):
-    """
+    """ListAsyncResultsRequest  
     :param async_result_types:  An optional list of types of results. You can use this list to restrict the results to only these types of operations. Possible values:BulkVolume: Copy operations between volumes, such as backups or restores.Clone: Volume cloning operations.DriveRemoval: Operations involving the system copying data from a drive in preparation to remove it from the cluster.RtfiPendingNode: Operations involving the system installing compatible software on a node before adding it to the cluster. 
     :type async_result_types: str
     """
@@ -8238,13 +8238,13 @@ class ListAsyncResultsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyAccountResult(data_model.DataObject):
-    """    """
+    """ModifyAccountResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetVirtualVolumeCountResult(data_model.DataObject):
-    """
+    """GetVirtualVolumeCountResult  
     :param count: [required] The number of virtual volumes currently in the system. 
     :type count: int
     """
@@ -8259,7 +8259,7 @@ class GetVirtualVolumeCountResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListUtilitiesResult(data_model.DataObject):
-    """
+    """ListUtilitiesResult  
     :param utilities: [required] List of utilities currently available to run on the node. 
     :type utilities: str
     """
@@ -8274,7 +8274,7 @@ class ListUtilitiesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveInitiatorsFromVolumeAccessGroupRequest(data_model.DataObject):
-    """
+    """RemoveInitiatorsFromVolumeAccessGroupRequest  
     :param volume_access_group_id: [required] The ID of the volume access group to modify. 
     :type volume_access_group_id: int
 
@@ -8298,13 +8298,13 @@ class RemoveInitiatorsFromVolumeAccessGroupRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetSnmpTrapInfoResult(data_model.DataObject):
-    """    """
+    """SetSnmpTrapInfoResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteStorageContainersRequest(data_model.DataObject):
-    """
+    """DeleteStorageContainersRequest  
     :param storage_container_ids: [required] list of storageContainerID of the storage container to delete. 
     :type storage_container_ids: UUID
     """
@@ -8319,7 +8319,7 @@ class DeleteStorageContainersRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class VolumeAccessGroup(data_model.DataObject):
-    """
+    """VolumeAccessGroup  
     A volume access group is a useful way of grouping volumes and initiators together for ease of management.
     <br/><br/>
     Volume Access Group Limits:
@@ -8396,7 +8396,7 @@ class VolumeAccessGroup(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateVolumeAccessGroupResult(data_model.DataObject):
-    """
+    """CreateVolumeAccessGroupResult  
     :param volume_access_group_id: [required] The ID for the newly-created volume access group. 
     :type volume_access_group_id: int
 
@@ -8420,7 +8420,7 @@ class CreateVolumeAccessGroupResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateStorageContainerRequest(data_model.DataObject):
-    """
+    """CreateStorageContainerRequest  
     :param name: [required] Name of the storage container. 
     :type name: str
 
@@ -8453,7 +8453,7 @@ class CreateStorageContainerRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddVirtualNetworkResult(data_model.DataObject):
-    """
+    """AddVirtualNetworkResult  
     :param virtual_network_id: [required] The virtual network ID of the new virtual network. 
     :type virtual_network_id: int
     """
@@ -8468,7 +8468,7 @@ class AddVirtualNetworkResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddNodesRequest(data_model.DataObject):
-    """
+    """AddNodesRequest  
     :param pending_nodes: [required] List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method. 
     :type pending_nodes: int
     """
@@ -8483,7 +8483,7 @@ class AddNodesRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ResetNodeResult(data_model.DataObject):
-    """
+    """ResetNodeResult  
     :param rtfi_info: [required] Details of nodes that are being reset. 
     :type rtfi_info: dict
     """
@@ -8498,7 +8498,7 @@ class ResetNodeResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class EnableLdapAuthenticationRequest(data_model.DataObject):
-    """
+    """EnableLdapAuthenticationRequest  
     :param auth_type:  Identifies which user authentcation method will be used. <br/> Must be one of the following:<br/> <b>DirectBind</b><br/> <b>SearchAndBind</b> (default) 
     :type auth_type: str
 
@@ -8594,7 +8594,7 @@ class EnableLdapAuthenticationRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class NodeStateInfo(data_model.DataObject):
-    """
+    """NodeStateInfo  
     :param cluster: [required] Name of the cluster. 
     :type cluster: str
 
@@ -8618,7 +8618,7 @@ class NodeStateInfo(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class NodeStateResult(data_model.DataObject):
-    """
+    """NodeStateResult  
     :param node_id: [required] ID of the node. 
     :type node_id: int
 
@@ -8642,7 +8642,7 @@ class NodeStateResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetClusterStateResult(data_model.DataObject):
-    """
+    """GetClusterStateResult  
     :param nodes: [required] Array of NodeStateResult objects for each node in the cluster. 
     :type nodes: NodeStateResult
     """
@@ -8657,19 +8657,19 @@ class GetClusterStateResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class EnableEncryptionAtRestResult(data_model.DataObject):
-    """    """
+    """EnableEncryptionAtRestResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyBackupTargetResult(data_model.DataObject):
-    """    """
+    """ModifyBackupTargetResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CancelCloneRequest(data_model.DataObject):
-    """
+    """CancelCloneRequest  
     :param clone_id: [required] 
     :type clone_id: int
     """
@@ -8684,7 +8684,7 @@ class CancelCloneRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class Account(data_model.DataObject):
-    """
+    """Account  
     The object containing information about an account.
     This object only includes "configured" information about the account, not any runtime or usage information.
     :param account_id: [required] Unique AccountID for the account. 
@@ -8755,7 +8755,7 @@ class Account(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetAccountResult(data_model.DataObject):
-    """
+    """GetAccountResult  
     :param account: [required] Account details. 
     :type account: Account
     """
@@ -8770,7 +8770,7 @@ class GetAccountResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetAccountByIDRequest(data_model.DataObject):
-    """
+    """GetAccountByIDRequest  
     :param account_id: [required] Specifies the account for which details are gathered. 
     :type account_id: int
     """
@@ -8785,7 +8785,7 @@ class GetAccountByIDRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestConnectEnsembleRequest(data_model.DataObject):
-    """
+    """TestConnectEnsembleRequest  
     :param ensemble:  A comma-separated list of ensemble node CIPs for connectivity testing 
     :type ensemble: str
     """
@@ -8800,7 +8800,7 @@ class TestConnectEnsembleRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class NodeSystemStatusInfo(data_model.DataObject):
-    """
+    """NodeSystemStatusInfo  
     :param reboot_required: [required] 
     :type reboot_required: bool
     """
@@ -8815,7 +8815,7 @@ class NodeSystemStatusInfo(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class NodeSystemStatus(data_model.DataObject):
-    """
+    """NodeSystemStatus  
     :param node_id: [required] 
     :type node_id: int
 
@@ -8839,7 +8839,7 @@ class NodeSystemStatus(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetSystemStatusResult(data_model.DataObject):
-    """
+    """GetSystemStatusResult  
     :param nodes: [required] 
     :type nodes: NodeSystemStatus
     """
@@ -8854,7 +8854,7 @@ class GetSystemStatusResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetClusterHardwareInfoRequest(data_model.DataObject):
-    """
+    """GetClusterHardwareInfoRequest  
     :param type:  Include only a certain type of hardware information in the response. Can be one of the following:drives: List only drive information in the response.nodes: List only node information in the response.all: Include both drive and node information in the response.If this parameter is omitted, a type of "all" is assumed. 
     :type type: str
     """
@@ -8869,7 +8869,7 @@ class GetClusterHardwareInfoRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetVirtualVolumeUnsharedChunksRequest(data_model.DataObject):
-    """
+    """GetVirtualVolumeUnsharedChunksRequest  
     :param virtual_volume_id: [required] The ID of the Virtual Volume. 
     :type virtual_volume_id: UUID
 
@@ -8929,7 +8929,7 @@ class GetVirtualVolumeUnsharedChunksRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveBackupTargetRequest(data_model.DataObject):
-    """
+    """RemoveBackupTargetRequest  
     :param backup_target_id: [required] Unique target ID of the target to remove. 
     :type backup_target_id: int
     """
@@ -8944,7 +8944,7 @@ class RemoveBackupTargetRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateVirtualVolumeHostRequest(data_model.DataObject):
-    """
+    """CreateVirtualVolumeHostRequest  
     :param virtual_volume_host_id: [required] The GUID of the ESX host. 
     :type virtual_volume_host_id: UUID
 
@@ -9004,7 +9004,7 @@ class CreateVirtualVolumeHostRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateVolumeRequest(data_model.DataObject):
-    """
+    """CreateVolumeRequest  
     :param name: [required] Name of the volume. Not required to be unique, but it is recommended. May be 1 to 64 characters in length. 
     :type name: str
 
@@ -9064,13 +9064,13 @@ class CreateVolumeRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateClusterResult(data_model.DataObject):
-    """    """
+    """CreateClusterResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetConfigRequest(data_model.DataObject):
-    """
+    """SetConfigRequest  
     :param config: [required] Objects that you want changed for the cluster interface settings. 
     :type config: Config
     """
@@ -9085,7 +9085,7 @@ class SetConfigRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVolumesRequest(data_model.DataObject):
-    """
+    """ModifyVolumesRequest  
     :param volume_ids: [required] A list of volumeIDs for the volumes to be modified. 
     :type volume_ids: int
 
@@ -9145,7 +9145,7 @@ class ModifyVolumesRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RestoreDeletedVolumeRequest(data_model.DataObject):
-    """
+    """RestoreDeletedVolumeRequest  
     :param volume_id: [required] VolumeID for the deleted volume to restore. 
     :type volume_id: int
     """
@@ -9160,7 +9160,7 @@ class RestoreDeletedVolumeRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListPendingNodesResult(data_model.DataObject):
-    """
+    """ListPendingNodesResult  
     :param pending_nodes: [required] 
     :type pending_nodes: PendingNode
     """
@@ -9175,13 +9175,13 @@ class ListPendingNodesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CancelGroupCloneResult(data_model.DataObject):
-    """    """
+    """CancelGroupCloneResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListActivePairedVolumesResult(data_model.DataObject):
-    """
+    """ListActivePairedVolumesResult  
     :param volumes: [required] Volume information for the paired volumes. 
     :type volumes: Volume
     """
@@ -9196,7 +9196,7 @@ class ListActivePairedVolumesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddedNode(data_model.DataObject):
-    """
+    """AddedNode  
     :param node_id: [required] 
     :type node_id: int
 
@@ -9220,7 +9220,7 @@ class AddedNode(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddNodesResult(data_model.DataObject):
-    """
+    """AddNodesResult  
     :param nodes: [required] An array of objects mapping the previous "pendingNodeID" to the "nodeID". 
     :type nodes: AddedNode
     """
@@ -9235,7 +9235,7 @@ class AddNodesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetNtpInfoRequest(data_model.DataObject):
-    """
+    """SetNtpInfoRequest  
     :param servers: [required] List of NTP servers to add to each node's NTP configuration. 
     :type servers: str
 
@@ -9259,7 +9259,7 @@ class SetNtpInfoRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class StartClusterPairingResult(data_model.DataObject):
-    """
+    """StartClusterPairingResult  
     :param cluster_pairing_key: [required] A string of characters that is used by the "CompleteClusterPairing" API method. 
     :type cluster_pairing_key: str
 
@@ -9283,13 +9283,13 @@ class StartClusterPairingResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveVolumePairResult(data_model.DataObject):
-    """    """
+    """RemoveVolumePairResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveAccountRequest(data_model.DataObject):
-    """
+    """RemoveAccountRequest  
     :param account_id: [required] AccountID for the account to remove. 
     :type account_id: int
     """
@@ -9304,7 +9304,7 @@ class RemoveAccountRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateStorageContainerResult(data_model.DataObject):
-    """
+    """CreateStorageContainerResult  
     :param storage_container: [required] 
     :type storage_container: StorageContainer
     """
@@ -9319,13 +9319,13 @@ class CreateStorageContainerResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteGroupSnapshotResult(data_model.DataObject):
-    """    """
+    """DeleteGroupSnapshotResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GroupSnapshotMembers(data_model.DataObject):
-    """
+    """GroupSnapshotMembers  
     List of checksum, volumeIDs and snapshotIDs for each member of the group.
     :param volume_id: [required] The source volume ID for the snapshot. 
     :type volume_id: int
@@ -9368,7 +9368,7 @@ class GroupSnapshotMembers(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GroupSnapshot(data_model.DataObject):
-    """
+    """GroupSnapshot  
     Group Snapshot object represents a point-in-time copy of a group of volumes.
     :param group_snapshot_id: [required] Unique ID of the new group snapshot. 
     :type group_snapshot_id: int
@@ -9438,7 +9438,7 @@ class GroupSnapshot(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListGroupSnapshotsResult(data_model.DataObject):
-    """
+    """ListGroupSnapshotsResult  
     :param group_snapshots: [required] List of Group Snapshots. 
     :type group_snapshots: GroupSnapshot
     """
@@ -9453,7 +9453,7 @@ class ListGroupSnapshotsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetVolumeEfficiencyResult(data_model.DataObject):
-    """
+    """GetVolumeEfficiencyResult  
     :param compression: [required] The amount of space being saved by compressing data on a single volume. Stated as a ratio where "1" means data has been stored without being compressed. 
     :type compression: float
 
@@ -9504,7 +9504,7 @@ class GetVolumeEfficiencyResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class PendingOperation(data_model.DataObject):
-    """
+    """PendingOperation  
     :param pending: [required] <br/><b>true</b>: operation is still in progress. <br/><b>false</b>: operation is no longer in progress. 
     :type pending: bool
 
@@ -9528,7 +9528,7 @@ class PendingOperation(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetPendingOperationResult(data_model.DataObject):
-    """
+    """GetPendingOperationResult  
     :param pending_operation: [required] 
     :type pending_operation: PendingOperation
     """
@@ -9543,7 +9543,7 @@ class GetPendingOperationResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CloneMultipleVolumeParams(data_model.DataObject):
-    """
+    """CloneMultipleVolumeParams  
     :param volume_id: [required] Required parameter for "volumes" array: volumeID. 
     :type volume_id: int
 
@@ -9603,13 +9603,13 @@ class CloneMultipleVolumeParams(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetNtpInfoResult(data_model.DataObject):
-    """    """
+    """SetNtpInfoResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetVolumeAccessGroupEfficiencyRequest(data_model.DataObject):
-    """
+    """GetVolumeAccessGroupEfficiencyRequest  
     :param volume_access_group_id: [required] Specifies the volume access group for which capacity is computed. 
     :type volume_access_group_id: int
     """
@@ -9624,13 +9624,13 @@ class GetVolumeAccessGroupEfficiencyRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVolumePairResult(data_model.DataObject):
-    """    """
+    """ModifyVolumePairResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateInitiator(data_model.DataObject):
-    """
+    """CreateInitiator  
     Object containing characteristics of each new initiator.
     :param name: [required] (Required) The name of the initiator (IQN or WWPN) to create. (String) 
     :type name: str
@@ -9673,7 +9673,7 @@ class CreateInitiator(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateInitiatorsRequest(data_model.DataObject):
-    """
+    """CreateInitiatorsRequest  
     :param initiators: [required] A list of Initiator objects containing characteristics of each new initiator 
     :type initiators: CreateInitiator
     """
@@ -9688,7 +9688,7 @@ class CreateInitiatorsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetClusterFullThresholdResult(data_model.DataObject):
-    """
+    """GetClusterFullThresholdResult  
     :param block_fullness: [required] Current computed level of block fullness of the cluster. Possible values: <br/><b>stage1Happy</b>: No alerts or error conditions. <br/><b>stage2Aware</b>: 3 nodes of capacity available. <br/><b>stage3Low</b>: 2 nodes of capacity available. <br/><b>stage4Critical</b>: 1 node of capacity available. No new volumes or clones can be created. <br/><b>stage5CompletelyConsumed</b>: Completely consumed. Cluster is read-only, iSCSI connection is maintained but all writes are suspended. 
     :type block_fullness: str
 
@@ -9847,7 +9847,7 @@ class GetClusterFullThresholdResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumesForAccountRequest(data_model.DataObject):
-    """
+    """ListVolumesForAccountRequest  
     :param account_id: [required] The ID of the account to list the volumes for. 
     :type account_id: int
 
@@ -9880,19 +9880,19 @@ class ListVolumesForAccountRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DisableEncryptionAtRestResult(data_model.DataObject):
-    """    """
+    """DisableEncryptionAtRestResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class VirtualVolumeNullResult(data_model.DataObject):
-    """    """
+    """VirtualVolumeNullResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetVolumeEfficiencyRequest(data_model.DataObject):
-    """
+    """GetVolumeEfficiencyRequest  
     :param volume_id: [required] Specifies the volume for which capacity is computed. 
     :type volume_id: int
     """
@@ -9907,7 +9907,7 @@ class GetVolumeEfficiencyRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVirtualNetworkRequest(data_model.DataObject):
-    """
+    """ModifyVirtualNetworkRequest  
     :param virtual_network_id:  Unique identifier of the virtual network to modify. This is the virtual network ID assigned by the SolidFire cluster. 
     :type virtual_network_id: int
 
@@ -9994,7 +9994,7 @@ class ModifyVirtualNetworkRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumeStatsByVirtualVolumeResult(data_model.DataObject):
-    """
+    """ListVolumeStatsByVirtualVolumeResult  
     :param volume_stats: [required] 
     :type volume_stats: VolumeStats
     """
@@ -10009,7 +10009,7 @@ class ListVolumeStatsByVirtualVolumeResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumesForAccountResult(data_model.DataObject):
-    """
+    """ListVolumesForAccountResult  
     :param volumes: [required] List of volumes. 
     :type volumes: Volume
     """
@@ -10024,7 +10024,7 @@ class ListVolumesForAccountResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetNodeHardwareInfoRequest(data_model.DataObject):
-    """
+    """GetNodeHardwareInfoRequest  
     :param node_id: [required] The ID of the node for which hardware information is being requested.  Information about a  node is returned if a   node is specified. 
     :type node_id: int
     """
@@ -10039,7 +10039,7 @@ class GetNodeHardwareInfoRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SecureEraseDrivesRequest(data_model.DataObject):
-    """
+    """SecureEraseDrivesRequest  
     :param drives: [required] List of driveIDs to secure erase. 
     :type drives: int
     """
@@ -10054,7 +10054,7 @@ class SecureEraseDrivesRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DriveInfo(data_model.DataObject):
-    """
+    """DriveInfo  
     :param capacity: [required] Total capacity of the drive, in bytes. 
     :type capacity: int
 
@@ -10132,7 +10132,7 @@ class DriveInfo(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListDrivesResult(data_model.DataObject):
-    """
+    """ListDrivesResult  
     :param drives: [required] Information for the drives that are connected to the cluster. 
     :type drives: DriveInfo
     """
@@ -10147,7 +10147,7 @@ class ListDrivesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class VirtualVolumeBinding(data_model.DataObject):
-    """
+    """VirtualVolumeBinding  
     :param protocol_endpoint_id: [required] The unique ID of the protocol endpoint. 
     :type protocol_endpoint_id: UUID
 
@@ -10243,7 +10243,7 @@ class VirtualVolumeBinding(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVirtualVolumeBindingsResult(data_model.DataObject):
-    """
+    """ListVirtualVolumeBindingsResult  
     :param bindings: [required] Describes the VVol <-> Host binding. 
     :type bindings: VirtualVolumeBinding
     """
@@ -10258,13 +10258,13 @@ class ListVirtualVolumeBindingsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyClusterAdminResult(data_model.DataObject):
-    """    """
+    """ModifyClusterAdminResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RollbackToSnapshotRequest(data_model.DataObject):
-    """
+    """RollbackToSnapshotRequest  
     :param volume_id: [required] VolumeID for the volume. 
     :type volume_id: int
 
@@ -10315,7 +10315,7 @@ class RollbackToSnapshotRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ClusterFaultInfo(data_model.DataObject):
-    """
+    """ClusterFaultInfo  
     :param severity: [required] 
     :type severity: str
 
@@ -10438,7 +10438,7 @@ class ClusterFaultInfo(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListClusterFaultsResult(data_model.DataObject):
-    """
+    """ListClusterFaultsResult  
     :param faults: [required] The list of Cluster Fault objects. 
     :type faults: ClusterFaultInfo
     """
@@ -10453,7 +10453,7 @@ class ListClusterFaultsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddLdapClusterAdminRequest(data_model.DataObject):
-    """
+    """AddLdapClusterAdminRequest  
     :param username: [required] The distinguished user name for the new LDAP cluster admin. 
     :type username: str
 
@@ -10495,7 +10495,7 @@ class AddLdapClusterAdminRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVolumePairRequest(data_model.DataObject):
-    """
+    """ModifyVolumePairRequest  
     :param volume_id: [required] Identification number of the volume to be modified. 
     :type volume_id: int
 
@@ -10528,7 +10528,7 @@ class ModifyVolumePairRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CloneMultipleVolumesRequest(data_model.DataObject):
-    """
+    """CloneMultipleVolumesRequest  
     :param volumes: [required] Array of Unique ID for each volume to include in the clone with optional parameters. If optional parameters are not specified, the values will be inherited from the source volumes. 
     :type volumes: CloneMultipleVolumeParams
 
@@ -10570,7 +10570,7 @@ class CloneMultipleVolumesRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumeAccessGroupsRequest(data_model.DataObject):
-    """
+    """ListVolumeAccessGroupsRequest  
     :param start_volume_access_group_id:  The lowest VolumeAccessGroupID to return. This can be useful for paging. If unspecified, there is no lower limit (implicitly 0). 
     :type start_volume_access_group_id: int
 
@@ -10594,7 +10594,7 @@ class ListVolumeAccessGroupsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ProtocolEndpoint(data_model.DataObject):
-    """
+    """ProtocolEndpoint  
     :param protocol_endpoint_id: [required] 
     :type protocol_endpoint_id: UUID
 
@@ -10654,7 +10654,7 @@ class ProtocolEndpoint(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListProtocolEndpointsResult(data_model.DataObject):
-    """
+    """ListProtocolEndpointsResult  
     :param protocol_endpoints: [required] 
     :type protocol_endpoints: ProtocolEndpoint
     """
@@ -10669,13 +10669,13 @@ class ListProtocolEndpointsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetSnmpACLResult(data_model.DataObject):
-    """    """
+    """SetSnmpACLResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListGroupSnapshotsRequest(data_model.DataObject):
-    """
+    """ListGroupSnapshotsRequest  
     :param volume_id:  An array of unique volume IDs to query. If this parameter is not specified, all group snapshots on the cluster will be included. 
     :type volume_id: int
     """
@@ -10690,7 +10690,7 @@ class ListGroupSnapshotsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class EnableFeatureRequest(data_model.DataObject):
-    """
+    """EnableFeatureRequest  
     :param feature: [required] Valid values: vvols: Enable the Virtual Volumes (VVOLs) cluster feature. 
     :type feature: str
     """
@@ -10705,7 +10705,7 @@ class EnableFeatureRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SnmpNetwork(data_model.DataObject):
-    """
+    """SnmpNetwork  
     The SNMP network object contains information about SNMP configuration for the cluster nodes. SNMP v3 is supported on SolidFire clusters.
     :param access: [required] <br/><b>ro</b>: read-only access.* <br/><b>rw</b>: for read-write access. <br/><b>rosys</b>: for read-only access to a restricted set of system information *SolidFire recommends that all networks other than the default "localhost" be set to "ro" access, because all SolidFire MIB objects are read-only. 
     :type access: str
@@ -10748,7 +10748,7 @@ class SnmpNetwork(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveNodesRequest(data_model.DataObject):
-    """
+    """RemoveNodesRequest  
     :param nodes: [required] List of NodeIDs for the nodes to be removed. 
     :type nodes: int
     """
@@ -10763,7 +10763,7 @@ class RemoveNodesRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteGroupSnapshotRequest(data_model.DataObject):
-    """
+    """DeleteGroupSnapshotRequest  
     :param group_snapshot_id: [required] Unique ID of the group snapshot. 
     :type group_snapshot_id: int
 
@@ -10787,13 +10787,13 @@ class DeleteGroupSnapshotRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifySnapshotResult(data_model.DataObject):
-    """    """
+    """ModifySnapshotResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveVolumesFromVolumeAccessGroupRequest(data_model.DataObject):
-    """
+    """RemoveVolumesFromVolumeAccessGroupRequest  
     :param volume_access_group_id: [required] The ID of the volume access group to modify. 
     :type volume_access_group_id: int
 
@@ -10817,7 +10817,7 @@ class RemoveVolumesFromVolumeAccessGroupRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyStorageContainerRequest(data_model.DataObject):
-    """
+    """ModifyStorageContainerRequest  
     :param storage_container_id: [required] 
     :type storage_container_id: UUID
 
@@ -10850,7 +10850,7 @@ class ModifyStorageContainerRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestConnectMvipDetails(data_model.DataObject):
-    """
+    """TestConnectMvipDetails  
     :param ping_bytes: [required] Details of the ping tests with 56 Bytes and 1500 Bytes. 
     :type ping_bytes: str
 
@@ -10883,7 +10883,7 @@ class TestConnectMvipDetails(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestConnectMvipResult(data_model.DataObject):
-    """
+    """TestConnectMvipResult  
     :param details: [required] Information about the test operation 
     :type details: TestConnectMvipDetails
 
@@ -10916,13 +10916,13 @@ class TestConnectMvipResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ClearClusterFaultsResult(data_model.DataObject):
-    """    """
+    """ClearClusterFaultsResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestConnectSvipDetails(data_model.DataObject):
-    """
+    """TestConnectSvipDetails  
     :param ping_bytes: [required] Details of the ping tests with 56 Bytes and 1500 Bytes. 
     :type ping_bytes: str
 
@@ -10955,7 +10955,7 @@ class TestConnectSvipDetails(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestConnectSvipResult(data_model.DataObject):
-    """
+    """TestConnectSvipResult  
     :param details: [required] Information about the test operation 
     :type details: TestConnectSvipDetails
 
@@ -10988,7 +10988,7 @@ class TestConnectSvipResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumeStatsByVolumeResult(data_model.DataObject):
-    """
+    """ListVolumeStatsByVolumeResult  
     :param volume_stats: [required] List of account activity information. 
     :type volume_stats: VolumeStats
     """
@@ -11003,7 +11003,7 @@ class ListVolumeStatsByVolumeResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SnmpV3UsmUser(data_model.DataObject):
-    """
+    """SnmpV3UsmUser  
     The SNMP v3 usmUser object is used with the API method SetSnmpInfo to configure SNMP on the cluster.
     :param access: [required] <br/><b>rouser</b>: read-only access.* <br/><b>rwuser</b>: for read-write access. <br/><b>rosys</b>: for read-only access to a restricted set of system information *SolidFire recommends that all USM users be set to "rouser" access, because all SolidFire MIB objects are read-only. 
     :type access: str
@@ -11055,7 +11055,7 @@ class SnmpV3UsmUser(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetSnmpInfoResult(data_model.DataObject):
-    """
+    """GetSnmpInfoResult  
     :param networks: [required] List of networks and access types enabled for SNMP. <br/><br/> <b>Note</b>: "networks" will only be present if SNMP V3 is disabled. 
     :type networks: SnmpNetwork
 
@@ -11097,7 +11097,7 @@ class GetSnmpInfoResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVolumesResult(data_model.DataObject):
-    """
+    """ModifyVolumesResult  
     :param qos: [required] 
     :type qos: QoS
 
@@ -11121,7 +11121,7 @@ class ModifyVolumesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RestartNetworkingRequest(data_model.DataObject):
-    """
+    """RestartNetworkingRequest  
     :param force: [required] The "force" parameter must be included on this method to successfully restart the networking. 
     :type force: bool
     """
@@ -11136,7 +11136,7 @@ class RestartNetworkingRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class NodeFibreChannelPortInfoResult(data_model.DataObject):
-    """
+    """NodeFibreChannelPortInfoResult  
     Fibre channel port info results for a node.
     :param node_id: [required] The ID of the Fibre Channel node. 
     :type node_id: int
@@ -11161,7 +11161,7 @@ class NodeFibreChannelPortInfoResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListNodeFibreChannelPortInfoResult(data_model.DataObject):
-    """
+    """ListNodeFibreChannelPortInfoResult  
     List of fibre channel port info results grouped by node.
     :param nodes: [required] List of fibre channel port info results grouped by node. 
     :type nodes: NodeFibreChannelPortInfoResult
@@ -11177,7 +11177,7 @@ class ListNodeFibreChannelPortInfoResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateSupportBundleRequest(data_model.DataObject):
-    """
+    """CreateSupportBundleRequest  
     :param bundle_name:  Unique name for each support bundle created. If no name is provided, then 'supportbundle' and the node name is used as a file name. 
     :type bundle_name: str
 
@@ -11210,7 +11210,7 @@ class CreateSupportBundleRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DriveStats(data_model.DataObject):
-    """
+    """DriveStats  
     :param active_sessions:  
     :type active_sessions: int
 
@@ -11369,7 +11369,7 @@ class DriveStats(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetDriveStatsResult(data_model.DataObject):
-    """
+    """GetDriveStatsResult  
     :param drive_stats: [required] 
     :type drive_stats: DriveStats
     """
@@ -11384,7 +11384,7 @@ class GetDriveStatsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
-    """
+    """ModifyVolumeAccessGroupLunAssignmentsRequest  
     :param volume_access_group_id: [required] Unique volume access group ID for which the LUN assignments will be modified. 
     :type volume_access_group_id: int
 
@@ -11408,7 +11408,7 @@ class ModifyVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class StartBulkVolumeReadResult(data_model.DataObject):
-    """
+    """StartBulkVolumeReadResult  
     :param async_handle: [required] ID of the async process to be checked for completion. 
     :type async_handle: int
 
@@ -11441,7 +11441,7 @@ class StartBulkVolumeReadResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetNetworkConfigResult(data_model.DataObject):
-    """
+    """GetNetworkConfigResult  
     :param network: [required] 
     :type network: Network
     """
@@ -11456,7 +11456,7 @@ class GetNetworkConfigResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumeStatsByVolumeAccessGroupRequest(data_model.DataObject):
-    """
+    """ListVolumeStatsByVolumeAccessGroupRequest  
     :param volume_access_groups:  An array of VolumeAccessGroupIDs for which volume activity is returned. If no VolumeAccessGroupID is specified, stats for all volume access groups is returned. 
     :type volume_access_groups: int
     """
@@ -11471,7 +11471,7 @@ class ListVolumeStatsByVolumeAccessGroupRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class UpdateBulkVolumeStatusResult(data_model.DataObject):
-    """
+    """UpdateBulkVolumeStatusResult  
     :param status: [required] Status of the session requested. Returned status:<br/> <br/><b>preparing</b> <br/><b>active</b> <br/><b>done</b> <br/><b>failed</b> 
     :type status: str
 
@@ -11504,13 +11504,13 @@ class UpdateBulkVolumeStatusResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class EnableSnmpResult(data_model.DataObject):
-    """    """
+    """EnableSnmpResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class FibreChannelSession(data_model.DataObject):
-    """
+    """FibreChannelSession  
     FibreChannelSession contains information about each Fibre Channel session that is visible to the cluster and what target ports it is visible on.
     :param initiator_wwpn: [required] The WWPN of the initiator which is logged into the target port. 
     :type initiator_wwpn: str
@@ -11562,7 +11562,7 @@ class FibreChannelSession(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListFibreChannelSessionsResult(data_model.DataObject):
-    """
+    """ListFibreChannelSessionsResult  
     Used to return information about the Fibre Channel sessions.
     :param sessions: [required] A list of FibreChannelSession objects with information about the Fibre Channel session. 
     :type sessions: FibreChannelSession
@@ -11578,7 +11578,7 @@ class ListFibreChannelSessionsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class VirtualVolumeTask(data_model.DataObject):
-    """
+    """VirtualVolumeTask  
     :param virtual_volume_task_id: [required] 
     :type virtual_volume_task_id: UUID
 
@@ -11674,7 +11674,7 @@ class VirtualVolumeTask(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVirtualVolumeTasksResult(data_model.DataObject):
-    """
+    """ListVirtualVolumeTasksResult  
     :param tasks: [required] List of VVol Async Tasks. 
     :type tasks: VirtualVolumeTask
     """
@@ -11689,7 +11689,7 @@ class ListVirtualVolumeTasksResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class PurgeDeletedVolumesRequest(data_model.DataObject):
-    """
+    """PurgeDeletedVolumesRequest  
     :param volume_ids:  A list of volumeIDs of volumes to be purged from the system. 
     :type volume_ids: int
 
@@ -11722,7 +11722,7 @@ class PurgeDeletedVolumesRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetClusterConfigResult(data_model.DataObject):
-    """
+    """GetClusterConfigResult  
     :param cluster: [required] Cluster configuration information the node uses to communicate with the cluster. 
     :type cluster: ClusterConfig
     """
@@ -11737,7 +11737,7 @@ class GetClusterConfigResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetVolumeStatsResult(data_model.DataObject):
-    """
+    """GetVolumeStatsResult  
     :param volume_stats: [required] Volume activity information. 
     :type volume_stats: VolumeStats
     """
@@ -11752,7 +11752,7 @@ class GetVolumeStatsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ClusterHardwareInfo(data_model.DataObject):
-    """
+    """ClusterHardwareInfo  
     :param drives: [required] 
     :type drives: dict
 
@@ -11776,7 +11776,7 @@ class ClusterHardwareInfo(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetClusterHardwareInfoResult(data_model.DataObject):
-    """
+    """GetClusterHardwareInfoResult  
     :param cluster_hardware_info: [required] Hardware information for all nodes and drives in the cluster. Each object in this output is labeled with the nodeID of the given node. 
     :type cluster_hardware_info: ClusterHardwareInfo
     """
@@ -11791,7 +11791,7 @@ class GetClusterHardwareInfoResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SupportBundleDetails(data_model.DataObject):
-    """
+    """SupportBundleDetails  
     :param bundle_name: [required] The name specified in the 'CreateSupportBundle API method. If no name was specified, 'supportbundle' will be used. 
     :type bundle_name: str
 
@@ -11851,7 +11851,7 @@ class SupportBundleDetails(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateSupportBundleResult(data_model.DataObject):
-    """
+    """CreateSupportBundleResult  
     :param details: [required] The details of the support bundle.  
     :type details: SupportBundleDetails
 
@@ -11884,7 +11884,7 @@ class CreateSupportBundleResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetDefaultQoSResult(data_model.DataObject):
-    """
+    """SetDefaultQoSResult  
     :param min_iops: [required] The minimum number of sustained IOPS that are provided by the cluster to a volume.  
     :type min_iops: int
 
@@ -11917,7 +11917,7 @@ class SetDefaultQoSResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetSnmpInfoRequest(data_model.DataObject):
-    """
+    """SetSnmpInfoRequest  
     :param networks:  List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. SNMP v2 only. 
     :type networks: SnmpNetwork
 
@@ -11959,7 +11959,7 @@ class SetSnmpInfoRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListStorageContainersRequest(data_model.DataObject):
-    """
+    """ListStorageContainersRequest  
     :param storage_container_ids:  List of storage containers to get 
     :type storage_container_ids: UUID
     """
@@ -11974,7 +11974,7 @@ class ListStorageContainersRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetHardwareInfoResult(data_model.DataObject):
-    """
+    """GetHardwareInfoResult  
     :param hardware_info: [required] Hardware information for this node.  
     :type hardware_info: dict
     """
@@ -11989,7 +11989,7 @@ class GetHardwareInfoResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetOriginRequest(data_model.DataObject):
-    """
+    """GetOriginRequest  
     :param force: [required] 
     :type force: bool
     """
@@ -12004,7 +12004,7 @@ class GetOriginRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListDriveStatsResult(data_model.DataObject):
-    """
+    """ListDriveStatsResult  
     :param drive_stats: [required] List of drive activity information for each drive. 
     :type drive_stats: DriveStats
 
@@ -12028,7 +12028,7 @@ class ListDriveStatsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVolumeAccessGroupResult(data_model.DataObject):
-    """
+    """ModifyVolumeAccessGroupResult  
     :param volume_access_group: [required] An object containing information about the newly modified volume access group. 
     :type volume_access_group: VolumeAccessGroup
     """
@@ -12043,7 +12043,7 @@ class ModifyVolumeAccessGroupResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class LoginSessionInfo(data_model.DataObject):
-    """
+    """LoginSessionInfo  
     :param timeout: [required] 
     :type timeout: str
     """
@@ -12058,7 +12058,7 @@ class LoginSessionInfo(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetLoginSessionInfoResult(data_model.DataObject):
-    """
+    """GetLoginSessionInfoResult  
     :param login_session_info: [required] The authentication expiration period. Formatted in H:mm:ss. For example: 1:30:00, 20:00, 5:00. All leading zeros and colons are removed regardless of the format the timeout was entered.<br/> Objects returned are:<br/> <b>timeout</b> - The time, in minutes, when this session will timeout and expire. 
     :type login_session_info: LoginSessionInfo
     """
@@ -12073,7 +12073,7 @@ class GetLoginSessionInfoResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListClusterAdminsResult(data_model.DataObject):
-    """
+    """ListClusterAdminsResult  
     :param cluster_admins: [required] Information about the cluster admin. 
     :type cluster_admins: ClusterAdmin
     """
@@ -12088,7 +12088,7 @@ class ListClusterAdminsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetNodeStatsResult(data_model.DataObject):
-    """
+    """GetNodeStatsResult  
     :param node_stats: [required] Node activity information. 
     :type node_stats: NodeStatsInfo
     """
@@ -12103,7 +12103,7 @@ class GetNodeStatsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateInitiatorsResult(data_model.DataObject):
-    """
+    """CreateInitiatorsResult  
     :param initiators: [required] List of objects containing details about the newly created initiators 
     :type initiators: Initiator
     """
@@ -12118,7 +12118,7 @@ class CreateInitiatorsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class VirtualVolumeTaskResult(data_model.DataObject):
-    """
+    """VirtualVolumeTaskResult  
     :param task: [required] Returns the state of a VVol Async Task. 
     :type task: VirtualVolumeTask
     """
@@ -12133,7 +12133,7 @@ class VirtualVolumeTaskResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetRemoteLoggingHostsResult(data_model.DataObject):
-    """
+    """GetRemoteLoggingHostsResult  
     :param remote_hosts: [required] List of hosts to forward logging information to. 
     :type remote_hosts: LoggingServer
     """
@@ -12148,13 +12148,13 @@ class GetRemoteLoggingHostsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveClusterPairResult(data_model.DataObject):
-    """    """
+    """RemoveClusterPairResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumesResult(data_model.DataObject):
-    """
+    """ListVolumesResult  
     :param volumes: [required] List of volumes. 
     :type volumes: Volume
     """
@@ -12169,7 +12169,7 @@ class ListVolumesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetEfficiencyResult(data_model.DataObject):
-    """
+    """GetEfficiencyResult  
     :param compression:  The amount of space being saved by compressing data on a single volume. Stated as a ratio where "1" means data has been stored without being compressed. 
     :type compression: float
 
@@ -12220,7 +12220,7 @@ class GetEfficiencyResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetLimitsResult(data_model.DataObject):
-    """
+    """GetLimitsResult  
     Limits for the cluster
     :param account_count_max: [required] 
     :type account_count_max: int
@@ -12551,7 +12551,7 @@ class GetLimitsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RollbackToGroupSnapshotRequest(data_model.DataObject):
-    """
+    """RollbackToGroupSnapshotRequest  
     :param group_snapshot_id: [required] Unique ID of the group snapshot. 
     :type group_snapshot_id: int
 
@@ -12593,7 +12593,7 @@ class RollbackToGroupSnapshotRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetBackupTargetRequest(data_model.DataObject):
-    """
+    """GetBackupTargetRequest  
     :param backup_target_id: [required] Unique identifier assigned to the backup target. 
     :type backup_target_id: int
     """
@@ -12608,13 +12608,13 @@ class GetBackupTargetRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteSnapshotResult(data_model.DataObject):
-    """    """
+    """DeleteSnapshotResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class IpmiInfo(data_model.DataObject):
-    """
+    """IpmiInfo  
     :param sensors: [required] 
     :type sensors: dict
     """
@@ -12629,7 +12629,7 @@ class IpmiInfo(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetIpmiInfoNodesResultObject(data_model.DataObject):
-    """
+    """GetIpmiInfoNodesResultObject  
     :param ipmi_info: [required] 
     :type ipmi_info: IpmiInfo
     """
@@ -12644,7 +12644,7 @@ class GetIpmiInfoNodesResultObject(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetIpmiInfoNodesResult(data_model.DataObject):
-    """
+    """GetIpmiInfoNodesResult  
     :param node_id: [required] 
     :type node_id: int
 
@@ -12668,7 +12668,7 @@ class GetIpmiInfoNodesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetIpmiInfoResult(data_model.DataObject):
-    """
+    """GetIpmiInfoResult  
     :param nodes: [required] Detailed information from each sensor within a node.  
     :type nodes: GetIpmiInfoNodesResult
     """
@@ -12683,13 +12683,13 @@ class GetIpmiInfoResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteStorageContainerResult(data_model.DataObject):
-    """    """
+    """DeleteStorageContainerResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVirtualVolumeTasksRequest(data_model.DataObject):
-    """
+    """ListVirtualVolumeTasksRequest  
     :param virtual_volume_task_ids:  
     :type virtual_volume_task_ids: UUID
     """
@@ -12704,7 +12704,7 @@ class ListVirtualVolumeTasksRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestDrivesRequest(data_model.DataObject):
-    """
+    """TestDrivesRequest  
     :param minutes:  The number of minutes to run the test can be specified. 
     :type minutes: int
     """
@@ -12719,13 +12719,13 @@ class TestDrivesRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVolumeAccessGroupLunAssignmentsResult(data_model.DataObject):
-    """    """
+    """ModifyVolumeAccessGroupLunAssignmentsResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class Signature(data_model.DataObject):
-    """
+    """Signature  
     :param data: [required] 
     :type data: str
 
@@ -12758,7 +12758,7 @@ class Signature(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class Origin(data_model.DataObject):
-    """
+    """Origin  
     :param signature: [required] 
     :type signature: Signature
 
@@ -12845,7 +12845,7 @@ class Origin(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetOriginNodeResult(data_model.DataObject):
-    """
+    """GetOriginNodeResult  
     :param origin: [required] 
     :type origin: Origin
     """
@@ -12860,7 +12860,7 @@ class GetOriginNodeResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetOriginNode(data_model.DataObject):
-    """
+    """GetOriginNode  
     :param node_id: [required] 
     :type node_id: int
 
@@ -12884,7 +12884,7 @@ class GetOriginNode(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetOriginResult(data_model.DataObject):
-    """
+    """GetOriginResult  
     :param nodes: [required] 
     :type nodes: GetOriginNode
     """
@@ -12899,7 +12899,7 @@ class GetOriginResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class PrepareVirtualSnapshotResult(data_model.DataObject):
-    """
+    """PrepareVirtualSnapshotResult  
     :param virtual_volume_task_id: [required] The ID of the clone task. 
     :type virtual_volume_task_id: UUID
 
@@ -12941,7 +12941,7 @@ class PrepareVirtualSnapshotResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ClusterInfo(data_model.DataObject):
-    """
+    """ClusterInfo  
     Cluster Info object returns information the node uses to communicate with the cluster.
     :param encryption_at_rest_state: [required] Encryption at rest state. 
     :type encryption_at_rest_state: str
@@ -13056,7 +13056,7 @@ class ClusterInfo(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetClusterInfoResult(data_model.DataObject):
-    """
+    """GetClusterInfoResult  
     :param cluster_info: [required] 
     :type cluster_info: ClusterInfo
     """
@@ -13071,7 +13071,7 @@ class GetClusterInfoResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class StartBulkVolumeWriteResult(data_model.DataObject):
-    """
+    """StartBulkVolumeWriteResult  
     :param async_handle: [required] ID of the async process to be checked for completion. 
     :type async_handle: int
 
@@ -13104,7 +13104,7 @@ class StartBulkVolumeWriteResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class Service(data_model.DataObject):
-    """
+    """Service  
     :param service_id: [required] Unique identifier for this service. 
     :type service_id: int
 
@@ -13236,7 +13236,7 @@ class Service(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class Drive(data_model.DataObject):
-    """
+    """Drive  
     :param drive_id: [required] A unique identifier for this drive. 
     :type drive_id: int
 
@@ -13350,7 +13350,7 @@ class Drive(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DetailedService(data_model.DataObject):
-    """
+    """DetailedService  
     :param service: [required] 
     :type service: Service
 
@@ -13392,7 +13392,7 @@ class DetailedService(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListServicesResult(data_model.DataObject):
-    """
+    """ListServicesResult  
     :param services: [required] 
     :type services: DetailedService
     """
@@ -13407,7 +13407,7 @@ class ListServicesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListActiveNodesResult(data_model.DataObject):
-    """
+    """ListActiveNodesResult  
     :param nodes: [required] 
     :type nodes: Node
     """
@@ -13422,7 +13422,7 @@ class ListActiveNodesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListBackupTargetsResult(data_model.DataObject):
-    """
+    """ListBackupTargetsResult  
     :param backup_targets: [required] Objects returned for each backup target. 
     :type backup_targets: BackupTarget
     """
@@ -13437,7 +13437,7 @@ class ListBackupTargetsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SnmpSendTestTrapsResult(data_model.DataObject):
-    """
+    """SnmpSendTestTrapsResult  
     :param status: [required] 
     :type status: str
     """
@@ -13452,7 +13452,7 @@ class SnmpSendTestTrapsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVirtualVolumeBindingsRequest(data_model.DataObject):
-    """
+    """ListVirtualVolumeBindingsRequest  
     :param virtual_volume_binding_ids:  
     :type virtual_volume_binding_ids: int
     """
@@ -13467,13 +13467,13 @@ class ListVirtualVolumeBindingsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddLdapClusterAdminResult(data_model.DataObject):
-    """    """
+    """AddLdapClusterAdminResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetSnmpACLResult(data_model.DataObject):
-    """
+    """GetSnmpACLResult  
     :param networks: [required] List of networks and what type of access they have to the SNMP servers running on the cluster nodes. Present if SNMP v3 is disabled. 
     :type networks: SnmpNetwork
 
@@ -13497,13 +13497,13 @@ class GetSnmpACLResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveVirtualNetworkResult(data_model.DataObject):
-    """    """
+    """RemoveVirtualNetworkResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class EnableSnmpRequest(data_model.DataObject):
-    """
+    """EnableSnmpRequest  
     :param snmp_v3_enabled: [required] If set to "true", then SNMP v3 is enabled on each node in the cluster. If set to "false", then SNMP v2 is enabled. 
     :type snmp_v3_enabled: bool
     """
@@ -13518,19 +13518,19 @@ class EnableSnmpRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetSnmpInfoResult(data_model.DataObject):
-    """    """
+    """SetSnmpInfoResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DisableLdapAuthenticationResult(data_model.DataObject):
-    """    """
+    """DisableLdapAuthenticationResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListSnapshotsResult(data_model.DataObject):
-    """
+    """ListSnapshotsResult  
     :param snapshots: [required] Information about each snapshot for each volume. If volumeID is not provided, all snapshots for all volumes is returned. Snapshots that are in a group will be returned with a "groupID". Snapshots that are enabled for replication. 
     :type snapshots: Snapshot
     """
@@ -13545,7 +13545,7 @@ class ListSnapshotsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyInitiatorsResult(data_model.DataObject):
-    """
+    """ModifyInitiatorsResult  
     :param initiators: [required] List of objects containing details about the modified initiators 
     :type initiators: Initiator
     """
@@ -13560,7 +13560,7 @@ class ModifyInitiatorsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateClusterRequest(data_model.DataObject):
-    """
+    """CreateClusterRequest  
     :param accept_eula:  Indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. 
     :type accept_eula: bool
 
@@ -13638,7 +13638,7 @@ class CreateClusterRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListEventsRequest(data_model.DataObject):
-    """
+    """ListEventsRequest  
     :param max_events:  Specifies the maximum number of events to return. 
     :type max_events: int
 
@@ -13680,13 +13680,13 @@ class ListEventsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class PurgeDeletedVolumesResult(data_model.DataObject):
-    """    """
+    """PurgeDeletedVolumesResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListProtocolEndpointsRequest(data_model.DataObject):
-    """
+    """ListProtocolEndpointsRequest  
     :param protocol_endpoint_ids:  
     :type protocol_endpoint_ids: UUID
     """
@@ -13701,7 +13701,7 @@ class ListProtocolEndpointsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumeAccessGroupsResult(data_model.DataObject):
-    """
+    """ListVolumeAccessGroupsResult  
     :param volume_access_groups: [required] A list of objects describing each volume access group. 
     :type volume_access_groups: VolumeAccessGroup
 
@@ -13725,7 +13725,7 @@ class ListVolumeAccessGroupsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestLdapAuthenticationResult(data_model.DataObject):
-    """
+    """TestLdapAuthenticationResult  
     :param groups: [required] List of LDAP groups that the tested user is a member of. 
     :type groups: str
 
@@ -13749,7 +13749,7 @@ class TestLdapAuthenticationResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListAccountsResult(data_model.DataObject):
-    """
+    """ListAccountsResult  
     :param accounts: [required] List of accounts. 
     :type accounts: Account
     """
@@ -13764,7 +13764,7 @@ class ListAccountsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetSnmpACLRequest(data_model.DataObject):
-    """
+    """SetSnmpACLRequest  
     :param networks: [required] List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. REQUIRED if SNMP v# is disabled. 
     :type networks: SnmpNetwork
 
@@ -13788,7 +13788,7 @@ class SetSnmpACLRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GroupCloneVolumeMember(data_model.DataObject):
-    """
+    """GroupCloneVolumeMember  
     Represents the relationship between the source Volume and cloned Volume IDs.
     :param volume_id: [required] The VolumeID of the cloned volume. 
     :type volume_id: int
@@ -13813,7 +13813,7 @@ class GroupCloneVolumeMember(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CloneMultipleVolumesResult(data_model.DataObject):
-    """
+    """CloneMultipleVolumesResult  
     :param async_handle: [required] A value returned from an asynchronous method call. 
     :type async_handle: int
 
@@ -13846,7 +13846,7 @@ class CloneMultipleVolumesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveVolumePairRequest(data_model.DataObject):
-    """
+    """RemoveVolumePairRequest  
     :param volume_id: [required] ID of the volume on which to stop the replication process. 
     :type volume_id: int
     """
@@ -13861,7 +13861,7 @@ class RemoveVolumePairRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetStorageContainerEfficiencyResult(data_model.DataObject):
-    """
+    """GetStorageContainerEfficiencyResult  
     :param compression: [required] 
     :type compression: float
 
@@ -13912,13 +13912,13 @@ class GetStorageContainerEfficiencyResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetLoginSessionInfoResult(data_model.DataObject):
-    """    """
+    """SetLoginSessionInfoResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class AsyncHandleResult(data_model.DataObject):
-    """
+    """AsyncHandleResult  
     :param async_handle: [required] 
     :type async_handle: int
     """
@@ -13933,7 +13933,7 @@ class AsyncHandleResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class PurgeDeletedVolumeRequest(data_model.DataObject):
-    """
+    """PurgeDeletedVolumeRequest  
     :param volume_id: [required] The ID of the volume to purge. 
     :type volume_id: int
     """
@@ -13948,7 +13948,7 @@ class PurgeDeletedVolumeRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class AsyncResult(data_model.DataObject):
-    """
+    """AsyncResult  
     The wrapped object returned by the "GetAsyncResult" API Service call.
     <br/>
     <b>Note</b>: The return value of GetAsyncResult is essentially a nested version of the standard JSON response with an additional status field.
@@ -13966,7 +13966,7 @@ class AsyncResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetAsyncResultResult(data_model.DataObject):
-    """
+    """GetAsyncResultResult  
     The object returned by the "GetAsyncResult" API Service call.
     <br/>
     <b>Note</b>: The return value of GetAsyncResult is essentially a nested version of the standard JSON response with an additional status field.
@@ -13993,7 +13993,7 @@ class GetAsyncResultResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SyncJob(data_model.DataObject):
-    """
+    """SyncJob  
     :param bytes_per_second: [required] 
     :type bytes_per_second: float
 
@@ -14152,7 +14152,7 @@ class SyncJob(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListSyncJobsResult(data_model.DataObject):
-    """
+    """ListSyncJobsResult  
     :param sync_jobs: [required] 
     :type sync_jobs: SyncJob
     """
@@ -14167,7 +14167,7 @@ class ListSyncJobsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class BulkVolumeJob(data_model.DataObject):
-    """
+    """BulkVolumeJob  
     :param bulk_volume_id: [required] The internal bulk volume job ID. 
     :type bulk_volume_id: int
 
@@ -14290,7 +14290,7 @@ class BulkVolumeJob(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListBulkVolumeJobsResult(data_model.DataObject):
-    """
+    """ListBulkVolumeJobsResult  
     :param bulk_volume_jobs: [required] An array of information for each bulk volume job. 
     :type bulk_volume_jobs: BulkVolumeJob
     """
@@ -14305,7 +14305,7 @@ class ListBulkVolumeJobsResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestConnectMvipRequest(data_model.DataObject):
-    """
+    """TestConnectMvipRequest  
     :param mvip:  Optionally, use to test the management connection of a different MVIP. This is not needed to test the connection to the target cluster. 
     :type mvip: str
     """
@@ -14320,7 +14320,7 @@ class TestConnectMvipRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetSnmpStateResult(data_model.DataObject):
-    """
+    """GetSnmpStateResult  
     :param enabled: [required] If the nodes in the cluster are configured for SNMP. 
     :type enabled: bool
 
@@ -14344,7 +14344,7 @@ class GetSnmpStateResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class PendingActiveNode(data_model.DataObject):
-    """
+    """PendingActiveNode  
     :param active_node_key: [required] 
     :type active_node_key: str
 
@@ -14431,7 +14431,7 @@ class PendingActiveNode(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListPendingActiveNodesResult(data_model.DataObject):
-    """
+    """ListPendingActiveNodesResult  
     :param pending_active_nodes: [required] List of objects detailing information about all PendingActive nodes in the system. 
     :type pending_active_nodes: PendingActiveNode
     """
@@ -14446,7 +14446,7 @@ class ListPendingActiveNodesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CompleteVolumePairingRequest(data_model.DataObject):
-    """
+    """CompleteVolumePairingRequest  
     :param volume_pairing_key: [required] The key returned from the "StartVolumePairing" API method. 
     :type volume_pairing_key: str
 
@@ -14470,7 +14470,7 @@ class CompleteVolumePairingRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetClusterStateRequest(data_model.DataObject):
-    """
+    """GetClusterStateRequest  
     :param force: [required] To run this command, the force parameter must be set to true. 
     :type force: bool
     """
@@ -14485,7 +14485,7 @@ class GetClusterStateRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DriveHardware(data_model.DataObject):
-    """
+    """DriveHardware  
     :param canonical_name: [required] 
     :type canonical_name: str
 
@@ -14752,7 +14752,7 @@ class DriveHardware(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class DrivesHardware(data_model.DataObject):
-    """
+    """DrivesHardware  
     :param drive_hardware: [required] 
     :type drive_hardware: DriveHardware
     """
@@ -14767,7 +14767,7 @@ class DrivesHardware(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class NodeDriveHardware(data_model.DataObject):
-    """
+    """NodeDriveHardware  
     :param node_id: [required] 
     :type node_id: int
 
@@ -14791,7 +14791,7 @@ class NodeDriveHardware(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListDriveHardwareResult(data_model.DataObject):
-    """
+    """ListDriveHardwareResult  
     :param nodes: [required] 
     :type nodes: NodeDriveHardware
     """
@@ -14806,7 +14806,7 @@ class ListDriveHardwareResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetNodeHardwareInfoResult(data_model.DataObject):
-    """
+    """GetNodeHardwareInfoResult  
     :param node_hardware_info: [required] Hardware information for the specified nodeID. 
     :type node_hardware_info: dict
     """
@@ -14821,7 +14821,7 @@ class GetNodeHardwareInfoResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetIpmiInfoRequest(data_model.DataObject):
-    """
+    """GetIpmiInfoRequest  
     :param force: [required] 
     :type force: bool
     """
@@ -14836,7 +14836,7 @@ class GetIpmiInfoRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetSnmpTrapInfoResult(data_model.DataObject):
-    """
+    """GetSnmpTrapInfoResult  
     :param trap_recipients: [required] List of hosts that are to receive the traps generated by the cluster. 
     :type trap_recipients: SnmpTrapRecipient
 
@@ -14878,13 +14878,13 @@ class GetSnmpTrapInfoResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetRemoteLoggingHostsResult(data_model.DataObject):
-    """    """
+    """SetRemoteLoggingHostsResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetClusterConfigRequest(data_model.DataObject):
-    """
+    """SetClusterConfigRequest  
     :param cluster: [required] Objects that are changed for the cluster interface settings. Only the fields you want changed need to be added to this method as objects in the "cluster" parameter. 
     :type cluster: ClusterConfig
     """
@@ -14899,7 +14899,7 @@ class SetClusterConfigRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ResetDriveDetails(data_model.DataObject):
-    """
+    """ResetDriveDetails  
     :param drive: [required] Drive name 
     :type drive: str
 
@@ -14941,7 +14941,7 @@ class ResetDriveDetails(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ResetDrivesDetails(data_model.DataObject):
-    """
+    """ResetDrivesDetails  
     :param drives: [required] Details of a single drive that is being reset. 
     :type drives: ResetDriveDetails
     """
@@ -14956,7 +14956,7 @@ class ResetDrivesDetails(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ResetDrivesResult(data_model.DataObject):
-    """
+    """ResetDrivesResult  
     :param details: [required] Details of drives that are being reset. 
     :type details: ResetDrivesDetails
     """
@@ -14971,7 +14971,7 @@ class ResetDrivesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListAccountsRequest(data_model.DataObject):
-    """
+    """ListAccountsRequest  
     :param start_account_id:  Starting AccountID to return. If no Account exists with this AccountID, the next Account by AccountID order is used as the start of the list. To page through the list, pass the AccountID of the last Account in the previous response + 1 
     :type start_account_id: int
 
@@ -14995,7 +14995,7 @@ class ListAccountsRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyClusterFullThresholdRequest(data_model.DataObject):
-    """
+    """ModifyClusterFullThresholdRequest  
     :param stage2_aware_threshold:  Number of nodes worth of capacity remaining on the cluster that triggers a notification. 
     :type stage2_aware_threshold: int
 
@@ -15028,7 +15028,7 @@ class ModifyClusterFullThresholdRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddClusterAdminRequest(data_model.DataObject):
-    """
+    """AddClusterAdminRequest  
     :param username: [required] Unique username for this Cluster Admin. 
     :type username: str
 
@@ -15079,19 +15079,19 @@ class AddClusterAdminRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class EnableFeatureResult(data_model.DataObject):
-    """    """
+    """EnableFeatureResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveBackupTargetResult(data_model.DataObject):
-    """    """
+    """RemoveBackupTargetResult      """
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CloneVolumeRequest(data_model.DataObject):
-    """
+    """CloneVolumeRequest  
     :param volume_id: [required] The ID of the volume to clone. 
     :type volume_id: int
 
@@ -15160,7 +15160,7 @@ class CloneVolumeRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateBackupTargetRequest(data_model.DataObject):
-    """
+    """CreateBackupTargetRequest  
     :param name: [required] Name for the backup target. 
     :type name: str
 
@@ -15184,7 +15184,7 @@ class CreateBackupTargetRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVolumeRequest(data_model.DataObject):
-    """
+    """ModifyVolumeRequest  
     :param volume_id: [required] VolumeID for the volume to be modified. 
     :type volume_id: int
 
@@ -15244,7 +15244,7 @@ class ModifyVolumeRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateGroupSnapshotResult(data_model.DataObject):
-    """
+    """CreateGroupSnapshotResult  
     :param group_snapshot_id: [required] Unique ID of the new group snapshot. 
     :type group_snapshot_id: int
 
@@ -15268,7 +15268,7 @@ class CreateGroupSnapshotResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyClusterAdminRequest(data_model.DataObject):
-    """
+    """ModifyClusterAdminRequest  
     :param cluster_admin_id: [required] ClusterAdminID for the Cluster Admin or LDAP Cluster Admin to modify. 
     :type cluster_admin_id: int
 
@@ -15310,7 +15310,7 @@ class ModifyClusterAdminRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveClusterPairRequest(data_model.DataObject):
-    """
+    """RemoveClusterPairRequest  
     :param cluster_pair_id: [required] Unique identifier used to pair two clusters. 
     :type cluster_pair_id: int
     """
@@ -15325,7 +15325,7 @@ class RemoveClusterPairRequest(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class CompleteClusterPairingResult(data_model.DataObject):
-    """
+    """CompleteClusterPairingResult  
     :param cluster_pair_id: [required] Unique identifier for the cluster pair. 
     :type cluster_pair_id: int
     """
@@ -15340,7 +15340,7 @@ class CompleteClusterPairingResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestConnectEnsembleDetails(data_model.DataObject):
-    """
+    """TestConnectEnsembleDetails  
     :param nodes: [required] A list of each ensemble node in the test and the results of the tests. 
     :type nodes: str
     """
@@ -15355,7 +15355,7 @@ class TestConnectEnsembleDetails(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestConnectEnsembleResult(data_model.DataObject):
-    """
+    """TestConnectEnsembleResult  
     :param details: [required] 
     :type details: TestConnectEnsembleDetails
 
