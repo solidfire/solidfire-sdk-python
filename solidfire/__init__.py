@@ -98,7 +98,7 @@ class Element(ServiceBase):
         """
         Returns details about an account, given its AccountID.
         :param accountID: [required] Specifies the account for which details are gathered. 
-        :type accountID: AccountID
+        :type accountID: int
         """
 
         self._check_connection_type("get_account_by_id", "Cluster")
@@ -144,7 +144,7 @@ class Element(ServiceBase):
         """
         GetAccountEfficiency is used to retrieve information about a volume account. Only the account given as a parameter in this API method is used to compute the capacity.
         :param accountID: [required] Specifies the volume account for which capacity is computed. 
-        :type accountID: AccountID
+        :type accountID: int
         """
 
         self._check_connection_type("get_account_efficiency", "Cluster")
@@ -168,7 +168,7 @@ class Element(ServiceBase):
         """
         Returns the entire list of accounts, with optional paging support.
         :param startAccountID:  Starting AccountID to return. If no Account exists with this AccountID, the next Account by AccountID order is used as the start of the list. To page through the list, pass the AccountID of the last Account in the previous response + 1 
-        :type startAccountID: AccountID
+        :type startAccountID: int
 
         :param limit:  Maximum number of AccountInfo objects to return. 
         :type limit: int
@@ -205,7 +205,7 @@ class Element(ServiceBase):
         When changing CHAP settings, any existing connections continue to be active,
         and the new CHAP values are only used on subsequent connection or reconnection.
         :param accountID: [required] AccountID for the account to modify. 
-        :type accountID: AccountID
+        :type accountID: int
 
         :param username:  Change the username of the account to this value. 
         :type username: str
@@ -255,7 +255,7 @@ class Element(ServiceBase):
         All Volumes must be deleted and purged on the account before it can be removed.
         If volumes on the account are still pending deletion, RemoveAccount cannot be used until DeleteVolume to delete and purge the volumes.
         :param accountID: [required] AccountID for the account to remove. 
-        :type accountID: AccountID
+        :type accountID: int
         """
 
         self._check_connection_type("remove_account", "Cluster")
@@ -307,7 +307,7 @@ class Element(ServiceBase):
         """
         GetBackupTarget allows you to return information about a specific backup target that has been created.
         :param backupTargetID: [required] Unique identifier assigned to the backup target. 
-        :type backupTargetID: BackupTargetID
+        :type backupTargetID: int
         """
 
         self._check_connection_type("get_backup_target", "Cluster")
@@ -350,7 +350,7 @@ class Element(ServiceBase):
         """
         ModifyBackupTarget is used to change attributes of a backup target.
         :param backupTargetID: [required] Unique identifier assigned to the backup target. 
-        :type backupTargetID: BackupTargetID
+        :type backupTargetID: int
 
         :param name:  Name for the backup target. 
         :type name: str
@@ -383,7 +383,7 @@ class Element(ServiceBase):
         """
         RemoveBackupTarget allows you to delete backup targets.
         :param backupTargetID: [required] Unique target ID of the target to remove. 
-        :type backupTargetID: BackupTargetID
+        :type backupTargetID: int
         """
 
         self._check_connection_type("remove_backup_target", "Cluster")
@@ -442,7 +442,7 @@ class Element(ServiceBase):
         """
         RemoveClusterAdmin is used to remove a Cluster Admin. The "admin" Cluster Admin cannot be removed.
         :param clusterAdminID: [required] ClusterAdminID for the Cluster Admin to remove. 
-        :type clusterAdminID: ClusterAdminID
+        :type clusterAdminID: int
         """
 
         self._check_connection_type("remove_cluster_admin", "Cluster")
@@ -1238,10 +1238,10 @@ class Element(ServiceBase):
         :type maxEvents: int
 
         :param startEventID:  Identifies the beginning of a range of events to return. 
-        :type startEventID: EventID
+        :type startEventID: int
 
         :param endEventID:  Identifies the end of a range of events to return. 
-        :type endEventID: EventID
+        :type endEventID: int
 
         :param eventQueueType:  
         :type eventQueueType: str
@@ -1427,7 +1427,7 @@ class Element(ServiceBase):
         """
         GetDriveHardwareInfo returns all the hardware info for the given drive. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
         :param driveID: [required] DriveID for the drive information requested. DriveIDs can be obtained via the "ListDrives" method. 
-        :type driveID: DriveID
+        :type driveID: int
         """
 
         self._check_connection_type("get_drive_hardware_info", "Cluster")
@@ -1451,7 +1451,7 @@ class Element(ServiceBase):
         GetDriveStats return high-level activity measurements for a single drive. Values are cumulative from the addition of the drive to the cluster. Some values are specific to Block Drives. Statistical data may not be returned for both block and metadata drives when running this method.
         For more information on which drive type returns which data, see Response Example (Block Drive) and Response Example (Volume Metadata Drive) in the SolidFire API guide.
         :param driveID: [required] Specifies the drive for which statistics are gathered. 
-        :type driveID: DriveID
+        :type driveID: int
         """
 
         self._check_connection_type("get_drive_stats", "Cluster")
@@ -1529,7 +1529,7 @@ class Element(ServiceBase):
         <br/><br/>
         Use the "ListDrives" method to obtain the driveIDs for the drives you want to remove.
         :param drives: [required] List of driveIDs to remove from the cluster. 
-        :type drives: DriveID
+        :type drives: int
         """
 
         self._check_connection_type("remove_drives", "Cluster")
@@ -1586,7 +1586,7 @@ class Element(ServiceBase):
         <br/><br/>
         Use the "ListDrives" method to obtain the driveIDs for the drives you want to secure erase.
         :param drives: [required] List of driveIDs to secure erase. 
-        :type drives: DriveID
+        :type drives: int
         """
 
         self._check_connection_type("secure_erase_drives", "Cluster")
@@ -2246,7 +2246,7 @@ class Element(ServiceBase):
         <br/><br/>
         <b>Note</b>: It may take several seconds after adding a new Node for it to start up and register the drives as being available.
         :param pendingNodes: [required] List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method. 
-        :type pendingNodes: PendingNodeID
+        :type pendingNodes: int
         """
 
         self._check_connection_type("add_nodes", "Cluster")
@@ -2309,7 +2309,7 @@ class Element(ServiceBase):
         """
         GetNodeStats is used to return the high-level activity measurements for a single node.
         :param nodeID: [required] Specifies the node for which statistics are gathered. 
-        :type nodeID: NodeID
+        :type nodeID: int
         """
 
         self._check_connection_type("get_node_stats", "Cluster")
@@ -2467,7 +2467,7 @@ class Element(ServiceBase):
         <br/><br/>
         Once removed, a node registers itself as a pending node and can be added again, or shut down which removes it from the "Pending Node" list.
         :param nodes: [required] List of NodeIDs for the nodes to be removed. 
-        :type nodes: NodeID
+        :type nodes: int
         """
 
         self._check_connection_type("remove_nodes", "Cluster")
@@ -2590,7 +2590,7 @@ class Element(ServiceBase):
         :type volumePairingKey: str
 
         :param volumeID: [required] The ID of volume on which to complete the pairing process. 
-        :type volumeID: VolumeID
+        :type volumeID: int
         """
 
         self._check_connection_type("complete_volume_pairing", "Cluster")
@@ -2713,7 +2713,7 @@ class Element(ServiceBase):
         When the volume pairing information is removed, data is no longer replicated to or from the volume.
         This method should be run on both the source and target volumes that are paired together.
         :param volumeID: [required] ID of the volume on which to stop the replication process. 
-        :type volumeID: VolumeID
+        :type volumeID: int
         """
 
         self._check_connection_type("remove_volume_pair", "Cluster")
@@ -2758,7 +2758,7 @@ class Element(ServiceBase):
         StartVolumePairing is used to create an encoded key from a volume that is used to pair with another volume.
         The key that this method creates is used in the "CompleteVolumePairing" API method to establish a volume pairing.
         :param volumeID: [required] The ID of the volume on which to start the pairing process. 
-        :type volumeID: VolumeID
+        :type volumeID: int
 
         :param mode:  The mode of the volume on which to start the pairing process. The mode can only be set if the volume is the source volume.<br/> Possible values:<br/> <b>Async</b>: (default if no mode parameter specified) Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.<br/> <b>Sync</b>: Source acknowledges write when the data is stored locally and on the remote cluster.<br/> <b>SnapshotsOnly</b>: Only snapshots created on the source cluster will be replicated. Active writes from the source volume will not be replicated.<br/> 
         :type mode: str
@@ -2952,7 +2952,7 @@ class Element(ServiceBase):
         <b>Note</b>: Creating a group snapshot is allowed if cluster fullness is at stage 2 or 3.
         Snapshots are not created when cluster fullness is at stage 4 or 5.
         :param volumes: [required] Unique ID of the volume image from which to copy. 
-        :type volumes: VolumeID
+        :type volumes: int
 
         :param name:  A name for the snapshot. If no name is provided, the date and time the snapshot was taken is used. 
         :type name: str
@@ -3030,10 +3030,10 @@ class Element(ServiceBase):
         <b>Note</b>: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
         Snapshots are not created when cluster fullness is at stage 4 or 5.
         :param volumeID: [required] ID of the volume image from which to copy. 
-        :type volumeID: VolumeID
+        :type volumeID: int
 
         :param snapshotID:  Unique ID of a snapshot from which the new snapshot is made. The snapshotID passed must be a snapshot on the given volume. If a SnapshotID is not provided, a snapshot is created from the volume's active branch. 
-        :type snapshotID: SnapshotID
+        :type snapshotID: int
 
         :param name:  A name for the snapshot. If no name is provided, the date and time the snapshot was taken is used. 
         :type name: str
@@ -3081,7 +3081,7 @@ class Element(ServiceBase):
         The saveMembers parameter can be used to preserve all the snapshots that
         were made for the volumes in the group but the group association will be removed.
         :param groupSnapshotID: [required] Unique ID of the group snapshot. 
-        :type groupSnapshotID: GroupSnapshotID
+        :type groupSnapshotID: int
 
         :param saveMembers: [required] <br/><b>true</b>: Snapshots are kept, but group association is removed. <br/><b>false</b>: The group and snapshots are deleted. 
         :type saveMembers: bool
@@ -3111,7 +3111,7 @@ class Element(ServiceBase):
         You must rollback and make another snapshot "active" before the current snapshot can be deleted.
         To rollback a snapshot, use RollbackToSnapshot.
         :param snapshotID: [required] The ID of the snapshot to delete. 
-        :type snapshotID: SnapshotID
+        :type snapshotID: int
         """
 
         self._check_connection_type("delete_snapshot", "Cluster")
@@ -3134,7 +3134,7 @@ class Element(ServiceBase):
         """
         GetSchedule is used to return information about a scheduled snapshot that has been created. You can see information about a specified schedule if there are many snapshot schedules in the system. You can include more than one schedule with this method by specifying additional scheduleIDs to the parameter.
         :param scheduleID: [required] Unique ID of the schedule or multiple schedules to display 
-        :type scheduleID: ScheduleID
+        :type scheduleID: int
         """
 
         self._check_connection_type("get_schedule", "Cluster")
@@ -3156,7 +3156,7 @@ class Element(ServiceBase):
         """
         ListGroupSnapshots is used to return information about all group snapshots that have been created.
         :param volumeID:  An array of unique volume IDs to query. If this parameter is not specified, all group snapshots on the cluster will be included. 
-        :type volumeID: VolumeID
+        :type volumeID: int
         """
 
         self._check_connection_type("list_group_snapshots", "Cluster")
@@ -3197,7 +3197,7 @@ class Element(ServiceBase):
         """
         ListSnapshots is used to return the attributes of each snapshot taken on the volume.
         :param volumeID:  The volume to list snapshots for. If not provided, all snapshots for all volumes are returned. 
-        :type volumeID: VolumeID
+        :type volumeID: int
         """
 
         self._check_connection_type("list_snapshots", "Cluster")
@@ -3223,7 +3223,7 @@ class Element(ServiceBase):
         """
         ModifyGroupSnapshot is used to change the attributes currently assigned to a group snapshot.
         :param groupSnapshotID: [required] ID of the snapshot. 
-        :type groupSnapshotID: GroupSnapshotID
+        :type groupSnapshotID: int
 
         :param expirationTime:  Use to set the time when the snapshot should be removed. 
         :type expirationTime: str
@@ -3281,7 +3281,7 @@ class Element(ServiceBase):
         ModifySnapshot is used to change the attributes currently assigned to a snapshot.
         Use this API method to enable the snapshots created on the Read/Write (source) volume to be remotely replicated to a target SolidFire storage system.
         :param snapshotID: [required] ID of the snapshot. 
-        :type snapshotID: SnapshotID
+        :type snapshotID: int
 
         :param expirationTime:  Use to set the time when the snapshot should be removed. 
         :type expirationTime: str
@@ -3320,7 +3320,7 @@ class Element(ServiceBase):
         <b>Note</b>: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
         Snapshots are not created when cluster fullness is at stage 4 or 5.
         :param groupSnapshotID: [required] Unique ID of the group snapshot. 
-        :type groupSnapshotID: GroupSnapshotID
+        :type groupSnapshotID: int
 
         :param saveCurrentState: [required] <br/><b>true</b>: The previous active volume image is kept. <br/><b>false</b>: (default) The previous active volume image is deleted. 
         :type saveCurrentState: bool
@@ -3366,10 +3366,10 @@ class Element(ServiceBase):
         <b>Note</b>: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
         Snapshots are not created when cluster fullness is at stage 4 or 5.
         :param volumeID: [required] VolumeID for the volume. 
-        :type volumeID: VolumeID
+        :type volumeID: int
 
         :param snapshotID: [required] ID of a previously created snapshot on the given volume. 
-        :type snapshotID: SnapshotID
+        :type snapshotID: int
 
         :param saveCurrentState: [required] <br/><b>true</b>: The previous active volume image is kept. <br/><b>false</b>: (default) The previous active volume image is deleted. 
         :type saveCurrentState: bool
@@ -3845,7 +3845,7 @@ class Element(ServiceBase):
         <br/><br/>
         <b>Note:</b> The AddVirtualNetwork method is used only to create a new virtual network. If you want to make changes to a virtual network, please use the ModifyVirtualNetwork method.
         :param virtualNetworkTag: [required] A unique virtual network (VLAN) tag. Supported values are 1 to 4095 (the number zero (0) is not supported). 
-        :type virtualNetworkTag: VirtualNetworkTag
+        :type virtualNetworkTag: int
 
         :param name: [required] User defined name for the new virtual network. 
         :type name: str
@@ -3904,13 +3904,13 @@ class Element(ServiceBase):
         
         This method does not require any parameters to be passed. But, one or more VirtualNetworkIDs or VirtualNetworkTags can be passed in order to filter the results.
         :param virtualNetworkID:  Network ID to filter the list for a single virtual network 
-        :type virtualNetworkID: VirtualNetworkID
+        :type virtualNetworkID: int
 
         :param virtualNetworkTag:  Network Tag to filter the list for a single virtual network 
         :type virtualNetworkTag: int
 
         :param virtualNetworkIDs:  NetworkIDs to include in the list. 
-        :type virtualNetworkIDs: VirtualNetworkID
+        :type virtualNetworkIDs: int
 
         :param virtualNetworkTags:  Network Tags to include in the list. 
         :type virtualNetworkTags: int
@@ -3953,10 +3953,10 @@ class Element(ServiceBase):
         <br/><br/>
         <b>Note:</b> This method requires either the VirtualNetworkID or the VirtualNetworkTag as a parameter, but not both.
         :param virtualNetworkID:  Unique identifier of the virtual network to modify. This is the virtual network ID assigned by the SolidFire cluster. 
-        :type virtualNetworkID: VirtualNetworkID
+        :type virtualNetworkID: int
 
         :param virtualNetworkTag:  Network Tag that identifies the virtual network to modify. 
-        :type virtualNetworkTag: VirtualNetworkTag
+        :type virtualNetworkTag: int
 
         :param name:  New name for the virtual network. 
         :type name: str
@@ -4020,10 +4020,10 @@ class Element(ServiceBase):
         <br/><br/>
         <b>Note:</b> This method requires either the VirtualNetworkID of the VirtualNetworkTag as a parameter, but not both.
         :param virtualNetworkID:  Network ID that identifies the virtual network to remove. 
-        :type virtualNetworkID: VirtualNetworkID
+        :type virtualNetworkID: int
 
         :param virtualNetworkTag:  Network Tag that identifies the virtual network to remove. 
-        :type virtualNetworkTag: VirtualNetworkTag
+        :type virtualNetworkTag: int
         """
 
         self._check_connection_type("remove_virtual_network", "Cluster")
@@ -4248,7 +4248,7 @@ class Element(ServiceBase):
         """
         ListVirtualVolumeBindings returns a list of VVol bindings.
         :param virtualVolumeBindingIDs:  
-        :type virtualVolumeBindingIDs: VvolBindingID
+        :type virtualVolumeBindingIDs: int
         """
 
         self._check_connection_type("list_virtual_volume_bindings", "Cluster")
@@ -4409,7 +4409,7 @@ class Element(ServiceBase):
         """
         Cancels a currently running clone operation. This method does not return anything.
         :param cloneID: [required] 
-        :type cloneID: CloneID
+        :type cloneID: int
         """
 
         self._check_connection_type("cancel_clone", "Cluster")
@@ -4467,10 +4467,10 @@ class Element(ServiceBase):
         :type access: str
 
         :param groupSnapshotID:  ID of the group snapshot to use as a basis for the clone. 
-        :type groupSnapshotID: SnapshotID
+        :type groupSnapshotID: int
 
         :param newAccountID:  New account ID for the volumes if not overridden by information passed in the volumes array. 
-        :type newAccountID: AccountID
+        :type newAccountID: int
         """
 
         self._check_connection_type("clone_multiple_volumes", "Cluster")
@@ -4514,13 +4514,13 @@ class Element(ServiceBase):
         <br/><br/>
         <b>Note</b>: Cloned volumes do not inherit volume access group memberships from the source volume.
         :param volumeID: [required] The ID of the volume to clone. 
-        :type volumeID: VolumeID
+        :type volumeID: int
 
         :param name: [required] The name for the newly-created volume. 
         :type name: str
 
         :param newAccountID:  AccountID for the owner of the new volume. If unspecified, the AccountID of the owner of the volume being cloned is used. 
-        :type newAccountID: AccountID
+        :type newAccountID: int
 
         :param newSize:  New size of the volume, in bytes. May be greater or less than the size of the volume being cloned. If unspecified, the clone's volume size will be the same as the source volume. Size is rounded up to the nearest 1 MiB. 
         :type newSize: int
@@ -4529,7 +4529,7 @@ class Element(ServiceBase):
         :type access: str
 
         :param snapshotID:  ID of the snapshot to use as the source of the clone. If unspecified, the clone will be created with a snapshot of the active volume. 
-        :type snapshotID: SnapshotID
+        :type snapshotID: int
 
         :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
@@ -4568,13 +4568,13 @@ class Element(ServiceBase):
         """
         Copies one volume to another.
         :param volumeID: [required] Source volume to copy. 
-        :type volumeID: VolumeID
+        :type volumeID: int
 
         :param dstVolumeID: [required] Destination volume for the copy. 
-        :type dstVolumeID: VolumeID
+        :type dstVolumeID: int
 
         :param snapshotID:  Snapshot ID of the source volume to create the copy from. 
-        :type snapshotID: SnapshotID
+        :type snapshotID: int
         """
 
         self._check_connection_type("copy_volume", "Cluster")
@@ -4609,7 +4609,7 @@ class Element(ServiceBase):
         :type name: str
 
         :param accountID: [required] AccountID for the owner of this volume. 
-        :type accountID: AccountID
+        :type accountID: int
 
         :param totalSize: [required] Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size. 
         :type totalSize: int
@@ -4665,7 +4665,7 @@ class Element(ServiceBase):
         If the deleted volume gets purged from the system, the volume it was paired with enters into a StoppedMisconfigured state and the volume pairing status is removed.
         The purged volume becomes permanently unavailable.
         :param volumeID: [required] The ID of the volume to delete. 
-        :type volumeID: VolumeID
+        :type volumeID: int
         """
 
         self._check_connection_type("delete_volume", "Cluster")
@@ -4732,7 +4732,7 @@ class Element(ServiceBase):
         The result for a completed asynchronous method call can only be retrieved once.
         Once the final result has been returned, later attempts returns an error.
         :param asyncHandle: [required] A value that was returned from the original asynchronous method call. 
-        :type asyncHandle: AsyncResultID
+        :type asyncHandle: int
         """
 
         self._check_connection_type("get_async_result", "Cluster")
@@ -4792,7 +4792,7 @@ class Element(ServiceBase):
         GetVolumeEfficiency is used to retrieve information about a volume.
         Only the volume given as a parameter in this API method is used to compute the capacity.
         :param volumeID: [required] Specifies the volume for which capacity is computed. 
-        :type volumeID: VolumeID
+        :type volumeID: int
         """
 
         self._check_connection_type("get_volume_efficiency", "Cluster")
@@ -4816,7 +4816,7 @@ class Element(ServiceBase):
         GetVolumeStats is used to retrieve high-level activity measurements for a single volume.
         Values are cumulative from the creation of the volume.
         :param volumeID: [required] Specifies the volume for which statistics is gathered. 
-        :type volumeID: VolumeID
+        :type volumeID: int
         """
 
         self._check_connection_type("get_volume_stats", "Cluster")
@@ -4841,7 +4841,7 @@ class Element(ServiceBase):
         ListActiveVolumes is used to return the list of active volumes currently in the system.
         The list of volumes is returned sorted in VolumeID order and can be returned in multiple parts (pages).
         :param startVolumeID:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
-        :type startVolumeID: VolumeID
+        :type startVolumeID: int
 
         :param limit:  The maximum number of volumes to return from the API. 
         :type limit: int
@@ -4968,7 +4968,7 @@ class Element(ServiceBase):
         """
         ListVolumeStatsByVolumeAccessGroup is used to get total activity measurements for all of the volumes that are a member of the specified volume access group(s).
         :param volumeAccessGroups:  An array of VolumeAccessGroupIDs for which volume activity is returned. If no VolumeAccessGroupID is specified, stats for all volume access groups is returned. 
-        :type volumeAccessGroups: VolumeAccessGroupID
+        :type volumeAccessGroups: int
         """
 
         self._check_connection_type("list_volume_stats_by_volume_access_group", "Cluster")
@@ -4998,7 +4998,7 @@ class Element(ServiceBase):
         The ListVolumes method is used to return a list of volumes that are in a cluster.
         You can specify the volumes you want to return in the list by using the available parameters.
         :param startVolumeID:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
-        :type startVolumeID: VolumeID
+        :type startVolumeID: int
 
         :param limit:  The maximum number of volumes to return from the API. 
         :type limit: int
@@ -5007,13 +5007,13 @@ class Element(ServiceBase):
         :type volumeStatus: str
 
         :param accounts:  If specified, only fetch volumes which belong to the provided accounts. By default, list volumes for all accounts. 
-        :type accounts: AccountID
+        :type accounts: int
 
         :param isPaired:  If specified, only fetch volumes which are paired (if true) or non-paired (if false). By default, list all volumes regardless of their pairing status. 
         :type isPaired: bool
 
         :param volumeIDs:  If specified, only fetch volumes specified in this list. This option cannot be specified if startVolumeID, limit, or accounts option is specified. 
-        :type volumeIDs: VolumeID
+        :type volumeIDs: int
         """
 
         self._check_connection_type("list_volumes", "Cluster")
@@ -5049,10 +5049,10 @@ class Element(ServiceBase):
         """
         ListVolumesForAccount returns the list of active AND (pending) deleted volumes for an account.
         :param accountID: [required] The ID of the account to list the volumes for. 
-        :type accountID: AccountID
+        :type accountID: int
 
         :param startVolumeID:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
-        :type startVolumeID: VolumeID
+        :type startVolumeID: int
 
         :param limit:  The maximum number of volumes to return from the API. 
         :type limit: int
@@ -5095,10 +5095,10 @@ class Element(ServiceBase):
         <br/><br/>
         <b>Note</b>: If you change access status to locked or target all existing iSCSI connections are terminated.
         :param volumeID: [required] VolumeID for the volume to be modified. 
-        :type volumeID: VolumeID
+        :type volumeID: int
 
         :param accountID:  AccountID to which the volume is reassigned. If none is specified, the previous account name is used. 
-        :type accountID: AccountID
+        :type accountID: int
 
         :param access:  Access allowed for the volume. <br/><b>readOnly</b>: Only read operations are allowed. <br/><b>readWrite</b>: Reads and writes are allowed. <br/><b>locked</b>: No reads or writes are allowed. <br/><b>replicationTarget</b>: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked. <br/><br/> If unspecified, the access settings of the clone will be the same as the source. 
         :type access: str
@@ -5198,7 +5198,7 @@ class Element(ServiceBase):
         A volume must be deleted using DeleteVolume before it can be purged.
         Volumes are purged automatically after a period of time, so usage of this method is not typically required.
         :param volumeID: [required] The ID of the volume to purge. 
-        :type volumeID: VolumeID
+        :type volumeID: int
         """
 
         self._check_connection_type("purge_deleted_volume", "Cluster")
@@ -5258,7 +5258,7 @@ class Element(ServiceBase):
         RestoreDeletedVolume marks a deleted volume as active again.
         This action makes the volume immediately available for iSCSI connection.
         :param volumeID: [required] VolumeID for the deleted volume to restore. 
-        :type volumeID: VolumeID
+        :type volumeID: int
         """
 
         self._check_connection_type("restore_deleted_volume", "Cluster")
@@ -5334,13 +5334,13 @@ class Element(ServiceBase):
         Snapshots can be created if cluster fullness is at stage 2 or 3.
         Snapshots are not created when cluster fullness is at stage 4 or 5.
         :param volumeID: [required] ID of the volume to be read. 
-        :type volumeID: VolumeID
+        :type volumeID: int
 
         :param format: [required] The format of the volume data. Can be either: <br/><b>uncompressed</b>: every byte of the volume is returned without any compression. <br/><b>native</b>: opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. 
         :type format: str
 
         :param snapshotID:  ID of a previously created snapshot used for bulk volume reads. If no ID is entered, a snapshot of the current active volume image is made. 
-        :type snapshotID: SnapshotID
+        :type snapshotID: int
 
         :param script:  Executable name of a script. If no script name is given then the key and URL is necessary to access SolidFire nodes. The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted. 
         :type script: str
@@ -5389,7 +5389,7 @@ class Element(ServiceBase):
         The external data is accessed by a web server running on a SolidFire node.
         Communications and server interaction information for external data access is passed by a script running on the SolidFire storage system.
         :param volumeID: [required] ID of the volume to be written to. 
-        :type volumeID: VolumeID
+        :type volumeID: int
 
         :param format: [required] The format of the volume data. Can be either: <br/><b>uncompressed</b>: every byte of the volume is returned without any compression. <br/><b>native</b>: opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write 
         :type format: str
@@ -5478,10 +5478,10 @@ class Element(ServiceBase):
         """
         Add initiators to a volume access group.
         :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
-        :type volumeAccessGroupID: VolumeAccessGroupID
+        :type volumeAccessGroupID: int
 
         :param initiators: [required] List of initiators to add to the volume access group. 
-        :type initiators: Iqn
+        :type initiators: str
         """
 
         self._check_connection_type("add_initiators_to_volume_access_group", "Cluster")
@@ -5506,10 +5506,10 @@ class Element(ServiceBase):
         """
         Add volumes to a volume access group.
         :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
-        :type volumeAccessGroupID: VolumeAccessGroupID
+        :type volumeAccessGroupID: int
 
         :param volumes: [required] List of volumes to add to this volume access group. 
-        :type volumes: VolumeID
+        :type volumes: int
         """
 
         self._check_connection_type("add_volumes_to_volume_access_group", "Cluster")
@@ -5545,16 +5545,16 @@ class Element(ServiceBase):
         :type name: str
 
         :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group will start out without configured initiators. 
-        :type initiators: Iqn
+        :type initiators: str
 
         :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group will start without any volumes. 
-        :type volumes: VolumeID
+        :type volumes: int
 
         :param virtualNetworkID:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
-        :type virtualNetworkID: VirtualNetworkID
+        :type virtualNetworkID: int
 
         :param virtualNetworkTags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
-        :type virtualNetworkTags: VirtualNetworkTags
+        :type virtualNetworkTags: int
 
         :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
@@ -5590,7 +5590,7 @@ class Element(ServiceBase):
         """
         Delete a volume access group from the system.
         :param volumeAccessGroupID: [required] The ID of the volume access group to delete. 
-        :type volumeAccessGroupID: VolumeAccessGroupID
+        :type volumeAccessGroupID: int
         """
 
         self._check_connection_type("delete_volume_access_group", "Cluster")
@@ -5613,7 +5613,7 @@ class Element(ServiceBase):
         """
         GetVolumeAccessGroupEfficiency is used to retrieve efficiency information about a volume access group. Only the volume access group provided as parameters in this API method is used to compute the capacity.
         :param volumeAccessGroupID: [required] Specifies the volume access group for which capacity is computed. 
-        :type volumeAccessGroupID: VolumeAccessGroupID
+        :type volumeAccessGroupID: int
         """
 
         self._check_connection_type("get_volume_access_group_efficiency", "Cluster")
@@ -5636,7 +5636,7 @@ class Element(ServiceBase):
         """
         The GetVolumeAccessGroupLunAssignments is used to return information LUN mappings of a specified volume access group.
         :param volumeAccessGroupID: [required] Unique volume access group ID used to return information. 
-        :type volumeAccessGroupID: VolumeAccessGroupID
+        :type volumeAccessGroupID: int
         """
 
         self._check_connection_type("get_volume_access_group_lun_assignments", "Cluster")
@@ -5660,7 +5660,7 @@ class Element(ServiceBase):
         """
         ListVolumeAccessGroups is used to return information about the volume access groups that are currently in the system.
         :param startVolumeAccessGroupID:  The lowest VolumeAccessGroupID to return. This can be useful for paging. If unspecified, there is no lower limit (implicitly 0). 
-        :type startVolumeAccessGroupID: VolumeAccessGroupID
+        :type startVolumeAccessGroupID: int
 
         :param limit:  The maximum number of results to return. This can be useful for paging. 
         :type limit: int
@@ -5704,22 +5704,22 @@ class Element(ServiceBase):
         AddVolumesToVolumeAccessGroup<br/>
         RemoveVolumesFromVolumeAccessGroup<br/>
         :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
-        :type volumeAccessGroupID: VolumeAccessGroupID
+        :type volumeAccessGroupID: int
 
         :param virtualNetworkID:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
-        :type virtualNetworkID: VirtualNetworkID
+        :type virtualNetworkID: int
 
         :param virtualNetworkTags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
-        :type virtualNetworkTags: VirtualNetworkTags
+        :type virtualNetworkTags: int
 
         :param name:  Name of the volume access group. It is not required to be unique, but recommended. 
         :type name: str
 
         :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group's configured initiators will not be modified. 
-        :type initiators: Iqn
+        :type initiators: str
 
         :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group's volumes will not be modified. 
-        :type volumes: VolumeID
+        :type volumes: int
 
         :param attributes:  List of Name/Value pairs in JSON object format. 
         :type attributes: dict
@@ -5764,7 +5764,7 @@ class Element(ServiceBase):
         <br/><br/>
         <b>Caution:</b> If a LUN assignment is changed for a volume with active I/O, the I/O could be disrupted. Changes to the server configuration may be required in order to change volume LUN assignments.
         :param volumeAccessGroupID: [required] Unique volume access group ID for which the LUN assignments will be modified. 
-        :type volumeAccessGroupID: VolumeAccessGroupID
+        :type volumeAccessGroupID: int
 
         :param lunAssignments: [required] The volume IDs with new assigned LUN values. 
         :type lunAssignments: LunAssignment
@@ -5792,10 +5792,10 @@ class Element(ServiceBase):
         """
         Remove initiators from a volume access group.
         :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
-        :type volumeAccessGroupID: VolumeAccessGroupID
+        :type volumeAccessGroupID: int
 
         :param initiators: [required] List of initiators to remove from the volume access group. 
-        :type initiators: Iqn
+        :type initiators: str
         """
 
         self._check_connection_type("remove_initiators_from_volume_access_group", "Cluster")
@@ -5820,10 +5820,10 @@ class Element(ServiceBase):
         """
         Remove volumes from a volume access group.
         :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
-        :type volumeAccessGroupID: VolumeAccessGroupID
+        :type volumeAccessGroupID: int
 
         :param volumes: [required] List of volumes to remove from this volume access group. 
-        :type volumes: VolumeID
+        :type volumes: int
         """
 
         self._check_connection_type("remove_volumes_from_volume_access_group", "Cluster")

@@ -8,7 +8,7 @@ def test_cancel_clone_v9_0():
     ef._dispatcher.post = MagicMock(return_value = Resources.RESP_CancelClone_v9_0)
 
     
-    clone_id = dict() # clone_id
+    clone_id = 42 # clone_id
     result = ef.cancel_clone(clone_id,)
 
 def test_cancel_group_clone_v9_0():
@@ -24,9 +24,9 @@ def test_copy_volume_v9_0():
     ef._dispatcher.post = MagicMock(return_value = Resources.RESP_CopyVolume_v9_0)
 
     
-    volume_id = dict() # volume_id
-    dst_volume_id = dict() # dst_volume_id
-    snapshot_id = dict() # snapshot_id
+    volume_id = 42 # volume_id
+    dst_volume_id = 42 # dst_volume_id
+    snapshot_id = 42 # snapshot_id
     result = ef.copy_volume(volume_id,dst_volume_id,)
     assert result.async_handle == 9, "Died on +.async_handle"
     assert result.clone_id == 5, "Died on +.clone_id"
@@ -54,15 +54,16 @@ def test_create_volume_access_group_v9_0():
 
     
     name = "" # name
-    initiators = dict() # initiators
-    volumes = dict() # volumes
-    virtual_network_id = dict() # virtual_network_id
-    virtual_network_tags = dict() # virtual_network_tags
+    initiators = "" # initiators
+    volumes = 42 # volumes
+    virtual_network_id = 42 # virtual_network_id
+    virtual_network_tags = 42 # virtual_network_tags
     attributes = dict() # attributes
     result = ef.create_volume_access_group(name,)
     assert result.volume_access_group.name == """myaccessgroup""", "Died on +.volume_access_group.name"
     assert result.volume_access_group.initiator_ids[0] == 95, "Died on +.volume_access_group.initiator_ids[0]"
     assert result.volume_access_group.volumes[0] == 327, "Died on +.volume_access_group.volumes[0]"
+    assert result.volume_access_group.initiators[0] == """iqn.1993-08.org.debian: 01: a31b1d799d5c""", "Died on +.volume_access_group.initiators[0]"
     assert type(result.volume_access_group.attributes) is dict, "Died on .volume_access_group.attributes"
     assert result.volume_access_group.volume_access_group_id == 96, "Died on +.volume_access_group.volume_access_group_id"
     assert result.volume_access_group_id == 96, "Died on +.volume_access_group_id"
@@ -92,12 +93,15 @@ def test_delete_volumes_v9_0():
     assert result.volumes[0].qos.max_iops == 15000, "Died on +.volumes[0].qos.max_iops"
     assert result.volumes[0].name == """vclient-030-v00001""", "Died on +.volumes[0].name"
     assert result.volumes[0].total_size == 10000003072, "Died on +.volumes[0].total_size"
+    assert result.volumes[0].scsi_naadevice_id == """6f47acc100000000707a737200000001""", "Died on +.volumes[0].scsi_naadevice_id"
     assert result.volumes[0].account_id == 1, "Died on +.volumes[0].account_id"
+    assert result.volumes[0].scsi_euidevice_id == """707a737200000001f47acc0100000000""", "Died on +.volumes[0].scsi_euidevice_id"
     assert result.volumes[0].volume_id == 1, "Died on +.volumes[0].volume_id"
     assert result.volumes[0].access == """readWrite""", "Died on +.volumes[0].access"
     assert result.volumes[0].slice_count == 1, "Died on +.volumes[0].slice_count"
     assert result.volumes[0].block_size == 4096, "Died on +.volumes[0].block_size"
     assert type(result.volumes[0].attributes) is dict, "Died on .volumes[0].attributes"
+    assert result.volumes[0].iqn == """iqn.2010-01.com.solidfire:pzsr.vclient-030-v00001.1""", "Died on +.volumes[0].iqn"
     assert result.volumes[0].create_time == """2015-03-06T18:50:56Z""", "Died on +.volumes[0].create_time"
     assert result.volumes[0].virtual_volume_id == UUID("b4528ea8-2930-41a0-8b8e-6361e1f0a71f"), "Died on .volumes[0].virtual_volume_id"
 
@@ -114,7 +118,7 @@ def test_get_account_efficiency_v9_0():
     ef._dispatcher.post = MagicMock(return_value = Resources.RESP_GetAccountEfficiency_v9_0)
 
     
-    account_id = dict() # account_id
+    account_id = 42 # account_id
     result = ef.get_account_efficiency(account_id,)
     assert result.timestamp == """2016-12-08T16:00:03Z""", "Died on +.timestamp"
 
@@ -2156,6 +2160,7 @@ def test_list_iscsisessions_v9_0():
 
     
     result = ef.list_iscsisessions()
+    assert result.sessions[1].initiator_name == """iqn.2010-01.net.solidfire.eng:zdc-3""", "Died on +.sessions[1].initiator_name"
     assert type(result.sessions[1].initiator.attributes) is dict, "Died on .sessions[1].initiator.attributes"
     assert result.sessions[1].initiator.initiator_name == """iqn.2010-01.net.solidfire.eng:zdc-3""", "Died on +.sessions[1].initiator.initiator_name"
     assert result.sessions[1].initiator.volume_access_groups[0] == 1, "Died on +.sessions[1].initiator.volume_access_groups[0]"
@@ -2173,8 +2178,10 @@ def test_list_iscsisessions_v9_0():
     assert result.sessions[1].target_ip == """10.30.65.134:3260""", "Died on +.sessions[1].target_ip"
     assert result.sessions[1].virtual_network_id == 0, "Died on +.sessions[1].virtual_network_id"
     assert result.sessions[1].account_name == """myaccount""", "Died on +.sessions[1].account_name"
+    assert result.sessions[1].target_name == """iqn.2010-01.com.solidfire:dvmj.trruw982e4vr2cgf.9""", "Died on +.sessions[1].target_name"
     assert result.sessions[1].create_time == """2016-08-12T16:40:04.827831Z""", "Died on +.sessions[1].create_time"
     assert result.sessions[1].account_id == 1, "Died on +.sessions[1].account_id"
+    assert result.sessions[0].initiator_name == """iqn.2010-01.net.solidfire.eng:zdc-3""", "Died on +.sessions[0].initiator_name"
     assert type(result.sessions[0].initiator.attributes) is dict, "Died on .sessions[0].initiator.attributes"
     assert result.sessions[0].initiator.initiator_name == """iqn.2010-01.net.solidfire.eng:zdc-3""", "Died on +.sessions[0].initiator.initiator_name"
     assert result.sessions[0].initiator.volume_access_groups[0] == 1, "Died on +.sessions[0].initiator.volume_access_groups[0]"
@@ -2192,6 +2199,7 @@ def test_list_iscsisessions_v9_0():
     assert result.sessions[0].target_ip == """10.30.65.134:3260""", "Died on +.sessions[0].target_ip"
     assert result.sessions[0].virtual_network_id == 0, "Died on +.sessions[0].virtual_network_id"
     assert result.sessions[0].account_name == """myaccount""", "Died on +.sessions[0].account_name"
+    assert result.sessions[0].target_name == """iqn.2010-01.com.solidfire:dvmj.aawuanfmxukfnffl.3""", "Died on +.sessions[0].target_name"
     assert result.sessions[0].create_time == """2016-08-12T16:40:04.827786Z""", "Died on +.sessions[0].create_time"
     assert result.sessions[0].account_id == 1, "Died on +.sessions[0].account_id"
 
@@ -2226,21 +2234,25 @@ def test_list_protocol_endpoints_v9_0():
     assert result.protocol_endpoints[3].provider_type == """Primary""", "Died on +.protocol_endpoints[3].provider_type"
     assert result.protocol_endpoints[3].protocol_endpoint_id == UUID("f3e7911d-0e86-4776-97db-7468c272213f"), "Died on .protocol_endpoints[3].protocol_endpoint_id"
     assert result.protocol_endpoints[3].secondary_provider_id == 4, "Died on +.protocol_endpoints[3].secondary_provider_id"
+    assert result.protocol_endpoints[3].scsi_naadevice_id == """6f47acc2000000036970687200000000""", "Died on +.protocol_endpoints[3].scsi_naadevice_id"
     assert result.protocol_endpoints[2].primary_provider_id == 4, "Died on +.protocol_endpoints[2].primary_provider_id"
     assert result.protocol_endpoints[2].protocol_endpoint_state == """Active""", "Died on +.protocol_endpoints[2].protocol_endpoint_state"
     assert result.protocol_endpoints[2].provider_type == """Primary""", "Died on +.protocol_endpoints[2].provider_type"
     assert result.protocol_endpoints[2].protocol_endpoint_id == UUID("c6458dfe-9803-4350-bb4e-68a3feb7e830"), "Died on .protocol_endpoints[2].protocol_endpoint_id"
     assert result.protocol_endpoints[2].secondary_provider_id == 1, "Died on +.protocol_endpoints[2].secondary_provider_id"
+    assert result.protocol_endpoints[2].scsi_naadevice_id == """6f47acc2000000046970687200000000""", "Died on +.protocol_endpoints[2].scsi_naadevice_id"
     assert result.protocol_endpoints[1].primary_provider_id == 2, "Died on +.protocol_endpoints[1].primary_provider_id"
     assert result.protocol_endpoints[1].protocol_endpoint_state == """Active""", "Died on +.protocol_endpoints[1].protocol_endpoint_state"
     assert result.protocol_endpoints[1].provider_type == """Primary""", "Died on +.protocol_endpoints[1].provider_type"
     assert result.protocol_endpoints[1].protocol_endpoint_id == UUID("1f16ed86-3f31-4c76-b004-a1251187700b"), "Died on .protocol_endpoints[1].protocol_endpoint_id"
     assert result.protocol_endpoints[1].secondary_provider_id == 3, "Died on +.protocol_endpoints[1].secondary_provider_id"
+    assert result.protocol_endpoints[1].scsi_naadevice_id == """6f47acc2000000026970687200000000""", "Died on +.protocol_endpoints[1].scsi_naadevice_id"
     assert result.protocol_endpoints[0].primary_provider_id == 1, "Died on +.protocol_endpoints[0].primary_provider_id"
     assert result.protocol_endpoints[0].protocol_endpoint_state == """Active""", "Died on +.protocol_endpoints[0].protocol_endpoint_state"
     assert result.protocol_endpoints[0].provider_type == """Primary""", "Died on +.protocol_endpoints[0].provider_type"
     assert result.protocol_endpoints[0].protocol_endpoint_id == UUID("1387e257-d2e3-4446-be6d-39db71583e7b"), "Died on .protocol_endpoints[0].protocol_endpoint_id"
     assert result.protocol_endpoints[0].secondary_provider_id == 2, "Died on +.protocol_endpoints[0].secondary_provider_id"
+    assert result.protocol_endpoints[0].scsi_naadevice_id == """6f47acc2000000016970687200000000""", "Died on +.protocol_endpoints[0].scsi_naadevice_id"
 
 def test_list_services_v9_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -3768,7 +3780,7 @@ def test_list_snapshots_v9_0():
     ef._dispatcher.post = MagicMock(return_value = Resources.RESP_ListSnapshots_v9_0)
 
     
-    volume_id = dict() # volume_id
+    volume_id = 42 # volume_id
     result = ef.list_snapshots()
     assert result.snapshots[0].status == """done""", "Died on +.snapshots[0].status"
     assert result.snapshots[0].name == """2016-12-06T22:49:03Z""", "Died on +.snapshots[0].name"
@@ -3793,7 +3805,7 @@ def test_list_virtual_volume_bindings_v9_0():
     ef._dispatcher.post = MagicMock(return_value = Resources.RESP_ListVirtualVolumeBindings_v9_0)
 
     
-    virtual_volume_binding_ids = dict() # virtual_volume_binding_ids
+    virtual_volume_binding_ids = 42 # virtual_volume_binding_ids
     result = ef.list_virtual_volume_bindings()
     assert result.bindings[0].virtual_volume_host_id == UUID("564de1a4-9a99-da0f-8b7c-3a41dfd64bf1"), "Died on .bindings[0].virtual_volume_host_id"
     assert result.bindings[0].protocol_endpoint_id == UUID("5dd53da0-b9b7-43f9-9b7e-b41c2558e92b"), "Died on .bindings[0].protocol_endpoint_id"
@@ -4046,19 +4058,22 @@ def test_list_volume_access_groups_v9_0():
     ef._dispatcher.post = MagicMock(return_value = Resources.RESP_ListVolumeAccessGroups_v9_0)
 
     
-    start_volume_access_group_id = dict() # start_volume_access_group_id
+    start_volume_access_group_id = 42 # start_volume_access_group_id
     limit = 42 # limit
     result = ef.list_volume_access_groups()
     assert result.volume_access_groups[1].name == """loyds""", "Died on +.volume_access_groups[1].name"
     assert result.volume_access_groups[1].initiator_ids[1] == 5, "Died on +.volume_access_groups[1].initiator_ids[1]"
     assert result.volume_access_groups[1].initiator_ids[0] == 4, "Died on +.volume_access_groups[1].initiator_ids[0]"
     assert result.volume_access_groups[1].volumes[0] == 5, "Died on +.volume_access_groups[1].volumes[0]"
+    assert result.volume_access_groups[1].initiators[1] == """21:00:00:0e:1e:1b:2a:41""", "Died on +.volume_access_groups[1].initiators[1]"
+    assert result.volume_access_groups[1].initiators[0] == """21:00:00:0e:1e:1b:2a:40""", "Died on +.volume_access_groups[1].initiators[0]"
     assert type(result.volume_access_groups[1].attributes) is dict, "Died on .volume_access_groups[1].attributes"
     assert result.volume_access_groups[1].volume_access_group_id == 2, "Died on +.volume_access_groups[1].volume_access_group_id"
     assert result.volume_access_groups[0].name == """sra-site1-esxi""", "Died on +.volume_access_groups[0].name"
     assert result.volume_access_groups[0].initiator_ids[0] == 1, "Died on +.volume_access_groups[0].initiator_ids[0]"
     assert result.volume_access_groups[0].volumes[1] == 4, "Died on +.volume_access_groups[0].volumes[1]"
     assert result.volume_access_groups[0].volumes[0] == 2, "Died on +.volume_access_groups[0].volumes[0]"
+    assert result.volume_access_groups[0].initiators[0] == """iqn.1998-01.com.vmware:sra-site1-esxi""", "Died on +.volume_access_groups[0].initiators[0]"
     assert type(result.volume_access_groups[0].attributes) is dict, "Died on .volume_access_groups[0].attributes"
     assert result.volume_access_groups[0].volume_access_group_id == 1, "Died on +.volume_access_groups[0].volume_access_group_id"
 
@@ -4400,12 +4415,12 @@ def test_modify_volume_access_group_v9_0():
     ef._dispatcher.post = MagicMock(return_value = Resources.RESP_ModifyVolumeAccessGroup_v9_0)
 
     
-    volume_access_group_id = dict() # volume_access_group_id
-    virtual_network_id = dict() # virtual_network_id
-    virtual_network_tags = dict() # virtual_network_tags
+    volume_access_group_id = 42 # volume_access_group_id
+    virtual_network_id = 42 # virtual_network_id
+    virtual_network_tags = 42 # virtual_network_tags
     name = "" # name
-    initiators = dict() # initiators
-    volumes = dict() # volumes
+    initiators = "" # initiators
+    volumes = 42 # volumes
     attributes = dict() # attributes
     result = ef.modify_volume_access_group(volume_access_group_id,)
     assert result.volume_access_group.name == """northbanktest""", "Died on +.volume_access_group.name"
@@ -4413,6 +4428,8 @@ def test_modify_volume_access_group_v9_0():
     assert result.volume_access_group.initiator_ids[1] == 115, "Died on +.volume_access_group.initiator_ids[1]"
     assert result.volume_access_group.initiator_ids[0] == 114, "Died on +.volume_access_group.initiator_ids[0]"
     assert result.volume_access_group.volumes[0] == 346, "Died on +.volume_access_group.volumes[0]"
+    assert result.volume_access_group.initiators[1] == """iqn.1998-01.com.vmware:donesq-esx1-421b281b""", "Died on +.volume_access_group.initiators[1]"
+    assert result.volume_access_group.initiators[0] == """iqn.1998-01.com.vmware:desk1-esx1-577b283a""", "Died on +.volume_access_group.initiators[0]"
     assert type(result.volume_access_group.attributes) is dict, "Died on .volume_access_group.attributes"
     assert result.volume_access_group.volume_access_group_id == 96, "Died on +.volume_access_group.volume_access_group_id"
 
@@ -4435,13 +4452,16 @@ def test_modify_volumes_v9_0():
     assert result.volumes[1].qos.burst_time == 60, "Died on +.volumes[1].qos.burst_time"
     assert result.volumes[1].qos.max_iops == 100, "Died on +.volumes[1].qos.max_iops"
     assert result.volumes[1].name == """doctest2""", "Died on +.volumes[1].name"
+    assert result.volumes[1].scsi_naadevice_id == """6f47acc1000000006a6f373300000003""", "Died on +.volumes[1].scsi_naadevice_id"
     assert result.volumes[1].total_size == 1000341504, "Died on +.volumes[1].total_size"
     assert result.volumes[1].block_size == 4096, "Died on +.volumes[1].block_size"
     assert result.volumes[1].account_id == 1, "Died on +.volumes[1].account_id"
+    assert result.volumes[1].scsi_euidevice_id == """6a6f373300000003f47acc0100000000""", "Died on +.volumes[1].scsi_euidevice_id"
     assert result.volumes[1].volume_id == 3, "Died on +.volumes[1].volume_id"
     assert result.volumes[1].access == """replicationTarget""", "Died on +.volumes[1].access"
     assert result.volumes[1].slice_count == 1, "Died on +.volumes[1].slice_count"
     assert type(result.volumes[1].attributes) is dict, "Died on .volumes[1].attributes"
+    assert result.volumes[1].iqn == """iqn.2010-01.com.solidfire:jo73.3""", "Died on +.volumes[1].iqn"
     assert result.volumes[1].create_time == """2016-04-06T17:26:31Z""", "Died on +.volumes[1].create_time"
     assert result.volumes[1].virtual_volume_id is None, "Died on .volumes[1].virtual_volume_id"
     assert result.volumes[0].status == """active""", "Died on +.volumes[0].status"
@@ -4451,13 +4471,16 @@ def test_modify_volumes_v9_0():
     assert result.volumes[0].qos.burst_time == 60, "Died on +.volumes[0].qos.burst_time"
     assert result.volumes[0].qos.max_iops == 100, "Died on +.volumes[0].qos.max_iops"
     assert result.volumes[0].name == """doctest1""", "Died on +.volumes[0].name"
+    assert result.volumes[0].scsi_naadevice_id == """6f47acc1000000006a6f373300000002""", "Died on +.volumes[0].scsi_naadevice_id"
     assert result.volumes[0].total_size == 1000341504, "Died on +.volumes[0].total_size"
     assert result.volumes[0].block_size == 4096, "Died on +.volumes[0].block_size"
     assert result.volumes[0].account_id == 1, "Died on +.volumes[0].account_id"
+    assert result.volumes[0].scsi_euidevice_id == """6a6f373300000002f47acc0100000000""", "Died on +.volumes[0].scsi_euidevice_id"
     assert result.volumes[0].volume_id == 2, "Died on +.volumes[0].volume_id"
     assert result.volumes[0].access == """replicationTarget""", "Died on +.volumes[0].access"
     assert result.volumes[0].slice_count == 1, "Died on +.volumes[0].slice_count"
     assert type(result.volumes[0].attributes) is dict, "Died on .volumes[0].attributes"
+    assert result.volumes[0].iqn == """iqn.2010-01.com.solidfire:jo73.2""", "Died on +.volumes[0].iqn"
     assert result.volumes[0].create_time == """2016-04-06T17:25:13Z""", "Died on +.volumes[0].create_time"
     assert result.volumes[0].virtual_volume_id is None, "Died on .volumes[0].virtual_volume_id"
 
@@ -4480,13 +4503,16 @@ def test_modify_volumes_v9_1():
     assert result.volumes[9].qos.burst_time == 60, "Died on +.volumes[9].qos.burst_time"
     assert result.volumes[9].qos.max_iops == 15000, "Died on +.volumes[9].qos.max_iops"
     assert result.volumes[9].name == """haxecsTMk7ArAT6lwxPlMxAJypTmUuQwYZzm7LOKOg44wiHgez3uihp7Z-YPer21""", "Died on +.volumes[9].name"
+    assert result.volumes[9].scsi_naadevice_id == """6f47acc1000000006978766c00002705""", "Died on +.volumes[9].scsi_naadevice_id"
     assert result.volumes[9].total_size == 1000341504, "Died on +.volumes[9].total_size"
     assert result.volumes[9].block_size == 4096, "Died on +.volumes[9].block_size"
     assert result.volumes[9].account_id == 8731, "Died on +.volumes[9].account_id"
+    assert result.volumes[9].scsi_euidevice_id == """6978766c00002705f47acc0100000000""", "Died on +.volumes[9].scsi_euidevice_id"
     assert result.volumes[9].volume_id == 9989, "Died on +.volumes[9].volume_id"
     assert result.volumes[9].access == """readWrite""", "Died on +.volumes[9].access"
     assert result.volumes[9].slice_count == 1, "Died on +.volumes[9].slice_count"
     assert type(result.volumes[9].attributes) is dict, "Died on .volumes[9].attributes"
+    assert result.volumes[9].iqn == """iqn.2010-01.com.solidfire:ixvl.haxecstmk7arat6lwxplmxajyptmuuqwyzzm7lokog44wihgez3uihp7z-yper21.9989""", "Died on +.volumes[9].iqn"
     assert result.volumes[9].create_time == """2016-11-22T15:40:20Z""", "Died on +.volumes[9].create_time"
     assert result.volumes[9].virtual_volume_id is None, "Died on .volumes[9].virtual_volume_id"
     assert result.volumes[8].status == """active""", "Died on +.volumes[8].status"
@@ -4496,13 +4522,16 @@ def test_modify_volumes_v9_1():
     assert result.volumes[8].qos.burst_time == 60, "Died on +.volumes[8].qos.burst_time"
     assert result.volumes[8].qos.max_iops == 15000, "Died on +.volumes[8].qos.max_iops"
     assert result.volumes[8].name == """haxecsqrXv1xuyJ6J9SXQ1wrH-jsaSgK0Z1LMkvBgSKmx52pcjWdYrYGxaAPv9QE""", "Died on +.volumes[8].name"
+    assert result.volumes[8].scsi_naadevice_id == """6f47acc1000000006978766c00002704""", "Died on +.volumes[8].scsi_naadevice_id"
     assert result.volumes[8].total_size == 1000341504, "Died on +.volumes[8].total_size"
     assert result.volumes[8].block_size == 4096, "Died on +.volumes[8].block_size"
     assert result.volumes[8].account_id == 8731, "Died on +.volumes[8].account_id"
+    assert result.volumes[8].scsi_euidevice_id == """6978766c00002704f47acc0100000000""", "Died on +.volumes[8].scsi_euidevice_id"
     assert result.volumes[8].volume_id == 9988, "Died on +.volumes[8].volume_id"
     assert result.volumes[8].access == """readWrite""", "Died on +.volumes[8].access"
     assert result.volumes[8].slice_count == 1, "Died on +.volumes[8].slice_count"
     assert type(result.volumes[8].attributes) is dict, "Died on .volumes[8].attributes"
+    assert result.volumes[8].iqn == """iqn.2010-01.com.solidfire:ixvl.haxecsqrxv1xuyj6j9sxq1wrh-jsasgk0z1lmkvbgskmx52pcjwdyrygxaapv9qe.9988""", "Died on +.volumes[8].iqn"
     assert result.volumes[8].create_time == """2016-11-22T15:40:19Z""", "Died on +.volumes[8].create_time"
     assert result.volumes[8].virtual_volume_id is None, "Died on .volumes[8].virtual_volume_id"
     assert result.volumes[7].status == """active""", "Died on +.volumes[7].status"
@@ -4512,13 +4541,16 @@ def test_modify_volumes_v9_1():
     assert result.volumes[7].qos.burst_time == 60, "Died on +.volumes[7].qos.burst_time"
     assert result.volumes[7].qos.max_iops == 15000, "Died on +.volumes[7].qos.max_iops"
     assert result.volumes[7].name == """haxecsd2GJ0atOYD2MuwRAhxUtzHLpMAEvoMWKg7KZwpzrKktDUXZDduYZTn4Wqc""", "Died on +.volumes[7].name"
+    assert result.volumes[7].scsi_naadevice_id == """6f47acc1000000006978766c00002703""", "Died on +.volumes[7].scsi_naadevice_id"
     assert result.volumes[7].total_size == 1000341504, "Died on +.volumes[7].total_size"
     assert result.volumes[7].block_size == 4096, "Died on +.volumes[7].block_size"
     assert result.volumes[7].account_id == 8731, "Died on +.volumes[7].account_id"
+    assert result.volumes[7].scsi_euidevice_id == """6978766c00002703f47acc0100000000""", "Died on +.volumes[7].scsi_euidevice_id"
     assert result.volumes[7].volume_id == 9987, "Died on +.volumes[7].volume_id"
     assert result.volumes[7].access == """readWrite""", "Died on +.volumes[7].access"
     assert result.volumes[7].slice_count == 1, "Died on +.volumes[7].slice_count"
     assert type(result.volumes[7].attributes) is dict, "Died on .volumes[7].attributes"
+    assert result.volumes[7].iqn == """iqn.2010-01.com.solidfire:ixvl.haxecsd2gj0atoyd2muwrahxutzhlpmaevomwkg7kzwpzrkktduxzdduyztn4wqc.9987""", "Died on +.volumes[7].iqn"
     assert result.volumes[7].create_time == """2016-11-22T15:40:19Z""", "Died on +.volumes[7].create_time"
     assert result.volumes[7].virtual_volume_id is None, "Died on .volumes[7].virtual_volume_id"
     assert result.volumes[6].status == """active""", "Died on +.volumes[6].status"
@@ -4528,13 +4560,16 @@ def test_modify_volumes_v9_1():
     assert result.volumes[6].qos.burst_time == 60, "Died on +.volumes[6].qos.burst_time"
     assert result.volumes[6].qos.max_iops == 15000, "Died on +.volumes[6].qos.max_iops"
     assert result.volumes[6].name == """haxecsWVs6tXeLqUrcAl1xh4Zr9tFE2uCzBtZsHx-WL20ASb1unbHZlt2njNSnQn""", "Died on +.volumes[6].name"
+    assert result.volumes[6].scsi_naadevice_id == """6f47acc1000000006978766c00002702""", "Died on +.volumes[6].scsi_naadevice_id"
     assert result.volumes[6].total_size == 1000341504, "Died on +.volumes[6].total_size"
     assert result.volumes[6].block_size == 4096, "Died on +.volumes[6].block_size"
     assert result.volumes[6].account_id == 8731, "Died on +.volumes[6].account_id"
+    assert result.volumes[6].scsi_euidevice_id == """6978766c00002702f47acc0100000000""", "Died on +.volumes[6].scsi_euidevice_id"
     assert result.volumes[6].volume_id == 9986, "Died on +.volumes[6].volume_id"
     assert result.volumes[6].access == """readWrite""", "Died on +.volumes[6].access"
     assert result.volumes[6].slice_count == 1, "Died on +.volumes[6].slice_count"
     assert type(result.volumes[6].attributes) is dict, "Died on .volumes[6].attributes"
+    assert result.volumes[6].iqn == """iqn.2010-01.com.solidfire:ixvl.haxecswvs6txelqurcal1xh4zr9tfe2uczbtzshx-wl20asb1unbhzlt2njnsnqn.9986""", "Died on +.volumes[6].iqn"
     assert result.volumes[6].create_time == """2016-11-22T15:40:18Z""", "Died on +.volumes[6].create_time"
     assert result.volumes[6].virtual_volume_id is None, "Died on .volumes[6].virtual_volume_id"
     assert result.volumes[5].status == """active""", "Died on +.volumes[5].status"
@@ -4544,13 +4579,16 @@ def test_modify_volumes_v9_1():
     assert result.volumes[5].qos.burst_time == 60, "Died on +.volumes[5].qos.burst_time"
     assert result.volumes[5].qos.max_iops == 15000, "Died on +.volumes[5].qos.max_iops"
     assert result.volumes[5].name == """haxecs0gjUYyK7LxpbAZnIw4-4upyllA6jcFGDAQr03aa67L-dJyhUTTrWL8ALt8""", "Died on +.volumes[5].name"
+    assert result.volumes[5].scsi_naadevice_id == """6f47acc1000000006978766c00002701""", "Died on +.volumes[5].scsi_naadevice_id"
     assert result.volumes[5].total_size == 1000341504, "Died on +.volumes[5].total_size"
     assert result.volumes[5].block_size == 4096, "Died on +.volumes[5].block_size"
     assert result.volumes[5].account_id == 8731, "Died on +.volumes[5].account_id"
+    assert result.volumes[5].scsi_euidevice_id == """6978766c00002701f47acc0100000000""", "Died on +.volumes[5].scsi_euidevice_id"
     assert result.volumes[5].volume_id == 9985, "Died on +.volumes[5].volume_id"
     assert result.volumes[5].access == """readWrite""", "Died on +.volumes[5].access"
     assert result.volumes[5].slice_count == 1, "Died on +.volumes[5].slice_count"
     assert type(result.volumes[5].attributes) is dict, "Died on .volumes[5].attributes"
+    assert result.volumes[5].iqn == """iqn.2010-01.com.solidfire:ixvl.haxecs0gjuyyk7lxpbazniw4-4upylla6jcfgdaqr03aa67l-djyhuttrwl8alt8.9985""", "Died on +.volumes[5].iqn"
     assert result.volumes[5].create_time == """2016-11-22T15:40:18Z""", "Died on +.volumes[5].create_time"
     assert result.volumes[5].virtual_volume_id is None, "Died on .volumes[5].virtual_volume_id"
     assert result.volumes[4].status == """active""", "Died on +.volumes[4].status"
@@ -4560,13 +4598,16 @@ def test_modify_volumes_v9_1():
     assert result.volumes[4].qos.burst_time == 60, "Died on +.volumes[4].qos.burst_time"
     assert result.volumes[4].qos.max_iops == 15000, "Died on +.volumes[4].qos.max_iops"
     assert result.volumes[4].name == """haxecs-aYusaaABjCuGxReAFnJ49bb2zzvcEZGSa6iUHwmN5Y5uJy85Zrjjp5B-8""", "Died on +.volumes[4].name"
+    assert result.volumes[4].scsi_naadevice_id == """6f47acc1000000006978766c00002700""", "Died on +.volumes[4].scsi_naadevice_id"
     assert result.volumes[4].total_size == 1000341504, "Died on +.volumes[4].total_size"
     assert result.volumes[4].block_size == 4096, "Died on +.volumes[4].block_size"
     assert result.volumes[4].account_id == 8731, "Died on +.volumes[4].account_id"
+    assert result.volumes[4].scsi_euidevice_id == """6978766c00002700f47acc0100000000""", "Died on +.volumes[4].scsi_euidevice_id"
     assert result.volumes[4].volume_id == 9984, "Died on +.volumes[4].volume_id"
     assert result.volumes[4].access == """readWrite""", "Died on +.volumes[4].access"
     assert result.volumes[4].slice_count == 1, "Died on +.volumes[4].slice_count"
     assert type(result.volumes[4].attributes) is dict, "Died on .volumes[4].attributes"
+    assert result.volumes[4].iqn == """iqn.2010-01.com.solidfire:ixvl.haxecs-ayusaaabjcugxreafnj49bb2zzvcezgsa6iuhwmn5y5ujy85zrjjp5b-8.9984""", "Died on +.volumes[4].iqn"
     assert result.volumes[4].create_time == """2016-11-22T15:40:18Z""", "Died on +.volumes[4].create_time"
     assert result.volumes[4].virtual_volume_id is None, "Died on .volumes[4].virtual_volume_id"
     assert result.volumes[3].status == """active""", "Died on +.volumes[3].status"
@@ -4576,13 +4617,16 @@ def test_modify_volumes_v9_1():
     assert result.volumes[3].qos.burst_time == 60, "Died on +.volumes[3].qos.burst_time"
     assert result.volumes[3].qos.max_iops == 15000, "Died on +.volumes[3].qos.max_iops"
     assert result.volumes[3].name == """haxecsmsseXt8U48VAvvF4cgLBhgLepyFk-Te6BYaSRHq2TSUU5AAQMFGtNcbFhO""", "Died on +.volumes[3].name"
+    assert result.volumes[3].scsi_naadevice_id == """6f47acc1000000006978766c000026ff""", "Died on +.volumes[3].scsi_naadevice_id"
     assert result.volumes[3].total_size == 1000341504, "Died on +.volumes[3].total_size"
     assert result.volumes[3].block_size == 4096, "Died on +.volumes[3].block_size"
     assert result.volumes[3].account_id == 8731, "Died on +.volumes[3].account_id"
+    assert result.volumes[3].scsi_euidevice_id == """6978766c000026fff47acc0100000000""", "Died on +.volumes[3].scsi_euidevice_id"
     assert result.volumes[3].volume_id == 9983, "Died on +.volumes[3].volume_id"
     assert result.volumes[3].access == """readWrite""", "Died on +.volumes[3].access"
     assert result.volumes[3].slice_count == 1, "Died on +.volumes[3].slice_count"
     assert type(result.volumes[3].attributes) is dict, "Died on .volumes[3].attributes"
+    assert result.volumes[3].iqn == """iqn.2010-01.com.solidfire:ixvl.haxecsmssext8u48vavvf4cglbhglepyfk-te6byasrhq2tsuu5aaqmfgtncbfho.9983""", "Died on +.volumes[3].iqn"
     assert result.volumes[3].create_time == """2016-11-22T15:40:17Z""", "Died on +.volumes[3].create_time"
     assert result.volumes[3].virtual_volume_id is None, "Died on .volumes[3].virtual_volume_id"
     assert result.volumes[2].status == """active""", "Died on +.volumes[2].status"
@@ -4592,13 +4636,16 @@ def test_modify_volumes_v9_1():
     assert result.volumes[2].qos.burst_time == 60, "Died on +.volumes[2].qos.burst_time"
     assert result.volumes[2].qos.max_iops == 15000, "Died on +.volumes[2].qos.max_iops"
     assert result.volumes[2].name == """haxecsMcXWLMFmGVYwBJQMKylKQU0jLZEubpLb6N1egfSeXLbw-aF5-86g3yW2ny""", "Died on +.volumes[2].name"
+    assert result.volumes[2].scsi_naadevice_id == """6f47acc1000000006978766c000026fe""", "Died on +.volumes[2].scsi_naadevice_id"
     assert result.volumes[2].total_size == 1000341504, "Died on +.volumes[2].total_size"
     assert result.volumes[2].block_size == 4096, "Died on +.volumes[2].block_size"
     assert result.volumes[2].account_id == 8731, "Died on +.volumes[2].account_id"
+    assert result.volumes[2].scsi_euidevice_id == """6978766c000026fef47acc0100000000""", "Died on +.volumes[2].scsi_euidevice_id"
     assert result.volumes[2].volume_id == 9982, "Died on +.volumes[2].volume_id"
     assert result.volumes[2].access == """readWrite""", "Died on +.volumes[2].access"
     assert result.volumes[2].slice_count == 1, "Died on +.volumes[2].slice_count"
     assert type(result.volumes[2].attributes) is dict, "Died on .volumes[2].attributes"
+    assert result.volumes[2].iqn == """iqn.2010-01.com.solidfire:ixvl.haxecsmcxwlmfmgvywbjqmkylkqu0jlzeubplb6n1egfsexlbw-af5-86g3yw2ny.9982""", "Died on +.volumes[2].iqn"
     assert result.volumes[2].create_time == """2016-11-22T15:40:17Z""", "Died on +.volumes[2].create_time"
     assert result.volumes[2].virtual_volume_id is None, "Died on .volumes[2].virtual_volume_id"
     assert result.volumes[1].status == """active""", "Died on +.volumes[1].status"
@@ -4608,13 +4655,16 @@ def test_modify_volumes_v9_1():
     assert result.volumes[1].qos.burst_time == 60, "Died on +.volumes[1].qos.burst_time"
     assert result.volumes[1].qos.max_iops == 15000, "Died on +.volumes[1].qos.max_iops"
     assert result.volumes[1].name == """haxecsksGCuvTR98NqeDr-AJYSgUleRJEP4oNfWa11IrehGUOkM-hAY8r1-PbQGm""", "Died on +.volumes[1].name"
+    assert result.volumes[1].scsi_naadevice_id == """6f47acc1000000006978766c000026fd""", "Died on +.volumes[1].scsi_naadevice_id"
     assert result.volumes[1].total_size == 1000341504, "Died on +.volumes[1].total_size"
     assert result.volumes[1].block_size == 4096, "Died on +.volumes[1].block_size"
     assert result.volumes[1].account_id == 8731, "Died on +.volumes[1].account_id"
+    assert result.volumes[1].scsi_euidevice_id == """6978766c000026fdf47acc0100000000""", "Died on +.volumes[1].scsi_euidevice_id"
     assert result.volumes[1].volume_id == 9981, "Died on +.volumes[1].volume_id"
     assert result.volumes[1].access == """readWrite""", "Died on +.volumes[1].access"
     assert result.volumes[1].slice_count == 1, "Died on +.volumes[1].slice_count"
     assert type(result.volumes[1].attributes) is dict, "Died on .volumes[1].attributes"
+    assert result.volumes[1].iqn == """iqn.2010-01.com.solidfire:ixvl.haxecsksgcuvtr98nqedr-ajysgulerjep4onfwa11irehguokm-hay8r1-pbqgm.9981""", "Died on +.volumes[1].iqn"
     assert result.volumes[1].create_time == """2016-11-22T15:40:16Z""", "Died on +.volumes[1].create_time"
     assert result.volumes[1].virtual_volume_id is None, "Died on .volumes[1].virtual_volume_id"
     assert result.volumes[0].status == """active""", "Died on +.volumes[0].status"
@@ -4624,13 +4674,16 @@ def test_modify_volumes_v9_1():
     assert result.volumes[0].qos.burst_time == 60, "Died on +.volumes[0].qos.burst_time"
     assert result.volumes[0].qos.max_iops == 15000, "Died on +.volumes[0].qos.max_iops"
     assert result.volumes[0].name == """haxecsl537C7LrXL7lRHGvDuUCobdg2w2E1YLCsoAxk8KdiZNtILDuhsfP3jUKbX""", "Died on +.volumes[0].name"
+    assert result.volumes[0].scsi_naadevice_id == """6f47acc1000000006978766c000026fc""", "Died on +.volumes[0].scsi_naadevice_id"
     assert result.volumes[0].total_size == 1000341504, "Died on +.volumes[0].total_size"
     assert result.volumes[0].block_size == 4096, "Died on +.volumes[0].block_size"
     assert result.volumes[0].account_id == 8731, "Died on +.volumes[0].account_id"
+    assert result.volumes[0].scsi_euidevice_id == """6978766c000026fcf47acc0100000000""", "Died on +.volumes[0].scsi_euidevice_id"
     assert result.volumes[0].volume_id == 9980, "Died on +.volumes[0].volume_id"
     assert result.volumes[0].access == """readWrite""", "Died on +.volumes[0].access"
     assert result.volumes[0].slice_count == 1, "Died on +.volumes[0].slice_count"
     assert type(result.volumes[0].attributes) is dict, "Died on .volumes[0].attributes"
+    assert result.volumes[0].iqn == """iqn.2010-01.com.solidfire:ixvl.haxecsl537c7lrxl7lrhgvduucobdg2w2e1ylcsoaxk8kdizntilduhsfp3jukbx.9980""", "Died on +.volumes[0].iqn"
     assert result.volumes[0].create_time == """2016-11-22T15:40:16Z""", "Died on +.volumes[0].create_time"
     assert result.volumes[0].virtual_volume_id is None, "Died on .volumes[0].virtual_volume_id"
 
