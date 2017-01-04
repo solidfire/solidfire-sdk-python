@@ -24,10 +24,10 @@ class CHAPSecret(UserDefinedCHAPSecret):
 class RemoveClusterAdminRequest(data_model.DataObject):
     """RemoveClusterAdminRequest  
     :param cluster_admin_id: [required] ClusterAdminID for the Cluster Admin to remove. 
-    :type cluster_admin_id: int
+    :type cluster_admin_id: ClusterAdminID
     """
     cluster_admin_id = data_model.property(
-        "clusterAdminID", int,
+        "clusterAdminID", ClusterAdminID,
         array=False, optional=False,
         documentation="ClusterAdminID for the Cluster Admin to remove.",
         dictionaryType=None
@@ -63,7 +63,7 @@ class VirtualVolumeHost(data_model.DataObject):
     :type visible_protocol_endpoint_ids: UUID
 
     :param bindings: [required] 
-    :type bindings: int
+    :type bindings: VvolBindingID
 
     :param initiator_names: [required] 
     :type initiator_names: str
@@ -90,7 +90,7 @@ class VirtualVolumeHost(data_model.DataObject):
         dictionaryType=None
     )
     bindings = data_model.property(
-        "bindings", int,
+        "bindings", VvolBindingID,
         array=True, optional=False,
         documentation="",
         dictionaryType=None
@@ -129,19 +129,19 @@ class ListVirtualVolumeHostsResult(data_model.DataObject):
 class AddVolumesToVolumeAccessGroupRequest(data_model.DataObject):
     """AddVolumesToVolumeAccessGroupRequest  
     :param volume_access_group_id: [required] The ID of the volume access group to modify. 
-    :type volume_access_group_id: int
+    :type volume_access_group_id: VolumeAccessGroupID
 
     :param volumes: [required] List of volumes to add to this volume access group. 
-    :type volumes: int
+    :type volumes: VolumeID
     """
     volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
+        "volumeAccessGroupID", VolumeAccessGroupID,
         array=False, optional=False,
         documentation="The ID of the volume access group to modify.",
         dictionaryType=None
     )
     volumes = data_model.property(
-        "volumes", int,
+        "volumes", VolumeID,
         array=True, optional=False,
         documentation="[&#x27;List of volumes to add to this volume access group.&#x27;]",
         dictionaryType=None
@@ -153,7 +153,7 @@ class AddVolumesToVolumeAccessGroupRequest(data_model.DataObject):
 class CreateGroupSnapshotRequest(data_model.DataObject):
     """CreateGroupSnapshotRequest  
     :param volumes: [required] Unique ID of the volume image from which to copy. 
-    :type volumes: int
+    :type volumes: VolumeID
 
     :param name:  A name for the snapshot. If no name is provided, the date and time the snapshot was taken is used. 
     :type name: str
@@ -168,7 +168,7 @@ class CreateGroupSnapshotRequest(data_model.DataObject):
     :type attributes: dict
     """
     volumes = data_model.property(
-        "volumes", int,
+        "volumes", VolumeID,
         array=True, optional=False,
         documentation="Unique ID of the volume image from which to copy.",
         dictionaryType=None
@@ -220,10 +220,10 @@ class ClusterConfig(data_model.DataObject):
     :type name: str
 
     :param node_id:  
-    :type node_id: int
+    :type node_id: NodeID
 
     :param pending_node_id:  
-    :type pending_node_id: int
+    :type pending_node_id: PendingNodeID
 
     :param role:  Identifies the role of the node 
     :type role: str
@@ -265,13 +265,13 @@ class ClusterConfig(data_model.DataObject):
         dictionaryType=None
     )
     node_id = data_model.property(
-        "nodeID", int,
+        "nodeID", NodeID,
         array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     pending_node_id = data_model.property(
-        "pendingNodeID", int,
+        "pendingNodeID", PendingNodeID,
         array=False, optional=True,
         documentation="",
         dictionaryType=None
@@ -811,10 +811,10 @@ class UpdateBulkVolumeStatusRequest(data_model.DataObject):
 class GetAccountEfficiencyRequest(data_model.DataObject):
     """GetAccountEfficiencyRequest  
     :param account_id: [required] Specifies the volume account for which capacity is computed. 
-    :type account_id: int
+    :type account_id: AccountID
     """
     account_id = data_model.property(
-        "accountID", int,
+        "accountID", AccountID,
         array=False, optional=False,
         documentation="Specifies the volume account for which capacity is computed.",
         dictionaryType=None
@@ -871,13 +871,13 @@ class Node(data_model.DataObject):
     Each active node hosts a master service, which is responsible for managing the drives and other services on its node.
     After a node is made active, its drives will become available for addition to the cluster.
     :param node_id: [required] The unique identifier for this node. 
-    :type node_id: int
+    :type node_id: NodeID
 
     :param associated_master_service_id: [required] The master service responsible for controlling other services on this node. 
-    :type associated_master_service_id: int
+    :type associated_master_service_id: ServiceID
 
     :param associated_fservice_id: [required] 
-    :type associated_fservice_id: int
+    :type associated_fservice_id: ServiceID
 
     :param fibre_channel_target_port_group: [required] 
     :type fibre_channel_target_port_group: str
@@ -919,19 +919,19 @@ class Node(data_model.DataObject):
     :type attributes: dict
     """
     node_id = data_model.property(
-        "nodeID", int,
+        "nodeID", NodeID,
         array=False, optional=False,
         documentation="[&#x27;The unique identifier for this node.&#x27;]",
         dictionaryType=None
     )
     associated_master_service_id = data_model.property(
-        "associatedMasterServiceID", int,
+        "associatedMasterServiceID", ServiceID,
         array=False, optional=False,
         documentation="[&#x27;The master service responsible for controlling other services on this node.&#x27;]",
         dictionaryType=None
     )
     associated_fservice_id = data_model.property(
-        "associatedFServiceID", int,
+        "associatedFServiceID", ServiceID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -1023,10 +1023,10 @@ class PendingNode(data_model.DataObject):
     A "pending node" is one that has not yet joined the cluster.
     It can be added to a cluster using the AddNode method.
     :param pending_node_id: [required] 
-    :type pending_node_id: int
+    :type pending_node_id: PendingNodeID
 
     :param assigned_node_id: [required] 
-    :type assigned_node_id: int
+    :type assigned_node_id: NodeID
 
     :param name: [required] The host name for this node. 
     :type name: str
@@ -1062,13 +1062,13 @@ class PendingNode(data_model.DataObject):
     :type uuid: UUID
     """
     pending_node_id = data_model.property(
-        "pendingNodeID", int,
+        "pendingNodeID", PendingNodeID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
     assigned_node_id = data_model.property(
-        "AssignedNodeID", int,
+        "AssignedNodeID", NodeID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -1201,19 +1201,19 @@ class LunAssignment(data_model.DataObject):
     """LunAssignment  
     VolumeID and Lun assignment.
     :param volume_id: [required] The volume ID assigned to the Lun. 
-    :type volume_id: int
+    :type volume_id: VolumeID
 
     :param lun: [required] Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed. 
-    :type lun: int
+    :type lun: Lun
     """
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="The volume ID assigned to the Lun.",
         dictionaryType=None
     )
     lun = data_model.property(
-        "lun", int,
+        "lun", Lun,
         array=False, optional=False,
         documentation="Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed.",
         dictionaryType=None
@@ -1226,7 +1226,7 @@ class VolumeAccessGroupLunAssignments(data_model.DataObject):
     """VolumeAccessGroupLunAssignments  
     VolumeAccessGroup ID and Lun to be assigned to all volumes within it.
     :param volume_access_group_id: [required] Unique volume access group ID for which the LUN assignments will be modified. 
-    :type volume_access_group_id: int
+    :type volume_access_group_id: VolumeAccessGroupID
 
     :param lun_assignments: [required] The volume IDs with assigned LUN values. 
     :type lun_assignments: LunAssignment
@@ -1235,7 +1235,7 @@ class VolumeAccessGroupLunAssignments(data_model.DataObject):
     :type deleted_lun_assignments: LunAssignment
     """
     volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
+        "volumeAccessGroupID", VolumeAccessGroupID,
         array=False, optional=False,
         documentation="Unique volume access group ID for which the LUN assignments will be modified.",
         dictionaryType=None
@@ -1275,28 +1275,28 @@ class MetadataHosts(data_model.DataObject):
     """MetadataHosts  
     The volume services on which the volume metadata resides.
     :param dead_secondaries: [required] Secondary metadata (slice) services that are in a dead state. 
-    :type dead_secondaries: int
+    :type dead_secondaries: NodeID
 
     :param live_secondaries: [required] Secondary metadata (slice) services that are currently in a "live" state. 
-    :type live_secondaries: int
+    :type live_secondaries: NodeID
 
     :param primary: [required] The primary metadata (slice) services hosting the volume. 
-    :type primary: int
+    :type primary: NodeID
     """
     dead_secondaries = data_model.property(
-        "deadSecondaries", int,
+        "deadSecondaries", NodeID,
         array=True, optional=False,
         documentation="Secondary metadata (slice) services that are in a dead state.",
         dictionaryType=None
     )
     live_secondaries = data_model.property(
-        "liveSecondaries", int,
+        "liveSecondaries", NodeID,
         array=True, optional=False,
         documentation="Secondary metadata (slice) services that are currently in a &quot;live&quot; state.",
         dictionaryType=None
     )
     primary = data_model.property(
-        "primary", int,
+        "primary", NodeID,
         array=False, optional=False,
         documentation="The primary metadata (slice) services hosting the volume.",
         dictionaryType=None
@@ -1309,7 +1309,7 @@ class VolumeStats(data_model.DataObject):
     """VolumeStats  
     Contains statistical data for an individual volume.
     :param account_id: [required] AccountID of the volume owner. 
-    :type account_id: int
+    :type account_id: AccountID
 
     :param actual_iops: [required] Current actual IOPS to the volume in the last 500 milliseconds. 
     :type actual_iops: int
@@ -1363,10 +1363,10 @@ class VolumeStats(data_model.DataObject):
     :type unaligned_writes: int
 
     :param volume_access_groups: [required] List of volume access group(s) to which a volume belongs. 
-    :type volume_access_groups: int
+    :type volume_access_groups: VolumeAccessGroupID
 
     :param volume_id: [required] Volume ID of the volume. 
-    :type volume_id: int
+    :type volume_id: VolumeID
 
     :param volume_size: [required] Total provisioned capacity in bytes. 
     :type volume_size: int
@@ -1405,7 +1405,7 @@ class VolumeStats(data_model.DataObject):
     :type virtual_volume_id: UUID
     """
     account_id = data_model.property(
-        "accountID", int,
+        "accountID", AccountID,
         array=False, optional=False,
         documentation="AccountID of the volume owner.",
         dictionaryType=None
@@ -1513,13 +1513,13 @@ class VolumeStats(data_model.DataObject):
         dictionaryType=None
     )
     volume_access_groups = data_model.property(
-        "volumeAccessGroups", int,
+        "volumeAccessGroups", VolumeAccessGroupID,
         array=True, optional=False,
         documentation="List of volume access group(s) to which a volume belongs.",
         dictionaryType=None
     )
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="Volume ID of the volume.",
         dictionaryType=None
@@ -1618,7 +1618,7 @@ class ListVolumeStatsByAccountResult(data_model.DataObject):
 class ModifyGroupSnapshotRequest(data_model.DataObject):
     """ModifyGroupSnapshotRequest  
     :param group_snapshot_id: [required] ID of the snapshot. 
-    :type group_snapshot_id: int
+    :type group_snapshot_id: GroupSnapshotID
 
     :param expiration_time:  Use to set the time when the snapshot should be removed. 
     :type expiration_time: str
@@ -1627,7 +1627,7 @@ class ModifyGroupSnapshotRequest(data_model.DataObject):
     :type enable_remote_replication: bool
     """
     group_snapshot_id = data_model.property(
-        "groupSnapshotID", int,
+        "groupSnapshotID", GroupSnapshotID,
         array=False, optional=False,
         documentation="ID of the snapshot.",
         dictionaryType=None
@@ -1651,10 +1651,10 @@ class ModifyGroupSnapshotRequest(data_model.DataObject):
 class DeleteSnapshotRequest(data_model.DataObject):
     """DeleteSnapshotRequest  
     :param snapshot_id: [required] The ID of the snapshot to delete. 
-    :type snapshot_id: int
+    :type snapshot_id: SnapshotID
     """
     snapshot_id = data_model.property(
-        "snapshotID", int,
+        "snapshotID", SnapshotID,
         array=False, optional=False,
         documentation="The ID of the snapshot to delete.",
         dictionaryType=None
@@ -1896,7 +1896,7 @@ class ModifyInitiatorsRequest(data_model.DataObject):
 class ListVolumesRequest(data_model.DataObject):
     """ListVolumesRequest  
     :param start_volume_id:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
-    :type start_volume_id: int
+    :type start_volume_id: VolumeID
 
     :param limit:  The maximum number of volumes to return from the API. 
     :type limit: int
@@ -1905,16 +1905,16 @@ class ListVolumesRequest(data_model.DataObject):
     :type volume_status: str
 
     :param accounts:  If specified, only fetch volumes which belong to the provided accounts. By default, list volumes for all accounts. 
-    :type accounts: int
+    :type accounts: AccountID
 
     :param is_paired:  If specified, only fetch volumes which are paired (if true) or non-paired (if false). By default, list all volumes regardless of their pairing status. 
     :type is_paired: bool
 
     :param volume_ids:  If specified, only fetch volumes specified in this list. This option cannot be specified if startVolumeID, limit, or accounts option is specified. 
-    :type volume_ids: int
+    :type volume_ids: VolumeID
     """
     start_volume_id = data_model.property(
-        "startVolumeID", int,
+        "startVolumeID", VolumeID,
         array=False, optional=True,
         documentation="[&#x27;The ID of the first volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this starts at the lowest VolumeID.&#x27;]",
         dictionaryType=None
@@ -1932,7 +1932,7 @@ class ListVolumesRequest(data_model.DataObject):
         dictionaryType=None
     )
     accounts = data_model.property(
-        "accounts", int,
+        "accounts", AccountID,
         array=True, optional=True,
         documentation="[&#x27;If specified, only fetch volumes which belong to the provided accounts.&#x27;, &#x27;By default, list volumes for all accounts.&#x27;]",
         dictionaryType=None
@@ -1944,7 +1944,7 @@ class ListVolumesRequest(data_model.DataObject):
         dictionaryType=None
     )
     volume_ids = data_model.property(
-        "volumeIDs", int,
+        "volumeIDs", VolumeID,
         array=True, optional=True,
         documentation="[&#x27;If specified, only fetch volumes specified in this list.&#x27;, &#x27;This option cannot be specified if startVolumeID, limit, or accounts option is specified.&#x27;]",
         dictionaryType=None
@@ -2067,10 +2067,10 @@ class ListAsyncResultsResult(data_model.DataObject):
 class AddAccountResult(data_model.DataObject):
     """AddAccountResult  
     :param account_id: [required] AccountID for the newly created Account. 
-    :type account_id: int
+    :type account_id: AccountID
     """
     account_id = data_model.property(
-        "accountID", int,
+        "accountID", AccountID,
         array=False, optional=False,
         documentation="AccountID for the newly created Account.",
         dictionaryType=None
@@ -2121,7 +2121,7 @@ class GetIpmiConfigRequest(data_model.DataObject):
 class ModifySnapshotRequest(data_model.DataObject):
     """ModifySnapshotRequest  
     :param snapshot_id: [required] ID of the snapshot. 
-    :type snapshot_id: int
+    :type snapshot_id: SnapshotID
 
     :param expiration_time:  Use to set the time when the snapshot should be removed. 
     :type expiration_time: str
@@ -2130,7 +2130,7 @@ class ModifySnapshotRequest(data_model.DataObject):
     :type enable_remote_replication: bool
     """
     snapshot_id = data_model.property(
-        "snapshotID", int,
+        "snapshotID", SnapshotID,
         array=False, optional=False,
         documentation="ID of the snapshot.",
         dictionaryType=None
@@ -2328,10 +2328,10 @@ class ModifyScheduleRequest(data_model.DataObject):
 class NewDrive(data_model.DataObject):
     """NewDrive  
     :param drive_id: [required] A unique identifier for this drive. 
-    :type drive_id: int
+    :type drive_id: DriveID
     """
     drive_id = data_model.property(
-        "driveID", int,
+        "driveID", DriveID,
         array=False, optional=False,
         documentation="[&#x27;A unique identifier for this drive.&#x27;]",
         dictionaryType=None
@@ -2340,84 +2340,15 @@ class NewDrive(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ClusterStats(data_model.DataObject):
-    """ClusterStats  
-    :param cluster_utilization: [required] The amount of cluster capacity being utilized. 
-    :type cluster_utilization: float
-
-    :param client_queue_depth: [required] 
-    :type client_queue_depth: int
-
-    :param read_bytes: [required] Total bytes read by clients. 
-    :type read_bytes: int
-
-    :param read_ops: [required] Total read operations. 
-    :type read_ops: int
-
-    :param timestamp: [required] Current time in UTC format. ISO 8601 date string. 
-    :type timestamp: str
-
-    :param write_bytes: [required] Total bytes written by clients. 
-    :type write_bytes: int
-
-    :param write_ops: [required] Total write operations. 
-    :type write_ops: int
+class RemoveBackupTargetRequest(data_model.DataObject):
+    """RemoveBackupTargetRequest  
+    :param backup_target_id: [required] Unique target ID of the target to remove. 
+    :type backup_target_id: BackupTargetID
     """
-    cluster_utilization = data_model.property(
-        "clusterUtilization", float,
+    backup_target_id = data_model.property(
+        "backupTargetID", BackupTargetID,
         array=False, optional=False,
-        documentation="The amount of cluster capacity being utilized.",
-        dictionaryType=None
-    )
-    client_queue_depth = data_model.property(
-        "clientQueueDepth", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    read_bytes = data_model.property(
-        "readBytes", int,
-        array=False, optional=False,
-        documentation="Total bytes read by clients.",
-        dictionaryType=None
-    )
-    read_ops = data_model.property(
-        "readOps", int,
-        array=False, optional=False,
-        documentation="Total read operations.",
-        dictionaryType=None
-    )
-    timestamp = data_model.property(
-        "timestamp", str,
-        array=False, optional=False,
-        documentation="Current time in UTC format. ISO 8601 date string.",
-        dictionaryType=None
-    )
-    write_bytes = data_model.property(
-        "writeBytes", int,
-        array=False, optional=False,
-        documentation="Total bytes written by clients.",
-        dictionaryType=None
-    )
-    write_ops = data_model.property(
-        "writeOps", int,
-        array=False, optional=False,
-        documentation="Total write operations.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetClusterStatsResult(data_model.DataObject):
-    """GetClusterStatsResult  
-    :param cluster_stats: [required] 
-    :type cluster_stats: ClusterStats
-    """
-    cluster_stats = data_model.property(
-        "clusterStats", ClusterStats,
-        array=False, optional=False,
-        documentation="",
+        documentation="[&#x27;Unique target ID of the target to remove.&#x27;]",
         dictionaryType=None
     )
 
@@ -2427,40 +2358,40 @@ class GetClusterStatsResult(data_model.DataObject):
 class ModifyVolumeAccessGroupRequest(data_model.DataObject):
     """ModifyVolumeAccessGroupRequest  
     :param volume_access_group_id: [required] The ID of the volume access group to modify. 
-    :type volume_access_group_id: int
+    :type volume_access_group_id: VolumeAccessGroupID
 
     :param virtual_network_id:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
-    :type virtual_network_id: int
+    :type virtual_network_id: VirtualNetworkID
 
     :param virtual_network_tags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
-    :type virtual_network_tags: int
+    :type virtual_network_tags: VirtualNetworkTags
 
     :param name:  Name of the volume access group. It is not required to be unique, but recommended. 
     :type name: str
 
     :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group's configured initiators will not be modified. 
-    :type initiators: str
+    :type initiators: Iqn
 
     :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group's volumes will not be modified. 
-    :type volumes: int
+    :type volumes: VolumeID
 
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
     volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
+        "volumeAccessGroupID", VolumeAccessGroupID,
         array=False, optional=False,
         documentation="The ID of the volume access group to modify.",
         dictionaryType=None
     )
     virtual_network_id = data_model.property(
-        "virtualNetworkID", int,
+        "virtualNetworkID", VirtualNetworkID,
         array=True, optional=True,
         documentation="The ID of the SolidFire Virtual Network ID to associate the volume access group with.",
         dictionaryType=None
     )
     virtual_network_tags = data_model.property(
-        "virtualNetworkTags", int,
+        "virtualNetworkTags", VirtualNetworkTags,
         array=True, optional=True,
         documentation="The ID of the VLAN Virtual Network Tag to associate the volume access group with.",
         dictionaryType=None
@@ -2472,13 +2403,13 @@ class ModifyVolumeAccessGroupRequest(data_model.DataObject):
         dictionaryType=None
     )
     initiators = data_model.property(
-        "initiators", str,
+        "initiators", Iqn,
         array=True, optional=True,
         documentation="[&#x27;List of initiators to include in the volume access group.&#x27;, &quot;If unspecified, the access group&#x27;s configured initiators will not be modified.&quot;]",
         dictionaryType=None
     )
     volumes = data_model.property(
-        "volumes", int,
+        "volumes", VolumeID,
         array=True, optional=True,
         documentation="[&#x27;List of volumes to initially include in the volume access group.&#x27;, &quot;If unspecified, the access group&#x27;s volumes will not be modified.&quot;]",
         dictionaryType=None
@@ -2496,28 +2427,28 @@ class ModifyVolumeAccessGroupRequest(data_model.DataObject):
 class CloneVolumeResult(data_model.DataObject):
     """CloneVolumeResult  
     :param clone_id: [required] The ID of the newly-created clone. 
-    :type clone_id: int
+    :type clone_id: CloneID
 
     :param volume_id: [required] The volume ID of the newly-created clone. 
-    :type volume_id: int
+    :type volume_id: VolumeID
 
     :param async_handle: [required] Handle value used to track the progress of the clone. 
-    :type async_handle: int
+    :type async_handle: AsyncResultID
     """
     clone_id = data_model.property(
-        "cloneID", int,
+        "cloneID", CloneID,
         array=False, optional=False,
         documentation="The ID of the newly-created clone.",
         dictionaryType=None
     )
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="The volume ID of the newly-created clone.",
         dictionaryType=None
     )
     async_handle = data_model.property(
-        "asyncHandle", int,
+        "asyncHandle", AsyncResultID,
         array=False, optional=False,
         documentation="Handle value used to track the progress of the clone.",
         dictionaryType=None
@@ -2529,10 +2460,10 @@ class CloneVolumeResult(data_model.DataObject):
 class GetVolumeStatsRequest(data_model.DataObject):
     """GetVolumeStatsRequest  
     :param volume_id: [required] Specifies the volume for which statistics is gathered. 
-    :type volume_id: int
+    :type volume_id: VolumeID
     """
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="Specifies the volume for which statistics is gathered.",
         dictionaryType=None
@@ -2544,10 +2475,10 @@ class GetVolumeStatsRequest(data_model.DataObject):
 class GetDriveStatsRequest(data_model.DataObject):
     """GetDriveStatsRequest  
     :param drive_id: [required] Specifies the drive for which statistics are gathered. 
-    :type drive_id: int
+    :type drive_id: DriveID
     """
     drive_id = data_model.property(
-        "driveID", int,
+        "driveID", DriveID,
         array=False, optional=False,
         documentation="Specifies the drive for which statistics are gathered.",
         dictionaryType=None
@@ -2559,10 +2490,10 @@ class GetDriveStatsRequest(data_model.DataObject):
 class GetVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
     """GetVolumeAccessGroupLunAssignmentsRequest  
     :param volume_access_group_id: [required] Unique volume access group ID used to return information. 
-    :type volume_access_group_id: int
+    :type volume_access_group_id: VolumeAccessGroupID
     """
     volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
+        "volumeAccessGroupID", VolumeAccessGroupID,
         array=False, optional=False,
         documentation="Unique volume access group ID used to return information.",
         dictionaryType=None
@@ -2694,10 +2625,10 @@ class ListVolumeStatsByVolumeAccessGroupResult(data_model.DataObject):
 class CreateBackupTargetResult(data_model.DataObject):
     """CreateBackupTargetResult  
     :param backup_target_id: [required] Unique identifier assigned to the backup target. 
-    :type backup_target_id: int
+    :type backup_target_id: BackupTargetID
     """
     backup_target_id = data_model.property(
-        "backupTargetID", int,
+        "backupTargetID", BackupTargetID,
         array=False, optional=False,
         documentation="[&#x27;Unique identifier assigned to the backup target.&#x27;]",
         dictionaryType=None
@@ -2724,10 +2655,10 @@ class ListVirtualVolumeHostsRequest(data_model.DataObject):
 class RemoveDrivesRequest(data_model.DataObject):
     """RemoveDrivesRequest  
     :param drives: [required] List of driveIDs to remove from the cluster. 
-    :type drives: int
+    :type drives: DriveID
     """
     drives = data_model.property(
-        "drives", int,
+        "drives", DriveID,
         array=True, optional=False,
         documentation="List of driveIDs to remove from the cluster.",
         dictionaryType=None
@@ -3253,10 +3184,10 @@ class GetDriveConfigResult(data_model.DataObject):
 class GetNodeStatsRequest(data_model.DataObject):
     """GetNodeStatsRequest  
     :param node_id: [required] Specifies the node for which statistics are gathered. 
-    :type node_id: int
+    :type node_id: NodeID
     """
     node_id = data_model.property(
-        "nodeID", int,
+        "nodeID", NodeID,
         array=False, optional=False,
         documentation="Specifies the node for which statistics are gathered.",
         dictionaryType=None
@@ -3292,7 +3223,7 @@ class ResetDrivesRequest(data_model.DataObject):
 class EventInfo(data_model.DataObject):
     """EventInfo  
     :param event_id: [required] 
-    :type event_id: int
+    :type event_id: EventID
 
     :param severity: [required] 
     :type severity: int
@@ -3304,13 +3235,13 @@ class EventInfo(data_model.DataObject):
     :type message: str
 
     :param service_id: [required] 
-    :type service_id: int
+    :type service_id: ServiceID
 
     :param node_id: [required] 
-    :type node_id: int
+    :type node_id: NodeID
 
     :param drive_id: [required] 
-    :type drive_id: int
+    :type drive_id: DriveID
 
     :param time_of_report: [required] 
     :type time_of_report: str
@@ -3322,7 +3253,7 @@ class EventInfo(data_model.DataObject):
     :type details: str
     """
     event_id = data_model.property(
-        "eventID", int,
+        "eventID", EventID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -3346,19 +3277,19 @@ class EventInfo(data_model.DataObject):
         dictionaryType=None
     )
     service_id = data_model.property(
-        "serviceID", int,
+        "serviceID", ServiceID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
     node_id = data_model.property(
-        "nodeID", int,
+        "nodeID", NodeID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
     drive_id = data_model.property(
-        "driveID", int,
+        "driveID", DriveID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -3412,7 +3343,7 @@ class ListEventsResult(data_model.DataObject):
 class ModifyBackupTargetRequest(data_model.DataObject):
     """ModifyBackupTargetRequest  
     :param backup_target_id: [required] Unique identifier assigned to the backup target. 
-    :type backup_target_id: int
+    :type backup_target_id: BackupTargetID
 
     :param name:  Name for the backup target. 
     :type name: str
@@ -3421,7 +3352,7 @@ class ModifyBackupTargetRequest(data_model.DataObject):
     :type attributes: dict
     """
     backup_target_id = data_model.property(
-        "backupTargetID", int,
+        "backupTargetID", BackupTargetID,
         array=False, optional=False,
         documentation="[&#x27;Unique identifier assigned to the backup target.&#x27;]",
         dictionaryType=None
@@ -3530,7 +3461,7 @@ class ClusterVersionInfo(data_model.DataObject):
     """ClusterVersionInfo  
     Version information for a node in the cluster.
     :param node_id: [required] 
-    :type node_id: int
+    :type node_id: NodeID
 
     :param node_version: [required] 
     :type node_version: str
@@ -3539,7 +3470,7 @@ class ClusterVersionInfo(data_model.DataObject):
     :type node_internal_revision: str
     """
     node_id = data_model.property(
-        "nodeID", int,
+        "nodeID", NodeID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -3566,7 +3497,7 @@ class SoftwareVersionInfo(data_model.DataObject):
     :type current_version: str
 
     :param node_id: [required] 
-    :type node_id: int
+    :type node_id: NodeID
 
     :param package_name: [required] 
     :type package_name: str
@@ -3584,7 +3515,7 @@ class SoftwareVersionInfo(data_model.DataObject):
         dictionaryType=None
     )
     node_id = data_model.property(
-        "nodeID", int,
+        "nodeID", NodeID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -3656,28 +3587,28 @@ class GetClusterVersionInfoResult(data_model.DataObject):
 class CopyVolumeRequest(data_model.DataObject):
     """CopyVolumeRequest  
     :param volume_id: [required] Source volume to copy. 
-    :type volume_id: int
+    :type volume_id: VolumeID
 
     :param dst_volume_id: [required] Destination volume for the copy. 
-    :type dst_volume_id: int
+    :type dst_volume_id: VolumeID
 
     :param snapshot_id:  Snapshot ID of the source volume to create the copy from. 
-    :type snapshot_id: int
+    :type snapshot_id: SnapshotID
     """
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="Source volume to copy.",
         dictionaryType=None
     )
     dst_volume_id = data_model.property(
-        "dstVolumeID", int,
+        "dstVolumeID", VolumeID,
         array=False, optional=False,
         documentation="Destination volume for the copy.",
         dictionaryType=None
     )
     snapshot_id = data_model.property(
-        "snapshotID", int,
+        "snapshotID", SnapshotID,
         array=False, optional=True,
         documentation="Snapshot ID of the source volume to create the copy from.",
         dictionaryType=None
@@ -3713,7 +3644,7 @@ class NetworkInterface(data_model.DataObject):
     :type type: str
 
     :param virtual_network_tag: [required] Virtual Network Tag if on virtual network. 
-    :type virtual_network_tag: int
+    :type virtual_network_tag: VirtualNetworkTag
     """
     address = data_model.property(
         "address", str,
@@ -3764,7 +3695,7 @@ class NetworkInterface(data_model.DataObject):
         dictionaryType=None
     )
     virtual_network_tag = data_model.property(
-        "virtualNetworkTag", int,
+        "virtualNetworkTag", VirtualNetworkTag,
         array=False, optional=False,
         documentation="Virtual Network Tag if on virtual network.",
         dictionaryType=None
@@ -3794,16 +3725,16 @@ class CreateVolumeAccessGroupRequest(data_model.DataObject):
     :type name: str
 
     :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group will start out without configured initiators. 
-    :type initiators: str
+    :type initiators: Iqn
 
     :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group will start without any volumes. 
-    :type volumes: int
+    :type volumes: VolumeID
 
     :param virtual_network_id:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
-    :type virtual_network_id: int
+    :type virtual_network_id: VirtualNetworkID
 
     :param virtual_network_tags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
-    :type virtual_network_tags: int
+    :type virtual_network_tags: VirtualNetworkTags
 
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
@@ -3815,25 +3746,25 @@ class CreateVolumeAccessGroupRequest(data_model.DataObject):
         dictionaryType=None
     )
     initiators = data_model.property(
-        "initiators", str,
+        "initiators", Iqn,
         array=True, optional=True,
         documentation="[&#x27;List of initiators to include in the volume access group.&#x27;, &#x27;If unspecified, the access group will start out without configured initiators.&#x27;]",
         dictionaryType=None
     )
     volumes = data_model.property(
-        "volumes", int,
+        "volumes", VolumeID,
         array=True, optional=True,
         documentation="[&#x27;List of volumes to initially include in the volume access group.&#x27;, &#x27;If unspecified, the access group will start without any volumes.&#x27;]",
         dictionaryType=None
     )
     virtual_network_id = data_model.property(
-        "virtualNetworkID", int,
+        "virtualNetworkID", VirtualNetworkID,
         array=True, optional=True,
         documentation="The ID of the SolidFire Virtual Network ID to associate the volume access group with.",
         dictionaryType=None
     )
     virtual_network_tags = data_model.property(
-        "virtualNetworkTags", int,
+        "virtualNetworkTags", VirtualNetworkTags,
         array=True, optional=True,
         documentation="The ID of the VLAN Virtual Network Tag to associate the volume access group with.",
         dictionaryType=None
@@ -3851,10 +3782,10 @@ class CreateVolumeAccessGroupRequest(data_model.DataObject):
 class CreateSnapshotRequest(data_model.DataObject):
     """CreateSnapshotRequest  
     :param volume_id: [required] ID of the volume image from which to copy. 
-    :type volume_id: int
+    :type volume_id: VolumeID
 
     :param snapshot_id:  Unique ID of a snapshot from which the new snapshot is made. The snapshotID passed must be a snapshot on the given volume. If a SnapshotID is not provided, a snapshot is created from the volume's active branch. 
-    :type snapshot_id: int
+    :type snapshot_id: SnapshotID
 
     :param name:  A name for the snapshot. If no name is provided, the date and time the snapshot was taken is used. 
     :type name: str
@@ -3869,13 +3800,13 @@ class CreateSnapshotRequest(data_model.DataObject):
     :type attributes: dict
     """
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="ID of the volume image from which to copy.",
         dictionaryType=None
     )
     snapshot_id = data_model.property(
-        "snapshotID", int,
+        "snapshotID", SnapshotID,
         array=False, optional=True,
         documentation="[&#x27;Unique ID of a snapshot from which the new snapshot is made.&#x27;, &#x27;The snapshotID passed must be a snapshot on the given volume.&#x27;, &quot;If a SnapshotID is not provided, a snapshot is created from the volume&#x27;s active branch.&quot;]",
         dictionaryType=None
@@ -3944,19 +3875,19 @@ class DeleteVolumesRequest(data_model.DataObject):
 class CopyVolumeResult(data_model.DataObject):
     """CopyVolumeResult  
     :param clone_id: [required] 
-    :type clone_id: int
+    :type clone_id: CloneID
 
     :param async_handle: [required] Handle value used to track the progress of the volume copy. 
-    :type async_handle: int
+    :type async_handle: AsyncResultID
     """
     clone_id = data_model.property(
-        "cloneID", int,
+        "cloneID", CloneID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
     async_handle = data_model.property(
-        "asyncHandle", int,
+        "asyncHandle", AsyncResultID,
         array=False, optional=False,
         documentation="Handle value used to track the progress of the volume copy.",
         dictionaryType=None
@@ -4016,10 +3947,10 @@ class GetNvramInfoResult(data_model.DataObject):
 class GetClusterMasterNodeIDResult(data_model.DataObject):
     """GetClusterMasterNodeIDResult  
     :param node_id: [required] ID of the master node. 
-    :type node_id: int
+    :type node_id: NodeID
     """
     node_id = data_model.property(
-        "nodeID", int,
+        "nodeID", NodeID,
         array=False, optional=False,
         documentation="ID of the master node.",
         dictionaryType=None
@@ -4058,10 +3989,10 @@ class NodeWaitingToJoin(data_model.DataObject):
     :type version: str
 
     :param node_id: [required] 
-    :type node_id: int
+    :type node_id: NodeID
 
     :param pending_node_id: [required] 
-    :type pending_node_id: int
+    :type pending_node_id: PendingNodeID
 
     :param mip: [required] 
     :type mip: str
@@ -4085,13 +4016,13 @@ class NodeWaitingToJoin(data_model.DataObject):
         dictionaryType=None
     )
     node_id = data_model.property(
-        "nodeID", int,
+        "nodeID", NodeID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
     pending_node_id = data_model.property(
-        "pendingNodeID", int,
+        "pendingNodeID", PendingNodeID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -4256,10 +4187,10 @@ class GetIpmiConfigResult(data_model.DataObject):
 class GetScheduleRequest(data_model.DataObject):
     """GetScheduleRequest  
     :param schedule_id: [required] Unique ID of the schedule or multiple schedules to display 
-    :type schedule_id: int
+    :type schedule_id: ScheduleID
     """
     schedule_id = data_model.property(
-        "scheduleID", int,
+        "scheduleID", ScheduleID,
         array=False, optional=False,
         documentation="[&#x27;Unique ID of the schedule or multiple schedules to display&#x27;]",
         dictionaryType=None
@@ -4268,33 +4199,39 @@ class GetScheduleRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class SetDefaultQoSRequest(data_model.DataObject):
-    """SetDefaultQoSRequest  
-    :param min_iops:  The minimum number of sustained IOPS that are provided by the cluster to a volume. 
-    :type min_iops: int
+class AddedNode(data_model.DataObject):
+    """AddedNode  
+    :param node_id: [required] 
+    :type node_id: NodeID
 
-    :param max_iops:  The maximum number of sustained IOPS that are provided by the cluster to a volume. 
-    :type max_iops: int
-
-    :param burst_iops:  The maximum number of IOPS allowed in a short burst scenario. 
-    :type burst_iops: int
+    :param pending_node_id: [required] 
+    :type pending_node_id: NodeID
     """
-    min_iops = data_model.property(
-        "minIOPS", int,
-        array=False, optional=True,
-        documentation="The minimum number of sustained IOPS that are provided by the cluster to a volume.",
+    node_id = data_model.property(
+        "nodeID", NodeID,
+        array=False, optional=False,
+        documentation="",
         dictionaryType=None
     )
-    max_iops = data_model.property(
-        "maxIOPS", int,
-        array=False, optional=True,
-        documentation="The maximum number of sustained IOPS that are provided by the cluster to a volume.",
+    pending_node_id = data_model.property(
+        "pendingNodeID", NodeID,
+        array=False, optional=False,
+        documentation="",
         dictionaryType=None
     )
-    burst_iops = data_model.property(
-        "burstIOPS", int,
-        array=False, optional=True,
-        documentation="The maximum number of IOPS allowed in a short burst scenario.",
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class AddNodesResult(data_model.DataObject):
+    """AddNodesResult  
+    :param nodes: [required] An array of objects mapping the previous "pendingNodeID" to the "nodeID". 
+    :type nodes: AddedNode
+    """
+    nodes = data_model.property(
+        "nodes", AddedNode,
+        array=True, optional=False,
+        documentation="An array of objects mapping the previous &quot;pendingNodeID&quot; to the &quot;nodeID&quot;.",
         dictionaryType=None
     )
 
@@ -4380,10 +4317,10 @@ class SnmpTrapRecipient(data_model.DataObject):
 class AddClusterAdminResult(data_model.DataObject):
     """AddClusterAdminResult  
     :param cluster_admin_id: [required] ClusterAdminID for the newly created Cluster Admin. 
-    :type cluster_admin_id: int
+    :type cluster_admin_id: ClusterAdminID
     """
     cluster_admin_id = data_model.property(
-        "clusterAdminID", int,
+        "clusterAdminID", ClusterAdminID,
         array=False, optional=False,
         documentation="ClusterAdminID for the newly created Cluster Admin.",
         dictionaryType=None
@@ -4623,19 +4560,19 @@ class SetSnmpTrapInfoRequest(data_model.DataObject):
 class RemoveVirtualNetworkRequest(data_model.DataObject):
     """RemoveVirtualNetworkRequest  
     :param virtual_network_id:  Network ID that identifies the virtual network to remove. 
-    :type virtual_network_id: int
+    :type virtual_network_id: VirtualNetworkID
 
     :param virtual_network_tag:  Network Tag that identifies the virtual network to remove. 
-    :type virtual_network_tag: int
+    :type virtual_network_tag: VirtualNetworkTag
     """
     virtual_network_id = data_model.property(
-        "virtualNetworkID", int,
+        "virtualNetworkID", VirtualNetworkID,
         array=False, optional=True,
         documentation="Network ID that identifies the virtual network to remove.",
         dictionaryType=None
     )
     virtual_network_tag = data_model.property(
-        "virtualNetworkTag", int,
+        "virtualNetworkTag", VirtualNetworkTag,
         array=False, optional=True,
         documentation="Network Tag that identifies the virtual network to remove.",
         dictionaryType=None
@@ -4716,13 +4653,13 @@ class GetVirtualVolumeTaskUpdateRequest(data_model.DataObject):
 class ListActiveVolumesRequest(data_model.DataObject):
     """ListActiveVolumesRequest  
     :param start_volume_id:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
-    :type start_volume_id: int
+    :type start_volume_id: VolumeID
 
     :param limit:  The maximum number of volumes to return from the API. 
     :type limit: int
     """
     start_volume_id = data_model.property(
-        "startVolumeID", int,
+        "startVolumeID", VolumeID,
         array=False, optional=True,
         documentation="[&#x27;The ID of the first volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this starts at the lowest VolumeID.&#x27;]",
         dictionaryType=None
@@ -4761,10 +4698,10 @@ class DeleteAllSupportBundlesResult(data_model.DataObject):
 class GetDriveHardwareInfoRequest(data_model.DataObject):
     """GetDriveHardwareInfoRequest  
     :param drive_id: [required] DriveID for the drive information requested. DriveIDs can be obtained via the "ListDrives" method. 
-    :type drive_id: int
+    :type drive_id: DriveID
     """
     drive_id = data_model.property(
-        "driveID", int,
+        "driveID", DriveID,
         array=False, optional=False,
         documentation="DriveID for the drive information requested. DriveIDs can be obtained via the &quot;ListDrives&quot; method.",
         dictionaryType=None
@@ -4978,7 +4915,7 @@ class Initiator(data_model.DataObject):
 class ISCSISession(data_model.DataObject):
     """ISCSISession  
     :param account_id: [required] 
-    :type account_id: int
+    :type account_id: AccountID
 
     :param initiator: [required] 
     :type initiator: Initiator
@@ -4987,7 +4924,7 @@ class ISCSISession(data_model.DataObject):
     :type account_name: str
 
     :param drive_id: [required] 
-    :type drive_id: int
+    :type drive_id: DriveID
 
     :param initiator_ip: [required] 
     :type initiator_ip: str
@@ -4999,19 +4936,19 @@ class ISCSISession(data_model.DataObject):
     :type target_port_name: str
 
     :param initiator_name: [required] 
-    :type initiator_name: str
+    :type initiator_name: Iqn
 
     :param node_id: [required] 
-    :type node_id: int
+    :type node_id: NodeID
 
     :param service_id: [required] 
-    :type service_id: int
+    :type service_id: ServiceID
 
     :param session_id: [required] 
-    :type session_id: int
+    :type session_id: SessionID
 
     :param target_name: [required] 
-    :type target_name: str
+    :type target_name: Iqn
 
     :param target_ip: [required] 
     :type target_ip: str
@@ -5020,7 +4957,7 @@ class ISCSISession(data_model.DataObject):
     :type virtual_network_id: int
 
     :param volume_id: [required] 
-    :type volume_id: int
+    :type volume_id: VolumeID
 
     :param create_time: [required] 
     :type create_time: str
@@ -5032,7 +4969,7 @@ class ISCSISession(data_model.DataObject):
     :type initiator_session_id: int
     """
     account_id = data_model.property(
-        "accountID", int,
+        "accountID", AccountID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -5050,7 +4987,7 @@ class ISCSISession(data_model.DataObject):
         dictionaryType=None
     )
     drive_id = data_model.property(
-        "driveID", int,
+        "driveID", DriveID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -5074,31 +5011,31 @@ class ISCSISession(data_model.DataObject):
         dictionaryType=None
     )
     initiator_name = data_model.property(
-        "initiatorName", str,
+        "initiatorName", Iqn,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
     node_id = data_model.property(
-        "nodeID", int,
+        "nodeID", NodeID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
     service_id = data_model.property(
-        "serviceID", int,
+        "serviceID", ServiceID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
     session_id = data_model.property(
-        "sessionID", int,
+        "sessionID", SessionID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
     target_name = data_model.property(
-        "targetName", str,
+        "targetName", Iqn,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -5116,7 +5053,7 @@ class ISCSISession(data_model.DataObject):
         dictionaryType=None
     )
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -5342,10 +5279,10 @@ class AddressBlock(data_model.DataObject):
 class VirtualNetwork(data_model.DataObject):
     """VirtualNetwork  
     :param virtual_network_id: [required] SolidFire unique identifier for a virtual network. 
-    :type virtual_network_id: int
+    :type virtual_network_id: VirtualNetworkID
 
     :param virtual_network_tag: [required] VLAN Tag identifier. 
-    :type virtual_network_tag: int
+    :type virtual_network_tag: VirtualNetworkTag
 
     :param address_blocks: [required] Range of address blocks currently assigned to the virtual network. <br/><b>available:</b> Binary string in "1"s and "0"s. 1 equals the IP is available and 0 equals the IP is not available. The string is read from right to left with the digit to the far right being the first IP address in the list of addressBlocks. <br/><b>size:</b> the size of this block of addresses. <br/><b>start:</b> first IP address in the block. 
     :type address_blocks: AddressBlock
@@ -5369,13 +5306,13 @@ class VirtualNetwork(data_model.DataObject):
     :type attributes: dict
     """
     virtual_network_id = data_model.property(
-        "virtualNetworkID", int,
+        "virtualNetworkID", VirtualNetworkID,
         array=False, optional=False,
         documentation="SolidFire unique identifier for a virtual network.",
         dictionaryType=None
     )
     virtual_network_tag = data_model.property(
-        "virtualNetworkTag", int,
+        "virtualNetworkTag", VirtualNetworkTag,
         array=False, optional=False,
         documentation="VLAN Tag identifier.",
         dictionaryType=None
@@ -5444,13 +5381,13 @@ class ListVirtualNetworksResult(data_model.DataObject):
 class StartVolumePairingRequest(data_model.DataObject):
     """StartVolumePairingRequest  
     :param volume_id: [required] The ID of the volume on which to start the pairing process. 
-    :type volume_id: int
+    :type volume_id: VolumeID
 
     :param mode:  The mode of the volume on which to start the pairing process. The mode can only be set if the volume is the source volume.<br/> Possible values:<br/> <b>Async</b>: (default if no mode parameter specified) Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.<br/> <b>Sync</b>: Source acknowledges write when the data is stored locally and on the remote cluster.<br/> <b>SnapshotsOnly</b>: Only snapshots created on the source cluster will be replicated. Active writes from the source volume will not be replicated.<br/> 
     :type mode: str
     """
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="The ID of the volume on which to start the pairing process.",
         dictionaryType=None
@@ -5540,7 +5477,7 @@ class SetNetworkConfigResult(data_model.DataObject):
 class AddVirtualNetworkRequest(data_model.DataObject):
     """AddVirtualNetworkRequest  
     :param virtual_network_tag: [required] A unique virtual network (VLAN) tag. Supported values are 1 to 4095 (the number zero (0) is not supported). 
-    :type virtual_network_tag: int
+    :type virtual_network_tag: VirtualNetworkTag
 
     :param name: [required] User defined name for the new virtual network. 
     :type name: str
@@ -5564,7 +5501,7 @@ class AddVirtualNetworkRequest(data_model.DataObject):
     :type attributes: dict
     """
     virtual_network_tag = data_model.property(
-        "virtualNetworkTag", int,
+        "virtualNetworkTag", VirtualNetworkTag,
         array=False, optional=False,
         documentation="A unique virtual network (VLAN) tag. Supported values are 1 to 4095 (the number zero (0) is not supported).",
         dictionaryType=None
@@ -5697,7 +5634,7 @@ class BackupTarget(data_model.DataObject):
     :type name: str
 
     :param backup_target_id: [required] Unique identifier assigned to the backup target. 
-    :type backup_target_id: int
+    :type backup_target_id: BackupTargetID
 
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
@@ -5709,7 +5646,7 @@ class BackupTarget(data_model.DataObject):
         dictionaryType=None
     )
     backup_target_id = data_model.property(
-        "backupTargetID", int,
+        "backupTargetID", BackupTargetID,
         array=False, optional=False,
         documentation="[&#x27;Unique identifier assigned to the backup target.&#x27;]",
         dictionaryType=None
@@ -5778,7 +5715,7 @@ class SetConfigResult(data_model.DataObject):
 class StartBulkVolumeWriteRequest(data_model.DataObject):
     """StartBulkVolumeWriteRequest  
     :param volume_id: [required] ID of the volume to be written to. 
-    :type volume_id: int
+    :type volume_id: VolumeID
 
     :param format: [required] The format of the volume data. Can be either: <br/><b>uncompressed</b>: every byte of the volume is returned without any compression. <br/><b>native</b>: opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write 
     :type format: str
@@ -5793,7 +5730,7 @@ class StartBulkVolumeWriteRequest(data_model.DataObject):
     :type attributes: dict
     """
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="ID of the volume to be written to.",
         dictionaryType=None
@@ -5977,13 +5914,13 @@ class VolumePair(data_model.DataObject):
     The Volume Pair Info is an object containing information about a volume that is paired on a remote cluster.
     If the volume is not paired, this object is null.
     :param cluster_pair_id: [required] The remote cluster a volume is paired with. 
-    :type cluster_pair_id: int
+    :type cluster_pair_id: ClusterPairID
 
     :param remote_volume_id: [required] The VolumeID on the remote cluster a volume is paired with. 
-    :type remote_volume_id: int
+    :type remote_volume_id: VolumeID
 
     :param remote_slice_id: [required] The SliceID on the remote cluster a volume is paired with. 
-    :type remote_slice_id: int
+    :type remote_slice_id: SliceID
 
     :param remote_volume_name: [required] The last-observed name of the volume on the remote cluster a volume is paired with. 
     :type remote_volume_name: str
@@ -5995,19 +5932,19 @@ class VolumePair(data_model.DataObject):
     :type remote_replication: RemoteReplication
     """
     cluster_pair_id = data_model.property(
-        "clusterPairID", int,
+        "clusterPairID", ClusterPairID,
         array=False, optional=False,
         documentation="The remote cluster a volume is paired with.",
         dictionaryType=None
     )
     remote_volume_id = data_model.property(
-        "remoteVolumeID", int,
+        "remoteVolumeID", VolumeID,
         array=False, optional=False,
         documentation="The VolumeID on the remote cluster a volume is paired with.",
         dictionaryType=None
     )
     remote_slice_id = data_model.property(
-        "remoteSliceID", int,
+        "remoteSliceID", SliceID,
         array=False, optional=False,
         documentation="The SliceID on the remote cluster a volume is paired with.",
         dictionaryType=None
@@ -6040,13 +5977,13 @@ class Volume(data_model.DataObject):
     The return objects only include "configured" information about the volume and not runtime or usage information.
     Information about paired volumes will also be returned.
     :param volume_id: [required] Unique VolumeID for the volume. 
-    :type volume_id: int
+    :type volume_id: VolumeID
 
     :param name: [required] Name of the volume as provided at creation time. 
     :type name: str
 
     :param account_id: [required] Unique AccountID for the account. 
-    :type account_id: int
+    :type account_id: AccountID
 
     :param create_time: [required] UTC formatted time the volume was created. 
     :type create_time: str
@@ -6061,19 +5998,19 @@ class Volume(data_model.DataObject):
     :type enable512e: bool
 
     :param iqn: [required] Volume iSCSI Qualified Name. 
-    :type iqn: str
+    :type iqn: Iqn
 
     :param scsi_euidevice_id: [required] Globally unique SCSI device identifier for the volume in EUI-64 based 16-byte format. 
-    :type scsi_euidevice_id: str
+    :type scsi_euidevice_id: EUIDeviceID
 
     :param scsi_naadevice_id: [required] Globally unique SCSI device identifier for the volume in NAA IEEE Registered Extended format. 
-    :type scsi_naadevice_id: str
+    :type scsi_naadevice_id: NAADeviceID
 
     :param qos: [required] Quality of service settings for this volume. 
     :type qos: VolumeQOS
 
     :param volume_access_groups: [required] List of volume access groups to which a volume belongs. 
-    :type volume_access_groups: int
+    :type volume_access_groups: VolumeAccessGroupID
 
     :param volume_pairs: [required] Information about a paired volume. Available only if a volume is paired. @see VolumePairs for return values. 
     :type volume_pairs: VolumePair
@@ -6100,7 +6037,7 @@ class Volume(data_model.DataObject):
     :type attributes: dict
     """
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="Unique VolumeID for the volume.",
         dictionaryType=None
@@ -6112,7 +6049,7 @@ class Volume(data_model.DataObject):
         dictionaryType=None
     )
     account_id = data_model.property(
-        "accountID", int,
+        "accountID", AccountID,
         array=False, optional=False,
         documentation="Unique AccountID for the account.",
         dictionaryType=None
@@ -6142,19 +6079,19 @@ class Volume(data_model.DataObject):
         dictionaryType=None
     )
     iqn = data_model.property(
-        "iqn", str,
+        "iqn", Iqn,
         array=False, optional=False,
         documentation="Volume iSCSI Qualified Name.",
         dictionaryType=None
     )
     scsi_euidevice_id = data_model.property(
-        "scsiEUIDeviceID", str,
+        "scsiEUIDeviceID", EUIDeviceID,
         array=False, optional=False,
         documentation="Globally unique SCSI device identifier for the volume in EUI-64 based 16-byte format.",
         dictionaryType=None
     )
     scsi_naadevice_id = data_model.property(
-        "scsiNAADeviceID", str,
+        "scsiNAADeviceID", NAADeviceID,
         array=False, optional=False,
         documentation="Globally unique SCSI device identifier for the volume in NAA IEEE Registered Extended format.",
         dictionaryType=None
@@ -6166,7 +6103,7 @@ class Volume(data_model.DataObject):
         dictionaryType=None
     )
     volume_access_groups = data_model.property(
-        "volumeAccessGroups", int,
+        "volumeAccessGroups", VolumeAccessGroupID,
         array=True, optional=False,
         documentation="List of volume access groups to which a volume belongs.",
         dictionaryType=None
@@ -6273,10 +6210,10 @@ class Snapshot(data_model.DataObject):
     Snapshots is an object containing information about each snapshot made for a volume.
     The return object includes information for the active snapshot as well as each snapshot created for the volume.
     :param snapshot_id: [required] Unique ID for this snapshot. 
-    :type snapshot_id: int
+    :type snapshot_id: SnapshotID
 
     :param volume_id: [required] The volume this snapshot was taken of. 
-    :type volume_id: int
+    :type volume_id: VolumeID
 
     :param name: [required] A name for this snapshot. It is not necessarily unique. 
     :type name: str
@@ -6306,7 +6243,7 @@ class Snapshot(data_model.DataObject):
     :type total_size: int
 
     :param group_id:  If present, the ID of the group this snapshot is a part of. If not present, this snapshot is not part of a group. 
-    :type group_id: int
+    :type group_id: GroupSnapshotID
 
     :param group_snapshot_uuid: [required] The current "members" results contains information about each snapshot in the group. Each of these members will have a "uuid" parameter for the snapshot's UUID. 
     :type group_snapshot_uuid: UUID
@@ -6321,13 +6258,13 @@ class Snapshot(data_model.DataObject):
     :type attributes: dict
     """
     snapshot_id = data_model.property(
-        "snapshotID", int,
+        "snapshotID", SnapshotID,
         array=False, optional=False,
         documentation="Unique ID for this snapshot.",
         dictionaryType=None
     )
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="The volume this snapshot was taken of.",
         dictionaryType=None
@@ -6387,7 +6324,7 @@ class Snapshot(data_model.DataObject):
         dictionaryType=None
     )
     group_id = data_model.property(
-        "groupID", int,
+        "groupID", GroupSnapshotID,
         array=False, optional=True,
         documentation="[&#x27;If present, the ID of the group this snapshot is a part of.&#x27;, &#x27;If not present, this snapshot is not part of a group.&#x27;]",
         dictionaryType=None
@@ -6435,10 +6372,10 @@ class VirtualVolumeInfo(data_model.DataObject):
     :type storage_container: StorageContainer
 
     :param volume_id: [required] 
-    :type volume_id: int
+    :type volume_id: VolumeID
 
     :param snapshot_id: [required] 
-    :type snapshot_id: int
+    :type snapshot_id: SnapshotID
 
     :param virtual_volume_type: [required] 
     :type virtual_volume_type: str
@@ -6447,7 +6384,7 @@ class VirtualVolumeInfo(data_model.DataObject):
     :type status: str
 
     :param bindings: [required] 
-    :type bindings: int
+    :type bindings: VvolBindingID
 
     :param children: [required] 
     :type children: UUID
@@ -6486,13 +6423,13 @@ class VirtualVolumeInfo(data_model.DataObject):
         dictionaryType=None
     )
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
     snapshot_id = data_model.property(
-        "snapshotID", int,
+        "snapshotID", SnapshotID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -6510,7 +6447,7 @@ class VirtualVolumeInfo(data_model.DataObject):
         dictionaryType=None
     )
     bindings = data_model.property(
-        "bindings", int,
+        "bindings", VvolBindingID,
         array=True, optional=False,
         documentation="",
         dictionaryType=None
@@ -7357,7 +7294,7 @@ class NodeStatsInfo(data_model.DataObject):
     :type network_utilization_storage: int
 
     :param node_id: [required] 
-    :type node_id: int
+    :type node_id: NodeID
 
     :param s_bytes_in: [required] Bytes in on the storage interface. 
     :type s_bytes_in: int
@@ -7414,7 +7351,7 @@ class NodeStatsInfo(data_model.DataObject):
         dictionaryType=None
     )
     node_id = data_model.property(
-        "nodeID", int,
+        "nodeID", NodeID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -7492,19 +7429,19 @@ class DeleteInitiatorsResult(data_model.DataObject):
 class AddInitiatorsToVolumeAccessGroupRequest(data_model.DataObject):
     """AddInitiatorsToVolumeAccessGroupRequest  
     :param volume_access_group_id: [required] The ID of the volume access group to modify. 
-    :type volume_access_group_id: int
+    :type volume_access_group_id: VolumeAccessGroupID
 
     :param initiators: [required] List of initiators to add to the volume access group. 
-    :type initiators: str
+    :type initiators: Iqn
     """
     volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
+        "volumeAccessGroupID", VolumeAccessGroupID,
         array=False, optional=False,
         documentation="The ID of the volume access group to modify.",
         dictionaryType=None
     )
     initiators = data_model.property(
-        "initiators", str,
+        "initiators", Iqn,
         array=True, optional=False,
         documentation="[&#x27;List of initiators to add to the volume access group.&#x27;]",
         dictionaryType=None
@@ -7516,10 +7453,10 @@ class AddInitiatorsToVolumeAccessGroupRequest(data_model.DataObject):
 class DeleteVolumeAccessGroupRequest(data_model.DataObject):
     """DeleteVolumeAccessGroupRequest  
     :param volume_access_group_id: [required] The ID of the volume access group to delete. 
-    :type volume_access_group_id: int
+    :type volume_access_group_id: VolumeAccessGroupID
     """
     volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
+        "volumeAccessGroupID", VolumeAccessGroupID,
         array=False, optional=False,
         documentation="[&#x27;The ID of the volume access group to delete.&#x27;]",
         dictionaryType=None
@@ -7570,19 +7507,19 @@ class GetFeatureStatusResult(data_model.DataObject):
 class ListVirtualNetworksRequest(data_model.DataObject):
     """ListVirtualNetworksRequest  
     :param virtual_network_id:  Network ID to filter the list for a single virtual network 
-    :type virtual_network_id: int
+    :type virtual_network_id: VirtualNetworkID
 
     :param virtual_network_tag:  Network Tag to filter the list for a single virtual network 
     :type virtual_network_tag: int
 
     :param virtual_network_ids:  NetworkIDs to include in the list. 
-    :type virtual_network_ids: int
+    :type virtual_network_ids: VirtualNetworkID
 
     :param virtual_network_tags:  Network Tags to include in the list. 
     :type virtual_network_tags: int
     """
     virtual_network_id = data_model.property(
-        "virtualNetworkID", int,
+        "virtualNetworkID", VirtualNetworkID,
         array=False, optional=True,
         documentation="Network ID to filter the list for a single virtual network",
         dictionaryType=None
@@ -7594,7 +7531,7 @@ class ListVirtualNetworksRequest(data_model.DataObject):
         dictionaryType=None
     )
     virtual_network_ids = data_model.property(
-        "virtualNetworkIDs", int,
+        "virtualNetworkIDs", VirtualNetworkID,
         array=True, optional=True,
         documentation="NetworkIDs to include in the list.",
         dictionaryType=None
@@ -7642,13 +7579,13 @@ class SetNetworkConfigRequest(data_model.DataObject):
 class StartBulkVolumeReadRequest(data_model.DataObject):
     """StartBulkVolumeReadRequest  
     :param volume_id: [required] ID of the volume to be read. 
-    :type volume_id: int
+    :type volume_id: VolumeID
 
     :param format: [required] The format of the volume data. Can be either: <br/><b>uncompressed</b>: every byte of the volume is returned without any compression. <br/><b>native</b>: opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. 
     :type format: str
 
     :param snapshot_id:  ID of a previously created snapshot used for bulk volume reads. If no ID is entered, a snapshot of the current active volume image is made. 
-    :type snapshot_id: int
+    :type snapshot_id: SnapshotID
 
     :param script:  Executable name of a script. If no script name is given then the key and URL is necessary to access SolidFire nodes. The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted. 
     :type script: str
@@ -7660,7 +7597,7 @@ class StartBulkVolumeReadRequest(data_model.DataObject):
     :type attributes: dict
     """
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="ID of the volume to be read.",
         dictionaryType=None
@@ -7672,7 +7609,7 @@ class StartBulkVolumeReadRequest(data_model.DataObject):
         dictionaryType=None
     )
     snapshot_id = data_model.property(
-        "snapshotID", int,
+        "snapshotID", SnapshotID,
         array=False, optional=True,
         documentation="[&#x27;ID of a previously created snapshot used for bulk volume reads.&#x27;, &#x27;If no ID is entered, a snapshot of the current active volume image is made.&#x27;]",
         dictionaryType=None
@@ -7717,10 +7654,10 @@ class AddDrivesRequest(data_model.DataObject):
 class DeleteVolumeRequest(data_model.DataObject):
     """DeleteVolumeRequest  
     :param volume_id: [required] The ID of the volume to delete. 
-    :type volume_id: int
+    :type volume_id: VolumeID
     """
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="The ID of the volume to delete.",
         dictionaryType=None
@@ -7762,10 +7699,10 @@ class ShutdownRequest(data_model.DataObject):
 class GetAsyncResultRequest(data_model.DataObject):
     """GetAsyncResultRequest  
     :param async_handle: [required] A value that was returned from the original asynchronous method call. 
-    :type async_handle: int
+    :type async_handle: AsyncResultID
     """
     async_handle = data_model.property(
-        "asyncHandle", int,
+        "asyncHandle", AsyncResultID,
         array=False, optional=False,
         documentation="A value that was returned from the original asynchronous method call.",
         dictionaryType=None
@@ -7777,13 +7714,13 @@ class GetAsyncResultRequest(data_model.DataObject):
 class CreateVolumeResult(data_model.DataObject):
     """CreateVolumeResult  
     :param volume_id: [required] VolumeID for the newly created volume. 
-    :type volume_id: int
+    :type volume_id: VolumeID
 
     :param curve: [required] The curve is a set of key-value pairs. The keys are I/O sizes in bytes. The values represent the cost performing an IOP at a specific I/O size. The curve is calculated relative to a 4096 byte operation set at 100 IOPS. 
     :type curve: dict
     """
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="VolumeID for the newly created volume.",
         dictionaryType=None
@@ -7801,7 +7738,7 @@ class CreateVolumeResult(data_model.DataObject):
 class ModifyAccountRequest(data_model.DataObject):
     """ModifyAccountRequest  
     :param account_id: [required] AccountID for the account to modify. 
-    :type account_id: int
+    :type account_id: AccountID
 
     :param username:  Change the username of the account to this value. 
     :type username: str
@@ -7819,7 +7756,7 @@ class ModifyAccountRequest(data_model.DataObject):
     :type attributes: dict
     """
     account_id = data_model.property(
-        "accountID", int,
+        "accountID", AccountID,
         array=False, optional=False,
         documentation="AccountID for the account to modify.",
         dictionaryType=None
@@ -7966,13 +7903,13 @@ class SetLoginSessionInfoRequest(data_model.DataObject):
 class CreateSnapshotResult(data_model.DataObject):
     """CreateSnapshotResult  
     :param snapshot_id: [required] ID of the newly-created snapshot. 
-    :type snapshot_id: int
+    :type snapshot_id: SnapshotID
 
     :param checksum: [required] A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. 
     :type checksum: str
     """
     snapshot_id = data_model.property(
-        "snapshotID", int,
+        "snapshotID", SnapshotID,
         array=False, optional=False,
         documentation="ID of the newly-created snapshot.",
         dictionaryType=None
@@ -8171,10 +8108,10 @@ class ListDeletedVolumesResult(data_model.DataObject):
 class ListSnapshotsRequest(data_model.DataObject):
     """ListSnapshotsRequest  
     :param volume_id:  The volume to list snapshots for. If not provided, all snapshots for all volumes are returned. 
-    :type volume_id: int
+    :type volume_id: VolumeID
     """
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=True,
         documentation="[&#x27;The volume to list snapshots for.&#x27;, &#x27;If not provided, all snapshots for all volumes are returned.&#x27;]",
         dictionaryType=None
@@ -8276,21 +8213,54 @@ class ListUtilitiesResult(data_model.DataObject):
 class RemoveInitiatorsFromVolumeAccessGroupRequest(data_model.DataObject):
     """RemoveInitiatorsFromVolumeAccessGroupRequest  
     :param volume_access_group_id: [required] The ID of the volume access group to modify. 
-    :type volume_access_group_id: int
+    :type volume_access_group_id: VolumeAccessGroupID
 
     :param initiators: [required] List of initiators to remove from the volume access group. 
-    :type initiators: str
+    :type initiators: Iqn
     """
     volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
+        "volumeAccessGroupID", VolumeAccessGroupID,
         array=False, optional=False,
         documentation="The ID of the volume access group to modify.",
         dictionaryType=None
     )
     initiators = data_model.property(
-        "initiators", str,
+        "initiators", Iqn,
         array=True, optional=False,
         documentation="[&#x27;List of initiators to remove from the volume access group.&#x27;]",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class SetDefaultQoSRequest(data_model.DataObject):
+    """SetDefaultQoSRequest  
+    :param min_iops:  The minimum number of sustained IOPS that are provided by the cluster to a volume. 
+    :type min_iops: int
+
+    :param max_iops:  The maximum number of sustained IOPS that are provided by the cluster to a volume. 
+    :type max_iops: int
+
+    :param burst_iops:  The maximum number of IOPS allowed in a short burst scenario. 
+    :type burst_iops: int
+    """
+    min_iops = data_model.property(
+        "minIOPS", int,
+        array=False, optional=True,
+        documentation="The minimum number of sustained IOPS that are provided by the cluster to a volume.",
+        dictionaryType=None
+    )
+    max_iops = data_model.property(
+        "maxIOPS", int,
+        array=False, optional=True,
+        documentation="The maximum number of sustained IOPS that are provided by the cluster to a volume.",
+        dictionaryType=None
+    )
+    burst_iops = data_model.property(
+        "burstIOPS", int,
+        array=False, optional=True,
+        documentation="The maximum number of IOPS allowed in a short burst scenario.",
         dictionaryType=None
     )
 
@@ -8332,7 +8302,7 @@ class VolumeAccessGroup(data_model.DataObject):
     :type deleted_volumes: int
 
     :param volume_access_group_id: [required] Unique ID for this volume access group. 
-    :type volume_access_group_id: int
+    :type volume_access_group_id: VolumeAccessGroupID
 
     :param name: [required] Name of the volume access group. 
     :type name: str
@@ -8341,10 +8311,10 @@ class VolumeAccessGroup(data_model.DataObject):
     :type initiator_ids: int
 
     :param initiators: [required] List of unique initiator names belonging to the volume access group. 
-    :type initiators: str
+    :type initiators: Iqn
 
     :param volumes: [required] List of volumes belonging to the volume access group. 
-    :type volumes: int
+    :type volumes: VolumeID
 
     :param attributes: [required] List of name/value pairs 
     :type attributes: dict
@@ -8356,7 +8326,7 @@ class VolumeAccessGroup(data_model.DataObject):
         dictionaryType=None
     )
     volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
+        "volumeAccessGroupID", VolumeAccessGroupID,
         array=False, optional=False,
         documentation="Unique ID for this volume access group.",
         dictionaryType=None
@@ -8374,13 +8344,13 @@ class VolumeAccessGroup(data_model.DataObject):
         dictionaryType=None
     )
     initiators = data_model.property(
-        "initiators", str,
+        "initiators", Iqn,
         array=True, optional=False,
         documentation="List of unique initiator names belonging to the volume access group.",
         dictionaryType=None
     )
     volumes = data_model.property(
-        "volumes", int,
+        "volumes", VolumeID,
         array=True, optional=False,
         documentation="List of volumes belonging to the volume access group.",
         dictionaryType=None
@@ -8398,13 +8368,13 @@ class VolumeAccessGroup(data_model.DataObject):
 class CreateVolumeAccessGroupResult(data_model.DataObject):
     """CreateVolumeAccessGroupResult  
     :param volume_access_group_id: [required] The ID for the newly-created volume access group. 
-    :type volume_access_group_id: int
+    :type volume_access_group_id: VolumeAccessGroupID
 
     :param volume_access_group: [required] 
     :type volume_access_group: VolumeAccessGroup
     """
     volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
+        "volumeAccessGroupID", VolumeAccessGroupID,
         array=False, optional=False,
         documentation="The ID for the newly-created volume access group.",
         dictionaryType=None
@@ -8470,10 +8440,10 @@ class AddVirtualNetworkResult(data_model.DataObject):
 class AddNodesRequest(data_model.DataObject):
     """AddNodesRequest  
     :param pending_nodes: [required] List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method. 
-    :type pending_nodes: int
+    :type pending_nodes: PendingNodeID
     """
     pending_nodes = data_model.property(
-        "pendingNodes", int,
+        "pendingNodes", PendingNodeID,
         array=True, optional=False,
         documentation="List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method.",
         dictionaryType=None
@@ -8671,10 +8641,10 @@ class ModifyBackupTargetResult(data_model.DataObject):
 class CancelCloneRequest(data_model.DataObject):
     """CancelCloneRequest  
     :param clone_id: [required] 
-    :type clone_id: int
+    :type clone_id: CloneID
     """
     clone_id = data_model.property(
-        "cloneID", int,
+        "cloneID", CloneID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -8688,7 +8658,7 @@ class Account(data_model.DataObject):
     The object containing information about an account.
     This object only includes "configured" information about the account, not any runtime or usage information.
     :param account_id: [required] Unique AccountID for the account. 
-    :type account_id: int
+    :type account_id: AccountID
 
     :param username: [required] User name for the account. 
     :type username: str
@@ -8697,7 +8667,7 @@ class Account(data_model.DataObject):
     :type status: str
 
     :param volumes: [required] List of VolumeIDs for Volumes owned by this account. 
-    :type volumes: int
+    :type volumes: VolumeID
 
     :param initiator_secret:  CHAP secret to use for the initiator. 
     :type initiator_secret: CHAPSecret
@@ -8709,7 +8679,7 @@ class Account(data_model.DataObject):
     :type attributes: dict
     """
     account_id = data_model.property(
-        "accountID", int,
+        "accountID", AccountID,
         array=False, optional=False,
         documentation="Unique AccountID for the account.",
         dictionaryType=None
@@ -8727,7 +8697,7 @@ class Account(data_model.DataObject):
         dictionaryType=None
     )
     volumes = data_model.property(
-        "volumes", int,
+        "volumes", VolumeID,
         array=True, optional=False,
         documentation="List of VolumeIDs for Volumes owned by this account.",
         dictionaryType=None
@@ -8772,10 +8742,10 @@ class GetAccountResult(data_model.DataObject):
 class GetAccountByIDRequest(data_model.DataObject):
     """GetAccountByIDRequest  
     :param account_id: [required] Specifies the account for which details are gathered. 
-    :type account_id: int
+    :type account_id: AccountID
     """
     account_id = data_model.property(
-        "accountID", int,
+        "accountID", AccountID,
         array=False, optional=False,
         documentation="Specifies the account for which details are gathered.",
         dictionaryType=None
@@ -8889,15 +8859,84 @@ class GetVirtualVolumeUnsharedChunksRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class RemoveBackupTargetRequest(data_model.DataObject):
-    """RemoveBackupTargetRequest  
-    :param backup_target_id: [required] Unique target ID of the target to remove. 
-    :type backup_target_id: int
+class ClusterStats(data_model.DataObject):
+    """ClusterStats  
+    :param cluster_utilization: [required] The amount of cluster capacity being utilized. 
+    :type cluster_utilization: float
+
+    :param client_queue_depth: [required] 
+    :type client_queue_depth: int
+
+    :param read_bytes: [required] Total bytes read by clients. 
+    :type read_bytes: int
+
+    :param read_ops: [required] Total read operations. 
+    :type read_ops: int
+
+    :param timestamp: [required] Current time in UTC format. ISO 8601 date string. 
+    :type timestamp: str
+
+    :param write_bytes: [required] Total bytes written by clients. 
+    :type write_bytes: int
+
+    :param write_ops: [required] Total write operations. 
+    :type write_ops: int
     """
-    backup_target_id = data_model.property(
-        "backupTargetID", int,
+    cluster_utilization = data_model.property(
+        "clusterUtilization", float,
         array=False, optional=False,
-        documentation="[&#x27;Unique target ID of the target to remove.&#x27;]",
+        documentation="The amount of cluster capacity being utilized.",
+        dictionaryType=None
+    )
+    client_queue_depth = data_model.property(
+        "clientQueueDepth", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    read_bytes = data_model.property(
+        "readBytes", int,
+        array=False, optional=False,
+        documentation="Total bytes read by clients.",
+        dictionaryType=None
+    )
+    read_ops = data_model.property(
+        "readOps", int,
+        array=False, optional=False,
+        documentation="Total read operations.",
+        dictionaryType=None
+    )
+    timestamp = data_model.property(
+        "timestamp", str,
+        array=False, optional=False,
+        documentation="Current time in UTC format. ISO 8601 date string.",
+        dictionaryType=None
+    )
+    write_bytes = data_model.property(
+        "writeBytes", int,
+        array=False, optional=False,
+        documentation="Total bytes written by clients.",
+        dictionaryType=None
+    )
+    write_ops = data_model.property(
+        "writeOps", int,
+        array=False, optional=False,
+        documentation="Total write operations.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetClusterStatsResult(data_model.DataObject):
+    """GetClusterStatsResult  
+    :param cluster_stats: [required] 
+    :type cluster_stats: ClusterStats
+    """
+    cluster_stats = data_model.property(
+        "clusterStats", ClusterStats,
+        array=False, optional=False,
+        documentation="",
         dictionaryType=None
     )
 
@@ -8970,7 +9009,7 @@ class CreateVolumeRequest(data_model.DataObject):
     :type name: str
 
     :param account_id: [required] AccountID for the owner of this volume. 
-    :type account_id: int
+    :type account_id: AccountID
 
     :param total_size: [required] Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size. 
     :type total_size: int
@@ -8991,7 +9030,7 @@ class CreateVolumeRequest(data_model.DataObject):
         dictionaryType=None
     )
     account_id = data_model.property(
-        "accountID", int,
+        "accountID", AccountID,
         array=False, optional=False,
         documentation="AccountID for the owner of this volume.",
         dictionaryType=None
@@ -9105,21 +9144,6 @@ class ModifyVolumesRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class RestoreDeletedVolumeRequest(data_model.DataObject):
-    """RestoreDeletedVolumeRequest  
-    :param volume_id: [required] VolumeID for the deleted volume to restore. 
-    :type volume_id: int
-    """
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=False,
-        documentation="VolumeID for the deleted volume to restore.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class ListPendingNodesResult(data_model.DataObject):
     """ListPendingNodesResult  
     :param pending_nodes: [required] 
@@ -9156,39 +9180,15 @@ class ListActivePairedVolumesResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class AddedNode(data_model.DataObject):
-    """AddedNode  
-    :param node_id: [required] 
-    :type node_id: int
-
-    :param pending_node_id: [required] 
-    :type pending_node_id: int
+class RestoreDeletedVolumeRequest(data_model.DataObject):
+    """RestoreDeletedVolumeRequest  
+    :param volume_id: [required] VolumeID for the deleted volume to restore. 
+    :type volume_id: VolumeID
     """
-    node_id = data_model.property(
-        "nodeID", int,
+    volume_id = data_model.property(
+        "volumeID", VolumeID,
         array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    pending_node_id = data_model.property(
-        "pendingNodeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class AddNodesResult(data_model.DataObject):
-    """AddNodesResult  
-    :param nodes: [required] An array of objects mapping the previous "pendingNodeID" to the "nodeID". 
-    :type nodes: AddedNode
-    """
-    nodes = data_model.property(
-        "nodes", AddedNode,
-        array=True, optional=False,
-        documentation="An array of objects mapping the previous &quot;pendingNodeID&quot; to the &quot;nodeID&quot;.",
+        documentation="VolumeID for the deleted volume to restore.",
         dictionaryType=None
     )
 
@@ -9252,10 +9252,10 @@ class RemoveVolumePairResult(data_model.DataObject):
 class RemoveAccountRequest(data_model.DataObject):
     """RemoveAccountRequest  
     :param account_id: [required] AccountID for the account to remove. 
-    :type account_id: int
+    :type account_id: AccountID
     """
     account_id = data_model.property(
-        "accountID", int,
+        "accountID", AccountID,
         array=False, optional=False,
         documentation="AccountID for the account to remove.",
         dictionaryType=None
@@ -9289,10 +9289,10 @@ class GroupSnapshotMembers(data_model.DataObject):
     """GroupSnapshotMembers  
     List of checksum, volumeIDs and snapshotIDs for each member of the group.
     :param volume_id: [required] The source volume ID for the snapshot. 
-    :type volume_id: int
+    :type volume_id: VolumeID
 
     :param snapshot_id: [required] Unique ID of a snapshot from which the new snapshot is made. The snapshotID passed must be a snapshot on the given volume. 
-    :type snapshot_id: int
+    :type snapshot_id: SnapshotID
 
     :param snapshot_uuid: [required] Universal Unique ID of an existing snapshot. 
     :type snapshot_uuid: str
@@ -9301,13 +9301,13 @@ class GroupSnapshotMembers(data_model.DataObject):
     :type checksum: str
     """
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="The source volume ID for the snapshot.",
         dictionaryType=None
     )
     snapshot_id = data_model.property(
-        "snapshotID", int,
+        "snapshotID", SnapshotID,
         array=False, optional=False,
         documentation="[&#x27;Unique ID of a snapshot from which the new snapshot is made.&#x27;, &#x27;The snapshotID passed must be a snapshot on the given volume.&#x27;]",
         dictionaryType=None
@@ -9332,7 +9332,7 @@ class GroupSnapshot(data_model.DataObject):
     """GroupSnapshot  
     Group Snapshot object represents a point-in-time copy of a group of volumes.
     :param group_snapshot_id: [required] Unique ID of the new group snapshot. 
-    :type group_snapshot_id: int
+    :type group_snapshot_id: GroupSnapshotID
 
     :param group_snapshot_uuid: [required] UUID of the group snapshot. 
     :type group_snapshot_uuid: UUID
@@ -9353,7 +9353,7 @@ class GroupSnapshot(data_model.DataObject):
     :type attributes: dict
     """
     group_snapshot_id = data_model.property(
-        "groupSnapshotID", int,
+        "groupSnapshotID", GroupSnapshotID,
         array=False, optional=False,
         documentation="Unique ID of the new group snapshot.",
         dictionaryType=None
@@ -9422,7 +9422,7 @@ class GetVolumeEfficiencyResult(data_model.DataObject):
     :type deduplication: float
 
     :param missing_volumes: [required] The volumes that could not be queried for efficiency data. Missing volumes can be caused by GC being less than hour old, temporary network loss or restarted services since the GC cycle. 
-    :type missing_volumes: int
+    :type missing_volumes: VolumeID
 
     :param thin_provisioning: [required] The ratio of space used to the amount of space allocated for storing data. Stated as a ratio. 
     :type thin_provisioning: float
@@ -9443,7 +9443,7 @@ class GetVolumeEfficiencyResult(data_model.DataObject):
         dictionaryType=None
     )
     missing_volumes = data_model.property(
-        "missingVolumes", int,
+        "missingVolumes", VolumeID,
         array=True, optional=False,
         documentation="[&#x27;The volumes that could not be queried for efficiency data.&#x27;, &#x27;Missing volumes can be caused by GC being less than hour old, temporary network loss or restarted services since the GC cycle.&#x27;]",
         dictionaryType=None
@@ -9506,7 +9506,7 @@ class GetPendingOperationResult(data_model.DataObject):
 class CloneMultipleVolumeParams(data_model.DataObject):
     """CloneMultipleVolumeParams  
     :param volume_id: [required] Required parameter for "volumes" array: volumeID. 
-    :type volume_id: int
+    :type volume_id: VolumeID
 
     :param access:  Access settings for the new volume. <br/><b>readOnly</b>: Only read operations are allowed. <br/><b>readWrite</b>: Reads and writes are allowed. <br/><b>locked</b>: No reads or writes are allowed. <br/><b>replicationTarget</b>: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked. <br/><br/> If unspecified, the access settings of the clone will be the same as the source. 
     :type access: str
@@ -9515,7 +9515,7 @@ class CloneMultipleVolumeParams(data_model.DataObject):
     :type name: str
 
     :param new_account_id:  Account ID for the new volume. 
-    :type new_account_id: int
+    :type new_account_id: AccountID
 
     :param new_size:  New size Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size. 
     :type new_size: int
@@ -9524,7 +9524,7 @@ class CloneMultipleVolumeParams(data_model.DataObject):
     :type attributes: dict
     """
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="Required parameter for &quot;volumes&quot; array: volumeID.",
         dictionaryType=None
@@ -9542,7 +9542,7 @@ class CloneMultipleVolumeParams(data_model.DataObject):
         dictionaryType=None
     )
     new_account_id = data_model.property(
-        "newAccountID", int,
+        "newAccountID", AccountID,
         array=False, optional=True,
         documentation="Account ID for the new volume.",
         dictionaryType=None
@@ -9572,10 +9572,10 @@ class SetNtpInfoResult(data_model.DataObject):
 class GetVolumeAccessGroupEfficiencyRequest(data_model.DataObject):
     """GetVolumeAccessGroupEfficiencyRequest  
     :param volume_access_group_id: [required] Specifies the volume access group for which capacity is computed. 
-    :type volume_access_group_id: int
+    :type volume_access_group_id: VolumeAccessGroupID
     """
     volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
+        "volumeAccessGroupID", VolumeAccessGroupID,
         array=False, optional=False,
         documentation="Specifies the volume access group for which capacity is computed.",
         dictionaryType=None
@@ -9810,22 +9810,22 @@ class GetClusterFullThresholdResult(data_model.DataObject):
 class ListVolumesForAccountRequest(data_model.DataObject):
     """ListVolumesForAccountRequest  
     :param account_id: [required] The ID of the account to list the volumes for. 
-    :type account_id: int
+    :type account_id: AccountID
 
     :param start_volume_id:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
-    :type start_volume_id: int
+    :type start_volume_id: VolumeID
 
     :param limit:  The maximum number of volumes to return from the API. 
     :type limit: int
     """
     account_id = data_model.property(
-        "accountID", int,
+        "accountID", AccountID,
         array=False, optional=False,
         documentation="The ID of the account to list the volumes for.",
         dictionaryType=None
     )
     start_volume_id = data_model.property(
-        "startVolumeID", int,
+        "startVolumeID", VolumeID,
         array=False, optional=True,
         documentation="[&#x27;The ID of the first volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this starts at the lowest VolumeID.&#x27;]",
         dictionaryType=None
@@ -9855,10 +9855,10 @@ class VirtualVolumeNullResult(data_model.DataObject):
 class GetVolumeEfficiencyRequest(data_model.DataObject):
     """GetVolumeEfficiencyRequest  
     :param volume_id: [required] Specifies the volume for which capacity is computed. 
-    :type volume_id: int
+    :type volume_id: VolumeID
     """
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="Specifies the volume for which capacity is computed.",
         dictionaryType=None
@@ -9870,10 +9870,10 @@ class GetVolumeEfficiencyRequest(data_model.DataObject):
 class ModifyVirtualNetworkRequest(data_model.DataObject):
     """ModifyVirtualNetworkRequest  
     :param virtual_network_id:  Unique identifier of the virtual network to modify. This is the virtual network ID assigned by the SolidFire cluster. 
-    :type virtual_network_id: int
+    :type virtual_network_id: VirtualNetworkID
 
     :param virtual_network_tag:  Network Tag that identifies the virtual network to modify. 
-    :type virtual_network_tag: int
+    :type virtual_network_tag: VirtualNetworkTag
 
     :param name:  New name for the virtual network. 
     :type name: str
@@ -9897,13 +9897,13 @@ class ModifyVirtualNetworkRequest(data_model.DataObject):
     :type attributes: dict
     """
     virtual_network_id = data_model.property(
-        "virtualNetworkID", int,
+        "virtualNetworkID", VirtualNetworkID,
         array=False, optional=True,
         documentation="Unique identifier of the virtual network to modify. This is the virtual network ID assigned by the SolidFire cluster.",
         dictionaryType=None
     )
     virtual_network_tag = data_model.property(
-        "virtualNetworkTag", int,
+        "virtualNetworkTag", VirtualNetworkTag,
         array=False, optional=True,
         documentation="Network Tag that identifies the virtual network to modify.",
         dictionaryType=None
@@ -10002,10 +10002,10 @@ class GetNodeHardwareInfoRequest(data_model.DataObject):
 class SecureEraseDrivesRequest(data_model.DataObject):
     """SecureEraseDrivesRequest  
     :param drives: [required] List of driveIDs to secure erase. 
-    :type drives: int
+    :type drives: DriveID
     """
     drives = data_model.property(
-        "drives", int,
+        "drives", DriveID,
         array=True, optional=False,
         documentation="List of driveIDs to secure erase.",
         dictionaryType=None
@@ -10020,10 +10020,10 @@ class DriveInfo(data_model.DataObject):
     :type capacity: int
 
     :param drive_id: [required] DriveID for this drive. 
-    :type drive_id: int
+    :type drive_id: DriveID
 
     :param node_id: [required] NodeID where this drive is located. 
-    :type node_id: int
+    :type node_id: NodeID
 
     :param serial: [required] Drive serial number. 
     :type serial: str
@@ -10047,13 +10047,13 @@ class DriveInfo(data_model.DataObject):
         dictionaryType=None
     )
     drive_id = data_model.property(
-        "driveID", int,
+        "driveID", DriveID,
         array=False, optional=False,
         documentation="DriveID for this drive.",
         dictionaryType=None
     )
     node_id = data_model.property(
-        "nodeID", int,
+        "nodeID", NodeID,
         array=False, optional=False,
         documentation="NodeID where this drive is located.",
         dictionaryType=None
@@ -10227,10 +10227,10 @@ class ModifyClusterAdminResult(data_model.DataObject):
 class RollbackToSnapshotRequest(data_model.DataObject):
     """RollbackToSnapshotRequest  
     :param volume_id: [required] VolumeID for the volume. 
-    :type volume_id: int
+    :type volume_id: VolumeID
 
     :param snapshot_id: [required] ID of a previously created snapshot on the given volume. 
-    :type snapshot_id: int
+    :type snapshot_id: SnapshotID
 
     :param save_current_state: [required] <br/><b>true</b>: The previous active volume image is kept. <br/><b>false</b>: (default) The previous active volume image is deleted. 
     :type save_current_state: bool
@@ -10242,13 +10242,13 @@ class RollbackToSnapshotRequest(data_model.DataObject):
     :type attributes: dict
     """
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="[&#x27;VolumeID for the volume.&#x27;]",
         dictionaryType=None
     )
     snapshot_id = data_model.property(
-        "snapshotID", int,
+        "snapshotID", SnapshotID,
         array=False, optional=False,
         documentation="[&#x27;ID of a previously created snapshot on the given volume.&#x27;]",
         dictionaryType=None
@@ -10290,22 +10290,22 @@ class ClusterFaultInfo(data_model.DataObject):
     :type details: str
 
     :param node_hardware_fault_id: [required] 
-    :type node_hardware_fault_id: int
+    :type node_hardware_fault_id: NodeHardwareFaultID
 
     :param node_id: [required] 
-    :type node_id: int
+    :type node_id: NodeID
 
     :param service_id: [required] 
-    :type service_id: int
+    :type service_id: ServiceID
 
     :param drive_id: [required] 
-    :type drive_id: int
+    :type drive_id: DriveID
 
     :param resolved: [required] 
     :type resolved: bool
 
     :param cluster_fault_id: [required] 
-    :type cluster_fault_id: int
+    :type cluster_fault_id: ClusterFaultID
 
     :param date: [required] 
     :type date: str
@@ -10341,25 +10341,25 @@ class ClusterFaultInfo(data_model.DataObject):
         dictionaryType=None
     )
     node_hardware_fault_id = data_model.property(
-        "nodeHardwareFaultID", int,
+        "nodeHardwareFaultID", NodeHardwareFaultID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
     node_id = data_model.property(
-        "nodeID", int,
+        "nodeID", NodeID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
     service_id = data_model.property(
-        "serviceID", int,
+        "serviceID", ServiceID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
     drive_id = data_model.property(
-        "driveID", int,
+        "driveID", DriveID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -10371,7 +10371,7 @@ class ClusterFaultInfo(data_model.DataObject):
         dictionaryType=None
     )
     cluster_fault_id = data_model.property(
-        "clusterFaultID", int,
+        "clusterFaultID", ClusterFaultID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -10497,10 +10497,10 @@ class CloneMultipleVolumesRequest(data_model.DataObject):
     :type access: str
 
     :param group_snapshot_id:  ID of the group snapshot to use as a basis for the clone. 
-    :type group_snapshot_id: int
+    :type group_snapshot_id: SnapshotID
 
     :param new_account_id:  New account ID for the volumes if not overridden by information passed in the volumes array. 
-    :type new_account_id: int
+    :type new_account_id: AccountID
     """
     volumes = data_model.property(
         "volumes", CloneMultipleVolumeParams,
@@ -10515,13 +10515,13 @@ class CloneMultipleVolumesRequest(data_model.DataObject):
         dictionaryType=None
     )
     group_snapshot_id = data_model.property(
-        "groupSnapshotID", int,
+        "groupSnapshotID", SnapshotID,
         array=False, optional=True,
         documentation="ID of the group snapshot to use as a basis for the clone.",
         dictionaryType=None
     )
     new_account_id = data_model.property(
-        "newAccountID", int,
+        "newAccountID", AccountID,
         array=False, optional=True,
         documentation="New account ID for the volumes if not overridden by information passed in the volumes array.",
         dictionaryType=None
@@ -10533,13 +10533,13 @@ class CloneMultipleVolumesRequest(data_model.DataObject):
 class ListVolumeAccessGroupsRequest(data_model.DataObject):
     """ListVolumeAccessGroupsRequest  
     :param start_volume_access_group_id:  The lowest VolumeAccessGroupID to return. This can be useful for paging. If unspecified, there is no lower limit (implicitly 0). 
-    :type start_volume_access_group_id: int
+    :type start_volume_access_group_id: VolumeAccessGroupID
 
     :param limit:  The maximum number of results to return. This can be useful for paging. 
     :type limit: int
     """
     start_volume_access_group_id = data_model.property(
-        "startVolumeAccessGroupID", int,
+        "startVolumeAccessGroupID", VolumeAccessGroupID,
         array=False, optional=True,
         documentation="[&#x27;The lowest VolumeAccessGroupID to return.&#x27;, &#x27;This can be useful for paging.&#x27;, &#x27;If unspecified, there is no lower limit (implicitly 0).&#x27;]",
         dictionaryType=None
@@ -10566,13 +10566,13 @@ class ProtocolEndpoint(data_model.DataObject):
     :type provider_type: str
 
     :param primary_provider_id: [required] 
-    :type primary_provider_id: int
+    :type primary_provider_id: ProtocolEndpointProviderID
 
     :param secondary_provider_id: [required] 
-    :type secondary_provider_id: int
+    :type secondary_provider_id: ProtocolEndpointProviderID
 
     :param scsi_naadevice_id: [required] 
-    :type scsi_naadevice_id: str
+    :type scsi_naadevice_id: NAADeviceID
     """
     protocol_endpoint_id = data_model.property(
         "protocolEndpointID", UUID,
@@ -10593,19 +10593,19 @@ class ProtocolEndpoint(data_model.DataObject):
         dictionaryType=None
     )
     primary_provider_id = data_model.property(
-        "primaryProviderID", int,
+        "primaryProviderID", ProtocolEndpointProviderID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
     secondary_provider_id = data_model.property(
-        "secondaryProviderID", int,
+        "secondaryProviderID", ProtocolEndpointProviderID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
     scsi_naadevice_id = data_model.property(
-        "scsiNAADeviceID", str,
+        "scsiNAADeviceID", NAADeviceID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -10638,10 +10638,10 @@ class SetSnmpACLResult(data_model.DataObject):
 class ListGroupSnapshotsRequest(data_model.DataObject):
     """ListGroupSnapshotsRequest  
     :param volume_id:  An array of unique volume IDs to query. If this parameter is not specified, all group snapshots on the cluster will be included. 
-    :type volume_id: int
+    :type volume_id: VolumeID
     """
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=True,
         documentation="[&#x27;An array of unique volume IDs to query.&#x27;, &#x27;If this parameter is not specified, all group snapshots on the cluster will be included.&#x27;]",
         dictionaryType=None
@@ -10711,10 +10711,10 @@ class SnmpNetwork(data_model.DataObject):
 class RemoveNodesRequest(data_model.DataObject):
     """RemoveNodesRequest  
     :param nodes: [required] List of NodeIDs for the nodes to be removed. 
-    :type nodes: int
+    :type nodes: NodeID
     """
     nodes = data_model.property(
-        "nodes", int,
+        "nodes", NodeID,
         array=True, optional=False,
         documentation="List of NodeIDs for the nodes to be removed.",
         dictionaryType=None
@@ -10726,13 +10726,13 @@ class RemoveNodesRequest(data_model.DataObject):
 class DeleteGroupSnapshotRequest(data_model.DataObject):
     """DeleteGroupSnapshotRequest  
     :param group_snapshot_id: [required] Unique ID of the group snapshot. 
-    :type group_snapshot_id: int
+    :type group_snapshot_id: GroupSnapshotID
 
     :param save_members: [required] <br/><b>true</b>: Snapshots are kept, but group association is removed. <br/><b>false</b>: The group and snapshots are deleted. 
     :type save_members: bool
     """
     group_snapshot_id = data_model.property(
-        "groupSnapshotID", int,
+        "groupSnapshotID", GroupSnapshotID,
         array=False, optional=False,
         documentation="Unique ID of the group snapshot.",
         dictionaryType=None
@@ -10756,19 +10756,19 @@ class ModifySnapshotResult(data_model.DataObject):
 class RemoveVolumesFromVolumeAccessGroupRequest(data_model.DataObject):
     """RemoveVolumesFromVolumeAccessGroupRequest  
     :param volume_access_group_id: [required] The ID of the volume access group to modify. 
-    :type volume_access_group_id: int
+    :type volume_access_group_id: VolumeAccessGroupID
 
     :param volumes: [required] List of volumes to remove from this volume access group. 
-    :type volumes: int
+    :type volumes: VolumeID
     """
     volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
+        "volumeAccessGroupID", VolumeAccessGroupID,
         array=False, optional=False,
         documentation="The ID of the volume access group to modify.",
         dictionaryType=None
     )
     volumes = data_model.property(
-        "volumes", int,
+        "volumes", VolumeID,
         array=True, optional=False,
         documentation="[&#x27;List of volumes to remove from this volume access group.&#x27;]",
         dictionaryType=None
@@ -11347,13 +11347,13 @@ class GetDriveStatsResult(data_model.DataObject):
 class ModifyVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
     """ModifyVolumeAccessGroupLunAssignmentsRequest  
     :param volume_access_group_id: [required] Unique volume access group ID for which the LUN assignments will be modified. 
-    :type volume_access_group_id: int
+    :type volume_access_group_id: VolumeAccessGroupID
 
     :param lun_assignments: [required] The volume IDs with new assigned LUN values. 
     :type lun_assignments: LunAssignment
     """
     volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
+        "volumeAccessGroupID", VolumeAccessGroupID,
         array=False, optional=False,
         documentation="Unique volume access group ID for which the LUN assignments will be modified.",
         dictionaryType=None
@@ -11371,7 +11371,7 @@ class ModifyVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
 class StartBulkVolumeReadResult(data_model.DataObject):
     """StartBulkVolumeReadResult  
     :param async_handle: [required] ID of the async process to be checked for completion. 
-    :type async_handle: int
+    :type async_handle: AsyncResultID
 
     :param key: [required] Opaque key uniquely identifying the session. 
     :type key: str
@@ -11380,7 +11380,7 @@ class StartBulkVolumeReadResult(data_model.DataObject):
     :type url: str
     """
     async_handle = data_model.property(
-        "asyncHandle", int,
+        "asyncHandle", AsyncResultID,
         array=False, optional=False,
         documentation="ID of the async process to be checked for completion.",
         dictionaryType=None
@@ -11419,10 +11419,10 @@ class GetNetworkConfigResult(data_model.DataObject):
 class ListVolumeStatsByVolumeAccessGroupRequest(data_model.DataObject):
     """ListVolumeStatsByVolumeAccessGroupRequest  
     :param volume_access_groups:  An array of VolumeAccessGroupIDs for which volume activity is returned. If no VolumeAccessGroupID is specified, stats for all volume access groups is returned. 
-    :type volume_access_groups: int
+    :type volume_access_groups: VolumeAccessGroupID
     """
     volume_access_groups = data_model.property(
-        "volumeAccessGroups", int,
+        "volumeAccessGroups", VolumeAccessGroupID,
         array=True, optional=True,
         documentation="[&#x27;An array of VolumeAccessGroupIDs for which volume activity is returned.&#x27;, &#x27;If no VolumeAccessGroupID is specified, stats for all volume access groups is returned.&#x27;]",
         dictionaryType=None
@@ -11477,10 +11477,10 @@ class FibreChannelSession(data_model.DataObject):
     :type initiator_wwpn: str
 
     :param node_id: [required] The node owning the Fibre Channel session. 
-    :type node_id: int
+    :type node_id: NodeID
 
     :param service_id: [required] The service ID of the FService owning this Fibre Channel session 
-    :type service_id: int
+    :type service_id: ServiceID
 
     :param target_wwpn: [required] The WWPN of the target port involved in this session. 
     :type target_wwpn: str
@@ -11495,13 +11495,13 @@ class FibreChannelSession(data_model.DataObject):
         dictionaryType=None
     )
     node_id = data_model.property(
-        "nodeID", int,
+        "nodeID", NodeID,
         array=False, optional=False,
         documentation="The node owning the Fibre Channel session.",
         dictionaryType=None
     )
     service_id = data_model.property(
-        "serviceID", int,
+        "serviceID", ServiceID,
         array=False, optional=False,
         documentation="The service ID of the FService owning this Fibre Channel session",
         dictionaryType=None
@@ -12514,7 +12514,7 @@ class GetLimitsResult(data_model.DataObject):
 class RollbackToGroupSnapshotRequest(data_model.DataObject):
     """RollbackToGroupSnapshotRequest  
     :param group_snapshot_id: [required] Unique ID of the group snapshot. 
-    :type group_snapshot_id: int
+    :type group_snapshot_id: GroupSnapshotID
 
     :param save_current_state: [required] <br/><b>true</b>: The previous active volume image is kept. <br/><b>false</b>: (default) The previous active volume image is deleted. 
     :type save_current_state: bool
@@ -12526,7 +12526,7 @@ class RollbackToGroupSnapshotRequest(data_model.DataObject):
     :type attributes: dict
     """
     group_snapshot_id = data_model.property(
-        "groupSnapshotID", int,
+        "groupSnapshotID", GroupSnapshotID,
         array=False, optional=False,
         documentation="[&#x27;Unique ID of the group snapshot.&#x27;]",
         dictionaryType=None
@@ -12556,10 +12556,10 @@ class RollbackToGroupSnapshotRequest(data_model.DataObject):
 class GetBackupTargetRequest(data_model.DataObject):
     """GetBackupTargetRequest  
     :param backup_target_id: [required] Unique identifier assigned to the backup target. 
-    :type backup_target_id: int
+    :type backup_target_id: BackupTargetID
     """
     backup_target_id = data_model.property(
-        "backupTargetID", int,
+        "backupTargetID", BackupTargetID,
         array=False, optional=False,
         documentation="[&#x27;Unique identifier assigned to the backup target.&#x27;]",
         dictionaryType=None
@@ -12865,10 +12865,10 @@ class PrepareVirtualSnapshotResult(data_model.DataObject):
     :type virtual_volume_task_id: UUID
 
     :param volume_id: [required] The volume ID of the newly-created clone. 
-    :type volume_id: int
+    :type volume_id: VolumeID
 
     :param snapshot_id: [required] snapshotID for the prepared VVol snapshot. 
-    :type snapshot_id: int
+    :type snapshot_id: SnapshotID
 
     :param virtual_volume_id: [required] virtualVolumeID for the newly created clone. 
     :type virtual_volume_id: UUID
@@ -12880,13 +12880,13 @@ class PrepareVirtualSnapshotResult(data_model.DataObject):
         dictionaryType=None
     )
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="The volume ID of the newly-created clone.",
         dictionaryType=None
     )
     snapshot_id = data_model.property(
-        "snapshotID", int,
+        "snapshotID", SnapshotID,
         array=False, optional=False,
         documentation="snapshotID for the prepared VVol snapshot.",
         dictionaryType=None
@@ -12914,7 +12914,7 @@ class ClusterInfo(data_model.DataObject):
     :type mvip: str
 
     :param mvip_node_id: [required] Node holding the master MVIP address 
-    :type mvip_node_id: int
+    :type mvip_node_id: NodeID
 
     :param name: [required] Unique cluster name. 
     :type name: str
@@ -12929,7 +12929,7 @@ class ClusterInfo(data_model.DataObject):
     :type svip: str
 
     :param svip_node_id: [required] Node holding the master SVIP address. 
-    :type svip_node_id: int
+    :type svip_node_id: NodeID
 
     :param unique_id: [required] Unique ID for the cluster. 
     :type unique_id: str
@@ -12959,7 +12959,7 @@ class ClusterInfo(data_model.DataObject):
         dictionaryType=None
     )
     mvip_node_id = data_model.property(
-        "mvipNodeID", int,
+        "mvipNodeID", NodeID,
         array=False, optional=False,
         documentation="Node holding the master MVIP address",
         dictionaryType=None
@@ -12989,7 +12989,7 @@ class ClusterInfo(data_model.DataObject):
         dictionaryType=None
     )
     svip_node_id = data_model.property(
-        "svipNodeID", int,
+        "svipNodeID", NodeID,
         array=False, optional=False,
         documentation="Node holding the master SVIP address.",
         dictionaryType=None
@@ -13034,7 +13034,7 @@ class GetClusterInfoResult(data_model.DataObject):
 class StartBulkVolumeWriteResult(data_model.DataObject):
     """StartBulkVolumeWriteResult  
     :param async_handle: [required] ID of the async process to be checked for completion. 
-    :type async_handle: int
+    :type async_handle: AsyncResultID
 
     :param key: [required] Opaque key uniquely identifying the session. 
     :type key: str
@@ -13043,7 +13043,7 @@ class StartBulkVolumeWriteResult(data_model.DataObject):
     :type url: str
     """
     async_handle = data_model.property(
-        "asyncHandle", int,
+        "asyncHandle", AsyncResultID,
         array=False, optional=False,
         documentation="ID of the async process to be checked for completion.",
         dictionaryType=None
@@ -13067,28 +13067,28 @@ class StartBulkVolumeWriteResult(data_model.DataObject):
 class Service(data_model.DataObject):
     """Service  
     :param service_id: [required] Unique identifier for this service. 
-    :type service_id: int
+    :type service_id: ServiceID
 
     :param service_type: [required] 
     :type service_type: str
 
     :param node_id: [required] The node this service resides on. 
-    :type node_id: int
+    :type node_id: NodeID
 
     :param associated_bv:  This service's associated bulk volume service. This will only be set if the service type is a slice service. 
-    :type associated_bv: int
+    :type associated_bv: ServiceID
 
     :param associated_ts:  This service's associated transport service. This will only be set if the service type is a slice service. 
-    :type associated_ts: int
+    :type associated_ts: ServiceID
 
     :param associated_vs:  This service's associated volume service. This will only be set if the service type is a slice service. 
-    :type associated_vs: int
+    :type associated_vs: ServiceID
 
     :param async_result_ids: [required] The list of asynchronous jobs currently running for this service. 
-    :type async_result_ids: int
+    :type async_result_ids: AsyncResultID
 
     :param drive_id:  If this service resides on a drive, the ID of that drive. 
-    :type drive_id: int
+    :type drive_id: DriveID
 
     :param first_time_startup: [required] Has this service started successfully? When a new drive is added to the system, the created service will initially have a value of false here. After the service has started, this value will be set to true. This can be used to check if the service has ever started. 
     :type first_time_startup: bool
@@ -13109,7 +13109,7 @@ class Service(data_model.DataObject):
     :type drive_ids: int
     """
     service_id = data_model.property(
-        "serviceID", int,
+        "serviceID", ServiceID,
         array=False, optional=False,
         documentation="Unique identifier for this service.",
         dictionaryType=None
@@ -13121,37 +13121,37 @@ class Service(data_model.DataObject):
         dictionaryType=None
     )
     node_id = data_model.property(
-        "nodeID", int,
+        "nodeID", NodeID,
         array=False, optional=False,
         documentation="[&#x27;The node this service resides on.&#x27;]",
         dictionaryType=None
     )
     associated_bv = data_model.property(
-        "associatedBV", int,
+        "associatedBV", ServiceID,
         array=False, optional=True,
         documentation="[&quot;This service&#x27;s associated bulk volume service.&quot;, &#x27;This will only be set if the service type is a slice service.&#x27;]",
         dictionaryType=None
     )
     associated_ts = data_model.property(
-        "associatedTS", int,
+        "associatedTS", ServiceID,
         array=False, optional=True,
         documentation="[&quot;This service&#x27;s associated transport service.&quot;, &#x27;This will only be set if the service type is a slice service.&#x27;]",
         dictionaryType=None
     )
     associated_vs = data_model.property(
-        "associatedVS", int,
+        "associatedVS", ServiceID,
         array=False, optional=True,
         documentation="[&quot;This service&#x27;s associated volume service.&quot;, &#x27;This will only be set if the service type is a slice service.&#x27;]",
         dictionaryType=None
     )
     async_result_ids = data_model.property(
-        "asyncResultIDs", int,
+        "asyncResultIDs", AsyncResultID,
         array=True, optional=False,
         documentation="[&#x27;The list of asynchronous jobs currently running for this service.&#x27;]",
         dictionaryType=None
     )
     drive_id = data_model.property(
-        "driveID", int,
+        "driveID", DriveID,
         array=False, optional=True,
         documentation="[&#x27;If this service resides on a drive, the ID of that drive.&#x27;]",
         dictionaryType=None
@@ -13199,16 +13199,16 @@ class Service(data_model.DataObject):
 class Drive(data_model.DataObject):
     """Drive  
     :param drive_id: [required] A unique identifier for this drive. 
-    :type drive_id: int
+    :type drive_id: DriveID
 
     :param node_id: [required] The node this drive is located. If the drive has been physically removed from the node, this is where it was last seen. 
-    :type node_id: int
+    :type node_id: NodeID
 
     :param assigned_service:  If this drive is hosting a service, the identifier for that service. 
-    :type assigned_service: int
+    :type assigned_service: ServiceID
 
     :param async_result_ids: [required] The list of asynchronous jobs currently running on the drive (for example: a secure erase job). 
-    :type async_result_ids: int
+    :type async_result_ids: AsyncResultID
 
     :param capacity: [required] The raw capacity of this drive in bytes. 
     :type capacity: int
@@ -13235,25 +13235,25 @@ class Drive(data_model.DataObject):
     :type attributes: dict
     """
     drive_id = data_model.property(
-        "driveID", int,
+        "driveID", DriveID,
         array=False, optional=False,
         documentation="[&#x27;A unique identifier for this drive.&#x27;]",
         dictionaryType=None
     )
     node_id = data_model.property(
-        "nodeID", int,
+        "nodeID", NodeID,
         array=False, optional=False,
         documentation="[&#x27;The node this drive is located.&#x27;, &#x27;If the drive has been physically removed from the node, this is where it was last seen.&#x27;]",
         dictionaryType=None
     )
     assigned_service = data_model.property(
-        "assignedService", int,
+        "assignedService", ServiceID,
         array=False, optional=True,
         documentation="[&#x27;If this drive is hosting a service, the identifier for that service.&#x27;]",
         dictionaryType=None
     )
     async_result_ids = data_model.property(
-        "asyncResultIDs", int,
+        "asyncResultIDs", AsyncResultID,
         array=True, optional=False,
         documentation="[&#x27;The list of asynchronous jobs currently running on the drive (for example: a secure erase job).&#x27;]",
         dictionaryType=None
@@ -13415,10 +13415,10 @@ class SnmpSendTestTrapsResult(data_model.DataObject):
 class ListVirtualVolumeBindingsRequest(data_model.DataObject):
     """ListVirtualVolumeBindingsRequest  
     :param virtual_volume_binding_ids:  
-    :type virtual_volume_binding_ids: int
+    :type virtual_volume_binding_ids: VvolBindingID
     """
     virtual_volume_binding_ids = data_model.property(
-        "virtualVolumeBindingIDs", int,
+        "virtualVolumeBindingIDs", VvolBindingID,
         array=True, optional=True,
         documentation="",
         dictionaryType=None
@@ -13604,10 +13604,10 @@ class ListEventsRequest(data_model.DataObject):
     :type max_events: int
 
     :param start_event_id:  Identifies the beginning of a range of events to return. 
-    :type start_event_id: int
+    :type start_event_id: EventID
 
     :param end_event_id:  Identifies the end of a range of events to return. 
-    :type end_event_id: int
+    :type end_event_id: EventID
 
     :param event_queue_type:  
     :type event_queue_type: str
@@ -13619,13 +13619,13 @@ class ListEventsRequest(data_model.DataObject):
         dictionaryType=None
     )
     start_event_id = data_model.property(
-        "startEventID", int,
+        "startEventID", EventID,
         array=False, optional=True,
         documentation="Identifies the beginning of a range of events to return.",
         dictionaryType=None
     )
     end_event_id = data_model.property(
-        "endEventID", int,
+        "endEventID", EventID,
         array=False, optional=True,
         documentation="Identifies the end of a range of events to return.",
         dictionaryType=None
@@ -13752,19 +13752,19 @@ class GroupCloneVolumeMember(data_model.DataObject):
     """GroupCloneVolumeMember  
     Represents the relationship between the source Volume and cloned Volume IDs.
     :param volume_id: [required] The VolumeID of the cloned volume. 
-    :type volume_id: int
+    :type volume_id: VolumeID
 
     :param src_volume_id: [required] The VolumeID of the source volume. 
-    :type src_volume_id: int
+    :type src_volume_id: VolumeID
     """
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="The VolumeID of the cloned volume.",
         dictionaryType=None
     )
     src_volume_id = data_model.property(
-        "srcVolumeID", int,
+        "srcVolumeID", VolumeID,
         array=False, optional=False,
         documentation="The VolumeID of the source volume.",
         dictionaryType=None
@@ -13776,22 +13776,22 @@ class GroupCloneVolumeMember(data_model.DataObject):
 class CloneMultipleVolumesResult(data_model.DataObject):
     """CloneMultipleVolumesResult  
     :param async_handle: [required] A value returned from an asynchronous method call. 
-    :type async_handle: int
+    :type async_handle: AsyncResultID
 
     :param group_clone_id: [required] Unique ID of the new group clone. 
-    :type group_clone_id: int
+    :type group_clone_id: GroupCloneID
 
     :param members: [required] List of volumeIDs for the source and destination volume pairs. 
     :type members: GroupCloneVolumeMember
     """
     async_handle = data_model.property(
-        "asyncHandle", int,
+        "asyncHandle", AsyncResultID,
         array=False, optional=False,
         documentation="A value returned from an asynchronous method call.",
         dictionaryType=None
     )
     group_clone_id = data_model.property(
-        "groupCloneID", int,
+        "groupCloneID", GroupCloneID,
         array=False, optional=False,
         documentation="Unique ID of the new group clone.",
         dictionaryType=None
@@ -13809,10 +13809,10 @@ class CloneMultipleVolumesResult(data_model.DataObject):
 class RemoveVolumePairRequest(data_model.DataObject):
     """RemoveVolumePairRequest  
     :param volume_id: [required] ID of the volume on which to stop the replication process. 
-    :type volume_id: int
+    :type volume_id: VolumeID
     """
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="ID of the volume on which to stop the replication process.",
         dictionaryType=None
@@ -13881,10 +13881,10 @@ class SetLoginSessionInfoResult(data_model.DataObject):
 class AsyncHandleResult(data_model.DataObject):
     """AsyncHandleResult  
     :param async_handle: [required] 
-    :type async_handle: int
+    :type async_handle: AsyncResultID
     """
     async_handle = data_model.property(
-        "asyncHandle", int,
+        "asyncHandle", AsyncResultID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -13896,10 +13896,10 @@ class AsyncHandleResult(data_model.DataObject):
 class PurgeDeletedVolumeRequest(data_model.DataObject):
     """PurgeDeletedVolumeRequest  
     :param volume_id: [required] The ID of the volume to purge. 
-    :type volume_id: int
+    :type volume_id: VolumeID
     """
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="The ID of the volume to purge.",
         dictionaryType=None
@@ -13974,10 +13974,10 @@ class SyncJob(data_model.DataObject):
     :type remaining_time: float
 
     :param slice_id: [required] 
-    :type slice_id: int
+    :type slice_id: SliceID
 
     :param src_service_id: [required] 
-    :type src_service_id: int
+    :type src_service_id: ServiceID
 
     :param total_bytes: [required] 
     :type total_bytes: int
@@ -13986,19 +13986,19 @@ class SyncJob(data_model.DataObject):
     :type type: str
 
     :param clone_id: [required] 
-    :type clone_id: int
+    :type clone_id: CloneID
 
     :param dst_volume_id: [required] 
-    :type dst_volume_id: int
+    :type dst_volume_id: VolumeID
 
     :param node_id: [required] 
-    :type node_id: int
+    :type node_id: NodeID
 
     :param snapshot_id: [required] 
-    :type snapshot_id: int
+    :type snapshot_id: SnapshotID
 
     :param src_volume_id: [required] 
-    :type src_volume_id: int
+    :type src_volume_id: VolumeID
 
     :param blocks_per_second: [required] 
     :type blocks_per_second: float
@@ -14043,13 +14043,13 @@ class SyncJob(data_model.DataObject):
         dictionaryType=None
     )
     slice_id = data_model.property(
-        "sliceID", int,
+        "sliceID", SliceID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
     src_service_id = data_model.property(
-        "srcServiceID", int,
+        "srcServiceID", ServiceID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -14067,31 +14067,31 @@ class SyncJob(data_model.DataObject):
         dictionaryType=None
     )
     clone_id = data_model.property(
-        "cloneID", int,
+        "cloneID", CloneID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
     dst_volume_id = data_model.property(
-        "dstVolumeID", int,
+        "dstVolumeID", VolumeID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
     node_id = data_model.property(
-        "nodeID", int,
+        "nodeID", NodeID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
     snapshot_id = data_model.property(
-        "snapshotID", int,
+        "snapshotID", SnapshotID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
     src_volume_id = data_model.property(
-        "srcVolumeID", int,
+        "srcVolumeID", VolumeID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -14412,7 +14412,7 @@ class CompleteVolumePairingRequest(data_model.DataObject):
     :type volume_pairing_key: str
 
     :param volume_id: [required] The ID of volume on which to complete the pairing process. 
-    :type volume_id: int
+    :type volume_id: VolumeID
     """
     volume_pairing_key = data_model.property(
         "volumePairingKey", str,
@@ -14421,7 +14421,7 @@ class CompleteVolumePairingRequest(data_model.DataObject):
         dictionaryType=None
     )
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="The ID of volume on which to complete the pairing process.",
         dictionaryType=None
@@ -14730,13 +14730,13 @@ class DrivesHardware(data_model.DataObject):
 class NodeDriveHardware(data_model.DataObject):
     """NodeDriveHardware  
     :param node_id: [required] 
-    :type node_id: int
+    :type node_id: NodeID
 
     :param result: [required] 
     :type result: DrivesHardware
     """
     node_id = data_model.property(
-        "nodeID", int,
+        "nodeID", NodeID,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -14934,13 +14934,13 @@ class ResetDrivesResult(data_model.DataObject):
 class ListAccountsRequest(data_model.DataObject):
     """ListAccountsRequest  
     :param start_account_id:  Starting AccountID to return. If no Account exists with this AccountID, the next Account by AccountID order is used as the start of the list. To page through the list, pass the AccountID of the last Account in the previous response + 1 
-    :type start_account_id: int
+    :type start_account_id: AccountID
 
     :param limit:  Maximum number of AccountInfo objects to return. 
     :type limit: int
     """
     start_account_id = data_model.property(
-        "startAccountID", int,
+        "startAccountID", AccountID,
         array=False, optional=True,
         documentation="[&#x27;Starting AccountID to return.&#x27;, &#x27;If no Account exists with this AccountID,&#x27;, &#x27;the next Account by AccountID order is used as the start of the list.&#x27;, &#x27;To page through the list, pass the AccountID of the last Account in the previous response + 1&#x27;]",
         dictionaryType=None
@@ -15054,13 +15054,13 @@ class RemoveBackupTargetResult(data_model.DataObject):
 class CloneVolumeRequest(data_model.DataObject):
     """CloneVolumeRequest  
     :param volume_id: [required] The ID of the volume to clone. 
-    :type volume_id: int
+    :type volume_id: VolumeID
 
     :param name: [required] The name for the newly-created volume. 
     :type name: str
 
     :param new_account_id:  AccountID for the owner of the new volume. If unspecified, the AccountID of the owner of the volume being cloned is used. 
-    :type new_account_id: int
+    :type new_account_id: AccountID
 
     :param new_size:  New size of the volume, in bytes. May be greater or less than the size of the volume being cloned. If unspecified, the clone's volume size will be the same as the source volume. Size is rounded up to the nearest 1 MiB. 
     :type new_size: int
@@ -15069,13 +15069,13 @@ class CloneVolumeRequest(data_model.DataObject):
     :type access: str
 
     :param snapshot_id:  ID of the snapshot to use as the source of the clone. If unspecified, the clone will be created with a snapshot of the active volume. 
-    :type snapshot_id: int
+    :type snapshot_id: SnapshotID
 
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
     """
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="The ID of the volume to clone.",
         dictionaryType=None
@@ -15087,7 +15087,7 @@ class CloneVolumeRequest(data_model.DataObject):
         dictionaryType=None
     )
     new_account_id = data_model.property(
-        "newAccountID", int,
+        "newAccountID", AccountID,
         array=False, optional=True,
         documentation="[&#x27;AccountID for the owner of the new volume.&#x27;, &#x27;If unspecified, the AccountID of the owner of the volume being cloned is used.&#x27;]",
         dictionaryType=None
@@ -15105,7 +15105,7 @@ class CloneVolumeRequest(data_model.DataObject):
         dictionaryType=None
     )
     snapshot_id = data_model.property(
-        "snapshotID", int,
+        "snapshotID", SnapshotID,
         array=False, optional=True,
         documentation="[&#x27;ID of the snapshot to use as the source of the clone.&#x27;, &#x27;If unspecified, the clone will be created with a snapshot of the active volume.&#x27;]",
         dictionaryType=None
@@ -15147,10 +15147,10 @@ class CreateBackupTargetRequest(data_model.DataObject):
 class ModifyVolumeRequest(data_model.DataObject):
     """ModifyVolumeRequest  
     :param volume_id: [required] VolumeID for the volume to be modified. 
-    :type volume_id: int
+    :type volume_id: VolumeID
 
     :param account_id:  AccountID to which the volume is reassigned. If none is specified, the previous account name is used. 
-    :type account_id: int
+    :type account_id: AccountID
 
     :param access:  Access allowed for the volume. <br/><b>readOnly</b>: Only read operations are allowed. <br/><b>readWrite</b>: Reads and writes are allowed. <br/><b>locked</b>: No reads or writes are allowed. <br/><b>replicationTarget</b>: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked. <br/><br/> If unspecified, the access settings of the clone will be the same as the source. 
     :type access: str
@@ -15165,13 +15165,13 @@ class ModifyVolumeRequest(data_model.DataObject):
     :type attributes: dict
     """
     volume_id = data_model.property(
-        "volumeID", int,
+        "volumeID", VolumeID,
         array=False, optional=False,
         documentation="VolumeID for the volume to be modified.",
         dictionaryType=None
     )
     account_id = data_model.property(
-        "accountID", int,
+        "accountID", AccountID,
         array=False, optional=True,
         documentation="[&#x27;AccountID to which the volume is reassigned.&#x27;, &#x27;If none is specified, the previous account name is used.&#x27;]",
         dictionaryType=None
@@ -15207,13 +15207,13 @@ class ModifyVolumeRequest(data_model.DataObject):
 class CreateGroupSnapshotResult(data_model.DataObject):
     """CreateGroupSnapshotResult  
     :param group_snapshot_id: [required] Unique ID of the new group snapshot. 
-    :type group_snapshot_id: int
+    :type group_snapshot_id: GroupSnapshotID
 
     :param members: [required] List of checksum, volumeIDs and snapshotIDs for each member of the group. 
     :type members: GroupSnapshotMembers
     """
     group_snapshot_id = data_model.property(
-        "groupSnapshotID", int,
+        "groupSnapshotID", GroupSnapshotID,
         array=False, optional=False,
         documentation="Unique ID of the new group snapshot.",
         dictionaryType=None
