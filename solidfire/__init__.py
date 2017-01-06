@@ -471,68 +471,6 @@ class Element(ServiceBase):
             since=1
         )
 
-    def create_cluster(
-            self,
-            mvip,
-            svip,
-            rep_count,
-            username,
-            password,
-            nodes,
-            accept_eula=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        The CreateCluster method is used to initialize the node in a cluster that has ownership of the "mvip" and "svip" addresses. Each new cluster is initialized using the MIP of the first node in the cluster. This method also automatically adds all the nodes being configured into the cluster. The method is used only once each time a new cluster is initialized.
-        <br/><br/>
-        <b>Note</b>: You need to log into the node that is used as the master node for the cluster. Once logged in, run the GetBootstrapConfig method on the node to get the IP addresses for the rest of the nodes that you want to include in the cluster. Then run the CreateCluster method.
-        :param acceptEula:  Indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. 
-        :type acceptEula: bool
-
-        :param mvip: [required] Floating (virtual) IP address for the cluster on the management network. 
-        :type mvip: str
-
-        :param svip: [required] Floating (virtual) IP address for the cluster on the storage (iSCSI) network. 
-        :type svip: str
-
-        :param repCount: [required] Number of replicas of each piece of data to store in the cluster. Valid value is "2". 
-        :type repCount: int
-
-        :param username: [required] User name for the cluster admin. 
-        :type username: str
-
-        :param password: [required] Initial password for the cluster admin account. 
-        :type password: str
-
-        :param nodes: [required] CIP/SIP addresses of the initial set of nodes making up the cluster. This node's IP must be in the list. 
-        :type nodes: str
-
-        :param attributes:  List of Name/Value pairs in JSON object format. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("create_cluster", "Node")
-
-        params = { 
-            "mvip": mvip,
-            "svip": svip,
-            "repCount": rep_count,
-            "username": username,
-            "password": password,
-            "nodes": nodes,
-        }
-        if accept_eula is not None:
-            params["acceptEula"] = accept_eula
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'CreateCluster',
-            CreateClusterResult,
-            params,
-            since=2
-        )
-
     def create_support_bundle(
             self,
             bundle_name=OPTIONAL,
@@ -1387,6 +1325,67 @@ class Element(ServiceBase):
             SnmpSendTestTrapsResult,
             params,
             since=6
+        )
+
+    def create_cluster(
+            self,
+            mvip,
+            svip,
+            rep_count,
+            username,
+            password,
+            nodes,
+            accept_eula=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        The CreateCluster method is used to initialize the node in a cluster that has ownership of the "mvip" and "svip" addresses. Each new cluster is initialized using the MIP of the first node in the cluster. This method also automatically adds all the nodes being configured into the cluster. The method is used only once each time a new cluster is initialized.
+        <br/><br/>
+        <b>Note</b>: You need to log into the node that is used as the master node for the cluster. Once logged in, run the GetBootstrapConfig method on the node to get the IP addresses for the rest of the nodes that you want to include in the cluster. Then run the CreateCluster method.
+        :param acceptEula:  Indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. 
+        :type acceptEula: bool
+
+        :param mvip: [required] Floating (virtual) IP address for the cluster on the management network. 
+        :type mvip: str
+
+        :param svip: [required] Floating (virtual) IP address for the cluster on the storage (iSCSI) network. 
+        :type svip: str
+
+        :param repCount: [required] Number of replicas of each piece of data to store in the cluster. Valid value is "2". 
+        :type repCount: int
+
+        :param username: [required] User name for the cluster admin. 
+        :type username: str
+
+        :param password: [required] Initial password for the cluster admin account. 
+        :type password: str
+
+        :param nodes: [required] CIP/SIP addresses of the initial set of nodes making up the cluster. This node's IP must be in the list. 
+        :type nodes: str
+
+        :param attributes:  List of Name/Value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("create_cluster", "Both")
+
+        params = { 
+            "mvip": mvip,
+            "svip": svip,
+            "repCount": rep_count,
+            "username": username,
+            "password": password,
+            "nodes": nodes,
+        }
+        if accept_eula is not None:
+            params["acceptEula"] = accept_eula
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateCluster',
+            CreateClusterResult,
+            params
         )
 
     def add_drives(
@@ -2263,24 +2262,6 @@ class Element(ServiceBase):
             since=1
         )
 
-    def get_bootstrap_config(
-            self,):
-        """
-        GetBootstrapConfig returns the cluster name and node name from the bootstrap configuration file. This API method should be performed on an individual node before it has been configured into a cluster. The resulting information from this method is used in the Cluster Configuration UI when the cluster is eventually created.        """
-
-        self._check_connection_type("get_bootstrap_config", "Node")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetBootstrapConfig',
-            GetBootstrapConfigResult,
-            params,
-            since=2
-        )
-
     def get_config(
             self,):
         """
@@ -2554,6 +2535,24 @@ class Element(ServiceBase):
             SetNetworkConfigResult,
             params,
             since=5
+        )
+
+    def get_bootstrap_config(
+            self,):
+        """
+        GetBootstrapConfig returns the cluster name and node name from the bootstrap configuration file. This API method should be performed on an individual node before it has been configured into a cluster. The resulting information from this method is used in the Cluster Configuration UI when the cluster is eventually created.        """
+
+        self._check_connection_type("get_bootstrap_config", "Both")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetBootstrapConfig',
+            GetBootstrapConfigResult,
+            params,
+            since=2
         )
 
     def complete_cluster_pairing(
