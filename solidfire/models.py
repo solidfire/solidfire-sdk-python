@@ -2340,86 +2340,10 @@ class NewDrive(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-<<<<<<< HEAD
 class RemoveBackupTargetRequest(data_model.DataObject):
     """RemoveBackupTargetRequest  
     :param backup_target_id: [required] Unique target ID of the target to remove. 
     :type backup_target_id: int
-=======
-class ClusterStats(data_model.DataObject):
-    """ClusterStats  
-    :param cluster_utilization: [required] The amount of cluster capacity being utilized. 
-    :type cluster_utilization: float
-
-    :param client_queue_depth: [required] 
-    :type client_queue_depth: int
-
-    :param read_bytes: [required] Total bytes read by clients. 
-    :type read_bytes: int
-
-    :param read_ops: [required] Total read operations. 
-    :type read_ops: int
-
-    :param timestamp: [required] Current time in UTC format. ISO 8601 date string. 
-    :type timestamp: str
-
-    :param write_bytes: [required] Total bytes written by clients. 
-    :type write_bytes: int
-
-    :param write_ops: [required] Total write operations. 
-    :type write_ops: int
-    """
-    cluster_utilization = data_model.property(
-        "clusterUtilization", float,
-        array=False, optional=False,
-        documentation="The amount of cluster capacity being utilized.",
-        dictionaryType=None
-    )
-    client_queue_depth = data_model.property(
-        "clientQueueDepth", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    read_bytes = data_model.property(
-        "readBytes", int,
-        array=False, optional=False,
-        documentation="Total bytes read by clients.",
-        dictionaryType=None
-    )
-    read_ops = data_model.property(
-        "readOps", int,
-        array=False, optional=False,
-        documentation="Total read operations.",
-        dictionaryType=None
-    )
-    timestamp = data_model.property(
-        "timestamp", str,
-        array=False, optional=False,
-        documentation="Current time in UTC format. ISO 8601 date string.",
-        dictionaryType=None
-    )
-    write_bytes = data_model.property(
-        "writeBytes", int,
-        array=False, optional=False,
-        documentation="Total bytes written by clients.",
-        dictionaryType=None
-    )
-    write_ops = data_model.property(
-        "writeOps", int,
-        array=False, optional=False,
-        documentation="Total write operations.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetClusterStatsResult(data_model.DataObject):
-    """GetClusterStatsResult  
-    :param cluster_stats: [required] 
-    :type cluster_stats: ClusterStats
->>>>>>> develop
     """
     backup_target_id = data_model.property(
         "backupTargetID", int,
@@ -7545,7 +7469,6 @@ class FeatureObject(data_model.DataObject):
     """FeatureObject  
     :param enabled: [required] True if the feature is enabled, otherwise false. 
     :type enabled: bool
-<<<<<<< HEAD
 
     :param feature: [required] The name of the feature. 
     :type feature: str
@@ -7571,33 +7494,6 @@ class GetFeatureStatusResult(data_model.DataObject):
     :param features: [required] An array of feature objects indicating the feature name and its status. 
     :type features: FeatureObject
     """
-=======
-
-    :param feature: [required] The name of the feature. 
-    :type feature: str
-    """
-    enabled = data_model.property(
-        "enabled", bool,
-        array=False, optional=False,
-        documentation="True if the feature is enabled, otherwise false.",
-        dictionaryType=None
-    )
-    feature = data_model.property(
-        "feature", str,
-        array=False, optional=False,
-        documentation="The name of the feature.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetFeatureStatusResult(data_model.DataObject):
-    """GetFeatureStatusResult  
-    :param features: [required] An array of feature objects indicating the feature name and its status. 
-    :type features: FeatureObject
-    """
->>>>>>> develop
     features = data_model.property(
         "features", FeatureObject,
         array=True, optional=False,
@@ -8963,7 +8859,6 @@ class GetVirtualVolumeUnsharedChunksRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-<<<<<<< HEAD
 class ClusterStats(data_model.DataObject):
     """ClusterStats  
     :param cluster_utilization: [required] The amount of cluster capacity being utilized. 
@@ -9037,12 +8932,6 @@ class GetClusterStatsResult(data_model.DataObject):
     """GetClusterStatsResult  
     :param cluster_stats: [required] 
     :type cluster_stats: ClusterStats
-=======
-class RemoveBackupTargetRequest(data_model.DataObject):
-    """RemoveBackupTargetRequest  
-    :param backup_target_id: [required] Unique target ID of the target to remove. 
-    :type backup_target_id: int
->>>>>>> develop
     """
     cluster_stats = data_model.property(
         "clusterStats", ClusterStats,
