@@ -163,14 +163,14 @@ class ApiSchedule(data_model.DataObject):
 
     :type last_run_status: str
 
-    :param last_run_time_start: Indicates the last time the schedule
+    :param last_run_time_started: Indicates the last time the schedule
         started n ISO 8601 date string. Valid values are:
 
         Success
 
         Failed
 
-    :type last_run_time_start: str
+    :type last_run_time_started: str
 
     :param minutes: [required] Shows the minutes that will elapse before the
         next snapshot is created. Valid values are: 0 - 59
@@ -261,7 +261,7 @@ class ApiSchedule(data_model.DataObject):
         "
     )
 
-    last_run_time_start = data_model.property(
+    last_run_time_started = data_model.property(
         "lastRunTimeStart", str,
         array=False, optional=True,
         documentation="\

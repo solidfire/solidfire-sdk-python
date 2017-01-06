@@ -5,6 +5,6 @@ import unittest
 
 
 class SolidFireBaseTest(unittest.TestCase):
-    cluster = "10.117.144.58"
+    cluster = "10.117.61.42"
     user = "admin"
     pwd = "admin"

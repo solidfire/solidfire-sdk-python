@@ -49,6 +49,7 @@ class TestSchedule(SolidFireBaseTest):
             assert_that(new_sched.frequency.hours, equal_to(4))
             assert_that(new_sched.frequency.days, equal_to(2))
             assert_that(new_sched.frequency.minutes, equal_to(30))
+        assert_that(new_sched.last_run_time_started, equal_to(None))
         assert_that(new_sched.schedule_info.volume_ids, equal_to(vol_ids))
         assert_that(new_sched.schedule_id, greater_than(0))
         assert_that(new_sched.recurring, equal_to(False))
