@@ -1717,8 +1717,8 @@ class Schedule(data_model.DataObject):
     :param last_run_status: [required] Indicates the status of the last scheduled snapshot.<br/> Valid values are:<br/> Success<br/> Failed 
     :type last_run_status: str
 
-    :param last_run_time_started: [required] Indicates the last time the schedule started n ISO 8601 date string. Valid values are:<br/> Success<br/> Failed 
-    :type last_run_time_started: str
+    :param last_run_time_start: [required] Indicates the last time the schedule started n ISO 8601 date string. Valid values are:<br/> Success<br/> Failed 
+    :type last_run_time_start: str
 
     :param paused:  Indicates whether or not the schedule is paused. 
     :type paused: bool
@@ -1762,8 +1762,8 @@ class Schedule(data_model.DataObject):
         documentation="[&#x27;Indicates the status of the last scheduled snapshot.&lt;br/&gt;&#x27;, &#x27;Valid values are:&lt;br/&gt;&#x27;, &#x27;Success&lt;br/&gt;&#x27;, &#x27;Failed&#x27;]",
         dictionaryType=None
     )
-    last_run_time_started = data_model.property(
-        "lastRunTimeStarted", str,
+    last_run_time_start = data_model.property(
+        "lastRunTimeStart", str,
         array=False, optional=False,
         documentation="[&#x27;Indicates the last time the schedule started n ISO 8601 date string.&#x27;, &#x27;Valid values are:&lt;br/&gt;&#x27;, &#x27;Success&lt;br/&gt;&#x27;, &#x27;Failed&#x27;]",
         dictionaryType=None
