@@ -262,7 +262,7 @@ class ApiSchedule(data_model.DataObject):
     )
 
     last_run_time_started = data_model.property(
-        "lastRunTimeStart", str,
+        "lastRunTimeStarted", str,
         array=False, optional=True,
         documentation="\
         Indicates the last time the schedule started n ISO 8601 date string.\
