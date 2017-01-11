@@ -7620,21 +7620,21 @@ class CreateScheduleResult(data_model.DataObject):
 
 class ShutdownRequest(data_model.DataObject):
     """ShutdownRequest  
-    :param nodes:  List of NodeIDs for the nodes to be shutdown. 
+    :param nodes: [required] List of NodeIDs for the nodes to be shutdown. 
     :type nodes: int
 
-    :param option: [required] Action to take for the node shutdown:restart: Restarts the node.halt: Performs full power-off of the node. 
+    :param option:  Action to take for the node shutdown:restart: Restarts the node.halt: Performs full power-off of the node. 
     :type option: str
     """
     nodes = data_model.property(
         "nodes", int,
-        array=True, optional=True,
+        array=True, optional=False,
         documentation="List of NodeIDs for the nodes to be shutdown.",
         dictionaryType=None
     )
     option = data_model.property(
         "option", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="Action to take for the node shutdown:restart: Restarts the node.halt: Performs full power-off of the node.",
         dictionaryType=None
     )
