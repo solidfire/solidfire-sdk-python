@@ -913,7 +913,7 @@ class Node(data_model.DataObject):
     :type uuid: UUID
 
     :param virtual_networks: [required] 
-    :type virtual_networks: int
+    :type virtual_networks: VirtualNetworkAddress
 
     :param attributes: [required] 
     :type attributes: dict
@@ -1003,7 +1003,7 @@ class Node(data_model.DataObject):
         dictionaryType=None
     )
     virtual_networks = data_model.property(
-        "virtualNetworks", int,
+        "virtualNetworks", VirtualNetworkAddress,
         array=True, optional=False,
         documentation="",
         dictionaryType=None
@@ -5320,59 +5320,13 @@ class ListInitiatorsResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class AddressBlock(data_model.DataObject):
-    """AddressBlock  
-    Unique Range of IP addresses to include in the virtual network.
-    :param start: [required] Start of the IP address range. 
-    :type start: str
-
-    :param size: [required] Number of IP addresses to include in the block. 
-    :type size: int
-    """
-    start = data_model.property(
-        "start", str,
-        array=False, optional=False,
-        documentation="Start of the IP address range.",
-        dictionaryType=None
-    )
-    size = data_model.property(
-        "size", int,
-        array=False, optional=False,
-        documentation="Number of IP addresses to include in the block.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class VirtualNetwork(data_model.DataObject):
     """VirtualNetwork  
     :param virtual_network_id: [required] SolidFire unique identifier for a virtual network. 
     :type virtual_network_id: int
 
-    :param virtual_network_tag: [required] VLAN Tag identifier. 
-    :type virtual_network_tag: int
-
-    :param address_blocks: [required] Range of address blocks currently assigned to the virtual network. <br/><b>available:</b> Binary string in "1"s and "0"s. 1 equals the IP is available and 0 equals the IP is not available. The string is read from right to left with the digit to the far right being the first IP address in the list of addressBlocks. <br/><b>size:</b> the size of this block of addresses. <br/><b>start:</b> first IP address in the block. 
-    :type address_blocks: AddressBlock
-
-    :param name: [required] The name assigned to the virtual network. 
-    :type name: str
-
-    :param netmask: [required] IP address of the netmask for the virtual network. 
-    :type netmask: str
-
-    :param svip: [required] Storage IP address for the virtual network. 
-    :type svip: str
-
-    :param gateway:   
-    :type gateway: str
-
-    :param namespace:   
-    :type namespace: bool
-
-    :param attributes: [required] List of Name/Value pairs in JSON object format. 
-    :type attributes: dict
+    :param address: [required] Virtual Network Address. 
+    :type address: IPAddress
     """
     virtual_network_id = data_model.property(
         "virtualNetworkID", int,
@@ -5380,52 +5334,10 @@ class VirtualNetwork(data_model.DataObject):
         documentation="SolidFire unique identifier for a virtual network.",
         dictionaryType=None
     )
-    virtual_network_tag = data_model.property(
-        "virtualNetworkTag", int,
+    address = data_model.property(
+        "address", IPAddress,
         array=False, optional=False,
-        documentation="VLAN Tag identifier.",
-        dictionaryType=None
-    )
-    address_blocks = data_model.property(
-        "addressBlocks", AddressBlock,
-        array=True, optional=False,
-        documentation="[&#x27;Range of address blocks currently assigned to the virtual network.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;available:&lt;/b&gt; Binary string in &quot;1&quot;s and &quot;0&quot;s. 1 equals the IP is available and 0 equals the IP is not available. The string is read from right to left with the digit to the far right being the first IP address in the list of addressBlocks.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;size:&lt;/b&gt; the size of this block of addresses.&#x27;, &#x27;&lt;br/&gt;&lt;b&gt;start:&lt;/b&gt; first IP address in the block.&#x27;]",
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation="[&#x27;The name assigned to the virtual network.&#x27;]",
-        dictionaryType=None
-    )
-    netmask = data_model.property(
-        "netmask", str,
-        array=False, optional=False,
-        documentation="[&#x27;IP address of the netmask for the virtual network.&#x27;]",
-        dictionaryType=None
-    )
-    svip = data_model.property(
-        "svip", str,
-        array=False, optional=False,
-        documentation="[&#x27;Storage IP address for the virtual network.&#x27;]",
-        dictionaryType=None
-    )
-    gateway = data_model.property(
-        "gateway", str,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    namespace = data_model.property(
-        "namespace", bool,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=False,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="Virtual Network Address.",
         dictionaryType=None
     )
 
@@ -5537,6 +5449,31 @@ class SetNetworkConfigResult(data_model.DataObject):
         "network", Network,
         array=False, optional=False,
         documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class AddressBlock(data_model.DataObject):
+    """AddressBlock  
+    Unique Range of IP addresses to include in the virtual network.
+    :param start: [required] Start of the IP address range. 
+    :type start: str
+
+    :param size: [required] Number of IP addresses to include in the block. 
+    :type size: int
+    """
+    start = data_model.property(
+        "start", str,
+        array=False, optional=False,
+        documentation="Start of the IP address range.",
+        dictionaryType=None
+    )
+    size = data_model.property(
+        "size", int,
+        array=False, optional=False,
+        documentation="Number of IP addresses to include in the block.",
         dictionaryType=None
     )
 
