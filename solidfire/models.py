@@ -1192,7 +1192,25 @@ class ListAllNodesResult(data_model.DataObject):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ShutdownResult(data_model.DataObject):
-    """ShutdownResult      """
+    """ShutdownResult  
+    :param failed: [required] 
+    :type failed: int
+
+    :param successful: [required] 
+    :type successful: int
+    """
+    failed = data_model.property(
+        "failed", int,
+        array=True, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    successful = data_model.property(
+        "successful", int,
+        array=True, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
