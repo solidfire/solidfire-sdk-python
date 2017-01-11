@@ -8,7 +8,7 @@ Python SDK library for interacting with SolidFire Element API
 Current Release
 ---------------
 
-Version 1.2.0.79
+Version 1.2.0.103
 
 Description
 -----------
@@ -37,36 +37,13 @@ ng-sf-host-integrations-sdk@netapp.com or reach out to the online
 developer community at `ThePub <http://netapp.io>`__. Your feedback
 helps us focus our efforts on new features and capabilities.
 
-Documentation (v1.1)
---------------------
+Documentation
+-------------
 
 `Latest Docs <https://pythonhosted.org/solidfire-sdk-python/>`__
 
 `Release
-Notes <https://github.com/solidfire/solidfire-sdk-python/blob/gh-pages/SolidFire_Python_SDK_Release_Notes_v1.1.pdf>`__
-
-Prerequisites
--------------
-
-The following prerequisites are required before installing the Solidfire
-SDK.
-
-+------------------------------------------------------------------+-----------+
-| Component                                                        | Version   |
-+==================================================================+===========+
-| `Requests <http://docs.python-requests.org/en/master/>`__        | 2.12.1+   |
-+------------------------------------------------------------------+-----------+
-
-To install globally with ``pip`` (requires pip 1.3 or greater)
-
-Requests
-~~~~~~~~
-
-Instructions for installing Requests.
-
-::
-
-    pip install requests
+Notes <https://github.com/solidfire/solidfire-sdk-python/blob/gh-pages/SolidFire_Python_SDK_Release_Notes_v1.2.pdf>`__
 
 Installation
 ------------
