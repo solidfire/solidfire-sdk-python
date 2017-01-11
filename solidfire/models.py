@@ -871,7 +871,7 @@ class VirtualNetworkAddress(data_model.DataObject):
     :type virtual_network_id: int
 
     :param address: [required] Virtual Network Address. 
-    :type address: IPAddress
+    :type address: str
     """
     virtual_network_id = data_model.property(
         "virtualNetworkID", int,
@@ -880,7 +880,7 @@ class VirtualNetworkAddress(data_model.DataObject):
         dictionaryType=None
     )
     address = data_model.property(
-        "address", IPAddress,
+        "address", str,
         array=False, optional=False,
         documentation="Virtual Network Address.",
         dictionaryType=None
