@@ -4836,24 +4836,24 @@ class ModifyStorageContainerResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class InvokeSFApiRequest(data_model.DataObject):
-    """InvokeSFApiRequest  
-    :param method: [required] The name of the method to invoke. This is case sensitive. 
-    :type method: str
+class ListVolumeAccessGroupsRequest(data_model.DataObject):
+    """ListVolumeAccessGroupsRequest  
+    :param start_volume_access_group_id:  The lowest VolumeAccessGroupID to return. This can be useful for paging. If unspecified, there is no lower limit (implicitly 0). 
+    :type start_volume_access_group_id: int
 
-    :param parameters:  An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked. 
-    :type parameters: dict
+    :param limit:  The maximum number of results to return. This can be useful for paging. 
+    :type limit: int
     """
-    method = data_model.property(
-        "method", str,
-        array=False, optional=False,
-        documentation="The name of the method to invoke. This is case sensitive.",
+    start_volume_access_group_id = data_model.property(
+        "startVolumeAccessGroupID", int,
+        array=False, optional=True,
+        documentation="[&#x27;The lowest VolumeAccessGroupID to return.&#x27;, &#x27;This can be useful for paging.&#x27;, &#x27;If unspecified, there is no lower limit (implicitly 0).&#x27;]",
         dictionaryType=None
     )
-    parameters = data_model.property(
-        "parameters", dict,
+    limit = data_model.property(
+        "limit", int,
         array=False, optional=True,
-        documentation="[&#x27;An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked.&#x27;]",
+        documentation="[&#x27;The maximum number of results to return.&#x27;, &#x27;This can be useful for paging.&#x27;]",
         dictionaryType=None
     )
 
@@ -10581,24 +10581,24 @@ class CloneMultipleVolumesRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVolumeAccessGroupsRequest(data_model.DataObject):
-    """ListVolumeAccessGroupsRequest  
-    :param start_volume_access_group_id:  The lowest VolumeAccessGroupID to return. This can be useful for paging. If unspecified, there is no lower limit (implicitly 0). 
-    :type start_volume_access_group_id: int
+class InvokeSFApiRequest(data_model.DataObject):
+    """InvokeSFApiRequest  
+    :param method: [required] The name of the method to invoke. This is case sensitive. 
+    :type method: str
 
-    :param limit:  The maximum number of results to return. This can be useful for paging. 
-    :type limit: int
+    :param parameters:  An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked. 
+    :type parameters: dict
     """
-    start_volume_access_group_id = data_model.property(
-        "startVolumeAccessGroupID", int,
-        array=False, optional=True,
-        documentation="[&#x27;The lowest VolumeAccessGroupID to return.&#x27;, &#x27;This can be useful for paging.&#x27;, &#x27;If unspecified, there is no lower limit (implicitly 0).&#x27;]",
+    method = data_model.property(
+        "method", str,
+        array=False, optional=False,
+        documentation="The name of the method to invoke. This is case sensitive.",
         dictionaryType=None
     )
-    limit = data_model.property(
-        "limit", int,
+    parameters = data_model.property(
+        "parameters", dict,
         array=False, optional=True,
-        documentation="[&#x27;The maximum number of results to return.&#x27;, &#x27;This can be useful for paging.&#x27;]",
+        documentation="[&#x27;An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked.&#x27;]",
         dictionaryType=None
     )
 
