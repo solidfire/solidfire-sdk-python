@@ -640,7 +640,7 @@ class ServiceBase(object):
             )
 
         if 'error' in response:
-            raise ApiServerError(method_name, response['error'])
+            raise ApiServerError(method_name, json.dumps(response))
         else:
             return model.extract(result_type, response['result'])
 
