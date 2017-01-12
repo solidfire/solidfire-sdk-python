@@ -1841,35 +1841,6 @@ class Element(ServiceBase):
             since=9
         )
 
-    def invoke_sfapi(
-            self,
-            method,
-            parameters=OPTIONAL,):
-        """
-        This will invoke any API method supported by the SolidFire API for the version and port the connection is using.
-        Returns a nested hashtable of key/value pairs that contain the result of the invoked method.
-        :param method: [required] The name of the method to invoke. This is case sensitive. 
-        :type method: str
-
-        :param parameters:  An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked. 
-        :type parameters: dict
-        """
-
-        self._check_connection_type("invoke_sfapi", "Both")
-
-        params = { 
-            "method": method,
-        }
-        if parameters is not None:
-            params["parameters"] = parameters
-        
-        # There is an adaptor!
-        since = 1.0
-        deprecated = None
-
-        return ElementServiceAdaptor.invoke_sfapi(self, params,
-                                                  since, deprecated)
-
     def add_ldap_cluster_admin(
             self,
             username,
@@ -5897,4 +5868,33 @@ class Element(ServiceBase):
             params,
             since=9
         )
+
+    def invoke_sfapi(
+            self,
+            method,
+            parameters=OPTIONAL,):
+        """
+        This will invoke any API method supported by the SolidFire API for the version and port the connection is using.
+        Returns a nested hashtable of key/value pairs that contain the result of the invoked method.
+        :param method: [required] The name of the method to invoke. This is case sensitive. 
+        :type method: str
+
+        :param parameters:  An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked. 
+        :type parameters: dict
+        """
+
+        self._check_connection_type("invoke_sfapi", "Both")
+
+        params = { 
+            "method": method,
+        }
+        if parameters is not None:
+            params["parameters"] = parameters
+        
+        # There is an adaptor!
+        since = 1.0
+        deprecated = None
+
+        return ElementServiceAdaptor.invoke_sfapi(self, params,
+                                                  since, deprecated)
 
