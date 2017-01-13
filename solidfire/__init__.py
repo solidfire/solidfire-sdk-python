@@ -49,6 +49,52 @@ class Element(ServiceBase):
         ServiceBase.__init__(self, mvip, username, password, api_version,
                              verify_ssl, dispatcher)
 
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
+=======
+    def add_account(
+            self,
+            username,
+            initiator_secret=OPTIONAL,
+            target_secret=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        Used to add a new account to the system.
+        New volumes can be created under the new account.
+        The CHAP settings specified for the account applies to all volumes owned by the account.
+        :param username: [required] Unique username for this account. (May be 1 to 64 characters in length). 
+        :type username: str
+
+        :param initiatorSecret:  CHAP secret to use for the initiator. Should be 12-16 characters long and impenetrable. The CHAP initiator secrets must be unique and cannot be the same as the target CHAP secret.  If not specified, a random secret is created. 
+        :type initiatorSecret: CHAPSecret
+
+        :param targetSecret:  CHAP secret to use for the target (mutual CHAP authentication). Should be 12-16 characters long and impenetrable. The CHAP target secrets must be unique and cannot be the same as the initiator CHAP secret.  If not specified, a random secret is created. 
+        :type targetSecret: CHAPSecret
+
+        :param attributes:  List of Name/Value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("add_account", "Cluster")
+
+        params = { 
+            "username": username,
+        }
+        if initiator_secret is not None:
+            params["initiatorSecret"] = initiator_secret
+        if target_secret is not None:
+            params["targetSecret"] = target_secret
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'AddAccount',
+            AddAccountResult,
+            params,
+            since=1
+        )
+
+>>>>>>> SDK-452 documentation cleanup
     def get_account_by_id(
             self,
             account_id,):
@@ -400,6 +446,7 @@ class Element(ServiceBase):
             since=6
         )
 
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
     def modify_cluster_full_threshold(
             self,
             stage2_aware_threshold=OPTIONAL,
@@ -576,6 +623,8 @@ class Element(ServiceBase):
             since=6
         )
 
+=======
+>>>>>>> SDK-452 documentation cleanup
     def add_cluster_admin(
             self,
             username,
@@ -909,6 +958,29 @@ class Element(ServiceBase):
             since=8
         )
 
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
+=======
+    def enable_encryption_at_rest(
+            self,):
+        """
+        The EnableEncryptionAtRest method is used to enable the Advanced Encryption Standard (AES) 256-bit encryption at rest on the cluster so that the cluster can manage the encryption key used for the drives on each node. This feature is not enabled by default. Enabling this operation allows the cluster to automatically manage encryption keys internally for the drives on each node in the cluster. Nodes do not store the keys to unlock drives and the keys are never passed over the network. Two nodes participating in a cluster are required to access the key to disable encryption on a drive. The encryption management does not affect performance or efficiency on the cluster. If an encryption-enabled drive or node is removed from the cluster with the API, all data is secure erased and any data left on the drive cannot be read or accessed.
+        Enabling or disabling encryption should be performed when the cluster is running and in a healthy state. Encryption can be enabled or disabled at your discretion and can be performed as often as you need.
+        Note: This process is asynchronous and returns a response before encryption is enabled. The GetClusterInfo method can be used to poll the system to see when the process has completed.        """
+
+        self._check_connection_type("enable_encryption_at_rest", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'EnableEncryptionAtRest',
+            EnableEncryptionAtRestResult,
+            params,
+            since=5
+        )
+
+>>>>>>> SDK-452 documentation cleanup
     def enable_snmp(
             self,
             snmp_v3_enabled,):
@@ -969,6 +1041,29 @@ class Element(ServiceBase):
             since=1
         )
 
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
+=======
+    def get_cluster_config(
+            self,):
+        """
+        The GetClusterConfig API method is used to return information about the cluster configuration this node uses to communicate with the cluster it is a part of.
+        
+        Note: This method is available only through the per-node API endpoint 5.0 or later.        """
+
+        self._check_connection_type("get_cluster_config", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetClusterConfig',
+            GetClusterConfigResult,
+            params,
+            since=5
+        )
+
+>>>>>>> SDK-452 documentation cleanup
     def get_cluster_full_threshold(
             self,):
         """
@@ -1155,6 +1250,49 @@ class Element(ServiceBase):
             since=8
         )
 
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
+=======
+    def get_snmp_info(
+            self,):
+        """
+        GetSnmpInfo is used to return the current simple network management protocol (SNMP) configuration information.
+        
+        Note: GetSnmpInfo will be available for Element OS 8 and prior releases. It will be deprecated after Element OS 8. There are two new SNMP API methods that you should migrate over to. They are GetSnmpState and GetSnmpACL. Please see details in this document for their descriptions and usage.        """
+
+        self._check_connection_type("get_snmp_info", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetSnmpInfo',
+            GetSnmpInfoResult,
+            params,
+            since=1
+        )
+
+    def get_snmp_state(
+            self,):
+        """
+        GetSnmpState is used to return the current state of the SNMP feature.
+        
+        Note: GetSnmpState is new for Element OS 8. Please use this method and SetSnmpACL to migrate your SNMP functionality in the future.        """
+
+        self._check_connection_type("get_snmp_state", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetSnmpState',
+            GetSnmpStateResult,
+            params,
+            since=8
+        )
+
+>>>>>>> SDK-452 documentation cleanup
     def get_snmp_trap_info(
             self,):
         """
@@ -1208,6 +1346,52 @@ class Element(ServiceBase):
             since=1
         )
 
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
+=======
+    def list_cluster_faults(
+            self,
+            exceptions=OPTIONAL,
+            best_practices=OPTIONAL,
+            update=OPTIONAL,
+            fault_types=OPTIONAL,):
+        """
+        ListClusterFaults is used to retrieve information about any faults detected on the cluster.
+        With this method, both current and resolved faults can be retrieved. The system caches faults every 30 seconds.
+        :param exceptions:  
+        :type exceptions: bool
+
+        :param bestPractices:  Include faults triggered by sub-optimal system configuration. Possible values: true, false 
+        :type bestPractices: bool
+
+        :param update:  
+        :type update: bool
+
+        :param faultTypes:  Determines the types of faults returned: current: List active, unresolved faults. resolved: List faults that were previously detected and resolved. all: (Default) List both current and resolved faults. You can see the fault status in the 'resolved' field of the Cluster Fault object. 
+        :type faultTypes: str
+        """
+
+        self._check_connection_type("list_cluster_faults", "Cluster")
+
+        params = { 
+        }
+        if exceptions is not None:
+            params["exceptions"] = exceptions
+        if best_practices is not None:
+            params["bestPractices"] = best_practices
+        if update is not None:
+            params["update"] = update
+        if fault_types is not None:
+            params["faultTypes"] = fault_types
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListClusterFaults',
+            ListClusterFaultsResult,
+            params,
+            since=1
+        )
+
+>>>>>>> SDK-452 documentation cleanup
     def list_events(
             self,
             max_events=OPTIONAL,
@@ -1313,9 +1497,251 @@ class Element(ServiceBase):
             since=1
         )
 
+    def modify_cluster_full_threshold(
+            self,
+            stage2_aware_threshold=OPTIONAL,
+            stage3_block_threshold_percent=OPTIONAL,
+            max_metadata_over_provision_factor=OPTIONAL,):
+        """
+        ModifyClusterFullThreshold is used to change the level at which an event is generated when the storage cluster approaches the capacity utilization requested. The number entered in this setting is used to indicate the number of node failures the system is required to recover from. For example, on a 10 node cluster, if you want to be alerted when the system cannot recover from 3 nodes failures, enter the value of "3". When this number is reached, a message alert is sent to the Event Log in the Cluster Management Console.
+        :param stage2AwareThreshold:  Number of nodes worth of capacity remaining on the cluster that triggers a notification. 
+        :type stage2AwareThreshold: int
+
+        :param stage3BlockThresholdPercent:  Percent below "Error" state to raise a cluster "Warning" alert. 
+        :type stage3BlockThresholdPercent: int
+
+        :param maxMetadataOverProvisionFactor:  A value representative of the number of times metadata space can be over provisioned relative to the amount of space available. For example, if there was enough metadata space to store 100 TiB of volumes and this number was set to 5, then 500 TiB worth of volumes could be created. 
+        :type maxMetadataOverProvisionFactor: int
+        """
+
+        self._check_connection_type("modify_cluster_full_threshold", "Cluster")
+
+        params = { 
+        }
+        if stage2_aware_threshold is not None:
+            params["stage2AwareThreshold"] = stage2_aware_threshold
+        if stage3_block_threshold_percent is not None:
+            params["stage3BlockThresholdPercent"] = stage3_block_threshold_percent
+        if max_metadata_over_provision_factor is not None:
+            params["maxMetadataOverProvisionFactor"] = max_metadata_over_provision_factor
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyClusterFullThreshold',
+            ModifyClusterFullThresholdResult,
+            params,
+            since=1
+        )
+
+    def remove_cluster_admin(
+            self,
+            cluster_admin_id,):
+        """
+        RemoveClusterAdmin is used to remove a Cluster Admin. The "admin" Cluster Admin cannot be removed.
+        :param clusterAdminID: [required] ClusterAdminID for the Cluster Admin to remove. 
+        :type clusterAdminID: int
+        """
+
+        self._check_connection_type("remove_cluster_admin", "Cluster")
+
+        params = { 
+            "clusterAdminID": cluster_admin_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RemoveClusterAdmin',
+            RemoveClusterAdminResult,
+            params,
+            since=1
+        )
+
+    def set_cluster_config(
+            self,
+            cluster,):
+        """
+        The SetClusterConfig API method is used to set the configuration this node uses to communicate with the cluster it is associated with. To see the states in which these objects can be modified see Cluster Object on page 109. To display the current cluster interface settings for a node, run the GetClusterConfig API method.
+        
+        Note: This method is available only through the per-node API endpoint 5.0 or later.
+        :param cluster: [required] Objects that are changed for the cluster interface settings. Only the fields you want changed need to be added to this method as objects in the "cluster" parameter. 
+        :type cluster: ClusterConfig
+        """
+
+        self._check_connection_type("set_cluster_config", "Node")
+
+        params = { 
+            "cluster": cluster,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetClusterConfig',
+            SetClusterConfigResult,
+            params,
+            since=5
+        )
+
+    def set_ntp_info(
+            self,
+            servers,
+            broadcastclient=OPTIONAL,):
+        """
+        SetNtpInfo is used to configure the NTP on cluster nodes. The values set with this interface apply to all nodes in the cluster. The nodes can only be configured as a server where a host is selected to administrate the networking and/or a broadcast client where each host sends each message to each peer.
+        :param servers: [required] List of NTP servers to add to each node's NTP configuration. 
+        :type servers: str
+
+        :param broadcastclient:  Enable every node in the cluster as a broadcase client. 
+        :type broadcastclient: bool
+        """
+
+        self._check_connection_type("set_ntp_info", "Cluster")
+
+        params = { 
+            "servers": servers,
+        }
+        if broadcastclient is not None:
+            params["broadcastclient"] = broadcastclient
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetNtpInfo',
+            SetNtpInfoResult,
+            params,
+            since=1
+        )
+
+    def set_snmp_acl(
+            self,
+            networks,
+            usm_users,):
+        """
+        SetSnmpACL is used to configure SNMP access permissions on the cluster nodes. The values set with this interface apply to all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpACL. Also note that the values set with this interface replace all "network" or "usmUsers" values set with the older SetSnmpInfo.
+        :param networks: [required] List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. REQUIRED if SNMP v# is disabled. 
+        :type networks: SnmpNetwork
+
+        :param usmUsers: [required] List of users and the type of access they have to the SNMP servers running on the cluster nodes. REQUIRED if SNMP v3 is enabled. 
+        :type usmUsers: SnmpV3UsmUser
+        """
+
+        self._check_connection_type("set_snmp_acl", "Cluster")
+
+        params = { 
+            "networks": networks,
+            "usmUsers": usm_users,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetSnmpACL',
+            SetSnmpACLResult,
+            params,
+            since=8
+        )
+
+    def set_snmp_info(
+            self,
+            networks=OPTIONAL,
+            enabled=OPTIONAL,
+            snmp_v3_enabled=OPTIONAL,
+            usm_users=OPTIONAL,):
+        """
+        SetSnmpInfo is used to configure SNMP v2 and v3 on the cluster nodes. The values set with this interface apply to all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpInfo.
+        
+        Note: EnableSnmp and SetSnmpACL methods can be used to accomplish the same results as SetSnmpInfo. SetSnmpInfo will no longer be available after the Element 8 release. Please use EnableSnmp and SetSnmpACL in the future.
+        :param networks:  List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. SNMP v2 only. 
+        :type networks: SnmpNetwork
+
+        :param enabled:  If set to "true", then SNMP is enabled on each node in the cluster. 
+        :type enabled: bool
+
+        :param snmpV3Enabled:  If set to "true", then SNMP v3 is enabled on each node in the cluster. 
+        :type snmpV3Enabled: bool
+
+        :param usmUsers:  If SNMP v3 is enabled, this value must be passed in place of the "networks" parameter. SNMP v3 only. 
+        :type usmUsers: SnmpV3UsmUser
+        """
+
+        self._check_connection_type("set_snmp_info", "Cluster")
+
+        params = { 
+        }
+        if networks is not None:
+            params["networks"] = networks
+        if enabled is not None:
+            params["enabled"] = enabled
+        if snmp_v3_enabled is not None:
+            params["snmpV3Enabled"] = snmp_v3_enabled
+        if usm_users is not None:
+            params["usmUsers"] = usm_users
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetSnmpInfo',
+            SetSnmpInfoResult,
+            params,
+            since=1
+        )
+
+    def set_snmp_trap_info(
+            self,
+            trap_recipients,
+            cluster_fault_traps_enabled,
+            cluster_fault_resolved_traps_enabled,
+            cluster_event_traps_enabled,):
+        """
+        SetSnmpTrapInfo is used to enable and disable the generation of SolidFire SNMP notifications (traps) and to specify the set of network host computers that are to receive the notifications. The values passed with each SetSnmpTrapInfo method replaces all values set in any previous method to SetSnmpTrapInfo.
+        :param trapRecipients: [required] List of hosts that are to receive the traps generated by the Cluster Master. At least one object is required if any one of the trap types is enabled. 
+        :type trapRecipients: SnmpTrapRecipient
+
+        :param clusterFaultTrapsEnabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterFaultNotification is sent to the configured list of trap recipients. 
+        :type clusterFaultTrapsEnabled: bool
+
+        :param clusterFaultResolvedTrapsEnabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterFaultResolvedNotification is sent to the configured list of trap recipients. 
+        :type clusterFaultResolvedTrapsEnabled: bool
+
+        :param clusterEventTrapsEnabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterEventNotification is sent to the configured list of trap recipients. 
+        :type clusterEventTrapsEnabled: bool
+        """
+
+        self._check_connection_type("set_snmp_trap_info", "Cluster")
+
+        params = { 
+            "trapRecipients": trap_recipients,
+            "clusterFaultTrapsEnabled": cluster_fault_traps_enabled,
+            "clusterFaultResolvedTrapsEnabled": cluster_fault_resolved_traps_enabled,
+            "clusterEventTrapsEnabled": cluster_event_traps_enabled,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetSnmpTrapInfo',
+            SetSnmpTrapInfoResult,
+            params,
+            since=5
+        )
+
+    def snmp_send_test_traps(
+            self,):
+        """
+        SnmpSendTestTraps enables you to test SNMP functionality for a cluster. This method instructs the cluster to send test SNMP traps to the currently configured SNMP manager.        """
+
+        self._check_connection_type("snmp_send_test_traps", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SnmpSendTestTraps',
+            SnmpSendTestTrapsResult,
+            params,
+            since=6
+        )
+
     def enable_encryption_at_rest(
             self,):
         """
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
         The EnableEncryptionAtRest method is used to enable the Advanced Encryption Standard (AES) 256-bit encryption at rest on the cluster so that the cluster can manage the encryption key used for the drives on each node. This feature is not enabled by default. Enabling this operation allows the cluster to automatically manage encryption keys internally for the drives on each node in the cluster. Nodes do not store the keys to unlock drives and the keys are never passed over the network. Two nodes participating in a cluster are required to access the key to disable encryption on a drive. The encryption management does not affect performance or efficiency on the cluster. If an encryption-enabled drive or node is removed from the cluster with the API, all data is secure erased and any data left on the drive cannot be read or accessed.
         Enabling or disabling encryption should be performed when the cluster is running and in a healthy state. Encryption can be enabled or disabled at your discretion and can be performed as often as you need.
         Note: This process is asynchronous and returns a response before encryption is enabled. The GetClusterInfo method can be used to poll the system to see when the process has completed.        """
@@ -1335,6 +1761,20 @@ class Element(ServiceBase):
 
     def get_snmp_info(
             self,):
+=======
+        AddDrives is used to add one or more available drives to the cluster enabling the drives to host a portion of the cluster's data.
+        When you add a node to the cluster or install new drives in an existing node, the new drives are marked as "available" and must be added via AddDrives before they can be utilized.
+        Use the "ListDrives" method to display drives that are "available" to be added.
+        When you add multiple drives, it is more efficient to add them in a single "AddDrives" method call rather than multiple individual methods with a single drive each.
+        This reduces the amount of data balancing that must occur to stabilize the storage load on the cluster.
+        
+        When you add a drive, the system automatically determines the "type" of drive it should be.
+        
+        The method returns immediately. However, it may take some time for the data in the cluster to be rebalanced using the newly added drives.
+        As the new drive(s) are syncing on the system, you can use the "ListSyncJobs" method to see how the drive(s) are being rebalanced and the progress of adding the new drive.
+        :param drives: [required] List of drives to add to the cluster. 
+        :type drives: NewDrive
+>>>>>>> SDK-452 documentation cleanup
         """
         GetSnmpInfo is used to return the current simple network management protocol (SNMP) configuration information.
         
@@ -1360,10 +1800,16 @@ class Element(ServiceBase):
             update=OPTIONAL,
             fault_types=OPTIONAL,):
         """
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
         ListClusterFaults is used to retrieve information about any faults detected on the cluster.
         With this method, both current and resolved faults can be retrieved. The system caches faults every 30 seconds.
         :param exceptions:  
         :type exceptions: bool
+=======
+        GetDriveConfig is used to display drive information for expected slice and block drive counts as well as the number of slices and block drives that are currently connected to the node.
+        
+        Note: This method is available only through the per-node API endpoint 5.0 or later.        """
+>>>>>>> SDK-452 documentation cleanup
 
         :param bestPractices:  Include faults triggered by sub-optimal system configuration. Possible values: true, false 
         :type bestPractices: bool
@@ -1849,6 +2295,7 @@ class Element(ServiceBase):
             since=9
         )
 
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
     def disable_ldap_authentication(
             self,):
         """
@@ -1918,6 +2365,36 @@ class Element(ServiceBase):
             params,
             since=7
         )
+=======
+    def invoke_sfapi(
+            self,
+            method,
+            parameters=OPTIONAL,):
+        """
+        This will invoke any API method supported by the SolidFire API for the version and port the connection is using.
+        Returns a nested hashtable of key/value pairs that contain the result of the invoked method.
+        :param method: [required] The name of the method to invoke. This is case sensitive. 
+        :type method: str
+
+        :param parameters:  An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked. 
+        :type parameters: dict
+        """
+
+        self._check_connection_type("invoke_sfapi", "Both")
+
+        params = { 
+            "method": method,
+        }
+        if parameters is not None:
+            params["parameters"] = parameters
+        
+        # There is an adaptor!
+        since = 1.0
+        deprecated = None
+
+        return ElementServiceAdaptor.invoke_sfapi(self, params,
+                                                  since, deprecated)
+>>>>>>> SDK-452 documentation cleanup
 
     def add_ldap_cluster_admin(
             self,
@@ -2210,6 +2687,98 @@ class Element(ServiceBase):
             since=7
         )
 
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
+=======
+    def add_nodes(
+            self,
+            pending_nodes,):
+        """
+        AddNodes is used to add one or more new nodes to the cluster. When a node is not configured and starts up for the first time you are prompted to configure the node. Once a node is configured it is registered as a "pending node" with the cluster.
+        
+        Adding a node to a cluster that has been set up for virtual networking will require a sufficient number of virtual storage IP addresses to allocate a virtual IP to the new node. If there are no virtual IP addresses available for the new node, the AddNode operation will not complete successfully. Use the "ModifyVirtualNetwork" method to add more storage IP addresses to your virtual network.
+        
+        The software version on each node in a cluster must be compatible. Run the "ListAllNodes" API to see what versions of software are currently running on the cluster nodes. For an explanation of software version compatibility, see "Node Versioning and Compatibility" in the Element API guide.
+        
+        Once a node has been added, the drives on the node are made available and can then be added via the "AddDrives" method to increase the storage capacity of the cluster.
+        
+        Note: It may take several seconds after adding a new Node for it to start up and register the drives as being available.
+        :param pendingNodes: [required] List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method. 
+        :type pendingNodes: int
+        """
+
+        self._check_connection_type("add_nodes", "Cluster")
+
+        params = { 
+            "pendingNodes": pending_nodes,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'AddNodes',
+            AddNodesResult,
+            params,
+            since=1
+        )
+
+    def get_bootstrap_config(
+            self,):
+        """
+        GetBootstrapConfig returns the cluster name and node name from the bootstrap configuration file. This API method should be performed on an individual node before it has been configured into a cluster. The resulting information from this method is used in the Cluster Configuration UI when the cluster is eventually created.        """
+
+        self._check_connection_type("get_bootstrap_config", "Both")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetBootstrapConfig',
+            GetBootstrapConfigResult,
+            params,
+            since=2
+        )
+
+    def get_config(
+            self,):
+        """
+        The GetConfig API method is used to retrieve all the configuration information for the node. This one API method includes the same information available in both "GetClusterConfig" and "GetNetworkConfig" methods.
+        
+        Note: This method is available only through the per-node API endpoint 5.0 or later.        """
+
+        self._check_connection_type("get_config", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetConfig',
+            GetConfigResult,
+            params,
+            since=5
+        )
+
+    def get_network_config(
+            self,):
+        """
+        The GetNetworkConfig API method is used to display the network configuration information for a node.
+        
+        Note: This method is available only through the per-node API endpoint 5.0 or later.        """
+
+        self._check_connection_type("get_network_config", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetNetworkConfig',
+            GetNetworkConfigResult,
+            params,
+            since=5
+        )
+
+>>>>>>> SDK-452 documentation cleanup
     def get_node_stats(
             self,
             node_id,):
@@ -2255,6 +2824,29 @@ class Element(ServiceBase):
             since=9
         )
 
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
+=======
+    def get_pending_operation(
+            self,):
+        """
+        GetPendingOperation is used to detect an operation on a node that is currently in progress. This method can also be used to report back when an operation has completed.
+        
+        Note: This method is available only through the per-node API endpoint 5.0 or later.        """
+
+        self._check_connection_type("get_pending_operation", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetPendingOperation',
+            GetPendingOperationResult,
+            params,
+            since=5
+        )
+
+>>>>>>> SDK-452 documentation cleanup
     def list_active_nodes(
             self,):
         """
@@ -2346,8 +2938,20 @@ class Element(ServiceBase):
             since=1
         )
 
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
     def get_bootstrap_config(
             self,):
+=======
+    def remove_nodes(
+            self,
+            nodes,):
+        """
+        RemoveNodes is used to remove one or more nodes that should no longer participate in the cluster. Before removing a node, all drives it contains must first be removed with "RemoveDrives" method. A node cannot be removed until the RemoveDrives process has completed and all data has been migrated away from the node.
+        
+        Once removed, a node registers itself as a pending node and can be added again, or shut down which removes it from the "Pending Node" list.
+        :param nodes: [required] List of NodeIDs for the nodes to be removed. 
+        :type nodes: int
+>>>>>>> SDK-452 documentation cleanup
         """
         GetBootstrapConfig returns the cluster name and node name from the bootstrap configuration file. This API method should be performed on an individual node before it has been configured into a cluster. The resulting information from this method is used in the Cluster Configuration UI when the cluster is eventually created.        """
 
@@ -2366,7 +2970,19 @@ class Element(ServiceBase):
 
     def add_nodes(
             self,
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
             pending_nodes,):
+=======
+            config,):
+        """
+        The SetConfig API method is used to set all the configuration information for the node. This includes the same information available via calls to SetClusterConfig and SetNetworkConfig in one API method.
+        
+        Warning! Changing the 'bond-mode' on a node can cause a temporary loss of network connectivity. Caution should be taken when using this method.
+        
+        Note: This method is available only through the per-node API endpoint 5.0 or later.
+        :param config: [required] Objects that you want changed for the cluster interface settings. 
+        :type config: Config
+>>>>>>> SDK-452 documentation cleanup
         """
         AddNodes is used to add one or more new nodes to the cluster. When a node is not configured and starts up for the first time you are prompted to configure the node. Once a node is configured it is registered as a "pending node" with the cluster.
         
@@ -2633,6 +3249,15 @@ class Element(ServiceBase):
         This method should be run on both the source and target volumes that are paired together.
         :param volumeID: [required] ID of the volume on which to stop the replication process. 
         :type volumeID: int
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
+=======
+
+        :param pausedManual:  Valid values that can be entered: true: to pause volume replication. false: to restart volume replication. If no value is specified, no change in replication is performed. 
+        :type pausedManual: bool
+
+        :param mode:  Volume replication mode. Possible values: Async: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster. Sync: The source acknowledges the write when the data is stored locally and on the remote cluster. SnapshotsOnly: Only snapshots created on the source cluster will be replicated. Active writes from the source volume are not replicated. 
+        :type mode: str
+>>>>>>> SDK-452 documentation cleanup
         """
 
         self._check_connection_type("remove_volume_pair", "Cluster")
@@ -2649,8 +3274,19 @@ class Element(ServiceBase):
             since=6
         )
 
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
     def start_cluster_pairing(
             self,):
+=======
+    def remove_cluster_pair(
+            self,
+            cluster_pair_id,):
+        """
+        You can use the RemoveClusterPair method to close the open connections between two paired clusters.
+        Note: Before you remove a cluster pair, you must first remove all volume pairing to the clusters with the "RemoveVolumePair" API method.
+        :param clusterPairID: [required] Unique identifier used to pair two clusters. 
+        :type clusterPairID: int
+>>>>>>> SDK-452 documentation cleanup
         """
         StartClusterPairing is used to create an encoded key from a cluster that is used to pair with another cluster.
         The key created from this API method is used in the "CompleteClusterPairing" API method to establish a cluster pairing.
@@ -2908,6 +3544,58 @@ class Element(ServiceBase):
             since=1
         )
 
+    def get_ipmi_config(
+            self,
+            force,
+            chassis_type=OPTIONAL,):
+        """
+        GetIpmiConfig enables you to retrieve hardware sensor information from sensors that are in your node.
+        :param chassisType:  Used to display information for each node chassis type. Valid values:all - returns sensor information for each chassis type. {chassis type} - returns sensor information for a specified chassis type. 
+        :type chassisType: str
+
+        :param force: [required] 
+        :type force: bool
+        """
+
+        self._check_connection_type("get_ipmi_config", "Cluster")
+
+        params = { 
+            "force": force,
+        }
+        if chassis_type is not None:
+            params["chassisType"] = chassis_type
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetIpmiConfig',
+            GetIpmiConfigResult,
+            params,
+            since=9
+        )
+
+    def get_ipmi_info(
+            self,
+            force,):
+        """
+        GetIpmiInfo allows you to display a detailed reporting of sensors (objects) for node fans, intake and exhaust temperatures, and power supplies  that are monitored by . 
+        :param force: [required] 
+        :type force: bool
+        """
+
+        self._check_connection_type("get_ipmi_info", "Cluster")
+
+        params = { 
+            "force": force,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetIpmiInfo',
+            GetIpmiInfoResult,
+            params,
+            since=9
+        )
+
     def list_services(
             self,):
         """
@@ -2937,6 +3625,16 @@ class Element(ServiceBase):
         :param snapshotID: [required] The ID of the snapshot to delete. 
         :type snapshotID: int
         """
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
+=======
+        CreateGroupSnapshot is used to create a point-in-time copy of a group of volumes.
+        The snapshot created can then be used later as a backup or rollback to ensure the data on the group of volumes is consistent for the point in time in which the snapshot was created.
+        
+        Note: Creating a group snapshot is allowed if cluster fullness is at stage 2 or 3.
+        Snapshots are not created when cluster fullness is at stage 4 or 5.
+        :param volumes: [required] Unique ID of the volume image from which to copy. 
+        :type volumes: int
+>>>>>>> SDK-452 documentation cleanup
 
         self._check_connection_type("delete_snapshot", "Cluster")
 
@@ -3841,6 +4539,7 @@ class Element(ServiceBase):
             virtual_network_ids=OPTIONAL,
             virtual_network_tags=OPTIONAL,):
         """
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
         ListVirtualNetworks is used to get a list of all the configured virtual networks for the cluster. This method can be used to verify the virtual network settings in the cluster.
         
         This method does not require any parameters to be passed. But, one or more VirtualNetworkIDs or VirtualNetworkTags can be passed in order to filter the results.
@@ -3889,6 +4588,8 @@ class Element(ServiceBase):
             namespace=OPTIONAL,
             attributes=OPTIONAL,):
         """
+=======
+>>>>>>> SDK-452 documentation cleanup
         AddVirtualNetwork is used to add a new virtual network to a cluster configuration. When a virtual network is added, an interface for each node is created and each will require a virtual network IP address. The number of IP addresses specified as a parameter for this API method must be equal to or greater than the number of nodes in the cluster. Virtual network addresses are bulk provisioned by SolidFire and assigned to individual nodes automatically. Virtual network addresses do not need to be assigned to nodes manually.
         
         Note: The AddVirtualNetwork method is used only to create a new virtual network. If you want to make changes to a virtual network, please use the ModifyVirtualNetwork method.
@@ -4176,30 +4877,6 @@ class Element(ServiceBase):
             since=9
         )
 
-    def list_virtual_volume_tasks(
-            self,
-            virtual_volume_task_ids=OPTIONAL,):
-        """
-        ListVirtualVolumeTasks returns a list of VVol Async Tasks.
-        :param virtualVolumeTaskIDs:  
-        :type virtualVolumeTaskIDs: UUID
-        """
-
-        self._check_connection_type("list_virtual_volume_tasks", "Cluster")
-
-        params = { 
-        }
-        if virtual_volume_task_ids is not None:
-            params["virtualVolumeTaskIDs"] = virtual_volume_task_ids
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVirtualVolumeTasks',
-            ListVirtualVolumeTasksResult,
-            params,
-            since=9
-        )
-
     def list_virtual_volumes(
             self,
             details=OPTIONAL,
@@ -4248,6 +4925,74 @@ class Element(ServiceBase):
             since=9
         )
 
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
+=======
+    def list_virtual_volume_tasks(
+            self,
+            virtual_volume_task_ids=OPTIONAL,):
+        """
+        ListVirtualVolumeTasks returns a list of VVol Async Tasks.
+        :param virtualVolumeTaskIDs:  
+        :type virtualVolumeTaskIDs: UUID
+        """
+
+        self._check_connection_type("list_virtual_volume_tasks", "Cluster")
+
+        params = { 
+        }
+        if virtual_volume_task_ids is not None:
+            params["virtualVolumeTaskIDs"] = virtual_volume_task_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVirtualVolumeTasks',
+            ListVirtualVolumeTasksResult,
+            params,
+            since=9
+        )
+
+    def prepare_virtual_snapshot(
+            self,
+            virtual_volume_id,
+            name=OPTIONAL,
+            writable_snapshot=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        PrepareVirtualSnapshot is used to set up VMware Virtual Volume snapshot.
+        :param virtualVolumeID: [required] The ID of the Virtual Volume to clone. 
+        :type virtualVolumeID: UUID
+
+        :param name:  The name for the newly-created volume. 
+        :type name: str
+
+        :param writableSnapshot:  Will the snapshot be writable? 
+        :type writableSnapshot: bool
+
+        :param callingVirtualVolumeHostID:  
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("prepare_virtual_snapshot", "Cluster")
+
+        params = { 
+            "virtualVolumeID": virtual_volume_id,
+        }
+        if name is not None:
+            params["name"] = name
+        if writable_snapshot is not None:
+            params["writableSnapshot"] = writable_snapshot
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'PrepareVirtualSnapshot',
+            PrepareVirtualSnapshotResult,
+            params,
+            since=9.0
+        )
+
+>>>>>>> SDK-452 documentation cleanup
     def cancel_clone(
             self,
             clone_id,):
@@ -4300,9 +5045,21 @@ class Element(ServiceBase):
             dst_volume_id,
             snapshot_id=OPTIONAL,):
         """
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
         Copies one volume to another.
         :param volumeID: [required] Source volume to copy. 
         :type volumeID: int
+=======
+        CloneMultipleVolumes is used to create a clone of a group of specified volumes. A consistent set of characteristics can be assigned to a group of multiple volume when they are cloned together.
+        If groupSnapshotID is going to be used to clone the volumes in a group snapshot, the group snapshot must be created first using the CreateGroupSnapshot API method or the SolidFire Element WebUI. Using groupSnapshotID is optional when cloning multiple volumes.
+        
+        Note: Cloning multiple volumes is allowed if cluster fullness is at stage 2 or 3. Clones are not created when cluster fullness is at stage 4 or 5.
+        :param volumes: [required] Array of Unique ID for each volume to include in the clone with optional parameters. If optional parameters are not specified, the values will be inherited from the source volumes. 
+        :type volumes: CloneMultipleVolumeParams
+
+        :param access:  New default access method for the new volumes if not overridden by information passed in the volumes array. readOnly: Only read operations are allowed. readWrite: Reads and writes are allowed. locked: No reads or writes are allowed. replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.  If unspecified, the access settings of the clone will be the same as the source. 
+        :type access: str
+>>>>>>> SDK-452 documentation cleanup
 
         :param dstVolumeID: [required] Destination volume for the copy. 
         :type dstVolumeID: int
@@ -4334,6 +5091,199 @@ class Element(ServiceBase):
             volume_access_group_ids=OPTIONAL,
             volume_ids=OPTIONAL,):
         """
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
+        DeleteVolumes marks multiple (up to 500) active volumes for deletion. Once marked, the volumes are purged (permanently deleted) after the cleanup interval elapses.The cleanup interval can be set in the SetClusterSettings method. For more information on using this method, see SetClusterSettings on page 1. After making a request to delete volumes, any active iSCSI connections to the volumes are immediately terminated and no further connections are allowed while the volumes are in this state. A marked volume is not returned in target discovery requests. Any snapshots of a volume that has been marked for deletion are not affected. Snapshots are kept until the volume is purged from the system. If a volume is marked for deletion and has a bulk volume read or bulk volume write operation in progress, the bulk volume read or write operation is stopped. If the volumes you delete are paired with a volume, replication between the paired volumes is suspended and no data is transferred to them or from them while in a deleted state. The remote volumes the deleted volumes were paired with enter into a PausedMisconfigured state and data is no longer sent to them or from the deleted volumes. Until the deleted volumes are purged, they can be restored and data transfers resume. If the deleted volumes are purged from the system, the volumes they were paired with enter into a StoppedMisconfigured state and the volume pairing status is removed. The purged volumes become permanently unavailable.
+        :param accountIDs:  A list of account IDs. All volumes from these accounts are deleted from the system.  
+        :type accountIDs: int
+=======
+        CloneVolume is used to create a copy of the volume.
+        This method is asynchronous and may take a variable amount of time to complete.
+        The cloning process begins immediately when the CloneVolume request is made and is representative of the state of the volume when the API method is issued.
+        GetAsyncResults can be used to determine when the cloning process is complete and the new volume is available for connections.
+        ListSyncJobs can be used to see the progress of creating the clone.
+        
+        Note: The initial attributes and quality of service settings for the volume are inherited from the volume being cloned.
+        If different settings are required, they can be changed via ModifyVolume.
+        
+        Note: Cloned volumes do not inherit volume access group memberships from the source volume.
+        :param volumeID: [required] The ID of the volume to clone. 
+        :type volumeID: int
+
+        :param name: [required] The name for the newly-created volume. 
+        :type name: str
+
+        :param newAccountID:  AccountID for the owner of the new volume. If unspecified, the AccountID of the owner of the volume being cloned is used. 
+        :type newAccountID: int
+
+        :param newSize:  New size of the volume, in bytes. May be greater or less than the size of the volume being cloned. If unspecified, the clone's volume size will be the same as the source volume. Size is rounded up to the nearest 1 MiB. 
+        :type newSize: int
+
+        :param access:  Access settings for the new volume. readOnly: Only read operations are allowed. readWrite: Reads and writes are allowed. locked: No reads or writes are allowed. replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.  If unspecified, the access settings of the clone will be the same as the source. 
+        :type access: str
+>>>>>>> SDK-452 documentation cleanup
+
+        :param volumeAccessGroupIDs:  A list of volume access group IDs. All of the volumes from all of the volume access groups you specify in this list are deleted from the system. 
+        :type volumeAccessGroupIDs: int
+
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
+=======
+        :param attributes:  List of Name/Value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("clone_volume", "Cluster")
+
+        params = { 
+            "volumeID": volume_id,
+            "name": name,
+        }
+        if new_account_id is not None:
+            params["newAccountID"] = new_account_id
+        if new_size is not None:
+            params["newSize"] = new_size
+        if access is not None:
+            params["access"] = access
+        if snapshot_id is not None:
+            params["snapshotID"] = snapshot_id
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CloneVolume',
+            CloneVolumeResult,
+            params,
+            since=1
+        )
+
+    def copy_volume(
+            self,
+            volume_id,
+            dst_volume_id,
+            snapshot_id=OPTIONAL,):
+        """
+        Copies one volume to another.
+        :param volumeID: [required] Source volume to copy. 
+        :type volumeID: int
+
+        :param dstVolumeID: [required] Destination volume for the copy. 
+        :type dstVolumeID: int
+
+        :param snapshotID:  Snapshot ID of the source volume to create the copy from. 
+        :type snapshotID: int
+        """
+
+        self._check_connection_type("copy_volume", "Cluster")
+
+        params = { 
+            "volumeID": volume_id,
+            "dstVolumeID": dst_volume_id,
+        }
+        if snapshot_id is not None:
+            params["snapshotID"] = snapshot_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CopyVolume',
+            CopyVolumeResult,
+            params,
+            since=9
+        )
+
+    def create_volume(
+            self,
+            name,
+            account_id,
+            total_size,
+            enable512e,
+            qos=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        CreateVolume is used to create a new (empty) volume on the cluster.
+        When the volume is created successfully it is available for connection via iSCSI.
+        :param name: [required] Name of the volume. Not required to be unique, but it is recommended. May be 1 to 64 characters in length. 
+        :type name: str
+
+        :param accountID: [required] AccountID for the owner of this volume. 
+        :type accountID: int
+
+        :param totalSize: [required] Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size. 
+        :type totalSize: int
+
+        :param enable512e: [required] Should the volume provides 512-byte sector emulation? 
+        :type enable512e: bool
+
+        :param qos:  Initial quality of service settings for this volume.  Volumes created without specified QoS values are created with the default values for QoS. Default values for a volume can be found by running the GetDefaultQoS method. 
+        :type qos: QoS
+
+        :param attributes:  List of Name/Value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("create_volume", "Cluster")
+
+        params = { 
+            "name": name,
+            "accountID": account_id,
+            "totalSize": total_size,
+            "enable512e": enable512e,
+        }
+        if qos is not None:
+            params["qos"] = qos
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateVolume',
+            CreateVolumeResult,
+            params,
+            since=1
+        )
+
+    def delete_volume(
+            self,
+            volume_id,):
+        """
+        DeleteVolume marks an active volume for deletion.
+        It is purged (permanently deleted) after the cleanup interval elapses.
+        After making a request to delete a volume, any active iSCSI connections to the volume is immediately terminated and no further connections are allowed while the volume is in this state.
+        It is not returned in target discovery requests.
+        
+        Any snapshots of a volume that has been marked to delete are not affected.
+        Snapshots are kept until the volume is purged from the system.
+        
+        If a volume is marked for deletion, and it has a bulk volume read or bulk volume write operation in progress, the bulk volume operation is stopped.
+        
+        If the volume you delete is paired with a volume, replication between the paired volumes is suspended and no data is transferred to it or from it while in a deleted state.
+        The remote volume the deleted volume was paired with enters into a PausedMisconfigured state and data is no longer sent to it or from the deleted volume.
+        Until the deleted volume is purged, it can be restored and data transfers resumes.
+        If the deleted volume gets purged from the system, the volume it was paired with enters into a StoppedMisconfigured state and the volume pairing status is removed.
+        The purged volume becomes permanently unavailable.
+        :param volumeID: [required] The ID of the volume to delete. 
+        :type volumeID: int
+        """
+
+        self._check_connection_type("delete_volume", "Cluster")
+
+        params = { 
+            "volumeID": volume_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DeleteVolume',
+            DeleteVolumeResult,
+            params,
+            since=1
+        )
+
+    def delete_volumes(
+            self,
+            account_ids=OPTIONAL,
+            volume_access_group_ids=OPTIONAL,
+            volume_ids=OPTIONAL,):
+        """
         DeleteVolumes marks multiple (up to 500) active volumes for deletion. Once marked, the volumes are purged (permanently deleted) after the cleanup interval elapses.The cleanup interval can be set in the SetClusterSettings method. For more information on using this method, see SetClusterSettings on page 1. After making a request to delete volumes, any active iSCSI connections to the volumes are immediately terminated and no further connections are allowed while the volumes are in this state. A marked volume is not returned in target discovery requests. Any snapshots of a volume that has been marked for deletion are not affected. Snapshots are kept until the volume is purged from the system. If a volume is marked for deletion and has a bulk volume read or bulk volume write operation in progress, the bulk volume read or write operation is stopped. If the volumes you delete are paired with a volume, replication between the paired volumes is suspended and no data is transferred to them or from them while in a deleted state. The remote volumes the deleted volumes were paired with enter into a PausedMisconfigured state and data is no longer sent to them or from the deleted volumes. Until the deleted volumes are purged, they can be restored and data transfers resume. If the deleted volumes are purged from the system, the volumes they were paired with enter into a StoppedMisconfigured state and the volume pairing status is removed. The purged volumes become permanently unavailable.
         :param accountIDs:  A list of account IDs. All volumes from these accounts are deleted from the system.  
         :type accountIDs: int
@@ -4341,6 +5291,7 @@ class Element(ServiceBase):
         :param volumeAccessGroupIDs:  A list of volume access group IDs. All of the volumes from all of the volume access groups you specify in this list are deleted from the system. 
         :type volumeAccessGroupIDs: int
 
+>>>>>>> SDK-452 documentation cleanup
         :param volumeIDs:  The list of IDs of the volumes to delete from the system. 
         :type volumeIDs: int
         """
@@ -4364,6 +5315,40 @@ class Element(ServiceBase):
             since=9
         )
 
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
+=======
+    def get_async_result(
+            self,
+            async_handle,):
+        """
+        Used to retrieve the result of asynchronous method calls.
+        Some method calls are long running and do not complete when the initial response is sent.
+        To obtain the result of the method call, polling with GetAsyncResult is required.
+        
+        GetAsyncResult returns the overall status of the operation (in progress, completed, or error) in a standard fashion,
+        but the actual data returned for the operation depends on the original method call and the return data is documented with each method.
+        
+        The result for a completed asynchronous method call can only be retrieved once.
+        Once the final result has been returned, later attempts returns an error.
+        :param asyncHandle: [required] A value that was returned from the original asynchronous method call. 
+        :type asyncHandle: int
+        """
+
+        self._check_connection_type("get_async_result", "Cluster")
+
+        params = { 
+            "asyncHandle": async_handle,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetAsyncResult',
+            GetAsyncResultResult,
+            params,
+            since=1
+        )
+
+>>>>>>> SDK-452 documentation cleanup
     def get_default_qos(
             self,):
         """
@@ -4539,68 +5524,6 @@ class Element(ServiceBase):
             since=1
         )
 
-    def list_volume_stats_by_account(
-            self,):
-        """
-        ListVolumeStatsByAccount returns high-level activity measurements for every account.
-        Values are summed from all the volumes owned by the account.        """
-
-        self._check_connection_type("list_volume_stats_by_account", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVolumeStatsByAccount',
-            ListVolumeStatsByAccountResult,
-            params,
-            since=1
-        )
-
-    def list_volume_stats_by_volume(
-            self,):
-        """
-        ListVolumeStatsByVolume returns high-level activity measurements for every volume, by volume.
-        Values are cumulative from the creation of the volume.        """
-
-        self._check_connection_type("list_volume_stats_by_volume", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVolumeStatsByVolume',
-            ListVolumeStatsByVolumeResult,
-            params,
-            since=1
-        )
-
-    def list_volume_stats_by_volume_access_group(
-            self,
-            volume_access_groups=OPTIONAL,):
-        """
-        ListVolumeStatsByVolumeAccessGroup is used to get total activity measurements for all of the volumes that are a member of the specified volume access group(s).
-        :param volumeAccessGroups:  An array of VolumeAccessGroupIDs for which volume activity is returned. If no VolumeAccessGroupID is specified, stats for all volume access groups is returned. 
-        :type volumeAccessGroups: int
-        """
-
-        self._check_connection_type("list_volume_stats_by_volume_access_group", "Cluster")
-
-        params = { 
-        }
-        if volume_access_groups is not None:
-            params["volumeAccessGroups"] = volume_access_groups
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVolumeStatsByVolumeAccessGroup',
-            ListVolumeStatsByVolumeAccessGroupResult,
-            params,
-            since=5
-        )
-
     def list_volumes(
             self,
             start_volume_id=OPTIONAL,
@@ -4695,6 +5618,132 @@ class Element(ServiceBase):
             since=1
         )
 
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
+=======
+    def list_volume_stats_by_account(
+            self,):
+        """
+        ListVolumeStatsByAccount returns high-level activity measurements for every account.
+        Values are summed from all the volumes owned by the account.        """
+
+        self._check_connection_type("list_volume_stats_by_account", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVolumeStatsByAccount',
+            ListVolumeStatsByAccountResult,
+            params,
+            since=1
+        )
+
+    def list_volume_stats_by_volume(
+            self,):
+        """
+        ListVolumeStatsByVolume returns high-level activity measurements for every volume, by volume.
+        Values are cumulative from the creation of the volume.        """
+
+        self._check_connection_type("list_volume_stats_by_volume", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVolumeStatsByVolume',
+            ListVolumeStatsByVolumeResult,
+            params,
+            since=1
+        )
+
+    def list_volume_stats_by_volume_access_group(
+            self,
+            volume_access_groups=OPTIONAL,):
+        """
+        ListVolumeStatsByVolumeAccessGroup is used to get total activity measurements for all of the volumes that are a member of the specified volume access group(s).
+        :param volumeAccessGroups:  An array of VolumeAccessGroupIDs for which volume activity is returned. If no VolumeAccessGroupID is specified, stats for all volume access groups is returned. 
+        :type volumeAccessGroups: int
+        """
+
+        self._check_connection_type("list_volume_stats_by_volume_access_group", "Cluster")
+
+        params = { 
+        }
+        if volume_access_groups is not None:
+            params["volumeAccessGroups"] = volume_access_groups
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVolumeStatsByVolumeAccessGroup',
+            ListVolumeStatsByVolumeAccessGroupResult,
+            params,
+            since=5
+        )
+
+    def modify_volume(
+            self,
+            volume_id,
+            account_id=OPTIONAL,
+            access=OPTIONAL,
+            qos=OPTIONAL,
+            total_size=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        ModifyVolume is used to modify settings on an existing volume.
+        Modifications can be made to one volume at a time and changes take place immediately.
+        If an optional parameter is left unspecified, the value will not be changed.
+        
+        Extending the size of a volume that is being replicated should be done in an order.
+        The target (Replication Target) volume should first be increased in size, then the source (Read/Write) volume can be resized.
+        It is recommended that both the target and the source volumes be the same size.
+        
+        Note: If you change access status to locked or target all existing iSCSI connections are terminated.
+        :param volumeID: [required] VolumeID for the volume to be modified. 
+        :type volumeID: int
+
+        :param accountID:  AccountID to which the volume is reassigned. If none is specified, the previous account name is used. 
+        :type accountID: int
+
+        :param access:  Access allowed for the volume. readOnly: Only read operations are allowed. readWrite: Reads and writes are allowed. locked: No reads or writes are allowed. replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.  If unspecified, the access settings of the clone will be the same as the source. 
+        :type access: str
+
+        :param qos:  New quality of service settings for this volume. 
+        :type qos: QoS
+
+        :param totalSize:  New size of the volume in bytes. Size is rounded up to the nearest 1MiB size. This parameter can only be used to *increase* the size of a volume. 
+        :type totalSize: int
+
+        :param attributes:  List of Name/Value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("modify_volume", "Cluster")
+
+        params = { 
+            "volumeID": volume_id,
+        }
+        if account_id is not None:
+            params["accountID"] = account_id
+        if access is not None:
+            params["access"] = access
+        if qos is not None:
+            params["qos"] = qos
+        if total_size is not None:
+            params["totalSize"] = total_size
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyVolume',
+            ModifyVolumeResult,
+            params,
+            since=1
+        )
+
+>>>>>>> SDK-452 documentation cleanup
     def modify_volumes(
             self,
             volume_ids,
@@ -5706,6 +6755,7 @@ class Element(ServiceBase):
             since=7
         )
 
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
     def get_ipmi_config(
             self,
             force,
@@ -5748,10 +6798,59 @@ class Element(ServiceBase):
 
         params = { 
             "force": force,
+=======
+    def remove_initiators_from_volume_access_group(
+            self,
+            volume_access_group_id,
+            initiators,):
+        """
+        Remove initiators from a volume access group.
+        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
+        :type volumeAccessGroupID: int
+
+        :param initiators: [required] List of initiators to remove from the volume access group. 
+        :type initiators: str
+        """
+
+        self._check_connection_type("remove_initiators_from_volume_access_group", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+            "initiators": initiators,
         }
         
         # There is no adaptor.
         return self.send_request(
+            'RemoveInitiatorsFromVolumeAccessGroup',
+            ModifyVolumeAccessGroupResult,
+            params,
+            since=5
+        )
+
+    def remove_volumes_from_volume_access_group(
+            self,
+            volume_access_group_id,
+            volumes,):
+        """
+        Remove volumes from a volume access group.
+        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
+        :type volumeAccessGroupID: int
+
+        :param volumes: [required] List of volumes to remove from this volume access group. 
+        :type volumes: int
+        """
+
+        self._check_connection_type("remove_volumes_from_volume_access_group", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+            "volumes": volumes,
+>>>>>>> SDK-452 documentation cleanup
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+<<<<<<< 2a7c6b9c0af69f977e824fd1b8655429eca10f92
             'GetIpmiInfo',
             GetIpmiInfoResult,
             params,
@@ -5787,3 +6886,11 @@ class Element(ServiceBase):
         return ElementServiceAdaptor.invoke_sfapi(self, params,
                                                   since, deprecated)
 
+=======
+            'RemoveVolumesFromVolumeAccessGroup',
+            ModifyVolumeAccessGroupResult,
+            params,
+            since=5
+        )
+
+>>>>>>> SDK-452 documentation cleanup

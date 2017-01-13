@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>solidfire.adaptor &mdash; SolidFire Python SDK v1.1.0.91</title>
+  <title>solidfire.adaptor &mdash; SolidFire Python SDK v1.2</title>
   
 
   
@@ -34,7 +34,7 @@
   
 
   
-    <link rel="top" title="SolidFire Python SDK v1.1.0.91" href="../../index.html"/>
+    <link rel="top" title="SolidFire Python SDK v1.2" href="../../index.html"/>
         <link rel="up" title="solidfire" href="../solidfire.html"/> 
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                1.1.0.91
+                1.2.0.103
               </div>
             
           
@@ -88,7 +88,7 @@
             
             
                 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html"> SolidFire Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html"> SolidFire Python SDK v1.2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../solidfire.html#account-management-examples">Account Management Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../solidfire.html#snapshot-scheduling-examples">Snapshot Scheduling Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../solidfire.html#solidfire-package">solidfire package</a></li>
@@ -148,9 +148,8 @@
 <span class="c1"># NETAPP, INC. USE, DISCLOSURE OR REPRODUCTION IS PROHIBITED WITHOUT THE PRIOR</span>
 <span class="c1"># EXPRESS WRITTEN PERMISSION OF NETAPP, INC.</span>
 <span class="sd">&quot;&quot;&quot;Module implements the generated adaptor calls from solidfire.Element&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">solidfire.adaptor.schedule_adaptor</span> <span class="k">import</span> <span class="n">ScheduleAdaptor</span>
-<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="k">import</span> <span class="n">GetNodeStatsResult</span>
-
+<span class="kn">from</span> <span class="nn">solidfire.adaptor.schedule_adaptor</span> <span class="kn">import</span> <span class="n">ScheduleAdaptor</span>
+<span class="kn">from</span> <span class="nn">solidfire.models</span> <span class="kn">import</span> <span class="n">GetNodeStatsResult</span>
 
 <div class="viewcode-block" id="ElementServiceAdaptor"><a class="viewcode-back" href="../../solidfire.adaptor.html#solidfire.adaptor.ElementServiceAdaptor">[docs]</a><span class="k">class</span> <span class="nc">ElementServiceAdaptor</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -190,6 +189,24 @@
         <span class="n">result</span><span class="o">.</span><span class="n">node_stats</span><span class="o">.</span><span class="n">node_id</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;nodeID&quot;</span><span class="p">]</span>
 
         <span class="k">return</span> <span class="n">result</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ElementServiceAdaptor.invoke_sfapi"><a class="viewcode-back" href="../../solidfire.adaptor.html#solidfire.adaptor.ElementServiceAdaptor.invoke_sfapi">[docs]</a>    <span class="k">def</span> <span class="nf">invoke_sfapi</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s2">&quot;parameters&quot;</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">element</span><span class="o">.</span><span class="n">send_request</span><span class="p">(</span>
+                <span class="n">params</span><span class="p">[</span><span class="s2">&quot;method&quot;</span><span class="p">],</span>
+                <span class="nb">dict</span><span class="p">,</span>
+                <span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameters&quot;</span><span class="p">],</span>
+                <span class="n">since</span><span class="p">,</span>
+                <span class="n">deprecated</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">element</span><span class="o">.</span><span class="n">send_request</span><span class="p">(</span>
+                <span class="n">params</span><span class="p">[</span><span class="s2">&quot;method&quot;</span><span class="p">],</span>
+                <span class="nb">dict</span><span class="p">,</span>
+                <span class="n">since</span><span class="o">=</span><span class="n">since</span><span class="p">,</span>
+                <span class="n">deprecated</span><span class="o">=</span><span class="n">deprecated</span>
+            <span class="p">)</span></div>
 
     <span class="nd">@staticmethod</span>
 <div class="viewcode-block" id="ElementServiceAdaptor.get_schedule"><a class="viewcode-back" href="../../solidfire.adaptor.html#solidfire.adaptor.ElementServiceAdaptor.get_schedule">[docs]</a>    <span class="k">def</span> <span class="nf">get_schedule</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">):</span>
@@ -245,7 +262,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014-2016, NetApp, Inc.  All Rights Reserved..
+        &copy; Copyright 2014-2017, NetApp, Inc.  All Rights Reserved..
 
     </p>
   </div>
@@ -267,7 +284,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'1.1.0.91',
+            VERSION:'1.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

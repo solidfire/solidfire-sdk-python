@@ -5,10 +5,6 @@ Python SDK library for interacting with SolidFire Element API
 
 |pypy| |python| |format| |downloads| |license| |build|
 
-Current Release
----------------
-
-Version 1.2.0.103
 
 Description
 -----------
@@ -86,6 +82,18 @@ environment variable to use the SDK in other python scripts:
 
 That's it -- you are ready to start interacting with your SolidFire
 cluster using Python!
+
+Videos
+------
+
+**Getting Started** 
+
+This video is a walkthrough of getting started with the SolidFire Python SDK. You will see how install the SDK, connect to a SolidFire cluster, and use it to perform simple operations like retrieving and modifying accounts and volumes.
+
+.. raw:: html
+
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/3g028LYmiN4" frameborder="0" allowfullscreen></iframe>
+
 
 Examples
 --------
