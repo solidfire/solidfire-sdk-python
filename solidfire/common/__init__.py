@@ -620,7 +620,7 @@ class ServiceBase(object):
                         }
                 }
             )
-            raise ApiServerError('login', json_err)
+            raise ApiConnectionError(json_err)
 
         # noinspection PyBroadException
         try:
