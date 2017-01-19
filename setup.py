@@ -75,7 +75,7 @@ setup(
 
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 
-    install_requires=['setuptools>=19.2', 'pycurl>=7.34.0',
+    install_requires=['setuptools>=19.2',
                       'future>=0.15.2', 'enum34>=1.1.6', 'requests>=2.9.1'],
 
     # $> pip install -e ".[dev,test, docs, release]"
