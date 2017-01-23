@@ -3938,86 +3938,6 @@ class Element(ServiceBase):
             params
         )
 
-    def get_virtual_volume_task_update(
-            self,
-            virtual_volume_task_id,
-            calling_virtual_volume_host_id=OPTIONAL,):
-        """
-        GetVirtualVolumeTaskUpdate checks the status of a VVol Async Task.
-        :param virtualVolumeTaskID: [required] The UUID of the VVol Task. 
-        :type virtualVolumeTaskID: UUID
-
-        :param callingVirtualVolumeHostID:  
-        :type callingVirtualVolumeHostID: UUID
-        """
-
-        self._check_connection_type("get_virtual_volume_task_update", "Cluster")
-
-        params = { 
-            "virtualVolumeTaskID": virtual_volume_task_id,
-        }
-        if calling_virtual_volume_host_id is not None:
-            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetVirtualVolumeTaskUpdate',
-            VirtualVolumeTaskResult,
-            params
-        )
-
-    def get_virtual_volume_unshared_chunks(
-            self,
-            virtual_volume_id,
-            base_virtual_volume_id,
-            segment_start,
-            segment_length,
-            chunk_size,
-            calling_virtual_volume_host_id=OPTIONAL,):
-        """
-        GetVirtualVolumeAllocatedBitmap scans a VVol segment and returns the number of 
-        chunks not shared between two volumes. This call will return results in less 
-        than 30 seconds. If the specified VVol and the base VVil are not related, an 
-        error is thrown. If the offset/length combination is invalid or out fo range 
-        an error is thrown.
-        :param virtualVolumeID: [required] The ID of the Virtual Volume. 
-        :type virtualVolumeID: UUID
-
-        :param baseVirtualVolumeID: [required] The ID of the Virtual Volume to compare against. 
-        :type baseVirtualVolumeID: UUID
-
-        :param segmentStart: [required] Start Byte offset. 
-        :type segmentStart: int
-
-        :param segmentLength: [required] Length of the scan segment in bytes. 
-        :type segmentLength: int
-
-        :param chunkSize: [required] Number of bytes represented by one bit in the bitmap. 
-        :type chunkSize: int
-
-        :param callingVirtualVolumeHostID:  
-        :type callingVirtualVolumeHostID: UUID
-        """
-
-        self._check_connection_type("get_virtual_volume_unshared_chunks", "Cluster")
-
-        params = { 
-            "virtualVolumeID": virtual_volume_id,
-            "baseVirtualVolumeID": base_virtual_volume_id,
-            "segmentStart": segment_start,
-            "segmentLength": segment_length,
-            "chunkSize": chunk_size,
-        }
-        if calling_virtual_volume_host_id is not None:
-            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetVirtualVolumeUnsharedChunks',
-            VirtualVolumeUnsharedChunkResult,
-            params
-        )
-
     def list_virtual_volume_bindings(
             self,
             virtual_volume_binding_ids=OPTIONAL,):
@@ -4134,46 +4054,56 @@ class Element(ServiceBase):
             params
         )
 
+<<<<<<< develop
     def prepare_virtual_snapshot(
+=======
+    def enable_feature(
             self,
-            virtual_volume_id,
-            name=OPTIONAL,
-            writable_snapshot=OPTIONAL,
-            calling_virtual_volume_host_id=OPTIONAL,):
+            feature,):
         """
-        PrepareVirtualSnapshot is used to set up VMware Virtual Volume snapshot.
-        :param virtualVolumeID: [required] The ID of the Virtual Volume to clone. 
-        :type virtualVolumeID: UUID
-
-        :param name:  The name for the newly-created volume. 
-        :type name: str
-
-        :param writableSnapshot:  Will the snapshot be writable? 
-        :type writableSnapshot: bool
-
-        :param callingVirtualVolumeHostID:  
-        :type callingVirtualVolumeHostID: UUID
+        EnableFeature allows you to enable cluster features that are disabled by default.
+        :param feature: [required] Valid values: vvols: Enable the Virtual Volumes (VVOLs) cluster feature. 
+        :type feature: str
         """
 
-        self._check_connection_type("prepare_virtual_snapshot", "Cluster")
+        self._check_connection_type("enable_feature", "Cluster")
 
         params = { 
-            "virtualVolumeID": virtual_volume_id,
+            "feature": feature,
         }
-        if name is not None:
-            params["name"] = name
-        if writable_snapshot is not None:
-            params["writableSnapshot"] = writable_snapshot
-        if calling_virtual_volume_host_id is not None:
-            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
         
         # There is no adaptor.
         return self.send_request(
-            'PrepareVirtualSnapshot',
-            PrepareVirtualSnapshotResult,
+            'EnableFeature',
+            EnableFeatureResult,
             params
         )
 
+    def get_feature_status(
+>>>>>>> local
+            self,
+            feature=OPTIONAL,):
+        """
+        GetFeatureStatus allows you to retrieve the status of a cluster feature.
+        :param feature:  Valid values: vvols: Find the status of the Virtual Volumes (VVOLs) cluster feature. 
+        :type feature: str
+        """
+
+        self._check_connection_type("get_feature_status", "Cluster")
+
+        params = { 
+        }
+        if feature is not None:
+            params["feature"] = feature
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetFeatureStatus',
+            GetFeatureStatusResult,
+            params
+        )
+
+<<<<<<< develop
     def create_virtual_volume_host(
             self,
             virtual_volume_host_id,
@@ -4232,44 +4162,7 @@ class Element(ServiceBase):
         EnableFeature allows you to enable cluster features that are disabled by default.
         :param feature: [required] Valid values: vvols: Enable the Virtual Volumes (VVOLs) cluster feature. 
         :type feature: str
-        """
-
-        self._check_connection_type("enable_feature", "Cluster")
-
-        params = { 
-            "feature": feature,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'EnableFeature',
-            EnableFeatureResult,
-            params
-        )
-
-    def get_feature_status(
-            self,
-            feature=OPTIONAL,):
-        """
-        GetFeatureStatus allows you to retrieve the status of a cluster feature.
-        :param feature:  Valid values: vvols: Find the status of the Virtual Volumes (VVOLs) cluster feature. 
-        :type feature: str
-        """
-
-        self._check_connection_type("get_feature_status", "Cluster")
-
-        params = { 
-        }
-        if feature is not None:
-            params["feature"] = feature
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetFeatureStatus',
-            GetFeatureStatusResult,
-            params
-        )
-
+=======
     def delete_volumes(
             self,
             account_ids=OPTIONAL,
@@ -4307,16 +4200,51 @@ class Element(ServiceBase):
 
     def get_default_qos(
             self,):
+>>>>>>> local
         """
         GetDefaultQoS is used to retrieve the default QoS values that are set for a volume if QoS is not supplied.        """
 
+<<<<<<< develop
+        self._check_connection_type("enable_feature", "Cluster")
+
+        params = { 
+            "feature": feature,
+=======
         self._check_connection_type("get_default_qos", "Cluster")
 
         params = { 
+>>>>>>> local
         }
         
         # There is no adaptor.
         return self.send_request(
+<<<<<<< develop
+            'EnableFeature',
+            EnableFeatureResult,
+            params
+        )
+
+    def get_feature_status(
+            self,
+            feature=OPTIONAL,):
+        """
+        GetFeatureStatus allows you to retrieve the status of a cluster feature.
+        :param feature:  Valid values: vvols: Find the status of the Virtual Volumes (VVOLs) cluster feature. 
+        :type feature: str
+        """
+
+        self._check_connection_type("get_feature_status", "Cluster")
+
+        params = { 
+        }
+        if feature is not None:
+            params["feature"] = feature
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetFeatureStatus',
+            GetFeatureStatusResult,
+=======
             'GetDefaultQoS',
             VolumeQOS,
             params
@@ -4435,6 +4363,7 @@ class Element(ServiceBase):
         return self.send_request(
             'ListAsyncResults',
             ListAsyncResultsResult,
+>>>>>>> local
             params
         )
 
@@ -4455,6 +4384,9 @@ class Element(ServiceBase):
             params
         )
 
+<<<<<<< develop
+    def get_default_qos(
+=======
     def list_deleted_volumes(
             self,):
         """
@@ -4469,6 +4401,66 @@ class Element(ServiceBase):
         return self.send_request(
             'ListDeletedVolumes',
             ListDeletedVolumesResult,
+            params
+        )
+
+    def list_volume_stats_by_account(
+>>>>>>> local
+            self,):
+        """
+        ListVolumeStatsByAccount returns high-level activity measurements for every account.
+        Values are summed from all the volumes owned by the account.        """
+
+        self._check_connection_type("list_volume_stats_by_account", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVolumeStatsByAccount',
+            ListVolumeStatsByAccountResult,
+            params
+        )
+
+    def list_volume_stats_by_volume(
+            self,):
+        """
+        ListVolumeStatsByVolume returns high-level activity measurements for every volume, by volume.
+        Values are cumulative from the creation of the volume.        """
+
+        self._check_connection_type("list_volume_stats_by_volume", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVolumeStatsByVolume',
+            ListVolumeStatsByVolumeResult,
+            params
+        )
+
+    def list_volume_stats_by_volume_access_group(
+            self,
+            volume_access_groups=OPTIONAL,):
+        """
+        ListVolumeStatsByVolumeAccessGroup is used to get total activity measurements for all of the volumes that are a member of the specified volume access group(s).
+        :param volumeAccessGroups:  An array of VolumeAccessGroupIDs for which volume activity is returned. If no VolumeAccessGroupID is specified, stats for all volume access groups is returned. 
+        :type volumeAccessGroups: int
+        """
+
+        self._check_connection_type("list_volume_stats_by_volume_access_group", "Cluster")
+
+        params = { 
+        }
+        if volume_access_groups is not None:
+            params["volumeAccessGroups"] = volume_access_groups
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVolumeStatsByVolumeAccessGroup',
+            ListVolumeStatsByVolumeAccessGroupResult,
             params
         )
 
@@ -4624,6 +4616,8 @@ class Element(ServiceBase):
         )
 
     def modify_volumes(
+<<<<<<< develop
+=======
             self,
             volume_ids,
             account_id=OPTIONAL,
@@ -4676,6 +4670,7 @@ class Element(ServiceBase):
         )
 
     def purge_deleted_volume(
+>>>>>>> local
             self,
             volume_id,):
         """
