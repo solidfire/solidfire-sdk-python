@@ -4054,9 +4054,6 @@ class Element(ServiceBase):
             params
         )
 
-<<<<<<< develop
-    def prepare_virtual_snapshot(
-=======
     def enable_feature(
             self,
             feature,):
@@ -4080,7 +4077,6 @@ class Element(ServiceBase):
         )
 
     def get_feature_status(
->>>>>>> local
             self,
             feature=OPTIONAL,):
         """
@@ -4103,66 +4099,6 @@ class Element(ServiceBase):
             params
         )
 
-<<<<<<< develop
-    def create_virtual_volume_host(
-            self,
-            virtual_volume_host_id,
-            cluster_id,
-            initiator_names=OPTIONAL,
-            visible_protocol_endpoint_ids=OPTIONAL,
-            host_address=OPTIONAL,
-            calling_virtual_volume_host_id=OPTIONAL,):
-        """
-        CreateVirtualVolumeHost creates a new ESX host.
-        :param virtualVolumeHostID: [required] The GUID of the ESX host. 
-        :type virtualVolumeHostID: UUID
-
-        :param clusterID: [required] The GUID of the ESX Cluster. 
-        :type clusterID: UUID
-
-        :param initiatorNames:  
-        :type initiatorNames: str
-
-        :param visibleProtocolEndpointIDs:  A list of PEs the host is aware of. 
-        :type visibleProtocolEndpointIDs: UUID
-
-        :param hostAddress:  IP or DNS name for the host. 
-        :type hostAddress: str
-
-        :param callingVirtualVolumeHostID:  
-        :type callingVirtualVolumeHostID: UUID
-        """
-
-        self._check_connection_type("create_virtual_volume_host", "Cluster")
-
-        params = { 
-            "virtualVolumeHostID": virtual_volume_host_id,
-            "clusterID": cluster_id,
-        }
-        if initiator_names is not None:
-            params["initiatorNames"] = initiator_names
-        if visible_protocol_endpoint_ids is not None:
-            params["visibleProtocolEndpointIDs"] = visible_protocol_endpoint_ids
-        if host_address is not None:
-            params["hostAddress"] = host_address
-        if calling_virtual_volume_host_id is not None:
-            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
-        
-        # There is no adaptor.
-        return self.send_request(
-            'CreateVirtualVolumeHost',
-            VirtualVolumeNullResult,
-            params
-        )
-
-    def enable_feature(
-            self,
-            feature,):
-        """
-        EnableFeature allows you to enable cluster features that are disabled by default.
-        :param feature: [required] Valid values: vvols: Enable the Virtual Volumes (VVOLs) cluster feature. 
-        :type feature: str
-=======
     def delete_volumes(
             self,
             account_ids=OPTIONAL,
@@ -4200,51 +4136,16 @@ class Element(ServiceBase):
 
     def get_default_qos(
             self,):
->>>>>>> local
         """
         GetDefaultQoS is used to retrieve the default QoS values that are set for a volume if QoS is not supplied.        """
 
-<<<<<<< develop
-        self._check_connection_type("enable_feature", "Cluster")
-
-        params = { 
-            "feature": feature,
-=======
         self._check_connection_type("get_default_qos", "Cluster")
 
         params = { 
->>>>>>> local
         }
         
         # There is no adaptor.
         return self.send_request(
-<<<<<<< develop
-            'EnableFeature',
-            EnableFeatureResult,
-            params
-        )
-
-    def get_feature_status(
-            self,
-            feature=OPTIONAL,):
-        """
-        GetFeatureStatus allows you to retrieve the status of a cluster feature.
-        :param feature:  Valid values: vvols: Find the status of the Virtual Volumes (VVOLs) cluster feature. 
-        :type feature: str
-        """
-
-        self._check_connection_type("get_feature_status", "Cluster")
-
-        params = { 
-        }
-        if feature is not None:
-            params["feature"] = feature
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetFeatureStatus',
-            GetFeatureStatusResult,
-=======
             'GetDefaultQoS',
             VolumeQOS,
             params
@@ -4363,7 +4264,6 @@ class Element(ServiceBase):
         return self.send_request(
             'ListAsyncResults',
             ListAsyncResultsResult,
->>>>>>> local
             params
         )
 
@@ -4384,9 +4284,6 @@ class Element(ServiceBase):
             params
         )
 
-<<<<<<< develop
-    def get_default_qos(
-=======
     def list_deleted_volumes(
             self,):
         """
@@ -4401,66 +4298,6 @@ class Element(ServiceBase):
         return self.send_request(
             'ListDeletedVolumes',
             ListDeletedVolumesResult,
-            params
-        )
-
-    def list_volume_stats_by_account(
->>>>>>> local
-            self,):
-        """
-        ListVolumeStatsByAccount returns high-level activity measurements for every account.
-        Values are summed from all the volumes owned by the account.        """
-
-        self._check_connection_type("list_volume_stats_by_account", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVolumeStatsByAccount',
-            ListVolumeStatsByAccountResult,
-            params
-        )
-
-    def list_volume_stats_by_volume(
-            self,):
-        """
-        ListVolumeStatsByVolume returns high-level activity measurements for every volume, by volume.
-        Values are cumulative from the creation of the volume.        """
-
-        self._check_connection_type("list_volume_stats_by_volume", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVolumeStatsByVolume',
-            ListVolumeStatsByVolumeResult,
-            params
-        )
-
-    def list_volume_stats_by_volume_access_group(
-            self,
-            volume_access_groups=OPTIONAL,):
-        """
-        ListVolumeStatsByVolumeAccessGroup is used to get total activity measurements for all of the volumes that are a member of the specified volume access group(s).
-        :param volumeAccessGroups:  An array of VolumeAccessGroupIDs for which volume activity is returned. If no VolumeAccessGroupID is specified, stats for all volume access groups is returned. 
-        :type volumeAccessGroups: int
-        """
-
-        self._check_connection_type("list_volume_stats_by_volume_access_group", "Cluster")
-
-        params = { 
-        }
-        if volume_access_groups is not None:
-            params["volumeAccessGroups"] = volume_access_groups
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVolumeStatsByVolumeAccessGroup',
-            ListVolumeStatsByVolumeAccessGroupResult,
             params
         )
 
@@ -4616,8 +4453,6 @@ class Element(ServiceBase):
         )
 
     def modify_volumes(
-<<<<<<< develop
-=======
             self,
             volume_ids,
             account_id=OPTIONAL,
@@ -4670,7 +4505,6 @@ class Element(ServiceBase):
         )
 
     def purge_deleted_volume(
->>>>>>> local
             self,
             volume_id,):
         """
