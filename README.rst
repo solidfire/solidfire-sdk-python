@@ -39,7 +39,7 @@ Documentation
 `Latest Docs <https://pythonhosted.org/solidfire-sdk-python/>`__
 
 `Release
-Notes <https://github.com/solidfire/solidfire-sdk-python/blob/gh-pages/SolidFire_Python_SDK_Release_Notes_v1.2.pdf>`__
+Notes <https://github.com/solidfire/solidfire-sdk-python/raw/gh-pages/SolidFire_Python_SDK_Release_Notes_v1.2.pdf>`__
 
 Installation
 ------------
