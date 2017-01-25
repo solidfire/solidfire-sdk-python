@@ -1,0 +1,4 @@
+include LICENSE README.rst
+recursive-include solidfire *
+recursive-exclude solidfire *.pyc
+include MANIFEST.in

@@ -1,0 +1,593 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>solidfire.common.model &mdash; SolidFire Python SDK v1.2</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/solidfire.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SolidFire Python SDK v1.2" href="../../../index.html"/>
+        <link rel="up" title="solidfire.common" href="../common.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> solidfire-sdk-python
+          
+
+          
+            
+            <img src="../../../_static/PythonSDK.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2.0.103
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../solidfire.html"> SolidFire Python SDK v1.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../solidfire.html#account-management-examples">Account Management Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../solidfire.html#snapshot-scheduling-examples">Snapshot Scheduling Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../solidfire.html#solidfire-package">solidfire package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">solidfire-sdk-python</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+          <li><a href="../../solidfire.html">solidfire</a> &raquo;</li>
+      
+          <li><a href="../common.html">solidfire.common</a> &raquo;</li>
+      
+    <li>solidfire.common.model</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for solidfire.common.model</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright &amp;copy; 2014-2016 NetApp, Inc. All Rights Reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># CONFIDENTIALITY NOTICE: THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION OF</span>
+<span class="c1"># NETAPP, INC. USE, DISCLOSURE OR REPRODUCTION IS PROHIBITED WITHOUT THE PRIOR</span>
+<span class="c1"># EXPRESS WRITTEN PERMISSION OF NETAPP, INC.</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">UUID</span>
+<span class="kn">from</span> <span class="nn">future.utils</span> <span class="kn">import</span> <span class="n">with_metaclass</span>
+
+<span class="n">KNOWN_CONVERSIONS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nb">type</span><span class="p">(</span><span class="nb">set</span><span class="p">):</span> <span class="nb">list</span><span class="p">,</span>
+    <span class="n">UUID</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">}</span>
+
+
+<span class="k">def</span> <span class="nf">_as_ascii</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Helper method for enforcing ascii encoding.</span>
+
+<span class="sd">    :param val: any string, basestring, or unicode string</span>
+<span class="sd">    :type val: basestring</span>
+
+<span class="sd">    :return: a string</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">,</span> <span class="s1">&#39;ignore&#39;</span><span class="p">))</span>
+
+
+<div class="viewcode-block" id="serialize"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.serialize">[docs]</a><span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    DataObject serializer value based on MetaData attributes.</span>
+
+<span class="sd">    :param val: any value</span>
+
+<span class="sd">    :return: the serialized value</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="s1">&#39;custom_to_json&#39;</span><span class="p">):</span>
+        <span class="n">return_value</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">custom_to_json</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="s1">&#39;to_json&#39;</span><span class="p">):</span>
+        <span class="n">return_value</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">to_json</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="ow">in</span> <span class="n">KNOWN_CONVERSIONS</span><span class="p">:</span>
+        <span class="n">return_value</span> <span class="o">=</span> <span class="n">KNOWN_CONVERSIONS</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">)](</span><span class="n">val</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">return_value</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="n">serialize</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">val</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">return_value</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">serialize</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">val</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="s1">&#39;_optional&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">val</span><span class="o">.</span><span class="n">optional</span><span class="p">():</span>
+        <span class="n">return_value</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">return_value</span> <span class="o">=</span> <span class="n">val</span>
+
+    <span class="k">return</span> <span class="n">return_value</span></div>
+
+
+<div class="viewcode-block" id="extract"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.extract">[docs]</a><span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="n">typ</span><span class="p">,</span> <span class="n">src</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    DataObject value type converter.</span>
+
+<span class="sd">    :param typ: the type to extract.</span>
+
+<span class="sd">    :param src: the source to extract as type typ.</span>
+
+<span class="sd">    :return: if the type has the ability to extract (convert), otherwise the</span>
+<span class="sd">        original version is returned.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">typ</span><span class="p">,</span> <span class="s1">&#39;extract&#39;</span><span class="p">):</span>
+        <span class="n">return_value</span> <span class="o">=</span> <span class="n">typ</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">src</span><span class="p">)</span> <span class="o">==</span> <span class="n">typ</span><span class="p">:</span>
+        <span class="n">return_value</span> <span class="o">=</span> <span class="n">src</span>
+    <span class="k">elif</span> <span class="n">typ</span> <span class="o">==</span> <span class="n">UUID</span><span class="p">:</span>
+        <span class="n">return_value</span> <span class="o">=</span> <span class="n">UUID</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">typ</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">src</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">return_value</span> <span class="o">=</span> <span class="n">typ</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">return_value</span> <span class="o">=</span> <span class="n">src</span>
+
+    <span class="k">return</span> <span class="n">return_value</span></div>
+
+
+<div class="viewcode-block" id="ModelProperty"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.ModelProperty">[docs]</a><span class="k">class</span> <span class="nc">ModelProperty</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ModelProperty metadata container for API data type information.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">member_name</span><span class="p">,</span> <span class="n">member_type</span><span class="p">,</span> <span class="n">array</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                 <span class="n">documentation</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">dictionaryType</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ModelProperty constructor.</span>
+
+<span class="sd">        :param member_name: the name of the property.</span>
+<span class="sd">        :type member_name: str</span>
+
+<span class="sd">        :param member_type: the type of the property.</span>
+<span class="sd">        :type member_type: str</span>
+
+<span class="sd">        :param array: is the property an array.</span>
+<span class="sd">        :type array: bool</span>
+
+<span class="sd">        :param optional: is the property optional.</span>
+<span class="sd">        :type optional: bool</span>
+
+<span class="sd">        :param documentation: documentation for the property.</span>
+<span class="sd">        :type documentation: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_member_name</span> <span class="o">=</span> <span class="n">member_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_member_type</span> <span class="o">=</span> <span class="n">member_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_array</span> <span class="o">=</span> <span class="n">array</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_optional</span> <span class="o">=</span> <span class="n">optional</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_documentation</span> <span class="o">=</span> <span class="n">documentation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dictionaryType</span> <span class="o">=</span> <span class="n">dictionaryType</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_array</span><span class="p">:</span>
+            <span class="n">arr</span> <span class="o">=</span> <span class="s1">&#39;[]&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">arr</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+        <span class="n">full_type</span> <span class="o">=</span> <span class="s1">&#39;{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_member_type</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&gt;&#39;</span><span class="p">,</span> <span class="n">arr</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&gt;&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">full_type</span>
+
+<div class="viewcode-block" id="ModelProperty.extend_json"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.ModelProperty.extend_json">[docs]</a>    <span class="k">def</span> <span class="nf">extend_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Serialize the property as json-like structure.</span>
+
+<span class="sd">        :param out: the resulting output.</span>
+<span class="sd">        :param data: the data to be converted.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;_member_type&#39;</span><span class="p">):</span>  <span class="c1"># HACK ALERT</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_optional</span><span class="p">:</span>
+                <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_member_name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_array</span><span class="p">:</span>
+            <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_member_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">serialize</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_optional</span><span class="p">:</span>
+            <span class="n">optional_data</span> <span class="o">=</span> <span class="n">serialize</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">optional_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_member_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">optional_data</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_member_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">serialize</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ModelProperty.extract_from"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.ModelProperty.extract_from">[docs]</a>    <span class="k">def</span> <span class="nf">extract_from</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Deserialize the property from json.</span>
+
+<span class="sd">        :param data: the data to be converted.</span>
+
+<span class="sd">        :return: the extracted data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_array</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span> <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="p">[</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_member_type</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span>
+                                            <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dictionaryType</span><span class="p">:</span>
+            <span class="n">newdict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                <span class="n">newdict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dictionaryType</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+            <span class="k">return</span> <span class="n">newdict</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span> <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_member_type</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ModelProperty.member_name"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.ModelProperty.member_name">[docs]</a>    <span class="k">def</span> <span class="nf">member_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :return: the member name.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_member_name</span></div>
+
+<div class="viewcode-block" id="ModelProperty.member_type"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.ModelProperty.member_type">[docs]</a>    <span class="k">def</span> <span class="nf">member_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :return: the member type.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_member_type</span></div>
+
+<div class="viewcode-block" id="ModelProperty.array"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.ModelProperty.array">[docs]</a>    <span class="k">def</span> <span class="nf">array</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :return: is the property an array</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_array</span></div>
+
+<div class="viewcode-block" id="ModelProperty.optional"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.ModelProperty.optional">[docs]</a>    <span class="k">def</span> <span class="nf">optional</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :return: is the property optional</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_optional</span></div>
+
+<div class="viewcode-block" id="ModelProperty.documentation"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.ModelProperty.documentation">[docs]</a>    <span class="k">def</span> <span class="nf">documentation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :return: the property documentation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_documentation</span></div>
+
+<div class="viewcode-block" id="ModelProperty.known_default"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.ModelProperty.known_default">[docs]</a>    <span class="k">def</span> <span class="nf">known_default</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Helps convert a property to a default value.</span>
+
+<span class="sd">        :return: a known default for a type.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_member_type</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_member_type</span> <span class="ow">is</span> <span class="nb">float</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mf">0.0</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_member_type</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_member_type</span> <span class="ow">is</span> <span class="nb">bool</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">pass</span></div></div>
+
+
+<div class="viewcode-block" id="MetaDataObject"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.MetaDataObject">[docs]</a><span class="k">class</span> <span class="nc">MetaDataObject</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    MetaDataObject defines a method for attributing ModelProperties to a type.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">classdict</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MetaDataObject</span><span class="p">,</span> <span class="n">cls</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">classdict</span><span class="p">)</span>
+        <span class="n">cls</span><span class="o">.</span><span class="n">_create_properties</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_create_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="DataObject"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.DataObject">[docs]</a><span class="k">class</span> <span class="nc">DataObject</span><span class="p">(</span><span class="n">with_metaclass</span><span class="p">(</span><span class="n">MetaDataObject</span><span class="p">,</span> <span class="n">ModelProperty</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    DataObject is the base type for all generated types, including the MetaData</span>
+<span class="sd">    properties, as described from the api descriptors.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_properties</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_create_properties</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Maps api descriptor attributes to the MetaData properties for this</span>
+<span class="sd">        object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cls</span><span class="o">.</span><span class="n">_properties</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+            <span class="n">prop</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">ModelProperty</span><span class="p">):</span>
+                <span class="n">cls</span><span class="o">.</span><span class="n">_properties</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">prop</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_properties</span><span class="p">:</span>
+                <span class="n">msg_fmt</span> <span class="o">=</span> <span class="s1">&#39;Key &quot;{key}&quot; is not a valid property&#39;</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="n">msg_fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DataObject.get_properties"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.DataObject.get_properties">[docs]</a>    <span class="k">def</span> <span class="nf">get_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Exposes the type properties for a Data Object.</span>
+
+<span class="sd">        :return: the dictionary of property names and thier type information.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Base repr() for all generated objects.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">props</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">member_items</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">prop</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">member_items</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+
+            <span class="k">if</span> <span class="n">prop</span><span class="o">.</span><span class="n">array</span><span class="p">()</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="nb">iter</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+                <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                    <span class="n">attrs</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">attrs</span> <span class="o">=</span> <span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+                <span class="n">msg_fmt</span> <span class="o">=</span> <span class="s1">&#39;[{arr}]&#39;</span>
+                <span class="n">attr_repr</span> <span class="o">=</span> <span class="n">msg_fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">arr</span><span class="o">=</span><span class="nb">str</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">),</span> <span class="n">attrs</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+                    <span class="n">attr_repr</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">attr_repr</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="n">msg_fmt</span> <span class="o">=</span> <span class="s1">&#39;{name}={repr!r}&#39;</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">msg_fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="nb">repr</span><span class="o">=</span><span class="n">attr_repr</span><span class="p">)</span>
+            <span class="n">props</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="s1">&#39;{cls}({props})&#39;</span><span class="p">),</span>
+                          <span class="n">cls</span><span class="o">=</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
+                          <span class="n">props</span><span class="o">=</span><span class="nb">str</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">),</span> <span class="n">props</span><span class="p">))</span>
+
+<div class="viewcode-block" id="DataObject.to_json"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.DataObject.to_json">[docs]</a>    <span class="k">def</span> <span class="nf">to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Converts DataObject to json.</span>
+
+<span class="sd">        :return: the DataObject as a json structure.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">prop</span> <span class="ow">in</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_properties</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">prop</span><span class="o">.</span><span class="n">extend_json</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="bp">None</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">out</span></div>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="DataObject.extract"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.DataObject.extract">[docs]</a>    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Converts json to a DataObject.</span>
+
+<span class="sd">        :param data: json data to be deserialized back to a DataObject</span>
+<span class="sd">        :type data: str</span>
+
+<span class="sd">        :param strict: If True, missing values will raise an error, otherwise,</span>
+<span class="sd">            missing values will None or empty.</span>
+<span class="sd">        :type strict: bool</span>
+
+<span class="sd">        :return: a class deserialized from the data provided.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ctor_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">cls</span><span class="o">.</span><span class="n">_properties</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="c1"># If it has data</span>
+            <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="c1"># If it is a chap secret</span>
+            <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">prop</span><span class="o">.</span><span class="n">member_type</span><span class="p">(),</span> <span class="s1">&#39;custom_extract&#39;</span><span class="p">):</span>
+                <span class="n">ctor_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">prop</span><span class="o">.</span><span class="n">member_type</span><span class="p">()</span><span class="o">.</span><span class="n">custom_extract</span><span class="p">(</span>
+                    <span class="n">data</span><span class="p">[</span><span class="n">prop</span><span class="o">.</span><span class="n">member_name</span><span class="p">()])</span>
+            <span class="c1"># If it has the right data which matches the data we need, set it</span>
+            <span class="k">elif</span> <span class="n">prop</span><span class="o">.</span><span class="n">member_name</span><span class="p">()</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                <span class="n">data_val</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">prop</span><span class="o">.</span><span class="n">member_name</span><span class="p">()]</span>
+                <span class="n">ctor_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">prop</span><span class="o">.</span><span class="n">extract_from</span><span class="p">(</span><span class="n">data_val</span><span class="p">)</span>
+            <span class="c1"># If we&#39;re dealing with an optional property which hasn&#39;t been provided</span>
+            <span class="k">elif</span> <span class="n">prop</span><span class="o">.</span><span class="n">optional</span><span class="p">():</span>
+                <span class="n">ctor_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="c1"># If we&#39;re dealing with an empty array</span>
+            <span class="k">elif</span> <span class="n">prop</span><span class="o">.</span><span class="n">array</span><span class="p">():</span>
+                <span class="n">ctor_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">strict</span><span class="p">:</span>
+                <span class="n">ctor_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">msg_fmt</span> <span class="o">=</span> <span class="s1">&#39;Can not create {typ}: &#39;</span> \
+                          <span class="s1">&#39;missing required property &quot;{name}&quot; in {data}&#39;</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="n">msg_fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">typ</span><span class="o">=</span><span class="n">cls</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
+                                     <span class="n">name</span><span class="o">=</span><span class="n">prop</span><span class="o">.</span><span class="n">member_name</span><span class="p">(),</span>
+                                     <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                                     <span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cls</span><span class="p">(</span><span class="o">**</span><span class="n">ctor_dict</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="property"><a class="viewcode-back" href="../../../solidfire.common.html#solidfire.models.property">[docs]</a><span class="k">def</span> <span class="nf">property</span><span class="p">(</span><span class="n">member_name</span><span class="p">,</span> <span class="n">member_type</span><span class="p">,</span>
+             <span class="n">array</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">optional</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
+             <span class="n">documentation</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="n">dictionaryType</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constructs the type for a DataObject property.</span>
+
+<span class="sd">    :param member_name: the name of the property.</span>
+<span class="sd">    :type member_name: str</span>
+
+<span class="sd">    :param member_type: the type of the property.</span>
+<span class="sd">    :type member_type: type</span>
+
+<span class="sd">    :param array: is the property an array.</span>
+<span class="sd">    :type array: bool</span>
+
+<span class="sd">    :param optional: is the property optional.</span>
+<span class="sd">    :type optional: bool</span>
+
+<span class="sd">    :param documentation: documentation for the property.</span>
+<span class="sd">    :type documentation: str or NoneType</span>
+
+<span class="sd">    :return: the constructed type of a property</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">msg_fmt</span> <span class="o">=</span> <span class="s1">&#39;Property of type {typ}{arr}&#39;</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">msg_fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">typ</span><span class="o">=</span><span class="n">member_type</span><span class="p">,</span>
+        <span class="n">arr</span><span class="o">=</span><span class="s1">&#39;[]&#39;</span>
+        <span class="k">if</span> <span class="n">array</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+    <span class="p">)</span>
+    <span class="n">documentation</span> <span class="o">=</span> <span class="n">documentation</span> <span class="ow">or</span> <span class="n">msg</span>
+    <span class="n">typ</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">_as_ascii</span><span class="p">(</span><span class="n">member_name</span><span class="p">),</span>
+               <span class="p">(</span><span class="n">ModelProperty</span><span class="p">,),</span>
+               <span class="p">{</span>
+                   <span class="s1">&#39;__doc__&#39;</span><span class="p">:</span> <span class="n">documentation</span><span class="p">,</span>
+               <span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">typ</span><span class="p">(</span><span class="n">member_name</span><span class="o">=</span><span class="n">member_name</span><span class="p">,</span>
+               <span class="n">member_type</span><span class="o">=</span><span class="n">member_type</span><span class="p">,</span>
+               <span class="n">array</span><span class="o">=</span><span class="n">array</span><span class="p">,</span>
+               <span class="n">optional</span><span class="o">=</span><span class="n">optional</span><span class="p">,</span>
+               <span class="n">documentation</span><span class="o">=</span><span class="n">documentation</span><span class="p">,</span>
+               <span class="n">dictionaryType</span><span class="o">=</span><span class="n">dictionaryType</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, NetApp, Inc.  All Rights Reserved..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'1.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
