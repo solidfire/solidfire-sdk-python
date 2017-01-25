@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>solidfire.adaptor.schedule_adaptor &mdash; SolidFire Python SDK v1.1.0.91</title>
+  <title>solidfire.adaptor.schedule_adaptor &mdash; SolidFire Python SDK v1.2</title>
   
 
   
@@ -34,7 +34,7 @@
   
 
   
-    <link rel="top" title="SolidFire Python SDK v1.1.0.91" href="../../../index.html"/>
+    <link rel="top" title="SolidFire Python SDK v1.2" href="../../../index.html"/>
         <link rel="up" title="solidfire.adaptor" href="../adaptor.html"/> 
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                1.1.0.91
+                1.2.0.103
               </div>
             
           
@@ -88,7 +88,7 @@
             
             
                 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../solidfire.html"> SolidFire Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../solidfire.html"> SolidFire Python SDK v1.2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../solidfire.html#account-management-examples">Account Management Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../solidfire.html#snapshot-scheduling-examples">Snapshot Scheduling Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../solidfire.html#solidfire-package">solidfire package</a></li>
@@ -150,13 +150,12 @@
 <span class="c1"># NETAPP, INC. USE, DISCLOSURE OR REPRODUCTION IS PROHIBITED WITHOUT THE PRIOR</span>
 <span class="c1"># EXPRESS WRITTEN PERMISSION OF NETAPP, INC.</span>
 <span class="sd">&quot;&quot;&quot;Module implements Schedule Simplification conversion logic.&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">solidfire.apiactual</span> <span class="k">import</span> <span class="n">ApiSchedule</span><span class="p">,</span> <span class="n">ApiScheduleInfo</span><span class="p">,</span> <span class="n">ApiWeekday</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">solidfire.apiactual</span> <span class="kn">import</span> <span class="n">ApiSchedule</span><span class="p">,</span> <span class="n">ApiScheduleInfo</span><span class="p">,</span> <span class="n">ApiWeekday</span><span class="p">,</span> \
     <span class="n">ApiGetScheduleResult</span><span class="p">,</span> <span class="n">ApiListSchedulesResult</span><span class="p">,</span> <span class="n">ApiModifyScheduleResult</span><span class="p">,</span> \
     <span class="n">ApiCreateScheduleResult</span>
-<span class="kn">from</span> <span class="nn">solidfire.custom.models</span> <span class="k">import</span> <span class="n">Weekday</span><span class="p">,</span> <span class="n">DaysOfMonthFrequency</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">solidfire.custom.models</span> <span class="kn">import</span> <span class="n">Weekday</span><span class="p">,</span> <span class="n">DaysOfMonthFrequency</span><span class="p">,</span> \
     <span class="n">DaysOfWeekFrequency</span><span class="p">,</span> <span class="n">TimeIntervalFrequency</span>
-<span class="kn">from</span> <span class="nn">solidfire.models</span> <span class="k">import</span> <span class="n">Schedule</span><span class="p">,</span> <span class="n">Frequency</span><span class="p">,</span> <span class="n">ScheduleInfo</span>
-<span class="kn">from</span> <span class="nn">solidfire.results</span> <span class="k">import</span> <span class="n">GetScheduleResult</span><span class="p">,</span> <span class="n">ListSchedulesResult</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">solidfire.models</span> <span class="kn">import</span> <span class="n">Schedule</span><span class="p">,</span> <span class="n">Frequency</span><span class="p">,</span> <span class="n">ScheduleInfo</span><span class="p">,</span> <span class="n">GetScheduleResult</span><span class="p">,</span> <span class="n">ListSchedulesResult</span><span class="p">,</span> \
     <span class="n">CreateScheduleResult</span><span class="p">,</span> <span class="n">ModifyScheduleResult</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 
@@ -217,12 +216,12 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;schedule&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">schedule_id</span><span class="p">,</span> <span class="s1">&#39;_member_type&#39;</span><span class="p">)</span> <span class="ow">or</span> \
-                <span class="n">params</span><span class="p">[</span><span class="s1">&#39;schedule&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">schedule_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">params</span><span class="p">[</span><span class="s1">&#39;schedule&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">schedule_id</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;ScheduleID is missing. Cannot modify a &quot;</span>
                                  <span class="s2">&quot;schedule without a ScheduleID&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;schedule&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">frequency</span><span class="p">,</span> <span class="s1">&#39;_member_type&#39;</span><span class="p">)</span> <span class="ow">or</span> \
-                <span class="n">params</span><span class="p">[</span><span class="s1">&#39;schedule&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">frequency</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">params</span><span class="p">[</span><span class="s1">&#39;schedule&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">frequency</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Frequency is not present. Make sure the &quot;</span>
                                  <span class="s2">&quot;schedule object has a value in the &quot;</span>
                                  <span class="s2">&quot;frequency property before attempting to &quot;</span>
@@ -256,7 +255,7 @@
                                  <span class="s2">&quot;creation.&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;schedule&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">frequency</span><span class="p">,</span> <span class="s1">&#39;_member_type&#39;</span><span class="p">)</span> <span class="ow">or</span> \
-                <span class="n">params</span><span class="p">[</span><span class="s1">&#39;schedule&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">frequency</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">params</span><span class="p">[</span><span class="s1">&#39;schedule&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">frequency</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Frequency is not present. Make sure the &quot;</span>
                                  <span class="s2">&quot;schedule object has a value in the &quot;</span>
                                  <span class="s2">&quot;frequency property before attempting to &quot;</span>
@@ -291,7 +290,7 @@
 
         <span class="n">schedule</span><span class="o">.</span><span class="n">has_error</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">has_error</span>
         <span class="n">schedule</span><span class="o">.</span><span class="n">last_run_status</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">last_run_status</span>
-        <span class="n">schedule</span><span class="o">.</span><span class="n">last_run_time_start</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">last_run_time_start</span>
+        <span class="n">schedule</span><span class="o">.</span><span class="n">last_run_time_started</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">last_run_time_started</span>
         <span class="n">schedule</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">schedule_name</span>
         <span class="n">schedule</span><span class="o">.</span><span class="n">paused</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">paused</span>
         <span class="n">schedule</span><span class="o">.</span><span class="n">recurring</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">recurring</span>
@@ -311,25 +310,25 @@
                 <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">days</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">hours</span> <span class="o">/</span> <span class="mi">24</span><span class="p">)</span>
                 <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">hours</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">hours</span> <span class="o">%</span> <span class="mi">24</span><span class="p">)</span>
                 <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">minutes</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">minutes</span>
-                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">weekdays</span> <span class="o">=</span> <span class="kc">None</span>
-                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">monthdays</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">weekdays</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">monthdays</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="k">elif</span> <span class="n">freq</span> <span class="o">==</span> <span class="s2">&quot;Days Of Month&quot;</span><span class="p">:</span>
                 <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span> <span class="o">=</span> <span class="n">DaysOfMonthFrequency</span><span class="p">()</span>
                 <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">hours</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">hours</span>
                 <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">minutes</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">minutes</span>
                 <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">monthdays</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">monthdays</span>
-                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">weekdays</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">weekdays</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="k">elif</span> <span class="n">freq</span> <span class="o">==</span> <span class="s2">&quot;Days Of Week&quot;</span><span class="p">:</span>
                 <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span> <span class="o">=</span> <span class="n">DaysOfWeekFrequency</span><span class="p">()</span>
                 <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">hours</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">hours</span>
                 <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">minutes</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">minutes</span>
                 <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">weekdays</span> <span class="o">=</span> <span class="n">ScheduleAdaptor</span> \
                     <span class="o">.</span><span class="n">to_weekdays</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">weekdays</span><span class="p">)</span>
-                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">monthdays</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">schedule</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">monthdays</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Cannot determine frequency&quot;</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
-            <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Cannot deserialize Schedule </span><span class="si">{0}</span><span class="s2">. The frequency &quot;</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Cannot deserialize Schedule {0}. The frequency &quot;</span>
                       <span class="s2">&quot;property has an unknown value.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                 <span class="n">schedule</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
 
@@ -351,9 +350,9 @@
         <span class="n">info</span><span class="o">.</span><span class="n">retention</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">retention</span>
 
         <span class="n">volume_ids</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">if</span> <span class="n">api</span><span class="o">.</span><span class="n">volume_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">api</span><span class="o">.</span><span class="n">volume_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">volume_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">volume_id</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">api</span><span class="o">.</span><span class="n">volumes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">api</span><span class="o">.</span><span class="n">volumes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="c1"># noinspection PyTypeChecker</span>
             <span class="n">volume_ids</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">volumes</span><span class="p">)</span>
 
@@ -388,7 +387,7 @@
         <span class="n">api</span> <span class="o">=</span> <span class="n">ApiSchedule</span><span class="p">()</span>
         <span class="n">api</span><span class="o">.</span><span class="n">has_error</span> <span class="o">=</span> <span class="n">schedule</span><span class="o">.</span><span class="n">has_error</span>
         <span class="n">api</span><span class="o">.</span><span class="n">last_run_status</span> <span class="o">=</span> <span class="n">schedule</span><span class="o">.</span><span class="n">last_run_status</span>
-        <span class="n">api</span><span class="o">.</span><span class="n">last_run_time_start</span> <span class="o">=</span> <span class="n">schedule</span><span class="o">.</span><span class="n">last_run_time_start</span>
+        <span class="n">api</span><span class="o">.</span><span class="n">last_run_time_started</span> <span class="o">=</span> <span class="n">schedule</span><span class="o">.</span><span class="n">last_run_time_started</span>
         <span class="n">api</span><span class="o">.</span><span class="n">schedule_name</span> <span class="o">=</span> <span class="n">schedule</span><span class="o">.</span><span class="n">name</span>
         <span class="n">api</span><span class="o">.</span><span class="n">paused</span> <span class="o">=</span> <span class="n">schedule</span><span class="o">.</span><span class="n">paused</span>
         <span class="n">api</span><span class="o">.</span><span class="n">recurring</span> <span class="o">=</span> <span class="n">schedule</span><span class="o">.</span><span class="n">recurring</span>
@@ -406,24 +405,24 @@
 
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span> <span class="ow">is</span> <span class="n">TimeIntervalFrequency</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">frequency</span><span class="o">.</span><span class="n">days</span><span class="p">,</span> <span class="s1">&#39;_member_type&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">frequency</span><span class="o">.</span><span class="n">days</span> <span class="ow">is</span> \
-                    <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">None</span><span class="p">:</span>
                 <span class="n">frequency</span><span class="o">.</span><span class="n">days</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">frequency</span><span class="o">.</span><span class="n">hours</span><span class="p">,</span> <span class="s1">&#39;_member_type&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">frequency</span><span class="o">.</span><span class="n">hours</span> <span class="ow">is</span> \
-                    <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">None</span><span class="p">:</span>
                 <span class="n">frequency</span><span class="o">.</span><span class="n">hours</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">frequency</span><span class="o">.</span><span class="n">minutes</span><span class="p">,</span> <span class="s1">&#39;_member_type&#39;</span><span class="p">)</span> <span class="ow">or</span> \
-                            <span class="n">frequency</span><span class="o">.</span><span class="n">minutes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                            <span class="n">frequency</span><span class="o">.</span><span class="n">minutes</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
                 <span class="n">frequency</span><span class="o">.</span><span class="n">minutes</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="n">api</span><span class="o">.</span><span class="n">minutes</span> <span class="o">=</span> <span class="n">frequency</span><span class="o">.</span><span class="n">minutes</span>
             <span class="n">api</span><span class="o">.</span><span class="n">hours</span> <span class="o">=</span> <span class="n">frequency</span><span class="o">.</span><span class="n">days</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">+</span> <span class="n">frequency</span><span class="o">.</span><span class="n">hours</span>
             <span class="n">api</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s2">&quot;frequency&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Time Interval&quot;</span>
-            <span class="n">api</span><span class="o">.</span><span class="n">weekdays</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="n">api</span><span class="o">.</span><span class="n">monthdays</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">api</span><span class="o">.</span><span class="n">weekdays</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="n">api</span><span class="o">.</span><span class="n">monthdays</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span> <span class="ow">is</span> <span class="n">DaysOfMonthFrequency</span><span class="p">:</span>
             <span class="n">api</span><span class="o">.</span><span class="n">minutes</span> <span class="o">=</span> <span class="n">frequency</span><span class="o">.</span><span class="n">minutes</span>
             <span class="n">api</span><span class="o">.</span><span class="n">hours</span> <span class="o">=</span> <span class="n">frequency</span><span class="o">.</span><span class="n">hours</span>
             <span class="n">api</span><span class="o">.</span><span class="n">monthdays</span> <span class="o">=</span> <span class="n">frequency</span><span class="o">.</span><span class="n">monthdays</span>
-            <span class="n">api</span><span class="o">.</span><span class="n">weekdays</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">api</span><span class="o">.</span><span class="n">weekdays</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="n">api</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s2">&quot;frequency&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Days Of Month&quot;</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span> <span class="ow">is</span> <span class="n">DaysOfWeekFrequency</span><span class="p">:</span>
             <span class="n">api</span><span class="o">.</span><span class="n">minutes</span> <span class="o">=</span> <span class="n">frequency</span><span class="o">.</span><span class="n">minutes</span>
@@ -435,7 +434,7 @@
                 <span class="n">api_weekday</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">1</span>
                 <span class="n">api_weekdays</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">api_weekday</span><span class="p">)</span>
             <span class="n">api</span><span class="o">.</span><span class="n">weekdays</span> <span class="o">=</span> <span class="n">api_weekdays</span>
-            <span class="n">api</span><span class="o">.</span><span class="n">monthdays</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">api</span><span class="o">.</span><span class="n">monthdays</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="n">api</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s2">&quot;frequency&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Days Of Week&quot;</span>
         <span class="k">return</span> <span class="n">api</span></div>
 
@@ -456,7 +455,7 @@
 
         <span class="c1"># noinspection PyTypeChecker</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">volume_ids</span><span class="p">,</span> <span class="s1">&#39;_member_type&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">info</span><span class="o">.</span><span class="n">volume_ids</span> \
-                <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">volume_ids</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">volume_ids</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;ScheduleInfo.VolumeIDs are missing. &#39;</span>
                                  <span class="s1">&#39;Cannot create or modify a schedule without at &#39;</span>
                                  <span class="s1">&#39;least one VolumeID.&#39;</span><span class="p">)</span>
@@ -477,7 +476,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014-2016, NetApp, Inc.  All Rights Reserved..
+        &copy; Copyright 2014-2017, NetApp, Inc.  All Rights Reserved..
 
     </p>
   </div>
@@ -499,7 +498,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'1.1.0.91',
+            VERSION:'1.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

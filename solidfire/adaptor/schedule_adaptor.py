@@ -12,8 +12,7 @@ from solidfire.apiactual import ApiSchedule, ApiScheduleInfo, ApiWeekday, \
     ApiCreateScheduleResult
 from solidfire.custom.models import Weekday, DaysOfMonthFrequency, \
     DaysOfWeekFrequency, TimeIntervalFrequency
-from solidfire.models import Schedule, Frequency, ScheduleInfo
-from solidfire.results import GetScheduleResult, ListSchedulesResult, \
+from solidfire.models import Schedule, Frequency, ScheduleInfo, GetScheduleResult, ListSchedulesResult, \
     CreateScheduleResult, ModifyScheduleResult
 import logging
 
@@ -148,7 +147,7 @@ class ScheduleAdaptor:
 
         schedule.has_error = api.has_error
         schedule.last_run_status = api.last_run_status
-        schedule.last_run_time_start = api.last_run_time_start
+        schedule.last_run_time_started = api.last_run_time_started
         schedule.name = api.schedule_name
         schedule.paused = api.paused
         schedule.recurring = api.recurring
@@ -245,7 +244,7 @@ class ScheduleAdaptor:
         api = ApiSchedule()
         api.has_error = schedule.has_error
         api.last_run_status = schedule.last_run_status
-        api.last_run_time_start = schedule.last_run_time_start
+        api.last_run_time_started = schedule.last_run_time_started
         api.schedule_name = schedule.name
         api.paused = schedule.paused
         api.recurring = schedule.recurring

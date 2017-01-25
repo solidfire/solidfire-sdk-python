@@ -13,7 +13,8 @@ from uuid import UUID
 from future.utils import with_metaclass
 
 KNOWN_CONVERSIONS = {
-    type(set): list
+    type(set): list,
+    UUID: str
 }
 
 
@@ -86,7 +87,7 @@ class ModelProperty(object):
     """
 
     def __init__(self, member_name, member_type, array=False, optional=False,
-                 documentation=None):
+                 documentation=None, dictionaryType = None):
         """
         ModelProperty constructor.
 
@@ -110,6 +111,7 @@ class ModelProperty(object):
         self._array = array
         self._optional = optional
         self._documentation = documentation
+        self._dictionaryType = dictionaryType
 
     def __repr__(self):
         if self._array:
@@ -150,6 +152,11 @@ class ModelProperty(object):
         if self._array:
             return [] if data is None else [extract(self._member_type, x) for x
                                             in data]
+        if self._dictionaryType:
+            newdict = dict()
+            for key in data:
+                newdict[key] = extract(self._dictionaryType, data[key])
+            return newdict
         else:
             return None if data is None else extract(self._member_type, data)
 
@@ -308,16 +315,21 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
         """
         ctor_dict = {}
         for name, prop in cls._properties.items():
+            # If it has data
             if data is None:
                 pass
+            # If it is a chap secret
             elif hasattr(prop.member_type(), 'custom_extract'):
                 ctor_dict[name] = prop.member_type().custom_extract(
                     data[prop.member_name()])
+            # If it has the right data which matches the data we need, set it
             elif prop.member_name() in data:
                 data_val = data[prop.member_name()]
                 ctor_dict[name] = prop.extract_from(data_val)
+            # If we're dealing with an optional property which hasn't been provided
             elif prop.optional():
                 ctor_dict[name] = None
+            # If we're dealing with an empty array
             elif prop.array():
                 ctor_dict[name] = []
             elif not strict:
@@ -335,7 +347,7 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
 
 def property(member_name, member_type,
              array = False, optional = False,
-             documentation = None):
+             documentation = None, dictionaryType = None):
     """
     Constructs the type for a DataObject property.
 
@@ -373,4 +385,5 @@ def property(member_name, member_type,
                member_type=member_type,
                array=array,
                optional=optional,
-               documentation=documentation)
+               documentation=documentation,
+               dictionaryType=dictionaryType)

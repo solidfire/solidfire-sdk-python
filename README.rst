@@ -1,14 +1,10 @@
-|sf-python-logo| SolidFire Python SDK
-=====================================
+|sf-python-logo| SolidFire Python SDK v1.2
+==========================================
 
 Python SDK library for interacting with SolidFire Element API
 
 |pypy| |python| |format| |downloads| |license| |build|
 
-Current Release
----------------
-
-Version 1.1.0.92
 
 Description
 -----------
@@ -26,11 +22,8 @@ Compatibility
 +------------------------+---------------+
 | Component              | Version       |
 +========================+===============+
-| SolidFire Element OS   | 7.0 - 8.4\*   |
+| SolidFire Element OS   | 7.0 - 9.0     |
 +------------------------+---------------+
-
-\* **Note**: *This version of the SDK will work with versions of Element OS greater then 8.4 but some features will not be supported in the API.*
-
 
 Getting Help
 ------------
@@ -40,64 +33,13 @@ ng-sf-host-integrations-sdk@netapp.com or reach out to the online
 developer community at `ThePub <http://netapp.io>`__. Your feedback
 helps us focus our efforts on new features and capabilities.
 
-Documentation (v1.1)
---------------------
+Documentation
+-------------
 
 `Latest Docs <https://pythonhosted.org/solidfire-sdk-python/>`__
 
 `Release
-Notes <https://github.com/solidfire/solidfire-sdk-python/blob/gh-pages/SolidFire_Python_SDK_Release_Notes_v1.1.pdf>`__
-
-Prerequisites
--------------
-
-The following prerequisites are required before installing the Solidfire
-SDK.
-
-+------------------------------------------------------------------+-----------+
-| Component                                                        | Version   |
-+==================================================================+===========+
-| `PycURL <http://pycurl.io/docs/latest/install.html#install>`__   | 7.34.0+   |
-+------------------------------------------------------------------+-----------+
-
-To install globally with ``pip`` (requires pip 1.3 or greater)
-
-PycURL
-~~~~~~
-
-Instructions for installing PycURL.
-
-::
-
-    pip install pycurl
-
-The Solidfire Python SDK depends on the PycURL library which depends on
-an installed SSL library. If the PIP installation fails due to PycURL, this
-is most likely due to a missing SSL dependency. OpenSSL is the
-recomended SSL backend for all linux flavors.
-
-Instructions are Python 2.7 specific with examples of Python 3.3+
-examples in the comments.
-
-**Ubuntu Pre-Installation Steps**:
-
-::
-
-    sudo apt-get install python-pip                                  # or python3-pip
-    sudo apt-get install libffi-dev libssl-dev libcurl4-openssl-dev
-    sudo apt-get install python-dev                                  # or python3.3-dev python3.4-dev python3.5-dev
-    pip install pyopenssl ndg-httpsclient pyasn1                     # use the correct version of pip (i.e. pip3.3)
-
-**RHEL/CentOS Pre-Installation Steps**:
-
-::
-
-    yum install epel-release
-    yum groupinstall 'Development Tools'
-    yum -y install python-setuptools python-pip python-wheel         # or python3-setuptools python3-pip python3-wheel
-    yum -y install libffi-devel openssl-devel libcurl
-    yum -y install python-devel                                      # or python3.3-devel python3.4-devel python3.5-devel 
-    pip install pyopenssl ndg-httpsclient pyasn1                     # use the correct version of pip (i.e. pip3.3)
+Notes <https://github.com/solidfire/solidfire-sdk-python/raw/gh-pages/SolidFire_Python_SDK_Release_Notes_v1.2.pdf>`__
 
 Installation
 ------------
@@ -140,6 +82,18 @@ environment variable to use the SDK in other python scripts:
 
 That's it -- you are ready to start interacting with your SolidFire
 cluster using Python!
+
+Videos
+------
+
+**Getting Started** 
+
+This video is a walkthrough of getting started with the SolidFire Python SDK. You will see how install the SDK, connect to a SolidFire cluster, and use it to perform simple operations like retrieving and modifying accounts and volumes.
+
+.. raw:: html
+
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/3g028LYmiN4" frameborder="0" allowfullscreen></iframe>
+
 
 Examples
 --------
@@ -219,7 +173,11 @@ More examples using the Python SDK
 More Examples
 -------------
 
+<<<<<<< HEAD
 More specific examples are available `here <examples/examples.rst>`__
+=======
+More specific examples are available `here <https://github.com/solidfire/solidfire-sdk-python/blob/release1.2/examples/README.rst>`__
+>>>>>>> release1.2
 
 Logging
 -------
@@ -256,12 +214,12 @@ Read timeout (useful for extending time for a service call to return):
 
     from solidfire.factory import ElementFactory
     sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
-    sf.read_timeout(600)
+    sfe.read_timeout(600)
 
 **License**
 -----------
 
-Copyright © 2016 NetApp, Inc. All rights reserved.
+Copyright © 2016, 2017 NetApp, Inc. All rights reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may
 not use this file except in compliance with the License. You may obtain
@@ -275,7 +233,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-.. |sf-python-logo| image:: https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/release1.1/img/python-50.png
+.. |sf-python-logo| image:: https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/release1.2/img/python-50.png
 .. |pypy| image:: https://img.shields.io/pypi/v/solidfire-sdk-python.svg
    :target: https://badge.fury.io/py/solidfire-sdk-python
 .. |python| image:: https://img.shields.io/pypi/pyversions/solidfire-sdk-python.svg

@@ -8,11 +8,14 @@
 # EXPRESS WRITTEN PERMISSION OF NETAPP, INC.
 """API Common Library"""
 
-import json
-from contextlib import closing
-
 import itertools
+import json
 import logging
+
+import requests
+from requests.auth import HTTPBasicAuth
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 from solidfire.common import model
 
@@ -363,14 +366,15 @@ class ApiVersionUnsupportedError(Exception):
         """The versions supported by the connected Element OS"""
         return self._supported_versions
 
+class ApiConnectionError(Exception):
+    def __init__(self, message):
+        super(ApiConnectionError, self).__init__(message)
 
 class CurlDispatcher(object):
     """
     The CurlDispatcher is responsible for connecting, sending, and receiving
     data to a server.
     """
-    import pycurl
-    pycurl.version_info()
 
     def __init__(self, endpoint, username, password, verify_ssl):
         """
@@ -440,31 +444,14 @@ class CurlDispatcher(object):
         :param data: the data to be posted.
         :type data: str or json
         """
-        try:
-            from io import BytesIO
-            assert BytesIO
-        except ImportError:
-            from io import StringIO as BytesIO
-
-        with closing(CurlDispatcher.pycurl.Curl()) as c:
-            c.setopt(c.URL, self._endpoint)
-            obuffer = BytesIO()
-            c.setopt(c.POSTFIELDS, data)
-            c.setopt(c.WRITEFUNCTION, obuffer.write)
-            c.setopt(c.CONNECTTIMEOUT, self._connect_timeout)
-            c.setopt(c.TIMEOUT, self._timeout)
-
-            if self._credentials:
-                c.setopt(c.HTTPAUTH, c.HTTPAUTH_BASIC)
-                c.setopt(c.USERPWD, self._credentials)
-
-            if not self._verify_ssl:
-                c.setopt(c.SSL_VERIFYPEER, 0)
-                c.setopt(c.SSL_VERIFYHOST, 0)
-
-            c.perform()
-
-            return obuffer.getvalue().decode('utf-8')
+        auth = None
+        if self._credentials is not None:
+            (usr, pwd) = self._credentials.split(':')
+            auth = HTTPBasicAuth(usr, pwd)
+        resp = requests.post(self._endpoint, data=data, json=None,
+                             verify=self._verify_ssl, timeout=self._timeout,
+                             auth=auth)
+        return resp.text
 
 
 class ServiceBase(object):
@@ -500,12 +487,22 @@ class ServiceBase(object):
         """
 
         self._api_version = float(api_version)
+        endpoint = str.format('https://{mvip}/json-rpc/{api_version}',
+                              mvip=mvip, api_version=self._api_version)
+        if 'https' in endpoint:
+            self._port = 443
+        else:
+            self._port = ''
+
         if not dispatcher:
-            endpoint = str.format('https://{mvip}/json-rpc/{api_version}',
-                                  mvip=mvip, api_version=self._api_version)
             dispatcher = CurlDispatcher(endpoint, username, password,
                                         verify_ssl)
         self._dispatcher = dispatcher
+
+        if mvip is not None:
+            mvipArr = mvip.split(':')
+            if len(mvipArr) == 2:
+                self._port = mvipArr[1]
 
     def timeout(self, timeout_in_sec):
         """
@@ -582,20 +579,24 @@ class ServiceBase(object):
             atomic_id = ATOMIC_COUNTER.next()
         else:
             atomic_id = ATOMIC_COUNTER.__next__()
+
         encoded = json.dumps({
             'method': method_name,
             'id': atomic_id if atomic_id > 0 else 0,
             'params': dict(
-                (name, model.serialize(val))
-                for name, val in params.items()
-            ),
+                 (name, model.serialize(val))
+                 for name, val in params.items()
+             ),
         })
 
-        import pycurl
         try:
             LOG.info(msg=encoded)
             response_raw = self._dispatcher.post(encoded)
-        except pycurl.error as error:
+        except requests.ConnectionError:
+            raise ApiConnectionError("Was not able to connect to the specified target as a result of timing out.")
+        except requests.ReadTimeout:
+            raise ApiConnectionError("Read timed out.")
+        except Exception as error:
             json_err = json.dumps(
                 {
                     'error':
@@ -619,7 +620,7 @@ class ServiceBase(object):
                         }
                 }
             )
-            raise ApiServerError('login', json_err)
+            raise ApiConnectionError(json_err)
 
         # noinspection PyBroadException
         try:
@@ -639,9 +640,25 @@ class ServiceBase(object):
             )
 
         if 'error' in response:
-            raise ApiServerError(method_name, response['error'])
+            raise ApiServerError(method_name, json.dumps(response))
         else:
             return model.extract(result_type, response['result'])
+
+    def _check_connection_type(self, method_name,
+                               connection_type):
+        """
+        Check the connection type to verify that it is right.
+
+        :param connection_type: connection type the method expects.
+        :type connection_type: str
+        """
+        if(connection_type == "Cluster" and int(self._port) == 442):
+            error = method_name+" cannot be called on a node connection. It is a cluster-only method."
+            raise ApiConnectionError(error)
+        elif(connection_type == "Node" and int(self._port) == 443):
+            error = method_name+" cannot be called on a cluster connection. It is a node-only method."
+            raise ApiConnectionError(error)
+
 
     def _check_method_version(self,
                               method_name,

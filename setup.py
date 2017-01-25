@@ -36,15 +36,15 @@ class Clean(_clean):
 setup(
     name='solidfire-sdk-python',
 
-    version='1.1.0.93',
+    version='1.2.0.108',
 
     description='SolidFire Python SDK',
     long_description=long_description,
 
     url='https://github.com/solidfire/solidfire-sdk-python',
 
-    author='Jason Ryan Womack',
-    author_email='jason.womack@netapp.com',
+    author='Adam Haid',
+    author_email='adam.haid@netapp.com',
 
     license='Apache2',
 
@@ -75,7 +75,8 @@ setup(
 
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 
-    install_requires=['pycurl>=7.34.0', 'future>=0.15.2', 'enum34>=1.1.6'],
+    install_requires=['setuptools>=19.2',
+                      'future>=0.15.2', 'enum34>=1.1.6', 'requests>=2.9.1'],
 
     # $> pip install -e ".[dev,test, docs, release]"
     extras_require={

@@ -8,8 +8,7 @@
 # EXPRESS WRITTEN PERMISSION OF NETAPP, INC.
 """Module implements the generated adaptor calls from solidfire.Element"""
 from solidfire.adaptor.schedule_adaptor import ScheduleAdaptor
-from solidfire.results import GetNodeStatsResult
-
+from solidfire.models import GetNodeStatsResult
 
 class ElementServiceAdaptor(object):
     """
@@ -49,6 +48,24 @@ class ElementServiceAdaptor(object):
         result.node_stats.node_id = params["nodeID"]
 
         return result
+
+    @staticmethod
+    def invoke_sfapi(element, params, since, deprecated):
+        if "parameters" in params:
+            return element.send_request(
+                params["method"],
+                dict,
+                params["parameters"],
+                since,
+                deprecated
+            )
+        else:
+            return element.send_request(
+                params["method"],
+                dict,
+                since=since,
+                deprecated=deprecated
+            )
 
     @staticmethod
     def get_schedule(element, params, since, deprecated):
