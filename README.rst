@@ -173,7 +173,7 @@ More examples using the Python SDK
 More Examples
 -------------
 
-More specific examples are available `here <https://github.com/solidfire/solidfire-sdk-python/blob/release1.1/examples/README.rst>`__
+More specific examples are available `here <https://github.com/solidfire/solidfire-sdk-python/blob/release1.2/examples/README.rst>`__
 
 Logging
 -------
@@ -210,7 +210,7 @@ Read timeout (useful for extending time for a service call to return):
 
     from solidfire.factory import ElementFactory
     sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
-    sf.read_timeout(600)
+    sfe.read_timeout(600)
 
 **License**
 -----------
@@ -229,7 +229,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-.. |sf-python-logo| image:: https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/release1.1/img/python-50.png
+.. |sf-python-logo| image:: https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/release1.2/img/python-50.png
 .. |pypy| image:: https://img.shields.io/pypi/v/solidfire-sdk-python.svg
    :target: https://badge.fury.io/py/solidfire-sdk-python
 .. |python| image:: https://img.shields.io/pypi/pyversions/solidfire-sdk-python.svg
