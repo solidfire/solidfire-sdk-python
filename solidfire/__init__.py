@@ -68,7 +68,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetAccountByID',
             GetAccountResult,
-            params
+            params,
+            since=1
         )
 
     def get_account_by_name(
@@ -90,7 +91,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetAccountByName',
             GetAccountResult,
-            params
+            params,
+            since=1
         )
 
     def get_account_efficiency(
@@ -112,7 +114,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetAccountEfficiency',
             GetEfficiencyResult,
-            params
+            params,
+            since=6
         )
 
     def list_accounts(
@@ -141,7 +144,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListAccounts',
             ListAccountsResult,
-            params
+            params,
+            since=1
         )
 
     def modify_account(
@@ -196,7 +200,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ModifyAccount',
             ModifyAccountResult,
-            params
+            params,
+            since=1
         )
 
     def remove_account(
@@ -220,7 +225,8 @@ class Element(ServiceBase):
         return self.send_request(
             'RemoveAccount',
             RemoveAccountResult,
-            params
+            params,
+            since=1
         )
 
     def add_account(
@@ -262,7 +268,8 @@ class Element(ServiceBase):
         return self.send_request(
             'AddAccount',
             AddAccountResult,
-            params
+            params,
+            since=1
         )
 
     def create_backup_target(
@@ -290,7 +297,8 @@ class Element(ServiceBase):
         return self.send_request(
             'CreateBackupTarget',
             CreateBackupTargetResult,
-            params
+            params,
+            since=6
         )
 
     def get_backup_target(
@@ -312,7 +320,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetBackupTarget',
             GetBackupTargetResult,
-            params
+            params,
+            since=6
         )
 
     def list_backup_targets(
@@ -329,7 +338,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListBackupTargets',
             ListBackupTargetsResult,
-            params
+            params,
+            since=6
         )
 
     def modify_backup_target(
@@ -363,7 +373,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ModifyBackupTarget',
             ModifyBackupTargetResult,
-            params
+            params,
+            since=6
         )
 
     def remove_backup_target(
@@ -385,7 +396,8 @@ class Element(ServiceBase):
         return self.send_request(
             'RemoveBackupTarget',
             RemoveBackupTargetResult,
-            params
+            params,
+            since=6
         )
 
     def create_support_bundle(
@@ -420,7 +432,8 @@ class Element(ServiceBase):
         return self.send_request(
             'CreateSupportBundle',
             CreateSupportBundleResult,
-            params
+            params,
+            since=8
         )
 
     def delete_all_support_bundles(
@@ -437,7 +450,8 @@ class Element(ServiceBase):
         return self.send_request(
             'DeleteAllSupportBundles',
             DeleteAllSupportBundlesResult,
-            params
+            params,
+            since=8
         )
 
     def disable_encryption_at_rest(
@@ -456,7 +470,8 @@ class Element(ServiceBase):
         return self.send_request(
             'DisableEncryptionAtRest',
             DisableEncryptionAtRestResult,
-            params
+            params,
+            since=5
         )
 
     def disable_snmp(
@@ -473,7 +488,8 @@ class Element(ServiceBase):
         return self.send_request(
             'DisableSnmp',
             DisableSnmpResult,
-            params
+            params,
+            since=8
         )
 
     def enable_snmp(
@@ -495,7 +511,8 @@ class Element(ServiceBase):
         return self.send_request(
             'EnableSnmp',
             EnableSnmpResult,
-            params
+            params,
+            since=8
         )
 
     def get_api(
@@ -512,7 +529,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetAPI',
             GetAPIResult,
-            params
+            params,
+            since=1.0
         )
 
     def get_cluster_capacity(
@@ -530,7 +548,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetClusterCapacity',
             GetClusterCapacityResult,
-            params
+            params,
+            since=1
         )
 
     def get_cluster_full_threshold(
@@ -547,7 +566,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetClusterFullThreshold',
             GetClusterFullThresholdResult,
-            params
+            params,
+            since=1
         )
 
     def get_cluster_info(
@@ -564,7 +584,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetClusterInfo',
             GetClusterInfoResult,
-            params
+            params,
+            since=1
         )
 
     def get_cluster_master_node_id(
@@ -581,7 +602,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetClusterMasterNodeID',
             GetClusterMasterNodeIDResult,
-            params
+            params,
+            since=1
         )
 
     def get_cluster_state(
@@ -603,7 +625,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetClusterState',
             GetClusterStateResult,
-            params
+            params,
+            since=5
         )
 
     def get_cluster_stats(
@@ -620,7 +643,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetClusterStats',
             GetClusterStatsResult,
-            params
+            params,
+            since=1
         )
 
     def get_cluster_version_info(
@@ -638,7 +662,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetClusterVersionInfo',
             GetClusterVersionInfoResult,
-            params
+            params,
+            since=1
         )
 
     def get_current_cluster_admin(
@@ -655,7 +680,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetCurrentClusterAdmin',
             GetCurrentClusterAdminResult,
-            params
+            params,
+            since=6
         )
 
     def get_limits(
@@ -672,7 +698,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetLimits',
             GetLimitsResult,
-            params
+            params,
+            since=1
         )
 
     def get_ntp_info(
@@ -689,7 +716,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetNtpInfo',
             GetNtpInfoResult,
-            params
+            params,
+            since=1
         )
 
     def get_snmp_acl(
@@ -706,7 +734,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetSnmpACL',
             GetSnmpACLResult,
-            params
+            params,
+            since=8
         )
 
     def get_snmp_trap_info(
@@ -723,7 +752,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetSnmpTrapInfo',
             GetSnmpTrapInfoResult,
-            params
+            params,
+            since=5
         )
 
     def get_system_status(
@@ -739,7 +769,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetSystemStatus',
             GetSystemStatusResult,
-            params
+            params,
+            since=5
         )
 
     def list_cluster_admins(
@@ -756,7 +787,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListClusterAdmins',
             ListClusterAdminsResult,
-            params
+            params,
+            since=1
         )
 
     def list_events(
@@ -801,7 +833,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListEvents',
             ListEventsResult,
-            params
+            params,
+            since=1
         )
 
     def list_sync_jobs(
@@ -818,7 +851,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListSyncJobs',
             ListSyncJobsResult,
-            params
+            params,
+            since=1
         )
 
     def modify_cluster_admin(
@@ -858,7 +892,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ModifyClusterAdmin',
             ModifyClusterAdminResult,
-            params
+            params,
+            since=1
         )
 
     def modify_cluster_full_threshold(
@@ -897,7 +932,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ModifyClusterFullThreshold',
             ModifyClusterFullThresholdResult,
-            params
+            params,
+            since=1
         )
 
     def remove_cluster_admin(
@@ -919,7 +955,8 @@ class Element(ServiceBase):
         return self.send_request(
             'RemoveClusterAdmin',
             RemoveClusterAdminResult,
-            params
+            params,
+            since=1
         )
 
     def set_ntp_info(
@@ -947,7 +984,8 @@ class Element(ServiceBase):
         return self.send_request(
             'SetNtpInfo',
             SetNtpInfoResult,
-            params
+            params,
+            since=1
         )
 
     def set_snmp_acl(
@@ -974,7 +1012,8 @@ class Element(ServiceBase):
         return self.send_request(
             'SetSnmpACL',
             SetSnmpACLResult,
-            params
+            params,
+            since=8
         )
 
     def set_snmp_trap_info(
@@ -1011,7 +1050,8 @@ class Element(ServiceBase):
         return self.send_request(
             'SetSnmpTrapInfo',
             SetSnmpTrapInfoResult,
-            params
+            params,
+            since=5
         )
 
     def snmp_send_test_traps(
@@ -1028,7 +1068,8 @@ class Element(ServiceBase):
         return self.send_request(
             'SnmpSendTestTraps',
             SnmpSendTestTrapsResult,
-            params
+            params,
+            since=6
         )
 
     def add_cluster_admin(
@@ -1074,7 +1115,8 @@ class Element(ServiceBase):
         return self.send_request(
             'AddClusterAdmin',
             AddClusterAdminResult,
-            params
+            params,
+            since=1
         )
 
     def clear_cluster_faults(
@@ -1097,7 +1139,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ClearClusterFaults',
             ClearClusterFaultsResult,
-            params
+            params,
+            since=1
         )
 
     def create_cluster(
@@ -1177,7 +1220,8 @@ class Element(ServiceBase):
         return self.send_request(
             'EnableEncryptionAtRest',
             EnableEncryptionAtRestResult,
-            params
+            params,
+            since=5
         )
 
     def get_cluster_config(
@@ -1196,7 +1240,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetClusterConfig',
             GetClusterConfigResult,
-            params
+            params,
+            since=5
         )
 
     def get_snmp_info(
@@ -1215,7 +1260,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetSnmpInfo',
             GetSnmpInfoResult,
-            params
+            params,
+            since=1
         )
 
     def get_snmp_state(
@@ -1234,7 +1280,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetSnmpState',
             GetSnmpStateResult,
-            params
+            params,
+            since=8
         )
 
     def list_cluster_faults(
@@ -1276,7 +1323,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListClusterFaults',
             ListClusterFaultsResult,
-            params
+            params,
+            since=1
         )
 
     def set_cluster_config(
@@ -1300,7 +1348,8 @@ class Element(ServiceBase):
         return self.send_request(
             'SetClusterConfig',
             SetClusterConfigResult,
-            params
+            params,
+            since=5
         )
 
     def set_snmp_info(
@@ -1343,7 +1392,8 @@ class Element(ServiceBase):
         return self.send_request(
             'SetSnmpInfo',
             SetSnmpInfoResult,
-            params
+            params,
+            since=1
         )
 
     def get_drive_hardware_info(
@@ -1365,7 +1415,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetDriveHardwareInfo',
             GetDriveHardwareInfoResult,
-            params
+            params,
+            since=1
         )
 
     def get_drive_stats(
@@ -1388,7 +1439,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetDriveStats',
             GetDriveStatsResult,
-            params
+            params,
+            since=1
         )
 
     def list_drive_hardware(
@@ -1410,7 +1462,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListDriveHardware',
             ListDriveHardwareResult,
-            params
+            params,
+            since=7
         )
 
     def list_drives(
@@ -1428,7 +1481,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListDrives',
             ListDrivesResult,
-            params
+            params,
+            since=1
         )
 
     def add_drives(
@@ -1459,7 +1513,8 @@ class Element(ServiceBase):
         return self.send_request(
             'AddDrives',
             AddDrivesResult,
-            params
+            params,
+            since=1
         )
 
     def get_drive_config(
@@ -1478,7 +1533,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetDriveConfig',
             GetDriveConfigResult,
-            params
+            params,
+            since=2
         )
 
     def remove_drives(
@@ -1513,7 +1569,8 @@ class Element(ServiceBase):
         return self.send_request(
             'RemoveDrives',
             AsyncHandleResult,
-            params
+            params,
+            since=1
         )
 
     def reset_drives(
@@ -1542,7 +1599,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ResetDrives',
             ResetDrivesResult,
-            params
+            params,
+            since=6
         )
 
     def secure_erase_drives(
@@ -1568,7 +1626,8 @@ class Element(ServiceBase):
         return self.send_request(
             'SecureEraseDrives',
             AsyncHandleResult,
-            params
+            params,
+            since=5
         )
 
     def test_drives(
@@ -1595,7 +1654,8 @@ class Element(ServiceBase):
         return self.send_request(
             'TestDrives',
             TestDrivesResult,
-            params
+            params,
+            since=5
         )
 
     def get_cluster_hardware_info(
@@ -1618,7 +1678,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetClusterHardwareInfo',
             GetClusterHardwareInfoResult,
-            params
+            params,
+            since=1
         )
 
     def get_hardware_config(
@@ -1635,7 +1696,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetHardwareConfig',
             GetHardwareConfigResult,
-            params
+            params,
+            since=5
         )
 
     def get_node_hardware_info(
@@ -1657,7 +1719,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetNodeHardwareInfo',
             GetNodeHardwareInfoResult,
-            params
+            params,
+            since=1
         )
 
     def get_nvram_info(
@@ -1674,7 +1737,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetNvramInfo',
             GetNvramInfoResult,
-            params
+            params,
+            since=5
         )
 
     def create_initiators(
@@ -1697,7 +1761,8 @@ class Element(ServiceBase):
         return self.send_request(
             'CreateInitiators',
             CreateInitiatorsResult,
-            params
+            params,
+            since=9
         )
 
     def delete_initiators(
@@ -1720,7 +1785,8 @@ class Element(ServiceBase):
         return self.send_request(
             'DeleteInitiators',
             DeleteInitiatorsResult,
-            params
+            params,
+            since=9
         )
 
     def list_initiators(
@@ -1755,7 +1821,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListInitiators',
             ListInitiatorsResult,
-            params
+            params,
+            since=9
         )
 
     def modify_initiators(
@@ -1778,7 +1845,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ModifyInitiators',
             ModifyInitiatorsResult,
-            params
+            params,
+            since=9
         )
 
     def disable_ldap_authentication(
@@ -1795,7 +1863,8 @@ class Element(ServiceBase):
         return self.send_request(
             'DisableLdapAuthentication',
             DisableLdapAuthenticationResult,
-            params
+            params,
+            since=7
         )
 
     def get_ldap_configuration(
@@ -1812,7 +1881,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetLdapConfiguration',
             GetLdapConfigurationResult,
-            params
+            params,
+            since=7
         )
 
     def test_ldap_authentication(
@@ -1845,7 +1915,8 @@ class Element(ServiceBase):
         return self.send_request(
             'TestLdapAuthentication',
             TestLdapAuthenticationResult,
-            params
+            params,
+            since=7
         )
 
     def add_ldap_cluster_admin(
@@ -1886,7 +1957,8 @@ class Element(ServiceBase):
         return self.send_request(
             'AddLdapClusterAdmin',
             AddLdapClusterAdminResult,
-            params
+            params,
+            since=8
         )
 
     def enable_ldap_authentication(
@@ -1962,7 +2034,8 @@ class Element(ServiceBase):
         return self.send_request(
             'EnableLdapAuthentication',
             EnableLdapAuthenticationResult,
-            params
+            params,
+            since=7
         )
 
     def get_login_session_info(
@@ -1979,7 +2052,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetLoginSessionInfo',
             GetLoginSessionInfoResult,
-            params
+            params,
+            since=7
         )
 
     def get_remote_logging_hosts(
@@ -1996,7 +2070,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetRemoteLoggingHosts',
             GetRemoteLoggingHostsResult,
-            params
+            params,
+            since=1
         )
 
     def set_login_session_info(
@@ -2018,7 +2093,8 @@ class Element(ServiceBase):
         return self.send_request(
             'SetLoginSessionInfo',
             SetLoginSessionInfoResult,
-            params
+            params,
+            since=7
         )
 
     def set_remote_logging_hosts(
@@ -2040,7 +2116,8 @@ class Element(ServiceBase):
         return self.send_request(
             'SetRemoteLoggingHosts',
             SetRemoteLoggingHostsResult,
-            params
+            params,
+            since=1
         )
 
     def list_fibre_channel_port_info(
@@ -2057,7 +2134,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListFibreChannelPortInfo',
             ListFibreChannelPortInfoResult,
-            params
+            params,
+            since=8
         )
 
     def list_fibre_channel_sessions(
@@ -2074,7 +2152,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListFibreChannelSessions',
             ListFibreChannelSessionsResult,
-            params
+            params,
+            since=7
         )
 
     def list_iscsisessions(
@@ -2091,7 +2170,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListISCSISessions',
             ListISCSISessionsResult,
-            params
+            params,
+            since=1
         )
 
     def list_network_interfaces(
@@ -2108,7 +2188,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListNetworkInterfaces',
             ListNetworkInterfacesResult,
-            params
+            params,
+            since=7
         )
 
     def list_node_fibre_channel_port_info(
@@ -2125,7 +2206,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListNodeFibreChannelPortInfo',
             ListNodeFibreChannelPortInfoResult,
-            params
+            params,
+            since=7
         )
 
     def get_node_stats(
@@ -2169,7 +2251,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetOrigin',
             GetOriginResult,
-            params
+            params,
+            since=9
         )
 
     def list_active_nodes(
@@ -2186,7 +2269,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListActiveNodes',
             ListActiveNodesResult,
-            params
+            params,
+            since=1
         )
 
     def list_all_nodes(
@@ -2203,7 +2287,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListAllNodes',
             ListAllNodesResult,
-            params
+            params,
+            since=1
         )
 
     def list_node_stats(
@@ -2220,7 +2305,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListNodeStats',
             ListNodeStatsResult,
-            params
+            params,
+            since=6
         )
 
     def list_pending_active_nodes(
@@ -2237,7 +2323,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListPendingActiveNodes',
             ListPendingActiveNodesResult,
-            params
+            params,
+            since=9
         )
 
     def list_pending_nodes(
@@ -2255,7 +2342,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListPendingNodes',
             ListPendingNodesResult,
-            params
+            params,
+            since=1
         )
 
     def get_bootstrap_config(
@@ -2272,7 +2360,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetBootstrapConfig',
             GetBootstrapConfigResult,
-            params
+            params,
+            since=2
         )
 
     def add_nodes(
@@ -2302,7 +2391,8 @@ class Element(ServiceBase):
         return self.send_request(
             'AddNodes',
             AddNodesResult,
-            params
+            params,
+            since=1
         )
 
     def get_config(
@@ -2321,7 +2411,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetConfig',
             GetConfigResult,
-            params
+            params,
+            since=5
         )
 
     def get_network_config(
@@ -2340,7 +2431,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetNetworkConfig',
             GetNetworkConfigResult,
-            params
+            params,
+            since=5
         )
 
     def get_pending_operation(
@@ -2359,7 +2451,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetPendingOperation',
             GetPendingOperationResult,
-            params
+            params,
+            since=5
         )
 
     def remove_nodes(
@@ -2383,7 +2476,8 @@ class Element(ServiceBase):
         return self.send_request(
             'RemoveNodes',
             RemoveNodesResult,
-            params
+            params,
+            since=1
         )
 
     def set_config(
@@ -2409,7 +2503,8 @@ class Element(ServiceBase):
         return self.send_request(
             'SetConfig',
             SetConfigResult,
-            params
+            params,
+            since=5
         )
 
     def set_network_config(
@@ -2435,7 +2530,8 @@ class Element(ServiceBase):
         return self.send_request(
             'SetNetworkConfig',
             SetNetworkConfigResult,
-            params
+            params,
+            since=5
         )
 
     def complete_cluster_pairing(
@@ -2458,7 +2554,8 @@ class Element(ServiceBase):
         return self.send_request(
             'CompleteClusterPairing',
             CompleteClusterPairingResult,
-            params
+            params,
+            since=6
         )
 
     def complete_volume_pairing(
@@ -2485,7 +2582,8 @@ class Element(ServiceBase):
         return self.send_request(
             'CompleteVolumePairing',
             CompleteVolumePairingResult,
-            params
+            params,
+            since=6
         )
 
     def list_active_paired_volumes(
@@ -2503,7 +2601,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListActivePairedVolumes',
             ListActivePairedVolumesResult,
-            params
+            params,
+            since=6
         )
 
     def list_cluster_pairs(
@@ -2521,7 +2620,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListClusterPairs',
             ListClusterPairsResult,
-            params
+            params,
+            since=6
         )
 
     def remove_volume_pair(
@@ -2545,7 +2645,8 @@ class Element(ServiceBase):
         return self.send_request(
             'RemoveVolumePair',
             RemoveVolumePairResult,
-            params
+            params,
+            since=6
         )
 
     def start_cluster_pairing(
@@ -2564,7 +2665,8 @@ class Element(ServiceBase):
         return self.send_request(
             'StartClusterPairing',
             StartClusterPairingResult,
-            params
+            params,
+            since=6
         )
 
     def modify_volume_pair(
@@ -2598,7 +2700,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ModifyVolumePair',
             ModifyVolumePairResult,
-            params
+            params,
+            since=6
         )
 
     def remove_cluster_pair(
@@ -2621,7 +2724,8 @@ class Element(ServiceBase):
         return self.send_request(
             'RemoveClusterPair',
             RemoveClusterPairResult,
-            params
+            params,
+            since=6
         )
 
     def start_volume_pairing(
@@ -2654,7 +2758,8 @@ class Element(ServiceBase):
         return self.send_request(
             'StartVolumePairing',
             StartVolumePairingResult,
-            params
+            params,
+            since=6
         )
 
     def list_protocol_endpoints(
@@ -2679,7 +2784,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListProtocolEndpoints',
             ListProtocolEndpointsResult,
-            params
+            params,
+            since=9
         )
 
     def reset_node(
@@ -2711,7 +2817,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ResetNode',
             ResetNodeResult,
-            params
+            params,
+            since=5
         )
 
     def restart_networking(
@@ -2733,7 +2840,8 @@ class Element(ServiceBase):
         return self.send_request(
             'RestartNetworking',
             dict,
-            params
+            params,
+            since=5
         )
 
     def restart_services(
@@ -2767,7 +2875,8 @@ class Element(ServiceBase):
         return self.send_request(
             'RestartServices',
             dict,
-            params
+            params,
+            since=5
         )
 
     def shutdown(
@@ -2795,7 +2904,8 @@ class Element(ServiceBase):
         return self.send_request(
             'Shutdown',
             ShutdownResult,
-            params
+            params,
+            since=1
         )
 
     def list_services(
@@ -2812,7 +2922,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListServices',
             ListServicesResult,
-            params
+            params,
+            since=1
         )
 
     def delete_snapshot(
@@ -2837,7 +2948,8 @@ class Element(ServiceBase):
         return self.send_request(
             'DeleteSnapshot',
             DeleteSnapshotResult,
-            params
+            params,
+            since=6
         )
 
     def get_schedule(
@@ -2882,7 +2994,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListGroupSnapshots',
             ListGroupSnapshotsResult,
-            params
+            params,
+            since=7
         )
 
     def list_schedules(
@@ -2922,7 +3035,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListSnapshots',
             ListSnapshotsResult,
-            params
+            params,
+            since=6
         )
 
     def create_group_snapshot(
@@ -2980,7 +3094,8 @@ class Element(ServiceBase):
         return self.send_request(
             'CreateGroupSnapshot',
             CreateGroupSnapshotResult,
-            params
+            params,
+            since=7
         )
 
     def create_schedule(
@@ -3070,7 +3185,8 @@ class Element(ServiceBase):
         return self.send_request(
             'CreateSnapshot',
             CreateSnapshotResult,
-            params
+            params,
+            since=6
         )
 
     def delete_group_snapshot(
@@ -3099,7 +3215,8 @@ class Element(ServiceBase):
         return self.send_request(
             'DeleteGroupSnapshot',
             DeleteGroupSnapshotResult,
-            params
+            params,
+            since=7
         )
 
     def modify_group_snapshot(
@@ -3133,7 +3250,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ModifyGroupSnapshot',
             ModifyGroupSnapshotResult,
-            params
+            params,
+            since=8
         )
 
     def modify_schedule(
@@ -3190,7 +3308,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ModifySnapshot',
             ModifySnapshotResult,
-            params
+            params,
+            since=8
         )
 
     def rollback_to_group_snapshot(
@@ -3232,7 +3351,8 @@ class Element(ServiceBase):
         return self.send_request(
             'RollbackToGroupSnapshot',
             CreateGroupSnapshotResult,
-            params
+            params,
+            since=7
         )
 
     def rollback_to_snapshot(
@@ -3281,7 +3401,8 @@ class Element(ServiceBase):
         return self.send_request(
             'RollbackToSnapshot',
             CreateSnapshotResult,
-            params
+            params,
+            since=6
         )
 
     def get_complete_stats(
@@ -3299,7 +3420,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetCompleteStats',
             str,
-            params
+            params,
+            since=1
         )
 
     def get_hardware_info(
@@ -3316,7 +3438,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetHardwareInfo',
             GetHardwareInfoResult,
-            params
+            params,
+            since=9
         )
 
     def get_raw_stats(
@@ -3334,7 +3457,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetRawStats',
             str,
-            params
+            params,
+            since=1
         )
 
     def list_drive_stats(
@@ -3357,7 +3481,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListDriveStats',
             ListDriveStatsResult,
-            params
+            params,
+            since=9
         )
 
     def list_volume_stats(
@@ -3379,7 +3504,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListVolumeStats',
             ListVolumeStatsResult,
-            params
+            params,
+            since=7
         )
 
     def list_volume_stats_by_virtual_volume(
@@ -3402,7 +3528,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListVolumeStatsByVirtualVolume',
             ListVolumeStatsByVirtualVolumeResult,
-            params
+            params,
+            since=9
         )
 
     def create_storage_container(
@@ -3436,7 +3563,8 @@ class Element(ServiceBase):
         return self.send_request(
             'CreateStorageContainer',
             CreateStorageContainerResult,
-            params
+            params,
+            since=9
         )
 
     def delete_storage_containers(
@@ -3458,7 +3586,8 @@ class Element(ServiceBase):
         return self.send_request(
             'DeleteStorageContainers',
             DeleteStorageContainerResult,
-            params
+            params,
+            since=9
         )
 
     def get_storage_container_efficiency(
@@ -3480,7 +3609,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetStorageContainerEfficiency',
             GetStorageContainerEfficiencyResult,
-            params
+            params,
+            since=9
         )
 
     def list_storage_containers(
@@ -3503,7 +3633,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListStorageContainers',
             ListStorageContainersResult,
-            params
+            params,
+            since=9
         )
 
     def modify_storage_container(
@@ -3537,7 +3668,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ModifyStorageContainer',
             ModifyStorageContainerResult,
-            params
+            params,
+            since=9
         )
 
     def list_tests(
@@ -3555,7 +3687,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListTests',
             ListTestsResult,
-            params
+            params,
+            since=5
         )
 
     def list_utilities(
@@ -3573,7 +3706,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListUtilities',
             ListUtilitiesResult,
-            params
+            params,
+            since=5
         )
 
     def test_connect_ensemble(
@@ -3597,7 +3731,8 @@ class Element(ServiceBase):
         return self.send_request(
             'TestConnectEnsemble',
             TestConnectEnsembleResult,
-            params
+            params,
+            since=5
         )
 
     def test_connect_mvip(
@@ -3621,7 +3756,8 @@ class Element(ServiceBase):
         return self.send_request(
             'TestConnectMvip',
             TestConnectMvipResult,
-            params
+            params,
+            since=5
         )
 
     def test_connect_svip(
@@ -3645,7 +3781,8 @@ class Element(ServiceBase):
         return self.send_request(
             'TestConnectSvip',
             TestConnectSvipResult,
-            params
+            params,
+            since=5
         )
 
     def test_ping(
@@ -3693,7 +3830,8 @@ class Element(ServiceBase):
         return self.send_request(
             'TestPing',
             TestPingResult,
-            params
+            params,
+            since=5
         )
 
     def list_virtual_networks(
@@ -3736,7 +3874,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListVirtualNetworks',
             ListVirtualNetworksResult,
-            params
+            params,
+            since=7
         )
 
     def add_virtual_network(
@@ -3806,7 +3945,8 @@ class Element(ServiceBase):
         return self.send_request(
             'AddVirtualNetwork',
             AddVirtualNetworkResult,
-            params
+            params,
+            since=7
         )
 
     def modify_virtual_network(
@@ -3887,7 +4027,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ModifyVirtualNetwork',
             AddVirtualNetworkResult,
-            params
+            params,
+            since=7
         )
 
     def remove_virtual_network(
@@ -3918,7 +4059,8 @@ class Element(ServiceBase):
         return self.send_request(
             'RemoveVirtualNetwork',
             RemoveVirtualNetworkResult,
-            params
+            params,
+            since=7
         )
 
     def get_virtual_volume_count(
@@ -3935,7 +4077,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetVirtualVolumeCount',
             GetVirtualVolumeCountResult,
-            params
+            params,
+            since=9
         )
 
     def list_virtual_volume_bindings(
@@ -3958,7 +4101,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListVirtualVolumeBindings',
             ListVirtualVolumeBindingsResult,
-            params
+            params,
+            since=9
         )
 
     def list_virtual_volume_hosts(
@@ -3981,7 +4125,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListVirtualVolumeHosts',
             ListVirtualVolumeHostsResult,
-            params
+            params,
+            since=9
         )
 
     def list_virtual_volume_tasks(
@@ -4004,7 +4149,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListVirtualVolumeTasks',
             ListVirtualVolumeTasksResult,
-            params
+            params,
+            since=9
         )
 
     def list_virtual_volumes(
@@ -4051,7 +4197,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListVirtualVolumes',
             ListVirtualVolumesResult,
-            params
+            params,
+            since=9
         )
 
     def enable_feature(
@@ -4073,7 +4220,8 @@ class Element(ServiceBase):
         return self.send_request(
             'EnableFeature',
             EnableFeatureResult,
-            params
+            params,
+            since=9
         )
 
     def get_feature_status(
@@ -4096,7 +4244,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetFeatureStatus',
             GetFeatureStatusResult,
-            params
+            params,
+            since=9
         )
 
     def delete_volumes(
@@ -4131,7 +4280,8 @@ class Element(ServiceBase):
         return self.send_request(
             'DeleteVolumes',
             DeleteVolumesResult,
-            params
+            params,
+            since=9
         )
 
     def get_default_qos(
@@ -4148,7 +4298,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetDefaultQoS',
             VolumeQOS,
-            params
+            params,
+            since=1
         )
 
     def get_volume_count(
@@ -4165,7 +4316,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetVolumeCount',
             GetVolumeCountResult,
-            params
+            params,
+            since=9
         )
 
     def get_volume_efficiency(
@@ -4188,7 +4340,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetVolumeEfficiency',
             GetVolumeEfficiencyResult,
-            params
+            params,
+            since=6
         )
 
     def get_volume_stats(
@@ -4211,7 +4364,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetVolumeStats',
             GetVolumeStatsResult,
-            params
+            params,
+            since=1
         )
 
     def list_active_volumes(
@@ -4241,7 +4395,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListActiveVolumes',
             ListActiveVolumesResult,
-            params
+            params,
+            since=1
         )
 
     def list_async_results(
@@ -4264,7 +4419,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListAsyncResults',
             ListAsyncResultsResult,
-            params
+            params,
+            since=9
         )
 
     def list_bulk_volume_jobs(
@@ -4281,7 +4437,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListBulkVolumeJobs',
             ListBulkVolumeJobsResult,
-            params
+            params,
+            since=6
         )
 
     def list_deleted_volumes(
@@ -4298,7 +4455,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListDeletedVolumes',
             ListDeletedVolumesResult,
-            params
+            params,
+            since=1
         )
 
     def list_volume_stats_by_account(
@@ -4316,7 +4474,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListVolumeStatsByAccount',
             ListVolumeStatsByAccountResult,
-            params
+            params,
+            since=1
         )
 
     def list_volume_stats_by_volume(
@@ -4334,7 +4493,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListVolumeStatsByVolume',
             ListVolumeStatsByVolumeResult,
-            params
+            params,
+            since=1
         )
 
     def list_volume_stats_by_volume_access_group(
@@ -4357,7 +4517,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListVolumeStatsByVolumeAccessGroup',
             ListVolumeStatsByVolumeAccessGroupResult,
-            params
+            params,
+            since=5
         )
 
     def list_volumes(
@@ -4415,7 +4576,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListVolumes',
             ListVolumesResult,
-            params
+            params,
+            since=8
         )
 
     def list_volumes_for_account(
@@ -4449,7 +4611,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListVolumesForAccount',
             ListVolumesForAccountResult,
-            params
+            params,
+            since=1
         )
 
     def modify_volumes(
@@ -4501,7 +4664,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ModifyVolumes',
             ModifyVolumesResult,
-            params
+            params,
+            since=9
         )
 
     def purge_deleted_volume(
@@ -4525,7 +4689,8 @@ class Element(ServiceBase):
         return self.send_request(
             'PurgeDeletedVolume',
             PurgeDeletedVolumeResult,
-            params
+            params,
+            since=1
         )
 
     def purge_deleted_volumes(
@@ -4560,7 +4725,8 @@ class Element(ServiceBase):
         return self.send_request(
             'PurgeDeletedVolumes',
             PurgeDeletedVolumesResult,
-            params
+            params,
+            since=9
         )
 
     def restore_deleted_volume(
@@ -4583,7 +4749,8 @@ class Element(ServiceBase):
         return self.send_request(
             'RestoreDeletedVolume',
             RestoreDeletedVolumeResult,
-            params
+            params,
+            since=1
         )
 
     def set_default_qos(
@@ -4618,7 +4785,8 @@ class Element(ServiceBase):
         return self.send_request(
             'SetDefaultQoS',
             SetDefaultQoSResult,
-            params
+            params,
+            since=9
         )
 
     def clone_multiple_volumes(
@@ -4661,7 +4829,8 @@ class Element(ServiceBase):
         return self.send_request(
             'CloneMultipleVolumes',
             CloneMultipleVolumesResult,
-            params
+            params,
+            since=7
         )
 
     def create_volume(
@@ -4711,7 +4880,8 @@ class Element(ServiceBase):
         return self.send_request(
             'CreateVolume',
             CreateVolumeResult,
-            params
+            params,
+            since=1
         )
 
     def get_async_result(
@@ -4741,7 +4911,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetAsyncResult',
             GetAsyncResultResult,
-            params
+            params,
+            since=1
         )
 
     def start_bulk_volume_read(
@@ -4804,7 +4975,8 @@ class Element(ServiceBase):
         return self.send_request(
             'StartBulkVolumeRead',
             StartBulkVolumeReadResult,
-            params
+            params,
+            since=6
         )
 
     def update_bulk_volume_status(
@@ -4849,7 +5021,8 @@ class Element(ServiceBase):
         return self.send_request(
             'UpdateBulkVolumeStatus',
             UpdateBulkVolumeStatusResult,
-            params
+            params,
+            since=6
         )
 
     def cancel_clone(
@@ -4871,7 +5044,8 @@ class Element(ServiceBase):
         return self.send_request(
             'CancelClone',
             CancelCloneResult,
-            params
+            params,
+            since=9
         )
 
     def cancel_group_clone(
@@ -4893,7 +5067,8 @@ class Element(ServiceBase):
         return self.send_request(
             'CancelGroupClone',
             CancelGroupCloneResult,
-            params
+            params,
+            since=9
         )
 
     def copy_volume(
@@ -4926,7 +5101,8 @@ class Element(ServiceBase):
         return self.send_request(
             'CopyVolume',
             CopyVolumeResult,
-            params
+            params,
+            since=9
         )
 
     def clone_volume(
@@ -4992,7 +5168,8 @@ class Element(ServiceBase):
         return self.send_request(
             'CloneVolume',
             CloneVolumeResult,
-            params
+            params,
+            since=1
         )
 
     def delete_volume(
@@ -5028,7 +5205,8 @@ class Element(ServiceBase):
         return self.send_request(
             'DeleteVolume',
             DeleteVolumeResult,
-            params
+            params,
+            since=1
         )
 
     def modify_volume(
@@ -5088,7 +5266,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ModifyVolume',
             ModifyVolumeResult,
-            params
+            params,
+            since=1
         )
 
     def start_bulk_volume_write(
@@ -5137,7 +5316,8 @@ class Element(ServiceBase):
         return self.send_request(
             'StartBulkVolumeWrite',
             StartBulkVolumeWriteResult,
-            params
+            params,
+            since=6
         )
 
     def add_initiators_to_volume_access_group(
@@ -5164,7 +5344,8 @@ class Element(ServiceBase):
         return self.send_request(
             'AddInitiatorsToVolumeAccessGroup',
             ModifyVolumeAccessGroupResult,
-            params
+            params,
+            since=5
         )
 
     def add_volumes_to_volume_access_group(
@@ -5191,7 +5372,8 @@ class Element(ServiceBase):
         return self.send_request(
             'AddVolumesToVolumeAccessGroup',
             ModifyVolumeAccessGroupResult,
-            params
+            params,
+            since=5
         )
 
     def create_volume_access_group(
@@ -5255,7 +5437,8 @@ class Element(ServiceBase):
         return self.send_request(
             'CreateVolumeAccessGroup',
             CreateVolumeAccessGroupResult,
-            params
+            params,
+            since=5
         )
 
     def delete_volume_access_group(
@@ -5277,7 +5460,8 @@ class Element(ServiceBase):
         return self.send_request(
             'DeleteVolumeAccessGroup',
             DeleteVolumeAccessGroupResult,
-            params
+            params,
+            since=5
         )
 
     def get_volume_access_group_efficiency(
@@ -5299,7 +5483,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetVolumeAccessGroupEfficiency',
             GetEfficiencyResult,
-            params
+            params,
+            since=6
         )
 
     def get_volume_access_group_lun_assignments(
@@ -5321,7 +5506,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetVolumeAccessGroupLunAssignments',
             GetVolumeAccessGroupLunAssignmentsResult,
-            params
+            params,
+            since=7
         )
 
     def list_volume_access_groups(
@@ -5350,7 +5536,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ListVolumeAccessGroups',
             ListVolumeAccessGroupsResult,
-            params
+            params,
+            since=5
         )
 
     def remove_initiators_from_volume_access_group(
@@ -5377,7 +5564,8 @@ class Element(ServiceBase):
         return self.send_request(
             'RemoveInitiatorsFromVolumeAccessGroup',
             ModifyVolumeAccessGroupResult,
-            params
+            params,
+            since=5
         )
 
     def remove_volumes_from_volume_access_group(
@@ -5404,7 +5592,8 @@ class Element(ServiceBase):
         return self.send_request(
             'RemoveVolumesFromVolumeAccessGroup',
             ModifyVolumeAccessGroupResult,
-            params
+            params,
+            since=5
         )
 
     def modify_volume_access_group(
@@ -5479,7 +5668,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ModifyVolumeAccessGroup',
             ModifyVolumeAccessGroupResult,
-            params
+            params,
+            since=5
         )
 
     def modify_volume_access_group_lun_assignments(
@@ -5512,7 +5702,8 @@ class Element(ServiceBase):
         return self.send_request(
             'ModifyVolumeAccessGroupLunAssignments',
             ModifyVolumeAccessGroupLunAssignmentsResult,
-            params
+            params,
+            since=7
         )
 
     def get_ipmi_config(
@@ -5540,7 +5731,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetIpmiConfig',
             GetIpmiConfigResult,
-            params
+            params,
+            since=9
         )
 
     def get_ipmi_info(
@@ -5562,7 +5754,8 @@ class Element(ServiceBase):
         return self.send_request(
             'GetIpmiInfo',
             GetIpmiInfoResult,
-            params
+            params,
+            since=9
         )
 
     def invoke_sfapi(
