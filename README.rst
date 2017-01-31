@@ -28,7 +28,7 @@ Compatibility
 Getting Help
 ------------
 
-If you have any questions or comments about this product, open an issue on our `GitHub repo <https://github.com/solidfire/solidfire-sdk-python>` or reach out to the online developer community at `ThePub <http://netapp.io>`. Your feedback helps us focus our efforts on new features and capabilities.
+If you have any questions or comments about this product, open an issue on our `GitHub repo <https://github.com/solidfire/solidfire-sdk-python>`__ or reach out to the online developer community at `ThePub <http://netapp.io>`__. Your feedback helps us focus our efforts on new features and capabilities.
 
 Documentation
 -------------
