@@ -89,6 +89,7 @@ and use it to perform simple operations like retrieving and modifying
 accounts and volumes.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/3g028LYmiN4" frameborder="0" allowfullscreen></iframe>
+
 Examples
 --------
 
@@ -104,12 +105,10 @@ manually and whether or not to verify SSL. Read more about it in the
 [ElementFactory](https://pythonhosted.org/solidfire-sdk-python/solidfire.html#solidfire.factory.ElementFactory)
 documentation.
 
-~~~ {.sourceCode .python}
-from solidfire.factory import ElementFactory
+	from solidfire.factory import ElementFactory
 
-# Use ElementFactory to get a SolidFireElement object.
-sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
-~~~
+	# Use ElementFactory to get a SolidFireElement object.
+	sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
 
 ### Step 2 - Call the API method and retrieve the result
 
@@ -121,46 +120,44 @@ which has a property called accounts that can be iterated.
 This example sends a request to list accounts then pulls the first
 account from the add\_account\_result object.
 
-~~~ {.sourceCode .python}
-# Send the request and wait for the result then pull the AccountID
-list_accounts_result = sfe.list_accounts()
-account = list_accounts_result.accounts[0];   
-~~~
+
+	# Send the request and wait for the result then pull the AccountID
+	list_accounts_result = sfe.list_accounts()
+	account = list_accounts_result.accounts[0];   
+
 
 ### More examples using the Python SDK
 
-~~~ {.sourceCode .python}
-from solidfire.factory import ElementFactory
+	from solidfire.factory import ElementFactory
 
-# Create connection to SF Cluster
-sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
+	# Create connection to SF Cluster
+	sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
 
-# --------- EXAMPLE 1 - CREATE AN ACCOUNT -----------
-# Send the request with required parameters and gather the result
-add_account_result = sfe.add_account(username="example-account")
-# Pull the account ID from the result object
-account_id = add_account_result.account_id
+	# --------- EXAMPLE 1 - CREATE AN ACCOUNT -----------
+	# Send the request with required parameters and gather the result
+	add_account_result = sfe.add_account(username="example-account")
+	# Pull the account ID from the result object
+	account_id = add_account_result.account_id
 
-# --------- EXAMPLE 2 - CREATE A VOLUME -------------
-# Send the request with required parameters and gather the result
-create_volume_result = sfe.create_volume(name="example-volume",
-                                         account_id=account_id,
-                                         total_size=1000000000,
-                                         enable512e=False)
-# Pull the VolumeID off the result object
-volume_id = create_volume_result.volume_id
+	# --------- EXAMPLE 2 - CREATE A VOLUME -------------
+	# Send the request with required parameters and gather the result
+	create_volume_result = sfe.create_volume(name="example-volume",
+	                                         account_id=account_id,
+	                                         total_size=1000000000,
+	                                         enable512e=False)
+	# Pull the VolumeID off the result object
+	volume_id = create_volume_result.volume_id
 
-# --------- EXAMPLE 3 - LIST ONE VOLUME FOR AN ACCOUNT -------------
-# Send the request with desired parameters and pull the first volume in the
-# result
-volume = sfe.list_volumes(accounts=[account_id], limit=1).volumes[0]
-# pull the iqn from the volume
-iqn = volume.iqn
+	# --------- EXAMPLE 3 - LIST ONE VOLUME FOR AN ACCOUNT -------------
+	# Send the request with desired parameters and pull the first volume in the
+	# result
+	volume = sfe.list_volumes(accounts=[account_id], limit=1).volumes[0]
+	# pull the iqn from the volume
+	iqn = volume.iqn
 
-# --------- EXAMPLE 3 - MODIFY A VOLUME -------------
-# Send the request with the desired parameters
-sfe.modify_volume(volume_id=volume_id, total_size=2000000000)
-~~~
+	# --------- EXAMPLE 3 - MODIFY A VOLUME -------------
+	# Send the request with the desired parameters
+	sfe.modify_volume(volume_id=volume_id, total_size=2000000000)
 
 More Examples
 -------------
@@ -173,17 +170,13 @@ Logging
 
 To configure logging responses, execute the following:
 
-~~~ {.sourceCode .python}
-import logging
-from solidfire import common
-common.setLogLevel(logging.DEBUG)
-~~~
+	import logging
+	from solidfire import common
+	common.setLogLevel(logging.DEBUG)
 
 To access the logger for the Element instance:
 
-~~~ {.sourceCode .python}
-from solidfire.common import LOG
-~~~
+	from solidfire.common import LOG
 
 Timeouts
 --------
@@ -191,19 +184,15 @@ Timeouts
 Connection timeout (useful for failing fast when a host becomes
 unreachable):
 
-~~~ {.sourceCode .python}
-from solidfire.factory import ElementFactory
-sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
-sfe.timeout(600)
-~~~
+	from solidfire.factory import ElementFactory
+	sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
+	sfe.timeout(600)
 
 Read timeout (useful for extending time for a service call to return):
 
-~~~ {.sourceCode .python}
-from solidfire.factory import ElementFactory
-sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
-sfe.read_timeout(600)
-~~~
+	from solidfire.factory import ElementFactory
+	sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
+	sfe.read_timeout(600)
 
 **License**
 -----------
