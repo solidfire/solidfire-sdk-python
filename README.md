@@ -23,9 +23,9 @@ required for integration.
 Compatibility
 -------------
 
-|  Component                | Version
-| ------------------------- | ---------------
-| SolidFire Element OS      | 7.0 - 9.0
+|  Component               | Version       |
+|:-------------------------|:--------------|
+| SolidFire Element OS     | 7.0 - 9.0     |
 
 Getting Help
 ------------
