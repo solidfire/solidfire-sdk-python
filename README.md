@@ -23,9 +23,9 @@ required for integration.
 Compatibility
 -------------
 
-  Component                 Version
-  ------------------------- ----------------
-  SolidFire Element OS      7.0 - 9.0
+|  Component                | Version
+| ------------------------- | ---------------
+| SolidFire Element OS      | 7.0 - 9.0
 
 Getting Help
 ------------
@@ -104,12 +104,12 @@ manually and whether or not to verify SSL. Read more about it in the
 [ElementFactory](https://pythonhosted.org/solidfire-sdk-python/solidfire.html#solidfire.factory.ElementFactory)
 documentation.
 
-``` {.sourceCode .python}
+~~~ {.sourceCode .python}
 from solidfire.factory import ElementFactory
 
 # Use ElementFactory to get a SolidFireElement object.
 sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
-```
+~~~
 
 ### Step 2 - Call the API method and retrieve the result
 
@@ -121,15 +121,15 @@ which has a property called accounts that can be iterated.
 This example sends a request to list accounts then pulls the first
 account from the add\_account\_result object.
 
-``` {.sourceCode .python}
+~~~ {.sourceCode .python}
 # Send the request and wait for the result then pull the AccountID
 list_accounts_result = sfe.list_accounts()
 account = list_accounts_result.accounts[0];   
-```
+~~~
 
 ### More examples using the Python SDK
 
-``` {.sourceCode .python}
+~~~ {.sourceCode .python}
 from solidfire.factory import ElementFactory
 
 # Create connection to SF Cluster
@@ -160,7 +160,7 @@ iqn = volume.iqn
 # --------- EXAMPLE 3 - MODIFY A VOLUME -------------
 # Send the request with the desired parameters
 sfe.modify_volume(volume_id=volume_id, total_size=2000000000)
-```
+~~~
 
 More Examples
 -------------
@@ -173,17 +173,17 @@ Logging
 
 To configure logging responses, execute the following:
 
-``` {.sourceCode .python}
+~~~ {.sourceCode .python}
 import logging
 from solidfire import common
 common.setLogLevel(logging.DEBUG)
-```
+~~~
 
 To access the logger for the Element instance:
 
-``` {.sourceCode .python}
+~~~ {.sourceCode .python}
 from solidfire.common import LOG
-```
+~~~
 
 Timeouts
 --------
@@ -191,19 +191,19 @@ Timeouts
 Connection timeout (useful for failing fast when a host becomes
 unreachable):
 
-``` {.sourceCode .python}
+~~~ {.sourceCode .python}
 from solidfire.factory import ElementFactory
 sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
 sfe.timeout(600)
-```
+~~~
 
 Read timeout (useful for extending time for a service call to return):
 
-``` {.sourceCode .python}
+~~~ {.sourceCode .python}
 from solidfire.factory import ElementFactory
 sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
 sfe.read_timeout(600)
-```
+~~~
 
 **License**
 -----------
