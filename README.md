@@ -83,7 +83,7 @@ Videos
 
 **Getting Started**
 
-This video is a walkthrough of getting started with the SolidFire Python
+[This video](https://www.youtube.com/3g028LYmiN4) is a walkthrough of getting started with the SolidFire Python
 SDK. You will see how install the SDK, connect to a SolidFire cluster,
 and use it to perform simple operations like retrieving and modifying
 accounts and volumes.
