@@ -1,17 +1,4 @@
----
-title: Solidfire Python SDK
-layout: index
----
-SolidFire Python SDK Examples
-=============================
-
-More examples using the Python SDK library.
-
--  `Manage Accounts <manage_accounts.html#list-all-accounts>`__
--  `Schedule Snapshots <snapshot_scheduling.html#list-all-schedules>`__
-
-=======
-|sf-python-logo| SolidFire Python SDK v1.2
+sf-python-logo| SolidFire Python SDK v1.2
 ==========================================
 
 Python SDK library for interacting with SolidFire Element API
@@ -52,7 +39,7 @@ Documentation
 `Latest Docs <https://pythonhosted.org/solidfire-sdk-python/>`__
 
 `Release
-Notes <https://github.com/solidfire/solidfire-sdk-python/raw/gh-pages/SolidFire_Python_SDK_Release_Notes_v1.2.pdf>`__
+Notes <https://github.com/solidfire/solidfire-sdk-python/raw/master/SolidFire_Python_SDK_Release_Notes_v1.2.pdf>`__
 
 Installation
 ------------
@@ -186,7 +173,7 @@ More examples using the Python SDK
 More Examples
 -------------
 
-More specific examples are available `here <https://github.com/solidfire/solidfire-sdk-python/blob/release1.2/examples/README.rst>`__
+More specific examples are available `here <https://github.com/solidfire/solidfire-sdk-python/blob/master/examples/README.rst>`__
 
 Logging
 -------
@@ -242,7 +229,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-.. |sf-python-logo| image:: https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/release1.2/img/python-50.png
+.. |sf-python-logo| image:: https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/master/img/python-50.png
 .. |pypy| image:: https://img.shields.io/pypi/v/solidfire-sdk-python.svg
    :target: https://badge.fury.io/py/solidfire-sdk-python
 .. |python| image:: https://img.shields.io/pypi/pyversions/solidfire-sdk-python.svg
