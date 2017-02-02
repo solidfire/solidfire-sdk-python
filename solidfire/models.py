@@ -11167,7 +11167,7 @@ class SyncJob(data_model.DataObject):
     :type blocks_per_second: float
 
     :param stage: [required] 
-    :type stage: int
+    :type stage: str
 
     """
     bytes_per_second = data_model.property(
@@ -11267,7 +11267,7 @@ class SyncJob(data_model.DataObject):
         dictionaryType=None
     )
     stage = data_model.property(
-        "stage", int,
+        "stage", str,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
