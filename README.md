@@ -163,7 +163,7 @@ More Examples
 -------------
 
 More specific examples are available
-[here](https://github.com/solidfire/solidfire-sdk-python/blob/master/examples/README.rst)
+[here](https://github.com/solidfire/solidfire-sdk-python/blob/master/examples/examples.rst)
 
 Logging
 -------
