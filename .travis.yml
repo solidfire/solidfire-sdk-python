@@ -1,28 +1,19 @@
 language: python
-branches:
-  only:
-  - release/1.0.0
-matrix:
-  include:
-  - os: linux
-    python: 2.7
-    env: TOXENV=py27
-  - os: linux
-    python: 3.3
-    env: TOXENV=py33
-  - os: linux
-    python: 3.4
-    env: TOXENV=py34
-  - os: linux
-    python: 3.5
-    env: TOXENV=py35
+sudo: required
+dist: trusty
+cache: 
+ - apt
+ - pip
+ - $HOME/.ghc
+ - $HOME/.cabal
+ - $HOME/.stack
 install:
-- pip install -e ".[dev,test, docs, release]"
-- pip install tox coveralls
-script: tox
-after_success:
+ - "sudo apt-get install cabal-install"
+ - "cabal update"
+ - "cabal install pandoc"
+ - "PATH=$HOME/.cabal/bin:$PATH"
+script:
 - "./scripts/build.sh"
-- coveralls
 env:
   global:
-    secure: Ghd2ayPHfPLm2vpIDxYxwubx8vKdpuDwTGv6rqMWecoupJVBMmg6Yy6LHs1HQ25JSkmdWFgpnC+DN2uDheihYGFZXqYg7avIvblAjqDi/iwWLKvi5diRYQj0R//sDTSlX9WjCypm62c9X38L7G0cmWYXCIfVij/mAU/CnFbSpGDqk03gAN23N/WioV1vhcFaZDU5v6Ek4cebo1UzP3Act0GnyhklFbBYywzvlliFz+vFk3LI51unlwT/DjPuukB3Vc+WvQTgK4AnDg5KJR8h4D42mZPO6XHRdKV9f6sbLUMIr2eLbqbSg+bA6wr0zOeKUPbD5hS/BPYbZMq17AOv+BMQIcNbpN4Ehm+4FxQCkmWglkLr/lS1IrSN6QXP09IPhJbSsUiCD2J0gmOOaaS8c0SORgXY8hbTa4hIvfP/q7BNGcbjRLkpf6K7srZBgQYRzt3wvWHeb6DaAPqXcCaACmOcVOuMrAPt6YhkgxctsFIQGVXwaE7/wG7HgXG5MZZuD8tAq10cBND6XXfRK1xSLv7kXZSOQbk4VUcXMycgLwaIImCJ7a1Q6iAWknLPMeKF97QPaqcuJZni5gFWRU6mobIVObVn5jDuu0WCgBXSauhGpWDdakUHD1pVJdAZgqTrDTyr33BOKwfmaFA5KEYB5+S/ByVDrj4vP7SG4MtueJU=
+    secure: mxh1FgwJx+Yd9eHPnQo2eLmcVaEQ1aAn8IjyhtiqVph4IPnH3sSYcf5AwPCwSfRd2Hh1v3J/cvT86QR6GlM995bXTqSJVTMv6Ngt5GeO5R2xyOfcOgSTRiH+V0xvy/oby0hxDHoUbdym2qGC7TKhKqxYf+G8x0orOYnUzS0hZ+RuIFa1M0GqXi2exBsVXJe2YXwTSFKWrFrUNLc1vgAGoN0IR38cP8jt0DwkpTzKO80K5EVCfEEZzUKa4ecRFXrFUNFoouEUwHuhXzB/F9w9pO1pJKEeJz3TIWVLR5C1g6tf5n771gvkfsaf2k3DXpq1IEgFIp5FDb5a43Bgzt9gs6CluXoLD2/LWcqheiZ73uHHs3ELHZRA6q7pAYt1Q1eS1b+YyiJOxjAhkwt3AuLfKj371VG5IdOMgByaI1LNcSYN6fi3bFeQJWx/Yo2zadd7pOwel+vSbUmIK76IT4ph/zUJfm2CGHAKyX8P08/qWsyKBjpvqLrT8/7oYJDvgbfT7f7kR4oJWQ+bn5UARQRCq32pI2GtMKS88jwpaG5eGWm9Bek1HPC0Klk83EOy4/j/fhMkVRK7ZKKbLFep2N80zmG5S8cinwNP/9PyskEpdQEJA5u8jFHPvkbeEC9vnlQaViS9COGyEyuqfWg0NrikrWt0olT0Ii4c9i11Pbv/Zrk=
