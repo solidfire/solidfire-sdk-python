@@ -3532,146 +3532,6 @@ class Element(ServiceBase):
             since=9
         )
 
-    def create_storage_container(
-            self,
-            name,
-            initiator_secret=OPTIONAL,
-            target_secret=OPTIONAL,):
-        """
-        Creates a new VVols storage container.
-        :param name: [required] Name of the storage container. 
-        :type name: str
-
-        :param initiatorSecret:  The secret for CHAP authentication for the initiator 
-        :type initiatorSecret: str
-
-        :param targetSecret:  The secret for CHAP authentication for the target 
-        :type targetSecret: str
-        """
-
-        self._check_connection_type("create_storage_container", "Cluster")
-
-        params = { 
-            "name": name,
-        }
-        if initiator_secret is not None:
-            params["initiatorSecret"] = initiator_secret
-        if target_secret is not None:
-            params["targetSecret"] = target_secret
-        
-        # There is no adaptor.
-        return self.send_request(
-            'CreateStorageContainer',
-            CreateStorageContainerResult,
-            params,
-            since=9
-        )
-
-    def delete_storage_containers(
-            self,
-            storage_container_ids,):
-        """
-        Deletes a storage container from the system.
-        :param storageContainerIDs: [required] list of storageContainerID of the storage container to delete. 
-        :type storageContainerIDs: UUID
-        """
-
-        self._check_connection_type("delete_storage_containers", "Cluster")
-
-        params = { 
-            "storageContainerIDs": storage_container_ids,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'DeleteStorageContainers',
-            DeleteStorageContainerResult,
-            params,
-            since=9
-        )
-
-    def get_storage_container_efficiency(
-            self,
-            storage_container_id,):
-        """
-        GetStorageContainerEfficiency enables you to retrieve efficiency information about a virtual volume storage container.
-        :param storageContainerID: [required] The ID of the storage container for which to retrieve efficiency information. 
-        :type storageContainerID: UUID
-        """
-
-        self._check_connection_type("get_storage_container_efficiency", "Cluster")
-
-        params = { 
-            "storageContainerID": storage_container_id,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetStorageContainerEfficiency',
-            GetStorageContainerEfficiencyResult,
-            params,
-            since=9
-        )
-
-    def list_storage_containers(
-            self,
-            storage_container_ids=OPTIONAL,):
-        """
-        Gets information for all storage containers currently in the system.
-        :param storageContainerIDs:  List of storage containers to get 
-        :type storageContainerIDs: UUID
-        """
-
-        self._check_connection_type("list_storage_containers", "Cluster")
-
-        params = { 
-        }
-        if storage_container_ids is not None:
-            params["storageContainerIDs"] = storage_container_ids
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListStorageContainers',
-            ListStorageContainersResult,
-            params,
-            since=9
-        )
-
-    def modify_storage_container(
-            self,
-            storage_container_id,
-            initiator_secret=OPTIONAL,
-            target_secret=OPTIONAL,):
-        """
-        Modifies an existing storage container.
-        :param storageContainerID: [required] 
-        :type storageContainerID: UUID
-
-        :param initiatorSecret:  
-        :type initiatorSecret: str
-
-        :param targetSecret:  
-        :type targetSecret: str
-        """
-
-        self._check_connection_type("modify_storage_container", "Cluster")
-
-        params = { 
-            "storageContainerID": storage_container_id,
-        }
-        if initiator_secret is not None:
-            params["initiatorSecret"] = initiator_secret
-        if target_secret is not None:
-            params["targetSecret"] = target_secret
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ModifyStorageContainer',
-            ModifyStorageContainerResult,
-            params,
-            since=9
-        )
-
     def list_tests(
             self,):
         """
@@ -5786,4 +5646,144 @@ class Element(ServiceBase):
 
         return ElementServiceAdaptor.invoke_sfapi(self, params,
                                                   since, deprecated)
+
+    def create_storage_container(
+            self,
+            name,
+            initiator_secret=OPTIONAL,
+            target_secret=OPTIONAL,):
+        """
+        Creates a new VVols storage container.
+        :param name: [required] Name of the storage container. 
+        :type name: str
+
+        :param initiatorSecret:  The secret for CHAP authentication for the initiator 
+        :type initiatorSecret: str
+
+        :param targetSecret:  The secret for CHAP authentication for the target 
+        :type targetSecret: str
+        """
+
+        self._check_connection_type("create_storage_container", "Cluster")
+
+        params = { 
+            "name": name,
+        }
+        if initiator_secret is not None:
+            params["initiatorSecret"] = initiator_secret
+        if target_secret is not None:
+            params["targetSecret"] = target_secret
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateStorageContainer',
+            CreateStorageContainerResult,
+            params,
+            since=9
+        )
+
+    def delete_storage_containers(
+            self,
+            storage_container_ids,):
+        """
+        Deletes a storage container from the system.
+        :param storageContainerIDs: [required] list of storageContainerID of the storage container to delete. 
+        :type storageContainerIDs: UUID
+        """
+
+        self._check_connection_type("delete_storage_containers", "Cluster")
+
+        params = { 
+            "storageContainerIDs": storage_container_ids,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DeleteStorageContainers',
+            DeleteStorageContainerResult,
+            params,
+            since=9
+        )
+
+    def get_storage_container_efficiency(
+            self,
+            storage_container_id,):
+        """
+        GetStorageContainerEfficiency enables you to retrieve efficiency information about a virtual volume storage container.
+        :param storageContainerID: [required] The ID of the storage container for which to retrieve efficiency information. 
+        :type storageContainerID: UUID
+        """
+
+        self._check_connection_type("get_storage_container_efficiency", "Cluster")
+
+        params = { 
+            "storageContainerID": storage_container_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetStorageContainerEfficiency',
+            GetStorageContainerEfficiencyResult,
+            params,
+            since=9
+        )
+
+    def list_storage_containers(
+            self,
+            storage_container_ids=OPTIONAL,):
+        """
+        Gets information for all storage containers currently in the system.
+        :param storageContainerIDs:  List of storage containers to get 
+        :type storageContainerIDs: UUID
+        """
+
+        self._check_connection_type("list_storage_containers", "Cluster")
+
+        params = { 
+        }
+        if storage_container_ids is not None:
+            params["storageContainerIDs"] = storage_container_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListStorageContainers',
+            ListStorageContainersResult,
+            params,
+            since=9
+        )
+
+    def modify_storage_container(
+            self,
+            storage_container_id,
+            initiator_secret=OPTIONAL,
+            target_secret=OPTIONAL,):
+        """
+        Modifies an existing storage container.
+        :param storageContainerID: [required] 
+        :type storageContainerID: UUID
+
+        :param initiatorSecret:  
+        :type initiatorSecret: str
+
+        :param targetSecret:  
+        :type targetSecret: str
+        """
+
+        self._check_connection_type("modify_storage_container", "Cluster")
+
+        params = { 
+            "storageContainerID": storage_container_id,
+        }
+        if initiator_secret is not None:
+            params["initiatorSecret"] = initiator_secret
+        if target_secret is not None:
+            params["targetSecret"] = target_secret
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyStorageContainer',
+            ModifyStorageContainerResult,
+            params,
+            since=9
+        )
 
