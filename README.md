@@ -42,7 +42,7 @@ Documentation
 [Latest Docs](https://pythonhosted.org/solidfire-sdk-python/)
 
 [Release
-Notes](https://github.com/solidfire/solidfire-sdk-python/raw/master/NetApp_SolidFire_Python_SDK_v1.2_Release_Notes.pdf)
+Notes](https://github.com/solidfire/solidfire-sdk-python/raw/master/SolidFire_Python_SDK_Release_Notes_v1.2.pdf)
 
 Installation
 ------------
