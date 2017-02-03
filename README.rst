@@ -5,6 +5,10 @@ Python SDK library for interacting with SolidFire Element API
 
 |pypy| |python| |format| |downloads| |license| |build|
 
+Current Release
+---------------
+
+Version 1.2.0.103
 
 Description
 -----------
@@ -39,7 +43,7 @@ Documentation
 `Latest Docs <https://pythonhosted.org/solidfire-sdk-python/>`__
 
 `Release
-Notes <https://github.com/solidfire/solidfire-sdk-python/raw/gh-pages/SolidFire_Python_SDK_Release_Notes_v1.2.pdf>`__
+Notes <https://github.com/solidfire/solidfire-sdk-python/blob/gh-pages/SolidFire_Python_SDK_Release_Notes_v1.2.pdf>`__
 
 Installation
 ------------
@@ -82,18 +86,6 @@ environment variable to use the SDK in other python scripts:
 
 That's it -- you are ready to start interacting with your SolidFire
 cluster using Python!
-
-Videos
-------
-
-**Getting Started** 
-
-This video is a walkthrough of getting started with the SolidFire Python SDK. You will see how install the SDK, connect to a SolidFire cluster, and use it to perform simple operations like retrieving and modifying accounts and volumes.
-
-.. raw:: html
-
-   <iframe width="560" height="315" src="https://www.youtube.com/embed/3g028LYmiN4" frameborder="0" allowfullscreen></iframe>
-
 
 Examples
 --------
@@ -173,7 +165,7 @@ More examples using the Python SDK
 More Examples
 -------------
 
-More specific examples are available `here <https://github.com/solidfire/solidfire-sdk-python/blob/release1.2/examples/README.rst>`__
+More specific examples are available `here <https://github.com/solidfire/solidfire-sdk-python/blob/release1.1/examples/README.rst>`__
 
 Logging
 -------
@@ -210,7 +202,7 @@ Read timeout (useful for extending time for a service call to return):
 
     from solidfire.factory import ElementFactory
     sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
-    sfe.read_timeout(600)
+    sf.read_timeout(600)
 
 **License**
 -----------
@@ -229,7 +221,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-.. |sf-python-logo| image:: https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/release1.2/img/python-50.png
+.. |sf-python-logo| image:: https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/release1.1/img/python-50.png
 .. |pypy| image:: https://img.shields.io/pypi/v/solidfire-sdk-python.svg
    :target: https://badge.fury.io/py/solidfire-sdk-python
 .. |python| image:: https://img.shields.io/pypi/pyversions/solidfire-sdk-python.svg
