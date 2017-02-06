@@ -597,16 +597,28 @@ class ServiceBase(object):
         except requests.ReadTimeout:
             raise ApiConnectionError("Read timed out.")
         except Exception as error:
-            json_err = json.dumps(
-                {
-                    'error':
-                        {
-                            'name': str(error.__class__).split('\'')[1],
-                            'code': 500,
-                            'message': error.args[1]
-                        }
-                }
-            )
+            if 2 <= len(error.args):
+                json_err = json.dumps(
+                    {
+                        'error':
+                            {
+                                'name': str(error.__class__).split('\'')[1],
+                                'code': 500,
+                                'message': error.args[1]
+                            }
+                    }
+                )
+            else:
+                json_err = json.dumps(
+                    {
+                        'error':
+                            {
+                                'name': str(error.__class__).split('\'')[1],
+                                'code': 500,
+                                'message': error.args.__str__()
+                            }
+                    }
+                )
             raise ApiServerError(method_name, json_err)
 
         if "401 Unauthorized." in response_raw:
