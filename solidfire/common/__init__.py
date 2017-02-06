@@ -637,6 +637,19 @@ class ServiceBase(object):
             )
             raise ApiConnectionError(json_err)
 
+        if "404 Not Found" in response_raw:
+            json_err = json.dumps(
+                {
+                    'error':
+                        {
+                            'name': 'NotFoundError',
+                            'code': 404,
+                            'message': 'The connection was not found.'
+                        }
+                }
+            )
+            raise ApiConnectionError(json_err)
+
         # noinspection PyBroadException
         try:
             response = json.loads(response_raw)
