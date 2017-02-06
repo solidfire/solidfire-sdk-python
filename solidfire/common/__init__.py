@@ -596,7 +596,10 @@ class ServiceBase(object):
             raise ApiConnectionError("Was not able to connect to the specified target as a result of timing out.")
         except requests.ReadTimeout:
             raise ApiConnectionError("Read timed out.")
+        except requests.exceptions.ChunkedEncodingError as error:
+            raise ApiConnectionError(error.args)
         except Exception as error:
+            print(type(error))
             if 2 <= len(error.args):
                 json_err = json.dumps(
                     {
@@ -604,7 +607,7 @@ class ServiceBase(object):
                             {
                                 'name': str(error.__class__).split('\'')[1],
                                 'code': 500,
-                                'message': error.args[1]
+                                'message': error.args[1].__str__()
                             }
                     }
                 )
