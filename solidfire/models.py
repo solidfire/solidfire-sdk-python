@@ -12244,7 +12244,7 @@ class ResetNodeRequest(data_model.DataObject):
     :param force: [required] The force parameter must be included in order to successfully reset the node. 
     :type force: bool
 
-    :param option: [required] Used to enter specifications for running the reset operation. 
+    :param option:  Used to enter specifications for running the reset operation. 
     :type option: str
 
     """
@@ -12262,7 +12262,7 @@ class ResetNodeRequest(data_model.DataObject):
     )
     option = data_model.property(
         "option", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="Used to enter specifications for running the reset operation.",
         dictionaryType=None
     )

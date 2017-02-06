@@ -4705,7 +4705,7 @@ def test_reset_node_v9_0():
     build = "" # build
     force = True # force
     option = "" # option
-    result = ef.reset_node(build,force,option,)
+    result = ef.reset_node(build,force,)
     assert type(result.rtfi_info) is dict, "Died on .rtfi_info"
 
 def test_restart_networking_v9_0():

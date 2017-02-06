@@ -2788,39 +2788,6 @@ class Element(ServiceBase):
             since=9
         )
 
-    def reset_node(
-            self,
-            build,
-            force,
-            option,):
-        """
-        Allows you to reset a node to the SolidFire factory settings. All data will be deleted from the node when you call this method. A node participating in a cluster cannot be reset.
-        :param build: [required] Used to specify the URL to a remote Element software image to which the node will be reset. 
-        :type build: str
-
-        :param force: [required] The force parameter must be included in order to successfully reset the node. 
-        :type force: bool
-
-        :param option: [required] Used to enter specifications for running the reset operation. 
-        :type option: str
-        """
-
-        self._check_connection_type("reset_node", "Cluster")
-
-        params = { 
-            "build": build,
-            "force": force,
-            "option": option,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ResetNode',
-            ResetNodeResult,
-            params,
-            since=5
-        )
-
     def restart_networking(
             self,
             force,):
@@ -2906,6 +2873,40 @@ class Element(ServiceBase):
             ShutdownResult,
             params,
             since=1
+        )
+
+    def reset_node(
+            self,
+            build,
+            force,
+            option=OPTIONAL,):
+        """
+        Allows you to reset a node to the SolidFire factory settings. All data will be deleted from the node when you call this method. A node participating in a cluster cannot be reset.
+        :param build: [required] Used to specify the URL to a remote Element software image to which the node will be reset. 
+        :type build: str
+
+        :param force: [required] The force parameter must be included in order to successfully reset the node. 
+        :type force: bool
+
+        :param option:  Used to enter specifications for running the reset operation. 
+        :type option: str
+        """
+
+        self._check_connection_type("reset_node", "Node")
+
+        params = { 
+            "build": build,
+            "force": force,
+        }
+        if option is not None:
+            params["option"] = option
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ResetNode',
+            ResetNodeResult,
+            params,
+            since=5
         )
 
     def list_services(
