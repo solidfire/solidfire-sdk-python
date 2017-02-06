@@ -2517,7 +2517,7 @@ class Element(ServiceBase):
         
         Note: This method is available only through the per-node API endpoint 5.0 or later.
         :param network: [required] Objects that will be changed for the node network settings. 
-        :type network: Network
+        :type network: NetworkParams
         """
 
         self._check_connection_type("set_network_config", "Node")
