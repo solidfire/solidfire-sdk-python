@@ -241,6 +241,19 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
                 cls._properties[name] = prop
 
     def __init__(self, **kwargs):
+        # Iterate through available properties and start removing them
+        # from kwargs
+        for name, property in type(self)._properties.items():
+            if not property.optional() and not kwargs.get(name, None):
+                raise ValueError(name+" is a required parameter.")
+            if name in kwargs:
+                setattr(self, name, kwargs[name])
+                del kwargs[name]
+        if(kwargs.keys() != []):
+            raise ValueError("The following params are invalid: "+str(kwargs.keys()))
+
+        """
+        # OLD (bad) WAY
         for key, value in kwargs.items():
             if key not in type(self)._properties:
                 msg_fmt = 'Key "{key}" is not a valid property'
@@ -248,6 +261,8 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
                 raise TypeError(msg)
             else:
                 setattr(self, key, value)
+                print(key)
+                print(value)"""
 
     def get_properties(self):
         """
