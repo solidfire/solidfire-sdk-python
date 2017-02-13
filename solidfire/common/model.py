@@ -249,7 +249,7 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
             if name in kwargs:
                 setattr(self, name, kwargs[name])
                 del kwargs[name]
-        if(kwargs.keys() != []):
+        if(len(kwargs.keys()) != 0):
             raise ValueError("The following params are invalid: "+str(kwargs.keys()))
 
         """
