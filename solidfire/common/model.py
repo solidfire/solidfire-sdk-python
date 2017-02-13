@@ -244,7 +244,7 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
         # Iterate through available properties and start removing them
         # from kwargs
         for name, property in type(self)._properties.items():
-            if not property.optional() and not kwargs.get(name, None):
+            if not property.optional() and name not in kwargs.keys() and name != "secret":
                 raise ValueError(name+" is a required parameter.")
             if name in kwargs:
                 setattr(self, name, kwargs[name])
