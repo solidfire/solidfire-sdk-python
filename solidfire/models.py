@@ -10471,6 +10471,95 @@ class ListEventsResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class PendingActiveNode(data_model.DataObject):
+    """PendingActiveNode  
+
+    :param active_node_key: [required] 
+    :type active_node_key: str
+
+    :param assigned_node_id: [required] 
+    :type assigned_node_id: int
+
+    :param async_handle: [required] 
+    :type async_handle: int
+
+    :param cip: [required] 
+    :type cip: str
+
+    :param mip: [required] 
+    :type mip: str
+
+    :param pending_node_id: [required] 
+    :type pending_node_id: int
+
+    :param platform_info: [required] 
+    :type platform_info: Platform
+
+    :param sip: [required] 
+    :type sip: str
+
+    :param software_version: [required] 
+    :type software_version: str
+
+    """
+    active_node_key = data_model.property(
+        "activeNodeKey", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    assigned_node_id = data_model.property(
+        "assignedNodeID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    async_handle = data_model.property(
+        "asyncHandle", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    cip = data_model.property(
+        "cip", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    mip = data_model.property(
+        "mip", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    pending_node_id = data_model.property(
+        "pendingNodeID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    platform_info = data_model.property(
+        "platformInfo", Platform,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    sip = data_model.property(
+        "sip", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    software_version = data_model.property(
+        "softwareVersion", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListAllNodesResult(data_model.DataObject):
     """ListAllNodesResult  
 
@@ -10479,6 +10568,9 @@ class ListAllNodesResult(data_model.DataObject):
 
     :param pending_nodes: [required] 
     :type pending_nodes: PendingNode
+
+    :param pending_active_nodes: [required] List of objects detailing information about all PendingActive nodes in the system. 
+    :type pending_active_nodes: PendingActiveNode
 
     """
     nodes = data_model.property(
@@ -10491,6 +10583,12 @@ class ListAllNodesResult(data_model.DataObject):
         "pendingNodes", PendingNode,
         array=True, optional=False,
         documentation="",
+        dictionaryType=None
+    )
+    pending_active_nodes = data_model.property(
+        "pendingActiveNodes", PendingActiveNode,
+        array=True, optional=False,
+        documentation="List of objects detailing information about all PendingActive nodes in the system.",
         dictionaryType=None
     )
 
@@ -12403,95 +12501,6 @@ class CreateSnapshotResult(data_model.DataObject):
         "checksum", str,
         array=False, optional=False,
         documentation="[&#x27;A string that represents the correct digits in the stored snapshot.&#x27;, &#x27;This checksum can be used later to compare other snapshots to detect errors in the data.&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class PendingActiveNode(data_model.DataObject):
-    """PendingActiveNode  
-
-    :param active_node_key: [required] 
-    :type active_node_key: str
-
-    :param assigned_node_id: [required] 
-    :type assigned_node_id: int
-
-    :param async_handle: [required] 
-    :type async_handle: int
-
-    :param cip: [required] 
-    :type cip: str
-
-    :param mip: [required] 
-    :type mip: str
-
-    :param pending_node_id: [required] 
-    :type pending_node_id: int
-
-    :param platform_info: [required] 
-    :type platform_info: Platform
-
-    :param sip: [required] 
-    :type sip: str
-
-    :param software_version: [required] 
-    :type software_version: str
-
-    """
-    active_node_key = data_model.property(
-        "activeNodeKey", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    assigned_node_id = data_model.property(
-        "assignedNodeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    async_handle = data_model.property(
-        "asyncHandle", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    cip = data_model.property(
-        "cip", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    mip = data_model.property(
-        "mip", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    pending_node_id = data_model.property(
-        "pendingNodeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    platform_info = data_model.property(
-        "platformInfo", Platform,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    sip = data_model.property(
-        "sip", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    software_version = data_model.property(
-        "softwareVersion", str,
-        array=False, optional=False,
-        documentation="",
         dictionaryType=None
     )
 
