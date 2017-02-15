@@ -110,12 +110,12 @@ class TimeIntervalFrequency(Frequency):
 
     :param minutes:  The minutes that will elapse before the next snapshot is
     created.
-    Valid values are: 0 - 59. Default is 0.
+    Valid values are: 0 - 59.
     :type minutes: int
 
     :param hours: The hours that will elapse before the next snapshot is
     created.
-    Valid values  0 - 24. Default is 0.
+    Valid values  0 - 24.
     :type hours: int
 
     :param days: The days that will elapse before the next snapshot is created.
@@ -149,12 +149,12 @@ class DaysOfWeekFrequency(Frequency):
 
     :param minutes:  The minutes within the hour the snapshot will be created
     on the set weekdays.
-    Valid values are: 0 - 59. Default is 0.
+    Valid values are: 0 - 59.
     :type minutes: int
 
     :param The hour of the day the next snapshot will be created on the set
     weekdays.
-    Valid values are: 0 - 24. Default is 0
+    Valid values are: 0 - 24.
     :type hours: int
 
     :param weekdays: The days of the week a snapshot will be created on.
@@ -189,12 +189,12 @@ class DaysOfMonthFrequency(Frequency):
 
     :param minutes:  The minutes within the hour the snapshot will be created
     on the set weekdays.
-    Valid values are: 0 - 59. Default is 0.
+    Valid values are: 0 - 59.
     :type minutes: int
 
     :param The hour of the day the next snapshot will be created on the set
     weekdays.
-    Valid values are: 0 - 24. Default is 0
+    Valid values are: 0 - 24.
     :type hours: int
 
     :param monthdays: An array of the days of the month a snapshot will be
