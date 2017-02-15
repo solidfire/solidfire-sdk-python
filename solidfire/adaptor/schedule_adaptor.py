@@ -137,6 +137,7 @@ class ScheduleAdaptor:
         schedule_info = ScheduleAdaptor.to_schedule_info(
             api.schedule_info)
 
+        frequency = None
         try:
             freq = api.attributes["frequency"]
 
@@ -166,7 +167,7 @@ class ScheduleAdaptor:
                 raise Exception("Cannot determine frequency")
         except:
             LOG.error("Cannot deserialize Schedule {0}. The frequency "
-                      "property has an unknown value.".format(name))
+                      "property has an unknown value.".format(api.schedule_name))
 
         return Schedule(
             has_error=api.has_error,
