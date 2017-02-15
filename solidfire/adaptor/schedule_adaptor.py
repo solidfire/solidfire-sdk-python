@@ -145,23 +145,19 @@ class ScheduleAdaptor:
                 frequency = TimeIntervalFrequency(
                     days=int(api.hours/24),
                     hours=int(api.hours%24),
-                    minutes=api.minutes,
-                    weekdays=None,
-                    monthdays=None
+                    minutes=api.minutes
                 )
             elif freq == "Days Of Month":
                 frequency = DaysOfMonthFrequency(
                     hours=api.hours,
                     minutes=api.minutes,
                     monthdays=api.monthdays,
-                    weekdays=None
                 )
             elif freq == "Days Of Week":
                 frequency = DaysOfWeekFrequency(
                     hours=api.hours,
                     minutes=api.minutes,
                     weekdays=ScheduleAdaptor.to_weekdays(api.weekdays),
-                    monthdays=None
                 )
             else:
                 raise Exception("Cannot determine frequency")
