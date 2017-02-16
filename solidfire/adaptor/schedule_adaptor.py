@@ -114,7 +114,6 @@ class ScheduleAdaptor:
                                  "schedule object has a value in the "
                                  "schedule_info property before attempting to "
                                  "modify a Schedule.")
-        print(params["schedule"])
         if(params["schedule"].frequency.minutes is None):
             params["frequency"]["minutes"] = 0
         if(params["schedule"].frequency.hours is None):
