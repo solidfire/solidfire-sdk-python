@@ -169,6 +169,121 @@ class GetHardwareInfoResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class QoS(data_model.DataObject):
+    """QoS  
+    Quality of Service (QoS) values are used on SolidFire volumes to provision performance expectations.
+    Minimum, maximum and burst QoS values can be set within the ranges specified in the QoS table below.
+    
+    Volumes created without specified QoS values are created with the Default values listed below.
+    Default values can be found by running the GetDefaultQoS method.
+    
+    minIOPS Min: 100/50 (v7.0/v8.0), Default: 100, Max: 15,000
+    maxIOPS Min: 100/50 (v7.0/v8.0), Default: 15,000, Max: 100,000
+    burstIOPS Min: 100/50 (v7.0/v8.0), Default: 15,000, Max: 100,000
+
+    :param min_iops:  Desired minimum 4KB IOPS to guarantee. The allowed IOPS will only drop below this level if all volumes have been capped at their minimum IOPS value and there is still insufficient performance capacity. 
+    :type min_iops: int
+
+    :param max_iops:  Desired maximum 4KB IOPS allowed over an extended period of time. 
+    :type max_iops: int
+
+    :param burst_iops:  Maximum "peak" 4KB IOPS allowed for short periods of time. Allows for bursts of I/O activity over the normal max IOPS value. 
+    :type burst_iops: int
+
+    :param burst_time:  The length of time burst IOPS is allowed. The value returned is represented in time units of seconds. Note: this value is calculated by the system based on IOPS set for QoS. 
+    :type burst_time: int
+
+    """
+    min_iops = data_model.property(
+        "minIOPS", int,
+        array=False, optional=True,
+        documentation="[&#x27;Desired minimum 4KB IOPS to guarantee.&#x27;, &#x27;The allowed IOPS will only drop below this level if all volumes have been capped&#x27;, &#x27;at their minimum IOPS value and there is still insufficient performance capacity.&#x27;]",
+        dictionaryType=None
+    )
+    max_iops = data_model.property(
+        "maxIOPS", int,
+        array=False, optional=True,
+        documentation="[&#x27;Desired maximum 4KB IOPS allowed over an extended period of time.&#x27;]",
+        dictionaryType=None
+    )
+    burst_iops = data_model.property(
+        "burstIOPS", int,
+        array=False, optional=True,
+        documentation="[&#x27;Maximum &quot;peak&quot; 4KB IOPS allowed for short periods of time.&#x27;, &#x27;Allows for bursts of I/O activity over the normal max IOPS value.&#x27;]",
+        dictionaryType=None
+    )
+    burst_time = data_model.property(
+        "burstTime", int,
+        array=False, optional=True,
+        documentation="[&#x27;The length of time burst IOPS is allowed.&#x27;, &#x27;The value returned is represented in time units of seconds.&#x27;, &#x27;Note: this value is calculated by the system based on IOPS set for QoS.&#x27;]",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class CreateVolumeRequest(data_model.DataObject):
+    """CreateVolumeRequest  
+
+    :param name: [required] Name of the volume. Not required to be unique, but it is recommended. May be 1 to 64 characters in length. 
+    :type name: str
+
+    :param account_id: [required] AccountID for the owner of this volume. 
+    :type account_id: int
+
+    :param total_size: [required] Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size. 
+    :type total_size: int
+
+    :param enable512e: [required] Should the volume provides 512-byte sector emulation? 
+    :type enable512e: bool
+
+    :param qos:  Initial quality of service settings for this volume.  Volumes created without specified QoS values are created with the default values for QoS. Default values for a volume can be found by running the GetDefaultQoS method. 
+    :type qos: QoS
+
+    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :type attributes: dict
+
+    """
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="[&#x27;Name of the volume.&#x27;, &#x27;Not required to be unique, but it is recommended.&#x27;, &#x27;May be 1 to 64 characters in length.&#x27;]",
+        dictionaryType=None
+    )
+    account_id = data_model.property(
+        "accountID", int,
+        array=False, optional=False,
+        documentation="AccountID for the owner of this volume.",
+        dictionaryType=None
+    )
+    total_size = data_model.property(
+        "totalSize", int,
+        array=False, optional=False,
+        documentation="Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size.",
+        dictionaryType=None
+    )
+    enable512e = data_model.property(
+        "enable512e", bool,
+        array=False, optional=False,
+        documentation="Should the volume provides 512-byte sector emulation?",
+        dictionaryType=None
+    )
+    qos = data_model.property(
+        "qos", QoS,
+        array=False, optional=True,
+        documentation="[&#x27;Initial quality of service settings for this volume.&#x27;, u&#x27;&#x27;, &#x27;Volumes created without specified QoS values are created with the default values for QoS.&#x27;, &#x27;Default values for a volume can be found by running the GetDefaultQoS method.&#x27;]",
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="List of Name/Value pairs in JSON object format.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class GetOriginRequest(data_model.DataObject):
     """GetOriginRequest  
 
@@ -3187,59 +3302,6 @@ class RemoveNodesResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class QoS(data_model.DataObject):
-    """QoS  
-    Quality of Service (QoS) values are used on SolidFire volumes to provision performance expectations.
-    Minimum, maximum and burst QoS values can be set within the ranges specified in the QoS table below.
-    
-    Volumes created without specified QoS values are created with the Default values listed below.
-    Default values can be found by running the GetDefaultQoS method.
-    
-    minIOPS Min: 100/50 (v7.0/v8.0), Default: 100, Max: 15,000
-    maxIOPS Min: 100/50 (v7.0/v8.0), Default: 15,000, Max: 100,000
-    burstIOPS Min: 100/50 (v7.0/v8.0), Default: 15,000, Max: 100,000
-
-    :param min_iops:  Desired minimum 4KB IOPS to guarantee. The allowed IOPS will only drop below this level if all volumes have been capped at their minimum IOPS value and there is still insufficient performance capacity. 
-    :type min_iops: int
-
-    :param max_iops:  Desired maximum 4KB IOPS allowed over an extended period of time. 
-    :type max_iops: int
-
-    :param burst_iops:  Maximum "peak" 4KB IOPS allowed for short periods of time. Allows for bursts of I/O activity over the normal max IOPS value. 
-    :type burst_iops: int
-
-    :param burst_time:  The length of time burst IOPS is allowed. The value returned is represented in time units of seconds. Note: this value is calculated by the system based on IOPS set for QoS. 
-    :type burst_time: int
-
-    """
-    min_iops = data_model.property(
-        "minIOPS", int,
-        array=False, optional=True,
-        documentation="[&#x27;Desired minimum 4KB IOPS to guarantee.&#x27;, &#x27;The allowed IOPS will only drop below this level if all volumes have been capped&#x27;, &#x27;at their minimum IOPS value and there is still insufficient performance capacity.&#x27;]",
-        dictionaryType=None
-    )
-    max_iops = data_model.property(
-        "maxIOPS", int,
-        array=False, optional=True,
-        documentation="[&#x27;Desired maximum 4KB IOPS allowed over an extended period of time.&#x27;]",
-        dictionaryType=None
-    )
-    burst_iops = data_model.property(
-        "burstIOPS", int,
-        array=False, optional=True,
-        documentation="[&#x27;Maximum &quot;peak&quot; 4KB IOPS allowed for short periods of time.&#x27;, &#x27;Allows for bursts of I/O activity over the normal max IOPS value.&#x27;]",
-        dictionaryType=None
-    )
-    burst_time = data_model.property(
-        "burstTime", int,
-        array=False, optional=True,
-        documentation="[&#x27;The length of time burst IOPS is allowed.&#x27;, &#x27;The value returned is represented in time units of seconds.&#x27;, &#x27;Note: this value is calculated by the system based on IOPS set for QoS.&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class ModifyVolumesRequest(data_model.DataObject):
     """ModifyVolumesRequest  
 
@@ -5486,134 +5548,26 @@ class ModifyScheduleResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GroupSnapshotMembers(data_model.DataObject):
-    """GroupSnapshotMembers  
-    List of checksum, volumeIDs and snapshotIDs for each member of the group.
+class DeleteGroupSnapshotRequest(data_model.DataObject):
+    """DeleteGroupSnapshotRequest  
 
-    :param volume_id: [required] The source volume ID for the snapshot. 
-    :type volume_id: int
-
-    :param snapshot_id: [required] Unique ID of a snapshot from which the new snapshot is made. The snapshotID passed must be a snapshot on the given volume. 
-    :type snapshot_id: int
-
-    :param snapshot_uuid: [required] Universal Unique ID of an existing snapshot. 
-    :type snapshot_uuid: str
-
-    :param checksum: [required] A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. 
-    :type checksum: str
-
-    """
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=False,
-        documentation="The source volume ID for the snapshot.",
-        dictionaryType=None
-    )
-    snapshot_id = data_model.property(
-        "snapshotID", int,
-        array=False, optional=False,
-        documentation="[&#x27;Unique ID of a snapshot from which the new snapshot is made.&#x27;, &#x27;The snapshotID passed must be a snapshot on the given volume.&#x27;]",
-        dictionaryType=None
-    )
-    snapshot_uuid = data_model.property(
-        "snapshotUUID", str,
-        array=False, optional=False,
-        documentation="Universal Unique ID of an existing snapshot.",
-        dictionaryType=None
-    )
-    checksum = data_model.property(
-        "checksum", str,
-        array=False, optional=False,
-        documentation="[&#x27;A string that represents the correct digits in the stored snapshot.&#x27;, &#x27;This checksum can be used later to compare other snapshots to detect errors in the data.&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GroupSnapshot(data_model.DataObject):
-    """GroupSnapshot  
-    Group Snapshot object represents a point-in-time copy of a group of volumes.
-
-    :param group_snapshot_id: [required] Unique ID of the new group snapshot. 
+    :param group_snapshot_id: [required] Unique ID of the group snapshot. 
     :type group_snapshot_id: int
 
-    :param group_snapshot_uuid: [required] UUID of the group snapshot. 
-    :type group_snapshot_uuid: UUID
-
-    :param members: [required] List of volumeIDs and snapshotIDs for each member of the group. 
-    :type members: GroupSnapshotMembers
-
-    :param name: [required] Name of the group snapshot, or, if none was given, the UTC formatted day and time on which the snapshot was created. 
-    :type name: str
-
-    :param create_time: [required] The UTC formatted day and time on which the snapshot was created. 
-    :type create_time: str
-
-    :param status: [required] Status of the snapshot. Possible values: Preparing: A snapshot that is being prepared for use and is not yet writable. Done: A snapshot that has finished being prepared and is now usable 
-    :type status: str
-
-    :param attributes: [required] List of Name/Value pairs in JSON object format. 
-    :type attributes: dict
+    :param save_members: [required] true: Snapshots are kept, but group association is removed. false: The group and snapshots are deleted. 
+    :type save_members: bool
 
     """
     group_snapshot_id = data_model.property(
         "groupSnapshotID", int,
         array=False, optional=False,
-        documentation="Unique ID of the new group snapshot.",
+        documentation="Unique ID of the group snapshot.",
         dictionaryType=None
     )
-    group_snapshot_uuid = data_model.property(
-        "groupSnapshotUUID", UUID,
+    save_members = data_model.property(
+        "saveMembers", bool,
         array=False, optional=False,
-        documentation="UUID of the group snapshot.",
-        dictionaryType=None
-    )
-    members = data_model.property(
-        "members", GroupSnapshotMembers,
-        array=True, optional=False,
-        documentation="List of volumeIDs and snapshotIDs for each member of the group.",
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation="Name of the group snapshot, or, if none was given, the UTC formatted day and time on which the snapshot was created.",
-        dictionaryType=None
-    )
-    create_time = data_model.property(
-        "createTime", str,
-        array=False, optional=False,
-        documentation="The UTC formatted day and time on which the snapshot was created.",
-        dictionaryType=None
-    )
-    status = data_model.property(
-        "status", str,
-        array=False, optional=False,
-        documentation="[&#x27;Status of the snapshot.&#x27;, &#x27;Possible values:&#x27;, &#x27;Preparing: A snapshot that is being prepared for use and is not yet writable.&#x27;, &#x27;Done: A snapshot that has finished being prepared and is now usable&#x27;]",
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=False,
-        documentation="List of Name/Value pairs in JSON object format.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListGroupSnapshotsResult(data_model.DataObject):
-    """ListGroupSnapshotsResult  
-
-    :param group_snapshots: [required] List of Group Snapshots. 
-    :type group_snapshots: GroupSnapshot
-
-    """
-    group_snapshots = data_model.property(
-        "groupSnapshots", GroupSnapshot,
-        array=True, optional=False,
-        documentation="List of Group Snapshots.",
+        documentation="[&#x27;true: Snapshots are kept, but group association is removed.&#x27;, &#x27;false: The group and snapshots are deleted.&#x27;]",
         dictionaryType=None
     )
 
@@ -9060,62 +9014,134 @@ class ListNodeStatsResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class CreateVolumeRequest(data_model.DataObject):
-    """CreateVolumeRequest  
+class GroupSnapshotMembers(data_model.DataObject):
+    """GroupSnapshotMembers  
+    List of checksum, volumeIDs and snapshotIDs for each member of the group.
 
-    :param name: [required] Name of the volume. Not required to be unique, but it is recommended. May be 1 to 64 characters in length. 
+    :param volume_id: [required] The source volume ID for the snapshot. 
+    :type volume_id: int
+
+    :param snapshot_id: [required] Unique ID of a snapshot from which the new snapshot is made. The snapshotID passed must be a snapshot on the given volume. 
+    :type snapshot_id: int
+
+    :param snapshot_uuid: [required] Universal Unique ID of an existing snapshot. 
+    :type snapshot_uuid: str
+
+    :param checksum: [required] A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. 
+    :type checksum: str
+
+    """
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="The source volume ID for the snapshot.",
+        dictionaryType=None
+    )
+    snapshot_id = data_model.property(
+        "snapshotID", int,
+        array=False, optional=False,
+        documentation="[&#x27;Unique ID of a snapshot from which the new snapshot is made.&#x27;, &#x27;The snapshotID passed must be a snapshot on the given volume.&#x27;]",
+        dictionaryType=None
+    )
+    snapshot_uuid = data_model.property(
+        "snapshotUUID", str,
+        array=False, optional=False,
+        documentation="Universal Unique ID of an existing snapshot.",
+        dictionaryType=None
+    )
+    checksum = data_model.property(
+        "checksum", str,
+        array=False, optional=False,
+        documentation="[&#x27;A string that represents the correct digits in the stored snapshot.&#x27;, &#x27;This checksum can be used later to compare other snapshots to detect errors in the data.&#x27;]",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GroupSnapshot(data_model.DataObject):
+    """GroupSnapshot  
+    Group Snapshot object represents a point-in-time copy of a group of volumes.
+
+    :param group_snapshot_id: [required] Unique ID of the new group snapshot. 
+    :type group_snapshot_id: int
+
+    :param group_snapshot_uuid: [required] UUID of the group snapshot. 
+    :type group_snapshot_uuid: UUID
+
+    :param members: [required] List of volumeIDs and snapshotIDs for each member of the group. 
+    :type members: GroupSnapshotMembers
+
+    :param name: [required] Name of the group snapshot, or, if none was given, the UTC formatted day and time on which the snapshot was created. 
     :type name: str
 
-    :param account_id: [required] AccountID for the owner of this volume. 
-    :type account_id: int
+    :param create_time: [required] The UTC formatted day and time on which the snapshot was created. 
+    :type create_time: str
 
-    :param total_size: [required] Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size. 
-    :type total_size: int
+    :param status: [required] Status of the snapshot. Possible values: Preparing: A snapshot that is being prepared for use and is not yet writable. Done: A snapshot that has finished being prepared and is now usable 
+    :type status: str
 
-    :param enable512e: [required] Should the volume provides 512-byte sector emulation? 
-    :type enable512e: bool
-
-    :param qos:  Initial quality of service settings for this volume.  Volumes created without specified QoS values are created with the default values for QoS. Default values for a volume can be found by running the GetDefaultQoS method. 
-    :type qos: QoS
-
-    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :param attributes: [required] List of Name/Value pairs in JSON object format. 
     :type attributes: dict
 
     """
+    group_snapshot_id = data_model.property(
+        "groupSnapshotID", int,
+        array=False, optional=False,
+        documentation="Unique ID of the new group snapshot.",
+        dictionaryType=None
+    )
+    group_snapshot_uuid = data_model.property(
+        "groupSnapshotUUID", UUID,
+        array=False, optional=False,
+        documentation="UUID of the group snapshot.",
+        dictionaryType=None
+    )
+    members = data_model.property(
+        "members", GroupSnapshotMembers,
+        array=True, optional=False,
+        documentation="List of volumeIDs and snapshotIDs for each member of the group.",
+        dictionaryType=None
+    )
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;Name of the volume.&#x27;, &#x27;Not required to be unique, but it is recommended.&#x27;, &#x27;May be 1 to 64 characters in length.&#x27;]",
+        documentation="Name of the group snapshot, or, if none was given, the UTC formatted day and time on which the snapshot was created.",
         dictionaryType=None
     )
-    account_id = data_model.property(
-        "accountID", int,
+    create_time = data_model.property(
+        "createTime", str,
         array=False, optional=False,
-        documentation="AccountID for the owner of this volume.",
+        documentation="The UTC formatted day and time on which the snapshot was created.",
         dictionaryType=None
     )
-    total_size = data_model.property(
-        "totalSize", int,
+    status = data_model.property(
+        "status", str,
         array=False, optional=False,
-        documentation="Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size.",
-        dictionaryType=None
-    )
-    enable512e = data_model.property(
-        "enable512e", bool,
-        array=False, optional=False,
-        documentation="Should the volume provides 512-byte sector emulation?",
-        dictionaryType=None
-    )
-    qos = data_model.property(
-        "qos", QoS,
-        array=False, optional=True,
-        documentation="[&#x27;Initial quality of service settings for this volume.&#x27;, u&#x27;&#x27;, &#x27;Volumes created without specified QoS values are created with the default values for QoS.&#x27;, &#x27;Default values for a volume can be found by running the GetDefaultQoS method.&#x27;]",
+        documentation="[&#x27;Status of the snapshot.&#x27;, &#x27;Possible values:&#x27;, &#x27;Preparing: A snapshot that is being prepared for use and is not yet writable.&#x27;, &#x27;Done: A snapshot that has finished being prepared and is now usable&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
-        array=False, optional=True,
+        array=False, optional=False,
         documentation="List of Name/Value pairs in JSON object format.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListGroupSnapshotsResult(data_model.DataObject):
+    """ListGroupSnapshotsResult  
+
+    :param group_snapshots: [required] List of Group Snapshots. 
+    :type group_snapshots: GroupSnapshot
+
+    """
+    group_snapshots = data_model.property(
+        "groupSnapshots", GroupSnapshot,
+        array=True, optional=False,
+        documentation="List of Group Snapshots.",
         dictionaryType=None
     )
 
@@ -10445,6 +10471,95 @@ class ListEventsResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class PendingActiveNode(data_model.DataObject):
+    """PendingActiveNode  
+
+    :param active_node_key: [required] 
+    :type active_node_key: str
+
+    :param assigned_node_id: [required] 
+    :type assigned_node_id: int
+
+    :param async_handle: [required] 
+    :type async_handle: int
+
+    :param cip: [required] 
+    :type cip: str
+
+    :param mip: [required] 
+    :type mip: str
+
+    :param pending_node_id: [required] 
+    :type pending_node_id: int
+
+    :param platform_info: [required] 
+    :type platform_info: Platform
+
+    :param sip: [required] 
+    :type sip: str
+
+    :param software_version: [required] 
+    :type software_version: str
+
+    """
+    active_node_key = data_model.property(
+        "activeNodeKey", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    assigned_node_id = data_model.property(
+        "assignedNodeID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    async_handle = data_model.property(
+        "asyncHandle", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    cip = data_model.property(
+        "cip", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    mip = data_model.property(
+        "mip", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    pending_node_id = data_model.property(
+        "pendingNodeID", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    platform_info = data_model.property(
+        "platformInfo", Platform,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    sip = data_model.property(
+        "sip", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    software_version = data_model.property(
+        "softwareVersion", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListAllNodesResult(data_model.DataObject):
     """ListAllNodesResult  
 
@@ -10453,6 +10568,9 @@ class ListAllNodesResult(data_model.DataObject):
 
     :param pending_nodes: [required] 
     :type pending_nodes: PendingNode
+
+    :param pending_active_nodes: [required] List of objects detailing information about all PendingActive nodes in the system. 
+    :type pending_active_nodes: PendingActiveNode
 
     """
     nodes = data_model.property(
@@ -10465,6 +10583,12 @@ class ListAllNodesResult(data_model.DataObject):
         "pendingNodes", PendingNode,
         array=True, optional=False,
         documentation="",
+        dictionaryType=None
+    )
+    pending_active_nodes = data_model.property(
+        "pendingActiveNodes", PendingActiveNode,
+        array=True, optional=False,
+        documentation="List of objects detailing information about all PendingActive nodes in the system.",
         dictionaryType=None
     )
 
@@ -12383,95 +12507,6 @@ class CreateSnapshotResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class PendingActiveNode(data_model.DataObject):
-    """PendingActiveNode  
-
-    :param active_node_key: [required] 
-    :type active_node_key: str
-
-    :param assigned_node_id: [required] 
-    :type assigned_node_id: int
-
-    :param async_handle: [required] 
-    :type async_handle: int
-
-    :param cip: [required] 
-    :type cip: str
-
-    :param mip: [required] 
-    :type mip: str
-
-    :param pending_node_id: [required] 
-    :type pending_node_id: int
-
-    :param platform_info: [required] 
-    :type platform_info: Platform
-
-    :param sip: [required] 
-    :type sip: str
-
-    :param software_version: [required] 
-    :type software_version: str
-
-    """
-    active_node_key = data_model.property(
-        "activeNodeKey", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    assigned_node_id = data_model.property(
-        "assignedNodeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    async_handle = data_model.property(
-        "asyncHandle", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    cip = data_model.property(
-        "cip", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    mip = data_model.property(
-        "mip", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    pending_node_id = data_model.property(
-        "pendingNodeID", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    platform_info = data_model.property(
-        "platformInfo", Platform,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    sip = data_model.property(
-        "sip", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    software_version = data_model.property(
-        "softwareVersion", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class ListPendingActiveNodesResult(data_model.DataObject):
     """ListPendingActiveNodesResult  
 
@@ -14241,11 +14276,20 @@ class ListGroupSnapshotsRequest(data_model.DataObject):
     :param volume_id:  An array of unique volume IDs to query. If this parameter is not specified, all group snapshots on the cluster will be included. 
     :type volume_id: int
 
+    :param group_snapshot_id: [required] Get info about individual snapshot 
+    :type group_snapshot_id: int
+
     """
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=True,
         documentation="[&#x27;An array of unique volume IDs to query.&#x27;, &#x27;If this parameter is not specified, all group snapshots on the cluster will be included.&#x27;]",
+        dictionaryType=None
+    )
+    group_snapshot_id = data_model.property(
+        "groupSnapshotID", int,
+        array=False, optional=False,
+        documentation="[&#x27;Get info about individual snapshot&#x27;]",
         dictionaryType=None
     )
 
@@ -15737,32 +15781,6 @@ class CancelGroupCloneRequest(data_model.DataObject):
         "groupCloneID", int,
         array=False, optional=False,
         documentation="cloneID for the ongoing clone process.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class DeleteGroupSnapshotRequest(data_model.DataObject):
-    """DeleteGroupSnapshotRequest  
-
-    :param group_snapshot_id: [required] Unique ID of the group snapshot. 
-    :type group_snapshot_id: int
-
-    :param save_members: [required] true: Snapshots are kept, but group association is removed. false: The group and snapshots are deleted. 
-    :type save_members: bool
-
-    """
-    group_snapshot_id = data_model.property(
-        "groupSnapshotID", int,
-        array=False, optional=False,
-        documentation="Unique ID of the group snapshot.",
-        dictionaryType=None
-    )
-    save_members = data_model.property(
-        "saveMembers", bool,
-        array=False, optional=False,
-        documentation="[&#x27;true: Snapshots are kept, but group association is removed.&#x27;, &#x27;false: The group and snapshots are deleted.&#x27;]",
         dictionaryType=None
     )
 

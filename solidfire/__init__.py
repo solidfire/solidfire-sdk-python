@@ -2975,30 +2975,6 @@ class Element(ServiceBase):
         return ElementServiceAdaptor.get_schedule(self, params,
                                                   since, deprecated)
 
-    def list_group_snapshots(
-            self,
-            volume_id=OPTIONAL,):
-        """
-        ListGroupSnapshots is used to return information about all group snapshots that have been created.
-        :param volumeID:  An array of unique volume IDs to query. If this parameter is not specified, all group snapshots on the cluster will be included. 
-        :type volumeID: int
-        """
-
-        self._check_connection_type("list_group_snapshots", "Cluster")
-
-        params = { 
-        }
-        if volume_id is not None:
-            params["volumeID"] = volume_id
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListGroupSnapshots',
-            ListGroupSnapshotsResult,
-            params,
-            since=7
-        )
-
     def list_schedules(
             self,):
         """
@@ -3404,6 +3380,35 @@ class Element(ServiceBase):
             CreateSnapshotResult,
             params,
             since=6
+        )
+
+    def list_group_snapshots(
+            self,
+            group_snapshot_id,
+            volume_id=OPTIONAL,):
+        """
+        ListGroupSnapshots is used to return information about all group snapshots that have been created.
+        :param volumeID:  An array of unique volume IDs to query. If this parameter is not specified, all group snapshots on the cluster will be included. 
+        :type volumeID: int
+
+        :param groupSnapshotID: [required] Get info about individual snapshot 
+        :type groupSnapshotID: int
+        """
+
+        self._check_connection_type("list_group_snapshots", "Cluster")
+
+        params = { 
+            "groupSnapshotID": group_snapshot_id,
+        }
+        if volume_id is not None:
+            params["volumeID"] = volume_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListGroupSnapshots',
+            ListGroupSnapshotsResult,
+            params,
+            since=7
         )
 
     def get_complete_stats(
