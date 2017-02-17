@@ -3384,24 +3384,29 @@ class Element(ServiceBase):
 
     def list_group_snapshots(
             self,
-            group_snapshot_id,
-            volume_id=OPTIONAL,):
+            volume_id=OPTIONAL,
+            group_snapshot_id=OPTIONAL,):
         """
         ListGroupSnapshots is used to return information about all group snapshots that have been created.
         :param volumeID:  An array of unique volume IDs to query. If this parameter is not specified, all group snapshots on the cluster will be included. 
         :type volumeID: int
 
-        :param groupSnapshotID: [required] Get info about individual snapshot 
+        :param groupSnapshotID:  Get info about individual snapshot 
         :type groupSnapshotID: int
         """
 
         self._check_connection_type("list_group_snapshots", "Cluster")
 
         params = { 
-            "groupSnapshotID": group_snapshot_id,
         }
         if volume_id is not None:
             params["volumeID"] = volume_id
+        if group_snapshot_id is not None:
+            if self.api_version < 9:
+                raise ApiParameterVersionError("list_group_snapshots", 9,
+                    [("group_snapshot_id", group_snapshot_id, 9, False)])
+            else:
+                params["groupSnapshotID"] = group_snapshot_id
         
         # There is no adaptor.
         return self.send_request(

@@ -14276,7 +14276,7 @@ class ListGroupSnapshotsRequest(data_model.DataObject):
     :param volume_id:  An array of unique volume IDs to query. If this parameter is not specified, all group snapshots on the cluster will be included. 
     :type volume_id: int
 
-    :param group_snapshot_id: [required] Get info about individual snapshot 
+    :param group_snapshot_id:  Get info about individual snapshot 
     :type group_snapshot_id: int
 
     """
@@ -14288,7 +14288,7 @@ class ListGroupSnapshotsRequest(data_model.DataObject):
     )
     group_snapshot_id = data_model.property(
         "groupSnapshotID", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[&#x27;Get info about individual snapshot&#x27;]",
         dictionaryType=None
     )
