@@ -26,7 +26,7 @@ class ElementFactory:
 
     @staticmethod
     def create(target, username, password, version=None,
-               verify_ssl=False, port=443):
+               verify_ssl=False, port=443, print_ascii_art=True):
         """
         Factory method to create a Element object which is used to call
          the SolidFire API. This method runs multiple checks and logic
@@ -52,6 +52,9 @@ class ElementFactory:
             default for a SolidFire cluster. Specify 442 if connecting to
             a SoldiFire node.
         :type port: int
+        :param print_ascii_art: When True, print the SolidFire Robot to the
+            log.  Production deployments might consider disabling this feature.
+        :type print_ascii_art: bool
         :return: a configured and tested instance of Element
         :raises:
             SdkOperationError: verify_ssl is true but target is an IP address
@@ -128,5 +131,6 @@ class ElementFactory:
         LOG.info("Connected to {0} using API version {1}"
                  .format(target, element.api_version))
 
-        LOG.info(ascii_art(element.api_version))
+        if print_ascii_art:
+            LOG.info(ascii_art(element.api_version))
         return element
