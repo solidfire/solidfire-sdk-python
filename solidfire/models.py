@@ -1192,6 +1192,9 @@ class StorageContainer(data_model.DataObject):
     :param status: [required] 
     :type status: str
 
+    :param virtual_volumes: [required] 
+    :type virtual_volumes: uuid
+
     """
     name = data_model.property(
         "name", str,
@@ -1232,6 +1235,12 @@ class StorageContainer(data_model.DataObject):
     status = data_model.property(
         "status", str,
         array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    virtual_volumes = data_model.property(
+        "virtualVolumes", uuid,
+        array=True, optional=False,
         documentation="",
         dictionaryType=None
     )
