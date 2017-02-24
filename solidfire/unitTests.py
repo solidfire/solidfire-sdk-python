@@ -4723,7 +4723,10 @@ def test_reset_node_v9_0():
     force = True # force
     option = "" # option
     result = ef.reset_node(build,force,)
-    assert type(result.rtfi_info) is dict, "Died on .rtfi_info"
+    assert result.rtfi_info.status_url_current == """http://192.168.130.20/status/current.json""", "Died on +.rtfi_info.status_url_current"
+    assert type(result.rtfi_info.options) is dict, "Died on .rtfi_info.options"
+    assert result.rtfi_info.status_url_all == """http://192.168.130.20/status/all.json""", "Died on +.rtfi_info.status_url_all"
+    assert result.rtfi_info.build == """file:///sf/rtfi/image/filesystem.squashfs""", "Died on +.rtfi_info.build"
 
 def test_restart_networking_v9_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -4822,6 +4825,11 @@ def test_add_account_v9.0_0():
     target_secret = dict() # target_secret
     attributes = dict() # attributes
     result = ef.add_account(username,)
+    assert result.account.status == """active""", "Died on +.account.status"
+    assert result.account.username == """K0muAOpCq8zUKbL4""", "Died on +.account.username"
+    assert result.account.storage_container_id == UUID("00000000-0000-0000-0000-000000000000"), "Died on .account.storage_container_id"
+    assert type(result.account.attributes) is dict, "Died on .account.attributes"
+    assert result.account.account_id == 1, "Died on +.account.account_id"
     assert result.account_id == 1, "Died on +.account_id"
 
 def test_add_account_v9.1_0():
@@ -4834,6 +4842,11 @@ def test_add_account_v9.1_0():
     target_secret = dict() # target_secret
     attributes = dict() # attributes
     result = ef.add_account(username,)
+    assert result.account.status == """active""", "Died on +.account.status"
+    assert result.account.username == """yWcdE86kENMjAczw""", "Died on +.account.username"
+    assert result.account.storage_container_id == UUID("00000000-0000-0000-0000-000000000000"), "Died on .account.storage_container_id"
+    assert type(result.account.attributes) is dict, "Died on .account.attributes"
+    assert result.account.account_id == 2, "Died on +.account.account_id"
     assert result.account_id == 2, "Died on +.account_id"
 
 def test_add_cluster_admin_v8.4_0():
@@ -4907,6 +4920,7 @@ def test_add_drives_v8.4_0():
 
     
     drives = dict() # drives
+    force_during_upgrade = True # force_during_upgrade
     result = ef.add_drives(drives,)
 
 def test_add_drives_v8.6_0():
@@ -4915,7 +4929,9 @@ def test_add_drives_v8.6_0():
 
     
     drives = dict() # drives
+    force_during_upgrade = True # force_during_upgrade
     result = ef.add_drives(drives,)
+    assert result.async_handle == 1, "Died on +.async_handle"
 
 def test_add_drives_v8.7_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -4923,7 +4939,9 @@ def test_add_drives_v8.7_0():
 
     
     drives = dict() # drives
+    force_during_upgrade = True # force_during_upgrade
     result = ef.add_drives(drives,)
+    assert result.async_handle == 1, "Died on +.async_handle"
 
 def test_add_drives_v9.0_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -4931,7 +4949,9 @@ def test_add_drives_v9.0_0():
 
     
     drives = dict() # drives
+    force_during_upgrade = True # force_during_upgrade
     result = ef.add_drives(drives,)
+    assert result.async_handle == 1, "Died on +.async_handle"
 
 def test_add_drives_v9.1_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -4939,7 +4959,9 @@ def test_add_drives_v9.1_0():
 
     
     drives = dict() # drives
+    force_during_upgrade = True # force_during_upgrade
     result = ef.add_drives(drives,)
+    assert result.async_handle == 1, "Died on +.async_handle"
 
 def test_add_initiators_to_volume_access_group_v9.1_1():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -5274,7 +5296,7 @@ def test_clear_cluster_faults_v9.1_0():
     ef._dispatcher.post = MagicMock(return_value = Resources.RESP_ClearClusterFaults_v9.1_0)
 
     
-    fault_types = "" # fault_types
+    fault_type = "" # fault_type
     result = ef.clear_cluster_faults()
 
 def test_clone_volume_v9.1_0():
@@ -5339,8 +5361,6 @@ def test_create_snapshot_v9.1_0():
     retention = "" # retention
     attributes = dict() # attributes
     result = ef.create_snapshot(volume_id,)
-    assert result.checksum == """0xac880d347e45d6f0""", "Died on +.checksum"
-    assert result.snapshot_id == 4, "Died on +.snapshot_id"
 
 def test_create_snapshot_v9.1_1():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -5354,8 +5374,6 @@ def test_create_snapshot_v9.1_1():
     retention = "" # retention
     attributes = dict() # attributes
     result = ef.create_snapshot(volume_id,)
-    assert result.checksum == """0xe85501d33efb58ae""", "Died on +.checksum"
-    assert result.snapshot_id == 7, "Died on +.snapshot_id"
 
 def test_create_support_bundle_v8.6_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -5440,6 +5458,7 @@ def test_create_volume_v8.4_0():
     enable512e = True # enable512e
     qos = dict() # qos
     attributes = dict() # attributes
+    slice_count = 42 # slice_count
     result = ef.create_volume(name,account_id,total_size,enable512e,)
     assert result.volume_id == 551, "Died on +.volume_id"
 
@@ -5476,6 +5495,9 @@ def test_delete_all_support_bundles_v8.6_0():
 
     
     result = ef.delete_all_support_bundles()
+    assert result.duration == """00:00:00.000654""", "Died on +.duration"
+    assert result.result == """Passed""", "Died on +.result"
+    assert type(result.details) is dict, "Died on .details"
 
 def test_delete_all_support_bundles_v8.7_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -5483,6 +5505,9 @@ def test_delete_all_support_bundles_v8.7_0():
 
     
     result = ef.delete_all_support_bundles()
+    assert result.duration == """00:00:00.003845""", "Died on +.duration"
+    assert result.result == """Passed""", "Died on +.result"
+    assert type(result.details) is dict, "Died on .details"
 
 def test_delete_all_support_bundles_v9.0_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -5490,6 +5515,9 @@ def test_delete_all_support_bundles_v9.0_0():
 
     
     result = ef.delete_all_support_bundles()
+    assert result.duration == """00:00:00.000665""", "Died on +.duration"
+    assert result.result == """Passed""", "Died on +.result"
+    assert type(result.details) is dict, "Died on .details"
 
 def test_delete_all_support_bundles_v9.1_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -5497,6 +5525,9 @@ def test_delete_all_support_bundles_v9.1_0():
 
     
     result = ef.delete_all_support_bundles()
+    assert result.duration == """00:00:00.004695""", "Died on +.duration"
+    assert result.result == """Passed""", "Died on +.result"
+    assert type(result.details) is dict, "Died on .details"
 
 def test_delete_snapshot_v9.1_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -6162,7 +6193,6 @@ def test_get_async_result_v9.1_0():
     
     async_handle = 42 # async_handle
     result = ef.get_async_result(async_handle,)
-    assert result.status == """complete""", "Died on +.status"
 
 def test_get_async_result_v9.1_1():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -6171,7 +6201,6 @@ def test_get_async_result_v9.1_1():
     
     async_handle = 42 # async_handle
     result = ef.get_async_result(async_handle,)
-    assert result.status == """running""", "Died on +.status"
 
 def test_get_async_result_v9.1_10():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -6180,7 +6209,6 @@ def test_get_async_result_v9.1_10():
     
     async_handle = 42 # async_handle
     result = ef.get_async_result(async_handle,)
-    assert result.status == """running""", "Died on +.status"
 
 def test_get_async_result_v9.1_11():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -6189,7 +6217,6 @@ def test_get_async_result_v9.1_11():
     
     async_handle = 42 # async_handle
     result = ef.get_async_result(async_handle,)
-    assert result.status == """complete""", "Died on +.status"
 
 def test_get_async_result_v9.1_12():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -6198,7 +6225,6 @@ def test_get_async_result_v9.1_12():
     
     async_handle = 42 # async_handle
     result = ef.get_async_result(async_handle,)
-    assert result.status == """running""", "Died on +.status"
 
 def test_get_async_result_v9.1_2():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -6207,7 +6233,6 @@ def test_get_async_result_v9.1_2():
     
     async_handle = 42 # async_handle
     result = ef.get_async_result(async_handle,)
-    assert result.status == """running""", "Died on +.status"
 
 def test_get_async_result_v9.1_3():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -6216,7 +6241,6 @@ def test_get_async_result_v9.1_3():
     
     async_handle = 42 # async_handle
     result = ef.get_async_result(async_handle,)
-    assert result.status == """complete""", "Died on +.status"
 
 def test_get_async_result_v9.1_4():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -6225,8 +6249,6 @@ def test_get_async_result_v9.1_4():
     
     async_handle = 42 # async_handle
     result = ef.get_async_result(async_handle,)
-    assert result.status == """complete""", "Died on +.status"
-    assert result.result.message == """Bulk volume job succeeded""", "Died on +.result.message"
 
 def test_get_async_result_v9.1_5():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -6235,7 +6257,6 @@ def test_get_async_result_v9.1_5():
     
     async_handle = 42 # async_handle
     result = ef.get_async_result(async_handle,)
-    assert result.status == """running""", "Died on +.status"
 
 def test_get_async_result_v9.1_6():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -6244,7 +6265,6 @@ def test_get_async_result_v9.1_6():
     
     async_handle = 42 # async_handle
     result = ef.get_async_result(async_handle,)
-    assert result.status == """complete""", "Died on +.status"
 
 def test_get_async_result_v9.1_7():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -6253,7 +6273,6 @@ def test_get_async_result_v9.1_7():
     
     async_handle = 42 # async_handle
     result = ef.get_async_result(async_handle,)
-    assert result.status == """complete""", "Died on +.status"
 
 def test_get_async_result_v9.1_8():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -6262,7 +6281,6 @@ def test_get_async_result_v9.1_8():
     
     async_handle = 42 # async_handle
     result = ef.get_async_result(async_handle,)
-    assert result.status == """running""", "Died on +.status"
 
 def test_get_async_result_v9.1_9():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -6271,7 +6289,6 @@ def test_get_async_result_v9.1_9():
     
     async_handle = 42 # async_handle
     result = ef.get_async_result(async_handle,)
-    assert result.status == """complete""", "Died on +.status"
 
 def test_get_bootstrap_config_v5.0_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -6280,12 +6297,16 @@ def test_get_bootstrap_config_v5.0_0():
     
     result = ef.get_bootstrap_config()
     assert result.cluster_name == """AutoTest2-TrQi""", "Died on +.cluster_name"
+    assert result.nodes[3].compatible == True, "Died on +.nodes[3].compatible"
     assert result.nodes[3].version == """9.1.0.28""", "Died on +.nodes[3].version"
     assert result.nodes[3].name == """10.117.58.76""", "Died on +.nodes[3].name"
+    assert result.nodes[2].compatible == True, "Died on +.nodes[2].compatible"
     assert result.nodes[2].version == """9.1.0.28""", "Died on +.nodes[2].version"
     assert result.nodes[2].name == """10.117.58.75""", "Died on +.nodes[2].name"
+    assert result.nodes[1].compatible == True, "Died on +.nodes[1].compatible"
     assert result.nodes[1].version == """9.1.0.28""", "Died on +.nodes[1].version"
     assert result.nodes[1].name == """10.117.58.74""", "Died on +.nodes[1].name"
+    assert result.nodes[0].compatible == True, "Died on +.nodes[0].compatible"
     assert result.nodes[0].version == """9.1.0.28""", "Died on +.nodes[0].version"
     assert result.nodes[0].name == """10.117.58.69""", "Died on +.nodes[0].name"
     assert result.version == """9.1.0.28""", "Died on +.version"
@@ -6960,10 +6981,13 @@ def test_get_cluster_info_v9.0_0():
     
     result = ef.get_cluster_info()
     assert result.cluster_info.svip_node_id == 2, "Died on +.cluster_info.svip_node_id"
+    assert result.cluster_info.mvip_vlan_tag == """0""", "Died on +.cluster_info.mvip_vlan_tag"
     assert result.cluster_info.mvip == """10.117.57.243""", "Died on +.cluster_info.mvip"
     assert result.cluster_info.name == """UpgradesFR_TID4502223RainyDay-cHj7""", "Died on +.cluster_info.name"
+    assert result.cluster_info.svip_interface == """Bond10G""", "Died on +.cluster_info.svip_interface"
     assert result.cluster_info.encryption_at_rest_state == """disabled""", "Died on +.cluster_info.encryption_at_rest_state"
     assert result.cluster_info.mvip_node_id == 2, "Died on +.cluster_info.mvip_node_id"
+    assert result.cluster_info.mvip_interface == """Bond1G""", "Died on +.cluster_info.mvip_interface"
     assert result.cluster_info.svip == """10.117.59.244""", "Died on +.cluster_info.svip"
     assert type(result.cluster_info.attributes) is dict, "Died on .cluster_info.attributes"
     assert result.cluster_info.unique_id == """2ixx""", "Died on +.cluster_info.unique_id"
@@ -6973,6 +6997,7 @@ def test_get_cluster_info_v9.0_0():
     assert result.cluster_info.ensemble[2] == """10.117.58.100""", "Died on +.cluster_info.ensemble[2]"
     assert result.cluster_info.ensemble[1] == """10.117.58.24""", "Died on +.cluster_info.ensemble[1]"
     assert result.cluster_info.ensemble[0] == """10.117.58.6""", "Died on +.cluster_info.ensemble[0]"
+    assert result.cluster_info.svip_vlan_tag == """0""", "Died on +.cluster_info.svip_vlan_tag"
     assert result.cluster_info.uuid == UUID("ebbb6370-4a27-461e-8f93-bd6c55569999"), "Died on .cluster_info.uuid"
 
 def test_get_cluster_info_v9.1_0():
@@ -6982,10 +7007,13 @@ def test_get_cluster_info_v9.1_0():
     
     result = ef.get_cluster_info()
     assert result.cluster_info.svip_node_id == 3, "Died on +.cluster_info.svip_node_id"
+    assert result.cluster_info.mvip_vlan_tag == """0""", "Died on +.cluster_info.mvip_vlan_tag"
     assert result.cluster_info.mvip == """10.117.57.248""", "Died on +.cluster_info.mvip"
     assert result.cluster_info.name == """AutoTest2-6kyp""", "Died on +.cluster_info.name"
+    assert result.cluster_info.svip_interface == """Bond10G""", "Died on +.cluster_info.svip_interface"
     assert result.cluster_info.encryption_at_rest_state == """disabled""", "Died on +.cluster_info.encryption_at_rest_state"
     assert result.cluster_info.mvip_node_id == 3, "Died on +.cluster_info.mvip_node_id"
+    assert result.cluster_info.mvip_interface == """Bond1G""", "Died on +.cluster_info.mvip_interface"
     assert result.cluster_info.svip == """10.117.59.250""", "Died on +.cluster_info.svip"
     assert type(result.cluster_info.attributes) is dict, "Died on .cluster_info.attributes"
     assert result.cluster_info.unique_id == """7xpa""", "Died on +.cluster_info.unique_id"
@@ -6993,6 +7021,7 @@ def test_get_cluster_info_v9.1_0():
     assert result.cluster_info.ensemble[2] == """10.117.58.39""", "Died on +.cluster_info.ensemble[2]"
     assert result.cluster_info.ensemble[1] == """10.117.58.24""", "Died on +.cluster_info.ensemble[1]"
     assert result.cluster_info.ensemble[0] == """10.117.58.9""", "Died on +.cluster_info.ensemble[0]"
+    assert result.cluster_info.svip_vlan_tag == """0""", "Died on +.cluster_info.svip_vlan_tag"
     assert result.cluster_info.uuid == UUID("2287fa84-b951-40d9-aba6-1db26e1b3c41"), "Died on .cluster_info.uuid"
 
 def test_get_cluster_master_node_id_v9.1_0():
@@ -7010,6 +7039,7 @@ def test_get_cluster_state_v8.4_0():
     
     force = True # force
     result = ef.get_cluster_state(force,)
+    assert result.state == """Available""", "Died on +.state"
 
 def test_get_cluster_state_v8.6_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -7018,6 +7048,7 @@ def test_get_cluster_state_v8.6_0():
     
     force = True # force
     result = ef.get_cluster_state(force,)
+    assert result.state == """Available""", "Died on +.state"
 
 def test_get_cluster_state_v8.7_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -7026,6 +7057,7 @@ def test_get_cluster_state_v8.7_0():
     
     force = True # force
     result = ef.get_cluster_state(force,)
+    assert result.state == """Available""", "Died on +.state"
 
 def test_get_cluster_state_v9.0_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -7034,6 +7066,7 @@ def test_get_cluster_state_v9.0_0():
     
     force = True # force
     result = ef.get_cluster_state(force,)
+    assert result.state == """Available""", "Died on +.state"
 
 def test_get_cluster_state_v9.1_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -7042,6 +7075,7 @@ def test_get_cluster_state_v9.1_0():
     
     force = True # force
     result = ef.get_cluster_state(force,)
+    assert result.state == """Available""", "Died on +.state"
 
 def test_get_cluster_version_info_v1.0_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -7073,11 +7107,14 @@ def test_get_config_v9.1_0():
 
     
     result = ef.get_config()
+    assert result.config.cluster.encryption_capable == True, "Died on +.config.cluster.encryption_capable"
     assert result.config.cluster.mipi == """eth0""", "Died on +.config.cluster.mipi"
     assert result.config.cluster.name == """rmndv0003-rtfi-0050569a5eda""", "Died on +.config.cluster.name"
+    assert result.config.cluster.has_local_admin == False, "Died on +.config.cluster.has_local_admin"
     assert result.config.cluster.node_id == 0, "Died on +.config.cluster.node_id"
     assert result.config.cluster.sipi == """eth0""", "Died on +.config.cluster.sipi"
     assert result.config.cluster.state == """Available""", "Died on +.config.cluster.state"
+    assert result.config.cluster.version == """9.1.0.30""", "Died on +.config.cluster.version"
     assert result.config.cluster.role == """Management""", "Died on +.config.cluster.role"
     assert result.config.cluster.cipi == """eth0""", "Died on +.config.cluster.cipi"
     assert result.config.cluster.pending_node_id == 0, "Died on +.config.cluster.pending_node_id"
@@ -8547,7 +8584,11 @@ def test_get_limits_v9.1_0():
     assert result.cluster_pairs_count_max == 4, "Died on +.cluster_pairs_count_max"
     assert result.volume_max_iopsmin == 100, "Died on +.volume_max_iopsmin"
     assert result.volume_size_max == 8000000491520, "Died on +.volume_size_max"
+    assert result.fibre_channel_volume_access_max == 16384, "Died on +.fibre_channel_volume_access_max"
+    assert result.virtual_volume_count_max == 8000, "Died on +.virtual_volume_count_max"
     assert result.volume_burst_iopsmax == 200000, "Died on +.volume_burst_iopsmax"
+    assert result.cluster_admin_account_max == 5000, "Died on +.cluster_admin_account_max"
+    assert result.virtual_volumes_per_account_count_max == 10000, "Died on +.virtual_volumes_per_account_count_max"
     assert result.volumes_per_volume_access_group_count_max == 2000, "Died on +.volumes_per_volume_access_group_count_max"
     assert result.initiator_name_length_max == 224, "Died on +.initiator_name_length_max"
     assert result.volume_name_length_min == 1, "Died on +.volume_name_length_min"
@@ -9152,6 +9193,7 @@ def test_get_network_config_v8.6_3():
     assert result.network.bond1_g.address == """10.117.56.22""", "Died on +.network.bond1_g.address"
     assert result.network.bond1_g.mac_address_permanent == """00:00:00:00:00:00""", "Died on +.network.bond1_g.mac_address_permanent"
     assert result.network.bond1_g.up_and_running == True, "Died on +.network.bond1_g.up_and_running"
+    assert result.network.bond1_g.bond_xmit_hash_policy == """Layer3_4""", "Died on +.network.bond1_g.bond_xmit_hash_policy"
     assert result.network.bond1_g.bond_downdelay == """200""", "Died on +.network.bond1_g.bond_downdelay"
     assert result.network.bond1_g.mtu == """1500""", "Died on +.network.bond1_g.mtu"
     assert result.network.bond1_g.bond_primary_reselect == """Failure""", "Died on +.network.bond1_g.bond_primary_reselect"
@@ -9198,6 +9240,7 @@ def test_get_network_config_v8.6_3():
     assert result.network.bond10_g.address == """10.117.58.22""", "Died on +.network.bond10_g.address"
     assert result.network.bond10_g.mac_address_permanent == """00:00:00:00:00:00""", "Died on +.network.bond10_g.mac_address_permanent"
     assert result.network.bond10_g.up_and_running == True, "Died on +.network.bond10_g.up_and_running"
+    assert result.network.bond10_g.bond_xmit_hash_policy == """Layer3_4""", "Died on +.network.bond10_g.bond_xmit_hash_policy"
     assert result.network.bond10_g.bond_downdelay == """200""", "Died on +.network.bond10_g.bond_downdelay"
     assert result.network.bond10_g.mtu == """9000""", "Died on +.network.bond10_g.mtu"
     assert result.network.bond10_g.bond_primary_reselect == """Failure""", "Died on +.network.bond10_g.bond_primary_reselect"
@@ -10291,8 +10334,10 @@ def test_get_network_config_v9.1_2():
     assert result.network.bond10_g.address == """10.117.58.23""", "Died on +.network.bond10_g.address"
     assert result.network.bond10_g.mac_address_permanent == """00:00:00:00:00:00""", "Died on +.network.bond10_g.mac_address_permanent"
     assert result.network.bond10_g.up_and_running == True, "Died on +.network.bond10_g.up_and_running"
+    assert result.network.bond10_g.bond_xmit_hash_policy == """Layer3_4""", "Died on +.network.bond10_g.bond_xmit_hash_policy"
     assert result.network.bond10_g.bond_downdelay == """0""", "Died on +.network.bond10_g.bond_downdelay"
     assert result.network.bond10_g.mtu == """9000""", "Died on +.network.bond10_g.mtu"
+    assert result.network.bond10_g.bond_ad_num_ports == """1""", "Died on +.network.bond10_g.bond_ad_num_ports"
     assert result.network.bond10_g.bond_primary_reselect == """Failure""", "Died on +.network.bond10_g.bond_primary_reselect"
     assert result.network.eth3.status == """UpAndRunning""", "Died on +.network.eth3.status"
     assert result.network.eth3.mac_address_permanent == """44:a8:42:02:96:1d""", "Died on +.network.eth3.mac_address_permanent"
@@ -10389,8 +10434,10 @@ def test_get_network_config_v9.1_3():
     assert result.network.bond1_g.address == """10.117.56.22""", "Died on +.network.bond1_g.address"
     assert result.network.bond1_g.mac_address_permanent == """00:00:00:00:00:00""", "Died on +.network.bond1_g.mac_address_permanent"
     assert result.network.bond1_g.up_and_running == True, "Died on +.network.bond1_g.up_and_running"
+    assert result.network.bond1_g.bond_xmit_hash_policy == """Layer3_4""", "Died on +.network.bond1_g.bond_xmit_hash_policy"
     assert result.network.bond1_g.bond_downdelay == """0""", "Died on +.network.bond1_g.bond_downdelay"
     assert result.network.bond1_g.mtu == """1500""", "Died on +.network.bond1_g.mtu"
+    assert result.network.bond1_g.bond_ad_num_ports == """1""", "Died on +.network.bond1_g.bond_ad_num_ports"
     assert result.network.bond1_g.bond_primary_reselect == """Failure""", "Died on +.network.bond1_g.bond_primary_reselect"
     assert result.network.lo.status == """UpAndRunning""", "Died on +.network.lo.status"
     assert result.network.lo.mac_address_permanent == """00:00:00:00:00:00""", "Died on +.network.lo.mac_address_permanent"
@@ -10436,8 +10483,10 @@ def test_get_network_config_v9.1_3():
     assert result.network.bond10_g.address == """10.117.58.22""", "Died on +.network.bond10_g.address"
     assert result.network.bond10_g.mac_address_permanent == """00:00:00:00:00:00""", "Died on +.network.bond10_g.mac_address_permanent"
     assert result.network.bond10_g.up_and_running == True, "Died on +.network.bond10_g.up_and_running"
+    assert result.network.bond10_g.bond_xmit_hash_policy == """Layer3_4""", "Died on +.network.bond10_g.bond_xmit_hash_policy"
     assert result.network.bond10_g.bond_downdelay == """0""", "Died on +.network.bond10_g.bond_downdelay"
     assert result.network.bond10_g.mtu == """9000""", "Died on +.network.bond10_g.mtu"
+    assert result.network.bond10_g.bond_ad_num_ports == """1""", "Died on +.network.bond10_g.bond_ad_num_ports"
     assert result.network.bond10_g.bond_primary_reselect == """Failure""", "Died on +.network.bond10_g.bond_primary_reselect"
     assert result.network.eth3.status == """UpAndRunning""", "Died on +.network.eth3.status"
     assert result.network.eth3.mac_address_permanent == """44:a8:42:02:cb:77""", "Died on +.network.eth3.mac_address_permanent"
@@ -10776,6 +10825,7 @@ def test_list_accounts_v9.0_0():
     result = ef.list_accounts()
     assert result.accounts[0].status == """active""", "Died on +.accounts[0].status"
     assert result.accounts[0].username == """ReplicationSource""", "Died on +.accounts[0].username"
+    assert result.accounts[0].storage_container_id == UUID("00000000-0000-0000-0000-000000000000"), "Died on .accounts[0].storage_container_id"
     assert result.accounts[0].volumes[4] == 5, "Died on +.accounts[0].volumes[4]"
     assert result.accounts[0].volumes[3] == 4, "Died on +.accounts[0].volumes[3]"
     assert result.accounts[0].volumes[2] == 3, "Died on +.accounts[0].volumes[2]"
@@ -10794,16 +10844,19 @@ def test_list_accounts_v9.1_0():
     result = ef.list_accounts()
     assert result.accounts[2].status == """active""", "Died on +.accounts[2].status"
     assert result.accounts[2].username == """ydUdmjnRp9b20Fc4""", "Died on +.accounts[2].username"
+    assert result.accounts[2].storage_container_id == UUID("00000000-0000-0000-0000-000000000000"), "Died on .accounts[2].storage_container_id"
     assert result.accounts[2].volumes[0] == 3, "Died on +.accounts[2].volumes[0]"
     assert type(result.accounts[2].attributes) is dict, "Died on .accounts[2].attributes"
     assert result.accounts[2].account_id == 3, "Died on +.accounts[2].account_id"
     assert result.accounts[1].status == """active""", "Died on +.accounts[1].status"
     assert result.accounts[1].username == """yWcdE86kENMjAczw""", "Died on +.accounts[1].username"
+    assert result.accounts[1].storage_container_id == UUID("00000000-0000-0000-0000-000000000000"), "Died on .accounts[1].storage_container_id"
     assert result.accounts[1].volumes[0] == 2, "Died on +.accounts[1].volumes[0]"
     assert type(result.accounts[1].attributes) is dict, "Died on .accounts[1].attributes"
     assert result.accounts[1].account_id == 2, "Died on +.accounts[1].account_id"
     assert result.accounts[0].status == """active""", "Died on +.accounts[0].status"
     assert result.accounts[0].username == """fCAuWsvtbmVb5Bpp""", "Died on +.accounts[0].username"
+    assert result.accounts[0].storage_container_id == UUID("00000000-0000-0000-0000-000000000000"), "Died on .accounts[0].storage_container_id"
     assert result.accounts[0].volumes[0] == 1, "Died on +.accounts[0].volumes[0]"
     assert type(result.accounts[0].attributes) is dict, "Died on .accounts[0].attributes"
     assert result.accounts[0].account_id == 1, "Died on +.accounts[0].account_id"
@@ -11189,6 +11242,7 @@ def test_list_active_nodes_v9.1_0():
     assert result.nodes[3].uuid == UUID("4C4C4544-0039-4E10-8033-C4C04F4A3032"), "Died on .nodes[3].uuid"
     assert result.nodes[3].name == """NLABP1001""", "Died on +.nodes[3].name"
     assert result.nodes[3].platform_info.node_type == """SF3010""", "Died on +.nodes[3].platform_info.node_type"
+    assert result.nodes[3].platform_info.platform_config_version == """9.1.0.28""", "Died on +.nodes[3].platform_info.platform_config_version"
     assert result.nodes[3].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz""", "Died on +.nodes[3].platform_info.cpu_model"
     assert result.nodes[3].platform_info.node_memory_gb == 72, "Died on +.nodes[3].platform_info.node_memory_gb"
     assert result.nodes[3].platform_info.chassis_type == """R620""", "Died on +.nodes[3].platform_info.chassis_type"
@@ -11207,6 +11261,7 @@ def test_list_active_nodes_v9.1_0():
     assert result.nodes[2].uuid == UUID("4C4C4544-0039-5810-8036-C4C04F4A3032"), "Died on .nodes[2].uuid"
     assert result.nodes[2].name == """NLABP2124""", "Died on +.nodes[2].name"
     assert result.nodes[2].platform_info.node_type == """SF3010""", "Died on +.nodes[2].platform_info.node_type"
+    assert result.nodes[2].platform_info.platform_config_version == """9.1.0.28""", "Died on +.nodes[2].platform_info.platform_config_version"
     assert result.nodes[2].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz""", "Died on +.nodes[2].platform_info.cpu_model"
     assert result.nodes[2].platform_info.node_memory_gb == 72, "Died on +.nodes[2].platform_info.node_memory_gb"
     assert result.nodes[2].platform_info.chassis_type == """R620""", "Died on +.nodes[2].platform_info.chassis_type"
@@ -11225,6 +11280,7 @@ def test_list_active_nodes_v9.1_0():
     assert result.nodes[1].uuid == UUID("4C4C4544-0039-5910-8037-C4C04F4A3032"), "Died on .nodes[1].uuid"
     assert result.nodes[1].name == """NLABP2123""", "Died on +.nodes[1].name"
     assert result.nodes[1].platform_info.node_type == """SF3010""", "Died on +.nodes[1].platform_info.node_type"
+    assert result.nodes[1].platform_info.platform_config_version == """9.1.0.28""", "Died on +.nodes[1].platform_info.platform_config_version"
     assert result.nodes[1].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz""", "Died on +.nodes[1].platform_info.cpu_model"
     assert result.nodes[1].platform_info.node_memory_gb == 72, "Died on +.nodes[1].platform_info.node_memory_gb"
     assert result.nodes[1].platform_info.chassis_type == """R620""", "Died on +.nodes[1].platform_info.chassis_type"
@@ -11243,6 +11299,7 @@ def test_list_active_nodes_v9.1_0():
     assert result.nodes[0].uuid == UUID("4C4C4544-0039-4710-8037-C4C04F4A3032"), "Died on .nodes[0].uuid"
     assert result.nodes[0].name == """NLABP2117""", "Died on +.nodes[0].name"
     assert result.nodes[0].platform_info.node_type == """SF3010""", "Died on +.nodes[0].platform_info.node_type"
+    assert result.nodes[0].platform_info.platform_config_version == """9.1.0.28""", "Died on +.nodes[0].platform_info.platform_config_version"
     assert result.nodes[0].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz""", "Died on +.nodes[0].platform_info.cpu_model"
     assert result.nodes[0].platform_info.node_memory_gb == 72, "Died on +.nodes[0].platform_info.node_memory_gb"
     assert result.nodes[0].platform_info.chassis_type == """R620""", "Died on +.nodes[0].platform_info.chassis_type"
@@ -22078,6 +22135,7 @@ def test_list_all_nodes_v9.0_1():
     assert result.nodes[4].uuid == UUID("4C4C4544-0047-5410-8046-C3C04F464232"), "Died on .nodes[4].uuid"
     assert result.nodes[4].name == """NLABP1301""", "Died on +.nodes[4].name"
     assert result.nodes[4].platform_info.node_type == """SF9605""", "Died on +.nodes[4].platform_info.node_type"
+    assert result.nodes[4].platform_info.platform_config_version == """9.1.0.30""", "Died on +.nodes[4].platform_info.platform_config_version"
     assert result.nodes[4].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2620 v3 @ 2.40GHz""", "Died on +.nodes[4].platform_info.cpu_model"
     assert result.nodes[4].platform_info.node_memory_gb == 256, "Died on +.nodes[4].platform_info.node_memory_gb"
     assert result.nodes[4].platform_info.chassis_type == """R630""", "Died on +.nodes[4].platform_info.chassis_type"
@@ -22096,6 +22154,7 @@ def test_list_all_nodes_v9.0_1():
     assert result.nodes[3].uuid == UUID("4C4C4544-0052-3910-804E-B5C04F383432"), "Died on .nodes[3].uuid"
     assert result.nodes[3].name == """NLABP0916""", "Died on +.nodes[3].name"
     assert result.nodes[3].platform_info.node_type == """SF9605""", "Died on +.nodes[3].platform_info.node_type"
+    assert result.nodes[3].platform_info.platform_config_version == """9.1.0.30""", "Died on +.nodes[3].platform_info.platform_config_version"
     assert result.nodes[3].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2620 v3 @ 2.40GHz""", "Died on +.nodes[3].platform_info.cpu_model"
     assert result.nodes[3].platform_info.node_memory_gb == 256, "Died on +.nodes[3].platform_info.node_memory_gb"
     assert result.nodes[3].platform_info.chassis_type == """R630""", "Died on +.nodes[3].platform_info.chassis_type"
@@ -22114,6 +22173,7 @@ def test_list_all_nodes_v9.0_1():
     assert result.nodes[2].uuid == UUID("4C4C4544-0048-4E10-8057-C7C04F395931"), "Died on .nodes[2].uuid"
     assert result.nodes[2].name == """NLABP0907""", "Died on +.nodes[2].name"
     assert result.nodes[2].platform_info.node_type == """SF9605""", "Died on +.nodes[2].platform_info.node_type"
+    assert result.nodes[2].platform_info.platform_config_version == """9.1.0.30""", "Died on +.nodes[2].platform_info.platform_config_version"
     assert result.nodes[2].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz""", "Died on +.nodes[2].platform_info.cpu_model"
     assert result.nodes[2].platform_info.node_memory_gb == 256, "Died on +.nodes[2].platform_info.node_memory_gb"
     assert result.nodes[2].platform_info.chassis_type == """R620""", "Died on +.nodes[2].platform_info.chassis_type"
@@ -22132,6 +22192,7 @@ def test_list_all_nodes_v9.0_1():
     assert result.nodes[1].uuid == UUID("4C4C4544-0048-4810-8058-C7C04F395931"), "Died on .nodes[1].uuid"
     assert result.nodes[1].name == """NLABP0906""", "Died on +.nodes[1].name"
     assert result.nodes[1].platform_info.node_type == """SF9605""", "Died on +.nodes[1].platform_info.node_type"
+    assert result.nodes[1].platform_info.platform_config_version == """9.1.0.30""", "Died on +.nodes[1].platform_info.platform_config_version"
     assert result.nodes[1].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz""", "Died on +.nodes[1].platform_info.cpu_model"
     assert result.nodes[1].platform_info.node_memory_gb == 256, "Died on +.nodes[1].platform_info.node_memory_gb"
     assert result.nodes[1].platform_info.chassis_type == """R620""", "Died on +.nodes[1].platform_info.chassis_type"
@@ -22150,6 +22211,7 @@ def test_list_all_nodes_v9.0_1():
     assert result.nodes[0].uuid == UUID("4C4C4544-0048-3810-8058-C7C04F395931"), "Died on .nodes[0].uuid"
     assert result.nodes[0].name == """NLABP0905""", "Died on +.nodes[0].name"
     assert result.nodes[0].platform_info.node_type == """SF9605""", "Died on +.nodes[0].platform_info.node_type"
+    assert result.nodes[0].platform_info.platform_config_version == """9.1.0.30""", "Died on +.nodes[0].platform_info.platform_config_version"
     assert result.nodes[0].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz""", "Died on +.nodes[0].platform_info.cpu_model"
     assert result.nodes[0].platform_info.node_memory_gb == 256, "Died on +.nodes[0].platform_info.node_memory_gb"
     assert result.nodes[0].platform_info.chassis_type == """R620""", "Died on +.nodes[0].platform_info.chassis_type"
@@ -22175,6 +22237,7 @@ def test_list_all_nodes_v9.1_0():
     assert result.nodes[3].uuid == UUID("4C4C4544-0039-4E10-8033-C4C04F4A3032"), "Died on .nodes[3].uuid"
     assert result.nodes[3].name == """NLABP1001""", "Died on +.nodes[3].name"
     assert result.nodes[3].platform_info.node_type == """SF3010""", "Died on +.nodes[3].platform_info.node_type"
+    assert result.nodes[3].platform_info.platform_config_version == """9.1.0.28""", "Died on +.nodes[3].platform_info.platform_config_version"
     assert result.nodes[3].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz""", "Died on +.nodes[3].platform_info.cpu_model"
     assert result.nodes[3].platform_info.node_memory_gb == 72, "Died on +.nodes[3].platform_info.node_memory_gb"
     assert result.nodes[3].platform_info.chassis_type == """R620""", "Died on +.nodes[3].platform_info.chassis_type"
@@ -22193,6 +22256,7 @@ def test_list_all_nodes_v9.1_0():
     assert result.nodes[2].uuid == UUID("4C4C4544-0039-5810-8036-C4C04F4A3032"), "Died on .nodes[2].uuid"
     assert result.nodes[2].name == """NLABP2124""", "Died on +.nodes[2].name"
     assert result.nodes[2].platform_info.node_type == """SF3010""", "Died on +.nodes[2].platform_info.node_type"
+    assert result.nodes[2].platform_info.platform_config_version == """9.1.0.28""", "Died on +.nodes[2].platform_info.platform_config_version"
     assert result.nodes[2].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz""", "Died on +.nodes[2].platform_info.cpu_model"
     assert result.nodes[2].platform_info.node_memory_gb == 72, "Died on +.nodes[2].platform_info.node_memory_gb"
     assert result.nodes[2].platform_info.chassis_type == """R620""", "Died on +.nodes[2].platform_info.chassis_type"
@@ -22211,6 +22275,7 @@ def test_list_all_nodes_v9.1_0():
     assert result.nodes[1].uuid == UUID("4C4C4544-0039-5910-8037-C4C04F4A3032"), "Died on .nodes[1].uuid"
     assert result.nodes[1].name == """NLABP2123""", "Died on +.nodes[1].name"
     assert result.nodes[1].platform_info.node_type == """SF3010""", "Died on +.nodes[1].platform_info.node_type"
+    assert result.nodes[1].platform_info.platform_config_version == """9.1.0.28""", "Died on +.nodes[1].platform_info.platform_config_version"
     assert result.nodes[1].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz""", "Died on +.nodes[1].platform_info.cpu_model"
     assert result.nodes[1].platform_info.node_memory_gb == 72, "Died on +.nodes[1].platform_info.node_memory_gb"
     assert result.nodes[1].platform_info.chassis_type == """R620""", "Died on +.nodes[1].platform_info.chassis_type"
@@ -22229,6 +22294,7 @@ def test_list_all_nodes_v9.1_0():
     assert result.nodes[0].uuid == UUID("4C4C4544-0039-4710-8037-C4C04F4A3032"), "Died on .nodes[0].uuid"
     assert result.nodes[0].name == """NLABP2117""", "Died on +.nodes[0].name"
     assert result.nodes[0].platform_info.node_type == """SF3010""", "Died on +.nodes[0].platform_info.node_type"
+    assert result.nodes[0].platform_info.platform_config_version == """9.1.0.28""", "Died on +.nodes[0].platform_info.platform_config_version"
     assert result.nodes[0].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz""", "Died on +.nodes[0].platform_info.cpu_model"
     assert result.nodes[0].platform_info.node_memory_gb == 72, "Died on +.nodes[0].platform_info.node_memory_gb"
     assert result.nodes[0].platform_info.chassis_type == """R620""", "Died on +.nodes[0].platform_info.chassis_type"
@@ -22253,10 +22319,12 @@ def test_list_all_nodes_v9.1_1():
     assert result.pending_nodes[0].uuid == UUID("4C4C4544-0057-4710-8053-B2C04F4B3032"), "Died on .pending_nodes[0].uuid"
     assert result.pending_nodes[0].name == """NLABP1002""", "Died on +.pending_nodes[0].name"
     assert result.pending_nodes[0].sipi == """Bond10G""", "Died on +.pending_nodes[0].sipi"
+    assert result.pending_nodes[0].assigned_node_id == 0, "Died on +.pending_nodes[0].assigned_node_id"
     assert result.pending_nodes[0].compatible == True, "Died on +.pending_nodes[0].compatible"
     assert result.pending_nodes[0].software_version == """9.1.0.28""", "Died on +.pending_nodes[0].software_version"
     assert result.pending_nodes[0].mipi == """Bond1G""", "Died on +.pending_nodes[0].mipi"
     assert result.pending_nodes[0].platform_info.node_type == """SF3010""", "Died on +.pending_nodes[0].platform_info.node_type"
+    assert result.pending_nodes[0].platform_info.platform_config_version == """9.1.0.28""", "Died on +.pending_nodes[0].platform_info.platform_config_version"
     assert result.pending_nodes[0].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz""", "Died on +.pending_nodes[0].platform_info.cpu_model"
     assert result.pending_nodes[0].platform_info.node_memory_gb == 72, "Died on +.pending_nodes[0].platform_info.node_memory_gb"
     assert result.pending_nodes[0].platform_info.chassis_type == """R620""", "Died on +.pending_nodes[0].platform_info.chassis_type"
@@ -22269,6 +22337,7 @@ def test_list_all_nodes_v9.1_1():
     assert result.nodes[2].uuid == UUID("4C4C4544-0030-4E10-8033-B7C04F4B3032"), "Died on .nodes[2].uuid"
     assert result.nodes[2].name == """NLABP1003""", "Died on +.nodes[2].name"
     assert result.nodes[2].platform_info.node_type == """SF3010""", "Died on +.nodes[2].platform_info.node_type"
+    assert result.nodes[2].platform_info.platform_config_version == """9.1.0.28""", "Died on +.nodes[2].platform_info.platform_config_version"
     assert result.nodes[2].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz""", "Died on +.nodes[2].platform_info.cpu_model"
     assert result.nodes[2].platform_info.node_memory_gb == 72, "Died on +.nodes[2].platform_info.node_memory_gb"
     assert result.nodes[2].platform_info.chassis_type == """R620""", "Died on +.nodes[2].platform_info.chassis_type"
@@ -22287,6 +22356,7 @@ def test_list_all_nodes_v9.1_1():
     assert result.nodes[1].uuid == UUID("4C4C4544-0039-4E10-8033-C4C04F4A3032"), "Died on .nodes[1].uuid"
     assert result.nodes[1].name == """NLABP1001""", "Died on +.nodes[1].name"
     assert result.nodes[1].platform_info.node_type == """SF3010""", "Died on +.nodes[1].platform_info.node_type"
+    assert result.nodes[1].platform_info.platform_config_version == """9.1.0.28""", "Died on +.nodes[1].platform_info.platform_config_version"
     assert result.nodes[1].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz""", "Died on +.nodes[1].platform_info.cpu_model"
     assert result.nodes[1].platform_info.node_memory_gb == 72, "Died on +.nodes[1].platform_info.node_memory_gb"
     assert result.nodes[1].platform_info.chassis_type == """R620""", "Died on +.nodes[1].platform_info.chassis_type"
@@ -22305,6 +22375,7 @@ def test_list_all_nodes_v9.1_1():
     assert result.nodes[0].uuid == UUID("4C4C4544-0039-5810-8036-C4C04F4A3032"), "Died on .nodes[0].uuid"
     assert result.nodes[0].name == """NLABP2124""", "Died on +.nodes[0].name"
     assert result.nodes[0].platform_info.node_type == """SF3010""", "Died on +.nodes[0].platform_info.node_type"
+    assert result.nodes[0].platform_info.platform_config_version == """9.1.0.28""", "Died on +.nodes[0].platform_info.platform_config_version"
     assert result.nodes[0].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz""", "Died on +.nodes[0].platform_info.cpu_model"
     assert result.nodes[0].platform_info.node_memory_gb == 72, "Died on +.nodes[0].platform_info.node_memory_gb"
     assert result.nodes[0].platform_info.chassis_type == """R620""", "Died on +.nodes[0].platform_info.chassis_type"
@@ -22330,6 +22401,7 @@ def test_list_all_nodes_v9.1_2():
     assert result.nodes[2].uuid == UUID("4C4C4544-0050-5810-8052-B7C04F395431"), "Died on .nodes[2].uuid"
     assert result.nodes[2].name == """NLABP0929""", "Died on +.nodes[2].name"
     assert result.nodes[2].platform_info.node_type == """SF6010""", "Died on +.nodes[2].platform_info.node_type"
+    assert result.nodes[2].platform_info.platform_config_version == """9.1.0.34""", "Died on +.nodes[2].platform_info.platform_config_version"
     assert result.nodes[2].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz""", "Died on +.nodes[2].platform_info.cpu_model"
     assert result.nodes[2].platform_info.node_memory_gb == 144, "Died on +.nodes[2].platform_info.node_memory_gb"
     assert result.nodes[2].platform_info.chassis_type == """R620""", "Died on +.nodes[2].platform_info.chassis_type"
@@ -22348,6 +22420,7 @@ def test_list_all_nodes_v9.1_2():
     assert result.nodes[1].uuid == UUID("4C4C4544-0038-5210-8052-CAC04F335431"), "Died on .nodes[1].uuid"
     assert result.nodes[1].name == """NLABP0928""", "Died on +.nodes[1].name"
     assert result.nodes[1].platform_info.node_type == """SF6010""", "Died on +.nodes[1].platform_info.node_type"
+    assert result.nodes[1].platform_info.platform_config_version == """9.1.0.34""", "Died on +.nodes[1].platform_info.platform_config_version"
     assert result.nodes[1].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz""", "Died on +.nodes[1].platform_info.cpu_model"
     assert result.nodes[1].platform_info.node_memory_gb == 144, "Died on +.nodes[1].platform_info.node_memory_gb"
     assert result.nodes[1].platform_info.chassis_type == """R620""", "Died on +.nodes[1].platform_info.chassis_type"
@@ -22366,6 +22439,7 @@ def test_list_all_nodes_v9.1_2():
     assert result.nodes[0].uuid == UUID("4C4C4544-004D-5310-8052-C7C04F335431"), "Died on .nodes[0].uuid"
     assert result.nodes[0].name == """NLABP0927""", "Died on +.nodes[0].name"
     assert result.nodes[0].platform_info.node_type == """SF6010""", "Died on +.nodes[0].platform_info.node_type"
+    assert result.nodes[0].platform_info.platform_config_version == """9.1.0.34""", "Died on +.nodes[0].platform_info.platform_config_version"
     assert result.nodes[0].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz""", "Died on +.nodes[0].platform_info.cpu_model"
     assert result.nodes[0].platform_info.node_memory_gb == 144, "Died on +.nodes[0].platform_info.node_memory_gb"
     assert result.nodes[0].platform_info.chassis_type == """R620""", "Died on +.nodes[0].platform_info.chassis_type"
@@ -22386,6 +22460,7 @@ def test_list_all_nodes_v9.1_2():
     assert result.pending_active_nodes[1].async_handle == 57, "Died on +.pending_active_nodes[1].async_handle"
     assert result.pending_active_nodes[1].mip == """10.117.56.130""", "Died on +.pending_active_nodes[1].mip"
     assert result.pending_active_nodes[1].platform_info.node_type == """SF6010""", "Died on +.pending_active_nodes[1].platform_info.node_type"
+    assert result.pending_active_nodes[1].platform_info.platform_config_version == """9.1.0.34""", "Died on +.pending_active_nodes[1].platform_info.platform_config_version"
     assert result.pending_active_nodes[1].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz""", "Died on +.pending_active_nodes[1].platform_info.cpu_model"
     assert result.pending_active_nodes[1].platform_info.node_memory_gb == 144, "Died on +.pending_active_nodes[1].platform_info.node_memory_gb"
     assert result.pending_active_nodes[1].platform_info.chassis_type == """R620""", "Died on +.pending_active_nodes[1].platform_info.chassis_type"
@@ -22398,6 +22473,7 @@ def test_list_all_nodes_v9.1_2():
     assert result.pending_active_nodes[0].async_handle == 56, "Died on +.pending_active_nodes[0].async_handle"
     assert result.pending_active_nodes[0].mip == """10.117.56.139""", "Died on +.pending_active_nodes[0].mip"
     assert result.pending_active_nodes[0].platform_info.node_type == """SF6010""", "Died on +.pending_active_nodes[0].platform_info.node_type"
+    assert result.pending_active_nodes[0].platform_info.platform_config_version == """9.1.0.34""", "Died on +.pending_active_nodes[0].platform_info.platform_config_version"
     assert result.pending_active_nodes[0].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz""", "Died on +.pending_active_nodes[0].platform_info.cpu_model"
     assert result.pending_active_nodes[0].platform_info.node_memory_gb == 144, "Died on +.pending_active_nodes[0].platform_info.node_memory_gb"
     assert result.pending_active_nodes[0].platform_info.chassis_type == """R620""", "Died on +.pending_active_nodes[0].platform_info.chassis_type"
@@ -25141,10 +25217,12 @@ def test_list_pending_nodes_v9.1_0():
     assert result.pending_nodes[0].uuid == UUID("4C4C4544-0057-4710-8053-B2C04F4B3032"), "Died on .pending_nodes[0].uuid"
     assert result.pending_nodes[0].name == """NLABP1002""", "Died on +.pending_nodes[0].name"
     assert result.pending_nodes[0].sipi == """Bond10G""", "Died on +.pending_nodes[0].sipi"
+    assert result.pending_nodes[0].assigned_node_id == 0, "Died on +.pending_nodes[0].assigned_node_id"
     assert result.pending_nodes[0].compatible == True, "Died on +.pending_nodes[0].compatible"
     assert result.pending_nodes[0].software_version == """9.1.0.28""", "Died on +.pending_nodes[0].software_version"
     assert result.pending_nodes[0].mipi == """Bond1G""", "Died on +.pending_nodes[0].mipi"
     assert result.pending_nodes[0].platform_info.node_type == """SF3010""", "Died on +.pending_nodes[0].platform_info.node_type"
+    assert result.pending_nodes[0].platform_info.platform_config_version == """9.1.0.28""", "Died on +.pending_nodes[0].platform_info.platform_config_version"
     assert result.pending_nodes[0].platform_info.cpu_model == """Intel(R) Xeon(R) CPU E5-2640 0 @ 2.50GHz""", "Died on +.pending_nodes[0].platform_info.cpu_model"
     assert result.pending_nodes[0].platform_info.node_memory_gb == 72, "Died on +.pending_nodes[0].platform_info.node_memory_gb"
     assert result.pending_nodes[0].platform_info.chassis_type == """R620""", "Died on +.pending_nodes[0].platform_info.chassis_type"
@@ -36311,6 +36389,12 @@ def test_reset_node_v8.2_0():
     force = True # force
     option = "" # option
     result = ef.reset_node(build,force,)
+    assert result.duration == """00:00:19.430030""", "Died on +.duration"
+    assert result.result == """Passed""", "Died on +.result"
+    assert result.details.rtfi_info.status_url_current == """https://10.117.56.81:442/config/rtfi/status/current.json""", "Died on +.details.rtfi_info.status_url_current"
+    assert type(result.details.rtfi_info.options) is dict, "Died on .details.rtfi_info.options"
+    assert result.details.rtfi_info.status_url_all == """https://10.117.56.81:442/config/rtfi/status/all.json""", "Died on +.details.rtfi_info.status_url_all"
+    assert result.details.rtfi_info.build == """file:///sf/rtfi/image/filesystem.squashfs""", "Died on +.details.rtfi_info.build"
 
 def test_reset_node_v8.6_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -36321,6 +36405,13 @@ def test_reset_node_v8.6_0():
     force = True # force
     option = "" # option
     result = ef.reset_node(build,force,)
+    assert result.duration == """00:00:14.115031""", "Died on +.duration"
+    assert result.result == """Passed""", "Died on +.result"
+    assert result.details.rtfi_info.build == """file:///sf/rtfi/image/filesystem.squashfs""", "Died on +.details.rtfi_info.build"
+    assert result.details.rtfi_info.status_url_all == """https://10.117.56.44:442/config/rtfi/status/all.json""", "Died on +.details.rtfi_info.status_url_all"
+    assert result.details.rtfi_info.status_url_logfile == """https://10.117.56.44:442/config/rtfi/status/rtfi.log""", "Died on +.details.rtfi_info.status_url_logfile"
+    assert result.details.rtfi_info.status_url_current == """https://10.117.56.44:442/config/rtfi/status/current.json""", "Died on +.details.rtfi_info.status_url_current"
+    assert type(result.details.rtfi_info.options) is dict, "Died on .details.rtfi_info.options"
 
 def test_reset_node_v8.7_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -36331,6 +36422,13 @@ def test_reset_node_v8.7_0():
     force = True # force
     option = "" # option
     result = ef.reset_node(build,force,)
+    assert result.duration == """00:00:14.679255""", "Died on +.duration"
+    assert result.result == """Passed""", "Died on +.result"
+    assert result.details.rtfi_info.build == """file:///sf/rtfi/image/filesystem.squashfs""", "Died on +.details.rtfi_info.build"
+    assert result.details.rtfi_info.status_url_all == """https://10.117.56.44:442/config/rtfi/status/all.json""", "Died on +.details.rtfi_info.status_url_all"
+    assert result.details.rtfi_info.status_url_logfile == """https://10.117.56.44:442/config/rtfi/status/rtfi.log""", "Died on +.details.rtfi_info.status_url_logfile"
+    assert result.details.rtfi_info.status_url_current == """https://10.117.56.44:442/config/rtfi/status/current.json""", "Died on +.details.rtfi_info.status_url_current"
+    assert type(result.details.rtfi_info.options) is dict, "Died on .details.rtfi_info.options"
 
 def test_reset_node_v9.0_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -36341,6 +36439,16 @@ def test_reset_node_v9.0_0():
     force = True # force
     option = "" # option
     result = ef.reset_node(build,force,)
+    assert result.duration == """00:00:00.174456""", "Died on +.duration"
+    assert result.result == """Passed""", "Died on +.result"
+    assert result.details.rtfi_info.mipi == """Bond1G""", "Died on +.details.rtfi_info.mipi"
+    assert result.details.rtfi_info.generation == 1, "Died on +.details.rtfi_info.generation"
+    assert result.details.rtfi_info.generation_next == 3, "Died on +.details.rtfi_info.generation_next"
+    assert result.details.rtfi_info.build == """file:///sf/rtfi/image/filesystem.squashfs""", "Died on +.details.rtfi_info.build"
+    assert result.details.rtfi_info.status_url_all == """https://10.117.56.107:442/config/rtfi/status/all.json""", "Died on +.details.rtfi_info.status_url_all"
+    assert result.details.rtfi_info.status_url_logfile == """https://10.117.56.107:442/config/rtfi/status/rtfi.log""", "Died on +.details.rtfi_info.status_url_logfile"
+    assert result.details.rtfi_info.mip == """10.117.56.107""", "Died on +.details.rtfi_info.mip"
+    assert result.details.rtfi_info.status_url_current == """https://10.117.56.107:442/config/rtfi/status/current.json""", "Died on +.details.rtfi_info.status_url_current"
 
 def test_reset_node_v9.1_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -36351,6 +36459,16 @@ def test_reset_node_v9.1_0():
     force = True # force
     option = "" # option
     result = ef.reset_node(build,force,)
+    assert result.duration == """00:00:00.177384""", "Died on +.duration"
+    assert result.result == """Passed""", "Died on +.result"
+    assert result.details.rtfi_info.mipi == """Bond1G""", "Died on +.details.rtfi_info.mipi"
+    assert result.details.rtfi_info.generation == 31, "Died on +.details.rtfi_info.generation"
+    assert result.details.rtfi_info.generation_next == 32, "Died on +.details.rtfi_info.generation_next"
+    assert result.details.rtfi_info.build == """file:///sf/rtfi/image/filesystem.squashfs""", "Died on +.details.rtfi_info.build"
+    assert result.details.rtfi_info.status_url_all == """https://10.117.56.15:442/config/rtfi/status/all.json""", "Died on +.details.rtfi_info.status_url_all"
+    assert result.details.rtfi_info.status_url_logfile == """https://10.117.56.15:442/config/rtfi/status/rtfi.log""", "Died on +.details.rtfi_info.status_url_logfile"
+    assert result.details.rtfi_info.mip == """10.117.56.15""", "Died on +.details.rtfi_info.mip"
+    assert result.details.rtfi_info.status_url_current == """https://10.117.56.15:442/config/rtfi/status/current.json""", "Died on +.details.rtfi_info.status_url_current"
 
 def test_reset_node_v9.1_1():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -36361,6 +36479,16 @@ def test_reset_node_v9.1_1():
     force = True # force
     option = "" # option
     result = ef.reset_node(build,force,)
+    assert result.duration == """00:00:00.130800""", "Died on +.duration"
+    assert result.result == """Passed""", "Died on +.result"
+    assert result.details.rtfi_info.mipi == """Bond1G""", "Died on +.details.rtfi_info.mipi"
+    assert result.details.rtfi_info.generation == 8, "Died on +.details.rtfi_info.generation"
+    assert result.details.rtfi_info.generation_next == 10, "Died on +.details.rtfi_info.generation_next"
+    assert result.details.rtfi_info.build == """file:///sf/rtfi/image/filesystem.squashfs""", "Died on +.details.rtfi_info.build"
+    assert result.details.rtfi_info.status_url_all == """https://10.117.56.76:442/config/rtfi/status/all.json""", "Died on +.details.rtfi_info.status_url_all"
+    assert result.details.rtfi_info.status_url_logfile == """https://10.117.56.76:442/config/rtfi/status/rtfi.log""", "Died on +.details.rtfi_info.status_url_logfile"
+    assert result.details.rtfi_info.mip == """10.117.56.76""", "Died on +.details.rtfi_info.mip"
+    assert result.details.rtfi_info.status_url_current == """https://10.117.56.76:442/config/rtfi/status/current.json""", "Died on +.details.rtfi_info.status_url_current"
 
 def test_restart_services_v8.4_0():
     ef = Element("10.117.60.15:444", "admin", "admin", 9.0)
@@ -36479,6 +36607,7 @@ def test_set_cluster_config_v8.7_0():
     
     cluster = dict() # cluster
     result = ef.set_cluster_config(cluster,)
+    assert result.cluster.encryption_capable == True, "Died on +.cluster.encryption_capable"
     assert result.cluster.mipi == """Bond1G""", "Died on +.cluster.mipi"
     assert result.cluster.name == """NLABP0919""", "Died on +.cluster.name"
     assert result.cluster.state == """Available""", "Died on +.cluster.state"
@@ -36500,6 +36629,7 @@ def test_set_cluster_config_v9.0_0():
     assert result.cluster.name == """NLABP2010""", "Died on +.cluster.name"
     assert result.cluster.sipi == """Bond10G""", "Died on +.cluster.sipi"
     assert result.cluster.state == """Available""", "Died on +.cluster.state"
+    assert result.cluster.version == """9.0.0.1554""", "Died on +.cluster.version"
     assert result.cluster.role == """Storage""", "Died on +.cluster.role"
     assert result.cluster.cipi == """Bond10G""", "Died on +.cluster.cipi"
     assert result.cluster.pending_node_id == 0, "Died on +.cluster.pending_node_id"
@@ -36549,6 +36679,7 @@ def test_set_cluster_config_v9.1_1():
     assert result.cluster.sipi == """Bond10G""", "Died on +.cluster.sipi"
     assert result.cluster.cluster == """AutoTest2-6kyp""", "Died on +.cluster.cluster"
     assert result.cluster.state == """Pending""", "Died on +.cluster.state"
+    assert result.cluster.version == """9.1.0.28""", "Died on +.cluster.version"
     assert result.cluster.role == """Storage""", "Died on +.cluster.role"
     assert result.cluster.cipi == """Bond10G""", "Died on +.cluster.cipi"
     assert result.cluster.pending_node_id == 0, "Died on +.cluster.pending_node_id"
@@ -36560,12 +36691,14 @@ def test_set_cluster_config_v9.1_2():
     
     cluster = dict() # cluster
     result = ef.set_cluster_config(cluster,)
+    assert result.cluster.encryption_capable == True, "Died on +.cluster.encryption_capable"
     assert result.cluster.mipi == """Bond1G""", "Died on +.cluster.mipi"
     assert result.cluster.name == """NLABP0902""", "Died on +.cluster.name"
     assert result.cluster.node_id == 0, "Died on +.cluster.node_id"
     assert result.cluster.sipi == """Bond10G""", "Died on +.cluster.sipi"
     assert result.cluster.cluster == """AutoTest2-xccB""", "Died on +.cluster.cluster"
     assert result.cluster.state == """Pending""", "Died on +.cluster.state"
+    assert result.cluster.version == """9.1.0.40""", "Died on +.cluster.version"
     assert result.cluster.role == """Storage""", "Died on +.cluster.role"
     assert result.cluster.cipi == """Bond10G""", "Died on +.cluster.cipi"
     assert result.cluster.pending_node_id == 0, "Died on +.cluster.pending_node_id"
@@ -36790,6 +36923,7 @@ def test_set_network_config_v8.4_1():
     assert result.network.bond1_g.address == """10.117.56.19""", "Died on +.network.bond1_g.address"
     assert result.network.bond1_g.mac_address_permanent == """00:00:00:00:00:00""", "Died on +.network.bond1_g.mac_address_permanent"
     assert result.network.bond1_g.up_and_running == True, "Died on +.network.bond1_g.up_and_running"
+    assert result.network.bond1_g.bond_xmit_hash_policy == """Layer3_4""", "Died on +.network.bond1_g.bond_xmit_hash_policy"
     assert result.network.bond1_g.bond_downdelay == """200""", "Died on +.network.bond1_g.bond_downdelay"
     assert result.network.bond1_g.mtu == """1500""", "Died on +.network.bond1_g.mtu"
     assert result.network.bond1_g.bond_primary_reselect == """Failure""", "Died on +.network.bond1_g.bond_primary_reselect"
@@ -36836,6 +36970,7 @@ def test_set_network_config_v8.4_1():
     assert result.network.bond10_g.address == """10.117.58.19""", "Died on +.network.bond10_g.address"
     assert result.network.bond10_g.mac_address_permanent == """00:00:00:00:00:00""", "Died on +.network.bond10_g.mac_address_permanent"
     assert result.network.bond10_g.up_and_running == True, "Died on +.network.bond10_g.up_and_running"
+    assert result.network.bond10_g.bond_xmit_hash_policy == """Layer3_4""", "Died on +.network.bond10_g.bond_xmit_hash_policy"
     assert result.network.bond10_g.bond_downdelay == """200""", "Died on +.network.bond10_g.bond_downdelay"
     assert result.network.bond10_g.mtu == """9000""", "Died on +.network.bond10_g.mtu"
     assert result.network.bond10_g.bond_primary_reselect == """Failure""", "Died on +.network.bond10_g.bond_primary_reselect"
@@ -37218,6 +37353,7 @@ def test_set_network_config_v8.7_1():
     assert result.network.bond1_g.address == """10.117.56.14""", "Died on +.network.bond1_g.address"
     assert result.network.bond1_g.mac_address_permanent == """00:00:00:00:00:00""", "Died on +.network.bond1_g.mac_address_permanent"
     assert result.network.bond1_g.up_and_running == True, "Died on +.network.bond1_g.up_and_running"
+    assert result.network.bond1_g.bond_xmit_hash_policy == """Layer3_4""", "Died on +.network.bond1_g.bond_xmit_hash_policy"
     assert result.network.bond1_g.bond_downdelay == """200""", "Died on +.network.bond1_g.bond_downdelay"
     assert result.network.bond1_g.mtu == """1500""", "Died on +.network.bond1_g.mtu"
     assert result.network.bond1_g.bond_primary_reselect == """Failure""", "Died on +.network.bond1_g.bond_primary_reselect"
@@ -37264,6 +37400,7 @@ def test_set_network_config_v8.7_1():
     assert result.network.bond10_g.address == """10.117.58.14""", "Died on +.network.bond10_g.address"
     assert result.network.bond10_g.mac_address_permanent == """00:00:00:00:00:00""", "Died on +.network.bond10_g.mac_address_permanent"
     assert result.network.bond10_g.up_and_running == True, "Died on +.network.bond10_g.up_and_running"
+    assert result.network.bond10_g.bond_xmit_hash_policy == """Layer3_4""", "Died on +.network.bond10_g.bond_xmit_hash_policy"
     assert result.network.bond10_g.bond_downdelay == """200""", "Died on +.network.bond10_g.bond_downdelay"
     assert result.network.bond10_g.mtu == """9000""", "Died on +.network.bond10_g.mtu"
     assert result.network.bond10_g.bond_primary_reselect == """Failure""", "Died on +.network.bond10_g.bond_primary_reselect"

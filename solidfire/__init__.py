@@ -1119,30 +1119,6 @@ class Element(ServiceBase):
             since=1
         )
 
-    def clear_cluster_faults(
-            self,
-            fault_types=OPTIONAL,):
-        """
-        ClearClusterFaults is used to clear information about both current faults that are resolved as well as faults that were previously detected and resolved can be cleared.
-        :param faultTypes:  Determines the types of faults cleared: current: Faults that are currently detected and have not been resolved. resolved: Faults that were previously detected and resolved. all: Both current and resolved faults are cleared. The fault status can be determined by the "resolved" field of the fault object. 
-        :type faultTypes: str
-        """
-
-        self._check_connection_type("clear_cluster_faults", "Cluster")
-
-        params = { 
-        }
-        if fault_types is not None:
-            params["faultTypes"] = fault_types
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ClearClusterFaults',
-            ClearClusterFaultsResult,
-            params,
-            since=1
-        )
-
     def create_cluster(
             self,
             mvip,
@@ -1396,6 +1372,30 @@ class Element(ServiceBase):
             since=1
         )
 
+    def clear_cluster_faults(
+            self,
+            fault_type=OPTIONAL,):
+        """
+        ClearClusterFaults is used to clear information about both current faults that are resolved as well as faults that were previously detected and resolved can be cleared.
+        :param faultType:  Determines the types of faults cleared: current: Faults that are currently detected and have not been resolved. resolved: Faults that were previously detected and resolved. all: Both current and resolved faults are cleared. The fault status can be determined by the "resolved" field of the fault object. 
+        :type faultType: str
+        """
+
+        self._check_connection_type("clear_cluster_faults", "Cluster")
+
+        params = { 
+        }
+        if fault_type is not None:
+            params["faultType"] = fault_type
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ClearClusterFaults',
+            ClearClusterFaultsResult,
+            params,
+            since=1
+        )
+
     def get_drive_hardware_info(
             self,
             drive_id,):
@@ -1481,38 +1481,6 @@ class Element(ServiceBase):
         return self.send_request(
             'ListDrives',
             ListDrivesResult,
-            params,
-            since=1
-        )
-
-    def add_drives(
-            self,
-            drives,):
-        """
-        AddDrives is used to add one or more available drives to the cluster enabling the drives to host a portion of the cluster's data.
-        When you add a node to the cluster or install new drives in an existing node, the new drives are marked as "available" and must be added via AddDrives before they can be utilized.
-        Use the "ListDrives" method to display drives that are "available" to be added.
-        When you add multiple drives, it is more efficient to add them in a single "AddDrives" method call rather than multiple individual methods with a single drive each.
-        This reduces the amount of data balancing that must occur to stabilize the storage load on the cluster.
-        
-        When you add a drive, the system automatically determines the "type" of drive it should be.
-        
-        The method returns immediately. However, it may take some time for the data in the cluster to be rebalanced using the newly added drives.
-        As the new drive(s) are syncing on the system, you can use the "ListSyncJobs" method to see how the drive(s) are being rebalanced and the progress of adding the new drive.
-        :param drives: [required] List of drives to add to the cluster. 
-        :type drives: NewDrive
-        """
-
-        self._check_connection_type("add_drives", "Cluster")
-
-        params = { 
-            "drives": drives,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'AddDrives',
-            AddDrivesResult,
             params,
             since=1
         )
@@ -1656,6 +1624,44 @@ class Element(ServiceBase):
             TestDrivesResult,
             params,
             since=5
+        )
+
+    def add_drives(
+            self,
+            drives,
+            force_during_upgrade=OPTIONAL,):
+        """
+        AddDrives is used to add one or more available drives to the cluster enabling the drives to host a portion of the cluster's data.
+        When you add a node to the cluster or install new drives in an existing node, the new drives are marked as "available" and must be added via AddDrives before they can be utilized.
+        Use the "ListDrives" method to display drives that are "available" to be added.
+        When you add multiple drives, it is more efficient to add them in a single "AddDrives" method call rather than multiple individual methods with a single drive each.
+        This reduces the amount of data balancing that must occur to stabilize the storage load on the cluster.
+        
+        When you add a drive, the system automatically determines the "type" of drive it should be.
+        
+        The method returns immediately. However, it may take some time for the data in the cluster to be rebalanced using the newly added drives.
+        As the new drive(s) are syncing on the system, you can use the "ListSyncJobs" method to see how the drive(s) are being rebalanced and the progress of adding the new drive.
+        :param drives: [required] List of drives to add to the cluster. 
+        :type drives: NewDrive
+
+        :param forceDuringUpgrade:  Allows the user to force the addition of drives during an upgrade. 
+        :type forceDuringUpgrade: bool
+        """
+
+        self._check_connection_type("add_drives", "Cluster")
+
+        params = { 
+            "drives": drives,
+        }
+        if force_during_upgrade is not None:
+            params["forceDuringUpgrade"] = force_during_upgrade
+        
+        # There is no adaptor.
+        return self.send_request(
+            'AddDrives',
+            AddDrivesResult,
+            params,
+            since=1
         )
 
     def get_cluster_hardware_info(
@@ -3101,71 +3107,6 @@ class Element(ServiceBase):
         return ElementServiceAdaptor.create_schedule(self, params,
                                                   since, deprecated)
 
-    def create_snapshot(
-            self,
-            volume_id,
-            snapshot_id=OPTIONAL,
-            name=OPTIONAL,
-            enable_remote_replication=OPTIONAL,
-            retention=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        CreateSnapshot is used to create a point-in-time copy of a volume.
-        A snapshot can be created from any volume or from an existing snapshot.
-        
-        Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
-        Snapshots are not created when cluster fullness is at stage 4 or 5.
-        :param volumeID: [required] ID of the volume image from which to copy. 
-        :type volumeID: int
-
-        :param snapshotID:  Unique ID of a snapshot from which the new snapshot is made. The snapshotID passed must be a snapshot on the given volume. If a SnapshotID is not provided, a snapshot is created from the volume's active branch. 
-        :type snapshotID: int
-
-        :param name:  A name for the snapshot. If no name is provided, the date and time the snapshot was taken is used. 
-        :type name: str
-
-        :param enableRemoteReplication:  Identifies if snapshot is enabled for remote replication. 
-        :type enableRemoteReplication: bool
-
-        :param retention:  The amount of time the snapshot will be retained. Enter in HH:mm:ss 
-        :type retention: str
-
-        :param attributes:  List of Name/Value pairs in JSON object format. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("create_snapshot", "Cluster")
-
-        params = { 
-            "volumeID": volume_id,
-        }
-        if snapshot_id is not None:
-            params["snapshotID"] = snapshot_id
-        if name is not None:
-            params["name"] = name
-        if enable_remote_replication is not None:
-            if self.api_version < 8.0:
-                raise ApiParameterVersionError("create_snapshot", 8.0,
-                    [("enable_remote_replication", enable_remote_replication, 8.0, False)])
-            else:
-                params["enableRemoteReplication"] = enable_remote_replication
-        if retention is not None:
-            if self.api_version < 8.0:
-                raise ApiParameterVersionError("create_snapshot", 8.0,
-                    [("retention", retention, 8.0, False)])
-            else:
-                params["retention"] = retention
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'CreateSnapshot',
-            CreateSnapshotResult,
-            params,
-            since=6
-        )
-
     def delete_group_snapshot(
             self,
             group_snapshot_id,
@@ -3414,6 +3355,71 @@ class Element(ServiceBase):
             ListGroupSnapshotsResult,
             params,
             since=7
+        )
+
+    def create_snapshot(
+            self,
+            volume_id,
+            snapshot_id=OPTIONAL,
+            name=OPTIONAL,
+            enable_remote_replication=OPTIONAL,
+            retention=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        CreateSnapshot is used to create a point-in-time copy of a volume.
+        A snapshot can be created from any volume or from an existing snapshot.
+        
+        Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
+        Snapshots are not created when cluster fullness is at stage 4 or 5.
+        :param volumeID: [required] ID of the volume image from which to copy. 
+        :type volumeID: int
+
+        :param snapshotID:  Unique ID of a snapshot from which the new snapshot is made. The snapshotID passed must be a snapshot on the given volume. If a SnapshotID is not provided, a snapshot is created from the volume's active branch. 
+        :type snapshotID: int
+
+        :param name:  A name for the snapshot. If no name is provided, the date and time the snapshot was taken is used. 
+        :type name: str
+
+        :param enableRemoteReplication:  Identifies if snapshot is enabled for remote replication. 
+        :type enableRemoteReplication: bool
+
+        :param retention:  The amount of time the snapshot will be retained. Enter in HH:mm:ss 
+        :type retention: str
+
+        :param attributes:  List of Name/Value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("create_snapshot", "Cluster")
+
+        params = { 
+            "volumeID": volume_id,
+        }
+        if snapshot_id is not None:
+            params["snapshotID"] = snapshot_id
+        if name is not None:
+            params["name"] = name
+        if enable_remote_replication is not None:
+            if self.api_version < 8.0:
+                raise ApiParameterVersionError("create_snapshot", 8.0,
+                    [("enable_remote_replication", enable_remote_replication, 8.0, False)])
+            else:
+                params["enableRemoteReplication"] = enable_remote_replication
+        if retention is not None:
+            if self.api_version < 8.0:
+                raise ApiParameterVersionError("create_snapshot", 8.0,
+                    [("retention", retention, 8.0, False)])
+            else:
+                params["retention"] = retention
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateSnapshot',
+            dict,
+            params,
+            since=6
         )
 
     def get_complete_stats(
@@ -4704,88 +4710,6 @@ class Element(ServiceBase):
             since=7
         )
 
-    def create_volume(
-            self,
-            name,
-            account_id,
-            total_size,
-            enable512e,
-            qos=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        CreateVolume is used to create a new (empty) volume on the cluster.
-        When the volume is created successfully it is available for connection via iSCSI.
-        :param name: [required] Name of the volume. Not required to be unique, but it is recommended. May be 1 to 64 characters in length. 
-        :type name: str
-
-        :param accountID: [required] AccountID for the owner of this volume. 
-        :type accountID: int
-
-        :param totalSize: [required] Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size. 
-        :type totalSize: int
-
-        :param enable512e: [required] Should the volume provides 512-byte sector emulation? 
-        :type enable512e: bool
-
-        :param qos:  Initial quality of service settings for this volume.  Volumes created without specified QoS values are created with the default values for QoS. Default values for a volume can be found by running the GetDefaultQoS method. 
-        :type qos: QoS
-
-        :param attributes:  List of Name/Value pairs in JSON object format. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("create_volume", "Cluster")
-
-        params = { 
-            "name": name,
-            "accountID": account_id,
-            "totalSize": total_size,
-            "enable512e": enable512e,
-        }
-        if qos is not None:
-            params["qos"] = qos
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'CreateVolume',
-            CreateVolumeResult,
-            params,
-            since=1
-        )
-
-    def get_async_result(
-            self,
-            async_handle,):
-        """
-        Used to retrieve the result of asynchronous method calls.
-        Some method calls are long running and do not complete when the initial response is sent.
-        To obtain the result of the method call, polling with GetAsyncResult is required.
-        
-        GetAsyncResult returns the overall status of the operation (in progress, completed, or error) in a standard fashion,
-        but the actual data returned for the operation depends on the original method call and the return data is documented with each method.
-        
-        The result for a completed asynchronous method call can only be retrieved once.
-        Once the final result has been returned, later attempts returns an error.
-        :param asyncHandle: [required] A value that was returned from the original asynchronous method call. 
-        :type asyncHandle: int
-        """
-
-        self._check_connection_type("get_async_result", "Cluster")
-
-        params = { 
-            "asyncHandle": async_handle,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetAsyncResult',
-            GetAsyncResultResult,
-            params,
-            since=1
-        )
-
     def start_bulk_volume_read(
             self,
             volume_id,
@@ -4894,6 +4818,37 @@ class Element(ServiceBase):
             UpdateBulkVolumeStatusResult,
             params,
             since=6
+        )
+
+    def get_async_result(
+            self,
+            async_handle,):
+        """
+        Used to retrieve the result of asynchronous method calls.
+        Some method calls are long running and do not complete when the initial response is sent.
+        To obtain the result of the method call, polling with GetAsyncResult is required.
+        
+        GetAsyncResult returns the overall status of the operation (in progress, completed, or error) in a standard fashion,
+        but the actual data returned for the operation depends on the original method call and the return data is documented with each method.
+        
+        The result for a completed asynchronous method call can only be retrieved once.
+        Once the final result has been returned, later attempts returns an error.
+        :param asyncHandle: [required] A value that was returned from the original asynchronous method call. 
+        :type asyncHandle: int
+        """
+
+        self._check_connection_type("get_async_result", "Cluster")
+
+        params = { 
+            "asyncHandle": async_handle,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetAsyncResult',
+            dict,
+            params,
+            since=1
         )
 
     def cancel_clone(
@@ -5189,6 +5144,63 @@ class Element(ServiceBase):
             StartBulkVolumeWriteResult,
             params,
             since=6
+        )
+
+    def create_volume(
+            self,
+            name,
+            account_id,
+            total_size,
+            enable512e,
+            qos=OPTIONAL,
+            attributes=OPTIONAL,
+            slice_count=OPTIONAL,):
+        """
+        CreateVolume is used to create a new (empty) volume on the cluster.
+        When the volume is created successfully it is available for connection via iSCSI.
+        :param name: [required] Name of the volume. Not required to be unique, but it is recommended. May be 1 to 64 characters in length. 
+        :type name: str
+
+        :param accountID: [required] AccountID for the owner of this volume. 
+        :type accountID: int
+
+        :param totalSize: [required] Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size. 
+        :type totalSize: int
+
+        :param enable512e: [required] Should the volume provides 512-byte sector emulation? 
+        :type enable512e: bool
+
+        :param qos:  Initial quality of service settings for this volume.  Volumes created without specified QoS values are created with the default values for QoS. Default values for a volume can be found by running the GetDefaultQoS method. 
+        :type qos: QoS
+
+        :param attributes:  List of Name/Value pairs in JSON object format. 
+        :type attributes: dict
+
+        :param sliceCount:  
+        :type sliceCount: int
+        """
+
+        self._check_connection_type("create_volume", "Cluster")
+
+        params = { 
+            "name": name,
+            "accountID": account_id,
+            "totalSize": total_size,
+            "enable512e": enable512e,
+        }
+        if qos is not None:
+            params["qos"] = qos
+        if attributes is not None:
+            params["attributes"] = attributes
+        if slice_count is not None:
+            params["sliceCount"] = slice_count
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateVolume',
+            CreateVolumeResult,
+            params,
+            since=1
         )
 
     def add_initiators_to_volume_access_group(
