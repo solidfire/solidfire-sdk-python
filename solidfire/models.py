@@ -3691,9 +3691,6 @@ class PendingNode(data_model.DataObject):
     :param uuid: [required] UUID of node. 
     :type uuid: UUID
 
-    :param assigned_node_id:  
-    :type assigned_node_id: int
-
     """
     pending_node_id = data_model.property(
         "pendingNodeID", int,
@@ -3702,7 +3699,7 @@ class PendingNode(data_model.DataObject):
         dictionaryType=None
     )
     assigned_node_id = data_model.property(
-        "AssignedNodeID", int,
+        "assignedNodeID", int,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -3771,12 +3768,6 @@ class PendingNode(data_model.DataObject):
         "uuid", UUID,
         array=False, optional=False,
         documentation="UUID of node.",
-        dictionaryType=None
-    )
-    assigned_node_id = data_model.property(
-        "assignedNodeID", int,
-        array=False, optional=True,
-        documentation="",
         dictionaryType=None
     )
 
