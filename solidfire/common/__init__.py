@@ -653,7 +653,7 @@ class ServiceBase(object):
         # noinspection PyBroadException
         try:
             response = json.loads(response_raw)
-            LOG.debug(msg=response)
+            LOG.debug(msg=response_raw)
         except Exception as error:
             LOG.error(msg=response_raw)
             response = json.dumps(
