@@ -66,17 +66,17 @@ class CreateInitiator(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class CancelCloneRequest(data_model.DataObject):
-    """CancelCloneRequest  
+class ListStorageContainersRequest(data_model.DataObject):
+    """ListStorageContainersRequest  
 
-    :param clone_id: [required] 
-    :type clone_id: int
+    :param storage_container_ids:  List of storage containers to get 
+    :type storage_container_ids: UUID
 
     """
-    clone_id = data_model.property(
-        "cloneID", int,
-        array=False, optional=False,
-        documentation="",
+    storage_container_ids = data_model.property(
+        "storageContainerIDs", UUID,
+        array=True, optional=True,
+        documentation="List of storage containers to get",
         dictionaryType=None
     )
 
@@ -243,6 +243,9 @@ class CreateVolumeRequest(data_model.DataObject):
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
 
+    :param slice_count:  
+    :type slice_count: int
+
     """
     name = data_model.property(
         "name", str,
@@ -278,6 +281,12 @@ class CreateVolumeRequest(data_model.DataObject):
         "attributes", dict,
         array=False, optional=True,
         documentation="List of Name/Value pairs in JSON object format.",
+        dictionaryType=None
+    )
+    slice_count = data_model.property(
+        "sliceCount", int,
+        array=False, optional=True,
+        documentation="",
         dictionaryType=None
     )
 
@@ -570,22 +579,32 @@ class ListVirtualVolumeHostsResult(data_model.DataObject):
 class DeleteAllSupportBundlesResult(data_model.DataObject):
     """DeleteAllSupportBundlesResult  
 
-    """
+    :param duration: [required] 
+    :type duration: str
 
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
+    :param details: [required] 
+    :type details: dict
 
-class ListStorageContainersRequest(data_model.DataObject):
-    """ListStorageContainersRequest  
-
-    :param storage_container_ids:  List of storage containers to get 
-    :type storage_container_ids: UUID
+    :param result: [required] 
+    :type result: str
 
     """
-    storage_container_ids = data_model.property(
-        "storageContainerIDs", UUID,
-        array=True, optional=True,
-        documentation="List of storage containers to get",
+    duration = data_model.property(
+        "duration", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    details = data_model.property(
+        "details", dict,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    result = data_model.property(
+        "result", str,
+        array=False, optional=False,
+        documentation="",
         dictionaryType=None
     )
 
@@ -1192,6 +1211,9 @@ class StorageContainer(data_model.DataObject):
     :param status: [required] 
     :type status: str
 
+    :param virtual_volumes: [required] 
+    :type virtual_volumes: UUID
+
     """
     name = data_model.property(
         "name", str,
@@ -1232,6 +1254,12 @@ class StorageContainer(data_model.DataObject):
     status = data_model.property(
         "status", str,
         array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    virtual_volumes = data_model.property(
+        "virtualVolumes", UUID,
+        array=True, optional=False,
         documentation="",
         dictionaryType=None
     )
@@ -2414,11 +2442,20 @@ class ModifyVolumeResult(data_model.DataObject):
     :param volume: [required] Object containing information about the newly modified volume. 
     :type volume: Volume
 
+    :param curve: [required] 
+    :type curve: VolumeQOS
+
     """
     volume = data_model.property(
         "volume", Volume,
         array=False, optional=False,
         documentation="Object containing information about the newly modified volume.",
+        dictionaryType=None
+    )
+    curve = data_model.property(
+        "curve", VolumeQOS,
+        array=False, optional=False,
+        documentation="",
         dictionaryType=None
     )
 
@@ -2502,6 +2539,15 @@ class ClusterConfig(data_model.DataObject):
     :param state:  
     :type state: str
 
+    :param encryption_capable:  
+    :type encryption_capable: bool
+
+    :param has_local_admin:  
+    :type has_local_admin: bool
+
+    :param version:  
+    :type version: str
+
     """
     cipi = data_model.property(
         "cipi", str,
@@ -2559,6 +2605,24 @@ class ClusterConfig(data_model.DataObject):
     )
     state = data_model.property(
         "state", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    encryption_capable = data_model.property(
+        "encryptionCapable", bool,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    has_local_admin = data_model.property(
+        "hasLocalAdmin", bool,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    version = data_model.property(
+        "version", str,
         array=False, optional=True,
         documentation="",
         dictionaryType=None
@@ -3545,6 +3609,9 @@ class Platform(data_model.DataObject):
     :param node_memory_gb: [required] The amount of memory on this platform in GiB. 
     :type node_memory_gb: int
 
+    :param platform_config_version: [required] 
+    :type platform_config_version: str
+
     """
     node_type = data_model.property(
         "nodeType", str,
@@ -3568,6 +3635,12 @@ class Platform(data_model.DataObject):
         "nodeMemoryGB", int,
         array=False, optional=False,
         documentation="The amount of memory on this platform in GiB.",
+        dictionaryType=None
+    )
+    platform_config_version = data_model.property(
+        "platformConfigVersion", str,
+        array=False, optional=False,
+        documentation="",
         dictionaryType=None
     )
 
@@ -3626,7 +3699,7 @@ class PendingNode(data_model.DataObject):
         dictionaryType=None
     )
     assigned_node_id = data_model.property(
-        "AssignedNodeID", int,
+        "assignedNodeID", int,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -3904,6 +3977,30 @@ class AddedNode(data_model.DataObject):
     :param pending_node_id: [required] 
     :type pending_node_id: int
 
+    :param active_node_key:  
+    :type active_node_key: str
+
+    :param assigned_node_id:  
+    :type assigned_node_id: int
+
+    :param async_handle:  
+    :type async_handle: int
+
+    :param cip:  
+    :type cip: str
+
+    :param mip:  
+    :type mip: str
+
+    :param platform_info:  
+    :type platform_info: Platform
+
+    :param sip:  
+    :type sip: str
+
+    :param software_version:  
+    :type software_version: str
+
     """
     node_id = data_model.property(
         "nodeID", int,
@@ -3917,6 +4014,54 @@ class AddedNode(data_model.DataObject):
         documentation="",
         dictionaryType=None
     )
+    active_node_key = data_model.property(
+        "activeNodeKey", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    assigned_node_id = data_model.property(
+        "assignedNodeID", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    async_handle = data_model.property(
+        "asyncHandle", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    cip = data_model.property(
+        "cip", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    mip = data_model.property(
+        "mip", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    platform_info = data_model.property(
+        "platformInfo", Platform,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    sip = data_model.property(
+        "sip", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    software_version = data_model.property(
+        "softwareVersion", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -3924,10 +4069,19 @@ class AddedNode(data_model.DataObject):
 class AddNodesResult(data_model.DataObject):
     """AddNodesResult  
 
+    :param auto_install:  
+    :type auto_install: bool
+
     :param nodes: [required] An array of objects mapping the previous "pendingNodeID" to the "nodeID". 
     :type nodes: AddedNode
 
     """
+    auto_install = data_model.property(
+        "autoInstall", bool,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
     nodes = data_model.property(
         "nodes", AddedNode,
         array=True, optional=False,
@@ -4250,6 +4404,18 @@ class GetLimitsResult(data_model.DataObject):
     :param volumes_per_volume_access_group_count_max: [required] 
     :type volumes_per_volume_access_group_count_max: int
 
+    :param cluster_admin_account_max: [required] 
+    :type cluster_admin_account_max: int
+
+    :param fibre_channel_volume_access_max: [required] 
+    :type fibre_channel_volume_access_max: int
+
+    :param virtual_volumes_per_account_count_max: [required] 
+    :type virtual_volumes_per_account_count_max: int
+
+    :param virtual_volume_count_max: [required] 
+    :type virtual_volume_count_max: int
+
     """
     account_count_max = data_model.property(
         "accountCountMax", int,
@@ -4463,6 +4629,30 @@ class GetLimitsResult(data_model.DataObject):
     )
     volumes_per_volume_access_group_count_max = data_model.property(
         "volumesPerVolumeAccessGroupCountMax", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    cluster_admin_account_max = data_model.property(
+        "clusterAdminAccountMax", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    fibre_channel_volume_access_max = data_model.property(
+        "fibreChannelVolumeAccessMax", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    virtual_volumes_per_account_count_max = data_model.property(
+        "virtualVolumesPerAccountCountMax", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    virtual_volume_count_max = data_model.property(
+        "virtualVolumeCountMax", int,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -5241,55 +5431,6 @@ class SnmpV3UsmUser(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class AsyncResult(data_model.DataObject):
-    """AsyncResult  
-    The wrapped object returned by the "GetAsyncResult" API Service call.
-    
-    Note: The return value of GetAsyncResult is essentially a nested version of the standard JSON response with an additional status field.
-
-    :param message: [required] The return value for the original method call if the call was completed successfully. 
-    :type message: str
-
-    """
-    message = data_model.property(
-        "message", str,
-        array=False, optional=False,
-        documentation="[&#x27;The return value for the original method call if the call was completed successfully.&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetAsyncResultResult(data_model.DataObject):
-    """GetAsyncResultResult  
-    The object returned by the "GetAsyncResult" API Service call.
-    
-    Note: The return value of GetAsyncResult is essentially a nested version of the standard JSON response with an additional status field.
-
-    :param result: [required] The resulting message for the original method call if the call was completed successfully. 
-    :type result: AsyncResult
-
-    :param status: [required] Status of the asynchronous method call running: The method is still running. complete: The method is complete and the result or error is available. 
-    :type status: str
-
-    """
-    result = data_model.property(
-        "result", AsyncResult,
-        array=False, optional=False,
-        documentation="[&#x27;The resulting message for the original method call if the call was completed successfully.&#x27;]",
-        dictionaryType=None
-    )
-    status = data_model.property(
-        "status", str,
-        array=False, optional=False,
-        documentation="[&#x27;Status of the asynchronous method call&#x27;, &#x27;running: The method is still running.&#x27;, &#x27;complete: The method is complete and the result or error is available.&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class GetIpmiConfigRequest(data_model.DataObject):
     """GetIpmiConfigRequest  
 
@@ -5647,12 +5788,12 @@ class TestConnectMvipResult(data_model.DataObject):
 class ClearClusterFaultsRequest(data_model.DataObject):
     """ClearClusterFaultsRequest  
 
-    :param fault_types:  Determines the types of faults cleared: current: Faults that are currently detected and have not been resolved. resolved: Faults that were previously detected and resolved. all: Both current and resolved faults are cleared. The fault status can be determined by the "resolved" field of the fault object. 
-    :type fault_types: str
+    :param fault_type:  Determines the types of faults cleared: current: Faults that are currently detected and have not been resolved. resolved: Faults that were previously detected and resolved. all: Both current and resolved faults are cleared. The fault status can be determined by the "resolved" field of the fault object. 
+    :type fault_type: str
 
     """
-    fault_types = data_model.property(
-        "faultTypes", str,
+    fault_type = data_model.property(
+        "faultType", str,
         array=False, optional=True,
         documentation="[&#x27;Determines the types of faults cleared:&#x27;, &#x27;current: Faults that are currently detected and have not been resolved.&#x27;, &#x27;resolved: Faults that were previously detected and resolved.&#x27;, &#x27;all: Both current and resolved faults are cleared. The fault status can be determined by the &quot;resolved&quot; field of the fault object.&#x27;]",
         dictionaryType=None
@@ -6269,17 +6410,108 @@ class ListInitiatorsRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class Account(data_model.DataObject):
+    """Account  
+    The object containing information about an account.
+    This object only includes "configured" information about the account, not any runtime or usage information.
+
+    :param account_id: [required] Unique AccountID for the account. 
+    :type account_id: int
+
+    :param username: [required] User name for the account. 
+    :type username: str
+
+    :param status: [required] Current status of the account. 
+    :type status: str
+
+    :param volumes: [required] List of VolumeIDs for Volumes owned by this account. 
+    :type volumes: int
+
+    :param initiator_secret:  CHAP secret to use for the initiator. 
+    :type initiator_secret: CHAPSecret
+
+    :param target_secret:  CHAP secret to use for the target (mutual CHAP authentication). 
+    :type target_secret: CHAPSecret
+
+    :param storage_container_id:  The id of the storage container associated with the account 
+    :type storage_container_id: UUID
+
+    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :type attributes: dict
+
+    """
+    account_id = data_model.property(
+        "accountID", int,
+        array=False, optional=False,
+        documentation="Unique AccountID for the account.",
+        dictionaryType=None
+    )
+    username = data_model.property(
+        "username", str,
+        array=False, optional=False,
+        documentation="User name for the account.",
+        dictionaryType=None
+    )
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation="Current status of the account.",
+        dictionaryType=None
+    )
+    volumes = data_model.property(
+        "volumes", int,
+        array=True, optional=False,
+        documentation="List of VolumeIDs for Volumes owned by this account.",
+        dictionaryType=None
+    )
+    initiator_secret = data_model.property(
+        "initiatorSecret", CHAPSecret,
+        array=False, optional=True,
+        documentation="CHAP secret to use for the initiator.",
+        dictionaryType=None
+    )
+    target_secret = data_model.property(
+        "targetSecret", CHAPSecret,
+        array=False, optional=True,
+        documentation="CHAP secret to use for the target (mutual CHAP authentication).",
+        dictionaryType=None
+    )
+    storage_container_id = data_model.property(
+        "storageContainerID", UUID,
+        array=False, optional=True,
+        documentation="The id of the storage container associated with the account",
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="List of Name/Value pairs in JSON object format.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class AddAccountResult(data_model.DataObject):
     """AddAccountResult  
 
     :param account_id: [required] AccountID for the newly created Account. 
     :type account_id: int
 
+    :param account:  The full account object 
+    :type account: Account
+
     """
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=False,
         documentation="AccountID for the newly created Account.",
+        dictionaryType=None
+    )
+    account = data_model.property(
+        "account", Account,
+        array=False, optional=True,
+        documentation="The full account object",
         dictionaryType=None
     )
 
@@ -6545,6 +6777,18 @@ class ClusterInfo(data_model.DataObject):
     """ClusterInfo  
     Cluster Info object returns information the node uses to communicate with the cluster.
 
+    :param mvip_interface:  
+    :type mvip_interface: str
+
+    :param mvip_vlan_tag:  
+    :type mvip_vlan_tag: str
+
+    :param svip_interface:  
+    :type svip_interface: str
+
+    :param svip_vlan_tag:  
+    :type svip_vlan_tag: str
+
     :param encryption_at_rest_state: [required] Encryption at rest state. 
     :type encryption_at_rest_state: str
 
@@ -6582,6 +6826,30 @@ class ClusterInfo(data_model.DataObject):
     :type attributes: dict
 
     """
+    mvip_interface = data_model.property(
+        "mvipInterface", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    mvip_vlan_tag = data_model.property(
+        "mvipVlanTag", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    svip_interface = data_model.property(
+        "svipInterface", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    svip_vlan_tag = data_model.property(
+        "svipVlanTag", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
     encryption_at_rest_state = data_model.property(
         "encryptionAtRestState", str,
         array=False, optional=False,
@@ -6959,27 +7227,18 @@ class GetVolumeEfficiencyRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class CreateVolumeResult(data_model.DataObject):
-    """CreateVolumeResult  
+class CancelCloneRequest(data_model.DataObject):
+    """CancelCloneRequest  
 
-    :param volume_id: [required] VolumeID for the newly created volume. 
-    :type volume_id: int
-
-    :param curve: [required] The curve is a set of key-value pairs. The keys are I/O sizes in bytes. The values represent the cost performing an IOP at a specific I/O size. The curve is calculated relative to a 4096 byte operation set at 100 IOPS. 
-    :type curve: dict
+    :param clone_id: [required] 
+    :type clone_id: int
 
     """
-    volume_id = data_model.property(
-        "volumeID", int,
+    clone_id = data_model.property(
+        "cloneID", int,
         array=False, optional=False,
-        documentation="VolumeID for the newly created volume.",
+        documentation="",
         dictionaryType=None
-    )
-    curve = data_model.property(
-        "curve", dict,
-        array=False, optional=False,
-        documentation="[&#x27;The curve is a set of key-value pairs.&#x27;, &#x27;The keys are I/O sizes in bytes.&#x27;, &#x27;The values represent the cost performing an IOP at a specific I/O size.&#x27;, &#x27;The curve is calculated relative to a 4096 byte operation set at 100 IOPS.&#x27;]",
-        dictionaryType=int
     )
 
     def __init__(self, **kwargs):
@@ -7743,6 +8002,12 @@ class NetworkConfig(data_model.DataObject):
     :param up_and_running:  
     :type up_and_running: bool
 
+    :param bond_xmit_hash_policy: [required] 
+    :type bond_xmit_hash_policy: str
+
+    :param bond_ad_num_ports: [required] 
+    :type bond_ad_num_ports: str
+
     """
     _default = data_model.property(
         "#default", bool,
@@ -7918,6 +8183,18 @@ class NetworkConfig(data_model.DataObject):
         documentation="",
         dictionaryType=None
     )
+    bond_xmit_hash_policy = data_model.property(
+        "bond-xmit_hash_policy", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    bond_ad_num_ports = data_model.property(
+        "bond-ad_num_ports", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -7942,6 +8219,12 @@ class Network(data_model.DataObject):
 
     :param eth3:  
     :type eth3: NetworkConfig
+
+    :param eth4:  
+    :type eth4: NetworkConfig
+
+    :param eth5:  
+    :type eth5: NetworkConfig
 
     :param lo:  
     :type lo: NetworkConfig
@@ -7979,6 +8262,18 @@ class Network(data_model.DataObject):
     )
     eth3 = data_model.property(
         "eth3", NetworkConfig,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    eth4 = data_model.property(
+        "eth4", NetworkConfig,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    eth5 = data_model.property(
+        "eth5", NetworkConfig,
         array=False, optional=True,
         documentation="",
         dictionaryType=None
@@ -8239,7 +8534,16 @@ class ListVolumeStatsByVirtualVolumeResult(data_model.DataObject):
 class AddDrivesResult(data_model.DataObject):
     """AddDrivesResult  
 
+    :param async_handle:  
+    :type async_handle: int
+
     """
+    async_handle = data_model.property(
+        "asyncHandle", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -8837,6 +9141,32 @@ class DisableLdapAuthenticationResult(data_model.DataObject):
     """DisableLdapAuthenticationResult  
 
     """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class CreateVolumeResult(data_model.DataObject):
+    """CreateVolumeResult  
+
+    :param volume_id: [required] VolumeID for the newly created volume. 
+    :type volume_id: int
+
+    :param curve: [required] The curve is a set of key-value pairs. The keys are I/O sizes in bytes. The values represent the cost performing an IOP at a specific I/O size. The curve is calculated relative to a 4096 byte operation set at 100 IOPS. 
+    :type curve: dict
+
+    """
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="VolumeID for the newly created volume.",
+        dictionaryType=None
+    )
+    curve = data_model.property(
+        "curve", dict,
+        array=False, optional=False,
+        documentation="[&#x27;The curve is a set of key-value pairs.&#x27;, &#x27;The keys are I/O sizes in bytes.&#x27;, &#x27;The values represent the cost performing an IOP at a specific I/O size.&#x27;, &#x27;The curve is calculated relative to a 4096 byte operation set at 100 IOPS.&#x27;]",
+        dictionaryType=int
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -10231,79 +10561,6 @@ class TestLdapAuthenticationResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class Account(data_model.DataObject):
-    """Account  
-    The object containing information about an account.
-    This object only includes "configured" information about the account, not any runtime or usage information.
-
-    :param account_id: [required] Unique AccountID for the account. 
-    :type account_id: int
-
-    :param username: [required] User name for the account. 
-    :type username: str
-
-    :param status: [required] Current status of the account. 
-    :type status: str
-
-    :param volumes: [required] List of VolumeIDs for Volumes owned by this account. 
-    :type volumes: int
-
-    :param initiator_secret:  CHAP secret to use for the initiator. 
-    :type initiator_secret: CHAPSecret
-
-    :param target_secret:  CHAP secret to use for the target (mutual CHAP authentication). 
-    :type target_secret: CHAPSecret
-
-    :param attributes:  List of Name/Value pairs in JSON object format. 
-    :type attributes: dict
-
-    """
-    account_id = data_model.property(
-        "accountID", int,
-        array=False, optional=False,
-        documentation="Unique AccountID for the account.",
-        dictionaryType=None
-    )
-    username = data_model.property(
-        "username", str,
-        array=False, optional=False,
-        documentation="User name for the account.",
-        dictionaryType=None
-    )
-    status = data_model.property(
-        "status", str,
-        array=False, optional=False,
-        documentation="Current status of the account.",
-        dictionaryType=None
-    )
-    volumes = data_model.property(
-        "volumes", int,
-        array=True, optional=False,
-        documentation="List of VolumeIDs for Volumes owned by this account.",
-        dictionaryType=None
-    )
-    initiator_secret = data_model.property(
-        "initiatorSecret", CHAPSecret,
-        array=False, optional=True,
-        documentation="CHAP secret to use for the initiator.",
-        dictionaryType=None
-    )
-    target_secret = data_model.property(
-        "targetSecret", CHAPSecret,
-        array=False, optional=True,
-        documentation="CHAP secret to use for the target (mutual CHAP authentication).",
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="List of Name/Value pairs in JSON object format.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class ListAccountsResult(data_model.DataObject):
     """ListAccountsResult  
 
@@ -10371,6 +10628,9 @@ class EventInfo(data_model.DataObject):
     :param drive_id: [required] 
     :type drive_id: int
 
+    :param drive_ids: [required] 
+    :type drive_ids: int
+
     :param time_of_report: [required] 
     :type time_of_report: str
 
@@ -10420,6 +10680,12 @@ class EventInfo(data_model.DataObject):
     drive_id = data_model.property(
         "driveID", int,
         array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    drive_ids = data_model.property(
+        "driveIDs", int,
+        array=True, optional=False,
         documentation="",
         dictionaryType=None
     )
@@ -10863,11 +11129,20 @@ class AddDrivesRequest(data_model.DataObject):
     :param drives: [required] List of drives to add to the cluster. 
     :type drives: NewDrive
 
+    :param force_during_upgrade:  Allows the user to force the addition of drives during an upgrade. 
+    :type force_during_upgrade: bool
+
     """
     drives = data_model.property(
         "drives", NewDrive,
         array=True, optional=False,
         documentation="List of drives to add to the cluster.",
+        dictionaryType=None
+    )
+    force_during_upgrade = data_model.property(
+        "forceDuringUpgrade", bool,
+        array=False, optional=True,
+        documentation="Allows the user to force the addition of drives during an upgrade.",
         dictionaryType=None
     )
 
@@ -12174,11 +12449,20 @@ class ListNodeFibreChannelPortInfoResult(data_model.DataObject):
     :param nodes: [required] List of fibre channel port info results grouped by node. 
     :type nodes: NodeFibreChannelPortInfoResult
 
+    :param fibre_channel_ports: [required] List of all physical Fibre Channel ports. 
+    :type fibre_channel_ports: FibreChannelPortInfo
+
     """
     nodes = data_model.property(
         "nodes", NodeFibreChannelPortInfoResult,
         array=True, optional=False,
         documentation="List of fibre channel port info results grouped by node.",
+        dictionaryType=None
+    )
+    fibre_channel_ports = data_model.property(
+        "fibreChannelPorts", FibreChannelPortInfo,
+        array=True, optional=False,
+        documentation="List of all physical Fibre Channel ports.",
         dictionaryType=None
     )
 
@@ -14276,7 +14560,7 @@ class ListGroupSnapshotsRequest(data_model.DataObject):
     :param volume_id:  An array of unique volume IDs to query. If this parameter is not specified, all group snapshots on the cluster will be included. 
     :type volume_id: int
 
-    :param group_snapshot_id: [required] Get info about individual snapshot 
+    :param group_snapshot_id:  Get info about individual snapshot 
     :type group_snapshot_id: int
 
     """
@@ -14288,7 +14572,7 @@ class ListGroupSnapshotsRequest(data_model.DataObject):
     )
     group_snapshot_id = data_model.property(
         "groupSnapshotID", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[&#x27;Get info about individual snapshot&#x27;]",
         dictionaryType=None
     )
@@ -14852,17 +15136,150 @@ class ListStorageContainersResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ResetNodeResult(data_model.DataObject):
-    """ResetNodeResult  
+class RtfiInfo(data_model.DataObject):
+    """RtfiInfo  
 
-    :param rtfi_info: [required] Details of nodes that are being reset. 
-    :type rtfi_info: dict
+    :param mipi: [required] 
+    :type mipi: str
+
+    :param generation: [required] 
+    :type generation: int
+
+    :param status_url_logfile: [required] 
+    :type status_url_logfile: str
+
+    :param build: [required] 
+    :type build: str
+
+    :param status_url_all: [required] 
+    :type status_url_all: str
+
+    :param generation_next: [required] 
+    :type generation_next: int
+
+    :param mip: [required] 
+    :type mip: str
+
+    :param status_url_current: [required] 
+    :type status_url_current: str
+
+    :param options: [required] 
+    :type options: dict
+
+    """
+    mipi = data_model.property(
+        "mipi", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    generation = data_model.property(
+        "generation", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    status_url_logfile = data_model.property(
+        "statusUrlLogfile", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    build = data_model.property(
+        "build", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    status_url_all = data_model.property(
+        "statusUrlAll", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    generation_next = data_model.property(
+        "generationNext", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    mip = data_model.property(
+        "mip", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    status_url_current = data_model.property(
+        "statusUrlCurrent", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    options = data_model.property(
+        "options", dict,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ResetNodeDetails(data_model.DataObject):
+    """ResetNodeDetails  
+
+    :param rtfi_info: [required] 
+    :type rtfi_info: RtfiInfo
 
     """
     rtfi_info = data_model.property(
-        "rtfiInfo", dict,
+        "rtfiInfo", RtfiInfo,
         array=False, optional=False,
-        documentation="Details of nodes that are being reset.",
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ResetNodeResult(data_model.DataObject):
+    """ResetNodeResult  
+
+    :param details: [required] 
+    :type details: ResetNodeDetails
+
+    :param duration: [required] 
+    :type duration: str
+
+    :param result: [required] 
+    :type result: str
+
+    :param rtfi_info: [required] 
+    :type rtfi_info: RtfiInfo
+
+    """
+    details = data_model.property(
+        "details", ResetNodeDetails,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    duration = data_model.property(
+        "duration", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    result = data_model.property(
+        "result", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    rtfi_info = data_model.property(
+        "rtfiInfo", RtfiInfo,
+        array=False, optional=False,
+        documentation="",
         dictionaryType=None
     )
 
@@ -15220,11 +15637,29 @@ class GetClusterStateResult(data_model.DataObject):
     :param nodes: [required] Array of NodeStateResult objects for each node in the cluster. 
     :type nodes: NodeStateResult
 
+    :param cluster: [required] 
+    :type cluster: str
+
+    :param state: [required] 
+    :type state: str
+
     """
     nodes = data_model.property(
         "nodes", NodeStateResult,
         array=True, optional=False,
         documentation="Array of NodeStateResult objects for each node in the cluster.",
+        dictionaryType=None
+    )
+    cluster = data_model.property(
+        "cluster", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    state = data_model.property(
+        "state", str,
+        array=False, optional=False,
+        documentation="",
         dictionaryType=None
     )
 
@@ -15402,6 +15837,9 @@ class NodeWaitingToJoin(data_model.DataObject):
     :param sip: [required] 
     :type sip: str
 
+    :param compatible: [required] 
+    :type compatible: bool
+
     """
     name = data_model.property(
         "name", str,
@@ -15441,6 +15879,12 @@ class NodeWaitingToJoin(data_model.DataObject):
     )
     sip = data_model.property(
         "sip", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    compatible = data_model.property(
+        "compatible", bool,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
