@@ -66,17 +66,17 @@ class CreateInitiator(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListStorageContainersRequest(data_model.DataObject):
-    """ListStorageContainersRequest  
+class CancelCloneRequest(data_model.DataObject):
+    """CancelCloneRequest  
 
-    :param storage_container_ids:  List of storage containers to get 
-    :type storage_container_ids: UUID
+    :param clone_id: [required] 
+    :type clone_id: int
 
     """
-    storage_container_ids = data_model.property(
-        "storageContainerIDs", UUID,
-        array=True, optional=True,
-        documentation="List of storage containers to get",
+    clone_id = data_model.property(
+        "cloneID", int,
+        array=False, optional=False,
+        documentation="",
         dictionaryType=None
     )
 
@@ -106,9 +106,27 @@ class TestDrivesResult(data_model.DataObject):
     :param details: [required] 
     :type details: str
 
+    :param duration: [required] 
+    :type duration: str
+
+    :param result: [required] 
+    :type result: str
+
     """
     details = data_model.property(
         "details", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    duration = data_model.property(
+        "duration", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    result = data_model.property(
+        "result", str,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -117,8 +135,418 @@ class TestDrivesResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class VolumeQOS(data_model.DataObject):
+    """VolumeQOS  
+    Quality of Service (QoS) Result values are used on SolidFire volumes to provision performance expectations.
+
+    :param min_iops: [required] Desired minimum 4KB IOPS to guarantee. The allowed IOPS will only drop below this level if all volumes have been capped at their min IOPS value and there is still insufficient performance capacity. 
+    :type min_iops: int
+
+    :param max_iops: [required] Desired maximum 4KB IOPS allowed over an extended period of time. 
+    :type max_iops: int
+
+    :param burst_iops: [required] Maximum "peak" 4KB IOPS allowed for short periods of time. Allows for bursts of I/O activity over the normal max IOPS value. 
+    :type burst_iops: int
+
+    :param burst_time: [required] The length of time burst IOPS is allowed. The value returned is represented in time units of seconds. Note: this value is calculated by the system based on IOPS set for QoS. 
+    :type burst_time: int
+
+    :param curve: [required] The curve is a set of key-value pairs. The keys are I/O sizes in bytes. The values represent the cost performing an IOP at a specific I/O size. The curve is calculated relative to a 4096 byte operation set at 100 IOPS. 
+    :type curve: dict
+
+    """
+    min_iops = data_model.property(
+        "minIOPS", int,
+        array=False, optional=False,
+        documentation="[&#x27;Desired minimum 4KB IOPS to guarantee.&#x27;, &#x27;The allowed IOPS will only drop below this level if all volumes have been capped&#x27;, &#x27;at their min IOPS value and there is still insufficient performance capacity.&#x27;]",
+        dictionaryType=None
+    )
+    max_iops = data_model.property(
+        "maxIOPS", int,
+        array=False, optional=False,
+        documentation="[&#x27;Desired maximum 4KB IOPS allowed over an extended period of time.&#x27;]",
+        dictionaryType=None
+    )
+    burst_iops = data_model.property(
+        "burstIOPS", int,
+        array=False, optional=False,
+        documentation="[&#x27;Maximum &quot;peak&quot; 4KB IOPS allowed for short periods of time.&#x27;, &#x27;Allows for bursts of I/O activity over the normal max IOPS value.&#x27;]",
+        dictionaryType=None
+    )
+    burst_time = data_model.property(
+        "burstTime", int,
+        array=False, optional=False,
+        documentation="[&#x27;The length of time burst IOPS is allowed.&#x27;, &#x27;The value returned is represented in time units of seconds.&#x27;, &#x27;Note: this value is calculated by the system based on IOPS set for QoS.&#x27;]",
+        dictionaryType=None
+    )
+    curve = data_model.property(
+        "curve", dict,
+        array=False, optional=False,
+        documentation="[&#x27;The curve is a set of key-value pairs.&#x27;, &#x27;The keys are I/O sizes in bytes.&#x27;, &#x27;The values represent the cost performing an IOP at a specific I/O size.&#x27;, &#x27;The curve is calculated relative to a 4096 byte operation set at 100 IOPS.&#x27;]",
+        dictionaryType=int
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class SnapshotReplication(data_model.DataObject):
+    """SnapshotReplication  
+
+    :param state: [required] The state of the snapshot replication. 
+    :type state: str
+
+    :param state_details: [required] Reserved for future use. 
+    :type state_details: str
+
+    """
+    state = data_model.property(
+        "state", str,
+        array=False, optional=False,
+        documentation="The state of the snapshot replication.",
+        dictionaryType=None
+    )
+    state_details = data_model.property(
+        "stateDetails", str,
+        array=False, optional=False,
+        documentation="Reserved for future use.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class RemoteReplication(data_model.DataObject):
+    """RemoteReplication  
+    Details on the volume replication.
+
+    :param mode: [required] Volume replication mode. Possible values: Async: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster. Sync: Source acknowledges write when the data is stored locally and on the remote cluster. SnapshotsOnly: Only snapshots created on the source cluster will be replicated. Active writes from the source volume will not be replicated. 
+    :type mode: str
+
+    :param pause_limit: [required] The number of occurring write ops before auto-pausing, on a per volume pair level. 
+    :type pause_limit: int
+
+    :param remote_service_id: [required] The remote slice service ID. 
+    :type remote_service_id: int
+
+    :param resume_details: [required] Reserved for future use. 
+    :type resume_details: str
+
+    :param snapshot_replication: [required] The details of snapshot replication. 
+    :type snapshot_replication: SnapshotReplication
+
+    :param state: [required] The state of the volume replication. 
+    :type state: str
+
+    :param state_details: [required] Reserved for future use. 
+    :type state_details: str
+
+    """
+    mode = data_model.property(
+        "mode", str,
+        array=False, optional=False,
+        documentation="[&#x27;Volume replication mode.&#x27;, &#x27;Possible values:&#x27;, &#x27;Async: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.&#x27;, &#x27;Sync: Source acknowledges write when the data is stored locally and on the remote cluster.&#x27;, &#x27;SnapshotsOnly: Only snapshots created on the source cluster will be replicated. Active writes from the source volume will not be replicated.&#x27;]",
+        dictionaryType=None
+    )
+    pause_limit = data_model.property(
+        "pauseLimit", int,
+        array=False, optional=False,
+        documentation="The number of occurring write ops before auto-pausing, on a per volume pair level.",
+        dictionaryType=None
+    )
+    remote_service_id = data_model.property(
+        "remoteServiceID", int,
+        array=False, optional=False,
+        documentation="The remote slice service ID.",
+        dictionaryType=None
+    )
+    resume_details = data_model.property(
+        "resumeDetails", str,
+        array=False, optional=False,
+        documentation="Reserved for future use.",
+        dictionaryType=None
+    )
+    snapshot_replication = data_model.property(
+        "snapshotReplication", SnapshotReplication,
+        array=False, optional=False,
+        documentation="The details of snapshot replication.",
+        dictionaryType=None
+    )
+    state = data_model.property(
+        "state", str,
+        array=False, optional=False,
+        documentation="The state of the volume replication.",
+        dictionaryType=None
+    )
+    state_details = data_model.property(
+        "stateDetails", str,
+        array=False, optional=False,
+        documentation="Reserved for future use.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class VolumePair(data_model.DataObject):
+    """VolumePair  
+    The Volume Pair Info is an object containing information about a volume that is paired on a remote cluster.
+    If the volume is not paired, this object is null.
+
+    :param cluster_pair_id: [required] The remote cluster a volume is paired with. 
+    :type cluster_pair_id: int
+
+    :param remote_volume_id: [required] The VolumeID on the remote cluster a volume is paired with. 
+    :type remote_volume_id: int
+
+    :param remote_slice_id: [required] The SliceID on the remote cluster a volume is paired with. 
+    :type remote_slice_id: int
+
+    :param remote_volume_name: [required] The last-observed name of the volume on the remote cluster a volume is paired with. 
+    :type remote_volume_name: str
+
+    :param volume_pair_uuid: [required] A UUID in canonical form. 
+    :type volume_pair_uuid: UUID
+
+    :param remote_replication: [required] Details about the replication configuration for this volume pair. 
+    :type remote_replication: RemoteReplication
+
+    """
+    cluster_pair_id = data_model.property(
+        "clusterPairID", int,
+        array=False, optional=False,
+        documentation="The remote cluster a volume is paired with.",
+        dictionaryType=None
+    )
+    remote_volume_id = data_model.property(
+        "remoteVolumeID", int,
+        array=False, optional=False,
+        documentation="The VolumeID on the remote cluster a volume is paired with.",
+        dictionaryType=None
+    )
+    remote_slice_id = data_model.property(
+        "remoteSliceID", int,
+        array=False, optional=False,
+        documentation="The SliceID on the remote cluster a volume is paired with.",
+        dictionaryType=None
+    )
+    remote_volume_name = data_model.property(
+        "remoteVolumeName", str,
+        array=False, optional=False,
+        documentation="The last-observed name of the volume on the remote cluster a volume is paired with.",
+        dictionaryType=None
+    )
+    volume_pair_uuid = data_model.property(
+        "volumePairUUID", UUID,
+        array=False, optional=False,
+        documentation="A UUID in canonical form.",
+        dictionaryType=None
+    )
+    remote_replication = data_model.property(
+        "remoteReplication", RemoteReplication,
+        array=False, optional=False,
+        documentation="Details about the replication configuration for this volume pair.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class Volume(data_model.DataObject):
+    """Volume  
+    Volumes Info is an object containing information about a volume.
+    The return objects only include "configured" information about the volume and not runtime or usage information.
+    Information about paired volumes will also be returned.
+
+    :param volume_id: [required] Unique VolumeID for the volume. 
+    :type volume_id: int
+
+    :param name: [required] Name of the volume as provided at creation time. 
+    :type name: str
+
+    :param account_id: [required] Unique AccountID for the account. 
+    :type account_id: int
+
+    :param create_time: [required] UTC formatted time the volume was created. 
+    :type create_time: str
+
+    :param status: [required] Current status of the volume init: A volume that is being initialized and is not ready for connections. active: An active volume ready for connections. 
+    :type status: str
+
+    :param access: [required] Access allowed for the volume readOnly: Only read operations are allowed. readWrite: Reads and writes are allowed. locked: No reads or writes are allowed. replicationTarget: Designated as a target volume in a replicated volume pair. 
+    :type access: str
+
+    :param enable512e: [required] If "true", the volume provides 512 byte sector emulation. 
+    :type enable512e: bool
+
+    :param iqn: [required] Volume iSCSI Qualified Name. 
+    :type iqn: str
+
+    :param scsi_euidevice_id: [required] Globally unique SCSI device identifier for the volume in EUI-64 based 16-byte format. 
+    :type scsi_euidevice_id: str
+
+    :param scsi_naadevice_id: [required] Globally unique SCSI device identifier for the volume in NAA IEEE Registered Extended format. 
+    :type scsi_naadevice_id: str
+
+    :param qos: [required] Quality of service settings for this volume. 
+    :type qos: VolumeQOS
+
+    :param volume_access_groups: [required] List of volume access groups to which a volume belongs. 
+    :type volume_access_groups: int
+
+    :param volume_pairs: [required] Information about a paired volume. Available only if a volume is paired. @see VolumePairs for return values. 
+    :type volume_pairs: VolumePair
+
+    :param delete_time:  The time this volume was deleted. If this has no value, the volume has not yet been deleted. 
+    :type delete_time: str
+
+    :param purge_time:  The time this volume will be purged from the system. If this has no value, the volume has not yet been deleted (and is not scheduled for purging). 
+    :type purge_time: str
+
+    :param slice_count: [required] The number of slices backing this volume. In the current software, this value will always be 1. 
+    :type slice_count: int
+
+    :param total_size: [required] Total size of this volume in bytes. 
+    :type total_size: int
+
+    :param block_size: [required] Size of the blocks on the volume. 
+    :type block_size: int
+
+    :param virtual_volume_id: [required] Virtual volume ID this volume backs. 
+    :type virtual_volume_id: UUID
+
+    :param attributes: [required] List of Name/Value pairs in JSON object format. 
+    :type attributes: dict
+
+    """
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="Unique VolumeID for the volume.",
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="Name of the volume as provided at creation time.",
+        dictionaryType=None
+    )
+    account_id = data_model.property(
+        "accountID", int,
+        array=False, optional=False,
+        documentation="Unique AccountID for the account.",
+        dictionaryType=None
+    )
+    create_time = data_model.property(
+        "createTime", str,
+        array=False, optional=False,
+        documentation="UTC formatted time the volume was created.",
+        dictionaryType=None
+    )
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation="[&#x27;Current status of the volume&#x27;, &#x27;init: A volume that is being initialized and is not ready for connections.&#x27;, &#x27;active: An active volume ready for connections.&#x27;]",
+        dictionaryType=None
+    )
+    access = data_model.property(
+        "access", str,
+        array=False, optional=False,
+        documentation="[&#x27;Access allowed for the volume&#x27;, &#x27;readOnly: Only read operations are allowed.&#x27;, &#x27;readWrite: Reads and writes are allowed.&#x27;, &#x27;locked: No reads or writes are allowed.&#x27;, &#x27;replicationTarget: Designated as a target volume in a replicated volume pair.&#x27;]",
+        dictionaryType=None
+    )
+    enable512e = data_model.property(
+        "enable512e", bool,
+        array=False, optional=False,
+        documentation="If &quot;true&quot;, the volume provides 512 byte sector emulation.",
+        dictionaryType=None
+    )
+    iqn = data_model.property(
+        "iqn", str,
+        array=False, optional=False,
+        documentation="Volume iSCSI Qualified Name.",
+        dictionaryType=None
+    )
+    scsi_euidevice_id = data_model.property(
+        "scsiEUIDeviceID", str,
+        array=False, optional=False,
+        documentation="Globally unique SCSI device identifier for the volume in EUI-64 based 16-byte format.",
+        dictionaryType=None
+    )
+    scsi_naadevice_id = data_model.property(
+        "scsiNAADeviceID", str,
+        array=False, optional=False,
+        documentation="Globally unique SCSI device identifier for the volume in NAA IEEE Registered Extended format.",
+        dictionaryType=None
+    )
+    qos = data_model.property(
+        "qos", VolumeQOS,
+        array=False, optional=False,
+        documentation="Quality of service settings for this volume.",
+        dictionaryType=None
+    )
+    volume_access_groups = data_model.property(
+        "volumeAccessGroups", int,
+        array=True, optional=False,
+        documentation="List of volume access groups to which a volume belongs.",
+        dictionaryType=None
+    )
+    volume_pairs = data_model.property(
+        "volumePairs", VolumePair,
+        array=True, optional=False,
+        documentation="[&#x27;Information about a paired volume.&#x27;, &#x27;Available only if a volume is paired.&#x27;, &#x27;@see VolumePairs for return values.&#x27;]",
+        dictionaryType=None
+    )
+    delete_time = data_model.property(
+        "deleteTime", str,
+        array=False, optional=True,
+        documentation="[&#x27;The time this volume was deleted.&#x27;, &#x27;If this has no value, the volume has not yet been deleted.&#x27;]",
+        dictionaryType=None
+    )
+    purge_time = data_model.property(
+        "purgeTime", str,
+        array=False, optional=True,
+        documentation="[&#x27;The time this volume will be purged from the system.&#x27;, &#x27;If this has no value, the volume has not yet been deleted (and is not scheduled for purging).&#x27;]",
+        dictionaryType=None
+    )
+    slice_count = data_model.property(
+        "sliceCount", int,
+        array=False, optional=False,
+        documentation="[&#x27;The number of slices backing this volume.&#x27;, &#x27;In the current software, this value will always be 1.&#x27;]",
+        dictionaryType=None
+    )
+    total_size = data_model.property(
+        "totalSize", int,
+        array=False, optional=False,
+        documentation="[&#x27;Total size of this volume in bytes.&#x27;]",
+        dictionaryType=None
+    )
+    block_size = data_model.property(
+        "blockSize", int,
+        array=False, optional=False,
+        documentation="[&#x27;Size of the blocks on the volume.&#x27;]",
+        dictionaryType=None
+    )
+    virtual_volume_id = data_model.property(
+        "virtualVolumeID", UUID,
+        array=False, optional=False,
+        documentation="[&#x27;Virtual volume ID this volume backs.&#x27;]",
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=False,
+        documentation="List of Name/Value pairs in JSON object format.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class CloneVolumeResult(data_model.DataObject):
     """CloneVolumeResult  
+
+    :param volume: [required] The resulting volume 
+    :type volume: Volume
 
     :param clone_id: [required] The ID of the newly-created clone. 
     :type clone_id: int
@@ -130,6 +558,12 @@ class CloneVolumeResult(data_model.DataObject):
     :type async_handle: int
 
     """
+    volume = data_model.property(
+        "volume", Volume,
+        array=False, optional=False,
+        documentation="The resulting volume",
+        dictionaryType=None
+    )
     clone_id = data_model.property(
         "cloneID", int,
         array=False, optional=False,
@@ -169,59 +603,6 @@ class GetHardwareInfoResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class QoS(data_model.DataObject):
-    """QoS  
-    Quality of Service (QoS) values are used on SolidFire volumes to provision performance expectations.
-    Minimum, maximum and burst QoS values can be set within the ranges specified in the QoS table below.
-    
-    Volumes created without specified QoS values are created with the Default values listed below.
-    Default values can be found by running the GetDefaultQoS method.
-    
-    minIOPS Min: 100/50 (v7.0/v8.0), Default: 100, Max: 15,000
-    maxIOPS Min: 100/50 (v7.0/v8.0), Default: 15,000, Max: 100,000
-    burstIOPS Min: 100/50 (v7.0/v8.0), Default: 15,000, Max: 100,000
-
-    :param min_iops:  Desired minimum 4KB IOPS to guarantee. The allowed IOPS will only drop below this level if all volumes have been capped at their minimum IOPS value and there is still insufficient performance capacity. 
-    :type min_iops: int
-
-    :param max_iops:  Desired maximum 4KB IOPS allowed over an extended period of time. 
-    :type max_iops: int
-
-    :param burst_iops:  Maximum "peak" 4KB IOPS allowed for short periods of time. Allows for bursts of I/O activity over the normal max IOPS value. 
-    :type burst_iops: int
-
-    :param burst_time:  The length of time burst IOPS is allowed. The value returned is represented in time units of seconds. Note: this value is calculated by the system based on IOPS set for QoS. 
-    :type burst_time: int
-
-    """
-    min_iops = data_model.property(
-        "minIOPS", int,
-        array=False, optional=True,
-        documentation="[&#x27;Desired minimum 4KB IOPS to guarantee.&#x27;, &#x27;The allowed IOPS will only drop below this level if all volumes have been capped&#x27;, &#x27;at their minimum IOPS value and there is still insufficient performance capacity.&#x27;]",
-        dictionaryType=None
-    )
-    max_iops = data_model.property(
-        "maxIOPS", int,
-        array=False, optional=True,
-        documentation="[&#x27;Desired maximum 4KB IOPS allowed over an extended period of time.&#x27;]",
-        dictionaryType=None
-    )
-    burst_iops = data_model.property(
-        "burstIOPS", int,
-        array=False, optional=True,
-        documentation="[&#x27;Maximum &quot;peak&quot; 4KB IOPS allowed for short periods of time.&#x27;, &#x27;Allows for bursts of I/O activity over the normal max IOPS value.&#x27;]",
-        dictionaryType=None
-    )
-    burst_time = data_model.property(
-        "burstTime", int,
-        array=False, optional=True,
-        documentation="[&#x27;The length of time burst IOPS is allowed.&#x27;, &#x27;The value returned is represented in time units of seconds.&#x27;, &#x27;Note: this value is calculated by the system based on IOPS set for QoS.&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class CreateVolumeRequest(data_model.DataObject):
     """CreateVolumeRequest  
 
@@ -238,7 +619,7 @@ class CreateVolumeRequest(data_model.DataObject):
     :type enable512e: bool
 
     :param qos:  Initial quality of service settings for this volume.  Volumes created without specified QoS values are created with the default values for QoS. Default values for a volume can be found by running the GetDefaultQoS method. 
-    :type qos: QoS
+    :type qos: VolumeQOS
 
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
@@ -272,7 +653,7 @@ class CreateVolumeRequest(data_model.DataObject):
         dictionaryType=None
     )
     qos = data_model.property(
-        "qos", QoS,
+        "qos", VolumeQOS,
         array=False, optional=True,
         documentation="[&#x27;Initial quality of service settings for this volume.&#x27;, u&#x27;&#x27;, &#x27;Volumes created without specified QoS values are created with the default values for QoS.&#x27;, &#x27;Default values for a volume can be found by running the GetDefaultQoS method.&#x27;]",
         dictionaryType=None
@@ -605,6 +986,23 @@ class DeleteAllSupportBundlesResult(data_model.DataObject):
         "result", str,
         array=False, optional=False,
         documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListStorageContainersRequest(data_model.DataObject):
+    """ListStorageContainersRequest  
+
+    :param storage_container_ids:  List of storage containers to get 
+    :type storage_container_ids: UUID
+
+    """
+    storage_container_ids = data_model.property(
+        "storageContainerIDs", UUID,
+        array=True, optional=True,
+        documentation="List of storage containers to get",
         dictionaryType=None
     )
 
@@ -1711,413 +2109,6 @@ class Snapshot(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class VolumeQOS(data_model.DataObject):
-    """VolumeQOS  
-    Quality of Service (QoS) Result values are used on SolidFire volumes to provision performance expectations.
-
-    :param min_iops: [required] Desired minimum 4KB IOPS to guarantee. The allowed IOPS will only drop below this level if all volumes have been capped at their min IOPS value and there is still insufficient performance capacity. 
-    :type min_iops: int
-
-    :param max_iops: [required] Desired maximum 4KB IOPS allowed over an extended period of time. 
-    :type max_iops: int
-
-    :param burst_iops: [required] Maximum "peak" 4KB IOPS allowed for short periods of time. Allows for bursts of I/O activity over the normal max IOPS value. 
-    :type burst_iops: int
-
-    :param burst_time: [required] The length of time burst IOPS is allowed. The value returned is represented in time units of seconds. Note: this value is calculated by the system based on IOPS set for QoS. 
-    :type burst_time: int
-
-    :param curve: [required] The curve is a set of key-value pairs. The keys are I/O sizes in bytes. The values represent the cost performing an IOP at a specific I/O size. The curve is calculated relative to a 4096 byte operation set at 100 IOPS. 
-    :type curve: dict
-
-    """
-    min_iops = data_model.property(
-        "minIOPS", int,
-        array=False, optional=False,
-        documentation="[&#x27;Desired minimum 4KB IOPS to guarantee.&#x27;, &#x27;The allowed IOPS will only drop below this level if all volumes have been capped&#x27;, &#x27;at their min IOPS value and there is still insufficient performance capacity.&#x27;]",
-        dictionaryType=None
-    )
-    max_iops = data_model.property(
-        "maxIOPS", int,
-        array=False, optional=False,
-        documentation="[&#x27;Desired maximum 4KB IOPS allowed over an extended period of time.&#x27;]",
-        dictionaryType=None
-    )
-    burst_iops = data_model.property(
-        "burstIOPS", int,
-        array=False, optional=False,
-        documentation="[&#x27;Maximum &quot;peak&quot; 4KB IOPS allowed for short periods of time.&#x27;, &#x27;Allows for bursts of I/O activity over the normal max IOPS value.&#x27;]",
-        dictionaryType=None
-    )
-    burst_time = data_model.property(
-        "burstTime", int,
-        array=False, optional=False,
-        documentation="[&#x27;The length of time burst IOPS is allowed.&#x27;, &#x27;The value returned is represented in time units of seconds.&#x27;, &#x27;Note: this value is calculated by the system based on IOPS set for QoS.&#x27;]",
-        dictionaryType=None
-    )
-    curve = data_model.property(
-        "curve", dict,
-        array=False, optional=False,
-        documentation="[&#x27;The curve is a set of key-value pairs.&#x27;, &#x27;The keys are I/O sizes in bytes.&#x27;, &#x27;The values represent the cost performing an IOP at a specific I/O size.&#x27;, &#x27;The curve is calculated relative to a 4096 byte operation set at 100 IOPS.&#x27;]",
-        dictionaryType=int
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class SnapshotReplication(data_model.DataObject):
-    """SnapshotReplication  
-
-    :param state: [required] The state of the snapshot replication. 
-    :type state: str
-
-    :param state_details: [required] Reserved for future use. 
-    :type state_details: str
-
-    """
-    state = data_model.property(
-        "state", str,
-        array=False, optional=False,
-        documentation="The state of the snapshot replication.",
-        dictionaryType=None
-    )
-    state_details = data_model.property(
-        "stateDetails", str,
-        array=False, optional=False,
-        documentation="Reserved for future use.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class RemoteReplication(data_model.DataObject):
-    """RemoteReplication  
-    Details on the volume replication.
-
-    :param mode: [required] Volume replication mode. Possible values: Async: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster. Sync: Source acknowledges write when the data is stored locally and on the remote cluster. SnapshotsOnly: Only snapshots created on the source cluster will be replicated. Active writes from the source volume will not be replicated. 
-    :type mode: str
-
-    :param pause_limit: [required] The number of occurring write ops before auto-pausing, on a per volume pair level. 
-    :type pause_limit: int
-
-    :param remote_service_id: [required] The remote slice service ID. 
-    :type remote_service_id: int
-
-    :param resume_details: [required] Reserved for future use. 
-    :type resume_details: str
-
-    :param snapshot_replication: [required] The details of snapshot replication. 
-    :type snapshot_replication: SnapshotReplication
-
-    :param state: [required] The state of the volume replication. 
-    :type state: str
-
-    :param state_details: [required] Reserved for future use. 
-    :type state_details: str
-
-    """
-    mode = data_model.property(
-        "mode", str,
-        array=False, optional=False,
-        documentation="[&#x27;Volume replication mode.&#x27;, &#x27;Possible values:&#x27;, &#x27;Async: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.&#x27;, &#x27;Sync: Source acknowledges write when the data is stored locally and on the remote cluster.&#x27;, &#x27;SnapshotsOnly: Only snapshots created on the source cluster will be replicated. Active writes from the source volume will not be replicated.&#x27;]",
-        dictionaryType=None
-    )
-    pause_limit = data_model.property(
-        "pauseLimit", int,
-        array=False, optional=False,
-        documentation="The number of occurring write ops before auto-pausing, on a per volume pair level.",
-        dictionaryType=None
-    )
-    remote_service_id = data_model.property(
-        "remoteServiceID", int,
-        array=False, optional=False,
-        documentation="The remote slice service ID.",
-        dictionaryType=None
-    )
-    resume_details = data_model.property(
-        "resumeDetails", str,
-        array=False, optional=False,
-        documentation="Reserved for future use.",
-        dictionaryType=None
-    )
-    snapshot_replication = data_model.property(
-        "snapshotReplication", SnapshotReplication,
-        array=False, optional=False,
-        documentation="The details of snapshot replication.",
-        dictionaryType=None
-    )
-    state = data_model.property(
-        "state", str,
-        array=False, optional=False,
-        documentation="The state of the volume replication.",
-        dictionaryType=None
-    )
-    state_details = data_model.property(
-        "stateDetails", str,
-        array=False, optional=False,
-        documentation="Reserved for future use.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class VolumePair(data_model.DataObject):
-    """VolumePair  
-    The Volume Pair Info is an object containing information about a volume that is paired on a remote cluster.
-    If the volume is not paired, this object is null.
-
-    :param cluster_pair_id: [required] The remote cluster a volume is paired with. 
-    :type cluster_pair_id: int
-
-    :param remote_volume_id: [required] The VolumeID on the remote cluster a volume is paired with. 
-    :type remote_volume_id: int
-
-    :param remote_slice_id: [required] The SliceID on the remote cluster a volume is paired with. 
-    :type remote_slice_id: int
-
-    :param remote_volume_name: [required] The last-observed name of the volume on the remote cluster a volume is paired with. 
-    :type remote_volume_name: str
-
-    :param volume_pair_uuid: [required] A UUID in canonical form. 
-    :type volume_pair_uuid: UUID
-
-    :param remote_replication: [required] Details about the replication configuration for this volume pair. 
-    :type remote_replication: RemoteReplication
-
-    """
-    cluster_pair_id = data_model.property(
-        "clusterPairID", int,
-        array=False, optional=False,
-        documentation="The remote cluster a volume is paired with.",
-        dictionaryType=None
-    )
-    remote_volume_id = data_model.property(
-        "remoteVolumeID", int,
-        array=False, optional=False,
-        documentation="The VolumeID on the remote cluster a volume is paired with.",
-        dictionaryType=None
-    )
-    remote_slice_id = data_model.property(
-        "remoteSliceID", int,
-        array=False, optional=False,
-        documentation="The SliceID on the remote cluster a volume is paired with.",
-        dictionaryType=None
-    )
-    remote_volume_name = data_model.property(
-        "remoteVolumeName", str,
-        array=False, optional=False,
-        documentation="The last-observed name of the volume on the remote cluster a volume is paired with.",
-        dictionaryType=None
-    )
-    volume_pair_uuid = data_model.property(
-        "volumePairUUID", UUID,
-        array=False, optional=False,
-        documentation="A UUID in canonical form.",
-        dictionaryType=None
-    )
-    remote_replication = data_model.property(
-        "remoteReplication", RemoteReplication,
-        array=False, optional=False,
-        documentation="Details about the replication configuration for this volume pair.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class Volume(data_model.DataObject):
-    """Volume  
-    Volumes Info is an object containing information about a volume.
-    The return objects only include "configured" information about the volume and not runtime or usage information.
-    Information about paired volumes will also be returned.
-
-    :param volume_id: [required] Unique VolumeID for the volume. 
-    :type volume_id: int
-
-    :param name: [required] Name of the volume as provided at creation time. 
-    :type name: str
-
-    :param account_id: [required] Unique AccountID for the account. 
-    :type account_id: int
-
-    :param create_time: [required] UTC formatted time the volume was created. 
-    :type create_time: str
-
-    :param status: [required] Current status of the volume init: A volume that is being initialized and is not ready for connections. active: An active volume ready for connections. 
-    :type status: str
-
-    :param access: [required] Access allowed for the volume readOnly: Only read operations are allowed. readWrite: Reads and writes are allowed. locked: No reads or writes are allowed. replicationTarget: Designated as a target volume in a replicated volume pair. 
-    :type access: str
-
-    :param enable512e: [required] If "true", the volume provides 512 byte sector emulation. 
-    :type enable512e: bool
-
-    :param iqn: [required] Volume iSCSI Qualified Name. 
-    :type iqn: str
-
-    :param scsi_euidevice_id: [required] Globally unique SCSI device identifier for the volume in EUI-64 based 16-byte format. 
-    :type scsi_euidevice_id: str
-
-    :param scsi_naadevice_id: [required] Globally unique SCSI device identifier for the volume in NAA IEEE Registered Extended format. 
-    :type scsi_naadevice_id: str
-
-    :param qos: [required] Quality of service settings for this volume. 
-    :type qos: VolumeQOS
-
-    :param volume_access_groups: [required] List of volume access groups to which a volume belongs. 
-    :type volume_access_groups: int
-
-    :param volume_pairs: [required] Information about a paired volume. Available only if a volume is paired. @see VolumePairs for return values. 
-    :type volume_pairs: VolumePair
-
-    :param delete_time:  The time this volume was deleted. If this has no value, the volume has not yet been deleted. 
-    :type delete_time: str
-
-    :param purge_time:  The time this volume will be purged from the system. If this has no value, the volume has not yet been deleted (and is not scheduled for purging). 
-    :type purge_time: str
-
-    :param slice_count: [required] The number of slices backing this volume. In the current software, this value will always be 1. 
-    :type slice_count: int
-
-    :param total_size: [required] Total size of this volume in bytes. 
-    :type total_size: int
-
-    :param block_size: [required] Size of the blocks on the volume. 
-    :type block_size: int
-
-    :param virtual_volume_id: [required] Virtual volume ID this volume backs. 
-    :type virtual_volume_id: UUID
-
-    :param attributes: [required] List of Name/Value pairs in JSON object format. 
-    :type attributes: dict
-
-    """
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=False,
-        documentation="Unique VolumeID for the volume.",
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation="Name of the volume as provided at creation time.",
-        dictionaryType=None
-    )
-    account_id = data_model.property(
-        "accountID", int,
-        array=False, optional=False,
-        documentation="Unique AccountID for the account.",
-        dictionaryType=None
-    )
-    create_time = data_model.property(
-        "createTime", str,
-        array=False, optional=False,
-        documentation="UTC formatted time the volume was created.",
-        dictionaryType=None
-    )
-    status = data_model.property(
-        "status", str,
-        array=False, optional=False,
-        documentation="[&#x27;Current status of the volume&#x27;, &#x27;init: A volume that is being initialized and is not ready for connections.&#x27;, &#x27;active: An active volume ready for connections.&#x27;]",
-        dictionaryType=None
-    )
-    access = data_model.property(
-        "access", str,
-        array=False, optional=False,
-        documentation="[&#x27;Access allowed for the volume&#x27;, &#x27;readOnly: Only read operations are allowed.&#x27;, &#x27;readWrite: Reads and writes are allowed.&#x27;, &#x27;locked: No reads or writes are allowed.&#x27;, &#x27;replicationTarget: Designated as a target volume in a replicated volume pair.&#x27;]",
-        dictionaryType=None
-    )
-    enable512e = data_model.property(
-        "enable512e", bool,
-        array=False, optional=False,
-        documentation="If &quot;true&quot;, the volume provides 512 byte sector emulation.",
-        dictionaryType=None
-    )
-    iqn = data_model.property(
-        "iqn", str,
-        array=False, optional=False,
-        documentation="Volume iSCSI Qualified Name.",
-        dictionaryType=None
-    )
-    scsi_euidevice_id = data_model.property(
-        "scsiEUIDeviceID", str,
-        array=False, optional=False,
-        documentation="Globally unique SCSI device identifier for the volume in EUI-64 based 16-byte format.",
-        dictionaryType=None
-    )
-    scsi_naadevice_id = data_model.property(
-        "scsiNAADeviceID", str,
-        array=False, optional=False,
-        documentation="Globally unique SCSI device identifier for the volume in NAA IEEE Registered Extended format.",
-        dictionaryType=None
-    )
-    qos = data_model.property(
-        "qos", VolumeQOS,
-        array=False, optional=False,
-        documentation="Quality of service settings for this volume.",
-        dictionaryType=None
-    )
-    volume_access_groups = data_model.property(
-        "volumeAccessGroups", int,
-        array=True, optional=False,
-        documentation="List of volume access groups to which a volume belongs.",
-        dictionaryType=None
-    )
-    volume_pairs = data_model.property(
-        "volumePairs", VolumePair,
-        array=True, optional=False,
-        documentation="[&#x27;Information about a paired volume.&#x27;, &#x27;Available only if a volume is paired.&#x27;, &#x27;@see VolumePairs for return values.&#x27;]",
-        dictionaryType=None
-    )
-    delete_time = data_model.property(
-        "deleteTime", str,
-        array=False, optional=True,
-        documentation="[&#x27;The time this volume was deleted.&#x27;, &#x27;If this has no value, the volume has not yet been deleted.&#x27;]",
-        dictionaryType=None
-    )
-    purge_time = data_model.property(
-        "purgeTime", str,
-        array=False, optional=True,
-        documentation="[&#x27;The time this volume will be purged from the system.&#x27;, &#x27;If this has no value, the volume has not yet been deleted (and is not scheduled for purging).&#x27;]",
-        dictionaryType=None
-    )
-    slice_count = data_model.property(
-        "sliceCount", int,
-        array=False, optional=False,
-        documentation="[&#x27;The number of slices backing this volume.&#x27;, &#x27;In the current software, this value will always be 1.&#x27;]",
-        dictionaryType=None
-    )
-    total_size = data_model.property(
-        "totalSize", int,
-        array=False, optional=False,
-        documentation="[&#x27;Total size of this volume in bytes.&#x27;]",
-        dictionaryType=None
-    )
-    block_size = data_model.property(
-        "blockSize", int,
-        array=False, optional=False,
-        documentation="[&#x27;Size of the blocks on the volume.&#x27;]",
-        dictionaryType=None
-    )
-    virtual_volume_id = data_model.property(
-        "virtualVolumeID", UUID,
-        array=False, optional=False,
-        documentation="[&#x27;Virtual volume ID this volume backs.&#x27;]",
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=False,
-        documentation="List of Name/Value pairs in JSON object format.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class VirtualVolumeInfo(data_model.DataObject):
     """VirtualVolumeInfo  
 
@@ -2361,6 +2352,9 @@ class ListVirtualVolumeBindingsResult(data_model.DataObject):
 class ClusterAdmin(data_model.DataObject):
     """ClusterAdmin  
 
+    :param auth_method: [required] 
+    :type auth_method: str
+
     :param access: [required] 
     :type access: str
 
@@ -2374,6 +2368,12 @@ class ClusterAdmin(data_model.DataObject):
     :type attributes: dict
 
     """
+    auth_method = data_model.property(
+        "authMethod", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
     access = data_model.property(
         "access", str,
         array=True, optional=False,
@@ -2436,6 +2436,59 @@ class TestConnectSvipRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class QoS(data_model.DataObject):
+    """QoS  
+    Quality of Service (QoS) values are used on SolidFire volumes to provision performance expectations.
+    Minimum, maximum and burst QoS values can be set within the ranges specified in the QoS table below.
+    
+    Volumes created without specified QoS values are created with the Default values listed below.
+    Default values can be found by running the GetDefaultQoS method.
+    
+    minIOPS Min: 100/50 (v7.0/v8.0), Default: 100, Max: 15,000
+    maxIOPS Min: 100/50 (v7.0/v8.0), Default: 15,000, Max: 100,000
+    burstIOPS Min: 100/50 (v7.0/v8.0), Default: 15,000, Max: 100,000
+
+    :param min_iops:  Desired minimum 4KB IOPS to guarantee. The allowed IOPS will only drop below this level if all volumes have been capped at their minimum IOPS value and there is still insufficient performance capacity. 
+    :type min_iops: int
+
+    :param max_iops:  Desired maximum 4KB IOPS allowed over an extended period of time. 
+    :type max_iops: int
+
+    :param burst_iops:  Maximum "peak" 4KB IOPS allowed for short periods of time. Allows for bursts of I/O activity over the normal max IOPS value. 
+    :type burst_iops: int
+
+    :param burst_time:  The length of time burst IOPS is allowed. The value returned is represented in time units of seconds. Note: this value is calculated by the system based on IOPS set for QoS. 
+    :type burst_time: int
+
+    """
+    min_iops = data_model.property(
+        "minIOPS", int,
+        array=False, optional=True,
+        documentation="[&#x27;Desired minimum 4KB IOPS to guarantee.&#x27;, &#x27;The allowed IOPS will only drop below this level if all volumes have been capped&#x27;, &#x27;at their minimum IOPS value and there is still insufficient performance capacity.&#x27;]",
+        dictionaryType=None
+    )
+    max_iops = data_model.property(
+        "maxIOPS", int,
+        array=False, optional=True,
+        documentation="[&#x27;Desired maximum 4KB IOPS allowed over an extended period of time.&#x27;]",
+        dictionaryType=None
+    )
+    burst_iops = data_model.property(
+        "burstIOPS", int,
+        array=False, optional=True,
+        documentation="[&#x27;Maximum &quot;peak&quot; 4KB IOPS allowed for short periods of time.&#x27;, &#x27;Allows for bursts of I/O activity over the normal max IOPS value.&#x27;]",
+        dictionaryType=None
+    )
+    burst_time = data_model.property(
+        "burstTime", int,
+        array=False, optional=True,
+        documentation="[&#x27;The length of time burst IOPS is allowed.&#x27;, &#x27;The value returned is represented in time units of seconds.&#x27;, &#x27;Note: this value is calculated by the system based on IOPS set for QoS.&#x27;]",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ModifyVolumeResult(data_model.DataObject):
     """ModifyVolumeResult  
 
@@ -2443,7 +2496,7 @@ class ModifyVolumeResult(data_model.DataObject):
     :type volume: Volume
 
     :param curve: [required] 
-    :type curve: VolumeQOS
+    :type curve: QoS
 
     """
     volume = data_model.property(
@@ -2453,7 +2506,7 @@ class ModifyVolumeResult(data_model.DataObject):
         dictionaryType=None
     )
     curve = data_model.property(
-        "curve", VolumeQOS,
+        "curve", QoS,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -2781,7 +2834,7 @@ class NetworkConfigParams(data_model.DataObject):
     :type physical: PhysicalAdapter
 
     :param routes:  
-    :type routes: str
+    :type routes: dict
 
     :param status:  
     :type status: str
@@ -2944,7 +2997,7 @@ class NetworkConfigParams(data_model.DataObject):
         dictionaryType=None
     )
     routes = data_model.property(
-        "routes", str,
+        "routes", dict,
         array=True, optional=True,
         documentation="",
         dictionaryType=None
@@ -3105,6 +3158,32 @@ class ListVolumeAccessGroupsRequest(data_model.DataObject):
         "limit", int,
         array=False, optional=True,
         documentation="[&#x27;The maximum number of results to return.&#x27;, &#x27;This can be useful for paging.&#x27;]",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListActivePairedVolumesRequest(data_model.DataObject):
+    """ListActivePairedVolumesRequest  
+
+    :param start_volume_id:  
+    :type start_volume_id: int
+
+    :param limit:  
+    :type limit: int
+
+    """
+    start_volume_id = data_model.property(
+        "startVolumeID", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    limit = data_model.property(
+        "limit", int,
+        array=False, optional=True,
+        documentation="",
         dictionaryType=None
     )
 
@@ -3321,11 +3400,20 @@ class ListSnapshotsRequest(data_model.DataObject):
     :param volume_id:  The volume to list snapshots for. If not provided, all snapshots for all volumes are returned. 
     :type volume_id: int
 
+    :param internal:  
+    :type internal: bool
+
     """
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=True,
         documentation="[&#x27;The volume to list snapshots for.&#x27;, &#x27;If not provided, all snapshots for all volumes are returned.&#x27;]",
+        dictionaryType=None
+    )
+    internal = data_model.property(
+        "internal", bool,
+        array=False, optional=True,
+        documentation="",
         dictionaryType=None
     )
 
@@ -4743,11 +4831,11 @@ class TestConnectEnsembleDetails(data_model.DataObject):
     """TestConnectEnsembleDetails  
 
     :param nodes: [required] A list of each ensemble node in the test and the results of the tests. 
-    :type nodes: str
+    :type nodes: dict
 
     """
     nodes = data_model.property(
-        "nodes", str,
+        "nodes", dict,
         array=False, optional=False,
         documentation="A list of each ensemble node in the test and the results of the tests.",
         dictionaryType=None
@@ -4846,6 +4934,9 @@ class SetDefaultQoSRequest(data_model.DataObject):
 class ISCSISession(data_model.DataObject):
     """ISCSISession  
 
+    :param drive_ids: [required] 
+    :type drive_ids: int
+
     :param account_id: [required] 
     :type account_id: int
 
@@ -4901,6 +4992,12 @@ class ISCSISession(data_model.DataObject):
     :type initiator_session_id: int
 
     """
+    drive_ids = data_model.property(
+        "driveIDs", int,
+        array=True, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=False,
@@ -5124,6 +5221,9 @@ class RemoveInitiatorsFromVolumeAccessGroupRequest(data_model.DataObject):
     :param initiators: [required] List of initiators to remove from the volume access group. 
     :type initiators: str
 
+    :param delete_orphan_initiators:  
+    :type delete_orphan_initiators: bool
+
     """
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
@@ -5135,6 +5235,12 @@ class RemoveInitiatorsFromVolumeAccessGroupRequest(data_model.DataObject):
         "initiators", str,
         array=True, optional=False,
         documentation="[&#x27;List of initiators to remove from the volume access group.&#x27;]",
+        dictionaryType=None
+    )
+    delete_orphan_initiators = data_model.property(
+        "deleteOrphanInitiators", bool,
+        array=False, optional=True,
+        documentation="",
         dictionaryType=None
     )
 
@@ -5565,11 +5671,20 @@ class NewDrive(data_model.DataObject):
     :param drive_id: [required] A unique identifier for this drive. 
     :type drive_id: int
 
+    :param type:  block or slice 
+    :type type: str
+
     """
     drive_id = data_model.property(
         "driveID", int,
         array=False, optional=False,
         documentation="[&#x27;A unique identifier for this drive.&#x27;]",
+        dictionaryType=None
+    )
+    type = data_model.property(
+        "type", str,
+        array=False, optional=True,
+        documentation="block or slice",
         dictionaryType=None
     )
 
@@ -5684,7 +5799,16 @@ class UpdateBulkVolumeStatusResult(data_model.DataObject):
 class ModifyScheduleResult(data_model.DataObject):
     """ModifyScheduleResult  
 
+    :param schedule: [required] 
+    :type schedule: Schedule
+
     """
+    schedule = data_model.property(
+        "schedule", Schedule,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -5719,7 +5843,7 @@ class TestConnectMvipDetails(data_model.DataObject):
     """TestConnectMvipDetails  
 
     :param ping_bytes: [required] Details of the ping tests with 56 Bytes and 1500 Bytes. 
-    :type ping_bytes: str
+    :type ping_bytes: dict
 
     :param mvip: [required] The MVIP tested against. 
     :type mvip: str
@@ -5729,7 +5853,7 @@ class TestConnectMvipDetails(data_model.DataObject):
 
     """
     ping_bytes = data_model.property(
-        "pingBytes", str,
+        "pingBytes", dict,
         array=False, optional=False,
         documentation="Details of the ping tests with 56 Bytes and 1500 Bytes.",
         dictionaryType=None
@@ -7227,18 +7351,36 @@ class GetVolumeEfficiencyRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class CancelCloneRequest(data_model.DataObject):
-    """CancelCloneRequest  
+class CreateVolumeResult(data_model.DataObject):
+    """CreateVolumeResult  
 
-    :param clone_id: [required] 
-    :type clone_id: int
+    :param volume: [required] 
+    :type volume: Volume
+
+    :param volume_id: [required] VolumeID for the newly created volume. 
+    :type volume_id: int
+
+    :param curve: [required] The curve is a set of key-value pairs. The keys are I/O sizes in bytes. The values represent the cost performing an IOP at a specific I/O size. The curve is calculated relative to a 4096 byte operation set at 100 IOPS. 
+    :type curve: dict
 
     """
-    clone_id = data_model.property(
-        "cloneID", int,
+    volume = data_model.property(
+        "volume", Volume,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
+    )
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="VolumeID for the newly created volume.",
+        dictionaryType=None
+    )
+    curve = data_model.property(
+        "curve", dict,
+        array=False, optional=False,
+        documentation="[&#x27;The curve is a set of key-value pairs.&#x27;, &#x27;The keys are I/O sizes in bytes.&#x27;, &#x27;The values represent the cost performing an IOP at a specific I/O size.&#x27;, &#x27;The curve is calculated relative to a 4096 byte operation set at 100 IOPS.&#x27;]",
+        dictionaryType=int
     )
 
     def __init__(self, **kwargs):
@@ -7991,7 +8133,7 @@ class NetworkConfig(data_model.DataObject):
     :type physical: PhysicalAdapter
 
     :param routes:  
-    :type routes: str
+    :type routes: dict
 
     :param status:  
     :type status: str
@@ -8160,7 +8302,7 @@ class NetworkConfig(data_model.DataObject):
         dictionaryType=None
     )
     routes = data_model.property(
-        "routes", str,
+        "routes", dict,
         array=True, optional=True,
         documentation="",
         dictionaryType=None
@@ -8464,7 +8606,7 @@ class TestPingResult(data_model.DataObject):
     :type duration: str
 
     :param details: [required] List of each IP the node was able to communicate with. 
-    :type details: str
+    :type details: dict
 
     """
     result = data_model.property(
@@ -8480,7 +8622,7 @@ class TestPingResult(data_model.DataObject):
         dictionaryType=None
     )
     details = data_model.property(
-        "details", str,
+        "details", dict,
         array=False, optional=False,
         documentation="List of each IP the node was able to communicate with.",
         dictionaryType=None
@@ -8846,7 +8988,7 @@ class StartBulkVolumeWriteRequest(data_model.DataObject):
     :type script: str
 
     :param script_parameters:  JSON parameters to pass to the script. 
-    :type script_parameters: str
+    :type script_parameters: dict
 
     :param attributes:  JSON attributes for the bulk volume job. 
     :type attributes: dict
@@ -8871,7 +9013,7 @@ class StartBulkVolumeWriteRequest(data_model.DataObject):
         dictionaryType=None
     )
     script_parameters = data_model.property(
-        "scriptParameters", str,
+        "scriptParameters", dict,
         array=False, optional=True,
         documentation="[&#x27;JSON parameters to pass to the script.&#x27;]",
         dictionaryType=None
@@ -8898,6 +9040,9 @@ class ModifyVolumePairRequest(data_model.DataObject):
     :param mode:  Volume replication mode. Possible values: Async: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster. Sync: The source acknowledges the write when the data is stored locally and on the remote cluster. SnapshotsOnly: Only snapshots created on the source cluster will be replicated. Active writes from the source volume are not replicated. 
     :type mode: str
 
+    :param pause_limit:  
+    :type pause_limit: int
+
     """
     volume_id = data_model.property(
         "volumeID", int,
@@ -8915,6 +9060,12 @@ class ModifyVolumePairRequest(data_model.DataObject):
         "mode", str,
         array=False, optional=True,
         documentation="[&#x27;Volume replication mode.&#x27;, &#x27;Possible values:&#x27;, &#x27;Async: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.&#x27;, &#x27;Sync: The source acknowledges the write when the data is stored locally and on the remote cluster.&#x27;, &#x27;SnapshotsOnly: Only snapshots created on the source cluster will be replicated. Active writes from the source volume are not replicated.&#x27;]",
+        dictionaryType=None
+    )
+    pause_limit = data_model.property(
+        "pauseLimit", int,
+        array=False, optional=True,
+        documentation="",
         dictionaryType=None
     )
 
@@ -8960,6 +9111,23 @@ class DeleteStorageContainerResult(data_model.DataObject):
     """DeleteStorageContainerResult  
 
     """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListClusterAdminsRequest(data_model.DataObject):
+    """ListClusterAdminsRequest  
+
+    :param show_hidden:  
+    :type show_hidden: bool
+
+    """
+    show_hidden = data_model.property(
+        "showHidden", bool,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -9141,32 +9309,6 @@ class DisableLdapAuthenticationResult(data_model.DataObject):
     """DisableLdapAuthenticationResult  
 
     """
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class CreateVolumeResult(data_model.DataObject):
-    """CreateVolumeResult  
-
-    :param volume_id: [required] VolumeID for the newly created volume. 
-    :type volume_id: int
-
-    :param curve: [required] The curve is a set of key-value pairs. The keys are I/O sizes in bytes. The values represent the cost performing an IOP at a specific I/O size. The curve is calculated relative to a 4096 byte operation set at 100 IOPS. 
-    :type curve: dict
-
-    """
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=False,
-        documentation="VolumeID for the newly created volume.",
-        dictionaryType=None
-    )
-    curve = data_model.property(
-        "curve", dict,
-        array=False, optional=False,
-        documentation="[&#x27;The curve is a set of key-value pairs.&#x27;, &#x27;The keys are I/O sizes in bytes.&#x27;, &#x27;The values represent the cost performing an IOP at a specific I/O size.&#x27;, &#x27;The curve is calculated relative to a 4096 byte operation set at 100 IOPS.&#x27;]",
-        dictionaryType=int
-    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -9360,6 +9502,48 @@ class GroupSnapshotMembers(data_model.DataObject):
     :param checksum: [required] A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. 
     :type checksum: str
 
+    :param attributes: [required] 
+    :type attributes: dict
+
+    :param create_time: [required] 
+    :type create_time: str
+
+    :param enable_remote_replication: [required] 
+    :type enable_remote_replication: bool
+
+    :param expiration_reason: [required] 
+    :type expiration_reason: str
+
+    :param expiration_time:  
+    :type expiration_time: str
+
+    :param group_id:  
+    :type group_id: int
+
+    :param group_snapshot_uuid: [required] 
+    :type group_snapshot_uuid: UUID
+
+    :param name: [required] 
+    :type name: str
+
+    :param remote_status: [required] 
+    :type remote_status: str
+
+    :param remote_statuses: [required] 
+    :type remote_statuses: dict
+
+    :param status: [required] 
+    :type status: str
+
+    :param total_size: [required] 
+    :type total_size: int
+
+    :param virtual_volume_id:  
+    :type virtual_volume_id: int
+
+    :param volume_pair_uuid: [required] 
+    :type volume_pair_uuid: UUID
+
     """
     volume_id = data_model.property(
         "volumeID", int,
@@ -9383,6 +9567,90 @@ class GroupSnapshotMembers(data_model.DataObject):
         "checksum", str,
         array=False, optional=False,
         documentation="[&#x27;A string that represents the correct digits in the stored snapshot.&#x27;, &#x27;This checksum can be used later to compare other snapshots to detect errors in the data.&#x27;]",
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    create_time = data_model.property(
+        "createTime", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    enable_remote_replication = data_model.property(
+        "enableRemoteReplication", bool,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    expiration_reason = data_model.property(
+        "expirationReason", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    expiration_time = data_model.property(
+        "expirationTime", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    group_id = data_model.property(
+        "groupID", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    group_snapshot_uuid = data_model.property(
+        "groupSnapshotUUID", UUID,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    remote_status = data_model.property(
+        "remoteStatus", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    remote_statuses = data_model.property(
+        "remoteStatuses", dict,
+        array=True, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    total_size = data_model.property(
+        "totalSize", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    virtual_volume_id = data_model.property(
+        "virtualVolumeID", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    volume_pair_uuid = data_model.property(
+        "volumePairUUID", UUID,
+        array=False, optional=False,
+        documentation="",
         dictionaryType=None
     )
 
@@ -9498,6 +9766,12 @@ class AddVirtualNetworkResult(data_model.DataObject):
 class ClusterFaultInfo(data_model.DataObject):
     """ClusterFaultInfo  
 
+    :param drive_ids: [required] 
+    :type drive_ids: int
+
+    :param network_interface: [required] 
+    :type network_interface: str
+
     :param severity: [required] 
     :type severity: str
 
@@ -9535,9 +9809,21 @@ class ClusterFaultInfo(data_model.DataObject):
     :type resolved_date: str
 
     :param data: [required] 
-    :type data: str
+    :type data: dict
 
     """
+    drive_ids = data_model.property(
+        "driveIDs", int,
+        array=True, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    network_interface = data_model.property(
+        "networkInterface", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
     severity = data_model.property(
         "severity", str,
         array=False, optional=False,
@@ -9611,7 +9897,7 @@ class ClusterFaultInfo(data_model.DataObject):
         dictionaryType=None
     )
     data = data_model.property(
-        "data", str,
+        "data", dict,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
@@ -9651,11 +9937,20 @@ class GetAsyncResultRequest(data_model.DataObject):
     :param async_handle: [required] A value that was returned from the original asynchronous method call. 
     :type async_handle: int
 
+    :param keep_result:  Should the result be kept after? 
+    :type keep_result: bool
+
     """
     async_handle = data_model.property(
         "asyncHandle", int,
         array=False, optional=False,
         documentation="A value that was returned from the original asynchronous method call.",
+        dictionaryType=None
+    )
+    keep_result = data_model.property(
+        "keepResult", bool,
+        array=False, optional=True,
+        documentation="Should the result be kept after?",
         dictionaryType=None
     )
 
@@ -9668,11 +9963,20 @@ class RemoveDrivesRequest(data_model.DataObject):
     :param drives: [required] List of driveIDs to remove from the cluster. 
     :type drives: int
 
+    :param force_during_upgrade:  If you want to remove a drive during upgrade, this must be set to true. 
+    :type force_during_upgrade: bool
+
     """
     drives = data_model.property(
         "drives", int,
         array=True, optional=False,
         documentation="List of driveIDs to remove from the cluster.",
+        dictionaryType=None
+    )
+    force_during_upgrade = data_model.property(
+        "forceDuringUpgrade", bool,
+        array=False, optional=True,
+        documentation="If you want to remove a drive during upgrade, this must be set to true.",
         dictionaryType=None
     )
 
@@ -10479,7 +10783,16 @@ class GetDriveConfigResult(data_model.DataObject):
 class AddLdapClusterAdminResult(data_model.DataObject):
     """AddLdapClusterAdminResult  
 
+    :param cluster_admin_id:  
+    :type cluster_admin_id: int
+
     """
+    cluster_admin_id = data_model.property(
+        "clusterAdminID", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -10989,7 +11302,7 @@ class StartBulkVolumeReadRequest(data_model.DataObject):
     :type script: str
 
     :param script_parameters:  JSON parameters to pass to the script. 
-    :type script_parameters: str
+    :type script_parameters: dict
 
     :param attributes:  JSON attributes for the bulk volume job. 
     :type attributes: dict
@@ -11020,7 +11333,7 @@ class StartBulkVolumeReadRequest(data_model.DataObject):
         dictionaryType=None
     )
     script_parameters = data_model.property(
-        "scriptParameters", str,
+        "scriptParameters", dict,
         array=False, optional=True,
         documentation="[&#x27;JSON parameters to pass to the script.&#x27;]",
         dictionaryType=None
@@ -11744,6 +12057,23 @@ class GetSystemStatusResult(data_model.DataObject):
     reboot_required = data_model.property(
         "rebootRequired", bool,
         array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetSnmpTrapInfoRequest(data_model.DataObject):
+    """GetSnmpTrapInfoRequest  
+
+    :param id:  
+    :type id: int
+
+    """
+    id = data_model.property(
+        "id", int,
+        array=False, optional=true,
         documentation="",
         dictionaryType=None
     )
@@ -12638,7 +12968,16 @@ class CreateSnapshotRequest(data_model.DataObject):
 class ModifySnapshotResult(data_model.DataObject):
     """ModifySnapshotResult  
 
+    :param snapshot: [required] 
+    :type snapshot: Snapshot
+
     """
+    snapshot = data_model.property(
+        "snapshot", Snapshot,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -12652,8 +12991,11 @@ class ResetNodeRequest(data_model.DataObject):
     :param force: [required] The force parameter must be included in order to successfully reset the node. 
     :type force: bool
 
-    :param option:  Used to enter specifications for running the reset operation. 
-    :type option: str
+    :param options:  Used to enter specifications for running the reset operation. 
+    :type options: str
+
+    :param reboot:  Should it be rebooted? 
+    :type reboot: bool
 
     """
     build = data_model.property(
@@ -12668,10 +13010,16 @@ class ResetNodeRequest(data_model.DataObject):
         documentation="The force parameter must be included in order to successfully reset the node.",
         dictionaryType=None
     )
-    option = data_model.property(
-        "option", str,
+    options = data_model.property(
+        "options", str,
         array=False, optional=True,
         documentation="Used to enter specifications for running the reset operation.",
+        dictionaryType=None
+    )
+    reboot = data_model.property(
+        "reboot", bool,
+        array=False, optional=True,
+        documentation="Should it be rebooted?",
         dictionaryType=None
     )
 
@@ -12768,6 +13116,9 @@ class SetLoginSessionInfoRequest(data_model.DataObject):
 class CreateSnapshotResult(data_model.DataObject):
     """CreateSnapshotResult  
 
+    :param snapshot: [required] 
+    :type snapshot: Snapshot
+
     :param snapshot_id: [required] ID of the newly-created snapshot. 
     :type snapshot_id: int
 
@@ -12775,6 +13126,12 @@ class CreateSnapshotResult(data_model.DataObject):
     :type checksum: str
 
     """
+    snapshot = data_model.property(
+        "snapshot", Snapshot,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=False,
@@ -12876,11 +13233,20 @@ class AddNodesRequest(data_model.DataObject):
     :param pending_nodes: [required] List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method. 
     :type pending_nodes: int
 
+    :param auto_install:  Whether these nodes should be autoinstalled 
+    :type auto_install: bool
+
     """
     pending_nodes = data_model.property(
         "pendingNodes", int,
         array=True, optional=False,
         documentation="List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method.",
+        dictionaryType=None
+    )
+    auto_install = data_model.property(
+        "autoInstall", bool,
+        array=False, optional=True,
+        documentation="Whether these nodes should be autoinstalled",
         dictionaryType=None
     )
 
@@ -12950,6 +13316,9 @@ class ListVolumeStatsByAccountResult(data_model.DataObject):
 class CreateGroupSnapshotResult(data_model.DataObject):
     """CreateGroupSnapshotResult  
 
+    :param group_snapshot: [required] 
+    :type group_snapshot: GroupSnapshot
+
     :param group_snapshot_id: [required] Unique ID of the new group snapshot. 
     :type group_snapshot_id: int
 
@@ -12957,6 +13326,12 @@ class CreateGroupSnapshotResult(data_model.DataObject):
     :type members: GroupSnapshotMembers
 
     """
+    group_snapshot = data_model.property(
+        "groupSnapshot", GroupSnapshot,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
     group_snapshot_id = data_model.property(
         "groupSnapshotID", int,
         array=False, optional=False,
@@ -12993,7 +13368,7 @@ class TestConnectSvipDetails(data_model.DataObject):
     """TestConnectSvipDetails  
 
     :param ping_bytes: [required] Details of the ping tests with 56 Bytes and 1500 Bytes. 
-    :type ping_bytes: str
+    :type ping_bytes: dict
 
     :param svip: [required] The SVIP tested against. 
     :type svip: str
@@ -13003,7 +13378,7 @@ class TestConnectSvipDetails(data_model.DataObject):
 
     """
     ping_bytes = data_model.property(
-        "pingBytes", str,
+        "pingBytes", dict,
         array=False, optional=False,
         documentation="Details of the ping tests with 56 Bytes and 1500 Bytes.",
         dictionaryType=None
@@ -13450,7 +13825,16 @@ class ListAsyncResultsRequest(data_model.DataObject):
 class ModifyAccountResult(data_model.DataObject):
     """ModifyAccountResult  
 
+    :param account: [required] 
+    :type account: Account
+
     """
+    account = data_model.property(
+        "account", Account,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -14161,12 +14545,12 @@ class ListUtilitiesResult(data_model.DataObject):
     """ListUtilitiesResult  
 
     :param utilities: [required] List of utilities currently available to run on the node. 
-    :type utilities: str
+    :type utilities: dict
 
     """
     utilities = data_model.property(
-        "utilities", str,
-        array=True, optional=False,
+        "utilities", dict,
+        array=False, optional=False,
         documentation="List of utilities currently available to run on the node.",
         dictionaryType=None
     )
@@ -14178,12 +14562,12 @@ class ListTestsResult(data_model.DataObject):
     """ListTestsResult  
 
     :param tests: [required] List of tests that can be performed on the node. 
-    :type tests: str
+    :type tests: dict
 
     """
     tests = data_model.property(
-        "tests", str,
-        array=True, optional=False,
+        "tests", dict,
+        array=False, optional=False,
         documentation="List of tests that can be performed on the node.",
         dictionaryType=None
     )
@@ -15055,6 +15439,9 @@ class CloneVolumeRequest(data_model.DataObject):
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
 
+    :param enable512e:  Should the volume provide 512-byte sector emulation? 
+    :type enable512e: bool
+
     """
     volume_id = data_model.property(
         "volumeID", int,
@@ -15096,6 +15483,12 @@ class CloneVolumeRequest(data_model.DataObject):
         "attributes", dict,
         array=False, optional=True,
         documentation="List of Name/Value pairs in JSON object format.",
+        dictionaryType=None
+    )
+    enable512e = data_model.property(
+        "enable512e", bool,
+        array=False, optional=true,
+        documentation="Should the volume provide 512-byte sector emulation?",
         dictionaryType=None
     )
 
@@ -15840,6 +16233,15 @@ class NodeWaitingToJoin(data_model.DataObject):
     :param compatible: [required] 
     :type compatible: bool
 
+    :param chassis_type: [required] 
+    :type chassis_type: str
+
+    :param hostname: [required] 
+    :type hostname: str
+
+    :param node_type: [required] 
+    :type node_type: str
+
     """
     name = data_model.property(
         "name", str,
@@ -15885,6 +16287,24 @@ class NodeWaitingToJoin(data_model.DataObject):
     )
     compatible = data_model.property(
         "compatible", bool,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    chassis_type = data_model.property(
+        "chassisType", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    hostname = data_model.property(
+        "hostname", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    node_type = data_model.property(
+        "nodeType", str,
         array=False, optional=False,
         documentation="",
         dictionaryType=None
