@@ -7364,9 +7364,6 @@ class VirtualNetwork(data_model.DataObject):
     :param namespace:   
     :type namespace: bool
 
-    :param address_blocks: [required] 
-    :type address_blocks: AddressBlock
-
     :param attributes: [required] List of Name/Value pairs in JSON object format. 
     :type attributes: dict
 
@@ -7417,12 +7414,6 @@ class VirtualNetwork(data_model.DataObject):
         "namespace", bool,
         array=False, optional=True,
         documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    address_blocks = data_model.property(
-        "addressBlocks", AddressBlock,
-        array=True, optional=False,
-        documentation="",
         dictionaryType=None
     )
     attributes = data_model.property(
@@ -12226,7 +12217,7 @@ class GetSnmpTrapInfoRequest(data_model.DataObject):
     """
     id = data_model.property(
         "id", int,
-        array=False, optional=true,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -15694,7 +15685,7 @@ class CloneVolumeRequest(data_model.DataObject):
     )
     enable512e = data_model.property(
         "enable512e", bool,
-        array=False, optional=true,
+        array=False, optional=True,
         documentation="Should the volume provide 512-byte sector emulation?",
         dictionaryType=None
     )
