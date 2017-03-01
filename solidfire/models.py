@@ -2151,6 +2151,9 @@ class VirtualVolumeInfo(data_model.DataObject):
     :param volume_info: [required] 
     :type volume_info: Volume
 
+    :param descendants: [required] 
+    :type descendants: int
+
     """
     virtual_volume_id = data_model.property(
         "virtualVolumeID", UUID,
@@ -2227,6 +2230,12 @@ class VirtualVolumeInfo(data_model.DataObject):
     volume_info = data_model.property(
         "volumeInfo", Volume,
         array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    descendants = data_model.property(
+        "descendants", int,
+        array=True, optional=False,
         documentation="",
         dictionaryType=None
     )
@@ -6174,10 +6183,262 @@ class ModifyInitiatorsResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class GroupSnapshotMembers(data_model.DataObject):
+    """GroupSnapshotMembers  
+    List of checksum, volumeIDs and snapshotIDs for each member of the group.
+
+    :param volume_id: [required] The source volume ID for the snapshot. 
+    :type volume_id: int
+
+    :param snapshot_id: [required] Unique ID of a snapshot from which the new snapshot is made. The snapshotID passed must be a snapshot on the given volume. 
+    :type snapshot_id: int
+
+    :param snapshot_uuid: [required] Universal Unique ID of an existing snapshot. 
+    :type snapshot_uuid: str
+
+    :param checksum: [required] A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. 
+    :type checksum: str
+
+    :param attributes: [required] 
+    :type attributes: dict
+
+    :param create_time: [required] 
+    :type create_time: str
+
+    :param enable_remote_replication: [required] 
+    :type enable_remote_replication: bool
+
+    :param expiration_reason: [required] 
+    :type expiration_reason: str
+
+    :param expiration_time:  
+    :type expiration_time: str
+
+    :param group_id:  
+    :type group_id: int
+
+    :param group_snapshot_uuid: [required] 
+    :type group_snapshot_uuid: UUID
+
+    :param name: [required] 
+    :type name: str
+
+    :param remote_status: [required] 
+    :type remote_status: str
+
+    :param remote_statuses: [required] 
+    :type remote_statuses: dict
+
+    :param status: [required] 
+    :type status: str
+
+    :param total_size: [required] 
+    :type total_size: int
+
+    :param virtual_volume_id:  
+    :type virtual_volume_id: int
+
+    :param volume_pair_uuid: [required] 
+    :type volume_pair_uuid: UUID
+
+    """
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="The source volume ID for the snapshot.",
+        dictionaryType=None
+    )
+    snapshot_id = data_model.property(
+        "snapshotID", int,
+        array=False, optional=False,
+        documentation="[&#x27;Unique ID of a snapshot from which the new snapshot is made.&#x27;, &#x27;The snapshotID passed must be a snapshot on the given volume.&#x27;]",
+        dictionaryType=None
+    )
+    snapshot_uuid = data_model.property(
+        "snapshotUUID", str,
+        array=False, optional=False,
+        documentation="Universal Unique ID of an existing snapshot.",
+        dictionaryType=None
+    )
+    checksum = data_model.property(
+        "checksum", str,
+        array=False, optional=False,
+        documentation="[&#x27;A string that represents the correct digits in the stored snapshot.&#x27;, &#x27;This checksum can be used later to compare other snapshots to detect errors in the data.&#x27;]",
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    create_time = data_model.property(
+        "createTime", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    enable_remote_replication = data_model.property(
+        "enableRemoteReplication", bool,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    expiration_reason = data_model.property(
+        "expirationReason", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    expiration_time = data_model.property(
+        "expirationTime", str,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    group_id = data_model.property(
+        "groupID", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    group_snapshot_uuid = data_model.property(
+        "groupSnapshotUUID", UUID,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    remote_status = data_model.property(
+        "remoteStatus", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    remote_statuses = data_model.property(
+        "remoteStatuses", dict,
+        array=True, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    total_size = data_model.property(
+        "totalSize", int,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+    virtual_volume_id = data_model.property(
+        "virtualVolumeID", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    volume_pair_uuid = data_model.property(
+        "volumePairUUID", UUID,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GroupSnapshot(data_model.DataObject):
+    """GroupSnapshot  
+    Group Snapshot object represents a point-in-time copy of a group of volumes.
+
+    :param group_snapshot_id: [required] Unique ID of the new group snapshot. 
+    :type group_snapshot_id: int
+
+    :param group_snapshot_uuid: [required] UUID of the group snapshot. 
+    :type group_snapshot_uuid: UUID
+
+    :param members: [required] List of volumeIDs and snapshotIDs for each member of the group. 
+    :type members: GroupSnapshotMembers
+
+    :param name: [required] Name of the group snapshot, or, if none was given, the UTC formatted day and time on which the snapshot was created. 
+    :type name: str
+
+    :param create_time: [required] The UTC formatted day and time on which the snapshot was created. 
+    :type create_time: str
+
+    :param status: [required] Status of the snapshot. Possible values: Preparing: A snapshot that is being prepared for use and is not yet writable. Done: A snapshot that has finished being prepared and is now usable 
+    :type status: str
+
+    :param attributes: [required] List of Name/Value pairs in JSON object format. 
+    :type attributes: dict
+
+    """
+    group_snapshot_id = data_model.property(
+        "groupSnapshotID", int,
+        array=False, optional=False,
+        documentation="Unique ID of the new group snapshot.",
+        dictionaryType=None
+    )
+    group_snapshot_uuid = data_model.property(
+        "groupSnapshotUUID", UUID,
+        array=False, optional=False,
+        documentation="UUID of the group snapshot.",
+        dictionaryType=None
+    )
+    members = data_model.property(
+        "members", GroupSnapshotMembers,
+        array=True, optional=False,
+        documentation="List of volumeIDs and snapshotIDs for each member of the group.",
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="Name of the group snapshot, or, if none was given, the UTC formatted day and time on which the snapshot was created.",
+        dictionaryType=None
+    )
+    create_time = data_model.property(
+        "createTime", str,
+        array=False, optional=False,
+        documentation="The UTC formatted day and time on which the snapshot was created.",
+        dictionaryType=None
+    )
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation="[&#x27;Status of the snapshot.&#x27;, &#x27;Possible values:&#x27;, &#x27;Preparing: A snapshot that is being prepared for use and is not yet writable.&#x27;, &#x27;Done: A snapshot that has finished being prepared and is now usable&#x27;]",
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=False,
+        documentation="List of Name/Value pairs in JSON object format.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ModifyGroupSnapshotResult(data_model.DataObject):
     """ModifyGroupSnapshotResult  
 
+    :param group_snapshot: [required] 
+    :type group_snapshot: GroupSnapshot
+
     """
+    group_snapshot = data_model.property(
+        "groupSnapshot", GroupSnapshot,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -6333,6 +6594,9 @@ class AddressBlock(data_model.DataObject):
     :param size: [required] Number of IP addresses to include in the block. 
     :type size: int
 
+    :param available: [required] Nuber of available blocks 
+    :type available: str
+
     """
     start = data_model.property(
         "start", str,
@@ -6344,6 +6608,12 @@ class AddressBlock(data_model.DataObject):
         "size", int,
         array=False, optional=False,
         documentation="Number of IP addresses to include in the block.",
+        dictionaryType=None
+    )
+    available = data_model.property(
+        "available", str,
+        array=False, optional=False,
+        documentation="Nuber of available blocks",
         dictionaryType=None
     )
 
@@ -7094,6 +7364,9 @@ class VirtualNetwork(data_model.DataObject):
     :param namespace:   
     :type namespace: bool
 
+    :param address_blocks: [required] 
+    :type address_blocks: AddressBlock
+
     :param attributes: [required] List of Name/Value pairs in JSON object format. 
     :type attributes: dict
 
@@ -7144,6 +7417,12 @@ class VirtualNetwork(data_model.DataObject):
         "namespace", bool,
         array=False, optional=True,
         documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    address_blocks = data_model.property(
+        "addressBlocks", AddressBlock,
+        array=True, optional=False,
+        documentation="",
         dictionaryType=None
     )
     attributes = data_model.property(
@@ -8488,6 +8767,42 @@ class ClusterStats(data_model.DataObject):
     :param write_ops: [required] Total write operations. 
     :type write_ops: int
 
+    :param actual_iops:  
+    :type actual_iops: int
+
+    :param average_iopsize:  
+    :type average_iopsize: int
+
+    :param latency_usec:  
+    :type latency_usec: int
+
+    :param read_bytes_last_sample:  
+    :type read_bytes_last_sample: int
+
+    :param read_latency_usec:  
+    :type read_latency_usec: int
+
+    :param read_ops_last_sample:  
+    :type read_ops_last_sample: int
+
+    :param sample_period_msec:  
+    :type sample_period_msec: int
+
+    :param unaligned_reads:  
+    :type unaligned_reads: int
+
+    :param unaligned_writes:  
+    :type unaligned_writes: int
+
+    :param write_bytes_last_sample:  
+    :type write_bytes_last_sample: int
+
+    :param write_latency_usec:  
+    :type write_latency_usec: int
+
+    :param write_ops_last_sample:  
+    :type write_ops_last_sample: int
+
     """
     cluster_utilization = data_model.property(
         "clusterUtilization", float,
@@ -8529,6 +8844,78 @@ class ClusterStats(data_model.DataObject):
         "writeOps", int,
         array=False, optional=False,
         documentation="Total write operations.",
+        dictionaryType=None
+    )
+    actual_iops = data_model.property(
+        "actualIOPS", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    average_iopsize = data_model.property(
+        "averageIOPSize", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    latency_usec = data_model.property(
+        "latencyUSec", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    read_bytes_last_sample = data_model.property(
+        "readBytesLastSample", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    read_latency_usec = data_model.property(
+        "readLatencyUSec", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    read_ops_last_sample = data_model.property(
+        "readOpsLastSample", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    sample_period_msec = data_model.property(
+        "samplePeriodMsec", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    unaligned_reads = data_model.property(
+        "unalignedReads", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    unaligned_writes = data_model.property(
+        "unalignedWrites", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    write_bytes_last_sample = data_model.property(
+        "writeBytesLastSample", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    write_latency_usec = data_model.property(
+        "writeLatencyUSec", int,
+        array=False, optional=True,
+        documentation="",
+        dictionaryType=None
+    )
+    write_ops_last_sample = data_model.property(
+        "writeOpsLastSample", int,
+        array=False, optional=True,
+        documentation="",
         dictionaryType=None
     )
 
@@ -9480,249 +9867,6 @@ class ListNodeStatsResult(data_model.DataObject):
         "nodeStats", NodeStatsNodes,
         array=False, optional=False,
         documentation="Node activity information for all nodes.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GroupSnapshotMembers(data_model.DataObject):
-    """GroupSnapshotMembers  
-    List of checksum, volumeIDs and snapshotIDs for each member of the group.
-
-    :param volume_id: [required] The source volume ID for the snapshot. 
-    :type volume_id: int
-
-    :param snapshot_id: [required] Unique ID of a snapshot from which the new snapshot is made. The snapshotID passed must be a snapshot on the given volume. 
-    :type snapshot_id: int
-
-    :param snapshot_uuid: [required] Universal Unique ID of an existing snapshot. 
-    :type snapshot_uuid: str
-
-    :param checksum: [required] A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. 
-    :type checksum: str
-
-    :param attributes: [required] 
-    :type attributes: dict
-
-    :param create_time: [required] 
-    :type create_time: str
-
-    :param enable_remote_replication: [required] 
-    :type enable_remote_replication: bool
-
-    :param expiration_reason: [required] 
-    :type expiration_reason: str
-
-    :param expiration_time:  
-    :type expiration_time: str
-
-    :param group_id:  
-    :type group_id: int
-
-    :param group_snapshot_uuid: [required] 
-    :type group_snapshot_uuid: UUID
-
-    :param name: [required] 
-    :type name: str
-
-    :param remote_status: [required] 
-    :type remote_status: str
-
-    :param remote_statuses: [required] 
-    :type remote_statuses: dict
-
-    :param status: [required] 
-    :type status: str
-
-    :param total_size: [required] 
-    :type total_size: int
-
-    :param virtual_volume_id:  
-    :type virtual_volume_id: int
-
-    :param volume_pair_uuid: [required] 
-    :type volume_pair_uuid: UUID
-
-    """
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=False,
-        documentation="The source volume ID for the snapshot.",
-        dictionaryType=None
-    )
-    snapshot_id = data_model.property(
-        "snapshotID", int,
-        array=False, optional=False,
-        documentation="[&#x27;Unique ID of a snapshot from which the new snapshot is made.&#x27;, &#x27;The snapshotID passed must be a snapshot on the given volume.&#x27;]",
-        dictionaryType=None
-    )
-    snapshot_uuid = data_model.property(
-        "snapshotUUID", str,
-        array=False, optional=False,
-        documentation="Universal Unique ID of an existing snapshot.",
-        dictionaryType=None
-    )
-    checksum = data_model.property(
-        "checksum", str,
-        array=False, optional=False,
-        documentation="[&#x27;A string that represents the correct digits in the stored snapshot.&#x27;, &#x27;This checksum can be used later to compare other snapshots to detect errors in the data.&#x27;]",
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    create_time = data_model.property(
-        "createTime", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    enable_remote_replication = data_model.property(
-        "enableRemoteReplication", bool,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    expiration_reason = data_model.property(
-        "expirationReason", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    expiration_time = data_model.property(
-        "expirationTime", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    group_id = data_model.property(
-        "groupID", int,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    group_snapshot_uuid = data_model.property(
-        "groupSnapshotUUID", UUID,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    remote_status = data_model.property(
-        "remoteStatus", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    remote_statuses = data_model.property(
-        "remoteStatuses", dict,
-        array=True, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    status = data_model.property(
-        "status", str,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    total_size = data_model.property(
-        "totalSize", int,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-    virtual_volume_id = data_model.property(
-        "virtualVolumeID", int,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
-    volume_pair_uuid = data_model.property(
-        "volumePairUUID", UUID,
-        array=False, optional=False,
-        documentation="",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GroupSnapshot(data_model.DataObject):
-    """GroupSnapshot  
-    Group Snapshot object represents a point-in-time copy of a group of volumes.
-
-    :param group_snapshot_id: [required] Unique ID of the new group snapshot. 
-    :type group_snapshot_id: int
-
-    :param group_snapshot_uuid: [required] UUID of the group snapshot. 
-    :type group_snapshot_uuid: UUID
-
-    :param members: [required] List of volumeIDs and snapshotIDs for each member of the group. 
-    :type members: GroupSnapshotMembers
-
-    :param name: [required] Name of the group snapshot, or, if none was given, the UTC formatted day and time on which the snapshot was created. 
-    :type name: str
-
-    :param create_time: [required] The UTC formatted day and time on which the snapshot was created. 
-    :type create_time: str
-
-    :param status: [required] Status of the snapshot. Possible values: Preparing: A snapshot that is being prepared for use and is not yet writable. Done: A snapshot that has finished being prepared and is now usable 
-    :type status: str
-
-    :param attributes: [required] List of Name/Value pairs in JSON object format. 
-    :type attributes: dict
-
-    """
-    group_snapshot_id = data_model.property(
-        "groupSnapshotID", int,
-        array=False, optional=False,
-        documentation="Unique ID of the new group snapshot.",
-        dictionaryType=None
-    )
-    group_snapshot_uuid = data_model.property(
-        "groupSnapshotUUID", UUID,
-        array=False, optional=False,
-        documentation="UUID of the group snapshot.",
-        dictionaryType=None
-    )
-    members = data_model.property(
-        "members", GroupSnapshotMembers,
-        array=True, optional=False,
-        documentation="List of volumeIDs and snapshotIDs for each member of the group.",
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation="Name of the group snapshot, or, if none was given, the UTC formatted day and time on which the snapshot was created.",
-        dictionaryType=None
-    )
-    create_time = data_model.property(
-        "createTime", str,
-        array=False, optional=False,
-        documentation="The UTC formatted day and time on which the snapshot was created.",
-        dictionaryType=None
-    )
-    status = data_model.property(
-        "status", str,
-        array=False, optional=False,
-        documentation="[&#x27;Status of the snapshot.&#x27;, &#x27;Possible values:&#x27;, &#x27;Preparing: A snapshot that is being prepared for use and is not yet writable.&#x27;, &#x27;Done: A snapshot that has finished being prepared and is now usable&#x27;]",
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=False,
-        documentation="List of Name/Value pairs in JSON object format.",
         dictionaryType=None
     )
 
@@ -11929,6 +12073,9 @@ class NetworkInterface(data_model.DataObject):
     :param virtual_network_tag: [required] Virtual Network Tag if on virtual network. 
     :type virtual_network_tag: int
 
+    :param namespace:  
+    :type namespace: bool
+
     """
     address = data_model.property(
         "address", str,
@@ -11982,6 +12129,12 @@ class NetworkInterface(data_model.DataObject):
         "virtualNetworkTag", int,
         array=False, optional=False,
         documentation="Virtual Network Tag if on virtual network.",
+        dictionaryType=None
+    )
+    namespace = data_model.property(
+        "namespace", bool,
+        array=False, optional=True,
+        documentation="",
         dictionaryType=None
     )
 
@@ -14508,10 +14661,55 @@ class CloneMultipleVolumesRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class VolumeAccessGroupLunAssignments(data_model.DataObject):
+    """VolumeAccessGroupLunAssignments  
+    VolumeAccessGroup ID and Lun to be assigned to all volumes within it.
+
+    :param volume_access_group_id: [required] Unique volume access group ID for which the LUN assignments will be modified. 
+    :type volume_access_group_id: int
+
+    :param lun_assignments: [required] The volume IDs with assigned LUN values. 
+    :type lun_assignments: LunAssignment
+
+    :param deleted_lun_assignments: [required] The volume IDs with deleted LUN values. 
+    :type deleted_lun_assignments: LunAssignment
+
+    """
+    volume_access_group_id = data_model.property(
+        "volumeAccessGroupID", int,
+        array=False, optional=False,
+        documentation="Unique volume access group ID for which the LUN assignments will be modified.",
+        dictionaryType=None
+    )
+    lun_assignments = data_model.property(
+        "lunAssignments", LunAssignment,
+        array=True, optional=False,
+        documentation="The volume IDs with assigned LUN values.",
+        dictionaryType=None
+    )
+    deleted_lun_assignments = data_model.property(
+        "deletedLunAssignments", LunAssignment,
+        array=True, optional=False,
+        documentation="The volume IDs with deleted LUN values.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ModifyVolumeAccessGroupLunAssignmentsResult(data_model.DataObject):
     """ModifyVolumeAccessGroupLunAssignmentsResult  
 
+    :param volume_access_group_lun_assignments: [required] 
+    :type volume_access_group_lun_assignments: VolumeAccessGroupLunAssignments
+
     """
+    volume_access_group_lun_assignments = data_model.property(
+        "volumeAccessGroupLunAssignments", VolumeAccessGroupLunAssignments,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -14725,7 +14923,16 @@ class ListDeletedVolumesResult(data_model.DataObject):
 class DeleteVolumeResult(data_model.DataObject):
     """DeleteVolumeResult  
 
+    :param volume: [required] 
+    :type volume: Volume
+
     """
+    volume = data_model.property(
+        "volume", Volume,
+        array=False, optional=False,
+        documentation="",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -16149,42 +16356,6 @@ class ModifyBackupTargetResult(data_model.DataObject):
     """ModifyBackupTargetResult  
 
     """
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class VolumeAccessGroupLunAssignments(data_model.DataObject):
-    """VolumeAccessGroupLunAssignments  
-    VolumeAccessGroup ID and Lun to be assigned to all volumes within it.
-
-    :param volume_access_group_id: [required] Unique volume access group ID for which the LUN assignments will be modified. 
-    :type volume_access_group_id: int
-
-    :param lun_assignments: [required] The volume IDs with assigned LUN values. 
-    :type lun_assignments: LunAssignment
-
-    :param deleted_lun_assignments: [required] The volume IDs with deleted LUN values. 
-    :type deleted_lun_assignments: LunAssignment
-
-    """
-    volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
-        array=False, optional=False,
-        documentation="Unique volume access group ID for which the LUN assignments will be modified.",
-        dictionaryType=None
-    )
-    lun_assignments = data_model.property(
-        "lunAssignments", LunAssignment,
-        array=True, optional=False,
-        documentation="The volume IDs with assigned LUN values.",
-        dictionaryType=None
-    )
-    deleted_lun_assignments = data_model.property(
-        "deletedLunAssignments", LunAssignment,
-        array=True, optional=False,
-        documentation="The volume IDs with deleted LUN values.",
-        dictionaryType=None
-    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
