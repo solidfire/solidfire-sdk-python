@@ -545,7 +545,7 @@ class Volume(data_model.DataObject):
 class CloneVolumeResult(data_model.DataObject):
     """CloneVolumeResult  
 
-    :param volume: [required] The resulting volume 
+    :param volume:  The resulting volume 
     :type volume: Volume
 
     :param clone_id: [required] The ID of the newly-created clone. 
@@ -560,7 +560,7 @@ class CloneVolumeResult(data_model.DataObject):
     """
     volume = data_model.property(
         "volume", Volume,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="The resulting volume",
         dictionaryType=None
     )
@@ -2267,13 +2267,13 @@ class VirtualVolumeBinding(data_model.DataObject):
     :param virtual_volume_secondary_id: [required] The secondary ID of the virtual volume. 
     :type virtual_volume_secondary_id: str
 
-    :param virtual_volume: [required] An object describing the bound volume or snapshot. 
+    :param virtual_volume:  An object describing the bound volume or snapshot. 
     :type virtual_volume: VirtualVolumeInfo
 
-    :param protocol_endpoint: [required] An object describing the protocol endpoint to which the virtual volume is bound. 
+    :param protocol_endpoint:  An object describing the protocol endpoint to which the virtual volume is bound. 
     :type protocol_endpoint: UUID
 
-    :param virtual_volume_host: [required] An object describing the host to which this binding corresponds. 
+    :param virtual_volume_host:  An object describing the host to which this binding corresponds. 
     :type virtual_volume_host: VirtualVolumeHost
 
     """
@@ -2321,19 +2321,19 @@ class VirtualVolumeBinding(data_model.DataObject):
     )
     virtual_volume = data_model.property(
         "virtualVolume", VirtualVolumeInfo,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="An object describing the bound volume or snapshot.",
         dictionaryType=None
     )
     protocol_endpoint = data_model.property(
         "protocolEndpoint", UUID,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="An object describing the protocol endpoint to which the virtual volume is bound.",
         dictionaryType=None
     )
     virtual_volume_host = data_model.property(
         "virtualVolumeHost", VirtualVolumeHost,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="An object describing the host to which this binding corresponds.",
         dictionaryType=None
     )
@@ -2504,7 +2504,7 @@ class ModifyVolumeResult(data_model.DataObject):
     :param volume:  Object containing information about the newly modified volume. 
     :type volume: Volume
 
-    :param curve: [required] 
+    :param curve:  
     :type curve: QoS
 
     """
@@ -2516,7 +2516,7 @@ class ModifyVolumeResult(data_model.DataObject):
     )
     curve = data_model.property(
         "curve", QoS,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -2770,7 +2770,7 @@ class NetworkConfigParams(data_model.DataObject):
     :param _default:  
     :type _default: bool
 
-    :param bond_master: [required] 
+    :param bond_master:  
     :type bond_master: str
 
     :param virtual_network_tag:  
@@ -2863,7 +2863,7 @@ class NetworkConfigParams(data_model.DataObject):
     )
     bond_master = data_model.property(
         "bond-master", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -4068,7 +4068,7 @@ class ModifyInitiator(data_model.DataObject):
 class AddedNode(data_model.DataObject):
     """AddedNode  
 
-    :param node_id: [required] 
+    :param node_id:  
     :type node_id: int
 
     :param pending_node_id: [required] 
@@ -4101,7 +4101,7 @@ class AddedNode(data_model.DataObject):
     """
     node_id = data_model.property(
         "nodeID", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -6103,7 +6103,7 @@ class DeleteVolumesResult(data_model.DataObject):
     :param volumes: [required] Information about the newly deleted volume. 
     :type volumes: Volume
 
-    :param curve: [required] 
+    :param curve:  
     :type curve: VolumeQOS
 
     """
@@ -6115,7 +6115,7 @@ class DeleteVolumesResult(data_model.DataObject):
     )
     curve = data_model.property(
         "curve", VolumeQOS,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -8330,10 +8330,10 @@ class NetworkConfig(data_model.DataObject):
     :param _default:  
     :type _default: bool
 
-    :param bond_master: [required] 
+    :param bond_master:  
     :type bond_master: str
 
-    :param virtual_network_tag: [required] 
+    :param virtual_network_tag:  
     :type virtual_network_tag: str
 
     :param address:  
@@ -8429,13 +8429,13 @@ class NetworkConfig(data_model.DataObject):
     )
     bond_master = data_model.property(
         "bond-master", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     virtual_network_tag = data_model.property(
         "virtualNetworkTag", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -9884,13 +9884,13 @@ class ListGroupSnapshotsResult(data_model.DataObject):
 class AddVirtualNetworkResult(data_model.DataObject):
     """AddVirtualNetworkResult  
 
-    :param virtual_network_id: [required] The virtual network ID of the new virtual network. 
+    :param virtual_network_id:  The virtual network ID of the new virtual network. 
     :type virtual_network_id: int
 
     """
     virtual_network_id = data_model.property(
         "virtualNetworkID", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="The virtual network ID of the new virtual network.",
         dictionaryType=None
     )
@@ -10963,7 +10963,7 @@ class ListVolumeAccessGroupsResult(data_model.DataObject):
     :param volume_access_groups: [required] A list of objects describing each volume access group. 
     :type volume_access_groups: VolumeAccessGroup
 
-    :param volume_access_groups_not_found: [required] A list of volume access groups not found by the system. Present if you used the "volumeAccessGroups" parameter and the system was unable to find one or more volume access groups that you specified. 
+    :param volume_access_groups_not_found:  A list of volume access groups not found by the system. Present if you used the "volumeAccessGroups" parameter and the system was unable to find one or more volume access groups that you specified. 
     :type volume_access_groups_not_found: int
 
     """
@@ -10975,7 +10975,7 @@ class ListVolumeAccessGroupsResult(data_model.DataObject):
     )
     volume_access_groups_not_found = data_model.property(
         "volumeAccessGroupsNotFound", int,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="A list of volume access groups not found by the system. Present if you used the &quot;volumeAccessGroups&quot; parameter and the system was unable to find one or more volume access groups that you specified.",
         dictionaryType=None
     )
@@ -11283,7 +11283,7 @@ class ListAllNodesResult(data_model.DataObject):
     :param pending_nodes: [required] 
     :type pending_nodes: PendingNode
 
-    :param pending_active_nodes: [required] List of objects detailing information about all PendingActive nodes in the system. 
+    :param pending_active_nodes:  List of objects detailing information about all PendingActive nodes in the system. 
     :type pending_active_nodes: PendingActiveNode
 
     """
@@ -11301,7 +11301,7 @@ class ListAllNodesResult(data_model.DataObject):
     )
     pending_active_nodes = data_model.property(
         "pendingActiveNodes", PendingActiveNode,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="List of objects detailing information about all PendingActive nodes in the system.",
         dictionaryType=None
     )
@@ -11733,7 +11733,7 @@ class GetClusterVersionInfoResult(data_model.DataObject):
 class ModifyVolumesResult(data_model.DataObject):
     """ModifyVolumesResult  
 
-    :param qos: [required] 
+    :param qos:  
     :type qos: QoS
 
     :param volumes: [required] 
@@ -11742,7 +11742,7 @@ class ModifyVolumesResult(data_model.DataObject):
     """
     qos = data_model.property(
         "qos", QoS,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -12589,10 +12589,10 @@ class BulkVolumeJob(data_model.DataObject):
     :param status: [required] Can be one of the following: preparing active done failed 
     :type status: str
 
-    :param script: [required] The name of the script if one is provided. 
+    :param script:  The name of the script if one is provided. 
     :type script: str
 
-    :param snapshot_id: [required] ID of the snapshot if a snapshot is in the source of the bulk volume job. 
+    :param snapshot_id:  ID of the snapshot if a snapshot is in the source of the bulk volume job. 
     :type snapshot_id: int
 
     :param type: [required] Can be one of the following: read write 
@@ -12658,13 +12658,13 @@ class BulkVolumeJob(data_model.DataObject):
     )
     script = data_model.property(
         "script", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="The name of the script if one is provided.",
         dictionaryType=None
     )
     snapshot_id = data_model.property(
         "snapshotID", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="ID of the snapshot if a snapshot is in the source of the bulk volume job.",
         dictionaryType=None
     )
@@ -12920,7 +12920,7 @@ class ListNodeFibreChannelPortInfoResult(data_model.DataObject):
     """ListNodeFibreChannelPortInfoResult  
     List of fibre channel port info results grouped by node.
 
-    :param nodes: [required] List of fibre channel port info results grouped by node. 
+    :param nodes:  List of fibre channel port info results grouped by node. 
     :type nodes: NodeFibreChannelPortInfoResult
 
     :param fibre_channel_ports: [required] List of all physical Fibre Channel ports. 
@@ -12929,7 +12929,7 @@ class ListNodeFibreChannelPortInfoResult(data_model.DataObject):
     """
     nodes = data_model.property(
         "nodes", NodeFibreChannelPortInfoResult,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="List of fibre channel port info results grouped by node.",
         dictionaryType=None
     )
@@ -16202,7 +16202,7 @@ class NodeStateResult(data_model.DataObject):
     :param node_id: [required] ID of the node. 
     :type node_id: int
 
-    :param result: [required] NodeStateInfo object. 
+    :param result:  NodeStateInfo object. 
     :type result: NodeStateInfo
 
     """
@@ -16214,7 +16214,7 @@ class NodeStateResult(data_model.DataObject):
     )
     result = data_model.property(
         "result", NodeStateInfo,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="NodeStateInfo object.",
         dictionaryType=None
     )
@@ -16225,31 +16225,31 @@ class NodeStateResult(data_model.DataObject):
 class GetClusterStateResult(data_model.DataObject):
     """GetClusterStateResult  
 
-    :param nodes: [required] Array of NodeStateResult objects for each node in the cluster. 
+    :param nodes:  Array of NodeStateResult objects for each node in the cluster. 
     :type nodes: NodeStateResult
 
-    :param cluster: [required] 
+    :param cluster:  
     :type cluster: str
 
-    :param state: [required] 
+    :param state:  
     :type state: str
 
     """
     nodes = data_model.property(
         "nodes", NodeStateResult,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="Array of NodeStateResult objects for each node in the cluster.",
         dictionaryType=None
     )
     cluster = data_model.property(
         "cluster", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     state = data_model.property(
         "state", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -16522,22 +16522,22 @@ class GetBootstrapConfigResult(data_model.DataObject):
 class ClusterHardwareInfo(data_model.DataObject):
     """ClusterHardwareInfo  
 
-    :param drives: [required] 
+    :param drives:  
     :type drives: dict
 
-    :param nodes: [required] 
+    :param nodes:  
     :type nodes: dict
 
     """
     drives = data_model.property(
         "drives", dict,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=DriveHardwareInfo
     )
     nodes = data_model.property(
         "nodes", dict,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=dict
     )
