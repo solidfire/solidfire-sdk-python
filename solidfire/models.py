@@ -378,7 +378,7 @@ class Volume(data_model.DataObject):
     :param enable512e: [required] If "true", the volume provides 512 byte sector emulation. 
     :type enable512e: bool
 
-    :param iqn: [required] Volume iSCSI Qualified Name. 
+    :param iqn:  Volume iSCSI Qualified Name. 
     :type iqn: str
 
     :param scsi_euidevice_id: [required] Globally unique SCSI device identifier for the volume in EUI-64 based 16-byte format. 
@@ -411,7 +411,7 @@ class Volume(data_model.DataObject):
     :param block_size: [required] Size of the blocks on the volume. 
     :type block_size: int
 
-    :param virtual_volume_id: [required] Virtual volume ID this volume backs. 
+    :param virtual_volume_id:  Virtual volume ID this volume backs. 
     :type virtual_volume_id: UUID
 
     :param attributes: [required] List of Name/Value pairs in JSON object format. 
@@ -462,7 +462,7 @@ class Volume(data_model.DataObject):
     )
     iqn = data_model.property(
         "iqn", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="Volume iSCSI Qualified Name.",
         dictionaryType=None
     )
@@ -528,7 +528,7 @@ class Volume(data_model.DataObject):
     )
     virtual_volume_id = data_model.property(
         "virtualVolumeID", UUID,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[&#x27;Virtual volume ID this volume backs.&#x27;]",
         dictionaryType=None
     )
@@ -1046,7 +1046,7 @@ class VolumeAccessGroup(data_model.DataObject):
     :param name: [required] Name of the volume access group. 
     :type name: str
 
-    :param initiator_ids: [required] A list of IDs of initiators that are mapped to the VAG. 
+    :param initiator_ids:  A list of IDs of initiators that are mapped to the VAG. 
     :type initiator_ids: int
 
     :param initiators: [required] List of unique initiator names belonging to the volume access group. 
@@ -1079,7 +1079,7 @@ class VolumeAccessGroup(data_model.DataObject):
     )
     initiator_ids = data_model.property(
         "initiatorIDs", int,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="A list of IDs of initiators that are mapped to the VAG.",
         dictionaryType=None
     )
@@ -1225,28 +1225,28 @@ class VolumeStats(data_model.DataObject):
     :param account_id: [required] AccountID of the volume owner. 
     :type account_id: int
 
-    :param actual_iops: [required] Current actual IOPS to the volume in the last 500 milliseconds. 
+    :param actual_iops:  Current actual IOPS to the volume in the last 500 milliseconds. 
     :type actual_iops: int
 
     :param async_delay:  The length of time since the volume was last synced with the remote cluster. If the volume is not paired, this is null.  Note: A target volume in an active replication state always has an async delay of 0 (zero). Target volumes are system-aware during replication and assume async delay is accurate at all times. 
     :type async_delay: str
 
-    :param average_iopsize: [required] Average size in bytes of recent I/O to the volume in the last 500 milliseconds. 
+    :param average_iopsize:  Average size in bytes of recent I/O to the volume in the last 500 milliseconds. 
     :type average_iopsize: int
 
-    :param burst_iopscredit: [required] The total number of IOP credits available to the user. When users are not using up to the max IOPS, credits are accrued. 
+    :param burst_iopscredit:  The total number of IOP credits available to the user. When users are not using up to the max IOPS, credits are accrued. 
     :type burst_iopscredit: int
 
-    :param client_queue_depth: [required] The number of outstanding read and write operations to the cluster. 
+    :param client_queue_depth:  The number of outstanding read and write operations to the cluster. 
     :type client_queue_depth: int
 
-    :param desired_metadata_hosts: [required] The volume services being migrated to if the volume metadata is getting migrated between volume services. A "null" value means the volume is not migrating. 
+    :param desired_metadata_hosts:  The volume services being migrated to if the volume metadata is getting migrated between volume services. A "null" value means the volume is not migrating. 
     :type desired_metadata_hosts: MetadataHosts
 
-    :param latency_usec: [required] The observed latency time, in microseconds, to complete operations to a volume. A "0" (zero) value means there is no I/O to the volume. 
+    :param latency_usec:  The observed latency time, in microseconds, to complete operations to a volume. A "0" (zero) value means there is no I/O to the volume. 
     :type latency_usec: int
 
-    :param metadata_hosts: [required] The volume services on which the volume metadata resides. 
+    :param metadata_hosts:  The volume services on which the volume metadata resides. 
     :type metadata_hosts: MetadataHosts
 
     :param non_zero_blocks: [required] The number of 4KiB blocks with data after the last garbage collection operation has completed. 
@@ -1255,19 +1255,19 @@ class VolumeStats(data_model.DataObject):
     :param read_bytes: [required] Total bytes read by clients. 
     :type read_bytes: int
 
-    :param read_latency_usec: [required] The average time, in microseconds, to complete read operations. 
+    :param read_latency_usec:  The average time, in microseconds, to complete read operations. 
     :type read_latency_usec: int
 
     :param read_ops: [required] Total read operations. 
     :type read_ops: int
 
-    :param throttle: [required] A floating value between 0 and 1 that represents how much the system is throttling clients below their max IOPS because of re-replication of data, transient errors and snapshots taken. 
+    :param throttle:  A floating value between 0 and 1 that represents how much the system is throttling clients below their max IOPS because of re-replication of data, transient errors and snapshots taken. 
     :type throttle: float
 
     :param timestamp: [required] The current time in UTC. 
     :type timestamp: str
 
-    :param total_latency_usec: [required] The average time, in microseconds, to complete read and write operations to a volume. 
+    :param total_latency_usec:  The average time, in microseconds, to complete read and write operations to a volume. 
     :type total_latency_usec: int
 
     :param unaligned_reads: [required] For 512e volumes, the number of read operations that were not on a 4k sector boundary. High numbers of unaligned reads may indicate improper partition alignment. 
@@ -1285,13 +1285,13 @@ class VolumeStats(data_model.DataObject):
     :param volume_size: [required] Total provisioned capacity in bytes. 
     :type volume_size: int
 
-    :param volume_utilization: [required] A floating value that describes how much the client is using the volume.  Values:  0 = Client is not using the volume 1 = Client is using their max >1 = Client is using their burst 
+    :param volume_utilization:  A floating value that describes how much the client is using the volume.  Values:  0 = Client is not using the volume 1 = Client is using their max >1 = Client is using their burst 
     :type volume_utilization: float
 
     :param write_bytes: [required] Total bytes written by clients. 
     :type write_bytes: int
 
-    :param write_latency_usec: [required] The average time, in microseconds, to complete write operations. 
+    :param write_latency_usec:  The average time, in microseconds, to complete write operations. 
     :type write_latency_usec: int
 
     :param write_ops: [required] Total write operations occurring on the volume. 
@@ -1300,22 +1300,22 @@ class VolumeStats(data_model.DataObject):
     :param zero_blocks: [required] Total number of 4KiB blocks without data after the last round of garbage collection operation has completed. 
     :type zero_blocks: int
 
-    :param write_bytes_last_sample: [required] The total number of bytes written to the volume during the last sample period. 
+    :param write_bytes_last_sample:  The total number of bytes written to the volume during the last sample period. 
     :type write_bytes_last_sample: int
 
-    :param sample_period_msec: [required] The length of the sample period in milliseconds. 
+    :param sample_period_msec:  The length of the sample period in milliseconds. 
     :type sample_period_msec: int
 
-    :param read_bytes_last_sample: [required] The total number of bytes read from the volume during the last sample period. 
+    :param read_bytes_last_sample:  The total number of bytes read from the volume during the last sample period. 
     :type read_bytes_last_sample: int
 
-    :param read_ops_last_sample: [required] The total number of read operations durin gth elast sample period. 
+    :param read_ops_last_sample:  The total number of read operations durin gth elast sample period. 
     :type read_ops_last_sample: int
 
-    :param write_ops_last_sample: [required] The total number of write operations during the last sample period. 
+    :param write_ops_last_sample:  The total number of write operations during the last sample period. 
     :type write_ops_last_sample: int
 
-    :param virtual_volume_id: [required] If the volume of interest is associated with a virtual volume, this is the virtual volume ID. 
+    :param virtual_volume_id:  If the volume of interest is associated with a virtual volume, this is the virtual volume ID. 
     :type virtual_volume_id: UUID
 
     """
@@ -1327,7 +1327,7 @@ class VolumeStats(data_model.DataObject):
     )
     actual_iops = data_model.property(
         "actualIOPS", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="Current actual IOPS to the volume in the last 500 milliseconds.",
         dictionaryType=None
     )
@@ -1339,37 +1339,37 @@ class VolumeStats(data_model.DataObject):
     )
     average_iopsize = data_model.property(
         "averageIOPSize", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="Average size in bytes of recent I/O to the volume in the last 500 milliseconds.",
         dictionaryType=None
     )
     burst_iopscredit = data_model.property(
         "burstIOPSCredit", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[&#x27;The total number of IOP credits available to the user.&#x27;, &#x27;When users are not using up to the max IOPS, credits are accrued.&#x27;]",
         dictionaryType=None
     )
     client_queue_depth = data_model.property(
         "clientQueueDepth", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="The number of outstanding read and write operations to the cluster.",
         dictionaryType=None
     )
     desired_metadata_hosts = data_model.property(
         "desiredMetadataHosts", MetadataHosts,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[&#x27;The volume services being migrated to if the volume metadata is getting migrated between volume services.&#x27;, &#x27;A &quot;null&quot; value means the volume is not migrating.&#x27;]",
         dictionaryType=None
     )
     latency_usec = data_model.property(
         "latencyUSec", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[&#x27;The observed latency time, in microseconds, to complete operations to a volume.&#x27;, &#x27;A &quot;0&quot; (zero) value means there is no I/O to the volume.&#x27;]",
         dictionaryType=None
     )
     metadata_hosts = data_model.property(
         "metadataHosts", MetadataHosts,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="The volume services on which the volume metadata resides.",
         dictionaryType=None
     )
@@ -1387,7 +1387,7 @@ class VolumeStats(data_model.DataObject):
     )
     read_latency_usec = data_model.property(
         "readLatencyUSec", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="The average time, in microseconds, to complete read operations.",
         dictionaryType=None
     )
@@ -1399,7 +1399,7 @@ class VolumeStats(data_model.DataObject):
     )
     throttle = data_model.property(
         "throttle", float,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[&#x27;A floating value between 0 and 1 that represents how much the system is throttling clients&#x27;, &#x27;below their max IOPS because of re-replication of data, transient errors and snapshots taken.&#x27;]",
         dictionaryType=None
     )
@@ -1411,7 +1411,7 @@ class VolumeStats(data_model.DataObject):
     )
     total_latency_usec = data_model.property(
         "totalLatencyUSec", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="The average time, in microseconds, to complete read and write operations to a volume.",
         dictionaryType=None
     )
@@ -1447,7 +1447,7 @@ class VolumeStats(data_model.DataObject):
     )
     volume_utilization = data_model.property(
         "volumeUtilization", float,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[&#x27;A floating value that describes how much the client is using the volume.&#x27;, u&#x27;&#x27;, &#x27;Values:&#x27;, &#x27; 0 = Client is not using the volume&#x27;, &#x27;1 = Client is using their max&#x27;, &#x27;&gt;1 = Client is using their burst&#x27;]",
         dictionaryType=None
     )
@@ -1459,7 +1459,7 @@ class VolumeStats(data_model.DataObject):
     )
     write_latency_usec = data_model.property(
         "writeLatencyUSec", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="The average time, in microseconds, to complete write operations.",
         dictionaryType=None
     )
@@ -1477,37 +1477,37 @@ class VolumeStats(data_model.DataObject):
     )
     write_bytes_last_sample = data_model.property(
         "writeBytesLastSample", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="The total number of bytes written to the volume during the last sample period.",
         dictionaryType=None
     )
     sample_period_msec = data_model.property(
         "samplePeriodMSec", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="The length of the sample period in milliseconds.",
         dictionaryType=None
     )
     read_bytes_last_sample = data_model.property(
         "readBytesLastSample", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="The total number of bytes read from the volume during the last sample period.",
         dictionaryType=None
     )
     read_ops_last_sample = data_model.property(
         "readOpsLastSample", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="The total number of read operations durin gth elast sample period.",
         dictionaryType=None
     )
     write_ops_last_sample = data_model.property(
         "writeOpsLastSample", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="The total number of write operations during the last sample period.",
         dictionaryType=None
     )
     virtual_volume_id = data_model.property(
         "virtualVolumeID", UUID,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="If the volume of interest is associated with a virtual volume, this is the virtual volume ID.",
         dictionaryType=None
     )
@@ -1609,7 +1609,7 @@ class StorageContainer(data_model.DataObject):
     :param status: [required] 
     :type status: str
 
-    :param virtual_volumes: [required] 
+    :param virtual_volumes:  
     :type virtual_volumes: UUID
 
     """
@@ -1657,7 +1657,7 @@ class StorageContainer(data_model.DataObject):
     )
     virtual_volumes = data_model.property(
         "virtualVolumes", UUID,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -2118,7 +2118,7 @@ class VirtualVolumeInfo(data_model.DataObject):
     :param parent_virtual_volume_id: [required] 
     :type parent_virtual_volume_id: UUID
 
-    :param storage_container_id: [required] 
+    :param storage_container_id:  
     :type storage_container_id: UUID
 
     :param storage_container: [required] 
@@ -2151,7 +2151,7 @@ class VirtualVolumeInfo(data_model.DataObject):
     :param volume_info: [required] 
     :type volume_info: Volume
 
-    :param descendants: [required] 
+    :param descendants:  
     :type descendants: int
 
     """
@@ -2169,7 +2169,7 @@ class VirtualVolumeInfo(data_model.DataObject):
     )
     storage_container_id = data_model.property(
         "storageContainerID", UUID,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -2235,7 +2235,7 @@ class VirtualVolumeInfo(data_model.DataObject):
     )
     descendants = data_model.property(
         "descendants", int,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -2501,7 +2501,7 @@ class QoS(data_model.DataObject):
 class ModifyVolumeResult(data_model.DataObject):
     """ModifyVolumeResult  
 
-    :param volume: [required] Object containing information about the newly modified volume. 
+    :param volume:  Object containing information about the newly modified volume. 
     :type volume: Volume
 
     :param curve: [required] 
@@ -2510,7 +2510,7 @@ class ModifyVolumeResult(data_model.DataObject):
     """
     volume = data_model.property(
         "volume", Volume,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="Object containing information about the newly modified volume.",
         dictionaryType=None
     )
@@ -3223,7 +3223,7 @@ class NodeStatsInfo(data_model.DataObject):
     :param network_utilization_storage: [required] Network interface utilization (in %) for the storage network interface. 
     :type network_utilization_storage: int
 
-    :param node_id: [required] 
+    :param node_id:  
     :type node_id: int
 
     :param s_bytes_in: [required] Bytes in on the storage interface. 
@@ -3283,7 +3283,7 @@ class NodeStatsInfo(data_model.DataObject):
     )
     node_id = data_model.property(
         "nodeID", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -3706,7 +3706,7 @@ class Platform(data_model.DataObject):
     :param node_memory_gb: [required] The amount of memory on this platform in GiB. 
     :type node_memory_gb: int
 
-    :param platform_config_version: [required] 
+    :param platform_config_version:  
     :type platform_config_version: str
 
     """
@@ -3736,7 +3736,7 @@ class Platform(data_model.DataObject):
     )
     platform_config_version = data_model.property(
         "platformConfigVersion", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -4501,16 +4501,16 @@ class GetLimitsResult(data_model.DataObject):
     :param volumes_per_volume_access_group_count_max: [required] 
     :type volumes_per_volume_access_group_count_max: int
 
-    :param cluster_admin_account_max: [required] 
+    :param cluster_admin_account_max:  
     :type cluster_admin_account_max: int
 
-    :param fibre_channel_volume_access_max: [required] 
+    :param fibre_channel_volume_access_max:  
     :type fibre_channel_volume_access_max: int
 
-    :param virtual_volumes_per_account_count_max: [required] 
+    :param virtual_volumes_per_account_count_max:  
     :type virtual_volumes_per_account_count_max: int
 
-    :param virtual_volume_count_max: [required] 
+    :param virtual_volume_count_max:  
     :type virtual_volume_count_max: int
 
     """
@@ -4732,25 +4732,25 @@ class GetLimitsResult(data_model.DataObject):
     )
     cluster_admin_account_max = data_model.property(
         "clusterAdminAccountMax", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     fibre_channel_volume_access_max = data_model.property(
         "fibreChannelVolumeAccessMax", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     virtual_volumes_per_account_count_max = data_model.property(
         "virtualVolumesPerAccountCountMax", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     virtual_volume_count_max = data_model.property(
         "virtualVolumeCountMax", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -4943,7 +4943,7 @@ class SetDefaultQoSRequest(data_model.DataObject):
 class ISCSISession(data_model.DataObject):
     """ISCSISession  
 
-    :param drive_ids: [required] 
+    :param drive_ids:  
     :type drive_ids: int
 
     :param account_id: [required] 
@@ -5003,7 +5003,7 @@ class ISCSISession(data_model.DataObject):
     """
     drive_ids = data_model.property(
         "driveIDs", int,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -6077,7 +6077,7 @@ class CreateVolumeAccessGroupResult(data_model.DataObject):
     :param volume_access_group_id: [required] The ID for the newly-created volume access group. 
     :type volume_access_group_id: int
 
-    :param volume_access_group: [required] 
+    :param volume_access_group:  
     :type volume_access_group: VolumeAccessGroup
 
     """
@@ -6089,7 +6089,7 @@ class CreateVolumeAccessGroupResult(data_model.DataObject):
     )
     volume_access_group = data_model.property(
         "volumeAccessGroup", VolumeAccessGroup,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -6199,16 +6199,16 @@ class GroupSnapshotMembers(data_model.DataObject):
     :param checksum: [required] A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. 
     :type checksum: str
 
-    :param attributes: [required] 
+    :param attributes:  
     :type attributes: dict
 
-    :param create_time: [required] 
+    :param create_time:  
     :type create_time: str
 
-    :param enable_remote_replication: [required] 
+    :param enable_remote_replication:  
     :type enable_remote_replication: bool
 
-    :param expiration_reason: [required] 
+    :param expiration_reason:  
     :type expiration_reason: str
 
     :param expiration_time:  
@@ -6217,28 +6217,28 @@ class GroupSnapshotMembers(data_model.DataObject):
     :param group_id:  
     :type group_id: int
 
-    :param group_snapshot_uuid: [required] 
+    :param group_snapshot_uuid:  
     :type group_snapshot_uuid: UUID
 
-    :param name: [required] 
+    :param name:  
     :type name: str
 
-    :param remote_status: [required] 
+    :param remote_status:  
     :type remote_status: str
 
-    :param remote_statuses: [required] 
+    :param remote_statuses:  
     :type remote_statuses: dict
 
-    :param status: [required] 
+    :param status:  
     :type status: str
 
-    :param total_size: [required] 
+    :param total_size:  
     :type total_size: int
 
     :param virtual_volume_id:  
     :type virtual_volume_id: int
 
-    :param volume_pair_uuid: [required] 
+    :param volume_pair_uuid:  
     :type volume_pair_uuid: UUID
 
     """
@@ -6268,25 +6268,25 @@ class GroupSnapshotMembers(data_model.DataObject):
     )
     attributes = data_model.property(
         "attributes", dict,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     create_time = data_model.property(
         "createTime", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     enable_remote_replication = data_model.property(
         "enableRemoteReplication", bool,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     expiration_reason = data_model.property(
         "expirationReason", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -6304,37 +6304,37 @@ class GroupSnapshotMembers(data_model.DataObject):
     )
     group_snapshot_uuid = data_model.property(
         "groupSnapshotUUID", UUID,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     remote_status = data_model.property(
         "remoteStatus", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     remote_statuses = data_model.property(
         "remoteStatuses", dict,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="",
         dictionaryType=None
     )
     status = data_model.property(
         "status", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     total_size = data_model.property(
         "totalSize", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -6346,7 +6346,7 @@ class GroupSnapshotMembers(data_model.DataObject):
     )
     volume_pair_uuid = data_model.property(
         "volumePairUUID", UUID,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -7201,7 +7201,7 @@ class ClusterInfo(data_model.DataObject):
     :param rep_count: [required] Number of replicas of each piece of data to store in the cluster. Valid value is 2 
     :type rep_count: int
 
-    :param state: [required] 
+    :param state:  
     :type state: str
 
     :param svip: [required] Storage virtual IP 
@@ -7282,7 +7282,7 @@ class ClusterInfo(data_model.DataObject):
     )
     state = data_model.property(
         "state", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -7624,7 +7624,7 @@ class GetVolumeEfficiencyRequest(data_model.DataObject):
 class CreateVolumeResult(data_model.DataObject):
     """CreateVolumeResult  
 
-    :param volume: [required] 
+    :param volume:  
     :type volume: Volume
 
     :param volume_id: [required] VolumeID for the newly created volume. 
@@ -7636,7 +7636,7 @@ class CreateVolumeResult(data_model.DataObject):
     """
     volume = data_model.property(
         "volume", Volume,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -8414,10 +8414,10 @@ class NetworkConfig(data_model.DataObject):
     :param up_and_running:  
     :type up_and_running: bool
 
-    :param bond_xmit_hash_policy: [required] 
+    :param bond_xmit_hash_policy:  
     :type bond_xmit_hash_policy: str
 
-    :param bond_ad_num_ports: [required] 
+    :param bond_ad_num_ports:  
     :type bond_ad_num_ports: str
 
     """
@@ -8597,13 +8597,13 @@ class NetworkConfig(data_model.DataObject):
     )
     bond_xmit_hash_policy = data_model.property(
         "bond-xmit_hash_policy", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     bond_ad_num_ports = data_model.property(
         "bond-ad_num_ports", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -9627,22 +9627,22 @@ class SnmpNetwork(data_model.DataObject):
 class GetSnmpACLResult(data_model.DataObject):
     """GetSnmpACLResult  
 
-    :param networks: [required] List of networks and what type of access they have to the SNMP servers running on the cluster nodes. Present if SNMP v3 is disabled. 
+    :param networks:  List of networks and what type of access they have to the SNMP servers running on the cluster nodes. Present if SNMP v3 is disabled. 
     :type networks: SnmpNetwork
 
-    :param usm_users: [required] List of users and the type of access they have to the SNMP servers running on the cluster nodes. Present if SNMP v3 is enabled. 
+    :param usm_users:  List of users and the type of access they have to the SNMP servers running on the cluster nodes. Present if SNMP v3 is enabled. 
     :type usm_users: SnmpV3UsmUser
 
     """
     networks = data_model.property(
         "networks", SnmpNetwork,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="List of networks and what type of access they have to the SNMP servers running on the cluster nodes. Present if SNMP v3 is disabled.",
         dictionaryType=None
     )
     usm_users = data_model.property(
         "usmUsers", SnmpV3UsmUser,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="List of users and the type of access they have to the SNMP servers running on the cluster nodes. Present if SNMP v3 is enabled.",
         dictionaryType=None
     )
@@ -9901,10 +9901,10 @@ class AddVirtualNetworkResult(data_model.DataObject):
 class ClusterFaultInfo(data_model.DataObject):
     """ClusterFaultInfo  
 
-    :param drive_ids: [required] 
+    :param drive_ids:  
     :type drive_ids: int
 
-    :param network_interface: [required] 
+    :param network_interface:  
     :type network_interface: str
 
     :param severity: [required] 
@@ -9949,13 +9949,13 @@ class ClusterFaultInfo(data_model.DataObject):
     """
     drive_ids = data_model.property(
         "driveIDs", int,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="",
         dictionaryType=None
     )
     network_interface = data_model.property(
         "networkInterface", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -10603,22 +10603,22 @@ class DriveConfigInfo(data_model.DataObject):
     :param version: [required] 
     :type version: str
 
-    :param num_block_actual: [required] 
+    :param num_block_actual:  
     :type num_block_actual: int
 
-    :param num_block_expected: [required] 
+    :param num_block_expected:  
     :type num_block_expected: int
 
-    :param num_slice_actual: [required] 
+    :param num_slice_actual:  
     :type num_slice_actual: int
 
-    :param num_slice_expected: [required] 
+    :param num_slice_expected:  
     :type num_slice_expected: int
 
-    :param num_total_actual: [required] 
+    :param num_total_actual:  
     :type num_total_actual: int
 
-    :param num_total_expected: [required] 
+    :param num_total_expected:  
     :type num_total_expected: int
 
     :param security_at_maximum: [required] 
@@ -10771,37 +10771,37 @@ class DriveConfigInfo(data_model.DataObject):
     )
     num_block_actual = data_model.property(
         "numBlockActual", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     num_block_expected = data_model.property(
         "numBlockExpected", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     num_slice_actual = data_model.property(
         "numSliceActual", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     num_slice_expected = data_model.property(
         "numSliceExpected", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     num_total_actual = data_model.property(
         "numTotalActual", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     num_total_expected = data_model.property(
         "numTotalExpected", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -13814,7 +13814,7 @@ class GetClusterCapacityResult(data_model.DataObject):
 class GetSnmpInfoResult(data_model.DataObject):
     """GetSnmpInfoResult  
 
-    :param networks: [required] List of networks and access types enabled for SNMP.  Note: "networks" will only be present if SNMP V3 is disabled. 
+    :param networks:  List of networks and access types enabled for SNMP.  Note: "networks" will only be present if SNMP V3 is disabled. 
     :type networks: SnmpNetwork
 
     :param enabled: [required] If the nodes in the cluster are configured for SNMP. 
@@ -13823,13 +13823,13 @@ class GetSnmpInfoResult(data_model.DataObject):
     :param snmp_v3_enabled: [required] If the nodes in the cluster are configured for SNMP v3. 
     :type snmp_v3_enabled: bool
 
-    :param usm_users: [required] If SNMP v3 is enabled, the values returned is a list of user access parameters for SNMP information from the cluster. This will be returned instead of the "networks" parameter. 
+    :param usm_users:  If SNMP v3 is enabled, the values returned is a list of user access parameters for SNMP information from the cluster. This will be returned instead of the "networks" parameter. 
     :type usm_users: SnmpV3UsmUser
 
     """
     networks = data_model.property(
         "networks", SnmpNetwork,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="[&#x27;List of networks and access types enabled for SNMP.&#x27;, u&#x27;&#x27;, &#x27;Note: &quot;networks&quot; will only be present if SNMP V3 is disabled.&#x27;]",
         dictionaryType=None
     )
@@ -13847,7 +13847,7 @@ class GetSnmpInfoResult(data_model.DataObject):
     )
     usm_users = data_model.property(
         "usmUsers", SnmpV3UsmUser,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="If SNMP v3 is enabled, the values returned is a list of user access parameters for SNMP information from the cluster. This will be returned instead of the &quot;networks&quot; parameter.",
         dictionaryType=None
     )
@@ -14914,13 +14914,13 @@ class ListDeletedVolumesResult(data_model.DataObject):
 class DeleteVolumeResult(data_model.DataObject):
     """DeleteVolumeResult  
 
-    :param volume: [required] 
+    :param volume:  
     :type volume: Volume
 
     """
     volume = data_model.property(
         "volume", Volume,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -15730,13 +15730,13 @@ class ListStorageContainersResult(data_model.DataObject):
 class RtfiInfo(data_model.DataObject):
     """RtfiInfo  
 
-    :param mipi: [required] 
+    :param mipi:  
     :type mipi: str
 
     :param generation: [required] 
     :type generation: int
 
-    :param status_url_logfile: [required] 
+    :param status_url_logfile:  
     :type status_url_logfile: str
 
     :param build: [required] 
@@ -15745,22 +15745,22 @@ class RtfiInfo(data_model.DataObject):
     :param status_url_all: [required] 
     :type status_url_all: str
 
-    :param generation_next: [required] 
+    :param generation_next:  
     :type generation_next: int
 
-    :param mip: [required] 
+    :param mip:  
     :type mip: str
 
     :param status_url_current: [required] 
     :type status_url_current: str
 
-    :param options: [required] 
+    :param options:  
     :type options: dict
 
     """
     mipi = data_model.property(
         "mipi", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -15772,7 +15772,7 @@ class RtfiInfo(data_model.DataObject):
     )
     status_url_logfile = data_model.property(
         "statusUrlLogfile", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -15790,13 +15790,13 @@ class RtfiInfo(data_model.DataObject):
     )
     generation_next = data_model.property(
         "generationNext", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     mip = data_model.property(
         "mip", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -15808,7 +15808,7 @@ class RtfiInfo(data_model.DataObject):
     )
     options = data_model.property(
         "options", dict,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -15836,40 +15836,40 @@ class ResetNodeDetails(data_model.DataObject):
 class ResetNodeResult(data_model.DataObject):
     """ResetNodeResult  
 
-    :param details: [required] 
+    :param details:  
     :type details: ResetNodeDetails
 
-    :param duration: [required] 
+    :param duration:  
     :type duration: str
 
-    :param result: [required] 
+    :param result:  
     :type result: str
 
-    :param rtfi_info: [required] 
+    :param rtfi_info:  
     :type rtfi_info: RtfiInfo
 
     """
     details = data_model.property(
         "details", ResetNodeDetails,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     duration = data_model.property(
         "duration", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     result = data_model.property(
         "result", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     rtfi_info = data_model.property(
         "rtfiInfo", RtfiInfo,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -16371,43 +16371,43 @@ class GetVolumeAccessGroupLunAssignmentsResult(data_model.DataObject):
 class NodeWaitingToJoin(data_model.DataObject):
     """NodeWaitingToJoin  
 
-    :param name: [required] 
+    :param name:  
     :type name: str
 
     :param version: [required] 
     :type version: str
 
-    :param node_id: [required] 
+    :param node_id:  
     :type node_id: int
 
-    :param pending_node_id: [required] 
+    :param pending_node_id:  
     :type pending_node_id: int
 
-    :param mip: [required] 
+    :param mip:  
     :type mip: str
 
-    :param cip: [required] 
+    :param cip:  
     :type cip: str
 
-    :param sip: [required] 
+    :param sip:  
     :type sip: str
 
     :param compatible: [required] 
     :type compatible: bool
 
-    :param chassis_type: [required] 
+    :param chassis_type:  
     :type chassis_type: str
 
-    :param hostname: [required] 
+    :param hostname:  
     :type hostname: str
 
-    :param node_type: [required] 
+    :param node_type:  
     :type node_type: str
 
     """
     name = data_model.property(
         "name", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -16419,31 +16419,31 @@ class NodeWaitingToJoin(data_model.DataObject):
     )
     node_id = data_model.property(
         "nodeID", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     pending_node_id = data_model.property(
         "pendingNodeID", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     mip = data_model.property(
         "mip", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     cip = data_model.property(
         "cip", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     sip = data_model.property(
         "sip", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
@@ -16455,19 +16455,19 @@ class NodeWaitingToJoin(data_model.DataObject):
     )
     chassis_type = data_model.property(
         "chassisType", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     hostname = data_model.property(
         "hostname", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
     node_type = data_model.property(
         "nodeType", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="",
         dictionaryType=None
     )
