@@ -1805,10 +1805,10 @@ class Schedule(data_model.DataObject):
     :param has_error:  Indicates whether or not the schedule has errors. 
     :type has_error: bool
 
-    :param last_run_status:  Indicates the status of the last scheduled snapshot. Valid values are: Success Failed 
+    :param last_run_status: [required] Indicates the status of the last scheduled snapshot. Valid values are: Success Failed 
     :type last_run_status: str
 
-    :param last_run_time_started:  Indicates the last time the schedule started n ISO 8601 date string. Valid values are: Success Failed 
+    :param last_run_time_started: [required] Indicates the last time the schedule started n ISO 8601 date string. Valid values are: Success Failed 
     :type last_run_time_started: str
 
     :param paused:  Indicates whether or not the schedule is paused. 
@@ -1829,7 +1829,7 @@ class Schedule(data_model.DataObject):
     :param name: [required] Unique name assigned to the schedule. 
     :type name: str
 
-    :param starting_date:  Indicates the date the first time the schedule began of will begin. Formatted in UTC time. 
+    :param starting_date: [required] Indicates the date the first time the schedule began of will begin. Formatted in UTC time. 
     :type starting_date: str
 
     :param to_be_deleted:  Indicates if the schedule is marked for deletion. 
@@ -1850,13 +1850,13 @@ class Schedule(data_model.DataObject):
     )
     last_run_status = data_model.property(
         "lastRunStatus", str,
-        array=False, optional=True,
+        array=False, optional=False,
         documentation="[&#x27;Indicates the status of the last scheduled snapshot.&#x27;, &#x27;Valid values are:&#x27;, &#x27;Success&#x27;, &#x27;Failed&#x27;]",
         dictionaryType=None
     )
     last_run_time_started = data_model.property(
         "lastRunTimeStarted", str,
-        array=False, optional=True,
+        array=False, optional=False,
         documentation="[&#x27;Indicates the last time the schedule started n ISO 8601 date string.&#x27;, &#x27;Valid values are:&#x27;, &#x27;Success&#x27;, &#x27;Failed&#x27;]",
         dictionaryType=None
     )
@@ -1898,7 +1898,7 @@ class Schedule(data_model.DataObject):
     )
     starting_date = data_model.property(
         "startingDate", str,
-        array=False, optional=True,
+        array=False, optional=False,
         documentation="[&#x27;Indicates the date the first time the schedule began of will begin. Formatted in UTC time.&#x27;]",
         dictionaryType=None
     )
@@ -3223,7 +3223,7 @@ class NodeStatsInfo(data_model.DataObject):
     :param network_utilization_storage: [required] Network interface utilization (in %) for the storage network interface. 
     :type network_utilization_storage: int
 
-    :param node_id:  
+    :param node_id: [required] 
     :type node_id: int
 
     :param s_bytes_in: [required] Bytes in on the storage interface. 
@@ -3283,7 +3283,7 @@ class NodeStatsInfo(data_model.DataObject):
     )
     node_id = data_model.property(
         "nodeID", int,
-        array=False, optional=True,
+        array=False, optional=False,
         documentation="",
         dictionaryType=None
     )
@@ -16522,22 +16522,22 @@ class GetBootstrapConfigResult(data_model.DataObject):
 class ClusterHardwareInfo(data_model.DataObject):
     """ClusterHardwareInfo  
 
-    :param drives:  
+    :param drives: [required] 
     :type drives: dict
 
-    :param nodes:  
+    :param nodes: [required] 
     :type nodes: dict
 
     """
     drives = data_model.property(
         "drives", dict,
-        array=False, optional=True,
+        array=False, optional=False,
         documentation="",
         dictionaryType=DriveHardwareInfo
     )
     nodes = data_model.property(
         "nodes", dict,
-        array=False, optional=True,
+        array=False, optional=False,
         documentation="",
         dictionaryType=dict
     )
