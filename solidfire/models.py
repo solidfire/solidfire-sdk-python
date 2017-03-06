@@ -3332,6 +3332,23 @@ class GetNodeStatsResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class GetStorageContainerEfficiencyRequest(data_model.DataObject):
+    """GetStorageContainerEfficiencyRequest  
+
+    :param storage_container_id: [required] The ID of the storage container for which to retrieve efficiency information. 
+    :type storage_container_id: UUID
+
+    """
+    storage_container_id = data_model.property(
+        "storageContainerID", UUID,
+        array=False, optional=False,
+        documentation="The ID of the storage container for which to retrieve efficiency information.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class Initiator(data_model.DataObject):
     """Initiator  
     Object containing characteristics of each initiator
@@ -3632,59 +3649,6 @@ class GetRemoteLoggingHostsResult(data_model.DataObject):
         "remoteHosts", LoggingServer,
         array=True, optional=False,
         documentation="[&#x27;List of hosts to forward logging information to.&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class LunAssignment(data_model.DataObject):
-    """LunAssignment  
-    VolumeID and Lun assignment.
-
-    :param volume_id: [required] The volume ID assigned to the Lun. 
-    :type volume_id: int
-
-    :param lun: [required] Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed. 
-    :type lun: int
-
-    """
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=False,
-        documentation="The volume ID assigned to the Lun.",
-        dictionaryType=None
-    )
-    lun = data_model.property(
-        "lun", int,
-        array=False, optional=False,
-        documentation="Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed.",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ModifyVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
-    """ModifyVolumeAccessGroupLunAssignmentsRequest  
-
-    :param volume_access_group_id: [required] Unique volume access group ID for which the LUN assignments will be modified. 
-    :type volume_access_group_id: int
-
-    :param lun_assignments: [required] The volume IDs with new assigned LUN values. 
-    :type lun_assignments: LunAssignment
-
-    """
-    volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
-        array=False, optional=False,
-        documentation="Unique volume access group ID for which the LUN assignments will be modified.",
-        dictionaryType=None
-    )
-    lun_assignments = data_model.property(
-        "lunAssignments", LunAssignment,
-        array=True, optional=False,
-        documentation="The volume IDs with new assigned LUN values.",
         dictionaryType=None
     )
 
@@ -4888,17 +4852,26 @@ class TestConnectEnsembleResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetStorageContainerEfficiencyRequest(data_model.DataObject):
-    """GetStorageContainerEfficiencyRequest  
+class DeleteVolumeAccessGroupRequest(data_model.DataObject):
+    """DeleteVolumeAccessGroupRequest  
 
-    :param storage_container_id: [required] The ID of the storage container for which to retrieve efficiency information. 
-    :type storage_container_id: UUID
+    :param volume_access_group_id: [required] The ID of the volume access group to delete. 
+    :type volume_access_group_id: int
+
+    :param delete_orphan_initiators: [required] true: Delete initiator objects after they are removed from a volume access group. false: Do not delete initiator objects after they are removed from a volume access group. 
+    :type delete_orphan_initiators: bool
 
     """
-    storage_container_id = data_model.property(
-        "storageContainerID", UUID,
+    volume_access_group_id = data_model.property(
+        "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation="The ID of the storage container for which to retrieve efficiency information.",
+        documentation="[&#x27;The ID of the volume access group to delete.&#x27;]",
+        dictionaryType=None
+    )
+    delete_orphan_initiators = data_model.property(
+        "deleteOrphanInitiators", bool,
+        array=False, optional=False,
+        documentation="[&#x27;true: Delete initiator objects after they are removed from a volume access group.&#x27;, &#x27;false: Do not delete initiator objects after they are removed from a volume access group.&#x27;]",
         dictionaryType=None
     )
 
@@ -5230,7 +5203,7 @@ class RemoveInitiatorsFromVolumeAccessGroupRequest(data_model.DataObject):
     :param initiators: [required] List of initiators to remove from the volume access group. 
     :type initiators: str
 
-    :param delete_orphan_initiators:  
+    :param delete_orphan_initiators: [required] true: Delete initiator objects after they are removed from a volume access group. false: Do not delete initiator objects after they are removed from a volume access group. 
     :type delete_orphan_initiators: bool
 
     """
@@ -5248,8 +5221,8 @@ class RemoveInitiatorsFromVolumeAccessGroupRequest(data_model.DataObject):
     )
     delete_orphan_initiators = data_model.property(
         "deleteOrphanInitiators", bool,
-        array=False, optional=True,
-        documentation="",
+        array=False, optional=False,
+        documentation="[&#x27;true: Delete initiator objects after they are removed from a volume access group.&#x27;, &#x27;false: Do not delete initiator objects after they are removed from a volume access group.&#x27;]",
         dictionaryType=None
     )
 
@@ -6523,6 +6496,9 @@ class ModifyVolumeAccessGroupRequest(data_model.DataObject):
     :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group's configured initiators will not be modified. 
     :type initiators: str
 
+    :param delete_orphan_initiators: [required] true: Delete initiator objects after they are removed from a volume access group. false: Do not delete initiator objects after they are removed from a volume access group. 
+    :type delete_orphan_initiators: bool
+
     :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group's volumes will not be modified. 
     :type volumes: int
 
@@ -6558,6 +6534,12 @@ class ModifyVolumeAccessGroupRequest(data_model.DataObject):
         "initiators", str,
         array=True, optional=True,
         documentation="[&#x27;List of initiators to include in the volume access group.&#x27;, &quot;If unspecified, the access group&#x27;s configured initiators will not be modified.&quot;]",
+        dictionaryType=None
+    )
+    delete_orphan_initiators = data_model.property(
+        "deleteOrphanInitiators", bool,
+        array=False, optional=False,
+        documentation="[&#x27;true: Delete initiator objects after they are removed from a volume access group.&#x27;, &#x27;false: Do not delete initiator objects after they are removed from a volume access group.&#x27;]",
         dictionaryType=None
     )
     volumes = data_model.property(
@@ -6752,17 +6734,53 @@ class RemoveVolumesFromVolumeAccessGroupRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class DeleteVolumeAccessGroupRequest(data_model.DataObject):
-    """DeleteVolumeAccessGroupRequest  
+class LunAssignment(data_model.DataObject):
+    """LunAssignment  
+    VolumeID and Lun assignment.
 
-    :param volume_access_group_id: [required] The ID of the volume access group to delete. 
+    :param volume_id: [required] The volume ID assigned to the Lun. 
+    :type volume_id: int
+
+    :param lun: [required] Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed. 
+    :type lun: int
+
+    """
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="The volume ID assigned to the Lun.",
+        dictionaryType=None
+    )
+    lun = data_model.property(
+        "lun", int,
+        array=False, optional=False,
+        documentation="Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed.",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ModifyVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
+    """ModifyVolumeAccessGroupLunAssignmentsRequest  
+
+    :param volume_access_group_id: [required] Unique volume access group ID for which the LUN assignments will be modified. 
     :type volume_access_group_id: int
+
+    :param lun_assignments: [required] The volume IDs with new assigned LUN values. 
+    :type lun_assignments: LunAssignment
 
     """
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume access group to delete.&#x27;]",
+        documentation="Unique volume access group ID for which the LUN assignments will be modified.",
+        dictionaryType=None
+    )
+    lun_assignments = data_model.property(
+        "lunAssignments", LunAssignment,
+        array=True, optional=False,
+        documentation="The volume IDs with new assigned LUN values.",
         dictionaryType=None
     )
 

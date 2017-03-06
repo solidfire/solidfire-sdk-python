@@ -1083,67 +1083,6 @@ class Element(ServiceBase):
             since=1
         )
 
-    def create_cluster(
-            self,
-            mvip,
-            svip,
-            rep_count,
-            username,
-            password,
-            nodes,
-            accept_eula=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        The CreateCluster method is used to initialize the node in a cluster that has ownership of the "mvip" and "svip" addresses. Each new cluster is initialized using the MIP of the first node in the cluster. This method also automatically adds all the nodes being configured into the cluster. The method is used only once each time a new cluster is initialized.
-        
-        Note: You need to log into the node that is used as the master node for the cluster. Once logged in, run the GetBootstrapConfig method on the node to get the IP addresses for the rest of the nodes that you want to include in the cluster. Then run the CreateCluster method.
-        :param acceptEula:  Indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. 
-        :type acceptEula: bool
-
-        :param mvip: [required] Floating (virtual) IP address for the cluster on the management network. 
-        :type mvip: str
-
-        :param svip: [required] Floating (virtual) IP address for the cluster on the storage (iSCSI) network. 
-        :type svip: str
-
-        :param repCount: [required] Number of replicas of each piece of data to store in the cluster. Valid value is "2". 
-        :type repCount: int
-
-        :param username: [required] User name for the cluster admin. 
-        :type username: str
-
-        :param password: [required] Initial password for the cluster admin account. 
-        :type password: str
-
-        :param nodes: [required] CIP/SIP addresses of the initial set of nodes making up the cluster. This node's IP must be in the list. 
-        :type nodes: str
-
-        :param attributes:  List of Name/Value pairs in JSON object format. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("create_cluster", "Both")
-
-        params = { 
-            "mvip": mvip,
-            "svip": svip,
-            "repCount": rep_count,
-            "username": username,
-            "password": password,
-            "nodes": nodes,
-        }
-        if accept_eula is not None:
-            params["acceptEula"] = accept_eula
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'CreateCluster',
-            CreateClusterResult,
-            params
-        )
-
     def enable_encryption_at_rest(
             self,):
         """
@@ -1406,6 +1345,67 @@ class Element(ServiceBase):
             GetSnmpTrapInfoResult,
             params,
             since=5
+        )
+
+    def create_cluster(
+            self,
+            mvip,
+            svip,
+            rep_count,
+            username,
+            password,
+            nodes,
+            accept_eula=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        The CreateCluster method is used to initialize the node in a cluster that has ownership of the "mvip" and "svip" addresses. Each new cluster is initialized using the MIP of the first node in the cluster. This method also automatically adds all the nodes being configured into the cluster. The method is used only once each time a new cluster is initialized.
+        
+        Note: You need to log into the node that is used as the master node for the cluster. Once logged in, run the GetBootstrapConfig method on the node to get the IP addresses for the rest of the nodes that you want to include in the cluster. Then run the CreateCluster method.
+        :param acceptEula:  Indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. 
+        :type acceptEula: bool
+
+        :param mvip: [required] Floating (virtual) IP address for the cluster on the management network. 
+        :type mvip: str
+
+        :param svip: [required] Floating (virtual) IP address for the cluster on the storage (iSCSI) network. 
+        :type svip: str
+
+        :param repCount: [required] Number of replicas of each piece of data to store in the cluster. Valid value is "2". 
+        :type repCount: int
+
+        :param username: [required] User name for the cluster admin. 
+        :type username: str
+
+        :param password: [required] Initial password for the cluster admin account. 
+        :type password: str
+
+        :param nodes: [required] CIP/SIP addresses of the initial set of nodes making up the cluster. This node's IP must be in the list. 
+        :type nodes: str
+
+        :param attributes:  List of Name/Value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("create_cluster", "Both")
+
+        params = { 
+            "mvip": mvip,
+            "svip": svip,
+            "repCount": rep_count,
+            "username": username,
+            "password": password,
+            "nodes": nodes,
+        }
+        if accept_eula is not None:
+            params["acceptEula"] = accept_eula
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateCluster',
+            CreateClusterResult,
+            params
         )
 
     def get_drive_hardware_info(
@@ -5390,29 +5390,6 @@ class Element(ServiceBase):
             since=5
         )
 
-    def delete_volume_access_group(
-            self,
-            volume_access_group_id,):
-        """
-        Delete a volume access group from the system.
-        :param volumeAccessGroupID: [required] The ID of the volume access group to delete. 
-        :type volumeAccessGroupID: int
-        """
-
-        self._check_connection_type("delete_volume_access_group", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'DeleteVolumeAccessGroup',
-            DeleteVolumeAccessGroupResult,
-            params,
-            since=5
-        )
-
     def get_volume_access_group_efficiency(
             self,
             volume_access_group_id,):
@@ -5517,82 +5494,6 @@ class Element(ServiceBase):
             since=5
         )
 
-    def modify_volume_access_group(
-            self,
-            volume_access_group_id,
-            virtual_network_id=OPTIONAL,
-            virtual_network_tags=OPTIONAL,
-            name=OPTIONAL,
-            initiators=OPTIONAL,
-            volumes=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        Update initiators and add or remove volumes from a volume access group.
-        A specified initiator or volume that duplicates an existing volume or initiator in a volume access group is left as-is.
-        If a value is not specified for volumes or initiators, the current list of initiators and volumes are not changed.
-        
-        Often, it is easier to use the convenience functions to modify initiators and volumes independently:
-        
-        AddInitiatorsToVolumeAccessGroup
-        RemoveInitiatorsFromVolumeAccessGroup
-        AddVolumesToVolumeAccessGroup
-        RemoveVolumesFromVolumeAccessGroup
-        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
-        :type volumeAccessGroupID: int
-
-        :param virtualNetworkID:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
-        :type virtualNetworkID: int
-
-        :param virtualNetworkTags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
-        :type virtualNetworkTags: int
-
-        :param name:  Name of the volume access group. It is not required to be unique, but recommended. 
-        :type name: str
-
-        :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group's configured initiators will not be modified. 
-        :type initiators: str
-
-        :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group's volumes will not be modified. 
-        :type volumes: int
-
-        :param attributes:  List of Name/Value pairs in JSON object format. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("modify_volume_access_group", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-        }
-        if virtual_network_id is not None:
-            if self.api_version < 8.0:
-                raise ApiParameterVersionError("modify_volume_access_group", 8.0,
-                    [("virtual_network_id", virtual_network_id, 8.0, False)])
-            else:
-                params["virtualNetworkID"] = virtual_network_id
-        if virtual_network_tags is not None:
-            if self.api_version < 8.0:
-                raise ApiParameterVersionError("modify_volume_access_group", 8.0,
-                    [("virtual_network_tags", virtual_network_tags, 8.0, False)])
-            else:
-                params["virtualNetworkTags"] = virtual_network_tags
-        if name is not None:
-            params["name"] = name
-        if initiators is not None:
-            params["initiators"] = initiators
-        if volumes is not None:
-            params["volumes"] = volumes
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ModifyVolumeAccessGroup',
-            ModifyVolumeAccessGroupResult,
-            params,
-            since=5
-        )
-
     def modify_volume_access_group_lun_assignments(
             self,
             volume_access_group_id,
@@ -5627,11 +5528,120 @@ class Element(ServiceBase):
             since=7
         )
 
+    def delete_volume_access_group(
+            self,
+            volume_access_group_id,
+            delete_orphan_initiators=True,):
+        """
+        Delete a volume access group from the system.
+        :param volumeAccessGroupID: [required] The ID of the volume access group to delete. 
+        :type volumeAccessGroupID: int
+
+        :param deleteOrphanInitiators: [required] true: Delete initiator objects after they are removed from a volume access group. false: Do not delete initiator objects after they are removed from a volume access group. 
+        :type deleteOrphanInitiators: bool
+        """
+
+        self._check_connection_type("delete_volume_access_group", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+            "deleteOrphanInitiators": delete_orphan_initiators,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DeleteVolumeAccessGroup',
+            DeleteVolumeAccessGroupResult,
+            params,
+            since=5
+        )
+
+    def modify_volume_access_group(
+            self,
+            volume_access_group_id,
+            delete_orphan_initiators=True,
+            virtual_network_id=OPTIONAL,
+            virtual_network_tags=OPTIONAL,
+            name=OPTIONAL,
+            initiators=OPTIONAL,
+            volumes=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        Update initiators and add or remove volumes from a volume access group.
+        A specified initiator or volume that duplicates an existing volume or initiator in a volume access group is left as-is.
+        If a value is not specified for volumes or initiators, the current list of initiators and volumes are not changed.
+        
+        Often, it is easier to use the convenience functions to modify initiators and volumes independently:
+        
+        AddInitiatorsToVolumeAccessGroup
+        RemoveInitiatorsFromVolumeAccessGroup
+        AddVolumesToVolumeAccessGroup
+        RemoveVolumesFromVolumeAccessGroup
+        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
+        :type volumeAccessGroupID: int
+
+        :param virtualNetworkID:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
+        :type virtualNetworkID: int
+
+        :param virtualNetworkTags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
+        :type virtualNetworkTags: int
+
+        :param name:  Name of the volume access group. It is not required to be unique, but recommended. 
+        :type name: str
+
+        :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group's configured initiators will not be modified. 
+        :type initiators: str
+
+        :param deleteOrphanInitiators: [required] true: Delete initiator objects after they are removed from a volume access group. false: Do not delete initiator objects after they are removed from a volume access group. 
+        :type deleteOrphanInitiators: bool
+
+        :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group's volumes will not be modified. 
+        :type volumes: int
+
+        :param attributes:  List of Name/Value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("modify_volume_access_group", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+            "deleteOrphanInitiators": delete_orphan_initiators,
+        }
+        if virtual_network_id is not None:
+            if self.api_version < 8.0:
+                raise ApiParameterVersionError("modify_volume_access_group", 8.0,
+                    [("virtual_network_id", virtual_network_id, 8.0, False)])
+            else:
+                params["virtualNetworkID"] = virtual_network_id
+        if virtual_network_tags is not None:
+            if self.api_version < 8.0:
+                raise ApiParameterVersionError("modify_volume_access_group", 8.0,
+                    [("virtual_network_tags", virtual_network_tags, 8.0, False)])
+            else:
+                params["virtualNetworkTags"] = virtual_network_tags
+        if name is not None:
+            params["name"] = name
+        if initiators is not None:
+            params["initiators"] = initiators
+        if volumes is not None:
+            params["volumes"] = volumes
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyVolumeAccessGroup',
+            ModifyVolumeAccessGroupResult,
+            params,
+            since=5
+        )
+
     def remove_initiators_from_volume_access_group(
             self,
             volume_access_group_id,
             initiators,
-            delete_orphan_initiators=OPTIONAL,):
+            delete_orphan_initiators=True,):
         """
         Remove initiators from a volume access group.
         :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
@@ -5640,7 +5650,7 @@ class Element(ServiceBase):
         :param initiators: [required] List of initiators to remove from the volume access group. 
         :type initiators: str
 
-        :param deleteOrphanInitiators:  
+        :param deleteOrphanInitiators: [required] true: Delete initiator objects after they are removed from a volume access group. false: Do not delete initiator objects after they are removed from a volume access group. 
         :type deleteOrphanInitiators: bool
         """
 
@@ -5649,9 +5659,8 @@ class Element(ServiceBase):
         params = { 
             "volumeAccessGroupID": volume_access_group_id,
             "initiators": initiators,
+            "deleteOrphanInitiators": delete_orphan_initiators,
         }
-        if delete_orphan_initiators is not None:
-            params["deleteOrphanInitiators"] = delete_orphan_initiators
         
         # There is no adaptor.
         return self.send_request(
