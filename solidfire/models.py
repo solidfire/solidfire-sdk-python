@@ -141,13 +141,13 @@ class VolumeQOS(data_model.DataObject):
     """VolumeQOS  
     Quality of Service (QoS) Result values are used on SolidFire volumes to provision performance expectations.
 
-    :param min_iops: [required] Desired minimum 4KB IOPS to guarantee. The allowed IOPS will only drop below this level if all volumes have been capped at their min IOPS value and there is still insufficient performance capacity. 
+    :param min_iops:  Desired minimum 4KB IOPS to guarantee. The allowed IOPS will only drop below this level if all volumes have been capped at their min IOPS value and there is still insufficient performance capacity. 
     :type min_iops: int
 
-    :param max_iops: [required] Desired maximum 4KB IOPS allowed over an extended period of time. 
+    :param max_iops:  Desired maximum 4KB IOPS allowed over an extended period of time. 
     :type max_iops: int
 
-    :param burst_iops: [required] Maximum "peak" 4KB IOPS allowed for short periods of time. Allows for bursts of I/O activity over the normal max IOPS value. 
+    :param burst_iops:  Maximum "peak" 4KB IOPS allowed for short periods of time. Allows for bursts of I/O activity over the normal max IOPS value. 
     :type burst_iops: int
 
     :param burst_time: [required] The length of time burst IOPS is allowed. The value returned is represented in time units of seconds. Note: this value is calculated by the system based on IOPS set for QoS. 
@@ -159,19 +159,19 @@ class VolumeQOS(data_model.DataObject):
     """
     min_iops = data_model.property(
         "minIOPS", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[&#x27;Desired minimum 4KB IOPS to guarantee.&#x27;, &#x27;The allowed IOPS will only drop below this level if all volumes have been capped&#x27;, &#x27;at their min IOPS value and there is still insufficient performance capacity.&#x27;]",
         dictionaryType=None
     )
     max_iops = data_model.property(
         "maxIOPS", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[&#x27;Desired maximum 4KB IOPS allowed over an extended period of time.&#x27;]",
         dictionaryType=None
     )
     burst_iops = data_model.property(
         "burstIOPS", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[&#x27;Maximum &quot;peak&quot; 4KB IOPS allowed for short periods of time.&#x27;, &#x27;Allows for bursts of I/O activity over the normal max IOPS value.&#x27;]",
         dictionaryType=None
     )
