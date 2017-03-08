@@ -14686,12 +14686,12 @@ class ListUtilitiesResult(data_model.DataObject):
     """ListUtilitiesResult  
 
     :param utilities: [required] List of utilities currently available to run on the node. 
-    :type utilities: dict
+    :type utilities: str
 
     """
     utilities = data_model.property(
-        "utilities", dict,
-        array=False, optional=False,
+        "utilities", str,
+        array=True, optional=False,
         documentation="[&#x27;List of utilities currently available to run on the node.&#x27;]",
         dictionaryType=None
     )
@@ -14703,12 +14703,12 @@ class ListTestsResult(data_model.DataObject):
     """ListTestsResult  
 
     :param tests: [required] List of tests that can be performed on the node. 
-    :type tests: dict
+    :type tests: str
 
     """
     tests = data_model.property(
-        "tests", dict,
-        array=False, optional=False,
+        "tests", str,
+        array=True, optional=False,
         documentation="[&#x27;List of tests that can be performed on the node.&#x27;]",
         dictionaryType=None
     )
