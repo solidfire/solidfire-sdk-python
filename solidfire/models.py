@@ -8942,9 +8942,6 @@ class VirtualVolumeInfo(data_model.DataObject):
     :param parent_virtual_volume_id: [required]  
     :type parent_virtual_volume_id: UUID
 
-    :param storage_container_id:   
-    :type storage_container_id: UUID
-
     :param storage_container: [required]  
     :type storage_container: StorageContainer
 
@@ -8988,12 +8985,6 @@ class VirtualVolumeInfo(data_model.DataObject):
     parent_virtual_volume_id = data_model.property(
         "parentVirtualVolumeID", UUID,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    storage_container_id = data_model.property(
-        "storageContainerID", UUID,
-        array=False, optional=True,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
