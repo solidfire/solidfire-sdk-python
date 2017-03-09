@@ -623,7 +623,7 @@ class CreateVolumeRequest(data_model.DataObject):
     :type enable512e: bool
 
     :param qos:  Initial quality of service settings for this volume.  Volumes created without specified QoS values are created with the default values for QoS. Default values for a volume can be found by running the GetDefaultQoS method. 
-    :type qos: VolumeQOS
+    :type qos: Qos
 
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
@@ -657,7 +657,7 @@ class CreateVolumeRequest(data_model.DataObject):
         dictionaryType=None
     )
     qos = data_model.property(
-        "qos", VolumeQOS,
+        "qos", Qos,
         array=False, optional=True,
         documentation="[&#x27;Initial quality of service settings for this volume.&#x27;, u&#x27;&#x27;, &#x27;Volumes created without specified QoS values are created with the default values for QoS.&#x27;, &#x27;Default values for a volume can be found by running the GetDefaultQoS method.&#x27;]",
         dictionaryType=None
