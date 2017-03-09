@@ -4201,6 +4201,771 @@ class Element(ServiceBase):
             params
         )
 
+    def cancel_virtual_volume_task(
+            self,
+            virtual_volume_task_id,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        CancelVirtualVolumeTask attempts to cancel the VVol Async Task.
+        :param virtualVolumeTaskID: [required] The UUID of the VVol Task to cancel. 
+        :type virtualVolumeTaskID: UUID
+
+        :param callingVirtualVolumeHostID:   
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("cancel_virtual_volume_task", "Cluster")
+
+        params = { 
+            "virtualVolumeTaskID": virtual_volume_task_id,
+        }
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CancelVirtualVolumeTask',
+            VirtualVolumeNullResult,
+            params
+        )
+
+    def clone_virtual_volume(
+            self,
+            virtual_volume_id,
+            name=OPTIONAL,
+            qos=OPTIONAL,
+            metadata=OPTIONAL,
+            new_container_id=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        CloneVirtualVolume is used to execute a VMware Virtual Volume clone.
+        :param virtualVolumeID: [required] The ID of the Virtual Volume to clone. 
+        :type virtualVolumeID: UUID
+
+        :param name:  The name for the newly-created volume. 
+        :type name: str
+
+        :param qos:  New quality of service settings for this volume. 
+        :type qos: QoS
+
+        :param metadata:   
+        :type metadata: dict
+
+        :param newContainerID:   
+        :type newContainerID: UUID
+
+        :param callingVirtualVolumeHostID:   
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("clone_virtual_volume", "Cluster")
+
+        params = { 
+            "virtualVolumeID": virtual_volume_id,
+        }
+        if name is not None:
+            params["name"] = name
+        if qos is not None:
+            params["qos"] = qos
+        if metadata is not None:
+            params["metadata"] = metadata
+        if new_container_id is not None:
+            params["newContainerID"] = new_container_id
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CloneVirtualVolume',
+            VirtualVolumeAsyncResult,
+            params
+        )
+
+    def copy_diffs_to_virtual_volume(
+            self,
+            virtual_volume_id,
+            base_virtual_volume_id,
+            dst_virtual_volume_id,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        CopyDiffsToVirtualVolume is a three-way merge function.
+        :param virtualVolumeID: [required] The ID of the snapshot Virtual Volume. 
+        :type virtualVolumeID: UUID
+
+        :param baseVirtualVolumeID: [required] The ID of the base Virtual Volume. 
+        :type baseVirtualVolumeID: UUID
+
+        :param dstVirtualVolumeID: [required] The ID of the Virtual Volume to be overwritten. 
+        :type dstVirtualVolumeID: UUID
+
+        :param callingVirtualVolumeHostID:   
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("copy_diffs_to_virtual_volume", "Cluster")
+
+        params = { 
+            "virtualVolumeID": virtual_volume_id,
+            "baseVirtualVolumeID": base_virtual_volume_id,
+            "dstVirtualVolumeID": dst_virtual_volume_id,
+        }
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CopyDiffsToVirtualVolume',
+            VirtualVolumeAsyncResult,
+            params
+        )
+
+    def create_virtual_volume(
+            self,
+            name,
+            storage_container_id,
+            virtual_volume_type,
+            total_size,
+            qos=OPTIONAL,
+            metadata=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        CreateVirtualVolume is used to create a new (empty) Virtual Volume on the cluster.
+        When the volume is created successfully it is available for connection via PE.
+        :param name: [required] Name of the Virtual Volume. Not required to be unique, but it is recommended. May be 1 to 64 characters in length. 
+        :type name: str
+
+        :param storageContainerID: [required] UUID for the Storage Container of this volume. 
+        :type storageContainerID: UUID
+
+        :param virtualVolumeType: [required] VMW_TYPE value for this volume. 
+        :type virtualVolumeType: str
+
+        :param totalSize: [required] Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size. 
+        :type totalSize: int
+
+        :param qos:  Initial quality of service settings for this volume.  Volumes created without specified QoS values are created with the default values for QoS. Default values for a volume can be found by running the GetDefaultQoS method. 
+        :type qos: QoS
+
+        :param metadata:  List of name/value pairs to save in the volume's metadata. 
+        :type metadata: dict
+
+        :param callingVirtualVolumeHostID:   
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("create_virtual_volume", "Cluster")
+
+        params = { 
+            "name": name,
+            "storageContainerID": storage_container_id,
+            "virtualVolumeType": virtual_volume_type,
+            "totalSize": total_size,
+        }
+        if qos is not None:
+            params["qos"] = qos
+        if metadata is not None:
+            params["metadata"] = metadata
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateVirtualVolume',
+            VirtualVolumeSyncResult,
+            params
+        )
+
+    def create_virtual_volume_host(
+            self,
+            virtual_volume_host_id,
+            cluster_id,
+            initiator_names=OPTIONAL,
+            visible_protocol_endpoint_ids=OPTIONAL,
+            host_address=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        CreateVirtualVolumeHost creates a new ESX host.
+        :param virtualVolumeHostID: [required] The GUID of the ESX host. 
+        :type virtualVolumeHostID: UUID
+
+        :param clusterID: [required] The GUID of the ESX Cluster. 
+        :type clusterID: UUID
+
+        :param initiatorNames:   
+        :type initiatorNames: str
+
+        :param visibleProtocolEndpointIDs:  A list of PEs the host is aware of. 
+        :type visibleProtocolEndpointIDs: UUID
+
+        :param hostAddress:  IP or DNS name for the host. 
+        :type hostAddress: str
+
+        :param callingVirtualVolumeHostID:   
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("create_virtual_volume_host", "Cluster")
+
+        params = { 
+            "virtualVolumeHostID": virtual_volume_host_id,
+            "clusterID": cluster_id,
+        }
+        if initiator_names is not None:
+            params["initiatorNames"] = initiator_names
+        if visible_protocol_endpoint_ids is not None:
+            params["visibleProtocolEndpointIDs"] = visible_protocol_endpoint_ids
+        if host_address is not None:
+            params["hostAddress"] = host_address
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateVirtualVolumeHost',
+            VirtualVolumeNullResult,
+            params
+        )
+
+    def delete_virtual_volumes(
+            self,
+            virtual_volumes,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        DeleteVirtualVolume marks an active volume for deletion.
+        It is purged (permanently deleted) after the cleanup interval elapses.
+        After making a request to delete a volume, any active iSCSI connections to the volume is immediately terminated and no further connections are allowed while the volume is in this state.
+        It is not returned in target discovery requests.
+        
+        Any snapshots of a volume that has been marked to delete are not affected.
+        Snapshots are kept until the volume is purged from the system.
+        
+        If a volume is marked for deletion, and it has a bulk volume read or bulk volume write operation in progress, the bulk volume operation is stopped.
+        
+        If the volume you delete is paired with a volume, replication between the paired volumes is suspended and no data is transferred to it or from it while in a deleted state.
+        The remote volume the deleted volume was paired with enters into a PausedMisconfigured state and data is no longer sent to it or from the deleted volume.
+        Until the deleted volume is purged, it can be restored and data transfers resumes.
+        If the deleted volume gets purged from the system, the volume it was paired with enters into a StoppedMisconfigured state and the volume pairing status is removed.
+        The purged volume becomes permanently unavailable.
+        :param virtualVolumes: [required] The UUID of the volume to delete. 
+        :type virtualVolumes: UUID
+
+        :param callingVirtualVolumeHostID:   
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("delete_virtual_volumes", "Cluster")
+
+        params = { 
+            "virtualVolumes": virtual_volumes,
+        }
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DeleteVirtualVolumes',
+            VirtualVolumeNullResult,
+            params
+        )
+
+    def fast_clone_virtual_volume(
+            self,
+            virtual_volume_id,
+            name=OPTIONAL,
+            qos=OPTIONAL,
+            metadata=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        FastCloneVirtualVolume is used to execute a VMware Virtual Volume fast clone.
+        :param virtualVolumeID: [required] The ID of the Virtual Volume to clone. 
+        :type virtualVolumeID: UUID
+
+        :param name:  The name for the newly-created volume. 
+        :type name: str
+
+        :param qos:  New quality of service settings for this volume. 
+        :type qos: QoS
+
+        :param metadata:   
+        :type metadata: dict
+
+        :param callingVirtualVolumeHostID:   
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("fast_clone_virtual_volume", "Cluster")
+
+        params = { 
+            "virtualVolumeID": virtual_volume_id,
+        }
+        if name is not None:
+            params["name"] = name
+        if qos is not None:
+            params["qos"] = qos
+        if metadata is not None:
+            params["metadata"] = metadata
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'FastCloneVirtualVolume',
+            VirtualVolumeAsyncResult,
+            params
+        )
+
+    def get_vasa_provider_info(
+            self,):
+        """
+        Gets the Vasa Provider info        """
+
+        self._check_connection_type("get_vasa_provider_info", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetVasaProviderInfo',
+            VasaProviderInfoResult,
+            params
+        )
+
+    def get_virtual_volume_allocated_bitmap(
+            self,
+            virtual_volume_id,
+            segment_start,
+            segment_length,
+            chunk_size,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        GetVirtualVolumeAllocatedBitmap returns a b64-encoded block of data 
+        representing a bitmap where non-zero bits indicate the allocation of a 
+        segment (LBA range) of the volume.
+        :param virtualVolumeID: [required] The ID of the Virtual Volume. 
+        :type virtualVolumeID: UUID
+
+        :param segmentStart: [required] Byte offset. 
+        :type segmentStart: int
+
+        :param segmentLength: [required] Byte length adjusted to end on a chunk boundary. 
+        :type segmentLength: int
+
+        :param chunkSize: [required] Number of bytes represented by one bit in the bitmap. 
+        :type chunkSize: int
+
+        :param callingVirtualVolumeHostID:   
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("get_virtual_volume_allocated_bitmap", "Cluster")
+
+        params = { 
+            "virtualVolumeID": virtual_volume_id,
+            "segmentStart": segment_start,
+            "segmentLength": segment_length,
+            "chunkSize": chunk_size,
+        }
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetVirtualVolumeAllocatedBitmap',
+            VirtualVolumeBitmapResult,
+            params
+        )
+
+    def get_virtual_volume_task_update(
+            self,
+            virtual_volume_task_id,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        GetVirtualVolumeTaskUpdate checks the status of a VVol Async Task.
+        :param virtualVolumeTaskID: [required] The UUID of the VVol Task. 
+        :type virtualVolumeTaskID: UUID
+
+        :param callingVirtualVolumeHostID:   
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("get_virtual_volume_task_update", "Cluster")
+
+        params = { 
+            "virtualVolumeTaskID": virtual_volume_task_id,
+        }
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetVirtualVolumeTaskUpdate',
+            VirtualVolumeTaskResult,
+            params
+        )
+
+    def get_virtual_volume_unshared_bitmap(
+            self,
+            virtual_volume_id,
+            base_virtual_volume_id,
+            segment_start,
+            segment_length,
+            chunk_size,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        GetVirtualVolumeAllocatedBitmap returns a b64-encoded block of data 
+        representing a bitmap where non-zero bits indicate that data is not the same 
+        between two volumes for a common segment (LBA range) of the volumes.
+        :param virtualVolumeID: [required] The ID of the Virtual Volume. 
+        :type virtualVolumeID: UUID
+
+        :param baseVirtualVolumeID: [required] The ID of the Virtual Volume to compare against. 
+        :type baseVirtualVolumeID: UUID
+
+        :param segmentStart: [required] Byte offset. 
+        :type segmentStart: int
+
+        :param segmentLength: [required] Byte length adjusted to end on a chunk boundary. 
+        :type segmentLength: int
+
+        :param chunkSize: [required] Number of bytes represented by one bit in the bitmap. 
+        :type chunkSize: int
+
+        :param callingVirtualVolumeHostID:   
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("get_virtual_volume_unshared_bitmap", "Cluster")
+
+        params = { 
+            "virtualVolumeID": virtual_volume_id,
+            "baseVirtualVolumeID": base_virtual_volume_id,
+            "segmentStart": segment_start,
+            "segmentLength": segment_length,
+            "chunkSize": chunk_size,
+        }
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetVirtualVolumeUnsharedBitmap',
+            VirtualVolumeBitmapResult,
+            params
+        )
+
+    def get_virtual_volume_unshared_chunks(
+            self,
+            virtual_volume_id,
+            base_virtual_volume_id,
+            segment_start,
+            segment_length,
+            chunk_size,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        GetVirtualVolumeAllocatedBitmap scans a VVol segment and returns the number of 
+        chunks not shared between two volumes. This call will return results in less 
+        than 30 seconds. If the specified VVol and the base VVil are not related, an 
+        error is thrown. If the offset/length combination is invalid or out fo range 
+        an error is thrown.
+        :param virtualVolumeID: [required] The ID of the Virtual Volume. 
+        :type virtualVolumeID: UUID
+
+        :param baseVirtualVolumeID: [required] The ID of the Virtual Volume to compare against. 
+        :type baseVirtualVolumeID: UUID
+
+        :param segmentStart: [required] Start Byte offset. 
+        :type segmentStart: int
+
+        :param segmentLength: [required] Length of the scan segment in bytes. 
+        :type segmentLength: int
+
+        :param chunkSize: [required] Number of bytes represented by one bit in the bitmap. 
+        :type chunkSize: int
+
+        :param callingVirtualVolumeHostID:   
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("get_virtual_volume_unshared_chunks", "Cluster")
+
+        params = { 
+            "virtualVolumeID": virtual_volume_id,
+            "baseVirtualVolumeID": base_virtual_volume_id,
+            "segmentStart": segment_start,
+            "segmentLength": segment_length,
+            "chunkSize": chunk_size,
+        }
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetVirtualVolumeUnsharedChunks',
+            VirtualVolumeUnsharedChunkResult,
+            params
+        )
+
+    def modify_vasa_provider_info(
+            self,
+            keystore=OPTIONAL,
+            vasa_provider_id=OPTIONAL,
+            options=OPTIONAL,):
+        """
+        Update the Vasa Provider info
+        :param keystore:  Signed SSL certificate for the Vasa Provider 
+        :type keystore: str
+
+        :param vasaProviderID:  UUID identifying the vasa provider 
+        :type vasaProviderID: UUID
+
+        :param options:   
+        :type options: dict
+        """
+
+        self._check_connection_type("modify_vasa_provider_info", "Cluster")
+
+        params = { 
+        }
+        if keystore is not None:
+            params["keystore"] = keystore
+        if vasa_provider_id is not None:
+            params["vasaProviderID"] = vasa_provider_id
+        if options is not None:
+            params["options"] = options
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyVasaProviderInfo',
+            VirtualVolumeNullResult,
+            params
+        )
+
+    def modify_virtual_volume(
+            self,
+            virtual_volume_id,
+            qos=OPTIONAL,
+            total_size=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        ModifyVirtualVolume is used to modify settings on an existing virtual volume.
+        :param virtualVolumeID: [required] VvolVolumeID for the volume to be modified. 
+        :type virtualVolumeID: UUID
+
+        :param qos:  New quality of service settings for this volume. 
+        :type qos: QoS
+
+        :param totalSize:  New size of the volume in bytes. Size is rounded up to the nearest 1MiB size. This parameter can only be used to *increase* the size of a volume. 
+        :type totalSize: int
+
+        :param callingVirtualVolumeHostID:   
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("modify_virtual_volume", "Cluster")
+
+        params = { 
+            "virtualVolumeID": virtual_volume_id,
+        }
+        if qos is not None:
+            params["qos"] = qos
+        if total_size is not None:
+            params["totalSize"] = total_size
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyVirtualVolume',
+            VirtualVolumeNullResult,
+            params
+        )
+
+    def modify_virtual_volume_metadata(
+            self,
+            virtual_volume_id,
+            metadata,
+            remove_keys,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        ModifyVirtualVolumeMetadata is used to selectively modify the VVol metadata.
+        :param virtualVolumeID: [required] VvolVolumeID for the volume to be modified. 
+        :type virtualVolumeID: UUID
+
+        :param metadata: [required]  
+        :type metadata: dict
+
+        :param removeKeys: [required]  
+        :type removeKeys: str
+
+        :param callingVirtualVolumeHostID:   
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("modify_virtual_volume_metadata", "Cluster")
+
+        params = { 
+            "virtualVolumeID": virtual_volume_id,
+            "metadata": metadata,
+            "removeKeys": remove_keys,
+        }
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyVirtualVolumeMetadata',
+            VirtualVolumeNullResult,
+            params
+        )
+
+    def prepare_virtual_snapshot(
+            self,
+            virtual_volume_id,
+            name=OPTIONAL,
+            writable_snapshot=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        PrepareVirtualSnapshot is used to set up VMware Virtual Volume snapshot.
+        :param virtualVolumeID: [required] The ID of the Virtual Volume to clone. 
+        :type virtualVolumeID: UUID
+
+        :param name:  The name for the newly-created volume. 
+        :type name: str
+
+        :param writableSnapshot:  Will the snapshot be writable? 
+        :type writableSnapshot: bool
+
+        :param callingVirtualVolumeHostID:   
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("prepare_virtual_snapshot", "Cluster")
+
+        params = { 
+            "virtualVolumeID": virtual_volume_id,
+        }
+        if name is not None:
+            params["name"] = name
+        if writable_snapshot is not None:
+            params["writableSnapshot"] = writable_snapshot
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'PrepareVirtualSnapshot',
+            PrepareVirtualSnapshotResult,
+            params
+        )
+
+    def query_virtual_volume_metadata(
+            self,
+            query_constraints=OPTIONAL,
+            wildcard_constraints=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        QueryVirtualVolumeMetadata returns a list of VVols matching a metadata query.
+        :param queryConstraints:   
+        :type queryConstraints: dict
+
+        :param wildcardConstraints:   
+        :type wildcardConstraints: str
+
+        :param callingVirtualVolumeHostID:   
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("query_virtual_volume_metadata", "Cluster")
+
+        params = { 
+        }
+        if query_constraints is not None:
+            params["queryConstraints"] = query_constraints
+        if wildcard_constraints is not None:
+            params["wildcardConstraints"] = wildcard_constraints
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'QueryVirtualVolumeMetadata',
+            QueryVirtualVolumeMetadataResult,
+            params
+        )
+
+    def rollback_virtual_volume(
+            self,
+            src_virtual_volume_id,
+            dst_virtual_volume_id,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        RollbackVirtualVolume is used to restore a VMware Virtual Volume snapshot.
+        :param srcVirtualVolumeID: [required] The ID of the Virtual Volume snapshot. 
+        :type srcVirtualVolumeID: UUID
+
+        :param dstVirtualVolumeID: [required] The ID of the Virtual Volume to restore to. 
+        :type dstVirtualVolumeID: UUID
+
+        :param callingVirtualVolumeHostID:   
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("rollback_virtual_volume", "Cluster")
+
+        params = { 
+            "srcVirtualVolumeID": src_virtual_volume_id,
+            "dstVirtualVolumeID": dst_virtual_volume_id,
+        }
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RollbackVirtualVolume',
+            VirtualVolumeAsyncResult,
+            params
+        )
+
+    def snapshot_virtual_volume(
+            self,
+            virtual_volume_id,
+            timeout,
+            metadata=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        SnapshotVirtualVolume is used to take a VMware Virtual Volume snapshot.
+        :param virtualVolumeID: [required] The ID of the Virtual Volume to clone. 
+        :type virtualVolumeID: UUID
+
+        :param timeout: [required] Number of seconds to complete or fail. 
+        :type timeout: int
+
+        :param metadata:   
+        :type metadata: dict
+
+        :param callingVirtualVolumeHostID:   
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("snapshot_virtual_volume", "Cluster")
+
+        params = { 
+            "virtualVolumeID": virtual_volume_id,
+            "timeout": timeout,
+        }
+        if metadata is not None:
+            params["metadata"] = metadata
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SnapshotVirtualVolume',
+            SnapshotVirtualVolumeResult,
+            params
+        )
+
     def cancel_clone(
             self,
             clone_id,):
