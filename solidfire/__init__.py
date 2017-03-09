@@ -3809,6 +3809,38 @@ class Element(ServiceBase):
             params
         )
 
+    def unbind_virtual_volumes(
+            self,
+            unbind_context,
+            virtual_volume_host_id,
+            unbind_args,):
+        """
+        UnbindGetVirtualVolume removes the VVol <-> Host binding.
+        :param unbindContext: [required] Normal, Start, or End? 
+        :type unbindContext: str
+
+        :param virtualVolumeHostID: [required] UnbindGetVirtualVolume removes the VVol <-> Host binding. 
+        :type virtualVolumeHostID: UUID
+
+        :param unbindArgs: [required] UnbindGetVirtualVolume removes the VVol <-> Host binding. 
+        :type unbindArgs: UnbindArguments
+        """
+
+        self._check_connection_type("unbind_virtual_volumes", "")
+
+        params = { 
+            "unbindContext": unbind_context,
+            "virtualVolumeHostID": virtual_volume_host_id,
+            "unbindArgs": unbind_args,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'UnbindVirtualVolumes',
+            VirtualVolumeUnbindResult,
+            params
+        )
+
     def cancel_virtual_volume_task(
             self,
             virtual_volume_task_id,
@@ -4503,6 +4535,58 @@ class Element(ServiceBase):
             params
         )
 
+    def modify_virtual_volume_host(
+            self,
+            virtual_volume_host_id,
+            cluster_id=OPTIONAL,
+            visible_protocol_endpoint_ids=OPTIONAL,
+            initiator_names=OPTIONAL,
+            host_address=OPTIONAL,
+            calling_virtual_volume_host_id=OPTIONAL,):
+        """
+        ModifyVirtualVolumeHost changes an existing ESX host.
+        :param virtualVolumeHostID: [required] The GUID of the ESX host. 
+        :type virtualVolumeHostID: UUID
+
+        :param clusterID:  The GUID of the ESX Cluster. 
+        :type clusterID: UUID
+
+        :param visibleProtocolEndpointIDs:  A list of PEs the host is aware of. 
+        :type visibleProtocolEndpointIDs: UUID
+
+        :param initiatorNames:  List of iSCSI initiator IQNs for the host. 
+        :type initiatorNames: str
+
+        :param hostAddress:  IP or DNS name for the host. 
+        :type hostAddress: str
+
+        :param callingVirtualVolumeHostID:  ModifyVirtualVolumeHost changes an existing ESX host. 
+        :type callingVirtualVolumeHostID: UUID
+        """
+
+        self._check_connection_type("modify_virtual_volume_host", "")
+
+        params = { 
+            "virtualVolumeHostID": virtual_volume_host_id,
+        }
+        if cluster_id is not None:
+            params["clusterID"] = cluster_id
+        if visible_protocol_endpoint_ids is not None:
+            params["visibleProtocolEndpointIDs"] = visible_protocol_endpoint_ids
+        if initiator_names is not None:
+            params["initiatorNames"] = initiator_names
+        if host_address is not None:
+            params["hostAddress"] = host_address
+        if calling_virtual_volume_host_id is not None:
+            params["callingVirtualVolumeHostID"] = calling_virtual_volume_host_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyVirtualVolumeHost',
+            VirtualVolumeNullResult,
+            params
+        )
+
     def get_virtual_volume_allocated_bitmap(
             self,
             virtual_volume_id,
@@ -4749,6 +4833,38 @@ class Element(ServiceBase):
         return self.send_request(
             'RollbackVirtualVolume',
             VirtualVolumeAsyncResult,
+            params
+        )
+
+    def bind_virtual_volumes(
+            self,
+            virtual_volume_ids,
+            virtual_volume_host_id,
+            bind_context,):
+        """
+        BindVirtualVolume binds a VVol with a Host.
+        :param virtualVolumeIDs: [required] The UUID of the VVol to bind. 
+        :type virtualVolumeIDs: UUID
+
+        :param virtualVolumeHostID: [required] The UUID of the ESX host. 
+        :type virtualVolumeHostID: UUID
+
+        :param bindContext: [required] Normal or Start? 
+        :type bindContext: str
+        """
+
+        self._check_connection_type("bind_virtual_volumes", "")
+
+        params = { 
+            "virtualVolumeIDs": virtual_volume_ids,
+            "virtualVolumeHostID": virtual_volume_host_id,
+            "bindContext": bind_context,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'BindVirtualVolumes',
+            VirtualVolumeBindingListResult,
             params
         )
 
