@@ -4023,6 +4023,184 @@ class Element(ServiceBase):
             params
         )
 
+    def enable_feature(
+            self,
+            feature,):
+        """
+        EnableFeature allows you to enable cluster features that are disabled by default.
+        :param feature: [required] Valid values: vvols: Enable the Virtual Volumes (VVOLs) cluster feature. 
+        :type feature: str
+        """
+
+        self._check_connection_type("enable_feature", "Cluster")
+
+        params = { 
+            "feature": feature,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'EnableFeature',
+            EnableFeatureResult,
+            params
+        )
+
+    def get_feature_status(
+            self,
+            feature=OPTIONAL,):
+        """
+        GetFeatureStatus allows you to retrieve the status of a cluster feature.
+        :param feature:  Valid values: vvols: Find the status of the Virtual Volumes (VVOLs) cluster feature. 
+        :type feature: str
+        """
+
+        self._check_connection_type("get_feature_status", "Cluster")
+
+        params = { 
+        }
+        if feature is not None:
+            params["feature"] = feature
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetFeatureStatus',
+            GetFeatureStatusResult,
+            params
+        )
+
+    def get_virtual_volume_count(
+            self,):
+        """
+        Enables retrieval of the number of virtual volumes currently in the system.        """
+
+        self._check_connection_type("get_virtual_volume_count", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetVirtualVolumeCount',
+            GetVirtualVolumeCountResult,
+            params
+        )
+
+    def list_virtual_volume_bindings(
+            self,
+            virtual_volume_binding_ids=OPTIONAL,):
+        """
+        ListVirtualVolumeBindings returns a list of VVol bindings.
+        :param virtualVolumeBindingIDs:   
+        :type virtualVolumeBindingIDs: int
+        """
+
+        self._check_connection_type("list_virtual_volume_bindings", "Cluster")
+
+        params = { 
+        }
+        if virtual_volume_binding_ids is not None:
+            params["virtualVolumeBindingIDs"] = virtual_volume_binding_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVirtualVolumeBindings',
+            ListVirtualVolumeBindingsResult,
+            params
+        )
+
+    def list_virtual_volume_hosts(
+            self,
+            virtual_volume_host_ids=OPTIONAL,):
+        """
+        ListVirtualVolumeHosts returns a list of known ESX hosts.
+        :param virtualVolumeHostIDs:   
+        :type virtualVolumeHostIDs: UUID
+        """
+
+        self._check_connection_type("list_virtual_volume_hosts", "Cluster")
+
+        params = { 
+        }
+        if virtual_volume_host_ids is not None:
+            params["virtualVolumeHostIDs"] = virtual_volume_host_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVirtualVolumeHosts',
+            ListVirtualVolumeHostsResult,
+            params
+        )
+
+    def list_virtual_volume_tasks(
+            self,
+            virtual_volume_task_ids=OPTIONAL,):
+        """
+        ListVirtualVolumeTasks returns a list of VVol Async Tasks.
+        :param virtualVolumeTaskIDs:   
+        :type virtualVolumeTaskIDs: UUID
+        """
+
+        self._check_connection_type("list_virtual_volume_tasks", "Cluster")
+
+        params = { 
+        }
+        if virtual_volume_task_ids is not None:
+            params["virtualVolumeTaskIDs"] = virtual_volume_task_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVirtualVolumeTasks',
+            ListVirtualVolumeTasksResult,
+            params
+        )
+
+    def list_virtual_volumes(
+            self,
+            details=OPTIONAL,
+            limit=OPTIONAL,
+            recursive=OPTIONAL,
+            start_virtual_volume_id=OPTIONAL,
+            virtual_volume_ids=OPTIONAL,):
+        """
+        ListVirtualVolumes enables you to list the virtual volumes currently in the system. You can use this method to list all virtual volumes, or only list a subset.
+        :param details:  Possible values:true: Include more details about each VVOL in the response.false: Include the standard level of detail about each VVOL in the response. 
+        :type details: bool
+
+        :param limit:  The maximum number of virtual volumes to list. 
+        :type limit: int
+
+        :param recursive:  Possible values:true: Include information about the children of each VVOL in the response.false: Do not include information about the children of each VVOL in the response. 
+        :type recursive: bool
+
+        :param startVirtualVolumeID:  The ID of the virtual volume at which to begin the list. 
+        :type startVirtualVolumeID: UUID
+
+        :param virtualVolumeIDs:  A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
+        :type virtualVolumeIDs: UUID
+        """
+
+        self._check_connection_type("list_virtual_volumes", "Cluster")
+
+        params = { 
+        }
+        if details is not None:
+            params["details"] = details
+        if limit is not None:
+            params["limit"] = limit
+        if recursive is not None:
+            params["recursive"] = recursive
+        if start_virtual_volume_id is not None:
+            params["startVirtualVolumeID"] = start_virtual_volume_id
+        if virtual_volume_ids is not None:
+            params["virtualVolumeIDs"] = virtual_volume_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVirtualVolumes',
+            ListVirtualVolumesResult,
+            params
+        )
+
     def cancel_virtual_volume_task(
             self,
             virtual_volume_task_id,
@@ -4290,28 +4468,6 @@ class Element(ServiceBase):
             params
         )
 
-    def enable_feature(
-            self,
-            feature,):
-        """
-        EnableFeature allows you to enable cluster features that are disabled by default.
-        :param feature: [required] Valid values: vvols: Enable the Virtual Volumes (VVOLs) cluster feature. 
-        :type feature: str
-        """
-
-        self._check_connection_type("enable_feature", "Cluster")
-
-        params = { 
-            "feature": feature,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'EnableFeature',
-            EnableFeatureResult,
-            params
-        )
-
     def fast_clone_virtual_volume(
             self,
             virtual_volume_id,
@@ -4355,29 +4511,6 @@ class Element(ServiceBase):
         return self.send_request(
             'FastCloneVirtualVolume',
             VirtualVolumeAsyncResult,
-            params
-        )
-
-    def get_feature_status(
-            self,
-            feature=OPTIONAL,):
-        """
-        GetFeatureStatus allows you to retrieve the status of a cluster feature.
-        :param feature:  Valid values: vvols: Find the status of the Virtual Volumes (VVOLs) cluster feature. 
-        :type feature: str
-        """
-
-        self._check_connection_type("get_feature_status", "Cluster")
-
-        params = { 
-        }
-        if feature is not None:
-            params["feature"] = feature
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetFeatureStatus',
-            GetFeatureStatusResult,
             params
         )
 
@@ -4440,23 +4573,6 @@ class Element(ServiceBase):
         return self.send_request(
             'GetVirtualVolumeAllocatedBitmap',
             VirtualVolumeBitmapResult,
-            params
-        )
-
-    def get_virtual_volume_count(
-            self,):
-        """
-        Enables retrieval of the number of virtual volumes currently in the system.        """
-
-        self._check_connection_type("get_virtual_volume_count", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetVirtualVolumeCount',
-            GetVirtualVolumeCountResult,
             params
         )
 
@@ -4587,122 +4703,6 @@ class Element(ServiceBase):
         return self.send_request(
             'GetVirtualVolumeUnsharedChunks',
             VirtualVolumeUnsharedChunkResult,
-            params
-        )
-
-    def list_virtual_volume_bindings(
-            self,
-            virtual_volume_binding_ids=OPTIONAL,):
-        """
-        ListVirtualVolumeBindings returns a list of VVol bindings.
-        :param virtualVolumeBindingIDs:   
-        :type virtualVolumeBindingIDs: int
-        """
-
-        self._check_connection_type("list_virtual_volume_bindings", "Cluster")
-
-        params = { 
-        }
-        if virtual_volume_binding_ids is not None:
-            params["virtualVolumeBindingIDs"] = virtual_volume_binding_ids
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVirtualVolumeBindings',
-            ListVirtualVolumeBindingsResult,
-            params
-        )
-
-    def list_virtual_volume_hosts(
-            self,
-            virtual_volume_host_ids=OPTIONAL,):
-        """
-        ListVirtualVolumeHosts returns a list of known ESX hosts.
-        :param virtualVolumeHostIDs:   
-        :type virtualVolumeHostIDs: UUID
-        """
-
-        self._check_connection_type("list_virtual_volume_hosts", "Cluster")
-
-        params = { 
-        }
-        if virtual_volume_host_ids is not None:
-            params["virtualVolumeHostIDs"] = virtual_volume_host_ids
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVirtualVolumeHosts',
-            ListVirtualVolumeHostsResult,
-            params
-        )
-
-    def list_virtual_volume_tasks(
-            self,
-            virtual_volume_task_ids=OPTIONAL,):
-        """
-        ListVirtualVolumeTasks returns a list of VVol Async Tasks.
-        :param virtualVolumeTaskIDs:   
-        :type virtualVolumeTaskIDs: UUID
-        """
-
-        self._check_connection_type("list_virtual_volume_tasks", "Cluster")
-
-        params = { 
-        }
-        if virtual_volume_task_ids is not None:
-            params["virtualVolumeTaskIDs"] = virtual_volume_task_ids
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVirtualVolumeTasks',
-            ListVirtualVolumeTasksResult,
-            params
-        )
-
-    def list_virtual_volumes(
-            self,
-            details=OPTIONAL,
-            limit=OPTIONAL,
-            recursive=OPTIONAL,
-            start_virtual_volume_id=OPTIONAL,
-            virtual_volume_ids=OPTIONAL,):
-        """
-        ListVirtualVolumes enables you to list the virtual volumes currently in the system. You can use this method to list all virtual volumes, or only list a subset.
-        :param details:  Possible values:true: Include more details about each VVOL in the response.false: Include the standard level of detail about each VVOL in the response. 
-        :type details: bool
-
-        :param limit:  The maximum number of virtual volumes to list. 
-        :type limit: int
-
-        :param recursive:  Possible values:true: Include information about the children of each VVOL in the response.false: Do not include information about the children of each VVOL in the response. 
-        :type recursive: bool
-
-        :param startVirtualVolumeID:  The ID of the virtual volume at which to begin the list. 
-        :type startVirtualVolumeID: UUID
-
-        :param virtualVolumeIDs:  A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
-        :type virtualVolumeIDs: UUID
-        """
-
-        self._check_connection_type("list_virtual_volumes", "Cluster")
-
-        params = { 
-        }
-        if details is not None:
-            params["details"] = details
-        if limit is not None:
-            params["limit"] = limit
-        if recursive is not None:
-            params["recursive"] = recursive
-        if start_virtual_volume_id is not None:
-            params["startVirtualVolumeID"] = start_virtual_volume_id
-        if virtual_volume_ids is not None:
-            params["virtualVolumeIDs"] = virtual_volume_ids
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVirtualVolumes',
-            ListVirtualVolumesResult,
             params
         )
 
@@ -5155,62 +5155,6 @@ class Element(ServiceBase):
         return self.send_request(
             'CopyVolume',
             CopyVolumeResult,
-            params
-        )
-
-    def create_volume(
-            self,
-            name,
-            account_id,
-            total_size,
-            enable512e,
-            qos=OPTIONAL,
-            attributes=OPTIONAL,
-            slice_count=OPTIONAL,):
-        """
-        CreateVolume is used to create a new (empty) volume on the cluster.
-        When the volume is created successfully it is available for connection via iSCSI.
-        :param name: [required] Name of the volume. Not required to be unique, but it is recommended. May be 1 to 64 characters in length. 
-        :type name: str
-
-        :param accountID: [required] AccountID for the owner of this volume. 
-        :type accountID: int
-
-        :param totalSize: [required] Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size. 
-        :type totalSize: int
-
-        :param enable512e: [required] Should the volume provides 512-byte sector emulation? 
-        :type enable512e: bool
-
-        :param qos:  Initial quality of service settings for this volume.  Volumes created without specified QoS values are created with the default values for QoS. Default values for a volume can be found by running the GetDefaultQoS method. 
-        :type qos: Qos
-
-        :param attributes:  List of Name/Value pairs in JSON object format. 
-        :type attributes: dict
-
-        :param sliceCount:   
-        :type sliceCount: int
-        """
-
-        self._check_connection_type("create_volume", "Cluster")
-
-        params = { 
-            "name": name,
-            "accountID": account_id,
-            "totalSize": total_size,
-            "enable512e": enable512e,
-        }
-        if qos is not None:
-            params["qos"] = qos
-        if attributes is not None:
-            params["attributes"] = attributes
-        if slice_count is not None:
-            params["sliceCount"] = slice_count
-        
-        # There is no adaptor.
-        return self.send_request(
-            'CreateVolume',
-            CreateVolumeResult,
             params
         )
 
@@ -6018,6 +5962,62 @@ class Element(ServiceBase):
         return self.send_request(
             'UpdateBulkVolumeStatus',
             UpdateBulkVolumeStatusResult,
+            params
+        )
+
+    def create_volume(
+            self,
+            name,
+            account_id,
+            total_size,
+            enable512e,
+            qos=OPTIONAL,
+            attributes=OPTIONAL,
+            slice_count=OPTIONAL,):
+        """
+        CreateVolume is used to create a new (empty) volume on the cluster.
+        When the volume is created successfully it is available for connection via iSCSI.
+        :param name: [required] Name of the volume. Not required to be unique, but it is recommended. May be 1 to 64 characters in length. 
+        :type name: str
+
+        :param accountID: [required] AccountID for the owner of this volume. 
+        :type accountID: int
+
+        :param totalSize: [required] Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size. 
+        :type totalSize: int
+
+        :param enable512e: [required] Should the volume provides 512-byte sector emulation? 
+        :type enable512e: bool
+
+        :param qos:  Initial quality of service settings for this volume.  Volumes created without specified QoS values are created with the default values for QoS. Default values for a volume can be found by running the GetDefaultQoS method. 
+        :type qos: QoS
+
+        :param attributes:  List of Name/Value pairs in JSON object format. 
+        :type attributes: dict
+
+        :param sliceCount:   
+        :type sliceCount: int
+        """
+
+        self._check_connection_type("create_volume", "Cluster")
+
+        params = { 
+            "name": name,
+            "accountID": account_id,
+            "totalSize": total_size,
+            "enable512e": enable512e,
+        }
+        if qos is not None:
+            params["qos"] = qos
+        if attributes is not None:
+            params["attributes"] = attributes
+        if slice_count is not None:
+            params["sliceCount"] = slice_count
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateVolume',
+            CreateVolumeResult,
             params
         )
 

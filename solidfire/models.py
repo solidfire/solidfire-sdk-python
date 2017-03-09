@@ -605,6 +605,59 @@ class GetHardwareInfoResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class QoS(data_model.DataObject):
+    """QoS  
+    Quality of Service (QoS) values are used on SolidFire volumes to provision performance expectations.
+    Minimum, maximum and burst QoS values can be set within the ranges specified in the QoS table below.
+    
+    Volumes created without specified QoS values are created with the Default values listed below.
+    Default values can be found by running the GetDefaultQoS method.
+    
+    minIOPS Min: 100/50 (v7.0/v8.0), Default: 100, Max: 15,000
+    maxIOPS Min: 100/50 (v7.0/v8.0), Default: 15,000, Max: 100,000
+    burstIOPS Min: 100/50 (v7.0/v8.0), Default: 15,000, Max: 100,000
+
+    :param min_iops:  Desired minimum 4KB IOPS to guarantee. The allowed IOPS will only drop below this level if all volumes have been capped at their minimum IOPS value and there is still insufficient performance capacity. 
+    :type min_iops: int
+
+    :param max_iops:  Desired maximum 4KB IOPS allowed over an extended period of time. 
+    :type max_iops: int
+
+    :param burst_iops:  Maximum "peak" 4KB IOPS allowed for short periods of time. Allows for bursts of I/O activity over the normal max IOPS value. 
+    :type burst_iops: int
+
+    :param burst_time:  The length of time burst IOPS is allowed. The value returned is represented in time units of seconds. Note: this value is calculated by the system based on IOPS set for QoS. 
+    :type burst_time: int
+
+    """
+    min_iops = data_model.property(
+        "minIOPS", int,
+        array=False, optional=True,
+        documentation="[&#x27;Desired minimum 4KB IOPS to guarantee.&#x27;, &#x27;The allowed IOPS will only drop below this level if all volumes have been capped&#x27;, &#x27;at their minimum IOPS value and there is still insufficient performance capacity.&#x27;]",
+        dictionaryType=None
+    )
+    max_iops = data_model.property(
+        "maxIOPS", int,
+        array=False, optional=True,
+        documentation="[&#x27;Desired maximum 4KB IOPS allowed over an extended period of time.&#x27;]",
+        dictionaryType=None
+    )
+    burst_iops = data_model.property(
+        "burstIOPS", int,
+        array=False, optional=True,
+        documentation="[&#x27;Maximum &quot;peak&quot; 4KB IOPS allowed for short periods of time.&#x27;, &#x27;Allows for bursts of I/O activity over the normal max IOPS value.&#x27;]",
+        dictionaryType=None
+    )
+    burst_time = data_model.property(
+        "burstTime", int,
+        array=False, optional=True,
+        documentation="[&#x27;The length of time burst IOPS is allowed.&#x27;, &#x27;The value returned is represented in time units of seconds.&#x27;, &#x27;Note: this value is calculated by the system based on IOPS set for QoS.&#x27;]",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class CreateVolumeRequest(data_model.DataObject):
     """CreateVolumeRequest  
     CreateVolume is used to create a new (empty) volume on the cluster.
@@ -623,7 +676,7 @@ class CreateVolumeRequest(data_model.DataObject):
     :type enable512e: bool
 
     :param qos:  Initial quality of service settings for this volume.  Volumes created without specified QoS values are created with the default values for QoS. Default values for a volume can be found by running the GetDefaultQoS method. 
-    :type qos: Qos
+    :type qos: QoS
 
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
@@ -657,7 +710,7 @@ class CreateVolumeRequest(data_model.DataObject):
         dictionaryType=None
     )
     qos = data_model.property(
-        "qos", Qos,
+        "qos", QoS,
         array=False, optional=True,
         documentation="[&#x27;Initial quality of service settings for this volume.&#x27;, u&#x27;&#x27;, &#x27;Volumes created without specified QoS values are created with the default values for QoS.&#x27;, &#x27;Default values for a volume can be found by running the GetDefaultQoS method.&#x27;]",
         dictionaryType=None
@@ -2022,59 +2075,6 @@ class TestConnectSvipRequest(data_model.DataObject):
         "svip", str,
         array=False, optional=True,
         documentation="[&#x27;Optionally, use to test the storage connection of a different SVIP. This is not needed to test the connection to the target cluster.&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class QoS(data_model.DataObject):
-    """QoS  
-    Quality of Service (QoS) values are used on SolidFire volumes to provision performance expectations.
-    Minimum, maximum and burst QoS values can be set within the ranges specified in the QoS table below.
-    
-    Volumes created without specified QoS values are created with the Default values listed below.
-    Default values can be found by running the GetDefaultQoS method.
-    
-    minIOPS Min: 100/50 (v7.0/v8.0), Default: 100, Max: 15,000
-    maxIOPS Min: 100/50 (v7.0/v8.0), Default: 15,000, Max: 100,000
-    burstIOPS Min: 100/50 (v7.0/v8.0), Default: 15,000, Max: 100,000
-
-    :param min_iops:  Desired minimum 4KB IOPS to guarantee. The allowed IOPS will only drop below this level if all volumes have been capped at their minimum IOPS value and there is still insufficient performance capacity. 
-    :type min_iops: int
-
-    :param max_iops:  Desired maximum 4KB IOPS allowed over an extended period of time. 
-    :type max_iops: int
-
-    :param burst_iops:  Maximum "peak" 4KB IOPS allowed for short periods of time. Allows for bursts of I/O activity over the normal max IOPS value. 
-    :type burst_iops: int
-
-    :param burst_time:  The length of time burst IOPS is allowed. The value returned is represented in time units of seconds. Note: this value is calculated by the system based on IOPS set for QoS. 
-    :type burst_time: int
-
-    """
-    min_iops = data_model.property(
-        "minIOPS", int,
-        array=False, optional=True,
-        documentation="[&#x27;Desired minimum 4KB IOPS to guarantee.&#x27;, &#x27;The allowed IOPS will only drop below this level if all volumes have been capped&#x27;, &#x27;at their minimum IOPS value and there is still insufficient performance capacity.&#x27;]",
-        dictionaryType=None
-    )
-    max_iops = data_model.property(
-        "maxIOPS", int,
-        array=False, optional=True,
-        documentation="[&#x27;Desired maximum 4KB IOPS allowed over an extended period of time.&#x27;]",
-        dictionaryType=None
-    )
-    burst_iops = data_model.property(
-        "burstIOPS", int,
-        array=False, optional=True,
-        documentation="[&#x27;Maximum &quot;peak&quot; 4KB IOPS allowed for short periods of time.&#x27;, &#x27;Allows for bursts of I/O activity over the normal max IOPS value.&#x27;]",
-        dictionaryType=None
-    )
-    burst_time = data_model.property(
-        "burstTime", int,
-        array=False, optional=True,
-        documentation="[&#x27;The length of time burst IOPS is allowed.&#x27;, &#x27;The value returned is represented in time units of seconds.&#x27;, &#x27;Note: this value is calculated by the system based on IOPS set for QoS.&#x27;]",
         dictionaryType=None
     )
 
