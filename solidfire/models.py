@@ -9091,6 +9091,9 @@ class VirtualVolumeBinding(data_model.DataObject):
     :param virtual_volume_host:  An object describing the host to which this binding corresponds. 
     :type virtual_volume_host: VirtualVolumeHost
 
+    :param fault:  
+    :type fault: str
+
     """
     protocol_endpoint_id = data_model.property(
         "protocolEndpointID", UUID,
@@ -9150,6 +9153,12 @@ class VirtualVolumeBinding(data_model.DataObject):
         "virtualVolumeHost", VirtualVolumeHost,
         array=False, optional=True,
         documentation="[&#x27;An object describing the host to which this binding corresponds.&#x27;]",
+        dictionaryType=None
+    )
+    fault = data_model.property(
+        "fault", str,
+        array=False, optional=True,
+        documentation="",
         dictionaryType=None
     )
 
