@@ -3402,24 +3402,6 @@ class Element(ServiceBase):
             params
         )
 
-    def get_complete_stats(
-            self,):
-        """
-        The GetCompleteStats API method is used by SolidFire engineering to troubleshoot new features. The data returned from GetCompleteStats is not documented, changes frequently, and is not guaranteed to be accurate. It is not recommended to ever use GetCompleteStats for collecting performance data or any other management integration with a SolidFire cluster.
-        The data returned from GetCompleteStats changes frequently, and is not guaranteed to accurately show performance from the system. It is not recommended to ever use GetCompleteStats for collecting performance data or any other management integration with a SolidFire cluster.        """
-
-        self._check_connection_type("get_complete_stats", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetCompleteStats',
-            str,
-            params
-        )
-
     def get_hardware_info(
             self,):
         """
@@ -3434,24 +3416,6 @@ class Element(ServiceBase):
         return self.send_request(
             'GetHardwareInfo',
             GetHardwareInfoResult,
-            params
-        )
-
-    def get_raw_stats(
-            self,):
-        """
-        The GetRawStats call is used by SolidFire engineering to troubleshoot new features. The data returned from GetRawStats is not documented, it changes frequently, and is not guaranteed to be accurate. It is not recommended to ever use GetRawStats for collecting performance data or any other management integration with a SolidFire cluster.
-        The data returned from GetRawStats changes frequently, and is not guaranteed to accurately show performance from the system. It is not recommended to ever use GetRawStats for collecting performance data or any other management integration with a SolidFire cluster.        """
-
-        self._check_connection_type("get_raw_stats", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetRawStats',
-            str,
             params
         )
 
@@ -3520,6 +3484,42 @@ class Element(ServiceBase):
         return self.send_request(
             'ListVolumeStatsByVirtualVolume',
             ListVolumeStatsByVirtualVolumeResult,
+            params
+        )
+
+    def get_complete_stats(
+            self,):
+        """
+        The GetCompleteStats API method is used by SolidFire engineering to troubleshoot new features. The data returned from GetCompleteStats is not documented, changes frequently, and is not guaranteed to be accurate. It is not recommended to ever use GetCompleteStats for collecting performance data or any other management integration with a SolidFire cluster.
+        The data returned from GetCompleteStats changes frequently, and is not guaranteed to accurately show performance from the system. It is not recommended to ever use GetCompleteStats for collecting performance data or any other management integration with a SolidFire cluster.        """
+
+        self._check_connection_type("get_complete_stats", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetCompleteStats',
+            str,
+            params
+        )
+
+    def get_raw_stats(
+            self,):
+        """
+        The GetRawStats call is used by SolidFire engineering to troubleshoot new features. The data returned from GetRawStats is not documented, it changes frequently, and is not guaranteed to be accurate. It is not recommended to ever use GetRawStats for collecting performance data or any other management integration with a SolidFire cluster.
+        The data returned from GetRawStats changes frequently, and is not guaranteed to accurately show performance from the system. It is not recommended to ever use GetRawStats for collecting performance data or any other management integration with a SolidFire cluster.        """
+
+        self._check_connection_type("get_raw_stats", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetRawStats',
+            str,
             params
         )
 
