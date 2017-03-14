@@ -3368,19 +3368,60 @@ class GetRemoteLoggingHostsResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class RestoreDeletedVolumeRequest(data_model.DataObject):
-    """RestoreDeletedVolumeRequest  
-    RestoreDeletedVolume marks a deleted volume as active again.
-    This action makes the volume immediately available for iSCSI connection.
+class LunAssignment(data_model.DataObject):
+    """LunAssignment  
+    VolumeID and Lun assignment.
 
-    :param volume_id: [required] VolumeID for the deleted volume to restore. 
+    :param volume_id: [required] The volume ID assigned to the Lun. 
     :type volume_id: int
+
+    :param lun: [required] Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed. 
+    :type lun: int
 
     """
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;VolumeID for the deleted volume to restore.&#x27;]",
+        documentation="[&#x27;The volume ID assigned to the Lun.&#x27;]",
+        dictionaryType=None
+    )
+    lun = data_model.property(
+        "lun", int,
+        array=False, optional=False,
+        documentation="[&#x27;Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed.&#x27;]",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ModifyVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
+    """ModifyVolumeAccessGroupLunAssignmentsRequest  
+    The ModifytVolumeAccessGroupLunAssignments is used to define custom LUN assignments for specific volumes. Only LUN values set on the lunAssignments parameter will be changed in the volume access group. All other LUN assignments will remain unchanged.
+    
+    LUN assignment values must be unique for volumes in a volume access group. An exception will be seen if LUN assignments are duplicated in a volume access group. However, the same LUN values can be used again in different volume access groups.
+    
+    Note: Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed. None of the specified LUN assignments will be modified if there is an exception.
+    
+    Caution: If a LUN assignment is changed for a volume with active I/O, the I/O could be disrupted. Changes to the server configuration may be required in order to change volume LUN assignments.
+
+    :param volume_access_group_id: [required] Unique volume access group ID for which the LUN assignments will be modified. 
+    :type volume_access_group_id: int
+
+    :param lun_assignments: [required] The volume IDs with new assigned LUN values. 
+    :type lun_assignments: LunAssignment
+
+    """
+    volume_access_group_id = data_model.property(
+        "volumeAccessGroupID", int,
+        array=False, optional=False,
+        documentation="[&#x27;Unique volume access group ID for which the LUN assignments will be modified.&#x27;]",
+        dictionaryType=None
+    )
+    lun_assignments = data_model.property(
+        "lunAssignments", LunAssignment,
+        array=True, optional=False,
+        documentation="[&#x27;The volume IDs with new assigned LUN values.&#x27;]",
         dictionaryType=None
     )
 
@@ -6104,33 +6145,6 @@ class ListDriveStatsRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class LunAssignment(data_model.DataObject):
-    """LunAssignment  
-    VolumeID and Lun assignment.
-
-    :param volume_id: [required] The volume ID assigned to the Lun. 
-    :type volume_id: int
-
-    :param lun: [required] Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed. 
-    :type lun: int
-
-    """
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=False,
-        documentation="[&#x27;The volume ID assigned to the Lun.&#x27;]",
-        dictionaryType=None
-    )
-    lun = data_model.property(
-        "lun", int,
-        array=False, optional=False,
-        documentation="[&#x27;Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed.&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class VolumeAccessGroupLunAssignments(data_model.DataObject):
     """VolumeAccessGroupLunAssignments  
     VolumeAccessGroup ID and Lun to be assigned to all volumes within it.
@@ -8507,6 +8521,33 @@ class GetVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class AddInitiatorsToVolumeAccessGroupRequest(data_model.DataObject):
+    """AddInitiatorsToVolumeAccessGroupRequest  
+    Add initiators to a volume access group.
+
+    :param volume_access_group_id: [required] The ID of the volume access group to modify. 
+    :type volume_access_group_id: int
+
+    :param initiators: [required] List of initiators to add to the volume access group. 
+    :type initiators: str
+
+    """
+    volume_access_group_id = data_model.property(
+        "volumeAccessGroupID", int,
+        array=False, optional=False,
+        documentation="[&#x27;The ID of the volume access group to modify.&#x27;]",
+        dictionaryType=None
+    )
+    initiators = data_model.property(
+        "initiators", str,
+        array=True, optional=False,
+        documentation="[&#x27;List of initiators to add to the volume access group.&#x27;]",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class SetConfigResult(data_model.DataObject):
     """SetConfigResult  
 
@@ -9936,27 +9977,35 @@ class DeleteInitiatorsResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class AddInitiatorsToVolumeAccessGroupRequest(data_model.DataObject):
-    """AddInitiatorsToVolumeAccessGroupRequest  
-    Add initiators to a volume access group.
+class GetAsyncResultRequest(data_model.DataObject):
+    """GetAsyncResultRequest  
+    Used to retrieve the result of asynchronous method calls.
+    Some method calls are integer running and do not complete when the initial response is sent.
+    To obtain the result of the method call, polling with GetAsyncResult is required.
+    
+    GetAsyncResult returns the overall status of the operation (in progress, completed, or error) in a standard fashion,
+    but the actual data returned for the operation depends on the original method call and the return data is documented with each method.
+    
+    The result for a completed asynchronous method call can only be retrieved once.
+    Once the final result has been returned, later attempts returns an error.
 
-    :param volume_access_group_id: [required] The ID of the volume access group to modify. 
-    :type volume_access_group_id: int
+    :param async_handle: [required] A value that was returned from the original asynchronous method call. 
+    :type async_handle: int
 
-    :param initiators: [required] List of initiators to add to the volume access group. 
-    :type initiators: str
+    :param keep_result:  Should the result be kept after? 
+    :type keep_result: bool
 
     """
-    volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
+    async_handle = data_model.property(
+        "asyncHandle", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume access group to modify.&#x27;]",
+        documentation="[&#x27;A value that was returned from the original asynchronous method call.&#x27;]",
         dictionaryType=None
     )
-    initiators = data_model.property(
-        "initiators", str,
-        array=True, optional=False,
-        documentation="[&#x27;List of initiators to add to the volume access group.&#x27;]",
+    keep_result = data_model.property(
+        "keepResult", bool,
+        array=False, optional=True,
+        documentation="[&#x27;Should the result be kept after?&#x27;]",
         dictionaryType=None
     )
 
@@ -13946,17 +13995,18 @@ class ModifyAccountResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetAccountResult(data_model.DataObject):
-    """GetAccountResult  
+class GetAccountEfficiencyRequest(data_model.DataObject):
+    """GetAccountEfficiencyRequest  
+    GetAccountEfficiency is used to retrieve information about a volume account. Only the account given as a parameter in this API method is used to compute the capacity.
 
-    :param account: [required] Account details. 
-    :type account: Account
+    :param account_id: [required] Specifies the volume account for which capacity is computed. 
+    :type account_id: int
 
     """
-    account = data_model.property(
-        "account", Account,
+    account_id = data_model.property(
+        "accountID", int,
         array=False, optional=False,
-        documentation="[&#x27;Account details.&#x27;]",
+        documentation="[&#x27;Specifies the volume account for which capacity is computed.&#x27;]",
         dictionaryType=None
     )
 
@@ -15122,39 +15172,6 @@ class GetIpmiConfigResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ModifyVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
-    """ModifyVolumeAccessGroupLunAssignmentsRequest  
-    The ModifytVolumeAccessGroupLunAssignments is used to define custom LUN assignments for specific volumes. Only LUN values set on the lunAssignments parameter will be changed in the volume access group. All other LUN assignments will remain unchanged.
-    
-    LUN assignment values must be unique for volumes in a volume access group. An exception will be seen if LUN assignments are duplicated in a volume access group. However, the same LUN values can be used again in different volume access groups.
-    
-    Note: Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed. None of the specified LUN assignments will be modified if there is an exception.
-    
-    Caution: If a LUN assignment is changed for a volume with active I/O, the I/O could be disrupted. Changes to the server configuration may be required in order to change volume LUN assignments.
-
-    :param volume_access_group_id: [required] Unique volume access group ID for which the LUN assignments will be modified. 
-    :type volume_access_group_id: int
-
-    :param lun_assignments: [required] The volume IDs with new assigned LUN values. 
-    :type lun_assignments: LunAssignment
-
-    """
-    volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
-        array=False, optional=False,
-        documentation="[&#x27;Unique volume access group ID for which the LUN assignments will be modified.&#x27;]",
-        dictionaryType=None
-    )
-    lun_assignments = data_model.property(
-        "lunAssignments", LunAssignment,
-        array=True, optional=False,
-        documentation="[&#x27;The volume IDs with new assigned LUN values.&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class ListGroupSnapshotsRequest(data_model.DataObject):
     """ListGroupSnapshotsRequest  
     ListGroupSnapshots is used to return information about all group snapshots that have been created.
@@ -15464,35 +15481,19 @@ class EnableFeatureResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetAsyncResultRequest(data_model.DataObject):
-    """GetAsyncResultRequest  
-    Used to retrieve the result of asynchronous method calls.
-    Some method calls are integer running and do not complete when the initial response is sent.
-    To obtain the result of the method call, polling with GetAsyncResult is required.
-    
-    GetAsyncResult returns the overall status of the operation (in progress, completed, or error) in a standard fashion,
-    but the actual data returned for the operation depends on the original method call and the return data is documented with each method.
-    
-    The result for a completed asynchronous method call can only be retrieved once.
-    Once the final result has been returned, later attempts returns an error.
+class RestoreDeletedVolumeRequest(data_model.DataObject):
+    """RestoreDeletedVolumeRequest  
+    RestoreDeletedVolume marks a deleted volume as active again.
+    This action makes the volume immediately available for iSCSI connection.
 
-    :param async_handle: [required] A value that was returned from the original asynchronous method call. 
-    :type async_handle: int
-
-    :param keep_result:  Should the result be kept after? 
-    :type keep_result: bool
+    :param volume_id: [required] VolumeID for the deleted volume to restore. 
+    :type volume_id: int
 
     """
-    async_handle = data_model.property(
-        "asyncHandle", int,
+    volume_id = data_model.property(
+        "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;A value that was returned from the original asynchronous method call.&#x27;]",
-        dictionaryType=None
-    )
-    keep_result = data_model.property(
-        "keepResult", bool,
-        array=False, optional=True,
-        documentation="[&#x27;Should the result be kept after?&#x27;]",
+        documentation="[&#x27;VolumeID for the deleted volume to restore.&#x27;]",
         dictionaryType=None
     )
 
@@ -16892,18 +16893,17 @@ class GetClusterHardwareInfoResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetAccountEfficiencyRequest(data_model.DataObject):
-    """GetAccountEfficiencyRequest  
-    GetAccountEfficiency is used to retrieve information about a volume account. Only the account given as a parameter in this API method is used to compute the capacity.
+class GetAccountResult(data_model.DataObject):
+    """GetAccountResult  
 
-    :param account_id: [required] Specifies the volume account for which capacity is computed. 
-    :type account_id: int
+    :param account: [required] Account details. 
+    :type account: Account
 
     """
-    account_id = data_model.property(
-        "accountID", int,
+    account = data_model.property(
+        "account", Account,
         array=False, optional=False,
-        documentation="[&#x27;Specifies the volume account for which capacity is computed.&#x27;]",
+        documentation="[&#x27;Account details.&#x27;]",
         dictionaryType=None
     )
 
