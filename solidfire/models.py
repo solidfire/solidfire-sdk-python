@@ -392,7 +392,7 @@ class Volume(data_model.DataObject):
     :param qos: [required] Quality of service settings for this volume. 
     :type qos: VolumeQOS
 
-    :param volume_access_groups: [required] List of volume access groups to which a volume belongs. 
+    :param volume_access_groups: [required] List of volume access groups to which a volume beintegers. 
     :type volume_access_groups: int
 
     :param volume_pairs: [required] Information about a paired volume. Available only if a volume is paired. @see VolumePairs for return values. 
@@ -489,7 +489,7 @@ class Volume(data_model.DataObject):
     volume_access_groups = data_model.property(
         "volumeAccessGroups", int,
         array=True, optional=False,
-        documentation="[&#x27;List of volume access groups to which a volume belongs.&#x27;]",
+        documentation="[&#x27;List of volume access groups to which a volume beintegers.&#x27;]",
         dictionaryType=None
     )
     volume_pairs = data_model.property(
@@ -1249,7 +1249,7 @@ class VolumeStats(data_model.DataObject):
     :param unaligned_writes: [required] For 512e volumes, the number of write operations that were not on a 4k sector boundary. High numbers of unaligned writes may indicate improper partition alignment. 
     :type unaligned_writes: int
 
-    :param volume_access_groups: [required] List of volume access group(s) to which a volume belongs. 
+    :param volume_access_groups: [required] List of volume access group(s) to which a volume beintegers. 
     :type volume_access_groups: int
 
     :param volume_id: [required] Volume ID of the volume. 
@@ -1403,7 +1403,7 @@ class VolumeStats(data_model.DataObject):
     volume_access_groups = data_model.property(
         "volumeAccessGroups", int,
         array=True, optional=False,
-        documentation="[&#x27;List of volume access group(s) to which a volume belongs.&#x27;]",
+        documentation="[&#x27;List of volume access group(s) to which a volume beintegers.&#x27;]",
         dictionaryType=None
     )
     volume_id = data_model.property(
@@ -2937,7 +2937,7 @@ class Initiator(data_model.DataObject):
     :param initiator_name: [required] The name of the initiator that has been created. (String) 
     :type initiator_name: str
 
-    :param volume_access_groups: [required] A list of volumeAccessGroupIDs to which this initiator belongs. (Array of Integers) 
+    :param volume_access_groups: [required] A list of volumeAccessGroupIDs to which this initiator beintegers. (Array of Integers) 
     :type volume_access_groups: int
 
     :param attributes: [required] A set of JSON attributes assigned to this initiator. (JSON Object) 
@@ -2965,7 +2965,7 @@ class Initiator(data_model.DataObject):
     volume_access_groups = data_model.property(
         "volumeAccessGroups", int,
         array=True, optional=False,
-        documentation="[&#x27;A list of volumeAccessGroupIDs to which this initiator belongs. (Array of Integers)&#x27;]",
+        documentation="[&#x27;A list of volumeAccessGroupIDs to which this initiator beintegers. (Array of Integers)&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
@@ -4594,10 +4594,10 @@ class SnmpV3UsmUser(data_model.DataObject):
     :param name: [required] The name of the user. Must contain at least one character, but no more than 32 characters. Blank spaces are not allowed. 
     :type name: str
 
-    :param password: [required] The password of the user. Must be between 8 and 255 characters long (inclusive). Blank spaces are not allowed. Required if "secLevel" is "auth" or "priv." 
+    :param password: [required] The password of the user. Must be between 8 and 255 characters integer (inclusive). Blank spaces are not allowed. Required if "secLevel" is "auth" or "priv." 
     :type password: str
 
-    :param passphrase: [required] The passphrase of the user. Must be between 8 and 255 characters long (inclusive). Blank spaces are not allowed. Required if "secLevel" is "priv." 
+    :param passphrase: [required] The passphrase of the user. Must be between 8 and 255 characters integer (inclusive). Blank spaces are not allowed. Required if "secLevel" is "priv." 
     :type passphrase: str
 
     :param sec_level: [required] noauth: No password or passphrase is required. auth: A password is required for user access. priv: A password and passphrase is required for user access. 
@@ -4619,13 +4619,13 @@ class SnmpV3UsmUser(data_model.DataObject):
     password = data_model.property(
         "password", str,
         array=False, optional=False,
-        documentation="[&#x27;The password of the user. Must be between 8 and 255 characters long (inclusive). Blank spaces are not allowed. Required if &quot;secLevel&quot; is &quot;auth&quot; or &quot;priv.&quot;&#x27;]",
+        documentation="[&#x27;The password of the user. Must be between 8 and 255 characters integer (inclusive). Blank spaces are not allowed. Required if &quot;secLevel&quot; is &quot;auth&quot; or &quot;priv.&quot;&#x27;]",
         dictionaryType=None
     )
     passphrase = data_model.property(
         "passphrase", str,
         array=False, optional=False,
-        documentation="[&#x27;The passphrase of the user. Must be between 8 and 255 characters long (inclusive). Blank spaces are not allowed. Required if &quot;secLevel&quot; is &quot;priv.&quot;&#x27;]",
+        documentation="[&#x27;The passphrase of the user. Must be between 8 and 255 characters integer (inclusive). Blank spaces are not allowed. Required if &quot;secLevel&quot; is &quot;priv.&quot;&#x27;]",
         dictionaryType=None
     )
     sec_level = data_model.property(
@@ -5202,9 +5202,9 @@ class VolumeAccessGroup(data_model.DataObject):
     Volume Access Group Limits:
     
     - A volume access group can contain up to sixty-four initiator IQNs.
-    - An initiator can only belong to only one volume access group.
+    - An initiator can only beinteger to only one volume access group.
     - A volume access group can contain up to two thousand volumes.
-    - Each volume access group can belong to a maximum of four other volume access groups.
+    - Each volume access group can beinteger to a maximum of four other volume access groups.
 
     :param deleted_volumes: [required] A list of deleted volumes that have yet to be purged from the VAG. 
     :type deleted_volumes: int
@@ -5218,10 +5218,10 @@ class VolumeAccessGroup(data_model.DataObject):
     :param initiator_ids:  A list of IDs of initiators that are mapped to the VAG. 
     :type initiator_ids: int
 
-    :param initiators: [required] List of unique initiator names belonging to the volume access group. 
+    :param initiators: [required] List of unique initiator names beintegering to the volume access group. 
     :type initiators: str
 
-    :param volumes: [required] List of volumes belonging to the volume access group. 
+    :param volumes: [required] List of volumes beintegering to the volume access group. 
     :type volumes: int
 
     :param attributes: [required] List of name/value pairs 
@@ -5255,13 +5255,13 @@ class VolumeAccessGroup(data_model.DataObject):
     initiators = data_model.property(
         "initiators", str,
         array=True, optional=False,
-        documentation="[&#x27;List of unique initiator names belonging to the volume access group.&#x27;]",
+        documentation="[&#x27;List of unique initiator names beintegering to the volume access group.&#x27;]",
         dictionaryType=None
     )
     volumes = data_model.property(
         "volumes", int,
         array=True, optional=False,
-        documentation="[&#x27;List of volumes belonging to the volume access group.&#x27;]",
+        documentation="[&#x27;List of volumes beintegering to the volume access group.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
@@ -5329,7 +5329,7 @@ class DeleteVolumesResult(data_model.DataObject):
 class PendingOperation(data_model.DataObject):
     """PendingOperation  
 
-    :param pending: [required] true: operation is still in progress. false: operation is no longer in progress. 
+    :param pending: [required] true: operation is still in progress. false: operation is no integerer in progress. 
     :type pending: bool
 
     :param operation: [required] Name of operation that is in progress or has completed. 
@@ -5339,7 +5339,7 @@ class PendingOperation(data_model.DataObject):
     pending = data_model.property(
         "pending", bool,
         array=False, optional=False,
-        documentation="[&#x27;true: operation is still in progress.&#x27;, &#x27;false: operation is no longer in progress.&#x27;]",
+        documentation="[&#x27;true: operation is still in progress.&#x27;, &#x27;false: operation is no integerer in progress.&#x27;]",
         dictionaryType=None
     )
     operation = data_model.property(
@@ -7514,7 +7514,7 @@ class FibreChannelSession(data_model.DataObject):
     :param target_wwpn: [required] The WWPN of the target port involved in this session. 
     :type target_wwpn: str
 
-    :param volume_access_group_id:  The ID of the volume access group to which the initiatorWWPN belongs. If not in a volume access group, the value will be null. 
+    :param volume_access_group_id:  The ID of the volume access group to which the initiatorWWPN beintegers. If not in a volume access group, the value will be null. 
     :type volume_access_group_id: int
 
     """
@@ -7545,7 +7545,7 @@ class FibreChannelSession(data_model.DataObject):
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=True,
-        documentation="[&#x27;The ID of the volume access group to which the initiatorWWPN belongs. If not in a volume access group, the value will be null.&#x27;]",
+        documentation="[&#x27;The ID of the volume access group to which the initiatorWWPN beintegers. If not in a volume access group, the value will be null.&#x27;]",
         dictionaryType=None
     )
 
@@ -9368,7 +9368,7 @@ class SnmpNetwork(data_model.DataObject):
     :param community: [required] SNMP community string. 
     :type community: str
 
-    :param network: [required] This parameter along with the cidr variable is used to control which network the access and community string apply to. The special value of "default" is used to specify an entry that applies to all networks. The cidr mask is ignored when network value is either a host name or default. 
+    :param network: [required] This parameter ainteger with the cidr variable is used to control which network the access and community string apply to. The special value of "default" is used to specify an entry that applies to all networks. The cidr mask is ignored when network value is either a host name or default. 
     :type network: str
 
     """
@@ -9393,7 +9393,7 @@ class SnmpNetwork(data_model.DataObject):
     network = data_model.property(
         "network", str,
         array=False, optional=False,
-        documentation="[&#x27;This parameter along with the cidr variable is used to control which network the access and community string apply to. The special value of &quot;default&quot; is used to specify an entry that applies to all networks. The cidr mask is ignored when network value is either a host name or default.&#x27;]",
+        documentation="[&#x27;This parameter ainteger with the cidr variable is used to control which network the access and community string apply to. The special value of &quot;default&quot; is used to specify an entry that applies to all networks. The cidr mask is ignored when network value is either a host name or default.&#x27;]",
         dictionaryType=None
     )
 
