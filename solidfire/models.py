@@ -1681,18 +1681,196 @@ class ModifySnapshotRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class RemoveBackupTargetRequest(data_model.DataObject):
-    """RemoveBackupTargetRequest  
-    RemoveBackupTarget allows you to delete backup targets.
+class ClusterStats(data_model.DataObject):
+    """ClusterStats  
 
-    :param backup_target_id: [required] Unique target ID of the target to remove. 
-    :type backup_target_id: int
+    :param cluster_utilization: [required] The amount of cluster capacity being utilized. 
+    :type cluster_utilization: float
+
+    :param client_queue_depth: [required]  
+    :type client_queue_depth: int
+
+    :param read_bytes: [required] Total bytes read by clients. 
+    :type read_bytes: int
+
+    :param read_ops: [required] Total read operations. 
+    :type read_ops: int
+
+    :param timestamp: [required] Current time in UTC format. ISO 8601 date string. 
+    :type timestamp: str
+
+    :param write_bytes: [required] Total bytes written by clients. 
+    :type write_bytes: int
+
+    :param write_ops: [required] Total write operations. 
+    :type write_ops: int
+
+    :param actual_iops:   
+    :type actual_iops: int
+
+    :param average_iopsize:   
+    :type average_iopsize: int
+
+    :param latency_usec:   
+    :type latency_usec: int
+
+    :param read_bytes_last_sample:   
+    :type read_bytes_last_sample: int
+
+    :param read_latency_usec:   
+    :type read_latency_usec: int
+
+    :param read_ops_last_sample:   
+    :type read_ops_last_sample: int
+
+    :param sample_period_msec:   
+    :type sample_period_msec: int
+
+    :param unaligned_reads:   
+    :type unaligned_reads: int
+
+    :param unaligned_writes:   
+    :type unaligned_writes: int
+
+    :param write_bytes_last_sample:   
+    :type write_bytes_last_sample: int
+
+    :param write_latency_usec:   
+    :type write_latency_usec: int
+
+    :param write_ops_last_sample:   
+    :type write_ops_last_sample: int
 
     """
-    backup_target_id = data_model.property(
-        "backupTargetID", int,
+    cluster_utilization = data_model.property(
+        "clusterUtilization", float,
         array=False, optional=False,
-        documentation="[&#x27;Unique target ID of the target to remove.&#x27;]",
+        documentation="[&#x27;The amount of cluster capacity being utilized.&#x27;]",
+        dictionaryType=None
+    )
+    client_queue_depth = data_model.property(
+        "clientQueueDepth", int,
+        array=False, optional=False,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    read_bytes = data_model.property(
+        "readBytes", int,
+        array=False, optional=False,
+        documentation="[&#x27;Total bytes read by clients.&#x27;]",
+        dictionaryType=None
+    )
+    read_ops = data_model.property(
+        "readOps", int,
+        array=False, optional=False,
+        documentation="[&#x27;Total read operations.&#x27;]",
+        dictionaryType=None
+    )
+    timestamp = data_model.property(
+        "timestamp", str,
+        array=False, optional=False,
+        documentation="[&#x27;Current time in UTC format. ISO 8601 date string.&#x27;]",
+        dictionaryType=None
+    )
+    write_bytes = data_model.property(
+        "writeBytes", int,
+        array=False, optional=False,
+        documentation="[&#x27;Total bytes written by clients.&#x27;]",
+        dictionaryType=None
+    )
+    write_ops = data_model.property(
+        "writeOps", int,
+        array=False, optional=False,
+        documentation="[&#x27;Total write operations.&#x27;]",
+        dictionaryType=None
+    )
+    actual_iops = data_model.property(
+        "actualIOPS", int,
+        array=False, optional=True,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    average_iopsize = data_model.property(
+        "averageIOPSize", int,
+        array=False, optional=True,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    latency_usec = data_model.property(
+        "latencyUSec", int,
+        array=False, optional=True,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    read_bytes_last_sample = data_model.property(
+        "readBytesLastSample", int,
+        array=False, optional=True,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    read_latency_usec = data_model.property(
+        "readLatencyUSec", int,
+        array=False, optional=True,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    read_ops_last_sample = data_model.property(
+        "readOpsLastSample", int,
+        array=False, optional=True,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    sample_period_msec = data_model.property(
+        "samplePeriodMsec", int,
+        array=False, optional=True,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    unaligned_reads = data_model.property(
+        "unalignedReads", int,
+        array=False, optional=True,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    unaligned_writes = data_model.property(
+        "unalignedWrites", int,
+        array=False, optional=True,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    write_bytes_last_sample = data_model.property(
+        "writeBytesLastSample", int,
+        array=False, optional=True,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    write_latency_usec = data_model.property(
+        "writeLatencyUSec", int,
+        array=False, optional=True,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    write_ops_last_sample = data_model.property(
+        "writeOpsLastSample", int,
+        array=False, optional=True,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetClusterStatsResult(data_model.DataObject):
+    """GetClusterStatsResult  
+
+    :param cluster_stats: [required]  
+    :type cluster_stats: ClusterStats
+
+    """
+    cluster_stats = data_model.property(
+        "clusterStats", ClusterStats,
+        array=False, optional=False,
+        documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
 
@@ -3049,10 +3227,20 @@ class ShutdownRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class RemoveNodesResult(data_model.DataObject):
-    """RemoveNodesResult  
+class ListClusterAdminsRequest(data_model.DataObject):
+    """ListClusterAdminsRequest  
+    ListClusterAdmins returns the list of all cluster administrators for the cluster. There can be several cluster administrators that have different levels of permissions. There can be only one primary cluster administrator in the system. The primary Cluster Admin is the administrator that was created when the cluster was created. LDAP administrators can also be created when setting up an LDAP system on the cluster.
+
+    :param show_hidden:   
+    :type show_hidden: bool
 
     """
+    show_hidden = data_model.property(
+        "showHidden", bool,
+        array=False, optional=True,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -3895,7 +4083,7 @@ class RemoveVolumePairResult(data_model.DataObject):
 
 class RemoveNodesRequest(data_model.DataObject):
     """RemoveNodesRequest  
-    RemoveNodes is used to remove one or more nodes that should no longer participate in the cluster. Before removing a node, all drives it contains must first be removed with "RemoveDrives" method. A node cannot be removed until the RemoveDrives process has completed and all data has been migrated away from the node.
+    RemoveNodes is used to remove one or more nodes that should no integerer participate in the cluster. Before removing a node, all drives it contains must first be removed with "RemoveDrives" method. A node cannot be removed until the RemoveDrives process has completed and all data has been migrated away from the node.
     
     Once removed, a node registers itself as a pending node and can be added again, or shut down which removes it from the "Pending Node" list.
 
@@ -7980,196 +8168,18 @@ class SnmpSendTestTrapsResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ClusterStats(data_model.DataObject):
-    """ClusterStats  
+class RemoveBackupTargetRequest(data_model.DataObject):
+    """RemoveBackupTargetRequest  
+    RemoveBackupTarget allows you to delete backup targets.
 
-    :param cluster_utilization: [required] The amount of cluster capacity being utilized. 
-    :type cluster_utilization: float
-
-    :param client_queue_depth: [required]  
-    :type client_queue_depth: int
-
-    :param read_bytes: [required] Total bytes read by clients. 
-    :type read_bytes: int
-
-    :param read_ops: [required] Total read operations. 
-    :type read_ops: int
-
-    :param timestamp: [required] Current time in UTC format. ISO 8601 date string. 
-    :type timestamp: str
-
-    :param write_bytes: [required] Total bytes written by clients. 
-    :type write_bytes: int
-
-    :param write_ops: [required] Total write operations. 
-    :type write_ops: int
-
-    :param actual_iops:   
-    :type actual_iops: int
-
-    :param average_iopsize:   
-    :type average_iopsize: int
-
-    :param latency_usec:   
-    :type latency_usec: int
-
-    :param read_bytes_last_sample:   
-    :type read_bytes_last_sample: int
-
-    :param read_latency_usec:   
-    :type read_latency_usec: int
-
-    :param read_ops_last_sample:   
-    :type read_ops_last_sample: int
-
-    :param sample_period_msec:   
-    :type sample_period_msec: int
-
-    :param unaligned_reads:   
-    :type unaligned_reads: int
-
-    :param unaligned_writes:   
-    :type unaligned_writes: int
-
-    :param write_bytes_last_sample:   
-    :type write_bytes_last_sample: int
-
-    :param write_latency_usec:   
-    :type write_latency_usec: int
-
-    :param write_ops_last_sample:   
-    :type write_ops_last_sample: int
+    :param backup_target_id: [required] Unique target ID of the target to remove. 
+    :type backup_target_id: int
 
     """
-    cluster_utilization = data_model.property(
-        "clusterUtilization", float,
+    backup_target_id = data_model.property(
+        "backupTargetID", int,
         array=False, optional=False,
-        documentation="[&#x27;The amount of cluster capacity being utilized.&#x27;]",
-        dictionaryType=None
-    )
-    client_queue_depth = data_model.property(
-        "clientQueueDepth", int,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    read_bytes = data_model.property(
-        "readBytes", int,
-        array=False, optional=False,
-        documentation="[&#x27;Total bytes read by clients.&#x27;]",
-        dictionaryType=None
-    )
-    read_ops = data_model.property(
-        "readOps", int,
-        array=False, optional=False,
-        documentation="[&#x27;Total read operations.&#x27;]",
-        dictionaryType=None
-    )
-    timestamp = data_model.property(
-        "timestamp", str,
-        array=False, optional=False,
-        documentation="[&#x27;Current time in UTC format. ISO 8601 date string.&#x27;]",
-        dictionaryType=None
-    )
-    write_bytes = data_model.property(
-        "writeBytes", int,
-        array=False, optional=False,
-        documentation="[&#x27;Total bytes written by clients.&#x27;]",
-        dictionaryType=None
-    )
-    write_ops = data_model.property(
-        "writeOps", int,
-        array=False, optional=False,
-        documentation="[&#x27;Total write operations.&#x27;]",
-        dictionaryType=None
-    )
-    actual_iops = data_model.property(
-        "actualIOPS", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    average_iopsize = data_model.property(
-        "averageIOPSize", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    latency_usec = data_model.property(
-        "latencyUSec", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    read_bytes_last_sample = data_model.property(
-        "readBytesLastSample", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    read_latency_usec = data_model.property(
-        "readLatencyUSec", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    read_ops_last_sample = data_model.property(
-        "readOpsLastSample", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    sample_period_msec = data_model.property(
-        "samplePeriodMsec", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    unaligned_reads = data_model.property(
-        "unalignedReads", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    unaligned_writes = data_model.property(
-        "unalignedWrites", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    write_bytes_last_sample = data_model.property(
-        "writeBytesLastSample", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    write_latency_usec = data_model.property(
-        "writeLatencyUSec", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    write_ops_last_sample = data_model.property(
-        "writeOpsLastSample", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetClusterStatsResult(data_model.DataObject):
-    """GetClusterStatsResult  
-
-    :param cluster_stats: [required]  
-    :type cluster_stats: ClusterStats
-
-    """
-    cluster_stats = data_model.property(
-        "clusterStats", ClusterStats,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;Unique target ID of the target to remove.&#x27;]",
         dictionaryType=None
     )
 
@@ -9184,7 +9194,7 @@ class ListVirtualVolumeBindingsResult(data_model.DataObject):
 
 class DeleteVolumesRequest(data_model.DataObject):
     """DeleteVolumesRequest  
-    DeleteVolumes marks multiple (up to 500) active volumes for deletion. Once marked, the volumes are purged (permanently deleted) after the cleanup interval elapses.The cleanup interval can be set in the SetClusterSettings method. For more information on using this method, see SetClusterSettings on page 1. After making a request to delete volumes, any active iSCSI connections to the volumes are immediately terminated and no further connections are allowed while the volumes are in this state. A marked volume is not returned in target discovery requests. Any snapshots of a volume that has been marked for deletion are not affected. Snapshots are kept until the volume is purged from the system. If a volume is marked for deletion and has a bulk volume read or bulk volume write operation in progress, the bulk volume read or write operation is stopped. If the volumes you delete are paired with a volume, replication between the paired volumes is suspended and no data is transferred to them or from them while in a deleted state. The remote volumes the deleted volumes were paired with enter into a PausedMisconfigured state and data is no longer sent to them or from the deleted volumes. Until the deleted volumes are purged, they can be restored and data transfers resume. If the deleted volumes are purged from the system, the volumes they were paired with enter into a StoppedMisconfigured state and the volume pairing status is removed. The purged volumes become permanently unavailable.
+    DeleteVolumes marks multiple (up to 500) active volumes for deletion. Once marked, the volumes are purged (permanently deleted) after the cleanup interval elapses.The cleanup interval can be set in the SetClusterSettings method. For more information on using this method, see SetClusterSettings on page 1. After making a request to delete volumes, any active iSCSI connections to the volumes are immediately terminated and no further connections are allowed while the volumes are in this state. A marked volume is not returned in target discovery requests. Any snapshots of a volume that has been marked for deletion are not affected. Snapshots are kept until the volume is purged from the system. If a volume is marked for deletion and has a bulk volume read or bulk volume write operation in progress, the bulk volume read or write operation is stopped. If the volumes you delete are paired with a volume, replication between the paired volumes is suspended and no data is transferred to them or from them while in a deleted state. The remote volumes the deleted volumes were paired with enter into a PausedMisconfigured state and data is no integerer sent to them or from the deleted volumes. Until the deleted volumes are purged, they can be restored and data transfers resume. If the deleted volumes are purged from the system, the volumes they were paired with enter into a StoppedMisconfigured state and the volume pairing status is removed. The purged volumes become permanently unavailable.
 
     :param account_ids:  A list of account IDs. All volumes from these accounts are deleted from the system.  
     :type account_ids: int
@@ -9232,7 +9242,7 @@ class ListVolumesRequest(data_model.DataObject):
     :param volume_status:  If specified, filter to only volumes with the provided status. By default, list all volumes. 
     :type volume_status: str
 
-    :param accounts:  If specified, only fetch volumes which belong to the provided accounts. By default, list volumes for all accounts. 
+    :param accounts:  If specified, only fetch volumes which beinteger to the provided accounts. By default, list volumes for all accounts. 
     :type accounts: int
 
     :param is_paired:  If specified, only fetch volumes which are paired (if true) or non-paired (if false). By default, list all volumes regardless of their pairing status. 
@@ -9263,7 +9273,7 @@ class ListVolumesRequest(data_model.DataObject):
     accounts = data_model.property(
         "accounts", int,
         array=True, optional=True,
-        documentation="[&#x27;If specified, only fetch volumes which belong to the provided accounts.&#x27;, &#x27;By default, list volumes for all accounts.&#x27;]",
+        documentation="[&#x27;If specified, only fetch volumes which beinteger to the provided accounts.&#x27;, &#x27;By default, list volumes for all accounts.&#x27;]",
         dictionaryType=None
     )
     is_paired = data_model.property(
@@ -9282,6 +9292,51 @@ class ListVolumesRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class ModifyClusterAdminRequest(data_model.DataObject):
+    """ModifyClusterAdminRequest  
+    ModifyClusterAdmin is used to change the settings for a Cluster Admin or LDAP Cluster Admin. Access for the administrator Cluster Admin account cannot be changed.
+
+    :param cluster_admin_id: [required] ClusterAdminID for the Cluster Admin or LDAP Cluster Admin to modify. 
+    :type cluster_admin_id: int
+
+    :param password:  Password used to authenticate this Cluster Admin. 
+    :type password: str
+
+    :param access:  Controls which methods this Cluster Admin can use. For more details on the levels of access, see "Access Control" in the Element API Guide. 
+    :type access: str
+
+    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :type attributes: dict
+
+    """
+    cluster_admin_id = data_model.property(
+        "clusterAdminID", int,
+        array=False, optional=False,
+        documentation="[&#x27;ClusterAdminID for the Cluster Admin or LDAP Cluster Admin to modify.&#x27;]",
+        dictionaryType=None
+    )
+    password = data_model.property(
+        "password", str,
+        array=False, optional=True,
+        documentation="[&#x27;Password used to authenticate this Cluster Admin.&#x27;]",
+        dictionaryType=None
+    )
+    access = data_model.property(
+        "access", str,
+        array=True, optional=True,
+        documentation="[&#x27;Controls which methods this Cluster Admin can use. For more details on the levels of access, see &quot;Access Control&quot; in the Element API Guide.&#x27;]",
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class AddAccountRequest(data_model.DataObject):
     """AddAccountRequest  
     Used to add a new account to the system.
@@ -9291,10 +9346,10 @@ class AddAccountRequest(data_model.DataObject):
     :param username: [required] Unique username for this account. (May be 1 to 64 characters in length). 
     :type username: str
 
-    :param initiator_secret:  CHAP secret to use for the initiator. Should be 12-16 characters long and impenetrable. The CHAP initiator secrets must be unique and cannot be the same as the target CHAP secret.  If not specified, a random secret is created. 
+    :param initiator_secret:  CHAP secret to use for the initiator. Should be 12-16 characters integer and impenetrable. The CHAP initiator secrets must be unique and cannot be the same as the target CHAP secret.  If not specified, a random secret is created. 
     :type initiator_secret: CHAPSecret
 
-    :param target_secret:  CHAP secret to use for the target (mutual CHAP authentication). Should be 12-16 characters long and impenetrable. The CHAP target secrets must be unique and cannot be the same as the initiator CHAP secret.  If not specified, a random secret is created. 
+    :param target_secret:  CHAP secret to use for the target (mutual CHAP authentication). Should be 12-16 characters integer and impenetrable. The CHAP target secrets must be unique and cannot be the same as the initiator CHAP secret.  If not specified, a random secret is created. 
     :type target_secret: CHAPSecret
 
     :param attributes:  List of Name/Value pairs in JSON object format. 
@@ -9310,13 +9365,13 @@ class AddAccountRequest(data_model.DataObject):
     initiator_secret = data_model.property(
         "initiatorSecret", CHAPSecret,
         array=False, optional=True,
-        documentation="[&#x27;CHAP secret to use for the initiator.&#x27;, &#x27;Should be 12-16 characters long and impenetrable.&#x27;, &#x27;The CHAP initiator secrets must be unique and cannot be the same as the target CHAP secret.&#x27;, u&#x27;&#x27;, &#x27;If not specified, a random secret is created.&#x27;]",
+        documentation="[&#x27;CHAP secret to use for the initiator.&#x27;, &#x27;Should be 12-16 characters integer and impenetrable.&#x27;, &#x27;The CHAP initiator secrets must be unique and cannot be the same as the target CHAP secret.&#x27;, u&#x27;&#x27;, &#x27;If not specified, a random secret is created.&#x27;]",
         dictionaryType=None
     )
     target_secret = data_model.property(
         "targetSecret", CHAPSecret,
         array=False, optional=True,
-        documentation="[&#x27;CHAP secret to use for the target (mutual CHAP authentication).&#x27;, &#x27;Should be 12-16 characters long and impenetrable.&#x27;, &#x27;The CHAP target secrets must be unique and cannot be the same as the initiator CHAP secret.&#x27;, u&#x27;&#x27;, &#x27;If not specified, a random secret is created.&#x27;]",
+        documentation="[&#x27;CHAP secret to use for the target (mutual CHAP authentication).&#x27;, &#x27;Should be 12-16 characters integer and impenetrable.&#x27;, &#x27;The CHAP target secrets must be unique and cannot be the same as the initiator CHAP secret.&#x27;, u&#x27;&#x27;, &#x27;If not specified, a random secret is created.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
@@ -10269,24 +10324,6 @@ class GetConfigResult(data_model.DataObject):
         "config", Config,
         array=False, optional=False,
         documentation="[&#x27;The details of the cluster. Values returned in &quot;config&quot;: cluster- Cluster information that identifies how the node communicates with the cluster it is associated with. (Object) network - Network information for bonding and Ethernet connections. (Object)&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListClusterAdminsRequest(data_model.DataObject):
-    """ListClusterAdminsRequest  
-    ListClusterAdmins returns the list of all cluster administrators for the cluster. There can be several cluster administrators that have different levels of permissions. There can be only one primary cluster administrator in the system. The primary Cluster Admin is the administrator that was created when the cluster was created. LDAP administrators can also be created when setting up an LDAP system on the cluster.
-
-    :param show_hidden:   
-    :type show_hidden: bool
-
-    """
-    show_hidden = data_model.property(
-        "showHidden", bool,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
 
@@ -11648,7 +11685,7 @@ class DeleteVolumeRequest(data_model.DataObject):
     If a volume is marked for deletion, and it has a bulk volume read or bulk volume write operation in progress, the bulk volume operation is stopped.
     
     If the volume you delete is paired with a volume, replication between the paired volumes is suspended and no data is transferred to it or from it while in a deleted state.
-    The remote volume the deleted volume was paired with enters into a PausedMisconfigured state and data is no longer sent to it or from the deleted volume.
+    The remote volume the deleted volume was paired with enters into a PausedMisconfigured state and data is no integerer sent to it or from the deleted volume.
     Until the deleted volume is purged, it can be restored and data transfers resumes.
     If the deleted volume gets purged from the system, the volume it was paired with enters into a StoppedMisconfigured state and the volume pairing status is removed.
     The purged volume becomes permanently unavailable.
@@ -11767,7 +11804,7 @@ class CloneMultipleVolumesResult(data_model.DataObject):
 class RemoveVolumePairRequest(data_model.DataObject):
     """RemoveVolumePairRequest  
     RemoveVolumePair is used to remove the remote pairing between two volumes.
-    When the volume pairing information is removed, data is no longer replicated to or from the volume.
+    When the volume pairing information is removed, data is no integerer replicated to or from the volume.
     This method should be run on both the source and target volumes that are paired together.
 
     :param volume_id: [required] ID of the volume on which to stop the replication process. 
@@ -12597,10 +12634,10 @@ class ModifyAccountRequest(data_model.DataObject):
     :param status:  Status of the account. 
     :type status: str
 
-    :param initiator_secret:  CHAP secret to use for the initiator. Should be 12-16 characters long and impenetrable. 
+    :param initiator_secret:  CHAP secret to use for the initiator. Should be 12-16 characters integer and impenetrable. 
     :type initiator_secret: CHAPSecret
 
-    :param target_secret:  CHAP secret to use for the target (mutual CHAP authentication). Should be 12-16 characters long and impenetrable. 
+    :param target_secret:  CHAP secret to use for the target (mutual CHAP authentication). Should be 12-16 characters integer and impenetrable. 
     :type target_secret: CHAPSecret
 
     :param attributes:  List of Name/Value pairs in JSON object format. 
@@ -12628,13 +12665,13 @@ class ModifyAccountRequest(data_model.DataObject):
     initiator_secret = data_model.property(
         "initiatorSecret", CHAPSecret,
         array=False, optional=True,
-        documentation="[&#x27;CHAP secret to use for the initiator.&#x27;, &#x27;Should be 12-16 characters long and impenetrable.&#x27;]",
+        documentation="[&#x27;CHAP secret to use for the initiator.&#x27;, &#x27;Should be 12-16 characters integer and impenetrable.&#x27;]",
         dictionaryType=None
     )
     target_secret = data_model.property(
         "targetSecret", CHAPSecret,
         array=False, optional=True,
-        documentation="[&#x27;CHAP secret to use for the target (mutual CHAP authentication).&#x27;, &#x27;Should be 12-16 characters long and impenetrable.&#x27;]",
+        documentation="[&#x27;CHAP secret to use for the target (mutual CHAP authentication).&#x27;, &#x27;Should be 12-16 characters integer and impenetrable.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
@@ -12999,19 +13036,10 @@ class CreateSnapshotRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ModifySnapshotResult(data_model.DataObject):
-    """ModifySnapshotResult  
-
-    :param snapshot: [required]  
-    :type snapshot: Snapshot
+class RemoveNodesResult(data_model.DataObject):
+    """RemoveNodesResult  
 
     """
-    snapshot = data_model.property(
-        "snapshot", Snapshot,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -13306,6 +13334,23 @@ class AddNodesRequest(data_model.DataObject):
         "autoInstall", bool,
         array=False, optional=True,
         documentation="[&#x27;Whether these nodes should be autoinstalled&#x27;]",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ModifySnapshotResult(data_model.DataObject):
+    """ModifySnapshotResult  
+
+    :param snapshot: [required]  
+    :type snapshot: Snapshot
+
+    """
+    snapshot = data_model.property(
+        "snapshot", Snapshot,
+        array=False, optional=False,
+        documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
 
@@ -13817,192 +13862,6 @@ class RestartNetworkingRequest(data_model.DataObject):
         "force", bool,
         array=False, optional=False,
         documentation="[&#x27;The &quot;force&quot; parameter must be included on this method to successfully restart the networking.&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class DriveHardwareInfo(data_model.DataObject):
-    """DriveHardwareInfo  
-
-    :param description: [required]  
-    :type description: str
-
-    :param dev: [required]  
-    :type dev: str
-
-    :param devpath: [required]  
-    :type devpath: str
-
-    :param drive_security_at_maximum: [required]  
-    :type drive_security_at_maximum: bool
-
-    :param drive_security_frozen: [required]  
-    :type drive_security_frozen: bool
-
-    :param drive_security_locked: [required]  
-    :type drive_security_locked: bool
-
-    :param logicalname: [required]  
-    :type logicalname: str
-
-    :param product: [required]  
-    :type product: str
-
-    :param scsi_compat_id: [required]  
-    :type scsi_compat_id: str
-
-    :param security_feature_enabled: [required]  
-    :type security_feature_enabled: bool
-
-    :param security_feature_supported: [required]  
-    :type security_feature_supported: bool
-
-    :param serial: [required]  
-    :type serial: str
-
-    :param size: [required]  
-    :type size: int
-
-    :param uuid: [required]  
-    :type uuid: UUID
-
-    :param version: [required]  
-    :type version: str
-
-    """
-    description = data_model.property(
-        "description", str,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    dev = data_model.property(
-        "dev", str,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    devpath = data_model.property(
-        "devpath", str,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    drive_security_at_maximum = data_model.property(
-        "driveSecurityAtMaximum", bool,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    drive_security_frozen = data_model.property(
-        "driveSecurityFrozen", bool,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    drive_security_locked = data_model.property(
-        "driveSecurityLocked", bool,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    logicalname = data_model.property(
-        "logicalname", str,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    product = data_model.property(
-        "product", str,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    scsi_compat_id = data_model.property(
-        "scsiCompatID", str,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    security_feature_enabled = data_model.property(
-        "securityFeatureEnabled", bool,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    security_feature_supported = data_model.property(
-        "securityFeatureSupported", bool,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    serial = data_model.property(
-        "serial", str,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    size = data_model.property(
-        "size", int,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    uuid = data_model.property(
-        "uuid", UUID,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    version = data_model.property(
-        "version", str,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ClusterHardwareInfo(data_model.DataObject):
-    """ClusterHardwareInfo  
-
-    :param drives: [required]  
-    :type drives: dict
-
-    :param nodes: [required]  
-    :type nodes: dict
-
-    """
-    drives = data_model.property(
-        "drives", dict,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=DriveHardwareInfo
-    )
-    nodes = data_model.property(
-        "nodes", dict,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=dict
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetClusterHardwareInfoResult(data_model.DataObject):
-    """GetClusterHardwareInfoResult  
-
-    :param cluster_hardware_info: [required] Hardware information for all nodes and drives in the cluster. Each object in this output is labeled with the nodeID of the given node. 
-    :type cluster_hardware_info: ClusterHardwareInfo
-
-    """
-    cluster_hardware_info = data_model.property(
-        "clusterHardwareInfo", ClusterHardwareInfo,
-        array=False, optional=False,
-        documentation="[&#x27;Hardware information for all nodes and drives in the cluster. Each object in this output is labeled with the nodeID of the given node.&#x27;]",
         dictionaryType=None
     )
 
@@ -14903,6 +14762,149 @@ class GetNetworkConfigResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class DriveHardwareInfo(data_model.DataObject):
+    """DriveHardwareInfo  
+
+    :param description: [required]  
+    :type description: str
+
+    :param dev: [required]  
+    :type dev: str
+
+    :param devpath: [required]  
+    :type devpath: str
+
+    :param drive_security_at_maximum: [required]  
+    :type drive_security_at_maximum: bool
+
+    :param drive_security_frozen: [required]  
+    :type drive_security_frozen: bool
+
+    :param drive_security_locked: [required]  
+    :type drive_security_locked: bool
+
+    :param logicalname: [required]  
+    :type logicalname: str
+
+    :param product: [required]  
+    :type product: str
+
+    :param scsi_compat_id: [required]  
+    :type scsi_compat_id: str
+
+    :param security_feature_enabled: [required]  
+    :type security_feature_enabled: bool
+
+    :param security_feature_supported: [required]  
+    :type security_feature_supported: bool
+
+    :param serial: [required]  
+    :type serial: str
+
+    :param size: [required]  
+    :type size: int
+
+    :param uuid: [required]  
+    :type uuid: UUID
+
+    :param version: [required]  
+    :type version: str
+
+    """
+    description = data_model.property(
+        "description", str,
+        array=False, optional=False,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    dev = data_model.property(
+        "dev", str,
+        array=False, optional=False,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    devpath = data_model.property(
+        "devpath", str,
+        array=False, optional=False,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    drive_security_at_maximum = data_model.property(
+        "driveSecurityAtMaximum", bool,
+        array=False, optional=False,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    drive_security_frozen = data_model.property(
+        "driveSecurityFrozen", bool,
+        array=False, optional=False,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    drive_security_locked = data_model.property(
+        "driveSecurityLocked", bool,
+        array=False, optional=False,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    logicalname = data_model.property(
+        "logicalname", str,
+        array=False, optional=False,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    product = data_model.property(
+        "product", str,
+        array=False, optional=False,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    scsi_compat_id = data_model.property(
+        "scsiCompatID", str,
+        array=False, optional=False,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    security_feature_enabled = data_model.property(
+        "securityFeatureEnabled", bool,
+        array=False, optional=False,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    security_feature_supported = data_model.property(
+        "securityFeatureSupported", bool,
+        array=False, optional=False,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    serial = data_model.property(
+        "serial", str,
+        array=False, optional=False,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    size = data_model.property(
+        "size", int,
+        array=False, optional=False,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    uuid = data_model.property(
+        "uuid", UUID,
+        array=False, optional=False,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    version = data_model.property(
+        "version", str,
+        array=False, optional=False,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class GetDriveHardwareInfoResult(data_model.DataObject):
     """GetDriveHardwareInfoResult  
 
@@ -15465,7 +15467,7 @@ class EnableFeatureResult(data_model.DataObject):
 class GetAsyncResultRequest(data_model.DataObject):
     """GetAsyncResultRequest  
     Used to retrieve the result of asynchronous method calls.
-    Some method calls are long running and do not complete when the initial response is sent.
+    Some method calls are integer running and do not complete when the initial response is sent.
     To obtain the result of the method call, polling with GetAsyncResult is required.
     
     GetAsyncResult returns the overall status of the operation (in progress, completed, or error) in a standard fashion,
@@ -16847,45 +16849,43 @@ class GetBootstrapConfigResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ModifyClusterAdminRequest(data_model.DataObject):
-    """ModifyClusterAdminRequest  
-    ModifyClusterAdmin is used to change the settings for a Cluster Admin or LDAP Cluster Admin. Access for the administrator Cluster Admin account cannot be changed.
+class ClusterHardwareInfo(data_model.DataObject):
+    """ClusterHardwareInfo  
 
-    :param cluster_admin_id: [required] ClusterAdminID for the Cluster Admin or LDAP Cluster Admin to modify. 
-    :type cluster_admin_id: int
+    :param drives: [required]  
+    :type drives: dict
 
-    :param password:  Password used to authenticate this Cluster Admin. 
-    :type password: str
-
-    :param access:  Controls which methods this Cluster Admin can use. For more details on the levels of access, see "Access Control" in the Element API Guide. 
-    :type access: str
-
-    :param attributes:  List of Name/Value pairs in JSON object format. 
-    :type attributes: dict
+    :param nodes: [required]  
+    :type nodes: dict
 
     """
-    cluster_admin_id = data_model.property(
-        "clusterAdminID", int,
+    drives = data_model.property(
+        "drives", dict,
         array=False, optional=False,
-        documentation="[&#x27;ClusterAdminID for the Cluster Admin or LDAP Cluster Admin to modify.&#x27;]",
-        dictionaryType=None
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=DriveHardwareInfo
     )
-    password = data_model.property(
-        "password", str,
-        array=False, optional=True,
-        documentation="[&#x27;Password used to authenticate this Cluster Admin.&#x27;]",
-        dictionaryType=None
+    nodes = data_model.property(
+        "nodes", dict,
+        array=False, optional=False,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=dict
     )
-    access = data_model.property(
-        "access", str,
-        array=True, optional=True,
-        documentation="[&#x27;Controls which methods this Cluster Admin can use. For more details on the levels of access, see &quot;Access Control&quot; in the Element API Guide.&#x27;]",
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetClusterHardwareInfoResult(data_model.DataObject):
+    """GetClusterHardwareInfoResult  
+
+    :param cluster_hardware_info: [required] Hardware information for all nodes and drives in the cluster. Each object in this output is labeled with the nodeID of the given node. 
+    :type cluster_hardware_info: ClusterHardwareInfo
+
+    """
+    cluster_hardware_info = data_model.property(
+        "clusterHardwareInfo", ClusterHardwareInfo,
+        array=False, optional=False,
+        documentation="[&#x27;Hardware information for all nodes and drives in the cluster. Each object in this output is labeled with the nodeID of the given node.&#x27;]",
         dictionaryType=None
     )
 
@@ -17167,7 +17167,7 @@ class SetSnmpInfoRequest(data_model.DataObject):
     """SetSnmpInfoRequest  
     SetSnmpInfo is used to configure SNMP v2 and v3 on the cluster nodes. The values set with this interface apply to all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpInfo.
     
-    Note: EnableSnmp and SetSnmpACL methods can be used to accomplish the same results as SetSnmpInfo. SetSnmpInfo will no longer be available after the Element 8 release. Please use EnableSnmp and SetSnmpACL in the future.
+    Note: EnableSnmp and SetSnmpACL methods can be used to accomplish the same results as SetSnmpInfo. SetSnmpInfo will no integerer be available after the Element 8 release. Please use EnableSnmp and SetSnmpACL in the future.
 
     :param networks:  List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. SNMP v2 only. 
     :type networks: SnmpNetwork
