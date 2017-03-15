@@ -3255,62 +3255,6 @@ class Element(ServiceBase):
             params
         )
 
-    def create_snapshot(
-            self,
-            volume_id,
-            snapshot_id=OPTIONAL,
-            name=OPTIONAL,
-            enable_remote_replication=OPTIONAL,
-            retention=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        CreateSnapshot is used to create a point-in-time copy of a volume.
-        A snapshot can be created from any volume or from an existing snapshot.
-        
-        Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
-        Snapshots are not created when cluster fullness is at stage 4 or 5.
-        :param volumeID: [required] ID of the volume image from which to copy. 
-        :type volumeID: int
-
-        :param snapshotID:  Unique ID of a snapshot from which the new snapshot is made. The snapshotID passed must be a snapshot on the given volume. If a SnapshotID is not provided, a snapshot is created from the volume's active branch. 
-        :type snapshotID: int
-
-        :param name:  A name for the snapshot. If no name is provided, the date and time the snapshot was taken is used. 
-        :type name: str
-
-        :param enableRemoteReplication:  Identifies if snapshot is enabled for remote replication. 
-        :type enableRemoteReplication: bool
-
-        :param retention:  The amount of time the snapshot will be retained. Enter in HH:mm:ss 
-        :type retention: str
-
-        :param attributes:  List of Name/Value pairs in JSON object format. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("create_snapshot", "Cluster")
-
-        params = { 
-            "volumeID": volume_id,
-        }
-        if snapshot_id is not None:
-            params["snapshotID"] = snapshot_id
-        if name is not None:
-            params["name"] = name
-        if enable_remote_replication is not None:
-            params["enableRemoteReplication"] = enable_remote_replication
-        if retention is not None:
-            params["retention"] = retention
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'CreateSnapshot',
-            dict,
-            params
-        )
-
     def rollback_to_group_snapshot(
             self,
             group_snapshot_id,
@@ -3398,6 +3342,62 @@ class Element(ServiceBase):
         # There is no adaptor.
         return self.send_request(
             'RollbackToSnapshot',
+            CreateSnapshotResult,
+            params
+        )
+
+    def create_snapshot(
+            self,
+            volume_id,
+            snapshot_id=OPTIONAL,
+            name=OPTIONAL,
+            enable_remote_replication=OPTIONAL,
+            retention=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        CreateSnapshot is used to create a point-in-time copy of a volume.
+        A snapshot can be created from any volume or from an existing snapshot.
+        
+        Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
+        Snapshots are not created when cluster fullness is at stage 4 or 5.
+        :param volumeID: [required] ID of the volume image from which to copy. 
+        :type volumeID: int
+
+        :param snapshotID:  Unique ID of a snapshot from which the new snapshot is made. The snapshotID passed must be a snapshot on the given volume. If a SnapshotID is not provided, a snapshot is created from the volume's active branch. 
+        :type snapshotID: int
+
+        :param name:  A name for the snapshot. If no name is provided, the date and time the snapshot was taken is used. 
+        :type name: str
+
+        :param enableRemoteReplication:  Identifies if snapshot is enabled for remote replication. 
+        :type enableRemoteReplication: bool
+
+        :param retention:  The amount of time the snapshot will be retained. Enter in HH:mm:ss 
+        :type retention: str
+
+        :param attributes:  List of Name/Value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("create_snapshot", "Cluster")
+
+        params = { 
+            "volumeID": volume_id,
+        }
+        if snapshot_id is not None:
+            params["snapshotID"] = snapshot_id
+        if name is not None:
+            params["name"] = name
+        if enable_remote_replication is not None:
+            params["enableRemoteReplication"] = enable_remote_replication
+        if retention is not None:
+            params["retention"] = retention
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateSnapshot',
             CreateSnapshotResult,
             params
         )
