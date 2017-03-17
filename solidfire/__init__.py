@@ -434,29 +434,6 @@ class Element(ServiceBase):
             params
         )
 
-    def clear_cluster_faults(
-            self,
-            fault_type=OPTIONAL,):
-        """
-        ClearClusterFaults is used to clear information about both current faults that are resolved as well as faults that were previously detected and resolved can be cleared.
-        :param faultType:  Determines the types of faults cleared: current: Faults that are currently detected and have not been resolved. resolved: Faults that were previously detected and resolved. all: Both current and resolved faults are cleared. The fault status can be determined by the "resolved" field of the fault object. 
-        :type faultType: str
-        """
-
-        self._check_connection_type("clear_cluster_faults", "Cluster")
-
-        params = { 
-        }
-        if fault_type is not None:
-            params["faultType"] = fault_type
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ClearClusterFaults',
-            ClearClusterFaultsResult,
-            params
-        )
-
     def create_cluster(
             self,
             mvip,
@@ -1347,6 +1324,29 @@ class Element(ServiceBase):
         return self.send_request(
             'SetSnmpInfo',
             SetSnmpInfoResult,
+            params
+        )
+
+    def clear_cluster_faults(
+            self,
+            fault_types=OPTIONAL,):
+        """
+        ClearClusterFaults is used to clear information about both current faults that are resolved as well as faults that were previously detected and resolved can be cleared.
+        :param faultTypes:  Determines the types of faults cleared: current: Faults that are currently detected and have not been resolved. resolved: Faults that were previously detected and resolved. all: Both current and resolved faults are cleared. The fault status can be determined by the "resolved" field of the fault object. 
+        :type faultTypes: str
+        """
+
+        self._check_connection_type("clear_cluster_faults", "Cluster")
+
+        params = { 
+        }
+        if fault_types is not None:
+            params["faultTypes"] = fault_types
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ClearClusterFaults',
+            ClearClusterFaultsResult,
             params
         )
 

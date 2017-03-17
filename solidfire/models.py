@@ -3720,20 +3720,20 @@ class GetAPIResult(data_model.DataObject):
     """GetAPIResult  
 
     :param current_version: [required]  
-    :type current_version: float
+    :type current_version: str
 
     :param supported_versions: [required]  
-    :type supported_versions: float
+    :type supported_versions: str
 
     """
     current_version = data_model.property(
-        "currentVersion", float,
+        "currentVersion", str,
         array=False, optional=False,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
     supported_versions = data_model.property(
-        "supportedVersions", float,
+        "supportedVersions", str,
         array=True, optional=False,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
@@ -4982,12 +4982,12 @@ class ClearClusterFaultsRequest(data_model.DataObject):
     """ClearClusterFaultsRequest  
     ClearClusterFaults is used to clear information about both current faults that are resolved as well as faults that were previously detected and resolved can be cleared.
 
-    :param fault_type:  Determines the types of faults cleared: current: Faults that are currently detected and have not been resolved. resolved: Faults that were previously detected and resolved. all: Both current and resolved faults are cleared. The fault status can be determined by the "resolved" field of the fault object. 
-    :type fault_type: str
+    :param fault_types:  Determines the types of faults cleared: current: Faults that are currently detected and have not been resolved. resolved: Faults that were previously detected and resolved. all: Both current and resolved faults are cleared. The fault status can be determined by the "resolved" field of the fault object. 
+    :type fault_types: str
 
     """
-    fault_type = data_model.property(
-        "faultType", str,
+    fault_types = data_model.property(
+        "faultTypes", str,
         array=False, optional=True,
         documentation="[&#x27;Determines the types of faults cleared:&#x27;, &#x27;current: Faults that are currently detected and have not been resolved.&#x27;, &#x27;resolved: Faults that were previously detected and resolved.&#x27;, &#x27;all: Both current and resolved faults are cleared. The fault status can be determined by the &quot;resolved&quot; field of the fault object.&#x27;]",
         dictionaryType=None
@@ -9760,7 +9760,7 @@ class ClusterFaultInfo(data_model.DataObject):
     :param resolved_date: [required]  
     :type resolved_date: str
 
-    :param data: [required]  
+    :param data:   
     :type data: dict
 
     """
@@ -9850,7 +9850,7 @@ class ClusterFaultInfo(data_model.DataObject):
     )
     data = data_model.property(
         "data", dict,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
@@ -10909,7 +10909,7 @@ class EventInfo(data_model.DataObject):
     :param time_of_publish: [required]  
     :type time_of_publish: str
 
-    :param details: [required]  
+    :param details:   
     :type details: str
 
     """
@@ -10975,7 +10975,7 @@ class EventInfo(data_model.DataObject):
     )
     details = data_model.property(
         "details", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
