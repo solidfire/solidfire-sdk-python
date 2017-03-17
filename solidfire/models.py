@@ -2646,7 +2646,7 @@ class InvokeSFApiRequest(data_model.DataObject):
     :type method: str
 
     :param parameters:  An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked. 
-    :type parameters: dict
+    :type parameters: str
 
     """
     method = data_model.property(
@@ -2656,7 +2656,7 @@ class InvokeSFApiRequest(data_model.DataObject):
         dictionaryType=None
     )
     parameters = data_model.property(
-        "parameters", dict,
+        "parameters", str,
         array=False, optional=True,
         documentation="[&#x27;An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked.&#x27;]",
         dictionaryType=None
