@@ -1909,7 +1909,7 @@ class ClusterAdmin(data_model.DataObject):
     :param username: [required]  
     :type username: str
 
-    :param attributes: [required] List of Name/Value pairs in JSON object format. 
+    :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
 
     """
@@ -1939,7 +1939,7 @@ class ClusterAdmin(data_model.DataObject):
     )
     attributes = data_model.property(
         "attributes", dict,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
         dictionaryType=None
     )
@@ -4418,13 +4418,13 @@ class Origin(data_model.DataObject):
 class GetOriginNodeResult(data_model.DataObject):
     """GetOriginNodeResult  
 
-    :param origin: [required]  
+    :param origin:   
     :type origin: Origin
 
     """
     origin = data_model.property(
         "origin", Origin,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
@@ -6580,7 +6580,7 @@ class VirtualNetwork(data_model.DataObject):
     :param namespace:   
     :type namespace: bool
 
-    :param attributes: [required] List of Name/Value pairs in JSON object format. 
+    :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
 
     """
@@ -6634,7 +6634,7 @@ class VirtualNetwork(data_model.DataObject):
     )
     attributes = data_model.property(
         "attributes", dict,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
         dictionaryType=None
     )
@@ -7049,7 +7049,7 @@ class Node(data_model.DataObject):
     :param associated_fservice_id: [required]  
     :type associated_fservice_id: int
 
-    :param fibre_channel_target_port_group: [required]  
+    :param fibre_channel_target_port_group:   
     :type fibre_channel_target_port_group: str
 
     :param name: [required]  
@@ -7109,7 +7109,7 @@ class Node(data_model.DataObject):
     )
     fibre_channel_target_port_group = data_model.property(
         "fibreChannelTargetPortGroup", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
@@ -8794,7 +8794,7 @@ class Snapshot(data_model.DataObject):
     :param expiration_reason: [required] Indicates how the snapshot expiration was set. Possible values: api: expiration time was set by using the API. none: there is no expiration time set. test: expiration time was set for testing. 
     :type expiration_reason: str
 
-    :param expiration_time: [required] The time at which this snapshot will expire and be purged from the cluster. 
+    :param expiration_time:  The time at which this snapshot will expire and be purged from the cluster. 
     :type expiration_time: str
 
     :param remote_statuses:  Current remote status of the snapshot remoteStatus: Possible values: Present: Snapshot exists on a remote cluster Not Present: Snapshot does not exist on remote cluster Syncing: This is a target cluster and it is currently replicating the snapshot Deleted: This is a target cluster, the snapshot has been deleted, and it still exists on the source. volumePairUUID: universal identifier of the volume pair 
@@ -8818,7 +8818,7 @@ class Snapshot(data_model.DataObject):
     :param create_time: [required] The time this snapshot was taken. 
     :type create_time: str
 
-    :param virtual_volume_id: [required] The ID of the virtual volume with which the snapshot is associated. 
+    :param virtual_volume_id:  The ID of the virtual volume with which the snapshot is associated. 
     :type virtual_volume_id: UUID
 
     :param attributes: [required] List of Name/Value pairs in JSON object format. 
@@ -8863,7 +8863,7 @@ class Snapshot(data_model.DataObject):
     )
     expiration_time = data_model.property(
         "expirationTime", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[&#x27;The time at which this snapshot will expire and be purged from the cluster.&#x27;]",
         dictionaryType=None
     )
@@ -8911,7 +8911,7 @@ class Snapshot(data_model.DataObject):
     )
     virtual_volume_id = data_model.property(
         "virtualVolumeID", UUID,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[&#x27;The ID of the virtual volume with which the snapshot is associated.&#x27;]",
         dictionaryType=None
     )
@@ -8958,10 +8958,10 @@ class VirtualVolumeInfo(data_model.DataObject):
     :param metadata: [required]  
     :type metadata: dict
 
-    :param snapshot_info: [required]  
+    :param snapshot_info:   
     :type snapshot_info: Snapshot
 
-    :param volume_info: [required]  
+    :param volume_info:   
     :type volume_info: Volume
 
     :param descendants:   
@@ -9030,13 +9030,13 @@ class VirtualVolumeInfo(data_model.DataObject):
     )
     snapshot_info = data_model.property(
         "snapshotInfo", Snapshot,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
     volume_info = data_model.property(
         "volumeInfo", Volume,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
@@ -15662,7 +15662,7 @@ class ListVirtualVolumesResult(data_model.DataObject):
     :param virtual_volumes: [required]  
     :type virtual_volumes: VirtualVolumeInfo
 
-    :param next_virtual_volume_id: [required]  
+    :param next_virtual_volume_id:   
     :type next_virtual_volume_id: UUID
 
     """
@@ -15674,7 +15674,7 @@ class ListVirtualVolumesResult(data_model.DataObject):
     )
     next_virtual_volume_id = data_model.property(
         "nextVirtualVolumeID", UUID,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
