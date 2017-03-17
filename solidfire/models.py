@@ -3720,20 +3720,20 @@ class GetAPIResult(data_model.DataObject):
     """GetAPIResult  
 
     :param current_version: [required]  
-    :type current_version: str
+    :type current_version: float
 
     :param supported_versions: [required]  
-    :type supported_versions: str
+    :type supported_versions: float
 
     """
     current_version = data_model.property(
-        "currentVersion", str,
+        "currentVersion", float,
         array=False, optional=False,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
     supported_versions = data_model.property(
-        "supportedVersions", str,
+        "supportedVersions", float,
         array=True, optional=False,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
