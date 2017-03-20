@@ -2987,32 +2987,6 @@ class Element(ServiceBase):
             params
         )
 
-    def create_schedule(
-            self,
-            schedule,):
-        """
-        CreateSchedule is used to create a schedule that will autonomously make a snapshot of a volume at a defined interval.
-        
-        The snapshot created can be used later as a backup or rollback to ensure the data on a volume or group of volumes is consistent for the point in time in which the snapshot was created. 
-        
-        Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is at stage 4 or 5.
-        :param schedule: [required] The "Schedule" object will be used to create a new schedule. Do not set ScheduleID property, it will be ignored. Frequency property must be of type that inherits from Frequency. Valid types are: DaysOfMonthFrequency DaysOrWeekFrequency TimeIntervalFrequency 
-        :type schedule: Schedule
-        """
-
-        self._check_connection_type("create_schedule", "Cluster")
-
-        params = { 
-            "schedule": schedule,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'CreateSchedule',
-            CreateScheduleResult,
-            params
-        )
-
     def create_snapshot(
             self,
             volume_id,
@@ -3254,28 +3228,6 @@ class Element(ServiceBase):
             params
         )
 
-    def modify_schedule(
-            self,
-            schedule,):
-        """
-        ModifySchedule is used to change the intervals at which a scheduled snapshot occurs. This allows for adjustment to the snapshot frequency and retention.
-        :param schedule: [required] The "Schedule" object will be used to modify an existing schedule. The ScheduleID property is required. Frequency property must be of type that inherits from Frequency. Valid types are: DaysOfMonthFrequency DaysOrWeekFrequency TimeIntervalFrequency 
-        :type schedule: Schedule
-        """
-
-        self._check_connection_type("modify_schedule", "Cluster")
-
-        params = { 
-            "schedule": schedule,
-        }
-        
-        # There is an adaptor!
-        since = None
-        deprecated = None
-
-        return ElementServiceAdaptor.modify_schedule(self, params,
-                                                  since, deprecated)
-
     def modify_snapshot(
             self,
             snapshot_id,
@@ -3399,6 +3351,54 @@ class Element(ServiceBase):
         return self.send_request(
             'RollbackToSnapshot',
             CreateSnapshotResult,
+            params
+        )
+
+    def create_schedule(
+            self,
+            schedule,):
+        """
+        CreateSchedule is used to create a schedule that will autonomously make a snapshot of a volume at a defined interval.
+        
+        The snapshot created can be used later as a backup or rollback to ensure the data on a volume or group of volumes is consistent for the point in time in which the snapshot was created. 
+        
+        Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is at stage 4 or 5.
+        :param schedule: [required] The "Schedule" object will be used to create a new schedule. Do not set ScheduleID property, it will be ignored. Frequency property must be of type that inherits from Frequency. Valid types are: DaysOfMonthFrequency DaysOrWeekFrequency TimeIntervalFrequency 
+        :type schedule: Schedule
+        """
+
+        self._check_connection_type("create_schedule", "Cluster")
+
+        params = { 
+            "schedule": schedule,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateSchedule',
+            CreateScheduleResult,
+            params
+        )
+
+    def modify_schedule(
+            self,
+            schedule,):
+        """
+        ModifySchedule is used to change the intervals at which a scheduled snapshot occurs. This allows for adjustment to the snapshot frequency and retention.
+        :param schedule: [required] The "Schedule" object will be used to modify an existing schedule. The ScheduleID property is required. Frequency property must be of type that inherits from Frequency. Valid types are: DaysOfMonthFrequency DaysOrWeekFrequency TimeIntervalFrequency 
+        :type schedule: Schedule
+        """
+
+        self._check_connection_type("modify_schedule", "Cluster")
+
+        params = { 
+            "schedule": schedule,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifySchedule',
+            ModifyScheduleResult,
             params
         )
 

@@ -1621,25 +1621,19 @@ class StartVolumePairingResult(data_model.DataObject):
 class ScheduleInfo(data_model.DataObject):
     """ScheduleInfo  
 
-    :param volume_ids:  A list of volume IDs to be included in the group snapshot. 
-    :type volume_ids: int
-
     :param snapshot_name:  The snapshot name to be used.  
     :type snapshot_name: str
 
     :param enable_remote_replication:  Indicates if the snapshot should be included in remote replication. 
     :type enable_remote_replication: bool
 
+    :param volume_ids:  A list of volume IDs to be included in the group snapshot. 
+    :type volume_ids: int
+
     :param retention:  The amount of time the snapshot will be retained in HH:mm:ss. 
     :type retention: str
 
     """
-    volume_ids = data_model.property(
-        "volumeIDs", int,
-        array=True, optional=True,
-        documentation="[&#x27;A list of volume IDs to be included in the group snapshot.&#x27;]",
-        dictionaryType=None
-    )
     snapshot_name = data_model.property(
         "snapshotName", str,
         array=False, optional=True,
@@ -1650,6 +1644,12 @@ class ScheduleInfo(data_model.DataObject):
         "enableRemoteReplication", bool,
         array=False, optional=True,
         documentation="[&#x27;Indicates if the snapshot should be included in remote replication.&#x27;]",
+        dictionaryType=None
+    )
+    volume_ids = data_model.property(
+        "volumeIDs", int,
+        array=True, optional=True,
+        documentation="[&#x27;A list of volume IDs to be included in the group snapshot.&#x27;]",
         dictionaryType=None
     )
     retention = data_model.property(
@@ -1666,47 +1666,47 @@ class Schedule(data_model.DataObject):
     """Schedule  
     Schedule is an object containing information about each schedule created to autonomously make a snapshot of a volume. The return object includes information for all schedules. If scheduleID is used to identify a specific schedule then only information for that scheduleID is returned. Schedules information is returned with the API method, see ListSchedules on the SolidFire API guide page 245.
 
-    :param frequency: [required] Indicates the frequency of the schedule occurrence. Set this to a type that inherits from Frequency. Valid types are: DayOfWeekFrequency DayOfMonthFrequency TimeIntervalFrequency 
-    :type frequency: Frequency
+    :param last_run_time_started:  Indicates the last time the schedule started n ISO 8601 date string. Valid values are: Success Failed 
+    :type last_run_time_started: str
 
     :param has_error:  Indicates whether or not the schedule has errors. 
     :type has_error: bool
 
-    :param last_run_status:  Indicates the status of the last scheduled snapshot. Valid values are: Success Failed 
-    :type last_run_status: str
-
-    :param last_run_time_started:  Indicates the last time the schedule started n ISO 8601 date string. Valid values are: Success Failed 
-    :type last_run_time_started: str
-
-    :param paused:  Indicates whether or not the schedule is paused. 
-    :type paused: bool
-
-    :param recurring:  Indicates whether or not the schedule is recurring. 
-    :type recurring: bool
+    :param schedule_info: [required] Includes the unique name given to the schedule, the retention period for the snapshot that was created, and the volume ID of the volume from which the snapshot was created. 
+    :type schedule_info: ScheduleInfo
 
     :param run_next_interval:  Indicates whether or not the schedule will run the next time the scheduler is active. When set to "true", the schedule will run the next time the scheduler is active and then reset back to "false". 
     :type run_next_interval: bool
 
-    :param schedule_id:  Unique ID of the schedule 
-    :type schedule_id: int
-
-    :param schedule_info: [required] Includes the unique name given to the schedule, the retention period for the snapshot that was created, and the volume ID of the volume from which the snapshot was created. 
-    :type schedule_info: ScheduleInfo
-
     :param name: [required] Unique name assigned to the schedule. 
     :type name: str
 
-    :param starting_date:  Indicates the date the first time the schedule began of will begin. Formatted in UTC time. 
-    :type starting_date: str
+    :param last_run_status:  Indicates the status of the last scheduled snapshot. Valid values are: Success Failed 
+    :type last_run_status: str
+
+    :param schedule_id:  Unique ID of the schedule 
+    :type schedule_id: int
+
+    :param paused:  Indicates whether or not the schedule is paused. 
+    :type paused: bool
 
     :param to_be_deleted:  Indicates if the schedule is marked for deletion. 
     :type to_be_deleted: bool
 
+    :param frequency: [required] Indicates the frequency of the schedule occurrence. Set this to a type that inherits from Frequency. Valid types are: DayOfWeekFrequency DayOfMonthFrequency TimeIntervalFrequency 
+    :type frequency: Frequency
+
+    :param starting_date:  Indicates the date the first time the schedule began of will begin. Formatted in UTC time. 
+    :type starting_date: str
+
+    :param recurring:  Indicates whether or not the schedule is recurring. 
+    :type recurring: bool
+
     """
-    frequency = data_model.property(
-        "frequency", Frequency,
-        array=False, optional=False,
-        documentation="[&#x27;Indicates the frequency of the schedule occurrence. Set this to a type that inherits from Frequency.&#x27;, &#x27;Valid types are:&#x27;, &#x27;DayOfWeekFrequency&#x27;, &#x27;DayOfMonthFrequency&#x27;, &#x27;TimeIntervalFrequency&#x27;]",
+    last_run_time_started = data_model.property(
+        "lastRunTimeStarted", str,
+        array=False, optional=True,
+        documentation="[&#x27;Indicates the last time the schedule started n ISO 8601 date string.&#x27;, &#x27;Valid values are:&#x27;, &#x27;Success&#x27;, &#x27;Failed&#x27;]",
         dictionaryType=None
     )
     has_error = data_model.property(
@@ -1715,28 +1715,10 @@ class Schedule(data_model.DataObject):
         documentation="[&#x27;Indicates whether or not the schedule has errors.&#x27;]",
         dictionaryType=None
     )
-    last_run_status = data_model.property(
-        "lastRunStatus", str,
-        array=False, optional=True,
-        documentation="[&#x27;Indicates the status of the last scheduled snapshot.&#x27;, &#x27;Valid values are:&#x27;, &#x27;Success&#x27;, &#x27;Failed&#x27;]",
-        dictionaryType=None
-    )
-    last_run_time_started = data_model.property(
-        "lastRunTimeStarted", str,
-        array=False, optional=True,
-        documentation="[&#x27;Indicates the last time the schedule started n ISO 8601 date string.&#x27;, &#x27;Valid values are:&#x27;, &#x27;Success&#x27;, &#x27;Failed&#x27;]",
-        dictionaryType=None
-    )
-    paused = data_model.property(
-        "paused", bool,
-        array=False, optional=True,
-        documentation="[&#x27;Indicates whether or not the schedule is paused.&#x27;]",
-        dictionaryType=None
-    )
-    recurring = data_model.property(
-        "recurring", bool,
-        array=False, optional=True,
-        documentation="[&#x27;Indicates whether or not the schedule is recurring.&#x27;]",
+    schedule_info = data_model.property(
+        "scheduleInfo", ScheduleInfo,
+        array=False, optional=False,
+        documentation="[&#x27;Includes the unique name given to the schedule, the retention period for the snapshot that was created, and the volume ID of the volume from which the snapshot was created.&#x27;]",
         dictionaryType=None
     )
     run_next_interval = data_model.property(
@@ -1745,22 +1727,40 @@ class Schedule(data_model.DataObject):
         documentation="[&#x27;Indicates whether or not the schedule will run the next time the scheduler is active. When set to &quot;true&quot;, the schedule will run the next time the scheduler is active and then reset back to &quot;false&quot;.&#x27;]",
         dictionaryType=None
     )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="[&#x27;Unique name assigned to the schedule.&#x27;]",
+        dictionaryType=None
+    )
+    last_run_status = data_model.property(
+        "lastRunStatus", str,
+        array=False, optional=True,
+        documentation="[&#x27;Indicates the status of the last scheduled snapshot.&#x27;, &#x27;Valid values are:&#x27;, &#x27;Success&#x27;, &#x27;Failed&#x27;]",
+        dictionaryType=None
+    )
     schedule_id = data_model.property(
         "scheduleID", int,
         array=False, optional=True,
         documentation="[&#x27;Unique ID of the schedule&#x27;]",
         dictionaryType=None
     )
-    schedule_info = data_model.property(
-        "scheduleInfo", ScheduleInfo,
-        array=False, optional=False,
-        documentation="[&#x27;Includes the unique name given to the schedule, the retention period for the snapshot that was created, and the volume ID of the volume from which the snapshot was created.&#x27;]",
+    paused = data_model.property(
+        "paused", bool,
+        array=False, optional=True,
+        documentation="[&#x27;Indicates whether or not the schedule is paused.&#x27;]",
         dictionaryType=None
     )
-    name = data_model.property(
-        "name", str,
+    to_be_deleted = data_model.property(
+        "toBeDeleted", bool,
+        array=False, optional=True,
+        documentation="[&#x27;Indicates if the schedule is marked for deletion.&#x27;]",
+        dictionaryType=None
+    )
+    frequency = data_model.property(
+        "frequency", Frequency,
         array=False, optional=False,
-        documentation="[&#x27;Unique name assigned to the schedule.&#x27;]",
+        documentation="[&#x27;Indicates the frequency of the schedule occurrence. Set this to a type that inherits from Frequency.&#x27;, &#x27;Valid types are:&#x27;, &#x27;DayOfWeekFrequency&#x27;, &#x27;DayOfMonthFrequency&#x27;, &#x27;TimeIntervalFrequency&#x27;]",
         dictionaryType=None
     )
     starting_date = data_model.property(
@@ -1769,10 +1769,10 @@ class Schedule(data_model.DataObject):
         documentation="[&#x27;Indicates the date the first time the schedule began of will begin. Formatted in UTC time.&#x27;]",
         dictionaryType=None
     )
-    to_be_deleted = data_model.property(
-        "toBeDeleted", bool,
+    recurring = data_model.property(
+        "recurring", bool,
         array=False, optional=True,
-        documentation="[&#x27;Indicates if the schedule is marked for deletion.&#x27;]",
+        documentation="[&#x27;Indicates whether or not the schedule is recurring.&#x27;]",
         dictionaryType=None
     )
 
@@ -3719,22 +3719,22 @@ class SetNtpInfoRequest(data_model.DataObject):
 class GetAPIResult(data_model.DataObject):
     """GetAPIResult  
 
-    :param current_version: [required]  
-    :type current_version: float
-
     :param supported_versions: [required]  
     :type supported_versions: float
 
+    :param current_version: [required]  
+    :type current_version: float
+
     """
-    current_version = data_model.property(
-        "currentVersion", float,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
     supported_versions = data_model.property(
         "supportedVersions", float,
         array=True, optional=False,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    current_version = data_model.property(
+        "currentVersion", float,
+        array=False, optional=False,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
