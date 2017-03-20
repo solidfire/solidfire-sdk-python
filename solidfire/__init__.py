@@ -3006,12 +3006,12 @@ class Element(ServiceBase):
             "schedule": schedule,
         }
         
-        # There is an adaptor!
-        since = None
-        deprecated = None
-
-        return ElementServiceAdaptor.create_schedule(self, params,
-                                                  since, deprecated)
+        # There is no adaptor.
+        return self.send_request(
+            'CreateSchedule',
+            CreateScheduleResult,
+            params
+        )
 
     def create_snapshot(
             self,
