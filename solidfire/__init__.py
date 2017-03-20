@@ -2718,45 +2718,6 @@ class Element(ServiceBase):
             params
         )
 
-    def reset_node(
-            self,
-            build,
-            force,
-            options=OPTIONAL,
-            reboot=OPTIONAL,):
-        """
-        Allows you to reset a node to the SolidFire factory settings. All data will be deleted from the node when you call this method. A node participating in a cluster cannot be reset.
-        :param build: [required] Used to specify the URL to a remote Element software image to which the node will be reset. 
-        :type build: str
-
-        :param force: [required] The force parameter must be included in order to successfully reset the node. 
-        :type force: bool
-
-        :param options:  Used to enter specifications for running the reset operation. 
-        :type options: str
-
-        :param reboot:  Should it be rebooted? 
-        :type reboot: bool
-        """
-
-        self._check_connection_type("reset_node", "Node")
-
-        params = { 
-            "build": build,
-            "force": force,
-        }
-        if options is not None:
-            params["options"] = options
-        if reboot is not None:
-            params["reboot"] = reboot
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ResetNode',
-            ResetNodeResult,
-            params
-        )
-
     def restart_networking(
             self,
             force,):
@@ -2838,6 +2799,45 @@ class Element(ServiceBase):
         return self.send_request(
             'Shutdown',
             ShutdownResult,
+            params
+        )
+
+    def reset_node(
+            self,
+            build,
+            force,
+            options=OPTIONAL,
+            reboot=OPTIONAL,):
+        """
+        Allows you to reset a node to the SolidFire factory settings. All data will be deleted from the node when you call this method. A node participating in a cluster cannot be reset.
+        :param build: [required] Used to specify the URL to a remote Element software image to which the node will be reset. 
+        :type build: str
+
+        :param force: [required] The force parameter must be included in order to successfully reset the node. 
+        :type force: bool
+
+        :param options:  Used to enter specifications for running the reset operation. 
+        :type options: str
+
+        :param reboot:  Should it be rebooted? 
+        :type reboot: bool
+        """
+
+        self._check_connection_type("reset_node", "Node")
+
+        params = { 
+            "build": build,
+            "force": force,
+        }
+        if options is not None:
+            params["options"] = options
+        if reboot is not None:
+            params["reboot"] = reboot
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ResetNode',
+            ResetNodeResult,
             params
         )
 
@@ -3165,35 +3165,6 @@ class Element(ServiceBase):
         return ElementServiceAdaptor.list_schedules(self, params,
                                                   since, deprecated)
 
-    def list_snapshots(
-            self,
-            volume_id=OPTIONAL,
-            internal=OPTIONAL,):
-        """
-        ListSnapshots is used to return the attributes of each snapshot taken on the volume.
-        :param volumeID:  The volume to list snapshots for. If not provided, all snapshots for all volumes are returned. 
-        :type volumeID: int
-
-        :param internal:   
-        :type internal: bool
-        """
-
-        self._check_connection_type("list_snapshots", "Cluster")
-
-        params = { 
-        }
-        if volume_id is not None:
-            params["volumeID"] = volume_id
-        if internal is not None:
-            params["internal"] = internal
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListSnapshots',
-            ListSnapshotsResult,
-            params
-        )
-
     def modify_group_snapshot(
             self,
             group_snapshot_id,
@@ -3399,6 +3370,29 @@ class Element(ServiceBase):
         return self.send_request(
             'ModifySchedule',
             ModifyScheduleResult,
+            params
+        )
+
+    def list_snapshots(
+            self,
+            volume_id=OPTIONAL,):
+        """
+        ListSnapshots is used to return the attributes of each snapshot taken on the volume.
+        :param volumeID:  The volume to list snapshots for. If not provided, all snapshots for all volumes are returned. 
+        :type volumeID: int
+        """
+
+        self._check_connection_type("list_snapshots", "Cluster")
+
+        params = { 
+        }
+        if volume_id is not None:
+            params["volumeID"] = volume_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListSnapshots',
+            ListSnapshotsResult,
             params
         )
 

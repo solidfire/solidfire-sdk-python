@@ -2904,20 +2904,11 @@ class ListSnapshotsRequest(data_model.DataObject):
     :param volume_id:  The volume to list snapshots for. If not provided, all snapshots for all volumes are returned. 
     :type volume_id: int
 
-    :param internal:   
-    :type internal: bool
-
     """
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=True,
         documentation="[&#x27;The volume to list snapshots for.&#x27;, &#x27;If not provided, all snapshots for all volumes are returned.&#x27;]",
-        dictionaryType=None
-    )
-    internal = data_model.property(
-        "internal", bool,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
 
@@ -5163,7 +5154,7 @@ class VolumeAccessGroup(data_model.DataObject):
     :param name: [required] Name of the volume access group. 
     :type name: str
 
-    :param initiator_ids:  A list of IDs of initiators that are mapped to the VAG. 
+    :param initiator_ids: [required] A list of IDs of initiators that are mapped to the VAG. 
     :type initiator_ids: int
 
     :param initiators: [required] List of unique initiator names beintegering to the volume access group. 
@@ -5196,7 +5187,7 @@ class VolumeAccessGroup(data_model.DataObject):
     )
     initiator_ids = data_model.property(
         "initiatorIDs", int,
-        array=True, optional=True,
+        array=True, optional=False,
         documentation="[&#x27;A list of IDs of initiators that are mapped to the VAG.&#x27;]",
         dictionaryType=None
     )
