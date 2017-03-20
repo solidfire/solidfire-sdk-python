@@ -5687,6 +5687,9 @@ class ModifyVolumeAccessGroupRequest(data_model.DataObject):
     :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group's volumes will not be modified. 
     :type volumes: int
 
+    :param delete_orphan_initiators:  true: Delete initiator objects after they are removed from a volume access group. false: Do not delete initiator objects after they are removed from a volume access group. 
+    :type delete_orphan_initiators: bool
+
     :param attributes:  List of Name/Value pairs in JSON object format. 
     :type attributes: dict
 
@@ -5725,6 +5728,12 @@ class ModifyVolumeAccessGroupRequest(data_model.DataObject):
         "volumes", int,
         array=True, optional=True,
         documentation="[&#x27;List of volumes to initially include in the volume access group.&#x27;, &quot;If unspecified, the access group&#x27;s volumes will not be modified.&quot;]",
+        dictionaryType=None
+    )
+    delete_orphan_initiators = data_model.property(
+        "deleteOrphanInitiators", bool,
+        array=False, optional=True,
+        documentation="[&#x27;true: Delete initiator objects after they are removed from a volume access group.&#x27;, &#x27;false: Do not delete initiator objects after they are removed from a volume access group.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(

@@ -3402,24 +3402,6 @@ class Element(ServiceBase):
             params
         )
 
-    def get_complete_stats(
-            self,):
-        """
-        The GetCompleteStats API method is used by SolidFire engineering to troubleshoot new features. The data returned from GetCompleteStats is not documented, changes frequently, and is not guaranteed to be accurate. It is not recommended to ever use GetCompleteStats for collecting performance data or any other management integration with a SolidFire cluster.
-        The data returned from GetCompleteStats changes frequently, and is not guaranteed to accurately show performance from the system. It is not recommended to ever use GetCompleteStats for collecting performance data or any other management integration with a SolidFire cluster.        """
-
-        self._check_connection_type("get_complete_stats", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetCompleteStats',
-            str,
-            params
-        )
-
     def get_hardware_info(
             self,):
         """
@@ -3434,24 +3416,6 @@ class Element(ServiceBase):
         return self.send_request(
             'GetHardwareInfo',
             GetHardwareInfoResult,
-            params
-        )
-
-    def get_raw_stats(
-            self,):
-        """
-        The GetRawStats call is used by SolidFire engineering to troubleshoot new features. The data returned from GetRawStats is not documented, it changes frequently, and is not guaranteed to be accurate. It is not recommended to ever use GetRawStats for collecting performance data or any other management integration with a SolidFire cluster.
-        The data returned from GetRawStats changes frequently, and is not guaranteed to accurately show performance from the system. It is not recommended to ever use GetRawStats for collecting performance data or any other management integration with a SolidFire cluster.        """
-
-        self._check_connection_type("get_raw_stats", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetRawStats',
-            str,
             params
         )
 
@@ -3520,6 +3484,42 @@ class Element(ServiceBase):
         return self.send_request(
             'ListVolumeStatsByVirtualVolume',
             ListVolumeStatsByVirtualVolumeResult,
+            params
+        )
+
+    def get_complete_stats(
+            self,):
+        """
+        The GetCompleteStats API method is used by SolidFire engineering to troubleshoot new features. The data returned from GetCompleteStats is not documented, changes frequently, and is not guaranteed to be accurate. It is not recommended to ever use GetCompleteStats for collecting performance data or any other management integration with a SolidFire cluster.
+        The data returned from GetCompleteStats changes frequently, and is not guaranteed to accurately show performance from the system. It is not recommended to ever use GetCompleteStats for collecting performance data or any other management integration with a SolidFire cluster.        """
+
+        self._check_connection_type("get_complete_stats", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetCompleteStats',
+            dict,
+            params
+        )
+
+    def get_raw_stats(
+            self,):
+        """
+        The GetRawStats call is used by SolidFire engineering to troubleshoot new features. The data returned from GetRawStats is not documented, it changes frequently, and is not guaranteed to be accurate. It is not recommended to ever use GetRawStats for collecting performance data or any other management integration with a SolidFire cluster.
+        The data returned from GetRawStats changes frequently, and is not guaranteed to accurately show performance from the system. It is not recommended to ever use GetRawStats for collecting performance data or any other management integration with a SolidFire cluster.        """
+
+        self._check_connection_type("get_raw_stats", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetRawStats',
+            dict,
             params
         )
 
@@ -6364,73 +6364,6 @@ class Element(ServiceBase):
             params
         )
 
-    def modify_volume_access_group(
-            self,
-            volume_access_group_id,
-            virtual_network_id=OPTIONAL,
-            virtual_network_tags=OPTIONAL,
-            name=OPTIONAL,
-            initiators=OPTIONAL,
-            volumes=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        Update initiators and add or remove volumes from a volume access group.
-        A specified initiator or volume that duplicates an existing volume or initiator in a volume access group is left as-is.
-        If a value is not specified for volumes or initiators, the current list of initiators and volumes are not changed.
-        
-        Often, it is easier to use the convenience functions to modify initiators and volumes independently:
-        
-        AddInitiatorsToVolumeAccessGroup
-        RemoveInitiatorsFromVolumeAccessGroup
-        AddVolumesToVolumeAccessGroup
-        RemoveVolumesFromVolumeAccessGroup
-        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
-        :type volumeAccessGroupID: int
-
-        :param virtualNetworkID:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
-        :type virtualNetworkID: int
-
-        :param virtualNetworkTags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
-        :type virtualNetworkTags: int
-
-        :param name:  Name of the volume access group. It is not required to be unique, but recommended. 
-        :type name: str
-
-        :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group's configured initiators will not be modified. 
-        :type initiators: str
-
-        :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group's volumes will not be modified. 
-        :type volumes: int
-
-        :param attributes:  List of Name/Value pairs in JSON object format. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("modify_volume_access_group", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-        }
-        if virtual_network_id is not None:
-            params["virtualNetworkID"] = virtual_network_id
-        if virtual_network_tags is not None:
-            params["virtualNetworkTags"] = virtual_network_tags
-        if name is not None:
-            params["name"] = name
-        if initiators is not None:
-            params["initiators"] = initiators
-        if volumes is not None:
-            params["volumes"] = volumes
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ModifyVolumeAccessGroup',
-            ModifyVolumeAccessGroupResult,
-            params
-        )
-
     def modify_volume_access_group_lun_assignments(
             self,
             volume_access_group_id,
@@ -6520,6 +6453,79 @@ class Element(ServiceBase):
         # There is no adaptor.
         return self.send_request(
             'RemoveVolumesFromVolumeAccessGroup',
+            ModifyVolumeAccessGroupResult,
+            params
+        )
+
+    def modify_volume_access_group(
+            self,
+            volume_access_group_id,
+            virtual_network_id=OPTIONAL,
+            virtual_network_tags=OPTIONAL,
+            name=OPTIONAL,
+            initiators=OPTIONAL,
+            volumes=OPTIONAL,
+            delete_orphan_initiators=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        Update initiators and add or remove volumes from a volume access group.
+        A specified initiator or volume that duplicates an existing volume or initiator in a volume access group is left as-is.
+        If a value is not specified for volumes or initiators, the current list of initiators and volumes are not changed.
+        
+        Often, it is easier to use the convenience functions to modify initiators and volumes independently:
+        
+        AddInitiatorsToVolumeAccessGroup
+        RemoveInitiatorsFromVolumeAccessGroup
+        AddVolumesToVolumeAccessGroup
+        RemoveVolumesFromVolumeAccessGroup
+        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
+        :type volumeAccessGroupID: int
+
+        :param virtualNetworkID:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
+        :type virtualNetworkID: int
+
+        :param virtualNetworkTags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
+        :type virtualNetworkTags: int
+
+        :param name:  Name of the volume access group. It is not required to be unique, but recommended. 
+        :type name: str
+
+        :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group's configured initiators will not be modified. 
+        :type initiators: str
+
+        :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group's volumes will not be modified. 
+        :type volumes: int
+
+        :param deleteOrphanInitiators:  true: Delete initiator objects after they are removed from a volume access group. false: Do not delete initiator objects after they are removed from a volume access group. 
+        :type deleteOrphanInitiators: bool
+
+        :param attributes:  List of Name/Value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("modify_volume_access_group", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+        }
+        if virtual_network_id is not None:
+            params["virtualNetworkID"] = virtual_network_id
+        if virtual_network_tags is not None:
+            params["virtualNetworkTags"] = virtual_network_tags
+        if name is not None:
+            params["name"] = name
+        if initiators is not None:
+            params["initiators"] = initiators
+        if volumes is not None:
+            params["volumes"] = volumes
+        if delete_orphan_initiators is not None:
+            params["deleteOrphanInitiators"] = delete_orphan_initiators
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyVolumeAccessGroup',
             ModifyVolumeAccessGroupResult,
             params
         )
