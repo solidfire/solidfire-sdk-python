@@ -693,28 +693,6 @@ class Element(ServiceBase):
             params
         )
 
-    def get_cluster_state(
-            self,
-            force,):
-        """
-        The GetClusterState method is used to indicate if a node is part of a cluster or not. The three states are: <br><strong>Available:</strong> Node has not been configured with a cluster name.<br><strong>Pending:</strong> Node is pending for a specific named cluster and can be added.<br><strong>Active:</strong> Node is active and a member of a cluster and may not be added to another cluster.
-        :param force: [required] To run this command, the force parameter must be set to true. 
-        :type force: bool
-        """
-
-        self._check_connection_type("get_cluster_state", "Cluster")
-
-        params = { 
-            "force": force,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetClusterState',
-            GetClusterStateResult,
-            params
-        )
-
     def get_cluster_stats(
             self,):
         """
@@ -1350,6 +1328,28 @@ class Element(ServiceBase):
             params
         )
 
+    def get_cluster_state(
+            self,
+            force,):
+        """
+        The GetClusterState method is used to indicate if a node is part of a cluster or not. The three states are: <br><strong>Available:</strong> Node has not been configured with a cluster name.<br><strong>Pending:</strong> Node is pending for a specific named cluster and can be added.<br><strong>Active:</strong> Node is active and a member of a cluster and may not be added to another cluster.
+        :param force: [required] To run this command, the force parameter must be set to true. 
+        :type force: bool
+        """
+
+        self._check_connection_type("get_cluster_state", "Cluster")
+
+        params = { 
+            "force": force,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetClusterState',
+            GetClusterStateResult,
+            params
+        )
+
     def add_drives(
             self,
             drives,
@@ -1384,25 +1384,6 @@ class Element(ServiceBase):
         return self.send_request(
             'AddDrives',
             AddDrivesResult,
-            params
-        )
-
-    def get_drive_config(
-            self,):
-        """
-        GetDriveConfig is used to display drive information for expected slice and block drive counts as well as the number of slices and block drives that are currently connected to the node.
-        
-        Note: This method is available only through the per-node API endpoint 5.0 or later.        """
-
-        self._check_connection_type("get_drive_config", "Node")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetDriveConfig',
-            GetDriveConfigResult,
             params
         )
 
@@ -1587,6 +1568,25 @@ class Element(ServiceBase):
             params
         )
 
+    def get_drive_config(
+            self,):
+        """
+        GetDriveConfig is used to display drive information for expected slice and block drive counts as well as the number of slices and block drives that are currently connected to the node.
+        
+        Note: This method is available only through the per-node API endpoint 5.0 or later.        """
+
+        self._check_connection_type("get_drive_config", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetDriveConfig',
+            GetDriveConfigResult,
+            params
+        )
+
     def test_drives(
             self,
             minutes=OPTIONAL,):
@@ -1637,23 +1637,6 @@ class Element(ServiceBase):
             params
         )
 
-    def get_hardware_config(
-            self,):
-        """
-        GetHardwareConfig enables you to display the hardware configuration information for a node. NOTE: This method is available only through the per-node API endpoint 5.0 or later.        """
-
-        self._check_connection_type("get_hardware_config", "Node")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetHardwareConfig',
-            GetHardwareConfigResult,
-            params
-        )
-
     def get_node_hardware_info(
             self,
             node_id,):
@@ -1690,6 +1673,23 @@ class Element(ServiceBase):
         return self.send_request(
             'GetNvramInfo',
             GetNvramInfoResult,
+            params
+        )
+
+    def get_hardware_config(
+            self,):
+        """
+        GetHardwareConfig enables you to display the hardware configuration information for a node. NOTE: This method is available only through the per-node API endpoint 5.0 or later.        """
+
+        self._check_connection_type("get_hardware_config", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetHardwareConfig',
+            GetHardwareConfigResult,
             params
         )
 
@@ -2197,44 +2197,6 @@ class Element(ServiceBase):
             params
         )
 
-    def get_config(
-            self,):
-        """
-        The GetConfig API method is used to retrieve all the configuration information for the node. This one API method includes the same information available in both "GetClusterConfig" and "GetNetworkConfig" methods.
-        
-        Note: This method is available only through the per-node API endpoint 5.0 or later.        """
-
-        self._check_connection_type("get_config", "Node")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetConfig',
-            GetConfigResult,
-            params
-        )
-
-    def get_network_config(
-            self,):
-        """
-        The GetNetworkConfig API method is used to display the network configuration information for a node.
-        
-        Note: This method is available only through the per-node API endpoint 5.0 or later.        """
-
-        self._check_connection_type("get_network_config", "Node")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetNetworkConfig',
-            GetNetworkConfigResult,
-            params
-        )
-
     def get_node_stats(
             self,
             node_id,):
@@ -2431,6 +2393,44 @@ class Element(ServiceBase):
         return self.send_request(
             'SetConfig',
             SetConfigResult,
+            params
+        )
+
+    def get_config(
+            self,):
+        """
+        The GetConfig API method is used to retrieve all the configuration information for the node. This one API method includes the same information available in both "GetClusterConfig" and "GetNetworkConfig" methods.
+        
+        Note: This method is available only through the per-node API endpoint 5.0 or later.        """
+
+        self._check_connection_type("get_config", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetConfig',
+            GetConfigResult,
+            params
+        )
+
+    def get_network_config(
+            self,):
+        """
+        The GetNetworkConfig API method is used to display the network configuration information for a node.
+        
+        Note: This method is available only through the per-node API endpoint 5.0 or later.        """
+
+        self._check_connection_type("get_network_config", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetNetworkConfig',
+            GetNetworkConfigResult,
             params
         )
 
@@ -3652,6 +3652,30 @@ class Element(ServiceBase):
             params
         )
 
+    def test_connect_mvip(
+            self,
+            mvip=OPTIONAL,):
+        """
+        The TestConnectMvip API method is used to test the management connection to the cluster. The test pings the MVIP and executes a simple API method to verify connectivity.
+        Note: This method is available only through the per-node API endpoint 5.0 or later.
+        :param mvip:  Optionally, use to test the management connection of a different MVIP. This is not needed to test the connection to the target cluster. 
+        :type mvip: str
+        """
+
+        self._check_connection_type("test_connect_mvip", "Node")
+
+        params = { 
+        }
+        if mvip is not None:
+            params["mvip"] = mvip
+        
+        # There is no adaptor.
+        return self.send_request(
+            'TestConnectMvip',
+            TestConnectMvipResult,
+            params
+        )
+
     def list_tests(
             self,):
         """
@@ -3781,30 +3805,6 @@ class Element(ServiceBase):
         return self.send_request(
             'TestPing',
             TestPingResult,
-            params
-        )
-
-    def test_connect_mvip(
-            self,
-            mvip=OPTIONAL,):
-        """
-        The TestConnectMvip API method is used to test the management connection to the cluster. The test pings the MVIP and executes a simple API method to verify connectivity.
-        Note: This method is available only through the per-node API endpoint 5.0 or later.
-        :param mvip:  Optionally, use to test the management connection of a different MVIP. This is not needed to test the connection to the target cluster. 
-        :type mvip: str
-        """
-
-        self._check_connection_type("test_connect_mvip", "Node")
-
-        params = { 
-        }
-        if mvip is not None:
-            params["mvip"] = mvip
-        
-        # There is no adaptor.
-        return self.send_request(
-            'TestConnectMvip',
-            TestConnectMvipResult,
             params
         )
 

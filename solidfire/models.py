@@ -5301,12 +5301,12 @@ class ListTestsResult(data_model.DataObject):
     """ListTestsResult  
 
     :param tests: [required] List of tests that can be performed on the node. 
-    :type tests: str
+    :type tests: dict
 
     """
     tests = data_model.property(
-        "tests", str,
-        array=True, optional=False,
+        "tests", dict,
+        array=False, optional=False,
         documentation="[&#x27;List of tests that can be performed on the node.&#x27;]",
         dictionaryType=None
     )
@@ -9707,7 +9707,7 @@ class ListUtilitiesResult(data_model.DataObject):
     """
     utilities = data_model.property(
         "utilities", str,
-        array=True, optional=False,
+        array=False, optional=False,
         documentation="[&#x27;List of utilities currently available to run on the node.&#x27;]",
         dictionaryType=None
     )
@@ -10013,7 +10013,7 @@ class RtfiInfo(data_model.DataObject):
     :type mipi: str
 
     :param generation: [required]  
-    :type generation: int
+    :type generation: str
 
     :param status_url_logfile:   
     :type status_url_logfile: str
@@ -10044,7 +10044,7 @@ class RtfiInfo(data_model.DataObject):
         dictionaryType=None
     )
     generation = data_model.property(
-        "generation", int,
+        "generation", str,
         array=False, optional=False,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
