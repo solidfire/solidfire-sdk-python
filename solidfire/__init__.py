@@ -3344,12 +3344,12 @@ class Element(ServiceBase):
             "schedule": schedule,
         }
         
-        # There is no adaptor.
-        return self.send_request(
-            'CreateSchedule',
-            CreateScheduleResult,
-            params
-        )
+        # There is an adaptor!
+        since = None
+        deprecated = None
+
+        return ElementServiceAdaptor.create_schedule(self, params,
+                                                  since, deprecated)
 
     def modify_schedule(
             self,
@@ -3366,12 +3366,12 @@ class Element(ServiceBase):
             "schedule": schedule,
         }
         
-        # There is no adaptor.
-        return self.send_request(
-            'ModifySchedule',
-            ModifyScheduleResult,
-            params
-        )
+        # There is an adaptor!
+        since = None
+        deprecated = None
+
+        return ElementServiceAdaptor.modify_schedule(self, params,
+                                                  since, deprecated)
 
     def list_snapshots(
             self,
