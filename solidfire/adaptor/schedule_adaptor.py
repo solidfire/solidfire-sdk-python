@@ -115,12 +115,12 @@ class ScheduleAdaptor:
                                  "schedule_info property before attempting to "
                                  "modify a Schedule.")
         if(params["schedule"].frequency.minutes is None):
-            params["frequency"]["minutes"] = 0
+            params.setdefault("frequency", {})["minutes"] = 0
         if(params["schedule"].frequency.hours is None):
-            params["frequency"]["hours"] = 0
+            params.setdefault("frequency", {})["hours"] = 0
 
         api_schedule = ScheduleAdaptor.to_api_schedule(params['schedule'])
-
+        print(api_schedule)
         api_result = element.send_request("CreateSchedule",
                                           CreateScheduleResult,
                                           api_schedule.to_json(),
