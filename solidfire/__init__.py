@@ -624,23 +624,6 @@ class Element(ServiceBase):
             params
         )
 
-    def get_api(
-            self,):
-        """
-        Retrieves the current version of the API and a list of all supported versions.        """
-
-        self._check_connection_type("get_api", "Both")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetAPI',
-            GetAPIResult,
-            params
-        )
-
     def get_cluster_capacity(
             self,):
         """
@@ -656,25 +639,6 @@ class Element(ServiceBase):
         return self.send_request(
             'GetClusterCapacity',
             GetClusterCapacityResult,
-            params
-        )
-
-    def get_cluster_config(
-            self,):
-        """
-        The GetClusterConfig API method is used to return information about the cluster configuration this node uses to communicate with the cluster it is a part of.
-        
-        Note: This method is available only through the per-node API endpoint 5.0 or later.        """
-
-        self._check_connection_type("get_cluster_config", "Node")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetClusterConfig',
-            GetClusterConfigResult,
             params
         )
 
@@ -1111,30 +1075,6 @@ class Element(ServiceBase):
             params
         )
 
-    def set_cluster_config(
-            self,
-            cluster,):
-        """
-        The SetClusterConfig API method is used to set the configuration this node uses to communicate with the cluster it is associated with. To see the states in which these objects can be modified see Cluster Object on page 109. To display the current cluster interface settings for a node, run the GetClusterConfig API method.
-        
-        Note: This method is available only through the per-node API endpoint 5.0 or later.
-        :param cluster: [required] Objects that are changed for the cluster interface settings. Only the fields you want changed need to be added to this method as objects in the "cluster" parameter. 
-        :type cluster: ClusterConfig
-        """
-
-        self._check_connection_type("set_cluster_config", "Node")
-
-        params = { 
-            "cluster": cluster,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SetClusterConfig',
-            SetClusterConfigResult,
-            params
-        )
-
     def set_snmp_acl(
             self,
             networks,
@@ -1213,6 +1153,47 @@ class Element(ServiceBase):
         return self.send_request(
             'SnmpSendTestTraps',
             SnmpSendTestTrapsResult,
+            params
+        )
+
+    def get_api(
+            self,):
+        """
+        Retrieves the current version of the API and a list of all supported versions.        """
+
+        self._check_connection_type("get_api", "Both")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetAPI',
+            GetAPIResult,
+            params
+        )
+
+    def set_cluster_config(
+            self,
+            cluster,):
+        """
+        The SetClusterConfig API method is used to set the configuration this node uses to communicate with the cluster it is associated with. To see the states in which these objects can be modified see Cluster Object on page 109. To display the current cluster interface settings for a node, run the GetClusterConfig API method.
+        
+        Note: This method is available only through the per-node API endpoint 5.0 or later.
+        :param cluster: [required] Objects that are changed for the cluster interface settings. Only the fields you want changed need to be added to this method as objects in the "cluster" parameter. 
+        :type cluster: ClusterConfig
+        """
+
+        self._check_connection_type("set_cluster_config", "Node")
+
+        params = { 
+            "cluster": cluster,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetClusterConfig',
+            SetClusterConfigResult,
             params
         )
 
@@ -1347,6 +1328,25 @@ class Element(ServiceBase):
         return self.send_request(
             'ClearClusterFaults',
             ClearClusterFaultsResult,
+            params
+        )
+
+    def get_cluster_config(
+            self,):
+        """
+        The GetClusterConfig API method is used to return information about the cluster configuration this node uses to communicate with the cluster it is a part of.
+        
+        Note: This method is available only through the per-node API endpoint 5.0 or later.        """
+
+        self._check_connection_type("get_cluster_config", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetClusterConfig',
+            GetClusterConfigResult,
             params
         )
 
@@ -3234,97 +3234,6 @@ class Element(ServiceBase):
             params
         )
 
-    def rollback_to_group_snapshot(
-            self,
-            group_snapshot_id,
-            save_current_state,
-            name=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        RollbackToGroupSnapshot is used to roll back each individual volume in a snapshot group to a copy of their individual snapshots.
-        
-        Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
-        Snapshots are not created when cluster fullness is at stage 4 or 5.
-        :param groupSnapshotID: [required] Unique ID of the group snapshot. 
-        :type groupSnapshotID: int
-
-        :param saveCurrentState: [required] true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. 
-        :type saveCurrentState: bool
-
-        :param name:  Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with  "-copy" appended to the end of the name. 
-        :type name: str
-
-        :param attributes:  List of Name/Value pairs in JSON object format 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("rollback_to_group_snapshot", "Cluster")
-
-        params = { 
-            "groupSnapshotID": group_snapshot_id,
-            "saveCurrentState": save_current_state,
-        }
-        if name is not None:
-            params["name"] = name
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'RollbackToGroupSnapshot',
-            CreateGroupSnapshotResult,
-            params
-        )
-
-    def rollback_to_snapshot(
-            self,
-            volume_id,
-            snapshot_id,
-            save_current_state,
-            name=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        RollbackToSnapshot is used to make an existing snapshot the "active" volume image. This method creates a new 
-        snapshot from an existing snapshot. The new snapshot becomes "active" and the existing snapshot is preserved until 
-        it is manually deleted. The previously "active" snapshot is deleted unless the parameter saveCurrentState is set with 
-        a value of "true."
-        Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
-        Snapshots are not created when cluster fullness is at stage 4 or 5.
-        :param volumeID: [required] VolumeID for the volume. 
-        :type volumeID: int
-
-        :param snapshotID: [required] ID of a previously created snapshot on the given volume. 
-        :type snapshotID: int
-
-        :param saveCurrentState: [required] true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. 
-        :type saveCurrentState: bool
-
-        :param name:  Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with  "-copy" appended to the end of the name. 
-        :type name: str
-
-        :param attributes:  List of Name/Value pairs in JSON object format 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("rollback_to_snapshot", "Cluster")
-
-        params = { 
-            "volumeID": volume_id,
-            "snapshotID": snapshot_id,
-            "saveCurrentState": save_current_state,
-        }
-        if name is not None:
-            params["name"] = name
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'RollbackToSnapshot',
-            CreateSnapshotResult,
-            params
-        )
-
     def create_schedule(
             self,
             schedule,):
@@ -3393,6 +3302,97 @@ class Element(ServiceBase):
         return self.send_request(
             'ListSnapshots',
             ListSnapshotsResult,
+            params
+        )
+
+    def rollback_to_group_snapshot(
+            self,
+            group_snapshot_id,
+            save_current_state,
+            name=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        RollbackToGroupSnapshot is used to roll back each individual volume in a snapshot group to a copy of their individual snapshots.
+        
+        Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
+        Snapshots are not created when cluster fullness is at stage 4 or 5.
+        :param groupSnapshotID: [required] Unique ID of the group snapshot. 
+        :type groupSnapshotID: int
+
+        :param saveCurrentState: [required] true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. 
+        :type saveCurrentState: bool
+
+        :param name:  Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with  "-copy" appended to the end of the name. 
+        :type name: str
+
+        :param attributes:  List of Name/Value pairs in JSON object format 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("rollback_to_group_snapshot", "Cluster")
+
+        params = { 
+            "groupSnapshotID": group_snapshot_id,
+            "saveCurrentState": save_current_state,
+        }
+        if name is not None:
+            params["name"] = name
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RollbackToGroupSnapshot',
+            RollbackToGroupSnapshotResult,
+            params
+        )
+
+    def rollback_to_snapshot(
+            self,
+            volume_id,
+            snapshot_id,
+            save_current_state,
+            name=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        RollbackToSnapshot is used to make an existing snapshot the "active" volume image. This method creates a new 
+        snapshot from an existing snapshot. The new snapshot becomes "active" and the existing snapshot is preserved until 
+        it is manually deleted. The previously "active" snapshot is deleted unless the parameter saveCurrentState is set with 
+        a value of "true."
+        Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
+        Snapshots are not created when cluster fullness is at stage 4 or 5.
+        :param volumeID: [required] VolumeID for the volume. 
+        :type volumeID: int
+
+        :param snapshotID: [required] ID of a previously created snapshot on the given volume. 
+        :type snapshotID: int
+
+        :param saveCurrentState: [required] true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. 
+        :type saveCurrentState: bool
+
+        :param name:  Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with  "-copy" appended to the end of the name. 
+        :type name: str
+
+        :param attributes:  List of Name/Value pairs in JSON object format 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("rollback_to_snapshot", "Cluster")
+
+        params = { 
+            "volumeID": volume_id,
+            "snapshotID": snapshot_id,
+            "saveCurrentState": save_current_state,
+        }
+        if name is not None:
+            params["name"] = name
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RollbackToSnapshot',
+            RollbackToSnapshotResult,
             params
         )
 
@@ -3712,30 +3712,6 @@ class Element(ServiceBase):
             params
         )
 
-    def test_connect_mvip(
-            self,
-            mvip=OPTIONAL,):
-        """
-        The TestConnectMvip API method is used to test the management connection to the cluster. The test pings the MVIP and executes a simple API method to verify connectivity.
-        Note: This method is available only through the per-node API endpoint 5.0 or later.
-        :param mvip:  Optionally, use to test the management connection of a different MVIP. This is not needed to test the connection to the target cluster. 
-        :type mvip: str
-        """
-
-        self._check_connection_type("test_connect_mvip", "Node")
-
-        params = { 
-        }
-        if mvip is not None:
-            params["mvip"] = mvip
-        
-        # There is no adaptor.
-        return self.send_request(
-            'TestConnectMvip',
-            TestConnectMvipResult,
-            params
-        )
-
     def test_connect_svip(
             self,
             svip=OPTIONAL,):
@@ -3805,6 +3781,30 @@ class Element(ServiceBase):
         return self.send_request(
             'TestPing',
             TestPingResult,
+            params
+        )
+
+    def test_connect_mvip(
+            self,
+            mvip=OPTIONAL,):
+        """
+        The TestConnectMvip API method is used to test the management connection to the cluster. The test pings the MVIP and executes a simple API method to verify connectivity.
+        Note: This method is available only through the per-node API endpoint 5.0 or later.
+        :param mvip:  Optionally, use to test the management connection of a different MVIP. This is not needed to test the connection to the target cluster. 
+        :type mvip: str
+        """
+
+        self._check_connection_type("test_connect_mvip", "Node")
+
+        params = { 
+        }
+        if mvip is not None:
+            params["mvip"] = mvip
+        
+        # There is no adaptor.
+        return self.send_request(
+            'TestConnectMvip',
+            TestConnectMvipResult,
             params
         )
 
