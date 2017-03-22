@@ -5301,11 +5301,11 @@ class ListTestsResult(data_model.DataObject):
     """ListTestsResult  
 
     :param tests: [required] List of tests that can be performed on the node. 
-    :type tests: dict
+    :type tests: str
 
     """
     tests = data_model.property(
-        "tests", dict,
+        "tests", str,
         array=False, optional=False,
         documentation="[&#x27;List of tests that can be performed on the node.&#x27;]",
         dictionaryType=None

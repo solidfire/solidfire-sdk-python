@@ -4239,38 +4239,6 @@ class Element(ServiceBase):
             params
         )
 
-    def unbind_virtual_volumes(
-            self,
-            unbind_context,
-            virtual_volume_host_id,
-            unbind_args,):
-        """
-        UnbindGetVirtualVolume removes the VVol <-> Host binding.
-        :param unbindContext: [required] Normal, Start, or End? 
-        :type unbindContext: str
-
-        :param virtualVolumeHostID: [required] UnbindGetVirtualVolume removes the VVol <-> Host binding. 
-        :type virtualVolumeHostID: UUID
-
-        :param unbindArgs: [required] UnbindGetVirtualVolume removes the VVol <-> Host binding. 
-        :type unbindArgs: UnbindArguments
-        """
-
-        self._check_connection_type("unbind_virtual_volumes", "Cluster")
-
-        params = { 
-            "unbindContext": unbind_context,
-            "virtualVolumeHostID": virtual_volume_host_id,
-            "unbindArgs": unbind_args,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'UnbindVirtualVolumes',
-            VirtualVolumeUnbindResult,
-            params
-        )
-
     def cancel_virtual_volume_task(
             self,
             virtual_volume_task_id,
@@ -5095,6 +5063,38 @@ class Element(ServiceBase):
         return self.send_request(
             'RollbackVirtualVolume',
             VirtualVolumeAsyncResult,
+            params
+        )
+
+    def unbind_virtual_volumes(
+            self,
+            unbind_context,
+            virtual_volume_host_id,
+            unbind_args,):
+        """
+        UnbindGetVirtualVolume removes the VVol <-> Host binding.
+        :param unbindContext: [required] Normal, Start, or End? 
+        :type unbindContext: str
+
+        :param virtualVolumeHostID: [required] UnbindGetVirtualVolume removes the VVol <-> Host binding. 
+        :type virtualVolumeHostID: UUID
+
+        :param unbindArgs: [required] UnbindGetVirtualVolume removes the VVol <-> Host binding. 
+        :type unbindArgs: UnbindArguments
+        """
+
+        self._check_connection_type("unbind_virtual_volumes", "Cluster")
+
+        params = { 
+            "unbindContext": unbind_context,
+            "virtualVolumeHostID": virtual_volume_host_id,
+            "unbindArgs": unbind_args,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'UnbindVirtualVolumes',
+            VirtualVolumeUnbindResult,
             params
         )
 
