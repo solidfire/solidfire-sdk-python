@@ -475,9 +475,6 @@ class NetworkConfigParams(data_model.DataObject):
     :param bond_updelay:   
     :type bond_updelay: str
 
-    :param broadcast:   
-    :type broadcast: str
-
     :param dns_nameservers:   
     :type dns_nameservers: str
 
@@ -598,12 +595,6 @@ class NetworkConfigParams(data_model.DataObject):
     )
     bond_updelay = data_model.property(
         "bond-updelay", str,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    broadcast = data_model.property(
-        "broadcast", str,
         array=False, optional=True,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
@@ -1570,9 +1561,6 @@ class VolumeStats(data_model.DataObject):
     :param actual_iops:  Current actual IOPS to the volume in the last 500 milliseconds. 
     :type actual_iops: int
 
-    :param async_delay:  The length of time since the volume was last synced with the remote cluster. If the volume is not paired, this is null.  Note: A target volume in an active replication state always has an async delay of 0 (zero). Target volumes are system-aware during replication and assume async delay is accurate at all times. 
-    :type async_delay: str
-
     :param average_iopsize:  Average size in bytes of recent I/O to the volume in the last 500 milliseconds. 
     :type average_iopsize: int
 
@@ -1581,9 +1569,6 @@ class VolumeStats(data_model.DataObject):
 
     :param client_queue_depth:  The number of outstanding read and write operations to the cluster. 
     :type client_queue_depth: int
-
-    :param desired_metadata_hosts:  The volume services being migrated to if the volume metadata is getting migrated between volume services. A "null" value means the volume is not migrating. 
-    :type desired_metadata_hosts: MetadataHosts
 
     :param latency_usec:  The observed latency time, in microseconds, to complete operations to a volume. A "0" (zero) value means there is no I/O to the volume. 
     :type latency_usec: int
@@ -1657,9 +1642,6 @@ class VolumeStats(data_model.DataObject):
     :param write_ops_last_sample:  The total number of write operations during the last sample period. 
     :type write_ops_last_sample: int
 
-    :param virtual_volume_id:  If the volume of interest is associated with a virtual volume, this is the virtual volume ID. 
-    :type virtual_volume_id: UUID
-
     """
     account_id = data_model.property(
         "accountID", int,
@@ -1671,12 +1653,6 @@ class VolumeStats(data_model.DataObject):
         "actualIOPS", int,
         array=False, optional=True,
         documentation="[&#x27;Current actual IOPS to the volume in the last 500 milliseconds.&#x27;]",
-        dictionaryType=None
-    )
-    async_delay = data_model.property(
-        "asyncDelay", str,
-        array=False, optional=True,
-        documentation="[&#x27;The length of time since the volume was last synced with the remote cluster.&#x27;, &#x27;If the volume is not paired, this is null.&#x27;, u&#x27;&#x27;, &#x27;Note: A target volume in an active replication state always has an async delay of 0 (zero).&#x27;, &#x27;Target volumes are system-aware during replication and assume async delay is accurate at all times.&#x27;]",
         dictionaryType=None
     )
     average_iopsize = data_model.property(
@@ -1695,12 +1671,6 @@ class VolumeStats(data_model.DataObject):
         "clientQueueDepth", int,
         array=False, optional=True,
         documentation="[&#x27;The number of outstanding read and write operations to the cluster.&#x27;]",
-        dictionaryType=None
-    )
-    desired_metadata_hosts = data_model.property(
-        "desiredMetadataHosts", MetadataHosts,
-        array=False, optional=True,
-        documentation="[&#x27;The volume services being migrated to if the volume metadata is getting migrated between volume services.&#x27;, &#x27;A &quot;null&quot; value means the volume is not migrating.&#x27;]",
         dictionaryType=None
     )
     latency_usec = data_model.property(
@@ -1845,12 +1815,6 @@ class VolumeStats(data_model.DataObject):
         "writeOpsLastSample", int,
         array=False, optional=True,
         documentation="[&#x27;The total number of write operations during the last sample period.&#x27;]",
-        dictionaryType=None
-    )
-    virtual_volume_id = data_model.property(
-        "virtualVolumeID", UUID,
-        array=False, optional=True,
-        documentation="[&#x27;If the volume of interest is associated with a virtual volume, this is the virtual volume ID.&#x27;]",
         dictionaryType=None
     )
 
@@ -3892,17 +3856,8 @@ class DriveConfigInfo(data_model.DataObject):
     :param drive_type: [required]  
     :type drive_type: str
 
-    :param fs_type:   
-    :type fs_type: str
-
-    :param is_mounted:   
-    :type is_mounted: bool
-
     :param product: [required]  
     :type product: str
-
-    :param mount_point:   
-    :type mount_point: str
 
     :param name: [required]  
     :type name: str
@@ -3946,24 +3901,6 @@ class DriveConfigInfo(data_model.DataObject):
     :param version: [required]  
     :type version: str
 
-    :param num_block_actual:   
-    :type num_block_actual: int
-
-    :param num_block_expected:   
-    :type num_block_expected: int
-
-    :param num_slice_actual:   
-    :type num_slice_actual: int
-
-    :param num_slice_expected:   
-    :type num_slice_expected: int
-
-    :param num_total_actual:   
-    :type num_total_actual: int
-
-    :param num_total_expected:   
-    :type num_total_expected: int
-
     :param security_at_maximum: [required]  
     :type security_at_maximum: bool
 
@@ -4004,27 +3941,9 @@ class DriveConfigInfo(data_model.DataObject):
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
-    fs_type = data_model.property(
-        "fsType", str,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    is_mounted = data_model.property(
-        "isMounted", bool,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
     product = data_model.property(
         "product", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    mount_point = data_model.property(
-        "mountPoint", str,
-        array=False, optional=True,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
@@ -4109,42 +4028,6 @@ class DriveConfigInfo(data_model.DataObject):
     version = data_model.property(
         "version", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    num_block_actual = data_model.property(
-        "numBlockActual", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    num_block_expected = data_model.property(
-        "numBlockExpected", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    num_slice_actual = data_model.property(
-        "numSliceActual", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    num_slice_expected = data_model.property(
-        "numSliceExpected", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    num_total_actual = data_model.property(
-        "numTotalActual", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    num_total_expected = data_model.property(
-        "numTotalExpected", int,
-        array=False, optional=True,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
@@ -7205,9 +7088,6 @@ class NetworkConfig(data_model.DataObject):
     :param bond_updelay:   
     :type bond_updelay: str
 
-    :param broadcast:   
-    :type broadcast: str
-
     :param dns_nameservers:   
     :type dns_nameservers: str
 
@@ -7334,12 +7214,6 @@ class NetworkConfig(data_model.DataObject):
     )
     bond_updelay = data_model.property(
         "bond-updelay", str,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    broadcast = data_model.property(
-        "broadcast", str,
         array=False, optional=True,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
@@ -7471,12 +7345,6 @@ class Network(data_model.DataObject):
     :param eth3:   
     :type eth3: NetworkConfig
 
-    :param eth4:   
-    :type eth4: NetworkConfig
-
-    :param eth5:   
-    :type eth5: NetworkConfig
-
     :param lo:   
     :type lo: NetworkConfig
 
@@ -7513,18 +7381,6 @@ class Network(data_model.DataObject):
     )
     eth3 = data_model.property(
         "eth3", NetworkConfig,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    eth4 = data_model.property(
-        "eth4", NetworkConfig,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    eth5 = data_model.property(
-        "eth5", NetworkConfig,
         array=False, optional=True,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
@@ -7872,20 +7728,11 @@ class ModifyVolumeResult(data_model.DataObject):
     :param volume:  Object containing information about the newly modified volume. 
     :type volume: Volume
 
-    :param curve:   
-    :type curve: QoS
-
     """
     volume = data_model.property(
         "volume", Volume,
         array=False, optional=True,
         documentation="[&#x27;Object containing information about the newly modified volume.&#x27;]",
-        dictionaryType=None
-    )
-    curve = data_model.property(
-        "curve", QoS,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
 
@@ -8237,20 +8084,11 @@ class DeleteVolumesResult(data_model.DataObject):
     :param volumes: [required] Information about the newly deleted volume. 
     :type volumes: Volume
 
-    :param curve:   
-    :type curve: VolumeQOS
-
     """
     volumes = data_model.property(
         "volumes", Volume,
         array=True, optional=False,
         documentation="[&#x27;Information about the newly deleted volume.&#x27;]",
-        dictionaryType=None
-    )
-    curve = data_model.property(
-        "curve", VolumeQOS,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
 
@@ -11515,12 +11353,12 @@ class ModifyVirtualNetworkRequest(data_model.DataObject):
 class ListVolumeStatsByVirtualVolumeResult(data_model.DataObject):
     """ListVolumeStatsByVirtualVolumeResult  
 
-    :param volume_stats: [required]  
-    :type volume_stats: VolumeStats
+    :param virtual_volume_stats: [required]  
+    :type virtual_volume_stats: VolumeStats
 
     """
-    volume_stats = data_model.property(
-        "volumeStats", VolumeStats,
+    virtual_volume_stats = data_model.property(
+        "VirtualVolumeStats", VolumeStats,
         array=True, optional=False,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
@@ -11705,18 +11543,6 @@ class VirtualVolumeBinding(data_model.DataObject):
     :param virtual_volume_secondary_id: [required] The secondary ID of the virtual volume. 
     :type virtual_volume_secondary_id: str
 
-    :param virtual_volume:  An object describing the bound volume or snapshot. 
-    :type virtual_volume: VirtualVolumeInfo
-
-    :param protocol_endpoint:  An object describing the protocol endpoint to which the virtual volume is bound. 
-    :type protocol_endpoint: UUID
-
-    :param virtual_volume_host:  An object describing the host to which this binding corresponds. 
-    :type virtual_volume_host: VirtualVolumeHost
-
-    :param fault:  
-    :type fault: str
-
     """
     protocol_endpoint_id = data_model.property(
         "protocolEndpointID", UUID,
@@ -11758,30 +11584,6 @@ class VirtualVolumeBinding(data_model.DataObject):
         "virtualVolumeSecondaryID", str,
         array=False, optional=False,
         documentation="[&#x27;The secondary ID of the virtual volume.&#x27;]",
-        dictionaryType=None
-    )
-    virtual_volume = data_model.property(
-        "virtualVolume", VirtualVolumeInfo,
-        array=False, optional=True,
-        documentation="[&#x27;An object describing the bound volume or snapshot.&#x27;]",
-        dictionaryType=None
-    )
-    protocol_endpoint = data_model.property(
-        "protocolEndpoint", UUID,
-        array=False, optional=True,
-        documentation="[&#x27;An object describing the protocol endpoint to which the virtual volume is bound.&#x27;]",
-        dictionaryType=None
-    )
-    virtual_volume_host = data_model.property(
-        "virtualVolumeHost", VirtualVolumeHost,
-        array=False, optional=True,
-        documentation="[&#x27;An object describing the host to which this binding corresponds.&#x27;]",
-        dictionaryType=None
-    )
-    fault = data_model.property(
-        "fault", str,
-        array=False, optional=True,
-        documentation="",
         dictionaryType=None
     )
 
@@ -12791,19 +12593,10 @@ class GetSnmpInfoResult(data_model.DataObject):
 class ModifyVolumesResult(data_model.DataObject):
     """ModifyVolumesResult  
 
-    :param qos:   
-    :type qos: QoS
-
     :param volumes: [required]  
     :type volumes: Volume
 
     """
-    qos = data_model.property(
-        "qos", QoS,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
     volumes = data_model.property(
         "volumes", Volume,
         array=True, optional=False,
@@ -12835,50 +12628,14 @@ class RestartNetworkingRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class NodeFibreChannelPortInfoResult(data_model.DataObject):
-    """NodeFibreChannelPortInfoResult  
-    Fibre channel port info results for a node.
-
-    :param node_id: [required] The ID of the Fibre Channel node. 
-    :type node_id: int
-
-    :param result: [required] Contains a list of information about the Fibre Channel ports. 
-    :type result: FibreChannelPortList
-
-    """
-    node_id = data_model.property(
-        "nodeID", int,
-        array=False, optional=False,
-        documentation="[&#x27;The ID of the Fibre Channel node.&#x27;]",
-        dictionaryType=None
-    )
-    result = data_model.property(
-        "result", FibreChannelPortList,
-        array=False, optional=False,
-        documentation="[&#x27;Contains a list of information about the Fibre Channel ports.&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class ListNodeFibreChannelPortInfoResult(data_model.DataObject):
     """ListNodeFibreChannelPortInfoResult  
     List of fibre channel port info results grouped by node.
-
-    :param nodes:  List of fibre channel port info results grouped by node. 
-    :type nodes: NodeFibreChannelPortInfoResult
 
     :param fibre_channel_ports: [required] List of all physical Fibre Channel ports. 
     :type fibre_channel_ports: FibreChannelPortInfo
 
     """
-    nodes = data_model.property(
-        "nodes", NodeFibreChannelPortInfoResult,
-        array=True, optional=True,
-        documentation="[&#x27;List of fibre channel port info results grouped by node.&#x27;]",
-        dictionaryType=None
-    )
     fibre_channel_ports = data_model.property(
         "fibreChannelPorts", FibreChannelPortInfo,
         array=True, optional=False,
@@ -14834,9 +14591,6 @@ class ClusterInfo(data_model.DataObject):
     :param rep_count: [required] Number of replicas of each piece of data to store in the cluster. Valid value is 2 
     :type rep_count: int
 
-    :param state:   
-    :type state: str
-
     :param svip: [required] Storage virtual IP 
     :type svip: str
 
@@ -14911,12 +14665,6 @@ class ClusterInfo(data_model.DataObject):
         "repCount", int,
         array=False, optional=False,
         documentation="[&#x27;Number of replicas of each piece of data to store in the cluster.&#x27;, &#x27;Valid value is 2&#x27;]",
-        dictionaryType=None
-    )
-    state = data_model.property(
-        "state", str,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
     svip = data_model.property(
