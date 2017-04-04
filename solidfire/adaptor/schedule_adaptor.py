@@ -120,7 +120,6 @@ class ScheduleAdaptor:
             params.setdefault("frequency", {})["hours"] = 0
 
         api_schedule = ScheduleAdaptor.to_api_schedule(params['schedule'])
-        print(api_schedule)
         api_result = element.send_request("CreateSchedule",
                                           CreateScheduleResult,
                                           api_schedule.to_json(),

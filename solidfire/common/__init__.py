@@ -599,7 +599,6 @@ class ServiceBase(object):
         except requests.exceptions.ChunkedEncodingError as error:
             raise ApiConnectionError(error.args)
         except Exception as error:
-            print(type(error))
             if 2 <= len(error.args):
                 json_err = json.dumps(
                     {

@@ -1,2 +1,4 @@
 resources.py
 unitTests.py
+/models.py
+/__init__.py

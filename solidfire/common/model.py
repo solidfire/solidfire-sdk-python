@@ -252,18 +252,6 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
         if(len(kwargs.keys()) != 0):
             raise ValueError("The following params are invalid: "+str(kwargs.keys()))
 
-        """
-        # OLD (bad) WAY
-        for key, value in kwargs.items():
-            if key not in type(self)._properties:
-                msg_fmt = 'Key "{key}" is not a valid property'
-                msg = msg_fmt.format(key)
-                raise TypeError(msg)
-            else:
-                setattr(self, key, value)
-                print(key)
-                print(value)"""
-
     def get_properties(self):
         """
         Exposes the type properties for a Data Object.
