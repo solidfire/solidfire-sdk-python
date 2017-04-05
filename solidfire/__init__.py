@@ -6240,37 +6240,6 @@ class Element(ServiceBase):
             params
         )
 
-    def list_volume_access_groups(
-            self,
-            start_volume_access_group_id=OPTIONAL,
-            limit=OPTIONAL,):
-        """
-        ListVolumeAccessGroups enables you to return
-        information about the volume access groups that are
-        currently in the system.
-        :param startVolumeAccessGroupID:  The volume access group ID at which to begin the listing. If unspecified, there is no lower limit (implicitly 0). 
-        :type startVolumeAccessGroupID: int
-
-        :param limit:  The maximum number of results to return. This can be useful for paging. 
-        :type limit: int
-        """
-
-        self._check_connection_type("list_volume_access_groups", "Cluster")
-
-        params = { 
-        }
-        if start_volume_access_group_id is not None:
-            params["startVolumeAccessGroupID"] = start_volume_access_group_id
-        if limit is not None:
-            params["limit"] = limit
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVolumeAccessGroups',
-            ListVolumeAccessGroupsResult,
-            params
-        )
-
     def modify_volume_access_group(
             self,
             volume_access_group_id,
@@ -6393,6 +6362,43 @@ class Element(ServiceBase):
         return self.send_request(
             'RemoveVolumesFromVolumeAccessGroup',
             ModifyVolumeAccessGroupResult,
+            params
+        )
+
+    def list_volume_access_groups(
+            self,
+            start_volume_access_group_id=OPTIONAL,
+            limit=OPTIONAL,
+            volume_access_groups=OPTIONAL,):
+        """
+        ListVolumeAccessGroups enables you to return
+        information about the volume access groups that are
+        currently in the system.
+        :param startVolumeAccessGroupID:  The volume access group ID at which to begin the listing. If unspecified, there is no lower limit (implicitly 0). 
+        :type startVolumeAccessGroupID: int
+
+        :param limit:  The maximum number of results to return. This can be useful for paging. 
+        :type limit: int
+
+        :param volumeAccessGroups:  The list of ids of the volume access groups you wish to list 
+        :type volumeAccessGroups: int
+        """
+
+        self._check_connection_type("list_volume_access_groups", "Cluster")
+
+        params = { 
+        }
+        if start_volume_access_group_id is not None:
+            params["startVolumeAccessGroupID"] = start_volume_access_group_id
+        if limit is not None:
+            params["limit"] = limit
+        if volume_access_groups is not None:
+            params["volumeAccessGroups"] = volume_access_groups
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVolumeAccessGroups',
+            ListVolumeAccessGroupsResult,
             params
         )
 

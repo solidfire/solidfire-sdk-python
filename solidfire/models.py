@@ -12304,6 +12304,9 @@ class ListVolumeAccessGroupsRequest(data_model.DataObject):
     :param limit:  The maximum number of results to return. This can be useful for paging. 
     :type limit: int
 
+    :param volume_access_groups:  The list of ids of the volume access groups you wish to list 
+    :type volume_access_groups: int
+
     """
     start_volume_access_group_id = data_model.property(
         "startVolumeAccessGroupID", int,
@@ -12315,6 +12318,12 @@ class ListVolumeAccessGroupsRequest(data_model.DataObject):
         "limit", int,
         array=False, optional=True,
         documentation="[&#x27;The maximum number of results to return. This can be&#x27;, &#x27;useful for paging.&#x27;]",
+        dictionaryType=None
+    )
+    volume_access_groups = data_model.property(
+        "volumeAccessGroups", int,
+        array=True, optional=True,
+        documentation="[&#x27;The list of ids of the volume access groups you wish to list&#x27;]",
         dictionaryType=None
     )
 
