@@ -11350,6 +11350,303 @@ class ModifyVirtualNetworkRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+class VirtualVolumeStats(data_model.DataObject):
+    """VirtualVolumeStats  
+    Contains statistical data for an individual volume.
+
+    :param account_id: [required] AccountID of the volume owner. 
+    :type account_id: int
+
+    :param actual_iops:  Current actual IOPS to the volume in the last 500 milliseconds. 
+    :type actual_iops: int
+
+    :param async_delay:  The length of time since the volume was last synced with the remote cluster. If the volume is not paired, this is null.  Note: A target volume in an active replication state always has an async delay of 0 (zero). Target volumes are system-aware during replication and assume async delay is accurate at all times. 
+    :type async_delay: str
+
+    :param average_iopsize:  Average size in bytes of recent I/O to the volume in the last 500 milliseconds. 
+    :type average_iopsize: int
+
+    :param burst_iopscredit:  The total number of IOP credits available to the user. When users are not using up to the max IOPS, credits are accrued. 
+    :type burst_iopscredit: int
+
+    :param client_queue_depth:  The number of outstanding read and write operations to the cluster. 
+    :type client_queue_depth: int
+
+    :param desired_metadata_hosts:  The volume services being migrated to if the volume metadata is getting migrated between volume services. A "null" value means the volume is not migrating. 
+    :type desired_metadata_hosts: MetadataHosts
+
+    :param latency_usec:  The observed latency time, in microseconds, to complete operations to a volume. A "0" (zero) value means there is no I/O to the volume. 
+    :type latency_usec: int
+
+    :param metadata_hosts:  The volume services on which the volume metadata resides. 
+    :type metadata_hosts: MetadataHosts
+
+    :param non_zero_blocks: [required] The number of 4KiB blocks with data after the last garbage collection operation has completed. 
+    :type non_zero_blocks: int
+
+    :param read_bytes: [required] Total bytes read by clients. 
+    :type read_bytes: int
+
+    :param read_latency_usec:  The average time, in microseconds, to complete read operations. 
+    :type read_latency_usec: int
+
+    :param read_ops: [required] Total read operations. 
+    :type read_ops: int
+
+    :param throttle:  A floating value between 0 and 1 that represents how much the system is throttling clients below their max IOPS because of re-replication of data, transient errors and snapshots taken. 
+    :type throttle: float
+
+    :param timestamp: [required] The current time in UTC. 
+    :type timestamp: str
+
+    :param total_latency_usec:  The average time, in microseconds, to complete read and write operations to a volume. 
+    :type total_latency_usec: int
+
+    :param unaligned_reads: [required] For 512e volumes, the number of read operations that were not on a 4k sector boundary. High numbers of unaligned reads may indicate improper partition alignment. 
+    :type unaligned_reads: int
+
+    :param unaligned_writes: [required] For 512e volumes, the number of write operations that were not on a 4k sector boundary. High numbers of unaligned writes may indicate improper partition alignment. 
+    :type unaligned_writes: int
+
+    :param volume_access_groups: [required] List of volume access group(s) to which a volume beintegers. 
+    :type volume_access_groups: int
+
+    :param volume_id: [required] Volume ID of the volume. 
+    :type volume_id: int
+
+    :param volume_size: [required] Total provisioned capacity in bytes. 
+    :type volume_size: int
+
+    :param volume_utilization:  A floating value that describes how much the client is using the volume.  Values:  0 = Client is not using the volume 1 = Client is using their max >1 = Client is using their burst 
+    :type volume_utilization: float
+
+    :param write_bytes: [required] Total bytes written by clients. 
+    :type write_bytes: int
+
+    :param write_latency_usec:  The average time, in microseconds, to complete write operations. 
+    :type write_latency_usec: int
+
+    :param write_ops: [required] Total write operations occurring on the volume. 
+    :type write_ops: int
+
+    :param zero_blocks: [required] Total number of 4KiB blocks without data after the last round of garbage collection operation has completed. 
+    :type zero_blocks: int
+
+    :param write_bytes_last_sample:  The total number of bytes written to the volume during the last sample period. 
+    :type write_bytes_last_sample: int
+
+    :param sample_period_msec:  The length of the sample period in milliseconds. 
+    :type sample_period_msec: int
+
+    :param read_bytes_last_sample:  The total number of bytes read from the volume during the last sample period. 
+    :type read_bytes_last_sample: int
+
+    :param read_ops_last_sample:  The total number of read operations durin gth elast sample period. 
+    :type read_ops_last_sample: int
+
+    :param write_ops_last_sample:  The total number of write operations during the last sample period. 
+    :type write_ops_last_sample: int
+
+    :param virtual_volume_id:  If the volume of interest is associated with a virtual volume, this is the virtual volume ID. 
+    :type virtual_volume_id: UUID
+
+    """
+    account_id = data_model.property(
+        "accountID", int,
+        array=False, optional=False,
+        documentation="[&#x27;AccountID of the volume owner.&#x27;]",
+        dictionaryType=None
+    )
+    actual_iops = data_model.property(
+        "actualIOPS", int,
+        array=False, optional=True,
+        documentation="[&#x27;Current actual IOPS to the volume in the last 500 milliseconds.&#x27;]",
+        dictionaryType=None
+    )
+    async_delay = data_model.property(
+        "asyncDelay", str,
+        array=False, optional=True,
+        documentation="[&#x27;The length of time since the volume was last synced with the remote cluster.&#x27;, &#x27;If the volume is not paired, this is null.&#x27;, u&#x27;&#x27;, &#x27;Note: A target volume in an active replication state always has an async delay of 0 (zero).&#x27;, &#x27;Target volumes are system-aware during replication and assume async delay is accurate at all times.&#x27;]",
+        dictionaryType=None
+    )
+    average_iopsize = data_model.property(
+        "averageIOPSize", int,
+        array=False, optional=True,
+        documentation="[&#x27;Average size in bytes of recent I/O to the volume in the last 500 milliseconds.&#x27;]",
+        dictionaryType=None
+    )
+    burst_iopscredit = data_model.property(
+        "burstIOPSCredit", int,
+        array=False, optional=True,
+        documentation="[&#x27;The total number of IOP credits available to the user.&#x27;, &#x27;When users are not using up to the max IOPS, credits are accrued.&#x27;]",
+        dictionaryType=None
+    )
+    client_queue_depth = data_model.property(
+        "clientQueueDepth", int,
+        array=False, optional=True,
+        documentation="[&#x27;The number of outstanding read and write operations to the cluster.&#x27;]",
+        dictionaryType=None
+    )
+    desired_metadata_hosts = data_model.property(
+        "desiredMetadataHosts", MetadataHosts,
+        array=False, optional=True,
+        documentation="[&#x27;The volume services being migrated to if the volume metadata is getting migrated between volume services.&#x27;, &#x27;A &quot;null&quot; value means the volume is not migrating.&#x27;]",
+        dictionaryType=None
+    )
+    latency_usec = data_model.property(
+        "latencyUSec", int,
+        array=False, optional=True,
+        documentation="[&#x27;The observed latency time, in microseconds, to complete operations to a volume.&#x27;, &#x27;A &quot;0&quot; (zero) value means there is no I/O to the volume.&#x27;]",
+        dictionaryType=None
+    )
+    metadata_hosts = data_model.property(
+        "metadataHosts", MetadataHosts,
+        array=False, optional=True,
+        documentation="[&#x27;The volume services on which the volume metadata resides.&#x27;]",
+        dictionaryType=None
+    )
+    non_zero_blocks = data_model.property(
+        "nonZeroBlocks", int,
+        array=False, optional=False,
+        documentation="[&#x27;The number of 4KiB blocks with data after the last garbage collection operation has completed.&#x27;]",
+        dictionaryType=None
+    )
+    read_bytes = data_model.property(
+        "readBytes", int,
+        array=False, optional=False,
+        documentation="[&#x27;Total bytes read by clients.&#x27;]",
+        dictionaryType=None
+    )
+    read_latency_usec = data_model.property(
+        "readLatencyUSec", int,
+        array=False, optional=True,
+        documentation="[&#x27;The average time, in microseconds, to complete read operations.&#x27;]",
+        dictionaryType=None
+    )
+    read_ops = data_model.property(
+        "readOps", int,
+        array=False, optional=False,
+        documentation="[&#x27;Total read operations.&#x27;]",
+        dictionaryType=None
+    )
+    throttle = data_model.property(
+        "throttle", float,
+        array=False, optional=True,
+        documentation="[&#x27;A floating value between 0 and 1 that represents how much the system is throttling clients&#x27;, &#x27;below their max IOPS because of re-replication of data, transient errors and snapshots taken.&#x27;]",
+        dictionaryType=None
+    )
+    timestamp = data_model.property(
+        "timestamp", str,
+        array=False, optional=False,
+        documentation="[&#x27;The current time in UTC.&#x27;]",
+        dictionaryType=None
+    )
+    total_latency_usec = data_model.property(
+        "totalLatencyUSec", int,
+        array=False, optional=True,
+        documentation="[&#x27;The average time, in microseconds, to complete read and write operations to a volume.&#x27;]",
+        dictionaryType=None
+    )
+    unaligned_reads = data_model.property(
+        "unalignedReads", int,
+        array=False, optional=False,
+        documentation="[&#x27;For 512e volumes, the number of read operations that were not on a 4k sector boundary.&#x27;, &#x27;High numbers of unaligned reads may indicate improper partition alignment.&#x27;]",
+        dictionaryType=None
+    )
+    unaligned_writes = data_model.property(
+        "unalignedWrites", int,
+        array=False, optional=False,
+        documentation="[&#x27;For 512e volumes, the number of write operations that were not on a 4k sector boundary.&#x27;, &#x27;High numbers of unaligned writes may indicate improper partition alignment.&#x27;]",
+        dictionaryType=None
+    )
+    volume_access_groups = data_model.property(
+        "volumeAccessGroups", int,
+        array=True, optional=False,
+        documentation="[&#x27;List of volume access group(s) to which a volume beintegers.&#x27;]",
+        dictionaryType=None
+    )
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="[&#x27;Volume ID of the volume.&#x27;]",
+        dictionaryType=None
+    )
+    volume_size = data_model.property(
+        "volumeSize", int,
+        array=False, optional=False,
+        documentation="[&#x27;Total provisioned capacity in bytes.&#x27;]",
+        dictionaryType=None
+    )
+    volume_utilization = data_model.property(
+        "volumeUtilization", float,
+        array=False, optional=True,
+        documentation="[&#x27;A floating value that describes how much the client is using the volume.&#x27;, u&#x27;&#x27;, &#x27;Values:&#x27;, &#x27; 0 = Client is not using the volume&#x27;, &#x27;1 = Client is using their max&#x27;, &#x27;&gt;1 = Client is using their burst&#x27;]",
+        dictionaryType=None
+    )
+    write_bytes = data_model.property(
+        "writeBytes", int,
+        array=False, optional=False,
+        documentation="[&#x27;Total bytes written by clients.&#x27;]",
+        dictionaryType=None
+    )
+    write_latency_usec = data_model.property(
+        "writeLatencyUSec", int,
+        array=False, optional=True,
+        documentation="[&#x27;The average time, in microseconds, to complete write operations.&#x27;]",
+        dictionaryType=None
+    )
+    write_ops = data_model.property(
+        "writeOps", int,
+        array=False, optional=False,
+        documentation="[&#x27;Total write operations occurring on the volume.&#x27;]",
+        dictionaryType=None
+    )
+    zero_blocks = data_model.property(
+        "zeroBlocks", int,
+        array=False, optional=False,
+        documentation="[&#x27;Total number of 4KiB blocks without data after the last round of garbage collection operation has completed.&#x27;]",
+        dictionaryType=None
+    )
+    write_bytes_last_sample = data_model.property(
+        "writeBytesLastSample", int,
+        array=False, optional=True,
+        documentation="[&#x27;The total number of bytes written to the volume during the last sample period.&#x27;]",
+        dictionaryType=None
+    )
+    sample_period_msec = data_model.property(
+        "samplePeriodMSec", int,
+        array=False, optional=True,
+        documentation="[&#x27;The length of the sample period in milliseconds.&#x27;]",
+        dictionaryType=None
+    )
+    read_bytes_last_sample = data_model.property(
+        "readBytesLastSample", int,
+        array=False, optional=True,
+        documentation="[&#x27;The total number of bytes read from the volume during the last sample period.&#x27;]",
+        dictionaryType=None
+    )
+    read_ops_last_sample = data_model.property(
+        "readOpsLastSample", int,
+        array=False, optional=True,
+        documentation="[&#x27;The total number of read operations durin gth elast sample period.&#x27;]",
+        dictionaryType=None
+    )
+    write_ops_last_sample = data_model.property(
+        "writeOpsLastSample", int,
+        array=False, optional=True,
+        documentation="[&#x27;The total number of write operations during the last sample period.&#x27;]",
+        dictionaryType=None
+    )
+    virtual_volume_id = data_model.property(
+        "virtualVolumeID", UUID,
+        array=False, optional=True,
+        documentation="[&#x27;If the volume of interest is associated with a virtual volume, this is the virtual volume ID.&#x27;]",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListVolumeStatsByVirtualVolumeResult(data_model.DataObject):
     """ListVolumeStatsByVirtualVolumeResult  
 
