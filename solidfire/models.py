@@ -23,16 +23,16 @@ class CHAPSecret(UserDefinedCHAPSecret):
 
 class RemoveClusterAdminRequest(data_model.DataObject):
     """RemoveClusterAdminRequest  
-    RemoveClusterAdmin is used to remove a Cluster Admin. The "admin" Cluster Admin cannot be removed.
+    You can use RemoveClusterAdmin to remove a Cluster Admin. You cannot remove the administrator cluster admin account.
 
-    :param cluster_admin_id: [required] ClusterAdminID for the Cluster Admin to remove. 
+    :param cluster_admin_id: [required] ClusterAdminID for the cluster admin to remove. 
     :type cluster_admin_id: int
 
     """
     cluster_admin_id = data_model.property(
         "clusterAdminID", int,
         array=False, optional=False,
-        documentation="[&#x27;ClusterAdminID for the Cluster Admin to remove.&#x27;]",
+        documentation="[&#x27;ClusterAdminID for the cluster admin to remove.&#x27;]",
         dictionaryType=None
     )
 
@@ -155,25 +155,26 @@ class ListVirtualVolumeHostsResult(data_model.DataObject):
 
 class AddVolumesToVolumeAccessGroupRequest(data_model.DataObject):
     """AddVolumesToVolumeAccessGroupRequest  
-    Add volumes to a volume access group.
+    AddVolumesToVolumeAccessGroup enables you to add
+    volumes to a specified volume access group.
 
-    :param volume_access_group_id: [required] The ID of the volume access group to modify. 
+    :param volume_access_group_id: [required] The ID of the volume access group to which volumes are added. 
     :type volume_access_group_id: int
 
-    :param volumes: [required] List of volumes to add to this volume access group. 
+    :param volumes: [required] The list of volumes to add to the volume access group. 
     :type volumes: int
 
     """
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume access group to modify.&#x27;]",
+        documentation="[&#x27;The ID of the volume access group to which volumes are added.&#x27;]",
         dictionaryType=None
     )
     volumes = data_model.property(
         "volumes", int,
         array=True, optional=False,
-        documentation="[&#x27;List of volumes to add to this volume access group.&#x27;]",
+        documentation="[&#x27;The list of volumes to add to the volume access&#x27;, &#x27;group.&#x27;]",
         dictionaryType=None
     )
 
@@ -182,25 +183,22 @@ class AddVolumesToVolumeAccessGroupRequest(data_model.DataObject):
 
 class CreateGroupSnapshotRequest(data_model.DataObject):
     """CreateGroupSnapshotRequest  
-    CreateGroupSnapshot is used to create a point-in-time copy of a group of volumes.
-    The snapshot created can then be used later as a backup or rollback to ensure the data on the group of volumes is consistent for the point in time in which the snapshot was created.
-    
-    Note: Creating a group snapshot is allowed if cluster fullness is at stage 2 or 3.
-    Snapshots are not created when cluster fullness is at stage 4 or 5.
+    CreateGroupSnapshot enables you to create a point-in-time copy of a group of volumes. You can use this snapshot later as a backup or rollback to ensure the data on the group of volumes is consistent for the point in time that you created the snapshot.
+    Note: Creating a group snapshot is allowed if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is at stage 4 or 5.
 
     :param volumes: [required] Unique ID of the volume image from which to copy. 
     :type volumes: int
 
-    :param name:  A name for the snapshot. If no name is provided, the date and time the snapshot was taken is used. 
+    :param name:  Name for the group snapshot. If unspecified, the date and time the group snapshot was taken is used. 
     :type name: str
 
-    :param enable_remote_replication:  Identifies if snapshot is enabled for remote replication. 
+    :param enable_remote_replication:  Replicates the snapshot created to remote storage. Possible values are: true: The snapshot is replicated to remote storage. false: Default. The snapshot is not replicated. 
     :type enable_remote_replication: bool
 
-    :param retention:  The amount of time the snapshot will be retained. Enter in HH:mm:ss 
+    :param retention:  Specifies the amount of time for which the snapshots are retained. The format is HH:mm:ss. 
     :type retention: str
 
-    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :param attributes:  List of name-value pairs in JSON object format. 
     :type attributes: dict
 
     """
@@ -213,25 +211,25 @@ class CreateGroupSnapshotRequest(data_model.DataObject):
     name = data_model.property(
         "name", str,
         array=False, optional=True,
-        documentation="[&#x27;A name for the snapshot.&#x27;, &#x27;If no name is provided, the date and time the snapshot was taken is used.&#x27;]",
+        documentation="[&#x27;Name for the group snapshot. If unspecified, the date and time the group snapshot was taken is used.&#x27;]",
         dictionaryType=None
     )
     enable_remote_replication = data_model.property(
         "enableRemoteReplication", bool,
         array=False, optional=True,
-        documentation="[&#x27;Identifies if snapshot is enabled for remote replication.&#x27;]",
+        documentation="[&#x27;Replicates the snapshot created to remote storage.&#x27;, &#x27;Possible values are:&#x27;, &#x27;true: The snapshot is replicated to remote storage.&#x27;, &#x27;false: Default. The snapshot is not replicated.&#x27;]",
         dictionaryType=None
     )
     retention = data_model.property(
         "retention", str,
         array=False, optional=True,
-        documentation="[&#x27;The amount of time the snapshot will be retained. Enter in HH:mm:ss&#x27;]",
+        documentation="[&#x27;Specifies the amount of time for which the snapshots are retained. The format is HH:mm:ss.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
         dictionaryType=None
     )
 
@@ -477,9 +475,6 @@ class NetworkConfigParams(data_model.DataObject):
     :param bond_updelay:   
     :type bond_updelay: str
 
-    :param broadcast:   
-    :type broadcast: str
-
     :param dns_nameservers:   
     :type dns_nameservers: str
 
@@ -600,12 +595,6 @@ class NetworkConfigParams(data_model.DataObject):
     )
     bond_updelay = data_model.property(
         "bond-updelay", str,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    broadcast = data_model.property(
-        "broadcast", str,
         array=False, optional=True,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
@@ -837,52 +826,53 @@ class StartVolumePairingResult(data_model.DataObject):
 
 class UpdateBulkVolumeStatusRequest(data_model.DataObject):
     """UpdateBulkVolumeStatusRequest  
-    You can use UpdateBulkVolumeStatus in a script to return to the SolidFire system the status of a bulk volume job that you have started with the "StartBulkVolumeRead" or "StartBulkVolumeWrite" methods.
+    You can use UpdateBulkVolumeStatus in a script to update the status of a bulk volume job that you started with the
+    StartBulkVolumeRead or StartBulkVolumeWrite methods.
 
-    :param key: [required] The key assigned during initialization of a "StartBulkVolumeRead" or "StartBulkVolumeWrite" session. 
+    :param key: [required] The key assigned during initialization of a StartBulkVolumeRead or StartBulkVolumeWrite session. 
     :type key: str
 
-    :param status: [required] The SolidFire system sets the status of the given bulk volume job. Possible values: running: jobs that are still active. complete: jobs that are done. failed - jobs that have failed. failed: jobs that have failed. 
+    :param status: [required] The status of the given bulk volume job. The system sets the status. Possible values are:  running: Jobs that are still active. complete: Jobs that are done. failed: Jobs that failed. 
     :type status: str
 
-    :param percent_complete:  The completed progress of the bulk volume job as a percentage. 
+    :param percent_complete:  The completed progress of the bulk volume job as a percentage value. 
     :type percent_complete: str
 
-    :param message:  Returns the status of the bulk volume job when the job has completed. 
+    :param message:  The message returned indicating the status of the bulk volume job after the job is complete. 
     :type message: str
 
-    :param attributes:  JSON attributes  updates what is on the bulk volume job. 
+    :param attributes:  JSON attributes; updates what is on the bulk volume job. 
     :type attributes: dict
 
     """
     key = data_model.property(
         "key", str,
         array=False, optional=False,
-        documentation="[&#x27;The key assigned during initialization of a &quot;StartBulkVolumeRead&quot; or &quot;StartBulkVolumeWrite&quot; session.&#x27;]",
+        documentation="[&#x27;The key assigned during initialization of a&#x27;, &#x27;StartBulkVolumeRead or StartBulkVolumeWrite session.&#x27;]",
         dictionaryType=None
     )
     status = data_model.property(
         "status", str,
         array=False, optional=False,
-        documentation="[&#x27;The SolidFire system sets the status of the given bulk volume job.&#x27;, &#x27;Possible values:&#x27;, &#x27;running: jobs that are still active.&#x27;, &#x27;complete: jobs that are done. failed - jobs that have failed.&#x27;, &#x27;failed: jobs that have failed.&#x27;]",
+        documentation="[&#x27;The status of the given bulk volume job. The system sets the status. Possible values are: &#x27;, &#x27;running: Jobs that are still active.&#x27;, &#x27;complete: Jobs that are done.&#x27;, &#x27;failed: Jobs that failed.&#x27;]",
         dictionaryType=None
     )
     percent_complete = data_model.property(
         "percentComplete", str,
         array=False, optional=True,
-        documentation="[&#x27;The completed progress of the bulk volume job as a percentage.&#x27;]",
+        documentation="[&#x27;The completed progress of the bulk volume job as a&#x27;, &#x27;percentage value.&#x27;]",
         dictionaryType=None
     )
     message = data_model.property(
         "message", str,
         array=False, optional=True,
-        documentation="[&#x27;Returns the status of the bulk volume job when the job has completed.&#x27;]",
+        documentation="[&#x27;The message returned indicating the status of the bulk volume job after the job is complete.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;JSON attributes  updates what is on the bulk volume job.&#x27;]",
+        documentation="[&#x27;JSON attributes; updates what is on the bulk volume job.&#x27;]",
         dictionaryType=None
     )
 
@@ -891,16 +881,17 @@ class UpdateBulkVolumeStatusRequest(data_model.DataObject):
 
 class GetAccountEfficiencyRequest(data_model.DataObject):
     """GetAccountEfficiencyRequest  
-    GetAccountEfficiency is used to retrieve information about a volume account. Only the account given as a parameter in this API method is used to compute the capacity.
+    GetAccountEfficiency enables you to retrieve efficiency statistics about a volume account. This method returns efficiency information
+    only for the account you specify as a parameter.
 
-    :param account_id: [required] Specifies the volume account for which capacity is computed. 
+    :param account_id: [required] Specifies the volume account for which efficiency statistics are returned. 
     :type account_id: int
 
     """
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=False,
-        documentation="[&#x27;Specifies the volume account for which capacity is computed.&#x27;]",
+        documentation="[&#x27;Specifies the volume account for which efficiency&#x27;, &#x27;statistics are returned.&#x27;]",
         dictionaryType=None
     )
 
@@ -1570,9 +1561,6 @@ class VolumeStats(data_model.DataObject):
     :param actual_iops:  Current actual IOPS to the volume in the last 500 milliseconds. 
     :type actual_iops: int
 
-    :param async_delay:  The length of time since the volume was last synced with the remote cluster. If the volume is not paired, this is null.  Note: A target volume in an active replication state always has an async delay of 0 (zero). Target volumes are system-aware during replication and assume async delay is accurate at all times. 
-    :type async_delay: str
-
     :param average_iopsize:  Average size in bytes of recent I/O to the volume in the last 500 milliseconds. 
     :type average_iopsize: int
 
@@ -1581,9 +1569,6 @@ class VolumeStats(data_model.DataObject):
 
     :param client_queue_depth:  The number of outstanding read and write operations to the cluster. 
     :type client_queue_depth: int
-
-    :param desired_metadata_hosts:  The volume services being migrated to if the volume metadata is getting migrated between volume services. A "null" value means the volume is not migrating. 
-    :type desired_metadata_hosts: MetadataHosts
 
     :param latency_usec:  The observed latency time, in microseconds, to complete operations to a volume. A "0" (zero) value means there is no I/O to the volume. 
     :type latency_usec: int
@@ -1657,9 +1642,6 @@ class VolumeStats(data_model.DataObject):
     :param write_ops_last_sample:  The total number of write operations during the last sample period. 
     :type write_ops_last_sample: int
 
-    :param virtual_volume_id:  If the volume of interest is associated with a virtual volume, this is the virtual volume ID. 
-    :type virtual_volume_id: UUID
-
     """
     account_id = data_model.property(
         "accountID", int,
@@ -1671,12 +1653,6 @@ class VolumeStats(data_model.DataObject):
         "actualIOPS", int,
         array=False, optional=True,
         documentation="[&#x27;Current actual IOPS to the volume in the last 500 milliseconds.&#x27;]",
-        dictionaryType=None
-    )
-    async_delay = data_model.property(
-        "asyncDelay", str,
-        array=False, optional=True,
-        documentation="[&#x27;The length of time since the volume was last synced with the remote cluster.&#x27;, &#x27;If the volume is not paired, this is null.&#x27;, u&#x27;&#x27;, &#x27;Note: A target volume in an active replication state always has an async delay of 0 (zero).&#x27;, &#x27;Target volumes are system-aware during replication and assume async delay is accurate at all times.&#x27;]",
         dictionaryType=None
     )
     average_iopsize = data_model.property(
@@ -1695,12 +1671,6 @@ class VolumeStats(data_model.DataObject):
         "clientQueueDepth", int,
         array=False, optional=True,
         documentation="[&#x27;The number of outstanding read and write operations to the cluster.&#x27;]",
-        dictionaryType=None
-    )
-    desired_metadata_hosts = data_model.property(
-        "desiredMetadataHosts", MetadataHosts,
-        array=False, optional=True,
-        documentation="[&#x27;The volume services being migrated to if the volume metadata is getting migrated between volume services.&#x27;, &#x27;A &quot;null&quot; value means the volume is not migrating.&#x27;]",
         dictionaryType=None
     )
     latency_usec = data_model.property(
@@ -1847,12 +1817,6 @@ class VolumeStats(data_model.DataObject):
         documentation="[&#x27;The total number of write operations during the last sample period.&#x27;]",
         dictionaryType=None
     )
-    virtual_volume_id = data_model.property(
-        "virtualVolumeID", UUID,
-        array=False, optional=True,
-        documentation="[&#x27;If the volume of interest is associated with a virtual volume, this is the virtual volume ID.&#x27;]",
-        dictionaryType=None
-    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -1876,34 +1840,34 @@ class ListVolumeStatsByAccountResult(data_model.DataObject):
 
 class ModifyGroupSnapshotRequest(data_model.DataObject):
     """ModifyGroupSnapshotRequest  
-    ModifyGroupSnapshot is used to change the attributes currently assigned to a group snapshot.
+    ModifyGroupSnapshot enables you to change the attributes of a group of snapshots. You can also use this method to enable snapshots created on the Read/Write (source) volume to be remotely replicated to a target SolidFire storage system.
 
-    :param group_snapshot_id: [required] ID of the snapshot. 
+    :param group_snapshot_id: [required] Specifies the ID of the group of snapshots. 
     :type group_snapshot_id: int
 
-    :param expiration_time:  Use to set the time when the snapshot should be removed. 
+    :param expiration_time:  Sets the time when the snapshot should be removed. If unspecified, the current time is used. 
     :type expiration_time: str
 
-    :param enable_remote_replication:  Use to enable the snapshot created to be replicated to a remote SolidFire cluster. Possible values: true: the snapshot will be replicated to remote storage. false: Default. No replication. 
+    :param enable_remote_replication:  Replicates the snapshot created to a remote cluster. Possible values are: true: The snapshot is replicated to remote storage. false: Default. The snapshot is not replicated. 
     :type enable_remote_replication: bool
 
     """
     group_snapshot_id = data_model.property(
         "groupSnapshotID", int,
         array=False, optional=False,
-        documentation="[&#x27;ID of the snapshot.&#x27;]",
+        documentation="[&#x27;Specifies the ID of the group of snapshots.&#x27;]",
         dictionaryType=None
     )
     expiration_time = data_model.property(
         "expirationTime", str,
         array=False, optional=True,
-        documentation="[&#x27;Use to set the time when the snapshot should be removed.&#x27;]",
+        documentation="[&#x27;Sets the time when the snapshot should be&#x27;, &#x27;removed. If unspecified, the current time is used.&#x27;]",
         dictionaryType=None
     )
     enable_remote_replication = data_model.property(
         "enableRemoteReplication", bool,
         array=False, optional=True,
-        documentation="[&#x27;Use to enable the snapshot created to be replicated to a remote SolidFire cluster.&#x27;, &#x27;Possible values:&#x27;, &#x27;true: the snapshot will be replicated to remote storage.&#x27;, &#x27;false: Default. No replication.&#x27;]",
+        documentation="[&#x27;Replicates the snapshot created to a remote cluster.&#x27;, &#x27;Possible values are:&#x27;, &#x27;true: The snapshot is replicated to remote storage.&#x27;, &#x27;false: Default. The snapshot is not replicated.&#x27;]",
         dictionaryType=None
     )
 
@@ -1912,19 +1876,17 @@ class ModifyGroupSnapshotRequest(data_model.DataObject):
 
 class DeleteSnapshotRequest(data_model.DataObject):
     """DeleteSnapshotRequest  
-    DeleteSnapshot is used to delete a snapshot.
-    A snapshot that is currently the "active" snapshot cannot be deleted.
-    You must rollback and make another snapshot "active" before the current snapshot can be deleted.
-    To rollback a snapshot, use RollbackToSnapshot.
+    DeleteSnapshot enables you to delete a snapshot. A snapshot that is currently the "active" snapshot cannot be deleted. You must
+    rollback and make another snapshot "active" before the current snapshot can be deleted. For more details on rolling back snapshots, see RollbackToSnapshot.
 
-    :param snapshot_id: [required] The ID of the snapshot to delete. 
+    :param snapshot_id: [required] The ID of the snapshot to be deleted. 
     :type snapshot_id: int
 
     """
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the snapshot to delete.&#x27;]",
+        documentation="[&#x27;The ID of the snapshot to be deleted.&#x27;]",
         dictionaryType=None
     )
 
@@ -2156,17 +2118,20 @@ class ModifyInitiator(data_model.DataObject):
 
 class ModifyInitiatorsRequest(data_model.DataObject):
     """ModifyInitiatorsRequest  
-    ModifyInitiators enables you to change the attributes of an existing initiator. You cannot change the name of an existing initiator. If you need to change the name of an initiator, delete the existing initiator with DeleteInitiators and create a new one with CreateInitiators.
-    If ModifyInitiators fails to change one of the initiators provided in the parameter, the method returns an error and does not create any initiators (no partial completion is possible).
+    ModifyInitiators enables you to change the attributes of one or more existing initiators. You cannot change the name of an existing
+    initiator. If you need to change the name of an initiator, delete it first with DeleteInitiators and create a new one with
+    CreateInitiators.
+    If ModifyInitiators fails to change one of the initiators provided in the parameter, the method returns an error and does not modify
+    any initiators (no partial completion is possible).
 
-    :param initiators: [required] A list of Initiator objects containing characteristics of each initiator to modify. 
+    :param initiators: [required] A list of objects containing characteristics of each initiator to modify. Values are: initiatorID: (Required) The ID of the initiator to modify. (Integer) alias: (Optional) A new friendly name to assign to the initiator. (String) attributes: (Optional) A new set of JSON attributes to assign to the initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which the initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
     :type initiators: ModifyInitiator
 
     """
     initiators = data_model.property(
         "initiators", ModifyInitiator,
         array=True, optional=False,
-        documentation="[&#x27;A list of Initiator objects containing characteristics of each initiator to modify.&#x27;]",
+        documentation="[&#x27;A list of objects containing characteristics of each initiator to modify. Values are:&#x27;, &#x27;initiatorID: (Required) The ID of the initiator to modify. (Integer)&#x27;, &#x27;alias: (Optional) A new friendly name to assign to the initiator.&#x27;, &#x27;(String)&#x27;, &#x27;attributes: (Optional) A new set of JSON attributes to assign to the&#x27;, &#x27;initiator. (JSON Object)&#x27;, &#x27;volumeAccessGroupID: (Optional) The ID of the volume access&#x27;, &#x27;group into to which the initiator should be added. If the initiator was&#x27;, &#x27;previously in a different volume access group, it is removed from the&#x27;, &#x27;old volume access group. If this key is present but null, the initiator is&#x27;, &#x27;removed from its current volume access group, but not placed in any&#x27;, &#x27;new volume access group. (Integer)&#x27;]",
         dictionaryType=None
     )
 
@@ -2175,62 +2140,80 @@ class ModifyInitiatorsRequest(data_model.DataObject):
 
 class ListVolumesRequest(data_model.DataObject):
     """ListVolumesRequest  
-    The ListVolumes method is used to return a list of volumes that are in a cluster.
-    You can specify the volumes you want to return in the list by using the available parameters.
+    The ListVolumes method enables you to retrieve a list of volumes that are in a cluster. You can specify the volumes you want to
+    return in the list by using the available parameters.
 
-    :param start_volume_id:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
+    :param start_volume_id:  Only volumes with an ID greater than or equal to this value are returned. Mutually exclusive with the volumeIDs parameter. 
     :type start_volume_id: int
 
-    :param limit:  The maximum number of volumes to return from the API. 
+    :param limit:  Specifies the maximum number of volume results that are returned. Mutually exclusive with the volumeIDs parameter. 
     :type limit: int
 
-    :param volume_status:  If specified, filter to only volumes with the provided status. By default, list all volumes. 
+    :param volume_status:  Only volumes with a status equal to the status value are returned. Possible values are: creating snapshotting active deleted 
     :type volume_status: str
 
-    :param accounts:  If specified, only fetch volumes which beinteger to the provided accounts. By default, list volumes for all accounts. 
+    :param accounts:  Returns only the volumes owned by the accounts you specify here. Mutually exclusive with the volumeIDs parameter. 
     :type accounts: int
 
-    :param is_paired:  If specified, only fetch volumes which are paired (if true) or non-paired (if false). By default, list all volumes regardless of their pairing status. 
+    :param is_paired:  Returns volumes that are paired or not paired. Possible values are: true: Returns all paired volumes. false: Returns all volumes that are not paired. 
     :type is_paired: bool
 
-    :param volume_ids:  If specified, only fetch volumes specified in this list. This option cannot be specified if startVolumeID, limit, or accounts option is specified. 
+    :param volume_ids:  A list of volume IDs. If you supply this parameter, other parameters operate only on this set of volumes. Mutually exclusive with the accounts, startVolumeID, and limit parameters. 
     :type volume_ids: int
+
+    :param volume_name:  Only volume object information matching the volume name is returned. 
+    :type volume_name: str
+
+    :param include_virtual_volumes:  Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. 
+    :type include_virtual_volumes: bool
 
     """
     start_volume_id = data_model.property(
         "startVolumeID", int,
         array=False, optional=True,
-        documentation="[&#x27;The ID of the first volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this starts at the lowest VolumeID.&#x27;]",
+        documentation="[&#x27;Only volumes with an ID greater than or equal to this&#x27;, &#x27;value are returned. Mutually exclusive with the&#x27;, &#x27;volumeIDs parameter.&#x27;]",
         dictionaryType=None
     )
     limit = data_model.property(
         "limit", int,
         array=False, optional=True,
-        documentation="[&#x27;The maximum number of volumes to return from the API.&#x27;]",
+        documentation="[&#x27;Specifies the maximum number of volume&#x27;, &#x27;results that are returned. Mutually exclusive with the&#x27;, &#x27;volumeIDs parameter.&#x27;]",
         dictionaryType=None
     )
     volume_status = data_model.property(
         "volumeStatus", str,
         array=False, optional=True,
-        documentation="[&#x27;If specified, filter to only volumes with the provided status.&#x27;, &#x27;By default, list all volumes.&#x27;]",
+        documentation="[&#x27;Only volumes with a status equal to the status value are&#x27;, &#x27;returned.&#x27;, &#x27;Possible values are:&#x27;, &#x27;creating&#x27;, &#x27;snapshotting&#x27;, &#x27;active&#x27;, &#x27;deleted&#x27;]",
         dictionaryType=None
     )
     accounts = data_model.property(
         "accounts", int,
         array=True, optional=True,
-        documentation="[&#x27;If specified, only fetch volumes which beinteger to the provided accounts.&#x27;, &#x27;By default, list volumes for all accounts.&#x27;]",
+        documentation="[&#x27;Returns only the volumes owned by the accounts you specify here. Mutually exclusive with the volumeIDs parameter.&#x27;]",
         dictionaryType=None
     )
     is_paired = data_model.property(
         "isPaired", bool,
         array=False, optional=True,
-        documentation="[&#x27;If specified, only fetch volumes which are paired (if true) or non-paired (if false).&#x27;, &#x27;By default, list all volumes regardless of their pairing status.&#x27;]",
+        documentation="[&#x27;Returns volumes that are paired or not paired.&#x27;, &#x27;Possible values are:&#x27;, &#x27;true: Returns all paired volumes.&#x27;, &#x27;false: Returns all volumes that are not paired.&#x27;]",
         dictionaryType=None
     )
     volume_ids = data_model.property(
         "volumeIDs", int,
         array=True, optional=True,
-        documentation="[&#x27;If specified, only fetch volumes specified in this list.&#x27;, &#x27;This option cannot be specified if startVolumeID, limit, or accounts option is specified.&#x27;]",
+        documentation="[&#x27;A list of volume IDs. If you supply this parameter, other&#x27;, &#x27;parameters operate only on this set of volumes. Mutually&#x27;, &#x27;exclusive with the accounts, startVolumeID, and limit&#x27;, &#x27;parameters.&#x27;]",
+        dictionaryType=None
+    )
+    volume_name = data_model.property(
+        "volumeName", str,
+        array=False, optional=True,
+        documentation="[&#x27;Only volume object information matching the volume&#x27;, &#x27;name is returned.&#x27;]",
+        dictionaryType=None
+    )
+    include_virtual_volumes = data_model.property(
+        "includeVirtualVolumes", bool,
+        array=False, optional=True,
+        documentation="[&#x27;Specifies that virtual volumes are included in the response by default.&#x27;, &#x27;To exclude virtual volumes, set to false.&#x27;]",
         dictionaryType=None
     )
 
@@ -2256,16 +2239,17 @@ class ModifyScheduleResult(data_model.DataObject):
 
 class ClearClusterFaultsRequest(data_model.DataObject):
     """ClearClusterFaultsRequest  
-    ClearClusterFaults is used to clear information about both current faults that are resolved as well as faults that were previously detected and resolved can be cleared.
+    You can use the ClearClusterFaults method to clear information about both current and previously detected faults. Both resolved
+    and unresolved faults can be cleared.
 
-    :param fault_types:  Determines the types of faults cleared: current: Faults that are currently detected and have not been resolved. resolved: Faults that were previously detected and resolved. all: Both current and resolved faults are cleared. The fault status can be determined by the "resolved" field of the fault object. 
+    :param fault_types:  Determines the types of faults cleared. Possible values are: current: Faults that are currently detected and have not been resolved. resolved: (Default) Faults that were previously detected and resolved. all: Both current and resolved faults are cleared. The fault status can be determined by the resolved field of the fault object. 
     :type fault_types: str
 
     """
     fault_types = data_model.property(
         "faultTypes", str,
         array=False, optional=True,
-        documentation="[&#x27;Determines the types of faults cleared:&#x27;, &#x27;current: Faults that are currently detected and have not been resolved.&#x27;, &#x27;resolved: Faults that were previously detected and resolved.&#x27;, &#x27;all: Both current and resolved faults are cleared. The fault status can be determined by the &quot;resolved&quot; field of the fault object.&#x27;]",
+        documentation="[&#x27;Determines the types of faults cleared. Possible values are:&#x27;, &#x27;current: Faults that are currently detected and have&#x27;, &#x27;not been resolved.&#x27;, &#x27;resolved: (Default) Faults that were previously&#x27;, &#x27;detected and resolved.&#x27;, &#x27;all: Both current and resolved faults are cleared. The&#x27;, &#x27;fault status can be determined by the resolved field of&#x27;, &#x27;the fault object.&#x27;]",
         dictionaryType=None
     )
 
@@ -2478,16 +2462,16 @@ class AddAccountResult(data_model.DataObject):
 
 class GetFeatureStatusRequest(data_model.DataObject):
     """GetFeatureStatusRequest  
-    GetFeatureStatus allows you to retrieve the status of a cluster feature.
+    GetFeatureStatus enables you to retrieve the status of a cluster feature.
 
-    :param feature:  Valid values: vvols: Find the status of the Virtual Volumes (VVOLs) cluster feature. 
+    :param feature:  Specifies the feature for which the status is returned. Valid value is: vvols: Retrieve status for the NetApp SolidFire VVols cluster feature. 
     :type feature: str
 
     """
     feature = data_model.property(
         "feature", str,
         array=False, optional=True,
-        documentation="[&#x27;Valid values: vvols: Find the status of the Virtual Volumes (VVOLs) cluster feature.&#x27;]",
+        documentation="[&#x27;Specifies the feature for which the status is returned. Valid value is:&#x27;, &#x27;vvols: Retrieve status for the NetApp SolidFire VVols&#x27;, &#x27;cluster feature.&#x27;]",
         dictionaryType=None
     )
 
@@ -2498,23 +2482,14 @@ class GetIpmiConfigRequest(data_model.DataObject):
     """GetIpmiConfigRequest  
     GetIpmiConfig enables you to retrieve hardware sensor information from sensors that are in your node.
 
-    :param chassis_type:  Used to display information for each node chassis type. Valid values:all - returns sensor information for each chassis type. {chassis type} - returns sensor information for a specified chassis type. 
+    :param chassis_type:  Displays information for each node chassis type. Valid values are: all: Returns sensor information for each chassis type. {chassis type}: Returns sensor information for a specified chassis type. 
     :type chassis_type: str
-
-    :param force: [required]  
-    :type force: bool
 
     """
     chassis_type = data_model.property(
         "chassisType", str,
         array=False, optional=True,
-        documentation="[&#x27;Used to display information for each node chassis type. Valid values:all - returns sensor information for each chassis type. {chassis type} - returns sensor information for a specified chassis type.&#x27;]",
-        dictionaryType=None
-    )
-    force = data_model.property(
-        "force", bool,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;Displays information for each node chassis type.&#x27;, &#x27;Valid values are:&#x27;, &#x27;all: Returns sensor information for each chassis type.&#x27;, &#x27;{chassis type}: Returns sensor information for a specified chassis type.&#x27;]",
         dictionaryType=None
     )
 
@@ -2523,35 +2498,35 @@ class GetIpmiConfigRequest(data_model.DataObject):
 
 class ModifySnapshotRequest(data_model.DataObject):
     """ModifySnapshotRequest  
-    ModifySnapshot is used to change the attributes currently assigned to a snapshot.
-    Use this API method to enable the snapshots created on the Read/Write (source) volume to be remotely replicated to a target SolidFire storage system.
+    ModifySnapshot enables you to change the attributes currently assigned to a snapshot. You can use this method to enable snapshots created on
+    the Read/Write (source) volume to be remotely replicated to a target SolidFire storage system.
 
-    :param snapshot_id: [required] ID of the snapshot. 
+    :param snapshot_id: [required] Specifies the ID of the snapshot. 
     :type snapshot_id: int
 
-    :param expiration_time:  Use to set the time when the snapshot should be removed. 
+    :param expiration_time:  Sets the time when the snapshot should be removed. 
     :type expiration_time: str
 
-    :param enable_remote_replication:  Use to enable the snapshot created to be replicated to a remote SolidFire cluster. Possible values: true: the snapshot will be replicated to remote storage. false: Default. No replication. 
+    :param enable_remote_replication:  Replicates the snapshot created to a remote cluster. Possible values are: true: The snapshot is replicated to remote storage. false: Default. The snapshot is not replicated. 
     :type enable_remote_replication: bool
 
     """
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=False,
-        documentation="[&#x27;ID of the snapshot.&#x27;]",
+        documentation="[&#x27;Specifies the ID of the snapshot.&#x27;]",
         dictionaryType=None
     )
     expiration_time = data_model.property(
         "expirationTime", str,
         array=False, optional=True,
-        documentation="[&#x27;Use to set the time when the snapshot should be removed.&#x27;]",
+        documentation="[&#x27;Sets the time when the snapshot should be&#x27;, &#x27;removed.&#x27;]",
         dictionaryType=None
     )
     enable_remote_replication = data_model.property(
         "enableRemoteReplication", bool,
         array=False, optional=True,
-        documentation="[&#x27;Use to enable the snapshot created to be replicated to a remote SolidFire cluster.&#x27;, &#x27;Possible values:&#x27;, &#x27;true: the snapshot will be replicated to remote storage.&#x27;, &#x27;false: Default. No replication.&#x27;]",
+        documentation="[&#x27;Replicates the snapshot created to a remote cluster.&#x27;, &#x27;Possible values are:&#x27;, &#x27;true: The snapshot is replicated to remote storage.&#x27;, &#x27;false: Default. The snapshot is not replicated.&#x27;]",
         dictionaryType=None
     )
 
@@ -2721,7 +2696,7 @@ class ModifyClusterFullThresholdResult(data_model.DataObject):
 
 class ModifyScheduleRequest(data_model.DataObject):
     """ModifyScheduleRequest  
-    ModifySchedule is used to change the intervals at which a scheduled snapshot occurs. This allows for adjustment to the snapshot frequency and retention.
+    ModifySchedule enables you to change the intervals at which a scheduled snapshot occurs. This allows for adjustment to the snapshot frequency and retention.
 
     :param schedule: [required] The "Schedule" object will be used to modify an existing schedule. The ScheduleID property is required. Frequency property must be of type that inherits from Frequency. Valid types are: DaysOfMonthFrequency DaysOrWeekFrequency TimeIntervalFrequency 
     :type schedule: Schedule
@@ -2961,39 +2936,30 @@ class GetClusterStatsResult(data_model.DataObject):
 
 class ModifyVolumeAccessGroupRequest(data_model.DataObject):
     """ModifyVolumeAccessGroupRequest  
-    Update initiators and add or remove volumes from a volume access group.
-    A specified initiator or volume that duplicates an existing volume or initiator in a volume access group is left as-is.
-    If a value is not specified for volumes or initiators, the current list of initiators and volumes are not changed.
-    
-    Often, it is easier to use the convenience functions to modify initiators and volumes independently:
-    
-    AddInitiatorsToVolumeAccessGroup
-    RemoveInitiatorsFromVolumeAccessGroup
-    AddVolumesToVolumeAccessGroup
-    RemoveVolumesFromVolumeAccessGroup
+    You can use ModifyVolumeAccessGroup to update initiators and add or remove volumes from a volume access group. If a specified initiator or volume is a duplicate of what currently exists, the volume access group is left as-is. If you do not specify a value for volumes or initiators, the current list of initiators and volumes is not changed.
 
     :param volume_access_group_id: [required] The ID of the volume access group to modify. 
     :type volume_access_group_id: int
 
-    :param virtual_network_id:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
+    :param virtual_network_id:  The ID of the SolidFire virtual network to associate the volume access group with. 
     :type virtual_network_id: int
 
-    :param virtual_network_tags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
+    :param virtual_network_tags:  The ID of the SolidFire virtual network to associate the volume access group with. 
     :type virtual_network_tags: int
 
-    :param name:  Name of the volume access group. It is not required to be unique, but recommended. 
+    :param name:  The new name for this volume access group. Not required to be unique, but recommended. 
     :type name: str
 
-    :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group's configured initiators will not be modified. 
+    :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group's configured initiators are not modified. 
     :type initiators: str
 
-    :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group's volumes will not be modified. 
+    :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group's volumes are not modified. 
     :type volumes: int
 
     :param delete_orphan_initiators:  true: Delete initiator objects after they are removed from a volume access group. false: Do not delete initiator objects after they are removed from a volume access group. 
     :type delete_orphan_initiators: bool
 
-    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :param attributes:  List of name-value pairs in JSON object format. 
     :type attributes: dict
 
     """
@@ -3006,31 +2972,31 @@ class ModifyVolumeAccessGroupRequest(data_model.DataObject):
     virtual_network_id = data_model.property(
         "virtualNetworkID", int,
         array=True, optional=True,
-        documentation="[&#x27;The ID of the SolidFire Virtual Network ID to associate the volume access group with.&#x27;]",
+        documentation="[&#x27;The ID of the SolidFire virtual network to associate the volume access group with.&#x27;]",
         dictionaryType=None
     )
     virtual_network_tags = data_model.property(
         "virtualNetworkTags", int,
         array=True, optional=True,
-        documentation="[&#x27;The ID of the VLAN Virtual Network Tag to associate the volume access group with.&#x27;]",
+        documentation="[&#x27;The ID of the SolidFire virtual network to associate the volume access group with.&#x27;]",
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=True,
-        documentation="[&#x27;Name of the volume access group.&#x27;, &#x27;It is not required to be unique, but recommended.&#x27;]",
+        documentation="[&#x27;The new name for this volume access group. Not required to be unique, but recommended.&#x27;]",
         dictionaryType=None
     )
     initiators = data_model.property(
         "initiators", str,
         array=True, optional=True,
-        documentation="[&#x27;List of initiators to include in the volume access group.&#x27;, &quot;If unspecified, the access group&#x27;s configured initiators will not be modified.&quot;]",
+        documentation="[&quot;List of initiators to include in the volume access group. If unspecified, the access group&#x27;s configured initiators are not modified.&quot;]",
         dictionaryType=None
     )
     volumes = data_model.property(
         "volumes", int,
         array=True, optional=True,
-        documentation="[&#x27;List of volumes to initially include in the volume access group.&#x27;, &quot;If unspecified, the access group&#x27;s volumes will not be modified.&quot;]",
+        documentation="[&quot;List of volumes to initially include in the volume access group. If unspecified, the access group&#x27;s volumes are not modified.&quot;]",
         dictionaryType=None
     )
     delete_orphan_initiators = data_model.property(
@@ -3042,7 +3008,7 @@ class ModifyVolumeAccessGroupRequest(data_model.DataObject):
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
         dictionaryType=None
     )
 
@@ -3502,17 +3468,16 @@ class CloneVolumeResult(data_model.DataObject):
 
 class GetVolumeStatsRequest(data_model.DataObject):
     """GetVolumeStatsRequest  
-    GetVolumeStats is used to retrieve high-level activity measurements for a single volume.
-    Values are cumulative from the creation of the volume.
+    GetVolumeStats enables  you to retrieve high-level activity measurements for a single volume. Values are cumulative from the creation of the volume.
 
-    :param volume_id: [required] Specifies the volume for which statistics is gathered. 
+    :param volume_id: [required] Specifies the volume for which statistics are gathered. 
     :type volume_id: int
 
     """
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;Specifies the volume for which statistics is gathered.&#x27;]",
+        documentation="[&#x27;Specifies the volume for which statistics are gathered.&#x27;]",
         dictionaryType=None
     )
 
@@ -3521,8 +3486,9 @@ class GetVolumeStatsRequest(data_model.DataObject):
 
 class GetDriveStatsRequest(data_model.DataObject):
     """GetDriveStatsRequest  
-    GetDriveStats return high-level activity measurements for a single drive. Values are cumulative from the addition of the drive to the cluster. Some values are specific to Block Drives. Statistical data may not be returned for both block and metadata drives when running this method.
-    For more information on which drive type returns which data, see Response Example (Block Drive) and Response Example (Volume Metadata Drive) in the SolidFire API guide.
+    GetDriveStats returns high-level activity measurements for a single drive. Values are cumulative from the addition of the drive to the
+    cluster. Some values are specific to block drives. You might not obtain statistical data for both block and metadata drives when you
+    run this method. 
 
     :param drive_id: [required] Specifies the drive for which statistics are gathered. 
     :type drive_id: int
@@ -3540,16 +3506,18 @@ class GetDriveStatsRequest(data_model.DataObject):
 
 class GetVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
     """GetVolumeAccessGroupLunAssignmentsRequest  
-    The GetVolumeAccessGroupLunAssignments is used to return information LUN mappings of a specified volume access group.
+    The GetVolumeAccessGroupLunAssignments
+    method enables you to retrieve details on LUN mappings
+    of a specified volume access group.
 
-    :param volume_access_group_id: [required] Unique volume access group ID used to return information. 
+    :param volume_access_group_id: [required] The unique volume access group ID used to return information. 
     :type volume_access_group_id: int
 
     """
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique volume access group ID used to return information.&#x27;]",
+        documentation="[&#x27;The unique volume access group ID used to return information.&#x27;]",
         dictionaryType=None
     )
 
@@ -3558,15 +3526,16 @@ class GetVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
 
 class ListVolumeStatsRequest(data_model.DataObject):
     """ListVolumeStatsRequest  
+    ListVolumeStats returns high-level activity measurements for a single volume, list of volumes, or all volumes (if you omit the volumeIDs parameter). Measurement values are cumulative from the creation of the volume.
 
-    :param volume_ids:   
+    :param volume_ids:  A list of volume IDs of volumes from which to retrieve activity information. 
     :type volume_ids: int
 
     """
     volume_ids = data_model.property(
         "volumeIDs", int,
         array=True, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;A list of volume IDs of volumes from which to retrieve activity information.&#x27;]",
         dictionaryType=None
     )
 
@@ -3575,45 +3544,43 @@ class ListVolumeStatsRequest(data_model.DataObject):
 
 class AddAccountRequest(data_model.DataObject):
     """AddAccountRequest  
-    Used to add a new account to the system.
-    New volumes can be created under the new account.
-    The CHAP settings specified for the account applies to all volumes owned by the account.
+    You can use AddAccount to add a new account to the system. You can create new volumes under the new account. The CHAP settings you specify for the account apply to all volumes owned by the account.
 
-    :param username: [required] Unique username for this account. (May be 1 to 64 characters in length). 
+    :param username: [required] Specifies the username for this account. (Might be 1 to 64 characters in length). 
     :type username: str
 
-    :param initiator_secret:  CHAP secret to use for the initiator. Should be 12-16 characters integer and impenetrable. The CHAP initiator secrets must be unique and cannot be the same as the target CHAP secret.  If not specified, a random secret is created. 
+    :param initiator_secret:  The CHAP secret to use for the initiator. This secret must be 12-16 characters in length and should be impenetrable. The initiator CHAP secret must be unique and cannot be the same as the target CHAP secret. If unspecified, a random secret is created. 
     :type initiator_secret: CHAPSecret
 
-    :param target_secret:  CHAP secret to use for the target (mutual CHAP authentication). Should be 12-16 characters integer and impenetrable. The CHAP target secrets must be unique and cannot be the same as the initiator CHAP secret.  If not specified, a random secret is created. 
+    :param target_secret:  The CHAP secret to use for the target (mutual CHAP authentication). This secret must be 12-16 characters in length and should be impenetrable. The target CHAP secret must be unique and cannot be the same as the initiator CHAP secret. If unspecified, a random secret is created. 
     :type target_secret: CHAPSecret
 
-    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :param attributes:  List of name-value pairs in JSON object format. 
     :type attributes: dict
 
     """
     username = data_model.property(
         "username", str,
         array=False, optional=False,
-        documentation="[&#x27;Unique username for this account.&#x27;, &#x27;(May be 1 to 64 characters in length).&#x27;]",
+        documentation="[&#x27;Specifies the username for this account. (Might be 1 to 64 characters in length).&#x27;]",
         dictionaryType=None
     )
     initiator_secret = data_model.property(
         "initiatorSecret", CHAPSecret,
         array=False, optional=True,
-        documentation="[&#x27;CHAP secret to use for the initiator.&#x27;, &#x27;Should be 12-16 characters integer and impenetrable.&#x27;, &#x27;The CHAP initiator secrets must be unique and cannot be the same as the target CHAP secret.&#x27;, u&#x27;&#x27;, &#x27;If not specified, a random secret is created.&#x27;]",
+        documentation="[&#x27;The CHAP secret to use for the initiator. This secret must&#x27;, &#x27;be 12-16 characters in length and should be&#x27;, &#x27;impenetrable. The initiator CHAP secret must be unique&#x27;, &#x27;and cannot be the same as the target CHAP secret. If unspecified, a random secret is created.&#x27;]",
         dictionaryType=None
     )
     target_secret = data_model.property(
         "targetSecret", CHAPSecret,
         array=False, optional=True,
-        documentation="[&#x27;CHAP secret to use for the target (mutual CHAP authentication).&#x27;, &#x27;Should be 12-16 characters integer and impenetrable.&#x27;, &#x27;The CHAP target secrets must be unique and cannot be the same as the initiator CHAP secret.&#x27;, u&#x27;&#x27;, &#x27;If not specified, a random secret is created.&#x27;]",
+        documentation="[&#x27;The CHAP secret to use for the target (mutual CHAP&#x27;, &#x27;authentication). This secret must be 12-16 characters in&#x27;, &#x27;length and should be impenetrable. The target CHAP&#x27;, &#x27;secret must be unique and cannot be the same as the&#x27;, &#x27;initiator CHAP secret. If unspecified, a random secret is&#x27;, &#x27;created.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
         dictionaryType=None
     )
 
@@ -3622,7 +3589,7 @@ class AddAccountRequest(data_model.DataObject):
 
 class GetAccountByNameRequest(data_model.DataObject):
     """GetAccountByNameRequest  
-    Returns details about an account, given its Username.
+    GetAccountByName enables you to retrieve details about a specific account, given its username.
 
     :param username: [required] Username for the account. 
     :type username: str
@@ -3674,16 +3641,17 @@ class CreateBackupTargetResult(data_model.DataObject):
 
 class ListVirtualVolumeHostsRequest(data_model.DataObject):
     """ListVirtualVolumeHostsRequest  
-    ListVirtualVolumeHosts returns a list of known ESX hosts.
+    ListVirtualVolumeHosts returns a list of all virtual volume hosts known to the cluster. A virtual volume host is a VMware ESX host
+    that has initiated a session with the VASA API provider.
 
-    :param virtual_volume_host_ids:   
+    :param virtual_volume_host_ids:  A list of virtual volume host IDs for which to retrieve information. If you omit this parameter, the method returns information about all virtual volume hosts. 
     :type virtual_volume_host_ids: UUID
 
     """
     virtual_volume_host_ids = data_model.property(
         "virtualVolumeHostIDs", UUID,
         array=True, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;A list of virtual volume host IDs for which to retrieve information. If you omit this parameter, the method returns information about all virtual volume hosts.&#x27;]",
         dictionaryType=None
     )
 
@@ -3692,20 +3660,16 @@ class ListVirtualVolumeHostsRequest(data_model.DataObject):
 
 class RemoveDrivesRequest(data_model.DataObject):
     """RemoveDrivesRequest  
-    You can use RemoveDrives to proactively remove drives that are part of the cluster.
-    You may want to use this method when reducing cluster capacity or preparing to replace drives nearing the end of their service life.
-    Any data on the drives is removed and migrated to other drives in the cluster before the drive is removed from the cluster. This is an asynchronous method.
-    Depending on the total capacity of the drives being removed, it may take several minutes to migrate all of the data.
-    Use the "GetAsyncResult" method to check the status of the remove operation.
-    
-    When removing multiple drives, use a single "RemoveDrives" method call rather than multiple individual methods with a single drive each.
-    This reduces the amount of data balancing that must occur to even stabilize the storage load on the cluster.
-    
-    You can also remove drives with a "failed" status using "RemoveDrives".
-    When you remove a drive with a "failed" status it is not returned to an "available" or "active" status.
-    The drive is unavailable for use in the cluster.
-    
-    Use the "ListDrives" method to obtain the driveIDs for the drives you want to remove.
+    You can use RemoveDrives to proactively remove drives that are part of the cluster. You might want to use this method when
+    reducing cluster capacity or preparing to replace drives nearing the end of their service life. Any data on the drives is removed and
+    migrated to other drives in the cluster before the drive is removed from the cluster. This is an asynchronous method. Depending on
+    the total capacity of the drives being removed, it might take several minutes to migrate all of the data. Use the GetAsyncResult
+    method to check the status of the remove operation.
+    When removing multiple drives, use a single RemoveDrives method call rather than multiple individual methods with a single drive
+    each. This reduces the amount of data balancing that must occur to even stabilize the storage load on the cluster.
+    You can also remove drives with a "failed" status using RemoveDrives. When you remove a drive with a "failed" status it is not
+    returned to an "available" or active status. The drive is unavailable for use in the cluster.
+    Use the ListDrives method to obtain the driveIDs for the drives you want to remove.
 
     :param drives: [required] List of driveIDs to remove from the cluster. 
     :type drives: int
@@ -3839,15 +3803,16 @@ class LdapConfiguration(data_model.DataObject):
 
 class TestLdapAuthenticationRequest(data_model.DataObject):
     """TestLdapAuthenticationRequest  
-    The TestLdapAuthentication is used to verify the currently enabled LDAP authentication configuration settings are correct. If the configuration settings are correct, the API call returns a list of the groups the tested user is a member of.
+    The TestLdapAuthentication method enables you to validate the currently enabled LDAP authentication settings. If the configuration is
+    correct, the API call returns the group membership of the tested user.
 
     :param username: [required] The username to be tested. 
     :type username: str
 
-    :param password: [required] The password for the username to be tester. 
+    :param password: [required] The password for the username to be tested. 
     :type password: str
 
-    :param ldap_configuration:  An ldapConfiguration object to be tested. If this parameter is provided, the API call will test the provided configuration even if LDAP authentication is currently disabled. 
+    :param ldap_configuration:  An ldapConfiguration object to be tested. If specified, the API call tests the provided configuration even if LDAP authentication is disabled. 
     :type ldap_configuration: LdapConfiguration
 
     """
@@ -3860,13 +3825,13 @@ class TestLdapAuthenticationRequest(data_model.DataObject):
     password = data_model.property(
         "password", str,
         array=False, optional=False,
-        documentation="[&#x27;The password for the username to be tester.&#x27;]",
+        documentation="[&#x27;The password for the username to be tested.&#x27;]",
         dictionaryType=None
     )
     ldap_configuration = data_model.property(
         "ldapConfiguration", LdapConfiguration,
         array=False, optional=True,
-        documentation="[&#x27;An ldapConfiguration object to be tested. If this parameter is provided, the API call will test the provided configuration even if LDAP authentication is currently disabled.&#x27;]",
+        documentation="[&#x27;An ldapConfiguration object to be tested. If specified, the API call tests the provided&#x27;, &#x27;configuration even if LDAP authentication is disabled.&#x27;]",
         dictionaryType=None
     )
 
@@ -3891,17 +3856,8 @@ class DriveConfigInfo(data_model.DataObject):
     :param drive_type: [required]  
     :type drive_type: str
 
-    :param fs_type:   
-    :type fs_type: str
-
-    :param is_mounted:   
-    :type is_mounted: bool
-
     :param product: [required]  
     :type product: str
-
-    :param mount_point:   
-    :type mount_point: str
 
     :param name: [required]  
     :type name: str
@@ -3945,24 +3901,6 @@ class DriveConfigInfo(data_model.DataObject):
     :param version: [required]  
     :type version: str
 
-    :param num_block_actual:   
-    :type num_block_actual: int
-
-    :param num_block_expected:   
-    :type num_block_expected: int
-
-    :param num_slice_actual:   
-    :type num_slice_actual: int
-
-    :param num_slice_expected:   
-    :type num_slice_expected: int
-
-    :param num_total_actual:   
-    :type num_total_actual: int
-
-    :param num_total_expected:   
-    :type num_total_expected: int
-
     :param security_at_maximum: [required]  
     :type security_at_maximum: bool
 
@@ -4003,27 +3941,9 @@ class DriveConfigInfo(data_model.DataObject):
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
-    fs_type = data_model.property(
-        "fsType", str,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    is_mounted = data_model.property(
-        "isMounted", bool,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
     product = data_model.property(
         "product", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    mount_point = data_model.property(
-        "mountPoint", str,
-        array=False, optional=True,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
@@ -4108,42 +4028,6 @@ class DriveConfigInfo(data_model.DataObject):
     version = data_model.property(
         "version", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    num_block_actual = data_model.property(
-        "numBlockActual", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    num_block_expected = data_model.property(
-        "numBlockExpected", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    num_slice_actual = data_model.property(
-        "numSliceActual", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    num_slice_expected = data_model.property(
-        "numSliceExpected", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    num_total_actual = data_model.property(
-        "numTotalActual", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    num_total_expected = data_model.property(
-        "numTotalExpected", int,
-        array=False, optional=True,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
@@ -4259,7 +4143,7 @@ class GetDriveConfigResult(data_model.DataObject):
 
 class GetNodeStatsRequest(data_model.DataObject):
     """GetNodeStatsRequest  
-    GetNodeStats is used to return the high-level activity measurements for a single node.
+    GetNodeStats enables you to retrieve the high-level activity measurements for a single node.
 
     :param node_id: [required] Specifies the node for which statistics are gathered. 
     :type node_id: int
@@ -4277,14 +4161,13 @@ class GetNodeStatsRequest(data_model.DataObject):
 
 class ResetDrivesRequest(data_model.DataObject):
     """ResetDrivesRequest  
-    ResetDrives is used to pro-actively initialize drives and remove all data currently residing on the drive. The drive can then be reused in an existing node or used in an upgraded SolidFire node. This method requires the force=true parameter to be included in the method call.
-    
-    Note: This method is available only through the per-node API endpoint 5.0 or later.
+    ResetDrives enables you to proactively initialize drives and remove all data currently residing on a drive. The drive can then be reused
+    in an existing node or used in an upgraded node. This method requires the force parameter to be included in the method call.
 
     :param drives: [required] List of device names (not driveIDs) to reset. 
     :type drives: str
 
-    :param force: [required] The "force" parameter must be included on this method to successfully reset a drive. 
+    :param force: [required] Required parameter to successfully reset a drive. 
     :type force: bool
 
     """
@@ -4297,7 +4180,7 @@ class ResetDrivesRequest(data_model.DataObject):
     force = data_model.property(
         "force", bool,
         array=False, optional=False,
-        documentation="[&#x27;The &quot;force&quot; parameter must be included on this method to successfully reset a drive.&#x27;]",
+        documentation="[&#x27;Required parameter to successfully reset a drive.&#x27;]",
         dictionaryType=None
     )
 
@@ -4439,34 +4322,34 @@ class ListEventsResult(data_model.DataObject):
 
 class ModifyBackupTargetRequest(data_model.DataObject):
     """ModifyBackupTargetRequest  
-    ModifyBackupTarget is used to change attributes of a backup target.
+    ModifyBackupTarget enables you to change attributes of a backup target.
 
-    :param backup_target_id: [required] Unique identifier assigned to the backup target. 
+    :param backup_target_id: [required] The unique target ID for the target to modify. 
     :type backup_target_id: int
 
-    :param name:  Name for the backup target. 
+    :param name:  The new name for the backup target. 
     :type name: str
 
-    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :param attributes:  List of name-value pairs in JSON object format. 
     :type attributes: dict
 
     """
     backup_target_id = data_model.property(
         "backupTargetID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique identifier assigned to the backup target.&#x27;]",
+        documentation="[&#x27;The unique target ID for the target to modify.&#x27;]",
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=True,
-        documentation="[&#x27;Name for the backup target.&#x27;]",
+        documentation="[&#x27;The new name for the backup target.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
         dictionaryType=None
     )
 
@@ -4696,34 +4579,40 @@ class GetClusterVersionInfoResult(data_model.DataObject):
 
 class CopyVolumeRequest(data_model.DataObject):
     """CopyVolumeRequest  
-    Copies one volume to another.
+    CopyVolume enables you to overwrite the data contents of an existing volume with the data contents of another volume (or
+    snapshot). Attributes of the destination volume such as IQN, QoS settings, size, account, and volume access group membership are
+    not changed. The destination volume must already exist and must be the same size as the source volume.
+    NetApp strongly recommends that clients unmount the destination volume before the CopyVolume operation begins. If the
+    destination volume is modified during the copy operation, the changes will be lost.
+    This method is asynchronous and may take a variable amount of time to complete. You can use the GetAsyncResult method to
+    determine when the process has finished, and ListSyncJobs to see the progress of the copy.
 
-    :param volume_id: [required] Source volume to copy. 
+    :param volume_id: [required] VolumeID of the volume to be read from. 
     :type volume_id: int
 
-    :param dst_volume_id: [required] Destination volume for the copy. 
+    :param dst_volume_id: [required] VolumeID of the volume to be overwritten. 
     :type dst_volume_id: int
 
-    :param snapshot_id:  Snapshot ID of the source volume to create the copy from. 
+    :param snapshot_id:  ID of the snapshot that is used as the source of the clone. If no ID is provided, the current active volume is used. 
     :type snapshot_id: int
 
     """
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;Source volume to copy.&#x27;]",
+        documentation="[&#x27;VolumeID of the volume to be read from.&#x27;]",
         dictionaryType=None
     )
     dst_volume_id = data_model.property(
         "dstVolumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;Destination volume for the copy.&#x27;]",
+        documentation="[&#x27;VolumeID of the volume to be overwritten.&#x27;]",
         dictionaryType=None
     )
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=True,
-        documentation="[&#x27;Snapshot ID of the source volume to create the copy from.&#x27;]",
+        documentation="[&#x27;ID of the snapshot that is used as the source of the clone.&#x27;, &#x27;If no ID is provided, the current active volume is used.&#x27;]",
         dictionaryType=None
     )
 
@@ -4847,65 +4736,61 @@ class ListNetworkInterfacesResult(data_model.DataObject):
 
 class CreateVolumeAccessGroupRequest(data_model.DataObject):
     """CreateVolumeAccessGroupRequest  
-    Creates a new volume access group.
-    The new volume access group must be given a name when it is created.
-    Entering initiators and volumes are optional when creating a volume access group.
-    Once the group is created volumes and initiator IQNs can be added.
-    Any initiator IQN that is successfully added to the volume access group is able to access any volume in the group without CHAP authentication.
+    You can use CreateVolumeAccessGroup to create a new volume access group. When you create the volume access group, you need to give it a name, and you can optionally enter initiators and volumes. After you create the group, you can add volumes and initiator IQNs. Any initiator IQN that you add to the volume access group is able to access any volume in the group without CHAP authentication.
 
-    :param name: [required] Name of the volume access group. It is not required to be unique, but recommended. 
+    :param name: [required] The name for this volume access group. Not required to be unique, but recommended. 
     :type name: str
 
-    :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group will start out without configured initiators. 
+    :param initiators:  List of initiators to include in the volume access group. If unspecified, the access group's configured initiators are not modified. 
     :type initiators: str
 
-    :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group will start without any volumes. 
+    :param volumes:  List of volumes to initially include in the volume access group. If unspecified, the access group's volumes are not modified. 
     :type volumes: int
 
-    :param virtual_network_id:  The ID of the SolidFire Virtual Network ID to associate the volume access group with. 
+    :param virtual_network_id:  The ID of the SolidFire virtual network to associate the volume access group with. 
     :type virtual_network_id: int
 
-    :param virtual_network_tags:  The ID of the VLAN Virtual Network Tag to associate the volume access group with. 
+    :param virtual_network_tags:  The ID of the SolidFire virtual network to associate the volume access group with. 
     :type virtual_network_tags: int
 
-    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :param attributes:  List of name-value pairs in JSON object format. 
     :type attributes: dict
 
     """
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;Name of the volume access group.&#x27;, &#x27;It is not required to be unique, but recommended.&#x27;]",
+        documentation="[&#x27;The name for this volume access group. Not required to be unique, but recommended.&#x27;]",
         dictionaryType=None
     )
     initiators = data_model.property(
         "initiators", str,
         array=True, optional=True,
-        documentation="[&#x27;List of initiators to include in the volume access group.&#x27;, &#x27;If unspecified, the access group will start out without configured initiators.&#x27;]",
+        documentation="[&quot;List of initiators to include in the volume access group. If unspecified, the access group&#x27;s configured initiators are not modified.&quot;]",
         dictionaryType=None
     )
     volumes = data_model.property(
         "volumes", int,
         array=True, optional=True,
-        documentation="[&#x27;List of volumes to initially include in the volume access group.&#x27;, &#x27;If unspecified, the access group will start without any volumes.&#x27;]",
+        documentation="[&quot;List of volumes to initially include in the volume access group. If unspecified, the access group&#x27;s volumes are not modified.&quot;]",
         dictionaryType=None
     )
     virtual_network_id = data_model.property(
         "virtualNetworkID", int,
         array=True, optional=True,
-        documentation="[&#x27;The ID of the SolidFire Virtual Network ID to associate the volume access group with.&#x27;]",
+        documentation="[&#x27;The ID of the SolidFire virtual network to associate the volume access group with.&#x27;]",
         dictionaryType=None
     )
     virtual_network_tags = data_model.property(
         "virtualNetworkTags", int,
         array=True, optional=True,
-        documentation="[&#x27;The ID of the VLAN Virtual Network Tag to associate the volume access group with.&#x27;]",
+        documentation="[&#x27;The ID of the SolidFire virtual network to associate the volume access group with.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
         dictionaryType=None
     )
 
@@ -4914,65 +4799,63 @@ class CreateVolumeAccessGroupRequest(data_model.DataObject):
 
 class CreateSnapshotRequest(data_model.DataObject):
     """CreateSnapshotRequest  
-    CreateSnapshot is used to create a point-in-time copy of a volume.
-    A snapshot can be created from any volume or from an existing snapshot.
-    
-    Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
-    Snapshots are not created when cluster fullness is at stage 4 or 5.
+    CreateSnapshot enables you to create a point-in-time copy of a volume. You can create a snapshot from any volume or from an existing snapshot. If you do not provide a SnapshotID with this API method, a snapshot is created from the volume's active branch.
+    If the volume from which the snapshot is created is being replicated to a remote cluster, the snapshot can also be replicated to the same target. Use the enableRemoteReplication parameter to enable snapshot replication.
+    Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is at stage 4 or 5.
 
-    :param volume_id: [required] ID of the volume image from which to copy. 
+    :param volume_id: [required] Specifies the unique ID of the volume image from which to copy. 
     :type volume_id: int
 
-    :param snapshot_id:  Unique ID of a snapshot from which the new snapshot is made. The snapshotID passed must be a snapshot on the given volume. If a SnapshotID is not provided, a snapshot is created from the volume's active branch. 
+    :param snapshot_id:  Specifies the unique ID of a snapshot from which the new snapshot is made. The snapshotID passed must be a snapshot on the given volume. 
     :type snapshot_id: int
 
-    :param name:  A name for the snapshot. If no name is provided, the date and time the snapshot was taken is used. 
+    :param name:  Specifies a name for the snapshot. If unspecified, the date and time the snapshot was taken is used. 
     :type name: str
 
-    :param enable_remote_replication:  Identifies if snapshot is enabled for remote replication. 
+    :param enable_remote_replication:  Replicates the snapshot created to a remote cluster. Possible values are: true: The snapshot is replicated to remote storage. false: Default. The snapshot is not replicated. 
     :type enable_remote_replication: bool
 
-    :param retention:  The amount of time the snapshot will be retained. Enter in HH:mm:ss 
+    :param retention:  Specifies the amount of time for which the snapshot is retained. The format is HH:mm:ss. 
     :type retention: str
 
-    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :param attributes:  List of name-value pairs in JSON object format. 
     :type attributes: dict
 
     """
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;ID of the volume image from which to copy.&#x27;]",
+        documentation="[&#x27;Specifies the unique ID of the volume image from which to copy.&#x27;]",
         dictionaryType=None
     )
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=True,
-        documentation="[&#x27;Unique ID of a snapshot from which the new snapshot is made.&#x27;, &#x27;The snapshotID passed must be a snapshot on the given volume.&#x27;, &quot;If a SnapshotID is not provided, a snapshot is created from the volume&#x27;s active branch.&quot;]",
+        documentation="[&#x27;Specifies the unique ID of a snapshot from which the new snapshot&#x27;, &#x27;is made. The snapshotID passed must be a snapshot on the given volume.&#x27;]",
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=True,
-        documentation="[&#x27;A name for the snapshot.&#x27;, &#x27;If no name is provided, the date and time the snapshot was taken is used.&#x27;]",
+        documentation="[&#x27;Specifies a name for the snapshot. If unspecified, the date and time the snapshot was taken is used.&#x27;]",
         dictionaryType=None
     )
     enable_remote_replication = data_model.property(
         "enableRemoteReplication", bool,
         array=False, optional=True,
-        documentation="[&#x27;Identifies if snapshot is enabled for remote replication.&#x27;]",
+        documentation="[&#x27;Replicates the snapshot created to a remote cluster.&#x27;, &#x27;Possible values are:&#x27;, &#x27;true: The snapshot is replicated to remote storage.&#x27;, &#x27;false: Default. The snapshot is not replicated.&#x27;]",
         dictionaryType=None
     )
     retention = data_model.property(
         "retention", str,
         array=False, optional=True,
-        documentation="[&#x27;The amount of time the snapshot will be retained. Enter in HH:mm:ss&#x27;]",
+        documentation="[&#x27;Specifies the amount of time for which the snapshot is retained. The format is HH:mm:ss.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
         dictionaryType=None
     )
 
@@ -5043,9 +4926,11 @@ class CopyVolumeResult(data_model.DataObject):
 
 class RestartServicesRequest(data_model.DataObject):
     """RestartServicesRequest  
-    The RestartServices API method is used to restart the  Element services on a node.Caution: This method causes temporary node services interruption. Exercise caution when using this method.
+    The RestartServices API method enables you to restart the services on a node.
+    Caution: This method causes temporary node services interruption. Exercise caution when using this method.
+    Note: This method is available only through the per-node API endpoint 5.0 or later.
 
-    :param force: [required] The "force" parameter must be included on this method to successfully restart services on a node.    
+    :param force: [required] Required parameter to successfully restart services on a node. 
     :type force: bool
 
     :param service:  Service name to be restarted. 
@@ -5058,7 +4943,7 @@ class RestartServicesRequest(data_model.DataObject):
     force = data_model.property(
         "force", bool,
         array=False, optional=False,
-        documentation="[&#x27;The &quot;force&quot; parameter must be included on this method to successfully restart services on a node.   &#x27;]",
+        documentation="[&#x27;Required parameter to successfully restart services on a node.&#x27;]",
         dictionaryType=None
     )
     service = data_model.property(
@@ -5113,7 +4998,11 @@ class GetClusterMasterNodeIDResult(data_model.DataObject):
 
 class ListDriveHardwareRequest(data_model.DataObject):
     """ListDriveHardwareRequest  
-    ListDriveHardware returns all the drives connected to a node. Use this method on the cluster to return drive hardware information for all the drives on all nodes.
+    ListDriveHardware returns all the drives connected to a node. Use this method on individual nodes to return drive hardware
+    information or use this method on the cluster master node MVIP to see information for all the drives on all nodes.
+    Note: The "securitySupported": true line of the method response does not imply that the drives are capable of
+    encryption; only that the security status can be queried. If you have a node type with a model number ending in "-NE",
+    commands to enable security features on these drives will fail. See the EnableEncryptionAtRest method for more information.
 
     :param force: [required] To run this command, the force parameter must be set to true. 
     :type force: bool
@@ -5342,16 +5231,16 @@ class LoggingServer(data_model.DataObject):
 
 class SetRemoteLoggingHostsRequest(data_model.DataObject):
     """SetRemoteLoggingHostsRequest  
-    RemoteLoggingHosts is used to configure remote logging from the nodes in the storage cluster to a centralized log server or servers. Remote logging is performed over TCP using the default port 514. This API does not add to the existing logging hosts. Rather, it replaces what currently exists with new values specified by this API method. You can use the GetRemoteLoggingHosts to determine what the current logging hosts are and then use the SetRemoteLoggingHosts to set the desired list of current and new logging hosts.
+    SetRemoteLoggingHosts enables you to configure remote logging from the nodes in the storage cluster to a centralized log server or servers. Remote logging is performed over TCP using the default port 514. This API does not add to the existing logging hosts. Rather, it replaces what currently exists with new values specified by this API method. You can use GetRemoteLoggingHosts to determine what the current logging hosts are, and then use SetRemoteLoggingHosts to set the desired list of current and new logging hosts.
 
-    :param remote_hosts: [required] List of hosts to send log messages to. 
+    :param remote_hosts: [required] A list of hosts to send log messages to. 
     :type remote_hosts: LoggingServer
 
     """
     remote_hosts = data_model.property(
         "remoteHosts", LoggingServer,
         array=True, optional=False,
-        documentation="[&#x27;List of hosts to send log messages to.&#x27;]",
+        documentation="[&#x27;A list of hosts to send log messages to.&#x27;]",
         dictionaryType=None
     )
 
@@ -5403,16 +5292,18 @@ class GetIpmiConfigResult(data_model.DataObject):
 
 class GetScheduleRequest(data_model.DataObject):
     """GetScheduleRequest  
-    GetSchedule is used to return information about a scheduled snapshot that has been created. You can see information about a specified schedule if there are many snapshot schedules in the system. You can include more than one schedule with this method by specifying additional scheduleIDs to the parameter.
+    You can use the GetSchedule method to retrieve information about a scheduled snapshot. You can see information about a specific
+    schedule if there are many snapshot schedules in the system. You also retrieve information about more than one schedule with this
+    method by specifying additional scheduleIDs in the parameter.
 
-    :param schedule_id: [required] Unique ID of the schedule or multiple schedules to display 
+    :param schedule_id: [required] Specifies the unique ID of the schedule or multiple schedules to display. 
     :type schedule_id: int
 
     """
     schedule_id = data_model.property(
         "scheduleID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique ID of the schedule or multiple schedules to display&#x27;]",
+        documentation="[&#x27;Specifies the unique ID of the schedule or multiple schedules to display.&#x27;]",
         dictionaryType=None
     )
 
@@ -5615,8 +5506,7 @@ class AddClusterAdminResult(data_model.DataObject):
 
 class CompleteClusterPairingRequest(data_model.DataObject):
     """CompleteClusterPairingRequest  
-    The CompleteClusterPairing method is the second step in the cluster pairing process.
-    Use this method with the encoded key received from the "StartClusterPairing" API method to complete the cluster pairing process.
+    You can use the CompleteClusterPairing method with the encoded key received from the  StartClusterPairing method to complete the cluster pairing process. The CompleteClusterPairing method is the second step in the cluster pairing process. 
 
     :param cluster_pairing_key: [required] A string of characters that is returned from the "StartClusterPairing" API method. 
     :type cluster_pairing_key: str
@@ -5794,8 +5684,10 @@ class GetDriveHardwareInfoResult(data_model.DataObject):
 
 class DeleteInitiatorsRequest(data_model.DataObject):
     """DeleteInitiatorsRequest  
-    DeleteInitiators enables you to delete one or more initiators from the system (and from any associated volumes or volume access groups).
-    If DeleteInitiators fails to delete one of the initiators provided in the parameter, the system returns an error and does not delete any initiators (no partial completion is possible).
+    DeleteInitiators enables you to delete one or more initiators from the system (and from any associated volumes or volume access
+    groups).
+    If DeleteInitiators fails to delete one of the initiators provided in the parameter, the system returns an error and does not delete any
+    initiators (no partial completion is possible).
 
     :param initiators: [required] An array of IDs of initiators to delete. 
     :type initiators: int
@@ -5813,18 +5705,18 @@ class DeleteInitiatorsRequest(data_model.DataObject):
 
 class SetSnmpTrapInfoRequest(data_model.DataObject):
     """SetSnmpTrapInfoRequest  
-    SetSnmpTrapInfo is used to enable and disable the generation of SolidFire SNMP notifications (traps) and to specify the set of network host computers that are to receive the notifications. The values passed with each SetSnmpTrapInfo method replaces all values set in any previous method to SetSnmpTrapInfo.
+    You can use SetSnmpTrapInfo to enable and disable the generation of cluster SNMP notifications (traps) and to specify the set of network host computers that receive the notifications. The values you pass with each SetSnmpTrapInfo method call replace all values set in any previous call to SetSnmpTrapInfo.
 
     :param trap_recipients: [required] List of hosts that are to receive the traps generated by the Cluster Master. At least one object is required if any one of the trap types is enabled. 
     :type trap_recipients: SnmpTrapRecipient
 
-    :param cluster_fault_traps_enabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterFaultNotification is sent to the configured list of trap recipients. 
+    :param cluster_fault_traps_enabled: [required] If the value is set to true, a corresponding solidFireClusterFaultNotification is sent to the configured list of trap recipients when a cluster fault is logged. The default value is false. 
     :type cluster_fault_traps_enabled: bool
 
-    :param cluster_fault_resolved_traps_enabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterFaultResolvedNotification is sent to the configured list of trap recipients. 
+    :param cluster_fault_resolved_traps_enabled: [required] If the value is set to true, a corresponding solidFireClusterFaultResolvedNotification is sent to the configured list of trap recipients when a cluster fault is resolved. The default value is false. 
     :type cluster_fault_resolved_traps_enabled: bool
 
-    :param cluster_event_traps_enabled: [required] If "true", when a cluster fault is logged a corresponding solidFireClusterEventNotification is sent to the configured list of trap recipients. 
+    :param cluster_event_traps_enabled: [required] If the value is set to true, a corresponding solidFireClusterEventNotification is sent to the configured list of trap recipients when a cluster event is logged. The default value is false. 
     :type cluster_event_traps_enabled: bool
 
     """
@@ -5837,19 +5729,19 @@ class SetSnmpTrapInfoRequest(data_model.DataObject):
     cluster_fault_traps_enabled = data_model.property(
         "clusterFaultTrapsEnabled", bool,
         array=False, optional=False,
-        documentation="[&#x27;If &quot;true&quot;, when a cluster fault is logged a corresponding solidFireClusterFaultNotification is sent to the configured list of trap recipients.&#x27;]",
+        documentation="[&#x27;If the value is set to true, a corresponding solidFireClusterFaultNotification is sent to the configured list of trap recipients when a cluster fault is logged. The default value is false.&#x27;]",
         dictionaryType=None
     )
     cluster_fault_resolved_traps_enabled = data_model.property(
         "clusterFaultResolvedTrapsEnabled", bool,
         array=False, optional=False,
-        documentation="[&#x27;If &quot;true&quot;, when a cluster fault is logged a corresponding solidFireClusterFaultResolvedNotification is sent to the configured list of trap recipients.&#x27;]",
+        documentation="[&#x27;If the value is set to true, a corresponding solidFireClusterFaultResolvedNotification is sent to the configured list of trap recipients when a cluster fault is resolved. The default value is false.&#x27;]",
         dictionaryType=None
     )
     cluster_event_traps_enabled = data_model.property(
         "clusterEventTrapsEnabled", bool,
         array=False, optional=False,
-        documentation="[&#x27;If &quot;true&quot;, when a cluster fault is logged a corresponding solidFireClusterEventNotification is sent to the configured list of trap recipients.&#x27;]",
+        documentation="[&#x27;If the value is set to true, a corresponding solidFireClusterEventNotification is sent to the configured list of trap recipients when a cluster event is logged. The default value is false.&#x27;]",
         dictionaryType=None
     )
 
@@ -5858,14 +5750,13 @@ class SetSnmpTrapInfoRequest(data_model.DataObject):
 
 class RemoveVirtualNetworkRequest(data_model.DataObject):
     """RemoveVirtualNetworkRequest  
-    RemoveVirtualNetwork is used to remove a previously added virtual network.
-    
-    Note: This method requires either the VirtualNetworkID of the VirtualNetworkTag as a parameter, but not both.
+    RemoveVirtualNetwork enables you to remove a previously added virtual network.
+    Note: This method requires either the virtualNetworkID or the virtualNetworkTag as a parameter, but not both.
 
     :param virtual_network_id:  Network ID that identifies the virtual network to remove. 
     :type virtual_network_id: int
 
-    :param virtual_network_tag:  Network Tag that identifies the virtual network to remove. 
+    :param virtual_network_tag:  Network tag that identifies the virtual network to remove. 
     :type virtual_network_tag: int
 
     """
@@ -5878,7 +5769,7 @@ class RemoveVirtualNetworkRequest(data_model.DataObject):
     virtual_network_tag = data_model.property(
         "virtualNetworkTag", int,
         array=False, optional=True,
-        documentation="[&#x27;Network Tag that identifies the virtual network to remove.&#x27;]",
+        documentation="[&#x27;Network tag that identifies the virtual network to remove.&#x27;]",
         dictionaryType=None
     )
 
@@ -5921,16 +5812,17 @@ class SetClusterConfigResult(data_model.DataObject):
 
 class CancelGroupCloneRequest(data_model.DataObject):
     """CancelGroupCloneRequest  
-    CancelGroupClone enables you to stop an ongoing CloneMultipleVolumes process for a group of clones. When you cancel a group clone operation, the system completes and removes the operation's associated asyncHandle. This method does not return anything.
+    CancelGroupClone enables you to stop an ongoing CloneMultipleVolumes process occurring on a group of volumes. When you cancel
+    a group clone operation, the system completes and removes the operation's associated asyncHandle.
 
-    :param group_clone_id: [required] cloneID for the ongoing clone process. 
+    :param group_clone_id: [required] The cloneID for the ongoing clone process. 
     :type group_clone_id: int
 
     """
     group_clone_id = data_model.property(
         "groupCloneID", int,
         array=False, optional=False,
-        documentation="[&#x27;cloneID for the ongoing clone process.&#x27;]",
+        documentation="[&#x27;The cloneID for the ongoing clone process.&#x27;]",
         dictionaryType=None
     )
 
@@ -5939,26 +5831,35 @@ class CancelGroupCloneRequest(data_model.DataObject):
 
 class ListActiveVolumesRequest(data_model.DataObject):
     """ListActiveVolumesRequest  
-    ListActiveVolumes is used to return the list of active volumes currently in the system.
-    The list of volumes is returned sorted in VolumeID order and can be returned in multiple parts (pages).
+    ListActiveVolumes enables you to return the list of active volumes currently in the system. The list of volumes is returned sorted in
+    VolumeID order and can be returned in multiple parts (pages).
 
-    :param start_volume_id:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
+    :param start_volume_id:  Starting VolumeID to return. If no volume exists with this VolumeID, the next volume by VolumeID order is used as the start of the list. To page through the list, pass the VolumeID of the last volume in the previous response + 1. 
     :type start_volume_id: int
 
-    :param limit:  The maximum number of volumes to return from the API. 
+    :param limit:  Maximum number of Volume Info objects to return. A value of 0 (zero) returns all volumes (unlimited). 
     :type limit: int
+
+    :param include_virtual_volumes:  Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. 
+    :type include_virtual_volumes: bool
 
     """
     start_volume_id = data_model.property(
         "startVolumeID", int,
         array=False, optional=True,
-        documentation="[&#x27;The ID of the first volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this starts at the lowest VolumeID.&#x27;]",
+        documentation="[&#x27;Starting VolumeID to return. If no volume exists with this&#x27;, &#x27;VolumeID, the next volume by VolumeID order is used as&#x27;, &#x27;the start of the list. To page through the list, pass the&#x27;, &#x27;VolumeID of the last volume in the previous response +&#x27;, &#x27;1.&#x27;]",
         dictionaryType=None
     )
     limit = data_model.property(
         "limit", int,
         array=False, optional=True,
-        documentation="[&#x27;The maximum number of volumes to return from the API.&#x27;]",
+        documentation="[&#x27;Maximum number of Volume Info objects to return. A value of 0&#x27;, &#x27;(zero) returns all volumes (unlimited).&#x27;]",
+        dictionaryType=None
+    )
+    include_virtual_volumes = data_model.property(
+        "includeVirtualVolumes", bool,
+        array=False, optional=True,
+        documentation="[&#x27;Specifies that virtual volumes are included in the response by default.&#x27;, &#x27;To exclude virtual volumes, set to false.&#x27;]",
         dictionaryType=None
     )
 
@@ -5967,11 +5868,12 @@ class ListActiveVolumesRequest(data_model.DataObject):
 
 class CreateScheduleRequest(data_model.DataObject):
     """CreateScheduleRequest  
-    CreateSchedule is used to create a schedule that will autonomously make a snapshot of a volume at a defined interval.
-    
-    The snapshot created can be used later as a backup or rollback to ensure the data on a volume or group of volumes is consistent for the point in time in which the snapshot was created. 
-    
-    Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is at stage 4 or 5.
+    CreateSchedule enables you to schedule an automatic snapshot of a volume at a defined interval.
+    You can use the created snapshot later as a backup or rollback to ensure the data on a volume or group of volumes is consistent for
+    the point in time in which the snapshot was created.
+    If you schedule a snapshot to run at a time period that is not divisible by 5 minutes, the snapshot runs at the next time period
+    that is divisible by 5 minutes. For example, if you schedule a snapshot to run at 12:42:00 UTC, it runs at 12:45:00 UTC.
+    Note: You can create snapshots if cluster fullness is at stage 1, 2 or 3. You cannot create snapshots after cluster fullness reaches stage 4 or 5.
 
     :param schedule: [required] The "Schedule" object will be used to create a new schedule. Do not set ScheduleID property, it will be ignored. Frequency property must be of type that inherits from Frequency. Valid types are: DaysOfMonthFrequency DaysOrWeekFrequency TimeIntervalFrequency 
     :type schedule: Schedule
@@ -6024,16 +5926,17 @@ class DeleteAllSupportBundlesResult(data_model.DataObject):
 
 class GetDriveHardwareInfoRequest(data_model.DataObject):
     """GetDriveHardwareInfoRequest  
-    GetDriveHardwareInfo returns all the hardware info for the given drive. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
+    GetDriveHardwareInfo returns all the hardware information for the given drive. This generally includes details about manufacturers, vendors, versions, and
+    other associated hardware identification information.
 
-    :param drive_id: [required] DriveID for the drive information requested. DriveIDs can be obtained via the "ListDrives" method. 
+    :param drive_id: [required] DriveID for the drive information requested. You can get DriveIDs by using the ListDrives method. 
     :type drive_id: int
 
     """
     drive_id = data_model.property(
         "driveID", int,
         array=False, optional=False,
-        documentation="[&#x27;DriveID for the drive information requested. DriveIDs can be obtained via the &quot;ListDrives&quot; method.&#x27;]",
+        documentation="[&#x27;DriveID for the drive information requested. You can get DriveIDs by using the ListDrives method.&#x27;]",
         dictionaryType=None
     )
 
@@ -6468,28 +6371,29 @@ class ListISCSISessionsResult(data_model.DataObject):
 
 class ListVirtualVolumesRequest(data_model.DataObject):
     """ListVirtualVolumesRequest  
-    ListVirtualVolumes enables you to list the virtual volumes currently in the system. You can use this method to list all virtual volumes, or only list a subset.
+    ListVirtualVolumes enables you to list the virtual volumes currently in the system. You can use this method to list all virtual volumes,
+    or only list a subset.
 
-    :param details:  Possible values:true: Include more details about each VVOL in the response.false: Include the standard level of detail about each VVOL in the response. 
+    :param details:  Specifies the level of detail about each virtual volume that is returned. Possible values are: true: Include more details about each virtual volume in the response. false: Include the standard level of detail about each virtual volume in the response. 
     :type details: bool
 
     :param limit:  The maximum number of virtual volumes to list. 
     :type limit: int
 
-    :param recursive:  Possible values:true: Include information about the children of each VVOL in the response.false: Do not include information about the children of each VVOL in the response. 
+    :param recursive:  Specifies whether to include information about the children of each virtual volume in the response. Possible values are: true: Include information about the children of each virtual volume in the response. false: Do not include information about the children of each virtual volume in the response. 
     :type recursive: bool
 
     :param start_virtual_volume_id:  The ID of the virtual volume at which to begin the list. 
     :type start_virtual_volume_id: UUID
 
-    :param virtual_volume_ids:  A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
+    :param virtual_volume_ids:  A list of virtual volume IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
     :type virtual_volume_ids: UUID
 
     """
     details = data_model.property(
         "details", bool,
         array=False, optional=True,
-        documentation="[&#x27;Possible values:true: Include more details about each VVOL in the response.false: Include the standard level of detail about each VVOL in the response.&#x27;]",
+        documentation="[&#x27;Specifies the level of detail about each virtual volume that is returned. Possible values are:&#x27;, &#x27;true: Include more details about each virtual volume in the response.&#x27;, &#x27;false: Include the standard level of detail about each virtual volume in&#x27;, &#x27;the response.&#x27;]",
         dictionaryType=None
     )
     limit = data_model.property(
@@ -6501,7 +6405,7 @@ class ListVirtualVolumesRequest(data_model.DataObject):
     recursive = data_model.property(
         "recursive", bool,
         array=False, optional=True,
-        documentation="[&#x27;Possible values:true: Include information about the children of each VVOL in the response.false: Do not include information about the children of each VVOL in the response.&#x27;]",
+        documentation="[&#x27;Specifies whether to include information about the children of each virtual volume in the response.&#x27;, &#x27;Possible values are:&#x27;, &#x27;true: Include information about the children of each virtual volume in&#x27;, &#x27;the response.&#x27;, &#x27;false: Do not include information about the children of each&#x27;, &#x27;virtual volume in the response.&#x27;]",
         dictionaryType=None
     )
     start_virtual_volume_id = data_model.property(
@@ -6513,7 +6417,7 @@ class ListVirtualVolumesRequest(data_model.DataObject):
     virtual_volume_ids = data_model.property(
         "virtualVolumeIDs", UUID,
         array=True, optional=True,
-        documentation="[&#x27;A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes.&#x27;]",
+        documentation="[&#x27;A list of virtual volume IDs for which to retrieve information. If&#x27;, &#x27;you specify this parameter, the method returns information&#x27;, &#x27;about only these virtual volumes.&#x27;]",
         dictionaryType=None
     )
 
@@ -6524,6 +6428,24 @@ class CompleteVolumePairingResult(data_model.DataObject):
     """CompleteVolumePairingResult  
 
     """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListDeletedVolumesRequest(data_model.DataObject):
+    """ListDeletedVolumesRequest  
+    ListDeletedVolumes enables you to retrieve the list of volumes that have been marked for deletion and purged from the system.
+
+    :param include_virtual_volumes:  Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. 
+    :type include_virtual_volumes: bool
+
+    """
+    include_virtual_volumes = data_model.property(
+        "includeVirtualVolumes", bool,
+        array=False, optional=True,
+        documentation="[&#x27;Specifies that virtual volumes are included in the response by default.&#x27;, &#x27;To exclude virtual volumes, set to false.&#x27;]",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -6824,7 +6746,7 @@ class ModifyGroupSnapshotResult(data_model.DataObject):
 
 class ListDriveStatsRequest(data_model.DataObject):
     """ListDriveStatsRequest  
-    ListDriveStats enables you to retrieve  high-level activity measurements for multiple drives in the cluster. By default, this method returns statistics for all drives in the cluster, and these measurements are cumulative from the addition of the drive to the cluster. Some values this method returns are specific to block drives, and some are specific to metadata drives. For more information on what data each drive type returns, see the response examples for the GetDriveStats method.
+    ListDriveStats enables you to retrieve high-level activity measurements for multiple drives in the cluster. By default, this method returns statistics for all drives in the cluster, and these measurements are cumulative from the addition of the drive to the cluster. Some values this method returns are specific to block drives, and some are specific to metadata drives.
 
     :param drives:  Optional list of DriveIDs for which to return drive statistics. If you omit this parameter, measurements for all drives are returned. 
     :type drives: int
@@ -6833,7 +6755,7 @@ class ListDriveStatsRequest(data_model.DataObject):
     drives = data_model.property(
         "drives", int,
         array=True, optional=True,
-        documentation="[&#x27;Optional list of DriveIDs for which to return drive statistics. If you omit this parameter, measurements for all drives are returned.&#x27;]",
+        documentation="[&#x27;Optional list of DriveIDs for which to return drive&#x27;, &#x27;statistics. If you omit this parameter, measurements for&#x27;, &#x27;all drives are returned.&#x27;]",
         dictionaryType=None
     )
 
@@ -6850,14 +6772,14 @@ class ListInitiatorsRequest(data_model.DataObject):
     :param limit:  The maximum number of initiator objects to return. 
     :type limit: int
 
-    :param initiators:  A list of initiator IDs to retrieve. You can supply this parameter or the "startInitiatorID" parameter, but not both. 
+    :param initiators:  A list of initiator IDs to retrieve. You can provide a value for this parameter or the "startInitiatorID" parameter, but not both. 
     :type initiators: int
 
     """
     start_initiator_id = data_model.property(
         "startInitiatorID", int,
         array=False, optional=True,
-        documentation="[&#x27;The initiator ID at which to begin the listing. You can supply this parameter or the &quot;initiators&quot; parameter, but not both.&#x27;]",
+        documentation="[&#x27;The initiator ID at which to begin the listing. You can supply this&#x27;, &#x27;parameter or the &quot;initiators&quot; parameter, but not both.&#x27;]",
         dictionaryType=None
     )
     limit = data_model.property(
@@ -6869,7 +6791,7 @@ class ListInitiatorsRequest(data_model.DataObject):
     initiators = data_model.property(
         "initiators", int,
         array=True, optional=True,
-        documentation="[&#x27;A list of initiator IDs to retrieve. You can supply this parameter or the &quot;startInitiatorID&quot; parameter, but not both.&#x27;]",
+        documentation="[&#x27;A list of initiator IDs to retrieve. You can provide a value for this parameter or&#x27;, &#x27;the &quot;startInitiatorID&quot; parameter, but not both.&#x27;]",
         dictionaryType=None
     )
 
@@ -7037,13 +6959,13 @@ class ListVirtualNetworksResult(data_model.DataObject):
 
 class StartVolumePairingRequest(data_model.DataObject):
     """StartVolumePairingRequest  
-    StartVolumePairing is used to create an encoded key from a volume that is used to pair with another volume.
-    The key that this method creates is used in the "CompleteVolumePairing" API method to establish a volume pairing.
+    StartVolumePairing enables you to create an encoded key from a volume that is used to pair with another volume. The key that this
+    method creates is used in the CompleteVolumePairing API method to establish a volume pairing.
 
     :param volume_id: [required] The ID of the volume on which to start the pairing process. 
     :type volume_id: int
 
-    :param mode:  The mode of the volume on which to start the pairing process. The mode can only be set if the volume is the source volume. Possible values: Async: (default if no mode parameter specified) Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster. Sync: Source acknowledges write when the data is stored locally and on the remote cluster. SnapshotsOnly: Only snapshots created on the source cluster will be replicated. Active writes from the source volume will not be replicated. 
+    :param mode:  The mode of the volume on which to start the pairing process. The mode can only be set if the volume is the source volume. Possible values are: Async: (default if no mode parameter specified) Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster. Sync: Source acknowledges write when the data is stored locally and on the remote cluster. SnapshotsOnly: Only snapshots created on the source cluster will be replicated. Active writes from the source volume are not replicated. 
     :type mode: str
 
     """
@@ -7056,7 +6978,7 @@ class StartVolumePairingRequest(data_model.DataObject):
     mode = data_model.property(
         "mode", str,
         array=False, optional=True,
-        documentation="[&#x27;The mode of the volume on which to start the pairing process. The mode can only be set if the volume is the source volume.&#x27;, &#x27;Possible values:&#x27;, &#x27;Async: (default if no mode parameter specified) Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.&#x27;, &#x27;Sync: Source acknowledges write when the data is stored locally and on the remote cluster.&#x27;, &#x27;SnapshotsOnly: Only snapshots created on the source cluster will be replicated. Active writes from the source volume will not be replicated.&#x27;]",
+        documentation="[&#x27;The mode of the volume on which to start the pairing process. The mode can only be set if the volume is the source volume. Possible values are: Async: (default if no mode parameter specified) Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster. Sync: Source acknowledges write when the data is stored locally and on the remote cluster. SnapshotsOnly: Only snapshots created on the source cluster will be replicated. Active writes from the source volume are not replicated.&#x27;]",
         dictionaryType=None
     )
 
@@ -7165,9 +7087,6 @@ class NetworkConfig(data_model.DataObject):
 
     :param bond_updelay:   
     :type bond_updelay: str
-
-    :param broadcast:   
-    :type broadcast: str
 
     :param dns_nameservers:   
     :type dns_nameservers: str
@@ -7299,12 +7218,6 @@ class NetworkConfig(data_model.DataObject):
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
-    broadcast = data_model.property(
-        "broadcast", str,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
     dns_nameservers = data_model.property(
         "dns-nameservers", str,
         array=False, optional=True,
@@ -7432,12 +7345,6 @@ class Network(data_model.DataObject):
     :param eth3:   
     :type eth3: NetworkConfig
 
-    :param eth4:   
-    :type eth4: NetworkConfig
-
-    :param eth5:   
-    :type eth5: NetworkConfig
-
     :param lo:   
     :type lo: NetworkConfig
 
@@ -7478,18 +7385,6 @@ class Network(data_model.DataObject):
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
-    eth4 = data_model.property(
-        "eth4", NetworkConfig,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-    eth5 = data_model.property(
-        "eth5", NetworkConfig,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
     lo = data_model.property(
         "lo", NetworkConfig,
         array=False, optional=True,
@@ -7519,57 +7414,62 @@ class SetNetworkConfigResult(data_model.DataObject):
 
 class AddVirtualNetworkRequest(data_model.DataObject):
     """AddVirtualNetworkRequest  
-    AddVirtualNetwork is used to add a new virtual network to a cluster configuration. When a virtual network is added, an interface for each node is created and each will require a virtual network IP address. The number of IP addresses specified as a parameter for this API method must be equal to or greater than the number of nodes in the cluster. Virtual network addresses are bulk provisioned by SolidFire and assigned to individual nodes automatically. Virtual network addresses do not need to be assigned to nodes manually.
-    
-    Note: The AddVirtualNetwork method is used only to create a new virtual network. If you want to make changes to a virtual network, please use the ModifyVirtualNetwork method.
+    You can use the AddVirtualNetwork method to add a new virtual network to a cluster configuration. When you add a virtual network,
+    an interface for each node is created and each interface will require a virtual network IP address. The number of IP addresses you
+    specify as a parameter for this API method must be equal to or greater than the number of nodes in the cluster. The system bulk
+    provisions virtual network addresses and assigns them to individual nodes automatically. You do not need to assign virtual
+    network addresses to nodes manually.
+    Note: You can use AddVirtualNetwork only to create a new virtual network. If you want to make changes to an
+    existing virtual network, use ModifyVirtualNetwork.
+    Note: Virtual network parameters must be unique to each virtual network when setting the namespace parameter to false.
 
-    :param virtual_network_tag: [required] A unique virtual network (VLAN) tag. Supported values are 1 to 4095 (the number zero (0) is not supported). 
+    :param virtual_network_tag: [required] A unique virtual network (VLAN) tag. Supported values are 1 through 4094.The number zero (0) is not supported. 
     :type virtual_network_tag: int
 
-    :param name: [required] User defined name for the new virtual network. 
+    :param name: [required] A user-defined name for the new virtual network. 
     :type name: str
 
-    :param address_blocks: [required] Unique Range of IP addresses to include in the virtual network. Attributes for this parameter are: start: start of the IP address range. (String) size: numbre of IP addresses to include in the block. (Integer) 
+    :param address_blocks: [required] Unique range of IP addresses to include in the virtual network. Attributes for this parameter are: start: The start of the IP address range. (String) size: The number of IP addresses to include in the block. (Integer) 
     :type address_blocks: AddressBlock
 
-    :param netmask: [required] Unique netmask for the virtual network being created. 
+    :param netmask: [required] Unique network mask for the virtual network being created. 
     :type netmask: str
 
     :param svip: [required] Unique storage IP address for the virtual network being created. 
     :type svip: str
 
-    :param gateway:   
+    :param gateway:  The IP address of a gateway of the virtual network. This parameter is only valid if the "namespace" parameter is set to true. 
     :type gateway: str
 
-    :param namespace:   
+    :param namespace:  When set to true, enables the Routable Storage VLANs functionality by creating and configuring a namespace and the virtual network contained by it. 
     :type namespace: bool
 
-    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :param attributes:  List of name-value pairs in JSON object format. 
     :type attributes: dict
 
     """
     virtual_network_tag = data_model.property(
         "virtualNetworkTag", int,
         array=False, optional=False,
-        documentation="[&#x27;A unique virtual network (VLAN) tag. Supported values are 1 to 4095 (the number zero (0) is not supported).&#x27;]",
+        documentation="[&#x27;A unique virtual network (VLAN) tag. Supported values are 1 through 4094.The number zero (0) is not supported.&#x27;]",
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;User defined name for the new virtual network.&#x27;]",
+        documentation="[&#x27;A user-defined name for the new virtual network.&#x27;]",
         dictionaryType=None
     )
     address_blocks = data_model.property(
         "addressBlocks", AddressBlock,
         array=True, optional=False,
-        documentation="[&#x27;Unique Range of IP addresses to include in the virtual network.&#x27;, &#x27;Attributes for this parameter are:&#x27;, &#x27;start: start of the IP address range. (String)&#x27;, &#x27;size: numbre of IP addresses to include in the block. (Integer)&#x27;]",
+        documentation="[&#x27;Unique range of IP addresses to include in the virtual network.&#x27;, &#x27;Attributes for this parameter are:&#x27;, &#x27;start: The start of the IP address range. (String)&#x27;, &#x27;size: The number of IP addresses to include in the block. (Integer)&#x27;]",
         dictionaryType=None
     )
     netmask = data_model.property(
         "netmask", str,
         array=False, optional=False,
-        documentation="[&#x27;Unique netmask for the virtual network being created.&#x27;]",
+        documentation="[&#x27;Unique network mask for the virtual network being created.&#x27;]",
         dictionaryType=None
     )
     svip = data_model.property(
@@ -7581,19 +7481,19 @@ class AddVirtualNetworkRequest(data_model.DataObject):
     gateway = data_model.property(
         "gateway", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;The IP address of a gateway of the virtual network. This parameter is only valid if the &quot;namespace&quot; parameter is set to true.&#x27;]",
         dictionaryType=None
     )
     namespace = data_model.property(
         "namespace", bool,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;When set to true, enables the Routable Storage VLANs functionality by creating and configuring a namespace and the virtual network contained by it.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
         dictionaryType=None
     )
 
@@ -7602,44 +7502,25 @@ class AddVirtualNetworkRequest(data_model.DataObject):
 
 class ListClusterFaultsRequest(data_model.DataObject):
     """ListClusterFaultsRequest  
-    ListClusterFaults is used to retrieve information about any faults detected on the cluster.
-    With this method, both current and resolved faults can be retrieved. The system caches faults every 30 seconds.
+    ListClusterFaults enables you to retrieve information about any faults detected on the cluster. With this method, you can retrieve both current faults as well as faults that have been resolved. The system caches faults every 30 seconds.
 
-    :param exceptions:   
-    :type exceptions: bool
-
-    :param best_practices:  Include faults triggered by sub-optimal system configuration. Possible values: true, false 
+    :param best_practices:  Specifies whether to include faults triggered by suboptimal system configuration. Possible values are: true false 
     :type best_practices: bool
 
-    :param update:   
-    :type update: bool
-
-    :param fault_types:  Determines the types of faults returned: current: List active, unresolved faults. resolved: List faults that were previously detected and resolved. all: (Default) List both current and resolved faults. You can see the fault status in the 'resolved' field of the Cluster Fault object. 
+    :param fault_types:  Determines the types of faults returned. Possible values are: current: List active, unresolved faults. resolved: List faults that were previously detected and resolved. all: (Default) List both current and resolved faults. You can see the fault status in the resolved field of the Cluster Fault object. 
     :type fault_types: str
 
     """
-    exceptions = data_model.property(
-        "exceptions", bool,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
     best_practices = data_model.property(
         "bestPractices", bool,
         array=False, optional=True,
-        documentation="[&#x27;Include faults triggered by sub-optimal system configuration.&#x27;, &#x27;Possible values: true, false&#x27;]",
-        dictionaryType=None
-    )
-    update = data_model.property(
-        "update", bool,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;Specifies whether to include faults triggered by suboptimal system configuration.&#x27;, &#x27;Possible values are:&#x27;, &#x27;true&#x27;, &#x27;false&#x27;]",
         dictionaryType=None
     )
     fault_types = data_model.property(
         "faultTypes", str,
         array=False, optional=True,
-        documentation="[&#x27;Determines the types of faults returned: current: List active, unresolved faults.&#x27;, &#x27;resolved: List faults that were previously detected and resolved.&#x27;, &quot;all: (Default) List both current and resolved faults. You can see the fault status in the &#x27;resolved&#x27; field of the Cluster Fault object.&quot;]",
+        documentation="[&#x27;Determines the types of faults returned. Possible values are:&#x27;, &#x27;current: List active, unresolved faults.&#x27;, &#x27;resolved: List faults that were previously detected and&#x27;, &#x27;resolved.&#x27;, &#x27;all: (Default) List both current and resolved faults. You can&#x27;, &#x27;see the fault status in the resolved field of the Cluster Fault&#x27;, &#x27;object.&#x27;]",
         dictionaryType=None
     )
 
@@ -7753,16 +7634,16 @@ class AddDrivesResult(data_model.DataObject):
 
 class ListVolumeStatsByVirtualVolumeRequest(data_model.DataObject):
     """ListVolumeStatsByVirtualVolumeRequest  
-    ListVolumeStatsByVirtualVolume enables you to list statistics for volumes, sorted by virtual volumes.
+    ListVolumeStatsByVirtualVolume enables you to list volume statistics for any volumes in the system that are associated with virtual volumes. Statistics are cumulative from the creation of the volume.
 
-    :param virtual_volume_ids:  A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
+    :param virtual_volume_ids:  A list of one or more virtual volume IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
     :type virtual_volume_ids: UUID
 
     """
     virtual_volume_ids = data_model.property(
         "virtualVolumeIDs", UUID,
         array=True, optional=True,
-        documentation="[&#x27;A list of virtual volume  IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes.&#x27;]",
+        documentation="[&#x27;A list of one or more virtual volume IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes.&#x27;]",
         dictionaryType=None
     )
 
@@ -7788,19 +7669,16 @@ class SetConfigResult(data_model.DataObject):
 
 class StartBulkVolumeWriteRequest(data_model.DataObject):
     """StartBulkVolumeWriteRequest  
-    StartBulkVolumeWrite allows you to initialize a bulk volume write session on a specified volume.
-    Only two bulk volume processes can run simultaneously on a volume.
-    When the session is initialized, data can be written to a SolidFire storage volume from an external backup source.
-    The external data is accessed by a web server running on a SolidFire node.
-    Communications and server interaction information for external data access is passed by a script running on the SolidFire storage system.
+    StartBulkVolumeWrite enables you to initialize a bulk volume write session on a specified volume. Only two bulk volume processes can run simultaneously on a volume. When you initialize the write session, data is written to a SolidFire storage volume from an external backup source. The external data is accessed by a web server running on an SF-series node. Communications and server
+    interaction information for external data access is passed by a script running on the storage system.
 
-    :param volume_id: [required] ID of the volume to be written to. 
+    :param volume_id: [required] The ID of the volume to be written to. 
     :type volume_id: int
 
-    :param format: [required] The format of the volume data. Can be either: uncompressed: every byte of the volume is returned without any compression. native: opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write 
+    :param format: [required] The format of the volume data. It can be either of the following formats: uncompressed: Every byte of the volume is returned without any compression. native: Opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. 
     :type format: str
 
-    :param script:  Executable name of a script. If no script name is given then the key and URL are necessary to access SolidFire nodes. The script runs on the primary node and the key and URL is returned to the script so the local web server can be contacted. 
+    :param script:  The executable name of a script. If unspecified, the key and URL are necessary to access SF-series nodes. The script runs on the primary node and the key and URL is returned to the script, so the local web server can be contacted. 
     :type script: str
 
     :param script_parameters:  JSON parameters to pass to the script. 
@@ -7813,19 +7691,19 @@ class StartBulkVolumeWriteRequest(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;ID of the volume to be written to.&#x27;]",
+        documentation="[&#x27;The ID of the volume to be written to.&#x27;]",
         dictionaryType=None
     )
     format = data_model.property(
         "format", str,
         array=False, optional=False,
-        documentation="[&#x27;The format of the volume data. Can be either:&#x27;, &#x27;uncompressed: every byte of the volume is returned without any compression.&#x27;, &#x27;native: opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write&#x27;]",
+        documentation="[&#x27;The format of the volume data. It can be either of the following formats:&#x27;, &#x27;uncompressed: Every byte of the volume is returned without any compression.&#x27;, &#x27;native: Opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk&#x27;, &#x27;volume write.&#x27;]",
         dictionaryType=None
     )
     script = data_model.property(
         "script", str,
         array=False, optional=True,
-        documentation="[&#x27;Executable name of a script.&#x27;, &#x27;If no script name is given then the key and URL are necessary to access SolidFire nodes.&#x27;, &#x27;The script runs on the primary node and the key and URL is returned to the script so the local web server can be contacted.&#x27;]",
+        documentation="[&#x27;The executable name of a script. If unspecified,&#x27;, &#x27;the key and URL are necessary to access SF-series&#x27;, &#x27;nodes. The script runs on the primary node and the key&#x27;, &#x27;and URL is returned to the script, so the local web server&#x27;, &#x27;can be contacted.&#x27;]",
         dictionaryType=None
     )
     script_parameters = data_model.property(
@@ -7850,20 +7728,11 @@ class ModifyVolumeResult(data_model.DataObject):
     :param volume:  Object containing information about the newly modified volume. 
     :type volume: Volume
 
-    :param curve:   
-    :type curve: QoS
-
     """
     volume = data_model.property(
         "volume", Volume,
         array=False, optional=True,
         documentation="[&#x27;Object containing information about the newly modified volume.&#x27;]",
-        dictionaryType=None
-    )
-    curve = data_model.property(
-        "curve", QoS,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
 
@@ -8215,20 +8084,11 @@ class DeleteVolumesResult(data_model.DataObject):
     :param volumes: [required] Information about the newly deleted volume. 
     :type volumes: Volume
 
-    :param curve:   
-    :type curve: VolumeQOS
-
     """
     volumes = data_model.property(
         "volumes", Volume,
         array=True, optional=False,
         documentation="[&#x27;Information about the newly deleted volume.&#x27;]",
-        dictionaryType=None
-    )
-    curve = data_model.property(
-        "curve", VolumeQOS,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
 
@@ -8487,17 +8347,17 @@ class GetHardwareConfigResult(data_model.DataObject):
 
 class TestConnectSvipRequest(data_model.DataObject):
     """TestConnectSvipRequest  
-    The TestConnectSvip API method is used to test the storage connection to the cluster. The test pings the SVIP using ICMP packets and when successful connects as an iSCSI initiator.
+    The TestConnectSvip API method enables you to test the storage connection to the cluster. The test pings the SVIP using ICMP packets, and when successful, connects as an iSCSI initiator.
     Note: This method is available only through the per-node API endpoint 5.0 or later.
 
-    :param svip:  Optionally, use to test the storage connection of a different SVIP. This is not needed to test the connection to the target cluster. 
+    :param svip:  If specified, tests the storage connection of a different SVIP. You do not need to use this value when testing the connection to the target cluster. This parameter is optional. 
     :type svip: str
 
     """
     svip = data_model.property(
         "svip", str,
         array=False, optional=True,
-        documentation="[&#x27;Optionally, use to test the storage connection of a different SVIP. This is not needed to test the connection to the target cluster.&#x27;]",
+        documentation="[&#x27;If specified, tests the storage connection of a&#x27;, &#x27;different SVIP. You do not need to use this value when&#x27;, &#x27;testing the connection to the target cluster. This parameter is optional.&#x27;]",
         dictionaryType=None
     )
 
@@ -8506,35 +8366,39 @@ class TestConnectSvipRequest(data_model.DataObject):
 
 class TestPingRequest(data_model.DataObject):
     """TestPingRequest  
-    The TestPing API method is used to validate the connection to all nodes in the cluster on both 1G and 10G interfaces using ICMP packets. The test uses the appropriate MTU sizes for each packet based on the MTU settings in the network configuration.
+    You can use the TestPing API method to validate the
+    connection to all the nodes in a cluster on both 1G and 10G interfaces by using ICMP packets. The test uses the appropriate MTU sizes for each packet based on the MTU settings in the network configuration.
     Note: This method is available only through the per-node API endpoint 5.0 or later.
 
-    :param attempts:  Specifies the number of times the system should repeat the test ping. Default is 5. 
+    :param attempts:  Specifies the number of times the system should repeat the test ping. The default value is 5. 
     :type attempts: int
 
-    :param hosts:  Specify address or hostnames of devices to ping. 
+    :param hosts:  Specifies a comma-separated list of addresses or hostnames of devices to ping. 
     :type hosts: str
 
     :param total_timeout_sec:  Specifies the length of time the ping should wait for a system response before issuing the next ping attempt or ending the process. 
     :type total_timeout_sec: int
 
-    :param packet_size:  Specify the number of bytes to send in the ICMP packet sent to each IP. Number be less than the maximum MTU specified in the network configuration. 
+    :param packet_size:  Specifies the number of bytes to send in the ICMP packet that is sent to each IP. The number must be less than the maximum MTU specified in the network configuration. 
     :type packet_size: int
 
-    :param ping_timeout_msec:  Specify the number of milliseconds to wait for each individual ping response. Default is 500ms. 
+    :param ping_timeout_msec:  Specifies the number of milliseconds to wait for each individual ping response. The default value is 500 ms. 
     :type ping_timeout_msec: int
+
+    :param prohibit_fragmentation:  Specifies that the Do not Fragment (DF) flag is enabled for the ICMP packets. 
+    :type prohibit_fragmentation: bool
 
     """
     attempts = data_model.property(
         "attempts", int,
         array=False, optional=True,
-        documentation="[&#x27;Specifies the number of times the system should repeat the test ping. Default is 5.&#x27;]",
+        documentation="[&#x27;Specifies the number of times the system&#x27;, &#x27;should repeat the test ping. The default value is 5.&#x27;]",
         dictionaryType=None
     )
     hosts = data_model.property(
         "hosts", str,
         array=False, optional=True,
-        documentation="[&#x27;Specify address or hostnames of devices to ping.&#x27;]",
+        documentation="[&#x27;Specifies a comma-separated list of addresses or hostnames of devices to ping.&#x27;]",
         dictionaryType=None
     )
     total_timeout_sec = data_model.property(
@@ -8546,13 +8410,19 @@ class TestPingRequest(data_model.DataObject):
     packet_size = data_model.property(
         "packetSize", int,
         array=False, optional=True,
-        documentation="[&#x27;Specify the number of bytes to send in the ICMP packet sent to each IP. Number be less than the maximum MTU specified in the network configuration.&#x27;]",
+        documentation="[&#x27;Specifies the number of bytes to send in the ICMP packet that is sent to each IP. The number must be less than the maximum MTU specified in the network configuration.&#x27;]",
         dictionaryType=None
     )
     ping_timeout_msec = data_model.property(
         "pingTimeoutMsec", int,
         array=False, optional=True,
-        documentation="[&#x27;Specify the number of milliseconds to wait for each individual ping response. Default is 500ms.&#x27;]",
+        documentation="[&#x27;Specifies the number of milliseconds to wait for each individual ping response. The default value is 500 ms.&#x27;]",
+        dictionaryType=None
+    )
+    prohibit_fragmentation = data_model.property(
+        "prohibitFragmentation", bool,
+        array=False, optional=True,
+        documentation="[&#x27;Specifies that the Do not Fragment (DF) flag is enabled for the ICMP packets.&#x27;]",
         dictionaryType=None
     )
 
@@ -8727,25 +8597,26 @@ class DeleteInitiatorsResult(data_model.DataObject):
 
 class AddInitiatorsToVolumeAccessGroupRequest(data_model.DataObject):
     """AddInitiatorsToVolumeAccessGroupRequest  
-    Add initiators to a volume access group.
+    AddInitiatorsToVolumeAccessGroup enables you
+    to add initiators to a specified volume access group.
 
     :param volume_access_group_id: [required] The ID of the volume access group to modify. 
     :type volume_access_group_id: int
 
-    :param initiators: [required] List of initiators to add to the volume access group. 
+    :param initiators: [required] The list of initiators to add to the volume access group. 
     :type initiators: str
 
     """
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume access group to modify.&#x27;]",
+        documentation="[&#x27;The ID of the volume access group&#x27;, &#x27;to modify.&#x27;]",
         dictionaryType=None
     )
     initiators = data_model.property(
         "initiators", str,
         array=True, optional=False,
-        documentation="[&#x27;List of initiators to add to the volume access group.&#x27;]",
+        documentation="[&#x27;The list of initiators to add to the volume access&#x27;, &#x27;group.&#x27;]",
         dictionaryType=None
     )
 
@@ -8754,16 +8625,17 @@ class AddInitiatorsToVolumeAccessGroupRequest(data_model.DataObject):
 
 class DeleteVolumeAccessGroupRequest(data_model.DataObject):
     """DeleteVolumeAccessGroupRequest  
-    Delete a volume access group from the system.
+    DeleteVolumeAccessGroup enables you to delete a
+    volume access group.
 
-    :param volume_access_group_id: [required] The ID of the volume access group to delete. 
+    :param volume_access_group_id: [required] The ID of the volume access group to be deleted. 
     :type volume_access_group_id: int
 
     """
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume access group to delete.&#x27;]",
+        documentation="[&#x27;The ID of the volume access group&#x27;, &#x27;to be deleted.&#x27;]",
         dictionaryType=None
     )
 
@@ -8815,45 +8687,46 @@ class GetFeatureStatusResult(data_model.DataObject):
 
 class ListVirtualNetworksRequest(data_model.DataObject):
     """ListVirtualNetworksRequest  
-    ListVirtualNetworks is used to get a list of all the configured virtual networks for the cluster. This method can be used to verify the virtual network settings in the cluster.
-    
-    This method does not require any parameters to be passed. But, one or more VirtualNetworkIDs or VirtualNetworkTags can be passed in order to filter the results.
+    ListVirtualNetworks enables you to list all configured virtual networks for the cluster. You can use this method to verify the virtual
+    network settings in the cluster.
+    There are no required parameters for this method. However, to filter the results, you can pass one or more VirtualNetworkID or
+    VirtualNetworkTag values.
 
-    :param virtual_network_id:  Network ID to filter the list for a single virtual network 
+    :param virtual_network_id:  Network ID to filter the list for a single virtual network. 
     :type virtual_network_id: int
 
-    :param virtual_network_tag:  Network Tag to filter the list for a single virtual network 
+    :param virtual_network_tag:  Network tag to filter the list for a single virtual network. 
     :type virtual_network_tag: int
 
-    :param virtual_network_ids:  NetworkIDs to include in the list. 
+    :param virtual_network_ids:  Network IDs to include in the list. 
     :type virtual_network_ids: int
 
-    :param virtual_network_tags:  Network Tags to include in the list. 
+    :param virtual_network_tags:  Network tag to include in the list. 
     :type virtual_network_tags: int
 
     """
     virtual_network_id = data_model.property(
         "virtualNetworkID", int,
         array=False, optional=True,
-        documentation="[&#x27;Network ID to filter the list for a single virtual network&#x27;]",
+        documentation="[&#x27;Network ID to filter the list for a single virtual network.&#x27;]",
         dictionaryType=None
     )
     virtual_network_tag = data_model.property(
         "virtualNetworkTag", int,
         array=False, optional=True,
-        documentation="[&#x27;Network Tag to filter the list for a single virtual network&#x27;]",
+        documentation="[&#x27;Network tag to filter the list for a single virtual network.&#x27;]",
         dictionaryType=None
     )
     virtual_network_ids = data_model.property(
         "virtualNetworkIDs", int,
         array=True, optional=True,
-        documentation="[&#x27;NetworkIDs to include in the list.&#x27;]",
+        documentation="[&#x27;Network IDs to include in the list.&#x27;]",
         dictionaryType=None
     )
     virtual_network_tags = data_model.property(
         "virtualNetworkTags", int,
         array=True, optional=True,
-        documentation="[&#x27;Network Tags to include in the list.&#x27;]",
+        documentation="[&#x27;Network tag to include in the list.&#x27;]",
         dictionaryType=None
     )
 
@@ -8879,20 +8752,18 @@ class ListSchedulesResult(data_model.DataObject):
 
 class SetNetworkConfigRequest(data_model.DataObject):
     """SetNetworkConfigRequest  
-    The "SetNetworkConfig" method is used to set the network configuration for a node. To see the states in which these objects can be modified, see "Network Object for 1G and 10G Interfaces" on page 109 of the Element API. To display the current network settings for a node, run the "GetNetworkConfig" method.
-    
-    WARNING! Changing the "bond-mode" on a node can cause a temporary loss of network connectivity. Caution should be taken when using this method.
-    
+    The SetNetworkConfig API method enables you to set the network configuration for a node. To display the current network settings for a node, run the GetNetworkConfig API method. 
     Note: This method is available only through the per-node API endpoint 5.0 or later.
+    Changing the "bond-mode" on a node can cause a temporary loss of network connectivity. Exercise caution when using this method.
 
-    :param network: [required] Objects that will be changed for the node network settings. 
+    :param network: [required] An object containing node network settings to modify. 
     :type network: NetworkParams
 
     """
     network = data_model.property(
         "network", NetworkParams,
         array=False, optional=False,
-        documentation="[&#x27;Objects that will be changed for the node network settings.&#x27;]",
+        documentation="[&#x27;An object containing node network settings to modify.&#x27;]",
         dictionaryType=None
     )
 
@@ -8901,30 +8772,25 @@ class SetNetworkConfigRequest(data_model.DataObject):
 
 class StartBulkVolumeReadRequest(data_model.DataObject):
     """StartBulkVolumeReadRequest  
-    StartBulkVolumeRead allows you to initialize a bulk volume read session on a specified volume.
-    Only two bulk volume processes can run simultaneously on a volume.
-    When you initialize the session, data is read from a SolidFire storage volume for the purposes of storing the data on an external backup source.
-    The external data is accessed by a web server running on a SolidFire node.
-    Communications and server interaction information for external data access is passed by a script running on the SolidFire storage system.
-    
-    At the start of a bulk volume read operation, a snapshot of the volume is made and the snapshot is deleted when the read has completed.
-    You can also read a snapshot of the volume by entering the ID of the snapshot as a parameter.
-    Reading a previous snapshot does not create a new snapshot of the volume, nor does the previous snapshot be deleted when the read completes.
-    
-    Note: This process creates a new snapshot if the ID of an existing snapshot is not provided.
-    Snapshots can be created if cluster fullness is at stage 2 or 3.
-    Snapshots are not created when cluster fullness is at stage 4 or 5.
+    StartBulkVolumeRead enables you to initialize a bulk volume read session on a specified volume. Only two bulk volume processes
+    can run simultaneously on a volume. When you initialize the session, data is read from a SolidFire storage volume for the purposes
+    of storing the data on an external backup source. The external data is accessed by a web server running on an SF-series node.
+    Communications and server interaction information for external data access is passed by a script running on the storage system.
+    At the start of a bulk volume read operation, a snapshot of the volume is made and the snapshot is deleted when the read is complete. You can also read a snapshot of the volume by entering the ID of the snapshot as a parameter. When you read a
+    previous snapshot, the system does not create a new snapshot of the volume or delete the previous snapshot when the
+    read completes.
+    Note: This process creates a new snapshot if the ID of an existing snapshot is not provided. Snapshots can be created if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is at stage 4 or 5.
 
-    :param volume_id: [required] ID of the volume to be read. 
+    :param volume_id: [required] The ID of the volume to be read. 
     :type volume_id: int
 
-    :param format: [required] The format of the volume data. Can be either: uncompressed: every byte of the volume is returned without any compression. native: opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. 
+    :param format: [required] The format of the volume data. It can be either of the following formats: uncompressed: Every byte of the volume is returned without any compression. native: Opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. 
     :type format: str
 
-    :param snapshot_id:  ID of a previously created snapshot used for bulk volume reads. If no ID is entered, a snapshot of the current active volume image is made. 
+    :param snapshot_id:  The ID of a previously created snapshot used for bulk volume reads. If no ID is entered, a snapshot of the current active volume image is made. 
     :type snapshot_id: int
 
-    :param script:  Executable name of a script. If no script name is given then the key and URL is necessary to access SolidFire nodes. The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted. 
+    :param script:  The executable name of a script. If unspecified, the key and URL is necessary to access SF-series nodes. The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted. 
     :type script: str
 
     :param script_parameters:  JSON parameters to pass to the script. 
@@ -8937,25 +8803,25 @@ class StartBulkVolumeReadRequest(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;ID of the volume to be read.&#x27;]",
+        documentation="[&#x27;The ID of the volume to be read.&#x27;]",
         dictionaryType=None
     )
     format = data_model.property(
         "format", str,
         array=False, optional=False,
-        documentation="[&#x27;The format of the volume data. Can be either:&#x27;, &#x27;uncompressed: every byte of the volume is returned without any compression.&#x27;, &#x27;native: opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write.&#x27;]",
+        documentation="[&#x27;The format of the volume data. It can be either of the following formats:&#x27;, &#x27;uncompressed: Every byte of the volume is returned without any compression.&#x27;, &#x27;native: Opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk&#x27;, &#x27;volume write.&#x27;]",
         dictionaryType=None
     )
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=True,
-        documentation="[&#x27;ID of a previously created snapshot used for bulk volume reads.&#x27;, &#x27;If no ID is entered, a snapshot of the current active volume image is made.&#x27;]",
+        documentation="[&#x27;The ID of a previously created snapshot used for bulk volume&#x27;, &#x27;reads. If no ID is entered, a snapshot of the current active&#x27;, &#x27;volume image is made.&#x27;]",
         dictionaryType=None
     )
     script = data_model.property(
         "script", str,
         array=False, optional=True,
-        documentation="[&#x27;Executable name of a script.&#x27;, &#x27;If no script name is given then the key and URL is necessary to access SolidFire nodes.&#x27;, &#x27;The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted.&#x27;]",
+        documentation="[&#x27;The executable name of a script. If unspecified, the key and URL is necessary to access SF-series nodes. The script is run on the primary node and the key&#x27;, &#x27;and URL is returned to the script so the local web server&#x27;, &#x27;can be contacted.&#x27;]",
         dictionaryType=None
     )
     script_parameters = data_model.property(
@@ -8976,18 +8842,18 @@ class StartBulkVolumeReadRequest(data_model.DataObject):
 
 class AddDrivesRequest(data_model.DataObject):
     """AddDrivesRequest  
-    AddDrives is used to add one or more available drives to the cluster enabling the drives to host a portion of the cluster's data.
-    When you add a node to the cluster or install new drives in an existing node, the new drives are marked as "available" and must be added via AddDrives before they can be utilized.
-    Use the "ListDrives" method to display drives that are "available" to be added.
-    When you add multiple drives, it is more efficient to add them in a single "AddDrives" method call rather than multiple individual methods with a single drive each.
-    This reduces the amount of data balancing that must occur to stabilize the storage load on the cluster.
-    
+    AddDrives enables you to add one or more available drives to the cluster, enabling the drives to host a portion of the cluster's data.
+    When you add a node to the cluster or install new drives in an existing node, the new drives are marked as "available" and must be
+    added via AddDrives before they can be utilized. Use the ListDrives method to display drives that are "available" to be added. When
+    you add multiple drives, it is more efficient to add them in a single AddDrives method call rather than multiple individual methods
+    with a single drive each. This reduces the amount of data balancing that must occur to stabilize the storage load on the cluster.
     When you add a drive, the system automatically determines the "type" of drive it should be.
-    
-    The method returns immediately. However, it may take some time for the data in the cluster to be rebalanced using the newly added drives.
-    As the new drive(s) are syncing on the system, you can use the "ListSyncJobs" method to see how the drive(s) are being rebalanced and the progress of adding the new drive.
+    The method is asynchronous and returns immediately. However, it can take some time for the data in the cluster to be rebalanced
+    using the newly added drives. As the new drives are syncing on the system, you can use the ListSyncJobs method to see how the
+    drives are being rebalanced and the progress of adding the new drive. You can also use the GetAsyncResult method to query the
+    method's returned asyncHandle.
 
-    :param drives: [required] List of drives to add to the cluster. 
+    :param drives: [required] Returns information about each drive to be added to the cluster. Possible values are: driveID: The ID of the drive to add. (Integer) type: (Optional) The type of drive to add. Valid values are "slice" or "block". If omitted, the system assigns the correct type. (String) 
     :type drives: NewDrive
 
     :param force_during_upgrade:  Allows the user to force the addition of drives during an upgrade. 
@@ -8997,7 +8863,7 @@ class AddDrivesRequest(data_model.DataObject):
     drives = data_model.property(
         "drives", NewDrive,
         array=True, optional=False,
-        documentation="[&#x27;List of drives to add to the cluster.&#x27;]",
+        documentation="[&#x27;Returns information about each drive to be added to the&#x27;, &#x27;cluster. Possible values are:&#x27;, &#x27;driveID: The ID of the drive to&#x27;, &#x27;add. (Integer)&#x27;, &#x27;type: (Optional) The type of drive&#x27;, &#x27;to add. Valid values are &quot;slice&quot; or &quot;block&quot;. If&#x27;, &#x27;omitted, the system assigns the correct&#x27;, &#x27;type. (String)&#x27;]",
         dictionaryType=None
     )
     force_during_upgrade = data_model.property(
@@ -9012,30 +8878,25 @@ class AddDrivesRequest(data_model.DataObject):
 
 class DeleteVolumeRequest(data_model.DataObject):
     """DeleteVolumeRequest  
-    DeleteVolume marks an active volume for deletion.
-    It is purged (permanently deleted) after the cleanup interval elapses.
-    After making a request to delete a volume, any active iSCSI connections to the volume is immediately terminated and no further connections are allowed while the volume is in this state.
-    It is not returned in target discovery requests.
-    
-    Any snapshots of a volume that has been marked to delete are not affected.
-    Snapshots are kept until the volume is purged from the system.
-    
-    If a volume is marked for deletion, and it has a bulk volume read or bulk volume write operation in progress, the bulk volume operation is stopped.
-    
-    If the volume you delete is paired with a volume, replication between the paired volumes is suspended and no data is transferred to it or from it while in a deleted state.
-    The remote volume the deleted volume was paired with enters into a PausedMisconfigured state and data is no integerer sent to it or from the deleted volume.
-    Until the deleted volume is purged, it can be restored and data transfers resumes.
-    If the deleted volume gets purged from the system, the volume it was paired with enters into a StoppedMisconfigured state and the volume pairing status is removed.
-    The purged volume becomes permanently unavailable.
+    DeleteVolume marks an active volume for deletion. When marked, the volume is purged (permanently deleted) after the cleanup
+    interval elapses. After making a request to delete a volume, any active iSCSI connections to the volume are immediately terminated
+    and no further connections are allowed while the volume is in this state. A marked volume is not returned in target discovery
+    requests.
+    Any snapshots of a volume that has been marked for deletion are not affected. Snapshots are kept until the volume is purged from
+    the system.
+    If a volume is marked for deletion and has a bulk volume read or bulk volume write operation in progress, the bulk volume read or
+    write operation is stopped.
+    If the volume you delete is paired with a volume, replication between the paired volumes is suspended and no data is transferred
+    to it or from it while in a deleted state. The remote volume that the deleted volume was paired with enters into a PausedMisconfigured state and data is no longer sent to it or from the deleted volume. Until the deleted volume is purged, it can be restored and data transfers resume. If the deleted volume gets purged from the system, the volume it was paired with enters into a StoppedMisconfigured state and the volume pairing status is removed. The purged volume becomes permanently unavailable.
 
-    :param volume_id: [required] The ID of the volume to delete. 
+    :param volume_id: [required] The ID of the volume to be deleted. 
     :type volume_id: int
 
     """
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume to delete.&#x27;]",
+        documentation="[&#x27;The ID of the volume to be deleted.&#x27;]",
         dictionaryType=None
     )
 
@@ -9061,12 +8922,13 @@ class CreateScheduleResult(data_model.DataObject):
 
 class ShutdownRequest(data_model.DataObject):
     """ShutdownRequest  
-    The Shutdown API method enables you to restart or shutdown a node that has not yet been added to a cluster. To use this method, login in to the MIP for the pending node and enter the "shutdown" method with either the "restart" or "halt" options in the following table.
+    The Shutdown API method enables you to restart or shutdown a node that has not yet been added to a cluster. To use this method,
+    log in to the MIP for the pending node, and enter the "shutdown" method with either the "restart" or "halt" options.
 
     :param nodes: [required] List of NodeIDs for the nodes to be shutdown. 
     :type nodes: int
 
-    :param option:  Action to take for the node shutdown:restart: Restarts the node.halt: Performs full power-off of the node. 
+    :param option:  Specifies the action to take for the node shutdown. Possible values are: restart: Restarts the node. halt: Shuts down the node. 
     :type option: str
 
     """
@@ -9079,7 +8941,7 @@ class ShutdownRequest(data_model.DataObject):
     option = data_model.property(
         "option", str,
         array=False, optional=True,
-        documentation="[&#x27;Action to take for the node shutdown:restart: Restarts the node.halt: Performs full power-off of the node.&#x27;]",
+        documentation="[&#x27;Specifies the action to take for the node shutdown. Possible values are:&#x27;, &#x27;restart: Restarts the node.&#x27;, &#x27;halt: Shuts down the node.&#x27;]",
         dictionaryType=None
     )
 
@@ -9088,33 +8950,29 @@ class ShutdownRequest(data_model.DataObject):
 
 class GetAsyncResultRequest(data_model.DataObject):
     """GetAsyncResultRequest  
-    Used to retrieve the result of asynchronous method calls.
-    Some method calls are integer running and do not complete when the initial response is sent.
-    To obtain the result of the method call, polling with GetAsyncResult is required.
-    
-    GetAsyncResult returns the overall status of the operation (in progress, completed, or error) in a standard fashion,
-    but the actual data returned for the operation depends on the original method call and the return data is documented with each method.
-    
-    The result for a completed asynchronous method call can only be retrieved once.
-    Once the final result has been returned, later attempts returns an error.
+    You can use GetAsyncResult to retrieve the result of asynchronous method calls. Some method calls require some time to run, and
+    might not be finished when the system sends the initial response. To obtain the status or result of the method call, use
+    GetAsyncResult to poll the asyncHandle value returned by the method.
+    GetAsyncResult returns the overall status of the operation (in progress, completed, or error) in a standard fashion, but the actual
+    data returned for the operation depends on the original method call and the return data is documented with each method.
 
     :param async_handle: [required] A value that was returned from the original asynchronous method call. 
     :type async_handle: int
 
-    :param keep_result:  Should the result be kept after? 
+    :param keep_result:  If true, GetAsyncResult does not remove the asynchronous result upon returning it, enabling future queries to that asyncHandle. 
     :type keep_result: bool
 
     """
     async_handle = data_model.property(
         "asyncHandle", int,
         array=False, optional=False,
-        documentation="[&#x27;A value that was returned from the original asynchronous method call.&#x27;]",
+        documentation="[&#x27;A value that was returned from the original&#x27;, &#x27;asynchronous method call.&#x27;]",
         dictionaryType=None
     )
     keep_result = data_model.property(
         "keepResult", bool,
         array=False, optional=True,
-        documentation="[&#x27;Should the result be kept after?&#x27;]",
+        documentation="[&#x27;If true, GetAsyncResult does not remove the&#x27;, &#x27;asynchronous result upon returning it, enabling future&#x27;, &#x27;queries to that asyncHandle.&#x27;]",
         dictionaryType=None
     )
 
@@ -9158,64 +9016,65 @@ class CreateVolumeResult(data_model.DataObject):
 
 class ModifyAccountRequest(data_model.DataObject):
     """ModifyAccountRequest  
-    Used to modify an existing account.
-    When locking an account, any existing connections from that account are immediately terminated.
-    When changing CHAP settings, any existing connections continue to be active,
-    and the new CHAP values are only used on subsequent connection or reconnection.
+    ModifyAccount enables you to modify an existing account.
+    When you lock an account, any existing connections from that account are immediately terminated. When you change an account's
+    CHAP settings, any existing connections remain active, and the new CHAP settings are used on subsequent connections or
+    reconnections.
+    To clear an account's attributes, specify {} for the attributes parameter.
 
-    :param account_id: [required] AccountID for the account to modify. 
+    :param account_id: [required] Specifies the AccountID for the account to be modified. 
     :type account_id: int
 
-    :param username:  Change the username of the account to this value. 
+    :param username:  Specifies the username associated with the account. (Might be 1 to 64 characters in length). 
     :type username: str
 
-    :param status:  Status of the account. 
+    :param status:  Sets the status for the account. Possible values are: active: The account is active and connections are allowed. locked: The account is locked and connections are refused. 
     :type status: str
 
-    :param initiator_secret:  CHAP secret to use for the initiator. Should be 12-16 characters integer and impenetrable. 
+    :param initiator_secret:  Specifies the CHAP secret to use for the initiator. This secret must be 12-16 characters in length and should be impenetrable. The initiator CHAP secret must be unique and cannot be the same as the target CHAP secret. 
     :type initiator_secret: CHAPSecret
 
-    :param target_secret:  CHAP secret to use for the target (mutual CHAP authentication). Should be 12-16 characters integer and impenetrable. 
+    :param target_secret:  Specifies the CHAP secret to use for the target (mutual CHAP authentication). This secret must be 12-16 characters in length and should be impenetrable. The target CHAP secret must be unique and cannot be the same as the initiator CHAP secret. 
     :type target_secret: CHAPSecret
 
-    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :param attributes:  List of name-value pairs in JSON object format. 
     :type attributes: dict
 
     """
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=False,
-        documentation="[&#x27;AccountID for the account to modify.&#x27;]",
+        documentation="[&#x27;Specifies the AccountID for the account to be modified.&#x27;]",
         dictionaryType=None
     )
     username = data_model.property(
         "username", str,
         array=False, optional=True,
-        documentation="[&#x27;Change the username of the account to this value.&#x27;]",
+        documentation="[&#x27;Specifies the username associated with the&#x27;, &#x27;account. (Might be 1 to 64 characters in length).&#x27;]",
         dictionaryType=None
     )
     status = data_model.property(
         "status", str,
         array=False, optional=True,
-        documentation="[&#x27;Status of the account.&#x27;]",
+        documentation="[&#x27;Sets the status for the account. Possible values are:&#x27;, &#x27;active: The account is active and connections are allowed.&#x27;, &#x27;locked: The account is locked and connections are refused.&#x27;]",
         dictionaryType=None
     )
     initiator_secret = data_model.property(
         "initiatorSecret", CHAPSecret,
         array=False, optional=True,
-        documentation="[&#x27;CHAP secret to use for the initiator.&#x27;, &#x27;Should be 12-16 characters integer and impenetrable.&#x27;]",
+        documentation="[&#x27;Specifies the CHAP secret to use for the initiator. This secret must&#x27;, &#x27;be 12-16 characters in length and should be&#x27;, &#x27;impenetrable. The initiator CHAP secret must be unique&#x27;, &#x27;and cannot be the same as the target CHAP secret.&#x27;]",
         dictionaryType=None
     )
     target_secret = data_model.property(
         "targetSecret", CHAPSecret,
         array=False, optional=True,
-        documentation="[&#x27;CHAP secret to use for the target (mutual CHAP authentication).&#x27;, &#x27;Should be 12-16 characters integer and impenetrable.&#x27;]",
+        documentation="[&#x27;Specifies the CHAP secret to use for the target (mutual CHAP&#x27;, &#x27;authentication). This secret must be 12-16 characters in&#x27;, &#x27;length and should be impenetrable. The target CHAP&#x27;, &#x27;secret must be unique and cannot be the same as the&#x27;, &#x27;initiator CHAP secret.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
         dictionaryType=None
     )
 
@@ -9294,15 +9153,21 @@ class GetCurrentClusterAdminResult(data_model.DataObject):
 
 class ResetNodeRequest(data_model.DataObject):
     """ResetNodeRequest  
-    Allows you to reset a node to the SolidFire factory settings. All data will be deleted from the node when you call this method. A node participating in a cluster cannot be reset.
+    The ResetNode API method enables you to reset a node to the factory settings. All data, packages (software upgrades, and so on),
+    configurations, and log files are deleted from the node when you call this method. However, network settings for the node are
+    preserved during this operation. Nodes that are participating in a cluster cannot be reset to the factory settings.
+    The ResetNode API can only be used on nodes that are in an "Available" state. It cannot be used on nodes that are "Active" in a
+    cluster, or in a "Pending" state.
+    Caution: This method clears any data that is on the node. Exercise caution when using this method.
+    Note: This method is available only through the per-node API endpoint 5.0 or later.
 
-    :param build: [required] Used to specify the URL to a remote Element software image to which the node will be reset. 
+    :param build: [required] Specifies the URL to a remote Element software image to which the node will be reset. 
     :type build: str
 
-    :param force: [required] The force parameter must be included in order to successfully reset the node. 
+    :param force: [required] Required parameter to successfully reset the node. 
     :type force: bool
 
-    :param options:  Used to enter specifications for running the reset operation. 
+    :param options:  Specifications for running the reset operation. 
     :type options: str
 
     :param reboot:  Should it be rebooted? 
@@ -9312,19 +9177,19 @@ class ResetNodeRequest(data_model.DataObject):
     build = data_model.property(
         "build", str,
         array=False, optional=False,
-        documentation="[&#x27;Used to specify the URL to a remote Element software image to which the node will be reset.&#x27;]",
+        documentation="[&#x27;Specifies the URL to a remote Element software image to which the node will&#x27;, &#x27;be reset.&#x27;]",
         dictionaryType=None
     )
     force = data_model.property(
         "force", bool,
         array=False, optional=False,
-        documentation="[&#x27;The force parameter must be included in order to successfully reset the node.&#x27;]",
+        documentation="[&#x27;Required parameter to successfully reset the node.&#x27;]",
         dictionaryType=None
     )
     options = data_model.property(
         "options", str,
         array=False, optional=True,
-        documentation="[&#x27;Used to enter specifications for running the reset operation.&#x27;]",
+        documentation="[&#x27;Specifications for running the reset operation.&#x27;]",
         dictionaryType=None
     )
     reboot = data_model.property(
@@ -9339,16 +9204,16 @@ class ResetNodeRequest(data_model.DataObject):
 
 class SetLoginSessionInfoRequest(data_model.DataObject):
     """SetLoginSessionInfoRequest  
-    SetLoginSessionInfo is used to set the period of time a log in authentication is valid. After the log in period elapses without activity on the system the authentication will expire. New log in credentials will be required for continued access to the cluster once the timeout period has elapsed.
+    You can use SetLoginSessionInfo to set the period of time that a session's login authentication is valid. After the log in period elapses without activity on the system, the authentication expires. New login credentials are required for continued access to the cluster after the timeout period has elapsed.
 
-    :param timeout: [required] Cluster authentication expiration period. Formatted in HH:mm:ss. For example: 01:30:00, 00:90:00, and 00:00:5400 can all be used to equal a 90 minute timeout period. Default is 30 minutes. 
+    :param timeout: [required] Cluster authentication expiration period. Formatted in HH:mm:ss. For example, 01:30:00, 00:90:00, and 00:00:5400 can be used to equal a 90 minute timeout period. The default value is 30 minutes. 
     :type timeout: str
 
     """
     timeout = data_model.property(
         "timeout", str,
         array=False, optional=False,
-        documentation="[&#x27;Cluster authentication expiration period. Formatted in HH:mm:ss. For example: 01:30:00, 00:90:00, and 00:00:5400 can all be used to equal a 90 minute timeout period. Default is 30 minutes.&#x27;]",
+        documentation="[&#x27;Cluster authentication expiration period. Formatted in&#x27;, &#x27;HH:mm:ss. For example, 01:30:00, 00:90:00, and 00:00:5400 can&#x27;, &#x27;be used to equal a 90 minute timeout period. The default value is 30 minutes.&#x27;]",
         dictionaryType=None
     )
 
@@ -9587,16 +9452,25 @@ class ListDeletedVolumesResult(data_model.DataObject):
 
 class ListSnapshotsRequest(data_model.DataObject):
     """ListSnapshotsRequest  
-    ListSnapshots is used to return the attributes of each snapshot taken on the volume.
+    ListSnapshots enables you to return the attributes of each snapshot taken on the volume. Information about snapshots that reside on the target cluster is displayed on the source cluster when this method is called from the source cluster.
 
-    :param volume_id:  The volume to list snapshots for. If not provided, all snapshots for all volumes are returned. 
+    :param volume_id:  Retrieves snapshots for a volume. If volumeID is not provided, all snapshots for all volumes are returned. 
     :type volume_id: int
+
+    :param snapshot_id:  Retrieves information for a specific snapshot ID. 
+    :type snapshot_id: int
 
     """
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=True,
-        documentation="[&#x27;The volume to list snapshots for.&#x27;, &#x27;If not provided, all snapshots for all volumes are returned.&#x27;]",
+        documentation="[&#x27;Retrieves snapshots for a volume. If volumeID is not provided,&#x27;, &#x27;all snapshots for all volumes are returned.&#x27;]",
+        dictionaryType=None
+    )
+    snapshot_id = data_model.property(
+        "snapshotID", int,
+        array=False, optional=True,
+        documentation="[&#x27;Retrieves information for a specific snapshot ID.&#x27;]",
         dictionaryType=None
     )
 
@@ -9648,16 +9522,18 @@ class GetNtpInfoResult(data_model.DataObject):
 
 class ListAsyncResultsRequest(data_model.DataObject):
     """ListAsyncResultsRequest  
-    You can use ListAsyncResults to list the results of all currently running and completed asynchronous methods on the system. Querying asynchronous results with ListAsyncResults does not cause completed asyncHandles to expire; you can use GetAsyncResult to query any of the asyncHandles returned by ListAsyncResults.
+    You can use ListAsyncResults to list the results of all currently running and completed asynchronous methods on the system.
+    Querying asynchronous results with ListAsyncResults does not cause completed asyncHandles to expire; you can use GetAsyncResult
+    to query any of the asyncHandles returned by ListAsyncResults.
 
-    :param async_result_types:  An optional list of types of results. You can use this list to restrict the results to only these types of operations. Possible values:BulkVolume: Copy operations between volumes, such as backups or restores.Clone: Volume cloning operations.DriveRemoval: Operations involving the system copying data from a drive in preparation to remove it from the cluster.RtfiPendingNode: Operations involving the system installing compatible software on a node before adding it to the cluster. 
+    :param async_result_types:  An optional list of types of results. You can use this list to restrict the results to only these types of operations. Possible values are: BulkVolume: Copy operations between volumes, such as backups or restores. Clone: Volume cloning operations. DriveRemoval: Operations involving the system copying data from a drive in preparation to remove it from the cluster. RtfiPendingNode: Operations involving the system installing compatible software on a node before adding it to the cluster 
     :type async_result_types: str
 
     """
     async_result_types = data_model.property(
         "asyncResultTypes", str,
         array=True, optional=True,
-        documentation="[&#x27;An optional list of types of results. You can use this list to restrict the results to only these types of operations. Possible values:BulkVolume: Copy operations between volumes, such as backups or restores.Clone: Volume cloning operations.DriveRemoval: Operations involving the system copying data from a drive in preparation to remove it from the cluster.RtfiPendingNode: Operations involving the system installing compatible software on a node before adding it to the cluster.&#x27;]",
+        documentation="[&#x27;An optional list of types of results. You can use this list to restrict the&#x27;, &#x27;results to only these types of operations. Possible values are:&#x27;, &#x27;BulkVolume: Copy operations between volumes, such as backups or&#x27;, &#x27;restores.&#x27;, &#x27;Clone: Volume cloning operations.&#x27;, &#x27;DriveRemoval: Operations involving the system copying data from a&#x27;, &#x27;drive in preparation to remove it from the cluster.&#x27;, &#x27;RtfiPendingNode: Operations involving the system installing&#x27;, &#x27;compatible software on a node before adding it to the cluster&#x27;]",
         dictionaryType=None
     )
 
@@ -9717,34 +9593,36 @@ class ListUtilitiesResult(data_model.DataObject):
 
 class RemoveInitiatorsFromVolumeAccessGroupRequest(data_model.DataObject):
     """RemoveInitiatorsFromVolumeAccessGroupRequest  
-    Remove initiators from a volume access group.
+    RemoveInitiatorsFromVolumeAccessGroup enables
+    you to remove initiators from a specified volume access
+    group.
 
-    :param volume_access_group_id: [required] The ID of the volume access group to modify. 
+    :param volume_access_group_id: [required] The ID of the volume access group from which the initiators are removed. 
     :type volume_access_group_id: int
 
-    :param initiators: [required] List of initiators to remove from the volume access group. 
+    :param initiators: [required] The list of initiators to remove from the volume access group. 
     :type initiators: str
 
-    :param delete_orphan_initiators:   
+    :param delete_orphan_initiators:  true: Delete initiator objects after they are removed from a volume access group. false: Do not delete initiator objects after they are removed from a volume access group. 
     :type delete_orphan_initiators: bool
 
     """
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume access group to modify.&#x27;]",
+        documentation="[&#x27;The ID of the volume access group&#x27;, &#x27;from which the initiators are removed.&#x27;]",
         dictionaryType=None
     )
     initiators = data_model.property(
         "initiators", str,
         array=True, optional=False,
-        documentation="[&#x27;List of initiators to remove from the volume access group.&#x27;]",
+        documentation="[&#x27;The list of initiators to remove from the volume&#x27;, &#x27;access group.&#x27;]",
         dictionaryType=None
     )
     delete_orphan_initiators = data_model.property(
         "deleteOrphanInitiators", bool,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;true: Delete initiator objects after they are removed from a volume access group.&#x27;, &#x27;false: Do not delete initiator objects after they are removed from a volume access group.&#x27;]",
         dictionaryType=None
     )
 
@@ -9753,12 +9631,13 @@ class RemoveInitiatorsFromVolumeAccessGroupRequest(data_model.DataObject):
 
 class SetDefaultQoSRequest(data_model.DataObject):
     """SetDefaultQoSRequest  
-    SetDefaultQoS enables you to configure the default Quality of Service (QoS) values (measured in inputs and outputs per second, or IOPS) for all volumes not yet created.
+    SetDefaultQoS enables you to configure the default Quality of Service (QoS) values (measured in inputs and outputs per second, or
+    IOPS) for a volume. For more information about QoS in a SolidFire cluster, see the User Guide.
 
-    :param min_iops:  The minimum number of sustained IOPS that are provided by the cluster to a volume. 
+    :param min_iops:  The minimum number of sustained IOPS provided by the cluster to a volume. 
     :type min_iops: int
 
-    :param max_iops:  The maximum number of sustained IOPS that are provided by the cluster to a volume. 
+    :param max_iops:  The maximum number of sustained IOPS provided by the cluster to a volume. 
     :type max_iops: int
 
     :param burst_iops:  The maximum number of IOPS allowed in a short burst scenario. 
@@ -9768,13 +9647,13 @@ class SetDefaultQoSRequest(data_model.DataObject):
     min_iops = data_model.property(
         "minIOPS", int,
         array=False, optional=True,
-        documentation="[&#x27;The minimum number of sustained IOPS that are provided by the cluster to a volume.&#x27;]",
+        documentation="[&#x27;The minimum number of sustained IOPS provided by the cluster to a&#x27;, &#x27;volume.&#x27;]",
         dictionaryType=None
     )
     max_iops = data_model.property(
         "maxIOPS", int,
         array=False, optional=True,
-        documentation="[&#x27;The maximum number of sustained IOPS that are provided by the cluster to a volume.&#x27;]",
+        documentation="[&#x27;The maximum number of sustained IOPS provided by the cluster to a&#x27;, &#x27;volume.&#x27;]",
         dictionaryType=None
     )
     burst_iops = data_model.property(
@@ -9797,16 +9676,17 @@ class SetSnmpTrapInfoResult(data_model.DataObject):
 
 class DeleteStorageContainersRequest(data_model.DataObject):
     """DeleteStorageContainersRequest  
-    Deletes a storage container from the system.
+    DeleteStorageContainers enables you to remove up to 2000 Virtual Volume (VVol) storage containers from the system at one time.
+    The storage containers you remove must not contain any VVols.
 
-    :param storage_container_ids: [required] list of storageContainerID of the storage container to delete. 
+    :param storage_container_ids: [required] A list of IDs of the storage containers to delete. You can specify up to 2000 IDs in the list. 
     :type storage_container_ids: UUID
 
     """
     storage_container_ids = data_model.property(
         "storageContainerIDs", UUID,
         array=True, optional=False,
-        documentation="[&#x27;list of storageContainerID of the storage container to delete.&#x27;]",
+        documentation="[&#x27;A list of IDs of the storage containers to delete. You can specify up to 2000 IDs in the list.&#x27;]",
         dictionaryType=None
     )
 
@@ -9920,34 +9800,43 @@ class CreateVolumeAccessGroupResult(data_model.DataObject):
 
 class CreateStorageContainerRequest(data_model.DataObject):
     """CreateStorageContainerRequest  
-    Creates a new VVols storage container.
+    CreateStorageContainer enables you to create a Virtual Volume (VVol) storage container. Storage containers are associated with a SolidFire storage system account, and are used for reporting and resource allocation. Storage containers can only be associated with virtual volumes. You need at least one storage container to use the Virtual Volumes feature.
 
-    :param name: [required] Name of the storage container. 
+    :param name: [required] The name of the storage container. Follows SolidFire account naming restrictions. 
     :type name: str
 
-    :param initiator_secret:  The secret for CHAP authentication for the initiator 
+    :param initiator_secret:  The secret for CHAP authentication for the initiator. 
     :type initiator_secret: str
 
-    :param target_secret:  The secret for CHAP authentication for the target 
+    :param target_secret:  The secret for CHAP authentication for the target. 
     :type target_secret: str
+
+    :param account_id:  Non-storage container account that will become a storage container. 
+    :type account_id: int
 
     """
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;Name of the storage container.&#x27;]",
+        documentation="[&#x27;The name of the storage container. Follows SolidFire account&#x27;, &#x27;naming restrictions.&#x27;]",
         dictionaryType=None
     )
     initiator_secret = data_model.property(
         "initiatorSecret", str,
         array=False, optional=True,
-        documentation="[&#x27;The secret for CHAP authentication for the initiator&#x27;]",
+        documentation="[&#x27;The secret for CHAP authentication for the initiator.&#x27;]",
         dictionaryType=None
     )
     target_secret = data_model.property(
         "targetSecret", str,
         array=False, optional=True,
-        documentation="[&#x27;The secret for CHAP authentication for the target&#x27;]",
+        documentation="[&#x27;The secret for CHAP authentication for the target.&#x27;]",
+        dictionaryType=None
+    )
+    account_id = data_model.property(
+        "accountID", int,
+        array=False, optional=True,
+        documentation="[&#x27;Non-storage container account that will become a&#x27;, &#x27;storage container.&#x27;]",
         dictionaryType=None
     )
 
@@ -9973,17 +9862,10 @@ class AddVirtualNetworkResult(data_model.DataObject):
 
 class AddNodesRequest(data_model.DataObject):
     """AddNodesRequest  
-    AddNodes is used to add one or more new nodes to the cluster. When a node is not configured and starts up for the first time you are prompted to configure the node. Once a node is configured it is registered as a "pending node" with the cluster.
-    
-    Adding a node to a cluster that has been set up for virtual networking will require a sufficient number of virtual storage IP addresses to allocate a virtual IP to the new node. If there are no virtual IP addresses available for the new node, the AddNode operation will not complete successfully. Use the "ModifyVirtualNetwork" method to add more storage IP addresses to your virtual network.
-    
-    The software version on each node in a cluster must be compatible. Run the "ListAllNodes" API to see what versions of software are currently running on the cluster nodes. For an explanation of software version compatibility, see "Node Versioning and Compatibility" in the Element API guide.
-    
-    Once a node has been added, the drives on the node are made available and can then be added via the "AddDrives" method to increase the storage capacity of the cluster.
-    
-    Note: It may take several seconds after adding a new Node for it to start up and register the drives as being available.
+    AddNodes enables you to add one or more new nodes to a cluster. When a node that is not configured starts up for the first time, you are prompted to configure the node. After you configure the node, it is registered as a "pending node" with the cluster. 
+    Note: It might take several seconds after adding a new node for it to start up and register its drives as available.
 
-    :param pending_nodes: [required] List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method. 
+    :param pending_nodes: [required]  List of pending NodeIDs for the nodes to be added. You can  obtain the list of pending nodes using the ListPendingNodes method. 
     :type pending_nodes: int
 
     :param auto_install:  Whether these nodes should be autoinstalled 
@@ -9993,7 +9875,7 @@ class AddNodesRequest(data_model.DataObject):
     pending_nodes = data_model.property(
         "pendingNodes", int,
         array=True, optional=False,
-        documentation="[&#x27;List of PendingNodeIDs for the Nodes to be added. You can obtain the list of Pending Nodes via the ListPendingNodes method.&#x27;]",
+        documentation="[&#x27; List of pending NodeIDs for the nodes to be added. You can  obtain the list of pending nodes using the ListPendingNodes method.&#x27;]",
         dictionaryType=None
     )
     auto_install = data_model.property(
@@ -10158,43 +10040,43 @@ class ResetNodeResult(data_model.DataObject):
 
 class EnableLdapAuthenticationRequest(data_model.DataObject):
     """EnableLdapAuthenticationRequest  
-    The EnableLdapAuthentication method is used to configure an LDAP server connection to use for LDAP authentication to a SolidFire cluster. Users that are members on the LDAP server can then log in to a SolidFire storage system using their LDAP authentication userid and password.
+    The EnableLdapAuthentication method enables you to configure an LDAP directory connection to use for LDAP authentication to a cluster. Users that are members of the LDAP directory can then log in to the storage system using their LDAP credentials.
 
-    :param auth_type:  Identifies which user authentcation method will be used.  Must be one of the following: DirectBind SearchAndBind (default) 
+    :param auth_type:  Identifies which user authentication method to use. Must be one of the following: DirectBind SearchAndBind 
     :type auth_type: str
 
     :param group_search_base_dn:  The base DN of the tree to start the group search (will do a subtree search from here). 
     :type group_search_base_dn: str
 
-    :param group_search_custom_filter:  REQUIRED for CustomFilter For use with the CustomFilter search type, an LDAP filter to use to return the DNs of a user's groups. The string can have placeholder text of %USERNAME% and %USERDN% to be replaced with their username and full userDN as needed. 
+    :param group_search_custom_filter:  For use with the CustomFilter search type, an LDAP filter to use to return the DNs of a users groups. The string can have placeholder text of %USERNAME% and %USERDN% to be replaced with their username and full userDN as needed. 
     :type group_search_custom_filter: str
 
-    :param group_search_type:  Controls the default group search filter used, can be one of the following: NoGroups: No group support. ActiveDirectory: (default) Nested membership of all of a user's AD groups. MemberDN: MemberDN style groups (single-level). 
+    :param group_search_type:  Controls the default group search filter used, and must be one of the following: NoGroups: No group support. ActiveDirectory: Nested membership of all of a users AD groups. MemberDN: MemberDN style groups (single level). 
     :type group_search_type: str
 
-    :param search_bind_dn:  REQUIRED for SearchAndBind A fully qualified DN to log in with to perform an LDAP search for the user (needs read access to the LDAP directory). 
+    :param search_bind_dn:  A fully qualified DN to log in with to perform an LDAP search for the user (needs read access to the LDAP directory). 
     :type search_bind_dn: str
 
-    :param search_bind_password:  REQUIRED for SearchAndBind The password for the searchBindDN account used for searching. 
+    :param search_bind_password:  The password for the searchBindDN account used for searching. 
     :type search_bind_password: str
 
-    :param server_uris: [required] A list of LDAP server URIs (examples: "ldap://1.2.3.4" and ldaps://1.2.3.4:123") 
+    :param server_uris: [required] A comma-separated list of LDAP server URIs (examples: "ldap://1.2.3.4" and ldaps://1.2.3.4:123") 
     :type server_uris: str
 
-    :param user_dntemplate:  REQUIRED for DirectBind A string that is used to form a fully qualified user DN. The string should have the placeholder text "%USERNAME%" which will be replaced with the username of the authenticating user. 
+    :param user_dntemplate:  A string that is used to form a fully qualified user DN. The string should have the placeholder text %USERNAME%, which is replaced with the username of the authenticating user. 
     :type user_dntemplate: str
 
-    :param user_search_base_dn:  REQUIRED for SearchAndBind The base DN of the tree used to start the search (will do a subtree search from here). 
+    :param user_search_base_dn:  The base DN of the tree to start the search (will do a subtree search from here). 
     :type user_search_base_dn: str
 
-    :param user_search_filter:  REQUIRED for SearchAndBind. The LDAP filter to use. The string should have the placeholder text "%USERNAME%" which will be replaced with the username of the authenticating user. Example: (&(objectClass=person) (sAMAccountName=%USERNAME%)) will use the sAMAccountName field in Active Directory to match the nusername entered at cluster login. 
+    :param user_search_filter:  The LDAP filter to use. The string should have the placeholder text %USERNAME% which is replaced with the username of the authenticating user. Example: (&(objectClass=person)(sAMAccountName=%USERNAME%)) will use the sAMAccountName field in Active Directory to match the username entered at cluster login. 
     :type user_search_filter: str
 
     """
     auth_type = data_model.property(
         "authType", str,
         array=False, optional=True,
-        documentation="[&#x27;Identifies which user authentcation method will be used. &#x27;, &#x27;Must be one of the following:&#x27;, &#x27;DirectBind&#x27;, &#x27;SearchAndBind (default)&#x27;]",
+        documentation="[&#x27;Identifies which user authentication method to use. Must be one of the following:&#x27;, &#x27;DirectBind&#x27;, &#x27;SearchAndBind&#x27;]",
         dictionaryType=None
     )
     group_search_base_dn = data_model.property(
@@ -10206,49 +10088,49 @@ class EnableLdapAuthenticationRequest(data_model.DataObject):
     group_search_custom_filter = data_model.property(
         "groupSearchCustomFilter", str,
         array=False, optional=True,
-        documentation="[&#x27;REQUIRED for CustomFilter&#x27;, &quot;For use with the CustomFilter search type, an LDAP filter to use to return the DNs of a user&#x27;s groups.&quot;, &#x27;The string can have placeholder text of %USERNAME% and %USERDN% to be replaced with their username and full userDN as needed.&#x27;]",
+        documentation="[&#x27;For use with the CustomFilter search type, an LDAP filter to use to return the DNs of a users groups. The string can have placeholder text of %USERNAME% and %USERDN% to be replaced with their username and full userDN as needed.&#x27;]",
         dictionaryType=None
     )
     group_search_type = data_model.property(
         "groupSearchType", str,
         array=False, optional=True,
-        documentation="[&#x27;Controls the default group search filter used, can be one of the following:&#x27;, &#x27;NoGroups: No group support.&#x27;, &quot;ActiveDirectory: (default) Nested membership of all of a user&#x27;s AD groups.&quot;, &#x27;MemberDN: MemberDN style groups (single-level).&#x27;]",
+        documentation="[&#x27;Controls the default group search filter used, and must be one of the following:&#x27;, &#x27;NoGroups: No group support.&#x27;, &#x27;ActiveDirectory: Nested membership of all of a users AD groups.&#x27;, &#x27;MemberDN: MemberDN style groups (single level).&#x27;]",
         dictionaryType=None
     )
     search_bind_dn = data_model.property(
         "searchBindDN", str,
         array=False, optional=True,
-        documentation="[&#x27;REQUIRED for SearchAndBind&#x27;, &#x27;A fully qualified DN to log in with to perform an LDAP search for the user (needs read access to the LDAP directory).&#x27;]",
+        documentation="[&#x27;A fully qualified DN to log in with to perform an LDAP search for the user (needs read access to the LDAP directory).&#x27;]",
         dictionaryType=None
     )
     search_bind_password = data_model.property(
         "searchBindPassword", str,
         array=False, optional=True,
-        documentation="[&#x27;REQUIRED for SearchAndBind&#x27;, &#x27;The password for the searchBindDN account used for searching.&#x27;]",
+        documentation="[&#x27;The password for the searchBindDN account used for searching.&#x27;]",
         dictionaryType=None
     )
     server_uris = data_model.property(
         "serverURIs", str,
         array=True, optional=False,
-        documentation="[&#x27;A list of LDAP server URIs (examples: &quot;ldap://1.2.3.4&quot; and ldaps://1.2.3.4:123&quot;)&#x27;]",
+        documentation="[&#x27;A comma-separated list of LDAP server URIs (examples: &quot;ldap://1.2.3.4&quot; and ldaps://1.2.3.4:123&quot;)&#x27;]",
         dictionaryType=None
     )
     user_dntemplate = data_model.property(
         "userDNTemplate", str,
         array=False, optional=True,
-        documentation="[&#x27;REQUIRED for DirectBind&#x27;, &#x27;A string that is used to form a fully qualified user DN.&#x27;, &#x27;The string should have the placeholder text &quot;%USERNAME%&quot; which will be replaced with the username of the authenticating user.&#x27;]",
+        documentation="[&#x27;A string that is used to form a fully qualified user DN. The string should have the placeholder text %USERNAME%, which is replaced with the username of the authenticating user.&#x27;]",
         dictionaryType=None
     )
     user_search_base_dn = data_model.property(
         "userSearchBaseDN", str,
         array=False, optional=True,
-        documentation="[&#x27;REQUIRED for SearchAndBind&#x27;, &#x27;The base DN of the tree used to start the search (will do a subtree search from here).&#x27;]",
+        documentation="[&#x27;The base DN of the tree to start the search (will do a subtree search from here).&#x27;]",
         dictionaryType=None
     )
     user_search_filter = data_model.property(
         "userSearchFilter", str,
         array=False, optional=True,
-        documentation="[&#x27;REQUIRED for SearchAndBind.&#x27;, &#x27;The LDAP filter to use.&#x27;, &#x27;The string should have the placeholder text &quot;%USERNAME%&quot; which will be replaced with the username of the authenticating user.&#x27;, &#x27;Example: (&amp;(objectClass=person) (sAMAccountName=%USERNAME%)) will use the sAMAccountName field in Active Directory to match the nusername entered at cluster login.&#x27;]",
+        documentation="[&#x27;The LDAP filter to use. The string should have the placeholder text %USERNAME% which is replaced with the username of the authenticating user. Example: (&amp;(objectClass=person)(sAMAccountName=%USERNAME%)) will use the sAMAccountName field in Active Directory to match the username entered at cluster login.&#x27;]",
         dictionaryType=None
     )
 
@@ -10360,16 +10242,17 @@ class ModifyBackupTargetResult(data_model.DataObject):
 
 class CancelCloneRequest(data_model.DataObject):
     """CancelCloneRequest  
-    Cancels a currently running clone operation. This method does not return anything.
+    CancelClone enables you to stop an ongoing CloneVolume or CopyVolume process. When you cancel a group clone operation, the
+    system completes and removes the operation's associated asyncHandle.
 
-    :param clone_id: [required]  
+    :param clone_id: [required] The cloneID for the ongoing clone process. 
     :type clone_id: int
 
     """
     clone_id = data_model.property(
         "cloneID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;The cloneID for the ongoing clone process.&#x27;]",
         dictionaryType=None
     )
 
@@ -10395,7 +10278,7 @@ class GetAccountResult(data_model.DataObject):
 
 class GetAccountByIDRequest(data_model.DataObject):
     """GetAccountByIDRequest  
-    Returns details about an account, given its AccountID.
+    GetAccountByID enables you to return details about a specific account, given its accountID.
 
     :param account_id: [required] Specifies the account for which details are gathered. 
     :type account_id: int
@@ -10413,17 +10296,17 @@ class GetAccountByIDRequest(data_model.DataObject):
 
 class TestConnectEnsembleRequest(data_model.DataObject):
     """TestConnectEnsembleRequest  
-    The TestConnectEnsemble API method is used to verify connectivity with a sepcified database ensemble. By default it uses the ensemble for the cluster the node is associated with. Alternatively you can provide a different ensemble to test connectivity with.
+    The TestConnectEnsemble API method enables you to verify connectivity with a specified database ensemble. By default, it uses the ensemble for the cluster that the node is associated with. Alternatively, you can provide a different ensemble to test connectivity with.
     Note: This method is available only through the per-node API endpoint 5.0 or later.
 
-    :param ensemble:  A comma-separated list of ensemble node CIPs for connectivity testing 
+    :param ensemble:  Uses a comma-separated list of ensemble node cluster IP addresses to test connectivity. This parameter is optional. 
     :type ensemble: str
 
     """
     ensemble = data_model.property(
         "ensemble", str,
         array=False, optional=True,
-        documentation="[&#x27;A comma-separated list of ensemble node CIPs for connectivity testing&#x27;]",
+        documentation="[&#x27;Uses a comma-separated list of ensemble node cluster IP addresses to test connectivity. This parameter is optional.&#x27;]",
         dictionaryType=None
     )
 
@@ -10484,16 +10367,18 @@ class GetSystemStatusResult(data_model.DataObject):
 
 class GetClusterHardwareInfoRequest(data_model.DataObject):
     """GetClusterHardwareInfoRequest  
-    You can use the GetClusterHardwareInfo method to retrieve the hardware status and information for all Fibre Channel nodes, iSCSI nodes and drives in the cluster. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
+    You can use the GetClusterHardwareInfo method to retrieve the hardware status and information for all Fibre Channel nodes, iSCSI
+    nodes and drives in the cluster. This generally includes details about manufacturers, vendors, versions, and other associated hardware
+    identification information.
 
-    :param type:  Include only a certain type of hardware information in the response. Can be one of the following:drives: List only drive information in the response.nodes: List only node information in the response.all: Include both drive and node information in the response.If this parameter is omitted, a type of "all" is assumed. 
+    :param type:  Includes only a certain type of hardware information in the response. Possible values are: drives: List only drive information in the response. nodes: List only node information in the response. all: Include both drive and node information in the response. If this parameter is omitted, a type of "all" is assumed. 
     :type type: str
 
     """
     type = data_model.property(
         "type", str,
         array=False, optional=True,
-        documentation="[&#x27;Include only a certain type of hardware information in the response. Can be one of the following:drives: List only drive information in the response.nodes: List only node information in the response.all: Include both drive and node information in the response.If this parameter is omitted, a type of &quot;all&quot; is assumed.&#x27;]",
+        documentation="[&#x27;Includes only a certain type of hardware information in&#x27;, &#x27;the response. Possible values are:&#x27;, &#x27;drives: List only drive information in the response.&#x27;, &#x27;nodes: List only node information in the response.&#x27;, &#x27;all: Include both drive and node information in the&#x27;, &#x27;response.&#x27;, &#x27;If this parameter is omitted, a type of &quot;all&quot; is assumed.&#x27;]",
         dictionaryType=None
     )
 
@@ -10504,14 +10389,14 @@ class RemoveBackupTargetRequest(data_model.DataObject):
     """RemoveBackupTargetRequest  
     RemoveBackupTarget allows you to delete backup targets.
 
-    :param backup_target_id: [required] Unique target ID of the target to remove. 
+    :param backup_target_id: [required] The unique target ID of the target to remove. 
     :type backup_target_id: int
 
     """
     backup_target_id = data_model.property(
         "backupTargetID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique target ID of the target to remove.&#x27;]",
+        documentation="[&#x27;The unique target ID of the target to remove.&#x27;]",
         dictionaryType=None
     )
 
@@ -10520,10 +10405,10 @@ class RemoveBackupTargetRequest(data_model.DataObject):
 
 class CreateVolumeRequest(data_model.DataObject):
     """CreateVolumeRequest  
-    CreateVolume is used to create a new (empty) volume on the cluster.
-    When the volume is created successfully it is available for connection via iSCSI.
+    CreateVolume enables you to create a new (empty) volume on the cluster. As soon as the volume creation is complete, the volume is
+    available for connection via iSCSI.
 
-    :param name: [required] Name of the volume. Not required to be unique, but it is recommended. May be 1 to 64 characters in length. 
+    :param name: [required] The name of the volume access group (might be user specified). Not required to be unique, but recommended. Might be 1 to 64 characters in length. 
     :type name: str
 
     :param account_id: [required] AccountID for the owner of this volume. 
@@ -10532,23 +10417,20 @@ class CreateVolumeRequest(data_model.DataObject):
     :param total_size: [required] Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size. 
     :type total_size: int
 
-    :param enable512e: [required] Should the volume provides 512-byte sector emulation? 
+    :param enable512e: [required] Specifies whether 512e emulation is enabled or not. Possible values are: true: The volume provides 512-byte sector emulation. false: 512e emulation is not enabled. 
     :type enable512e: bool
 
-    :param qos:  Initial quality of service settings for this volume.  Volumes created without specified QoS values are created with the default values for QoS. Default values for a volume can be found by running the GetDefaultQoS method. 
+    :param qos:  Initial quality of service settings for this volume. Default values are used if none are specified. Valid settings are: minIOPS maxIOPS burstIOPS You can get the default values for a volume by using the GetDefaultQoS method. 
     :type qos: QoS
 
-    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :param attributes:  The list of name-value pairs in JSON object format. Total attribute size must be less than 1000B, or 1KB, including JSON formatting characters. 
     :type attributes: dict
-
-    :param slice_count:   
-    :type slice_count: int
 
     """
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;Name of the volume.&#x27;, &#x27;Not required to be unique, but it is recommended.&#x27;, &#x27;May be 1 to 64 characters in length.&#x27;]",
+        documentation="[&#x27;The name of the volume access group (might be user specified).&#x27;, &#x27;Not required to be unique, but recommended.&#x27;, &#x27;Might be 1 to 64 characters in length.&#x27;]",
         dictionaryType=None
     )
     account_id = data_model.property(
@@ -10560,31 +10442,25 @@ class CreateVolumeRequest(data_model.DataObject):
     total_size = data_model.property(
         "totalSize", int,
         array=False, optional=False,
-        documentation="[&#x27;Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size.&#x27;]",
+        documentation="[&#x27;Total size of the volume, in bytes. Size is rounded up to&#x27;, &#x27;the nearest 1MB size.&#x27;]",
         dictionaryType=None
     )
     enable512e = data_model.property(
         "enable512e", bool,
         array=False, optional=False,
-        documentation="[&#x27;Should the volume provides 512-byte sector emulation?&#x27;]",
+        documentation="[&#x27;Specifies whether 512e emulation is enabled or not. Possible values are:&#x27;, &#x27;true: The volume provides 512-byte sector emulation.&#x27;, &#x27;false: 512e emulation is not enabled.&#x27;]",
         dictionaryType=None
     )
     qos = data_model.property(
         "qos", QoS,
         array=False, optional=True,
-        documentation="[&#x27;Initial quality of service settings for this volume.&#x27;, u&#x27;&#x27;, &#x27;Volumes created without specified QoS values are created with the default values for QoS.&#x27;, &#x27;Default values for a volume can be found by running the GetDefaultQoS method.&#x27;]",
+        documentation="[&#x27;Initial quality of service settings for this volume. Default&#x27;, &#x27;values are used if none are specified. Valid settings are:&#x27;, &#x27;minIOPS&#x27;, &#x27;maxIOPS&#x27;, &#x27;burstIOPS&#x27;, &#x27;You can get the default values for a volume by using the GetDefaultQoS method.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
-        dictionaryType=None
-    )
-    slice_count = data_model.property(
-        "sliceCount", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;The list of name-value pairs in JSON object format.&#x27;, &#x27;Total attribute size must be less than 1000B, or 1KB,&#x27;, &#x27;including JSON formatting characters.&#x27;]",
         dictionaryType=None
     )
 
@@ -10601,11 +10477,9 @@ class CreateClusterResult(data_model.DataObject):
 
 class SetConfigRequest(data_model.DataObject):
     """SetConfigRequest  
-    The SetConfig API method is used to set all the configuration information for the node. This includes the same information available via calls to SetClusterConfig and SetNetworkConfig in one API method.
-    
-    Warning! Changing the 'bond-mode' on a node can cause a temporary loss of network connectivity. Caution should be taken when using this method.
-    
+    The SetConfig API method enables you to set all the configuration information for the node. This includes the same information available via calls to SetClusterConfig and SetNetworkConfig in one API method. 
     Note: This method is available only through the per-node API endpoint 5.0 or later.
+    Caution: Changing the "bond-mode" on a node can cause a temporary loss of network connectivity. Exercise caution when using this method.
 
     :param config: [required] Objects that you want changed for the cluster interface settings. 
     :type config: Config
@@ -10640,7 +10514,7 @@ class ModifyVolumesRequest(data_model.DataObject):
     :param total_size:  New size of the volume in bytes. 1000000000 is equal to 1GB. Size is rounded up to the nearest 1MB in size. This parameter can only be used to increase the size of a volume. 
     :type total_size: int
 
-    :param attributes:   
+    :param attributes:  List of name/value pairs in JSON object format. 
     :type attributes: dict
 
     """
@@ -10677,7 +10551,7 @@ class ModifyVolumesRequest(data_model.DataObject):
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;List of name/value pairs in JSON object format.&#x27;]",
         dictionaryType=None
     )
 
@@ -10728,17 +10602,16 @@ class ListActivePairedVolumesResult(data_model.DataObject):
 
 class RestoreDeletedVolumeRequest(data_model.DataObject):
     """RestoreDeletedVolumeRequest  
-    RestoreDeletedVolume marks a deleted volume as active again.
-    This action makes the volume immediately available for iSCSI connection.
+    RestoreDeletedVolume marks a deleted volume as active again. This action makes the volume immediately available for iSCSI connection.
 
-    :param volume_id: [required] VolumeID for the deleted volume to restore. 
+    :param volume_id: [required] VolumeID of the deleted volume to be restored. 
     :type volume_id: int
 
     """
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;VolumeID for the deleted volume to restore.&#x27;]",
+        documentation="[&#x27;VolumeID of the deleted volume to be restored.&#x27;]",
         dictionaryType=None
     )
 
@@ -10747,25 +10620,26 @@ class RestoreDeletedVolumeRequest(data_model.DataObject):
 
 class SetNtpInfoRequest(data_model.DataObject):
     """SetNtpInfoRequest  
-    SetNtpInfo is used to configure the NTP on cluster nodes. The values set with this interface apply to all nodes in the cluster. The nodes can only be configured as a server where a host is selected to administrate the networking and/or a broadcast client where each host sends each message to each peer.
+    SetNtpInfo enables you to configure NTP on cluster nodes. The values you set with this interface apply to all nodes in the cluster. If an NTP broadcast server periodically broadcasts time information on your network, you can optionally configure nodes as broadcast clients.
+    Note: NetApp recommends using NTP servers that are internal to your network, rather than the installation defaults.
 
-    :param servers: [required] List of NTP servers to add to each node's NTP configuration. 
+    :param servers: [required] List of NTP servers to add to each nodes NTP configuration. 
     :type servers: str
 
-    :param broadcastclient:  Enable every node in the cluster as a broadcase client. 
+    :param broadcastclient:  Enables every node in the cluster as a broadcast client. 
     :type broadcastclient: bool
 
     """
     servers = data_model.property(
         "servers", str,
         array=True, optional=False,
-        documentation="[&quot;List of NTP servers to add to each node&#x27;s NTP configuration.&quot;]",
+        documentation="[&#x27;List of NTP servers to add to each nodes NTP configuration.&#x27;]",
         dictionaryType=None
     )
     broadcastclient = data_model.property(
         "broadcastclient", bool,
         array=False, optional=True,
-        documentation="[&#x27;Enable every node in the cluster as a broadcase client.&#x27;]",
+        documentation="[&#x27;Enables every node in the cluster as a broadcast client.&#x27;]",
         dictionaryType=None
     )
 
@@ -10808,18 +10682,18 @@ class RemoveVolumePairResult(data_model.DataObject):
 
 class RemoveAccountRequest(data_model.DataObject):
     """RemoveAccountRequest  
-    Used to remove an existing account.
-    All Volumes must be deleted and purged on the account before it can be removed.
-    If volumes on the account are still pending deletion, RemoveAccount cannot be used until DeleteVolume to delete and purge the volumes.
+    RemoveAccount enables you to remove an existing account. You must delete and purge all volumes associated with the account
+    using DeleteVolume before you can remove the account. If volumes on the account are still pending deletion, you cannot use
+    RemoveAccount to remove the account.
 
-    :param account_id: [required] AccountID for the account to remove. 
+    :param account_id: [required] Specifies the AccountID for the account to be removed. 
     :type account_id: int
 
     """
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=False,
-        documentation="[&#x27;AccountID for the account to remove.&#x27;]",
+        documentation="[&#x27;Specifies the AccountID for the account to be removed.&#x27;]",
         dictionaryType=None
     )
 
@@ -10862,6 +10736,24 @@ class ListGroupSnapshotsResult(data_model.DataObject):
         "groupSnapshots", GroupSnapshot,
         array=True, optional=False,
         documentation="[&#x27;List of Group Snapshots.&#x27;]",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetNvramInfoRequest(data_model.DataObject):
+    """GetNvramInfoRequest  
+    GetNvramInfo enables you to retrieve information from each node about the NVRAM card.
+
+    :param force:  Required parameter to successfully run on all nodes in the cluster. 
+    :type force: bool
+
+    """
+    force = data_model.property(
+        "force", bool,
+        array=False, optional=True,
+        documentation="[&#x27;Required parameter to successfully run on all&#x27;, &#x27;nodes in the cluster.&#x27;]",
         dictionaryType=None
     )
 
@@ -11036,16 +10928,20 @@ class SetNtpInfoResult(data_model.DataObject):
 
 class GetVolumeAccessGroupEfficiencyRequest(data_model.DataObject):
     """GetVolumeAccessGroupEfficiencyRequest  
-    GetVolumeAccessGroupEfficiency is used to retrieve efficiency information about a volume access group. Only the volume access group provided as parameters in this API method is used to compute the capacity.
+    GetVolumeAccessGroupEfficiency enables you to
+    retrieve efficiency information about a volume access
+    group. Only the volume access group you provide as the
+    parameter in this API method is used to compute the
+    capacity.
 
-    :param volume_access_group_id: [required] Specifies the volume access group for which capacity is computed. 
+    :param volume_access_group_id: [required] The volume access group for which capacity is computed. 
     :type volume_access_group_id: int
 
     """
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation="[&#x27;Specifies the volume access group for which capacity is computed.&#x27;]",
+        documentation="[&#x27;The volume access group for which&#x27;, &#x27;capacity is computed.&#x27;]",
         dictionaryType=None
     )
 
@@ -11107,17 +11003,19 @@ class CreateInitiator(data_model.DataObject):
 
 class CreateInitiatorsRequest(data_model.DataObject):
     """CreateInitiatorsRequest  
-    CreateInitiators enables you to create multiple new initiator IQNs or World Wide Port Names (WWPNs) and optionally assign them aliases and attributes. When you use CreateInitiators to create new initiators, you can also add them to volume access groups.
-    If CreateInitiators fails to create one of the initiators provided in the parameter, the method returns an error and does not create any initiators (no partial completion is possible).
+    CreateInitiators enables you to create multiple new initiator IQNs or World Wide Port Names (WWPNs) and optionally assign them
+    aliases and attributes. When you use CreateInitiators to create new initiators, you can also add them to volume access groups.
+    If CreateInitiators fails to create one of the initiators provided in the parameter, the method returns an error and does not create
+    any initiators (no partial completion is possible).
 
-    :param initiators: [required] A list of Initiator objects containing characteristics of each new initiator 
+    :param initiators: [required] A list of objects containing characteristics of each new initiator. Values are: name: (Required) The name of the initiator (IQN or WWPN) to create. (String) alias: (Optional) The friendly name to assign to this initiator. (String) attributes: (Optional) A set of JSON attributes to assign to this initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which this newly created initiator will be added. (Integer) 
     :type initiators: CreateInitiator
 
     """
     initiators = data_model.property(
         "initiators", CreateInitiator,
         array=True, optional=False,
-        documentation="[&#x27;A list of Initiator objects containing characteristics of each new initiator&#x27;]",
+        documentation="[&#x27;A list of objects containing characteristics of each new initiator. Values are:&#x27;, &#x27;name: (Required) The name of the initiator (IQN or WWPN) to create.&#x27;, &#x27;(String)&#x27;, &#x27;alias: (Optional) The friendly name to assign to this initiator. (String)&#x27;, &#x27;attributes: (Optional) A set of JSON attributes to assign to this initiator.&#x27;, &#x27;(JSON Object)&#x27;, &#x27;volumeAccessGroupID: (Optional) The ID of the volume access group&#x27;, &#x27;into to which this newly created initiator will be added. (Integer)&#x27;]",
         dictionaryType=None
     )
 
@@ -11287,9 +11185,9 @@ class GetClusterFullThresholdResult(data_model.DataObject):
 
 class ListVolumesForAccountRequest(data_model.DataObject):
     """ListVolumesForAccountRequest  
-    ListVolumesForAccount returns the list of active AND (pending) deleted volumes for an account.
+    ListVolumesForAccount returns the list of active and (pending) deleted volumes for an account.
 
-    :param account_id: [required] The ID of the account to list the volumes for. 
+    :param account_id: [required] Returns all volumes owned by this AccountID. 
     :type account_id: int
 
     :param start_volume_id:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
@@ -11298,11 +11196,14 @@ class ListVolumesForAccountRequest(data_model.DataObject):
     :param limit:  The maximum number of volumes to return from the API. 
     :type limit: int
 
+    :param include_virtual_volumes:  Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. 
+    :type include_virtual_volumes: bool
+
     """
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the account to list the volumes for.&#x27;]",
+        documentation="[&#x27;Returns all volumes owned by this AccountID.&#x27;]",
         dictionaryType=None
     )
     start_volume_id = data_model.property(
@@ -11315,6 +11216,12 @@ class ListVolumesForAccountRequest(data_model.DataObject):
         "limit", int,
         array=False, optional=True,
         documentation="[&#x27;The maximum number of volumes to return from the API.&#x27;]",
+        dictionaryType=None
+    )
+    include_virtual_volumes = data_model.property(
+        "includeVirtualVolumes", bool,
+        array=False, optional=True,
+        documentation="[&#x27;Specifies that virtual volumes are included in the response by default.&#x27;, &#x27;To exclude virtual volumes, set to false.&#x27;]",
         dictionaryType=None
     )
 
@@ -11331,8 +11238,7 @@ class DisableEncryptionAtRestResult(data_model.DataObject):
 
 class GetVolumeEfficiencyRequest(data_model.DataObject):
     """GetVolumeEfficiencyRequest  
-    GetVolumeEfficiency is used to retrieve information about a volume.
-    Only the volume given as a parameter in this API method is used to compute the capacity.
+    GetVolumeEfficiency enables you to retrieve information about a volume. Only the volume you give as a parameter in this API method is used to compute the capacity.
 
     :param volume_id: [required] Specifies the volume for which capacity is computed. 
     :type volume_id: int
@@ -11350,90 +11256,94 @@ class GetVolumeEfficiencyRequest(data_model.DataObject):
 
 class ModifyVirtualNetworkRequest(data_model.DataObject):
     """ModifyVirtualNetworkRequest  
-    ModifyVirtualNetwork is used to change various attributes of a VirtualNetwork object. This method can be used to add or remove address blocks, change the netmask IP, or modify the name or description of the virtual network.
-    
+    You can use ModifyVirtualNetwork to change the attributes of an existing virtual network. This method enables you to add or remove
+    address blocks, change the netmask, or modify the name or description of the virtual network. You can also use it to enable or
+    disable namespaces, as well as add or remove a gateway if namespaces are enabled on the virtual network.
     Note: This method requires either the VirtualNetworkID or the VirtualNetworkTag as a parameter, but not both.
+    Caution: Enabling or disabling the Routable Storage VLANs functionality for an existing virtual network by changing the
+    "namespace" parameter disrupts any traffic handled by the virtual network. NetApp strongly recommends changing the
+    "namespace" parameter only during a scheduled maintenance window.
 
-    :param virtual_network_id:  Unique identifier of the virtual network to modify. This is the virtual network ID assigned by the SolidFire cluster. 
+    :param virtual_network_id:  The unique identifier of the virtual network to modify. This is the virtual network ID assigned by the cluster.  Note: This parameter is optional but either virtualNetworkID or virtualNetworkTag must be specified with this API method. 
     :type virtual_network_id: int
 
-    :param virtual_network_tag:  Network Tag that identifies the virtual network to modify. 
+    :param virtual_network_tag:  The network tag that identifies the virtual network to modify. Note: This parameter is optional but either virtualNetworkID or virtualNetworkTag must be specified with this API method. 
     :type virtual_network_tag: int
 
-    :param name:  New name for the virtual network. 
+    :param name:  The new name for the virtual network. 
     :type name: str
 
-    :param address_blocks:  New addressBlock to set for this Virtual Network object. This may contain new address blocks to add to the existing object or it may omit unused address blocks that need to be removed. Alternatively, existing address blocks may be extended or reduced in size. The size of the starting addressBlocks for a Virtual Network object can only be increased, and can never be decreased. Attributes for this parameter are: start: start of the IP address range. (String) size: numbre of IP addresses to include in the block. (Integer) 
+    :param address_blocks:  The new addressBlock to set for this virtual network. This might contain new address blocks to add to the existing object or omit unused address blocks that need to be removed. Alternatively, you can extend or reduce the size of existing address blocks. You can only increase the size of the starting addressBlocks for a virtual network object; you can never decrease it. Attributes for this parameter are: start: The start of the IP address range. (String) size: The number of IP addresses to include in the block. (Integer) 
     :type address_blocks: AddressBlock
 
-    :param netmask:  New netmask for this virtual network. 
+    :param netmask:  New network mask for this virtual network. 
     :type netmask: str
 
-    :param svip:  The storage virtual IP address for this virtual network. The svip for Virtual Network cannot be changed. A new Virtual Network must be created in order to use a different svip address. 
+    :param svip:  The storage virtual IP address for this virtual network. The svip for a virtual network cannot be changed. You must create a new virtual network to use a different svip address. 
     :type svip: str
 
-    :param gateway:   
+    :param gateway:  The IP address of a gateway of the virtual network. This parameter is only valid if the "namespace" parameter is set to true. 
     :type gateway: str
 
-    :param namespace:   
+    :param namespace:  When set to true, enables Routable Storage VLANs functionality by recreating the virtual network and configuring a namespace to contain it. When set to false, disables the VRF functionality for the virtual network. Changing this value disrupts traffic running through this virtual network. 
     :type namespace: bool
 
-    :param attributes:  A new list of Name/Value pairs in JSON object format. 
+    :param attributes:  A new list of name-value pairs in JSON object format. 
     :type attributes: dict
 
     """
     virtual_network_id = data_model.property(
         "virtualNetworkID", int,
         array=False, optional=True,
-        documentation="[&#x27;Unique identifier of the virtual network to modify. This is the virtual network ID assigned by the SolidFire cluster.&#x27;]",
+        documentation="[&#x27;The unique identifier of the virtual network to modify. This is the virtual&#x27;, &#x27;network ID assigned by the cluster. &#x27;, &#x27;Note: This parameter is optional&#x27;, &#x27;but either virtualNetworkID or virtualNetworkTag must be specified&#x27;, &#x27;with this API method.&#x27;]",
         dictionaryType=None
     )
     virtual_network_tag = data_model.property(
         "virtualNetworkTag", int,
         array=False, optional=True,
-        documentation="[&#x27;Network Tag that identifies the virtual network to modify.&#x27;]",
+        documentation="[&#x27;The network tag that identifies the virtual network to modify.&#x27;, &#x27;Note: This parameter is optional&#x27;, &#x27;but either virtualNetworkID or virtualNetworkTag must be specified&#x27;, &#x27;with this API method.&#x27;]",
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=True,
-        documentation="[&#x27;New name for the virtual network.&#x27;]",
+        documentation="[&#x27;The new name for the virtual network.&#x27;]",
         dictionaryType=None
     )
     address_blocks = data_model.property(
         "addressBlocks", AddressBlock,
         array=True, optional=True,
-        documentation="[&#x27;New addressBlock to set for this Virtual Network object. This may contain new address blocks to add to the existing object or it may omit unused address blocks that need to be removed. Alternatively, existing address blocks may be extended or reduced in size. The size of the starting addressBlocks for a Virtual Network object can only be increased, and can never be decreased.&#x27;, &#x27;Attributes for this parameter are:&#x27;, &#x27;start: start of the IP address range. (String)&#x27;, &#x27;size: numbre of IP addresses to include in the block. (Integer)&#x27;]",
+        documentation="[&#x27;The new addressBlock to set for this virtual network. This might contain&#x27;, &#x27;new address blocks to add to the existing object or omit&#x27;, &#x27;unused address blocks that need to be removed. Alternatively, you&#x27;, &#x27;can extend or reduce the size of existing address blocks. You can only&#x27;, &#x27;increase the size of the starting addressBlocks for a virtual network&#x27;, &#x27;object; you can never decrease it.&#x27;, &#x27;Attributes for this parameter are:&#x27;, &#x27;start: The start of the IP address range. (String)&#x27;, &#x27;size: The number of IP addresses to include in the block. (Integer)&#x27;]",
         dictionaryType=None
     )
     netmask = data_model.property(
         "netmask", str,
         array=False, optional=True,
-        documentation="[&#x27;New netmask for this virtual network.&#x27;]",
+        documentation="[&#x27;New network mask for this virtual network.&#x27;]",
         dictionaryType=None
     )
     svip = data_model.property(
         "svip", str,
         array=False, optional=True,
-        documentation="[&#x27;The storage virtual IP address for this virtual network. The svip for Virtual Network cannot be changed. A new Virtual Network must be created in order to use a different svip address.&#x27;]",
+        documentation="[&#x27;The storage virtual IP address for this virtual network. The svip for a&#x27;, &#x27;virtual network cannot be changed. You must create a new virtual&#x27;, &#x27;network to use a different svip address.&#x27;]",
         dictionaryType=None
     )
     gateway = data_model.property(
         "gateway", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;The IP address of a gateway of the virtual network. This parameter is only valid if the &quot;namespace&quot; parameter is set to true.&#x27;]",
         dictionaryType=None
     )
     namespace = data_model.property(
         "namespace", bool,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;When set to true, enables Routable Storage VLANs functionality by recreating the virtual network and configuring a namespace to contain it. When set to false, disables the VRF functionality for the virtual network. Changing this value disrupts traffic running through this virtual network.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;A new list of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="[&#x27;A new list of name-value pairs in JSON object format.&#x27;]",
         dictionaryType=None
     )
 
@@ -11443,12 +11353,12 @@ class ModifyVirtualNetworkRequest(data_model.DataObject):
 class ListVolumeStatsByVirtualVolumeResult(data_model.DataObject):
     """ListVolumeStatsByVirtualVolumeResult  
 
-    :param volume_stats: [required]  
-    :type volume_stats: VolumeStats
+    :param virtual_volume_stats: [required]  
+    :type virtual_volume_stats: VolumeStats
 
     """
-    volume_stats = data_model.property(
-        "volumeStats", VolumeStats,
+    virtual_volume_stats = data_model.property(
+        "VirtualVolumeStats", VolumeStats,
         array=True, optional=False,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
@@ -11476,16 +11386,17 @@ class ListVolumesForAccountResult(data_model.DataObject):
 
 class GetNodeHardwareInfoRequest(data_model.DataObject):
     """GetNodeHardwareInfoRequest  
-    GetNodeHardwareInfo is used to return all the hardware info and status for the node specified. This generally includes manufacturers, vendors, versions, and other associated hardware identification information.
+    GetNodeHardwareInfo enables you to return all the hardware information and status for the node specified. This generally includes details about
+    manufacturers, vendors, versions, and other associated hardware identification information.
 
-    :param node_id: [required] The ID of the node for which hardware information is being requested.  Information about a  node is returned if a   node is specified. 
+    :param node_id: [required] The ID of the node for which hardware information is being requested. Information about a Fibre Channel node is returned if a Fibre Channel node is specified. 
     :type node_id: int
 
     """
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the node for which hardware information is being requested.  Information about a  node is returned if a   node is specified.&#x27;]",
+        documentation="[&#x27;The ID of the node for which hardware information is being requested. Information&#x27;, &#x27;about a Fibre Channel node is returned if a Fibre Channel node is specified.&#x27;]",
         dictionaryType=None
     )
 
@@ -11494,20 +11405,17 @@ class GetNodeHardwareInfoRequest(data_model.DataObject):
 
 class SecureEraseDrivesRequest(data_model.DataObject):
     """SecureEraseDrivesRequest  
-    SecureEraseDrives is used to remove any residual data from drives that have a status of "available." For example, when replacing a drive at its end-of-life that contained sensitive data.
-    It uses a Security Erase Unit command to write a predetermined pattern to the drive and resets the encryption key on the drive. The method may take up to two minutes to complete, so it is an asynchronous method.
-    The GetAsyncResult method can be used to check on the status of the secure erase operation.
-    
-    Use the "ListDrives" method to obtain the driveIDs for the drives you want to secure erase.
+    SecureEraseDrives enables you to remove any residual data from drives that have a status of "available." You might want to use this method when replacing a drive nearing the end of its service life that contained sensitive data. This method uses a Security Erase Unit command to write a predetermined pattern to the drive and resets the encryption key on the drive. This asynchronous method might take up to two minutes to complete. You can use GetAsyncResult to check on the status of the secure erase operation.
+    You can use the ListDrives method to obtain the driveIDs for the drives you want to secure erase.
 
-    :param drives: [required] List of driveIDs to secure erase. 
+    :param drives: [required] List of driveIDs to be secure erased. 
     :type drives: int
 
     """
     drives = data_model.property(
         "drives", int,
         array=True, optional=False,
-        documentation="[&#x27;List of driveIDs to secure erase.&#x27;]",
+        documentation="[&#x27;List of driveIDs to be secure erased.&#x27;]",
         dictionaryType=None
     )
 
@@ -11635,18 +11543,6 @@ class VirtualVolumeBinding(data_model.DataObject):
     :param virtual_volume_secondary_id: [required] The secondary ID of the virtual volume. 
     :type virtual_volume_secondary_id: str
 
-    :param virtual_volume:  An object describing the bound volume or snapshot. 
-    :type virtual_volume: VirtualVolumeInfo
-
-    :param protocol_endpoint:  An object describing the protocol endpoint to which the virtual volume is bound. 
-    :type protocol_endpoint: UUID
-
-    :param virtual_volume_host:  An object describing the host to which this binding corresponds. 
-    :type virtual_volume_host: VirtualVolumeHost
-
-    :param fault:  
-    :type fault: str
-
     """
     protocol_endpoint_id = data_model.property(
         "protocolEndpointID", UUID,
@@ -11690,30 +11586,6 @@ class VirtualVolumeBinding(data_model.DataObject):
         documentation="[&#x27;The secondary ID of the virtual volume.&#x27;]",
         dictionaryType=None
     )
-    virtual_volume = data_model.property(
-        "virtualVolume", VirtualVolumeInfo,
-        array=False, optional=True,
-        documentation="[&#x27;An object describing the bound volume or snapshot.&#x27;]",
-        dictionaryType=None
-    )
-    protocol_endpoint = data_model.property(
-        "protocolEndpoint", UUID,
-        array=False, optional=True,
-        documentation="[&#x27;An object describing the protocol endpoint to which the virtual volume is bound.&#x27;]",
-        dictionaryType=None
-    )
-    virtual_volume_host = data_model.property(
-        "virtualVolumeHost", VirtualVolumeHost,
-        array=False, optional=True,
-        documentation="[&#x27;An object describing the host to which this binding corresponds.&#x27;]",
-        dictionaryType=None
-    )
-    fault = data_model.property(
-        "fault", str,
-        array=False, optional=True,
-        documentation="",
-        dictionaryType=None
-    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -11745,26 +11617,25 @@ class ModifyClusterAdminResult(data_model.DataObject):
 
 class RollbackToSnapshotRequest(data_model.DataObject):
     """RollbackToSnapshotRequest  
-    RollbackToSnapshot is used to make an existing snapshot the "active" volume image. This method creates a new 
-    snapshot from an existing snapshot. The new snapshot becomes "active" and the existing snapshot is preserved until 
-    it is manually deleted. The previously "active" snapshot is deleted unless the parameter saveCurrentState is set with 
-    a value of "true."
-    Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
-    Snapshots are not created when cluster fullness is at stage 4 or 5.
+    RollbackToSnapshot enables you to make an existing snapshot of the "active" volume image. This method creates a new snapshot
+    from an existing snapshot. The new snapshot becomes "active" and the existing snapshot is preserved until you delete it.
+    The previously "active" snapshot is deleted unless you set the parameter saveCurrentState to true.
+    Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is
+    at stage 4 or 5.
 
     :param volume_id: [required] VolumeID for the volume. 
     :type volume_id: int
 
-    :param snapshot_id: [required] ID of a previously created snapshot on the given volume. 
+    :param snapshot_id: [required] The ID of a previously created snapshot on the given volume. 
     :type snapshot_id: int
 
-    :param save_current_state: [required] true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. 
+    :param save_current_state: [required] Specifies whether to save an active volume image or delete it. Values are: true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. 
     :type save_current_state: bool
 
-    :param name:  Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with  "-copy" appended to the end of the name. 
+    :param name:  Name for the snapshot. If unspecified, the name of the snapshot being rolled back to is used with "- copy" appended to the end of the name. 
     :type name: str
 
-    :param attributes:  List of Name/Value pairs in JSON object format 
+    :param attributes:  List of name-value pairs in JSON object format. 
     :type attributes: dict
 
     """
@@ -11777,25 +11648,44 @@ class RollbackToSnapshotRequest(data_model.DataObject):
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=False,
-        documentation="[&#x27;ID of a previously created snapshot on the given volume.&#x27;]",
+        documentation="[&#x27;The ID of a previously created snapshot on the given volume.&#x27;]",
         dictionaryType=None
     )
     save_current_state = data_model.property(
         "saveCurrentState", bool,
         array=False, optional=False,
-        documentation="[&#x27;true: The previous active volume image is kept.&#x27;, &#x27;false: (default) The previous active volume image is deleted.&#x27;]",
+        documentation="[&#x27;Specifies whether to save an active volume image or delete it. Values are:&#x27;, &#x27;true: The previous active volume image is kept.&#x27;, &#x27;false: (default) The previous active volume image is deleted.&#x27;]",
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=True,
-        documentation="[&#x27;Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with &#x27;, &#x27;&quot;-copy&quot; appended to the end of the name.&#x27;]",
+        documentation="[&#x27;Name for the snapshot. If unspecified, the name of the snapshot being rolled back to is used with &quot;- copy&quot; appended to the end of the name.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format&#x27;]",
+        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListVolumeStatsByVolumeRequest(data_model.DataObject):
+    """ListVolumeStatsByVolumeRequest  
+    ListVolumeStatsByVolume returns high-level activity measurements for every volume, by volume. Values are cumulative from the
+    creation of the volume.
+
+    :param include_virtual_volumes:  Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. 
+    :type include_virtual_volumes: bool
+
+    """
+    include_virtual_volumes = data_model.property(
+        "includeVirtualVolumes", bool,
+        array=False, optional=True,
+        documentation="[&#x27;Specifies that virtual volumes are included in the response by default.&#x27;, &#x27;To exclude virtual volumes, set to false.&#x27;]",
         dictionaryType=None
     )
 
@@ -11964,9 +11854,10 @@ class ListClusterFaultsResult(data_model.DataObject):
 
 class AddLdapClusterAdminRequest(data_model.DataObject):
     """AddLdapClusterAdminRequest  
-    AddLdapClusterAdmin is used to add a new LDAP Cluster Admin. An LDAP Cluster Admin can be used to manage the cluster via the API and management tools. LDAP Cluster Admins are completely separate and unrelated to standard tenant accounts.
-    
-    An LDAP group that has been defined in Active Directory can also be added using this API method. The access level that is given to the group will be passed to the individual users in the LDAP group.
+    AddLdapClusterAdmin enables you to add a new LDAP cluster administrator user. An LDAP cluster administrator can manage the
+    cluster via the API and management tools. LDAP cluster admin accounts are completely separate and unrelated to standard tenant
+    accounts.
+    You can also use this method to add an LDAP group that has been defined in Active Directory. The access level that is given to the group is passed to the individual users in the LDAP group.
 
     :param username: [required] The distinguished user name for the new LDAP cluster admin. 
     :type username: str
@@ -11974,10 +11865,10 @@ class AddLdapClusterAdminRequest(data_model.DataObject):
     :param access: [required] Controls which methods this Cluster Admin can use. For more details on the levels of access, see the Access Control appendix in the SolidFire API Reference. 
     :type access: str
 
-    :param accept_eula:  Indicate your acceptance of the End User License Agreement when creating this cluster admin. To accept the EULA, set this parameter to true. 
+    :param accept_eula:  Accept the End User License Agreement. Set to true to add a cluster administrator account to the system. If omitted or set to false, the method call fails. 
     :type accept_eula: bool
 
-    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :param attributes:  List of name-value pairs in JSON object format. 
     :type attributes: dict
 
     """
@@ -11996,13 +11887,13 @@ class AddLdapClusterAdminRequest(data_model.DataObject):
     accept_eula = data_model.property(
         "acceptEula", bool,
         array=False, optional=True,
-        documentation="[&#x27;Indicate your acceptance of the End User License Agreement when creating this cluster admin. To accept the EULA, set this parameter to true.&#x27;]",
+        documentation="[&#x27;Accept the End User License Agreement. Set to true to add a cluster administrator account to the system. If omitted or set to false, the method call fails.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
         dictionaryType=None
     )
 
@@ -12011,43 +11902,43 @@ class AddLdapClusterAdminRequest(data_model.DataObject):
 
 class ModifyVolumePairRequest(data_model.DataObject):
     """ModifyVolumePairRequest  
-    ModifyVolumePair is used to pause or restart replication between a pair of volumes.
+    ModifyVolumePair enables you to pause or restart replication between a pair of volumes.
 
-    :param volume_id: [required] Identification number of the volume to be modified. 
+    :param volume_id: [required] The ID of the volume to be modified. 
     :type volume_id: int
 
-    :param paused_manual:  Valid values that can be entered: true: to pause volume replication. false: to restart volume replication. If no value is specified, no change in replication is performed. 
+    :param paused_manual:  Specifies whether to pause or restart volume replication process. Valid values are:  true: Pauses volume replication false: Restarts volume replication 
     :type paused_manual: bool
 
-    :param mode:  Volume replication mode. Possible values: Async: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster. Sync: The source acknowledges the write when the data is stored locally and on the remote cluster. SnapshotsOnly: Only snapshots created on the source cluster will be replicated. Active writes from the source volume are not replicated. 
+    :param mode:  Specifies the volume replication mode. Possible values are: Async: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster. Sync: The source acknowledges the write when the data is stored locally and on the remote cluster. SnapshotsOnly: Only snapshots created on the source cluster are replicated. Active writes from the source volume are not replicated. 
     :type mode: str
 
-    :param pause_limit:   
+    :param pause_limit:  Internal use only. 
     :type pause_limit: int
 
     """
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;Identification number of the volume to be modified.&#x27;]",
+        documentation="[&#x27;The ID of the volume to be modified.&#x27;]",
         dictionaryType=None
     )
     paused_manual = data_model.property(
         "pausedManual", bool,
         array=False, optional=True,
-        documentation="[&#x27;Valid values that can be entered:&#x27;, &#x27;true: to pause volume replication.&#x27;, &#x27;false: to restart volume replication.&#x27;, &#x27;If no value is specified, no change in replication is performed.&#x27;]",
+        documentation="[&#x27;Specifies whether to pause or restart volume replication process. Valid values are: &#x27;, &#x27;true: Pauses volume replication&#x27;, &#x27;false: Restarts volume replication&#x27;]",
         dictionaryType=None
     )
     mode = data_model.property(
         "mode", str,
         array=False, optional=True,
-        documentation="[&#x27;Volume replication mode.&#x27;, &#x27;Possible values:&#x27;, &#x27;Async: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.&#x27;, &#x27;Sync: The source acknowledges the write when the data is stored locally and on the remote cluster.&#x27;, &#x27;SnapshotsOnly: Only snapshots created on the source cluster will be replicated. Active writes from the source volume are not replicated.&#x27;]",
+        documentation="[&#x27;Specifies the volume replication mode. Possible values are:&#x27;, &#x27;Async: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.&#x27;, &#x27;Sync: The source acknowledges the write when the data is stored locally and on the remote cluster.&#x27;, &#x27;SnapshotsOnly: Only snapshots created on the source cluster are replicated. Active writes from the source volume are not replicated.&#x27;]",
         dictionaryType=None
     )
     pause_limit = data_model.property(
         "pauseLimit", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;Internal use only.&#x27;]",
         dictionaryType=None
     )
 
@@ -12056,15 +11947,17 @@ class ModifyVolumePairRequest(data_model.DataObject):
 
 class CloneMultipleVolumesRequest(data_model.DataObject):
     """CloneMultipleVolumesRequest  
-    CloneMultipleVolumes is used to create a clone of a group of specified volumes. A consistent set of characteristics can be assigned to a group of multiple volume when they are cloned together.
-    If groupSnapshotID is going to be used to clone the volumes in a group snapshot, the group snapshot must be created first using the CreateGroupSnapshot API method or the SolidFire Element WebUI. Using groupSnapshotID is optional when cloning multiple volumes.
-    
-    Note: Cloning multiple volumes is allowed if cluster fullness is at stage 2 or 3. Clones are not created when cluster fullness is at stage 4 or 5.
+    CloneMultipleVolumes enables you to create a clone of a group of specified volumes. You can assign a consistent set of characteristics
+    to a group of multiple volumes when they are cloned together.
+    Before using groupSnapshotID to clone the volumes in a group snapshot, you must create the group snapshot by using the
+    CreateGroupSnapshot API method or the Element OS Web UI. Using groupSnapshotID is optional when cloning multiple volumes.
+    Note: Cloning multiple volumes is allowed if cluster fullness is at stage 2 or 3. Clones are not created when cluster fullness is
+    at stage 4 or 5.
 
-    :param volumes: [required] Array of Unique ID for each volume to include in the clone with optional parameters. If optional parameters are not specified, the values will be inherited from the source volumes. 
+    :param volumes: [required] Unique ID for each volume to include in the clone. If optional parameters are not specified, the values are inherited from the source volumes. Required parameter for "volumes" array: volumeID Optional parameters for "volumes" array: access: Can be one of readOnly, readWrite, locked, or replicationTarget attributes: List of name-value pairs in JSON object format. name: New name for the clone. newAccountID: Account ID for the new volumes. newSize: New size Total size of the volume, in bytes. Size is rounded up to the nearest 1MB. 
     :type volumes: CloneMultipleVolumeParams
 
-    :param access:  New default access method for the new volumes if not overridden by information passed in the volumes array. readOnly: Only read operations are allowed. readWrite: Reads and writes are allowed. locked: No reads or writes are allowed. replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.  If unspecified, the access settings of the clone will be the same as the source. 
+    :param access:  New default access method for the new volumes if not overridden by information passed in the volume's array. 
     :type access: str
 
     :param group_snapshot_id:  ID of the group snapshot to use as a basis for the clone. 
@@ -12077,13 +11970,13 @@ class CloneMultipleVolumesRequest(data_model.DataObject):
     volumes = data_model.property(
         "volumes", CloneMultipleVolumeParams,
         array=True, optional=False,
-        documentation="[&#x27;Array of Unique ID for each volume to include in the clone with optional parameters. If optional parameters are not specified, the values will be inherited from the source volumes.&#x27;]",
+        documentation="[&#x27;Unique ID for each volume to include in the clone. If&#x27;, &#x27;optional parameters are not specified, the values are inherited from the source volumes.&#x27;, &#x27;Required parameter for &quot;volumes&quot; array:&#x27;, &#x27;volumeID&#x27;, &#x27;Optional parameters for &quot;volumes&quot; array:&#x27;, &#x27;access: Can be one of readOnly, readWrite,&#x27;, &#x27;locked, or replicationTarget&#x27;, &#x27;attributes: List of name-value pairs in JSON object&#x27;, &#x27;format.&#x27;, &#x27;name: New name for the clone.&#x27;, &#x27;newAccountID: Account ID for the new volumes.&#x27;, &#x27;newSize: New size Total size of the volume, in bytes.&#x27;, &#x27;Size is rounded up to the nearest 1MB.&#x27;]",
         dictionaryType=None
     )
     access = data_model.property(
         "access", str,
         array=False, optional=True,
-        documentation="[&#x27;New default access method for the new volumes if not overridden by information passed in the volumes array.&#x27;, &#x27;readOnly: Only read operations are allowed.&#x27;, &#x27;readWrite: Reads and writes are allowed.&#x27;, &#x27;locked: No reads or writes are allowed.&#x27;, &#x27;replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, u&#x27;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;]",
+        documentation="[&#x27;New default access method for the new volumes if not&#x27;, &quot;overridden by information passed in the volume&#x27;s array.&quot;]",
         dictionaryType=None
     )
     group_snapshot_id = data_model.property(
@@ -12095,7 +11988,7 @@ class CloneMultipleVolumesRequest(data_model.DataObject):
     new_account_id = data_model.property(
         "newAccountID", int,
         array=False, optional=True,
-        documentation="[&#x27;New account ID for the volumes if not overridden by information passed in the volumes array.&#x27;]",
+        documentation="[&#x27;New account ID for the volumes if not overridden by&#x27;, &#x27;information passed in the volumes array.&#x27;]",
         dictionaryType=None
     )
 
@@ -12104,9 +11997,11 @@ class CloneMultipleVolumesRequest(data_model.DataObject):
 
 class ListVolumeAccessGroupsRequest(data_model.DataObject):
     """ListVolumeAccessGroupsRequest  
-    ListVolumeAccessGroups is used to return information about the volume access groups that are currently in the system.
+    ListVolumeAccessGroups enables you to return
+    information about the volume access groups that are
+    currently in the system.
 
-    :param start_volume_access_group_id:  The lowest VolumeAccessGroupID to return. This can be useful for paging. If unspecified, there is no lower limit (implicitly 0). 
+    :param start_volume_access_group_id:  The volume access group ID at which to begin the listing. If unspecified, there is no lower limit (implicitly 0). 
     :type start_volume_access_group_id: int
 
     :param limit:  The maximum number of results to return. This can be useful for paging. 
@@ -12116,13 +12011,13 @@ class ListVolumeAccessGroupsRequest(data_model.DataObject):
     start_volume_access_group_id = data_model.property(
         "startVolumeAccessGroupID", int,
         array=False, optional=True,
-        documentation="[&#x27;The lowest VolumeAccessGroupID to return.&#x27;, &#x27;This can be useful for paging.&#x27;, &#x27;If unspecified, there is no lower limit (implicitly 0).&#x27;]",
+        documentation="[&#x27;The volume access group ID at which to begin the listing. If unspecified, there is no lower limit (implicitly 0).&#x27;]",
         dictionaryType=None
     )
     limit = data_model.property(
         "limit", int,
         array=False, optional=True,
-        documentation="[&#x27;The maximum number of results to return.&#x27;, &#x27;This can be useful for paging.&#x27;]",
+        documentation="[&#x27;The maximum number of results to return. This can be&#x27;, &#x27;useful for paging.&#x27;]",
         dictionaryType=None
     )
 
@@ -12218,25 +12113,25 @@ class SetSnmpACLResult(data_model.DataObject):
 
 class ListGroupSnapshotsRequest(data_model.DataObject):
     """ListGroupSnapshotsRequest  
-    ListGroupSnapshots is used to return information about all group snapshots that have been created.
+    ListGroupSnapshots enables you to get information about all group snapshots that have been created.
 
-    :param volume_id:  An array of unique volume IDs to query. If this parameter is not specified, all group snapshots on the cluster will be included. 
+    :param volume_id:  An array of unique volume IDs to query. If you do not specify this parameter, all group snapshots on the cluster are included. 
     :type volume_id: int
 
-    :param group_snapshot_id:  Get info about individual snapshot 
+    :param group_snapshot_id:  Retrieves information for a specific group snapshot ID. 
     :type group_snapshot_id: int
 
     """
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=True,
-        documentation="[&#x27;An array of unique volume IDs to query.&#x27;, &#x27;If this parameter is not specified, all group snapshots on the cluster will be included.&#x27;]",
+        documentation="[&#x27;An array of unique volume IDs to query. If you do not&#x27;, &#x27;specify this parameter, all group snapshots on the cluster&#x27;, &#x27;are included.&#x27;]",
         dictionaryType=None
     )
     group_snapshot_id = data_model.property(
         "groupSnapshotID", int,
         array=False, optional=True,
-        documentation="[&#x27;Get info about individual snapshot&#x27;]",
+        documentation="[&#x27;Retrieves information for a specific group snapshot ID.&#x27;]",
         dictionaryType=None
     )
 
@@ -12245,16 +12140,16 @@ class ListGroupSnapshotsRequest(data_model.DataObject):
 
 class EnableFeatureRequest(data_model.DataObject):
     """EnableFeatureRequest  
-    EnableFeature allows you to enable cluster features that are disabled by default.
+    You can use EnableFeature to enable cluster features that are disabled by default.
 
-    :param feature: [required] Valid values: vvols: Enable the Virtual Volumes (VVOLs) cluster feature. 
+    :param feature: [required] Indicates which feature to enable. Valid value is: vvols: Enable the NetApp SolidFire VVols cluster feature. 
     :type feature: str
 
     """
     feature = data_model.property(
         "feature", str,
         array=False, optional=False,
-        documentation="[&#x27;Valid values: vvols: Enable the Virtual Volumes (VVOLs) cluster feature.&#x27;]",
+        documentation="[&#x27;Indicates which feature to enable. Valid value is:&#x27;, &#x27;vvols: Enable the NetApp SolidFire VVols cluster feature.&#x27;]",
         dictionaryType=None
     )
 
@@ -12308,9 +12203,8 @@ class SnmpNetwork(data_model.DataObject):
 
 class RemoveNodesRequest(data_model.DataObject):
     """RemoveNodesRequest  
-    RemoveNodes is used to remove one or more nodes that should no integerer participate in the cluster. Before removing a node, all drives it contains must first be removed with "RemoveDrives" method. A node cannot be removed until the RemoveDrives process has completed and all data has been migrated away from the node.
-    
-    Once removed, a node registers itself as a pending node and can be added again, or shut down which removes it from the "Pending Node" list.
+    You can use RemoveNodes to remove one or more nodes that should no longer participate in the cluster. Before removing a node, you must remove all drives the node contains using the RemoveDrives method. You cannot remove a node until the RemoveDrives process has completed and all data has been migrated away from the node.
+    After you remove a node, it registers itself as a pending node. You can add the node again or shut it down (shutting the node down removes it from the Pending Node list).
 
     :param nodes: [required] List of NodeIDs for the nodes to be removed. 
     :type nodes: int
@@ -12328,27 +12222,25 @@ class RemoveNodesRequest(data_model.DataObject):
 
 class DeleteGroupSnapshotRequest(data_model.DataObject):
     """DeleteGroupSnapshotRequest  
-    DeleteGroupSnapshot is used to delete a group snapshot.
-    The saveMembers parameter can be used to preserve all the snapshots that
-    were made for the volumes in the group but the group association will be removed.
+    DeleteGroupSnapshot enables you to delete a group snapshot. You can use the saveMembers parameter to preserve all the snapshots that were made for the volumes in the group, but the group association is removed.
 
-    :param group_snapshot_id: [required] Unique ID of the group snapshot. 
+    :param group_snapshot_id: [required] Specifies the unique ID of the group snapshot. 
     :type group_snapshot_id: int
 
-    :param save_members: [required] true: Snapshots are kept, but group association is removed. false: The group and snapshots are deleted. 
+    :param save_members: [required] Specifies whether to preserve snapshots or delete them. Valid values are: true: Snapshots are preserved, but group association is removed. false: The group and snapshots are deleted. 
     :type save_members: bool
 
     """
     group_snapshot_id = data_model.property(
         "groupSnapshotID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique ID of the group snapshot.&#x27;]",
+        documentation="[&#x27;Specifies the unique ID of the group snapshot.&#x27;]",
         dictionaryType=None
     )
     save_members = data_model.property(
         "saveMembers", bool,
         array=False, optional=False,
-        documentation="[&#x27;true: Snapshots are kept, but group association is removed.&#x27;, &#x27;false: The group and snapshots are deleted.&#x27;]",
+        documentation="[&#x27;Specifies whether to preserve snapshots or delete them. Valid values are:&#x27;, &#x27;true: Snapshots are preserved, but group association is removed.&#x27;, &#x27;false: The group and snapshots are deleted.&#x27;]",
         dictionaryType=None
     )
 
@@ -12358,13 +12250,13 @@ class DeleteGroupSnapshotRequest(data_model.DataObject):
 class ModifySnapshotResult(data_model.DataObject):
     """ModifySnapshotResult  
 
-    :param snapshot: [required]  
+    :param snapshot:   
     :type snapshot: Snapshot
 
     """
     snapshot = data_model.property(
         "snapshot", Snapshot,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
@@ -12374,25 +12266,25 @@ class ModifySnapshotResult(data_model.DataObject):
 
 class RemoveVolumesFromVolumeAccessGroupRequest(data_model.DataObject):
     """RemoveVolumesFromVolumeAccessGroupRequest  
-    Remove volumes from a volume access group.
+    The RemoveVolumeFromVolumeAccessGroup method enables you to remove volumes from a volume access group.
 
-    :param volume_access_group_id: [required] The ID of the volume access group to modify. 
+    :param volume_access_group_id: [required] The ID of the volume access group to remove volumes from. 
     :type volume_access_group_id: int
 
-    :param volumes: [required] List of volumes to remove from this volume access group. 
+    :param volumes: [required] The ID of the volume access group to remove volumes from. 
     :type volumes: int
 
     """
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume access group to modify.&#x27;]",
+        documentation="[&#x27;The ID of the volume access group to remove volumes from.&#x27;]",
         dictionaryType=None
     )
     volumes = data_model.property(
         "volumes", int,
         array=True, optional=False,
-        documentation="[&#x27;List of volumes to remove from this volume access group.&#x27;]",
+        documentation="[&#x27;The ID of the volume access group to remove volumes from.&#x27;]",
         dictionaryType=None
     )
 
@@ -12401,34 +12293,34 @@ class RemoveVolumesFromVolumeAccessGroupRequest(data_model.DataObject):
 
 class ModifyStorageContainerRequest(data_model.DataObject):
     """ModifyStorageContainerRequest  
-    Modifies an existing storage container.
+    ModifyStorageContainer enables you to make changes to an existing virtual volume storage container.
 
-    :param storage_container_id: [required]  
+    :param storage_container_id: [required] The unique ID of the virtual volume storage container to modify. 
     :type storage_container_id: UUID
 
-    :param initiator_secret:   
+    :param initiator_secret:  The new secret for CHAP authentication for the initiator. 
     :type initiator_secret: str
 
-    :param target_secret:   
+    :param target_secret:  The new secret for CHAP authentication for the target. 
     :type target_secret: str
 
     """
     storage_container_id = data_model.property(
         "storageContainerID", UUID,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;The unique ID of the virtual volume storage container to modify.&#x27;]",
         dictionaryType=None
     )
     initiator_secret = data_model.property(
         "initiatorSecret", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;The new secret for CHAP authentication for the initiator.&#x27;]",
         dictionaryType=None
     )
     target_secret = data_model.property(
         "targetSecret", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;The new secret for CHAP authentication for the target.&#x27;]",
         dictionaryType=None
     )
 
@@ -12701,19 +12593,10 @@ class GetSnmpInfoResult(data_model.DataObject):
 class ModifyVolumesResult(data_model.DataObject):
     """ModifyVolumesResult  
 
-    :param qos:   
-    :type qos: QoS
-
     :param volumes: [required]  
     :type volumes: Volume
 
     """
-    qos = data_model.property(
-        "qos", QoS,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
     volumes = data_model.property(
         "volumes", Volume,
         array=True, optional=False,
@@ -12726,43 +12609,19 @@ class ModifyVolumesResult(data_model.DataObject):
 
 class RestartNetworkingRequest(data_model.DataObject):
     """RestartNetworkingRequest  
-    The RestartNetworking API method is used to restart the networking services on a node.WARNING! This method restarts all networking services on a node, causing temporary loss of networking connectivity. Exercise caution when using this method.
+    The RestartNetworking API method enables you to restart the networking services on a node.
+    Warning: This method restarts all networking services on a node, causing temporary loss of networking connectivity.
+    Exercise caution when using this method.
+    Note: This method is available only through the per-node API endpoint 5.0 or later.
 
-    :param force: [required] The "force" parameter must be included on this method to successfully restart the networking. 
+    :param force: [required] Required parameter to successfully reset the node. 
     :type force: bool
 
     """
     force = data_model.property(
         "force", bool,
         array=False, optional=False,
-        documentation="[&#x27;The &quot;force&quot; parameter must be included on this method to successfully restart the networking.&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class NodeFibreChannelPortInfoResult(data_model.DataObject):
-    """NodeFibreChannelPortInfoResult  
-    Fibre channel port info results for a node.
-
-    :param node_id: [required] The ID of the Fibre Channel node. 
-    :type node_id: int
-
-    :param result: [required] Contains a list of information about the Fibre Channel ports. 
-    :type result: FibreChannelPortList
-
-    """
-    node_id = data_model.property(
-        "nodeID", int,
-        array=False, optional=False,
-        documentation="[&#x27;The ID of the Fibre Channel node.&#x27;]",
-        dictionaryType=None
-    )
-    result = data_model.property(
-        "result", FibreChannelPortList,
-        array=False, optional=False,
-        documentation="[&#x27;Contains a list of information about the Fibre Channel ports.&#x27;]",
+        documentation="[&#x27;Required parameter to successfully reset the node.&#x27;]",
         dictionaryType=None
     )
 
@@ -12773,19 +12632,10 @@ class ListNodeFibreChannelPortInfoResult(data_model.DataObject):
     """ListNodeFibreChannelPortInfoResult  
     List of fibre channel port info results grouped by node.
 
-    :param nodes:  List of fibre channel port info results grouped by node. 
-    :type nodes: NodeFibreChannelPortInfoResult
-
     :param fibre_channel_ports: [required] List of all physical Fibre Channel ports. 
     :type fibre_channel_ports: FibreChannelPortInfo
 
     """
-    nodes = data_model.property(
-        "nodes", NodeFibreChannelPortInfoResult,
-        array=True, optional=True,
-        documentation="[&#x27;List of fibre channel port info results grouped by node.&#x27;]",
-        dictionaryType=None
-    )
     fibre_channel_ports = data_model.property(
         "fibreChannelPorts", FibreChannelPortInfo,
         array=True, optional=False,
@@ -12798,34 +12648,34 @@ class ListNodeFibreChannelPortInfoResult(data_model.DataObject):
 
 class CreateSupportBundleRequest(data_model.DataObject):
     """CreateSupportBundleRequest  
-    CreateSupportBundle is used to create a support bundle file under the node's directory. When the bundle has been successfully created, the bundle is stored on the node as a tar.gz file.
+    CreateSupportBundle enables you to create a support bundle file under the node's directory. After creation, the bundle is stored on the node as a tar.gz file.
 
-    :param bundle_name:  Unique name for each support bundle created. If no name is provided, then 'supportbundle' and the node name is used as a file name. 
+    :param bundle_name:  The unique name for the support bundle. If no name is provided, "supportbundle" and the node name are used as the filename. 
     :type bundle_name: str
 
-    :param extra_args:  This parameter is fed to the sf_make_support_bundle script. Should be used only at the request of SolidFire Support. 
+    :param extra_args:  Passed to the sf_make_support_bundle script. You should use this parameter only at the request of NetApp SolidFire Support. 
     :type extra_args: str
 
-    :param timeout_sec:  The number of seconds to let the support bundle script run before timing out and stopping. Default is 1500 seconds. 
+    :param timeout_sec:  The number of seconds to allow the support bundle script to run before stopping. The default value is 1500 seconds. 
     :type timeout_sec: int
 
     """
     bundle_name = data_model.property(
         "bundleName", str,
         array=False, optional=True,
-        documentation="[&quot;Unique name for each support bundle created. If no name is provided, then &#x27;supportbundle&#x27; and the node name is used as a file name.&quot;]",
+        documentation="[&#x27;The unique name for the support bundle. If no name is provided, &quot;supportbundle&quot; and the node name are used as the filename.&#x27;]",
         dictionaryType=None
     )
     extra_args = data_model.property(
         "extraArgs", str,
         array=False, optional=True,
-        documentation="[&#x27;This parameter is fed to the sf_make_support_bundle script. Should be used only at the request of SolidFire Support.&#x27;]",
+        documentation="[&#x27;Passed to the sf_make_support_bundle script. You should use this parameter only at the request of NetApp SolidFire Support.&#x27;]",
         dictionaryType=None
     )
     timeout_sec = data_model.property(
         "timeoutSec", int,
         array=False, optional=True,
-        documentation="[&#x27;The number of seconds to let the support bundle script run before timing out and stopping. Default is 1500 seconds.&#x27;]",
+        documentation="[&#x27;The number of seconds to allow the support bundle script to run before stopping. The default value is 1500 seconds.&#x27;]",
         dictionaryType=None
     )
 
@@ -13012,15 +12862,16 @@ class GetDriveStatsResult(data_model.DataObject):
 
 class ModifyVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
     """ModifyVolumeAccessGroupLunAssignmentsRequest  
-    The ModifytVolumeAccessGroupLunAssignments is used to define custom LUN assignments for specific volumes. Only LUN values set on the lunAssignments parameter will be changed in the volume access group. All other LUN assignments will remain unchanged.
-    
-    LUN assignment values must be unique for volumes in a volume access group. An exception will be seen if LUN assignments are duplicated in a volume access group. However, the same LUN values can be used again in different volume access groups.
-    
-    Note: Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed. None of the specified LUN assignments will be modified if there is an exception.
-    
-    Caution: If a LUN assignment is changed for a volume with active I/O, the I/O could be disrupted. Changes to the server configuration may be required in order to change volume LUN assignments.
+    The ModifyVolumeAccessGroupLunAssignments
+    method enables you to define custom LUN assignments
+    for specific volumes. This method changes only LUN
+    values set on the lunAssignments parameter in the
+    volume access group. All other LUN assignments remain
+    unchanged. LUN assignment values must be unique for volumes in a volume access group. You cannot define duplicate LUN values within a volume access group. However, you can use the same LUN values again in different volume access groups. 
+    Note: Correct LUN values are 0 through 16383. The system generates an exception if you pass a LUN value outside of this range. None of the specified LUN assignments are modified if there is an exception. 
+    Caution: If you change a LUN assignment for a volume with active I/O, the I/O can be disrupted. You might need to change the server configuration before changing volume LUN assignments.
 
-    :param volume_access_group_id: [required] Unique volume access group ID for which the LUN assignments will be modified. 
+    :param volume_access_group_id: [required] The ID of the volume access group for which the LUN assignments will be modified. 
     :type volume_access_group_id: int
 
     :param lun_assignments: [required] The volume IDs with new assigned LUN values. 
@@ -13030,7 +12881,7 @@ class ModifyVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique volume access group ID for which the LUN assignments will be modified.&#x27;]",
+        documentation="[&#x27;The ID of the volume access group for which the LUN assignments will be modified.&#x27;]",
         dictionaryType=None
     )
     lun_assignments = data_model.property(
@@ -13097,16 +12948,26 @@ class GetNetworkConfigResult(data_model.DataObject):
 
 class ListVolumeStatsByVolumeAccessGroupRequest(data_model.DataObject):
     """ListVolumeStatsByVolumeAccessGroupRequest  
-    ListVolumeStatsByVolumeAccessGroup is used to get total activity measurements for all of the volumes that are a member of the specified volume access group(s).
+    ListVolumeStatsByVolumeAccessGroup enables you to get total activity measurements for all of the volumes that are a member of the
+    specified volume access group(s).
 
-    :param volume_access_groups:  An array of VolumeAccessGroupIDs for which volume activity is returned. If no VolumeAccessGroupID is specified, stats for all volume access groups is returned. 
+    :param volume_access_groups:  An array of VolumeAccessGroupIDs for which volume activity is returned. If omitted, statistics for all volume access groups are returned. 
     :type volume_access_groups: int
+
+    :param include_virtual_volumes:  Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. 
+    :type include_virtual_volumes: bool
 
     """
     volume_access_groups = data_model.property(
         "volumeAccessGroups", int,
         array=True, optional=True,
-        documentation="[&#x27;An array of VolumeAccessGroupIDs for which volume activity is returned.&#x27;, &#x27;If no VolumeAccessGroupID is specified, stats for all volume access groups is returned.&#x27;]",
+        documentation="[&#x27;An array of VolumeAccessGroupIDs for which volume&#x27;, &#x27;activity is returned. If omitted, statistics for all volume&#x27;, &#x27;access groups are returned.&#x27;]",
+        dictionaryType=None
+    )
+    include_virtual_volumes = data_model.property(
+        "includeVirtualVolumes", bool,
+        array=False, optional=True,
+        documentation="[&#x27;Specifies that virtual volumes are included in the response by default.&#x27;, &#x27;To exclude virtual volumes, set to false.&#x27;]",
         dictionaryType=None
     )
 
@@ -13590,45 +13451,45 @@ class SetDefaultQoSResult(data_model.DataObject):
 
 class SetSnmpInfoRequest(data_model.DataObject):
     """SetSnmpInfoRequest  
-    SetSnmpInfo is used to configure SNMP v2 and v3 on the cluster nodes. The values set with this interface apply to all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpInfo.
-    
-    Note: EnableSnmp and SetSnmpACL methods can be used to accomplish the same results as SetSnmpInfo. SetSnmpInfo will no integerer be available after the Element 8 release. Please use EnableSnmp and SetSnmpACL in the future.
+    SetSnmpInfo enables you to configure SNMP version 2 and version 3 on cluster nodes. The values you set with this interface apply to
+    all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpInfo.
+    Note: SetSnmpInfo is deprecated. Use the EnableSnmp and SetSnmpACL methods instead.
 
-    :param networks:  List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. SNMP v2 only. 
+    :param networks:  List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See the SNMP Network Object for possible "networks" values. This parameter is required only for SNMP v2. 
     :type networks: SnmpNetwork
 
-    :param enabled:  If set to "true", then SNMP is enabled on each node in the cluster. 
+    :param enabled:  If set to true, SNMP is enabled on each node in the cluster. 
     :type enabled: bool
 
-    :param snmp_v3_enabled:  If set to "true", then SNMP v3 is enabled on each node in the cluster. 
+    :param snmp_v3_enabled:  If set to true, SNMP v3 is enabled on each node in the cluster. 
     :type snmp_v3_enabled: bool
 
-    :param usm_users:  If SNMP v3 is enabled, this value must be passed in place of the "networks" parameter. SNMP v3 only. 
+    :param usm_users:  If SNMP v3 is enabled, this value must be passed in place of the networks parameter. This parameter is required only for SNMP v3. 
     :type usm_users: SnmpV3UsmUser
 
     """
     networks = data_model.property(
         "networks", SnmpNetwork,
         array=True, optional=True,
-        documentation="[&#x27;List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible &quot;networks&quot; values. SNMP v2 only.&#x27;]",
+        documentation="[&#x27;List of networks and what type of access they have to the&#x27;, &#x27;SNMP servers running on the cluster nodes. See the SNMP&#x27;, &#x27;Network Object for possible &quot;networks&quot; values. This parameter is required only for SNMP v2.&#x27;]",
         dictionaryType=None
     )
     enabled = data_model.property(
         "enabled", bool,
         array=False, optional=True,
-        documentation="[&#x27;If set to &quot;true&quot;, then SNMP is enabled on each node in the cluster.&#x27;]",
+        documentation="[&#x27;If set to true, SNMP is enabled on each node in the cluster.&#x27;]",
         dictionaryType=None
     )
     snmp_v3_enabled = data_model.property(
         "snmpV3Enabled", bool,
         array=False, optional=True,
-        documentation="[&#x27;If set to &quot;true&quot;, then SNMP v3 is enabled on each node in the cluster.&#x27;]",
+        documentation="[&#x27;If set to true, SNMP v3 is enabled on each node in the cluster.&#x27;]",
         dictionaryType=None
     )
     usm_users = data_model.property(
         "usmUsers", SnmpV3UsmUser,
         array=True, optional=True,
-        documentation="[&#x27;If SNMP v3 is enabled, this value must be passed in place of the &quot;networks&quot; parameter. SNMP v3 only.&#x27;]",
+        documentation="[&#x27;If SNMP v3 is enabled, this value must be passed in place of the networks parameter. This parameter is required only for SNMP v3.&#x27;]",
         dictionaryType=None
     )
 
@@ -13637,16 +13498,16 @@ class SetSnmpInfoRequest(data_model.DataObject):
 
 class ListStorageContainersRequest(data_model.DataObject):
     """ListStorageContainersRequest  
-    Gets information for all storage containers currently in the system.
+    ListStorageContainers enables you to retrieve information about all virtual volume storage containers known to the system.
 
-    :param storage_container_ids:  List of storage containers to get 
+    :param storage_container_ids:  A list of storage container IDs for which to retrieve information. If you omit this parameter, the method returns information about all storage containers in the system. 
     :type storage_container_ids: UUID
 
     """
     storage_container_ids = data_model.property(
         "storageContainerIDs", UUID,
         array=True, optional=True,
-        documentation="[&#x27;List of storage containers to get&#x27;]",
+        documentation="[&#x27;A list of storage container IDs for which to retrieve information. If you omit this parameter, the method returns information about all storage containers in the system.&#x27;]",
         dictionaryType=None
     )
 
@@ -13664,24 +13525,6 @@ class GetHardwareInfoResult(data_model.DataObject):
         "hardwareInfo", dict,
         array=False, optional=False,
         documentation="[&#x27;Hardware information for this node. &#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetOriginRequest(data_model.DataObject):
-    """GetOriginRequest  
-    GetOrigin enables you to retrieve the origination certificate for where the node was built.NOTE: The GetOrigin method may return "null" if there is no origination certification.
-
-    :param force: [required]  
-    :type force: bool
-
-    """
-    force = data_model.property(
-        "force", bool,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
 
@@ -14282,46 +14125,45 @@ class GetLimitsResult(data_model.DataObject):
 
 class RollbackToGroupSnapshotRequest(data_model.DataObject):
     """RollbackToGroupSnapshotRequest  
-    RollbackToGroupSnapshot is used to roll back each individual volume in a snapshot group to a copy of their individual snapshots.
-    
-    Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3.
-    Snapshots are not created when cluster fullness is at stage 4 or 5.
+    RollbackToGroupSnapshot enables you to roll back all individual volumes in a snapshot group to each volume's individual snapshot.
+    Note: Rolling back to a group snapshot creates a temporary snapshot of each volume within the group snapshot.
+    Snapshots are allowed if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is at stage 4 or 5.
 
-    :param group_snapshot_id: [required] Unique ID of the group snapshot. 
+    :param group_snapshot_id: [required] Specifies the unique ID of the group snapshot. 
     :type group_snapshot_id: int
 
-    :param save_current_state: [required] true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. 
+    :param save_current_state: [required] Specifies whether to save an active volume image or delete it. Values are: true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. 
     :type save_current_state: bool
 
-    :param name:  Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with  "-copy" appended to the end of the name. 
+    :param name:  Name for the group snapshot of the volume's current state that is created if "saveCurrentState" is set to true. If you do not give a name, the name of the snapshots (group and individual volume) are set to a timestamp of the time that the rollback occurred. 
     :type name: str
 
-    :param attributes:  List of Name/Value pairs in JSON object format 
+    :param attributes:  List of name-value pairs in JSON object format. 
     :type attributes: dict
 
     """
     group_snapshot_id = data_model.property(
         "groupSnapshotID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique ID of the group snapshot.&#x27;]",
+        documentation="[&#x27;Specifies the unique ID of the group snapshot.&#x27;]",
         dictionaryType=None
     )
     save_current_state = data_model.property(
         "saveCurrentState", bool,
         array=False, optional=False,
-        documentation="[&#x27;true: The previous active volume image is kept.&#x27;, &#x27;false: (default) The previous active volume image is deleted.&#x27;]",
+        documentation="[&#x27;Specifies whether to save an active volume image or delete it. Values are:&#x27;, &#x27;true: The previous active volume image is kept.&#x27;, &#x27;false: (default) The previous active volume image is deleted.&#x27;]",
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=True,
-        documentation="[&#x27;Name for the snapshot. If no name is given, then the name of the snapshot being rolled back to is used with &#x27;, &#x27;&quot;-copy&quot; appended to the end of the name.&#x27;]",
+        documentation="[&quot;Name for the group snapshot of the volume&#x27;s&quot;, &#x27;current state that is created if &quot;saveCurrentState&quot; is&#x27;, &#x27;set to true. If you do not give a name, the&#x27;, &#x27;name of the snapshots (group and individual&#x27;, &#x27;volume) are set to a timestamp of the time that&#x27;, &#x27;the rollback occurred.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format&#x27;]",
+        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
         dictionaryType=None
     )
 
@@ -14330,16 +14172,16 @@ class RollbackToGroupSnapshotRequest(data_model.DataObject):
 
 class GetBackupTargetRequest(data_model.DataObject):
     """GetBackupTargetRequest  
-    GetBackupTarget allows you to return information about a specific backup target that has been created.
+    GetBackupTarget enables you to return information about a specific backup target that you have created.
 
-    :param backup_target_id: [required] Unique identifier assigned to the backup target. 
+    :param backup_target_id: [required] The unique identifier assigned to the backup target. 
     :type backup_target_id: int
 
     """
     backup_target_id = data_model.property(
         "backupTargetID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique identifier assigned to the backup target.&#x27;]",
+        documentation="[&#x27;The unique identifier assigned to the backup target.&#x27;]",
         dictionaryType=None
     )
 
@@ -14476,16 +14318,16 @@ class DeleteStorageContainerResult(data_model.DataObject):
 
 class ListVirtualVolumeTasksRequest(data_model.DataObject):
     """ListVirtualVolumeTasksRequest  
-    ListVirtualVolumeTasks returns a list of VVol Async Tasks.
+    ListVirtualVolumeTasks returns a list of virtual volume tasks in the system.
 
-    :param virtual_volume_task_ids:   
+    :param virtual_volume_task_ids:  A list of virtual volume task IDs for which to retrieve information. If you omit this parameter, the method returns information about all virtual volume tasks. 
     :type virtual_volume_task_ids: UUID
 
     """
     virtual_volume_task_ids = data_model.property(
         "virtualVolumeTaskIDs", UUID,
         array=True, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;A list of virtual volume task IDs for which to retrieve information. If you omit this parameter, the method returns information about all virtual volume tasks.&#x27;]",
         dictionaryType=None
     )
 
@@ -14494,20 +14336,20 @@ class ListVirtualVolumeTasksRequest(data_model.DataObject):
 
 class TestDrivesRequest(data_model.DataObject):
     """TestDrivesRequest  
-    The TestDrives API method is used to run a hardware validation on all the drives on the node. Hardware failures on the drives are detected if present and they are reported in the results of the validation tests.
-    
+    You can use the TestDrives API method to run a hardware validation on all drives on the node. This method detects hardware
+    failures on the drives (if present) and reports them in the results of the validation tests.
+    You can only use the TestDrives method on nodes that are not "active" in a cluster.
     Note: This test takes approximately 10 minutes.
-    
     Note: This method is available only through the per-node API endpoint 5.0 or later.
 
-    :param minutes:  The number of minutes to run the test can be specified. 
+    :param minutes:  Specifies the number of minutes to run the test. 
     :type minutes: int
 
     """
     minutes = data_model.property(
         "minutes", int,
         array=False, optional=True,
-        documentation="[&#x27;The number of minutes to run the test can be specified.&#x27;]",
+        documentation="[&#x27;Specifies the number of minutes to run the test.&#x27;]",
         dictionaryType=None
     )
 
@@ -14749,9 +14591,6 @@ class ClusterInfo(data_model.DataObject):
     :param rep_count: [required] Number of replicas of each piece of data to store in the cluster. Valid value is 2 
     :type rep_count: int
 
-    :param state:   
-    :type state: str
-
     :param svip: [required] Storage virtual IP 
     :type svip: str
 
@@ -14828,12 +14667,6 @@ class ClusterInfo(data_model.DataObject):
         documentation="[&#x27;Number of replicas of each piece of data to store in the cluster.&#x27;, &#x27;Valid value is 2&#x27;]",
         dictionaryType=None
     )
-    state = data_model.property(
-        "state", str,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
     svip = data_model.property(
         "svip", str,
         array=False, optional=False,
@@ -14887,26 +14720,25 @@ class GetClusterInfoResult(data_model.DataObject):
 
 class ListActivePairedVolumesRequest(data_model.DataObject):
     """ListActivePairedVolumesRequest  
-    ListActivePairedVolumes is used to list all of the active volumes paired with a volume.
-    Volumes listed in the return for this method include volumes with active and pending pairings.
+    ListActivePairedVolumes enables you to list all the active volumes paired with a volume. This method returns information about volumes with active and pending pairings.
 
-    :param start_volume_id:   
+    :param start_volume_id:  The beginning of the range of active paired volumes to return. 
     :type start_volume_id: int
 
-    :param limit:   
+    :param limit:  Maximum number of active paired volumes to return. 
     :type limit: int
 
     """
     start_volume_id = data_model.property(
         "startVolumeID", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;The beginning of the range of active paired volumes to return.&#x27;]",
         dictionaryType=None
     )
     limit = data_model.property(
         "limit", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;Maximum number of active paired volumes to return.&#x27;]",
         dictionaryType=None
     )
 
@@ -15312,34 +15144,43 @@ class SnmpSendTestTrapsResult(data_model.DataObject):
 
 class ListVirtualVolumeBindingsRequest(data_model.DataObject):
     """ListVirtualVolumeBindingsRequest  
-    ListVirtualVolumeBindings returns a list of VVol bindings.
+    ListVirtualVolumeBindings returns a list of all virtual volumes in the cluster that are bound to protocol endpoints.
 
-    :param virtual_volume_binding_ids:   
+    :param virtual_volume_binding_ids:  A list of virtual volume binding IDs for which to retrieve information. If you omit this parameter, the method returns information about all virtual volume bindings. 
     :type virtual_volume_binding_ids: int
 
     """
     virtual_volume_binding_ids = data_model.property(
         "virtualVolumeBindingIDs", int,
         array=True, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;A list of virtual volume binding IDs for which to retrieve information. If you omit this parameter, the method returns information about all virtual volume bindings.&#x27;]",
         dictionaryType=None
     )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListClusterAdminsRequest(data_model.DataObject):
-    """ListClusterAdminsRequest  
-    ListClusterAdmins returns the list of all cluster administrators for the cluster. There can be several cluster administrators that have different levels of permissions. There can be only one primary cluster administrator in the system. The primary Cluster Admin is the administrator that was created when the cluster was created. LDAP administrators can also be created when setting up an LDAP system on the cluster.
+class ListVolumeStatsByAccountRequest(data_model.DataObject):
+    """ListVolumeStatsByAccountRequest  
+    ListVolumeStatsByAccount returns high-level activity measurements for every account. Values are summed from all the volumes owned by the account.
 
-    :param show_hidden:   
-    :type show_hidden: bool
+    :param accounts:  One or more account ids by which to filter the result. 
+    :type accounts: int
+
+    :param include_virtual_volumes:  Includes virtual volumes in the response by default. To exclude virtual volumes, set to false. 
+    :type include_virtual_volumes: bool
 
     """
-    show_hidden = data_model.property(
-        "showHidden", bool,
+    accounts = data_model.property(
+        "accounts", int,
+        array=True, optional=True,
+        documentation="[&#x27;One or more account ids by which to filter the result.&#x27;]",
+        dictionaryType=None
+    )
+    include_virtual_volumes = data_model.property(
+        "includeVirtualVolumes", bool,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;Includes virtual volumes in the response by default. To exclude virtual volumes, set to false.&#x27;]",
         dictionaryType=None
     )
 
@@ -15382,7 +15223,8 @@ class RemoveVirtualNetworkResult(data_model.DataObject):
 
 class EnableSnmpRequest(data_model.DataObject):
     """EnableSnmpRequest  
-    EnableSnmp is used to enable SNMP on the cluster nodes. The values set with this interface apply to all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to EnableSnmp.
+    EnableSnmp enables you to enable SNMP on cluster nodes. When you enable SNMP, the action applies to all nodes in the cluster, and
+    the values that are passed replace, in whole, all values set in any previous call to EnableSnmp.
 
     :param snmp_v3_enabled: [required] If set to "true", then SNMP v3 is enabled on each node in the cluster. If set to "false", then SNMP v2 is enabled. 
     :type snmp_v3_enabled: bool
@@ -15391,7 +15233,7 @@ class EnableSnmpRequest(data_model.DataObject):
     snmp_v3_enabled = data_model.property(
         "snmpV3Enabled", bool,
         array=False, optional=False,
-        documentation="[&#x27;If set to &quot;true&quot;, then SNMP v3 is enabled on each node in the cluster. If set to &quot;false&quot;, then SNMP v2 is enabled.&#x27;]",
+        documentation="[&#x27;If set to &quot;true&quot;, then SNMP v3 is enabled on each node in the&#x27;, &#x27;cluster. If set to &quot;false&quot;, then SNMP v2 is enabled.&#x27;]",
         dictionaryType=None
     )
 
@@ -15450,11 +15292,11 @@ class ModifyInitiatorsResult(data_model.DataObject):
 
 class CreateClusterRequest(data_model.DataObject):
     """CreateClusterRequest  
-    The CreateCluster method is used to initialize the node in a cluster that has ownership of the "mvip" and "svip" addresses. Each new cluster is initialized using the MIP of the first node in the cluster. This method also automatically adds all the nodes being configured into the cluster. The method is used only once each time a new cluster is initialized.
-    
-    Note: You need to log into the node that is used as the master node for the cluster. Once logged in, run the GetBootstrapConfig method on the node to get the IP addresses for the rest of the nodes that you want to include in the cluster. Then run the CreateCluster method.
+    The CreateCluster method enables you to initialize the node in a cluster that has ownership of the "mvip" and "svip" addresses. Each new cluster is initialized using the management IP (MIP) of the first node in the cluster. This method also automatically adds all the nodes being configured into the cluster. You only need to use this method once each time a new cluster is initialized.
+    Note: You need to log in to the node that is used as the master node for the cluster. After you log in, run the GetBootstrapConfig method on the node to get the IP addresses for the rest of the nodes that you want to include in the
+    cluster. Then, run the CreateCluster method.
 
-    :param accept_eula:  Indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. 
+    :param accept_eula:  Required to indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. 
     :type accept_eula: bool
 
     :param mvip: [required] Floating (virtual) IP address for the cluster on the management network. 
@@ -15466,7 +15308,7 @@ class CreateClusterRequest(data_model.DataObject):
     :param rep_count: [required] Number of replicas of each piece of data to store in the cluster. Valid value is "2". 
     :type rep_count: int
 
-    :param username: [required] User name for the cluster admin. 
+    :param username: [required] Username for the cluster admin. 
     :type username: str
 
     :param password: [required] Initial password for the cluster admin account. 
@@ -15475,14 +15317,14 @@ class CreateClusterRequest(data_model.DataObject):
     :param nodes: [required] CIP/SIP addresses of the initial set of nodes making up the cluster. This node's IP must be in the list. 
     :type nodes: str
 
-    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :param attributes:  List of name-value pairs in JSON object format. 
     :type attributes: dict
 
     """
     accept_eula = data_model.property(
         "acceptEula", bool,
         array=False, optional=True,
-        documentation="[&#x27;Indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true.&#x27;]",
+        documentation="[&#x27;Required to indicate your acceptance of the End User License&#x27;, &#x27;Agreement when creating this cluster. To accept the EULA,&#x27;, &#x27;set this parameter to true.&#x27;]",
         dictionaryType=None
     )
     mvip = data_model.property(
@@ -15506,7 +15348,7 @@ class CreateClusterRequest(data_model.DataObject):
     username = data_model.property(
         "username", str,
         array=False, optional=False,
-        documentation="[&#x27;User name for the cluster admin.&#x27;]",
+        documentation="[&#x27;Username for the cluster admin.&#x27;]",
         dictionaryType=None
     )
     password = data_model.property(
@@ -15524,7 +15366,7 @@ class CreateClusterRequest(data_model.DataObject):
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
         dictionaryType=None
     )
 
@@ -15543,9 +15385,6 @@ class ListEventsRequest(data_model.DataObject):
 
     :param end_event_id:  Identifies the end of a range of events to return. 
     :type end_event_id: int
-
-    :param event_queue_type:   
-    :type event_queue_type: str
 
     """
     max_events = data_model.property(
@@ -15566,12 +15405,6 @@ class ListEventsRequest(data_model.DataObject):
         documentation="[&#x27;Identifies the end of a range of events to return.&#x27;]",
         dictionaryType=None
     )
-    event_queue_type = data_model.property(
-        "eventQueueType", str,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -15586,18 +15419,17 @@ class PurgeDeletedVolumesResult(data_model.DataObject):
 
 class ListProtocolEndpointsRequest(data_model.DataObject):
     """ListProtocolEndpointsRequest  
-    Gets protocol endpoints in the system
-    If protocolEndpointIDs isn't specified all protocol endpoints
-    are returned. Else the supplied protocolEndpointIDs are.
+    ListProtocolEndpoints enables you to retrieve information about all protocol endpoints in the cluster. Protocol endpoints govern
+    access to their associated virtual volume storage containers.
 
-    :param protocol_endpoint_ids:   
+    :param protocol_endpoint_ids:  A list of protocol endpoint IDs for which to retrieve information. If you omit this parameter, the method returns information about all protocol endpoints. 
     :type protocol_endpoint_ids: UUID
 
     """
     protocol_endpoint_ids = data_model.property(
         "protocolEndpointIDs", UUID,
         array=True, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;A list of protocol endpoint IDs for which to retrieve information. If you omit this parameter, the method returns information about all protocol endpoints.&#x27;]",
         dictionaryType=None
     )
 
@@ -15675,25 +15507,27 @@ class ListAccountsResult(data_model.DataObject):
 
 class SetSnmpACLRequest(data_model.DataObject):
     """SetSnmpACLRequest  
-    SetSnmpACL is used to configure SNMP access permissions on the cluster nodes. The values set with this interface apply to all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpACL. Also note that the values set with this interface replace all "network" or "usmUsers" values set with the older SetSnmpInfo.
+    SetSnmpACL enables you to configure SNMP access permissions on the cluster nodes. The values you set with this interface apply to all
+    nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpACL. Also note
+    that the values set with this interface replace all network or usmUsers values set with the older SetSnmpInfo.
 
-    :param networks: [required] List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. REQUIRED if SNMP v# is disabled. 
+    :param networks: [required] List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. This parameter is required if SNMP v3 is disabled. 
     :type networks: SnmpNetwork
 
-    :param usm_users: [required] List of users and the type of access they have to the SNMP servers running on the cluster nodes. REQUIRED if SNMP v3 is enabled. 
+    :param usm_users: [required] List of users and the type of access they have to the SNMP servers running on the cluster nodes. 
     :type usm_users: SnmpV3UsmUser
 
     """
     networks = data_model.property(
         "networks", SnmpNetwork,
         array=True, optional=False,
-        documentation="[&#x27;List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible &quot;networks&quot; values. REQUIRED if SNMP v# is disabled.&#x27;]",
+        documentation="[&#x27;List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP&#x27;, &#x27;Network Object for possible &quot;networks&quot; values. This parameter is required if SNMP v3 is disabled.&#x27;]",
         dictionaryType=None
     )
     usm_users = data_model.property(
         "usmUsers", SnmpV3UsmUser,
         array=True, optional=False,
-        documentation="[&#x27;List of users and the type of access they have to the SNMP servers running on the cluster nodes. REQUIRED if SNMP v3 is enabled.&#x27;]",
+        documentation="[&#x27;List of users and the type of access they have to the SNMP servers running on the cluster nodes.&#x27;]",
         dictionaryType=None
     )
 
@@ -15764,18 +15598,16 @@ class CloneMultipleVolumesResult(data_model.DataObject):
 
 class RemoveVolumePairRequest(data_model.DataObject):
     """RemoveVolumePairRequest  
-    RemoveVolumePair is used to remove the remote pairing between two volumes.
-    When the volume pairing information is removed, data is no integerer replicated to or from the volume.
-    This method should be run on both the source and target volumes that are paired together.
+    RemoveVolumePair enables you to remove the remote pairing between two volumes. Use this method on both the source and target volumes that are paired together. When you remove the volume pairing information, data is no longer replicated to or from the volume.
 
-    :param volume_id: [required] ID of the volume on which to stop the replication process. 
+    :param volume_id: [required] The ID of the volume on which to stop the replication process. 
     :type volume_id: int
 
     """
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;ID of the volume on which to stop the replication process.&#x27;]",
+        documentation="[&#x27;The ID of the volume on which to stop the replication process.&#x27;]",
         dictionaryType=None
     )
 
@@ -15862,36 +15694,18 @@ class AsyncHandleResult(data_model.DataObject):
 
 class PurgeDeletedVolumeRequest(data_model.DataObject):
     """PurgeDeletedVolumeRequest  
-    PurgeDeletedVolume immediately and permanently purges a volume which has been deleted.
-    A volume must be deleted using DeleteVolume before it can be purged.
-    Volumes are purged automatically after a period of time, so usage of this method is not typically required.
+    PurgeDeletedVolume immediately and permanently purges a volume that has been deleted. You must delete a volume using
+    DeleteVolume before it can be purged. Volumes are purged automatically after a period of time, so usage of this method is not
+    typically required.
 
-    :param volume_id: [required] The ID of the volume to purge. 
+    :param volume_id: [required] The ID of the volume to be purged. 
     :type volume_id: int
 
     """
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume to purge.&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetSnmpTrapInfoRequest(data_model.DataObject):
-    """GetSnmpTrapInfoRequest  
-    GetSnmpTrapInfo is used to return current SNMP trap configuration information.
-
-    :param id:   
-    :type id: int
-
-    """
-    id = data_model.property(
-        "id", int,
-        array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;The ID of the volume to be purged.&#x27;]",
         dictionaryType=None
     )
 
@@ -16220,17 +16034,18 @@ class ListBulkVolumeJobsResult(data_model.DataObject):
 
 class TestConnectMvipRequest(data_model.DataObject):
     """TestConnectMvipRequest  
-    The TestConnectMvip API method is used to test the management connection to the cluster. The test pings the MVIP and executes a simple API method to verify connectivity.
+    The TestConnectMvip API method enables you to test the
+    management connection to the cluster. The test pings the MVIP and executes a simple API method to verify connectivity.
     Note: This method is available only through the per-node API endpoint 5.0 or later.
 
-    :param mvip:  Optionally, use to test the management connection of a different MVIP. This is not needed to test the connection to the target cluster. 
+    :param mvip:  If specified, tests the management connection of a different MVIP. You do not need to use this value when testing the connection to the target cluster. This parameter is optional. 
     :type mvip: str
 
     """
     mvip = data_model.property(
         "mvip", str,
         array=False, optional=True,
-        documentation="[&#x27;Optionally, use to test the management connection of a different MVIP. This is not needed to test the connection to the target cluster.&#x27;]",
+        documentation="[&#x27;If specified, tests the management connection of a different MVIP. You do not need to use this value when testing the connection to the target cluster. This parameter is optional.&#x27;]",
         dictionaryType=None
     )
 
@@ -16282,25 +16097,25 @@ class ListPendingActiveNodesResult(data_model.DataObject):
 
 class CompleteVolumePairingRequest(data_model.DataObject):
     """CompleteVolumePairingRequest  
-    CompleteVolumePairing is used to complete the pairing of two volumes.
+    You can use the CompleteVolumePairing method to complete the pairing of two volumes.
 
-    :param volume_pairing_key: [required] The key returned from the "StartVolumePairing" API method. 
+    :param volume_pairing_key: [required] The key returned from the StartVolumePairing method. 
     :type volume_pairing_key: str
 
-    :param volume_id: [required] The ID of volume on which to complete the pairing process. 
+    :param volume_id: [required] The ID of the volume on which to complete the pairing process. 
     :type volume_id: int
 
     """
     volume_pairing_key = data_model.property(
         "volumePairingKey", str,
         array=False, optional=False,
-        documentation="[&#x27;The key returned from the &quot;StartVolumePairing&quot; API method.&#x27;]",
+        documentation="[&#x27;The key returned from the StartVolumePairing method.&#x27;]",
         dictionaryType=None
     )
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of volume on which to complete the pairing process.&#x27;]",
+        documentation="[&#x27;The ID of the volume on which to complete the pairing process.&#x27;]",
         dictionaryType=None
     )
 
@@ -16309,7 +16124,12 @@ class CompleteVolumePairingRequest(data_model.DataObject):
 
 class GetClusterStateRequest(data_model.DataObject):
     """GetClusterStateRequest  
-    The GetClusterState method is used to indicate if a node is part of a cluster or not. The three states are: <br><strong>Available:</strong> Node has not been configured with a cluster name.<br><strong>Pending:</strong> Node is pending for a specific named cluster and can be added.<br><strong>Active:</strong> Node is active and a member of a cluster and may not be added to another cluster.
+    The GetClusterState API method enables you to indicate if a node is part of a cluster or not. The three states are:
+    Available: Node has not been configured with a cluster name.
+    Pending: Node is pending for a specific named cluster and can be added.
+    Active: Node is an active member of a cluster and may not be added to another
+    cluster.
+    Note: This method is available only through the per-node API endpoint 5.0 or later.
 
     :param force: [required] To run this command, the force parameter must be set to true. 
     :type force: bool
@@ -16671,24 +16491,6 @@ class GetNodeHardwareInfoResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetIpmiInfoRequest(data_model.DataObject):
-    """GetIpmiInfoRequest  
-    GetIpmiInfo allows you to display a detailed reporting of sensors (objects) for node fans, intake and exhaust temperatures, and power supplies  that are monitored by . 
-
-    :param force: [required]  
-    :type force: bool
-
-    """
-    force = data_model.property(
-        "force", bool,
-        array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class GetSnmpTrapInfoResult(data_model.DataObject):
     """GetSnmpTrapInfoResult  
 
@@ -16743,18 +16545,18 @@ class SetRemoteLoggingHostsResult(data_model.DataObject):
 
 class SetClusterConfigRequest(data_model.DataObject):
     """SetClusterConfigRequest  
-    The SetClusterConfig API method is used to set the configuration this node uses to communicate with the cluster it is associated with. To see the states in which these objects can be modified see Cluster Object on page 109. To display the current cluster interface settings for a node, run the GetClusterConfig API method.
-    
+    The SetClusterConfig API method enables you to set the configuration this node uses to communicate with the cluster it is associated with. To see the states in which these objects can be modified, see Cluster Object Attributes. To display the current cluster
+    interface settings for a node, run the GetClusterConfig API method.
     Note: This method is available only through the per-node API endpoint 5.0 or later.
 
-    :param cluster: [required] Objects that are changed for the cluster interface settings. Only the fields you want changed need to be added to this method as objects in the "cluster" parameter. 
+    :param cluster: [required] Objects that are changed for the cluster interface settings. 
     :type cluster: ClusterConfig
 
     """
     cluster = data_model.property(
         "cluster", ClusterConfig,
         array=False, optional=False,
-        documentation="[&#x27;Objects that are changed for the cluster interface settings. Only the fields you want changed need to be added to this method as objects in the &quot;cluster&quot; parameter.&#x27;]",
+        documentation="[&#x27;Objects that are changed for the cluster interface settings.&#x27;]",
         dictionaryType=None
     )
 
@@ -16841,19 +16643,22 @@ class ResetDrivesResult(data_model.DataObject):
 
 class ListAccountsRequest(data_model.DataObject):
     """ListAccountsRequest  
-    Returns the entire list of accounts, with optional paging support.
+    ListAccounts returns the entire list of accounts, with optional paging support.
 
-    :param start_account_id:  Starting AccountID to return. If no Account exists with this AccountID, the next Account by AccountID order is used as the start of the list. To page through the list, pass the AccountID of the last Account in the previous response + 1 
+    :param start_account_id:  Starting AccountID to return. If no account exists with this AccountID, the next account by AccountID order is used as the start of the list. To page through the list, pass the AccountID of the last account in the previous response + 1. 
     :type start_account_id: int
 
     :param limit:  Maximum number of AccountInfo objects to return. 
     :type limit: int
 
+    :param include_storage_containers:  Includes storage containers in the response by default. To exclude storage containers, set to false. 
+    :type include_storage_containers: bool
+
     """
     start_account_id = data_model.property(
         "startAccountID", int,
         array=False, optional=True,
-        documentation="[&#x27;Starting AccountID to return.&#x27;, &#x27;If no Account exists with this AccountID,&#x27;, &#x27;the next Account by AccountID order is used as the start of the list.&#x27;, &#x27;To page through the list, pass the AccountID of the last Account in the previous response + 1&#x27;]",
+        documentation="[&#x27;Starting AccountID to return. If no account exists with this&#x27;, &#x27;AccountID, the next account by AccountID order is used as&#x27;, &#x27;the start of the list. To page through the list, pass the&#x27;, &#x27;AccountID of the last account in the previous response +&#x27;, &#x27;1.&#x27;]",
         dictionaryType=None
     )
     limit = data_model.property(
@@ -16862,40 +16667,46 @@ class ListAccountsRequest(data_model.DataObject):
         documentation="[&#x27;Maximum number of AccountInfo objects to return.&#x27;]",
         dictionaryType=None
     )
+    include_storage_containers = data_model.property(
+        "includeStorageContainers", bool,
+        array=False, optional=True,
+        documentation="[&#x27;Includes storage containers in the response by&#x27;, &#x27;default. To exclude storage containers, set to false.&#x27;]",
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyClusterFullThresholdRequest(data_model.DataObject):
     """ModifyClusterFullThresholdRequest  
-    ModifyClusterFullThreshold is used to change the level at which an event is generated when the storage cluster approaches the capacity utilization requested. The number entered in this setting is used to indicate the number of node failures the system is required to recover from. For example, on a 10 node cluster, if you want to be alerted when the system cannot recover from 3 nodes failures, enter the value of "3". When this number is reached, a message alert is sent to the Event Log in the Cluster Management Console.
+    You can use ModifyClusterFullThreshold to change the level at which the system generates an event when the storage cluster approaches a certain capacity utilization. You can use the threshold setting to indicate the acceptable amount of utilized block storage before the system generates a warning. For example, if you want to be alerted when the system reaches 3% below the "Error" level block storage utilization, enter a value of "3" for the stage3BlockThresholdPercent parameter. If this level is reached, the system sends an alert to the Event Log in the Cluster Management Console.
 
-    :param stage2_aware_threshold:  Number of nodes worth of capacity remaining on the cluster that triggers a notification. 
+    :param stage2_aware_threshold:  The number of nodes of capacity remaining in the cluster before the system triggers a capacity notification. 
     :type stage2_aware_threshold: int
 
-    :param stage3_block_threshold_percent:  Percent below "Error" state to raise a cluster "Warning" alert. 
+    :param stage3_block_threshold_percent:  The percentage of block storage utilization below the "Error" threshold that causes the system to trigger a cluster "Warning" alert. 
     :type stage3_block_threshold_percent: int
 
-    :param max_metadata_over_provision_factor:  A value representative of the number of times metadata space can be over provisioned relative to the amount of space available. For example, if there was enough metadata space to store 100 TiB of volumes and this number was set to 5, then 500 TiB worth of volumes could be created. 
+    :param max_metadata_over_provision_factor:  A value representative of the number of times metadata space can be overprovisioned relative to the amount of space available. For example, if there was enough metadata space to store 100 TiB of volumes and this number was set to 5, then 500 TiB worth of volumes can be created. 
     :type max_metadata_over_provision_factor: int
 
     """
     stage2_aware_threshold = data_model.property(
         "stage2AwareThreshold", int,
         array=False, optional=True,
-        documentation="[&#x27;Number of nodes worth of capacity remaining on the cluster that triggers a notification.&#x27;]",
+        documentation="[&#x27;The number of nodes of capacity remaining in the cluster before the system triggers a&#x27;, &#x27;capacity notification.&#x27;]",
         dictionaryType=None
     )
     stage3_block_threshold_percent = data_model.property(
         "stage3BlockThresholdPercent", int,
         array=False, optional=True,
-        documentation="[&#x27;Percent below &quot;Error&quot; state to raise a cluster &quot;Warning&quot; alert.&#x27;]",
+        documentation="[&#x27;The percentage of block storage utilization below the &quot;Error&quot; threshold that causes the&#x27;, &#x27;system to trigger a cluster &quot;Warning&quot; alert.&#x27;]",
         dictionaryType=None
     )
     max_metadata_over_provision_factor = data_model.property(
         "maxMetadataOverProvisionFactor", int,
         array=False, optional=True,
-        documentation="[&#x27;A value representative of the number of times metadata space can be over provisioned relative to the amount of space available. For example, if there was enough metadata space to store 100 TiB of volumes and this number was set to 5, then 500 TiB worth of volumes could be created.&#x27;]",
+        documentation="[&#x27;A value representative of the number of times metadata space can be overprovisioned relative to the amount of space available. For example, if there was enough metadata space to store 100 TiB of volumes and this number was set to 5, then 500 TiB worth of volumes can be created.&#x27;]",
         dictionaryType=None
     )
 
@@ -16904,54 +16715,54 @@ class ModifyClusterFullThresholdRequest(data_model.DataObject):
 
 class AddClusterAdminRequest(data_model.DataObject):
     """AddClusterAdminRequest  
-    AddClusterAdmin adds a new Cluster Admin. A Cluster Admin can be used to manage the cluster via the API and management tools. Cluster Admins are completely separate and unrelated to standard tenant accounts.
-    
-    Each Cluster Admin can be restricted to a sub-set of the API. SolidFire recommends using multiple Cluster Admins for different users and applications. Each Cluster Admin should be given the minimal permissions necessary to reduce the potential impact of credential compromise.
+    You can use AddClusterAdmin to add a new cluster admin account. A cluster ddmin can manage the cluster using the API and management tools. Cluster admins are completely separate and unrelated to standard tenant accounts.
+    Each cluster admin can be restricted to a subset of the API. NetApp recommends using multiple cluster admin accounts for different users and applications. You should give each cluster admin the minimal permissions necessary; this reduces the potential impact of credential compromise.
+    You must accept the End User License Agreement (EULA) by setting the acceptEula parameter to true to add a cluster administrator account to the system.
 
-    :param username: [required] Unique username for this Cluster Admin. 
+    :param username: [required] Unique username for this cluster admin. Must be between 1 and 1024 characters in length. 
     :type username: str
 
-    :param password: [required] Password used to authenticate this Cluster Admin. 
+    :param password: [required] Password used to authenticate this cluster admin. 
     :type password: str
 
-    :param access: [required] Controls which methods this Cluster Admin can use. For more details on the levels of access, see "Access Control" in the Element API Guide. 
+    :param access: [required] Controls which methods this cluster admin can use. For more details on the levels of access, see Access Control in the Element API Reference Guide. 
     :type access: str
 
-    :param accept_eula:  Indicate your acceptance of the End User License Agreement when creating this cluster admin. To accept the EULA, set this parameter to true. 
+    :param accept_eula:  Required to indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. 
     :type accept_eula: bool
 
-    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :param attributes:  List of name-value pairs in JSON object format. 
     :type attributes: dict
 
     """
     username = data_model.property(
         "username", str,
         array=False, optional=False,
-        documentation="[&#x27;Unique username for this Cluster Admin.&#x27;]",
+        documentation="[&#x27;Unique username for this cluster admin. Must be between 1 and 1024 characters in length.&#x27;]",
         dictionaryType=None
     )
     password = data_model.property(
         "password", str,
         array=False, optional=False,
-        documentation="[&#x27;Password used to authenticate this Cluster Admin.&#x27;]",
+        documentation="[&#x27;Password used to authenticate this cluster admin.&#x27;]",
         dictionaryType=None
     )
     access = data_model.property(
         "access", str,
         array=True, optional=False,
-        documentation="[&#x27;Controls which methods this Cluster Admin can use. For more details on the levels of access, see &quot;Access Control&quot; in the Element API Guide.&#x27;]",
+        documentation="[&#x27;Controls which methods this cluster admin can use. For more details on the levels of access, see Access Control in the Element API Reference Guide.&#x27;]",
         dictionaryType=None
     )
     accept_eula = data_model.property(
         "acceptEula", bool,
         array=False, optional=True,
-        documentation="[&#x27;Indicate your acceptance of the End User License Agreement when creating this cluster admin. To accept the EULA, set this parameter to true.&#x27;]",
+        documentation="[&#x27;Required to indicate your acceptance of the End User License&#x27;, &#x27;Agreement when creating this cluster. To accept the EULA,&#x27;, &#x27;set this parameter to true.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
         dictionaryType=None
     )
 
@@ -16976,36 +16787,29 @@ class RemoveBackupTargetResult(data_model.DataObject):
 
 class CloneVolumeRequest(data_model.DataObject):
     """CloneVolumeRequest  
-    CloneVolume is used to create a copy of the volume.
-    This method is asynchronous and may take a variable amount of time to complete.
-    The cloning process begins immediately when the CloneVolume request is made and is representative of the state of the volume when the API method is issued.
-    GetAsyncResults can be used to determine when the cloning process is complete and the new volume is available for connections.
-    ListSyncJobs can be used to see the progress of creating the clone.
-    
-    Note: The initial attributes and quality of service settings for the volume are inherited from the volume being cloned.
-    If different settings are required, they can be changed via ModifyVolume.
-    
+    CloneVolume enables you to create a copy of a volume. This method is asynchronous and might take a variable amount of time to complete. The cloning process begins immediately when you make the CloneVolume request and is representative of the state of the volume when the API method is issued. You can use the GetAsyncResult method to determine when the cloning process is complete and the new volume is available for connections. You can use ListSyncJobs to see the progress of creating the clone.
+    Note: The initial attributes and QoS settings for the volume are inherited from the volume being cloned. You can change these settings with ModifyVolume.
     Note: Cloned volumes do not inherit volume access group memberships from the source volume.
 
-    :param volume_id: [required] The ID of the volume to clone. 
+    :param volume_id: [required] VolumeID for the volume to be cloned. 
     :type volume_id: int
 
-    :param name: [required] The name for the newly-created volume. 
+    :param name: [required] The name of the new cloned volume. Might be 1 to 64 characters in length. 
     :type name: str
 
-    :param new_account_id:  AccountID for the owner of the new volume. If unspecified, the AccountID of the owner of the volume being cloned is used. 
+    :param new_account_id:  AccountID for the owner of the new volume. If unspecified, the accountID of the owner of the volume being cloned is used. 
     :type new_account_id: int
 
-    :param new_size:  New size of the volume, in bytes. May be greater or less than the size of the volume being cloned. If unspecified, the clone's volume size will be the same as the source volume. Size is rounded up to the nearest 1 MiB. 
+    :param new_size:  New size of the volume, in bytes. Might be greater or less than the size of the volume being cloned. If unspecified, the volume size is not changed. Size is rounded to the nearest 1MB. 
     :type new_size: int
 
-    :param access:  Access settings for the new volume. readOnly: Only read operations are allowed. readWrite: Reads and writes are allowed. locked: No reads or writes are allowed. replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.  If unspecified, the access settings of the clone will be the same as the source. 
+    :param access:  Specifies the level of access allowed for the new volume. Possible values are: readOnly: Only read operations are allowed. readWrite: Reads and writes are allowed. locked: No reads or writes are allowed. If unspecified, the level of access of the volume being cloned is used. replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked. If a value is not specified, the access value does not change. 
     :type access: str
 
-    :param snapshot_id:  ID of the snapshot to use as the source of the clone. If unspecified, the clone will be created with a snapshot of the active volume. 
+    :param snapshot_id:  ID of the snapshot that is used as the source of the clone. If no ID is provided, the current active volume is used. 
     :type snapshot_id: int
 
-    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :param attributes:  List of name-value pairs in JSON object format. 
     :type attributes: dict
 
     :param enable512e:  Should the volume provide 512-byte sector emulation? 
@@ -17015,43 +16819,43 @@ class CloneVolumeRequest(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume to clone.&#x27;]",
+        documentation="[&#x27;VolumeID for the volume to be cloned.&#x27;]",
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;The name for the newly-created volume.&#x27;]",
+        documentation="[&#x27;The name of the new cloned volume. Might be 1 to 64 characters in length.&#x27;]",
         dictionaryType=None
     )
     new_account_id = data_model.property(
         "newAccountID", int,
         array=False, optional=True,
-        documentation="[&#x27;AccountID for the owner of the new volume.&#x27;, &#x27;If unspecified, the AccountID of the owner of the volume being cloned is used.&#x27;]",
+        documentation="[&#x27;AccountID for the owner of the new volume. If unspecified, the&#x27;, &#x27;accountID of the owner of the volume being cloned is used.&#x27;]",
         dictionaryType=None
     )
     new_size = data_model.property(
         "newSize", int,
         array=False, optional=True,
-        documentation="[&#x27;New size of the volume, in bytes.&#x27;, &#x27;May be greater or less than the size of the volume being cloned.&#x27;, &quot;If unspecified, the clone&#x27;s volume size will be the same as the source volume.&quot;, &#x27;Size is rounded up to the nearest 1 MiB.&#x27;]",
+        documentation="[&#x27;New size of the volume, in bytes. Might be greater or less than the size of&#x27;, &#x27;the volume being cloned. If unspecified, the volume size is not&#x27;, &#x27;changed. Size is rounded to the nearest 1MB.&#x27;]",
         dictionaryType=None
     )
     access = data_model.property(
         "access", str,
         array=False, optional=True,
-        documentation="[&#x27;Access settings for the new volume.&#x27;, &#x27;readOnly: Only read operations are allowed.&#x27;, &#x27;readWrite: Reads and writes are allowed.&#x27;, &#x27;locked: No reads or writes are allowed.&#x27;, &#x27;replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, u&#x27;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;]",
+        documentation="[&#x27;Specifies the level of access allowed for the new volume. Possible values are:&#x27;, &#x27;readOnly: Only read operations are allowed.&#x27;, &#x27;readWrite: Reads and writes are allowed.&#x27;, &#x27;locked: No reads or writes are allowed. If unspecified, the level of access of the volume being cloned is used.&#x27;, &#x27;replicationTarget: Identify a volume as the target volume for a&#x27;, &#x27;paired set of volumes. If the volume is not paired, the access status is&#x27;, &#x27;locked.&#x27;, &#x27;If a value is not specified, the access value does not change.&#x27;]",
         dictionaryType=None
     )
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=True,
-        documentation="[&#x27;ID of the snapshot to use as the source of the clone.&#x27;, &#x27;If unspecified, the clone will be created with a snapshot of the active volume.&#x27;]",
+        documentation="[&#x27;ID of the snapshot that is used as the source of the clone. If no ID is&#x27;, &#x27;provided, the current active volume is used.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
         dictionaryType=None
     )
     enable512e = data_model.property(
@@ -17066,25 +16870,25 @@ class CloneVolumeRequest(data_model.DataObject):
 
 class CreateBackupTargetRequest(data_model.DataObject):
     """CreateBackupTargetRequest  
-    CreateBackupTarget allows you to create and store backup target information so that you do not need to re-enter it each time a backup is created.
+    CreateBackupTarget enables you to create and store backup target information so that you do not need to re-enter it each time a backup is created.
 
-    :param name: [required] Name for the backup target. 
+    :param name: [required] The name of the backup target. 
     :type name: str
 
-    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :param attributes:  List of name-value pairs in JSON object format. 
     :type attributes: dict
 
     """
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;Name for the backup target.&#x27;]",
+        documentation="[&#x27;The name of the backup target.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
         dictionaryType=None
     )
 
@@ -17093,32 +16897,37 @@ class CreateBackupTargetRequest(data_model.DataObject):
 
 class ModifyVolumeRequest(data_model.DataObject):
     """ModifyVolumeRequest  
-    ModifyVolume is used to modify settings on an existing volume.
-    Modifications can be made to one volume at a time and changes take place immediately.
-    If an optional parameter is left unspecified, the value will not be changed.
-    
-    Extending the size of a volume that is being replicated should be done in an order.
-    The target (Replication Target) volume should first be increased in size, then the source (Read/Write) volume can be resized.
-    It is recommended that both the target and the source volumes be the same size.
-    
-    Note: If you change access status to locked or target all existing iSCSI connections are terminated.
+    ModifyVolume enables you to modify settings on an existing volume. You can make modifications to one volume at a time and
+    changes take place immediately. If you do not specify QoS values when you modify a volume, they remain the same as before the modification. You can retrieve
+    default QoS values for a newly created volume by running the GetDefaultQoS method.
+    When you need to increase the size of a volume that is being replicated, do so in the following order to prevent replication errors:
+    1. Increase the size of the "Replication Target" volume.
+    2. Increase the size of the source or "Read / Write" volume.
+    NetApp recommends that both the target and source volumes are the same size.
+    Note: If you change the "access" status to locked or target, all existing iSCSI connections are terminated.
 
     :param volume_id: [required] VolumeID for the volume to be modified. 
     :type volume_id: int
 
-    :param account_id:  AccountID to which the volume is reassigned. If none is specified, the previous account name is used. 
+    :param account_id:  AccountID to which the volume is reassigned. If unspecified, the previous account name is used. 
     :type account_id: int
 
-    :param access:  Access allowed for the volume. readOnly: Only read operations are allowed. readWrite: Reads and writes are allowed. locked: No reads or writes are allowed. replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.  If unspecified, the access settings of the clone will be the same as the source. 
+    :param access:  Specifies the access allowed for the volume. Possible values are: readOnly: Only read operations are allowed. readWrite: Reads and writes are allowed. locked: No reads or writes are allowed. If not specified, the access value does not change. replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked. If a value is not specified, the access value does not change. 
     :type access: str
 
-    :param qos:  New quality of service settings for this volume. 
+    :param qos:  New QoS settings for this volume. If not specified, the QoS settings are not changed. 
     :type qos: QoS
 
-    :param total_size:  New size of the volume in bytes. Size is rounded up to the nearest 1MiB size. This parameter can only be used to *increase* the size of a volume. 
+    :param total_size:  New size of the volume in bytes. 1000000000 is equal to 1GB. Size is rounded up to the nearest 1MB. This parameter can only be used to increase the size of a volume. 
     :type total_size: int
 
-    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :param set_create_time:  If set to true, changes the recorded date of volume creation. 
+    :type set_create_time: bool
+
+    :param create_time:  An ISO 8601 date string to set as the new volume creation date. Required if "setCreateTime" is set to true. 
+    :type create_time: str
+
+    :param attributes:  List of name-value pairs in JSON object format. 
     :type attributes: dict
 
     """
@@ -17131,31 +16940,43 @@ class ModifyVolumeRequest(data_model.DataObject):
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=True,
-        documentation="[&#x27;AccountID to which the volume is reassigned.&#x27;, &#x27;If none is specified, the previous account name is used.&#x27;]",
+        documentation="[&#x27;AccountID to which the volume is reassigned. If unspecified, the previous account name is used.&#x27;]",
         dictionaryType=None
     )
     access = data_model.property(
         "access", str,
         array=False, optional=True,
-        documentation="[&#x27;Access allowed for the volume.&#x27;, &#x27;readOnly: Only read operations are allowed.&#x27;, &#x27;readWrite: Reads and writes are allowed.&#x27;, &#x27;locked: No reads or writes are allowed.&#x27;, &#x27;replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, u&#x27;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;]",
+        documentation="[&#x27;Specifies the access allowed for the volume. Possible values are:&#x27;, &#x27;readOnly: Only read operations are allowed.&#x27;, &#x27;readWrite: Reads and writes are allowed.&#x27;, &#x27;locked: No reads or writes are allowed.&#x27;, &#x27;If not specified, the access value does not change.&#x27;, &#x27;replicationTarget: Identify a volume as the target volume&#x27;, &#x27;for a paired set of volumes. If the volume is not paired, the&#x27;, &#x27;access status is locked.&#x27;, &#x27;If a value is not specified, the access value does not change.&#x27;]",
         dictionaryType=None
     )
     qos = data_model.property(
         "qos", QoS,
         array=False, optional=True,
-        documentation="[&#x27;New quality of service settings for this volume.&#x27;]",
+        documentation="[&#x27;New QoS settings for this volume. If not specified,&#x27;, &#x27;the QoS settings are not changed.&#x27;]",
         dictionaryType=None
     )
     total_size = data_model.property(
         "totalSize", int,
         array=False, optional=True,
-        documentation="[&#x27;New size of the volume in bytes.&#x27;, &#x27;Size is rounded up to the nearest 1MiB size.&#x27;, &#x27;This parameter can only be used to *increase* the size of a volume.&#x27;]",
+        documentation="[&#x27;New size of the volume in bytes. 1000000000 is equal to 1GB.&#x27;, &#x27;Size is rounded up to the nearest 1MB. This parameter&#x27;, &#x27;can only be used to increase the size of a volume.&#x27;]",
+        dictionaryType=None
+    )
+    set_create_time = data_model.property(
+        "setCreateTime", bool,
+        array=False, optional=True,
+        documentation="[&#x27;If set to true, changes the recorded date of volume creation.&#x27;]",
+        dictionaryType=None
+    )
+    create_time = data_model.property(
+        "createTime", str,
+        array=False, optional=True,
+        documentation="[&#x27;An ISO 8601 date string to set as the new volume creation date.&#x27;, &#x27;Required if &quot;setCreateTime&quot; is set to true.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
         dictionaryType=None
     )
 
@@ -17199,43 +17020,43 @@ class CreateGroupSnapshotResult(data_model.DataObject):
 
 class ModifyClusterAdminRequest(data_model.DataObject):
     """ModifyClusterAdminRequest  
-    ModifyClusterAdmin is used to change the settings for a Cluster Admin or LDAP Cluster Admin. Access for the administrator Cluster Admin account cannot be changed.
+    You can use ModifyClusterAdmin to change the settings for a cluster admin or LDAP cluster admin. You cannot change access for the administrator cluster admin account.
 
-    :param cluster_admin_id: [required] ClusterAdminID for the Cluster Admin or LDAP Cluster Admin to modify. 
+    :param cluster_admin_id: [required] ClusterAdminID for the cluster admin or LDAP cluster admin to modify. 
     :type cluster_admin_id: int
 
-    :param password:  Password used to authenticate this Cluster Admin. 
+    :param password:  Password used to authenticate this cluster admin. 
     :type password: str
 
-    :param access:  Controls which methods this Cluster Admin can use. For more details on the levels of access, see "Access Control" in the Element API Guide. 
+    :param access:  Controls which methods this cluster admin can use. For more details, see Access Control in the Element API Reference Guide. 
     :type access: str
 
-    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :param attributes:  List of name-value pairs in JSON object format. 
     :type attributes: dict
 
     """
     cluster_admin_id = data_model.property(
         "clusterAdminID", int,
         array=False, optional=False,
-        documentation="[&#x27;ClusterAdminID for the Cluster Admin or LDAP Cluster Admin to modify.&#x27;]",
+        documentation="[&#x27;ClusterAdminID for the cluster admin or LDAP cluster admin to modify.&#x27;]",
         dictionaryType=None
     )
     password = data_model.property(
         "password", str,
         array=False, optional=True,
-        documentation="[&#x27;Password used to authenticate this Cluster Admin.&#x27;]",
+        documentation="[&#x27;Password used to authenticate this cluster admin.&#x27;]",
         dictionaryType=None
     )
     access = data_model.property(
         "access", str,
         array=True, optional=True,
-        documentation="[&#x27;Controls which methods this Cluster Admin can use. For more details on the levels of access, see &quot;Access Control&quot; in the Element API Guide.&#x27;]",
+        documentation="[&#x27;Controls which methods this cluster admin can use. For more details, see Access Control in the Element API Reference Guide.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
         dictionaryType=None
     )
 
