@@ -2223,13 +2223,13 @@ class ListVolumesRequest(data_model.DataObject):
 class ModifyScheduleResult(data_model.DataObject):
     """ModifyScheduleResult  
 
-    :param schedule: [required]  
+    :param schedule:   
     :type schedule: Schedule
 
     """
     schedule = data_model.property(
         "schedule", Schedule,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )

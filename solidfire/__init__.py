@@ -394,6 +394,319 @@ class Element(ServiceBase):
             params
         )
 
+    def add_cluster_admin(
+            self,
+            username,
+            password,
+            access,
+            accept_eula=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        You can use AddClusterAdmin to add a new cluster admin account. A cluster ddmin can manage the cluster using the API and management tools. Cluster admins are completely separate and unrelated to standard tenant accounts.
+        Each cluster admin can be restricted to a subset of the API. NetApp recommends using multiple cluster admin accounts for different users and applications. You should give each cluster admin the minimal permissions necessary; this reduces the potential impact of credential compromise.
+        You must accept the End User License Agreement (EULA) by setting the acceptEula parameter to true to add a cluster administrator account to the system.
+        :param username: [required] Unique username for this cluster admin. Must be between 1 and 1024 characters in length. 
+        :type username: str
+
+        :param password: [required] Password used to authenticate this cluster admin. 
+        :type password: str
+
+        :param access: [required] Controls which methods this cluster admin can use. For more details on the levels of access, see Access Control in the Element API Reference Guide. 
+        :type access: str
+
+        :param acceptEula:  Required to indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. 
+        :type acceptEula: bool
+
+        :param attributes:  List of name-value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("add_cluster_admin", "Cluster")
+
+        params = { 
+            "username": username,
+            "password": password,
+            "access": access,
+        }
+        if accept_eula is not None:
+            params["acceptEula"] = accept_eula
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'AddClusterAdmin',
+            AddClusterAdminResult,
+            params
+        )
+
+    def clear_cluster_faults(
+            self,
+            fault_types=OPTIONAL,):
+        """
+        You can use the ClearClusterFaults method to clear information about both current and previously detected faults. Both resolved
+        and unresolved faults can be cleared.
+        :param faultTypes:  Determines the types of faults cleared. Possible values are: current: Faults that are currently detected and have not been resolved. resolved: (Default) Faults that were previously detected and resolved. all: Both current and resolved faults are cleared. The fault status can be determined by the resolved field of the fault object. 
+        :type faultTypes: str
+        """
+
+        self._check_connection_type("clear_cluster_faults", "Cluster")
+
+        params = { 
+        }
+        if fault_types is not None:
+            params["faultTypes"] = fault_types
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ClearClusterFaults',
+            ClearClusterFaultsResult,
+            params
+        )
+
+    def create_cluster(
+            self,
+            mvip,
+            svip,
+            rep_count,
+            username,
+            password,
+            nodes,
+            accept_eula=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        The CreateCluster method enables you to initialize the node in a cluster that has ownership of the "mvip" and "svip" addresses. Each new cluster is initialized using the management IP (MIP) of the first node in the cluster. This method also automatically adds all the nodes being configured into the cluster. You only need to use this method once each time a new cluster is initialized.
+        Note: You need to log in to the node that is used as the master node for the cluster. After you log in, run the GetBootstrapConfig method on the node to get the IP addresses for the rest of the nodes that you want to include in the
+        cluster. Then, run the CreateCluster method.
+        :param acceptEula:  Required to indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. 
+        :type acceptEula: bool
+
+        :param mvip: [required] Floating (virtual) IP address for the cluster on the management network. 
+        :type mvip: str
+
+        :param svip: [required] Floating (virtual) IP address for the cluster on the storage (iSCSI) network. 
+        :type svip: str
+
+        :param repCount: [required] Number of replicas of each piece of data to store in the cluster. Valid value is "2". 
+        :type repCount: int
+
+        :param username: [required] Username for the cluster admin. 
+        :type username: str
+
+        :param password: [required] Initial password for the cluster admin account. 
+        :type password: str
+
+        :param nodes: [required] CIP/SIP addresses of the initial set of nodes making up the cluster. This node's IP must be in the list. 
+        :type nodes: str
+
+        :param attributes:  List of name-value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("create_cluster", "Both")
+
+        params = { 
+            "mvip": mvip,
+            "svip": svip,
+            "repCount": rep_count,
+            "username": username,
+            "password": password,
+            "nodes": nodes,
+        }
+        if accept_eula is not None:
+            params["acceptEula"] = accept_eula
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateCluster',
+            CreateClusterResult,
+            params
+        )
+
+    def create_support_bundle(
+            self,
+            bundle_name=OPTIONAL,
+            extra_args=OPTIONAL,
+            timeout_sec=OPTIONAL,):
+        """
+        CreateSupportBundle enables you to create a support bundle file under the node's directory. After creation, the bundle is stored on the node as a tar.gz file.
+        :param bundleName:  The unique name for the support bundle. If no name is provided, "supportbundle" and the node name are used as the filename. 
+        :type bundleName: str
+
+        :param extraArgs:  Passed to the sf_make_support_bundle script. You should use this parameter only at the request of NetApp SolidFire Support. 
+        :type extraArgs: str
+
+        :param timeoutSec:  The number of seconds to allow the support bundle script to run before stopping. The default value is 1500 seconds. 
+        :type timeoutSec: int
+        """
+
+        self._check_connection_type("create_support_bundle", "Node")
+
+        params = { 
+        }
+        if bundle_name is not None:
+            params["bundleName"] = bundle_name
+        if extra_args is not None:
+            params["extraArgs"] = extra_args
+        if timeout_sec is not None:
+            params["timeoutSec"] = timeout_sec
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateSupportBundle',
+            CreateSupportBundleResult,
+            params
+        )
+
+    def delete_all_support_bundles(
+            self,):
+        """
+        DeleteAllSupportBundles enables you to delete all support bundles generated with the CreateSupportBundle API method.        """
+
+        self._check_connection_type("delete_all_support_bundles", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DeleteAllSupportBundles',
+            DeleteAllSupportBundlesResult,
+            params
+        )
+
+    def disable_encryption_at_rest(
+            self,):
+        """
+        The DisableEncryptionAtRest method enables you to remove the encryption that was previously applied to the cluster using the EnableEncryptionAtRest method. This disable method is asynchronous and returns a response before encryption is disabled. You can use the GetClusterInfo method to poll the system to see when the process has completed.        """
+
+        self._check_connection_type("disable_encryption_at_rest", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DisableEncryptionAtRest',
+            DisableEncryptionAtRestResult,
+            params
+        )
+
+    def disable_snmp(
+            self,):
+        """
+        You can use DisableSnmp to disable SNMP on the cluster nodes.        """
+
+        self._check_connection_type("disable_snmp", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DisableSnmp',
+            DisableSnmpResult,
+            params
+        )
+
+    def enable_encryption_at_rest(
+            self,):
+        """
+        You can use the EnableEncryptionAtRest method to enable the Advanced Encryption Standard (AES) 256-bit encryption at rest on the cluster, so that the cluster can manage the encryption key used for the drives on each node. This feature is not enabled by default.
+        When you enable Encryption at Rest, the cluster automatically manages encryption keys internally for the drives on each node in the cluster. Nodes do not store the keys to unlock drives and the keys are never passed over the network. Two nodes participating in a cluster are required to access the key to disable encryption on a drive. The encryption management does not affect performance or efficiency on the cluster. If an encryption-enabled drive or node is removed from the cluster with the API, Encryption at Rest is disabled and the data is not secure erased. Data can be secure erased using the SecureEraseDrives API method.
+        Note: If you have a node type with a model number ending in "-NE", the EnableEncryptionAtRest method call fails with a response of "Encryption not allowed. Cluster detected non-encryptable node".
+        You should only enable or disable encryption when the cluster is running and in a healthy state. You can enable or disable encryption at your discretion and as often as you need.
+        Note: This process is asynchronous and returns a response before encryption is enabled. You can use the GetClusterInfo
+        method to poll the system to see when the process has completed.        """
+
+        self._check_connection_type("enable_encryption_at_rest", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'EnableEncryptionAtRest',
+            EnableEncryptionAtRestResult,
+            params
+        )
+
+    def enable_snmp(
+            self,
+            snmp_v3_enabled,):
+        """
+        EnableSnmp enables you to enable SNMP on cluster nodes. When you enable SNMP, the action applies to all nodes in the cluster, and
+        the values that are passed replace, in whole, all values set in any previous call to EnableSnmp.
+        :param snmpV3Enabled: [required] If set to "true", then SNMP v3 is enabled on each node in the cluster. If set to "false", then SNMP v2 is enabled. 
+        :type snmpV3Enabled: bool
+        """
+
+        self._check_connection_type("enable_snmp", "Cluster")
+
+        params = { 
+            "snmpV3Enabled": snmp_v3_enabled,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'EnableSnmp',
+            EnableSnmpResult,
+            params
+        )
+
+    def get_api(
+            self,):
+        """
+        You can use the GetAPI method to return a list of all the API methods and supported API endpoints that can be used in the system.        """
+
+        self._check_connection_type("get_api", "Both")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetAPI',
+            GetAPIResult,
+            params
+        )
+
+    def get_cluster_capacity(
+            self,):
+        """
+        You can use the GetClusterCapacity method to return the high-level capacity measurements for an entire cluster. You can use the fields returned from this method to calculate the efficiency rates that are displayed in the Element OS Web UI. You can use the following calculations in scripts to return the efficiency rates for thin provisioning, deduplication, compression, and overall efficiency.        """
+
+        self._check_connection_type("get_cluster_capacity", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetClusterCapacity',
+            GetClusterCapacityResult,
+            params
+        )
+
+    def get_cluster_config(
+            self,):
+        """
+        The GetClusterConfig API method enables you to return information about the cluster configuration this node uses to communicate with the cluster that it is a part of.        """
+
+        self._check_connection_type("get_cluster_config", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetClusterConfig',
+            GetClusterConfigResult,
+            params
+        )
+
     def get_cluster_full_threshold(
             self,):
         """
@@ -618,6 +931,23 @@ class Element(ServiceBase):
             params
         )
 
+    def get_snmp_trap_info(
+            self,):
+        """
+        You can use GetSnmpTrapInfo to return current SNMP trap configuration information.        """
+
+        self._check_connection_type("get_snmp_trap_info", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetSnmpTrapInfo',
+            GetSnmpTrapInfoResult,
+            params
+        )
+
     def get_system_status(
             self,):
         """
@@ -632,6 +962,87 @@ class Element(ServiceBase):
         return self.send_request(
             'GetSystemStatus',
             GetSystemStatusResult,
+            params
+        )
+
+    def list_cluster_admins(
+            self,):
+        """
+        ListClusterAdmins returns the list of all cluster administrators for the cluster. There can be several cluster administrator accounts with different levels of permissions. There can be only one primary cluster administrator in the system. The primary Cluster Admin is the administrator that was created when the cluster was created. You can also create LDAP administrators when setting up an LDAP system on the cluster.        """
+
+        self._check_connection_type("list_cluster_admins", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListClusterAdmins',
+            ListClusterAdminsResult,
+            params
+        )
+
+    def list_cluster_faults(
+            self,
+            best_practices=OPTIONAL,
+            fault_types=OPTIONAL,):
+        """
+        ListClusterFaults enables you to retrieve information about any faults detected on the cluster. With this method, you can retrieve both current faults as well as faults that have been resolved. The system caches faults every 30 seconds.
+        :param bestPractices:  Specifies whether to include faults triggered by suboptimal system configuration. Possible values are: true false 
+        :type bestPractices: bool
+
+        :param faultTypes:  Determines the types of faults returned. Possible values are: current: List active, unresolved faults. resolved: List faults that were previously detected and resolved. all: (Default) List both current and resolved faults. You can see the fault status in the resolved field of the Cluster Fault object. 
+        :type faultTypes: str
+        """
+
+        self._check_connection_type("list_cluster_faults", "Cluster")
+
+        params = { 
+        }
+        if best_practices is not None:
+            params["bestPractices"] = best_practices
+        if fault_types is not None:
+            params["faultTypes"] = fault_types
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListClusterFaults',
+            ListClusterFaultsResult,
+            params
+        )
+
+    def list_events(
+            self,
+            max_events=OPTIONAL,
+            start_event_id=OPTIONAL,
+            end_event_id=OPTIONAL,):
+        """
+        ListEvents returns events detected on the cluster, sorted from oldest to newest.
+        :param maxEvents:  Specifies the maximum number of events to return. 
+        :type maxEvents: int
+
+        :param startEventID:  Identifies the beginning of a range of events to return. 
+        :type startEventID: int
+
+        :param endEventID:  Identifies the end of a range of events to return. 
+        :type endEventID: int
+        """
+
+        self._check_connection_type("list_events", "Cluster")
+
+        params = { 
+        }
+        if max_events is not None:
+            params["maxEvents"] = max_events
+        if start_event_id is not None:
+            params["startEventID"] = start_event_id
+        if end_event_id is not None:
+            params["endEventID"] = end_event_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListEvents',
+            ListEventsResult,
             params
         )
 
@@ -650,6 +1061,46 @@ class Element(ServiceBase):
         return self.send_request(
             'ListSyncJobs',
             ListSyncJobsResult,
+            params
+        )
+
+    def modify_cluster_admin(
+            self,
+            cluster_admin_id,
+            password=OPTIONAL,
+            access=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        You can use ModifyClusterAdmin to change the settings for a cluster admin or LDAP cluster admin. You cannot change access for the administrator cluster admin account.
+        :param clusterAdminID: [required] ClusterAdminID for the cluster admin or LDAP cluster admin to modify. 
+        :type clusterAdminID: int
+
+        :param password:  Password used to authenticate this cluster admin. 
+        :type password: str
+
+        :param access:  Controls which methods this cluster admin can use. For more details, see Access Control in the Element API Reference Guide. 
+        :type access: str
+
+        :param attributes:  List of name-value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("modify_cluster_admin", "Cluster")
+
+        params = { 
+            "clusterAdminID": cluster_admin_id,
+        }
+        if password is not None:
+            params["password"] = password
+        if access is not None:
+            params["access"] = access
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyClusterAdmin',
+            ModifyClusterAdminResult,
             params
         )
 
@@ -734,281 +1185,6 @@ class Element(ServiceBase):
             params
         )
 
-    def set_snmp_acl(
-            self,
-            networks,
-            usm_users,):
-        """
-        SetSnmpACL enables you to configure SNMP access permissions on the cluster nodes. The values you set with this interface apply to all
-        nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpACL. Also note
-        that the values set with this interface replace all network or usmUsers values set with the older SetSnmpInfo.
-        :param networks: [required] List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. This parameter is required if SNMP v3 is disabled. 
-        :type networks: SnmpNetwork
-
-        :param usmUsers: [required] List of users and the type of access they have to the SNMP servers running on the cluster nodes. 
-        :type usmUsers: SnmpV3UsmUser
-        """
-
-        self._check_connection_type("set_snmp_acl", "Cluster")
-
-        params = { 
-            "networks": networks,
-            "usmUsers": usm_users,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SetSnmpACL',
-            SetSnmpACLResult,
-            params
-        )
-
-    def list_events(
-            self,
-            max_events=OPTIONAL,
-            start_event_id=OPTIONAL,
-            end_event_id=OPTIONAL,):
-        """
-        ListEvents returns events detected on the cluster, sorted from oldest to newest.
-        :param maxEvents:  Specifies the maximum number of events to return. 
-        :type maxEvents: int
-
-        :param startEventID:  Identifies the beginning of a range of events to return. 
-        :type startEventID: int
-
-        :param endEventID:  Identifies the end of a range of events to return. 
-        :type endEventID: int
-        """
-
-        self._check_connection_type("list_events", "Cluster")
-
-        params = { 
-        }
-        if max_events is not None:
-            params["maxEvents"] = max_events
-        if start_event_id is not None:
-            params["startEventID"] = start_event_id
-        if end_event_id is not None:
-            params["endEventID"] = end_event_id
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListEvents',
-            ListEventsResult,
-            params
-        )
-
-    def snmp_send_test_traps(
-            self,):
-        """
-        SnmpSendTestTraps enables you to test SNMP functionality for a cluster. This method instructs the cluster to send test SNMP traps to the currently configured SNMP manager.        """
-
-        self._check_connection_type("snmp_send_test_traps", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SnmpSendTestTraps',
-            SnmpSendTestTrapsResult,
-            params
-        )
-
-    def add_cluster_admin(
-            self,
-            username,
-            password,
-            access,
-            accept_eula=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        You can use AddClusterAdmin to add a new cluster admin account. A cluster ddmin can manage the cluster using the API and management tools. Cluster admins are completely separate and unrelated to standard tenant accounts.
-        Each cluster admin can be restricted to a subset of the API. NetApp recommends using multiple cluster admin accounts for different users and applications. You should give each cluster admin the minimal permissions necessary; this reduces the potential impact of credential compromise.
-        You must accept the End User License Agreement (EULA) by setting the acceptEula parameter to true to add a cluster administrator account to the system.
-        :param username: [required] Unique username for this cluster admin. Must be between 1 and 1024 characters in length. 
-        :type username: str
-
-        :param password: [required] Password used to authenticate this cluster admin. 
-        :type password: str
-
-        :param access: [required] Controls which methods this cluster admin can use. For more details on the levels of access, see Access Control in the Element API Reference Guide. 
-        :type access: str
-
-        :param acceptEula:  Required to indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. 
-        :type acceptEula: bool
-
-        :param attributes:  List of name-value pairs in JSON object format. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("add_cluster_admin", "Cluster")
-
-        params = { 
-            "username": username,
-            "password": password,
-            "access": access,
-        }
-        if accept_eula is not None:
-            params["acceptEula"] = accept_eula
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'AddClusterAdmin',
-            AddClusterAdminResult,
-            params
-        )
-
-    def create_support_bundle(
-            self,
-            bundle_name=OPTIONAL,
-            extra_args=OPTIONAL,
-            timeout_sec=OPTIONAL,):
-        """
-        CreateSupportBundle enables you to create a support bundle file under the node's directory. After creation, the bundle is stored on the node as a tar.gz file.
-        :param bundleName:  The unique name for the support bundle. If no name is provided, "supportbundle" and the node name are used as the filename. 
-        :type bundleName: str
-
-        :param extraArgs:  Passed to the sf_make_support_bundle script. You should use this parameter only at the request of NetApp SolidFire Support. 
-        :type extraArgs: str
-
-        :param timeoutSec:  The number of seconds to allow the support bundle script to run before stopping. The default value is 1500 seconds. 
-        :type timeoutSec: int
-        """
-
-        self._check_connection_type("create_support_bundle", "Node")
-
-        params = { 
-        }
-        if bundle_name is not None:
-            params["bundleName"] = bundle_name
-        if extra_args is not None:
-            params["extraArgs"] = extra_args
-        if timeout_sec is not None:
-            params["timeoutSec"] = timeout_sec
-        
-        # There is no adaptor.
-        return self.send_request(
-            'CreateSupportBundle',
-            CreateSupportBundleResult,
-            params
-        )
-
-    def disable_encryption_at_rest(
-            self,):
-        """
-        The DisableEncryptionAtRest method enables you to remove the encryption that was previously applied to the cluster using the EnableEncryptionAtRest method. This disable method is asynchronous and returns a response before encryption is disabled. You can use the GetClusterInfo method to poll the system to see when the process has completed.        """
-
-        self._check_connection_type("disable_encryption_at_rest", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'DisableEncryptionAtRest',
-            DisableEncryptionAtRestResult,
-            params
-        )
-
-    def enable_encryption_at_rest(
-            self,):
-        """
-        You can use the EnableEncryptionAtRest method to enable the Advanced Encryption Standard (AES) 256-bit encryption at rest on the cluster, so that the cluster can manage the encryption key used for the drives on each node. This feature is not enabled by default.
-        When you enable Encryption at Rest, the cluster automatically manages encryption keys internally for the drives on each node in the cluster. Nodes do not store the keys to unlock drives and the keys are never passed over the network. Two nodes participating in a cluster are required to access the key to disable encryption on a drive. The encryption management does not affect performance or efficiency on the cluster. If an encryption-enabled drive or node is removed from the cluster with the API, Encryption at Rest is disabled and the data is not secure erased. Data can be secure erased using the SecureEraseDrives API method.
-        Note: If you have a node type with a model number ending in "-NE", the EnableEncryptionAtRest method call fails with a response of "Encryption not allowed. Cluster detected non-encryptable node".
-        You should only enable or disable encryption when the cluster is running and in a healthy state. You can enable or disable encryption at your discretion and as often as you need.
-        Note: This process is asynchronous and returns a response before encryption is enabled. You can use the GetClusterInfo
-        method to poll the system to see when the process has completed.        """
-
-        self._check_connection_type("enable_encryption_at_rest", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'EnableEncryptionAtRest',
-            EnableEncryptionAtRestResult,
-            params
-        )
-
-    def get_api(
-            self,):
-        """
-        You can use the GetAPI method to return a list of all the API methods and supported API endpoints that can be used in the system.        """
-
-        self._check_connection_type("get_api", "Both")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetAPI',
-            GetAPIResult,
-            params
-        )
-
-    def get_cluster_config(
-            self,):
-        """
-        The GetClusterConfig API method enables you to return information about the cluster configuration this node uses to communicate with the cluster that it is a part of.        """
-
-        self._check_connection_type("get_cluster_config", "Node")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetClusterConfig',
-            GetClusterConfigResult,
-            params
-        )
-
-    def modify_cluster_admin(
-            self,
-            cluster_admin_id,
-            password=OPTIONAL,
-            access=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        You can use ModifyClusterAdmin to change the settings for a cluster admin or LDAP cluster admin. You cannot change access for the administrator cluster admin account.
-        :param clusterAdminID: [required] ClusterAdminID for the cluster admin or LDAP cluster admin to modify. 
-        :type clusterAdminID: int
-
-        :param password:  Password used to authenticate this cluster admin. 
-        :type password: str
-
-        :param access:  Controls which methods this cluster admin can use. For more details, see Access Control in the Element API Reference Guide. 
-        :type access: str
-
-        :param attributes:  List of name-value pairs in JSON object format. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("modify_cluster_admin", "Cluster")
-
-        params = { 
-            "clusterAdminID": cluster_admin_id,
-        }
-        if password is not None:
-            params["password"] = password
-        if access is not None:
-            params["access"] = access
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ModifyClusterAdmin',
-            ModifyClusterAdminResult,
-            params
-        )
-
     def set_ntp_info(
             self,
             servers,
@@ -1035,6 +1211,35 @@ class Element(ServiceBase):
         return self.send_request(
             'SetNtpInfo',
             SetNtpInfoResult,
+            params
+        )
+
+    def set_snmp_acl(
+            self,
+            networks,
+            usm_users,):
+        """
+        SetSnmpACL enables you to configure SNMP access permissions on the cluster nodes. The values you set with this interface apply to all
+        nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpACL. Also note
+        that the values set with this interface replace all network or usmUsers values set with the older SetSnmpInfo.
+        :param networks: [required] List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. This parameter is required if SNMP v3 is disabled. 
+        :type networks: SnmpNetwork
+
+        :param usmUsers: [required] List of users and the type of access they have to the SNMP servers running on the cluster nodes. 
+        :type usmUsers: SnmpV3UsmUser
+        """
+
+        self._check_connection_type("set_snmp_acl", "Cluster")
+
+        params = { 
+            "networks": networks,
+            "usmUsers": usm_users,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetSnmpACL',
+            SetSnmpACLResult,
             params
         )
 
@@ -1118,225 +1323,20 @@ class Element(ServiceBase):
             params
         )
 
-    def list_cluster_admins(
+    def snmp_send_test_traps(
             self,):
         """
-        ListClusterAdmins returns the list of all cluster administrators for the cluster. There can be several cluster administrator accounts with different levels of permissions. There can be only one primary cluster administrator in the system. The primary Cluster Admin is the administrator that was created when the cluster was created. You can also create LDAP administrators when setting up an LDAP system on the cluster.        """
+        SnmpSendTestTraps enables you to test SNMP functionality for a cluster. This method instructs the cluster to send test SNMP traps to the currently configured SNMP manager.        """
 
-        self._check_connection_type("list_cluster_admins", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListClusterAdmins',
-            ListClusterAdminsResult,
-            params
-        )
-
-    def list_cluster_faults(
-            self,
-            best_practices=OPTIONAL,
-            fault_types=OPTIONAL,):
-        """
-        ListClusterFaults enables you to retrieve information about any faults detected on the cluster. With this method, you can retrieve both current faults as well as faults that have been resolved. The system caches faults every 30 seconds.
-        :param bestPractices:  Specifies whether to include faults triggered by suboptimal system configuration. Possible values are: true false 
-        :type bestPractices: bool
-
-        :param faultTypes:  Determines the types of faults returned. Possible values are: current: List active, unresolved faults. resolved: List faults that were previously detected and resolved. all: (Default) List both current and resolved faults. You can see the fault status in the resolved field of the Cluster Fault object. 
-        :type faultTypes: str
-        """
-
-        self._check_connection_type("list_cluster_faults", "Cluster")
-
-        params = { 
-        }
-        if best_practices is not None:
-            params["bestPractices"] = best_practices
-        if fault_types is not None:
-            params["faultTypes"] = fault_types
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListClusterFaults',
-            ListClusterFaultsResult,
-            params
-        )
-
-    def get_snmp_trap_info(
-            self,):
-        """
-        You can use GetSnmpTrapInfo to return current SNMP trap configuration information.        """
-
-        self._check_connection_type("get_snmp_trap_info", "Cluster")
+        self._check_connection_type("snmp_send_test_traps", "Cluster")
 
         params = { 
         }
         
         # There is no adaptor.
         return self.send_request(
-            'GetSnmpTrapInfo',
-            GetSnmpTrapInfoResult,
-            params
-        )
-
-    def create_cluster(
-            self,
-            mvip,
-            svip,
-            rep_count,
-            username,
-            password,
-            nodes,
-            accept_eula=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        The CreateCluster method enables you to initialize the node in a cluster that has ownership of the "mvip" and "svip" addresses. Each new cluster is initialized using the management IP (MIP) of the first node in the cluster. This method also automatically adds all the nodes being configured into the cluster. You only need to use this method once each time a new cluster is initialized.
-        Note: You need to log in to the node that is used as the master node for the cluster. After you log in, run the GetBootstrapConfig method on the node to get the IP addresses for the rest of the nodes that you want to include in the
-        cluster. Then, run the CreateCluster method.
-        :param acceptEula:  Required to indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. 
-        :type acceptEula: bool
-
-        :param mvip: [required] Floating (virtual) IP address for the cluster on the management network. 
-        :type mvip: str
-
-        :param svip: [required] Floating (virtual) IP address for the cluster on the storage (iSCSI) network. 
-        :type svip: str
-
-        :param repCount: [required] Number of replicas of each piece of data to store in the cluster. Valid value is "2". 
-        :type repCount: int
-
-        :param username: [required] Username for the cluster admin. 
-        :type username: str
-
-        :param password: [required] Initial password for the cluster admin account. 
-        :type password: str
-
-        :param nodes: [required] CIP/SIP addresses of the initial set of nodes making up the cluster. This node's IP must be in the list. 
-        :type nodes: str
-
-        :param attributes:  List of name-value pairs in JSON object format. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("create_cluster", "Both")
-
-        params = { 
-            "mvip": mvip,
-            "svip": svip,
-            "repCount": rep_count,
-            "username": username,
-            "password": password,
-            "nodes": nodes,
-        }
-        if accept_eula is not None:
-            params["acceptEula"] = accept_eula
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'CreateCluster',
-            CreateClusterResult,
-            params
-        )
-
-    def delete_all_support_bundles(
-            self,):
-        """
-        DeleteAllSupportBundles enables you to delete all support bundles generated with the CreateSupportBundle API method.        """
-
-        self._check_connection_type("delete_all_support_bundles", "Node")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'DeleteAllSupportBundles',
-            DeleteAllSupportBundlesResult,
-            params
-        )
-
-    def disable_snmp(
-            self,):
-        """
-        You can use DisableSnmp to disable SNMP on the cluster nodes.        """
-
-        self._check_connection_type("disable_snmp", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'DisableSnmp',
-            DisableSnmpResult,
-            params
-        )
-
-    def enable_snmp(
-            self,
-            snmp_v3_enabled,):
-        """
-        EnableSnmp enables you to enable SNMP on cluster nodes. When you enable SNMP, the action applies to all nodes in the cluster, and
-        the values that are passed replace, in whole, all values set in any previous call to EnableSnmp.
-        :param snmpV3Enabled: [required] If set to "true", then SNMP v3 is enabled on each node in the cluster. If set to "false", then SNMP v2 is enabled. 
-        :type snmpV3Enabled: bool
-        """
-
-        self._check_connection_type("enable_snmp", "Cluster")
-
-        params = { 
-            "snmpV3Enabled": snmp_v3_enabled,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'EnableSnmp',
-            EnableSnmpResult,
-            params
-        )
-
-    def get_cluster_capacity(
-            self,):
-        """
-        You can use the GetClusterCapacity method to return the high-level capacity measurements for an entire cluster. You can use the fields returned from this method to calculate the efficiency rates that are displayed in the Element OS Web UI. You can use the following calculations in scripts to return the efficiency rates for thin provisioning, deduplication, compression, and overall efficiency.        """
-
-        self._check_connection_type("get_cluster_capacity", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetClusterCapacity',
-            GetClusterCapacityResult,
-            params
-        )
-
-    def clear_cluster_faults(
-            self,
-            fault_types=OPTIONAL,):
-        """
-        You can use the ClearClusterFaults method to clear information about both current and previously detected faults. Both resolved
-        and unresolved faults can be cleared.
-        :param faultTypes:  Determines the types of faults cleared. Possible values are: current: Faults that are currently detected and have not been resolved. resolved: (Default) Faults that were previously detected and resolved. all: Both current and resolved faults are cleared. The fault status can be determined by the resolved field of the fault object. 
-        :type faultTypes: str
-        """
-
-        self._check_connection_type("clear_cluster_faults", "Cluster")
-
-        params = { 
-        }
-        if fault_types is not None:
-            params["faultTypes"] = fault_types
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ClearClusterFaults',
-            ClearClusterFaultsResult,
+            'SnmpSendTestTraps',
+            SnmpSendTestTrapsResult,
             params
         )
 
@@ -2255,6 +2255,23 @@ class Element(ServiceBase):
         return ElementServiceAdaptor.get_node_stats(self, params,
                                                   since, deprecated)
 
+    def get_origin(
+            self,):
+        """
+        GetOrigin enables you to retrieve the origination certificate for where the node was built. This method might return null if there is no origination certification.        """
+
+        self._check_connection_type("get_origin", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetOrigin',
+            GetOriginResult,
+            params
+        )
+
     def get_pending_operation(
             self,):
         """
@@ -2429,46 +2446,6 @@ class Element(ServiceBase):
             params
         )
 
-    def get_origin(
-            self,):
-        """
-        GetOrigin enables you to retrieve the origination certificate for where the node was built. This method might return null if there is no origination certification.        """
-
-        self._check_connection_type("get_origin", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetOrigin',
-            GetOriginResult,
-            params
-        )
-
-    def remove_cluster_pair(
-            self,
-            cluster_pair_id,):
-        """
-        You can use the RemoveClusterPair method to close the open connections between two paired clusters.
-        Note: Before you remove a cluster pair, you must first remove all volume pairing to the clusters with the "RemoveVolumePair" API method.
-        :param clusterPairID: [required] Unique identifier used to pair two clusters. 
-        :type clusterPairID: int
-        """
-
-        self._check_connection_type("remove_cluster_pair", "Cluster")
-
-        params = { 
-            "clusterPairID": cluster_pair_id,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'RemoveClusterPair',
-            RemoveClusterPairResult,
-            params
-        )
-
     def complete_cluster_pairing(
             self,
             cluster_pairing_key,):
@@ -2518,6 +2495,35 @@ class Element(ServiceBase):
             params
         )
 
+    def list_active_paired_volumes(
+            self,
+            start_volume_id=OPTIONAL,
+            limit=OPTIONAL,):
+        """
+        ListActivePairedVolumes enables you to list all the active volumes paired with a volume. This method returns information about volumes with active and pending pairings.
+        :param startVolumeID:  The beginning of the range of active paired volumes to return. 
+        :type startVolumeID: int
+
+        :param limit:  Maximum number of active paired volumes to return. 
+        :type limit: int
+        """
+
+        self._check_connection_type("list_active_paired_volumes", "Cluster")
+
+        params = { 
+        }
+        if start_volume_id is not None:
+            params["startVolumeID"] = start_volume_id
+        if limit is not None:
+            params["limit"] = limit
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListActivePairedVolumes',
+            ListActivePairedVolumesResult,
+            params
+        )
+
     def list_cluster_pairs(
             self,):
         """
@@ -2532,6 +2538,69 @@ class Element(ServiceBase):
         return self.send_request(
             'ListClusterPairs',
             ListClusterPairsResult,
+            params
+        )
+
+    def modify_volume_pair(
+            self,
+            volume_id,
+            paused_manual=OPTIONAL,
+            mode=OPTIONAL,
+            pause_limit=OPTIONAL,):
+        """
+        ModifyVolumePair enables you to pause or restart replication between a pair of volumes.
+        :param volumeID: [required] The ID of the volume to be modified. 
+        :type volumeID: int
+
+        :param pausedManual:  Specifies whether to pause or restart volume replication process. Valid values are:  true: Pauses volume replication false: Restarts volume replication 
+        :type pausedManual: bool
+
+        :param mode:  Specifies the volume replication mode. Possible values are: Async: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster. Sync: The source acknowledges the write when the data is stored locally and on the remote cluster. SnapshotsOnly: Only snapshots created on the source cluster are replicated. Active writes from the source volume are not replicated. 
+        :type mode: str
+
+        :param pauseLimit:  Internal use only. 
+        :type pauseLimit: int
+        """
+
+        self._check_connection_type("modify_volume_pair", "Cluster")
+
+        params = { 
+            "volumeID": volume_id,
+        }
+        if paused_manual is not None:
+            params["pausedManual"] = paused_manual
+        if mode is not None:
+            params["mode"] = mode
+        if pause_limit is not None:
+            params["pauseLimit"] = pause_limit
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyVolumePair',
+            ModifyVolumePairResult,
+            params
+        )
+
+    def remove_cluster_pair(
+            self,
+            cluster_pair_id,):
+        """
+        You can use the RemoveClusterPair method to close the open connections between two paired clusters.
+        Note: Before you remove a cluster pair, you must first remove all volume pairing to the clusters with the "RemoveVolumePair" API method.
+        :param clusterPairID: [required] Unique identifier used to pair two clusters. 
+        :type clusterPairID: int
+        """
+
+        self._check_connection_type("remove_cluster_pair", "Cluster")
+
+        params = { 
+            "clusterPairID": cluster_pair_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RemoveClusterPair',
+            RemoveClusterPairResult,
             params
         )
 
@@ -2600,75 +2669,6 @@ class Element(ServiceBase):
         return self.send_request(
             'StartVolumePairing',
             StartVolumePairingResult,
-            params
-        )
-
-    def list_active_paired_volumes(
-            self,
-            start_volume_id=OPTIONAL,
-            limit=OPTIONAL,):
-        """
-        ListActivePairedVolumes enables you to list all the active volumes paired with a volume. This method returns information about volumes with active and pending pairings.
-        :param startVolumeID:  The beginning of the range of active paired volumes to return. 
-        :type startVolumeID: int
-
-        :param limit:  Maximum number of active paired volumes to return. 
-        :type limit: int
-        """
-
-        self._check_connection_type("list_active_paired_volumes", "Cluster")
-
-        params = { 
-        }
-        if start_volume_id is not None:
-            params["startVolumeID"] = start_volume_id
-        if limit is not None:
-            params["limit"] = limit
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListActivePairedVolumes',
-            ListActivePairedVolumesResult,
-            params
-        )
-
-    def modify_volume_pair(
-            self,
-            volume_id,
-            paused_manual=OPTIONAL,
-            mode=OPTIONAL,
-            pause_limit=OPTIONAL,):
-        """
-        ModifyVolumePair enables you to pause or restart replication between a pair of volumes.
-        :param volumeID: [required] The ID of the volume to be modified. 
-        :type volumeID: int
-
-        :param pausedManual:  Specifies whether to pause or restart volume replication process. Valid values are:  true: Pauses volume replication false: Restarts volume replication 
-        :type pausedManual: bool
-
-        :param mode:  Specifies the volume replication mode. Possible values are: Async: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster. Sync: The source acknowledges the write when the data is stored locally and on the remote cluster. SnapshotsOnly: Only snapshots created on the source cluster are replicated. Active writes from the source volume are not replicated. 
-        :type mode: str
-
-        :param pauseLimit:  Internal use only. 
-        :type pauseLimit: int
-        """
-
-        self._check_connection_type("modify_volume_pair", "Cluster")
-
-        params = { 
-            "volumeID": volume_id,
-        }
-        if paused_manual is not None:
-            params["pausedManual"] = paused_manual
-        if mode is not None:
-            params["mode"] = mode
-        if pause_limit is not None:
-            params["pauseLimit"] = pause_limit
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ModifyVolumePair',
-            ModifyVolumePairResult,
             params
         )
 
@@ -2914,193 +2914,6 @@ class Element(ServiceBase):
         return self.send_request(
             'ListServices',
             ListServicesResult,
-            params
-        )
-
-    def modify_group_snapshot(
-            self,
-            group_snapshot_id,
-            expiration_time=OPTIONAL,
-            enable_remote_replication=OPTIONAL,):
-        """
-        ModifyGroupSnapshot enables you to change the attributes of a group of snapshots. You can also use this method to enable snapshots created on the Read/Write (source) volume to be remotely replicated to a target SolidFire storage system.
-        :param groupSnapshotID: [required] Specifies the ID of the group of snapshots. 
-        :type groupSnapshotID: int
-
-        :param expirationTime:  Sets the time when the snapshot should be removed. If unspecified, the current time is used. 
-        :type expirationTime: str
-
-        :param enableRemoteReplication:  Replicates the snapshot created to a remote cluster. Possible values are: true: The snapshot is replicated to remote storage. false: Default. The snapshot is not replicated. 
-        :type enableRemoteReplication: bool
-        """
-
-        self._check_connection_type("modify_group_snapshot", "Cluster")
-
-        params = { 
-            "groupSnapshotID": group_snapshot_id,
-        }
-        if expiration_time is not None:
-            params["expirationTime"] = expiration_time
-        if enable_remote_replication is not None:
-            params["enableRemoteReplication"] = enable_remote_replication
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ModifyGroupSnapshot',
-            ModifyGroupSnapshotResult,
-            params
-        )
-
-    def modify_snapshot(
-            self,
-            snapshot_id,
-            expiration_time=OPTIONAL,
-            enable_remote_replication=OPTIONAL,):
-        """
-        ModifySnapshot enables you to change the attributes currently assigned to a snapshot. You can use this method to enable snapshots created on
-        the Read/Write (source) volume to be remotely replicated to a target SolidFire storage system.
-        :param snapshotID: [required] Specifies the ID of the snapshot. 
-        :type snapshotID: int
-
-        :param expirationTime:  Sets the time when the snapshot should be removed. 
-        :type expirationTime: str
-
-        :param enableRemoteReplication:  Replicates the snapshot created to a remote cluster. Possible values are: true: The snapshot is replicated to remote storage. false: Default. The snapshot is not replicated. 
-        :type enableRemoteReplication: bool
-        """
-
-        self._check_connection_type("modify_snapshot", "Cluster")
-
-        params = { 
-            "snapshotID": snapshot_id,
-        }
-        if expiration_time is not None:
-            params["expirationTime"] = expiration_time
-        if enable_remote_replication is not None:
-            params["enableRemoteReplication"] = enable_remote_replication
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ModifySnapshot',
-            ModifySnapshotResult,
-            params
-        )
-
-    def rollback_to_group_snapshot(
-            self,
-            group_snapshot_id,
-            save_current_state,
-            name=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        RollbackToGroupSnapshot enables you to roll back all individual volumes in a snapshot group to each volume's individual snapshot.
-        Note: Rolling back to a group snapshot creates a temporary snapshot of each volume within the group snapshot.
-        Snapshots are allowed if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is at stage 4 or 5.
-        :param groupSnapshotID: [required] Specifies the unique ID of the group snapshot. 
-        :type groupSnapshotID: int
-
-        :param saveCurrentState: [required] Specifies whether to save an active volume image or delete it. Values are: true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. 
-        :type saveCurrentState: bool
-
-        :param name:  Name for the group snapshot of the volume's current state that is created if "saveCurrentState" is set to true. If you do not give a name, the name of the snapshots (group and individual volume) are set to a timestamp of the time that the rollback occurred. 
-        :type name: str
-
-        :param attributes:  List of name-value pairs in JSON object format. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("rollback_to_group_snapshot", "Cluster")
-
-        params = { 
-            "groupSnapshotID": group_snapshot_id,
-            "saveCurrentState": save_current_state,
-        }
-        if name is not None:
-            params["name"] = name
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'RollbackToGroupSnapshot',
-            RollbackToGroupSnapshotResult,
-            params
-        )
-
-    def rollback_to_snapshot(
-            self,
-            volume_id,
-            snapshot_id,
-            save_current_state,
-            name=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        RollbackToSnapshot enables you to make an existing snapshot of the "active" volume image. This method creates a new snapshot
-        from an existing snapshot. The new snapshot becomes "active" and the existing snapshot is preserved until you delete it.
-        The previously "active" snapshot is deleted unless you set the parameter saveCurrentState to true.
-        Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is
-        at stage 4 or 5.
-        :param volumeID: [required] VolumeID for the volume. 
-        :type volumeID: int
-
-        :param snapshotID: [required] The ID of a previously created snapshot on the given volume. 
-        :type snapshotID: int
-
-        :param saveCurrentState: [required] Specifies whether to save an active volume image or delete it. Values are: true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. 
-        :type saveCurrentState: bool
-
-        :param name:  Name for the snapshot. If unspecified, the name of the snapshot being rolled back to is used with "- copy" appended to the end of the name. 
-        :type name: str
-
-        :param attributes:  List of name-value pairs in JSON object format. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("rollback_to_snapshot", "Cluster")
-
-        params = { 
-            "volumeID": volume_id,
-            "snapshotID": snapshot_id,
-            "saveCurrentState": save_current_state,
-        }
-        if name is not None:
-            params["name"] = name
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'RollbackToSnapshot',
-            RollbackToSnapshotResult,
-            params
-        )
-
-    def list_snapshots(
-            self,
-            volume_id=OPTIONAL,
-            snapshot_id=OPTIONAL,):
-        """
-        ListSnapshots enables you to return the attributes of each snapshot taken on the volume. Information about snapshots that reside on the target cluster is displayed on the source cluster when this method is called from the source cluster.
-        :param volumeID:  Retrieves snapshots for a volume. If volumeID is not provided, all snapshots for all volumes are returned. 
-        :type volumeID: int
-
-        :param snapshotID:  Retrieves information for a specific snapshot ID. 
-        :type snapshotID: int
-        """
-
-        self._check_connection_type("list_snapshots", "Cluster")
-
-        params = { 
-        }
-        if volume_id is not None:
-            params["volumeID"] = volume_id
-        if snapshot_id is not None:
-            params["snapshotID"] = snapshot_id
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListSnapshots',
-            ListSnapshotsResult,
             params
         )
 
@@ -3352,6 +3165,69 @@ class Element(ServiceBase):
         return ElementServiceAdaptor.list_schedules(self, params,
                                                   since, deprecated)
 
+    def list_snapshots(
+            self,
+            volume_id=OPTIONAL,
+            snapshot_id=OPTIONAL,):
+        """
+        ListSnapshots enables you to return the attributes of each snapshot taken on the volume. Information about snapshots that reside on the target cluster is displayed on the source cluster when this method is called from the source cluster.
+        :param volumeID:  Retrieves snapshots for a volume. If volumeID is not provided, all snapshots for all volumes are returned. 
+        :type volumeID: int
+
+        :param snapshotID:  Retrieves information for a specific snapshot ID. 
+        :type snapshotID: int
+        """
+
+        self._check_connection_type("list_snapshots", "Cluster")
+
+        params = { 
+        }
+        if volume_id is not None:
+            params["volumeID"] = volume_id
+        if snapshot_id is not None:
+            params["snapshotID"] = snapshot_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListSnapshots',
+            ListSnapshotsResult,
+            params
+        )
+
+    def modify_group_snapshot(
+            self,
+            group_snapshot_id,
+            expiration_time=OPTIONAL,
+            enable_remote_replication=OPTIONAL,):
+        """
+        ModifyGroupSnapshot enables you to change the attributes of a group of snapshots. You can also use this method to enable snapshots created on the Read/Write (source) volume to be remotely replicated to a target SolidFire storage system.
+        :param groupSnapshotID: [required] Specifies the ID of the group of snapshots. 
+        :type groupSnapshotID: int
+
+        :param expirationTime:  Sets the time when the snapshot should be removed. If unspecified, the current time is used. 
+        :type expirationTime: str
+
+        :param enableRemoteReplication:  Replicates the snapshot created to a remote cluster. Possible values are: true: The snapshot is replicated to remote storage. false: Default. The snapshot is not replicated. 
+        :type enableRemoteReplication: bool
+        """
+
+        self._check_connection_type("modify_group_snapshot", "Cluster")
+
+        params = { 
+            "groupSnapshotID": group_snapshot_id,
+        }
+        if expiration_time is not None:
+            params["expirationTime"] = expiration_time
+        if enable_remote_replication is not None:
+            params["enableRemoteReplication"] = enable_remote_replication
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyGroupSnapshot',
+            ModifyGroupSnapshotResult,
+            params
+        )
+
     def modify_schedule(
             self,
             schedule,):
@@ -3373,6 +3249,130 @@ class Element(ServiceBase):
 
         return ElementServiceAdaptor.modify_schedule(self, params,
                                                   since, deprecated)
+
+    def modify_snapshot(
+            self,
+            snapshot_id,
+            expiration_time=OPTIONAL,
+            enable_remote_replication=OPTIONAL,):
+        """
+        ModifySnapshot enables you to change the attributes currently assigned to a snapshot. You can use this method to enable snapshots created on
+        the Read/Write (source) volume to be remotely replicated to a target SolidFire storage system.
+        :param snapshotID: [required] Specifies the ID of the snapshot. 
+        :type snapshotID: int
+
+        :param expirationTime:  Sets the time when the snapshot should be removed. 
+        :type expirationTime: str
+
+        :param enableRemoteReplication:  Replicates the snapshot created to a remote cluster. Possible values are: true: The snapshot is replicated to remote storage. false: Default. The snapshot is not replicated. 
+        :type enableRemoteReplication: bool
+        """
+
+        self._check_connection_type("modify_snapshot", "Cluster")
+
+        params = { 
+            "snapshotID": snapshot_id,
+        }
+        if expiration_time is not None:
+            params["expirationTime"] = expiration_time
+        if enable_remote_replication is not None:
+            params["enableRemoteReplication"] = enable_remote_replication
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifySnapshot',
+            ModifySnapshotResult,
+            params
+        )
+
+    def rollback_to_group_snapshot(
+            self,
+            group_snapshot_id,
+            save_current_state,
+            name=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        RollbackToGroupSnapshot enables you to roll back all individual volumes in a snapshot group to each volume's individual snapshot.
+        Note: Rolling back to a group snapshot creates a temporary snapshot of each volume within the group snapshot.
+        Snapshots are allowed if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is at stage 4 or 5.
+        :param groupSnapshotID: [required] Specifies the unique ID of the group snapshot. 
+        :type groupSnapshotID: int
+
+        :param saveCurrentState: [required] Specifies whether to save an active volume image or delete it. Values are: true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. 
+        :type saveCurrentState: bool
+
+        :param name:  Name for the group snapshot of the volume's current state that is created if "saveCurrentState" is set to true. If you do not give a name, the name of the snapshots (group and individual volume) are set to a timestamp of the time that the rollback occurred. 
+        :type name: str
+
+        :param attributes:  List of name-value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("rollback_to_group_snapshot", "Cluster")
+
+        params = { 
+            "groupSnapshotID": group_snapshot_id,
+            "saveCurrentState": save_current_state,
+        }
+        if name is not None:
+            params["name"] = name
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RollbackToGroupSnapshot',
+            RollbackToGroupSnapshotResult,
+            params
+        )
+
+    def rollback_to_snapshot(
+            self,
+            volume_id,
+            snapshot_id,
+            save_current_state,
+            name=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        RollbackToSnapshot enables you to make an existing snapshot of the "active" volume image. This method creates a new snapshot
+        from an existing snapshot. The new snapshot becomes "active" and the existing snapshot is preserved until you delete it.
+        The previously "active" snapshot is deleted unless you set the parameter saveCurrentState to true.
+        Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is
+        at stage 4 or 5.
+        :param volumeID: [required] VolumeID for the volume. 
+        :type volumeID: int
+
+        :param snapshotID: [required] The ID of a previously created snapshot on the given volume. 
+        :type snapshotID: int
+
+        :param saveCurrentState: [required] Specifies whether to save an active volume image or delete it. Values are: true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. 
+        :type saveCurrentState: bool
+
+        :param name:  Name for the snapshot. If unspecified, the name of the snapshot being rolled back to is used with "- copy" appended to the end of the name. 
+        :type name: str
+
+        :param attributes:  List of name-value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("rollback_to_snapshot", "Cluster")
+
+        params = { 
+            "volumeID": volume_id,
+            "snapshotID": snapshot_id,
+            "saveCurrentState": save_current_state,
+        }
+        if name is not None:
+            params["name"] = name
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RollbackToSnapshot',
+            RollbackToSnapshotResult,
+            params
+        )
 
     def get_complete_stats(
             self,):
@@ -3450,29 +3450,6 @@ class Element(ServiceBase):
             params
         )
 
-    def list_volume_stats_by_virtual_volume(
-            self,
-            virtual_volume_ids=OPTIONAL,):
-        """
-        ListVolumeStatsByVirtualVolume enables you to list volume statistics for any volumes in the system that are associated with virtual volumes. Statistics are cumulative from the creation of the volume.
-        :param virtualVolumeIDs:  A list of one or more virtual volume IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
-        :type virtualVolumeIDs: UUID
-        """
-
-        self._check_connection_type("list_volume_stats_by_virtual_volume", "Cluster")
-
-        params = { 
-        }
-        if virtual_volume_ids is not None:
-            params["virtualVolumeIDs"] = virtual_volume_ids
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVolumeStatsByVirtualVolume',
-            ListVolumeStatsByVirtualVolumeResult,
-            params
-        )
-
     def list_volume_stats(
             self,
             volume_ids=OPTIONAL,):
@@ -3493,6 +3470,29 @@ class Element(ServiceBase):
         return self.send_request(
             'ListVolumeStats',
             ListVolumeStatsResult,
+            params
+        )
+
+    def list_volume_stats_by_virtual_volume(
+            self,
+            virtual_volume_ids=OPTIONAL,):
+        """
+        ListVolumeStatsByVirtualVolume enables you to list volume statistics for any volumes in the system that are associated with virtual volumes. Statistics are cumulative from the creation of the volume.
+        :param virtualVolumeIDs:  A list of one or more virtual volume IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
+        :type virtualVolumeIDs: UUID
+        """
+
+        self._check_connection_type("list_volume_stats_by_virtual_volume", "Cluster")
+
+        params = { 
+        }
+        if virtual_volume_ids is not None:
+            params["virtualVolumeIDs"] = virtual_volume_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVolumeStatsByVirtualVolume',
+            ListVolumeStatsByVirtualVolumeResult,
             params
         )
 
@@ -3802,80 +3802,6 @@ class Element(ServiceBase):
             params
         )
 
-    def list_virtual_networks(
-            self,
-            virtual_network_id=OPTIONAL,
-            virtual_network_tag=OPTIONAL,
-            virtual_network_ids=OPTIONAL,
-            virtual_network_tags=OPTIONAL,):
-        """
-        ListVirtualNetworks enables you to list all configured virtual networks for the cluster. You can use this method to verify the virtual
-        network settings in the cluster.
-        There are no required parameters for this method. However, to filter the results, you can pass one or more VirtualNetworkID or
-        VirtualNetworkTag values.
-        :param virtualNetworkID:  Network ID to filter the list for a single virtual network. 
-        :type virtualNetworkID: int
-
-        :param virtualNetworkTag:  Network tag to filter the list for a single virtual network. 
-        :type virtualNetworkTag: int
-
-        :param virtualNetworkIDs:  Network IDs to include in the list. 
-        :type virtualNetworkIDs: int
-
-        :param virtualNetworkTags:  Network tag to include in the list. 
-        :type virtualNetworkTags: int
-        """
-
-        self._check_connection_type("list_virtual_networks", "Cluster")
-
-        params = { 
-        }
-        if virtual_network_id is not None:
-            params["virtualNetworkID"] = virtual_network_id
-        if virtual_network_tag is not None:
-            params["virtualNetworkTag"] = virtual_network_tag
-        if virtual_network_ids is not None:
-            params["virtualNetworkIDs"] = virtual_network_ids
-        if virtual_network_tags is not None:
-            params["virtualNetworkTags"] = virtual_network_tags
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVirtualNetworks',
-            ListVirtualNetworksResult,
-            params
-        )
-
-    def remove_virtual_network(
-            self,
-            virtual_network_id=OPTIONAL,
-            virtual_network_tag=OPTIONAL,):
-        """
-        RemoveVirtualNetwork enables you to remove a previously added virtual network.
-        Note: This method requires either the virtualNetworkID or the virtualNetworkTag as a parameter, but not both.
-        :param virtualNetworkID:  Network ID that identifies the virtual network to remove. 
-        :type virtualNetworkID: int
-
-        :param virtualNetworkTag:  Network tag that identifies the virtual network to remove. 
-        :type virtualNetworkTag: int
-        """
-
-        self._check_connection_type("remove_virtual_network", "Cluster")
-
-        params = { 
-        }
-        if virtual_network_id is not None:
-            params["virtualNetworkID"] = virtual_network_id
-        if virtual_network_tag is not None:
-            params["virtualNetworkTag"] = virtual_network_tag
-        
-        # There is no adaptor.
-        return self.send_request(
-            'RemoveVirtualNetwork',
-            RemoveVirtualNetworkResult,
-            params
-        )
-
     def add_virtual_network(
             self,
             virtual_network_tag,
@@ -3940,6 +3866,50 @@ class Element(ServiceBase):
         return self.send_request(
             'AddVirtualNetwork',
             AddVirtualNetworkResult,
+            params
+        )
+
+    def list_virtual_networks(
+            self,
+            virtual_network_id=OPTIONAL,
+            virtual_network_tag=OPTIONAL,
+            virtual_network_ids=OPTIONAL,
+            virtual_network_tags=OPTIONAL,):
+        """
+        ListVirtualNetworks enables you to list all configured virtual networks for the cluster. You can use this method to verify the virtual
+        network settings in the cluster.
+        There are no required parameters for this method. However, to filter the results, you can pass one or more VirtualNetworkID or
+        VirtualNetworkTag values.
+        :param virtualNetworkID:  Network ID to filter the list for a single virtual network. 
+        :type virtualNetworkID: int
+
+        :param virtualNetworkTag:  Network tag to filter the list for a single virtual network. 
+        :type virtualNetworkTag: int
+
+        :param virtualNetworkIDs:  Network IDs to include in the list. 
+        :type virtualNetworkIDs: int
+
+        :param virtualNetworkTags:  Network tag to include in the list. 
+        :type virtualNetworkTags: int
+        """
+
+        self._check_connection_type("list_virtual_networks", "Cluster")
+
+        params = { 
+        }
+        if virtual_network_id is not None:
+            params["virtualNetworkID"] = virtual_network_id
+        if virtual_network_tag is not None:
+            params["virtualNetworkTag"] = virtual_network_tag
+        if virtual_network_ids is not None:
+            params["virtualNetworkIDs"] = virtual_network_ids
+        if virtual_network_tags is not None:
+            params["virtualNetworkTags"] = virtual_network_tags
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVirtualNetworks',
+            ListVirtualNetworksResult,
             params
         )
 
@@ -4020,26 +3990,65 @@ class Element(ServiceBase):
             params
         )
 
-    def list_virtual_volume_tasks(
+    def remove_virtual_network(
             self,
-            virtual_volume_task_ids=OPTIONAL,):
+            virtual_network_id=OPTIONAL,
+            virtual_network_tag=OPTIONAL,):
         """
-        ListVirtualVolumeTasks returns a list of virtual volume tasks in the system.
-        :param virtualVolumeTaskIDs:  A list of virtual volume task IDs for which to retrieve information. If you omit this parameter, the method returns information about all virtual volume tasks. 
-        :type virtualVolumeTaskIDs: UUID
+        RemoveVirtualNetwork enables you to remove a previously added virtual network.
+        Note: This method requires either the virtualNetworkID or the virtualNetworkTag as a parameter, but not both.
+        :param virtualNetworkID:  Network ID that identifies the virtual network to remove. 
+        :type virtualNetworkID: int
+
+        :param virtualNetworkTag:  Network tag that identifies the virtual network to remove. 
+        :type virtualNetworkTag: int
         """
 
-        self._check_connection_type("list_virtual_volume_tasks", "Cluster")
+        self._check_connection_type("remove_virtual_network", "Cluster")
 
         params = { 
         }
-        if virtual_volume_task_ids is not None:
-            params["virtualVolumeTaskIDs"] = virtual_volume_task_ids
+        if virtual_network_id is not None:
+            params["virtualNetworkID"] = virtual_network_id
+        if virtual_network_tag is not None:
+            params["virtualNetworkTag"] = virtual_network_tag
         
         # There is no adaptor.
         return self.send_request(
-            'ListVirtualVolumeTasks',
-            ListVirtualVolumeTasksResult,
+            'RemoveVirtualNetwork',
+            RemoveVirtualNetworkResult,
+            params
+        )
+
+    def bind_virtual_volumes(
+            self,
+            virtual_volume_ids,
+            virtual_volume_host_id,
+            bind_context,):
+        """
+        BindVirtualVolume binds a VVol with a Host.
+        :param virtualVolumeIDs: [required] The UUID of the VVol to bind. 
+        :type virtualVolumeIDs: UUID
+
+        :param virtualVolumeHostID: [required] The UUID of the ESX host. 
+        :type virtualVolumeHostID: UUID
+
+        :param bindContext: [required] Normal or Start? 
+        :type bindContext: str
+        """
+
+        self._check_connection_type("bind_virtual_volumes", "Cluster")
+
+        params = { 
+            "virtualVolumeIDs": virtual_volume_ids,
+            "virtualVolumeHostID": virtual_volume_host_id,
+            "bindContext": bind_context,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'BindVirtualVolumes',
+            VirtualVolumeBindingListResult,
             params
         )
 
@@ -4062,6 +4071,72 @@ class Element(ServiceBase):
         return self.send_request(
             'CancelVirtualVolumeTask',
             VirtualVolumeNullResult,
+            params
+        )
+
+    def clone_virtual_volume(
+            self,
+            virtual_volume_id,
+            name=OPTIONAL,
+            qos=OPTIONAL,):
+        """
+        CloneVirtualVolume is used to execute a VMware Virtual Volume clone.
+        :param virtualVolumeID: [required] The ID of the Virtual Volume to clone. 
+        :type virtualVolumeID: UUID
+
+        :param name:  The name for the newly-created volume. 
+        :type name: str
+
+        :param qos:  New quality of service settings for this volume. 
+        :type qos: QoS
+        """
+
+        self._check_connection_type("clone_virtual_volume", "Cluster")
+
+        params = { 
+            "virtualVolumeID": virtual_volume_id,
+        }
+        if name is not None:
+            params["name"] = name
+        if qos is not None:
+            params["qos"] = qos
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CloneVirtualVolume',
+            VirtualVolumeAsyncResult,
+            params
+        )
+
+    def copy_diffs_to_virtual_volume(
+            self,
+            virtual_volume_id,
+            base_virtual_volume_id,
+            dst_virtual_volume_id,):
+        """
+        CopyDiffsToVirtualVolume is a three-way merge function.
+        :param virtualVolumeID: [required] The ID of the snapshot Virtual Volume. 
+        :type virtualVolumeID: UUID
+
+        :param baseVirtualVolumeID: [required] The ID of the base Virtual Volume. 
+        :type baseVirtualVolumeID: UUID
+
+        :param dstVirtualVolumeID: [required] The ID of the Virtual Volume to be overwritten. 
+        :type dstVirtualVolumeID: UUID
+        """
+
+        self._check_connection_type("copy_diffs_to_virtual_volume", "Cluster")
+
+        params = { 
+            "virtualVolumeID": virtual_volume_id,
+            "baseVirtualVolumeID": base_virtual_volume_id,
+            "dstVirtualVolumeID": dst_virtual_volume_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CopyDiffsToVirtualVolume',
+            VirtualVolumeAsyncResult,
             params
         )
 
@@ -4115,6 +4190,103 @@ class Element(ServiceBase):
             params
         )
 
+    def create_virtual_volume_host(
+            self,
+            virtual_volume_host_id,
+            cluster_id,
+            visible_protocol_endpoint_ids=OPTIONAL,
+            host_address=OPTIONAL,):
+        """
+        CreateVirtualVolumeHost creates a new ESX host.
+        :param virtualVolumeHostID: [required] The GUID of the ESX host. 
+        :type virtualVolumeHostID: UUID
+
+        :param clusterID: [required] The GUID of the ESX Cluster. 
+        :type clusterID: UUID
+
+        :param visibleProtocolEndpointIDs:  A list of PEs the host is aware of. 
+        :type visibleProtocolEndpointIDs: UUID
+
+        :param hostAddress:  IP or DNS name for the host. 
+        :type hostAddress: str
+        """
+
+        self._check_connection_type("create_virtual_volume_host", "Cluster")
+
+        params = { 
+            "virtualVolumeHostID": virtual_volume_host_id,
+            "clusterID": cluster_id,
+        }
+        if visible_protocol_endpoint_ids is not None:
+            params["visibleProtocolEndpointIDs"] = visible_protocol_endpoint_ids
+        if host_address is not None:
+            params["hostAddress"] = host_address
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateVirtualVolumeHost',
+            VirtualVolumeNullResult,
+            params
+        )
+
+    def delete_virtual_volumes(
+            self,
+            virtual_volumes,):
+        """
+        DeleteVirtualVolume marks an active volume for deletion.
+        It is purged (permanently deleted) after the cleanup interval elapses.
+        After making a request to delete a volume, any active iSCSI connections to the volume is immediately terminated and no further connections are allowed while the volume is in this state.
+        It is not returned in target discovery requests.
+        
+        Any snapshots of a volume that has been marked to delete are not affected.
+        Snapshots are kept until the volume is purged from the system.
+        
+        If a volume is marked for deletion, and it has a bulk volume read or bulk volume write operation in progress, the bulk volume operation is stopped.
+        
+        If the volume you delete is paired with a volume, replication between the paired volumes is suspended and no data is transferred to it or from it while in a deleted state.
+        The remote volume the deleted volume was paired with enters into a PausedMisconfigured state and data is no integerer sent to it or from the deleted volume.
+        Until the deleted volume is purged, it can be restored and data transfers resumes.
+        If the deleted volume gets purged from the system, the volume it was paired with enters into a StoppedMisconfigured state and the volume pairing status is removed.
+        The purged volume becomes permanently unavailable.
+        :param virtualVolumes: [required] The UUID of the volume to delete. 
+        :type virtualVolumes: UUID
+        """
+
+        self._check_connection_type("delete_virtual_volumes", "Cluster")
+
+        params = { 
+            "virtualVolumes": virtual_volumes,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DeleteVirtualVolumes',
+            VirtualVolumeNullResult,
+            params
+        )
+
+    def enable_feature(
+            self,
+            feature,):
+        """
+        You can use EnableFeature to enable cluster features that are disabled by default.
+        :param feature: [required] Indicates which feature to enable. Valid value is: vvols: Enable the NetApp SolidFire VVols cluster feature. 
+        :type feature: str
+        """
+
+        self._check_connection_type("enable_feature", "Cluster")
+
+        params = { 
+            "feature": feature,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'EnableFeature',
+            EnableFeatureResult,
+            params
+        )
+
     def fast_clone_virtual_volume(
             self,
             virtual_volume_id,
@@ -4146,6 +4318,124 @@ class Element(ServiceBase):
         return self.send_request(
             'FastCloneVirtualVolume',
             VirtualVolumeAsyncResult,
+            params
+        )
+
+    def get_feature_status(
+            self,
+            feature=OPTIONAL,):
+        """
+        GetFeatureStatus enables you to retrieve the status of a cluster feature.
+        :param feature:  Specifies the feature for which the status is returned. Valid value is: vvols: Retrieve status for the NetApp SolidFire VVols cluster feature. 
+        :type feature: str
+        """
+
+        self._check_connection_type("get_feature_status", "Cluster")
+
+        params = { 
+        }
+        if feature is not None:
+            params["feature"] = feature
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetFeatureStatus',
+            GetFeatureStatusResult,
+            params
+        )
+
+    def get_vasa_provider_info(
+            self,):
+        """
+        Gets the Vasa Provider info        """
+
+        self._check_connection_type("get_vasa_provider_info", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetVasaProviderInfo',
+            VasaProviderInfoResult,
+            params
+        )
+
+    def get_virtual_volume_allocated_bitmap(
+            self,
+            virtual_volume_id,
+            segment_start,
+            segment_length,
+            chunk_size,):
+        """
+        GetVirtualVolumeAllocatedBitmap returns a b64-encoded block of data 
+        representing a bitmap where non-zero bits indicate the allocation of a 
+        segment (LBA range) of the volume.
+        :param virtualVolumeID: [required] The ID of the Virtual Volume. 
+        :type virtualVolumeID: UUID
+
+        :param segmentStart: [required] Byte offset. 
+        :type segmentStart: int
+
+        :param segmentLength: [required] Byte length adjusted to end on a chunk boundary. 
+        :type segmentLength: int
+
+        :param chunkSize: [required] Number of bytes represented by one bit in the bitmap. 
+        :type chunkSize: int
+        """
+
+        self._check_connection_type("get_virtual_volume_allocated_bitmap", "Cluster")
+
+        params = { 
+            "virtualVolumeID": virtual_volume_id,
+            "segmentStart": segment_start,
+            "segmentLength": segment_length,
+            "chunkSize": chunk_size,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetVirtualVolumeAllocatedBitmap',
+            VirtualVolumeBitmapResult,
+            params
+        )
+
+    def get_virtual_volume_count(
+            self,):
+        """
+        Enables retrieval of the number of virtual volumes currently in the system.        """
+
+        self._check_connection_type("get_virtual_volume_count", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetVirtualVolumeCount',
+            GetVirtualVolumeCountResult,
+            params
+        )
+
+    def get_virtual_volume_task_update(
+            self,
+            virtual_volume_task_id,):
+        """
+        GetVirtualVolumeTaskUpdate checks the status of a VVol Async Task.
+        :param virtualVolumeTaskID: [required] The UUID of the VVol Task. 
+        :type virtualVolumeTaskID: UUID
+        """
+
+        self._check_connection_type("get_virtual_volume_task_update", "Cluster")
+
+        params = { 
+            "virtualVolumeTaskID": virtual_volume_task_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetVirtualVolumeTaskUpdate',
+            VirtualVolumeTaskResult,
             params
         )
 
@@ -4193,37 +4483,230 @@ class Element(ServiceBase):
             params
         )
 
-    def get_vasa_provider_info(
-            self,):
+    def get_virtual_volume_unshared_chunks(
+            self,
+            virtual_volume_id,
+            base_virtual_volume_id,
+            segment_start,
+            segment_length,
+            chunk_size,):
         """
-        Gets the Vasa Provider info        """
+        GetVirtualVolumeAllocatedBitmap scans a VVol segment and returns the number of 
+        chunks not shared between two volumes. This call will return results in less 
+        than 30 seconds. If the specified VVol and the base VVil are not related, an 
+        error is thrown. If the offset/length combination is invalid or out fo range 
+        an error is thrown.
+        :param virtualVolumeID: [required] The ID of the Virtual Volume. 
+        :type virtualVolumeID: UUID
 
-        self._check_connection_type("get_vasa_provider_info", "Cluster")
+        :param baseVirtualVolumeID: [required] The ID of the Virtual Volume to compare against. 
+        :type baseVirtualVolumeID: UUID
+
+        :param segmentStart: [required] Start Byte offset. 
+        :type segmentStart: int
+
+        :param segmentLength: [required] Length of the scan segment in bytes. 
+        :type segmentLength: int
+
+        :param chunkSize: [required] Number of bytes represented by one bit in the bitmap. 
+        :type chunkSize: int
+        """
+
+        self._check_connection_type("get_virtual_volume_unshared_chunks", "Cluster")
 
         params = { 
+            "virtualVolumeID": virtual_volume_id,
+            "baseVirtualVolumeID": base_virtual_volume_id,
+            "segmentStart": segment_start,
+            "segmentLength": segment_length,
+            "chunkSize": chunk_size,
         }
         
         # There is no adaptor.
         return self.send_request(
-            'GetVasaProviderInfo',
-            VasaProviderInfoResult,
+            'GetVirtualVolumeUnsharedChunks',
+            VirtualVolumeUnsharedChunkResult,
             params
         )
 
-    def get_virtual_volume_count(
-            self,):
+    def list_virtual_volume_bindings(
+            self,
+            virtual_volume_binding_ids=OPTIONAL,):
         """
-        Enables retrieval of the number of virtual volumes currently in the system.        """
+        ListVirtualVolumeBindings returns a list of all virtual volumes in the cluster that are bound to protocol endpoints.
+        :param virtualVolumeBindingIDs:  A list of virtual volume binding IDs for which to retrieve information. If you omit this parameter, the method returns information about all virtual volume bindings. 
+        :type virtualVolumeBindingIDs: int
+        """
 
-        self._check_connection_type("get_virtual_volume_count", "Cluster")
+        self._check_connection_type("list_virtual_volume_bindings", "Cluster")
 
         params = { 
         }
+        if virtual_volume_binding_ids is not None:
+            params["virtualVolumeBindingIDs"] = virtual_volume_binding_ids
         
         # There is no adaptor.
         return self.send_request(
-            'GetVirtualVolumeCount',
-            GetVirtualVolumeCountResult,
+            'ListVirtualVolumeBindings',
+            ListVirtualVolumeBindingsResult,
+            params
+        )
+
+    def list_virtual_volume_hosts(
+            self,
+            virtual_volume_host_ids=OPTIONAL,):
+        """
+        ListVirtualVolumeHosts returns a list of all virtual volume hosts known to the cluster. A virtual volume host is a VMware ESX host
+        that has initiated a session with the VASA API provider.
+        :param virtualVolumeHostIDs:  A list of virtual volume host IDs for which to retrieve information. If you omit this parameter, the method returns information about all virtual volume hosts. 
+        :type virtualVolumeHostIDs: UUID
+        """
+
+        self._check_connection_type("list_virtual_volume_hosts", "Cluster")
+
+        params = { 
+        }
+        if virtual_volume_host_ids is not None:
+            params["virtualVolumeHostIDs"] = virtual_volume_host_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVirtualVolumeHosts',
+            ListVirtualVolumeHostsResult,
+            params
+        )
+
+    def list_virtual_volume_tasks(
+            self,
+            virtual_volume_task_ids=OPTIONAL,):
+        """
+        ListVirtualVolumeTasks returns a list of virtual volume tasks in the system.
+        :param virtualVolumeTaskIDs:  A list of virtual volume task IDs for which to retrieve information. If you omit this parameter, the method returns information about all virtual volume tasks. 
+        :type virtualVolumeTaskIDs: UUID
+        """
+
+        self._check_connection_type("list_virtual_volume_tasks", "Cluster")
+
+        params = { 
+        }
+        if virtual_volume_task_ids is not None:
+            params["virtualVolumeTaskIDs"] = virtual_volume_task_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVirtualVolumeTasks',
+            ListVirtualVolumeTasksResult,
+            params
+        )
+
+    def list_virtual_volumes(
+            self,
+            details=OPTIONAL,
+            limit=OPTIONAL,
+            recursive=OPTIONAL,
+            start_virtual_volume_id=OPTIONAL,
+            virtual_volume_ids=OPTIONAL,):
+        """
+        ListVirtualVolumes enables you to list the virtual volumes currently in the system. You can use this method to list all virtual volumes,
+        or only list a subset.
+        :param details:  Specifies the level of detail about each virtual volume that is returned. Possible values are: true: Include more details about each virtual volume in the response. false: Include the standard level of detail about each virtual volume in the response. 
+        :type details: bool
+
+        :param limit:  The maximum number of virtual volumes to list. 
+        :type limit: int
+
+        :param recursive:  Specifies whether to include information about the children of each virtual volume in the response. Possible values are: true: Include information about the children of each virtual volume in the response. false: Do not include information about the children of each virtual volume in the response. 
+        :type recursive: bool
+
+        :param startVirtualVolumeID:  The ID of the virtual volume at which to begin the list. 
+        :type startVirtualVolumeID: UUID
+
+        :param virtualVolumeIDs:  A list of virtual volume IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
+        :type virtualVolumeIDs: UUID
+        """
+
+        self._check_connection_type("list_virtual_volumes", "Cluster")
+
+        params = { 
+        }
+        if details is not None:
+            params["details"] = details
+        if limit is not None:
+            params["limit"] = limit
+        if recursive is not None:
+            params["recursive"] = recursive
+        if start_virtual_volume_id is not None:
+            params["startVirtualVolumeID"] = start_virtual_volume_id
+        if virtual_volume_ids is not None:
+            params["virtualVolumeIDs"] = virtual_volume_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVirtualVolumes',
+            ListVirtualVolumesResult,
+            params
+        )
+
+    def modify_vasa_provider_info(
+            self,
+            keystore=OPTIONAL,
+            vasa_provider_id=OPTIONAL,):
+        """
+        Update the Vasa Provider info
+        :param keystore:  Signed SSL certificate for the Vasa Provider 
+        :type keystore: str
+
+        :param vasaProviderID:  UUID identifying the vasa provider 
+        :type vasaProviderID: UUID
+        """
+
+        self._check_connection_type("modify_vasa_provider_info", "Cluster")
+
+        params = { 
+        }
+        if keystore is not None:
+            params["keystore"] = keystore
+        if vasa_provider_id is not None:
+            params["vasaProviderID"] = vasa_provider_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyVasaProviderInfo',
+            VirtualVolumeNullResult,
+            params
+        )
+
+    def modify_virtual_volume(
+            self,
+            virtual_volume_id,
+            qos=OPTIONAL,
+            total_size=OPTIONAL,):
+        """
+        ModifyVirtualVolume is used to modify settings on an existing virtual volume.
+        :param virtualVolumeID: [required] VvolVolumeID for the volume to be modified. 
+        :type virtualVolumeID: UUID
+
+        :param qos:  New quality of service settings for this volume. 
+        :type qos: QoS
+
+        :param totalSize:  New size of the volume in bytes. Size is rounded up to the nearest 1MiB size. This parameter can only be used to *increase* the size of a volume. 
+        :type totalSize: int
+        """
+
+        self._check_connection_type("modify_virtual_volume", "Cluster")
+
+        params = { 
+            "virtualVolumeID": virtual_volume_id,
+        }
+        if qos is not None:
+            params["qos"] = qos
+        if total_size is not None:
+            params["totalSize"] = total_size
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyVirtualVolume',
+            VirtualVolumeNullResult,
             params
         )
 
@@ -4346,125 +4829,6 @@ class Element(ServiceBase):
             params
         )
 
-    def unbind_all_virtual_volumes_from_host(
-            self,):
-        """
-        UnbindAllVirtualVolumesFromHost removes all VVol <-> Host binding.        """
-
-        self._check_connection_type("unbind_all_virtual_volumes_from_host", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'UnbindAllVirtualVolumesFromHost',
-            UnbindAllVirtualVolumesFromHostResult,
-            params
-        )
-
-    def unbind_virtual_volumes(
-            self,
-            unbind_context,):
-        """
-        UnbindGetVirtualVolume removes the VVol <-> Host binding.
-        :param unbindContext: [required] Normal, Start, or End? 
-        :type unbindContext: str
-        """
-
-        self._check_connection_type("unbind_virtual_volumes", "Cluster")
-
-        params = { 
-            "unbindContext": unbind_context,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'UnbindVirtualVolumes',
-            VirtualVolumeUnbindResult,
-            params
-        )
-
-    def get_virtual_volume_unshared_chunks(
-            self,
-            virtual_volume_id,
-            base_virtual_volume_id,
-            segment_start,
-            segment_length,
-            chunk_size,):
-        """
-        GetVirtualVolumeAllocatedBitmap scans a VVol segment and returns the number of 
-        chunks not shared between two volumes. This call will return results in less 
-        than 30 seconds. If the specified VVol and the base VVil are not related, an 
-        error is thrown. If the offset/length combination is invalid or out fo range 
-        an error is thrown.
-        :param virtualVolumeID: [required] The ID of the Virtual Volume. 
-        :type virtualVolumeID: UUID
-
-        :param baseVirtualVolumeID: [required] The ID of the Virtual Volume to compare against. 
-        :type baseVirtualVolumeID: UUID
-
-        :param segmentStart: [required] Start Byte offset. 
-        :type segmentStart: int
-
-        :param segmentLength: [required] Length of the scan segment in bytes. 
-        :type segmentLength: int
-
-        :param chunkSize: [required] Number of bytes represented by one bit in the bitmap. 
-        :type chunkSize: int
-        """
-
-        self._check_connection_type("get_virtual_volume_unshared_chunks", "Cluster")
-
-        params = { 
-            "virtualVolumeID": virtual_volume_id,
-            "baseVirtualVolumeID": base_virtual_volume_id,
-            "segmentStart": segment_start,
-            "segmentLength": segment_length,
-            "chunkSize": chunk_size,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetVirtualVolumeUnsharedChunks',
-            VirtualVolumeUnsharedChunkResult,
-            params
-        )
-
-    def modify_virtual_volume(
-            self,
-            virtual_volume_id,
-            qos=OPTIONAL,
-            total_size=OPTIONAL,):
-        """
-        ModifyVirtualVolume is used to modify settings on an existing virtual volume.
-        :param virtualVolumeID: [required] VvolVolumeID for the volume to be modified. 
-        :type virtualVolumeID: UUID
-
-        :param qos:  New quality of service settings for this volume. 
-        :type qos: QoS
-
-        :param totalSize:  New size of the volume in bytes. Size is rounded up to the nearest 1MiB size. This parameter can only be used to *increase* the size of a volume. 
-        :type totalSize: int
-        """
-
-        self._check_connection_type("modify_virtual_volume", "Cluster")
-
-        params = { 
-            "virtualVolumeID": virtual_volume_id,
-        }
-        if qos is not None:
-            params["qos"] = qos
-        if total_size is not None:
-            params["totalSize"] = total_size
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ModifyVirtualVolume',
-            VirtualVolumeNullResult,
-            params
-        )
-
     def rollback_virtual_volume(
             self,
             src_virtual_volume_id,
@@ -4519,476 +4883,42 @@ class Element(ServiceBase):
             params
         )
 
-    def enable_feature(
-            self,
-            feature,):
+    def unbind_all_virtual_volumes_from_host(
+            self,):
         """
-        You can use EnableFeature to enable cluster features that are disabled by default.
-        :param feature: [required] Indicates which feature to enable. Valid value is: vvols: Enable the NetApp SolidFire VVols cluster feature. 
-        :type feature: str
-        """
+        UnbindAllVirtualVolumesFromHost removes all VVol <-> Host binding.        """
 
-        self._check_connection_type("enable_feature", "Cluster")
+        self._check_connection_type("unbind_all_virtual_volumes_from_host", "Cluster")
 
         params = { 
-            "feature": feature,
         }
         
         # There is no adaptor.
         return self.send_request(
-            'EnableFeature',
-            EnableFeatureResult,
+            'UnbindAllVirtualVolumesFromHost',
+            UnbindAllVirtualVolumesFromHostResult,
             params
         )
 
-    def list_virtual_volume_bindings(
+    def unbind_virtual_volumes(
             self,
-            virtual_volume_binding_ids=OPTIONAL,):
+            unbind_context,):
         """
-        ListVirtualVolumeBindings returns a list of all virtual volumes in the cluster that are bound to protocol endpoints.
-        :param virtualVolumeBindingIDs:  A list of virtual volume binding IDs for which to retrieve information. If you omit this parameter, the method returns information about all virtual volume bindings. 
-        :type virtualVolumeBindingIDs: int
+        UnbindGetVirtualVolume removes the VVol <-> Host binding.
+        :param unbindContext: [required] Normal, Start, or End? 
+        :type unbindContext: str
         """
 
-        self._check_connection_type("list_virtual_volume_bindings", "Cluster")
+        self._check_connection_type("unbind_virtual_volumes", "Cluster")
 
         params = { 
-        }
-        if virtual_volume_binding_ids is not None:
-            params["virtualVolumeBindingIDs"] = virtual_volume_binding_ids
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVirtualVolumeBindings',
-            ListVirtualVolumeBindingsResult,
-            params
-        )
-
-    def list_virtual_volume_hosts(
-            self,
-            virtual_volume_host_ids=OPTIONAL,):
-        """
-        ListVirtualVolumeHosts returns a list of all virtual volume hosts known to the cluster. A virtual volume host is a VMware ESX host
-        that has initiated a session with the VASA API provider.
-        :param virtualVolumeHostIDs:  A list of virtual volume host IDs for which to retrieve information. If you omit this parameter, the method returns information about all virtual volume hosts. 
-        :type virtualVolumeHostIDs: UUID
-        """
-
-        self._check_connection_type("list_virtual_volume_hosts", "Cluster")
-
-        params = { 
-        }
-        if virtual_volume_host_ids is not None:
-            params["virtualVolumeHostIDs"] = virtual_volume_host_ids
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVirtualVolumeHosts',
-            ListVirtualVolumeHostsResult,
-            params
-        )
-
-    def copy_diffs_to_virtual_volume(
-            self,
-            virtual_volume_id,
-            base_virtual_volume_id,
-            dst_virtual_volume_id,):
-        """
-        CopyDiffsToVirtualVolume is a three-way merge function.
-        :param virtualVolumeID: [required] The ID of the snapshot Virtual Volume. 
-        :type virtualVolumeID: UUID
-
-        :param baseVirtualVolumeID: [required] The ID of the base Virtual Volume. 
-        :type baseVirtualVolumeID: UUID
-
-        :param dstVirtualVolumeID: [required] The ID of the Virtual Volume to be overwritten. 
-        :type dstVirtualVolumeID: UUID
-        """
-
-        self._check_connection_type("copy_diffs_to_virtual_volume", "Cluster")
-
-        params = { 
-            "virtualVolumeID": virtual_volume_id,
-            "baseVirtualVolumeID": base_virtual_volume_id,
-            "dstVirtualVolumeID": dst_virtual_volume_id,
+            "unbindContext": unbind_context,
         }
         
         # There is no adaptor.
         return self.send_request(
-            'CopyDiffsToVirtualVolume',
-            VirtualVolumeAsyncResult,
-            params
-        )
-
-    def delete_virtual_volumes(
-            self,
-            virtual_volumes,):
-        """
-        DeleteVirtualVolume marks an active volume for deletion.
-        It is purged (permanently deleted) after the cleanup interval elapses.
-        After making a request to delete a volume, any active iSCSI connections to the volume is immediately terminated and no further connections are allowed while the volume is in this state.
-        It is not returned in target discovery requests.
-        
-        Any snapshots of a volume that has been marked to delete are not affected.
-        Snapshots are kept until the volume is purged from the system.
-        
-        If a volume is marked for deletion, and it has a bulk volume read or bulk volume write operation in progress, the bulk volume operation is stopped.
-        
-        If the volume you delete is paired with a volume, replication between the paired volumes is suspended and no data is transferred to it or from it while in a deleted state.
-        The remote volume the deleted volume was paired with enters into a PausedMisconfigured state and data is no integerer sent to it or from the deleted volume.
-        Until the deleted volume is purged, it can be restored and data transfers resumes.
-        If the deleted volume gets purged from the system, the volume it was paired with enters into a StoppedMisconfigured state and the volume pairing status is removed.
-        The purged volume becomes permanently unavailable.
-        :param virtualVolumes: [required] The UUID of the volume to delete. 
-        :type virtualVolumes: UUID
-        """
-
-        self._check_connection_type("delete_virtual_volumes", "Cluster")
-
-        params = { 
-            "virtualVolumes": virtual_volumes,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'DeleteVirtualVolumes',
-            VirtualVolumeNullResult,
-            params
-        )
-
-    def get_virtual_volume_task_update(
-            self,
-            virtual_volume_task_id,):
-        """
-        GetVirtualVolumeTaskUpdate checks the status of a VVol Async Task.
-        :param virtualVolumeTaskID: [required] The UUID of the VVol Task. 
-        :type virtualVolumeTaskID: UUID
-        """
-
-        self._check_connection_type("get_virtual_volume_task_update", "Cluster")
-
-        params = { 
-            "virtualVolumeTaskID": virtual_volume_task_id,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetVirtualVolumeTaskUpdate',
-            VirtualVolumeTaskResult,
-            params
-        )
-
-    def bind_virtual_volumes(
-            self,
-            virtual_volume_ids,
-            virtual_volume_host_id,
-            bind_context,):
-        """
-        BindVirtualVolume binds a VVol with a Host.
-        :param virtualVolumeIDs: [required] The UUID of the VVol to bind. 
-        :type virtualVolumeIDs: UUID
-
-        :param virtualVolumeHostID: [required] The UUID of the ESX host. 
-        :type virtualVolumeHostID: UUID
-
-        :param bindContext: [required] Normal or Start? 
-        :type bindContext: str
-        """
-
-        self._check_connection_type("bind_virtual_volumes", "Cluster")
-
-        params = { 
-            "virtualVolumeIDs": virtual_volume_ids,
-            "virtualVolumeHostID": virtual_volume_host_id,
-            "bindContext": bind_context,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'BindVirtualVolumes',
-            VirtualVolumeBindingListResult,
-            params
-        )
-
-    def get_feature_status(
-            self,
-            feature=OPTIONAL,):
-        """
-        GetFeatureStatus enables you to retrieve the status of a cluster feature.
-        :param feature:  Specifies the feature for which the status is returned. Valid value is: vvols: Retrieve status for the NetApp SolidFire VVols cluster feature. 
-        :type feature: str
-        """
-
-        self._check_connection_type("get_feature_status", "Cluster")
-
-        params = { 
-        }
-        if feature is not None:
-            params["feature"] = feature
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetFeatureStatus',
-            GetFeatureStatusResult,
-            params
-        )
-
-    def list_virtual_volumes(
-            self,
-            details=OPTIONAL,
-            limit=OPTIONAL,
-            recursive=OPTIONAL,
-            start_virtual_volume_id=OPTIONAL,
-            virtual_volume_ids=OPTIONAL,):
-        """
-        ListVirtualVolumes enables you to list the virtual volumes currently in the system. You can use this method to list all virtual volumes,
-        or only list a subset.
-        :param details:  Specifies the level of detail about each virtual volume that is returned. Possible values are: true: Include more details about each virtual volume in the response. false: Include the standard level of detail about each virtual volume in the response. 
-        :type details: bool
-
-        :param limit:  The maximum number of virtual volumes to list. 
-        :type limit: int
-
-        :param recursive:  Specifies whether to include information about the children of each virtual volume in the response. Possible values are: true: Include information about the children of each virtual volume in the response. false: Do not include information about the children of each virtual volume in the response. 
-        :type recursive: bool
-
-        :param startVirtualVolumeID:  The ID of the virtual volume at which to begin the list. 
-        :type startVirtualVolumeID: UUID
-
-        :param virtualVolumeIDs:  A list of virtual volume IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
-        :type virtualVolumeIDs: UUID
-        """
-
-        self._check_connection_type("list_virtual_volumes", "Cluster")
-
-        params = { 
-        }
-        if details is not None:
-            params["details"] = details
-        if limit is not None:
-            params["limit"] = limit
-        if recursive is not None:
-            params["recursive"] = recursive
-        if start_virtual_volume_id is not None:
-            params["startVirtualVolumeID"] = start_virtual_volume_id
-        if virtual_volume_ids is not None:
-            params["virtualVolumeIDs"] = virtual_volume_ids
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVirtualVolumes',
-            ListVirtualVolumesResult,
-            params
-        )
-
-    def clone_virtual_volume(
-            self,
-            virtual_volume_id,
-            name=OPTIONAL,
-            qos=OPTIONAL,):
-        """
-        CloneVirtualVolume is used to execute a VMware Virtual Volume clone.
-        :param virtualVolumeID: [required] The ID of the Virtual Volume to clone. 
-        :type virtualVolumeID: UUID
-
-        :param name:  The name for the newly-created volume. 
-        :type name: str
-
-        :param qos:  New quality of service settings for this volume. 
-        :type qos: QoS
-        """
-
-        self._check_connection_type("clone_virtual_volume", "Cluster")
-
-        params = { 
-            "virtualVolumeID": virtual_volume_id,
-        }
-        if name is not None:
-            params["name"] = name
-        if qos is not None:
-            params["qos"] = qos
-        
-        # There is no adaptor.
-        return self.send_request(
-            'CloneVirtualVolume',
-            VirtualVolumeAsyncResult,
-            params
-        )
-
-    def create_virtual_volume_host(
-            self,
-            virtual_volume_host_id,
-            cluster_id,
-            visible_protocol_endpoint_ids=OPTIONAL,
-            host_address=OPTIONAL,):
-        """
-        CreateVirtualVolumeHost creates a new ESX host.
-        :param virtualVolumeHostID: [required] The GUID of the ESX host. 
-        :type virtualVolumeHostID: UUID
-
-        :param clusterID: [required] The GUID of the ESX Cluster. 
-        :type clusterID: UUID
-
-        :param visibleProtocolEndpointIDs:  A list of PEs the host is aware of. 
-        :type visibleProtocolEndpointIDs: UUID
-
-        :param hostAddress:  IP or DNS name for the host. 
-        :type hostAddress: str
-        """
-
-        self._check_connection_type("create_virtual_volume_host", "Cluster")
-
-        params = { 
-            "virtualVolumeHostID": virtual_volume_host_id,
-            "clusterID": cluster_id,
-        }
-        if visible_protocol_endpoint_ids is not None:
-            params["visibleProtocolEndpointIDs"] = visible_protocol_endpoint_ids
-        if host_address is not None:
-            params["hostAddress"] = host_address
-        
-        # There is no adaptor.
-        return self.send_request(
-            'CreateVirtualVolumeHost',
-            VirtualVolumeNullResult,
-            params
-        )
-
-    def get_virtual_volume_allocated_bitmap(
-            self,
-            virtual_volume_id,
-            segment_start,
-            segment_length,
-            chunk_size,):
-        """
-        GetVirtualVolumeAllocatedBitmap returns a b64-encoded block of data 
-        representing a bitmap where non-zero bits indicate the allocation of a 
-        segment (LBA range) of the volume.
-        :param virtualVolumeID: [required] The ID of the Virtual Volume. 
-        :type virtualVolumeID: UUID
-
-        :param segmentStart: [required] Byte offset. 
-        :type segmentStart: int
-
-        :param segmentLength: [required] Byte length adjusted to end on a chunk boundary. 
-        :type segmentLength: int
-
-        :param chunkSize: [required] Number of bytes represented by one bit in the bitmap. 
-        :type chunkSize: int
-        """
-
-        self._check_connection_type("get_virtual_volume_allocated_bitmap", "Cluster")
-
-        params = { 
-            "virtualVolumeID": virtual_volume_id,
-            "segmentStart": segment_start,
-            "segmentLength": segment_length,
-            "chunkSize": chunk_size,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetVirtualVolumeAllocatedBitmap',
-            VirtualVolumeBitmapResult,
-            params
-        )
-
-    def modify_vasa_provider_info(
-            self,
-            keystore=OPTIONAL,
-            vasa_provider_id=OPTIONAL,):
-        """
-        Update the Vasa Provider info
-        :param keystore:  Signed SSL certificate for the Vasa Provider 
-        :type keystore: str
-
-        :param vasaProviderID:  UUID identifying the vasa provider 
-        :type vasaProviderID: UUID
-        """
-
-        self._check_connection_type("modify_vasa_provider_info", "Cluster")
-
-        params = { 
-        }
-        if keystore is not None:
-            params["keystore"] = keystore
-        if vasa_provider_id is not None:
-            params["vasaProviderID"] = vasa_provider_id
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ModifyVasaProviderInfo',
-            VirtualVolumeNullResult,
-            params
-        )
-
-    def delete_volumes(
-            self,
-            account_ids=OPTIONAL,
-            volume_access_group_ids=OPTIONAL,
-            volume_ids=OPTIONAL,):
-        """
-        DeleteVolumes marks multiple (up to 500) active volumes for deletion. Once marked, the volumes are purged (permanently deleted) after the cleanup interval elapses.The cleanup interval can be set in the SetClusterSettings method. For more information on using this method, see SetClusterSettings on page 1. After making a request to delete volumes, any active iSCSI connections to the volumes are immediately terminated and no further connections are allowed while the volumes are in this state. A marked volume is not returned in target discovery requests. Any snapshots of a volume that has been marked for deletion are not affected. Snapshots are kept until the volume is purged from the system. If a volume is marked for deletion and has a bulk volume read or bulk volume write operation in progress, the bulk volume read or write operation is stopped. If the volumes you delete are paired with a volume, replication between the paired volumes is suspended and no data is transferred to them or from them while in a deleted state. The remote volumes the deleted volumes were paired with enter into a PausedMisconfigured state and data is no integerer sent to them or from the deleted volumes. Until the deleted volumes are purged, they can be restored and data transfers resume. If the deleted volumes are purged from the system, the volumes they were paired with enter into a StoppedMisconfigured state and the volume pairing status is removed. The purged volumes become permanently unavailable.
-        :param accountIDs:  A list of account IDs. All volumes from these accounts are deleted from the system.  
-        :type accountIDs: int
-
-        :param volumeAccessGroupIDs:  A list of volume access group IDs. All of the volumes from all of the volume access groups you specify in this list are deleted from the system. 
-        :type volumeAccessGroupIDs: int
-
-        :param volumeIDs:  The list of IDs of the volumes to delete from the system. 
-        :type volumeIDs: int
-        """
-
-        self._check_connection_type("delete_volumes", "Cluster")
-
-        params = { 
-        }
-        if account_ids is not None:
-            params["accountIDs"] = account_ids
-        if volume_access_group_ids is not None:
-            params["volumeAccessGroupIDs"] = volume_access_group_ids
-        if volume_ids is not None:
-            params["volumeIDs"] = volume_ids
-        
-        # There is no adaptor.
-        return self.send_request(
-            'DeleteVolumes',
-            DeleteVolumesResult,
-            params
-        )
-
-    def purge_deleted_volumes(
-            self,
-            volume_ids=OPTIONAL,
-            account_ids=OPTIONAL,
-            volume_access_group_ids=OPTIONAL,):
-        """
-        PurgeDeletedVolumes immediately and permanently purges volumes that have been deleted; you can use this method to purge up to 500 volumes at one time. You must delete volumes using DeleteVolumes before they can be purged. Volumes are purged by the system automatically after a period of time, so usage of this method is not typically required.
-        :param volumeIDs:  A list of volumeIDs of volumes to be purged from the system. 
-        :type volumeIDs: int
-
-        :param accountIDs:  A list of accountIDs. All of the volumes from all of the specified accounts are purged from the system. 
-        :type accountIDs: int
-
-        :param volumeAccessGroupIDs:  A list of volumeAccessGroupIDs. All of the volumes from all of the specified Volume Access Groups are purged from the system. 
-        :type volumeAccessGroupIDs: int
-        """
-
-        self._check_connection_type("purge_deleted_volumes", "Cluster")
-
-        params = { 
-        }
-        if volume_ids is not None:
-            params["volumeIDs"] = volume_ids
-        if account_ids is not None:
-            params["accountIDs"] = account_ids
-        if volume_access_group_ids is not None:
-            params["volumeAccessGroupIDs"] = volume_access_group_ids
-        
-        # There is no adaptor.
-        return self.send_request(
-            'PurgeDeletedVolumes',
-            PurgeDeletedVolumesResult,
+            'UnbindVirtualVolumes',
+            VirtualVolumeUnbindResult,
             params
         )
 
@@ -5083,446 +5013,6 @@ class Element(ServiceBase):
             params
         )
 
-    def copy_volume(
-            self,
-            volume_id,
-            dst_volume_id,
-            snapshot_id=OPTIONAL,):
-        """
-        CopyVolume enables you to overwrite the data contents of an existing volume with the data contents of another volume (or
-        snapshot). Attributes of the destination volume such as IQN, QoS settings, size, account, and volume access group membership are
-        not changed. The destination volume must already exist and must be the same size as the source volume.
-        NetApp strongly recommends that clients unmount the destination volume before the CopyVolume operation begins. If the
-        destination volume is modified during the copy operation, the changes will be lost.
-        This method is asynchronous and may take a variable amount of time to complete. You can use the GetAsyncResult method to
-        determine when the process has finished, and ListSyncJobs to see the progress of the copy.
-        :param volumeID: [required] VolumeID of the volume to be read from. 
-        :type volumeID: int
-
-        :param dstVolumeID: [required] VolumeID of the volume to be overwritten. 
-        :type dstVolumeID: int
-
-        :param snapshotID:  ID of the snapshot that is used as the source of the clone. If no ID is provided, the current active volume is used. 
-        :type snapshotID: int
-        """
-
-        self._check_connection_type("copy_volume", "Cluster")
-
-        params = { 
-            "volumeID": volume_id,
-            "dstVolumeID": dst_volume_id,
-        }
-        if snapshot_id is not None:
-            params["snapshotID"] = snapshot_id
-        
-        # There is no adaptor.
-        return self.send_request(
-            'CopyVolume',
-            CopyVolumeResult,
-            params
-        )
-
-    def delete_volume(
-            self,
-            volume_id,):
-        """
-        DeleteVolume marks an active volume for deletion. When marked, the volume is purged (permanently deleted) after the cleanup
-        interval elapses. After making a request to delete a volume, any active iSCSI connections to the volume are immediately terminated
-        and no further connections are allowed while the volume is in this state. A marked volume is not returned in target discovery
-        requests.
-        Any snapshots of a volume that has been marked for deletion are not affected. Snapshots are kept until the volume is purged from
-        the system.
-        If a volume is marked for deletion and has a bulk volume read or bulk volume write operation in progress, the bulk volume read or
-        write operation is stopped.
-        If the volume you delete is paired with a volume, replication between the paired volumes is suspended and no data is transferred
-        to it or from it while in a deleted state. The remote volume that the deleted volume was paired with enters into a PausedMisconfigured state and data is no longer sent to it or from the deleted volume. Until the deleted volume is purged, it can be restored and data transfers resume. If the deleted volume gets purged from the system, the volume it was paired with enters into a StoppedMisconfigured state and the volume pairing status is removed. The purged volume becomes permanently unavailable.
-        :param volumeID: [required] The ID of the volume to be deleted. 
-        :type volumeID: int
-        """
-
-        self._check_connection_type("delete_volume", "Cluster")
-
-        params = { 
-            "volumeID": volume_id,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'DeleteVolume',
-            DeleteVolumeResult,
-            params
-        )
-
-    def get_default_qos(
-            self,):
-        """
-        GetDefaultQoS enables you to retrieve the default QoS values for a newly created volume.        """
-
-        self._check_connection_type("get_default_qos", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetDefaultQoS',
-            VolumeQOS,
-            params
-        )
-
-    def get_volume_efficiency(
-            self,
-            volume_id,):
-        """
-        GetVolumeEfficiency enables you to retrieve information about a volume. Only the volume you give as a parameter in this API method is used to compute the capacity.
-        :param volumeID: [required] Specifies the volume for which capacity is computed. 
-        :type volumeID: int
-        """
-
-        self._check_connection_type("get_volume_efficiency", "Cluster")
-
-        params = { 
-            "volumeID": volume_id,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetVolumeEfficiency',
-            GetVolumeEfficiencyResult,
-            params
-        )
-
-    def list_async_results(
-            self,
-            async_result_types=OPTIONAL,):
-        """
-        You can use ListAsyncResults to list the results of all currently running and completed asynchronous methods on the system.
-        Querying asynchronous results with ListAsyncResults does not cause completed asyncHandles to expire; you can use GetAsyncResult
-        to query any of the asyncHandles returned by ListAsyncResults.
-        :param asyncResultTypes:  An optional list of types of results. You can use this list to restrict the results to only these types of operations. Possible values are: BulkVolume: Copy operations between volumes, such as backups or restores. Clone: Volume cloning operations. DriveRemoval: Operations involving the system copying data from a drive in preparation to remove it from the cluster. RtfiPendingNode: Operations involving the system installing compatible software on a node before adding it to the cluster 
-        :type asyncResultTypes: str
-        """
-
-        self._check_connection_type("list_async_results", "Cluster")
-
-        params = { 
-        }
-        if async_result_types is not None:
-            params["asyncResultTypes"] = async_result_types
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListAsyncResults',
-            ListAsyncResultsResult,
-            params
-        )
-
-    def list_bulk_volume_jobs(
-            self,):
-        """
-        ListBulkVolumeJobs enables you to retrieve information about each bulk volume read or write operation that is occurring in the
-        system.        """
-
-        self._check_connection_type("list_bulk_volume_jobs", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListBulkVolumeJobs',
-            ListBulkVolumeJobsResult,
-            params
-        )
-
-    def list_volume_stats_by_account(
-            self,
-            accounts=OPTIONAL,
-            include_virtual_volumes=OPTIONAL,):
-        """
-        ListVolumeStatsByAccount returns high-level activity measurements for every account. Values are summed from all the volumes owned by the account.
-        :param accounts:  One or more account ids by which to filter the result. 
-        :type accounts: int
-
-        :param includeVirtualVolumes:  Includes virtual volumes in the response by default. To exclude virtual volumes, set to false. 
-        :type includeVirtualVolumes: bool
-        """
-
-        self._check_connection_type("list_volume_stats_by_account", "Cluster")
-
-        params = { 
-        }
-        if accounts is not None:
-            params["accounts"] = accounts
-        if include_virtual_volumes is not None:
-            params["includeVirtualVolumes"] = include_virtual_volumes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVolumeStatsByAccount',
-            ListVolumeStatsByAccountResult,
-            params
-        )
-
-    def list_volume_stats_by_volume_access_group(
-            self,
-            volume_access_groups=OPTIONAL,
-            include_virtual_volumes=OPTIONAL,):
-        """
-        ListVolumeStatsByVolumeAccessGroup enables you to get total activity measurements for all of the volumes that are a member of the
-        specified volume access group(s).
-        :param volumeAccessGroups:  An array of VolumeAccessGroupIDs for which volume activity is returned. If omitted, statistics for all volume access groups are returned. 
-        :type volumeAccessGroups: int
-
-        :param includeVirtualVolumes:  Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. 
-        :type includeVirtualVolumes: bool
-        """
-
-        self._check_connection_type("list_volume_stats_by_volume_access_group", "Cluster")
-
-        params = { 
-        }
-        if volume_access_groups is not None:
-            params["volumeAccessGroups"] = volume_access_groups
-        if include_virtual_volumes is not None:
-            params["includeVirtualVolumes"] = include_virtual_volumes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVolumeStatsByVolumeAccessGroup',
-            ListVolumeStatsByVolumeAccessGroupResult,
-            params
-        )
-
-    def modify_volume(
-            self,
-            volume_id,
-            account_id=OPTIONAL,
-            access=OPTIONAL,
-            qos=OPTIONAL,
-            total_size=OPTIONAL,
-            set_create_time=OPTIONAL,
-            create_time=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        ModifyVolume enables you to modify settings on an existing volume. You can make modifications to one volume at a time and
-        changes take place immediately. If you do not specify QoS values when you modify a volume, they remain the same as before the modification. You can retrieve
-        default QoS values for a newly created volume by running the GetDefaultQoS method.
-        When you need to increase the size of a volume that is being replicated, do so in the following order to prevent replication errors:
-        1. Increase the size of the "Replication Target" volume.
-        2. Increase the size of the source or "Read / Write" volume.
-        NetApp recommends that both the target and source volumes are the same size.
-        Note: If you change the "access" status to locked or target, all existing iSCSI connections are terminated.
-        :param volumeID: [required] VolumeID for the volume to be modified. 
-        :type volumeID: int
-
-        :param accountID:  AccountID to which the volume is reassigned. If unspecified, the previous account name is used. 
-        :type accountID: int
-
-        :param access:  Specifies the access allowed for the volume. Possible values are: readOnly: Only read operations are allowed. readWrite: Reads and writes are allowed. locked: No reads or writes are allowed. If not specified, the access value does not change. replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked. If a value is not specified, the access value does not change. 
-        :type access: str
-
-        :param qos:  New QoS settings for this volume. If not specified, the QoS settings are not changed. 
-        :type qos: QoS
-
-        :param totalSize:  New size of the volume in bytes. 1000000000 is equal to 1GB. Size is rounded up to the nearest 1MB. This parameter can only be used to increase the size of a volume. 
-        :type totalSize: int
-
-        :param setCreateTime:  If set to true, changes the recorded date of volume creation. 
-        :type setCreateTime: bool
-
-        :param createTime:  An ISO 8601 date string to set as the new volume creation date. Required if "setCreateTime" is set to true. 
-        :type createTime: str
-
-        :param attributes:  List of name-value pairs in JSON object format. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("modify_volume", "Cluster")
-
-        params = { 
-            "volumeID": volume_id,
-        }
-        if account_id is not None:
-            params["accountID"] = account_id
-        if access is not None:
-            params["access"] = access
-        if qos is not None:
-            params["qos"] = qos
-        if total_size is not None:
-            params["totalSize"] = total_size
-        if set_create_time is not None:
-            params["setCreateTime"] = set_create_time
-        if create_time is not None:
-            params["createTime"] = create_time
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ModifyVolume',
-            ModifyVolumeResult,
-            params
-        )
-
-    def purge_deleted_volume(
-            self,
-            volume_id,):
-        """
-        PurgeDeletedVolume immediately and permanently purges a volume that has been deleted. You must delete a volume using
-        DeleteVolume before it can be purged. Volumes are purged automatically after a period of time, so usage of this method is not
-        typically required.
-        :param volumeID: [required] The ID of the volume to be purged. 
-        :type volumeID: int
-        """
-
-        self._check_connection_type("purge_deleted_volume", "Cluster")
-
-        params = { 
-            "volumeID": volume_id,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'PurgeDeletedVolume',
-            PurgeDeletedVolumeResult,
-            params
-        )
-
-    def set_default_qos(
-            self,
-            min_iops=OPTIONAL,
-            max_iops=OPTIONAL,
-            burst_iops=OPTIONAL,):
-        """
-        SetDefaultQoS enables you to configure the default Quality of Service (QoS) values (measured in inputs and outputs per second, or
-        IOPS) for a volume. For more information about QoS in a SolidFire cluster, see the User Guide.
-        :param minIOPS:  The minimum number of sustained IOPS provided by the cluster to a volume. 
-        :type minIOPS: int
-
-        :param maxIOPS:  The maximum number of sustained IOPS provided by the cluster to a volume. 
-        :type maxIOPS: int
-
-        :param burstIOPS:  The maximum number of IOPS allowed in a short burst scenario. 
-        :type burstIOPS: int
-        """
-
-        self._check_connection_type("set_default_qos", "Cluster")
-
-        params = { 
-        }
-        if min_iops is not None:
-            params["minIOPS"] = min_iops
-        if max_iops is not None:
-            params["maxIOPS"] = max_iops
-        if burst_iops is not None:
-            params["burstIOPS"] = burst_iops
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SetDefaultQoS',
-            SetDefaultQoSResult,
-            params
-        )
-
-    def start_bulk_volume_write(
-            self,
-            volume_id,
-            format,
-            script=OPTIONAL,
-            script_parameters=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        StartBulkVolumeWrite enables you to initialize a bulk volume write session on a specified volume. Only two bulk volume processes can run simultaneously on a volume. When you initialize the write session, data is written to a SolidFire storage volume from an external backup source. The external data is accessed by a web server running on an SF-series node. Communications and server
-        interaction information for external data access is passed by a script running on the storage system.
-        :param volumeID: [required] The ID of the volume to be written to. 
-        :type volumeID: int
-
-        :param format: [required] The format of the volume data. It can be either of the following formats: uncompressed: Every byte of the volume is returned without any compression. native: Opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. 
-        :type format: str
-
-        :param script:  The executable name of a script. If unspecified, the key and URL are necessary to access SF-series nodes. The script runs on the primary node and the key and URL is returned to the script, so the local web server can be contacted. 
-        :type script: str
-
-        :param scriptParameters:  JSON parameters to pass to the script. 
-        :type scriptParameters: dict
-
-        :param attributes:  JSON attributes for the bulk volume job. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("start_bulk_volume_write", "Cluster")
-
-        params = { 
-            "volumeID": volume_id,
-            "format": format,
-        }
-        if script is not None:
-            params["script"] = script
-        if script_parameters is not None:
-            params["scriptParameters"] = script_parameters
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'StartBulkVolumeWrite',
-            StartBulkVolumeWriteResult,
-            params
-        )
-
-    def modify_volumes(
-            self,
-            volume_ids,
-            account_id=OPTIONAL,
-            access=OPTIONAL,
-            qos=OPTIONAL,
-            total_size=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        ModifyVolumes allows you to configure up to 500 existing volumes at one time. Changes take place immediately. If ModifyVolumes fails to modify any of the specified volumes, none of the specified volumes are changed.If you do not specify QoS values when you modify volumes, the QoS values for each volume remain unchanged. You can retrieve default QoS values for a newly created volume by running the GetDefaultQoS method.When you need to increase the size of volumes that are being replicated, do so in the following order to prevent replication errors:Increase the size of the "Replication Target" volume.Increase the size of the source or "Read / Write" volume. recommends that both the target and source volumes be the same size.NOTE: If you change access status to locked or replicationTarget all existing iSCSI connections are terminated.
-        :param volumeIDs: [required] A list of volumeIDs for the volumes to be modified. 
-        :type volumeIDs: int
-
-        :param accountID:  AccountID to which the volume is reassigned. If none is specified, the previous account name is used. 
-        :type accountID: int
-
-        :param access:  Access allowed for the volume. Possible values:readOnly: Only read operations are allowed.readWrite: Reads and writes are allowed.locked: No reads or writes are allowed.If not specified, the access value does not change.replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.If a value is not specified, the access value does not change.  
-        :type access: str
-
-        :param qos:  New quality of service settings for this volume.If not specified, the QoS settings are not changed. 
-        :type qos: QoS
-
-        :param totalSize:  New size of the volume in bytes. 1000000000 is equal to 1GB. Size is rounded up to the nearest 1MB in size. This parameter can only be used to increase the size of a volume. 
-        :type totalSize: int
-
-        :param attributes:  List of name/value pairs in JSON object format. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("modify_volumes", "Cluster")
-
-        params = { 
-            "volumeIDs": volume_ids,
-        }
-        if account_id is not None:
-            params["accountID"] = account_id
-        if access is not None:
-            params["access"] = access
-        if qos is not None:
-            params["qos"] = qos
-        if total_size is not None:
-            params["totalSize"] = total_size
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ModifyVolumes',
-            ModifyVolumesResult,
-            params
-        )
-
     def clone_volume(
             self,
             volume_id,
@@ -5588,6 +5078,161 @@ class Element(ServiceBase):
             params
         )
 
+    def copy_volume(
+            self,
+            volume_id,
+            dst_volume_id,
+            snapshot_id=OPTIONAL,):
+        """
+        CopyVolume enables you to overwrite the data contents of an existing volume with the data contents of another volume (or
+        snapshot). Attributes of the destination volume such as IQN, QoS settings, size, account, and volume access group membership are
+        not changed. The destination volume must already exist and must be the same size as the source volume.
+        NetApp strongly recommends that clients unmount the destination volume before the CopyVolume operation begins. If the
+        destination volume is modified during the copy operation, the changes will be lost.
+        This method is asynchronous and may take a variable amount of time to complete. You can use the GetAsyncResult method to
+        determine when the process has finished, and ListSyncJobs to see the progress of the copy.
+        :param volumeID: [required] VolumeID of the volume to be read from. 
+        :type volumeID: int
+
+        :param dstVolumeID: [required] VolumeID of the volume to be overwritten. 
+        :type dstVolumeID: int
+
+        :param snapshotID:  ID of the snapshot that is used as the source of the clone. If no ID is provided, the current active volume is used. 
+        :type snapshotID: int
+        """
+
+        self._check_connection_type("copy_volume", "Cluster")
+
+        params = { 
+            "volumeID": volume_id,
+            "dstVolumeID": dst_volume_id,
+        }
+        if snapshot_id is not None:
+            params["snapshotID"] = snapshot_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CopyVolume',
+            CopyVolumeResult,
+            params
+        )
+
+    def create_volume(
+            self,
+            name,
+            account_id,
+            total_size,
+            enable512e,
+            qos=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        CreateVolume enables you to create a new (empty) volume on the cluster. As soon as the volume creation is complete, the volume is
+        available for connection via iSCSI.
+        :param name: [required] The name of the volume access group (might be user specified). Not required to be unique, but recommended. Might be 1 to 64 characters in length. 
+        :type name: str
+
+        :param accountID: [required] AccountID for the owner of this volume. 
+        :type accountID: int
+
+        :param totalSize: [required] Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size. 
+        :type totalSize: int
+
+        :param enable512e: [required] Specifies whether 512e emulation is enabled or not. Possible values are: true: The volume provides 512-byte sector emulation. false: 512e emulation is not enabled. 
+        :type enable512e: bool
+
+        :param qos:  Initial quality of service settings for this volume. Default values are used if none are specified. Valid settings are: minIOPS maxIOPS burstIOPS You can get the default values for a volume by using the GetDefaultQoS method. 
+        :type qos: QoS
+
+        :param attributes:  The list of name-value pairs in JSON object format. Total attribute size must be less than 1000B, or 1KB, including JSON formatting characters. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("create_volume", "Cluster")
+
+        params = { 
+            "name": name,
+            "accountID": account_id,
+            "totalSize": total_size,
+            "enable512e": enable512e,
+        }
+        if qos is not None:
+            params["qos"] = qos
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateVolume',
+            CreateVolumeResult,
+            params
+        )
+
+    def delete_volume(
+            self,
+            volume_id,):
+        """
+        DeleteVolume marks an active volume for deletion. When marked, the volume is purged (permanently deleted) after the cleanup
+        interval elapses. After making a request to delete a volume, any active iSCSI connections to the volume are immediately terminated
+        and no further connections are allowed while the volume is in this state. A marked volume is not returned in target discovery
+        requests.
+        Any snapshots of a volume that has been marked for deletion are not affected. Snapshots are kept until the volume is purged from
+        the system.
+        If a volume is marked for deletion and has a bulk volume read or bulk volume write operation in progress, the bulk volume read or
+        write operation is stopped.
+        If the volume you delete is paired with a volume, replication between the paired volumes is suspended and no data is transferred
+        to it or from it while in a deleted state. The remote volume that the deleted volume was paired with enters into a PausedMisconfigured state and data is no longer sent to it or from the deleted volume. Until the deleted volume is purged, it can be restored and data transfers resume. If the deleted volume gets purged from the system, the volume it was paired with enters into a StoppedMisconfigured state and the volume pairing status is removed. The purged volume becomes permanently unavailable.
+        :param volumeID: [required] The ID of the volume to be deleted. 
+        :type volumeID: int
+        """
+
+        self._check_connection_type("delete_volume", "Cluster")
+
+        params = { 
+            "volumeID": volume_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DeleteVolume',
+            DeleteVolumeResult,
+            params
+        )
+
+    def delete_volumes(
+            self,
+            account_ids=OPTIONAL,
+            volume_access_group_ids=OPTIONAL,
+            volume_ids=OPTIONAL,):
+        """
+        DeleteVolumes marks multiple (up to 500) active volumes for deletion. Once marked, the volumes are purged (permanently deleted) after the cleanup interval elapses.The cleanup interval can be set in the SetClusterSettings method. For more information on using this method, see SetClusterSettings on page 1. After making a request to delete volumes, any active iSCSI connections to the volumes are immediately terminated and no further connections are allowed while the volumes are in this state. A marked volume is not returned in target discovery requests. Any snapshots of a volume that has been marked for deletion are not affected. Snapshots are kept until the volume is purged from the system. If a volume is marked for deletion and has a bulk volume read or bulk volume write operation in progress, the bulk volume read or write operation is stopped. If the volumes you delete are paired with a volume, replication between the paired volumes is suspended and no data is transferred to them or from them while in a deleted state. The remote volumes the deleted volumes were paired with enter into a PausedMisconfigured state and data is no integerer sent to them or from the deleted volumes. Until the deleted volumes are purged, they can be restored and data transfers resume. If the deleted volumes are purged from the system, the volumes they were paired with enter into a StoppedMisconfigured state and the volume pairing status is removed. The purged volumes become permanently unavailable.
+        :param accountIDs:  A list of account IDs. All volumes from these accounts are deleted from the system.  
+        :type accountIDs: int
+
+        :param volumeAccessGroupIDs:  A list of volume access group IDs. All of the volumes from all of the volume access groups you specify in this list are deleted from the system. 
+        :type volumeAccessGroupIDs: int
+
+        :param volumeIDs:  The list of IDs of the volumes to delete from the system. 
+        :type volumeIDs: int
+        """
+
+        self._check_connection_type("delete_volumes", "Cluster")
+
+        params = { 
+        }
+        if account_ids is not None:
+            params["accountIDs"] = account_ids
+        if volume_access_group_ids is not None:
+            params["volumeAccessGroupIDs"] = volume_access_group_ids
+        if volume_ids is not None:
+            params["volumeIDs"] = volume_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DeleteVolumes',
+            DeleteVolumesResult,
+            params
+        )
+
     def get_async_result(
             self,
             async_handle,
@@ -5620,6 +5265,23 @@ class Element(ServiceBase):
             params
         )
 
+    def get_default_qos(
+            self,):
+        """
+        GetDefaultQoS enables you to retrieve the default QoS values for a newly created volume.        """
+
+        self._check_connection_type("get_default_qos", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetDefaultQoS',
+            VolumeQOS,
+            params
+        )
+
     def get_volume_count(
             self,):
         """
@@ -5634,6 +5296,28 @@ class Element(ServiceBase):
         return self.send_request(
             'GetVolumeCount',
             GetVolumeCountResult,
+            params
+        )
+
+    def get_volume_efficiency(
+            self,
+            volume_id,):
+        """
+        GetVolumeEfficiency enables you to retrieve information about a volume. Only the volume you give as a parameter in this API method is used to compute the capacity.
+        :param volumeID: [required] Specifies the volume for which capacity is computed. 
+        :type volumeID: int
+        """
+
+        self._check_connection_type("get_volume_efficiency", "Cluster")
+
+        params = { 
+            "volumeID": volume_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetVolumeEfficiency',
+            GetVolumeEfficiencyResult,
             params
         )
 
@@ -5695,6 +5379,49 @@ class Element(ServiceBase):
             params
         )
 
+    def list_async_results(
+            self,
+            async_result_types=OPTIONAL,):
+        """
+        You can use ListAsyncResults to list the results of all currently running and completed asynchronous methods on the system.
+        Querying asynchronous results with ListAsyncResults does not cause completed asyncHandles to expire; you can use GetAsyncResult
+        to query any of the asyncHandles returned by ListAsyncResults.
+        :param asyncResultTypes:  An optional list of types of results. You can use this list to restrict the results to only these types of operations. Possible values are: BulkVolume: Copy operations between volumes, such as backups or restores. Clone: Volume cloning operations. DriveRemoval: Operations involving the system copying data from a drive in preparation to remove it from the cluster. RtfiPendingNode: Operations involving the system installing compatible software on a node before adding it to the cluster 
+        :type asyncResultTypes: str
+        """
+
+        self._check_connection_type("list_async_results", "Cluster")
+
+        params = { 
+        }
+        if async_result_types is not None:
+            params["asyncResultTypes"] = async_result_types
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListAsyncResults',
+            ListAsyncResultsResult,
+            params
+        )
+
+    def list_bulk_volume_jobs(
+            self,):
+        """
+        ListBulkVolumeJobs enables you to retrieve information about each bulk volume read or write operation that is occurring in the
+        system.        """
+
+        self._check_connection_type("list_bulk_volume_jobs", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListBulkVolumeJobs',
+            ListBulkVolumeJobsResult,
+            params
+        )
+
     def list_deleted_volumes(
             self,
             include_virtual_volumes=OPTIONAL,):
@@ -5715,6 +5442,35 @@ class Element(ServiceBase):
         return self.send_request(
             'ListDeletedVolumes',
             ListDeletedVolumesResult,
+            params
+        )
+
+    def list_volume_stats_by_account(
+            self,
+            accounts=OPTIONAL,
+            include_virtual_volumes=OPTIONAL,):
+        """
+        ListVolumeStatsByAccount returns high-level activity measurements for every account. Values are summed from all the volumes owned by the account.
+        :param accounts:  One or more account ids by which to filter the result. 
+        :type accounts: int
+
+        :param includeVirtualVolumes:  Includes virtual volumes in the response by default. To exclude virtual volumes, set to false. 
+        :type includeVirtualVolumes: bool
+        """
+
+        self._check_connection_type("list_volume_stats_by_account", "Cluster")
+
+        params = { 
+        }
+        if accounts is not None:
+            params["accounts"] = accounts
+        if include_virtual_volumes is not None:
+            params["includeVirtualVolumes"] = include_virtual_volumes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVolumeStatsByAccount',
+            ListVolumeStatsByAccountResult,
             params
         )
 
@@ -5739,6 +5495,36 @@ class Element(ServiceBase):
         return self.send_request(
             'ListVolumeStatsByVolume',
             ListVolumeStatsByVolumeResult,
+            params
+        )
+
+    def list_volume_stats_by_volume_access_group(
+            self,
+            volume_access_groups=OPTIONAL,
+            include_virtual_volumes=OPTIONAL,):
+        """
+        ListVolumeStatsByVolumeAccessGroup enables you to get total activity measurements for all of the volumes that are a member of the
+        specified volume access group(s).
+        :param volumeAccessGroups:  An array of VolumeAccessGroupIDs for which volume activity is returned. If omitted, statistics for all volume access groups are returned. 
+        :type volumeAccessGroups: int
+
+        :param includeVirtualVolumes:  Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. 
+        :type includeVirtualVolumes: bool
+        """
+
+        self._check_connection_type("list_volume_stats_by_volume_access_group", "Cluster")
+
+        params = { 
+        }
+        if volume_access_groups is not None:
+            params["volumeAccessGroups"] = volume_access_groups
+        if include_virtual_volumes is not None:
+            params["includeVirtualVolumes"] = include_virtual_volumes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVolumeStatsByVolumeAccessGroup',
+            ListVolumeStatsByVolumeAccessGroupResult,
             params
         )
 
@@ -5848,6 +5634,188 @@ class Element(ServiceBase):
             params
         )
 
+    def modify_volume(
+            self,
+            volume_id,
+            account_id=OPTIONAL,
+            access=OPTIONAL,
+            qos=OPTIONAL,
+            total_size=OPTIONAL,
+            set_create_time=OPTIONAL,
+            create_time=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        ModifyVolume enables you to modify settings on an existing volume. You can make modifications to one volume at a time and
+        changes take place immediately. If you do not specify QoS values when you modify a volume, they remain the same as before the modification. You can retrieve
+        default QoS values for a newly created volume by running the GetDefaultQoS method.
+        When you need to increase the size of a volume that is being replicated, do so in the following order to prevent replication errors:
+        1. Increase the size of the "Replication Target" volume.
+        2. Increase the size of the source or "Read / Write" volume.
+        NetApp recommends that both the target and source volumes are the same size.
+        Note: If you change the "access" status to locked or target, all existing iSCSI connections are terminated.
+        :param volumeID: [required] VolumeID for the volume to be modified. 
+        :type volumeID: int
+
+        :param accountID:  AccountID to which the volume is reassigned. If unspecified, the previous account name is used. 
+        :type accountID: int
+
+        :param access:  Specifies the access allowed for the volume. Possible values are: readOnly: Only read operations are allowed. readWrite: Reads and writes are allowed. locked: No reads or writes are allowed. If not specified, the access value does not change. replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked. If a value is not specified, the access value does not change. 
+        :type access: str
+
+        :param qos:  New QoS settings for this volume. If not specified, the QoS settings are not changed. 
+        :type qos: QoS
+
+        :param totalSize:  New size of the volume in bytes. 1000000000 is equal to 1GB. Size is rounded up to the nearest 1MB. This parameter can only be used to increase the size of a volume. 
+        :type totalSize: int
+
+        :param setCreateTime:  If set to true, changes the recorded date of volume creation. 
+        :type setCreateTime: bool
+
+        :param createTime:  An ISO 8601 date string to set as the new volume creation date. Required if "setCreateTime" is set to true. 
+        :type createTime: str
+
+        :param attributes:  List of name-value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("modify_volume", "Cluster")
+
+        params = { 
+            "volumeID": volume_id,
+        }
+        if account_id is not None:
+            params["accountID"] = account_id
+        if access is not None:
+            params["access"] = access
+        if qos is not None:
+            params["qos"] = qos
+        if total_size is not None:
+            params["totalSize"] = total_size
+        if set_create_time is not None:
+            params["setCreateTime"] = set_create_time
+        if create_time is not None:
+            params["createTime"] = create_time
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyVolume',
+            ModifyVolumeResult,
+            params
+        )
+
+    def modify_volumes(
+            self,
+            volume_ids,
+            account_id=OPTIONAL,
+            access=OPTIONAL,
+            qos=OPTIONAL,
+            total_size=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        ModifyVolumes allows you to configure up to 500 existing volumes at one time. Changes take place immediately. If ModifyVolumes fails to modify any of the specified volumes, none of the specified volumes are changed.If you do not specify QoS values when you modify volumes, the QoS values for each volume remain unchanged. You can retrieve default QoS values for a newly created volume by running the GetDefaultQoS method.When you need to increase the size of volumes that are being replicated, do so in the following order to prevent replication errors:Increase the size of the "Replication Target" volume.Increase the size of the source or "Read / Write" volume. recommends that both the target and source volumes be the same size.NOTE: If you change access status to locked or replicationTarget all existing iSCSI connections are terminated.
+        :param volumeIDs: [required] A list of volumeIDs for the volumes to be modified. 
+        :type volumeIDs: int
+
+        :param accountID:  AccountID to which the volume is reassigned. If none is specified, the previous account name is used. 
+        :type accountID: int
+
+        :param access:  Access allowed for the volume. Possible values:readOnly: Only read operations are allowed.readWrite: Reads and writes are allowed.locked: No reads or writes are allowed.If not specified, the access value does not change.replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.If a value is not specified, the access value does not change.  
+        :type access: str
+
+        :param qos:  New quality of service settings for this volume.If not specified, the QoS settings are not changed. 
+        :type qos: QoS
+
+        :param totalSize:  New size of the volume in bytes. 1000000000 is equal to 1GB. Size is rounded up to the nearest 1MB in size. This parameter can only be used to increase the size of a volume. 
+        :type totalSize: int
+
+        :param attributes:  List of name/value pairs in JSON object format. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("modify_volumes", "Cluster")
+
+        params = { 
+            "volumeIDs": volume_ids,
+        }
+        if account_id is not None:
+            params["accountID"] = account_id
+        if access is not None:
+            params["access"] = access
+        if qos is not None:
+            params["qos"] = qos
+        if total_size is not None:
+            params["totalSize"] = total_size
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyVolumes',
+            ModifyVolumesResult,
+            params
+        )
+
+    def purge_deleted_volume(
+            self,
+            volume_id,):
+        """
+        PurgeDeletedVolume immediately and permanently purges a volume that has been deleted. You must delete a volume using
+        DeleteVolume before it can be purged. Volumes are purged automatically after a period of time, so usage of this method is not
+        typically required.
+        :param volumeID: [required] The ID of the volume to be purged. 
+        :type volumeID: int
+        """
+
+        self._check_connection_type("purge_deleted_volume", "Cluster")
+
+        params = { 
+            "volumeID": volume_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'PurgeDeletedVolume',
+            PurgeDeletedVolumeResult,
+            params
+        )
+
+    def purge_deleted_volumes(
+            self,
+            volume_ids=OPTIONAL,
+            account_ids=OPTIONAL,
+            volume_access_group_ids=OPTIONAL,):
+        """
+        PurgeDeletedVolumes immediately and permanently purges volumes that have been deleted; you can use this method to purge up to 500 volumes at one time. You must delete volumes using DeleteVolumes before they can be purged. Volumes are purged by the system automatically after a period of time, so usage of this method is not typically required.
+        :param volumeIDs:  A list of volumeIDs of volumes to be purged from the system. 
+        :type volumeIDs: int
+
+        :param accountIDs:  A list of accountIDs. All of the volumes from all of the specified accounts are purged from the system. 
+        :type accountIDs: int
+
+        :param volumeAccessGroupIDs:  A list of volumeAccessGroupIDs. All of the volumes from all of the specified Volume Access Groups are purged from the system. 
+        :type volumeAccessGroupIDs: int
+        """
+
+        self._check_connection_type("purge_deleted_volumes", "Cluster")
+
+        params = { 
+        }
+        if volume_ids is not None:
+            params["volumeIDs"] = volume_ids
+        if account_ids is not None:
+            params["accountIDs"] = account_ids
+        if volume_access_group_ids is not None:
+            params["volumeAccessGroupIDs"] = volume_access_group_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'PurgeDeletedVolumes',
+            PurgeDeletedVolumesResult,
+            params
+        )
+
     def restore_deleted_volume(
             self,
             volume_id,):
@@ -5867,6 +5835,42 @@ class Element(ServiceBase):
         return self.send_request(
             'RestoreDeletedVolume',
             RestoreDeletedVolumeResult,
+            params
+        )
+
+    def set_default_qos(
+            self,
+            min_iops=OPTIONAL,
+            max_iops=OPTIONAL,
+            burst_iops=OPTIONAL,):
+        """
+        SetDefaultQoS enables you to configure the default Quality of Service (QoS) values (measured in inputs and outputs per second, or
+        IOPS) for a volume. For more information about QoS in a SolidFire cluster, see the User Guide.
+        :param minIOPS:  The minimum number of sustained IOPS provided by the cluster to a volume. 
+        :type minIOPS: int
+
+        :param maxIOPS:  The maximum number of sustained IOPS provided by the cluster to a volume. 
+        :type maxIOPS: int
+
+        :param burstIOPS:  The maximum number of IOPS allowed in a short burst scenario. 
+        :type burstIOPS: int
+        """
+
+        self._check_connection_type("set_default_qos", "Cluster")
+
+        params = { 
+        }
+        if min_iops is not None:
+            params["minIOPS"] = min_iops
+        if max_iops is not None:
+            params["maxIOPS"] = max_iops
+        if burst_iops is not None:
+            params["burstIOPS"] = burst_iops
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetDefaultQoS',
+            SetDefaultQoSResult,
             params
         )
 
@@ -5928,6 +5932,52 @@ class Element(ServiceBase):
             params
         )
 
+    def start_bulk_volume_write(
+            self,
+            volume_id,
+            format,
+            script=OPTIONAL,
+            script_parameters=OPTIONAL,
+            attributes=OPTIONAL,):
+        """
+        StartBulkVolumeWrite enables you to initialize a bulk volume write session on a specified volume. Only two bulk volume processes can run simultaneously on a volume. When you initialize the write session, data is written to a SolidFire storage volume from an external backup source. The external data is accessed by a web server running on an SF-series node. Communications and server
+        interaction information for external data access is passed by a script running on the storage system.
+        :param volumeID: [required] The ID of the volume to be written to. 
+        :type volumeID: int
+
+        :param format: [required] The format of the volume data. It can be either of the following formats: uncompressed: Every byte of the volume is returned without any compression. native: Opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. 
+        :type format: str
+
+        :param script:  The executable name of a script. If unspecified, the key and URL are necessary to access SF-series nodes. The script runs on the primary node and the key and URL is returned to the script, so the local web server can be contacted. 
+        :type script: str
+
+        :param scriptParameters:  JSON parameters to pass to the script. 
+        :type scriptParameters: dict
+
+        :param attributes:  JSON attributes for the bulk volume job. 
+        :type attributes: dict
+        """
+
+        self._check_connection_type("start_bulk_volume_write", "Cluster")
+
+        params = { 
+            "volumeID": volume_id,
+            "format": format,
+        }
+        if script is not None:
+            params["script"] = script
+        if script_parameters is not None:
+            params["scriptParameters"] = script_parameters
+        if attributes is not None:
+            params["attributes"] = attributes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'StartBulkVolumeWrite',
+            StartBulkVolumeWriteResult,
+            params
+        )
+
     def update_bulk_volume_status(
             self,
             key,
@@ -5971,91 +6021,6 @@ class Element(ServiceBase):
         return self.send_request(
             'UpdateBulkVolumeStatus',
             UpdateBulkVolumeStatusResult,
-            params
-        )
-
-    def create_volume(
-            self,
-            name,
-            account_id,
-            total_size,
-            enable512e,
-            qos=OPTIONAL,
-            attributes=OPTIONAL,):
-        """
-        CreateVolume enables you to create a new (empty) volume on the cluster. As soon as the volume creation is complete, the volume is
-        available for connection via iSCSI.
-        :param name: [required] The name of the volume access group (might be user specified). Not required to be unique, but recommended. Might be 1 to 64 characters in length. 
-        :type name: str
-
-        :param accountID: [required] AccountID for the owner of this volume. 
-        :type accountID: int
-
-        :param totalSize: [required] Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size. 
-        :type totalSize: int
-
-        :param enable512e: [required] Specifies whether 512e emulation is enabled or not. Possible values are: true: The volume provides 512-byte sector emulation. false: 512e emulation is not enabled. 
-        :type enable512e: bool
-
-        :param qos:  Initial quality of service settings for this volume. Default values are used if none are specified. Valid settings are: minIOPS maxIOPS burstIOPS You can get the default values for a volume by using the GetDefaultQoS method. 
-        :type qos: QoS
-
-        :param attributes:  The list of name-value pairs in JSON object format. Total attribute size must be less than 1000B, or 1KB, including JSON formatting characters. 
-        :type attributes: dict
-        """
-
-        self._check_connection_type("create_volume", "Cluster")
-
-        params = { 
-            "name": name,
-            "accountID": account_id,
-            "totalSize": total_size,
-            "enable512e": enable512e,
-        }
-        if qos is not None:
-            params["qos"] = qos
-        if attributes is not None:
-            params["attributes"] = attributes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'CreateVolume',
-            CreateVolumeResult,
-            params
-        )
-
-    def remove_initiators_from_volume_access_group(
-            self,
-            volume_access_group_id,
-            initiators,
-            delete_orphan_initiators=OPTIONAL,):
-        """
-        RemoveInitiatorsFromVolumeAccessGroup enables
-        you to remove initiators from a specified volume access
-        group.
-        :param volumeAccessGroupID: [required] The ID of the volume access group from which the initiators are removed. 
-        :type volumeAccessGroupID: int
-
-        :param initiators: [required] The list of initiators to remove from the volume access group. 
-        :type initiators: str
-
-        :param deleteOrphanInitiators:  true: Delete initiator objects after they are removed from a volume access group. false: Do not delete initiator objects after they are removed from a volume access group. 
-        :type deleteOrphanInitiators: bool
-        """
-
-        self._check_connection_type("remove_initiators_from_volume_access_group", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-            "initiators": initiators,
-        }
-        if delete_orphan_initiators is not None:
-            params["deleteOrphanInitiators"] = delete_orphan_initiators
-        
-        # There is no adaptor.
-        return self.send_request(
-            'RemoveInitiatorsFromVolumeAccessGroup',
-            ModifyVolumeAccessGroupResult,
             params
         )
 
@@ -6366,6 +6331,41 @@ class Element(ServiceBase):
         return self.send_request(
             'ModifyVolumeAccessGroupLunAssignments',
             ModifyVolumeAccessGroupLunAssignmentsResult,
+            params
+        )
+
+    def remove_initiators_from_volume_access_group(
+            self,
+            volume_access_group_id,
+            initiators,
+            delete_orphan_initiators=OPTIONAL,):
+        """
+        RemoveInitiatorsFromVolumeAccessGroup enables
+        you to remove initiators from a specified volume access
+        group.
+        :param volumeAccessGroupID: [required] The ID of the volume access group from which the initiators are removed. 
+        :type volumeAccessGroupID: int
+
+        :param initiators: [required] The list of initiators to remove from the volume access group. 
+        :type initiators: str
+
+        :param deleteOrphanInitiators:  true: Delete initiator objects after they are removed from a volume access group. false: Do not delete initiator objects after they are removed from a volume access group. 
+        :type deleteOrphanInitiators: bool
+        """
+
+        self._check_connection_type("remove_initiators_from_volume_access_group", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+            "initiators": initiators,
+        }
+        if delete_orphan_initiators is not None:
+            params["deleteOrphanInitiators"] = delete_orphan_initiators
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RemoveInitiatorsFromVolumeAccessGroup',
+            ModifyVolumeAccessGroupResult,
             params
         )
 
