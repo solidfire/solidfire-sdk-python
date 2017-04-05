@@ -11353,12 +11353,12 @@ class ModifyVirtualNetworkRequest(data_model.DataObject):
 class ListVolumeStatsByVirtualVolumeResult(data_model.DataObject):
     """ListVolumeStatsByVirtualVolumeResult  
 
-    :param virtual_volume_stats: [required]  
-    :type virtual_volume_stats: VolumeStats
+    :param volume_stats: [required]  
+    :type volume_stats: VirtualVolumeStats
 
     """
-    virtual_volume_stats = data_model.property(
-        "VirtualVolumeStats", VolumeStats,
+    volume_stats = data_model.property(
+        "volumeStats", VirtualVolumeStats,
         array=True, optional=False,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
