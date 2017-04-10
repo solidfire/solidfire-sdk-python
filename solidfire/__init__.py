@@ -3104,6 +3104,41 @@ class Element(ServiceBase):
             params
         )
 
+    def list_group_snapshots(
+            self,
+            volume_id=OPTIONAL,
+            group_snapshot_id=OPTIONAL,
+            volumes=OPTIONAL,):
+        """
+        ListGroupSnapshots enables you to get information about all group snapshots that have been created.
+        :param volumeID:  An array of unique volume IDs to query. If you do not specify this parameter, all group snapshots on the cluster are included. 
+        :type volumeID: int
+
+        :param groupSnapshotID:  Retrieves information for a specific group snapshot ID. 
+        :type groupSnapshotID: int
+
+        :param volumes:   
+        :type volumes: int
+        """
+
+        self._check_connection_type("list_group_snapshots", "Cluster")
+
+        params = { 
+        }
+        if volume_id is not None:
+            params["volumeID"] = volume_id
+        if group_snapshot_id is not None:
+            params["groupSnapshotID"] = group_snapshot_id
+        if volumes is not None:
+            params["volumes"] = volumes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListGroupSnapshots',
+            ListGroupSnapshotsResult,
+            params
+        )
+
     def create_group_snapshot(
             self,
             volumes,
@@ -3305,35 +3340,6 @@ class Element(ServiceBase):
 
         return ElementServiceAdaptor.get_schedule(self, params,
                                                   since, deprecated)
-
-    def list_group_snapshots(
-            self,
-            volume_id=OPTIONAL,
-            group_snapshot_id=OPTIONAL,):
-        """
-        ListGroupSnapshots enables you to get information about all group snapshots that have been created.
-        :param volumeID:  An array of unique volume IDs to query. If you do not specify this parameter, all group snapshots on the cluster are included. 
-        :type volumeID: int
-
-        :param groupSnapshotID:  Retrieves information for a specific group snapshot ID. 
-        :type groupSnapshotID: int
-        """
-
-        self._check_connection_type("list_group_snapshots", "Cluster")
-
-        params = { 
-        }
-        if volume_id is not None:
-            params["volumeID"] = volume_id
-        if group_snapshot_id is not None:
-            params["groupSnapshotID"] = group_snapshot_id
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListGroupSnapshots',
-            ListGroupSnapshotsResult,
-            params
-        )
 
     def list_schedules(
             self,):

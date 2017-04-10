@@ -12427,6 +12427,9 @@ class ListGroupSnapshotsRequest(data_model.DataObject):
     :param group_snapshot_id:  Retrieves information for a specific group snapshot ID. 
     :type group_snapshot_id: int
 
+    :param volumes:   
+    :type volumes: int
+
     """
     volume_id = data_model.property(
         "volumeID", int,
@@ -12438,6 +12441,12 @@ class ListGroupSnapshotsRequest(data_model.DataObject):
         "groupSnapshotID", int,
         array=False, optional=True,
         documentation="[&#x27;Retrieves information for a specific group snapshot ID.&#x27;]",
+        dictionaryType=None
+    )
+    volumes = data_model.property(
+        "volumes", int,
+        array=True, optional=True,
+        documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
 
