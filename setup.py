@@ -43,8 +43,8 @@ setup(
 
     url='https://github.com/solidfire/solidfire-sdk-python',
 
-    author='Adam Haid',
-    author_email='adam.haid@netapp.com',
+    author='Adam Haid, Ariel Hoffman, Joel Arthur',
+    author_email='adam.haid@netapp.com, ariel.hoffman@netapp.com, joel.arthur@netapp.com',
 
     license='Apache2',
 
