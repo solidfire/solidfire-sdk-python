@@ -2081,7 +2081,7 @@ class ModifyInitiator(data_model.DataObject):
     :param alias:  (Optional) A new friendly name to assign to the initiator. (String) 
     :type alias: str
 
-    :param volume_access_group_id:  (Optional) The ID of the volume access group into to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
+    :param volume_access_group_id:  (Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
     :type volume_access_group_id: int
 
     :param attributes:  (Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) 
@@ -2103,7 +2103,7 @@ class ModifyInitiator(data_model.DataObject):
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=True,
-        documentation="[&#x27;(Optional) The ID of the volume access group into to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer)&#x27;]",
+        documentation="[&#x27;(Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer)&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
@@ -10966,7 +10966,7 @@ class CreateInitiator(data_model.DataObject):
     :param alias:  (Optional) The friendly name to assign to this initiator. (String) 
     :type alias: str
 
-    :param volume_access_group_id:  (Optional) The ID of the volume access group into to which this newly created initiator will be added. (Integer) 
+    :param volume_access_group_id:  (Optional) The ID of the volume access group to which this newly created initiator will be added. (Integer) 
     :type volume_access_group_id: int
 
     :param attributes:  (Optional) A set of JSON attributes assigned to this initiator. (JSON Object) 
@@ -10988,7 +10988,7 @@ class CreateInitiator(data_model.DataObject):
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=True,
-        documentation="[&#x27;(Optional) The ID of the volume access group into to which this newly created initiator will be added. (Integer)&#x27;]",
+        documentation="[&#x27;(Optional) The ID of the volume access group to which this newly created initiator will be added. (Integer)&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
