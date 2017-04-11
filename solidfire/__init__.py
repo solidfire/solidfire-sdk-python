@@ -5307,8 +5307,6 @@ class Element(ServiceBase):
             access=OPTIONAL,
             qos=OPTIONAL,
             total_size=OPTIONAL,
-            set_create_time=OPTIONAL,
-            create_time=OPTIONAL,
             attributes=OPTIONAL,):
         """
         ModifyVolume enables you to modify settings on an existing volume. You can make modifications to one volume at a time and
@@ -5334,12 +5332,6 @@ class Element(ServiceBase):
         :param totalSize:  New size of the volume in bytes. 1000000000 is equal to 1GB. Size is rounded up to the nearest 1MB. This parameter can only be used to increase the size of a volume. 
         :type totalSize: int
 
-        :param setCreateTime:  If set to true, changes the recorded date of volume creation. 
-        :type setCreateTime: bool
-
-        :param createTime:  An ISO 8601 date string to set as the new volume creation date. Required if "setCreateTime" is set to true. 
-        :type createTime: str
-
         :param attributes:  List of name-value pairs in JSON object format. 
         :type attributes: dict
         """
@@ -5357,10 +5349,6 @@ class Element(ServiceBase):
             params["qos"] = qos
         if total_size is not None:
             params["totalSize"] = total_size
-        if set_create_time is not None:
-            params["setCreateTime"] = set_create_time
-        if create_time is not None:
-            params["createTime"] = create_time
         if attributes is not None:
             params["attributes"] = attributes
         

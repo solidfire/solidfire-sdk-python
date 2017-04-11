@@ -12911,10 +12911,19 @@ class ModifyVolumesResult(data_model.DataObject):
     :param volumes: [required]  
     :type volumes: Volume
 
+    :param qos:   
+    :type qos: Curve
+
     """
     volumes = data_model.property(
         "volumes", Volume,
         array=True, optional=False,
+        documentation="[u&#x27;&#x27;]",
+        dictionaryType=None
+    )
+    qos = data_model.property(
+        "qos", Curve,
+        array=False, optional=True,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
     )
@@ -17236,12 +17245,6 @@ class ModifyVolumeRequest(data_model.DataObject):
     :param total_size:  New size of the volume in bytes. 1000000000 is equal to 1GB. Size is rounded up to the nearest 1MB. This parameter can only be used to increase the size of a volume. 
     :type total_size: int
 
-    :param set_create_time:  If set to true, changes the recorded date of volume creation. 
-    :type set_create_time: bool
-
-    :param create_time:  An ISO 8601 date string to set as the new volume creation date. Required if "setCreateTime" is set to true. 
-    :type create_time: str
-
     :param attributes:  List of name-value pairs in JSON object format. 
     :type attributes: dict
 
@@ -17274,18 +17277,6 @@ class ModifyVolumeRequest(data_model.DataObject):
         "totalSize", int,
         array=False, optional=True,
         documentation="[&#x27;New size of the volume in bytes. 1000000000 is equal to 1GB.&#x27;, &#x27;Size is rounded up to the nearest 1MB. This parameter&#x27;, &#x27;can only be used to increase the size of a volume.&#x27;]",
-        dictionaryType=None
-    )
-    set_create_time = data_model.property(
-        "setCreateTime", bool,
-        array=False, optional=True,
-        documentation="[&#x27;If set to true, changes the recorded date of volume creation.&#x27;]",
-        dictionaryType=None
-    )
-    create_time = data_model.property(
-        "createTime", str,
-        array=False, optional=True,
-        documentation="[&#x27;An ISO 8601 date string to set as the new volume creation date.&#x27;, &#x27;Required if &quot;setCreateTime&quot; is set to true.&#x27;]",
         dictionaryType=None
     )
     attributes = data_model.property(
