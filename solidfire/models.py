@@ -12912,7 +12912,7 @@ class ModifyVolumesResult(data_model.DataObject):
     :type volumes: Volume
 
     :param qos:   
-    :type qos: Curve
+    :type qos: QoS
 
     """
     volumes = data_model.property(
@@ -12922,7 +12922,7 @@ class ModifyVolumesResult(data_model.DataObject):
         dictionaryType=None
     )
     qos = data_model.property(
-        "qos", Curve,
+        "qos", QoS,
         array=False, optional=True,
         documentation="[u&#x27;&#x27;]",
         dictionaryType=None
