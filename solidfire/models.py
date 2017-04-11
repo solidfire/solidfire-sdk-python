@@ -12421,22 +12421,13 @@ class ListGroupSnapshotsRequest(data_model.DataObject):
     """ListGroupSnapshotsRequest  
     ListGroupSnapshots enables you to get information about all group snapshots that have been created.
 
-    :param volume_id:  An array of unique volume IDs to query. If you do not specify this parameter, all group snapshots on the cluster are included. 
-    :type volume_id: int
-
     :param group_snapshot_id:  Retrieves information for a specific group snapshot ID. 
     :type group_snapshot_id: int
 
-    :param volumes:   
+    :param volumes:  An array of unique volume IDs to query. If you do not specify this parameter, all group snapshots on the cluster are included. 
     :type volumes: int
 
     """
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=True,
-        documentation="[&#x27;An array of unique volume IDs to query. If you do not&#x27;, &#x27;specify this parameter, all group snapshots on the cluster&#x27;, &#x27;are included.&#x27;]",
-        dictionaryType=None
-    )
     group_snapshot_id = data_model.property(
         "groupSnapshotID", int,
         array=False, optional=True,
@@ -12446,7 +12437,7 @@ class ListGroupSnapshotsRequest(data_model.DataObject):
     volumes = data_model.property(
         "volumes", int,
         array=True, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation="[&#x27;An array of unique volume IDs to query. If you do not&#x27;, &#x27;specify this parameter, all group snapshots on the cluster&#x27;, &#x27;are included.&#x27;]",
         dictionaryType=None
     )
 

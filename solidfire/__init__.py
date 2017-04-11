@@ -3106,18 +3106,14 @@ class Element(ServiceBase):
 
     def list_group_snapshots(
             self,
-            volume_id=OPTIONAL,
             group_snapshot_id=OPTIONAL,
             volumes=OPTIONAL,):
         """
         ListGroupSnapshots enables you to get information about all group snapshots that have been created.
-        :param volumeID:  An array of unique volume IDs to query. If you do not specify this parameter, all group snapshots on the cluster are included. 
-        :type volumeID: int
-
         :param groupSnapshotID:  Retrieves information for a specific group snapshot ID. 
         :type groupSnapshotID: int
 
-        :param volumes:   
+        :param volumes:  An array of unique volume IDs to query. If you do not specify this parameter, all group snapshots on the cluster are included. 
         :type volumes: int
         """
 
@@ -3125,8 +3121,6 @@ class Element(ServiceBase):
 
         params = { 
         }
-        if volume_id is not None:
-            params["volumeID"] = volume_id
         if group_snapshot_id is not None:
             params["groupSnapshotID"] = group_snapshot_id
         if volumes is not None:
