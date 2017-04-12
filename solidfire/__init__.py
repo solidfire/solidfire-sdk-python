@@ -3104,6 +3104,35 @@ class Element(ServiceBase):
             params
         )
 
+    def list_group_snapshots(
+            self,
+            group_snapshot_id=OPTIONAL,
+            volumes=OPTIONAL,):
+        """
+        ListGroupSnapshots enables you to get information about all group snapshots that have been created.
+        :param groupSnapshotID:  Retrieves information for a specific group snapshot ID. 
+        :type groupSnapshotID: int
+
+        :param volumes:  An array of unique volume IDs to query. If you do not specify this parameter, all group snapshots on the cluster are included. 
+        :type volumes: int
+        """
+
+        self._check_connection_type("list_group_snapshots", "Cluster")
+
+        params = { 
+        }
+        if group_snapshot_id is not None:
+            params["groupSnapshotID"] = group_snapshot_id
+        if volumes is not None:
+            params["volumes"] = volumes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListGroupSnapshots',
+            ListGroupSnapshotsResult,
+            params
+        )
+
     def create_group_snapshot(
             self,
             volumes,
@@ -3305,35 +3334,6 @@ class Element(ServiceBase):
 
         return ElementServiceAdaptor.get_schedule(self, params,
                                                   since, deprecated)
-
-    def list_group_snapshots(
-            self,
-            volume_id=OPTIONAL,
-            group_snapshot_id=OPTIONAL,):
-        """
-        ListGroupSnapshots enables you to get information about all group snapshots that have been created.
-        :param volumeID:  An array of unique volume IDs to query. If you do not specify this parameter, all group snapshots on the cluster are included. 
-        :type volumeID: int
-
-        :param groupSnapshotID:  Retrieves information for a specific group snapshot ID. 
-        :type groupSnapshotID: int
-        """
-
-        self._check_connection_type("list_group_snapshots", "Cluster")
-
-        params = { 
-        }
-        if volume_id is not None:
-            params["volumeID"] = volume_id
-        if group_snapshot_id is not None:
-            params["groupSnapshotID"] = group_snapshot_id
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListGroupSnapshots',
-            ListGroupSnapshotsResult,
-            params
-        )
 
     def list_schedules(
             self,):
@@ -5301,8 +5301,6 @@ class Element(ServiceBase):
             access=OPTIONAL,
             qos=OPTIONAL,
             total_size=OPTIONAL,
-            set_create_time=OPTIONAL,
-            create_time=OPTIONAL,
             attributes=OPTIONAL,):
         """
         ModifyVolume enables you to modify settings on an existing volume. You can make modifications to one volume at a time and
@@ -5328,12 +5326,6 @@ class Element(ServiceBase):
         :param totalSize:  New size of the volume in bytes. 1000000000 is equal to 1GB. Size is rounded up to the nearest 1MB. This parameter can only be used to increase the size of a volume. 
         :type totalSize: int
 
-        :param setCreateTime:  If set to true, changes the recorded date of volume creation. 
-        :type setCreateTime: bool
-
-        :param createTime:  An ISO 8601 date string to set as the new volume creation date. Required if "setCreateTime" is set to true. 
-        :type createTime: str
-
         :param attributes:  List of name-value pairs in JSON object format. 
         :type attributes: dict
         """
@@ -5351,10 +5343,6 @@ class Element(ServiceBase):
             params["qos"] = qos
         if total_size is not None:
             params["totalSize"] = total_size
-        if set_create_time is not None:
-            params["setCreateTime"] = set_create_time
-        if create_time is not None:
-            params["createTime"] = create_time
         if attributes is not None:
             params["attributes"] = attributes
         
