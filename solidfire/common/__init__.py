@@ -547,7 +547,8 @@ class ServiceBase(object):
                      result_type,
                      params=None,
                      since=None,
-                     deprecated=None):
+                     deprecated=None,
+                     return_response_raw=False):
         """
         :param method_name: the name of the API method to call
         :type method_name: str
@@ -648,6 +649,9 @@ class ServiceBase(object):
                 }
             )
             raise ApiConnectionError(json_err)
+
+        if return_response_raw:
+            return response_raw
 
         # noinspection PyBroadException
         try:
