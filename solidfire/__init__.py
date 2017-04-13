@@ -156,41 +156,6 @@ class Element(ServiceBase):
             params
         )
 
-    def list_accounts(
-            self,
-            start_account_id=OPTIONAL,
-            limit=OPTIONAL,
-            include_storage_containers=OPTIONAL,):
-        """
-        ListAccounts returns the entire list of accounts, with optional paging support.
-        :param startAccountID:  Starting AccountID to return. If no account exists with this AccountID, the next account by AccountID order is used as the start of the list. To page through the list, pass the AccountID of the last account in the previous response + 1. 
-        :type startAccountID: int
-
-        :param limit:  Maximum number of AccountInfo objects to return. 
-        :type limit: int
-
-        :param includeStorageContainers:  Includes storage containers in the response by default. To exclude storage containers, set to false. 
-        :type includeStorageContainers: bool
-        """
-
-        self._check_connection_type("list_accounts", "Cluster")
-
-        params = { 
-        }
-        if start_account_id is not None:
-            params["startAccountID"] = start_account_id
-        if limit is not None:
-            params["limit"] = limit
-        if include_storage_containers is not None:
-            params["includeStorageContainers"] = include_storage_containers
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListAccounts',
-            ListAccountsResult,
-            params
-        )
-
     def modify_account(
             self,
             account_id,
@@ -268,6 +233,41 @@ class Element(ServiceBase):
         return self.send_request(
             'RemoveAccount',
             RemoveAccountResult,
+            params
+        )
+
+    def list_accounts(
+            self,
+            start_account_id=OPTIONAL,
+            limit=OPTIONAL,
+            include_storage_containers=OPTIONAL,):
+        """
+        ListAccounts returns the entire list of accounts, with optional paging support.
+        :param startAccountID:  Starting AccountID to return. If no account exists with this AccountID, the next account by AccountID order is used as the start of the list. To page through the list, pass the AccountID of the last account in the previous response + 1. 
+        :type startAccountID: int
+
+        :param limit:  Maximum number of AccountInfo objects to return. 
+        :type limit: int
+
+        :param includeStorageContainers:  Includes storage containers in the response by default. To exclude storage containers, set to false. 
+        :type includeStorageContainers: bool
+        """
+
+        self._check_connection_type("list_accounts", "Cluster")
+
+        params = { 
+        }
+        if start_account_id is not None:
+            params["startAccountID"] = start_account_id
+        if limit is not None:
+            params["limit"] = limit
+        if include_storage_containers is not None:
+            params["includeStorageContainers"] = include_storage_containers
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListAccounts',
+            ListAccountsResult,
             params
         )
 
@@ -3106,25 +3106,25 @@ class Element(ServiceBase):
 
     def list_group_snapshots(
             self,
-            group_snapshot_id=OPTIONAL,
-            volumes=OPTIONAL,):
+            volumes=OPTIONAL,
+            group_snapshot_id=OPTIONAL,):
         """
         ListGroupSnapshots enables you to get information about all group snapshots that have been created.
-        :param groupSnapshotID:  Retrieves information for a specific group snapshot ID. 
-        :type groupSnapshotID: int
-
         :param volumes:  An array of unique volume IDs to query. If you do not specify this parameter, all group snapshots on the cluster are included. 
         :type volumes: int
+
+        :param groupSnapshotID:  Retrieves information for a specific group snapshot ID. 
+        :type groupSnapshotID: int
         """
 
         self._check_connection_type("list_group_snapshots", "Cluster")
 
         params = { 
         }
-        if group_snapshot_id is not None:
-            params["groupSnapshotID"] = group_snapshot_id
         if volumes is not None:
             params["volumes"] = volumes
+        if group_snapshot_id is not None:
+            params["groupSnapshotID"] = group_snapshot_id
         
         # There is no adaptor.
         return self.send_request(
@@ -4957,6 +4957,101 @@ class Element(ServiceBase):
             params
         )
 
+    def list_volume_stats_by_account(
+            self,
+            accounts=OPTIONAL,
+            include_virtual_volumes=OPTIONAL,):
+        """
+        ListVolumeStatsByAccount returns high-level activity measurements for every account. Values are summed from all the volumes owned by the account.
+        :param accounts:  One or more account ids by which to filter the result. 
+        :type accounts: int
+
+        :param includeVirtualVolumes:  Includes virtual volumes in the response by default. To exclude virtual volumes, set to false. 
+        :type includeVirtualVolumes: bool
+        """
+
+        self._check_connection_type("list_volume_stats_by_account", "Cluster")
+
+        params = { 
+        }
+        if accounts is not None:
+            params["accounts"] = accounts
+        if include_virtual_volumes is not None:
+            params["includeVirtualVolumes"] = include_virtual_volumes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVolumeStatsByAccount',
+            ListVolumeStatsByAccountResult,
+            params
+        )
+
+    def list_volumes(
+            self,
+            start_volume_id=OPTIONAL,
+            limit=OPTIONAL,
+            volume_status=OPTIONAL,
+            accounts=OPTIONAL,
+            is_paired=OPTIONAL,
+            volume_ids=OPTIONAL,
+            volume_name=OPTIONAL,
+            include_virtual_volumes=OPTIONAL,):
+        """
+        The ListVolumes method enables you to retrieve a list of volumes that are in a cluster. You can specify the volumes you want to
+        return in the list by using the available parameters.
+        :param startVolumeID:  Only volumes with an ID greater than or equal to this value are returned. Mutually exclusive with the volumeIDs parameter. 
+        :type startVolumeID: int
+
+        :param limit:  Specifies the maximum number of volume results that are returned. Mutually exclusive with the volumeIDs parameter. 
+        :type limit: int
+
+        :param volumeStatus:  Only volumes with a status equal to the status value are returned. Possible values are: creating snapshotting active deleted 
+        :type volumeStatus: str
+
+        :param accounts:  Returns only the volumes owned by the accounts you specify here. Mutually exclusive with the volumeIDs parameter. 
+        :type accounts: int
+
+        :param isPaired:  Returns volumes that are paired or not paired. Possible values are: true: Returns all paired volumes. false: Returns all volumes that are not paired. 
+        :type isPaired: bool
+
+        :param volumeIDs:  A list of volume IDs. If you supply this parameter, other parameters operate only on this set of volumes. Mutually exclusive with the accounts, startVolumeID, and limit parameters. 
+        :type volumeIDs: int
+
+        :param volumeName:  Only volume object information matching the volume name is returned. 
+        :type volumeName: str
+
+        :param includeVirtualVolumes:  Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. 
+        :type includeVirtualVolumes: bool
+        """
+
+        self._check_connection_type("list_volumes", "Cluster")
+
+        params = { 
+        }
+        if start_volume_id is not None:
+            params["startVolumeID"] = start_volume_id
+        if limit is not None:
+            params["limit"] = limit
+        if volume_status is not None:
+            params["volumeStatus"] = volume_status
+        if accounts is not None:
+            params["accounts"] = accounts
+        if is_paired is not None:
+            params["isPaired"] = is_paired
+        if volume_ids is not None:
+            params["volumeIDs"] = volume_ids
+        if volume_name is not None:
+            params["volumeName"] = volume_name
+        if include_virtual_volumes is not None:
+            params["includeVirtualVolumes"] = include_virtual_volumes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVolumes',
+            ListVolumesResult,
+            params
+        )
+
     def purge_deleted_volumes(
             self,
             volume_ids=OPTIONAL,
@@ -5235,65 +5330,6 @@ class Element(ServiceBase):
             params
         )
 
-    def list_volume_stats_by_account(
-            self,
-            accounts=OPTIONAL,
-            include_virtual_volumes=OPTIONAL,):
-        """
-        ListVolumeStatsByAccount returns high-level activity measurements for every account. Values are summed from all the volumes owned by the account.
-        :param accounts:  One or more account ids by which to filter the result. 
-        :type accounts: int
-
-        :param includeVirtualVolumes:  Includes virtual volumes in the response by default. To exclude virtual volumes, set to false. 
-        :type includeVirtualVolumes: bool
-        """
-
-        self._check_connection_type("list_volume_stats_by_account", "Cluster")
-
-        params = { 
-        }
-        if accounts is not None:
-            params["accounts"] = accounts
-        if include_virtual_volumes is not None:
-            params["includeVirtualVolumes"] = include_virtual_volumes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVolumeStatsByAccount',
-            ListVolumeStatsByAccountResult,
-            params
-        )
-
-    def list_volume_stats_by_volume_access_group(
-            self,
-            volume_access_groups=OPTIONAL,
-            include_virtual_volumes=OPTIONAL,):
-        """
-        ListVolumeStatsByVolumeAccessGroup enables you to get total activity measurements for all of the volumes that are a member of the
-        specified volume access group(s).
-        :param volumeAccessGroups:  An array of VolumeAccessGroupIDs for which volume activity is returned. If omitted, statistics for all volume access groups are returned. 
-        :type volumeAccessGroups: int
-
-        :param includeVirtualVolumes:  Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. 
-        :type includeVirtualVolumes: bool
-        """
-
-        self._check_connection_type("list_volume_stats_by_volume_access_group", "Cluster")
-
-        params = { 
-        }
-        if volume_access_groups is not None:
-            params["volumeAccessGroups"] = volume_access_groups
-        if include_virtual_volumes is not None:
-            params["includeVirtualVolumes"] = include_virtual_volumes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVolumeStatsByVolumeAccessGroup',
-            ListVolumeStatsByVolumeAccessGroupResult,
-            params
-        )
-
     def modify_volume(
             self,
             volume_id,
@@ -5511,6 +5547,106 @@ class Element(ServiceBase):
             params
         )
 
+    def list_active_volumes(
+            self,
+            start_volume_id=OPTIONAL,
+            limit=OPTIONAL,
+            include_virtual_volumes=OPTIONAL,):
+        """
+        ListActiveVolumes enables you to return the list of active volumes currently in the system. The list of volumes is returned sorted in
+        VolumeID order and can be returned in multiple parts (pages).
+        :param startVolumeID:  Starting VolumeID to return. If no volume exists with this VolumeID, the next volume by VolumeID order is used as the start of the list. To page through the list, pass the VolumeID of the last volume in the previous response + 1. 
+        :type startVolumeID: int
+
+        :param limit:  Maximum number of Volume Info objects to return. A value of 0 (zero) returns all volumes (unlimited). 
+        :type limit: int
+
+        :param includeVirtualVolumes:  Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. 
+        :type includeVirtualVolumes: bool
+        """
+
+        self._check_connection_type("list_active_volumes", "Cluster")
+
+        params = { 
+        }
+        if start_volume_id is not None:
+            params["startVolumeID"] = start_volume_id
+        if limit is not None:
+            params["limit"] = limit
+        if include_virtual_volumes is not None:
+            params["includeVirtualVolumes"] = include_virtual_volumes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListActiveVolumes',
+            ListActiveVolumesResult,
+            params
+        )
+
+    def list_volume_stats_by_volume(
+            self,
+            include_virtual_volumes=OPTIONAL,):
+        """
+        ListVolumeStatsByVolume returns high-level activity measurements for every volume, by volume. Values are cumulative from the
+        creation of the volume.
+        :param includeVirtualVolumes:  Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. 
+        :type includeVirtualVolumes: bool
+        """
+
+        self._check_connection_type("list_volume_stats_by_volume", "Cluster")
+
+        params = { 
+        }
+        if include_virtual_volumes is not None:
+            params["includeVirtualVolumes"] = include_virtual_volumes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVolumeStatsByVolume',
+            ListVolumeStatsByVolumeResult,
+            params
+        )
+
+    def list_volumes_for_account(
+            self,
+            account_id,
+            start_volume_id=OPTIONAL,
+            limit=OPTIONAL,
+            include_virtual_volumes=OPTIONAL,):
+        """
+        ListVolumesForAccount returns the list of active and (pending) deleted volumes for an account.
+        :param accountID: [required] Returns all volumes owned by this AccountID. 
+        :type accountID: int
+
+        :param startVolumeID:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
+        :type startVolumeID: int
+
+        :param limit:  The maximum number of volumes to return from the API. 
+        :type limit: int
+
+        :param includeVirtualVolumes:  Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. 
+        :type includeVirtualVolumes: bool
+        """
+
+        self._check_connection_type("list_volumes_for_account", "Cluster")
+
+        params = { 
+            "accountID": account_id,
+        }
+        if start_volume_id is not None:
+            params["startVolumeID"] = start_volume_id
+        if limit is not None:
+            params["limit"] = limit
+        if include_virtual_volumes is not None:
+            params["includeVirtualVolumes"] = include_virtual_volumes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVolumesForAccount',
+            ListVolumesForAccountResult,
+            params
+        )
+
     def clone_volume(
             self,
             volume_id,
@@ -5644,195 +5780,6 @@ class Element(ServiceBase):
         return self.send_request(
             'GetVolumeStats',
             GetVolumeStatsResult,
-            params
-        )
-
-    def list_active_volumes(
-            self,
-            start_volume_id=OPTIONAL,
-            limit=OPTIONAL,
-            include_virtual_volumes=OPTIONAL,):
-        """
-        ListActiveVolumes enables you to return the list of active volumes currently in the system. The list of volumes is returned sorted in
-        VolumeID order and can be returned in multiple parts (pages).
-        :param startVolumeID:  Starting VolumeID to return. If no volume exists with this VolumeID, the next volume by VolumeID order is used as the start of the list. To page through the list, pass the VolumeID of the last volume in the previous response + 1. 
-        :type startVolumeID: int
-
-        :param limit:  Maximum number of Volume Info objects to return. A value of 0 (zero) returns all volumes (unlimited). 
-        :type limit: int
-
-        :param includeVirtualVolumes:  Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. 
-        :type includeVirtualVolumes: bool
-        """
-
-        self._check_connection_type("list_active_volumes", "Cluster")
-
-        params = { 
-        }
-        if start_volume_id is not None:
-            params["startVolumeID"] = start_volume_id
-        if limit is not None:
-            params["limit"] = limit
-        if include_virtual_volumes is not None:
-            params["includeVirtualVolumes"] = include_virtual_volumes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListActiveVolumes',
-            ListActiveVolumesResult,
-            params
-        )
-
-    def list_deleted_volumes(
-            self,
-            include_virtual_volumes=OPTIONAL,):
-        """
-        ListDeletedVolumes enables you to retrieve the list of volumes that have been marked for deletion and purged from the system.
-        :param includeVirtualVolumes:  Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. 
-        :type includeVirtualVolumes: bool
-        """
-
-        self._check_connection_type("list_deleted_volumes", "Cluster")
-
-        params = { 
-        }
-        if include_virtual_volumes is not None:
-            params["includeVirtualVolumes"] = include_virtual_volumes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListDeletedVolumes',
-            ListDeletedVolumesResult,
-            params
-        )
-
-    def list_volume_stats_by_volume(
-            self,
-            include_virtual_volumes=OPTIONAL,):
-        """
-        ListVolumeStatsByVolume returns high-level activity measurements for every volume, by volume. Values are cumulative from the
-        creation of the volume.
-        :param includeVirtualVolumes:  Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. 
-        :type includeVirtualVolumes: bool
-        """
-
-        self._check_connection_type("list_volume_stats_by_volume", "Cluster")
-
-        params = { 
-        }
-        if include_virtual_volumes is not None:
-            params["includeVirtualVolumes"] = include_virtual_volumes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVolumeStatsByVolume',
-            ListVolumeStatsByVolumeResult,
-            params
-        )
-
-    def list_volumes(
-            self,
-            start_volume_id=OPTIONAL,
-            limit=OPTIONAL,
-            volume_status=OPTIONAL,
-            accounts=OPTIONAL,
-            is_paired=OPTIONAL,
-            volume_ids=OPTIONAL,
-            volume_name=OPTIONAL,
-            include_virtual_volumes=OPTIONAL,):
-        """
-        The ListVolumes method enables you to retrieve a list of volumes that are in a cluster. You can specify the volumes you want to
-        return in the list by using the available parameters.
-        :param startVolumeID:  Only volumes with an ID greater than or equal to this value are returned. Mutually exclusive with the volumeIDs parameter. 
-        :type startVolumeID: int
-
-        :param limit:  Specifies the maximum number of volume results that are returned. Mutually exclusive with the volumeIDs parameter. 
-        :type limit: int
-
-        :param volumeStatus:  Only volumes with a status equal to the status value are returned. Possible values are: creating snapshotting active deleted 
-        :type volumeStatus: str
-
-        :param accounts:  Returns only the volumes owned by the accounts you specify here. Mutually exclusive with the volumeIDs parameter. 
-        :type accounts: int
-
-        :param isPaired:  Returns volumes that are paired or not paired. Possible values are: true: Returns all paired volumes. false: Returns all volumes that are not paired. 
-        :type isPaired: bool
-
-        :param volumeIDs:  A list of volume IDs. If you supply this parameter, other parameters operate only on this set of volumes. Mutually exclusive with the accounts, startVolumeID, and limit parameters. 
-        :type volumeIDs: int
-
-        :param volumeName:  Only volume object information matching the volume name is returned. 
-        :type volumeName: str
-
-        :param includeVirtualVolumes:  Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. 
-        :type includeVirtualVolumes: bool
-        """
-
-        self._check_connection_type("list_volumes", "Cluster")
-
-        params = { 
-        }
-        if start_volume_id is not None:
-            params["startVolumeID"] = start_volume_id
-        if limit is not None:
-            params["limit"] = limit
-        if volume_status is not None:
-            params["volumeStatus"] = volume_status
-        if accounts is not None:
-            params["accounts"] = accounts
-        if is_paired is not None:
-            params["isPaired"] = is_paired
-        if volume_ids is not None:
-            params["volumeIDs"] = volume_ids
-        if volume_name is not None:
-            params["volumeName"] = volume_name
-        if include_virtual_volumes is not None:
-            params["includeVirtualVolumes"] = include_virtual_volumes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVolumes',
-            ListVolumesResult,
-            params
-        )
-
-    def list_volumes_for_account(
-            self,
-            account_id,
-            start_volume_id=OPTIONAL,
-            limit=OPTIONAL,
-            include_virtual_volumes=OPTIONAL,):
-        """
-        ListVolumesForAccount returns the list of active and (pending) deleted volumes for an account.
-        :param accountID: [required] Returns all volumes owned by this AccountID. 
-        :type accountID: int
-
-        :param startVolumeID:  The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. 
-        :type startVolumeID: int
-
-        :param limit:  The maximum number of volumes to return from the API. 
-        :type limit: int
-
-        :param includeVirtualVolumes:  Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. 
-        :type includeVirtualVolumes: bool
-        """
-
-        self._check_connection_type("list_volumes_for_account", "Cluster")
-
-        params = { 
-            "accountID": account_id,
-        }
-        if start_volume_id is not None:
-            params["startVolumeID"] = start_volume_id
-        if limit is not None:
-            params["limit"] = limit
-        if include_virtual_volumes is not None:
-            params["includeVirtualVolumes"] = include_virtual_volumes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVolumesForAccount',
-            ListVolumesForAccountResult,
             params
         )
 
@@ -6009,6 +5956,59 @@ class Element(ServiceBase):
         return self.send_request(
             'CreateVolume',
             CreateVolumeResult,
+            params
+        )
+
+    def list_deleted_volumes(
+            self,
+            include_virtual_volumes=OPTIONAL,):
+        """
+        ListDeletedVolumes enables you to retrieve the list of volumes that have been marked for deletion and purged from the system.
+        :param includeVirtualVolumes:  Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. 
+        :type includeVirtualVolumes: bool
+        """
+
+        self._check_connection_type("list_deleted_volumes", "Cluster")
+
+        params = { 
+        }
+        if include_virtual_volumes is not None:
+            params["includeVirtualVolumes"] = include_virtual_volumes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListDeletedVolumes',
+            ListDeletedVolumesResult,
+            params
+        )
+
+    def list_volume_stats_by_volume_access_group(
+            self,
+            volume_access_groups=OPTIONAL,
+            include_virtual_volumes=OPTIONAL,):
+        """
+        ListVolumeStatsByVolumeAccessGroup enables you to get total activity measurements for all of the volumes that are a member of the
+        specified volume access group(s).
+        :param volumeAccessGroups:  An array of VolumeAccessGroupIDs for which volume activity is returned. If omitted, statistics for all volume access groups are returned. 
+        :type volumeAccessGroups: int
+
+        :param includeVirtualVolumes:  Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. 
+        :type includeVirtualVolumes: bool
+        """
+
+        self._check_connection_type("list_volume_stats_by_volume_access_group", "Cluster")
+
+        params = { 
+        }
+        if volume_access_groups is not None:
+            params["volumeAccessGroups"] = volume_access_groups
+        if include_virtual_volumes is not None:
+            params["includeVirtualVolumes"] = include_virtual_volumes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVolumeStatsByVolumeAccessGroup',
+            ListVolumeStatsByVolumeAccessGroupResult,
             params
         )
 
