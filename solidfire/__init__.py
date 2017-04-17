@@ -2842,7 +2842,7 @@ class Element(ServiceBase):
         :type method: str
 
         :param parameters:  An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked. 
-        :type parameters: str
+        :type parameters: dict
         """
 
         self._check_connection_type("invoke_sfapi", "Both")
