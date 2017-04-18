@@ -32,7 +32,7 @@ class RemoveClusterAdminRequest(data_model.DataObject):
     cluster_admin_id = data_model.property(
         "clusterAdminID", int,
         array=False, optional=False,
-        documentation="[&#x27;ClusterAdminID for the cluster admin to remove.&#x27;]",
+        documentation="""ClusterAdminID for the cluster admin to remove. """,
         dictionaryType=None
     )
 
@@ -55,19 +55,19 @@ class TestDrivesResult(data_model.DataObject):
     details = data_model.property(
         "details", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     duration = data_model.property(
         "duration", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     result = data_model.property(
         "result", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -99,37 +99,37 @@ class VirtualVolumeHost(data_model.DataObject):
     virtual_volume_host_id = data_model.property(
         "virtualVolumeHostID", UUID,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     cluster_id = data_model.property(
         "clusterID", UUID,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     visible_protocol_endpoint_ids = data_model.property(
         "visibleProtocolEndpointIDs", UUID,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bindings = data_model.property(
         "bindings", int,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     initiator_names = data_model.property(
         "initiatorNames", str,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     host_address = data_model.property(
         "hostAddress", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -146,7 +146,7 @@ class ListVirtualVolumeHostsResult(data_model.DataObject):
     hosts = data_model.property(
         "hosts", VirtualVolumeHost,
         array=True, optional=False,
-        documentation="[&#x27;List of known ESX hosts.&#x27;]",
+        documentation="""List of known ESX hosts. """,
         dictionaryType=None
     )
 
@@ -168,13 +168,13 @@ class AddVolumesToVolumeAccessGroupRequest(data_model.DataObject):
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume access group to which volumes are added.&#x27;]",
+        documentation="""The ID of the volume access group to which volumes are added. """,
         dictionaryType=None
     )
     volumes = data_model.property(
         "volumes", int,
         array=True, optional=False,
-        documentation="[&#x27;The list of volumes to add to the volume access&#x27;, &#x27;group.&#x27;]",
+        documentation="""The list of volumes to add to the volume access group. """,
         dictionaryType=None
     )
 
@@ -205,31 +205,31 @@ class CreateGroupSnapshotRequest(data_model.DataObject):
     volumes = data_model.property(
         "volumes", int,
         array=True, optional=False,
-        documentation="[&#x27;Unique ID of the volume image from which to copy.&#x27;]",
+        documentation="""Unique ID of the volume image from which to copy. """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=True,
-        documentation="[&#x27;Name for the group snapshot. If unspecified, the date and time the group snapshot was taken is used.&#x27;]",
+        documentation="""Name for the group snapshot. If unspecified, the date and time the group snapshot was taken is used. """,
         dictionaryType=None
     )
     enable_remote_replication = data_model.property(
         "enableRemoteReplication", bool,
         array=False, optional=True,
-        documentation="[&#x27;Replicates the snapshot created to remote storage.&#x27;, &#x27;Possible values are:&#x27;, &#x27;true: The snapshot is replicated to remote storage.&#x27;, &#x27;false: Default. The snapshot is not replicated.&#x27;]",
+        documentation="""Replicates the snapshot created to remote storage. Possible values are: true: The snapshot is replicated to remote storage. false: Default. The snapshot is not replicated. """,
         dictionaryType=None
     )
     retention = data_model.property(
         "retention", str,
         array=False, optional=True,
-        documentation="[&#x27;Specifies the amount of time for which the snapshots are retained. The format is HH:mm:ss.&#x27;]",
+        documentation="""Specifies the amount of time for which the snapshots are retained. The format is HH:mm:ss. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
+        documentation="""List of name-value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -283,79 +283,79 @@ class ClusterConfig(data_model.DataObject):
     cipi = data_model.property(
         "cipi", str,
         array=False, optional=True,
-        documentation="[&#x27;Network interface used for cluster communication.&#x27;]",
+        documentation="""Network interface used for cluster communication. """,
         dictionaryType=None
     )
     cluster = data_model.property(
         "cluster", str,
         array=False, optional=True,
-        documentation="[&#x27;Unique cluster name.&#x27;]",
+        documentation="""Unique cluster name. """,
         dictionaryType=None
     )
     ensemble = data_model.property(
         "ensemble", str,
         array=True, optional=True,
-        documentation="[&#x27;Nodes that are participating in the cluster.&#x27;]",
+        documentation="""Nodes that are participating in the cluster. """,
         dictionaryType=None
     )
     mipi = data_model.property(
         "mipi", str,
         array=False, optional=True,
-        documentation="[&#x27;Network interface used for node management.&#x27;]",
+        documentation="""Network interface used for node management. """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=True,
-        documentation="[&#x27;Unique cluster name.&#x27;]",
+        documentation="""Unique cluster name. """,
         dictionaryType=None
     )
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     pending_node_id = data_model.property(
         "pendingNodeID", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     role = data_model.property(
         "role", str,
         array=False, optional=True,
-        documentation="[&#x27;Identifies the role of the node&#x27;]",
+        documentation="""Identifies the role of the node """,
         dictionaryType=None
     )
     sipi = data_model.property(
         "sipi", str,
         array=False, optional=True,
-        documentation="[&#x27;Network interface used for storage.&#x27;]",
+        documentation="""Network interface used for storage. """,
         dictionaryType=None
     )
     state = data_model.property(
         "state", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     encryption_capable = data_model.property(
         "encryptionCapable", bool,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     has_local_admin = data_model.property(
         "hasLocalAdmin", bool,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     version = data_model.property(
         "version", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -390,43 +390,43 @@ class PhysicalAdapter(data_model.DataObject):
     address = data_model.property(
         "address", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     mac_address = data_model.property(
         "macAddress", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     mac_address_permanent = data_model.property(
         "macAddressPermanent", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     mtu = data_model.property(
         "mtu", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     netmask = data_model.property(
         "netmask", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     network = data_model.property(
         "network", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     up_and_running = data_model.property(
         "upAndRunning", bool,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -524,169 +524,169 @@ class NetworkConfigParams(data_model.DataObject):
     _default = data_model.property(
         "#default", bool,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bond_master = data_model.property(
         "bond-master", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     virtual_network_tag = data_model.property(
         "virtualNetworkTag", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     address = data_model.property(
         "address", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     auto = data_model.property(
         "auto", bool,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bond_downdelay = data_model.property(
         "bond-downdelay", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bond_fail_over_mac = data_model.property(
         "bond-fail_over_mac", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bond_primary_reselect = data_model.property(
         "bond-primary_reselect", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bond_lacp_rate = data_model.property(
         "bond-lacp_rate", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bond_miimon = data_model.property(
         "bond-miimon", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bond_mode = data_model.property(
         "bond-mode", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bond_slaves = data_model.property(
         "bond-slaves", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bond_updelay = data_model.property(
         "bond-updelay", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     dns_nameservers = data_model.property(
         "dns-nameservers", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     dns_search = data_model.property(
         "dns-search", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     family = data_model.property(
         "family", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     gateway = data_model.property(
         "gateway", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     mac_address = data_model.property(
         "macAddress", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     mac_address_permanent = data_model.property(
         "macAddressPermanent", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     method = data_model.property(
         "method", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     mtu = data_model.property(
         "mtu", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     netmask = data_model.property(
         "netmask", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     network = data_model.property(
         "network", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     physical = data_model.property(
         "physical", PhysicalAdapter,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     routes = data_model.property(
         "routes", dict,
         array=True, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     status = data_model.property(
         "status", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     symmetric_route_rules = data_model.property(
         "symmetricRouteRules", str,
         array=True, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     up_and_running = data_model.property(
         "upAndRunning", bool,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -721,43 +721,43 @@ class NetworkParams(data_model.DataObject):
     bond10_g = data_model.property(
         "Bond10G", NetworkConfigParams,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bond1_g = data_model.property(
         "Bond1G", NetworkConfigParams,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     eth0 = data_model.property(
         "eth0", NetworkConfigParams,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     eth1 = data_model.property(
         "eth1", NetworkConfigParams,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     eth2 = data_model.property(
         "eth2", NetworkConfigParams,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     eth3 = data_model.property(
         "eth3", NetworkConfigParams,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     lo = data_model.property(
         "lo", NetworkConfigParams,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -777,13 +777,13 @@ class Config(data_model.DataObject):
     cluster = data_model.property(
         "cluster", ClusterConfig,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     network = data_model.property(
         "network", NetworkParams,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -800,7 +800,7 @@ class GetConfigResult(data_model.DataObject):
     config = data_model.property(
         "config", Config,
         array=False, optional=False,
-        documentation="[&#x27;The details of the cluster. Values returned in &quot;config&quot;: cluster- Cluster information that identifies how the node communicates with the cluster it is associated with. (Object) network - Network information for bonding and Ethernet connections. (Object)&#x27;]",
+        documentation="""The details of the cluster. Values returned in "config": cluster- Cluster information that identifies how the node communicates with the cluster it is associated with. (Object) network - Network information for bonding and Ethernet connections. (Object) """,
         dictionaryType=None
     )
 
@@ -817,7 +817,7 @@ class StartVolumePairingResult(data_model.DataObject):
     volume_pairing_key = data_model.property(
         "volumePairingKey", str,
         array=False, optional=False,
-        documentation="[&#x27;A string of characters that is used by the &quot;CompleteVolumePairing&quot; API method.&#x27;]",
+        documentation="""A string of characters that is used by the "CompleteVolumePairing" API method. """,
         dictionaryType=None
     )
 
@@ -848,31 +848,31 @@ class UpdateBulkVolumeStatusRequest(data_model.DataObject):
     key = data_model.property(
         "key", str,
         array=False, optional=False,
-        documentation="[&#x27;The key assigned during initialization of a&#x27;, &#x27;StartBulkVolumeRead or StartBulkVolumeWrite session.&#x27;]",
+        documentation="""The key assigned during initialization of a StartBulkVolumeRead or StartBulkVolumeWrite session. """,
         dictionaryType=None
     )
     status = data_model.property(
         "status", str,
         array=False, optional=False,
-        documentation="[&#x27;The status of the given bulk volume job. The system sets the status. Possible values are: &#x27;, &#x27;running: Jobs that are still active.&#x27;, &#x27;complete: Jobs that are done.&#x27;, &#x27;failed: Jobs that failed.&#x27;]",
+        documentation="""The status of the given bulk volume job. The system sets the status. Possible values are:  running: Jobs that are still active. complete: Jobs that are done. failed: Jobs that failed. """,
         dictionaryType=None
     )
     percent_complete = data_model.property(
         "percentComplete", str,
         array=False, optional=True,
-        documentation="[&#x27;The completed progress of the bulk volume job as a&#x27;, &#x27;percentage value.&#x27;]",
+        documentation="""The completed progress of the bulk volume job as a percentage value. """,
         dictionaryType=None
     )
     message = data_model.property(
         "message", str,
         array=False, optional=True,
-        documentation="[&#x27;The message returned indicating the status of the bulk volume job after the job is complete.&#x27;]",
+        documentation="""The message returned indicating the status of the bulk volume job after the job is complete. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;JSON attributes; updates what is on the bulk volume job.&#x27;]",
+        documentation="""JSON attributes; updates what is on the bulk volume job. """,
         dictionaryType=None
     )
 
@@ -891,7 +891,7 @@ class GetAccountEfficiencyRequest(data_model.DataObject):
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=False,
-        documentation="[&#x27;Specifies the volume account for which efficiency&#x27;, &#x27;statistics are returned.&#x27;]",
+        documentation="""Specifies the volume account for which efficiency statistics are returned. """,
         dictionaryType=None
     )
 
@@ -920,31 +920,31 @@ class Platform(data_model.DataObject):
     node_type = data_model.property(
         "nodeType", str,
         array=False, optional=False,
-        documentation="[&quot;SolidFire&#x27;s name for this platform.&quot;]",
+        documentation="""SolidFire's name for this platform. """,
         dictionaryType=None
     )
     chassis_type = data_model.property(
         "chassisType", str,
         array=False, optional=False,
-        documentation="[&#x27;Name of the chassis (example: &quot;R620&quot;).&#x27;]",
+        documentation="""Name of the chassis (example: "R620"). """,
         dictionaryType=None
     )
     cpu_model = data_model.property(
         "cpuModel", str,
         array=False, optional=False,
-        documentation="[&#x27;The model of CPU used on this platform.&#x27;]",
+        documentation="""The model of CPU used on this platform. """,
         dictionaryType=None
     )
     node_memory_gb = data_model.property(
         "nodeMemoryGB", int,
         array=False, optional=False,
-        documentation="[&#x27;The amount of memory on this platform in GiB.&#x27;]",
+        documentation="""The amount of memory on this platform in GiB. """,
         dictionaryType=None
     )
     platform_config_version = data_model.property(
         "platformConfigVersion", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -964,13 +964,13 @@ class VirtualNetworkAddress(data_model.DataObject):
     virtual_network_id = data_model.property(
         "virtualNetworkID", int,
         array=False, optional=False,
-        documentation="[&#x27;SolidFire unique identifier for a virtual network.&#x27;]",
+        documentation="""SolidFire unique identifier for a virtual network. """,
         dictionaryType=None
     )
     address = data_model.property(
         "address", str,
         array=False, optional=False,
-        documentation="[&#x27;Virtual Network Address.&#x27;]",
+        documentation="""Virtual Network Address. """,
         dictionaryType=None
     )
 
@@ -1035,97 +1035,97 @@ class Node(data_model.DataObject):
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The unique identifier for this node.&#x27;]",
+        documentation="""The unique identifier for this node. """,
         dictionaryType=None
     )
     associated_master_service_id = data_model.property(
         "associatedMasterServiceID", int,
         array=False, optional=False,
-        documentation="[&#x27;The master service responsible for controlling other services on this node.&#x27;]",
+        documentation="""The master service responsible for controlling other services on this node. """,
         dictionaryType=None
     )
     associated_fservice_id = data_model.property(
         "associatedFServiceID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     fibre_channel_target_port_group = data_model.property(
         "fibreChannelTargetPortGroup", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     platform_info = data_model.property(
         "platformInfo", Platform,
         array=False, optional=False,
-        documentation="[&#x27;Information about the platform this node is.&#x27;]",
+        documentation="""Information about the platform this node is. """,
         dictionaryType=None
     )
     software_version = data_model.property(
         "softwareVersion", str,
         array=False, optional=False,
-        documentation="[&#x27;The version of SolidFire software this node is currently running.&#x27;]",
+        documentation="""The version of SolidFire software this node is currently running. """,
         dictionaryType=None
     )
     cip = data_model.property(
         "cip", str,
         array=False, optional=False,
-        documentation="[&#x27;IP address used for both intra- and inter-cluster communication.&#x27;]",
+        documentation="""IP address used for both intra- and inter-cluster communication. """,
         dictionaryType=None
     )
     cipi = data_model.property(
         "cipi", str,
         array=False, optional=False,
-        documentation="[&#x27;The machine\&#x27;s name for the &quot;cip&quot; interface.&#x27;]",
+        documentation="""The machine's name for the "cip" interface. """,
         dictionaryType=None
     )
     mip = data_model.property(
         "mip", str,
         array=False, optional=False,
-        documentation="[&#x27;IP address used for cluster management (hosting the API and web site).&#x27;]",
+        documentation="""IP address used for cluster management (hosting the API and web site). """,
         dictionaryType=None
     )
     mipi = data_model.property(
         "mipi", str,
         array=False, optional=False,
-        documentation="[&#x27;The machine\&#x27;s name for the &quot;mip&quot; interface.&#x27;]",
+        documentation="""The machine's name for the "mip" interface. """,
         dictionaryType=None
     )
     sip = data_model.property(
         "sip", str,
         array=False, optional=False,
-        documentation="[&#x27;IP address used for iSCSI traffic.&#x27;]",
+        documentation="""IP address used for iSCSI traffic. """,
         dictionaryType=None
     )
     sipi = data_model.property(
         "sipi", str,
         array=False, optional=False,
-        documentation="[&#x27;The machine\&#x27;s name for the &quot;sip&quot; interface.&#x27;]",
+        documentation="""The machine's name for the "sip" interface. """,
         dictionaryType=None
     )
     uuid = data_model.property(
         "uuid", UUID,
         array=False, optional=False,
-        documentation="[&#x27;UUID of node.&#x27;]",
+        documentation="""UUID of node. """,
         dictionaryType=None
     )
     virtual_networks = data_model.property(
         "virtualNetworks", VirtualNetworkAddress,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -1180,79 +1180,79 @@ class PendingNode(data_model.DataObject):
     pending_node_id = data_model.property(
         "pendingNodeID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     assigned_node_id = data_model.property(
         "assignedNodeID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;The host name for this node.&#x27;]",
+        documentation="""The host name for this node. """,
         dictionaryType=None
     )
     compatible = data_model.property(
         "compatible", bool,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     platform_info = data_model.property(
         "platformInfo", Platform,
         array=False, optional=False,
-        documentation="[&#x27;Information about the platform this node is.&#x27;]",
+        documentation="""Information about the platform this node is. """,
         dictionaryType=None
     )
     cip = data_model.property(
         "cip", str,
         array=False, optional=False,
-        documentation="[&#x27;IP address used for both intra- and inter-cluster communication.&#x27;]",
+        documentation="""IP address used for both intra- and inter-cluster communication. """,
         dictionaryType=None
     )
     cipi = data_model.property(
         "cipi", str,
         array=False, optional=False,
-        documentation="[&#x27;The machine\&#x27;s name for the &quot;cip&quot; interface.&#x27;]",
+        documentation="""The machine's name for the "cip" interface. """,
         dictionaryType=None
     )
     mip = data_model.property(
         "mip", str,
         array=False, optional=False,
-        documentation="[&#x27;IP address used for cluster management (hosting the API and web site).&#x27;]",
+        documentation="""IP address used for cluster management (hosting the API and web site). """,
         dictionaryType=None
     )
     mipi = data_model.property(
         "mipi", str,
         array=False, optional=False,
-        documentation="[&#x27;The machine\&#x27;s name for the &quot;mip&quot; interface.&#x27;]",
+        documentation="""The machine's name for the "mip" interface. """,
         dictionaryType=None
     )
     sip = data_model.property(
         "sip", str,
         array=False, optional=False,
-        documentation="[&#x27;IP address used for iSCSI traffic.&#x27;]",
+        documentation="""IP address used for iSCSI traffic. """,
         dictionaryType=None
     )
     sipi = data_model.property(
         "sipi", str,
         array=False, optional=False,
-        documentation="[&#x27;The machine\&#x27;s name for the &quot;sip&quot; interface.&#x27;]",
+        documentation="""The machine's name for the "sip" interface. """,
         dictionaryType=None
     )
     software_version = data_model.property(
         "softwareVersion", str,
         array=False, optional=False,
-        documentation="[&#x27;The version of SolidFire software this node is currently running.&#x27;]",
+        documentation="""The version of SolidFire software this node is currently running. """,
         dictionaryType=None
     )
     uuid = data_model.property(
         "uuid", UUID,
         array=False, optional=False,
-        documentation="[&#x27;UUID of node.&#x27;]",
+        documentation="""UUID of node. """,
         dictionaryType=None
     )
 
@@ -1293,55 +1293,55 @@ class PendingActiveNode(data_model.DataObject):
     active_node_key = data_model.property(
         "activeNodeKey", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     assigned_node_id = data_model.property(
         "assignedNodeID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     async_handle = data_model.property(
         "asyncHandle", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     cip = data_model.property(
         "cip", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     mip = data_model.property(
         "mip", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     pending_node_id = data_model.property(
         "pendingNodeID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     platform_info = data_model.property(
         "platformInfo", Platform,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     sip = data_model.property(
         "sip", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     software_version = data_model.property(
         "softwareVersion", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -1364,19 +1364,19 @@ class ListAllNodesResult(data_model.DataObject):
     nodes = data_model.property(
         "nodes", Node,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     pending_nodes = data_model.property(
         "pendingNodes", PendingNode,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     pending_active_nodes = data_model.property(
         "pendingActiveNodes", PendingActiveNode,
         array=True, optional=True,
-        documentation="[&#x27;List of objects detailing information about all PendingActive nodes in the system.&#x27;]",
+        documentation="""List of objects detailing information about all PendingActive nodes in the system. """,
         dictionaryType=None
     )
 
@@ -1396,13 +1396,13 @@ class ShutdownResult(data_model.DataObject):
     failed = data_model.property(
         "failed", int,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     successful = data_model.property(
         "successful", int,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -1422,13 +1422,13 @@ class GetAPIResult(data_model.DataObject):
     supported_versions = data_model.property(
         "supportedVersions", float,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     current_version = data_model.property(
         "currentVersion", float,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -1449,13 +1449,13 @@ class LunAssignment(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The volume ID assigned to the Lun.&#x27;]",
+        documentation="""The volume ID assigned to the Lun. """,
         dictionaryType=None
     )
     lun = data_model.property(
         "lun", int,
         array=False, optional=False,
-        documentation="[&#x27;Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed.&#x27;]",
+        documentation="""Correct LUN values are 0 - 16383. An exception will be seen if an incorrect LUN value is passed. """,
         dictionaryType=None
     )
 
@@ -1479,19 +1479,19 @@ class VolumeAccessGroupLunAssignments(data_model.DataObject):
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique volume access group ID for which the LUN assignments will be modified.&#x27;]",
+        documentation="""Unique volume access group ID for which the LUN assignments will be modified. """,
         dictionaryType=None
     )
     lun_assignments = data_model.property(
         "lunAssignments", LunAssignment,
         array=True, optional=False,
-        documentation="[&#x27;The volume IDs with assigned LUN values.&#x27;]",
+        documentation="""The volume IDs with assigned LUN values. """,
         dictionaryType=None
     )
     deleted_lun_assignments = data_model.property(
         "deletedLunAssignments", LunAssignment,
         array=True, optional=False,
-        documentation="[&#x27;The volume IDs with deleted LUN values.&#x27;]",
+        documentation="""The volume IDs with deleted LUN values. """,
         dictionaryType=None
     )
 
@@ -1508,7 +1508,7 @@ class GetVolumeAccessGroupLunAssignmentsResult(data_model.DataObject):
     volume_access_group_lun_assignments = data_model.property(
         "volumeAccessGroupLunAssignments", VolumeAccessGroupLunAssignments,
         array=False, optional=False,
-        documentation="[&#x27;List of all physical Fibre Channel ports, or a port for a single node.&#x27;]",
+        documentation="""List of all physical Fibre Channel ports, or a port for a single node. """,
         dictionaryType=None
     )
 
@@ -1532,19 +1532,19 @@ class MetadataHosts(data_model.DataObject):
     dead_secondaries = data_model.property(
         "deadSecondaries", int,
         array=True, optional=False,
-        documentation="[&#x27;Secondary metadata (slice) services that are in a dead state.&#x27;]",
+        documentation="""Secondary metadata (slice) services that are in a dead state. """,
         dictionaryType=None
     )
     live_secondaries = data_model.property(
         "liveSecondaries", int,
         array=True, optional=False,
-        documentation="[&#x27;Secondary metadata (slice) services that are currently in a &quot;live&quot; state.&#x27;]",
+        documentation="""Secondary metadata (slice) services that are currently in a "live" state. """,
         dictionaryType=None
     )
     primary = data_model.property(
         "primary", int,
         array=False, optional=False,
-        documentation="[&#x27;The primary metadata (slice) services hosting the volume.&#x27;]",
+        documentation="""The primary metadata (slice) services hosting the volume. """,
         dictionaryType=None
     )
 
@@ -1646,175 +1646,175 @@ class VolumeStats(data_model.DataObject):
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=False,
-        documentation="[&#x27;AccountID of the volume owner.&#x27;]",
+        documentation="""AccountID of the volume owner. """,
         dictionaryType=None
     )
     actual_iops = data_model.property(
         "actualIOPS", int,
         array=False, optional=True,
-        documentation="[&#x27;Current actual IOPS to the volume in the last 500 milliseconds.&#x27;]",
+        documentation="""Current actual IOPS to the volume in the last 500 milliseconds. """,
         dictionaryType=None
     )
     average_iopsize = data_model.property(
         "averageIOPSize", int,
         array=False, optional=True,
-        documentation="[&#x27;Average size in bytes of recent I/O to the volume in the last 500 milliseconds.&#x27;]",
+        documentation="""Average size in bytes of recent I/O to the volume in the last 500 milliseconds. """,
         dictionaryType=None
     )
     burst_iopscredit = data_model.property(
         "burstIOPSCredit", int,
         array=False, optional=True,
-        documentation="[&#x27;The total number of IOP credits available to the user.&#x27;, &#x27;When users are not using up to the max IOPS, credits are accrued.&#x27;]",
+        documentation="""The total number of IOP credits available to the user. When users are not using up to the max IOPS, credits are accrued. """,
         dictionaryType=None
     )
     client_queue_depth = data_model.property(
         "clientQueueDepth", int,
         array=False, optional=True,
-        documentation="[&#x27;The number of outstanding read and write operations to the cluster.&#x27;]",
+        documentation="""The number of outstanding read and write operations to the cluster. """,
         dictionaryType=None
     )
     latency_usec = data_model.property(
         "latencyUSec", int,
         array=False, optional=True,
-        documentation="[&#x27;The observed latency time, in microseconds, to complete operations to a volume.&#x27;, &#x27;A &quot;0&quot; (zero) value means there is no I/O to the volume.&#x27;]",
+        documentation="""The observed latency time, in microseconds, to complete operations to a volume. A "0" (zero) value means there is no I/O to the volume. """,
         dictionaryType=None
     )
     metadata_hosts = data_model.property(
         "metadataHosts", MetadataHosts,
         array=False, optional=True,
-        documentation="[&#x27;The volume services on which the volume metadata resides.&#x27;]",
+        documentation="""The volume services on which the volume metadata resides. """,
         dictionaryType=None
     )
     non_zero_blocks = data_model.property(
         "nonZeroBlocks", int,
         array=False, optional=False,
-        documentation="[&#x27;The number of 4KiB blocks with data after the last garbage collection operation has completed.&#x27;]",
+        documentation="""The number of 4KiB blocks with data after the last garbage collection operation has completed. """,
         dictionaryType=None
     )
     read_bytes = data_model.property(
         "readBytes", int,
         array=False, optional=False,
-        documentation="[&#x27;Total bytes read by clients.&#x27;]",
+        documentation="""Total bytes read by clients. """,
         dictionaryType=None
     )
     read_latency_usec = data_model.property(
         "readLatencyUSec", int,
         array=False, optional=True,
-        documentation="[&#x27;The average time, in microseconds, to complete read operations.&#x27;]",
+        documentation="""The average time, in microseconds, to complete read operations. """,
         dictionaryType=None
     )
     read_ops = data_model.property(
         "readOps", int,
         array=False, optional=False,
-        documentation="[&#x27;Total read operations.&#x27;]",
+        documentation="""Total read operations. """,
         dictionaryType=None
     )
     throttle = data_model.property(
         "throttle", float,
         array=False, optional=True,
-        documentation="[&#x27;A floating value between 0 and 1 that represents how much the system is throttling clients&#x27;, &#x27;below their max IOPS because of re-replication of data, transient errors and snapshots taken.&#x27;]",
+        documentation="""A floating value between 0 and 1 that represents how much the system is throttling clients below their max IOPS because of re-replication of data, transient errors and snapshots taken. """,
         dictionaryType=None
     )
     timestamp = data_model.property(
         "timestamp", str,
         array=False, optional=False,
-        documentation="[&#x27;The current time in UTC.&#x27;]",
+        documentation="""The current time in UTC. """,
         dictionaryType=None
     )
     total_latency_usec = data_model.property(
         "totalLatencyUSec", int,
         array=False, optional=True,
-        documentation="[&#x27;The average time, in microseconds, to complete read and write operations to a volume.&#x27;]",
+        documentation="""The average time, in microseconds, to complete read and write operations to a volume. """,
         dictionaryType=None
     )
     unaligned_reads = data_model.property(
         "unalignedReads", int,
         array=False, optional=False,
-        documentation="[&#x27;For 512e volumes, the number of read operations that were not on a 4k sector boundary.&#x27;, &#x27;High numbers of unaligned reads may indicate improper partition alignment.&#x27;]",
+        documentation="""For 512e volumes, the number of read operations that were not on a 4k sector boundary. High numbers of unaligned reads may indicate improper partition alignment. """,
         dictionaryType=None
     )
     unaligned_writes = data_model.property(
         "unalignedWrites", int,
         array=False, optional=False,
-        documentation="[&#x27;For 512e volumes, the number of write operations that were not on a 4k sector boundary.&#x27;, &#x27;High numbers of unaligned writes may indicate improper partition alignment.&#x27;]",
+        documentation="""For 512e volumes, the number of write operations that were not on a 4k sector boundary. High numbers of unaligned writes may indicate improper partition alignment. """,
         dictionaryType=None
     )
     volume_access_groups = data_model.property(
         "volumeAccessGroups", int,
         array=True, optional=False,
-        documentation="[&#x27;List of volume access group(s) to which a volume beintegers.&#x27;]",
+        documentation="""List of volume access group(s) to which a volume beintegers. """,
         dictionaryType=None
     )
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;Volume ID of the volume.&#x27;]",
+        documentation="""Volume ID of the volume. """,
         dictionaryType=None
     )
     volume_size = data_model.property(
         "volumeSize", int,
         array=False, optional=False,
-        documentation="[&#x27;Total provisioned capacity in bytes.&#x27;]",
+        documentation="""Total provisioned capacity in bytes. """,
         dictionaryType=None
     )
     volume_utilization = data_model.property(
         "volumeUtilization", float,
         array=False, optional=True,
-        documentation="[&#x27;A floating value that describes how much the client is using the volume.&#x27;, u&#x27;&#x27;, &#x27;Values:&#x27;, &#x27; 0 = Client is not using the volume&#x27;, &#x27;1 = Client is using their max&#x27;, &#x27;&gt;1 = Client is using their burst&#x27;]",
+        documentation="""A floating value that describes how much the client is using the volume.  Values:  0 = Client is not using the volume 1 = Client is using their max >1 = Client is using their burst """,
         dictionaryType=None
     )
     write_bytes = data_model.property(
         "writeBytes", int,
         array=False, optional=False,
-        documentation="[&#x27;Total bytes written by clients.&#x27;]",
+        documentation="""Total bytes written by clients. """,
         dictionaryType=None
     )
     write_latency_usec = data_model.property(
         "writeLatencyUSec", int,
         array=False, optional=True,
-        documentation="[&#x27;The average time, in microseconds, to complete write operations.&#x27;]",
+        documentation="""The average time, in microseconds, to complete write operations. """,
         dictionaryType=None
     )
     write_ops = data_model.property(
         "writeOps", int,
         array=False, optional=False,
-        documentation="[&#x27;Total write operations occurring on the volume.&#x27;]",
+        documentation="""Total write operations occurring on the volume. """,
         dictionaryType=None
     )
     zero_blocks = data_model.property(
         "zeroBlocks", int,
         array=False, optional=False,
-        documentation="[&#x27;Total number of 4KiB blocks without data after the last round of garbage collection operation has completed.&#x27;]",
+        documentation="""Total number of 4KiB blocks without data after the last round of garbage collection operation has completed. """,
         dictionaryType=None
     )
     write_bytes_last_sample = data_model.property(
         "writeBytesLastSample", int,
         array=False, optional=True,
-        documentation="[&#x27;The total number of bytes written to the volume during the last sample period.&#x27;]",
+        documentation="""The total number of bytes written to the volume during the last sample period. """,
         dictionaryType=None
     )
     sample_period_msec = data_model.property(
         "samplePeriodMSec", int,
         array=False, optional=True,
-        documentation="[&#x27;The length of the sample period in milliseconds.&#x27;]",
+        documentation="""The length of the sample period in milliseconds. """,
         dictionaryType=None
     )
     read_bytes_last_sample = data_model.property(
         "readBytesLastSample", int,
         array=False, optional=True,
-        documentation="[&#x27;The total number of bytes read from the volume during the last sample period.&#x27;]",
+        documentation="""The total number of bytes read from the volume during the last sample period. """,
         dictionaryType=None
     )
     read_ops_last_sample = data_model.property(
         "readOpsLastSample", int,
         array=False, optional=True,
-        documentation="[&#x27;The total number of read operations durin gth elast sample period.&#x27;]",
+        documentation="""The total number of read operations durin gth elast sample period. """,
         dictionaryType=None
     )
     write_ops_last_sample = data_model.property(
         "writeOpsLastSample", int,
         array=False, optional=True,
-        documentation="[&#x27;The total number of write operations during the last sample period.&#x27;]",
+        documentation="""The total number of write operations during the last sample period. """,
         dictionaryType=None
     )
 
@@ -1831,7 +1831,7 @@ class ListVolumeStatsByAccountResult(data_model.DataObject):
     volume_stats = data_model.property(
         "volumeStats", VolumeStats,
         array=True, optional=False,
-        documentation="[&#x27;List of account activity information.&#x27;, &#x27;Note: The volumeID member is 0 for each entry, as the values represent the summation of all volumes owned by the account.&#x27;]",
+        documentation="""List of account activity information. Note: The volumeID member is 0 for each entry, as the values represent the summation of all volumes owned by the account. """,
         dictionaryType=None
     )
 
@@ -1855,19 +1855,19 @@ class ModifyGroupSnapshotRequest(data_model.DataObject):
     group_snapshot_id = data_model.property(
         "groupSnapshotID", int,
         array=False, optional=False,
-        documentation="[&#x27;Specifies the ID of the group of snapshots.&#x27;]",
+        documentation="""Specifies the ID of the group of snapshots. """,
         dictionaryType=None
     )
     expiration_time = data_model.property(
         "expirationTime", str,
         array=False, optional=True,
-        documentation="[&#x27;Sets the time when the snapshot should be&#x27;, &#x27;removed. If unspecified, the current time is used.&#x27;]",
+        documentation="""Sets the time when the snapshot should be removed. If unspecified, the current time is used. """,
         dictionaryType=None
     )
     enable_remote_replication = data_model.property(
         "enableRemoteReplication", bool,
         array=False, optional=True,
-        documentation="[&#x27;Replicates the snapshot created to a remote cluster.&#x27;, &#x27;Possible values are:&#x27;, &#x27;true: The snapshot is replicated to remote storage.&#x27;, &#x27;false: Default. The snapshot is not replicated.&#x27;]",
+        documentation="""Replicates the snapshot created to a remote cluster. Possible values are: true: The snapshot is replicated to remote storage. false: Default. The snapshot is not replicated. """,
         dictionaryType=None
     )
 
@@ -1886,7 +1886,7 @@ class DeleteSnapshotRequest(data_model.DataObject):
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the snapshot to be deleted.&#x27;]",
+        documentation="""The ID of the snapshot to be deleted. """,
         dictionaryType=None
     )
 
@@ -1912,25 +1912,25 @@ class ScheduleInfo(data_model.DataObject):
     snapshot_name = data_model.property(
         "snapshotName", str,
         array=False, optional=True,
-        documentation="[&#x27;The snapshot name to be used. &#x27;]",
+        documentation="""The snapshot name to be used.  """,
         dictionaryType=None
     )
     enable_remote_replication = data_model.property(
         "enableRemoteReplication", bool,
         array=False, optional=True,
-        documentation="[&#x27;Indicates if the snapshot should be included in remote replication.&#x27;]",
+        documentation="""Indicates if the snapshot should be included in remote replication. """,
         dictionaryType=None
     )
     volume_ids = data_model.property(
         "volumeIDs", int,
         array=True, optional=True,
-        documentation="[&#x27;A list of volume IDs to be included in the group snapshot.&#x27;]",
+        documentation="""A list of volume IDs to be included in the group snapshot. """,
         dictionaryType=None
     )
     retention = data_model.property(
         "retention", str,
         array=False, optional=True,
-        documentation="[&#x27;The amount of time the snapshot will be retained in HH:mm:ss.&#x27;]",
+        documentation="""The amount of time the snapshot will be retained in HH:mm:ss. """,
         dictionaryType=None
     )
 
@@ -1981,73 +1981,73 @@ class Schedule(data_model.DataObject):
     last_run_time_started = data_model.property(
         "lastRunTimeStarted", str,
         array=False, optional=True,
-        documentation="[&#x27;Indicates the last time the schedule started n ISO 8601 date string.&#x27;, &#x27;Valid values are:&#x27;, &#x27;Success&#x27;, &#x27;Failed&#x27;]",
+        documentation="""Indicates the last time the schedule started n ISO 8601 date string. Valid values are: Success Failed """,
         dictionaryType=None
     )
     has_error = data_model.property(
         "hasError", bool,
         array=False, optional=True,
-        documentation="[&#x27;Indicates whether or not the schedule has errors.&#x27;]",
+        documentation="""Indicates whether or not the schedule has errors. """,
         dictionaryType=None
     )
     schedule_info = data_model.property(
         "scheduleInfo", ScheduleInfo,
         array=False, optional=False,
-        documentation="[&#x27;Includes the unique name given to the schedule, the retention period for the snapshot that was created, and the volume ID of the volume from which the snapshot was created.&#x27;]",
+        documentation="""Includes the unique name given to the schedule, the retention period for the snapshot that was created, and the volume ID of the volume from which the snapshot was created. """,
         dictionaryType=None
     )
     run_next_interval = data_model.property(
         "runNextInterval", bool,
         array=False, optional=True,
-        documentation="[&#x27;Indicates whether or not the schedule will run the next time the scheduler is active. When set to &quot;true&quot;, the schedule will run the next time the scheduler is active and then reset back to &quot;false&quot;.&#x27;]",
+        documentation="""Indicates whether or not the schedule will run the next time the scheduler is active. When set to "true", the schedule will run the next time the scheduler is active and then reset back to "false". """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;Unique name assigned to the schedule.&#x27;]",
+        documentation="""Unique name assigned to the schedule. """,
         dictionaryType=None
     )
     last_run_status = data_model.property(
         "lastRunStatus", str,
         array=False, optional=True,
-        documentation="[&#x27;Indicates the status of the last scheduled snapshot.&#x27;, &#x27;Valid values are:&#x27;, &#x27;Success&#x27;, &#x27;Failed&#x27;]",
+        documentation="""Indicates the status of the last scheduled snapshot. Valid values are: Success Failed """,
         dictionaryType=None
     )
     schedule_id = data_model.property(
         "scheduleID", int,
         array=False, optional=True,
-        documentation="[&#x27;Unique ID of the schedule&#x27;]",
+        documentation="""Unique ID of the schedule """,
         dictionaryType=None
     )
     paused = data_model.property(
         "paused", bool,
         array=False, optional=True,
-        documentation="[&#x27;Indicates whether or not the schedule is paused.&#x27;]",
+        documentation="""Indicates whether or not the schedule is paused. """,
         dictionaryType=None
     )
     to_be_deleted = data_model.property(
         "toBeDeleted", bool,
         array=False, optional=True,
-        documentation="[&#x27;Indicates if the schedule is marked for deletion.&#x27;]",
+        documentation="""Indicates if the schedule is marked for deletion. """,
         dictionaryType=None
     )
     frequency = data_model.property(
         "frequency", Frequency,
         array=False, optional=False,
-        documentation="[&#x27;Indicates the frequency of the schedule occurrence. Set this to a type that inherits from Frequency.&#x27;, &#x27;Valid types are:&#x27;, &#x27;DayOfWeekFrequency&#x27;, &#x27;DayOfMonthFrequency&#x27;, &#x27;TimeIntervalFrequency&#x27;]",
+        documentation="""Indicates the frequency of the schedule occurrence. Set this to a type that inherits from Frequency. Valid types are: DayOfWeekFrequency DayOfMonthFrequency TimeIntervalFrequency """,
         dictionaryType=None
     )
     starting_date = data_model.property(
         "startingDate", str,
         array=False, optional=True,
-        documentation="[&#x27;Indicates the date the first time the schedule began of will begin. Formatted in UTC time.&#x27;]",
+        documentation="""Indicates the date the first time the schedule began of will begin. Formatted in UTC time. """,
         dictionaryType=None
     )
     recurring = data_model.property(
         "recurring", bool,
         array=False, optional=True,
-        documentation="[&#x27;Indicates whether or not the schedule is recurring.&#x27;]",
+        documentation="""Indicates whether or not the schedule is recurring. """,
         dictionaryType=None
     )
 
@@ -2064,7 +2064,7 @@ class GetScheduleResult(data_model.DataObject):
     schedule = data_model.property(
         "schedule", Schedule,
         array=False, optional=False,
-        documentation="[&#x27;The schedule attributes.&#x27;]",
+        documentation="""The schedule attributes. """,
         dictionaryType=None
     )
 
@@ -2091,25 +2091,25 @@ class ModifyInitiator(data_model.DataObject):
     initiator_id = data_model.property(
         "initiatorID", int,
         array=False, optional=False,
-        documentation="[&#x27;(Required) The numeric ID of the initiator to modify. (Integer)&#x27;]",
+        documentation="""(Required) The numeric ID of the initiator to modify. (Integer) """,
         dictionaryType=None
     )
     alias = data_model.property(
         "alias", str,
         array=False, optional=True,
-        documentation="[&#x27;(Optional) A new friendly name to assign to the initiator. (String)&#x27;]",
+        documentation="""(Optional) A new friendly name to assign to the initiator. (String) """,
         dictionaryType=None
     )
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=True,
-        documentation="[&#x27;(Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer)&#x27;]",
+        documentation="""(Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;(Optional) A new set of JSON attributes assigned to this initiator. (JSON Object)&#x27;]",
+        documentation="""(Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) """,
         dictionaryType=None
     )
 
@@ -2131,7 +2131,7 @@ class ModifyInitiatorsRequest(data_model.DataObject):
     initiators = data_model.property(
         "initiators", ModifyInitiator,
         array=True, optional=False,
-        documentation="[&#x27;A list of objects containing characteristics of each initiator to modify. Values are:&#x27;, &#x27;initiatorID: (Required) The ID of the initiator to modify. (Integer)&#x27;, &#x27;alias: (Optional) A new friendly name to assign to the initiator.&#x27;, &#x27;(String)&#x27;, &#x27;attributes: (Optional) A new set of JSON attributes to assign to the&#x27;, &#x27;initiator. (JSON Object)&#x27;, &#x27;volumeAccessGroupID: (Optional) The ID of the volume access&#x27;, &#x27;group into to which the initiator should be added. If the initiator was&#x27;, &#x27;previously in a different volume access group, it is removed from the&#x27;, &#x27;old volume access group. If this key is present but null, the initiator is&#x27;, &#x27;removed from its current volume access group, but not placed in any&#x27;, &#x27;new volume access group. (Integer)&#x27;]",
+        documentation="""A list of objects containing characteristics of each initiator to modify. Values are: initiatorID: (Required) The ID of the initiator to modify. (Integer) alias: (Optional) A new friendly name to assign to the initiator. (String) attributes: (Optional) A new set of JSON attributes to assign to the initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which the initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) """,
         dictionaryType=None
     )
 
@@ -2171,49 +2171,49 @@ class ListVolumesRequest(data_model.DataObject):
     start_volume_id = data_model.property(
         "startVolumeID", int,
         array=False, optional=True,
-        documentation="[&#x27;Only volumes with an ID greater than or equal to this&#x27;, &#x27;value are returned. Mutually exclusive with the&#x27;, &#x27;volumeIDs parameter.&#x27;]",
+        documentation="""Only volumes with an ID greater than or equal to this value are returned. Mutually exclusive with the volumeIDs parameter. """,
         dictionaryType=None
     )
     limit = data_model.property(
         "limit", int,
         array=False, optional=True,
-        documentation="[&#x27;Specifies the maximum number of volume&#x27;, &#x27;results that are returned. Mutually exclusive with the&#x27;, &#x27;volumeIDs parameter.&#x27;]",
+        documentation="""Specifies the maximum number of volume results that are returned. Mutually exclusive with the volumeIDs parameter. """,
         dictionaryType=None
     )
     volume_status = data_model.property(
         "volumeStatus", str,
         array=False, optional=True,
-        documentation="[&#x27;Only volumes with a status equal to the status value are&#x27;, &#x27;returned.&#x27;, &#x27;Possible values are:&#x27;, &#x27;creating&#x27;, &#x27;snapshotting&#x27;, &#x27;active&#x27;, &#x27;deleted&#x27;]",
+        documentation="""Only volumes with a status equal to the status value are returned. Possible values are: creating snapshotting active deleted """,
         dictionaryType=None
     )
     accounts = data_model.property(
         "accounts", int,
         array=True, optional=True,
-        documentation="[&#x27;Returns only the volumes owned by the accounts you specify here. Mutually exclusive with the volumeIDs parameter.&#x27;]",
+        documentation="""Returns only the volumes owned by the accounts you specify here. Mutually exclusive with the volumeIDs parameter. """,
         dictionaryType=None
     )
     is_paired = data_model.property(
         "isPaired", bool,
         array=False, optional=True,
-        documentation="[&#x27;Returns volumes that are paired or not paired.&#x27;, &#x27;Possible values are:&#x27;, &#x27;true: Returns all paired volumes.&#x27;, &#x27;false: Returns all volumes that are not paired.&#x27;]",
+        documentation="""Returns volumes that are paired or not paired. Possible values are: true: Returns all paired volumes. false: Returns all volumes that are not paired. """,
         dictionaryType=None
     )
     volume_ids = data_model.property(
         "volumeIDs", int,
         array=True, optional=True,
-        documentation="[&#x27;A list of volume IDs. If you supply this parameter, other&#x27;, &#x27;parameters operate only on this set of volumes. Mutually&#x27;, &#x27;exclusive with the accounts, startVolumeID, and limit&#x27;, &#x27;parameters.&#x27;]",
+        documentation="""A list of volume IDs. If you supply this parameter, other parameters operate only on this set of volumes. Mutually exclusive with the accounts, startVolumeID, and limit parameters. """,
         dictionaryType=None
     )
     volume_name = data_model.property(
         "volumeName", str,
         array=False, optional=True,
-        documentation="[&#x27;Only volume object information matching the volume&#x27;, &#x27;name is returned.&#x27;]",
+        documentation="""Only volume object information matching the volume name is returned. """,
         dictionaryType=None
     )
     include_virtual_volumes = data_model.property(
         "includeVirtualVolumes", bool,
         array=False, optional=True,
-        documentation="[&#x27;Specifies that virtual volumes are included in the response by default.&#x27;, &#x27;To exclude virtual volumes, set to false.&#x27;]",
+        documentation="""Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. """,
         dictionaryType=None
     )
 
@@ -2230,7 +2230,7 @@ class ModifyScheduleResult(data_model.DataObject):
     schedule = data_model.property(
         "schedule", Schedule,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -2249,7 +2249,7 @@ class ClearClusterFaultsRequest(data_model.DataObject):
     fault_types = data_model.property(
         "faultTypes", str,
         array=False, optional=True,
-        documentation="[&#x27;Determines the types of faults cleared. Possible values are:&#x27;, &#x27;current: Faults that are currently detected and have&#x27;, &#x27;not been resolved.&#x27;, &#x27;resolved: (Default) Faults that were previously&#x27;, &#x27;detected and resolved.&#x27;, &#x27;all: Both current and resolved faults are cleared. The&#x27;, &#x27;fault status can be determined by the resolved field of&#x27;, &#x27;the fault object.&#x27;]",
+        documentation="""Determines the types of faults cleared. Possible values are: current: Faults that are currently detected and have not been resolved. resolved: (Default) Faults that were previously detected and resolved. all: Both current and resolved faults are cleared. The fault status can be determined by the resolved field of the fault object. """,
         dictionaryType=None
     )
 
@@ -2292,43 +2292,43 @@ class AsyncHandle(data_model.DataObject):
     async_result_id = data_model.property(
         "asyncResultID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the result.&#x27;]",
+        documentation="""The ID of the result. """,
         dictionaryType=None
     )
     completed = data_model.property(
         "completed", bool,
         array=False, optional=False,
-        documentation="[&quot;Returns true if it is completed and false if it isn&#x27;t.&quot;]",
+        documentation="""Returns true if it is completed and false if it isn't. """,
         dictionaryType=None
     )
     create_time = data_model.property(
         "createTime", str,
         array=False, optional=False,
-        documentation="[&#x27;The time at which the asyncronous result was created&#x27;]",
+        documentation="""The time at which the asyncronous result was created """,
         dictionaryType=None
     )
     last_update_time = data_model.property(
         "lastUpdateTime", str,
         array=False, optional=False,
-        documentation="[&#x27;Time at which the result was last updated&#x27;]",
+        documentation="""Time at which the result was last updated """,
         dictionaryType=None
     )
     result_type = data_model.property(
         "resultType", str,
         array=False, optional=False,
-        documentation="[&#x27;The type of result. Could be Clone, DriveAdd, etc.&#x27;]",
+        documentation="""The type of result. Could be Clone, DriveAdd, etc. """,
         dictionaryType=None
     )
     success = data_model.property(
         "success", bool,
         array=False, optional=False,
-        documentation="[&#x27;Returns whether the result was a success or failure.&#x27;]",
+        documentation="""Returns whether the result was a success or failure. """,
         dictionaryType=None
     )
     data = data_model.property(
         "data", dict,
         array=False, optional=False,
-        documentation="[&#x27;Attributes related to the result&#x27;]",
+        documentation="""Attributes related to the result """,
         dictionaryType=None
     )
 
@@ -2345,7 +2345,7 @@ class ListAsyncResultsResult(data_model.DataObject):
     async_handles = data_model.property(
         "asyncHandles", AsyncHandle,
         array=True, optional=False,
-        documentation="[&#x27;An array of serialized asynchronous method results.&#x27;]",
+        documentation="""An array of serialized asynchronous method results. """,
         dictionaryType=None
     )
 
@@ -2385,49 +2385,49 @@ class Account(data_model.DataObject):
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique AccountID for the account.&#x27;]",
+        documentation="""Unique AccountID for the account. """,
         dictionaryType=None
     )
     username = data_model.property(
         "username", str,
         array=False, optional=False,
-        documentation="[&#x27;User name for the account.&#x27;]",
+        documentation="""User name for the account. """,
         dictionaryType=None
     )
     status = data_model.property(
         "status", str,
         array=False, optional=False,
-        documentation="[&#x27;Current status of the account.&#x27;]",
+        documentation="""Current status of the account. """,
         dictionaryType=None
     )
     volumes = data_model.property(
         "volumes", int,
         array=True, optional=False,
-        documentation="[&#x27;List of VolumeIDs for Volumes owned by this account.&#x27;]",
+        documentation="""List of VolumeIDs for Volumes owned by this account. """,
         dictionaryType=None
     )
     initiator_secret = data_model.property(
         "initiatorSecret", CHAPSecret,
         array=False, optional=True,
-        documentation="[&#x27;CHAP secret to use for the initiator.&#x27;]",
+        documentation="""CHAP secret to use for the initiator. """,
         dictionaryType=None
     )
     target_secret = data_model.property(
         "targetSecret", CHAPSecret,
         array=False, optional=True,
-        documentation="[&#x27;CHAP secret to use for the target (mutual CHAP authentication).&#x27;]",
+        documentation="""CHAP secret to use for the target (mutual CHAP authentication). """,
         dictionaryType=None
     )
     storage_container_id = data_model.property(
         "storageContainerID", UUID,
         array=False, optional=True,
-        documentation="[&#x27;The id of the storage container associated with the account&#x27;]",
+        documentation="""The id of the storage container associated with the account """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="""List of Name/Value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -2447,13 +2447,13 @@ class AddAccountResult(data_model.DataObject):
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=False,
-        documentation="[&#x27;AccountID for the newly created Account.&#x27;]",
+        documentation="""AccountID for the newly created Account. """,
         dictionaryType=None
     )
     account = data_model.property(
         "account", Account,
         array=False, optional=True,
-        documentation="[&#x27;The full account object&#x27;]",
+        documentation="""The full account object """,
         dictionaryType=None
     )
 
@@ -2471,7 +2471,7 @@ class GetFeatureStatusRequest(data_model.DataObject):
     feature = data_model.property(
         "feature", str,
         array=False, optional=True,
-        documentation="[&#x27;Specifies the feature for which the status is returned. Valid value is:&#x27;, &#x27;vvols: Retrieve status for the NetApp SolidFire VVols&#x27;, &#x27;cluster feature.&#x27;]",
+        documentation="""Specifies the feature for which the status is returned. Valid value is: vvols: Retrieve status for the NetApp SolidFire VVols cluster feature. """,
         dictionaryType=None
     )
 
@@ -2489,7 +2489,7 @@ class GetIpmiConfigRequest(data_model.DataObject):
     chassis_type = data_model.property(
         "chassisType", str,
         array=False, optional=True,
-        documentation="[&#x27;Displays information for each node chassis type.&#x27;, &#x27;Valid values are:&#x27;, &#x27;all: Returns sensor information for each chassis type.&#x27;, &#x27;{chassis type}: Returns sensor information for a specified chassis type.&#x27;]",
+        documentation="""Displays information for each node chassis type. Valid values are: all: Returns sensor information for each chassis type. {chassis type}: Returns sensor information for a specified chassis type. """,
         dictionaryType=None
     )
 
@@ -2514,19 +2514,19 @@ class ModifySnapshotRequest(data_model.DataObject):
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=False,
-        documentation="[&#x27;Specifies the ID of the snapshot.&#x27;]",
+        documentation="""Specifies the ID of the snapshot. """,
         dictionaryType=None
     )
     expiration_time = data_model.property(
         "expirationTime", str,
         array=False, optional=True,
-        documentation="[&#x27;Sets the time when the snapshot should be&#x27;, &#x27;removed.&#x27;]",
+        documentation="""Sets the time when the snapshot should be removed. """,
         dictionaryType=None
     )
     enable_remote_replication = data_model.property(
         "enableRemoteReplication", bool,
         array=False, optional=True,
-        documentation="[&#x27;Replicates the snapshot created to a remote cluster.&#x27;, &#x27;Possible values are:&#x27;, &#x27;true: The snapshot is replicated to remote storage.&#x27;, &#x27;false: Default. The snapshot is not replicated.&#x27;]",
+        documentation="""Replicates the snapshot created to a remote cluster. Possible values are: true: The snapshot is replicated to remote storage. false: Default. The snapshot is not replicated. """,
         dictionaryType=None
     )
 
@@ -2591,103 +2591,103 @@ class ModifyClusterFullThresholdResult(data_model.DataObject):
     block_fullness = data_model.property(
         "blockFullness", str,
         array=False, optional=False,
-        documentation="[&#x27;Current computed level of block fullness of the cluster.&#x27;, &#x27;Possible values: stage1Happy: No alerts or error conditions. stage2Aware: 3 nodes of capacity available. stage3Low: 2 nodes of capacity available. stage4Critical: 1 node of capacity available. No new volumes or clones can be created. stage5CompletelyConsumed: Completely consumed. Cluster is read-only, iSCSI connection is maintained but all writes are suspended.&#x27;]",
+        documentation="""Current computed level of block fullness of the cluster. Possible values: stage1Happy: No alerts or error conditions. stage2Aware: 3 nodes of capacity available. stage3Low: 2 nodes of capacity available. stage4Critical: 1 node of capacity available. No new volumes or clones can be created. stage5CompletelyConsumed: Completely consumed. Cluster is read-only, iSCSI connection is maintained but all writes are suspended. """,
         dictionaryType=None
     )
     fullness = data_model.property(
         "fullness", str,
         array=False, optional=False,
-        documentation="[&#x27;Reflects the highest level of fullness between &quot;blockFullness&quot; and &quot;metadataFullness&quot;.&#x27;]",
+        documentation="""Reflects the highest level of fullness between "blockFullness" and "metadataFullness". """,
         dictionaryType=None
     )
     max_metadata_over_provision_factor = data_model.property(
         "maxMetadataOverProvisionFactor", int,
         array=False, optional=False,
-        documentation="[&#x27;A value representative of the number of times metadata space can be over provisioned relative to the amount of space available. For example, if there was enough metadata space to store 100 TiB of volumes and this number was set to 5, then 500 TiB worth of volumes could be created.&#x27;]",
+        documentation="""A value representative of the number of times metadata space can be over provisioned relative to the amount of space available. For example, if there was enough metadata space to store 100 TiB of volumes and this number was set to 5, then 500 TiB worth of volumes could be created. """,
         dictionaryType=None
     )
     metadata_fullness = data_model.property(
         "metadataFullness", str,
         array=False, optional=False,
-        documentation="[&#x27;Current computed level of metadata fullness of the cluster.&#x27;]",
+        documentation="""Current computed level of metadata fullness of the cluster. """,
         dictionaryType=None
     )
     slice_reserve_used_threshold_pct = data_model.property(
         "sliceReserveUsedThresholdPct", int,
         array=False, optional=False,
-        documentation="[&#x27;Error condition; message sent to &quot;Alerts&quot; if the reserved slice utilization is greater than the sliceReserveUsedThresholdPct value returned.&#x27;]",
+        documentation="""Error condition; message sent to "Alerts" if the reserved slice utilization is greater than the sliceReserveUsedThresholdPct value returned. """,
         dictionaryType=None
     )
     stage2_aware_threshold = data_model.property(
         "stage2AwareThreshold", int,
         array=False, optional=False,
-        documentation="[&#x27;Awareness condition: Value that is set for &quot;Stage 2&quot; cluster threshold level.&#x27;]",
+        documentation="""Awareness condition: Value that is set for "Stage 2" cluster threshold level. """,
         dictionaryType=None
     )
     stage2_block_threshold_bytes = data_model.property(
         "stage2BlockThresholdBytes", int,
         array=False, optional=False,
-        documentation="[&#x27;Number of bytes being used by the cluster at which a stage2 condition will exist.&#x27;]",
+        documentation="""Number of bytes being used by the cluster at which a stage2 condition will exist. """,
         dictionaryType=None
     )
     stage3_block_threshold_bytes = data_model.property(
         "stage3BlockThresholdBytes", int,
         array=False, optional=False,
-        documentation="[&#x27;Number of bytes being used by the cluster at which a stage3 condition will exist.&#x27;]",
+        documentation="""Number of bytes being used by the cluster at which a stage3 condition will exist. """,
         dictionaryType=None
     )
     stage3_block_threshold_percent = data_model.property(
         "stage3BlockThresholdPercent", int,
         array=False, optional=False,
-        documentation="[&#x27;The percent value set for stage3. At this percent full, a warning will be posted in the Alerts log.&#x27;]",
+        documentation="""The percent value set for stage3. At this percent full, a warning will be posted in the Alerts log. """,
         dictionaryType=None
     )
     stage3_low_threshold = data_model.property(
         "stage3LowThreshold", int,
         array=False, optional=False,
-        documentation="[&#x27;Error condition; message sent to &quot;Alerts&quot; that capacity on a cluster is getting low.&#x27;]",
+        documentation="""Error condition; message sent to "Alerts" that capacity on a cluster is getting low. """,
         dictionaryType=None
     )
     stage4_critical_threshold = data_model.property(
         "stage4CriticalThreshold", int,
         array=False, optional=False,
-        documentation="[&#x27;Error condition; message sent to &quot;Alerts&quot; that capacity on a cluster is critically low.&#x27;]",
+        documentation="""Error condition; message sent to "Alerts" that capacity on a cluster is critically low. """,
         dictionaryType=None
     )
     stage4_block_threshold_bytes = data_model.property(
         "stage4BlockThresholdBytes", int,
         array=False, optional=False,
-        documentation="[&#x27;Number of bytes being used by the cluster at which a stage4 condition will exist.&#x27;]",
+        documentation="""Number of bytes being used by the cluster at which a stage4 condition will exist. """,
         dictionaryType=None
     )
     stage5_block_threshold_bytes = data_model.property(
         "stage5BlockThresholdBytes", int,
         array=False, optional=False,
-        documentation="[&#x27;Number of bytes being used by the cluster at which a stage5 condition will exist.&#x27;]",
+        documentation="""Number of bytes being used by the cluster at which a stage5 condition will exist. """,
         dictionaryType=None
     )
     sum_total_cluster_bytes = data_model.property(
         "sumTotalClusterBytes", int,
         array=False, optional=False,
-        documentation="[&#x27;Physical capacity of the cluster measured in bytes.&#x27;]",
+        documentation="""Physical capacity of the cluster measured in bytes. """,
         dictionaryType=None
     )
     sum_total_metadata_cluster_bytes = data_model.property(
         "sumTotalMetadataClusterBytes", int,
         array=False, optional=False,
-        documentation="[&#x27;Total amount of space that can be used to store metadata.&#x27;]",
+        documentation="""Total amount of space that can be used to store metadata. """,
         dictionaryType=None
     )
     sum_used_cluster_bytes = data_model.property(
         "sumUsedClusterBytes", int,
         array=False, optional=False,
-        documentation="[&#x27;Number of bytes used on the cluster.&#x27;]",
+        documentation="""Number of bytes used on the cluster. """,
         dictionaryType=None
     )
     sum_used_metadata_cluster_bytes = data_model.property(
         "sumUsedMetadataClusterBytes", int,
         array=False, optional=False,
-        documentation="[&#x27;Amount of space used on volume drives to store metadata.&#x27;]",
+        documentation="""Amount of space used on volume drives to store metadata. """,
         dictionaryType=None
     )
 
@@ -2705,7 +2705,7 @@ class ModifyScheduleRequest(data_model.DataObject):
     schedule = data_model.property(
         "schedule", Schedule,
         array=False, optional=False,
-        documentation="[&#x27;The &quot;Schedule&quot; object will be used to modify an existing schedule.&#x27;, &#x27;The ScheduleID property is required.&#x27;, &#x27;Frequency property must be of type that inherits from Frequency. Valid types are:&#x27;, &#x27;DaysOfMonthFrequency&#x27;, &#x27;DaysOrWeekFrequency&#x27;, &#x27;TimeIntervalFrequency&#x27;]",
+        documentation="""The "Schedule" object will be used to modify an existing schedule. The ScheduleID property is required. Frequency property must be of type that inherits from Frequency. Valid types are: DaysOfMonthFrequency DaysOrWeekFrequency TimeIntervalFrequency """,
         dictionaryType=None
     )
 
@@ -2725,13 +2725,13 @@ class NewDrive(data_model.DataObject):
     drive_id = data_model.property(
         "driveID", int,
         array=False, optional=False,
-        documentation="[&#x27;A unique identifier for this drive.&#x27;]",
+        documentation="""A unique identifier for this drive. """,
         dictionaryType=None
     )
     type = data_model.property(
         "type", str,
         array=False, optional=True,
-        documentation="[&#x27;block or slice&#x27;]",
+        documentation="""block or slice """,
         dictionaryType=None
     )
 
@@ -2802,115 +2802,115 @@ class ClusterStats(data_model.DataObject):
     cluster_utilization = data_model.property(
         "clusterUtilization", float,
         array=False, optional=False,
-        documentation="[&#x27;The amount of cluster capacity being utilized.&#x27;]",
+        documentation="""The amount of cluster capacity being utilized. """,
         dictionaryType=None
     )
     client_queue_depth = data_model.property(
         "clientQueueDepth", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     read_bytes = data_model.property(
         "readBytes", int,
         array=False, optional=False,
-        documentation="[&#x27;Total bytes read by clients.&#x27;]",
+        documentation="""Total bytes read by clients. """,
         dictionaryType=None
     )
     read_ops = data_model.property(
         "readOps", int,
         array=False, optional=False,
-        documentation="[&#x27;Total read operations.&#x27;]",
+        documentation="""Total read operations. """,
         dictionaryType=None
     )
     timestamp = data_model.property(
         "timestamp", str,
         array=False, optional=False,
-        documentation="[&#x27;Current time in UTC format. ISO 8601 date string.&#x27;]",
+        documentation="""Current time in UTC format. ISO 8601 date string. """,
         dictionaryType=None
     )
     write_bytes = data_model.property(
         "writeBytes", int,
         array=False, optional=False,
-        documentation="[&#x27;Total bytes written by clients.&#x27;]",
+        documentation="""Total bytes written by clients. """,
         dictionaryType=None
     )
     write_ops = data_model.property(
         "writeOps", int,
         array=False, optional=False,
-        documentation="[&#x27;Total write operations.&#x27;]",
+        documentation="""Total write operations. """,
         dictionaryType=None
     )
     actual_iops = data_model.property(
         "actualIOPS", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     average_iopsize = data_model.property(
         "averageIOPSize", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     latency_usec = data_model.property(
         "latencyUSec", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     read_bytes_last_sample = data_model.property(
         "readBytesLastSample", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     read_latency_usec = data_model.property(
         "readLatencyUSec", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     read_ops_last_sample = data_model.property(
         "readOpsLastSample", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     sample_period_msec = data_model.property(
         "samplePeriodMsec", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     unaligned_reads = data_model.property(
         "unalignedReads", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     unaligned_writes = data_model.property(
         "unalignedWrites", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     write_bytes_last_sample = data_model.property(
         "writeBytesLastSample", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     write_latency_usec = data_model.property(
         "writeLatencyUSec", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     write_ops_last_sample = data_model.property(
         "writeOpsLastSample", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -2927,7 +2927,7 @@ class GetClusterStatsResult(data_model.DataObject):
     cluster_stats = data_model.property(
         "clusterStats", ClusterStats,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -2966,49 +2966,49 @@ class ModifyVolumeAccessGroupRequest(data_model.DataObject):
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume access group to modify.&#x27;]",
+        documentation="""The ID of the volume access group to modify. """,
         dictionaryType=None
     )
     virtual_network_id = data_model.property(
         "virtualNetworkID", int,
         array=True, optional=True,
-        documentation="[&#x27;The ID of the SolidFire virtual network to associate the volume access group with.&#x27;]",
+        documentation="""The ID of the SolidFire virtual network to associate the volume access group with. """,
         dictionaryType=None
     )
     virtual_network_tags = data_model.property(
         "virtualNetworkTags", int,
         array=True, optional=True,
-        documentation="[&#x27;The ID of the SolidFire virtual network to associate the volume access group with.&#x27;]",
+        documentation="""The ID of the SolidFire virtual network to associate the volume access group with. """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=True,
-        documentation="[&#x27;The new name for this volume access group. Not required to be unique, but recommended.&#x27;]",
+        documentation="""The new name for this volume access group. Not required to be unique, but recommended. """,
         dictionaryType=None
     )
     initiators = data_model.property(
         "initiators", str,
         array=True, optional=True,
-        documentation="[&quot;List of initiators to include in the volume access group. If unspecified, the access group&#x27;s configured initiators are not modified.&quot;]",
+        documentation="""List of initiators to include in the volume access group. If unspecified, the access group's configured initiators are not modified. """,
         dictionaryType=None
     )
     volumes = data_model.property(
         "volumes", int,
         array=True, optional=True,
-        documentation="[&quot;List of volumes to initially include in the volume access group. If unspecified, the access group&#x27;s volumes are not modified.&quot;]",
+        documentation="""List of volumes to initially include in the volume access group. If unspecified, the access group's volumes are not modified. """,
         dictionaryType=None
     )
     delete_orphan_initiators = data_model.property(
         "deleteOrphanInitiators", bool,
         array=False, optional=True,
-        documentation="[&#x27;true: Delete initiator objects after they are removed from a volume access group.&#x27;, &#x27;false: Do not delete initiator objects after they are removed from a volume access group.&#x27;]",
+        documentation="""true: Delete initiator objects after they are removed from a volume access group. false: Do not delete initiator objects after they are removed from a volume access group. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
+        documentation="""List of name-value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -3038,31 +3038,31 @@ class VolumeQOS(data_model.DataObject):
     min_iops = data_model.property(
         "minIOPS", int,
         array=False, optional=False,
-        documentation="[&#x27;Desired minimum 4KB IOPS to guarantee.&#x27;, &#x27;The allowed IOPS will only drop below this level if all volumes have been capped&#x27;, &#x27;at their min IOPS value and there is still insufficient performance capacity.&#x27;]",
+        documentation="""Desired minimum 4KB IOPS to guarantee. The allowed IOPS will only drop below this level if all volumes have been capped at their min IOPS value and there is still insufficient performance capacity. """,
         dictionaryType=None
     )
     max_iops = data_model.property(
         "maxIOPS", int,
         array=False, optional=False,
-        documentation="[&#x27;Desired maximum 4KB IOPS allowed over an extended period of time.&#x27;]",
+        documentation="""Desired maximum 4KB IOPS allowed over an extended period of time. """,
         dictionaryType=None
     )
     burst_iops = data_model.property(
         "burstIOPS", int,
         array=False, optional=False,
-        documentation="[&#x27;Maximum &quot;peak&quot; 4KB IOPS allowed for short periods of time.&#x27;, &#x27;Allows for bursts of I/O activity over the normal max IOPS value.&#x27;]",
+        documentation="""Maximum "peak" 4KB IOPS allowed for short periods of time. Allows for bursts of I/O activity over the normal max IOPS value. """,
         dictionaryType=None
     )
     burst_time = data_model.property(
         "burstTime", int,
         array=False, optional=False,
-        documentation="[&#x27;The length of time burst IOPS is allowed.&#x27;, &#x27;The value returned is represented in time units of seconds.&#x27;, &#x27;Note: this value is calculated by the system based on IOPS set for QoS.&#x27;]",
+        documentation="""The length of time burst IOPS is allowed. The value returned is represented in time units of seconds. Note: this value is calculated by the system based on IOPS set for QoS. """,
         dictionaryType=None
     )
     curve = data_model.property(
         "curve", dict,
         array=False, optional=False,
-        documentation="[&#x27;The curve is a set of key-value pairs.&#x27;, &#x27;The keys are I/O sizes in bytes.&#x27;, &#x27;The values represent the cost performing an IOP at a specific I/O size.&#x27;, &#x27;The curve is calculated relative to a 4096 byte operation set at 100 IOPS.&#x27;]",
+        documentation="""The curve is a set of key-value pairs. The keys are I/O sizes in bytes. The values represent the cost performing an IOP at a specific I/O size. The curve is calculated relative to a 4096 byte operation set at 100 IOPS. """,
         dictionaryType=int
     )
 
@@ -3082,13 +3082,13 @@ class SnapshotReplication(data_model.DataObject):
     state = data_model.property(
         "state", str,
         array=False, optional=False,
-        documentation="[&#x27;The state of the snapshot replication.&#x27;]",
+        documentation="""The state of the snapshot replication. """,
         dictionaryType=None
     )
     state_details = data_model.property(
         "stateDetails", str,
         array=False, optional=False,
-        documentation="[&#x27;Reserved for future use.&#x27;]",
+        documentation="""Reserved for future use. """,
         dictionaryType=None
     )
 
@@ -3124,43 +3124,43 @@ class RemoteReplication(data_model.DataObject):
     mode = data_model.property(
         "mode", str,
         array=False, optional=False,
-        documentation="[&#x27;Volume replication mode.&#x27;, &#x27;Possible values:&#x27;, &#x27;Async: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.&#x27;, &#x27;Sync: Source acknowledges write when the data is stored locally and on the remote cluster.&#x27;, &#x27;SnapshotsOnly: Only snapshots created on the source cluster will be replicated. Active writes from the source volume will not be replicated.&#x27;]",
+        documentation="""Volume replication mode. Possible values: Async: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster. Sync: Source acknowledges write when the data is stored locally and on the remote cluster. SnapshotsOnly: Only snapshots created on the source cluster will be replicated. Active writes from the source volume will not be replicated. """,
         dictionaryType=None
     )
     pause_limit = data_model.property(
         "pauseLimit", int,
         array=False, optional=False,
-        documentation="[&#x27;The number of occurring write ops before auto-pausing, on a per volume pair level.&#x27;]",
+        documentation="""The number of occurring write ops before auto-pausing, on a per volume pair level. """,
         dictionaryType=None
     )
     remote_service_id = data_model.property(
         "remoteServiceID", int,
         array=False, optional=False,
-        documentation="[&#x27;The remote slice service ID.&#x27;]",
+        documentation="""The remote slice service ID. """,
         dictionaryType=None
     )
     resume_details = data_model.property(
         "resumeDetails", str,
         array=False, optional=False,
-        documentation="[&#x27;Reserved for future use.&#x27;]",
+        documentation="""Reserved for future use. """,
         dictionaryType=None
     )
     snapshot_replication = data_model.property(
         "snapshotReplication", SnapshotReplication,
         array=False, optional=False,
-        documentation="[&#x27;The details of snapshot replication.&#x27;]",
+        documentation="""The details of snapshot replication. """,
         dictionaryType=None
     )
     state = data_model.property(
         "state", str,
         array=False, optional=False,
-        documentation="[&#x27;The state of the volume replication.&#x27;]",
+        documentation="""The state of the volume replication. """,
         dictionaryType=None
     )
     state_details = data_model.property(
         "stateDetails", str,
         array=False, optional=False,
-        documentation="[&#x27;Reserved for future use.&#x27;]",
+        documentation="""Reserved for future use. """,
         dictionaryType=None
     )
 
@@ -3194,37 +3194,37 @@ class VolumePair(data_model.DataObject):
     cluster_pair_id = data_model.property(
         "clusterPairID", int,
         array=False, optional=False,
-        documentation="[&#x27;The remote cluster a volume is paired with.&#x27;]",
+        documentation="""The remote cluster a volume is paired with. """,
         dictionaryType=None
     )
     remote_volume_id = data_model.property(
         "remoteVolumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The VolumeID on the remote cluster a volume is paired with.&#x27;]",
+        documentation="""The VolumeID on the remote cluster a volume is paired with. """,
         dictionaryType=None
     )
     remote_slice_id = data_model.property(
         "remoteSliceID", int,
         array=False, optional=False,
-        documentation="[&#x27;The SliceID on the remote cluster a volume is paired with.&#x27;]",
+        documentation="""The SliceID on the remote cluster a volume is paired with. """,
         dictionaryType=None
     )
     remote_volume_name = data_model.property(
         "remoteVolumeName", str,
         array=False, optional=False,
-        documentation="[&#x27;The last-observed name of the volume on the remote cluster a volume is paired with.&#x27;]",
+        documentation="""The last-observed name of the volume on the remote cluster a volume is paired with. """,
         dictionaryType=None
     )
     volume_pair_uuid = data_model.property(
         "volumePairUUID", UUID,
         array=False, optional=False,
-        documentation="[&#x27;A UUID in canonical form.&#x27;]",
+        documentation="""A UUID in canonical form. """,
         dictionaryType=None
     )
     remote_replication = data_model.property(
         "remoteReplication", RemoteReplication,
         array=False, optional=False,
-        documentation="[&#x27;Details about the replication configuration for this volume pair.&#x27;]",
+        documentation="""Details about the replication configuration for this volume pair. """,
         dictionaryType=None
     )
 
@@ -3301,121 +3301,121 @@ class Volume(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique VolumeID for the volume.&#x27;]",
+        documentation="""Unique VolumeID for the volume. """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;Name of the volume as provided at creation time.&#x27;]",
+        documentation="""Name of the volume as provided at creation time. """,
         dictionaryType=None
     )
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique AccountID for the account.&#x27;]",
+        documentation="""Unique AccountID for the account. """,
         dictionaryType=None
     )
     create_time = data_model.property(
         "createTime", str,
         array=False, optional=False,
-        documentation="[&#x27;UTC formatted time the volume was created.&#x27;]",
+        documentation="""UTC formatted time the volume was created. """,
         dictionaryType=None
     )
     status = data_model.property(
         "status", str,
         array=False, optional=False,
-        documentation="[&#x27;Current status of the volume&#x27;, &#x27;init: A volume that is being initialized and is not ready for connections.&#x27;, &#x27;active: An active volume ready for connections.&#x27;]",
+        documentation="""Current status of the volume init: A volume that is being initialized and is not ready for connections. active: An active volume ready for connections. """,
         dictionaryType=None
     )
     access = data_model.property(
         "access", str,
         array=False, optional=False,
-        documentation="[&#x27;Access allowed for the volume&#x27;, &#x27;readOnly: Only read operations are allowed.&#x27;, &#x27;readWrite: Reads and writes are allowed.&#x27;, &#x27;locked: No reads or writes are allowed.&#x27;, &#x27;replicationTarget: Designated as a target volume in a replicated volume pair.&#x27;]",
+        documentation="""Access allowed for the volume readOnly: Only read operations are allowed. readWrite: Reads and writes are allowed. locked: No reads or writes are allowed. replicationTarget: Designated as a target volume in a replicated volume pair. """,
         dictionaryType=None
     )
     enable512e = data_model.property(
         "enable512e", bool,
         array=False, optional=False,
-        documentation="[&#x27;If &quot;true&quot;, the volume provides 512 byte sector emulation.&#x27;]",
+        documentation="""If "true", the volume provides 512 byte sector emulation. """,
         dictionaryType=None
     )
     iqn = data_model.property(
         "iqn", str,
         array=False, optional=True,
-        documentation="[&#x27;Volume iSCSI Qualified Name.&#x27;]",
+        documentation="""Volume iSCSI Qualified Name. """,
         dictionaryType=None
     )
     scsi_euidevice_id = data_model.property(
         "scsiEUIDeviceID", str,
         array=False, optional=False,
-        documentation="[&#x27;Globally unique SCSI device identifier for the volume in EUI-64 based 16-byte format.&#x27;]",
+        documentation="""Globally unique SCSI device identifier for the volume in EUI-64 based 16-byte format. """,
         dictionaryType=None
     )
     scsi_naadevice_id = data_model.property(
         "scsiNAADeviceID", str,
         array=False, optional=False,
-        documentation="[&#x27;Globally unique SCSI device identifier for the volume in NAA IEEE Registered Extended format.&#x27;]",
+        documentation="""Globally unique SCSI device identifier for the volume in NAA IEEE Registered Extended format. """,
         dictionaryType=None
     )
     qos = data_model.property(
         "qos", VolumeQOS,
         array=False, optional=False,
-        documentation="[&#x27;Quality of service settings for this volume.&#x27;]",
+        documentation="""Quality of service settings for this volume. """,
         dictionaryType=None
     )
     volume_access_groups = data_model.property(
         "volumeAccessGroups", int,
         array=True, optional=False,
-        documentation="[&#x27;List of volume access groups to which a volume beintegers.&#x27;]",
+        documentation="""List of volume access groups to which a volume beintegers. """,
         dictionaryType=None
     )
     volume_pairs = data_model.property(
         "volumePairs", VolumePair,
         array=True, optional=False,
-        documentation="[&#x27;Information about a paired volume.&#x27;, &#x27;Available only if a volume is paired.&#x27;, &#x27;@see VolumePairs for return values.&#x27;]",
+        documentation="""Information about a paired volume. Available only if a volume is paired. @see VolumePairs for return values. """,
         dictionaryType=None
     )
     delete_time = data_model.property(
         "deleteTime", str,
         array=False, optional=True,
-        documentation="[&#x27;The time this volume was deleted.&#x27;, &#x27;If this has no value, the volume has not yet been deleted.&#x27;]",
+        documentation="""The time this volume was deleted. If this has no value, the volume has not yet been deleted. """,
         dictionaryType=None
     )
     purge_time = data_model.property(
         "purgeTime", str,
         array=False, optional=True,
-        documentation="[&#x27;The time this volume will be purged from the system.&#x27;, &#x27;If this has no value, the volume has not yet been deleted (and is not scheduled for purging).&#x27;]",
+        documentation="""The time this volume will be purged from the system. If this has no value, the volume has not yet been deleted (and is not scheduled for purging). """,
         dictionaryType=None
     )
     slice_count = data_model.property(
         "sliceCount", int,
         array=False, optional=False,
-        documentation="[&#x27;The number of slices backing this volume.&#x27;, &#x27;In the current software, this value will always be 1.&#x27;]",
+        documentation="""The number of slices backing this volume. In the current software, this value will always be 1. """,
         dictionaryType=None
     )
     total_size = data_model.property(
         "totalSize", int,
         array=False, optional=False,
-        documentation="[&#x27;Total size of this volume in bytes.&#x27;]",
+        documentation="""Total size of this volume in bytes. """,
         dictionaryType=None
     )
     block_size = data_model.property(
         "blockSize", int,
         array=False, optional=False,
-        documentation="[&#x27;Size of the blocks on the volume.&#x27;]",
+        documentation="""Size of the blocks on the volume. """,
         dictionaryType=None
     )
     virtual_volume_id = data_model.property(
         "virtualVolumeID", UUID,
         array=False, optional=True,
-        documentation="[&#x27;Virtual volume ID this volume backs.&#x27;]",
+        documentation="""Virtual volume ID this volume backs. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=False,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="""List of Name/Value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -3441,25 +3441,25 @@ class CloneVolumeResult(data_model.DataObject):
     volume = data_model.property(
         "volume", Volume,
         array=False, optional=True,
-        documentation="[&#x27;The resulting volume&#x27;]",
+        documentation="""The resulting volume """,
         dictionaryType=None
     )
     clone_id = data_model.property(
         "cloneID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the newly-created clone.&#x27;]",
+        documentation="""The ID of the newly-created clone. """,
         dictionaryType=None
     )
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The volume ID of the newly-created clone.&#x27;]",
+        documentation="""The volume ID of the newly-created clone. """,
         dictionaryType=None
     )
     async_handle = data_model.property(
         "asyncHandle", int,
         array=False, optional=False,
-        documentation="[&#x27;Handle value used to track the progress of the clone.&#x27;]",
+        documentation="""Handle value used to track the progress of the clone. """,
         dictionaryType=None
     )
 
@@ -3477,7 +3477,7 @@ class GetVolumeStatsRequest(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;Specifies the volume for which statistics are gathered.&#x27;]",
+        documentation="""Specifies the volume for which statistics are gathered. """,
         dictionaryType=None
     )
 
@@ -3497,7 +3497,7 @@ class GetDriveStatsRequest(data_model.DataObject):
     drive_id = data_model.property(
         "driveID", int,
         array=False, optional=False,
-        documentation="[&#x27;Specifies the drive for which statistics are gathered.&#x27;]",
+        documentation="""Specifies the drive for which statistics are gathered. """,
         dictionaryType=None
     )
 
@@ -3517,7 +3517,7 @@ class GetVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation="[&#x27;The unique volume access group ID used to return information.&#x27;]",
+        documentation="""The unique volume access group ID used to return information. """,
         dictionaryType=None
     )
 
@@ -3535,7 +3535,7 @@ class ListVolumeStatsRequest(data_model.DataObject):
     volume_ids = data_model.property(
         "volumeIDs", int,
         array=True, optional=True,
-        documentation="[&#x27;A list of volume IDs of volumes from which to retrieve activity information.&#x27;]",
+        documentation="""A list of volume IDs of volumes from which to retrieve activity information. """,
         dictionaryType=None
     )
 
@@ -3562,25 +3562,25 @@ class AddAccountRequest(data_model.DataObject):
     username = data_model.property(
         "username", str,
         array=False, optional=False,
-        documentation="[&#x27;Specifies the username for this account. (Might be 1 to 64 characters in length).&#x27;]",
+        documentation="""Specifies the username for this account. (Might be 1 to 64 characters in length). """,
         dictionaryType=None
     )
     initiator_secret = data_model.property(
         "initiatorSecret", CHAPSecret,
         array=False, optional=True,
-        documentation="[&#x27;The CHAP secret to use for the initiator. This secret must&#x27;, &#x27;be 12-16 characters in length and should be&#x27;, &#x27;impenetrable. The initiator CHAP secret must be unique&#x27;, &#x27;and cannot be the same as the target CHAP secret. If unspecified, a random secret is created.&#x27;]",
+        documentation="""The CHAP secret to use for the initiator. This secret must be 12-16 characters in length and should be impenetrable. The initiator CHAP secret must be unique and cannot be the same as the target CHAP secret. If unspecified, a random secret is created. """,
         dictionaryType=None
     )
     target_secret = data_model.property(
         "targetSecret", CHAPSecret,
         array=False, optional=True,
-        documentation="[&#x27;The CHAP secret to use for the target (mutual CHAP&#x27;, &#x27;authentication). This secret must be 12-16 characters in&#x27;, &#x27;length and should be impenetrable. The target CHAP&#x27;, &#x27;secret must be unique and cannot be the same as the&#x27;, &#x27;initiator CHAP secret. If unspecified, a random secret is&#x27;, &#x27;created.&#x27;]",
+        documentation="""The CHAP secret to use for the target (mutual CHAP authentication). This secret must be 12-16 characters in length and should be impenetrable. The target CHAP secret must be unique and cannot be the same as the initiator CHAP secret. If unspecified, a random secret is created. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
+        documentation="""List of name-value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -3598,7 +3598,7 @@ class GetAccountByNameRequest(data_model.DataObject):
     username = data_model.property(
         "username", str,
         array=False, optional=False,
-        documentation="[&#x27;Username for the account.&#x27;]",
+        documentation="""Username for the account. """,
         dictionaryType=None
     )
 
@@ -3615,7 +3615,7 @@ class ListVolumeStatsByVolumeAccessGroupResult(data_model.DataObject):
     volume_stats = data_model.property(
         "volumeStats", VolumeStats,
         array=True, optional=False,
-        documentation="[&#x27;List of account activity information.&#x27;, &#x27;Note: The volumeID member is 0 for each entry, as the values represent the summation of all volumes owned by the account.&#x27;]",
+        documentation="""List of account activity information. Note: The volumeID member is 0 for each entry, as the values represent the summation of all volumes owned by the account. """,
         dictionaryType=None
     )
 
@@ -3632,7 +3632,7 @@ class CreateBackupTargetResult(data_model.DataObject):
     backup_target_id = data_model.property(
         "backupTargetID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique identifier assigned to the backup target.&#x27;]",
+        documentation="""Unique identifier assigned to the backup target. """,
         dictionaryType=None
     )
 
@@ -3651,7 +3651,7 @@ class ListVirtualVolumeHostsRequest(data_model.DataObject):
     virtual_volume_host_ids = data_model.property(
         "virtualVolumeHostIDs", UUID,
         array=True, optional=True,
-        documentation="[&#x27;A list of virtual volume host IDs for which to retrieve information. If you omit this parameter, the method returns information about all virtual volume hosts.&#x27;]",
+        documentation="""A list of virtual volume host IDs for which to retrieve information. If you omit this parameter, the method returns information about all virtual volume hosts. """,
         dictionaryType=None
     )
 
@@ -3681,13 +3681,13 @@ class RemoveDrivesRequest(data_model.DataObject):
     drives = data_model.property(
         "drives", int,
         array=True, optional=False,
-        documentation="[&#x27;List of driveIDs to remove from the cluster.&#x27;]",
+        documentation="""List of driveIDs to remove from the cluster. """,
         dictionaryType=None
     )
     force_during_upgrade = data_model.property(
         "forceDuringUpgrade", bool,
         array=False, optional=True,
-        documentation="[&#x27;If you want to remove a drive during upgrade, this must be set to true.&#x27;]",
+        documentation="""If you want to remove a drive during upgrade, this must be set to true. """,
         dictionaryType=None
     )
 
@@ -3740,61 +3740,61 @@ class LdapConfiguration(data_model.DataObject):
     auth_type = data_model.property(
         "authType", str,
         array=False, optional=False,
-        documentation="[&#x27;Identifies which user authentcation method will be used. &#x27;, &#x27;Valid values:&#x27;, &#x27;DirectBind&#x27;, &#x27;SearchAndBind&#x27;]",
+        documentation="""Identifies which user authentcation method will be used.  Valid values: DirectBind SearchAndBind """,
         dictionaryType=None
     )
     enabled = data_model.property(
         "enabled", bool,
         array=False, optional=False,
-        documentation="[&#x27;Identifies whether or not the system is enabled for LDAP. &#x27;, &#x27;Valid values:&#x27;, &#x27;true&#x27;, &#x27;false&#x27;]",
+        documentation="""Identifies whether or not the system is enabled for LDAP.  Valid values: true false """,
         dictionaryType=None
     )
     group_search_base_dn = data_model.property(
         "groupSearchBaseDN", str,
         array=False, optional=False,
-        documentation="[&#x27;The base DN of the tree to start the group search (will do a subtree search from here).&#x27;]",
+        documentation="""The base DN of the tree to start the group search (will do a subtree search from here). """,
         dictionaryType=None
     )
     group_search_custom_filter = data_model.property(
         "groupSearchCustomFilter", str,
         array=False, optional=False,
-        documentation="[&#x27;The custom search filter used.&#x27;]",
+        documentation="""The custom search filter used. """,
         dictionaryType=None
     )
     group_search_type = data_model.property(
         "groupSearchType", str,
         array=False, optional=False,
-        documentation="[&#x27;Controls the default group search filter used, can be one of the following:&#x27;, &#x27;NoGroups: No group support.&#x27;, &quot;ActiveDirectory: Nested membership of all of a user&#x27;s AD groups.&quot;, &#x27;MemberDN: MemberDN style groups (single-level).&#x27;]",
+        documentation="""Controls the default group search filter used, can be one of the following: NoGroups: No group support. ActiveDirectory: Nested membership of all of a user's AD groups. MemberDN: MemberDN style groups (single-level). """,
         dictionaryType=None
     )
     search_bind_dn = data_model.property(
         "searchBindDN", str,
         array=False, optional=False,
-        documentation="[&#x27;A fully qualified DN to log in with to perform an LDAP search for the user (needs read access to the LDAP directory).&#x27;]",
+        documentation="""A fully qualified DN to log in with to perform an LDAP search for the user (needs read access to the LDAP directory). """,
         dictionaryType=None
     )
     server_uris = data_model.property(
         "serverURIs", str,
         array=True, optional=False,
-        documentation="[&#x27;A comma-separated list of LDAP server URIs (examples: &quot;ldap://1.2.3.4&quot; and ldaps://1.2.3.4:123&quot;)&#x27;]",
+        documentation="""A comma-separated list of LDAP server URIs (examples: "ldap://1.2.3.4" and ldaps://1.2.3.4:123") """,
         dictionaryType=None
     )
     user_dntemplate = data_model.property(
         "userDNTemplate", str,
         array=False, optional=False,
-        documentation="[&#x27;A string that is used to form a fully qualified user DN.&#x27;]",
+        documentation="""A string that is used to form a fully qualified user DN. """,
         dictionaryType=None
     )
     user_search_base_dn = data_model.property(
         "userSearchBaseDN", str,
         array=False, optional=False,
-        documentation="[&#x27;The base DN of the tree used to start the search (will do a subtree search from here).&#x27;]",
+        documentation="""The base DN of the tree used to start the search (will do a subtree search from here). """,
         dictionaryType=None
     )
     user_search_filter = data_model.property(
         "userSearchFilter", str,
         array=False, optional=False,
-        documentation="[&#x27;The LDAP filter used.&#x27;]",
+        documentation="""The LDAP filter used. """,
         dictionaryType=None
     )
 
@@ -3819,19 +3819,19 @@ class TestLdapAuthenticationRequest(data_model.DataObject):
     username = data_model.property(
         "username", str,
         array=False, optional=False,
-        documentation="[&#x27;The username to be tested.&#x27;]",
+        documentation="""The username to be tested. """,
         dictionaryType=None
     )
     password = data_model.property(
         "password", str,
         array=False, optional=False,
-        documentation="[&#x27;The password for the username to be tested.&#x27;]",
+        documentation="""The password for the username to be tested. """,
         dictionaryType=None
     )
     ldap_configuration = data_model.property(
         "ldapConfiguration", LdapConfiguration,
         array=False, optional=True,
-        documentation="[&#x27;An ldapConfiguration object to be tested. If specified, the API call tests the provided&#x27;, &#x27;configuration even if LDAP authentication is disabled.&#x27;]",
+        documentation="""An ldapConfiguration object to be tested. If specified, the API call tests the provided configuration even if LDAP authentication is disabled. """,
         dictionaryType=None
     )
 
@@ -3914,139 +3914,139 @@ class DriveConfigInfo(data_model.DataObject):
     canonical_name = data_model.property(
         "canonicalName", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     connected = data_model.property(
         "connected", bool,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     dev = data_model.property(
         "dev", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     dev_path = data_model.property(
         "devPath", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     drive_type = data_model.property(
         "driveType", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     product = data_model.property(
         "product", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     path = data_model.property(
         "path", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     path_link = data_model.property(
         "pathLink", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     scsi_compat_id = data_model.property(
         "scsiCompatId", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     smart_ssd_write_capable = data_model.property(
         "smartSsdWriteCapable", bool,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     security_enabled = data_model.property(
         "securityEnabled", bool,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     security_frozen = data_model.property(
         "securityFrozen", bool,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     security_locked = data_model.property(
         "securityLocked", bool,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     security_supported = data_model.property(
         "securitySupported", bool,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     size = data_model.property(
         "size", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     slot = data_model.property(
         "slot", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     uuid = data_model.property(
         "uuid", UUID,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     vendor = data_model.property(
         "vendor", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     version = data_model.property(
         "version", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     security_at_maximum = data_model.property(
         "securityAtMaximum", bool,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     serial = data_model.property(
         "serial", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     scsi_state = data_model.property(
         "scsiState", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -4081,43 +4081,43 @@ class DrivesConfigInfo(data_model.DataObject):
     drives = data_model.property(
         "drives", DriveConfigInfo,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     num_block_actual = data_model.property(
         "numBlockActual", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     num_block_expected = data_model.property(
         "numBlockExpected", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     num_slice_actual = data_model.property(
         "numSliceActual", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     num_slice_expected = data_model.property(
         "numSliceExpected", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     num_total_actual = data_model.property(
         "numTotalActual", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     num_total_expected = data_model.property(
         "numTotalExpected", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -4134,7 +4134,7 @@ class GetDriveConfigResult(data_model.DataObject):
     drive_config = data_model.property(
         "driveConfig", DrivesConfigInfo,
         array=False, optional=False,
-        documentation="[&#x27;Configuration information for the drives that are connected to the cluster&#x27;]",
+        documentation="""Configuration information for the drives that are connected to the cluster """,
         dictionaryType=None
     )
 
@@ -4152,7 +4152,7 @@ class GetNodeStatsRequest(data_model.DataObject):
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
-        documentation="[&#x27;Specifies the node for which statistics are gathered.&#x27;]",
+        documentation="""Specifies the node for which statistics are gathered. """,
         dictionaryType=None
     )
 
@@ -4174,13 +4174,13 @@ class ResetDrivesRequest(data_model.DataObject):
     drives = data_model.property(
         "drives", str,
         array=False, optional=False,
-        documentation="[&#x27;List of device names (not driveIDs) to reset.&#x27;]",
+        documentation="""List of device names (not driveIDs) to reset. """,
         dictionaryType=None
     )
     force = data_model.property(
         "force", bool,
         array=False, optional=False,
-        documentation="[&#x27;Required parameter to successfully reset a drive.&#x27;]",
+        documentation="""Required parameter to successfully reset a drive. """,
         dictionaryType=None
     )
 
@@ -4227,67 +4227,67 @@ class EventInfo(data_model.DataObject):
     event_id = data_model.property(
         "eventID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     severity = data_model.property(
         "severity", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     event_info_type = data_model.property(
         "eventInfoType", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     message = data_model.property(
         "message", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     service_id = data_model.property(
         "serviceID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     drive_id = data_model.property(
         "driveID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     drive_ids = data_model.property(
         "driveIDs", int,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     time_of_report = data_model.property(
         "timeOfReport", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     time_of_publish = data_model.property(
         "timeOfPublish", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     details = data_model.property(
         "details", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -4307,13 +4307,13 @@ class ListEventsResult(data_model.DataObject):
     event_queue_type = data_model.property(
         "eventQueueType", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     events = data_model.property(
         "events", EventInfo,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -4337,19 +4337,19 @@ class ModifyBackupTargetRequest(data_model.DataObject):
     backup_target_id = data_model.property(
         "backupTargetID", int,
         array=False, optional=False,
-        documentation="[&#x27;The unique target ID for the target to modify.&#x27;]",
+        documentation="""The unique target ID for the target to modify. """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=True,
-        documentation="[&#x27;The new name for the backup target.&#x27;]",
+        documentation="""The new name for the backup target. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
+        documentation="""List of name-value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -4384,43 +4384,43 @@ class PairedCluster(data_model.DataObject):
     cluster_name = data_model.property(
         "clusterName", str,
         array=False, optional=False,
-        documentation="[&#x27;Name of the other cluster in the pair&#x27;]",
+        documentation="""Name of the other cluster in the pair """,
         dictionaryType=None
     )
     cluster_pair_id = data_model.property(
         "clusterPairID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique ID given to each cluster in the pair.&#x27;]",
+        documentation="""Unique ID given to each cluster in the pair. """,
         dictionaryType=None
     )
     cluster_pair_uuid = data_model.property(
         "clusterPairUUID", UUID,
         array=False, optional=False,
-        documentation="[&#x27;Universally unique identifier.&#x27;]",
+        documentation="""Universally unique identifier. """,
         dictionaryType=None
     )
     latency = data_model.property(
         "latency", int,
         array=False, optional=False,
-        documentation="[&#x27;Number, in milliseconds, of latency between clusters.&#x27;]",
+        documentation="""Number, in milliseconds, of latency between clusters. """,
         dictionaryType=None
     )
     mvip = data_model.property(
         "mvip", str,
         array=False, optional=False,
-        documentation="[&#x27;IP of the management connection for paired clusters.&#x27;]",
+        documentation="""IP of the management connection for paired clusters. """,
         dictionaryType=None
     )
     status = data_model.property(
         "status", str,
         array=False, optional=False,
-        documentation="[&#x27;Can be one of the following:&#x27;, &#x27;Connected&#x27;, &#x27;Misconfigured&#x27;, &#x27;Disconnected&#x27;]",
+        documentation="""Can be one of the following: Connected Misconfigured Disconnected """,
         dictionaryType=None
     )
     version = data_model.property(
         "version", str,
         array=False, optional=False,
-        documentation="[&#x27;The Element OS version of the other cluster in the pair.&#x27;]",
+        documentation="""The Element OS version of the other cluster in the pair. """,
         dictionaryType=None
     )
 
@@ -4437,7 +4437,7 @@ class ListClusterPairsResult(data_model.DataObject):
     cluster_pairs = data_model.property(
         "clusterPairs", PairedCluster,
         array=True, optional=False,
-        documentation="[&#x27;Information about each paired cluster.&#x27;]",
+        documentation="""Information about each paired cluster. """,
         dictionaryType=None
     )
 
@@ -4461,19 +4461,19 @@ class ClusterVersionInfo(data_model.DataObject):
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     node_version = data_model.property(
         "nodeVersion", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     node_internal_revision = data_model.property(
         "nodeInternalRevision", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -4502,31 +4502,31 @@ class SoftwareVersionInfo(data_model.DataObject):
     current_version = data_model.property(
         "currentVersion", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     package_name = data_model.property(
         "packageName", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     pending_version = data_model.property(
         "pendingVersion", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     start_time = data_model.property(
         "startTime", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -4552,25 +4552,25 @@ class GetClusterVersionInfoResult(data_model.DataObject):
     cluster_apiversion = data_model.property(
         "clusterAPIVersion", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     cluster_version = data_model.property(
         "clusterVersion", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     cluster_version_info = data_model.property(
         "clusterVersionInfo", ClusterVersionInfo,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     software_version_info = data_model.property(
         "softwareVersionInfo", SoftwareVersionInfo,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -4600,19 +4600,19 @@ class CopyVolumeRequest(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;VolumeID of the volume to be read from.&#x27;]",
+        documentation="""VolumeID of the volume to be read from. """,
         dictionaryType=None
     )
     dst_volume_id = data_model.property(
         "dstVolumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;VolumeID of the volume to be overwritten.&#x27;]",
+        documentation="""VolumeID of the volume to be overwritten. """,
         dictionaryType=None
     )
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=True,
-        documentation="[&#x27;ID of the snapshot that is used as the source of the clone.&#x27;, &#x27;If no ID is provided, the current active volume is used.&#x27;]",
+        documentation="""ID of the snapshot that is used as the source of the clone. If no ID is provided, the current active volume is used. """,
         dictionaryType=None
     )
 
@@ -4656,61 +4656,61 @@ class NetworkInterface(data_model.DataObject):
     address = data_model.property(
         "address", str,
         array=False, optional=False,
-        documentation="[&#x27;IP address of the network.&#x27;]",
+        documentation="""IP address of the network. """,
         dictionaryType=None
     )
     broadcast = data_model.property(
         "broadcast", str,
         array=False, optional=False,
-        documentation="[&#x27;Address of NTP broadcast.&#x27;]",
+        documentation="""Address of NTP broadcast. """,
         dictionaryType=None
     )
     mac_address = data_model.property(
         "macAddress", str,
         array=False, optional=False,
-        documentation="[&#x27;Address used to configure the interface.&#x27;]",
+        documentation="""Address used to configure the interface. """,
         dictionaryType=None
     )
     mtu = data_model.property(
         "mtu", int,
         array=False, optional=False,
-        documentation="[&#x27;Packet size on the network interface.&#x27;]",
+        documentation="""Packet size on the network interface. """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;Name of the network interface.&#x27;]",
+        documentation="""Name of the network interface. """,
         dictionaryType=None
     )
     netmask = data_model.property(
         "netmask", str,
         array=False, optional=False,
-        documentation="[&#x27;Netmask for the network interface.&#x27;]",
+        documentation="""Netmask for the network interface. """,
         dictionaryType=None
     )
     status = data_model.property(
         "status", str,
         array=False, optional=False,
-        documentation="[&#x27;Status of the network.&#x27;]",
+        documentation="""Status of the network. """,
         dictionaryType=None
     )
     type = data_model.property(
         "type", str,
         array=False, optional=False,
-        documentation="[&#x27;The type of network, ie, BondMaster.&#x27;]",
+        documentation="""The type of network, ie, BondMaster. """,
         dictionaryType=None
     )
     virtual_network_tag = data_model.property(
         "virtualNetworkTag", int,
         array=False, optional=False,
-        documentation="[&#x27;Virtual Network Tag if on virtual network.&#x27;]",
+        documentation="""Virtual Network Tag if on virtual network. """,
         dictionaryType=None
     )
     namespace = data_model.property(
         "namespace", bool,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -4727,7 +4727,7 @@ class ListNetworkInterfacesResult(data_model.DataObject):
     interfaces = data_model.property(
         "interfaces", NetworkInterface,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -4760,37 +4760,37 @@ class CreateVolumeAccessGroupRequest(data_model.DataObject):
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;The name for this volume access group. Not required to be unique, but recommended.&#x27;]",
+        documentation="""The name for this volume access group. Not required to be unique, but recommended. """,
         dictionaryType=None
     )
     initiators = data_model.property(
         "initiators", str,
         array=True, optional=True,
-        documentation="[&quot;List of initiators to include in the volume access group. If unspecified, the access group&#x27;s configured initiators are not modified.&quot;]",
+        documentation="""List of initiators to include in the volume access group. If unspecified, the access group's configured initiators are not modified. """,
         dictionaryType=None
     )
     volumes = data_model.property(
         "volumes", int,
         array=True, optional=True,
-        documentation="[&quot;List of volumes to initially include in the volume access group. If unspecified, the access group&#x27;s volumes are not modified.&quot;]",
+        documentation="""List of volumes to initially include in the volume access group. If unspecified, the access group's volumes are not modified. """,
         dictionaryType=None
     )
     virtual_network_id = data_model.property(
         "virtualNetworkID", int,
         array=True, optional=True,
-        documentation="[&#x27;The ID of the SolidFire virtual network to associate the volume access group with.&#x27;]",
+        documentation="""The ID of the SolidFire virtual network to associate the volume access group with. """,
         dictionaryType=None
     )
     virtual_network_tags = data_model.property(
         "virtualNetworkTags", int,
         array=True, optional=True,
-        documentation="[&#x27;The ID of the SolidFire virtual network to associate the volume access group with.&#x27;]",
+        documentation="""The ID of the SolidFire virtual network to associate the volume access group with. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
+        documentation="""List of name-value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -4825,37 +4825,37 @@ class CreateSnapshotRequest(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;Specifies the unique ID of the volume image from which to copy.&#x27;]",
+        documentation="""Specifies the unique ID of the volume image from which to copy. """,
         dictionaryType=None
     )
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=True,
-        documentation="[&#x27;Specifies the unique ID of a snapshot from which the new snapshot&#x27;, &#x27;is made. The snapshotID passed must be a snapshot on the given volume.&#x27;]",
+        documentation="""Specifies the unique ID of a snapshot from which the new snapshot is made. The snapshotID passed must be a snapshot on the given volume. """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=True,
-        documentation="[&#x27;Specifies a name for the snapshot. If unspecified, the date and time the snapshot was taken is used.&#x27;]",
+        documentation="""Specifies a name for the snapshot. If unspecified, the date and time the snapshot was taken is used. """,
         dictionaryType=None
     )
     enable_remote_replication = data_model.property(
         "enableRemoteReplication", bool,
         array=False, optional=True,
-        documentation="[&#x27;Replicates the snapshot created to a remote cluster.&#x27;, &#x27;Possible values are:&#x27;, &#x27;true: The snapshot is replicated to remote storage.&#x27;, &#x27;false: Default. The snapshot is not replicated.&#x27;]",
+        documentation="""Replicates the snapshot created to a remote cluster. Possible values are: true: The snapshot is replicated to remote storage. false: Default. The snapshot is not replicated. """,
         dictionaryType=None
     )
     retention = data_model.property(
         "retention", str,
         array=False, optional=True,
-        documentation="[&#x27;Specifies the amount of time for which the snapshot is retained. The format is HH:mm:ss.&#x27;]",
+        documentation="""Specifies the amount of time for which the snapshot is retained. The format is HH:mm:ss. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
+        documentation="""List of name-value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -4879,19 +4879,19 @@ class DeleteVolumesRequest(data_model.DataObject):
     account_ids = data_model.property(
         "accountIDs", int,
         array=True, optional=True,
-        documentation="[&#x27;A list of account IDs. All volumes from these accounts are deleted from the system. &#x27;]",
+        documentation="""A list of account IDs. All volumes from these accounts are deleted from the system.  """,
         dictionaryType=None
     )
     volume_access_group_ids = data_model.property(
         "volumeAccessGroupIDs", int,
         array=True, optional=True,
-        documentation="[&#x27;A list of volume access group IDs. All of the volumes from all of the volume access groups you specify in this list are deleted from the system.&#x27;]",
+        documentation="""A list of volume access group IDs. All of the volumes from all of the volume access groups you specify in this list are deleted from the system. """,
         dictionaryType=None
     )
     volume_ids = data_model.property(
         "volumeIDs", int,
         array=True, optional=True,
-        documentation="[&#x27;The list of IDs of the volumes to delete from the system.&#x27;]",
+        documentation="""The list of IDs of the volumes to delete from the system. """,
         dictionaryType=None
     )
 
@@ -4911,13 +4911,13 @@ class CopyVolumeResult(data_model.DataObject):
     clone_id = data_model.property(
         "cloneID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     async_handle = data_model.property(
         "asyncHandle", int,
         array=False, optional=False,
-        documentation="[&#x27;Handle value used to track the progress of the volume copy.&#x27;]",
+        documentation="""Handle value used to track the progress of the volume copy. """,
         dictionaryType=None
     )
 
@@ -4943,19 +4943,19 @@ class RestartServicesRequest(data_model.DataObject):
     force = data_model.property(
         "force", bool,
         array=False, optional=False,
-        documentation="[&#x27;Required parameter to successfully restart services on a node.&#x27;]",
+        documentation="""Required parameter to successfully restart services on a node. """,
         dictionaryType=None
     )
     service = data_model.property(
         "service", str,
         array=False, optional=True,
-        documentation="[&#x27;Service name to be restarted.&#x27;]",
+        documentation="""Service name to be restarted. """,
         dictionaryType=None
     )
     action = data_model.property(
         "action", str,
         array=False, optional=True,
-        documentation="[&#x27;Action to perform on the service (start, stop, restart).&#x27;]",
+        documentation="""Action to perform on the service (start, stop, restart). """,
         dictionaryType=None
     )
 
@@ -4972,7 +4972,7 @@ class GetNvramInfoResult(data_model.DataObject):
     nvram_info = data_model.property(
         "nvramInfo", dict,
         array=False, optional=False,
-        documentation="[&#x27;Arrays of events and errors detected on the NVRAM card.&#x27;]",
+        documentation="""Arrays of events and errors detected on the NVRAM card. """,
         dictionaryType=None
     )
 
@@ -4989,7 +4989,7 @@ class GetClusterMasterNodeIDResult(data_model.DataObject):
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
-        documentation="[&#x27;ID of the master node.&#x27;]",
+        documentation="""ID of the master node. """,
         dictionaryType=None
     )
 
@@ -5011,7 +5011,7 @@ class ListDriveHardwareRequest(data_model.DataObject):
     force = data_model.property(
         "force", bool,
         array=False, optional=False,
-        documentation="[&#x27;To run this command, the force parameter must be set to true.&#x27;]",
+        documentation="""To run this command, the force parameter must be set to true. """,
         dictionaryType=None
     )
 
@@ -5028,7 +5028,7 @@ class DeleteVolumeResult(data_model.DataObject):
     volume = data_model.property(
         "volume", Volume,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -5075,67 +5075,67 @@ class NodeWaitingToJoin(data_model.DataObject):
     name = data_model.property(
         "name", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     version = data_model.property(
         "version", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     pending_node_id = data_model.property(
         "pendingNodeID", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     mip = data_model.property(
         "mip", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     cip = data_model.property(
         "cip", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     sip = data_model.property(
         "sip", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     compatible = data_model.property(
         "compatible", bool,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     chassis_type = data_model.property(
         "chassisType", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     hostname = data_model.property(
         "hostname", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     node_type = data_model.property(
         "nodeType", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -5161,25 +5161,25 @@ class GetBootstrapConfigResult(data_model.DataObject):
     cluster_name = data_model.property(
         "clusterName", str,
         array=False, optional=False,
-        documentation="[&#x27;Name of the cluster.&#x27;]",
+        documentation="""Name of the cluster. """,
         dictionaryType=None
     )
     node_name = data_model.property(
         "nodeName", str,
         array=False, optional=False,
-        documentation="[&#x27;Name of the node.&#x27;]",
+        documentation="""Name of the node. """,
         dictionaryType=None
     )
     nodes = data_model.property(
         "nodes", NodeWaitingToJoin,
         array=True, optional=False,
-        documentation="[&#x27;List of descriptions for each node that is actively waiting to join this cluster: compatible - Indicates if the listed node is compatible with the node the API call was executed against. name - IP address of each node. version - version of SolidFire Element software currently installed on the node.&#x27;]",
+        documentation="""List of descriptions for each node that is actively waiting to join this cluster: compatible - Indicates if the listed node is compatible with the node the API call was executed against. name - IP address of each node. version - version of SolidFire Element software currently installed on the node. """,
         dictionaryType=None
     )
     version = data_model.property(
         "version", str,
         array=False, optional=False,
-        documentation="[&#x27;Version of the SolidFire Element software currently installed.&#x27;]",
+        documentation="""Version of the SolidFire Element software currently installed. """,
         dictionaryType=None
     )
 
@@ -5196,7 +5196,7 @@ class ListTestsResult(data_model.DataObject):
     tests = data_model.property(
         "tests", str,
         array=False, optional=False,
-        documentation="[&#x27;List of tests that can be performed on the node.&#x27;]",
+        documentation="""List of tests that can be performed on the node. """,
         dictionaryType=None
     )
 
@@ -5216,13 +5216,13 @@ class LoggingServer(data_model.DataObject):
     host = data_model.property(
         "host", str,
         array=False, optional=False,
-        documentation="[&#x27;Hostname or IP address of the log server.&#x27;]",
+        documentation="""Hostname or IP address of the log server. """,
         dictionaryType=None
     )
     port = data_model.property(
         "port", int,
         array=False, optional=False,
-        documentation="[&#x27;Port number that the log server is listening on.&#x27;]",
+        documentation="""Port number that the log server is listening on. """,
         dictionaryType=None
     )
 
@@ -5240,7 +5240,7 @@ class SetRemoteLoggingHostsRequest(data_model.DataObject):
     remote_hosts = data_model.property(
         "remoteHosts", LoggingServer,
         array=True, optional=False,
-        documentation="[&#x27;A list of hosts to send log messages to.&#x27;]",
+        documentation="""A list of hosts to send log messages to. """,
         dictionaryType=None
     )
 
@@ -5260,13 +5260,13 @@ class GetIpmiConfigNodesResult(data_model.DataObject):
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     result = data_model.property(
         "result", dict,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -5283,7 +5283,7 @@ class GetIpmiConfigResult(data_model.DataObject):
     nodes = data_model.property(
         "nodes", GetIpmiConfigNodesResult,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -5303,7 +5303,7 @@ class GetScheduleRequest(data_model.DataObject):
     schedule_id = data_model.property(
         "scheduleID", int,
         array=False, optional=False,
-        documentation="[&#x27;Specifies the unique ID of the schedule or multiple schedules to display.&#x27;]",
+        documentation="""Specifies the unique ID of the schedule or multiple schedules to display. """,
         dictionaryType=None
     )
 
@@ -5320,7 +5320,7 @@ class AddLdapClusterAdminResult(data_model.DataObject):
     cluster_admin_id = data_model.property(
         "clusterAdminID", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -5364,61 +5364,61 @@ class AddedNode(data_model.DataObject):
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     pending_node_id = data_model.property(
         "pendingNodeID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     active_node_key = data_model.property(
         "activeNodeKey", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     assigned_node_id = data_model.property(
         "assignedNodeID", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     async_handle = data_model.property(
         "asyncHandle", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     cip = data_model.property(
         "cip", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     mip = data_model.property(
         "mip", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     platform_info = data_model.property(
         "platformInfo", Platform,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     sip = data_model.property(
         "sip", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     software_version = data_model.property(
         "softwareVersion", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -5438,13 +5438,13 @@ class AddNodesResult(data_model.DataObject):
     auto_install = data_model.property(
         "autoInstall", bool,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     nodes = data_model.property(
         "nodes", AddedNode,
         array=True, optional=False,
-        documentation="[&#x27;An array of objects mapping the previous &quot;pendingNodeID&quot; to the &quot;nodeID&quot;.&#x27;]",
+        documentation="""An array of objects mapping the previous "pendingNodeID" to the "nodeID". """,
         dictionaryType=None
     )
 
@@ -5468,19 +5468,19 @@ class SnmpTrapRecipient(data_model.DataObject):
     host = data_model.property(
         "host", str,
         array=False, optional=False,
-        documentation="[&#x27;The IP address or host name of the target network management station.&#x27;]",
+        documentation="""The IP address or host name of the target network management station. """,
         dictionaryType=None
     )
     community = data_model.property(
         "community", str,
         array=False, optional=False,
-        documentation="[&#x27;SNMP community string.&#x27;]",
+        documentation="""SNMP community string. """,
         dictionaryType=None
     )
     port = data_model.property(
         "port", int,
         array=False, optional=False,
-        documentation="[&#x27;The UDP port number on the host where the trap is to be sent. Valid range is 1 - 65535. 0 (zero) is not a valid port number. Default is 162.&#x27;]",
+        documentation="""The UDP port number on the host where the trap is to be sent. Valid range is 1 - 65535. 0 (zero) is not a valid port number. Default is 162. """,
         dictionaryType=None
     )
 
@@ -5497,7 +5497,7 @@ class AddClusterAdminResult(data_model.DataObject):
     cluster_admin_id = data_model.property(
         "clusterAdminID", int,
         array=False, optional=False,
-        documentation="[&#x27;ClusterAdminID for the newly created Cluster Admin.&#x27;]",
+        documentation="""ClusterAdminID for the newly created Cluster Admin. """,
         dictionaryType=None
     )
 
@@ -5515,7 +5515,7 @@ class CompleteClusterPairingRequest(data_model.DataObject):
     cluster_pairing_key = data_model.property(
         "clusterPairingKey", str,
         array=False, optional=False,
-        documentation="[&#x27;A string of characters that is returned from the &quot;StartClusterPairing&quot; API method.&#x27;]",
+        documentation="""A string of characters that is returned from the "StartClusterPairing" API method. """,
         dictionaryType=None
     )
 
@@ -5574,91 +5574,91 @@ class DriveHardwareInfo(data_model.DataObject):
     description = data_model.property(
         "description", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     dev = data_model.property(
         "dev", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     devpath = data_model.property(
         "devpath", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     drive_security_at_maximum = data_model.property(
         "driveSecurityAtMaximum", bool,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     drive_security_frozen = data_model.property(
         "driveSecurityFrozen", bool,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     drive_security_locked = data_model.property(
         "driveSecurityLocked", bool,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     logicalname = data_model.property(
         "logicalname", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     product = data_model.property(
         "product", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     scsi_compat_id = data_model.property(
         "scsiCompatID", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     security_feature_enabled = data_model.property(
         "securityFeatureEnabled", bool,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     security_feature_supported = data_model.property(
         "securityFeatureSupported", bool,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     serial = data_model.property(
         "serial", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     size = data_model.property(
         "size", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     uuid = data_model.property(
         "uuid", UUID,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     version = data_model.property(
         "version", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -5675,7 +5675,7 @@ class GetDriveHardwareInfoResult(data_model.DataObject):
     drive_hardware_info = data_model.property(
         "driveHardwareInfo", DriveHardwareInfo,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -5696,7 +5696,7 @@ class DeleteInitiatorsRequest(data_model.DataObject):
     initiators = data_model.property(
         "initiators", int,
         array=True, optional=False,
-        documentation="[&#x27;An array of IDs of initiators to delete.&#x27;]",
+        documentation="""An array of IDs of initiators to delete. """,
         dictionaryType=None
     )
 
@@ -5723,25 +5723,25 @@ class SetSnmpTrapInfoRequest(data_model.DataObject):
     trap_recipients = data_model.property(
         "trapRecipients", SnmpTrapRecipient,
         array=True, optional=False,
-        documentation="[&#x27;List of hosts that are to receive the traps generated by the Cluster Master. At least one object is required if any one of the trap types is enabled.&#x27;]",
+        documentation="""List of hosts that are to receive the traps generated by the Cluster Master. At least one object is required if any one of the trap types is enabled. """,
         dictionaryType=None
     )
     cluster_fault_traps_enabled = data_model.property(
         "clusterFaultTrapsEnabled", bool,
         array=False, optional=False,
-        documentation="[&#x27;If the value is set to true, a corresponding solidFireClusterFaultNotification is sent to the configured list of trap recipients when a cluster fault is logged. The default value is false.&#x27;]",
+        documentation="""If the value is set to true, a corresponding solidFireClusterFaultNotification is sent to the configured list of trap recipients when a cluster fault is logged. The default value is false. """,
         dictionaryType=None
     )
     cluster_fault_resolved_traps_enabled = data_model.property(
         "clusterFaultResolvedTrapsEnabled", bool,
         array=False, optional=False,
-        documentation="[&#x27;If the value is set to true, a corresponding solidFireClusterFaultResolvedNotification is sent to the configured list of trap recipients when a cluster fault is resolved. The default value is false.&#x27;]",
+        documentation="""If the value is set to true, a corresponding solidFireClusterFaultResolvedNotification is sent to the configured list of trap recipients when a cluster fault is resolved. The default value is false. """,
         dictionaryType=None
     )
     cluster_event_traps_enabled = data_model.property(
         "clusterEventTrapsEnabled", bool,
         array=False, optional=False,
-        documentation="[&#x27;If the value is set to true, a corresponding solidFireClusterEventNotification is sent to the configured list of trap recipients when a cluster event is logged. The default value is false.&#x27;]",
+        documentation="""If the value is set to true, a corresponding solidFireClusterEventNotification is sent to the configured list of trap recipients when a cluster event is logged. The default value is false. """,
         dictionaryType=None
     )
 
@@ -5763,13 +5763,13 @@ class RemoveVirtualNetworkRequest(data_model.DataObject):
     virtual_network_id = data_model.property(
         "virtualNetworkID", int,
         array=False, optional=True,
-        documentation="[&#x27;Network ID that identifies the virtual network to remove.&#x27;]",
+        documentation="""Network ID that identifies the virtual network to remove. """,
         dictionaryType=None
     )
     virtual_network_tag = data_model.property(
         "virtualNetworkTag", int,
         array=False, optional=True,
-        documentation="[&#x27;Network tag that identifies the virtual network to remove.&#x27;]",
+        documentation="""Network tag that identifies the virtual network to remove. """,
         dictionaryType=None
     )
 
@@ -5786,7 +5786,7 @@ class ListVolumeStatsResult(data_model.DataObject):
     volume_stats = data_model.property(
         "volumeStats", VolumeStats,
         array=True, optional=False,
-        documentation="[&#x27;List of volume activity information.&#x27;]",
+        documentation="""List of volume activity information. """,
         dictionaryType=None
     )
 
@@ -5803,7 +5803,7 @@ class SetClusterConfigResult(data_model.DataObject):
     cluster = data_model.property(
         "cluster", ClusterConfig,
         array=False, optional=False,
-        documentation="[&#x27;Settings for the cluster. All new and current settings are returned.&#x27;]",
+        documentation="""Settings for the cluster. All new and current settings are returned. """,
         dictionaryType=None
     )
 
@@ -5822,7 +5822,7 @@ class CancelGroupCloneRequest(data_model.DataObject):
     group_clone_id = data_model.property(
         "groupCloneID", int,
         array=False, optional=False,
-        documentation="[&#x27;The cloneID for the ongoing clone process.&#x27;]",
+        documentation="""The cloneID for the ongoing clone process. """,
         dictionaryType=None
     )
 
@@ -5847,19 +5847,19 @@ class ListActiveVolumesRequest(data_model.DataObject):
     start_volume_id = data_model.property(
         "startVolumeID", int,
         array=False, optional=True,
-        documentation="[&#x27;Starting VolumeID to return. If no volume exists with this&#x27;, &#x27;VolumeID, the next volume by VolumeID order is used as&#x27;, &#x27;the start of the list. To page through the list, pass the&#x27;, &#x27;VolumeID of the last volume in the previous response +&#x27;, &#x27;1.&#x27;]",
+        documentation="""Starting VolumeID to return. If no volume exists with this VolumeID, the next volume by VolumeID order is used as the start of the list. To page through the list, pass the VolumeID of the last volume in the previous response + 1. """,
         dictionaryType=None
     )
     limit = data_model.property(
         "limit", int,
         array=False, optional=True,
-        documentation="[&#x27;Maximum number of Volume Info objects to return. A value of 0&#x27;, &#x27;(zero) returns all volumes (unlimited).&#x27;]",
+        documentation="""Maximum number of Volume Info objects to return. A value of 0 (zero) returns all volumes (unlimited). """,
         dictionaryType=None
     )
     include_virtual_volumes = data_model.property(
         "includeVirtualVolumes", bool,
         array=False, optional=True,
-        documentation="[&#x27;Specifies that virtual volumes are included in the response by default.&#x27;, &#x27;To exclude virtual volumes, set to false.&#x27;]",
+        documentation="""Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. """,
         dictionaryType=None
     )
 
@@ -5882,7 +5882,7 @@ class CreateScheduleRequest(data_model.DataObject):
     schedule = data_model.property(
         "schedule", Schedule,
         array=False, optional=False,
-        documentation="[&#x27;The &quot;Schedule&quot; object will be used to create a new schedule.&#x27;, &#x27;Do not set ScheduleID property, it will be ignored.&#x27;, &#x27;Frequency property must be of type that inherits from Frequency. Valid types are:&#x27;, &#x27;DaysOfMonthFrequency&#x27;, &#x27;DaysOrWeekFrequency&#x27;, &#x27;TimeIntervalFrequency&#x27;]",
+        documentation="""The "Schedule" object will be used to create a new schedule. Do not set ScheduleID property, it will be ignored. Frequency property must be of type that inherits from Frequency. Valid types are: DaysOfMonthFrequency DaysOrWeekFrequency TimeIntervalFrequency """,
         dictionaryType=None
     )
 
@@ -5905,19 +5905,19 @@ class DeleteAllSupportBundlesResult(data_model.DataObject):
     duration = data_model.property(
         "duration", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     details = data_model.property(
         "details", dict,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     result = data_model.property(
         "result", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -5936,7 +5936,7 @@ class GetDriveHardwareInfoRequest(data_model.DataObject):
     drive_id = data_model.property(
         "driveID", int,
         array=False, optional=False,
-        documentation="[&#x27;DriveID for the drive information requested. You can get DriveIDs by using the ListDrives method.&#x27;]",
+        documentation="""DriveID for the drive information requested. You can get DriveIDs by using the ListDrives method. """,
         dictionaryType=None
     )
 
@@ -5974,49 +5974,49 @@ class StorageContainer(data_model.DataObject):
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     storage_container_id = data_model.property(
         "storageContainerID", UUID,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     protocol_endpoint_type = data_model.property(
         "protocolEndpointType", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     initiator_secret = data_model.property(
         "initiatorSecret", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     target_secret = data_model.property(
         "targetSecret", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     status = data_model.property(
         "status", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     virtual_volumes = data_model.property(
         "virtualVolumes", UUID,
         array=True, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -6033,7 +6033,7 @@ class ModifyStorageContainerResult(data_model.DataObject):
     storage_container = data_model.property(
         "storageContainer", StorageContainer,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -6049,19 +6049,19 @@ class InvokeSFApiRequest(data_model.DataObject):
     :type method: str
 
     :param parameters:  An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked. 
-    :type parameters: str
+    :type parameters: dict
 
     """
     method = data_model.property(
         "method", str,
         array=False, optional=False,
-        documentation="[&#x27;The name of the method to invoke. This is case sensitive.&#x27;]",
+        documentation="""The name of the method to invoke. This is case sensitive. """,
         dictionaryType=None
     )
     parameters = data_model.property(
-        "parameters", str,
+        "parameters", dict,
         array=False, optional=True,
-        documentation="[&#x27;An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked.&#x27;]",
+        documentation="""An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked. """,
         dictionaryType=None
     )
 
@@ -6094,7 +6094,7 @@ class GetVolumeCountResult(data_model.DataObject):
     count = data_model.property(
         "count", int,
         array=False, optional=False,
-        documentation="[&#x27;The number of volumes currently in the system.&#x27;]",
+        documentation="""The number of volumes currently in the system. """,
         dictionaryType=None
     )
 
@@ -6112,7 +6112,7 @@ class GetStorageContainerEfficiencyRequest(data_model.DataObject):
     storage_container_id = data_model.property(
         "storageContainerID", UUID,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the storage container for which to retrieve efficiency information.&#x27;]",
+        documentation="""The ID of the storage container for which to retrieve efficiency information. """,
         dictionaryType=None
     )
 
@@ -6142,31 +6142,31 @@ class Initiator(data_model.DataObject):
     alias = data_model.property(
         "alias", str,
         array=False, optional=False,
-        documentation="[&#x27;The friendly name assigned to this initiator. (String)&#x27;]",
+        documentation="""The friendly name assigned to this initiator. (String) """,
         dictionaryType=None
     )
     initiator_id = data_model.property(
         "initiatorID", int,
         array=False, optional=False,
-        documentation="[&#x27;The numeric ID of the initiator that has been created. (Integer)&#x27;]",
+        documentation="""The numeric ID of the initiator that has been created. (Integer) """,
         dictionaryType=None
     )
     initiator_name = data_model.property(
         "initiatorName", str,
         array=False, optional=False,
-        documentation="[&#x27;The name of the initiator that has been created. (String)&#x27;]",
+        documentation="""The name of the initiator that has been created. (String) """,
         dictionaryType=None
     )
     volume_access_groups = data_model.property(
         "volumeAccessGroups", int,
         array=True, optional=False,
-        documentation="[&#x27;A list of volumeAccessGroupIDs to which this initiator beintegers. (Array of Integers)&#x27;]",
+        documentation="""A list of volumeAccessGroupIDs to which this initiator beintegers. (Array of Integers) """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=False,
-        documentation="[&#x27;A set of JSON attributes assigned to this initiator. (JSON Object)&#x27;]",
+        documentation="""A set of JSON attributes assigned to this initiator. (JSON Object) """,
         dictionaryType=None
     )
 
@@ -6237,115 +6237,115 @@ class ISCSISession(data_model.DataObject):
     drive_ids = data_model.property(
         "driveIDs", int,
         array=True, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     initiator = data_model.property(
         "initiator", Initiator,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     account_name = data_model.property(
         "accountName", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     drive_id = data_model.property(
         "driveID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     initiator_ip = data_model.property(
         "initiatorIP", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     initiator_port_name = data_model.property(
         "initiatorPortName", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     target_port_name = data_model.property(
         "targetPortName", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     initiator_name = data_model.property(
         "initiatorName", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     service_id = data_model.property(
         "serviceID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     session_id = data_model.property(
         "sessionID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     target_name = data_model.property(
         "targetName", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     target_ip = data_model.property(
         "targetIP", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     virtual_network_id = data_model.property(
         "virtualNetworkID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     create_time = data_model.property(
         "createTime", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_instance = data_model.property(
         "volumeInstance", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     initiator_session_id = data_model.property(
         "initiatorSessionID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -6362,7 +6362,7 @@ class ListISCSISessionsResult(data_model.DataObject):
     sessions = data_model.property(
         "sessions", ISCSISession,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -6393,31 +6393,31 @@ class ListVirtualVolumesRequest(data_model.DataObject):
     details = data_model.property(
         "details", bool,
         array=False, optional=True,
-        documentation="[&#x27;Specifies the level of detail about each virtual volume that is returned. Possible values are:&#x27;, &#x27;true: Include more details about each virtual volume in the response.&#x27;, &#x27;false: Include the standard level of detail about each virtual volume in&#x27;, &#x27;the response.&#x27;]",
+        documentation="""Specifies the level of detail about each virtual volume that is returned. Possible values are: true: Include more details about each virtual volume in the response. false: Include the standard level of detail about each virtual volume in the response. """,
         dictionaryType=None
     )
     limit = data_model.property(
         "limit", int,
         array=False, optional=True,
-        documentation="[&#x27;The maximum number of virtual volumes to list.&#x27;]",
+        documentation="""The maximum number of virtual volumes to list. """,
         dictionaryType=None
     )
     recursive = data_model.property(
         "recursive", bool,
         array=False, optional=True,
-        documentation="[&#x27;Specifies whether to include information about the children of each virtual volume in the response.&#x27;, &#x27;Possible values are:&#x27;, &#x27;true: Include information about the children of each virtual volume in&#x27;, &#x27;the response.&#x27;, &#x27;false: Do not include information about the children of each&#x27;, &#x27;virtual volume in the response.&#x27;]",
+        documentation="""Specifies whether to include information about the children of each virtual volume in the response. Possible values are: true: Include information about the children of each virtual volume in the response. false: Do not include information about the children of each virtual volume in the response. """,
         dictionaryType=None
     )
     start_virtual_volume_id = data_model.property(
         "startVirtualVolumeID", UUID,
         array=False, optional=True,
-        documentation="[&#x27;The ID of the virtual volume at which to begin the list.&#x27;]",
+        documentation="""The ID of the virtual volume at which to begin the list. """,
         dictionaryType=None
     )
     virtual_volume_ids = data_model.property(
         "virtualVolumeIDs", UUID,
         array=True, optional=True,
-        documentation="[&#x27;A list of virtual volume IDs for which to retrieve information. If&#x27;, &#x27;you specify this parameter, the method returns information&#x27;, &#x27;about only these virtual volumes.&#x27;]",
+        documentation="""A list of virtual volume IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. """,
         dictionaryType=None
     )
 
@@ -6443,7 +6443,7 @@ class ListDeletedVolumesRequest(data_model.DataObject):
     include_virtual_volumes = data_model.property(
         "includeVirtualVolumes", bool,
         array=False, optional=True,
-        documentation="[&#x27;Specifies that virtual volumes are included in the response by default.&#x27;, &#x27;To exclude virtual volumes, set to false.&#x27;]",
+        documentation="""Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. """,
         dictionaryType=None
     )
 
@@ -6460,7 +6460,7 @@ class ListStorageContainersResult(data_model.DataObject):
     storage_containers = data_model.property(
         "storageContainers", StorageContainer,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -6477,7 +6477,7 @@ class GetLdapConfigurationResult(data_model.DataObject):
     ldap_configuration = data_model.property(
         "ldapConfiguration", LdapConfiguration,
         array=False, optional=False,
-        documentation="[&#x27;List of the current LDAP configuration settings. This API call will not return the plain text of the search account password.&#x27;, u&#x27;&#x27;, &#x27;Note: If LDAP authentication is currently disabled, all the returned settings will be empty with the exception of &quot;authType&quot;, and &quot;groupSearchType&quot; which are set to &quot;SearchAndBind&quot; and &quot;ActiveDirectory&quot; respectively.&#x27;]",
+        documentation="""List of the current LDAP configuration settings. This API call will not return the plain text of the search account password.  Note: If LDAP authentication is currently disabled, all the returned settings will be empty with the exception of "authType", and "groupSearchType" which are set to "SearchAndBind" and "ActiveDirectory" respectively. """,
         dictionaryType=None
     )
 
@@ -6546,109 +6546,109 @@ class GroupSnapshotMembers(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The source volume ID for the snapshot.&#x27;]",
+        documentation="""The source volume ID for the snapshot. """,
         dictionaryType=None
     )
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique ID of a snapshot from which the new snapshot is made.&#x27;, &#x27;The snapshotID passed must be a snapshot on the given volume.&#x27;]",
+        documentation="""Unique ID of a snapshot from which the new snapshot is made. The snapshotID passed must be a snapshot on the given volume. """,
         dictionaryType=None
     )
     snapshot_uuid = data_model.property(
         "snapshotUUID", str,
         array=False, optional=False,
-        documentation="[&#x27;Universal Unique ID of an existing snapshot.&#x27;]",
+        documentation="""Universal Unique ID of an existing snapshot. """,
         dictionaryType=None
     )
     checksum = data_model.property(
         "checksum", str,
         array=False, optional=False,
-        documentation="[&#x27;A string that represents the correct digits in the stored snapshot.&#x27;, &#x27;This checksum can be used later to compare other snapshots to detect errors in the data.&#x27;]",
+        documentation="""A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     create_time = data_model.property(
         "createTime", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     enable_remote_replication = data_model.property(
         "enableRemoteReplication", bool,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     expiration_reason = data_model.property(
         "expirationReason", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     expiration_time = data_model.property(
         "expirationTime", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     group_id = data_model.property(
         "groupID", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     group_snapshot_uuid = data_model.property(
         "groupSnapshotUUID", UUID,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     remote_status = data_model.property(
         "remoteStatus", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     remote_statuses = data_model.property(
         "remoteStatuses", dict,
         array=True, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     status = data_model.property(
         "status", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     total_size = data_model.property(
         "totalSize", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     virtual_volume_id = data_model.property(
         "virtualVolumeID", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_pair_uuid = data_model.property(
         "volumePairUUID", UUID,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -6684,43 +6684,43 @@ class GroupSnapshot(data_model.DataObject):
     group_snapshot_id = data_model.property(
         "groupSnapshotID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique ID of the new group snapshot.&#x27;]",
+        documentation="""Unique ID of the new group snapshot. """,
         dictionaryType=None
     )
     group_snapshot_uuid = data_model.property(
         "groupSnapshotUUID", UUID,
         array=False, optional=False,
-        documentation="[&#x27;UUID of the group snapshot.&#x27;]",
+        documentation="""UUID of the group snapshot. """,
         dictionaryType=None
     )
     members = data_model.property(
         "members", GroupSnapshotMembers,
         array=True, optional=False,
-        documentation="[&#x27;List of volumeIDs and snapshotIDs for each member of the group.&#x27;]",
+        documentation="""List of volumeIDs and snapshotIDs for each member of the group. """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;Name of the group snapshot, or, if none was given, the UTC formatted day and time on which the snapshot was created.&#x27;]",
+        documentation="""Name of the group snapshot, or, if none was given, the UTC formatted day and time on which the snapshot was created. """,
         dictionaryType=None
     )
     create_time = data_model.property(
         "createTime", str,
         array=False, optional=False,
-        documentation="[&#x27;The UTC formatted day and time on which the snapshot was created.&#x27;]",
+        documentation="""The UTC formatted day and time on which the snapshot was created. """,
         dictionaryType=None
     )
     status = data_model.property(
         "status", str,
         array=False, optional=False,
-        documentation="[&#x27;Status of the snapshot.&#x27;, &#x27;Possible values:&#x27;, &#x27;Preparing: A snapshot that is being prepared for use and is not yet writable.&#x27;, &#x27;Done: A snapshot that has finished being prepared and is now usable&#x27;]",
+        documentation="""Status of the snapshot. Possible values: Preparing: A snapshot that is being prepared for use and is not yet writable. Done: A snapshot that has finished being prepared and is now usable """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=False,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="""List of Name/Value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -6737,7 +6737,7 @@ class ModifyGroupSnapshotResult(data_model.DataObject):
     group_snapshot = data_model.property(
         "groupSnapshot", GroupSnapshot,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -6755,7 +6755,7 @@ class ListDriveStatsRequest(data_model.DataObject):
     drives = data_model.property(
         "drives", int,
         array=True, optional=True,
-        documentation="[&#x27;Optional list of DriveIDs for which to return drive&#x27;, &#x27;statistics. If you omit this parameter, measurements for&#x27;, &#x27;all drives are returned.&#x27;]",
+        documentation="""Optional list of DriveIDs for which to return drive statistics. If you omit this parameter, measurements for all drives are returned. """,
         dictionaryType=None
     )
 
@@ -6779,19 +6779,19 @@ class ListInitiatorsRequest(data_model.DataObject):
     start_initiator_id = data_model.property(
         "startInitiatorID", int,
         array=False, optional=True,
-        documentation="[&#x27;The initiator ID at which to begin the listing. You can supply this&#x27;, &#x27;parameter or the &quot;initiators&quot; parameter, but not both.&#x27;]",
+        documentation="""The initiator ID at which to begin the listing. You can supply this parameter or the "initiators" parameter, but not both. """,
         dictionaryType=None
     )
     limit = data_model.property(
         "limit", int,
         array=False, optional=True,
-        documentation="[&#x27;The maximum number of initiator objects to return.&#x27;]",
+        documentation="""The maximum number of initiator objects to return. """,
         dictionaryType=None
     )
     initiators = data_model.property(
         "initiators", int,
         array=True, optional=True,
-        documentation="[&#x27;A list of initiator IDs to retrieve. You can provide a value for this parameter or&#x27;, &#x27;the &quot;startInitiatorID&quot; parameter, but not both.&#x27;]",
+        documentation="""A list of initiator IDs to retrieve. You can provide a value for this parameter or the "startInitiatorID" parameter, but not both. """,
         dictionaryType=None
     )
 
@@ -6808,7 +6808,7 @@ class ListInitiatorsResult(data_model.DataObject):
     initiators = data_model.property(
         "initiators", Initiator,
         array=True, optional=False,
-        documentation="[&#x27;List of the initiator information.&#x27;]",
+        documentation="""List of the initiator information. """,
         dictionaryType=None
     )
 
@@ -6832,19 +6832,19 @@ class AddressBlock(data_model.DataObject):
     start = data_model.property(
         "start", str,
         array=False, optional=False,
-        documentation="[&#x27;Start of the IP address range.&#x27;]",
+        documentation="""Start of the IP address range. """,
         dictionaryType=None
     )
     size = data_model.property(
         "size", int,
         array=False, optional=False,
-        documentation="[&#x27;Number of IP addresses to include in the block.&#x27;]",
+        documentation="""Number of IP addresses to include in the block. """,
         dictionaryType=None
     )
     available = data_model.property(
         "available", str,
         array=False, optional=False,
-        documentation="[&#x27;Nuber of available blocks&#x27;]",
+        documentation="""Nuber of available blocks """,
         dictionaryType=None
     )
 
@@ -6885,55 +6885,55 @@ class VirtualNetwork(data_model.DataObject):
     virtual_network_id = data_model.property(
         "virtualNetworkID", int,
         array=False, optional=False,
-        documentation="[&#x27;SolidFire unique identifier for a virtual network.&#x27;]",
+        documentation="""SolidFire unique identifier for a virtual network. """,
         dictionaryType=None
     )
     virtual_network_tag = data_model.property(
         "virtualNetworkTag", int,
         array=False, optional=False,
-        documentation="[&#x27;VLAN Tag identifier.&#x27;]",
+        documentation="""VLAN Tag identifier. """,
         dictionaryType=None
     )
     address_blocks = data_model.property(
         "addressBlocks", AddressBlock,
         array=True, optional=False,
-        documentation="[&#x27;Range of address blocks currently assigned to the virtual network.&#x27;, &#x27;available: Binary string in &quot;1&quot;s and &quot;0&quot;s. 1 equals the IP is available and 0 equals the IP is not available. The string is read from right to left with the digit to the far right being the first IP address in the list of addressBlocks.&#x27;, &#x27;size: the size of this block of addresses.&#x27;, &#x27;start: first IP address in the block.&#x27;]",
+        documentation="""Range of address blocks currently assigned to the virtual network. available: Binary string in "1"s and "0"s. 1 equals the IP is available and 0 equals the IP is not available. The string is read from right to left with the digit to the far right being the first IP address in the list of addressBlocks. size: the size of this block of addresses. start: first IP address in the block. """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;The name assigned to the virtual network.&#x27;]",
+        documentation="""The name assigned to the virtual network. """,
         dictionaryType=None
     )
     netmask = data_model.property(
         "netmask", str,
         array=False, optional=False,
-        documentation="[&#x27;IP address of the netmask for the virtual network.&#x27;]",
+        documentation="""IP address of the netmask for the virtual network. """,
         dictionaryType=None
     )
     svip = data_model.property(
         "svip", str,
         array=False, optional=False,
-        documentation="[&#x27;Storage IP address for the virtual network.&#x27;]",
+        documentation="""Storage IP address for the virtual network. """,
         dictionaryType=None
     )
     gateway = data_model.property(
         "gateway", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     namespace = data_model.property(
         "namespace", bool,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="""List of Name/Value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -6950,7 +6950,7 @@ class ListVirtualNetworksResult(data_model.DataObject):
     virtual_networks = data_model.property(
         "virtualNetworks", VirtualNetwork,
         array=True, optional=False,
-        documentation="[&#x27;Object containing virtual network IP addresses.&#x27;]",
+        documentation="""Object containing virtual network IP addresses. """,
         dictionaryType=None
     )
 
@@ -6972,13 +6972,13 @@ class StartVolumePairingRequest(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume on which to start the pairing process.&#x27;]",
+        documentation="""The ID of the volume on which to start the pairing process. """,
         dictionaryType=None
     )
     mode = data_model.property(
         "mode", str,
         array=False, optional=True,
-        documentation="[&#x27;The mode of the volume on which to start the pairing process. The mode can only be set if the volume is the source volume. Possible values are: Async: (default if no mode parameter specified) Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster. Sync: Source acknowledges write when the data is stored locally and on the remote cluster. SnapshotsOnly: Only snapshots created on the source cluster will be replicated. Active writes from the source volume are not replicated.&#x27;]",
+        documentation="""The mode of the volume on which to start the pairing process. The mode can only be set if the volume is the source volume. Possible values are: Async: (default if no mode parameter specified) Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster. Sync: Source acknowledges write when the data is stored locally and on the remote cluster. SnapshotsOnly: Only snapshots created on the source cluster will be replicated. Active writes from the source volume are not replicated. """,
         dictionaryType=None
     )
 
@@ -7021,25 +7021,25 @@ class QoS(data_model.DataObject):
     min_iops = data_model.property(
         "minIOPS", int,
         array=False, optional=True,
-        documentation="[&#x27;Desired minimum 4KB IOPS to guarantee.&#x27;, &#x27;The allowed IOPS will only drop below this level if all volumes have been capped&#x27;, &#x27;at their minimum IOPS value and there is still insufficient performance capacity.&#x27;]",
+        documentation="""Desired minimum 4KB IOPS to guarantee. The allowed IOPS will only drop below this level if all volumes have been capped at their minimum IOPS value and there is still insufficient performance capacity. """,
         dictionaryType=None
     )
     max_iops = data_model.property(
         "maxIOPS", int,
         array=False, optional=True,
-        documentation="[&#x27;Desired maximum 4KB IOPS allowed over an extended period of time.&#x27;]",
+        documentation="""Desired maximum 4KB IOPS allowed over an extended period of time. """,
         dictionaryType=None
     )
     burst_iops = data_model.property(
         "burstIOPS", int,
         array=False, optional=True,
-        documentation="[&#x27;Maximum &quot;peak&quot; 4KB IOPS allowed for short periods of time.&#x27;, &#x27;Allows for bursts of I/O activity over the normal max IOPS value.&#x27;]",
+        documentation="""Maximum "peak" 4KB IOPS allowed for short periods of time. Allows for bursts of I/O activity over the normal max IOPS value. """,
         dictionaryType=None
     )
     burst_time = data_model.property(
         "burstTime", int,
         array=False, optional=True,
-        documentation="[&#x27;The length of time burst IOPS is allowed.&#x27;, &#x27;The value returned is represented in time units of seconds.&#x27;, &#x27;Note: this value is calculated by the system based on IOPS set for QoS.&#x27;]",
+        documentation="""The length of time burst IOPS is allowed. The value returned is represented in time units of seconds. Note: this value is calculated by the system based on IOPS set for QoS. """,
         dictionaryType=None
     )
 
@@ -7143,181 +7143,181 @@ class NetworkConfig(data_model.DataObject):
     _default = data_model.property(
         "#default", bool,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bond_master = data_model.property(
         "bond-master", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     virtual_network_tag = data_model.property(
         "virtualNetworkTag", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     address = data_model.property(
         "address", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     auto = data_model.property(
         "auto", bool,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bond_downdelay = data_model.property(
         "bond-downdelay", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bond_fail_over_mac = data_model.property(
         "bond-fail_over_mac", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bond_primary_reselect = data_model.property(
         "bond-primary_reselect", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bond_lacp_rate = data_model.property(
         "bond-lacp_rate", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bond_miimon = data_model.property(
         "bond-miimon", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bond_mode = data_model.property(
         "bond-mode", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bond_slaves = data_model.property(
         "bond-slaves", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bond_updelay = data_model.property(
         "bond-updelay", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     dns_nameservers = data_model.property(
         "dns-nameservers", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     dns_search = data_model.property(
         "dns-search", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     family = data_model.property(
         "family", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     gateway = data_model.property(
         "gateway", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     mac_address = data_model.property(
         "macAddress", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     mac_address_permanent = data_model.property(
         "macAddressPermanent", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     method = data_model.property(
         "method", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     mtu = data_model.property(
         "mtu", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     netmask = data_model.property(
         "netmask", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     network = data_model.property(
         "network", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     physical = data_model.property(
         "physical", PhysicalAdapter,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     routes = data_model.property(
         "routes", dict,
         array=True, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     status = data_model.property(
         "status", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     symmetric_route_rules = data_model.property(
         "symmetricRouteRules", str,
         array=True, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     up_and_running = data_model.property(
         "upAndRunning", bool,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bond_xmit_hash_policy = data_model.property(
         "bond-xmit_hash_policy", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bond_ad_num_ports = data_model.property(
         "bond-ad_num_ports", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -7352,43 +7352,43 @@ class Network(data_model.DataObject):
     bond10_g = data_model.property(
         "Bond10G", NetworkConfig,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bond1_g = data_model.property(
         "Bond1G", NetworkConfig,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     eth0 = data_model.property(
         "eth0", NetworkConfig,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     eth1 = data_model.property(
         "eth1", NetworkConfig,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     eth2 = data_model.property(
         "eth2", NetworkConfig,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     eth3 = data_model.property(
         "eth3", NetworkConfig,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     lo = data_model.property(
         "lo", NetworkConfig,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -7405,7 +7405,7 @@ class SetNetworkConfigResult(data_model.DataObject):
     network = data_model.property(
         "network", Network,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -7451,49 +7451,49 @@ class AddVirtualNetworkRequest(data_model.DataObject):
     virtual_network_tag = data_model.property(
         "virtualNetworkTag", int,
         array=False, optional=False,
-        documentation="[&#x27;A unique virtual network (VLAN) tag. Supported values are 1 through 4094.The number zero (0) is not supported.&#x27;]",
+        documentation="""A unique virtual network (VLAN) tag. Supported values are 1 through 4094.The number zero (0) is not supported. """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;A user-defined name for the new virtual network.&#x27;]",
+        documentation="""A user-defined name for the new virtual network. """,
         dictionaryType=None
     )
     address_blocks = data_model.property(
         "addressBlocks", AddressBlock,
         array=True, optional=False,
-        documentation="[&#x27;Unique range of IP addresses to include in the virtual network.&#x27;, &#x27;Attributes for this parameter are:&#x27;, &#x27;start: The start of the IP address range. (String)&#x27;, &#x27;size: The number of IP addresses to include in the block. (Integer)&#x27;]",
+        documentation="""Unique range of IP addresses to include in the virtual network. Attributes for this parameter are: start: The start of the IP address range. (String) size: The number of IP addresses to include in the block. (Integer) """,
         dictionaryType=None
     )
     netmask = data_model.property(
         "netmask", str,
         array=False, optional=False,
-        documentation="[&#x27;Unique network mask for the virtual network being created.&#x27;]",
+        documentation="""Unique network mask for the virtual network being created. """,
         dictionaryType=None
     )
     svip = data_model.property(
         "svip", str,
         array=False, optional=False,
-        documentation="[&#x27;Unique storage IP address for the virtual network being created.&#x27;]",
+        documentation="""Unique storage IP address for the virtual network being created. """,
         dictionaryType=None
     )
     gateway = data_model.property(
         "gateway", str,
         array=False, optional=True,
-        documentation="[&#x27;The IP address of a gateway of the virtual network. This parameter is only valid if the &quot;namespace&quot; parameter is set to true.&#x27;]",
+        documentation="""The IP address of a gateway of the virtual network. This parameter is only valid if the "namespace" parameter is set to true. """,
         dictionaryType=None
     )
     namespace = data_model.property(
         "namespace", bool,
         array=False, optional=True,
-        documentation="[&#x27;When set to true, enables the Routable Storage VLANs functionality by creating and configuring a namespace and the virtual network contained by it.&#x27;]",
+        documentation="""When set to true, enables the Routable Storage VLANs functionality by creating and configuring a namespace and the virtual network contained by it. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
+        documentation="""List of name-value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -7514,13 +7514,13 @@ class ListClusterFaultsRequest(data_model.DataObject):
     best_practices = data_model.property(
         "bestPractices", bool,
         array=False, optional=True,
-        documentation="[&#x27;Specifies whether to include faults triggered by suboptimal system configuration.&#x27;, &#x27;Possible values are:&#x27;, &#x27;true&#x27;, &#x27;false&#x27;]",
+        documentation="""Specifies whether to include faults triggered by suboptimal system configuration. Possible values are: true false """,
         dictionaryType=None
     )
     fault_types = data_model.property(
         "faultTypes", str,
         array=False, optional=True,
-        documentation="[&#x27;Determines the types of faults returned. Possible values are:&#x27;, &#x27;current: List active, unresolved faults.&#x27;, &#x27;resolved: List faults that were previously detected and&#x27;, &#x27;resolved.&#x27;, &#x27;all: (Default) List both current and resolved faults. You can&#x27;, &#x27;see the fault status in the resolved field of the Cluster Fault&#x27;, &#x27;object.&#x27;]",
+        documentation="""Determines the types of faults returned. Possible values are: current: List active, unresolved faults. resolved: List faults that were previously detected and resolved. all: (Default) List both current and resolved faults. You can see the fault status in the resolved field of the Cluster Fault object. """,
         dictionaryType=None
     )
 
@@ -7543,19 +7543,19 @@ class TestPingResult(data_model.DataObject):
     result = data_model.property(
         "result", str,
         array=False, optional=False,
-        documentation="[&#x27;Result of the ping test.&#x27;]",
+        documentation="""Result of the ping test. """,
         dictionaryType=None
     )
     duration = data_model.property(
         "duration", str,
         array=False, optional=False,
-        documentation="[&#x27;The total duration of the ping test.&#x27;]",
+        documentation="""The total duration of the ping test. """,
         dictionaryType=None
     )
     details = data_model.property(
         "details", dict,
         array=False, optional=False,
-        documentation="[&#x27;List of each IP the node was able to communicate with.&#x27;]",
+        documentation="""List of each IP the node was able to communicate with. """,
         dictionaryType=None
     )
 
@@ -7579,19 +7579,19 @@ class BackupTarget(data_model.DataObject):
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;Name for the backup target.&#x27;]",
+        documentation="""Name for the backup target. """,
         dictionaryType=None
     )
     backup_target_id = data_model.property(
         "backupTargetID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique identifier assigned to the backup target.&#x27;]",
+        documentation="""Unique identifier assigned to the backup target. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="""List of Name/Value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -7608,7 +7608,7 @@ class GetBackupTargetResult(data_model.DataObject):
     backup_target = data_model.property(
         "backupTarget", BackupTarget,
         array=False, optional=False,
-        documentation="[&#x27;Object returned for backup target.&#x27;]",
+        documentation="""Object returned for backup target. """,
         dictionaryType=None
     )
 
@@ -7625,7 +7625,7 @@ class AddDrivesResult(data_model.DataObject):
     async_handle = data_model.property(
         "asyncHandle", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -7643,7 +7643,7 @@ class ListVolumeStatsByVirtualVolumeRequest(data_model.DataObject):
     virtual_volume_ids = data_model.property(
         "virtualVolumeIDs", UUID,
         array=True, optional=True,
-        documentation="[&#x27;A list of one or more virtual volume IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes.&#x27;]",
+        documentation="""A list of one or more virtual volume IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. """,
         dictionaryType=None
     )
 
@@ -7660,7 +7660,7 @@ class SetConfigResult(data_model.DataObject):
     config = data_model.property(
         "config", Config,
         array=False, optional=False,
-        documentation="[&#x27;The new and current configuration for the node.&#x27;]",
+        documentation="""The new and current configuration for the node. """,
         dictionaryType=None
     )
 
@@ -7691,31 +7691,31 @@ class StartBulkVolumeWriteRequest(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume to be written to.&#x27;]",
+        documentation="""The ID of the volume to be written to. """,
         dictionaryType=None
     )
     format = data_model.property(
         "format", str,
         array=False, optional=False,
-        documentation="[&#x27;The format of the volume data. It can be either of the following formats:&#x27;, &#x27;uncompressed: Every byte of the volume is returned without any compression.&#x27;, &#x27;native: Opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk&#x27;, &#x27;volume write.&#x27;]",
+        documentation="""The format of the volume data. It can be either of the following formats: uncompressed: Every byte of the volume is returned without any compression. native: Opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. """,
         dictionaryType=None
     )
     script = data_model.property(
         "script", str,
         array=False, optional=True,
-        documentation="[&#x27;The executable name of a script. If unspecified,&#x27;, &#x27;the key and URL are necessary to access SF-series&#x27;, &#x27;nodes. The script runs on the primary node and the key&#x27;, &#x27;and URL is returned to the script, so the local web server&#x27;, &#x27;can be contacted.&#x27;]",
+        documentation="""The executable name of a script. If unspecified, the key and URL are necessary to access SF-series nodes. The script runs on the primary node and the key and URL is returned to the script, so the local web server can be contacted. """,
         dictionaryType=None
     )
     script_parameters = data_model.property(
         "scriptParameters", dict,
         array=False, optional=True,
-        documentation="[&#x27;JSON parameters to pass to the script.&#x27;]",
+        documentation="""JSON parameters to pass to the script. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;JSON attributes for the bulk volume job.&#x27;]",
+        documentation="""JSON attributes for the bulk volume job. """,
         dictionaryType=None
     )
 
@@ -7732,7 +7732,7 @@ class ModifyVolumeResult(data_model.DataObject):
     volume = data_model.property(
         "volume", Volume,
         array=False, optional=True,
-        documentation="[&#x27;Object containing information about the newly modified volume.&#x27;]",
+        documentation="""Object containing information about the newly modified volume. """,
         dictionaryType=None
     )
 
@@ -7760,13 +7760,13 @@ class SnapshotRemoteStatus(data_model.DataObject):
     remote_status = data_model.property(
         "remoteStatus", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_pair_uuid = data_model.property(
         "volumePairUUID", UUID,
         array=False, optional=False,
-        documentation="[&#x27;The snapshot is done and is writable (the active branch of the slice).&#x27;]",
+        documentation="""The snapshot is done and is writable (the active branch of the slice). """,
         dictionaryType=None
     )
 
@@ -7830,97 +7830,97 @@ class Snapshot(data_model.DataObject):
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique ID for this snapshot.&#x27;]",
+        documentation="""Unique ID for this snapshot. """,
         dictionaryType=None
     )
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The volume this snapshot was taken of.&#x27;]",
+        documentation="""The volume this snapshot was taken of. """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;A name for this snapshot.&#x27;, &#x27;It is not necessarily unique.&#x27;]",
+        documentation="""A name for this snapshot. It is not necessarily unique. """,
         dictionaryType=None
     )
     checksum = data_model.property(
         "checksum", str,
         array=False, optional=False,
-        documentation="[&#x27;A string that represents the correct digits in the stored snapshot.&#x27;, &#x27;This checksum can be used later to compare other snapshots to detect errors in the data.&#x27;]",
+        documentation="""A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. """,
         dictionaryType=None
     )
     enable_remote_replication = data_model.property(
         "enableRemoteReplication", bool,
         array=False, optional=False,
-        documentation="[&#x27;Identifies if snapshot is enabled for remote replication.&#x27;]",
+        documentation="""Identifies if snapshot is enabled for remote replication. """,
         dictionaryType=None
     )
     expiration_reason = data_model.property(
         "expirationReason", str,
         array=False, optional=False,
-        documentation="[&#x27;Indicates how the snapshot expiration was set. Possible values:&#x27;, &#x27;api: expiration time was set by using the API.&#x27;, &#x27;none: there is no expiration time set.&#x27;, &#x27;test: expiration time was set for testing.&#x27;]",
+        documentation="""Indicates how the snapshot expiration was set. Possible values: api: expiration time was set by using the API. none: there is no expiration time set. test: expiration time was set for testing. """,
         dictionaryType=None
     )
     expiration_time = data_model.property(
         "expirationTime", str,
         array=False, optional=True,
-        documentation="[&#x27;The time at which this snapshot will expire and be purged from the cluster.&#x27;]",
+        documentation="""The time at which this snapshot will expire and be purged from the cluster. """,
         dictionaryType=None
     )
     remote_statuses = data_model.property(
         "remoteStatuses", SnapshotRemoteStatus,
         array=True, optional=True,
-        documentation="[&#x27;Current remote status of the snapshot remoteStatus: Possible values:&#x27;, &#x27;Present: Snapshot exists on a remote cluster&#x27;, &#x27;Not Present: Snapshot does not exist on remote cluster&#x27;, &#x27;Syncing: This is a target cluster and it is currently replicating the snapshot&#x27;, &#x27;Deleted: This is a target cluster, the snapshot has been deleted, and it still exists on the source.&#x27;, &#x27;volumePairUUID: universal identifier of the volume pair&#x27;]",
+        documentation="""Current remote status of the snapshot remoteStatus: Possible values: Present: Snapshot exists on a remote cluster Not Present: Snapshot does not exist on remote cluster Syncing: This is a target cluster and it is currently replicating the snapshot Deleted: This is a target cluster, the snapshot has been deleted, and it still exists on the source. volumePairUUID: universal identifier of the volume pair """,
         dictionaryType=None
     )
     status = data_model.property(
         "status", str,
         array=False, optional=False,
-        documentation="[&#x27;Current status of the snapshot&#x27;, &#x27;Preparing: A snapshot that is being prepared for use and is not yet writable.&#x27;, &#x27;Done: A snapshot that has finished being prepared and is now usable.&#x27;, &#x27;Active: This snapshot is the active branch.&#x27;]",
+        documentation="""Current status of the snapshot Preparing: A snapshot that is being prepared for use and is not yet writable. Done: A snapshot that has finished being prepared and is now usable. Active: This snapshot is the active branch. """,
         dictionaryType=None
     )
     snapshot_uuid = data_model.property(
         "snapshotUUID", UUID,
         array=False, optional=False,
-        documentation="[&#x27;Universal Unique ID of an existing snapshot.&#x27;]",
+        documentation="""Universal Unique ID of an existing snapshot. """,
         dictionaryType=None
     )
     total_size = data_model.property(
         "totalSize", int,
         array=False, optional=False,
-        documentation="[&#x27;Total size of this snapshot in bytes.&#x27;, &#x27;It is equivalent to totalSize of the volume when this snapshot was taken.&#x27;]",
+        documentation="""Total size of this snapshot in bytes. It is equivalent to totalSize of the volume when this snapshot was taken. """,
         dictionaryType=None
     )
     group_id = data_model.property(
         "groupID", int,
         array=False, optional=True,
-        documentation="[&#x27;If present, the ID of the group this snapshot is a part of.&#x27;, &#x27;If not present, this snapshot is not part of a group.&#x27;]",
+        documentation="""If present, the ID of the group this snapshot is a part of. If not present, this snapshot is not part of a group. """,
         dictionaryType=None
     )
     group_snapshot_uuid = data_model.property(
         "groupSnapshotUUID", UUID,
         array=False, optional=False,
-        documentation="[&#x27;The current &quot;members&quot; results contains information about each snapshot in the group.&#x27;, &#x27;Each of these members will have a &quot;uuid&quot; parameter for the snapshot\&#x27;s UUID.&#x27;]",
+        documentation="""The current "members" results contains information about each snapshot in the group. Each of these members will have a "uuid" parameter for the snapshot's UUID. """,
         dictionaryType=None
     )
     create_time = data_model.property(
         "createTime", str,
         array=False, optional=False,
-        documentation="[&#x27;The time this snapshot was taken.&#x27;]",
+        documentation="""The time this snapshot was taken. """,
         dictionaryType=None
     )
     virtual_volume_id = data_model.property(
         "virtualVolumeID", UUID,
         array=False, optional=True,
-        documentation="[&#x27;The ID of the virtual volume with which the snapshot is associated.&#x27;]",
+        documentation="""The ID of the virtual volume with which the snapshot is associated. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=False,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="""List of Name/Value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -7973,79 +7973,79 @@ class VirtualVolumeInfo(data_model.DataObject):
     virtual_volume_id = data_model.property(
         "virtualVolumeID", UUID,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     parent_virtual_volume_id = data_model.property(
         "parentVirtualVolumeID", UUID,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     storage_container = data_model.property(
         "storageContainer", StorageContainer,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     virtual_volume_type = data_model.property(
         "virtualVolumeType", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     status = data_model.property(
         "status", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bindings = data_model.property(
         "bindings", int,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     children = data_model.property(
         "children", UUID,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     metadata = data_model.property(
         "metadata", dict,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     snapshot_info = data_model.property(
         "snapshotInfo", Snapshot,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_info = data_model.property(
         "volumeInfo", Volume,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     descendants = data_model.property(
         "descendants", int,
         array=True, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -8065,13 +8065,13 @@ class ListVirtualVolumesResult(data_model.DataObject):
     virtual_volumes = data_model.property(
         "virtualVolumes", VirtualVolumeInfo,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     next_virtual_volume_id = data_model.property(
         "nextVirtualVolumeID", UUID,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -8088,7 +8088,7 @@ class DeleteVolumesResult(data_model.DataObject):
     volumes = data_model.property(
         "volumes", Volume,
         array=True, optional=False,
-        documentation="[&#x27;Information about the newly deleted volume.&#x27;]",
+        documentation="""Information about the newly deleted volume. """,
         dictionaryType=None
     )
 
@@ -8172,139 +8172,139 @@ class ClusterCapacity(data_model.DataObject):
     active_block_space = data_model.property(
         "activeBlockSpace", int,
         array=False, optional=False,
-        documentation="[&#x27;The amount of space on the block drives.&#x27;, &#x27;This includes additional information such as metadata entries and space which can be cleaned up.&#x27;]",
+        documentation="""The amount of space on the block drives. This includes additional information such as metadata entries and space which can be cleaned up. """,
         dictionaryType=None
     )
     active_sessions = data_model.property(
         "activeSessions", int,
         array=False, optional=False,
-        documentation="[&#x27;Number of active iSCSI sessions communicating with the cluster&#x27;]",
+        documentation="""Number of active iSCSI sessions communicating with the cluster """,
         dictionaryType=None
     )
     average_iops = data_model.property(
         "averageIOPS", int,
         array=False, optional=False,
-        documentation="[&#x27;Average IPS for the cluster since midnight Coordinated Universal Time (UTC).&#x27;]",
+        documentation="""Average IPS for the cluster since midnight Coordinated Universal Time (UTC). """,
         dictionaryType=None
     )
     cluster_recent_iosize = data_model.property(
         "clusterRecentIOSize", int,
         array=False, optional=False,
-        documentation="[&#x27;The average size of IOPS to all volumes in the cluster.&#x27;]",
+        documentation="""The average size of IOPS to all volumes in the cluster. """,
         dictionaryType=None
     )
     current_iops = data_model.property(
         "currentIOPS", int,
         array=False, optional=False,
-        documentation="[&#x27;Average IOPS for all volumes in the cluster over the last 5 seconds.&#x27;]",
+        documentation="""Average IOPS for all volumes in the cluster over the last 5 seconds. """,
         dictionaryType=None
     )
     max_iops = data_model.property(
         "maxIOPS", int,
         array=False, optional=False,
-        documentation="[&#x27;Estimated maximum IOPS capability of the current cluster.&#x27;]",
+        documentation="""Estimated maximum IOPS capability of the current cluster. """,
         dictionaryType=None
     )
     max_over_provisionable_space = data_model.property(
         "maxOverProvisionableSpace", int,
         array=False, optional=False,
-        documentation="[&#x27;The maximum amount of provisionable space.&#x27;, &#x27;This is a computed value.&#x27;, &#x27;You cannot create new volumes if the current provisioned space plus the new volume size would exceed this number:&#x27;, &#x27;maxOverProvisionableSpace = maxProvisionedSpace * GetClusterFull&#x27;]",
+        documentation="""The maximum amount of provisionable space. This is a computed value. You cannot create new volumes if the current provisioned space plus the new volume size would exceed this number: maxOverProvisionableSpace = maxProvisionedSpace * GetClusterFull """,
         dictionaryType=None
     )
     max_provisioned_space = data_model.property(
         "maxProvisionedSpace", int,
         array=False, optional=False,
-        documentation="[&#x27;The total amount of provisionable space if all volumes are 100% filled (no thin provisioned metadata).&#x27;]",
+        documentation="""The total amount of provisionable space if all volumes are 100% filled (no thin provisioned metadata). """,
         dictionaryType=None
     )
     max_used_metadata_space = data_model.property(
         "maxUsedMetadataSpace", int,
         array=False, optional=False,
-        documentation="[&#x27;The amount of bytes on volume drives used to store metadata.&#x27;]",
+        documentation="""The amount of bytes on volume drives used to store metadata. """,
         dictionaryType=None
     )
     max_used_space = data_model.property(
         "maxUsedSpace", int,
         array=False, optional=False,
-        documentation="[&#x27;The total amount of space on all active block drives.&#x27;]",
+        documentation="""The total amount of space on all active block drives. """,
         dictionaryType=None
     )
     non_zero_blocks = data_model.property(
         "nonZeroBlocks", int,
         array=False, optional=False,
-        documentation="[&#x27;Total number of 4KiB blocks with data after the last garbage collection operation has completed.&#x27;]",
+        documentation="""Total number of 4KiB blocks with data after the last garbage collection operation has completed. """,
         dictionaryType=None
     )
     peak_active_sessions = data_model.property(
         "peakActiveSessions", int,
         array=False, optional=False,
-        documentation="[&#x27;Peak number of iSCSI connections since midnight UTC.&#x27;]",
+        documentation="""Peak number of iSCSI connections since midnight UTC. """,
         dictionaryType=None
     )
     peak_iops = data_model.property(
         "peakIOPS", int,
         array=False, optional=False,
-        documentation="[&#x27;The highest value for currentIOPS since midnight UTC.&#x27;]",
+        documentation="""The highest value for currentIOPS since midnight UTC. """,
         dictionaryType=None
     )
     provisioned_space = data_model.property(
         "provisionedSpace", int,
         array=False, optional=False,
-        documentation="[&#x27;Total amount of space provisioned in all volumes on the cluster.&#x27;]",
+        documentation="""Total amount of space provisioned in all volumes on the cluster. """,
         dictionaryType=None
     )
     snapshot_non_zero_blocks = data_model.property(
         "snapshotNonZeroBlocks", int,
         array=False, optional=False,
-        documentation="[&#x27;Total number of 4KiB blocks in snapshots with data.&#x27;]",
+        documentation="""Total number of 4KiB blocks in snapshots with data. """,
         dictionaryType=None
     )
     timestamp = data_model.property(
         "timestamp", str,
         array=False, optional=False,
-        documentation="[&#x27;The date and time this cluster capacity sample was taken.&#x27;]",
+        documentation="""The date and time this cluster capacity sample was taken. """,
         dictionaryType=None
     )
     total_ops = data_model.property(
         "totalOps", int,
         array=False, optional=False,
-        documentation="[&#x27;The total number of I/O operations performed throughout the lifetime of the cluster&#x27;]",
+        documentation="""The total number of I/O operations performed throughout the lifetime of the cluster """,
         dictionaryType=None
     )
     unique_blocks = data_model.property(
         "uniqueBlocks", int,
         array=False, optional=False,
-        documentation="[&#x27;The total number of blocks stored on the block drives.&#x27;, &#x27;The value includes replicated blocks.&#x27;]",
+        documentation="""The total number of blocks stored on the block drives. The value includes replicated blocks. """,
         dictionaryType=None
     )
     unique_blocks_used_space = data_model.property(
         "uniqueBlocksUsedSpace", int,
         array=False, optional=False,
-        documentation="[&#x27;The total amount of data the uniqueBlocks take up on the block drives.&#x27;, &#x27;This number is always consistent with the uniqueBlocks value.&#x27;]",
+        documentation="""The total amount of data the uniqueBlocks take up on the block drives. This number is always consistent with the uniqueBlocks value. """,
         dictionaryType=None
     )
     used_metadata_space = data_model.property(
         "usedMetadataSpace", int,
         array=False, optional=False,
-        documentation="[&#x27;The total amount of bytes on volume drives used to store metadata&#x27;]",
+        documentation="""The total amount of bytes on volume drives used to store metadata """,
         dictionaryType=None
     )
     used_metadata_space_in_snapshots = data_model.property(
         "usedMetadataSpaceInSnapshots", int,
         array=False, optional=False,
-        documentation="[&#x27;The amount of bytes on volume drives used for storing unique data in snapshots.&#x27;, &#x27;This number provides an estimate of how much metadata space would be regained by deleting all snapshots on the system.&#x27;]",
+        documentation="""The amount of bytes on volume drives used for storing unique data in snapshots. This number provides an estimate of how much metadata space would be regained by deleting all snapshots on the system. """,
         dictionaryType=None
     )
     used_space = data_model.property(
         "usedSpace", int,
         array=False, optional=False,
-        documentation="[&#x27;Total amount of space used by all block drives in the system.&#x27;]",
+        documentation="""Total amount of space used by all block drives in the system. """,
         dictionaryType=None
     )
     zero_blocks = data_model.property(
         "zeroBlocks", int,
         array=False, optional=False,
-        documentation="[&#x27;Total number of 4KiB blocks without data after the last round of garabage collection operation has completed.&#x27;]",
+        documentation="""Total number of 4KiB blocks without data after the last round of garabage collection operation has completed. """,
         dictionaryType=None
     )
 
@@ -8321,7 +8321,7 @@ class GetClusterCapacityResult(data_model.DataObject):
     cluster_capacity = data_model.property(
         "clusterCapacity", ClusterCapacity,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -8338,7 +8338,7 @@ class GetHardwareConfigResult(data_model.DataObject):
     hardware_config = data_model.property(
         "hardwareConfig", dict,
         array=False, optional=False,
-        documentation="[&#x27;List of hardware information and current settings.&#x27;]",
+        documentation="""List of hardware information and current settings. """,
         dictionaryType=None
     )
 
@@ -8357,7 +8357,7 @@ class TestConnectSvipRequest(data_model.DataObject):
     svip = data_model.property(
         "svip", str,
         array=False, optional=True,
-        documentation="[&#x27;If specified, tests the storage connection of a&#x27;, &#x27;different SVIP. You do not need to use this value when&#x27;, &#x27;testing the connection to the target cluster. This parameter is optional.&#x27;]",
+        documentation="""If specified, tests the storage connection of a different SVIP. You do not need to use this value when testing the connection to the target cluster. This parameter is optional. """,
         dictionaryType=None
     )
 
@@ -8392,37 +8392,37 @@ class TestPingRequest(data_model.DataObject):
     attempts = data_model.property(
         "attempts", int,
         array=False, optional=True,
-        documentation="[&#x27;Specifies the number of times the system&#x27;, &#x27;should repeat the test ping. The default value is 5.&#x27;]",
+        documentation="""Specifies the number of times the system should repeat the test ping. The default value is 5. """,
         dictionaryType=None
     )
     hosts = data_model.property(
         "hosts", str,
         array=False, optional=True,
-        documentation="[&#x27;Specifies a comma-separated list of addresses or hostnames of devices to ping.&#x27;]",
+        documentation="""Specifies a comma-separated list of addresses or hostnames of devices to ping. """,
         dictionaryType=None
     )
     total_timeout_sec = data_model.property(
         "totalTimeoutSec", int,
         array=False, optional=True,
-        documentation="[&#x27;Specifies the length of time the ping should wait for a system response before issuing the next ping attempt or ending the process.&#x27;]",
+        documentation="""Specifies the length of time the ping should wait for a system response before issuing the next ping attempt or ending the process. """,
         dictionaryType=None
     )
     packet_size = data_model.property(
         "packetSize", int,
         array=False, optional=True,
-        documentation="[&#x27;Specifies the number of bytes to send in the ICMP packet that is sent to each IP. The number must be less than the maximum MTU specified in the network configuration.&#x27;]",
+        documentation="""Specifies the number of bytes to send in the ICMP packet that is sent to each IP. The number must be less than the maximum MTU specified in the network configuration. """,
         dictionaryType=None
     )
     ping_timeout_msec = data_model.property(
         "pingTimeoutMsec", int,
         array=False, optional=True,
-        documentation="[&#x27;Specifies the number of milliseconds to wait for each individual ping response. The default value is 500 ms.&#x27;]",
+        documentation="""Specifies the number of milliseconds to wait for each individual ping response. The default value is 500 ms. """,
         dictionaryType=None
     )
     prohibit_fragmentation = data_model.property(
         "prohibitFragmentation", bool,
         array=False, optional=True,
-        documentation="[&#x27;Specifies that the Do not Fragment (DF) flag is enabled for the ICMP packets.&#x27;]",
+        documentation="""Specifies that the Do not Fragment (DF) flag is enabled for the ICMP packets. """,
         dictionaryType=None
     )
 
@@ -8472,73 +8472,73 @@ class NodeStatsInfo(data_model.DataObject):
     c_bytes_in = data_model.property(
         "cBytesIn", int,
         array=False, optional=False,
-        documentation="[&#x27;Bytes in on the cluster interface.&#x27;]",
+        documentation="""Bytes in on the cluster interface. """,
         dictionaryType=None
     )
     c_bytes_out = data_model.property(
         "cBytesOut", int,
         array=False, optional=False,
-        documentation="[&#x27;Bytes out on the cluster interface.&#x27;]",
+        documentation="""Bytes out on the cluster interface. """,
         dictionaryType=None
     )
     cpu = data_model.property(
         "cpu", int,
         array=False, optional=False,
-        documentation="[&#x27;CPU Usage %&#x27;]",
+        documentation="""CPU Usage % """,
         dictionaryType=None
     )
     m_bytes_in = data_model.property(
         "mBytesIn", int,
         array=False, optional=False,
-        documentation="[&#x27;Bytes in on the management interface.&#x27;]",
+        documentation="""Bytes in on the management interface. """,
         dictionaryType=None
     )
     m_bytes_out = data_model.property(
         "mBytesOut", int,
         array=False, optional=False,
-        documentation="[&#x27;Bytes out on the management interface.&#x27;]",
+        documentation="""Bytes out on the management interface. """,
         dictionaryType=None
     )
     network_utilization_cluster = data_model.property(
         "networkUtilizationCluster", int,
         array=False, optional=False,
-        documentation="[&#x27;Network interface utilization (in %) for the cluster network interface.&#x27;]",
+        documentation="""Network interface utilization (in %) for the cluster network interface. """,
         dictionaryType=None
     )
     network_utilization_storage = data_model.property(
         "networkUtilizationStorage", int,
         array=False, optional=False,
-        documentation="[&#x27;Network interface utilization (in %) for the storage network interface.&#x27;]",
+        documentation="""Network interface utilization (in %) for the storage network interface. """,
         dictionaryType=None
     )
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     s_bytes_in = data_model.property(
         "sBytesIn", int,
         array=False, optional=False,
-        documentation="[&#x27;Bytes in on the storage interface.&#x27;]",
+        documentation="""Bytes in on the storage interface. """,
         dictionaryType=None
     )
     s_bytes_out = data_model.property(
         "sBytesOut", int,
         array=False, optional=False,
-        documentation="[&#x27;Bytes out on the storage interface.&#x27;]",
+        documentation="""Bytes out on the storage interface. """,
         dictionaryType=None
     )
     timestamp = data_model.property(
         "timestamp", str,
         array=False, optional=False,
-        documentation="[&#x27;Current time in UTC format ISO 8691 date string.&#x27;]",
+        documentation="""Current time in UTC format ISO 8691 date string. """,
         dictionaryType=None
     )
     used_memory = data_model.property(
         "usedMemory", int,
         array=False, optional=False,
-        documentation="[&#x27;Total memory usage in bytes.&#x27;]",
+        documentation="""Total memory usage in bytes. """,
         dictionaryType=None
     )
 
@@ -8555,7 +8555,7 @@ class NodeStatsNodes(data_model.DataObject):
     nodes = data_model.property(
         "nodes", NodeStatsInfo,
         array=True, optional=False,
-        documentation="[&#x27;Node activity information for a single node.&#x27;]",
+        documentation="""Node activity information for a single node. """,
         dictionaryType=None
     )
 
@@ -8572,7 +8572,7 @@ class ListNodeStatsResult(data_model.DataObject):
     node_stats = data_model.property(
         "nodeStats", NodeStatsNodes,
         array=False, optional=False,
-        documentation="[&#x27;Node activity information for all nodes.&#x27;]",
+        documentation="""Node activity information for all nodes. """,
         dictionaryType=None
     )
 
@@ -8610,13 +8610,13 @@ class AddInitiatorsToVolumeAccessGroupRequest(data_model.DataObject):
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume access group&#x27;, &#x27;to modify.&#x27;]",
+        documentation="""The ID of the volume access group to modify. """,
         dictionaryType=None
     )
     initiators = data_model.property(
         "initiators", str,
         array=True, optional=False,
-        documentation="[&#x27;The list of initiators to add to the volume access&#x27;, &#x27;group.&#x27;]",
+        documentation="""The list of initiators to add to the volume access group. """,
         dictionaryType=None
     )
 
@@ -8635,7 +8635,7 @@ class DeleteVolumeAccessGroupRequest(data_model.DataObject):
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume access group&#x27;, &#x27;to be deleted.&#x27;]",
+        documentation="""The ID of the volume access group to be deleted. """,
         dictionaryType=None
     )
 
@@ -8655,13 +8655,13 @@ class FeatureObject(data_model.DataObject):
     enabled = data_model.property(
         "enabled", bool,
         array=False, optional=False,
-        documentation="[&#x27;True if the feature is enabled, otherwise false.&#x27;]",
+        documentation="""True if the feature is enabled, otherwise false. """,
         dictionaryType=None
     )
     feature = data_model.property(
         "feature", str,
         array=False, optional=False,
-        documentation="[&#x27;The name of the feature.&#x27;]",
+        documentation="""The name of the feature. """,
         dictionaryType=None
     )
 
@@ -8678,7 +8678,7 @@ class GetFeatureStatusResult(data_model.DataObject):
     features = data_model.property(
         "features", FeatureObject,
         array=True, optional=False,
-        documentation="[&#x27;An array of feature objects indicating the feature name and its status.&#x27;]",
+        documentation="""An array of feature objects indicating the feature name and its status. """,
         dictionaryType=None
     )
 
@@ -8708,25 +8708,25 @@ class ListVirtualNetworksRequest(data_model.DataObject):
     virtual_network_id = data_model.property(
         "virtualNetworkID", int,
         array=False, optional=True,
-        documentation="[&#x27;Network ID to filter the list for a single virtual network.&#x27;]",
+        documentation="""Network ID to filter the list for a single virtual network. """,
         dictionaryType=None
     )
     virtual_network_tag = data_model.property(
         "virtualNetworkTag", int,
         array=False, optional=True,
-        documentation="[&#x27;Network tag to filter the list for a single virtual network.&#x27;]",
+        documentation="""Network tag to filter the list for a single virtual network. """,
         dictionaryType=None
     )
     virtual_network_ids = data_model.property(
         "virtualNetworkIDs", int,
         array=True, optional=True,
-        documentation="[&#x27;Network IDs to include in the list.&#x27;]",
+        documentation="""Network IDs to include in the list. """,
         dictionaryType=None
     )
     virtual_network_tags = data_model.property(
         "virtualNetworkTags", int,
         array=True, optional=True,
-        documentation="[&#x27;Network tag to include in the list.&#x27;]",
+        documentation="""Network tag to include in the list. """,
         dictionaryType=None
     )
 
@@ -8743,7 +8743,7 @@ class ListSchedulesResult(data_model.DataObject):
     schedules = data_model.property(
         "schedules", Schedule,
         array=True, optional=False,
-        documentation="[&#x27;The list of schedules currently on the cluster.&#x27;]",
+        documentation="""The list of schedules currently on the cluster. """,
         dictionaryType=None
     )
 
@@ -8763,7 +8763,7 @@ class SetNetworkConfigRequest(data_model.DataObject):
     network = data_model.property(
         "network", NetworkParams,
         array=False, optional=False,
-        documentation="[&#x27;An object containing node network settings to modify.&#x27;]",
+        documentation="""An object containing node network settings to modify. """,
         dictionaryType=None
     )
 
@@ -8803,37 +8803,37 @@ class StartBulkVolumeReadRequest(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume to be read.&#x27;]",
+        documentation="""The ID of the volume to be read. """,
         dictionaryType=None
     )
     format = data_model.property(
         "format", str,
         array=False, optional=False,
-        documentation="[&#x27;The format of the volume data. It can be either of the following formats:&#x27;, &#x27;uncompressed: Every byte of the volume is returned without any compression.&#x27;, &#x27;native: Opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk&#x27;, &#x27;volume write.&#x27;]",
+        documentation="""The format of the volume data. It can be either of the following formats: uncompressed: Every byte of the volume is returned without any compression. native: Opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. """,
         dictionaryType=None
     )
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=True,
-        documentation="[&#x27;The ID of a previously created snapshot used for bulk volume&#x27;, &#x27;reads. If no ID is entered, a snapshot of the current active&#x27;, &#x27;volume image is made.&#x27;]",
+        documentation="""The ID of a previously created snapshot used for bulk volume reads. If no ID is entered, a snapshot of the current active volume image is made. """,
         dictionaryType=None
     )
     script = data_model.property(
         "script", str,
         array=False, optional=True,
-        documentation="[&#x27;The executable name of a script. If unspecified, the key and URL is necessary to access SF-series nodes. The script is run on the primary node and the key&#x27;, &#x27;and URL is returned to the script so the local web server&#x27;, &#x27;can be contacted.&#x27;]",
+        documentation="""The executable name of a script. If unspecified, the key and URL is necessary to access SF-series nodes. The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted. """,
         dictionaryType=None
     )
     script_parameters = data_model.property(
         "scriptParameters", dict,
         array=False, optional=True,
-        documentation="[&#x27;JSON parameters to pass to the script.&#x27;]",
+        documentation="""JSON parameters to pass to the script. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;JSON attributes for the bulk volume job.&#x27;]",
+        documentation="""JSON attributes for the bulk volume job. """,
         dictionaryType=None
     )
 
@@ -8863,13 +8863,13 @@ class AddDrivesRequest(data_model.DataObject):
     drives = data_model.property(
         "drives", NewDrive,
         array=True, optional=False,
-        documentation="[&#x27;Returns information about each drive to be added to the&#x27;, &#x27;cluster. Possible values are:&#x27;, &#x27;driveID: The ID of the drive to&#x27;, &#x27;add. (Integer)&#x27;, &#x27;type: (Optional) The type of drive&#x27;, &#x27;to add. Valid values are &quot;slice&quot; or &quot;block&quot;. If&#x27;, &#x27;omitted, the system assigns the correct&#x27;, &#x27;type. (String)&#x27;]",
+        documentation="""Returns information about each drive to be added to the cluster. Possible values are: driveID: The ID of the drive to add. (Integer) type: (Optional) The type of drive to add. Valid values are "slice" or "block". If omitted, the system assigns the correct type. (String) """,
         dictionaryType=None
     )
     force_during_upgrade = data_model.property(
         "forceDuringUpgrade", bool,
         array=False, optional=True,
-        documentation="[&#x27;Allows the user to force the addition of drives during an upgrade.&#x27;]",
+        documentation="""Allows the user to force the addition of drives during an upgrade. """,
         dictionaryType=None
     )
 
@@ -8896,7 +8896,7 @@ class DeleteVolumeRequest(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume to be deleted.&#x27;]",
+        documentation="""The ID of the volume to be deleted. """,
         dictionaryType=None
     )
 
@@ -8913,7 +8913,7 @@ class CreateScheduleResult(data_model.DataObject):
     schedule_id = data_model.property(
         "scheduleID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -8935,13 +8935,13 @@ class ShutdownRequest(data_model.DataObject):
     nodes = data_model.property(
         "nodes", int,
         array=True, optional=False,
-        documentation="[&#x27;List of NodeIDs for the nodes to be shutdown.&#x27;]",
+        documentation="""List of NodeIDs for the nodes to be shutdown. """,
         dictionaryType=None
     )
     option = data_model.property(
         "option", str,
         array=False, optional=True,
-        documentation="[&#x27;Specifies the action to take for the node shutdown. Possible values are:&#x27;, &#x27;restart: Restarts the node.&#x27;, &#x27;halt: Shuts down the node.&#x27;]",
+        documentation="""Specifies the action to take for the node shutdown. Possible values are: restart: Restarts the node. halt: Shuts down the node. """,
         dictionaryType=None
     )
 
@@ -8966,13 +8966,13 @@ class GetAsyncResultRequest(data_model.DataObject):
     async_handle = data_model.property(
         "asyncHandle", int,
         array=False, optional=False,
-        documentation="[&#x27;A value that was returned from the original&#x27;, &#x27;asynchronous method call.&#x27;]",
+        documentation="""A value that was returned from the original asynchronous method call. """,
         dictionaryType=None
     )
     keep_result = data_model.property(
         "keepResult", bool,
         array=False, optional=True,
-        documentation="[&#x27;If true, GetAsyncResult does not remove the&#x27;, &#x27;asynchronous result upon returning it, enabling future&#x27;, &#x27;queries to that asyncHandle.&#x27;]",
+        documentation="""If true, GetAsyncResult does not remove the asynchronous result upon returning it, enabling future queries to that asyncHandle. """,
         dictionaryType=None
     )
 
@@ -8995,19 +8995,19 @@ class CreateVolumeResult(data_model.DataObject):
     volume = data_model.property(
         "volume", Volume,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;VolumeID for the newly created volume.&#x27;]",
+        documentation="""VolumeID for the newly created volume. """,
         dictionaryType=None
     )
     curve = data_model.property(
         "curve", dict,
         array=False, optional=False,
-        documentation="[&#x27;The curve is a set of key-value pairs.&#x27;, &#x27;The keys are I/O sizes in bytes.&#x27;, &#x27;The values represent the cost performing an IOP at a specific I/O size.&#x27;, &#x27;The curve is calculated relative to a 4096 byte operation set at 100 IOPS.&#x27;]",
+        documentation="""The curve is a set of key-value pairs. The keys are I/O sizes in bytes. The values represent the cost performing an IOP at a specific I/O size. The curve is calculated relative to a 4096 byte operation set at 100 IOPS. """,
         dictionaryType=int
     )
 
@@ -9044,37 +9044,37 @@ class ModifyAccountRequest(data_model.DataObject):
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=False,
-        documentation="[&#x27;Specifies the AccountID for the account to be modified.&#x27;]",
+        documentation="""Specifies the AccountID for the account to be modified. """,
         dictionaryType=None
     )
     username = data_model.property(
         "username", str,
         array=False, optional=True,
-        documentation="[&#x27;Specifies the username associated with the&#x27;, &#x27;account. (Might be 1 to 64 characters in length).&#x27;]",
+        documentation="""Specifies the username associated with the account. (Might be 1 to 64 characters in length). """,
         dictionaryType=None
     )
     status = data_model.property(
         "status", str,
         array=False, optional=True,
-        documentation="[&#x27;Sets the status for the account. Possible values are:&#x27;, &#x27;active: The account is active and connections are allowed.&#x27;, &#x27;locked: The account is locked and connections are refused.&#x27;]",
+        documentation="""Sets the status for the account. Possible values are: active: The account is active and connections are allowed. locked: The account is locked and connections are refused. """,
         dictionaryType=None
     )
     initiator_secret = data_model.property(
         "initiatorSecret", CHAPSecret,
         array=False, optional=True,
-        documentation="[&#x27;Specifies the CHAP secret to use for the initiator. This secret must&#x27;, &#x27;be 12-16 characters in length and should be&#x27;, &#x27;impenetrable. The initiator CHAP secret must be unique&#x27;, &#x27;and cannot be the same as the target CHAP secret.&#x27;]",
+        documentation="""Specifies the CHAP secret to use for the initiator. This secret must be 12-16 characters in length and should be impenetrable. The initiator CHAP secret must be unique and cannot be the same as the target CHAP secret. """,
         dictionaryType=None
     )
     target_secret = data_model.property(
         "targetSecret", CHAPSecret,
         array=False, optional=True,
-        documentation="[&#x27;Specifies the CHAP secret to use for the target (mutual CHAP&#x27;, &#x27;authentication). This secret must be 12-16 characters in&#x27;, &#x27;length and should be impenetrable. The target CHAP&#x27;, &#x27;secret must be unique and cannot be the same as the&#x27;, &#x27;initiator CHAP secret.&#x27;]",
+        documentation="""Specifies the CHAP secret to use for the target (mutual CHAP authentication). This secret must be 12-16 characters in length and should be impenetrable. The target CHAP secret must be unique and cannot be the same as the initiator CHAP secret. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
+        documentation="""List of name-value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -9103,31 +9103,31 @@ class ClusterAdmin(data_model.DataObject):
     auth_method = data_model.property(
         "authMethod", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     access = data_model.property(
         "access", str,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     cluster_admin_id = data_model.property(
         "clusterAdminID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     username = data_model.property(
         "username", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="""List of Name/Value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -9144,7 +9144,7 @@ class GetCurrentClusterAdminResult(data_model.DataObject):
     cluster_admin = data_model.property(
         "clusterAdmin", ClusterAdmin,
         array=False, optional=False,
-        documentation="[&#x27;Information about all cluster and LDAP administrators that exist for a cluster.&#x27;]",
+        documentation="""Information about all cluster and LDAP administrators that exist for a cluster. """,
         dictionaryType=None
     )
 
@@ -9177,25 +9177,25 @@ class ResetNodeRequest(data_model.DataObject):
     build = data_model.property(
         "build", str,
         array=False, optional=False,
-        documentation="[&#x27;Specifies the URL to a remote Element software image to which the node will&#x27;, &#x27;be reset.&#x27;]",
+        documentation="""Specifies the URL to a remote Element software image to which the node will be reset. """,
         dictionaryType=None
     )
     force = data_model.property(
         "force", bool,
         array=False, optional=False,
-        documentation="[&#x27;Required parameter to successfully reset the node.&#x27;]",
+        documentation="""Required parameter to successfully reset the node. """,
         dictionaryType=None
     )
     options = data_model.property(
         "options", str,
         array=False, optional=True,
-        documentation="[&#x27;Specifications for running the reset operation.&#x27;]",
+        documentation="""Specifications for running the reset operation. """,
         dictionaryType=None
     )
     reboot = data_model.property(
         "reboot", bool,
         array=False, optional=True,
-        documentation="[&#x27;Should it be rebooted?&#x27;]",
+        documentation="""Should it be rebooted? """,
         dictionaryType=None
     )
 
@@ -9213,7 +9213,7 @@ class SetLoginSessionInfoRequest(data_model.DataObject):
     timeout = data_model.property(
         "timeout", str,
         array=False, optional=False,
-        documentation="[&#x27;Cluster authentication expiration period. Formatted in&#x27;, &#x27;HH:mm:ss. For example, 01:30:00, 00:90:00, and 00:00:5400 can&#x27;, &#x27;be used to equal a 90 minute timeout period. The default value is 30 minutes.&#x27;]",
+        documentation="""Cluster authentication expiration period. Formatted in HH:mm:ss. For example, 01:30:00, 00:90:00, and 00:00:5400 can be used to equal a 90 minute timeout period. The default value is 30 minutes. """,
         dictionaryType=None
     )
 
@@ -9236,19 +9236,19 @@ class CreateSnapshotResult(data_model.DataObject):
     snapshot = data_model.property(
         "snapshot", Snapshot,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=False,
-        documentation="[&#x27;ID of the newly-created snapshot.&#x27;]",
+        documentation="""ID of the newly-created snapshot. """,
         dictionaryType=None
     )
     checksum = data_model.property(
         "checksum", str,
         array=False, optional=False,
-        documentation="[&#x27;A string that represents the correct digits in the stored snapshot.&#x27;, &#x27;This checksum can be used later to compare other snapshots to detect errors in the data.&#x27;]",
+        documentation="""A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. """,
         dictionaryType=None
     )
 
@@ -9296,67 +9296,67 @@ class FibreChannelPortInfo(data_model.DataObject):
     firmware = data_model.property(
         "firmware", str,
         array=False, optional=False,
-        documentation="[&#x27;The version of the firmware installed on the Fibre Channel port.&#x27;]",
+        documentation="""The version of the firmware installed on the Fibre Channel port. """,
         dictionaryType=None
     )
     hba_port = data_model.property(
         "hbaPort", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the individual HBA port.&#x27;]",
+        documentation="""The ID of the individual HBA port. """,
         dictionaryType=None
     )
     model = data_model.property(
         "model", str,
         array=False, optional=False,
-        documentation="[&#x27;Model of the HBA on the port.&#x27;]",
+        documentation="""Model of the HBA on the port. """,
         dictionaryType=None
     )
     n_port_id = data_model.property(
         "nPortID", str,
         array=False, optional=False,
-        documentation="[&#x27;Unique SolidFire port node ID.&#x27;]",
+        documentation="""Unique SolidFire port node ID. """,
         dictionaryType=None
     )
     pci_slot = data_model.property(
         "pciSlot", int,
         array=False, optional=False,
-        documentation="[&#x27;Slot in which the pci card resides on the Fibre Channel node hardware.&#x27;]",
+        documentation="""Slot in which the pci card resides on the Fibre Channel node hardware. """,
         dictionaryType=None
     )
     serial = data_model.property(
         "serial", str,
         array=False, optional=False,
-        documentation="[&#x27;Serial number on the Fibre Channel port.&#x27;]",
+        documentation="""Serial number on the Fibre Channel port. """,
         dictionaryType=None
     )
     speed = data_model.property(
         "speed", str,
         array=False, optional=False,
-        documentation="[&#x27;Speed of the HBA on the port.&#x27;]",
+        documentation="""Speed of the HBA on the port. """,
         dictionaryType=None
     )
     state = data_model.property(
         "state", str,
         array=False, optional=False,
-        documentation="[&#x27;Possible values:&#x27;, u&#x27;&#x27;, &#x27;&lt;strong&gt;UnknownNotPresentOnlineOfflineBlockedBypassedDiagnosticsLinkdownErrorLoopbackDeleted&lt;/strong&gt;&#x27;]",
+        documentation="""Possible values:  <strong>UnknownNotPresentOnlineOfflineBlockedBypassedDiagnosticsLinkdownErrorLoopbackDeleted</strong> """,
         dictionaryType=None
     )
     switch_wwn = data_model.property(
         "switchWwn", str,
         array=False, optional=False,
-        documentation="[&#x27;The World Wide Name of the Fibre Channel switch port.&#x27;]",
+        documentation="""The World Wide Name of the Fibre Channel switch port. """,
         dictionaryType=None
     )
     wwnn = data_model.property(
         "wwnn", str,
         array=False, optional=False,
-        documentation="[&#x27;World Wide Node Name of the HBA node.&#x27;]",
+        documentation="""World Wide Node Name of the HBA node. """,
         dictionaryType=None
     )
     wwpn = data_model.property(
         "wwpn", str,
         array=False, optional=False,
-        documentation="[&#x27;World Wide Port Name assigned to the physical port of the HBA.&#x27;]",
+        documentation="""World Wide Port Name assigned to the physical port of the HBA. """,
         dictionaryType=None
     )
 
@@ -9374,7 +9374,7 @@ class FibreChannelPortList(data_model.DataObject):
     fibre_channel_ports = data_model.property(
         "fibreChannelPorts", FibreChannelPortInfo,
         array=True, optional=False,
-        documentation="[&#x27;List of all physical Fibre Channel ports.&#x27;]",
+        documentation="""List of all physical Fibre Channel ports. """,
         dictionaryType=None
     )
 
@@ -9392,7 +9392,7 @@ class FibreChannelPortInfoResult(data_model.DataObject):
     result = data_model.property(
         "result", FibreChannelPortList,
         array=False, optional=False,
-        documentation="[&#x27;Used to return information about the Fibre Channel ports.&#x27;]",
+        documentation="""Used to return information about the Fibre Channel ports. """,
         dictionaryType=None
     )
 
@@ -9410,7 +9410,7 @@ class ListFibreChannelPortInfoResult(data_model.DataObject):
     fibre_channel_port_info = data_model.property(
         "fibreChannelPortInfo", dict,
         array=False, optional=False,
-        documentation="[&#x27;Used to return information about the Fibre Channel ports.&#x27;]",
+        documentation="""Used to return information about the Fibre Channel ports. """,
         dictionaryType=FibreChannelPortInfoResult
     )
 
@@ -9443,7 +9443,7 @@ class ListDeletedVolumesResult(data_model.DataObject):
     volumes = data_model.property(
         "volumes", Volume,
         array=True, optional=False,
-        documentation="[&#x27;List of deleted volumes.&#x27;]",
+        documentation="""List of deleted volumes. """,
         dictionaryType=None
     )
 
@@ -9464,13 +9464,13 @@ class ListSnapshotsRequest(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=True,
-        documentation="[&#x27;Retrieves snapshots for a volume. If volumeID is not provided,&#x27;, &#x27;all snapshots for all volumes are returned.&#x27;]",
+        documentation="""Retrieves snapshots for a volume. If volumeID is not provided, all snapshots for all volumes are returned. """,
         dictionaryType=None
     )
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=True,
-        documentation="[&#x27;Retrieves information for a specific snapshot ID.&#x27;]",
+        documentation="""Retrieves information for a specific snapshot ID. """,
         dictionaryType=None
     )
 
@@ -9487,7 +9487,7 @@ class ListActiveVolumesResult(data_model.DataObject):
     volumes = data_model.property(
         "volumes", Volume,
         array=True, optional=False,
-        documentation="[&#x27;List of active volumes.&#x27;]",
+        documentation="""List of active volumes. """,
         dictionaryType=None
     )
 
@@ -9507,13 +9507,13 @@ class GetNtpInfoResult(data_model.DataObject):
     broadcastclient = data_model.property(
         "broadcastclient", bool,
         array=False, optional=False,
-        documentation="[&#x27;Indicates whether or not the nodes in the cluster are listening for broadcast NTP messages. Possible values:&#x27;, &#x27;true&#x27;, &#x27;false&#x27;]",
+        documentation="""Indicates whether or not the nodes in the cluster are listening for broadcast NTP messages. Possible values: true false """,
         dictionaryType=None
     )
     servers = data_model.property(
         "servers", str,
         array=True, optional=False,
-        documentation="[&#x27;List of NTP servers.&#x27;]",
+        documentation="""List of NTP servers. """,
         dictionaryType=None
     )
 
@@ -9533,7 +9533,7 @@ class ListAsyncResultsRequest(data_model.DataObject):
     async_result_types = data_model.property(
         "asyncResultTypes", str,
         array=True, optional=True,
-        documentation="[&#x27;An optional list of types of results. You can use this list to restrict the&#x27;, &#x27;results to only these types of operations. Possible values are:&#x27;, &#x27;BulkVolume: Copy operations between volumes, such as backups or&#x27;, &#x27;restores.&#x27;, &#x27;Clone: Volume cloning operations.&#x27;, &#x27;DriveRemoval: Operations involving the system copying data from a&#x27;, &#x27;drive in preparation to remove it from the cluster.&#x27;, &#x27;RtfiPendingNode: Operations involving the system installing&#x27;, &#x27;compatible software on a node before adding it to the cluster&#x27;]",
+        documentation="""An optional list of types of results. You can use this list to restrict the results to only these types of operations. Possible values are: BulkVolume: Copy operations between volumes, such as backups or restores. Clone: Volume cloning operations. DriveRemoval: Operations involving the system copying data from a drive in preparation to remove it from the cluster. RtfiPendingNode: Operations involving the system installing compatible software on a node before adding it to the cluster """,
         dictionaryType=None
     )
 
@@ -9550,7 +9550,7 @@ class ModifyAccountResult(data_model.DataObject):
     account = data_model.property(
         "account", Account,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -9567,7 +9567,7 @@ class GetVirtualVolumeCountResult(data_model.DataObject):
     count = data_model.property(
         "count", int,
         array=False, optional=False,
-        documentation="[&#x27;The number of virtual volumes currently in the system.&#x27;]",
+        documentation="""The number of virtual volumes currently in the system. """,
         dictionaryType=None
     )
 
@@ -9584,7 +9584,7 @@ class ListUtilitiesResult(data_model.DataObject):
     utilities = data_model.property(
         "utilities", str,
         array=False, optional=False,
-        documentation="[&#x27;List of utilities currently available to run on the node.&#x27;]",
+        documentation="""List of utilities currently available to run on the node. """,
         dictionaryType=None
     )
 
@@ -9610,19 +9610,19 @@ class RemoveInitiatorsFromVolumeAccessGroupRequest(data_model.DataObject):
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume access group&#x27;, &#x27;from which the initiators are removed.&#x27;]",
+        documentation="""The ID of the volume access group from which the initiators are removed. """,
         dictionaryType=None
     )
     initiators = data_model.property(
         "initiators", str,
         array=True, optional=False,
-        documentation="[&#x27;The list of initiators to remove from the volume&#x27;, &#x27;access group.&#x27;]",
+        documentation="""The list of initiators to remove from the volume access group. """,
         dictionaryType=None
     )
     delete_orphan_initiators = data_model.property(
         "deleteOrphanInitiators", bool,
         array=False, optional=True,
-        documentation="[&#x27;true: Delete initiator objects after they are removed from a volume access group.&#x27;, &#x27;false: Do not delete initiator objects after they are removed from a volume access group.&#x27;]",
+        documentation="""true: Delete initiator objects after they are removed from a volume access group. false: Do not delete initiator objects after they are removed from a volume access group. """,
         dictionaryType=None
     )
 
@@ -9647,19 +9647,19 @@ class SetDefaultQoSRequest(data_model.DataObject):
     min_iops = data_model.property(
         "minIOPS", int,
         array=False, optional=True,
-        documentation="[&#x27;The minimum number of sustained IOPS provided by the cluster to a&#x27;, &#x27;volume.&#x27;]",
+        documentation="""The minimum number of sustained IOPS provided by the cluster to a volume. """,
         dictionaryType=None
     )
     max_iops = data_model.property(
         "maxIOPS", int,
         array=False, optional=True,
-        documentation="[&#x27;The maximum number of sustained IOPS provided by the cluster to a&#x27;, &#x27;volume.&#x27;]",
+        documentation="""The maximum number of sustained IOPS provided by the cluster to a volume. """,
         dictionaryType=None
     )
     burst_iops = data_model.property(
         "burstIOPS", int,
         array=False, optional=True,
-        documentation="[&#x27;The maximum number of IOPS allowed in a short burst scenario.&#x27;]",
+        documentation="""The maximum number of IOPS allowed in a short burst scenario. """,
         dictionaryType=None
     )
 
@@ -9686,7 +9686,7 @@ class DeleteStorageContainersRequest(data_model.DataObject):
     storage_container_ids = data_model.property(
         "storageContainerIDs", UUID,
         array=True, optional=False,
-        documentation="[&#x27;A list of IDs of the storage containers to delete. You can specify up to 2000 IDs in the list.&#x27;]",
+        documentation="""A list of IDs of the storage containers to delete. You can specify up to 2000 IDs in the list. """,
         dictionaryType=None
     )
 
@@ -9729,43 +9729,43 @@ class VolumeAccessGroup(data_model.DataObject):
     deleted_volumes = data_model.property(
         "deletedVolumes", int,
         array=True, optional=False,
-        documentation="[&#x27;A list of deleted volumes that have yet to be purged from the VAG.&#x27;]",
+        documentation="""A list of deleted volumes that have yet to be purged from the VAG. """,
         dictionaryType=None
     )
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique ID for this volume access group.&#x27;]",
+        documentation="""Unique ID for this volume access group. """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;Name of the volume access group.&#x27;]",
+        documentation="""Name of the volume access group. """,
         dictionaryType=None
     )
     initiator_ids = data_model.property(
         "initiatorIDs", int,
         array=True, optional=False,
-        documentation="[&#x27;A list of IDs of initiators that are mapped to the VAG.&#x27;]",
+        documentation="""A list of IDs of initiators that are mapped to the VAG. """,
         dictionaryType=None
     )
     initiators = data_model.property(
         "initiators", str,
         array=True, optional=False,
-        documentation="[&#x27;List of unique initiator names beintegering to the volume access group.&#x27;]",
+        documentation="""List of unique initiator names beintegering to the volume access group. """,
         dictionaryType=None
     )
     volumes = data_model.property(
         "volumes", int,
         array=True, optional=False,
-        documentation="[&#x27;List of volumes beintegering to the volume access group.&#x27;]",
+        documentation="""List of volumes beintegering to the volume access group. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=False,
-        documentation="[&#x27;List of name/value pairs&#x27;]",
+        documentation="""List of name/value pairs """,
         dictionaryType=None
     )
 
@@ -9785,13 +9785,13 @@ class CreateVolumeAccessGroupResult(data_model.DataObject):
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID for the newly-created volume access group.&#x27;]",
+        documentation="""The ID for the newly-created volume access group. """,
         dictionaryType=None
     )
     volume_access_group = data_model.property(
         "volumeAccessGroup", VolumeAccessGroup,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -9818,25 +9818,25 @@ class CreateStorageContainerRequest(data_model.DataObject):
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;The name of the storage container. Follows SolidFire account&#x27;, &#x27;naming restrictions.&#x27;]",
+        documentation="""The name of the storage container. Follows SolidFire account naming restrictions. """,
         dictionaryType=None
     )
     initiator_secret = data_model.property(
         "initiatorSecret", str,
         array=False, optional=True,
-        documentation="[&#x27;The secret for CHAP authentication for the initiator.&#x27;]",
+        documentation="""The secret for CHAP authentication for the initiator. """,
         dictionaryType=None
     )
     target_secret = data_model.property(
         "targetSecret", str,
         array=False, optional=True,
-        documentation="[&#x27;The secret for CHAP authentication for the target.&#x27;]",
+        documentation="""The secret for CHAP authentication for the target. """,
         dictionaryType=None
     )
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=True,
-        documentation="[&#x27;Non-storage container account that will become a&#x27;, &#x27;storage container.&#x27;]",
+        documentation="""Non-storage container account that will become a storage container. """,
         dictionaryType=None
     )
 
@@ -9853,7 +9853,7 @@ class AddVirtualNetworkResult(data_model.DataObject):
     virtual_network_id = data_model.property(
         "virtualNetworkID", int,
         array=False, optional=True,
-        documentation="[&#x27;The virtual network ID of the new virtual network.&#x27;]",
+        documentation="""The virtual network ID of the new virtual network. """,
         dictionaryType=None
     )
 
@@ -9875,13 +9875,13 @@ class AddNodesRequest(data_model.DataObject):
     pending_nodes = data_model.property(
         "pendingNodes", int,
         array=True, optional=False,
-        documentation="[&#x27; List of pending NodeIDs for the nodes to be added. You can  obtain the list of pending nodes using the ListPendingNodes method.&#x27;]",
+        documentation=""" List of pending NodeIDs for the nodes to be added. You can  obtain the list of pending nodes using the ListPendingNodes method. """,
         dictionaryType=None
     )
     auto_install = data_model.property(
         "autoInstall", bool,
         array=False, optional=True,
-        documentation="[&#x27;Whether these nodes should be autoinstalled&#x27;]",
+        documentation="""Whether these nodes should be autoinstalled """,
         dictionaryType=None
     )
 
@@ -9922,55 +9922,55 @@ class RtfiInfo(data_model.DataObject):
     mipi = data_model.property(
         "mipi", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     generation = data_model.property(
         "generation", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     status_url_logfile = data_model.property(
         "statusUrlLogfile", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     build = data_model.property(
         "build", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     status_url_all = data_model.property(
         "statusUrlAll", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     generation_next = data_model.property(
         "generationNext", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     mip = data_model.property(
         "mip", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     status_url_current = data_model.property(
         "statusUrlCurrent", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     options = data_model.property(
         "options", dict,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -9987,7 +9987,7 @@ class ResetNodeDetails(data_model.DataObject):
     rtfi_info = data_model.property(
         "rtfiInfo", RtfiInfo,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -10013,25 +10013,25 @@ class ResetNodeResult(data_model.DataObject):
     details = data_model.property(
         "details", ResetNodeDetails,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     duration = data_model.property(
         "duration", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     result = data_model.property(
         "result", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     rtfi_info = data_model.property(
         "rtfiInfo", RtfiInfo,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -10076,61 +10076,61 @@ class EnableLdapAuthenticationRequest(data_model.DataObject):
     auth_type = data_model.property(
         "authType", str,
         array=False, optional=True,
-        documentation="[&#x27;Identifies which user authentication method to use. Must be one of the following:&#x27;, &#x27;DirectBind&#x27;, &#x27;SearchAndBind&#x27;]",
+        documentation="""Identifies which user authentication method to use. Must be one of the following: DirectBind SearchAndBind """,
         dictionaryType=None
     )
     group_search_base_dn = data_model.property(
         "groupSearchBaseDN", str,
         array=False, optional=True,
-        documentation="[&#x27;The base DN of the tree to start the group search (will do a subtree search from here).&#x27;]",
+        documentation="""The base DN of the tree to start the group search (will do a subtree search from here). """,
         dictionaryType=None
     )
     group_search_custom_filter = data_model.property(
         "groupSearchCustomFilter", str,
         array=False, optional=True,
-        documentation="[&#x27;For use with the CustomFilter search type, an LDAP filter to use to return the DNs of a users groups. The string can have placeholder text of %USERNAME% and %USERDN% to be replaced with their username and full userDN as needed.&#x27;]",
+        documentation="""For use with the CustomFilter search type, an LDAP filter to use to return the DNs of a users groups. The string can have placeholder text of %USERNAME% and %USERDN% to be replaced with their username and full userDN as needed. """,
         dictionaryType=None
     )
     group_search_type = data_model.property(
         "groupSearchType", str,
         array=False, optional=True,
-        documentation="[&#x27;Controls the default group search filter used, and must be one of the following:&#x27;, &#x27;NoGroups: No group support.&#x27;, &#x27;ActiveDirectory: Nested membership of all of a users AD groups.&#x27;, &#x27;MemberDN: MemberDN style groups (single level).&#x27;]",
+        documentation="""Controls the default group search filter used, and must be one of the following: NoGroups: No group support. ActiveDirectory: Nested membership of all of a users AD groups. MemberDN: MemberDN style groups (single level). """,
         dictionaryType=None
     )
     search_bind_dn = data_model.property(
         "searchBindDN", str,
         array=False, optional=True,
-        documentation="[&#x27;A fully qualified DN to log in with to perform an LDAP search for the user (needs read access to the LDAP directory).&#x27;]",
+        documentation="""A fully qualified DN to log in with to perform an LDAP search for the user (needs read access to the LDAP directory). """,
         dictionaryType=None
     )
     search_bind_password = data_model.property(
         "searchBindPassword", str,
         array=False, optional=True,
-        documentation="[&#x27;The password for the searchBindDN account used for searching.&#x27;]",
+        documentation="""The password for the searchBindDN account used for searching. """,
         dictionaryType=None
     )
     server_uris = data_model.property(
         "serverURIs", str,
         array=True, optional=False,
-        documentation="[&#x27;A comma-separated list of LDAP server URIs (examples: &quot;ldap://1.2.3.4&quot; and ldaps://1.2.3.4:123&quot;)&#x27;]",
+        documentation="""A comma-separated list of LDAP server URIs (examples: "ldap://1.2.3.4" and ldaps://1.2.3.4:123") """,
         dictionaryType=None
     )
     user_dntemplate = data_model.property(
         "userDNTemplate", str,
         array=False, optional=True,
-        documentation="[&#x27;A string that is used to form a fully qualified user DN. The string should have the placeholder text %USERNAME%, which is replaced with the username of the authenticating user.&#x27;]",
+        documentation="""A string that is used to form a fully qualified user DN. The string should have the placeholder text %USERNAME%, which is replaced with the username of the authenticating user. """,
         dictionaryType=None
     )
     user_search_base_dn = data_model.property(
         "userSearchBaseDN", str,
         array=False, optional=True,
-        documentation="[&#x27;The base DN of the tree to start the search (will do a subtree search from here).&#x27;]",
+        documentation="""The base DN of the tree to start the search (will do a subtree search from here). """,
         dictionaryType=None
     )
     user_search_filter = data_model.property(
         "userSearchFilter", str,
         array=False, optional=True,
-        documentation="[&#x27;The LDAP filter to use. The string should have the placeholder text %USERNAME% which is replaced with the username of the authenticating user. Example: (&amp;(objectClass=person)(sAMAccountName=%USERNAME%)) will use the sAMAccountName field in Active Directory to match the username entered at cluster login.&#x27;]",
+        documentation="""The LDAP filter to use. The string should have the placeholder text %USERNAME% which is replaced with the username of the authenticating user. Example: (&(objectClass=person)(sAMAccountName=%USERNAME%)) will use the sAMAccountName field in Active Directory to match the username entered at cluster login. """,
         dictionaryType=None
     )
 
@@ -10150,13 +10150,13 @@ class NodeStateInfo(data_model.DataObject):
     cluster = data_model.property(
         "cluster", str,
         array=False, optional=False,
-        documentation="[&#x27;Name of the cluster.&#x27;]",
+        documentation="""Name of the cluster. """,
         dictionaryType=None
     )
     state = data_model.property(
         "state", str,
         array=False, optional=False,
-        documentation="[&#x27;&lt;strong&gt;Available:&lt;/strong&gt; Node has not been configured with a cluster name.&lt;br&gt;&lt;strong&gt;Pending:&lt;/strong&gt; Node is pending for a specific named cluster and can be added.&lt;br&gt;&lt;strong&gt;Active:&lt;/strong&gt; Node is active and a member of a cluster and may not be added to another cluster.&#x27;]",
+        documentation="""<strong>Available:</strong> Node has not been configured with a cluster name.<br><strong>Pending:</strong> Node is pending for a specific named cluster and can be added.<br><strong>Active:</strong> Node is active and a member of a cluster and may not be added to another cluster. """,
         dictionaryType=None
     )
 
@@ -10176,13 +10176,13 @@ class NodeStateResult(data_model.DataObject):
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
-        documentation="[&#x27;ID of the node.&#x27;]",
+        documentation="""ID of the node. """,
         dictionaryType=None
     )
     result = data_model.property(
         "result", NodeStateInfo,
         array=False, optional=True,
-        documentation="[&#x27;NodeStateInfo object.&#x27;]",
+        documentation="""NodeStateInfo object. """,
         dictionaryType=None
     )
 
@@ -10205,19 +10205,19 @@ class GetClusterStateResult(data_model.DataObject):
     nodes = data_model.property(
         "nodes", NodeStateResult,
         array=True, optional=True,
-        documentation="[&#x27;Array of NodeStateResult objects for each node in the cluster.&#x27;]",
+        documentation="""Array of NodeStateResult objects for each node in the cluster. """,
         dictionaryType=None
     )
     cluster = data_model.property(
         "cluster", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     state = data_model.property(
         "state", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -10252,7 +10252,7 @@ class CancelCloneRequest(data_model.DataObject):
     clone_id = data_model.property(
         "cloneID", int,
         array=False, optional=False,
-        documentation="[&#x27;The cloneID for the ongoing clone process.&#x27;]",
+        documentation="""The cloneID for the ongoing clone process. """,
         dictionaryType=None
     )
 
@@ -10269,7 +10269,7 @@ class GetAccountResult(data_model.DataObject):
     account = data_model.property(
         "account", Account,
         array=False, optional=False,
-        documentation="[&#x27;Account details.&#x27;]",
+        documentation="""Account details. """,
         dictionaryType=None
     )
 
@@ -10287,7 +10287,7 @@ class GetAccountByIDRequest(data_model.DataObject):
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=False,
-        documentation="[&#x27;Specifies the account for which details are gathered.&#x27;]",
+        documentation="""Specifies the account for which details are gathered. """,
         dictionaryType=None
     )
 
@@ -10306,7 +10306,7 @@ class TestConnectEnsembleRequest(data_model.DataObject):
     ensemble = data_model.property(
         "ensemble", str,
         array=False, optional=True,
-        documentation="[&#x27;Uses a comma-separated list of ensemble node cluster IP addresses to test connectivity. This parameter is optional.&#x27;]",
+        documentation="""Uses a comma-separated list of ensemble node cluster IP addresses to test connectivity. This parameter is optional. """,
         dictionaryType=None
     )
 
@@ -10329,19 +10329,19 @@ class RollbackToSnapshotResult(data_model.DataObject):
     snapshot = data_model.property(
         "snapshot", Snapshot,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=True,
-        documentation="[&#x27;ID of the newly-created snapshot.&#x27;]",
+        documentation="""ID of the newly-created snapshot. """,
         dictionaryType=None
     )
     checksum = data_model.property(
         "checksum", str,
         array=False, optional=True,
-        documentation="[&#x27;A string that represents the correct digits in the stored snapshot.&#x27;, &#x27;This checksum can be used later to compare other snapshots to detect errors in the data.&#x27;]",
+        documentation="""A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. """,
         dictionaryType=None
     )
 
@@ -10358,7 +10358,7 @@ class GetSystemStatusResult(data_model.DataObject):
     reboot_required = data_model.property(
         "rebootRequired", bool,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -10378,7 +10378,7 @@ class GetClusterHardwareInfoRequest(data_model.DataObject):
     type = data_model.property(
         "type", str,
         array=False, optional=True,
-        documentation="[&#x27;Includes only a certain type of hardware information in&#x27;, &#x27;the response. Possible values are:&#x27;, &#x27;drives: List only drive information in the response.&#x27;, &#x27;nodes: List only node information in the response.&#x27;, &#x27;all: Include both drive and node information in the&#x27;, &#x27;response.&#x27;, &#x27;If this parameter is omitted, a type of &quot;all&quot; is assumed.&#x27;]",
+        documentation="""Includes only a certain type of hardware information in the response. Possible values are: drives: List only drive information in the response. nodes: List only node information in the response. all: Include both drive and node information in the response. If this parameter is omitted, a type of "all" is assumed. """,
         dictionaryType=None
     )
 
@@ -10396,7 +10396,7 @@ class RemoveBackupTargetRequest(data_model.DataObject):
     backup_target_id = data_model.property(
         "backupTargetID", int,
         array=False, optional=False,
-        documentation="[&#x27;The unique target ID of the target to remove.&#x27;]",
+        documentation="""The unique target ID of the target to remove. """,
         dictionaryType=None
     )
 
@@ -10430,37 +10430,37 @@ class CreateVolumeRequest(data_model.DataObject):
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;The name of the volume access group (might be user specified).&#x27;, &#x27;Not required to be unique, but recommended.&#x27;, &#x27;Might be 1 to 64 characters in length.&#x27;]",
+        documentation="""The name of the volume access group (might be user specified). Not required to be unique, but recommended. Might be 1 to 64 characters in length. """,
         dictionaryType=None
     )
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=False,
-        documentation="[&#x27;AccountID for the owner of this volume.&#x27;]",
+        documentation="""AccountID for the owner of this volume. """,
         dictionaryType=None
     )
     total_size = data_model.property(
         "totalSize", int,
         array=False, optional=False,
-        documentation="[&#x27;Total size of the volume, in bytes. Size is rounded up to&#x27;, &#x27;the nearest 1MB size.&#x27;]",
+        documentation="""Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size. """,
         dictionaryType=None
     )
     enable512e = data_model.property(
         "enable512e", bool,
         array=False, optional=False,
-        documentation="[&#x27;Specifies whether 512e emulation is enabled or not. Possible values are:&#x27;, &#x27;true: The volume provides 512-byte sector emulation.&#x27;, &#x27;false: 512e emulation is not enabled.&#x27;]",
+        documentation="""Specifies whether 512e emulation is enabled or not. Possible values are: true: The volume provides 512-byte sector emulation. false: 512e emulation is not enabled. """,
         dictionaryType=None
     )
     qos = data_model.property(
         "qos", QoS,
         array=False, optional=True,
-        documentation="[&#x27;Initial quality of service settings for this volume. Default&#x27;, &#x27;values are used if none are specified. Valid settings are:&#x27;, &#x27;minIOPS&#x27;, &#x27;maxIOPS&#x27;, &#x27;burstIOPS&#x27;, &#x27;You can get the default values for a volume by using the GetDefaultQoS method.&#x27;]",
+        documentation="""Initial quality of service settings for this volume. Default values are used if none are specified. Valid settings are: minIOPS maxIOPS burstIOPS You can get the default values for a volume by using the GetDefaultQoS method. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;The list of name-value pairs in JSON object format.&#x27;, &#x27;Total attribute size must be less than 1000B, or 1KB,&#x27;, &#x27;including JSON formatting characters.&#x27;]",
+        documentation="""The list of name-value pairs in JSON object format. Total attribute size must be less than 1000B, or 1KB, including JSON formatting characters. """,
         dictionaryType=None
     )
 
@@ -10488,7 +10488,7 @@ class SetConfigRequest(data_model.DataObject):
     config = data_model.property(
         "config", Config,
         array=False, optional=False,
-        documentation="[&#x27;Objects that you want changed for the cluster interface settings.&#x27;]",
+        documentation="""Objects that you want changed for the cluster interface settings. """,
         dictionaryType=None
     )
 
@@ -10521,37 +10521,37 @@ class ModifyVolumesRequest(data_model.DataObject):
     volume_ids = data_model.property(
         "volumeIDs", int,
         array=True, optional=False,
-        documentation="[&#x27;A list of volumeIDs for the volumes to be modified.&#x27;]",
+        documentation="""A list of volumeIDs for the volumes to be modified. """,
         dictionaryType=None
     )
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=True,
-        documentation="[&#x27;AccountID to which the volume is reassigned. If none is specified, the previous account name is used.&#x27;]",
+        documentation="""AccountID to which the volume is reassigned. If none is specified, the previous account name is used. """,
         dictionaryType=None
     )
     access = data_model.property(
         "access", str,
         array=False, optional=True,
-        documentation="[&#x27;Access allowed for the volume. Possible values:readOnly: Only read operations are allowed.readWrite: Reads and writes are allowed.locked: No reads or writes are allowed.If not specified, the access value does not change.replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.If a value is not specified, the access value does not change. &#x27;]",
+        documentation="""Access allowed for the volume. Possible values:readOnly: Only read operations are allowed.readWrite: Reads and writes are allowed.locked: No reads or writes are allowed.If not specified, the access value does not change.replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.If a value is not specified, the access value does not change.  """,
         dictionaryType=None
     )
     qos = data_model.property(
         "qos", QoS,
         array=False, optional=True,
-        documentation="[&#x27;New quality of service settings for this volume.If not specified, the QoS settings are not changed.&#x27;]",
+        documentation="""New quality of service settings for this volume.If not specified, the QoS settings are not changed. """,
         dictionaryType=None
     )
     total_size = data_model.property(
         "totalSize", int,
         array=False, optional=True,
-        documentation="[&#x27;New size of the volume in bytes. 1000000000 is equal to 1GB. Size is rounded up to the nearest 1MB in size. This parameter can only be used to increase the size of a volume.&#x27;]",
+        documentation="""New size of the volume in bytes. 1000000000 is equal to 1GB. Size is rounded up to the nearest 1MB in size. This parameter can only be used to increase the size of a volume. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of name/value pairs in JSON object format.&#x27;]",
+        documentation="""List of name/value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -10568,7 +10568,7 @@ class ListPendingNodesResult(data_model.DataObject):
     pending_nodes = data_model.property(
         "pendingNodes", PendingNode,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -10593,7 +10593,7 @@ class ListActivePairedVolumesResult(data_model.DataObject):
     volumes = data_model.property(
         "volumes", Volume,
         array=True, optional=False,
-        documentation="[&#x27;Volume information for the paired volumes.&#x27;]",
+        documentation="""Volume information for the paired volumes. """,
         dictionaryType=None
     )
 
@@ -10611,7 +10611,7 @@ class RestoreDeletedVolumeRequest(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;VolumeID of the deleted volume to be restored.&#x27;]",
+        documentation="""VolumeID of the deleted volume to be restored. """,
         dictionaryType=None
     )
 
@@ -10633,13 +10633,13 @@ class SetNtpInfoRequest(data_model.DataObject):
     servers = data_model.property(
         "servers", str,
         array=True, optional=False,
-        documentation="[&#x27;List of NTP servers to add to each nodes NTP configuration.&#x27;]",
+        documentation="""List of NTP servers to add to each nodes NTP configuration. """,
         dictionaryType=None
     )
     broadcastclient = data_model.property(
         "broadcastclient", bool,
         array=False, optional=True,
-        documentation="[&#x27;Enables every node in the cluster as a broadcast client.&#x27;]",
+        documentation="""Enables every node in the cluster as a broadcast client. """,
         dictionaryType=None
     )
 
@@ -10659,13 +10659,13 @@ class StartClusterPairingResult(data_model.DataObject):
     cluster_pairing_key = data_model.property(
         "clusterPairingKey", str,
         array=False, optional=False,
-        documentation="[&#x27;A string of characters that is used by the &quot;CompleteClusterPairing&quot; API method.&#x27;]",
+        documentation="""A string of characters that is used by the "CompleteClusterPairing" API method. """,
         dictionaryType=None
     )
     cluster_pair_id = data_model.property(
         "clusterPairID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique identifier for the cluster pair.&#x27;]",
+        documentation="""Unique identifier for the cluster pair. """,
         dictionaryType=None
     )
 
@@ -10693,7 +10693,7 @@ class RemoveAccountRequest(data_model.DataObject):
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=False,
-        documentation="[&#x27;Specifies the AccountID for the account to be removed.&#x27;]",
+        documentation="""Specifies the AccountID for the account to be removed. """,
         dictionaryType=None
     )
 
@@ -10710,7 +10710,7 @@ class CreateStorageContainerResult(data_model.DataObject):
     storage_container = data_model.property(
         "storageContainer", StorageContainer,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -10735,7 +10735,7 @@ class ListGroupSnapshotsResult(data_model.DataObject):
     group_snapshots = data_model.property(
         "groupSnapshots", GroupSnapshot,
         array=True, optional=False,
-        documentation="[&#x27;List of Group Snapshots.&#x27;]",
+        documentation="""List of Group Snapshots. """,
         dictionaryType=None
     )
 
@@ -10753,7 +10753,7 @@ class GetNvramInfoRequest(data_model.DataObject):
     force = data_model.property(
         "force", bool,
         array=False, optional=True,
-        documentation="[&#x27;Required parameter to successfully run on all&#x27;, &#x27;nodes in the cluster.&#x27;]",
+        documentation="""Required parameter to successfully run on all nodes in the cluster. """,
         dictionaryType=None
     )
 
@@ -10782,31 +10782,31 @@ class GetVolumeEfficiencyResult(data_model.DataObject):
     compression = data_model.property(
         "compression", float,
         array=False, optional=True,
-        documentation="[&#x27;The amount of space being saved by compressing data on a single volume.&#x27;, &#x27;Stated as a ratio where &quot;1&quot; means data has been stored without being compressed.&#x27;]",
+        documentation="""The amount of space being saved by compressing data on a single volume. Stated as a ratio where "1" means data has been stored without being compressed. """,
         dictionaryType=None
     )
     deduplication = data_model.property(
         "deduplication", float,
         array=False, optional=False,
-        documentation="[&#x27;The amount of space being saved on a single volume by not duplicating data.&#x27;, &#x27;Stated as a ratio.&#x27;]",
+        documentation="""The amount of space being saved on a single volume by not duplicating data. Stated as a ratio. """,
         dictionaryType=None
     )
     missing_volumes = data_model.property(
         "missingVolumes", int,
         array=True, optional=False,
-        documentation="[&#x27;The volumes that could not be queried for efficiency data.&#x27;, &#x27;Missing volumes can be caused by GC being less than hour old, temporary network loss or restarted services since the GC cycle.&#x27;]",
+        documentation="""The volumes that could not be queried for efficiency data. Missing volumes can be caused by GC being less than hour old, temporary network loss or restarted services since the GC cycle. """,
         dictionaryType=None
     )
     thin_provisioning = data_model.property(
         "thinProvisioning", float,
         array=False, optional=False,
-        documentation="[&#x27;The ratio of space used to the amount of space allocated for storing data.&#x27;, &#x27;Stated as a ratio.&#x27;]",
+        documentation="""The ratio of space used to the amount of space allocated for storing data. Stated as a ratio. """,
         dictionaryType=None
     )
     timestamp = data_model.property(
         "timestamp", str,
         array=False, optional=False,
-        documentation="[&#x27;The last time efficiency data was collected after Garbage Collection (GC).&#x27;]",
+        documentation="""The last time efficiency data was collected after Garbage Collection (GC). """,
         dictionaryType=None
     )
 
@@ -10826,13 +10826,13 @@ class PendingOperation(data_model.DataObject):
     pending = data_model.property(
         "pending", bool,
         array=False, optional=False,
-        documentation="[&#x27;true: operation is still in progress.&#x27;, &#x27;false: operation is no integerer in progress.&#x27;]",
+        documentation="""true: operation is still in progress. false: operation is no integerer in progress. """,
         dictionaryType=None
     )
     operation = data_model.property(
         "operation", str,
         array=False, optional=False,
-        documentation="[&#x27;Name of operation that is in progress or has completed.&#x27;]",
+        documentation="""Name of operation that is in progress or has completed. """,
         dictionaryType=None
     )
 
@@ -10849,7 +10849,7 @@ class GetPendingOperationResult(data_model.DataObject):
     pending_operation = data_model.property(
         "pendingOperation", PendingOperation,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -10881,37 +10881,37 @@ class CloneMultipleVolumeParams(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;Required parameter for &quot;volumes&quot; array: volumeID.&#x27;]",
+        documentation="""Required parameter for "volumes" array: volumeID. """,
         dictionaryType=None
     )
     access = data_model.property(
         "access", str,
         array=False, optional=True,
-        documentation="[&#x27;Access settings for the new volume.&#x27;, &#x27;readOnly: Only read operations are allowed.&#x27;, &#x27;readWrite: Reads and writes are allowed.&#x27;, &#x27;locked: No reads or writes are allowed.&#x27;, &#x27;replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.&#x27;, u&#x27;&#x27;, &#x27;If unspecified, the access settings of the clone will be the same as the source.&#x27;]",
+        documentation="""Access settings for the new volume. readOnly: Only read operations are allowed. readWrite: Reads and writes are allowed. locked: No reads or writes are allowed. replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked.  If unspecified, the access settings of the clone will be the same as the source. """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=True,
-        documentation="[&#x27;New name for the clone.&#x27;]",
+        documentation="""New name for the clone. """,
         dictionaryType=None
     )
     new_account_id = data_model.property(
         "newAccountID", int,
         array=False, optional=True,
-        documentation="[&#x27;Account ID for the new volume.&#x27;]",
+        documentation="""Account ID for the new volume. """,
         dictionaryType=None
     )
     new_size = data_model.property(
         "newSize", int,
         array=False, optional=True,
-        documentation="[&#x27;New size Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size.&#x27;]",
+        documentation="""New size Total size of the volume, in bytes. Size is rounded up to the nearest 1MB size. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="""List of Name/Value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -10941,7 +10941,7 @@ class GetVolumeAccessGroupEfficiencyRequest(data_model.DataObject):
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation="[&#x27;The volume access group for which&#x27;, &#x27;capacity is computed.&#x27;]",
+        documentation="""The volume access group for which capacity is computed. """,
         dictionaryType=None
     )
 
@@ -10976,25 +10976,25 @@ class CreateInitiator(data_model.DataObject):
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;(Required) The name of the initiator (IQN or WWPN) to create. (String)&#x27;]",
+        documentation="""(Required) The name of the initiator (IQN or WWPN) to create. (String) """,
         dictionaryType=None
     )
     alias = data_model.property(
         "alias", str,
         array=False, optional=True,
-        documentation="[&#x27;(Optional) The friendly name to assign to this initiator. (String)&#x27;]",
+        documentation="""(Optional) The friendly name to assign to this initiator. (String) """,
         dictionaryType=None
     )
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=True,
-        documentation="[&#x27;(Optional) The ID of the volume access group to which this newly created initiator will be added. (Integer)&#x27;]",
+        documentation="""(Optional) The ID of the volume access group to which this newly created initiator will be added. (Integer) """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;(Optional) A set of JSON attributes assigned to this initiator. (JSON Object)&#x27;]",
+        documentation="""(Optional) A set of JSON attributes assigned to this initiator. (JSON Object) """,
         dictionaryType=None
     )
 
@@ -11015,7 +11015,7 @@ class CreateInitiatorsRequest(data_model.DataObject):
     initiators = data_model.property(
         "initiators", CreateInitiator,
         array=True, optional=False,
-        documentation="[&#x27;A list of objects containing characteristics of each new initiator. Values are:&#x27;, &#x27;name: (Required) The name of the initiator (IQN or WWPN) to create.&#x27;, &#x27;(String)&#x27;, &#x27;alias: (Optional) The friendly name to assign to this initiator. (String)&#x27;, &#x27;attributes: (Optional) A set of JSON attributes to assign to this initiator.&#x27;, &#x27;(JSON Object)&#x27;, &#x27;volumeAccessGroupID: (Optional) The ID of the volume access group&#x27;, &#x27;into to which this newly created initiator will be added. (Integer)&#x27;]",
+        documentation="""A list of objects containing characteristics of each new initiator. Values are: name: (Required) The name of the initiator (IQN or WWPN) to create. (String) alias: (Optional) The friendly name to assign to this initiator. (String) attributes: (Optional) A set of JSON attributes to assign to this initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which this newly created initiator will be added. (Integer) """,
         dictionaryType=None
     )
 
@@ -11080,103 +11080,103 @@ class GetClusterFullThresholdResult(data_model.DataObject):
     block_fullness = data_model.property(
         "blockFullness", str,
         array=False, optional=False,
-        documentation="[&#x27;Current computed level of block fullness of the cluster.&#x27;, &#x27;Possible values: stage1Happy: No alerts or error conditions. stage2Aware: 3 nodes of capacity available. stage3Low: 2 nodes of capacity available. stage4Critical: 1 node of capacity available. No new volumes or clones can be created. stage5CompletelyConsumed: Completely consumed. Cluster is read-only, iSCSI connection is maintained but all writes are suspended.&#x27;]",
+        documentation="""Current computed level of block fullness of the cluster. Possible values: stage1Happy: No alerts or error conditions. stage2Aware: 3 nodes of capacity available. stage3Low: 2 nodes of capacity available. stage4Critical: 1 node of capacity available. No new volumes or clones can be created. stage5CompletelyConsumed: Completely consumed. Cluster is read-only, iSCSI connection is maintained but all writes are suspended. """,
         dictionaryType=None
     )
     fullness = data_model.property(
         "fullness", str,
         array=False, optional=False,
-        documentation="[&#x27;Reflects the highest level of fullness between &quot;blockFullness&quot; and &quot;metadataFullness&quot;.&#x27;]",
+        documentation="""Reflects the highest level of fullness between "blockFullness" and "metadataFullness". """,
         dictionaryType=None
     )
     max_metadata_over_provision_factor = data_model.property(
         "maxMetadataOverProvisionFactor", int,
         array=False, optional=False,
-        documentation="[&#x27;A value representative of the number of times metadata space can be over provisioned relative to the amount of space available. For example, if there was enough metadata space to store 100 TiB of volumes and this number was set to 5, then 500 TiB worth of volumes could be created.&#x27;]",
+        documentation="""A value representative of the number of times metadata space can be over provisioned relative to the amount of space available. For example, if there was enough metadata space to store 100 TiB of volumes and this number was set to 5, then 500 TiB worth of volumes could be created. """,
         dictionaryType=None
     )
     metadata_fullness = data_model.property(
         "metadataFullness", str,
         array=False, optional=False,
-        documentation="[&#x27;Current computed level of metadata fullness of the cluster.&#x27;]",
+        documentation="""Current computed level of metadata fullness of the cluster. """,
         dictionaryType=None
     )
     slice_reserve_used_threshold_pct = data_model.property(
         "sliceReserveUsedThresholdPct", int,
         array=False, optional=False,
-        documentation="[&#x27;Error condition; message sent to &quot;Alerts&quot; if the reserved slice utilization is greater than the sliceReserveUsedThresholdPct value returned.&#x27;]",
+        documentation="""Error condition; message sent to "Alerts" if the reserved slice utilization is greater than the sliceReserveUsedThresholdPct value returned. """,
         dictionaryType=None
     )
     stage2_aware_threshold = data_model.property(
         "stage2AwareThreshold", int,
         array=False, optional=False,
-        documentation="[&#x27;Awareness condition: Value that is set for &quot;Stage 2&quot; cluster threshold level.&#x27;]",
+        documentation="""Awareness condition: Value that is set for "Stage 2" cluster threshold level. """,
         dictionaryType=None
     )
     stage2_block_threshold_bytes = data_model.property(
         "stage2BlockThresholdBytes", int,
         array=False, optional=False,
-        documentation="[&#x27;Number of bytes being used by the cluster at which a stage2 condition will exist.&#x27;]",
+        documentation="""Number of bytes being used by the cluster at which a stage2 condition will exist. """,
         dictionaryType=None
     )
     stage3_block_threshold_bytes = data_model.property(
         "stage3BlockThresholdBytes", int,
         array=False, optional=False,
-        documentation="[&#x27;Number of bytes being used by the cluster at which a stage3 condition will exist.&#x27;]",
+        documentation="""Number of bytes being used by the cluster at which a stage3 condition will exist. """,
         dictionaryType=None
     )
     stage3_block_threshold_percent = data_model.property(
         "stage3BlockThresholdPercent", int,
         array=False, optional=False,
-        documentation="[&#x27;The percent value set for stage3. At this percent full, a warning will be posted in the Alerts log.&#x27;]",
+        documentation="""The percent value set for stage3. At this percent full, a warning will be posted in the Alerts log. """,
         dictionaryType=None
     )
     stage3_low_threshold = data_model.property(
         "stage3LowThreshold", int,
         array=False, optional=False,
-        documentation="[&#x27;Error condition; message sent to &quot;Alerts&quot; that capacity on a cluster is getting low.&#x27;]",
+        documentation="""Error condition; message sent to "Alerts" that capacity on a cluster is getting low. """,
         dictionaryType=None
     )
     stage4_critical_threshold = data_model.property(
         "stage4CriticalThreshold", int,
         array=False, optional=False,
-        documentation="[&#x27;Error condition; message sent to &quot;Alerts&quot; that capacity on a cluster is critically low.&#x27;]",
+        documentation="""Error condition; message sent to "Alerts" that capacity on a cluster is critically low. """,
         dictionaryType=None
     )
     stage4_block_threshold_bytes = data_model.property(
         "stage4BlockThresholdBytes", int,
         array=False, optional=False,
-        documentation="[&#x27;Number of bytes being used by the cluster at which a stage4 condition will exist.&#x27;]",
+        documentation="""Number of bytes being used by the cluster at which a stage4 condition will exist. """,
         dictionaryType=None
     )
     stage5_block_threshold_bytes = data_model.property(
         "stage5BlockThresholdBytes", int,
         array=False, optional=False,
-        documentation="[&#x27;Number of bytes being used by the cluster at which a stage5 condition will exist.&#x27;]",
+        documentation="""Number of bytes being used by the cluster at which a stage5 condition will exist. """,
         dictionaryType=None
     )
     sum_total_cluster_bytes = data_model.property(
         "sumTotalClusterBytes", int,
         array=False, optional=False,
-        documentation="[&#x27;Physical capacity of the cluster measured in bytes.&#x27;]",
+        documentation="""Physical capacity of the cluster measured in bytes. """,
         dictionaryType=None
     )
     sum_total_metadata_cluster_bytes = data_model.property(
         "sumTotalMetadataClusterBytes", int,
         array=False, optional=False,
-        documentation="[&#x27;Total amount of space that can be used to store metadata.&#x27;]",
+        documentation="""Total amount of space that can be used to store metadata. """,
         dictionaryType=None
     )
     sum_used_cluster_bytes = data_model.property(
         "sumUsedClusterBytes", int,
         array=False, optional=False,
-        documentation="[&#x27;Number of bytes used on the cluster.&#x27;]",
+        documentation="""Number of bytes used on the cluster. """,
         dictionaryType=None
     )
     sum_used_metadata_cluster_bytes = data_model.property(
         "sumUsedMetadataClusterBytes", int,
         array=False, optional=False,
-        documentation="[&#x27;Amount of space used on volume drives to store metadata.&#x27;]",
+        documentation="""Amount of space used on volume drives to store metadata. """,
         dictionaryType=None
     )
 
@@ -11203,25 +11203,25 @@ class ListVolumesForAccountRequest(data_model.DataObject):
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=False,
-        documentation="[&#x27;Returns all volumes owned by this AccountID.&#x27;]",
+        documentation="""Returns all volumes owned by this AccountID. """,
         dictionaryType=None
     )
     start_volume_id = data_model.property(
         "startVolumeID", int,
         array=False, optional=True,
-        documentation="[&#x27;The ID of the first volume to list.&#x27;, &#x27;This can be useful for paging results.&#x27;, &#x27;By default, this starts at the lowest VolumeID.&#x27;]",
+        documentation="""The ID of the first volume to list. This can be useful for paging results. By default, this starts at the lowest VolumeID. """,
         dictionaryType=None
     )
     limit = data_model.property(
         "limit", int,
         array=False, optional=True,
-        documentation="[&#x27;The maximum number of volumes to return from the API.&#x27;]",
+        documentation="""The maximum number of volumes to return from the API. """,
         dictionaryType=None
     )
     include_virtual_volumes = data_model.property(
         "includeVirtualVolumes", bool,
         array=False, optional=True,
-        documentation="[&#x27;Specifies that virtual volumes are included in the response by default.&#x27;, &#x27;To exclude virtual volumes, set to false.&#x27;]",
+        documentation="""Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. """,
         dictionaryType=None
     )
 
@@ -11247,7 +11247,7 @@ class GetVolumeEfficiencyRequest(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;Specifies the volume for which capacity is computed.&#x27;]",
+        documentation="""Specifies the volume for which capacity is computed. """,
         dictionaryType=None
     )
 
@@ -11295,55 +11295,55 @@ class ModifyVirtualNetworkRequest(data_model.DataObject):
     virtual_network_id = data_model.property(
         "virtualNetworkID", int,
         array=False, optional=True,
-        documentation="[&#x27;The unique identifier of the virtual network to modify. This is the virtual&#x27;, &#x27;network ID assigned by the cluster. &#x27;, &#x27;Note: This parameter is optional&#x27;, &#x27;but either virtualNetworkID or virtualNetworkTag must be specified&#x27;, &#x27;with this API method.&#x27;]",
+        documentation="""The unique identifier of the virtual network to modify. This is the virtual network ID assigned by the cluster.  Note: This parameter is optional but either virtualNetworkID or virtualNetworkTag must be specified with this API method. """,
         dictionaryType=None
     )
     virtual_network_tag = data_model.property(
         "virtualNetworkTag", int,
         array=False, optional=True,
-        documentation="[&#x27;The network tag that identifies the virtual network to modify.&#x27;, &#x27;Note: This parameter is optional&#x27;, &#x27;but either virtualNetworkID or virtualNetworkTag must be specified&#x27;, &#x27;with this API method.&#x27;]",
+        documentation="""The network tag that identifies the virtual network to modify. Note: This parameter is optional but either virtualNetworkID or virtualNetworkTag must be specified with this API method. """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=True,
-        documentation="[&#x27;The new name for the virtual network.&#x27;]",
+        documentation="""The new name for the virtual network. """,
         dictionaryType=None
     )
     address_blocks = data_model.property(
         "addressBlocks", AddressBlock,
         array=True, optional=True,
-        documentation="[&#x27;The new addressBlock to set for this virtual network. This might contain&#x27;, &#x27;new address blocks to add to the existing object or omit&#x27;, &#x27;unused address blocks that need to be removed. Alternatively, you&#x27;, &#x27;can extend or reduce the size of existing address blocks. You can only&#x27;, &#x27;increase the size of the starting addressBlocks for a virtual network&#x27;, &#x27;object; you can never decrease it.&#x27;, &#x27;Attributes for this parameter are:&#x27;, &#x27;start: The start of the IP address range. (String)&#x27;, &#x27;size: The number of IP addresses to include in the block. (Integer)&#x27;]",
+        documentation="""The new addressBlock to set for this virtual network. This might contain new address blocks to add to the existing object or omit unused address blocks that need to be removed. Alternatively, you can extend or reduce the size of existing address blocks. You can only increase the size of the starting addressBlocks for a virtual network object; you can never decrease it. Attributes for this parameter are: start: The start of the IP address range. (String) size: The number of IP addresses to include in the block. (Integer) """,
         dictionaryType=None
     )
     netmask = data_model.property(
         "netmask", str,
         array=False, optional=True,
-        documentation="[&#x27;New network mask for this virtual network.&#x27;]",
+        documentation="""New network mask for this virtual network. """,
         dictionaryType=None
     )
     svip = data_model.property(
         "svip", str,
         array=False, optional=True,
-        documentation="[&#x27;The storage virtual IP address for this virtual network. The svip for a&#x27;, &#x27;virtual network cannot be changed. You must create a new virtual&#x27;, &#x27;network to use a different svip address.&#x27;]",
+        documentation="""The storage virtual IP address for this virtual network. The svip for a virtual network cannot be changed. You must create a new virtual network to use a different svip address. """,
         dictionaryType=None
     )
     gateway = data_model.property(
         "gateway", str,
         array=False, optional=True,
-        documentation="[&#x27;The IP address of a gateway of the virtual network. This parameter is only valid if the &quot;namespace&quot; parameter is set to true.&#x27;]",
+        documentation="""The IP address of a gateway of the virtual network. This parameter is only valid if the "namespace" parameter is set to true. """,
         dictionaryType=None
     )
     namespace = data_model.property(
         "namespace", bool,
         array=False, optional=True,
-        documentation="[&#x27;When set to true, enables Routable Storage VLANs functionality by recreating the virtual network and configuring a namespace to contain it. When set to false, disables the VRF functionality for the virtual network. Changing this value disrupts traffic running through this virtual network.&#x27;]",
+        documentation="""When set to true, enables Routable Storage VLANs functionality by recreating the virtual network and configuring a namespace to contain it. When set to false, disables the VRF functionality for the virtual network. Changing this value disrupts traffic running through this virtual network. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;A new list of name-value pairs in JSON object format.&#x27;]",
+        documentation="""A new list of name-value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -11454,193 +11454,193 @@ class VirtualVolumeStats(data_model.DataObject):
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=False,
-        documentation="[&#x27;AccountID of the volume owner.&#x27;]",
+        documentation="""AccountID of the volume owner. """,
         dictionaryType=None
     )
     actual_iops = data_model.property(
         "actualIOPS", int,
         array=False, optional=True,
-        documentation="[&#x27;Current actual IOPS to the volume in the last 500 milliseconds.&#x27;]",
+        documentation="""Current actual IOPS to the volume in the last 500 milliseconds. """,
         dictionaryType=None
     )
     async_delay = data_model.property(
         "asyncDelay", str,
         array=False, optional=True,
-        documentation="[&#x27;The length of time since the volume was last synced with the remote cluster.&#x27;, &#x27;If the volume is not paired, this is null.&#x27;, u&#x27;&#x27;, &#x27;Note: A target volume in an active replication state always has an async delay of 0 (zero).&#x27;, &#x27;Target volumes are system-aware during replication and assume async delay is accurate at all times.&#x27;]",
+        documentation="""The length of time since the volume was last synced with the remote cluster. If the volume is not paired, this is null.  Note: A target volume in an active replication state always has an async delay of 0 (zero). Target volumes are system-aware during replication and assume async delay is accurate at all times. """,
         dictionaryType=None
     )
     average_iopsize = data_model.property(
         "averageIOPSize", int,
         array=False, optional=True,
-        documentation="[&#x27;Average size in bytes of recent I/O to the volume in the last 500 milliseconds.&#x27;]",
+        documentation="""Average size in bytes of recent I/O to the volume in the last 500 milliseconds. """,
         dictionaryType=None
     )
     burst_iopscredit = data_model.property(
         "burstIOPSCredit", int,
         array=False, optional=True,
-        documentation="[&#x27;The total number of IOP credits available to the user.&#x27;, &#x27;When users are not using up to the max IOPS, credits are accrued.&#x27;]",
+        documentation="""The total number of IOP credits available to the user. When users are not using up to the max IOPS, credits are accrued. """,
         dictionaryType=None
     )
     client_queue_depth = data_model.property(
         "clientQueueDepth", int,
         array=False, optional=True,
-        documentation="[&#x27;The number of outstanding read and write operations to the cluster.&#x27;]",
+        documentation="""The number of outstanding read and write operations to the cluster. """,
         dictionaryType=None
     )
     desired_metadata_hosts = data_model.property(
         "desiredMetadataHosts", MetadataHosts,
         array=False, optional=True,
-        documentation="[&#x27;The volume services being migrated to if the volume metadata is getting migrated between volume services.&#x27;, &#x27;A &quot;null&quot; value means the volume is not migrating.&#x27;]",
+        documentation="""The volume services being migrated to if the volume metadata is getting migrated between volume services. A "null" value means the volume is not migrating. """,
         dictionaryType=None
     )
     latency_usec = data_model.property(
         "latencyUSec", int,
         array=False, optional=True,
-        documentation="[&#x27;The observed latency time, in microseconds, to complete operations to a volume.&#x27;, &#x27;A &quot;0&quot; (zero) value means there is no I/O to the volume.&#x27;]",
+        documentation="""The observed latency time, in microseconds, to complete operations to a volume. A "0" (zero) value means there is no I/O to the volume. """,
         dictionaryType=None
     )
     metadata_hosts = data_model.property(
         "metadataHosts", MetadataHosts,
         array=False, optional=True,
-        documentation="[&#x27;The volume services on which the volume metadata resides.&#x27;]",
+        documentation="""The volume services on which the volume metadata resides. """,
         dictionaryType=None
     )
     non_zero_blocks = data_model.property(
         "nonZeroBlocks", int,
         array=False, optional=False,
-        documentation="[&#x27;The number of 4KiB blocks with data after the last garbage collection operation has completed.&#x27;]",
+        documentation="""The number of 4KiB blocks with data after the last garbage collection operation has completed. """,
         dictionaryType=None
     )
     read_bytes = data_model.property(
         "readBytes", int,
         array=False, optional=False,
-        documentation="[&#x27;Total bytes read by clients.&#x27;]",
+        documentation="""Total bytes read by clients. """,
         dictionaryType=None
     )
     read_latency_usec = data_model.property(
         "readLatencyUSec", int,
         array=False, optional=True,
-        documentation="[&#x27;The average time, in microseconds, to complete read operations.&#x27;]",
+        documentation="""The average time, in microseconds, to complete read operations. """,
         dictionaryType=None
     )
     read_ops = data_model.property(
         "readOps", int,
         array=False, optional=False,
-        documentation="[&#x27;Total read operations.&#x27;]",
+        documentation="""Total read operations. """,
         dictionaryType=None
     )
     throttle = data_model.property(
         "throttle", float,
         array=False, optional=True,
-        documentation="[&#x27;A floating value between 0 and 1 that represents how much the system is throttling clients&#x27;, &#x27;below their max IOPS because of re-replication of data, transient errors and snapshots taken.&#x27;]",
+        documentation="""A floating value between 0 and 1 that represents how much the system is throttling clients below their max IOPS because of re-replication of data, transient errors and snapshots taken. """,
         dictionaryType=None
     )
     timestamp = data_model.property(
         "timestamp", str,
         array=False, optional=False,
-        documentation="[&#x27;The current time in UTC.&#x27;]",
+        documentation="""The current time in UTC. """,
         dictionaryType=None
     )
     total_latency_usec = data_model.property(
         "totalLatencyUSec", int,
         array=False, optional=True,
-        documentation="[&#x27;The average time, in microseconds, to complete read and write operations to a volume.&#x27;]",
+        documentation="""The average time, in microseconds, to complete read and write operations to a volume. """,
         dictionaryType=None
     )
     unaligned_reads = data_model.property(
         "unalignedReads", int,
         array=False, optional=False,
-        documentation="[&#x27;For 512e volumes, the number of read operations that were not on a 4k sector boundary.&#x27;, &#x27;High numbers of unaligned reads may indicate improper partition alignment.&#x27;]",
+        documentation="""For 512e volumes, the number of read operations that were not on a 4k sector boundary. High numbers of unaligned reads may indicate improper partition alignment. """,
         dictionaryType=None
     )
     unaligned_writes = data_model.property(
         "unalignedWrites", int,
         array=False, optional=False,
-        documentation="[&#x27;For 512e volumes, the number of write operations that were not on a 4k sector boundary.&#x27;, &#x27;High numbers of unaligned writes may indicate improper partition alignment.&#x27;]",
+        documentation="""For 512e volumes, the number of write operations that were not on a 4k sector boundary. High numbers of unaligned writes may indicate improper partition alignment. """,
         dictionaryType=None
     )
     volume_access_groups = data_model.property(
         "volumeAccessGroups", int,
         array=True, optional=False,
-        documentation="[&#x27;List of volume access group(s) to which a volume beintegers.&#x27;]",
+        documentation="""List of volume access group(s) to which a volume beintegers. """,
         dictionaryType=None
     )
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;Volume ID of the volume.&#x27;]",
+        documentation="""Volume ID of the volume. """,
         dictionaryType=None
     )
     volume_size = data_model.property(
         "volumeSize", int,
         array=False, optional=False,
-        documentation="[&#x27;Total provisioned capacity in bytes.&#x27;]",
+        documentation="""Total provisioned capacity in bytes. """,
         dictionaryType=None
     )
     volume_utilization = data_model.property(
         "volumeUtilization", float,
         array=False, optional=True,
-        documentation="[&#x27;A floating value that describes how much the client is using the volume.&#x27;, u&#x27;&#x27;, &#x27;Values:&#x27;, &#x27; 0 = Client is not using the volume&#x27;, &#x27;1 = Client is using their max&#x27;, &#x27;&gt;1 = Client is using their burst&#x27;]",
+        documentation="""A floating value that describes how much the client is using the volume.  Values:  0 = Client is not using the volume 1 = Client is using their max >1 = Client is using their burst """,
         dictionaryType=None
     )
     write_bytes = data_model.property(
         "writeBytes", int,
         array=False, optional=False,
-        documentation="[&#x27;Total bytes written by clients.&#x27;]",
+        documentation="""Total bytes written by clients. """,
         dictionaryType=None
     )
     write_latency_usec = data_model.property(
         "writeLatencyUSec", int,
         array=False, optional=True,
-        documentation="[&#x27;The average time, in microseconds, to complete write operations.&#x27;]",
+        documentation="""The average time, in microseconds, to complete write operations. """,
         dictionaryType=None
     )
     write_ops = data_model.property(
         "writeOps", int,
         array=False, optional=False,
-        documentation="[&#x27;Total write operations occurring on the volume.&#x27;]",
+        documentation="""Total write operations occurring on the volume. """,
         dictionaryType=None
     )
     zero_blocks = data_model.property(
         "zeroBlocks", int,
         array=False, optional=False,
-        documentation="[&#x27;Total number of 4KiB blocks without data after the last round of garbage collection operation has completed.&#x27;]",
+        documentation="""Total number of 4KiB blocks without data after the last round of garbage collection operation has completed. """,
         dictionaryType=None
     )
     write_bytes_last_sample = data_model.property(
         "writeBytesLastSample", int,
         array=False, optional=True,
-        documentation="[&#x27;The total number of bytes written to the volume during the last sample period.&#x27;]",
+        documentation="""The total number of bytes written to the volume during the last sample period. """,
         dictionaryType=None
     )
     sample_period_msec = data_model.property(
         "samplePeriodMSec", int,
         array=False, optional=True,
-        documentation="[&#x27;The length of the sample period in milliseconds.&#x27;]",
+        documentation="""The length of the sample period in milliseconds. """,
         dictionaryType=None
     )
     read_bytes_last_sample = data_model.property(
         "readBytesLastSample", int,
         array=False, optional=True,
-        documentation="[&#x27;The total number of bytes read from the volume during the last sample period.&#x27;]",
+        documentation="""The total number of bytes read from the volume during the last sample period. """,
         dictionaryType=None
     )
     read_ops_last_sample = data_model.property(
         "readOpsLastSample", int,
         array=False, optional=True,
-        documentation="[&#x27;The total number of read operations durin gth elast sample period.&#x27;]",
+        documentation="""The total number of read operations durin gth elast sample period. """,
         dictionaryType=None
     )
     write_ops_last_sample = data_model.property(
         "writeOpsLastSample", int,
         array=False, optional=True,
-        documentation="[&#x27;The total number of write operations during the last sample period.&#x27;]",
+        documentation="""The total number of write operations during the last sample period. """,
         dictionaryType=None
     )
     virtual_volume_id = data_model.property(
         "virtualVolumeID", UUID,
         array=False, optional=True,
-        documentation="[&#x27;If the volume of interest is associated with a virtual volume, this is the virtual volume ID.&#x27;]",
+        documentation="""If the volume of interest is associated with a virtual volume, this is the virtual volume ID. """,
         dictionaryType=None
     )
 
@@ -11657,7 +11657,7 @@ class ListVolumeStatsByVirtualVolumeResult(data_model.DataObject):
     volume_stats = data_model.property(
         "volumeStats", VirtualVolumeStats,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -11674,7 +11674,7 @@ class ListVolumesForAccountResult(data_model.DataObject):
     volumes = data_model.property(
         "volumes", Volume,
         array=True, optional=False,
-        documentation="[&#x27;List of volumes.&#x27;]",
+        documentation="""List of volumes. """,
         dictionaryType=None
     )
 
@@ -11693,7 +11693,7 @@ class GetNodeHardwareInfoRequest(data_model.DataObject):
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the node for which hardware information is being requested. Information&#x27;, &#x27;about a Fibre Channel node is returned if a Fibre Channel node is specified.&#x27;]",
+        documentation="""The ID of the node for which hardware information is being requested. Information about a Fibre Channel node is returned if a Fibre Channel node is specified. """,
         dictionaryType=None
     )
 
@@ -11712,7 +11712,7 @@ class SecureEraseDrivesRequest(data_model.DataObject):
     drives = data_model.property(
         "drives", int,
         array=True, optional=False,
-        documentation="[&#x27;List of driveIDs to be secure erased.&#x27;]",
+        documentation="""List of driveIDs to be secure erased. """,
         dictionaryType=None
     )
 
@@ -11750,49 +11750,49 @@ class DriveInfo(data_model.DataObject):
     capacity = data_model.property(
         "capacity", int,
         array=False, optional=False,
-        documentation="[&#x27;Total capacity of the drive, in bytes.&#x27;]",
+        documentation="""Total capacity of the drive, in bytes. """,
         dictionaryType=None
     )
     drive_id = data_model.property(
         "driveID", int,
         array=False, optional=False,
-        documentation="[&#x27;DriveID for this drive.&#x27;]",
+        documentation="""DriveID for this drive. """,
         dictionaryType=None
     )
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
-        documentation="[&#x27;NodeID where this drive is located.&#x27;]",
+        documentation="""NodeID where this drive is located. """,
         dictionaryType=None
     )
     serial = data_model.property(
         "serial", str,
         array=False, optional=False,
-        documentation="[&#x27;Drive serial number.&#x27;]",
+        documentation="""Drive serial number. """,
         dictionaryType=None
     )
     slot = data_model.property(
         "slot", int,
         array=False, optional=False,
-        documentation="[&#x27;Slot number in the server chassis where this drive is located, or -1 if SATADimm used for internal metadata drive.&#x27;]",
+        documentation="""Slot number in the server chassis where this drive is located, or -1 if SATADimm used for internal metadata drive. """,
         dictionaryType=None
     )
     status = data_model.property(
         "status", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     type = data_model.property(
         "type", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=False,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="""List of Name/Value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -11809,7 +11809,7 @@ class ListDrivesResult(data_model.DataObject):
     drives = data_model.property(
         "drives", DriveInfo,
         array=True, optional=False,
-        documentation="[&#x27;Information for the drives that are connected to the cluster.&#x27;]",
+        documentation="""Information for the drives that are connected to the cluster. """,
         dictionaryType=None
     )
 
@@ -11844,43 +11844,43 @@ class VirtualVolumeBinding(data_model.DataObject):
     protocol_endpoint_id = data_model.property(
         "protocolEndpointID", UUID,
         array=False, optional=False,
-        documentation="[&#x27;The unique ID of the protocol endpoint.&#x27;]",
+        documentation="""The unique ID of the protocol endpoint. """,
         dictionaryType=None
     )
     protocol_endpoint_in_band_id = data_model.property(
         "protocolEndpointInBandID", str,
         array=False, optional=False,
-        documentation="[&#x27;The scsiNAADeviceID of the protocol endpoint. For more information, see protocolEndpoint.&#x27;]",
+        documentation="""The scsiNAADeviceID of the protocol endpoint. For more information, see protocolEndpoint. """,
         dictionaryType=None
     )
     protocol_endpoint_type = data_model.property(
         "protocolEndpointType", str,
         array=False, optional=False,
-        documentation="[&#x27;The type of protocol endpoint. SCSI is the only value returned for the protocol endpoint type.&#x27;]",
+        documentation="""The type of protocol endpoint. SCSI is the only value returned for the protocol endpoint type. """,
         dictionaryType=None
     )
     virtual_volume_binding_id = data_model.property(
         "virtualVolumeBindingID", int,
         array=False, optional=False,
-        documentation="[&#x27;The unique ID of the virtual volume binding object.&#x27;]",
+        documentation="""The unique ID of the virtual volume binding object. """,
         dictionaryType=None
     )
     virtual_volume_host_id = data_model.property(
         "virtualVolumeHostID", UUID,
         array=False, optional=False,
-        documentation="[&#x27;The unique ID of the virtual volume host.&#x27;]",
+        documentation="""The unique ID of the virtual volume host. """,
         dictionaryType=None
     )
     virtual_volume_id = data_model.property(
         "virtualVolumeID", UUID,
         array=False, optional=False,
-        documentation="[&#x27;The unique ID of the virtual volume.&#x27;]",
+        documentation="""The unique ID of the virtual volume. """,
         dictionaryType=None
     )
     virtual_volume_secondary_id = data_model.property(
         "virtualVolumeSecondaryID", str,
         array=False, optional=False,
-        documentation="[&#x27;The secondary ID of the virtual volume.&#x27;]",
+        documentation="""The secondary ID of the virtual volume. """,
         dictionaryType=None
     )
 
@@ -11897,7 +11897,7 @@ class ListVirtualVolumeBindingsResult(data_model.DataObject):
     bindings = data_model.property(
         "bindings", VirtualVolumeBinding,
         array=True, optional=False,
-        documentation="[&#x27;Describes the VVol &lt;-&gt; Host binding.&#x27;]",
+        documentation="""Describes the VVol <-> Host binding. """,
         dictionaryType=None
     )
 
@@ -11939,31 +11939,31 @@ class RollbackToSnapshotRequest(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;VolumeID for the volume.&#x27;]",
+        documentation="""VolumeID for the volume. """,
         dictionaryType=None
     )
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of a previously created snapshot on the given volume.&#x27;]",
+        documentation="""The ID of a previously created snapshot on the given volume. """,
         dictionaryType=None
     )
     save_current_state = data_model.property(
         "saveCurrentState", bool,
         array=False, optional=False,
-        documentation="[&#x27;Specifies whether to save an active volume image or delete it. Values are:&#x27;, &#x27;true: The previous active volume image is kept.&#x27;, &#x27;false: (default) The previous active volume image is deleted.&#x27;]",
+        documentation="""Specifies whether to save an active volume image or delete it. Values are: true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=True,
-        documentation="[&#x27;Name for the snapshot. If unspecified, the name of the snapshot being rolled back to is used with &quot;- copy&quot; appended to the end of the name.&#x27;]",
+        documentation="""Name for the snapshot. If unspecified, the name of the snapshot being rolled back to is used with "- copy" appended to the end of the name. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
+        documentation="""List of name-value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -11982,7 +11982,7 @@ class ListVolumeStatsByVolumeRequest(data_model.DataObject):
     include_virtual_volumes = data_model.property(
         "includeVirtualVolumes", bool,
         array=False, optional=True,
-        documentation="[&#x27;Specifies that virtual volumes are included in the response by default.&#x27;, &#x27;To exclude virtual volumes, set to false.&#x27;]",
+        documentation="""Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. """,
         dictionaryType=None
     )
 
@@ -12041,91 +12041,91 @@ class ClusterFaultInfo(data_model.DataObject):
     drive_ids = data_model.property(
         "driveIDs", int,
         array=True, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     network_interface = data_model.property(
         "networkInterface", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     severity = data_model.property(
         "severity", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     type = data_model.property(
         "type", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     code = data_model.property(
         "code", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     details = data_model.property(
         "details", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     node_hardware_fault_id = data_model.property(
         "nodeHardwareFaultID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     service_id = data_model.property(
         "serviceID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     drive_id = data_model.property(
         "driveID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     resolved = data_model.property(
         "resolved", bool,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     cluster_fault_id = data_model.property(
         "clusterFaultID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     date = data_model.property(
         "date", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     resolved_date = data_model.property(
         "resolvedDate", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     data = data_model.property(
         "data", dict,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -12142,7 +12142,7 @@ class ListClusterFaultsResult(data_model.DataObject):
     faults = data_model.property(
         "faults", ClusterFaultInfo,
         array=True, optional=False,
-        documentation="[&#x27;The list of Cluster Fault objects.&#x27;]",
+        documentation="""The list of Cluster Fault objects. """,
         dictionaryType=None
     )
 
@@ -12172,25 +12172,25 @@ class AddLdapClusterAdminRequest(data_model.DataObject):
     username = data_model.property(
         "username", str,
         array=False, optional=False,
-        documentation="[&#x27;The distinguished user name for the new LDAP cluster admin.&#x27;]",
+        documentation="""The distinguished user name for the new LDAP cluster admin. """,
         dictionaryType=None
     )
     access = data_model.property(
         "access", str,
         array=True, optional=False,
-        documentation="[&#x27;Controls which methods this Cluster Admin can use. For more details on the levels of access, see the Access Control appendix in the SolidFire API Reference.&#x27;]",
+        documentation="""Controls which methods this Cluster Admin can use. For more details on the levels of access, see the Access Control appendix in the SolidFire API Reference. """,
         dictionaryType=None
     )
     accept_eula = data_model.property(
         "acceptEula", bool,
         array=False, optional=True,
-        documentation="[&#x27;Accept the End User License Agreement. Set to true to add a cluster administrator account to the system. If omitted or set to false, the method call fails.&#x27;]",
+        documentation="""Accept the End User License Agreement. Set to true to add a cluster administrator account to the system. If omitted or set to false, the method call fails. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
+        documentation="""List of name-value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -12217,25 +12217,25 @@ class ModifyVolumePairRequest(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume to be modified.&#x27;]",
+        documentation="""The ID of the volume to be modified. """,
         dictionaryType=None
     )
     paused_manual = data_model.property(
         "pausedManual", bool,
         array=False, optional=True,
-        documentation="[&#x27;Specifies whether to pause or restart volume replication process. Valid values are: &#x27;, &#x27;true: Pauses volume replication&#x27;, &#x27;false: Restarts volume replication&#x27;]",
+        documentation="""Specifies whether to pause or restart volume replication process. Valid values are:  true: Pauses volume replication false: Restarts volume replication """,
         dictionaryType=None
     )
     mode = data_model.property(
         "mode", str,
         array=False, optional=True,
-        documentation="[&#x27;Specifies the volume replication mode. Possible values are:&#x27;, &#x27;Async: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster.&#x27;, &#x27;Sync: The source acknowledges the write when the data is stored locally and on the remote cluster.&#x27;, &#x27;SnapshotsOnly: Only snapshots created on the source cluster are replicated. Active writes from the source volume are not replicated.&#x27;]",
+        documentation="""Specifies the volume replication mode. Possible values are: Async: Writes are acknowledged when they complete locally. The cluster does not wait for writes to be replicated to the target cluster. Sync: The source acknowledges the write when the data is stored locally and on the remote cluster. SnapshotsOnly: Only snapshots created on the source cluster are replicated. Active writes from the source volume are not replicated. """,
         dictionaryType=None
     )
     pause_limit = data_model.property(
         "pauseLimit", int,
         array=False, optional=True,
-        documentation="[&#x27;Internal use only.&#x27;]",
+        documentation="""Internal use only. """,
         dictionaryType=None
     )
 
@@ -12267,25 +12267,25 @@ class CloneMultipleVolumesRequest(data_model.DataObject):
     volumes = data_model.property(
         "volumes", CloneMultipleVolumeParams,
         array=True, optional=False,
-        documentation="[&#x27;Unique ID for each volume to include in the clone. If&#x27;, &#x27;optional parameters are not specified, the values are inherited from the source volumes.&#x27;, &#x27;Required parameter for &quot;volumes&quot; array:&#x27;, &#x27;volumeID&#x27;, &#x27;Optional parameters for &quot;volumes&quot; array:&#x27;, &#x27;access: Can be one of readOnly, readWrite,&#x27;, &#x27;locked, or replicationTarget&#x27;, &#x27;attributes: List of name-value pairs in JSON object&#x27;, &#x27;format.&#x27;, &#x27;name: New name for the clone.&#x27;, &#x27;newAccountID: Account ID for the new volumes.&#x27;, &#x27;newSize: New size Total size of the volume, in bytes.&#x27;, &#x27;Size is rounded up to the nearest 1MB.&#x27;]",
+        documentation="""Unique ID for each volume to include in the clone. If optional parameters are not specified, the values are inherited from the source volumes. Required parameter for "volumes" array: volumeID Optional parameters for "volumes" array: access: Can be one of readOnly, readWrite, locked, or replicationTarget attributes: List of name-value pairs in JSON object format. name: New name for the clone. newAccountID: Account ID for the new volumes. newSize: New size Total size of the volume, in bytes. Size is rounded up to the nearest 1MB. """,
         dictionaryType=None
     )
     access = data_model.property(
         "access", str,
         array=False, optional=True,
-        documentation="[&#x27;New default access method for the new volumes if not&#x27;, &quot;overridden by information passed in the volume&#x27;s array.&quot;]",
+        documentation="""New default access method for the new volumes if not overridden by information passed in the volume's array. """,
         dictionaryType=None
     )
     group_snapshot_id = data_model.property(
         "groupSnapshotID", int,
         array=False, optional=True,
-        documentation="[&#x27;ID of the group snapshot to use as a basis for the clone.&#x27;]",
+        documentation="""ID of the group snapshot to use as a basis for the clone. """,
         dictionaryType=None
     )
     new_account_id = data_model.property(
         "newAccountID", int,
         array=False, optional=True,
-        documentation="[&#x27;New account ID for the volumes if not overridden by&#x27;, &#x27;information passed in the volumes array.&#x27;]",
+        documentation="""New account ID for the volumes if not overridden by information passed in the volumes array. """,
         dictionaryType=None
     )
 
@@ -12311,19 +12311,19 @@ class ListVolumeAccessGroupsRequest(data_model.DataObject):
     start_volume_access_group_id = data_model.property(
         "startVolumeAccessGroupID", int,
         array=False, optional=True,
-        documentation="[&#x27;The volume access group ID at which to begin the listing. If unspecified, there is no lower limit (implicitly 0).&#x27;]",
+        documentation="""The volume access group ID at which to begin the listing. If unspecified, there is no lower limit (implicitly 0). """,
         dictionaryType=None
     )
     limit = data_model.property(
         "limit", int,
         array=False, optional=True,
-        documentation="[&#x27;The maximum number of results to return. This can be&#x27;, &#x27;useful for paging.&#x27;]",
+        documentation="""The maximum number of results to return. This can be useful for paging. """,
         dictionaryType=None
     )
     volume_access_groups = data_model.property(
         "volumeAccessGroups", int,
         array=True, optional=True,
-        documentation="[&#x27;The list of ids of the volume access groups you wish to list&#x27;]",
+        documentation="""The list of ids of the volume access groups you wish to list """,
         dictionaryType=None
     )
 
@@ -12355,37 +12355,37 @@ class ProtocolEndpoint(data_model.DataObject):
     protocol_endpoint_id = data_model.property(
         "protocolEndpointID", UUID,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     protocol_endpoint_state = data_model.property(
         "protocolEndpointState", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     provider_type = data_model.property(
         "providerType", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     primary_provider_id = data_model.property(
         "primaryProviderID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     secondary_provider_id = data_model.property(
         "secondaryProviderID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     scsi_naadevice_id = data_model.property(
         "scsiNAADeviceID", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -12402,7 +12402,7 @@ class ListProtocolEndpointsResult(data_model.DataObject):
     protocol_endpoints = data_model.property(
         "protocolEndpoints", ProtocolEndpoint,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -12421,23 +12421,23 @@ class ListGroupSnapshotsRequest(data_model.DataObject):
     """ListGroupSnapshotsRequest  
     ListGroupSnapshots enables you to get information about all group snapshots that have been created.
 
-    :param group_snapshot_id:  Retrieves information for a specific group snapshot ID. 
-    :type group_snapshot_id: int
-
     :param volumes:  An array of unique volume IDs to query. If you do not specify this parameter, all group snapshots on the cluster are included. 
     :type volumes: int
 
+    :param group_snapshot_id:  Retrieves information for a specific group snapshot ID. 
+    :type group_snapshot_id: int
+
     """
-    group_snapshot_id = data_model.property(
-        "groupSnapshotID", int,
-        array=False, optional=True,
-        documentation="[&#x27;Retrieves information for a specific group snapshot ID.&#x27;]",
-        dictionaryType=None
-    )
     volumes = data_model.property(
         "volumes", int,
         array=True, optional=True,
-        documentation="[&#x27;An array of unique volume IDs to query. If you do not&#x27;, &#x27;specify this parameter, all group snapshots on the cluster&#x27;, &#x27;are included.&#x27;]",
+        documentation="""An array of unique volume IDs to query. If you do not specify this parameter, all group snapshots on the cluster are included. """,
+        dictionaryType=None
+    )
+    group_snapshot_id = data_model.property(
+        "groupSnapshotID", int,
+        array=False, optional=True,
+        documentation="""Retrieves information for a specific group snapshot ID. """,
         dictionaryType=None
     )
 
@@ -12455,7 +12455,7 @@ class EnableFeatureRequest(data_model.DataObject):
     feature = data_model.property(
         "feature", str,
         array=False, optional=False,
-        documentation="[&#x27;Indicates which feature to enable. Valid value is:&#x27;, &#x27;vvols: Enable the NetApp SolidFire VVols cluster feature.&#x27;]",
+        documentation="""Indicates which feature to enable. Valid value is: vvols: Enable the NetApp SolidFire VVols cluster feature. """,
         dictionaryType=None
     )
 
@@ -12482,25 +12482,25 @@ class SnmpNetwork(data_model.DataObject):
     access = data_model.property(
         "access", str,
         array=False, optional=False,
-        documentation="[&#x27;ro: read-only access.*&#x27;, &#x27;rw: for read-write access.&#x27;, &#x27;rosys: for read-only access to a restricted set of system information&#x27;, &#x27;*SolidFire recommends that all networks other than the default &quot;localhost&quot; be set to &quot;ro&quot; access, because all SolidFire MIB objects are read-only.&#x27;]",
+        documentation="""ro: read-only access.* rw: for read-write access. rosys: for read-only access to a restricted set of system information *SolidFire recommends that all networks other than the default "localhost" be set to "ro" access, because all SolidFire MIB objects are read-only. """,
         dictionaryType=None
     )
     cidr = data_model.property(
         "cidr", int,
         array=False, optional=False,
-        documentation="[&#x27;A CIDR network mask. This network mask must be an integer greater than or equal to 0, and less than or equal to 32. It must also not be equal to 31.&#x27;]",
+        documentation="""A CIDR network mask. This network mask must be an integer greater than or equal to 0, and less than or equal to 32. It must also not be equal to 31. """,
         dictionaryType=None
     )
     community = data_model.property(
         "community", str,
         array=False, optional=False,
-        documentation="[&#x27;SNMP community string.&#x27;]",
+        documentation="""SNMP community string. """,
         dictionaryType=None
     )
     network = data_model.property(
         "network", str,
         array=False, optional=False,
-        documentation="[&#x27;This parameter ainteger with the cidr variable is used to control which network the access and community string apply to. The special value of &quot;default&quot; is used to specify an entry that applies to all networks. The cidr mask is ignored when network value is either a host name or default.&#x27;]",
+        documentation="""This parameter ainteger with the cidr variable is used to control which network the access and community string apply to. The special value of "default" is used to specify an entry that applies to all networks. The cidr mask is ignored when network value is either a host name or default. """,
         dictionaryType=None
     )
 
@@ -12519,7 +12519,7 @@ class RemoveNodesRequest(data_model.DataObject):
     nodes = data_model.property(
         "nodes", int,
         array=True, optional=False,
-        documentation="[&#x27;List of NodeIDs for the nodes to be removed.&#x27;]",
+        documentation="""List of NodeIDs for the nodes to be removed. """,
         dictionaryType=None
     )
 
@@ -12540,13 +12540,13 @@ class DeleteGroupSnapshotRequest(data_model.DataObject):
     group_snapshot_id = data_model.property(
         "groupSnapshotID", int,
         array=False, optional=False,
-        documentation="[&#x27;Specifies the unique ID of the group snapshot.&#x27;]",
+        documentation="""Specifies the unique ID of the group snapshot. """,
         dictionaryType=None
     )
     save_members = data_model.property(
         "saveMembers", bool,
         array=False, optional=False,
-        documentation="[&#x27;Specifies whether to preserve snapshots or delete them. Valid values are:&#x27;, &#x27;true: Snapshots are preserved, but group association is removed.&#x27;, &#x27;false: The group and snapshots are deleted.&#x27;]",
+        documentation="""Specifies whether to preserve snapshots or delete them. Valid values are: true: Snapshots are preserved, but group association is removed. false: The group and snapshots are deleted. """,
         dictionaryType=None
     )
 
@@ -12563,7 +12563,7 @@ class ModifySnapshotResult(data_model.DataObject):
     snapshot = data_model.property(
         "snapshot", Snapshot,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -12584,13 +12584,13 @@ class RemoveVolumesFromVolumeAccessGroupRequest(data_model.DataObject):
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume access group to remove volumes from.&#x27;]",
+        documentation="""The ID of the volume access group to remove volumes from. """,
         dictionaryType=None
     )
     volumes = data_model.property(
         "volumes", int,
         array=True, optional=False,
-        documentation="[&#x27;The ID of the volume access group to remove volumes from.&#x27;]",
+        documentation="""The ID of the volume access group to remove volumes from. """,
         dictionaryType=None
     )
 
@@ -12614,19 +12614,19 @@ class ModifyStorageContainerRequest(data_model.DataObject):
     storage_container_id = data_model.property(
         "storageContainerID", UUID,
         array=False, optional=False,
-        documentation="[&#x27;The unique ID of the virtual volume storage container to modify.&#x27;]",
+        documentation="""The unique ID of the virtual volume storage container to modify. """,
         dictionaryType=None
     )
     initiator_secret = data_model.property(
         "initiatorSecret", str,
         array=False, optional=True,
-        documentation="[&#x27;The new secret for CHAP authentication for the initiator.&#x27;]",
+        documentation="""The new secret for CHAP authentication for the initiator. """,
         dictionaryType=None
     )
     target_secret = data_model.property(
         "targetSecret", str,
         array=False, optional=True,
-        documentation="[&#x27;The new secret for CHAP authentication for the target.&#x27;]",
+        documentation="""The new secret for CHAP authentication for the target. """,
         dictionaryType=None
     )
 
@@ -12649,19 +12649,19 @@ class TestConnectMvipDetails(data_model.DataObject):
     ping_bytes = data_model.property(
         "pingBytes", dict,
         array=False, optional=False,
-        documentation="[&#x27;Details of the ping tests with 56 Bytes and 1500 Bytes.&#x27;]",
+        documentation="""Details of the ping tests with 56 Bytes and 1500 Bytes. """,
         dictionaryType=None
     )
     mvip = data_model.property(
         "mvip", str,
         array=False, optional=False,
-        documentation="[&#x27;The MVIP tested against.&#x27;]",
+        documentation="""The MVIP tested against. """,
         dictionaryType=None
     )
     connected = data_model.property(
         "connected", bool,
         array=False, optional=False,
-        documentation="[&#x27;Whether the test could connect to the MVIP.&#x27;]",
+        documentation="""Whether the test could connect to the MVIP. """,
         dictionaryType=None
     )
 
@@ -12684,19 +12684,19 @@ class TestConnectMvipResult(data_model.DataObject):
     details = data_model.property(
         "details", TestConnectMvipDetails,
         array=False, optional=False,
-        documentation="[&#x27;Information about the test operation&#x27;]",
+        documentation="""Information about the test operation """,
         dictionaryType=None
     )
     duration = data_model.property(
         "duration", str,
         array=False, optional=False,
-        documentation="[&#x27;The length of time required to run the test.&#x27;]",
+        documentation="""The length of time required to run the test. """,
         dictionaryType=None
     )
     result = data_model.property(
         "result", str,
         array=False, optional=False,
-        documentation="[&#x27;The results of the entire test&#x27;]",
+        documentation="""The results of the entire test """,
         dictionaryType=None
     )
 
@@ -12727,19 +12727,19 @@ class TestConnectSvipDetails(data_model.DataObject):
     ping_bytes = data_model.property(
         "pingBytes", dict,
         array=False, optional=False,
-        documentation="[&#x27;Details of the ping tests with 56 Bytes and 1500 Bytes.&#x27;]",
+        documentation="""Details of the ping tests with 56 Bytes and 1500 Bytes. """,
         dictionaryType=None
     )
     svip = data_model.property(
         "svip", str,
         array=False, optional=False,
-        documentation="[&#x27;The SVIP tested against.&#x27;]",
+        documentation="""The SVIP tested against. """,
         dictionaryType=None
     )
     connected = data_model.property(
         "connected", bool,
         array=False, optional=False,
-        documentation="[&#x27;Whether the test could connect to the MVIP.&#x27;]",
+        documentation="""Whether the test could connect to the MVIP. """,
         dictionaryType=None
     )
 
@@ -12762,19 +12762,19 @@ class TestConnectSvipResult(data_model.DataObject):
     details = data_model.property(
         "details", TestConnectSvipDetails,
         array=False, optional=False,
-        documentation="[&#x27;Information about the test operation&#x27;]",
+        documentation="""Information about the test operation """,
         dictionaryType=None
     )
     duration = data_model.property(
         "duration", str,
         array=False, optional=False,
-        documentation="[&#x27;The length of time required to run the test.&#x27;]",
+        documentation="""The length of time required to run the test. """,
         dictionaryType=None
     )
     result = data_model.property(
         "result", str,
         array=False, optional=False,
-        documentation="[&#x27;The results of the entire test&#x27;]",
+        documentation="""The results of the entire test """,
         dictionaryType=None
     )
 
@@ -12791,7 +12791,7 @@ class ListVolumeStatsByVolumeResult(data_model.DataObject):
     volume_stats = data_model.property(
         "volumeStats", VolumeStats,
         array=True, optional=False,
-        documentation="[&#x27;List of account activity information.&#x27;]",
+        documentation="""List of account activity information. """,
         dictionaryType=None
     )
 
@@ -12821,31 +12821,31 @@ class SnmpV3UsmUser(data_model.DataObject):
     access = data_model.property(
         "access", str,
         array=False, optional=False,
-        documentation="[&#x27;rouser: read-only access.*&#x27;, &#x27;rwuser: for read-write access.&#x27;, &#x27;rosys: for read-only access to a restricted set of system information&#x27;, &#x27;*SolidFire recommends that all USM users be set to &quot;rouser&quot; access, because all SolidFire MIB objects are read-only.&#x27;]",
+        documentation="""rouser: read-only access.* rwuser: for read-write access. rosys: for read-only access to a restricted set of system information *SolidFire recommends that all USM users be set to "rouser" access, because all SolidFire MIB objects are read-only. """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;The name of the user. Must contain at least one character, but no more than 32 characters. Blank spaces are not allowed.&#x27;]",
+        documentation="""The name of the user. Must contain at least one character, but no more than 32 characters. Blank spaces are not allowed. """,
         dictionaryType=None
     )
     password = data_model.property(
         "password", str,
         array=False, optional=False,
-        documentation="[&#x27;The password of the user. Must be between 8 and 255 characters integer (inclusive). Blank spaces are not allowed. Required if &quot;secLevel&quot; is &quot;auth&quot; or &quot;priv.&quot;&#x27;]",
+        documentation="""The password of the user. Must be between 8 and 255 characters integer (inclusive). Blank spaces are not allowed. Required if "secLevel" is "auth" or "priv." """,
         dictionaryType=None
     )
     passphrase = data_model.property(
         "passphrase", str,
         array=False, optional=False,
-        documentation="[&#x27;The passphrase of the user. Must be between 8 and 255 characters integer (inclusive). Blank spaces are not allowed. Required if &quot;secLevel&quot; is &quot;priv.&quot;&#x27;]",
+        documentation="""The passphrase of the user. Must be between 8 and 255 characters integer (inclusive). Blank spaces are not allowed. Required if "secLevel" is "priv." """,
         dictionaryType=None
     )
     sec_level = data_model.property(
         "secLevel", str,
         array=False, optional=False,
-        documentation="[&#x27;noauth: No password or passphrase is required.&#x27;, &#x27;auth: A password is required for user access.&#x27;, &#x27;priv: A password and passphrase is required for user access.&#x27;]",
+        documentation="""noauth: No password or passphrase is required. auth: A password is required for user access. priv: A password and passphrase is required for user access. """,
         dictionaryType=None
     )
 
@@ -12871,25 +12871,25 @@ class GetSnmpInfoResult(data_model.DataObject):
     networks = data_model.property(
         "networks", SnmpNetwork,
         array=True, optional=True,
-        documentation="[&#x27;List of networks and access types enabled for SNMP.&#x27;, u&#x27;&#x27;, &#x27;Note: &quot;networks&quot; will only be present if SNMP V3 is disabled.&#x27;]",
+        documentation="""List of networks and access types enabled for SNMP.  Note: "networks" will only be present if SNMP V3 is disabled. """,
         dictionaryType=None
     )
     enabled = data_model.property(
         "enabled", bool,
         array=False, optional=False,
-        documentation="[&#x27;If the nodes in the cluster are configured for SNMP.&#x27;]",
+        documentation="""If the nodes in the cluster are configured for SNMP. """,
         dictionaryType=None
     )
     snmp_v3_enabled = data_model.property(
         "snmpV3Enabled", bool,
         array=False, optional=False,
-        documentation="[&#x27;If the nodes in the cluster are configured for SNMP v3.&#x27;]",
+        documentation="""If the nodes in the cluster are configured for SNMP v3. """,
         dictionaryType=None
     )
     usm_users = data_model.property(
         "usmUsers", SnmpV3UsmUser,
         array=True, optional=True,
-        documentation="[&#x27;If SNMP v3 is enabled, the values returned is a list of user access parameters for SNMP information from the cluster. This will be returned instead of the &quot;networks&quot; parameter.&#x27;]",
+        documentation="""If SNMP v3 is enabled, the values returned is a list of user access parameters for SNMP information from the cluster. This will be returned instead of the "networks" parameter. """,
         dictionaryType=None
     )
 
@@ -12909,13 +12909,13 @@ class ModifyVolumesResult(data_model.DataObject):
     volumes = data_model.property(
         "volumes", Volume,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     qos = data_model.property(
         "qos", QoS,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -12936,7 +12936,7 @@ class RestartNetworkingRequest(data_model.DataObject):
     force = data_model.property(
         "force", bool,
         array=False, optional=False,
-        documentation="[&#x27;Required parameter to successfully reset the node.&#x27;]",
+        documentation="""Required parameter to successfully reset the node. """,
         dictionaryType=None
     )
 
@@ -12954,7 +12954,7 @@ class ListNodeFibreChannelPortInfoResult(data_model.DataObject):
     fibre_channel_ports = data_model.property(
         "fibreChannelPorts", FibreChannelPortInfo,
         array=True, optional=False,
-        documentation="[&#x27;List of all physical Fibre Channel ports.&#x27;]",
+        documentation="""List of all physical Fibre Channel ports. """,
         dictionaryType=None
     )
 
@@ -12978,19 +12978,19 @@ class CreateSupportBundleRequest(data_model.DataObject):
     bundle_name = data_model.property(
         "bundleName", str,
         array=False, optional=True,
-        documentation="[&#x27;The unique name for the support bundle. If no name is provided, &quot;supportbundle&quot; and the node name are used as the filename.&#x27;]",
+        documentation="""The unique name for the support bundle. If no name is provided, "supportbundle" and the node name are used as the filename. """,
         dictionaryType=None
     )
     extra_args = data_model.property(
         "extraArgs", str,
         array=False, optional=True,
-        documentation="[&#x27;Passed to the sf_make_support_bundle script. You should use this parameter only at the request of NetApp SolidFire Support.&#x27;]",
+        documentation="""Passed to the sf_make_support_bundle script. You should use this parameter only at the request of NetApp SolidFire Support. """,
         dictionaryType=None
     )
     timeout_sec = data_model.property(
         "timeoutSec", int,
         array=False, optional=True,
-        documentation="[&#x27;The number of seconds to allow the support bundle script to run before stopping. The default value is 1500 seconds.&#x27;]",
+        documentation="""The number of seconds to allow the support bundle script to run before stopping. The default value is 1500 seconds. """,
         dictionaryType=None
     )
 
@@ -13055,103 +13055,103 @@ class DriveStats(data_model.DataObject):
     active_sessions = data_model.property(
         "activeSessions", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     drive_id = data_model.property(
         "driveID", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     failed_die_count = data_model.property(
         "failedDieCount", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     life_remaining_percent = data_model.property(
         "lifeRemainingPercent", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     lifetime_read_bytes = data_model.property(
         "lifetimeReadBytes", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     lifetime_write_bytes = data_model.property(
         "lifetimeWriteBytes", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     power_on_hours = data_model.property(
         "powerOnHours", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     read_bytes = data_model.property(
         "readBytes", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     read_ops = data_model.property(
         "readOps", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     reallocated_sectors = data_model.property(
         "reallocatedSectors", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     reserve_capacity_percent = data_model.property(
         "reserveCapacityPercent", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     timestamp = data_model.property(
         "timestamp", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     total_capacity = data_model.property(
         "totalCapacity", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     used_capacity = data_model.property(
         "usedCapacity", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     used_memory = data_model.property(
         "usedMemory", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     write_bytes = data_model.property(
         "writeBytes", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     write_ops = data_model.property(
         "writeOps", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -13168,7 +13168,7 @@ class GetDriveStatsResult(data_model.DataObject):
     drive_stats = data_model.property(
         "driveStats", DriveStats,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -13196,13 +13196,13 @@ class ModifyVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume access group for which the LUN assignments will be modified.&#x27;]",
+        documentation="""The ID of the volume access group for which the LUN assignments will be modified. """,
         dictionaryType=None
     )
     lun_assignments = data_model.property(
         "lunAssignments", LunAssignment,
         array=True, optional=False,
-        documentation="[&#x27;The volume IDs with new assigned LUN values.&#x27;]",
+        documentation="""The volume IDs with new assigned LUN values. """,
         dictionaryType=None
     )
 
@@ -13225,19 +13225,19 @@ class StartBulkVolumeReadResult(data_model.DataObject):
     async_handle = data_model.property(
         "asyncHandle", int,
         array=False, optional=False,
-        documentation="[&#x27;ID of the async process to be checked for completion.&#x27;]",
+        documentation="""ID of the async process to be checked for completion. """,
         dictionaryType=None
     )
     key = data_model.property(
         "key", str,
         array=False, optional=False,
-        documentation="[&#x27;Opaque key uniquely identifying the session.&#x27;]",
+        documentation="""Opaque key uniquely identifying the session. """,
         dictionaryType=None
     )
     url = data_model.property(
         "url", str,
         array=False, optional=False,
-        documentation="[&quot;URL to access the node&#x27;s web server&quot;]",
+        documentation="""URL to access the node's web server """,
         dictionaryType=None
     )
 
@@ -13254,7 +13254,7 @@ class GetNetworkConfigResult(data_model.DataObject):
     network = data_model.property(
         "network", Network,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -13276,13 +13276,13 @@ class ListVolumeStatsByVolumeAccessGroupRequest(data_model.DataObject):
     volume_access_groups = data_model.property(
         "volumeAccessGroups", int,
         array=True, optional=True,
-        documentation="[&#x27;An array of VolumeAccessGroupIDs for which volume&#x27;, &#x27;activity is returned. If omitted, statistics for all volume&#x27;, &#x27;access groups are returned.&#x27;]",
+        documentation="""An array of VolumeAccessGroupIDs for which volume activity is returned. If omitted, statistics for all volume access groups are returned. """,
         dictionaryType=None
     )
     include_virtual_volumes = data_model.property(
         "includeVirtualVolumes", bool,
         array=False, optional=True,
-        documentation="[&#x27;Specifies that virtual volumes are included in the response by default.&#x27;, &#x27;To exclude virtual volumes, set to false.&#x27;]",
+        documentation="""Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. """,
         dictionaryType=None
     )
 
@@ -13305,19 +13305,19 @@ class UpdateBulkVolumeStatusResult(data_model.DataObject):
     status = data_model.property(
         "status", str,
         array=False, optional=False,
-        documentation="[&#x27;Status of the session requested. Returned status:&#x27;, &#x27;preparing&#x27;, &#x27;active&#x27;, &#x27;done&#x27;, &#x27;failed&#x27;]",
+        documentation="""Status of the session requested. Returned status: preparing active done failed """,
         dictionaryType=None
     )
     url = data_model.property(
         "url", str,
         array=False, optional=False,
-        documentation="[&quot;The URL to access the node&#x27;s web server provided only if the session is still active.&quot;]",
+        documentation="""The URL to access the node's web server provided only if the session is still active. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=False,
-        documentation="[&#x27;Returns attributes that were specified in the BulkVolumeStatusUpdate method. Values are returned if they have changed or not.&#x27;]",
+        documentation="""Returns attributes that were specified in the BulkVolumeStatusUpdate method. Values are returned if they have changed or not. """,
         dictionaryType=None
     )
 
@@ -13355,31 +13355,31 @@ class FibreChannelSession(data_model.DataObject):
     initiator_wwpn = data_model.property(
         "initiatorWWPN", str,
         array=False, optional=False,
-        documentation="[&#x27;The WWPN of the initiator which is logged into the target port.&#x27;]",
+        documentation="""The WWPN of the initiator which is logged into the target port. """,
         dictionaryType=None
     )
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The node owning the Fibre Channel session.&#x27;]",
+        documentation="""The node owning the Fibre Channel session. """,
         dictionaryType=None
     )
     service_id = data_model.property(
         "serviceID", int,
         array=False, optional=False,
-        documentation="[&#x27;The service ID of the FService owning this Fibre Channel session&#x27;]",
+        documentation="""The service ID of the FService owning this Fibre Channel session """,
         dictionaryType=None
     )
     target_wwpn = data_model.property(
         "targetWWPN", str,
         array=False, optional=False,
-        documentation="[&#x27;The WWPN of the target port involved in this session.&#x27;]",
+        documentation="""The WWPN of the target port involved in this session. """,
         dictionaryType=None
     )
     volume_access_group_id = data_model.property(
         "volumeAccessGroupID", int,
         array=False, optional=True,
-        documentation="[&#x27;The ID of the volume access group to which the initiatorWWPN beintegers. If not in a volume access group, the value will be null.&#x27;]",
+        documentation="""The ID of the volume access group to which the initiatorWWPN beintegers. If not in a volume access group, the value will be null. """,
         dictionaryType=None
     )
 
@@ -13397,7 +13397,7 @@ class ListFibreChannelSessionsResult(data_model.DataObject):
     sessions = data_model.property(
         "sessions", FibreChannelSession,
         array=True, optional=False,
-        documentation="[&#x27;A list of FibreChannelSession objects with information about the Fibre Channel session.&#x27;]",
+        documentation="""A list of FibreChannelSession objects with information about the Fibre Channel session. """,
         dictionaryType=None
     )
 
@@ -13441,61 +13441,61 @@ class VirtualVolumeTask(data_model.DataObject):
     virtual_volume_task_id = data_model.property(
         "virtualVolumeTaskID", UUID,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     virtualvolume_id = data_model.property(
         "virtualvolumeID", UUID,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     clone_virtual_volume_id = data_model.property(
         "cloneVirtualVolumeID", UUID,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     status = data_model.property(
         "status", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     operation = data_model.property(
         "operation", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     virtual_volume_host_id = data_model.property(
         "virtualVolumeHostID", UUID,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     parent_metadata = data_model.property(
         "parentMetadata", dict,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     parent_total_size = data_model.property(
         "parentTotalSize", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     parent_used_size = data_model.property(
         "parentUsedSize", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     cancelled = data_model.property(
         "cancelled", bool,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -13512,7 +13512,7 @@ class ListVirtualVolumeTasksResult(data_model.DataObject):
     tasks = data_model.property(
         "tasks", VirtualVolumeTask,
         array=True, optional=False,
-        documentation="[&#x27;List of VVol Async Tasks.&#x27;]",
+        documentation="""List of VVol Async Tasks. """,
         dictionaryType=None
     )
 
@@ -13536,19 +13536,19 @@ class PurgeDeletedVolumesRequest(data_model.DataObject):
     volume_ids = data_model.property(
         "volumeIDs", int,
         array=True, optional=True,
-        documentation="[&#x27;A list of volumeIDs of volumes to be purged from the system.&#x27;]",
+        documentation="""A list of volumeIDs of volumes to be purged from the system. """,
         dictionaryType=None
     )
     account_ids = data_model.property(
         "accountIDs", int,
         array=True, optional=True,
-        documentation="[&#x27;A list of accountIDs. All of the volumes from all of the specified accounts are purged from the system.&#x27;]",
+        documentation="""A list of accountIDs. All of the volumes from all of the specified accounts are purged from the system. """,
         dictionaryType=None
     )
     volume_access_group_ids = data_model.property(
         "volumeAccessGroupIDs", int,
         array=True, optional=True,
-        documentation="[&#x27;A list of volumeAccessGroupIDs. All of the volumes from all of the specified Volume Access Groups are purged from the system.&#x27;]",
+        documentation="""A list of volumeAccessGroupIDs. All of the volumes from all of the specified Volume Access Groups are purged from the system. """,
         dictionaryType=None
     )
 
@@ -13565,7 +13565,7 @@ class GetClusterConfigResult(data_model.DataObject):
     cluster = data_model.property(
         "cluster", ClusterConfig,
         array=False, optional=False,
-        documentation="[&#x27;Cluster configuration information the node uses to communicate with the cluster.&#x27;]",
+        documentation="""Cluster configuration information the node uses to communicate with the cluster. """,
         dictionaryType=None
     )
 
@@ -13582,7 +13582,7 @@ class GetVolumeStatsResult(data_model.DataObject):
     volume_stats = data_model.property(
         "volumeStats", VolumeStats,
         array=False, optional=False,
-        documentation="[&#x27;Volume activity information.&#x27;]",
+        documentation="""Volume activity information. """,
         dictionaryType=None
     )
 
@@ -13602,13 +13602,13 @@ class ClusterHardwareInfo(data_model.DataObject):
     drives = data_model.property(
         "drives", dict,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=DriveHardwareInfo
     )
     nodes = data_model.property(
         "nodes", dict,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=dict
     )
 
@@ -13625,7 +13625,7 @@ class GetClusterHardwareInfoResult(data_model.DataObject):
     cluster_hardware_info = data_model.property(
         "clusterHardwareInfo", ClusterHardwareInfo,
         array=False, optional=False,
-        documentation="[&#x27;Hardware information for all nodes and drives in the cluster. Each object in this output is labeled with the nodeID of the given node.&#x27;]",
+        documentation="""Hardware information for all nodes and drives in the cluster. Each object in this output is labeled with the nodeID of the given node. """,
         dictionaryType=None
     )
 
@@ -13657,37 +13657,37 @@ class SupportBundleDetails(data_model.DataObject):
     bundle_name = data_model.property(
         "bundleName", str,
         array=False, optional=False,
-        documentation="[&quot;The name specified in the &#x27;CreateSupportBundle API method. If no name was specified, &#x27;supportbundle&#x27; will be used.&quot;]",
+        documentation="""The name specified in the 'CreateSupportBundle API method. If no name was specified, 'supportbundle' will be used. """,
         dictionaryType=None
     )
     extra_args = data_model.property(
         "extraArgs", str,
         array=False, optional=False,
-        documentation="[&#x27;The arguments passed with this method.&#x27;]",
+        documentation="""The arguments passed with this method. """,
         dictionaryType=None
     )
     files = data_model.property(
         "files", str,
         array=True, optional=False,
-        documentation="[&#x27;A list of the support bundle files that were created.&#x27;]",
+        documentation="""A list of the support bundle files that were created. """,
         dictionaryType=None
     )
     url = data_model.property(
         "url", str,
         array=True, optional=False,
-        documentation="[&#x27;The URL that you can use to download the bundle file(s). Should correspond 1:1 with files list.&#x27;]",
+        documentation="""The URL that you can use to download the bundle file(s). Should correspond 1:1 with files list. """,
         dictionaryType=None
     )
     output = data_model.property(
         "output", str,
         array=False, optional=False,
-        documentation="[&#x27;The commands that were run and their output, with newlines replaced by HTML &lt;br&gt; elements.&#x27;]",
+        documentation="""The commands that were run and their output, with newlines replaced by HTML <br> elements. """,
         dictionaryType=None
     )
     timeout_sec = data_model.property(
         "timeoutSec", int,
         array=False, optional=False,
-        documentation="[&#x27;The timeout specified for the support bundle creation process.&#x27;]",
+        documentation="""The timeout specified for the support bundle creation process. """,
         dictionaryType=None
     )
 
@@ -13710,19 +13710,19 @@ class CreateSupportBundleResult(data_model.DataObject):
     details = data_model.property(
         "details", SupportBundleDetails,
         array=False, optional=False,
-        documentation="[&#x27;The details of the support bundle. &#x27;]",
+        documentation="""The details of the support bundle.  """,
         dictionaryType=None
     )
     duration = data_model.property(
         "duration", str,
         array=False, optional=False,
-        documentation="[&#x27;The amount of time required to create the support bundle in the format HH:MM:SS.ssssss&#x27;]",
+        documentation="""The amount of time required to create the support bundle in the format HH:MM:SS.ssssss """,
         dictionaryType=None
     )
     result = data_model.property(
         "result", str,
         array=False, optional=False,
-        documentation="[&#x27;Whether the support bundle creation passed of failed.&#x27;]",
+        documentation="""Whether the support bundle creation passed of failed. """,
         dictionaryType=None
     )
 
@@ -13745,19 +13745,19 @@ class SetDefaultQoSResult(data_model.DataObject):
     min_iops = data_model.property(
         "minIOPS", int,
         array=False, optional=False,
-        documentation="[&#x27;The minimum number of sustained IOPS that are provided by the cluster to a volume. &#x27;]",
+        documentation="""The minimum number of sustained IOPS that are provided by the cluster to a volume.  """,
         dictionaryType=None
     )
     max_iops = data_model.property(
         "maxIOPS", int,
         array=False, optional=False,
-        documentation="[&#x27;The maximum number of sustained IOPS that are provided by the cluster to a volume.&#x27;]",
+        documentation="""The maximum number of sustained IOPS that are provided by the cluster to a volume. """,
         dictionaryType=None
     )
     burst_iops = data_model.property(
         "burstIOPS", int,
         array=False, optional=False,
-        documentation="[&#x27;The maximum number of IOPS allowed in a short burst scenario.&#x27;]",
+        documentation="""The maximum number of IOPS allowed in a short burst scenario. """,
         dictionaryType=None
     )
 
@@ -13786,25 +13786,25 @@ class SetSnmpInfoRequest(data_model.DataObject):
     networks = data_model.property(
         "networks", SnmpNetwork,
         array=True, optional=True,
-        documentation="[&#x27;List of networks and what type of access they have to the&#x27;, &#x27;SNMP servers running on the cluster nodes. See the SNMP&#x27;, &#x27;Network Object for possible &quot;networks&quot; values. This parameter is required only for SNMP v2.&#x27;]",
+        documentation="""List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See the SNMP Network Object for possible "networks" values. This parameter is required only for SNMP v2. """,
         dictionaryType=None
     )
     enabled = data_model.property(
         "enabled", bool,
         array=False, optional=True,
-        documentation="[&#x27;If set to true, SNMP is enabled on each node in the cluster.&#x27;]",
+        documentation="""If set to true, SNMP is enabled on each node in the cluster. """,
         dictionaryType=None
     )
     snmp_v3_enabled = data_model.property(
         "snmpV3Enabled", bool,
         array=False, optional=True,
-        documentation="[&#x27;If set to true, SNMP v3 is enabled on each node in the cluster.&#x27;]",
+        documentation="""If set to true, SNMP v3 is enabled on each node in the cluster. """,
         dictionaryType=None
     )
     usm_users = data_model.property(
         "usmUsers", SnmpV3UsmUser,
         array=True, optional=True,
-        documentation="[&#x27;If SNMP v3 is enabled, this value must be passed in place of the networks parameter. This parameter is required only for SNMP v3.&#x27;]",
+        documentation="""If SNMP v3 is enabled, this value must be passed in place of the networks parameter. This parameter is required only for SNMP v3. """,
         dictionaryType=None
     )
 
@@ -13822,7 +13822,7 @@ class ListStorageContainersRequest(data_model.DataObject):
     storage_container_ids = data_model.property(
         "storageContainerIDs", UUID,
         array=True, optional=True,
-        documentation="[&#x27;A list of storage container IDs for which to retrieve information. If you omit this parameter, the method returns information about all storage containers in the system.&#x27;]",
+        documentation="""A list of storage container IDs for which to retrieve information. If you omit this parameter, the method returns information about all storage containers in the system. """,
         dictionaryType=None
     )
 
@@ -13839,7 +13839,7 @@ class GetHardwareInfoResult(data_model.DataObject):
     hardware_info = data_model.property(
         "hardwareInfo", dict,
         array=False, optional=False,
-        documentation="[&#x27;Hardware information for this node. &#x27;]",
+        documentation="""Hardware information for this node.  """,
         dictionaryType=None
     )
 
@@ -13859,13 +13859,13 @@ class ListDriveStatsResult(data_model.DataObject):
     drive_stats = data_model.property(
         "driveStats", DriveStats,
         array=True, optional=False,
-        documentation="[&#x27;List of drive activity information for each drive.&#x27;]",
+        documentation="""List of drive activity information for each drive. """,
         dictionaryType=None
     )
     errors = data_model.property(
         "errors", dict,
         array=True, optional=False,
-        documentation="[&#x27;If there are errors retrieving information about a drive, this list contains the driveID and associated error message. Always present, and empty if there are no errors.&#x27;]",
+        documentation="""If there are errors retrieving information about a drive, this list contains the driveID and associated error message. Always present, and empty if there are no errors. """,
         dictionaryType=None
     )
 
@@ -13882,7 +13882,7 @@ class ModifyVolumeAccessGroupResult(data_model.DataObject):
     volume_access_group = data_model.property(
         "volumeAccessGroup", VolumeAccessGroup,
         array=False, optional=False,
-        documentation="[&#x27;An object containing information about the newly modified volume access group.&#x27;]",
+        documentation="""An object containing information about the newly modified volume access group. """,
         dictionaryType=None
     )
 
@@ -13899,7 +13899,7 @@ class LoginSessionInfo(data_model.DataObject):
     timeout = data_model.property(
         "timeout", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -13916,7 +13916,7 @@ class GetLoginSessionInfoResult(data_model.DataObject):
     login_session_info = data_model.property(
         "loginSessionInfo", LoginSessionInfo,
         array=False, optional=False,
-        documentation="[&#x27;The authentication expiration period. Formatted in H:mm:ss. For example: 1:30:00, 20:00, 5:00. All leading zeros and colons are removed regardless of the format the timeout was entered.&#x27;, &#x27;Objects returned are:&#x27;, &#x27;timeout - The time, in minutes, when this session will timeout and expire.&#x27;]",
+        documentation="""The authentication expiration period. Formatted in H:mm:ss. For example: 1:30:00, 20:00, 5:00. All leading zeros and colons are removed regardless of the format the timeout was entered. Objects returned are: timeout - The time, in minutes, when this session will timeout and expire. """,
         dictionaryType=None
     )
 
@@ -13933,7 +13933,7 @@ class ListClusterAdminsResult(data_model.DataObject):
     cluster_admins = data_model.property(
         "clusterAdmins", ClusterAdmin,
         array=True, optional=False,
-        documentation="[&#x27;Information about the cluster admin.&#x27;]",
+        documentation="""Information about the cluster admin. """,
         dictionaryType=None
     )
 
@@ -13950,7 +13950,7 @@ class GetNodeStatsResult(data_model.DataObject):
     node_stats = data_model.property(
         "nodeStats", NodeStatsInfo,
         array=False, optional=False,
-        documentation="[&#x27;Node activity information.&#x27;]",
+        documentation="""Node activity information. """,
         dictionaryType=None
     )
 
@@ -13967,7 +13967,7 @@ class CreateInitiatorsResult(data_model.DataObject):
     initiators = data_model.property(
         "initiators", Initiator,
         array=True, optional=False,
-        documentation="[&#x27;List of objects containing details about the newly created initiators&#x27;]",
+        documentation="""List of objects containing details about the newly created initiators """,
         dictionaryType=None
     )
 
@@ -13984,7 +13984,7 @@ class GetRemoteLoggingHostsResult(data_model.DataObject):
     remote_hosts = data_model.property(
         "remoteHosts", LoggingServer,
         array=True, optional=False,
-        documentation="[&#x27;List of hosts to forward logging information to.&#x27;]",
+        documentation="""List of hosts to forward logging information to. """,
         dictionaryType=None
     )
 
@@ -14009,7 +14009,7 @@ class ListVolumesResult(data_model.DataObject):
     volumes = data_model.property(
         "volumes", Volume,
         array=True, optional=False,
-        documentation="[&#x27;List of volumes.&#x27;]",
+        documentation="""List of volumes. """,
         dictionaryType=None
     )
 
@@ -14038,31 +14038,31 @@ class GetEfficiencyResult(data_model.DataObject):
     compression = data_model.property(
         "compression", float,
         array=False, optional=True,
-        documentation="[&#x27;The amount of space being saved by compressing data on a single volume. Stated as a ratio where &quot;1&quot; means data has been stored without being compressed.&#x27;]",
+        documentation="""The amount of space being saved by compressing data on a single volume. Stated as a ratio where "1" means data has been stored without being compressed. """,
         dictionaryType=None
     )
     deduplication = data_model.property(
         "deduplication", float,
         array=False, optional=True,
-        documentation="[&#x27;The amount of space being saved on a single volume by not duplicating data. Stated as a ratio.&#x27;]",
+        documentation="""The amount of space being saved on a single volume by not duplicating data. Stated as a ratio. """,
         dictionaryType=None
     )
     thin_provisioning = data_model.property(
         "thinProvisioning", float,
         array=False, optional=True,
-        documentation="[&#x27;The ratio of space used to the amount of space allocated for storing data. Stated as a ratio.&#x27;]",
+        documentation="""The ratio of space used to the amount of space allocated for storing data. Stated as a ratio. """,
         dictionaryType=None
     )
     timestamp = data_model.property(
         "timestamp", str,
         array=False, optional=False,
-        documentation="[&#x27;The last time efficiency data was collected after Garbage Collection (GC). ISO 8601 data string.&#x27;]",
+        documentation="""The last time efficiency data was collected after Garbage Collection (GC). ISO 8601 data string. """,
         dictionaryType=None
     )
     missing_volumes = data_model.property(
         "missingVolumes", int,
         array=True, optional=False,
-        documentation="[&#x27;The volumes that could not be queried for efficiency data. Missing volumes can be caused by GC being less than hour old, temporary network loss or restarted services since the GC cycle.&#x27;]",
+        documentation="""The volumes that could not be queried for efficiency data. Missing volumes can be caused by GC being less than hour old, temporary network loss or restarted services since the GC cycle. """,
         dictionaryType=None
     )
 
@@ -14197,241 +14197,241 @@ class GetLimitsResult(data_model.DataObject):
     account_count_max = data_model.property(
         "accountCountMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     account_name_length_max = data_model.property(
         "accountNameLengthMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     account_name_length_min = data_model.property(
         "accountNameLengthMin", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bulk_volume_jobs_per_node_max = data_model.property(
         "bulkVolumeJobsPerNodeMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     bulk_volume_jobs_per_volume_max = data_model.property(
         "bulkVolumeJobsPerVolumeMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     clone_jobs_per_volume_max = data_model.property(
         "cloneJobsPerVolumeMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     cluster_pairs_count_max = data_model.property(
         "clusterPairsCountMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     initiator_name_length_max = data_model.property(
         "initiatorNameLengthMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     initiator_count_max = data_model.property(
         "initiatorCountMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     initiators_per_volume_access_group_count_max = data_model.property(
         "initiatorsPerVolumeAccessGroupCountMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     iscsi_sessions_from_fibre_channel_nodes_max = data_model.property(
         "iscsiSessionsFromFibreChannelNodesMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     secret_length_max = data_model.property(
         "secretLengthMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     secret_length_min = data_model.property(
         "secretLengthMin", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     snapshot_name_length_max = data_model.property(
         "snapshotNameLengthMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     snapshots_per_volume_max = data_model.property(
         "snapshotsPerVolumeMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_access_group_count_max = data_model.property(
         "volumeAccessGroupCountMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_access_group_lun_max = data_model.property(
         "volumeAccessGroupLunMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_access_group_name_length_max = data_model.property(
         "volumeAccessGroupNameLengthMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_access_group_name_length_min = data_model.property(
         "volumeAccessGroupNameLengthMin", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_access_groups_per_initiator_count_max = data_model.property(
         "volumeAccessGroupsPerInitiatorCountMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_access_groups_per_volume_count_max = data_model.property(
         "volumeAccessGroupsPerVolumeCountMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     initiator_alias_length_max = data_model.property(
         "initiatorAliasLengthMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_burst_iopsmax = data_model.property(
         "volumeBurstIOPSMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_burst_iopsmin = data_model.property(
         "volumeBurstIOPSMin", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_count_max = data_model.property(
         "volumeCountMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_max_iopsmax = data_model.property(
         "volumeMaxIOPSMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_max_iopsmin = data_model.property(
         "volumeMaxIOPSMin", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_min_iopsmax = data_model.property(
         "volumeMinIOPSMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_min_iopsmin = data_model.property(
         "volumeMinIOPSMin", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_name_length_max = data_model.property(
         "volumeNameLengthMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_name_length_min = data_model.property(
         "volumeNameLengthMin", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_size_max = data_model.property(
         "volumeSizeMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volume_size_min = data_model.property(
         "volumeSizeMin", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volumes_per_account_count_max = data_model.property(
         "volumesPerAccountCountMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volumes_per_group_snapshot_max = data_model.property(
         "volumesPerGroupSnapshotMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     volumes_per_volume_access_group_count_max = data_model.property(
         "volumesPerVolumeAccessGroupCountMax", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     cluster_admin_account_max = data_model.property(
         "clusterAdminAccountMax", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     fibre_channel_volume_access_max = data_model.property(
         "fibreChannelVolumeAccessMax", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     virtual_volumes_per_account_count_max = data_model.property(
         "virtualVolumesPerAccountCountMax", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     virtual_volume_count_max = data_model.property(
         "virtualVolumeCountMax", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -14460,25 +14460,25 @@ class RollbackToGroupSnapshotRequest(data_model.DataObject):
     group_snapshot_id = data_model.property(
         "groupSnapshotID", int,
         array=False, optional=False,
-        documentation="[&#x27;Specifies the unique ID of the group snapshot.&#x27;]",
+        documentation="""Specifies the unique ID of the group snapshot. """,
         dictionaryType=None
     )
     save_current_state = data_model.property(
         "saveCurrentState", bool,
         array=False, optional=False,
-        documentation="[&#x27;Specifies whether to save an active volume image or delete it. Values are:&#x27;, &#x27;true: The previous active volume image is kept.&#x27;, &#x27;false: (default) The previous active volume image is deleted.&#x27;]",
+        documentation="""Specifies whether to save an active volume image or delete it. Values are: true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=True,
-        documentation="[&quot;Name for the group snapshot of the volume&#x27;s&quot;, &#x27;current state that is created if &quot;saveCurrentState&quot; is&#x27;, &#x27;set to true. If you do not give a name, the&#x27;, &#x27;name of the snapshots (group and individual&#x27;, &#x27;volume) are set to a timestamp of the time that&#x27;, &#x27;the rollback occurred.&#x27;]",
+        documentation="""Name for the group snapshot of the volume's current state that is created if "saveCurrentState" is set to true. If you do not give a name, the name of the snapshots (group and individual volume) are set to a timestamp of the time that the rollback occurred. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
+        documentation="""List of name-value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -14496,7 +14496,7 @@ class GetBackupTargetRequest(data_model.DataObject):
     backup_target_id = data_model.property(
         "backupTargetID", int,
         array=False, optional=False,
-        documentation="[&#x27;The unique identifier assigned to the backup target.&#x27;]",
+        documentation="""The unique identifier assigned to the backup target. """,
         dictionaryType=None
     )
 
@@ -14519,19 +14519,19 @@ class RollbackToGroupSnapshotResult(data_model.DataObject):
     group_snapshot = data_model.property(
         "groupSnapshot", GroupSnapshot,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     group_snapshot_id = data_model.property(
         "groupSnapshotID", int,
         array=False, optional=True,
-        documentation="[&#x27;Unique ID of the new group snapshot.&#x27;]",
+        documentation="""Unique ID of the new group snapshot. """,
         dictionaryType=None
     )
     members = data_model.property(
         "members", GroupSnapshotMembers,
         array=True, optional=True,
-        documentation="[&#x27;List of checksum, volumeIDs and snapshotIDs for each member of the group.&#x27;]",
+        documentation="""List of checksum, volumeIDs and snapshotIDs for each member of the group. """,
         dictionaryType=None
     )
 
@@ -14556,7 +14556,7 @@ class IpmiInfo(data_model.DataObject):
     sensors = data_model.property(
         "sensors", dict,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -14573,7 +14573,7 @@ class GetIpmiInfoNodesResultObject(data_model.DataObject):
     ipmi_info = data_model.property(
         "ipmiInfo", IpmiInfo,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -14593,13 +14593,13 @@ class GetIpmiInfoNodesResult(data_model.DataObject):
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     result = data_model.property(
         "result", GetIpmiInfoNodesResultObject,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -14616,7 +14616,7 @@ class GetIpmiInfoResult(data_model.DataObject):
     nodes = data_model.property(
         "nodes", GetIpmiInfoNodesResult,
         array=True, optional=False,
-        documentation="[&#x27;Detailed information from each sensor within a node. &#x27;]",
+        documentation="""Detailed information from each sensor within a node.  """,
         dictionaryType=None
     )
 
@@ -14642,7 +14642,7 @@ class ListVirtualVolumeTasksRequest(data_model.DataObject):
     virtual_volume_task_ids = data_model.property(
         "virtualVolumeTaskIDs", UUID,
         array=True, optional=True,
-        documentation="[&#x27;A list of virtual volume task IDs for which to retrieve information. If you omit this parameter, the method returns information about all virtual volume tasks.&#x27;]",
+        documentation="""A list of virtual volume task IDs for which to retrieve information. If you omit this parameter, the method returns information about all virtual volume tasks. """,
         dictionaryType=None
     )
 
@@ -14664,7 +14664,7 @@ class TestDrivesRequest(data_model.DataObject):
     minutes = data_model.property(
         "minutes", int,
         array=False, optional=True,
-        documentation="[&#x27;Specifies the number of minutes to run the test.&#x27;]",
+        documentation="""Specifies the number of minutes to run the test. """,
         dictionaryType=None
     )
 
@@ -14681,7 +14681,7 @@ class ModifyVolumeAccessGroupLunAssignmentsResult(data_model.DataObject):
     volume_access_group_lun_assignments = data_model.property(
         "volumeAccessGroupLunAssignments", VolumeAccessGroupLunAssignments,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -14704,19 +14704,19 @@ class Signature(data_model.DataObject):
     data = data_model.property(
         "data", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     pubkey = data_model.property(
         "pubkey", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     version = data_model.property(
         "version", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -14757,55 +14757,55 @@ class Origin(data_model.DataObject):
     signature = data_model.property(
         "<signature>", Signature,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     contract_date = data_model.property(
         "contract-date", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     contract_name = data_model.property(
         "contract-name", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     contract_quantity = data_model.property(
         "contract-quantity", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     contract_type = data_model.property(
         "contract-type", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     integrator = data_model.property(
         "integrator", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     location = data_model.property(
         "location", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     organization = data_model.property(
         "organization", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     type = data_model.property(
         "type", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -14822,7 +14822,7 @@ class GetOriginNodeResult(data_model.DataObject):
     origin = data_model.property(
         "origin", Origin,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -14842,13 +14842,13 @@ class GetOriginNode(data_model.DataObject):
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     result = data_model.property(
         "result", GetOriginNodeResult,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -14865,7 +14865,7 @@ class GetOriginResult(data_model.DataObject):
     nodes = data_model.property(
         "nodes", GetOriginNode,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -14925,91 +14925,91 @@ class ClusterInfo(data_model.DataObject):
     mvip_interface = data_model.property(
         "mvipInterface", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     mvip_vlan_tag = data_model.property(
         "mvipVlanTag", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     svip_interface = data_model.property(
         "svipInterface", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     svip_vlan_tag = data_model.property(
         "svipVlanTag", str,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     encryption_at_rest_state = data_model.property(
         "encryptionAtRestState", str,
         array=False, optional=False,
-        documentation="[&#x27;Encryption at rest state.&#x27;]",
+        documentation="""Encryption at rest state. """,
         dictionaryType=None
     )
     ensemble = data_model.property(
         "ensemble", str,
         array=True, optional=False,
-        documentation="[&#x27;Array of Node IP addresses that are participating in the cluster.&#x27;]",
+        documentation="""Array of Node IP addresses that are participating in the cluster. """,
         dictionaryType=None
     )
     mvip = data_model.property(
         "mvip", str,
         array=False, optional=False,
-        documentation="[&#x27;Management network interface.&#x27;]",
+        documentation="""Management network interface. """,
         dictionaryType=None
     )
     mvip_node_id = data_model.property(
         "mvipNodeID", int,
         array=False, optional=False,
-        documentation="[&#x27;Node holding the master MVIP address&#x27;]",
+        documentation="""Node holding the master MVIP address """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;Unique cluster name.&#x27;]",
+        documentation="""Unique cluster name. """,
         dictionaryType=None
     )
     rep_count = data_model.property(
         "repCount", int,
         array=False, optional=False,
-        documentation="[&#x27;Number of replicas of each piece of data to store in the cluster.&#x27;, &#x27;Valid value is 2&#x27;]",
+        documentation="""Number of replicas of each piece of data to store in the cluster. Valid value is 2 """,
         dictionaryType=None
     )
     svip = data_model.property(
         "svip", str,
         array=False, optional=False,
-        documentation="[&#x27;Storage virtual IP&#x27;]",
+        documentation="""Storage virtual IP """,
         dictionaryType=None
     )
     svip_node_id = data_model.property(
         "svipNodeID", int,
         array=False, optional=False,
-        documentation="[&#x27;Node holding the master SVIP address.&#x27;]",
+        documentation="""Node holding the master SVIP address. """,
         dictionaryType=None
     )
     unique_id = data_model.property(
         "uniqueID", str,
         array=False, optional=False,
-        documentation="[&#x27;Unique ID for the cluster.&#x27;]",
+        documentation="""Unique ID for the cluster. """,
         dictionaryType=None
     )
     uuid = data_model.property(
         "uuid", UUID,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=False,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="""List of Name/Value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -15026,7 +15026,7 @@ class GetClusterInfoResult(data_model.DataObject):
     cluster_info = data_model.property(
         "clusterInfo", ClusterInfo,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -15047,13 +15047,13 @@ class ListActivePairedVolumesRequest(data_model.DataObject):
     start_volume_id = data_model.property(
         "startVolumeID", int,
         array=False, optional=True,
-        documentation="[&#x27;The beginning of the range of active paired volumes to return.&#x27;]",
+        documentation="""The beginning of the range of active paired volumes to return. """,
         dictionaryType=None
     )
     limit = data_model.property(
         "limit", int,
         array=False, optional=True,
-        documentation="[&#x27;Maximum number of active paired volumes to return.&#x27;]",
+        documentation="""Maximum number of active paired volumes to return. """,
         dictionaryType=None
     )
 
@@ -15076,19 +15076,19 @@ class StartBulkVolumeWriteResult(data_model.DataObject):
     async_handle = data_model.property(
         "asyncHandle", int,
         array=False, optional=False,
-        documentation="[&#x27;ID of the async process to be checked for completion.&#x27;]",
+        documentation="""ID of the async process to be checked for completion. """,
         dictionaryType=None
     )
     key = data_model.property(
         "key", str,
         array=False, optional=False,
-        documentation="[&#x27;Opaque key uniquely identifying the session.&#x27;]",
+        documentation="""Opaque key uniquely identifying the session. """,
         dictionaryType=None
     )
     url = data_model.property(
         "url", str,
         array=False, optional=False,
-        documentation="[&quot;URL to access the node&#x27;s web server&quot;]",
+        documentation="""URL to access the node's web server """,
         dictionaryType=None
     )
 
@@ -15144,85 +15144,85 @@ class Service(data_model.DataObject):
     service_id = data_model.property(
         "serviceID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique identifier for this service.&#x27;]",
+        documentation="""Unique identifier for this service. """,
         dictionaryType=None
     )
     service_type = data_model.property(
         "serviceType", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The node this service resides on.&#x27;]",
+        documentation="""The node this service resides on. """,
         dictionaryType=None
     )
     associated_bv = data_model.property(
         "associatedBV", int,
         array=False, optional=True,
-        documentation="[&quot;This service&#x27;s associated bulk volume service.&quot;, &#x27;This will only be set if the service type is a slice service.&#x27;]",
+        documentation="""This service's associated bulk volume service. This will only be set if the service type is a slice service. """,
         dictionaryType=None
     )
     associated_ts = data_model.property(
         "associatedTS", int,
         array=False, optional=True,
-        documentation="[&quot;This service&#x27;s associated transport service.&quot;, &#x27;This will only be set if the service type is a slice service.&#x27;]",
+        documentation="""This service's associated transport service. This will only be set if the service type is a slice service. """,
         dictionaryType=None
     )
     associated_vs = data_model.property(
         "associatedVS", int,
         array=False, optional=True,
-        documentation="[&quot;This service&#x27;s associated volume service.&quot;, &#x27;This will only be set if the service type is a slice service.&#x27;]",
+        documentation="""This service's associated volume service. This will only be set if the service type is a slice service. """,
         dictionaryType=None
     )
     async_result_ids = data_model.property(
         "asyncResultIDs", int,
         array=True, optional=False,
-        documentation="[&#x27;The list of asynchronous jobs currently running for this service.&#x27;]",
+        documentation="""The list of asynchronous jobs currently running for this service. """,
         dictionaryType=None
     )
     drive_id = data_model.property(
         "driveID", int,
         array=False, optional=True,
-        documentation="[&#x27;If this service resides on a drive, the ID of that drive.&#x27;]",
+        documentation="""If this service resides on a drive, the ID of that drive. """,
         dictionaryType=None
     )
     first_time_startup = data_model.property(
         "firstTimeStartup", bool,
         array=False, optional=False,
-        documentation="[&#x27;Has this service started successfully?&#x27;, &#x27;When a new drive is added to the system, the created service will initially have a value of false here.&#x27;, &#x27;After the service has started, this value will be set to true.&#x27;, &#x27;This can be used to check if the service has ever started.&#x27;]",
+        documentation="""Has this service started successfully? When a new drive is added to the system, the created service will initially have a value of false here. After the service has started, this value will be set to true. This can be used to check if the service has ever started. """,
         dictionaryType=None
     )
     ipc_port = data_model.property(
         "ipcPort", int,
         array=False, optional=False,
-        documentation="[&#x27;The port used for intra-cluster communication.&#x27;, &#x27;This will be in the 4000-4100 range.&#x27;]",
+        documentation="""The port used for intra-cluster communication. This will be in the 4000-4100 range. """,
         dictionaryType=None
     )
     iscsi_port = data_model.property(
         "iscsiPort", int,
         array=False, optional=False,
-        documentation="[&#x27;The port used for iSCSI traffic.&#x27;, &#x27;This will only be set if the service type is a transport service.&#x27;]",
+        documentation="""The port used for iSCSI traffic. This will only be set if the service type is a transport service. """,
         dictionaryType=None
     )
     status = data_model.property(
         "status", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     started_drive_ids = data_model.property(
         "startedDriveIDs", int,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     drive_ids = data_model.property(
         "driveIDs", int,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -15272,73 +15272,73 @@ class Drive(data_model.DataObject):
     drive_id = data_model.property(
         "driveID", int,
         array=False, optional=False,
-        documentation="[&#x27;A unique identifier for this drive.&#x27;]",
+        documentation="""A unique identifier for this drive. """,
         dictionaryType=None
     )
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The node this drive is located.&#x27;, &#x27;If the drive has been physically removed from the node, this is where it was last seen.&#x27;]",
+        documentation="""The node this drive is located. If the drive has been physically removed from the node, this is where it was last seen. """,
         dictionaryType=None
     )
     assigned_service = data_model.property(
         "assignedService", int,
         array=False, optional=True,
-        documentation="[&#x27;If this drive is hosting a service, the identifier for that service.&#x27;]",
+        documentation="""If this drive is hosting a service, the identifier for that service. """,
         dictionaryType=None
     )
     async_result_ids = data_model.property(
         "asyncResultIDs", int,
         array=True, optional=False,
-        documentation="[&#x27;The list of asynchronous jobs currently running on the drive (for example: a secure erase job).&#x27;]",
+        documentation="""The list of asynchronous jobs currently running on the drive (for example: a secure erase job). """,
         dictionaryType=None
     )
     capacity = data_model.property(
         "capacity", int,
         array=False, optional=False,
-        documentation="[&#x27;The raw capacity of this drive in bytes.&#x27;]",
+        documentation="""The raw capacity of this drive in bytes. """,
         dictionaryType=None
     )
     serial = data_model.property(
         "serial", str,
         array=False, optional=False,
-        documentation="[&quot;The manufacturer&#x27;s serial number for this drive.&quot;]",
+        documentation="""The manufacturer's serial number for this drive. """,
         dictionaryType=None
     )
     slot = data_model.property(
         "slot", int,
         array=False, optional=True,
-        documentation="[&#x27;Slot number in the server chassis where this drive is located.&#x27;, &#x27;If the drive has been physically removed from the node, this will not have a value.&#x27;]",
+        documentation="""Slot number in the server chassis where this drive is located. If the drive has been physically removed from the node, this will not have a value. """,
         dictionaryType=None
     )
     drive_status = data_model.property(
         "driveStatus", str,
         array=False, optional=False,
-        documentation="[&#x27;The current status of this drive.&#x27;]",
+        documentation="""The current status of this drive. """,
         dictionaryType=None
     )
     drive_type = data_model.property(
         "driveType", str,
         array=False, optional=False,
-        documentation="[&#x27;The type of this drive.&#x27;]",
+        documentation="""The type of this drive. """,
         dictionaryType=None
     )
     reserved_slice_file_capacity = data_model.property(
         "reservedSliceFileCapacity", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     customer_slice_file_capacity = data_model.property(
         "customerSliceFileCapacity", int,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=False,
-        documentation="[&#x27;List of Name/Value pairs in JSON object format.&#x27;]",
+        documentation="""List of Name/Value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -15364,25 +15364,25 @@ class DetailedService(data_model.DataObject):
     service = data_model.property(
         "service", Service,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     node = data_model.property(
         "node", Node,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     drive = data_model.property(
         "drive", Drive,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     drives = data_model.property(
         "drives", Drive,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -15399,7 +15399,7 @@ class ListServicesResult(data_model.DataObject):
     services = data_model.property(
         "services", DetailedService,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -15416,7 +15416,7 @@ class ListActiveNodesResult(data_model.DataObject):
     nodes = data_model.property(
         "nodes", Node,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -15433,7 +15433,7 @@ class ListBackupTargetsResult(data_model.DataObject):
     backup_targets = data_model.property(
         "backupTargets", BackupTarget,
         array=True, optional=False,
-        documentation="[&#x27;Objects returned for each backup target.&#x27;]",
+        documentation="""Objects returned for each backup target. """,
         dictionaryType=None
     )
 
@@ -15450,7 +15450,7 @@ class SnmpSendTestTrapsResult(data_model.DataObject):
     status = data_model.property(
         "status", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -15468,7 +15468,7 @@ class ListVirtualVolumeBindingsRequest(data_model.DataObject):
     virtual_volume_binding_ids = data_model.property(
         "virtualVolumeBindingIDs", int,
         array=True, optional=True,
-        documentation="[&#x27;A list of virtual volume binding IDs for which to retrieve information. If you omit this parameter, the method returns information about all virtual volume bindings.&#x27;]",
+        documentation="""A list of virtual volume binding IDs for which to retrieve information. If you omit this parameter, the method returns information about all virtual volume bindings. """,
         dictionaryType=None
     )
 
@@ -15489,13 +15489,13 @@ class ListVolumeStatsByAccountRequest(data_model.DataObject):
     accounts = data_model.property(
         "accounts", int,
         array=True, optional=True,
-        documentation="[&#x27;One or more account ids by which to filter the result.&#x27;]",
+        documentation="""One or more account ids by which to filter the result. """,
         dictionaryType=None
     )
     include_virtual_volumes = data_model.property(
         "includeVirtualVolumes", bool,
         array=False, optional=True,
-        documentation="[&#x27;Includes virtual volumes in the response by default. To exclude virtual volumes, set to false.&#x27;]",
+        documentation="""Includes virtual volumes in the response by default. To exclude virtual volumes, set to false. """,
         dictionaryType=None
     )
 
@@ -15515,13 +15515,13 @@ class GetSnmpACLResult(data_model.DataObject):
     networks = data_model.property(
         "networks", SnmpNetwork,
         array=True, optional=True,
-        documentation="[&#x27;List of networks and what type of access they have to the SNMP servers running on the cluster nodes. Present if SNMP v3 is disabled.&#x27;]",
+        documentation="""List of networks and what type of access they have to the SNMP servers running on the cluster nodes. Present if SNMP v3 is disabled. """,
         dictionaryType=None
     )
     usm_users = data_model.property(
         "usmUsers", SnmpV3UsmUser,
         array=True, optional=True,
-        documentation="[&#x27;List of users and the type of access they have to the SNMP servers running on the cluster nodes. Present if SNMP v3 is enabled.&#x27;]",
+        documentation="""List of users and the type of access they have to the SNMP servers running on the cluster nodes. Present if SNMP v3 is enabled. """,
         dictionaryType=None
     )
 
@@ -15548,7 +15548,7 @@ class EnableSnmpRequest(data_model.DataObject):
     snmp_v3_enabled = data_model.property(
         "snmpV3Enabled", bool,
         array=False, optional=False,
-        documentation="[&#x27;If set to &quot;true&quot;, then SNMP v3 is enabled on each node in the&#x27;, &#x27;cluster. If set to &quot;false&quot;, then SNMP v2 is enabled.&#x27;]",
+        documentation="""If set to "true", then SNMP v3 is enabled on each node in the cluster. If set to "false", then SNMP v2 is enabled. """,
         dictionaryType=None
     )
 
@@ -15581,7 +15581,7 @@ class ListSnapshotsResult(data_model.DataObject):
     snapshots = data_model.property(
         "snapshots", Snapshot,
         array=True, optional=False,
-        documentation="[&#x27;Information about each snapshot for each volume.&#x27;, &#x27;If volumeID is not provided, all snapshots for all volumes is returned.&#x27;, &#x27;Snapshots that are in a group will be returned with a &quot;groupID&quot;.&#x27;, &#x27;Snapshots that are enabled for replication.&#x27;]",
+        documentation="""Information about each snapshot for each volume. If volumeID is not provided, all snapshots for all volumes is returned. Snapshots that are in a group will be returned with a "groupID". Snapshots that are enabled for replication. """,
         dictionaryType=None
     )
 
@@ -15598,7 +15598,7 @@ class ModifyInitiatorsResult(data_model.DataObject):
     initiators = data_model.property(
         "initiators", Initiator,
         array=True, optional=False,
-        documentation="[&#x27;List of objects containing details about the modified initiators&#x27;]",
+        documentation="""List of objects containing details about the modified initiators """,
         dictionaryType=None
     )
 
@@ -15639,49 +15639,49 @@ class CreateClusterRequest(data_model.DataObject):
     accept_eula = data_model.property(
         "acceptEula", bool,
         array=False, optional=True,
-        documentation="[&#x27;Required to indicate your acceptance of the End User License&#x27;, &#x27;Agreement when creating this cluster. To accept the EULA,&#x27;, &#x27;set this parameter to true.&#x27;]",
+        documentation="""Required to indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. """,
         dictionaryType=None
     )
     mvip = data_model.property(
         "mvip", str,
         array=False, optional=False,
-        documentation="[&#x27;Floating (virtual) IP address for the cluster on the management network.&#x27;]",
+        documentation="""Floating (virtual) IP address for the cluster on the management network. """,
         dictionaryType=None
     )
     svip = data_model.property(
         "svip", str,
         array=False, optional=False,
-        documentation="[&#x27;Floating (virtual) IP address for the cluster on the storage (iSCSI) network.&#x27;]",
+        documentation="""Floating (virtual) IP address for the cluster on the storage (iSCSI) network. """,
         dictionaryType=None
     )
     rep_count = data_model.property(
         "repCount", int,
         array=False, optional=False,
-        documentation="[&#x27;Number of replicas of each piece of data to store in the cluster. Valid value is &quot;2&quot;.&#x27;]",
+        documentation="""Number of replicas of each piece of data to store in the cluster. Valid value is "2". """,
         dictionaryType=None
     )
     username = data_model.property(
         "username", str,
         array=False, optional=False,
-        documentation="[&#x27;Username for the cluster admin.&#x27;]",
+        documentation="""Username for the cluster admin. """,
         dictionaryType=None
     )
     password = data_model.property(
         "password", str,
         array=False, optional=False,
-        documentation="[&#x27;Initial password for the cluster admin account.&#x27;]",
+        documentation="""Initial password for the cluster admin account. """,
         dictionaryType=None
     )
     nodes = data_model.property(
         "nodes", str,
         array=True, optional=False,
-        documentation="[&quot;CIP/SIP addresses of the initial set of nodes making up the cluster. This node&#x27;s IP must be in the list.&quot;]",
+        documentation="""CIP/SIP addresses of the initial set of nodes making up the cluster. This node's IP must be in the list. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
+        documentation="""List of name-value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -15705,19 +15705,19 @@ class ListEventsRequest(data_model.DataObject):
     max_events = data_model.property(
         "maxEvents", int,
         array=False, optional=True,
-        documentation="[&#x27;Specifies the maximum number of events to return.&#x27;]",
+        documentation="""Specifies the maximum number of events to return. """,
         dictionaryType=None
     )
     start_event_id = data_model.property(
         "startEventID", int,
         array=False, optional=True,
-        documentation="[&#x27;Identifies the beginning of a range of events to return.&#x27;]",
+        documentation="""Identifies the beginning of a range of events to return. """,
         dictionaryType=None
     )
     end_event_id = data_model.property(
         "endEventID", int,
         array=False, optional=True,
-        documentation="[&#x27;Identifies the end of a range of events to return.&#x27;]",
+        documentation="""Identifies the end of a range of events to return. """,
         dictionaryType=None
     )
 
@@ -15744,7 +15744,7 @@ class ListProtocolEndpointsRequest(data_model.DataObject):
     protocol_endpoint_ids = data_model.property(
         "protocolEndpointIDs", UUID,
         array=True, optional=True,
-        documentation="[&#x27;A list of protocol endpoint IDs for which to retrieve information. If you omit this parameter, the method returns information about all protocol endpoints.&#x27;]",
+        documentation="""A list of protocol endpoint IDs for which to retrieve information. If you omit this parameter, the method returns information about all protocol endpoints. """,
         dictionaryType=None
     )
 
@@ -15764,13 +15764,13 @@ class ListVolumeAccessGroupsResult(data_model.DataObject):
     volume_access_groups = data_model.property(
         "volumeAccessGroups", VolumeAccessGroup,
         array=True, optional=False,
-        documentation="[&#x27;A list of objects describing each volume access group.&#x27;]",
+        documentation="""A list of objects describing each volume access group. """,
         dictionaryType=None
     )
     volume_access_groups_not_found = data_model.property(
         "volumeAccessGroupsNotFound", int,
         array=True, optional=True,
-        documentation="[&#x27;A list of volume access groups not found by the system. Present if you used the &quot;volumeAccessGroups&quot; parameter and the system was unable to find one or more volume access groups that you specified.&#x27;]",
+        documentation="""A list of volume access groups not found by the system. Present if you used the "volumeAccessGroups" parameter and the system was unable to find one or more volume access groups that you specified. """,
         dictionaryType=None
     )
 
@@ -15790,13 +15790,13 @@ class TestLdapAuthenticationResult(data_model.DataObject):
     groups = data_model.property(
         "groups", str,
         array=True, optional=False,
-        documentation="[&#x27;List of LDAP groups that the tested user is a member of.&#x27;]",
+        documentation="""List of LDAP groups that the tested user is a member of. """,
         dictionaryType=None
     )
     user_dn = data_model.property(
         "userDN", str,
         array=False, optional=False,
-        documentation="[&quot;The tested user&#x27;s full LDAP distinguished name.&quot;]",
+        documentation="""The tested user's full LDAP distinguished name. """,
         dictionaryType=None
     )
 
@@ -15813,7 +15813,7 @@ class ListAccountsResult(data_model.DataObject):
     accounts = data_model.property(
         "accounts", Account,
         array=True, optional=False,
-        documentation="[&#x27;List of accounts.&#x27;]",
+        documentation="""List of accounts. """,
         dictionaryType=None
     )
 
@@ -15836,13 +15836,13 @@ class SetSnmpACLRequest(data_model.DataObject):
     networks = data_model.property(
         "networks", SnmpNetwork,
         array=True, optional=False,
-        documentation="[&#x27;List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP&#x27;, &#x27;Network Object for possible &quot;networks&quot; values. This parameter is required if SNMP v3 is disabled.&#x27;]",
+        documentation="""List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. This parameter is required if SNMP v3 is disabled. """,
         dictionaryType=None
     )
     usm_users = data_model.property(
         "usmUsers", SnmpV3UsmUser,
         array=True, optional=False,
-        documentation="[&#x27;List of users and the type of access they have to the SNMP servers running on the cluster nodes.&#x27;]",
+        documentation="""List of users and the type of access they have to the SNMP servers running on the cluster nodes. """,
         dictionaryType=None
     )
 
@@ -15863,13 +15863,13 @@ class GroupCloneVolumeMember(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The VolumeID of the cloned volume.&#x27;]",
+        documentation="""The VolumeID of the cloned volume. """,
         dictionaryType=None
     )
     src_volume_id = data_model.property(
         "srcVolumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The VolumeID of the source volume.&#x27;]",
+        documentation="""The VolumeID of the source volume. """,
         dictionaryType=None
     )
 
@@ -15892,19 +15892,19 @@ class CloneMultipleVolumesResult(data_model.DataObject):
     async_handle = data_model.property(
         "asyncHandle", int,
         array=False, optional=False,
-        documentation="[&#x27;A value returned from an asynchronous method call.&#x27;]",
+        documentation="""A value returned from an asynchronous method call. """,
         dictionaryType=None
     )
     group_clone_id = data_model.property(
         "groupCloneID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique ID of the new group clone.&#x27;]",
+        documentation="""Unique ID of the new group clone. """,
         dictionaryType=None
     )
     members = data_model.property(
         "members", GroupCloneVolumeMember,
         array=True, optional=False,
-        documentation="[&#x27;List of volumeIDs for the source and destination volume pairs.&#x27;]",
+        documentation="""List of volumeIDs for the source and destination volume pairs. """,
         dictionaryType=None
     )
 
@@ -15922,7 +15922,7 @@ class RemoveVolumePairRequest(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume on which to stop the replication process.&#x27;]",
+        documentation="""The ID of the volume on which to stop the replication process. """,
         dictionaryType=None
     )
 
@@ -15951,31 +15951,31 @@ class GetStorageContainerEfficiencyResult(data_model.DataObject):
     compression = data_model.property(
         "compression", float,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     deduplication = data_model.property(
         "deduplication", float,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     missing_volumes = data_model.property(
         "missingVolumes", int,
         array=True, optional=False,
-        documentation="[&#x27;The volumes that could not be queried for efficiency data. Missing volumes can be caused by the Garbage Collection (GC) cycle being less than an hour old, temporary loss of network connectivity, or restarted services since the GC cycle.&#x27;]",
+        documentation="""The volumes that could not be queried for efficiency data. Missing volumes can be caused by the Garbage Collection (GC) cycle being less than an hour old, temporary loss of network connectivity, or restarted services since the GC cycle. """,
         dictionaryType=None
     )
     thin_provisioning = data_model.property(
         "thinProvisioning", float,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     timestamp = data_model.property(
         "timestamp", str,
         array=False, optional=False,
-        documentation="[&#x27;The last time efficiency data was collected after Garbage Collection (GC).&#x27;]",
+        documentation="""The last time efficiency data was collected after Garbage Collection (GC). """,
         dictionaryType=None
     )
 
@@ -16000,7 +16000,7 @@ class AsyncHandleResult(data_model.DataObject):
     async_handle = data_model.property(
         "asyncHandle", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -16020,7 +16020,7 @@ class PurgeDeletedVolumeRequest(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume to be purged.&#x27;]",
+        documentation="""The ID of the volume to be purged. """,
         dictionaryType=None
     )
 
@@ -16085,103 +16085,103 @@ class SyncJob(data_model.DataObject):
     bytes_per_second = data_model.property(
         "bytesPerSecond", float,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     current_bytes = data_model.property(
         "currentBytes", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     dst_service_id = data_model.property(
         "dstServiceID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     elapsed_time = data_model.property(
         "elapsedTime", float,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     percent_complete = data_model.property(
         "percentComplete", float,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     remaining_time = data_model.property(
         "remainingTime", float,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     slice_id = data_model.property(
         "sliceID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     src_service_id = data_model.property(
         "srcServiceID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     total_bytes = data_model.property(
         "totalBytes", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     type = data_model.property(
         "type", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     clone_id = data_model.property(
         "cloneID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     dst_volume_id = data_model.property(
         "dstVolumeID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     src_volume_id = data_model.property(
         "srcVolumeID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     blocks_per_second = data_model.property(
         "blocksPerSecond", float,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     stage = data_model.property(
         "stage", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -16198,7 +16198,7 @@ class ListSyncJobsResult(data_model.DataObject):
     sync_jobs = data_model.property(
         "syncJobs", SyncJob,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -16251,79 +16251,79 @@ class BulkVolumeJob(data_model.DataObject):
     bulk_volume_id = data_model.property(
         "bulkVolumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The internal bulk volume job ID.&#x27;]",
+        documentation="""The internal bulk volume job ID. """,
         dictionaryType=None
     )
     create_time = data_model.property(
         "createTime", str,
         array=False, optional=False,
-        documentation="[&#x27;Timestamp created for the bulk volume job.&#x27;]",
+        documentation="""Timestamp created for the bulk volume job. """,
         dictionaryType=None
     )
     elapsed_time = data_model.property(
         "elapsedTime", int,
         array=False, optional=False,
-        documentation="[&#x27;The number of seconds since the job began.&#x27;]",
+        documentation="""The number of seconds since the job began. """,
         dictionaryType=None
     )
     format = data_model.property(
         "format", str,
         array=False, optional=False,
-        documentation="[&#x27;Format is either &quot;compressed&quot; or &quot;native&quot;.&#x27;]",
+        documentation="""Format is either "compressed" or "native". """,
         dictionaryType=None
     )
     key = data_model.property(
         "key", str,
         array=False, optional=False,
-        documentation="[&#x27;The unique key created by the bulk volume session.&#x27;]",
+        documentation="""The unique key created by the bulk volume session. """,
         dictionaryType=None
     )
     percent_complete = data_model.property(
         "percentComplete", int,
         array=False, optional=False,
-        documentation="[&#x27;The completed percentage reported by the operation.&#x27;]",
+        documentation="""The completed percentage reported by the operation. """,
         dictionaryType=None
     )
     remaining_time = data_model.property(
         "remainingTime", int,
         array=False, optional=False,
-        documentation="[&#x27;The estimated time remaining in seconds.&#x27;]",
+        documentation="""The estimated time remaining in seconds. """,
         dictionaryType=None
     )
     src_volume_id = data_model.property(
         "srcVolumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The source volume ID.&#x27;]",
+        documentation="""The source volume ID. """,
         dictionaryType=None
     )
     status = data_model.property(
         "status", str,
         array=False, optional=False,
-        documentation="[&#x27;Can be one of the following:&#x27;, &#x27;preparing&#x27;, &#x27;active&#x27;, &#x27;done&#x27;, &#x27;failed&#x27;]",
+        documentation="""Can be one of the following: preparing active done failed """,
         dictionaryType=None
     )
     script = data_model.property(
         "script", str,
         array=False, optional=True,
-        documentation="[&#x27;The name of the script if one is provided.&#x27;]",
+        documentation="""The name of the script if one is provided. """,
         dictionaryType=None
     )
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=True,
-        documentation="[&#x27;ID of the snapshot if a snapshot is in the source of the bulk volume job.&#x27;]",
+        documentation="""ID of the snapshot if a snapshot is in the source of the bulk volume job. """,
         dictionaryType=None
     )
     type = data_model.property(
         "type", str,
         array=False, optional=False,
-        documentation="[&#x27;Can be one of the following:&#x27;, &#x27;read&#x27;, &#x27;write&#x27;]",
+        documentation="""Can be one of the following: read write """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=False,
-        documentation="[&#x27;JSON attributes on the bulk volume job.&#x27;]",
+        documentation="""JSON attributes on the bulk volume job. """,
         dictionaryType=None
     )
 
@@ -16340,7 +16340,7 @@ class ListBulkVolumeJobsResult(data_model.DataObject):
     bulk_volume_jobs = data_model.property(
         "bulkVolumeJobs", BulkVolumeJob,
         array=True, optional=False,
-        documentation="[&#x27;An array of information for each bulk volume job.&#x27;]",
+        documentation="""An array of information for each bulk volume job. """,
         dictionaryType=None
     )
 
@@ -16360,7 +16360,7 @@ class TestConnectMvipRequest(data_model.DataObject):
     mvip = data_model.property(
         "mvip", str,
         array=False, optional=True,
-        documentation="[&#x27;If specified, tests the management connection of a different MVIP. You do not need to use this value when testing the connection to the target cluster. This parameter is optional.&#x27;]",
+        documentation="""If specified, tests the management connection of a different MVIP. You do not need to use this value when testing the connection to the target cluster. This parameter is optional. """,
         dictionaryType=None
     )
 
@@ -16380,13 +16380,13 @@ class GetSnmpStateResult(data_model.DataObject):
     enabled = data_model.property(
         "enabled", bool,
         array=False, optional=False,
-        documentation="[&#x27;If the nodes in the cluster are configured for SNMP.&#x27;]",
+        documentation="""If the nodes in the cluster are configured for SNMP. """,
         dictionaryType=None
     )
     snmp_v3_enabled = data_model.property(
         "snmpV3Enabled", bool,
         array=False, optional=False,
-        documentation="[&#x27;If the node in the cluster is configured for SNMP v3.&#x27;]",
+        documentation="""If the node in the cluster is configured for SNMP v3. """,
         dictionaryType=None
     )
 
@@ -16403,7 +16403,7 @@ class ListPendingActiveNodesResult(data_model.DataObject):
     pending_active_nodes = data_model.property(
         "pendingActiveNodes", PendingActiveNode,
         array=True, optional=False,
-        documentation="[&#x27;List of objects detailing information about all PendingActive nodes in the system.&#x27;]",
+        documentation="""List of objects detailing information about all PendingActive nodes in the system. """,
         dictionaryType=None
     )
 
@@ -16424,13 +16424,13 @@ class CompleteVolumePairingRequest(data_model.DataObject):
     volume_pairing_key = data_model.property(
         "volumePairingKey", str,
         array=False, optional=False,
-        documentation="[&#x27;The key returned from the StartVolumePairing method.&#x27;]",
+        documentation="""The key returned from the StartVolumePairing method. """,
         dictionaryType=None
     )
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;The ID of the volume on which to complete the pairing process.&#x27;]",
+        documentation="""The ID of the volume on which to complete the pairing process. """,
         dictionaryType=None
     )
 
@@ -16453,7 +16453,7 @@ class GetClusterStateRequest(data_model.DataObject):
     force = data_model.property(
         "force", bool,
         array=False, optional=False,
-        documentation="[&#x27;To run this command, the force parameter must be set to true.&#x27;]",
+        documentation="""To run this command, the force parameter must be set to true. """,
         dictionaryType=None
     )
 
@@ -16554,175 +16554,175 @@ class DriveHardware(data_model.DataObject):
     canonical_name = data_model.property(
         "canonicalName", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     connected = data_model.property(
         "connected", bool,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     dev = data_model.property(
         "dev", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     dev_path = data_model.property(
         "devPath", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     drive_type = data_model.property(
         "driveType", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     life_remaining_percent = data_model.property(
         "lifeRemainingPercent", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     lifetime_read_bytes = data_model.property(
         "lifetimeReadBytes", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     lifetime_write_bytes = data_model.property(
         "lifetimeWriteBytes", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     path = data_model.property(
         "path", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     path_link = data_model.property(
         "pathLink", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     power_on_hours = data_model.property(
         "powerOnHours", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     product = data_model.property(
         "product", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     reallocated_sectors = data_model.property(
         "reallocatedSectors", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     reserve_capacity_percent = data_model.property(
         "reserveCapacityPercent", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     scsi_compat_id = data_model.property(
         "scsiCompatId", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     scsi_state = data_model.property(
         "scsiState", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     security_at_maximum = data_model.property(
         "securityAtMaximum", bool,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     security_enabled = data_model.property(
         "securityEnabled", bool,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     security_frozen = data_model.property(
         "securityFrozen", bool,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     security_locked = data_model.property(
         "securityLocked", bool,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     security_supported = data_model.property(
         "securitySupported", bool,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     serial = data_model.property(
         "serial", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     size = data_model.property(
         "size", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     slot = data_model.property(
         "slot", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     smart_ssd_write_capable = data_model.property(
         "smartSsdWriteCapable", bool,
         array=False, optional=True,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     uuid = data_model.property(
         "uuid", UUID,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     vendor = data_model.property(
         "vendor", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     version = data_model.property(
         "version", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -16739,7 +16739,7 @@ class DrivesHardware(data_model.DataObject):
     drive_hardware = data_model.property(
         "driveHardware", DriveHardware,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -16759,13 +16759,13 @@ class NodeDriveHardware(data_model.DataObject):
     node_id = data_model.property(
         "nodeID", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     result = data_model.property(
         "result", DrivesHardware,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -16782,7 +16782,7 @@ class ListDriveHardwareResult(data_model.DataObject):
     nodes = data_model.property(
         "nodes", NodeDriveHardware,
         array=True, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -16799,7 +16799,7 @@ class GetNodeHardwareInfoResult(data_model.DataObject):
     node_hardware_info = data_model.property(
         "nodeHardwareInfo", dict,
         array=False, optional=False,
-        documentation="[&#x27;Hardware information for the specified nodeID.&#x27;]",
+        documentation="""Hardware information for the specified nodeID. """,
         dictionaryType=None
     )
 
@@ -16825,25 +16825,25 @@ class GetSnmpTrapInfoResult(data_model.DataObject):
     trap_recipients = data_model.property(
         "trapRecipients", SnmpTrapRecipient,
         array=True, optional=False,
-        documentation="[&#x27;List of hosts that are to receive the traps generated by the cluster.&#x27;]",
+        documentation="""List of hosts that are to receive the traps generated by the cluster. """,
         dictionaryType=None
     )
     cluster_fault_traps_enabled = data_model.property(
         "clusterFaultTrapsEnabled", bool,
         array=False, optional=False,
-        documentation="[&#x27;If &quot;true&quot;, when a cluster fault is logged a corresponding solidFireClusterFaultNotification is sent to the configured list of trap recipients.&#x27;]",
+        documentation="""If "true", when a cluster fault is logged a corresponding solidFireClusterFaultNotification is sent to the configured list of trap recipients. """,
         dictionaryType=None
     )
     cluster_fault_resolved_traps_enabled = data_model.property(
         "clusterFaultResolvedTrapsEnabled", bool,
         array=False, optional=False,
-        documentation="[&#x27;If &quot;true&quot;, when a cluster fault is logged a corresponding solidFireClusterFaultResolvedNotification is sent to the configured list of trap recipients.&#x27;]",
+        documentation="""If "true", when a cluster fault is logged a corresponding solidFireClusterFaultResolvedNotification is sent to the configured list of trap recipients. """,
         dictionaryType=None
     )
     cluster_event_traps_enabled = data_model.property(
         "clusterEventTrapsEnabled", bool,
         array=False, optional=False,
-        documentation="[&#x27;If &quot;true&quot;, when a cluster fault is logged a corresponding solidFireClusterEventNotification is sent to the configured list of trap recipients.&#x27;]",
+        documentation="""If "true", when a cluster fault is logged a corresponding solidFireClusterEventNotification is sent to the configured list of trap recipients. """,
         dictionaryType=None
     )
 
@@ -16871,7 +16871,7 @@ class SetClusterConfigRequest(data_model.DataObject):
     cluster = data_model.property(
         "cluster", ClusterConfig,
         array=False, optional=False,
-        documentation="[&#x27;Objects that are changed for the cluster interface settings.&#x27;]",
+        documentation="""Objects that are changed for the cluster interface settings. """,
         dictionaryType=None
     )
 
@@ -16897,25 +16897,25 @@ class ResetDriveDetails(data_model.DataObject):
     drive = data_model.property(
         "drive", str,
         array=False, optional=False,
-        documentation="[&#x27;Drive name&#x27;]",
+        documentation="""Drive name """,
         dictionaryType=None
     )
     return_code = data_model.property(
         "returnCode", int,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     stderr = data_model.property(
         "stderr", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     stdout = data_model.property(
         "stdout", str,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -16932,7 +16932,7 @@ class ResetDrivesDetails(data_model.DataObject):
     drives = data_model.property(
         "drives", ResetDriveDetails,
         array=True, optional=False,
-        documentation="[&#x27;Details of a single drive that is being reset.&#x27;]",
+        documentation="""Details of a single drive that is being reset. """,
         dictionaryType=None
     )
 
@@ -16949,7 +16949,7 @@ class ResetDrivesResult(data_model.DataObject):
     details = data_model.property(
         "details", ResetDrivesDetails,
         array=False, optional=False,
-        documentation="[&#x27;Details of drives that are being reset.&#x27;]",
+        documentation="""Details of drives that are being reset. """,
         dictionaryType=None
     )
 
@@ -16973,19 +16973,19 @@ class ListAccountsRequest(data_model.DataObject):
     start_account_id = data_model.property(
         "startAccountID", int,
         array=False, optional=True,
-        documentation="[&#x27;Starting AccountID to return. If no account exists with this&#x27;, &#x27;AccountID, the next account by AccountID order is used as&#x27;, &#x27;the start of the list. To page through the list, pass the&#x27;, &#x27;AccountID of the last account in the previous response +&#x27;, &#x27;1.&#x27;]",
+        documentation="""Starting AccountID to return. If no account exists with this AccountID, the next account by AccountID order is used as the start of the list. To page through the list, pass the AccountID of the last account in the previous response + 1. """,
         dictionaryType=None
     )
     limit = data_model.property(
         "limit", int,
         array=False, optional=True,
-        documentation="[&#x27;Maximum number of AccountInfo objects to return.&#x27;]",
+        documentation="""Maximum number of AccountInfo objects to return. """,
         dictionaryType=None
     )
     include_storage_containers = data_model.property(
         "includeStorageContainers", bool,
         array=False, optional=True,
-        documentation="[&#x27;Includes storage containers in the response by&#x27;, &#x27;default. To exclude storage containers, set to false.&#x27;]",
+        documentation="""Includes storage containers in the response by default. To exclude storage containers, set to false. """,
         dictionaryType=None
     )
 
@@ -17009,19 +17009,19 @@ class ModifyClusterFullThresholdRequest(data_model.DataObject):
     stage2_aware_threshold = data_model.property(
         "stage2AwareThreshold", int,
         array=False, optional=True,
-        documentation="[&#x27;The number of nodes of capacity remaining in the cluster before the system triggers a&#x27;, &#x27;capacity notification.&#x27;]",
+        documentation="""The number of nodes of capacity remaining in the cluster before the system triggers a capacity notification. """,
         dictionaryType=None
     )
     stage3_block_threshold_percent = data_model.property(
         "stage3BlockThresholdPercent", int,
         array=False, optional=True,
-        documentation="[&#x27;The percentage of block storage utilization below the &quot;Error&quot; threshold that causes the&#x27;, &#x27;system to trigger a cluster &quot;Warning&quot; alert.&#x27;]",
+        documentation="""The percentage of block storage utilization below the "Error" threshold that causes the system to trigger a cluster "Warning" alert. """,
         dictionaryType=None
     )
     max_metadata_over_provision_factor = data_model.property(
         "maxMetadataOverProvisionFactor", int,
         array=False, optional=True,
-        documentation="[&#x27;A value representative of the number of times metadata space can be overprovisioned relative to the amount of space available. For example, if there was enough metadata space to store 100 TiB of volumes and this number was set to 5, then 500 TiB worth of volumes can be created.&#x27;]",
+        documentation="""A value representative of the number of times metadata space can be overprovisioned relative to the amount of space available. For example, if there was enough metadata space to store 100 TiB of volumes and this number was set to 5, then 500 TiB worth of volumes can be created. """,
         dictionaryType=None
     )
 
@@ -17053,31 +17053,31 @@ class AddClusterAdminRequest(data_model.DataObject):
     username = data_model.property(
         "username", str,
         array=False, optional=False,
-        documentation="[&#x27;Unique username for this cluster admin. Must be between 1 and 1024 characters in length.&#x27;]",
+        documentation="""Unique username for this cluster admin. Must be between 1 and 1024 characters in length. """,
         dictionaryType=None
     )
     password = data_model.property(
         "password", str,
         array=False, optional=False,
-        documentation="[&#x27;Password used to authenticate this cluster admin.&#x27;]",
+        documentation="""Password used to authenticate this cluster admin. """,
         dictionaryType=None
     )
     access = data_model.property(
         "access", str,
         array=True, optional=False,
-        documentation="[&#x27;Controls which methods this cluster admin can use. For more details on the levels of access, see Access Control in the Element API Reference Guide.&#x27;]",
+        documentation="""Controls which methods this cluster admin can use. For more details on the levels of access, see Access Control in the Element API Reference Guide. """,
         dictionaryType=None
     )
     accept_eula = data_model.property(
         "acceptEula", bool,
         array=False, optional=True,
-        documentation="[&#x27;Required to indicate your acceptance of the End User License&#x27;, &#x27;Agreement when creating this cluster. To accept the EULA,&#x27;, &#x27;set this parameter to true.&#x27;]",
+        documentation="""Required to indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
+        documentation="""List of name-value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -17134,49 +17134,49 @@ class CloneVolumeRequest(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;VolumeID for the volume to be cloned.&#x27;]",
+        documentation="""VolumeID for the volume to be cloned. """,
         dictionaryType=None
     )
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;The name of the new cloned volume. Might be 1 to 64 characters in length.&#x27;]",
+        documentation="""The name of the new cloned volume. Might be 1 to 64 characters in length. """,
         dictionaryType=None
     )
     new_account_id = data_model.property(
         "newAccountID", int,
         array=False, optional=True,
-        documentation="[&#x27;AccountID for the owner of the new volume. If unspecified, the&#x27;, &#x27;accountID of the owner of the volume being cloned is used.&#x27;]",
+        documentation="""AccountID for the owner of the new volume. If unspecified, the accountID of the owner of the volume being cloned is used. """,
         dictionaryType=None
     )
     new_size = data_model.property(
         "newSize", int,
         array=False, optional=True,
-        documentation="[&#x27;New size of the volume, in bytes. Might be greater or less than the size of&#x27;, &#x27;the volume being cloned. If unspecified, the volume size is not&#x27;, &#x27;changed. Size is rounded to the nearest 1MB.&#x27;]",
+        documentation="""New size of the volume, in bytes. Might be greater or less than the size of the volume being cloned. If unspecified, the volume size is not changed. Size is rounded to the nearest 1MB. """,
         dictionaryType=None
     )
     access = data_model.property(
         "access", str,
         array=False, optional=True,
-        documentation="[&#x27;Specifies the level of access allowed for the new volume. Possible values are:&#x27;, &#x27;readOnly: Only read operations are allowed.&#x27;, &#x27;readWrite: Reads and writes are allowed.&#x27;, &#x27;locked: No reads or writes are allowed. If unspecified, the level of access of the volume being cloned is used.&#x27;, &#x27;replicationTarget: Identify a volume as the target volume for a&#x27;, &#x27;paired set of volumes. If the volume is not paired, the access status is&#x27;, &#x27;locked.&#x27;, &#x27;If a value is not specified, the access value does not change.&#x27;]",
+        documentation="""Specifies the level of access allowed for the new volume. Possible values are: readOnly: Only read operations are allowed. readWrite: Reads and writes are allowed. locked: No reads or writes are allowed. If unspecified, the level of access of the volume being cloned is used. replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked. If a value is not specified, the access value does not change. """,
         dictionaryType=None
     )
     snapshot_id = data_model.property(
         "snapshotID", int,
         array=False, optional=True,
-        documentation="[&#x27;ID of the snapshot that is used as the source of the clone. If no ID is&#x27;, &#x27;provided, the current active volume is used.&#x27;]",
+        documentation="""ID of the snapshot that is used as the source of the clone. If no ID is provided, the current active volume is used. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
+        documentation="""List of name-value pairs in JSON object format. """,
         dictionaryType=None
     )
     enable512e = data_model.property(
         "enable512e", bool,
         array=False, optional=True,
-        documentation="[&#x27;Should the volume provide 512-byte sector emulation?&#x27;]",
+        documentation="""Should the volume provide 512-byte sector emulation? """,
         dictionaryType=None
     )
 
@@ -17197,13 +17197,13 @@ class CreateBackupTargetRequest(data_model.DataObject):
     name = data_model.property(
         "name", str,
         array=False, optional=False,
-        documentation="[&#x27;The name of the backup target.&#x27;]",
+        documentation="""The name of the backup target. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
+        documentation="""List of name-value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -17243,37 +17243,37 @@ class ModifyVolumeRequest(data_model.DataObject):
     volume_id = data_model.property(
         "volumeID", int,
         array=False, optional=False,
-        documentation="[&#x27;VolumeID for the volume to be modified.&#x27;]",
+        documentation="""VolumeID for the volume to be modified. """,
         dictionaryType=None
     )
     account_id = data_model.property(
         "accountID", int,
         array=False, optional=True,
-        documentation="[&#x27;AccountID to which the volume is reassigned. If unspecified, the previous account name is used.&#x27;]",
+        documentation="""AccountID to which the volume is reassigned. If unspecified, the previous account name is used. """,
         dictionaryType=None
     )
     access = data_model.property(
         "access", str,
         array=False, optional=True,
-        documentation="[&#x27;Specifies the access allowed for the volume. Possible values are:&#x27;, &#x27;readOnly: Only read operations are allowed.&#x27;, &#x27;readWrite: Reads and writes are allowed.&#x27;, &#x27;locked: No reads or writes are allowed.&#x27;, &#x27;If not specified, the access value does not change.&#x27;, &#x27;replicationTarget: Identify a volume as the target volume&#x27;, &#x27;for a paired set of volumes. If the volume is not paired, the&#x27;, &#x27;access status is locked.&#x27;, &#x27;If a value is not specified, the access value does not change.&#x27;]",
+        documentation="""Specifies the access allowed for the volume. Possible values are: readOnly: Only read operations are allowed. readWrite: Reads and writes are allowed. locked: No reads or writes are allowed. If not specified, the access value does not change. replicationTarget: Identify a volume as the target volume for a paired set of volumes. If the volume is not paired, the access status is locked. If a value is not specified, the access value does not change. """,
         dictionaryType=None
     )
     qos = data_model.property(
         "qos", QoS,
         array=False, optional=True,
-        documentation="[&#x27;New QoS settings for this volume. If not specified,&#x27;, &#x27;the QoS settings are not changed.&#x27;]",
+        documentation="""New QoS settings for this volume. If not specified, the QoS settings are not changed. """,
         dictionaryType=None
     )
     total_size = data_model.property(
         "totalSize", int,
         array=False, optional=True,
-        documentation="[&#x27;New size of the volume in bytes. 1000000000 is equal to 1GB.&#x27;, &#x27;Size is rounded up to the nearest 1MB. This parameter&#x27;, &#x27;can only be used to increase the size of a volume.&#x27;]",
+        documentation="""New size of the volume in bytes. 1000000000 is equal to 1GB. Size is rounded up to the nearest 1MB. This parameter can only be used to increase the size of a volume. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
+        documentation="""List of name-value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -17296,19 +17296,19 @@ class CreateGroupSnapshotResult(data_model.DataObject):
     group_snapshot = data_model.property(
         "groupSnapshot", GroupSnapshot,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     group_snapshot_id = data_model.property(
         "groupSnapshotID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique ID of the new group snapshot.&#x27;]",
+        documentation="""Unique ID of the new group snapshot. """,
         dictionaryType=None
     )
     members = data_model.property(
         "members", GroupSnapshotMembers,
         array=True, optional=False,
-        documentation="[&#x27;List of checksum, volumeIDs and snapshotIDs for each member of the group.&#x27;]",
+        documentation="""List of checksum, volumeIDs and snapshotIDs for each member of the group. """,
         dictionaryType=None
     )
 
@@ -17335,25 +17335,25 @@ class ModifyClusterAdminRequest(data_model.DataObject):
     cluster_admin_id = data_model.property(
         "clusterAdminID", int,
         array=False, optional=False,
-        documentation="[&#x27;ClusterAdminID for the cluster admin or LDAP cluster admin to modify.&#x27;]",
+        documentation="""ClusterAdminID for the cluster admin or LDAP cluster admin to modify. """,
         dictionaryType=None
     )
     password = data_model.property(
         "password", str,
         array=False, optional=True,
-        documentation="[&#x27;Password used to authenticate this cluster admin.&#x27;]",
+        documentation="""Password used to authenticate this cluster admin. """,
         dictionaryType=None
     )
     access = data_model.property(
         "access", str,
         array=True, optional=True,
-        documentation="[&#x27;Controls which methods this cluster admin can use. For more details, see Access Control in the Element API Reference Guide.&#x27;]",
+        documentation="""Controls which methods this cluster admin can use. For more details, see Access Control in the Element API Reference Guide. """,
         dictionaryType=None
     )
     attributes = data_model.property(
         "attributes", dict,
         array=False, optional=True,
-        documentation="[&#x27;List of name-value pairs in JSON object format.&#x27;]",
+        documentation="""List of name-value pairs in JSON object format. """,
         dictionaryType=None
     )
 
@@ -17372,7 +17372,7 @@ class RemoveClusterPairRequest(data_model.DataObject):
     cluster_pair_id = data_model.property(
         "clusterPairID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique identifier used to pair two clusters.&#x27;]",
+        documentation="""Unique identifier used to pair two clusters. """,
         dictionaryType=None
     )
 
@@ -17389,7 +17389,7 @@ class CompleteClusterPairingResult(data_model.DataObject):
     cluster_pair_id = data_model.property(
         "clusterPairID", int,
         array=False, optional=False,
-        documentation="[&#x27;Unique identifier for the cluster pair.&#x27;]",
+        documentation="""Unique identifier for the cluster pair. """,
         dictionaryType=None
     )
 
@@ -17406,7 +17406,7 @@ class TestConnectEnsembleDetails(data_model.DataObject):
     nodes = data_model.property(
         "nodes", dict,
         array=False, optional=False,
-        documentation="[&#x27;A list of each ensemble node in the test and the results of the tests.&#x27;]",
+        documentation="""A list of each ensemble node in the test and the results of the tests. """,
         dictionaryType=None
     )
 
@@ -17429,19 +17429,19 @@ class TestConnectEnsembleResult(data_model.DataObject):
     details = data_model.property(
         "details", TestConnectEnsembleDetails,
         array=False, optional=False,
-        documentation="[u&#x27;&#x27;]",
+        documentation=""" """,
         dictionaryType=None
     )
     duration = data_model.property(
         "duration", str,
         array=False, optional=False,
-        documentation="[&#x27;The length of time required to run the test.&#x27;]",
+        documentation="""The length of time required to run the test. """,
         dictionaryType=None
     )
     result = data_model.property(
         "result", str,
         array=False, optional=False,
-        documentation="[&#x27;The results of the entire test&#x27;]",
+        documentation="""The results of the entire test """,
         dictionaryType=None
     )
 
