@@ -131,7 +131,10 @@ class ModelProperty(object):
         """
         if data is None or hasattr(data, '_member_type'):  # HACK ALERT
             if not self._optional:
-                out[self._member_name] = None
+                # We want to catch this error.
+                raise ValueError(self._member_name+" is a required parameter.")
+                # THE OLD WAY!
+                #out[self._member_name] = None
         elif self._array:
             out[self._member_name] = [serialize(x) for x in data]
         elif self._optional:
