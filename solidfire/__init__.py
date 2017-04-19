@@ -564,60 +564,6 @@ class Element(ServiceBase):
             params
         )
 
-    def get_snmp_acl(
-            self,):
-        """
-        GetSnmpACL enables you to return the current SNMP access permissions on the cluster nodes.        """
-
-        self._check_connection_type("get_snmp_acl", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetSnmpACL',
-            GetSnmpACLResult,
-            params
-        )
-
-    def get_snmp_info(
-            self,):
-        """
-        GetSnmpInfo enables you to retrieve the current simple network management protocol (SNMP) configuration information.
-        Note: GetSnmpInfo is available for Element OS 8 and prior releases. It is deprecated for versions later than Element OS 8.
-        NetApp recommends that you migrate to the GetSnmpState and SetSnmpACL methods. See details in the Element API Reference Guide
-        for their descriptions and usage.        """
-
-        self._check_connection_type("get_snmp_info", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetSnmpInfo',
-            GetSnmpInfoResult,
-            params
-        )
-
-    def get_snmp_state(
-            self,):
-        """
-        You can use GetSnmpState to return the current state of the SNMP feature.        """
-
-        self._check_connection_type("get_snmp_state", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetSnmpState',
-            GetSnmpStateResult,
-            params
-        )
-
     def get_system_status(
             self,):
         """
@@ -734,35 +680,6 @@ class Element(ServiceBase):
             params
         )
 
-    def set_snmp_acl(
-            self,
-            networks,
-            usm_users,):
-        """
-        SetSnmpACL enables you to configure SNMP access permissions on the cluster nodes. The values you set with this interface apply to all
-        nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpACL. Also note
-        that the values set with this interface replace all network or usmUsers values set with the older SetSnmpInfo.
-        :param networks: [required] List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. This parameter is required if SNMP v3 is disabled. 
-        :type networks: SnmpNetwork
-
-        :param usmUsers: [required] List of users and the type of access they have to the SNMP servers running on the cluster nodes. 
-        :type usmUsers: SnmpV3UsmUser
-        """
-
-        self._check_connection_type("set_snmp_acl", "Cluster")
-
-        params = { 
-            "networks": networks,
-            "usmUsers": usm_users,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SetSnmpACL',
-            SetSnmpACLResult,
-            params
-        )
-
     def list_events(
             self,
             max_events=OPTIONAL,
@@ -795,23 +712,6 @@ class Element(ServiceBase):
         return self.send_request(
             'ListEvents',
             ListEventsResult,
-            params
-        )
-
-    def snmp_send_test_traps(
-            self,):
-        """
-        SnmpSendTestTraps enables you to test SNMP functionality for a cluster. This method instructs the cluster to send test SNMP traps to the currently configured SNMP manager.        """
-
-        self._check_connection_type("snmp_send_test_traps", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SnmpSendTestTraps',
-            SnmpSendTestTrapsResult,
             params
         )
 
@@ -1038,86 +938,6 @@ class Element(ServiceBase):
             params
         )
 
-    def set_snmp_info(
-            self,
-            networks=OPTIONAL,
-            enabled=OPTIONAL,
-            snmp_v3_enabled=OPTIONAL,
-            usm_users=OPTIONAL,):
-        """
-        SetSnmpInfo enables you to configure SNMP version 2 and version 3 on cluster nodes. The values you set with this interface apply to
-        all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpInfo.
-        Note: SetSnmpInfo is deprecated. Use the EnableSnmp and SetSnmpACL methods instead.
-        :param networks:  List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See the SNMP Network Object for possible "networks" values. This parameter is required only for SNMP v2. 
-        :type networks: SnmpNetwork
-
-        :param enabled:  If set to true, SNMP is enabled on each node in the cluster. 
-        :type enabled: bool
-
-        :param snmpV3Enabled:  If set to true, SNMP v3 is enabled on each node in the cluster. 
-        :type snmpV3Enabled: bool
-
-        :param usmUsers:  If SNMP v3 is enabled, this value must be passed in place of the networks parameter. This parameter is required only for SNMP v3. 
-        :type usmUsers: SnmpV3UsmUser
-        """
-
-        self._check_connection_type("set_snmp_info", "Cluster")
-
-        params = { 
-        }
-        if networks is not None:
-            params["networks"] = networks
-        if enabled is not None:
-            params["enabled"] = enabled
-        if snmp_v3_enabled is not None:
-            params["snmpV3Enabled"] = snmp_v3_enabled
-        if usm_users is not None:
-            params["usmUsers"] = usm_users
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SetSnmpInfo',
-            SetSnmpInfoResult,
-            params
-        )
-
-    def set_snmp_trap_info(
-            self,
-            trap_recipients,
-            cluster_fault_traps_enabled,
-            cluster_fault_resolved_traps_enabled,
-            cluster_event_traps_enabled,):
-        """
-        You can use SetSnmpTrapInfo to enable and disable the generation of cluster SNMP notifications (traps) and to specify the set of network host computers that receive the notifications. The values you pass with each SetSnmpTrapInfo method call replace all values set in any previous call to SetSnmpTrapInfo.
-        :param trapRecipients: [required] List of hosts that are to receive the traps generated by the Cluster Master. At least one object is required if any one of the trap types is enabled. 
-        :type trapRecipients: SnmpTrapRecipient
-
-        :param clusterFaultTrapsEnabled: [required] If the value is set to true, a corresponding solidFireClusterFaultNotification is sent to the configured list of trap recipients when a cluster fault is logged. The default value is false. 
-        :type clusterFaultTrapsEnabled: bool
-
-        :param clusterFaultResolvedTrapsEnabled: [required] If the value is set to true, a corresponding solidFireClusterFaultResolvedNotification is sent to the configured list of trap recipients when a cluster fault is resolved. The default value is false. 
-        :type clusterFaultResolvedTrapsEnabled: bool
-
-        :param clusterEventTrapsEnabled: [required] If the value is set to true, a corresponding solidFireClusterEventNotification is sent to the configured list of trap recipients when a cluster event is logged. The default value is false. 
-        :type clusterEventTrapsEnabled: bool
-        """
-
-        self._check_connection_type("set_snmp_trap_info", "Cluster")
-
-        params = { 
-            "trapRecipients": trap_recipients,
-            "clusterFaultTrapsEnabled": cluster_fault_traps_enabled,
-            "clusterFaultResolvedTrapsEnabled": cluster_fault_resolved_traps_enabled,
-            "clusterEventTrapsEnabled": cluster_event_traps_enabled,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SetSnmpTrapInfo',
-            SetSnmpTrapInfoResult,
-            params
-        )
-
     def list_cluster_admins(
             self,):
         """
@@ -1161,23 +981,6 @@ class Element(ServiceBase):
         return self.send_request(
             'ListClusterFaults',
             ListClusterFaultsResult,
-            params
-        )
-
-    def get_snmp_trap_info(
-            self,):
-        """
-        You can use GetSnmpTrapInfo to return current SNMP trap configuration information.        """
-
-        self._check_connection_type("get_snmp_trap_info", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetSnmpTrapInfo',
-            GetSnmpTrapInfoResult,
             params
         )
 
@@ -1256,46 +1059,6 @@ class Element(ServiceBase):
         return self.send_request(
             'DeleteAllSupportBundles',
             DeleteAllSupportBundlesResult,
-            params
-        )
-
-    def disable_snmp(
-            self,):
-        """
-        You can use DisableSnmp to disable SNMP on the cluster nodes.        """
-
-        self._check_connection_type("disable_snmp", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'DisableSnmp',
-            DisableSnmpResult,
-            params
-        )
-
-    def enable_snmp(
-            self,
-            snmp_v3_enabled,):
-        """
-        EnableSnmp enables you to enable SNMP on cluster nodes. When you enable SNMP, the action applies to all nodes in the cluster, and
-        the values that are passed replace, in whole, all values set in any previous call to EnableSnmp.
-        :param snmpV3Enabled: [required] If set to "true", then SNMP v3 is enabled on each node in the cluster. If set to "false", then SNMP v2 is enabled. 
-        :type snmpV3Enabled: bool
-        """
-
-        self._check_connection_type("enable_snmp", "Cluster")
-
-        params = { 
-            "snmpV3Enabled": snmp_v3_enabled,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'EnableSnmp',
-            EnableSnmpResult,
             params
         )
 
@@ -6387,6 +6150,243 @@ class Element(ServiceBase):
         return self.send_request(
             'ListVolumeAccessGroups',
             ListVolumeAccessGroupsResult,
+            params
+        )
+
+    def disable_snmp(
+            self,):
+        """
+        You can use DisableSnmp to disable SNMP on the cluster nodes.        """
+
+        self._check_connection_type("disable_snmp", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DisableSnmp',
+            DisableSnmpResult,
+            params
+        )
+
+    def enable_snmp(
+            self,
+            snmp_v3_enabled,):
+        """
+        EnableSnmp enables you to enable SNMP on cluster nodes. When you enable SNMP, the action applies to all nodes in the cluster, and
+        the values that are passed replace, in whole, all values set in any previous call to EnableSnmp.
+        :param snmpV3Enabled: [required] If set to "true", then SNMP v3 is enabled on each node in the cluster. If set to "false", then SNMP v2 is enabled. 
+        :type snmpV3Enabled: bool
+        """
+
+        self._check_connection_type("enable_snmp", "Cluster")
+
+        params = { 
+            "snmpV3Enabled": snmp_v3_enabled,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'EnableSnmp',
+            EnableSnmpResult,
+            params
+        )
+
+    def get_snmp_acl(
+            self,):
+        """
+        GetSnmpACL enables you to return the current SNMP access permissions on the cluster nodes.        """
+
+        self._check_connection_type("get_snmp_acl", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetSnmpACL',
+            GetSnmpACLResult,
+            params
+        )
+
+    def get_snmp_info(
+            self,):
+        """
+        GetSnmpInfo enables you to retrieve the current simple network management protocol (SNMP) configuration information.
+        Note: GetSnmpInfo is available for Element OS 8 and prior releases. It is deprecated for versions later than Element OS 8.
+        NetApp recommends that you migrate to the GetSnmpState and SetSnmpACL methods. See details in the Element API Reference Guide
+        for their descriptions and usage.        """
+
+        self._check_connection_type("get_snmp_info", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetSnmpInfo',
+            GetSnmpInfoResult,
+            params
+        )
+
+    def get_snmp_state(
+            self,):
+        """
+        You can use GetSnmpState to return the current state of the SNMP feature.        """
+
+        self._check_connection_type("get_snmp_state", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetSnmpState',
+            GetSnmpStateResult,
+            params
+        )
+
+    def get_snmp_trap_info(
+            self,):
+        """
+        You can use GetSnmpTrapInfo to return current SNMP trap configuration information.        """
+
+        self._check_connection_type("get_snmp_trap_info", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetSnmpTrapInfo',
+            GetSnmpTrapInfoResult,
+            params
+        )
+
+    def set_snmp_acl(
+            self,
+            networks,
+            usm_users,):
+        """
+        SetSnmpACL enables you to configure SNMP access permissions on the cluster nodes. The values you set with this interface apply to all
+        nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpACL. Also note
+        that the values set with this interface replace all network or usmUsers values set with the older SetSnmpInfo.
+        :param networks: [required] List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See SNMP Network Object for possible "networks" values. This parameter is required if SNMP v3 is disabled. 
+        :type networks: SnmpNetwork
+
+        :param usmUsers: [required] List of users and the type of access they have to the SNMP servers running on the cluster nodes. 
+        :type usmUsers: SnmpV3UsmUser
+        """
+
+        self._check_connection_type("set_snmp_acl", "Cluster")
+
+        params = { 
+            "networks": networks,
+            "usmUsers": usm_users,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetSnmpACL',
+            SetSnmpACLResult,
+            params
+        )
+
+    def set_snmp_info(
+            self,
+            networks=OPTIONAL,
+            enabled=OPTIONAL,
+            snmp_v3_enabled=OPTIONAL,
+            usm_users=OPTIONAL,):
+        """
+        SetSnmpInfo enables you to configure SNMP version 2 and version 3 on cluster nodes. The values you set with this interface apply to
+        all nodes in the cluster, and the values that are passed replace, in whole, all values set in any previous call to SetSnmpInfo.
+        Note: SetSnmpInfo is deprecated. Use the EnableSnmp and SetSnmpACL methods instead.
+        :param networks:  List of networks and what type of access they have to the SNMP servers running on the cluster nodes. See the SNMP Network Object for possible "networks" values. This parameter is required only for SNMP v2. 
+        :type networks: SnmpNetwork
+
+        :param enabled:  If set to true, SNMP is enabled on each node in the cluster. 
+        :type enabled: bool
+
+        :param snmpV3Enabled:  If set to true, SNMP v3 is enabled on each node in the cluster. 
+        :type snmpV3Enabled: bool
+
+        :param usmUsers:  If SNMP v3 is enabled, this value must be passed in place of the networks parameter. This parameter is required only for SNMP v3. 
+        :type usmUsers: SnmpV3UsmUser
+        """
+
+        self._check_connection_type("set_snmp_info", "Cluster")
+
+        params = { 
+        }
+        if networks is not None:
+            params["networks"] = networks
+        if enabled is not None:
+            params["enabled"] = enabled
+        if snmp_v3_enabled is not None:
+            params["snmpV3Enabled"] = snmp_v3_enabled
+        if usm_users is not None:
+            params["usmUsers"] = usm_users
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetSnmpInfo',
+            SetSnmpInfoResult,
+            params
+        )
+
+    def set_snmp_trap_info(
+            self,
+            trap_recipients,
+            cluster_fault_traps_enabled,
+            cluster_fault_resolved_traps_enabled,
+            cluster_event_traps_enabled,):
+        """
+        You can use SetSnmpTrapInfo to enable and disable the generation of cluster SNMP notifications (traps) and to specify the set of network host computers that receive the notifications. The values you pass with each SetSnmpTrapInfo method call replace all values set in any previous call to SetSnmpTrapInfo.
+        :param trapRecipients: [required] List of hosts that are to receive the traps generated by the Cluster Master. At least one object is required if any one of the trap types is enabled. 
+        :type trapRecipients: SnmpTrapRecipient
+
+        :param clusterFaultTrapsEnabled: [required] If the value is set to true, a corresponding solidFireClusterFaultNotification is sent to the configured list of trap recipients when a cluster fault is logged. The default value is false. 
+        :type clusterFaultTrapsEnabled: bool
+
+        :param clusterFaultResolvedTrapsEnabled: [required] If the value is set to true, a corresponding solidFireClusterFaultResolvedNotification is sent to the configured list of trap recipients when a cluster fault is resolved. The default value is false. 
+        :type clusterFaultResolvedTrapsEnabled: bool
+
+        :param clusterEventTrapsEnabled: [required] If the value is set to true, a corresponding solidFireClusterEventNotification is sent to the configured list of trap recipients when a cluster event is logged. The default value is false. 
+        :type clusterEventTrapsEnabled: bool
+        """
+
+        self._check_connection_type("set_snmp_trap_info", "Cluster")
+
+        params = { 
+            "trapRecipients": trap_recipients,
+            "clusterFaultTrapsEnabled": cluster_fault_traps_enabled,
+            "clusterFaultResolvedTrapsEnabled": cluster_fault_resolved_traps_enabled,
+            "clusterEventTrapsEnabled": cluster_event_traps_enabled,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetSnmpTrapInfo',
+            SetSnmpTrapInfoResult,
+            params
+        )
+
+    def snmp_send_test_traps(
+            self,):
+        """
+        SnmpSendTestTraps enables you to test SNMP functionality for a cluster. This method instructs the cluster to send test SNMP traps to the currently configured SNMP manager.        """
+
+        self._check_connection_type("snmp_send_test_traps", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SnmpSendTestTraps',
+            SnmpSendTestTrapsResult,
             params
         )
 

@@ -2071,73 +2071,6 @@ class GetScheduleResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ModifyInitiator(data_model.DataObject):
-    """ModifyInitiator  
-    Object containing characteristics of each initiator to modify
-
-    :param initiator_id: [required] (Required) The numeric ID of the initiator to modify. (Integer) 
-    :type initiator_id: int
-
-    :param alias:  (Optional) A new friendly name to assign to the initiator. (String) 
-    :type alias: str
-
-    :param volume_access_group_id:  (Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
-    :type volume_access_group_id: int
-
-    :param attributes:  (Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) 
-    :type attributes: dict
-
-    """
-    initiator_id = data_model.property(
-        "initiatorID", int,
-        array=False, optional=False,
-        documentation="""(Required) The numeric ID of the initiator to modify. (Integer) """,
-        dictionaryType=None
-    )
-    alias = data_model.property(
-        "alias", str,
-        array=False, optional=True,
-        documentation="""(Optional) A new friendly name to assign to the initiator. (String) """,
-        dictionaryType=None
-    )
-    volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
-        array=False, optional=True,
-        documentation="""(Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) """,
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="""(Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) """,
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ModifyInitiatorsRequest(data_model.DataObject):
-    """ModifyInitiatorsRequest  
-    ModifyInitiators enables you to change the attributes of one or more existing initiators. You cannot change the name of an existing
-    initiator. If you need to change the name of an initiator, delete it first with DeleteInitiators and create a new one with
-    CreateInitiators.
-    If ModifyInitiators fails to change one of the initiators provided in the parameter, the method returns an error and does not modify
-    any initiators (no partial completion is possible).
-
-    :param initiators: [required] A list of objects containing characteristics of each initiator to modify. Values are: initiatorID: (Required) The ID of the initiator to modify. (Integer) alias: (Optional) A new friendly name to assign to the initiator. (String) attributes: (Optional) A new set of JSON attributes to assign to the initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which the initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
-    :type initiators: ModifyInitiator
-
-    """
-    initiators = data_model.property(
-        "initiators", ModifyInitiator,
-        array=True, optional=False,
-        documentation="""A list of objects containing characteristics of each initiator to modify. Values are: initiatorID: (Required) The ID of the initiator to modify. (Integer) alias: (Optional) A new friendly name to assign to the initiator. (String) attributes: (Optional) A new set of JSON attributes to assign to the initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which the initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) """,
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class ListVolumesRequest(data_model.DataObject):
     """ListVolumesRequest  
     The ListVolumes method enables you to retrieve a list of volumes that are in a cluster. You can specify the volumes you want to
@@ -9417,10 +9350,60 @@ class ListFibreChannelPortInfoResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class EnableLdapAuthenticationResult(data_model.DataObject):
-    """EnableLdapAuthenticationResult  
+class RollbackToSnapshotRequest(data_model.DataObject):
+    """RollbackToSnapshotRequest  
+    RollbackToSnapshot enables you to make an existing snapshot of the "active" volume image. This method creates a new snapshot
+    from an existing snapshot. The new snapshot becomes "active" and the existing snapshot is preserved until you delete it.
+    The previously "active" snapshot is deleted unless you set the parameter saveCurrentState to true.
+    Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is
+    at stage 4 or 5.
+
+    :param volume_id: [required] VolumeID for the volume. 
+    :type volume_id: int
+
+    :param snapshot_id: [required] The ID of a previously created snapshot on the given volume. 
+    :type snapshot_id: int
+
+    :param save_current_state: [required] Specifies whether to save an active volume image or delete it. Values are: true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. 
+    :type save_current_state: bool
+
+    :param name:  Name for the snapshot. If unspecified, the name of the snapshot being rolled back to is used with "- copy" appended to the end of the name. 
+    :type name: str
+
+    :param attributes:  List of name-value pairs in JSON object format. 
+    :type attributes: dict
 
     """
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="""VolumeID for the volume. """,
+        dictionaryType=None
+    )
+    snapshot_id = data_model.property(
+        "snapshotID", int,
+        array=False, optional=False,
+        documentation="""The ID of a previously created snapshot on the given volume. """,
+        dictionaryType=None
+    )
+    save_current_state = data_model.property(
+        "saveCurrentState", bool,
+        array=False, optional=False,
+        documentation="""Specifies whether to save an active volume image or delete it. Values are: true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. """,
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=True,
+        documentation="""Name for the snapshot. If unspecified, the name of the snapshot being rolled back to is used with "- copy" appended to the end of the name. """,
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="""List of name-value pairs in JSON object format. """,
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -9557,17 +9540,67 @@ class ModifyAccountResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetVirtualVolumeCountResult(data_model.DataObject):
-    """GetVirtualVolumeCountResult  
+class ModifyInitiator(data_model.DataObject):
+    """ModifyInitiator  
+    Object containing characteristics of each initiator to modify
 
-    :param count: [required] The number of virtual volumes currently in the system. 
-    :type count: int
+    :param initiator_id: [required] (Required) The numeric ID of the initiator to modify. (Integer) 
+    :type initiator_id: int
+
+    :param alias:  (Optional) A new friendly name to assign to the initiator. (String) 
+    :type alias: str
+
+    :param volume_access_group_id:  (Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
+    :type volume_access_group_id: int
+
+    :param attributes:  (Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) 
+    :type attributes: dict
 
     """
-    count = data_model.property(
-        "count", int,
+    initiator_id = data_model.property(
+        "initiatorID", int,
         array=False, optional=False,
-        documentation="""The number of virtual volumes currently in the system. """,
+        documentation="""(Required) The numeric ID of the initiator to modify. (Integer) """,
+        dictionaryType=None
+    )
+    alias = data_model.property(
+        "alias", str,
+        array=False, optional=True,
+        documentation="""(Optional) A new friendly name to assign to the initiator. (String) """,
+        dictionaryType=None
+    )
+    volume_access_group_id = data_model.property(
+        "volumeAccessGroupID", int,
+        array=False, optional=True,
+        documentation="""(Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) """,
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="""(Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) """,
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ModifyInitiatorsRequest(data_model.DataObject):
+    """ModifyInitiatorsRequest  
+    ModifyInitiators enables you to change the attributes of one or more existing initiators. You cannot change the name of an existing
+    initiator. If you need to change the name of an initiator, delete it first with DeleteInitiators and create a new one with
+    CreateInitiators.
+    If ModifyInitiators fails to change one of the initiators provided in the parameter, the method returns an error and does not modify
+    any initiators (no partial completion is possible).
+
+    :param initiators: [required] A list of objects containing characteristics of each initiator to modify. Values are: initiatorID: (Required) The ID of the initiator to modify. (Integer) alias: (Optional) A new friendly name to assign to the initiator. (String) attributes: (Optional) A new set of JSON attributes to assign to the initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which the initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
+    :type initiators: ModifyInitiator
+
+    """
+    initiators = data_model.property(
+        "initiators", ModifyInitiator,
+        array=True, optional=False,
+        documentation="""A list of objects containing characteristics of each initiator to modify. Values are: initiatorID: (Required) The ID of the initiator to modify. (Integer) alias: (Optional) A new friendly name to assign to the initiator. (String) attributes: (Optional) A new set of JSON attributes to assign to the initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which the initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) """,
         dictionaryType=None
     )
 
@@ -10721,6 +10754,23 @@ class DeleteGroupSnapshotResult(data_model.DataObject):
     """DeleteGroupSnapshotResult  
 
     """
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetVirtualVolumeCountResult(data_model.DataObject):
+    """GetVirtualVolumeCountResult  
+
+    :param count: [required] The number of virtual volumes currently in the system. 
+    :type count: int
+
+    """
+    count = data_model.property(
+        "count", int,
+        array=False, optional=False,
+        documentation="""The number of virtual volumes currently in the system. """,
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -11912,60 +11962,10 @@ class ModifyClusterAdminResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class RollbackToSnapshotRequest(data_model.DataObject):
-    """RollbackToSnapshotRequest  
-    RollbackToSnapshot enables you to make an existing snapshot of the "active" volume image. This method creates a new snapshot
-    from an existing snapshot. The new snapshot becomes "active" and the existing snapshot is preserved until you delete it.
-    The previously "active" snapshot is deleted unless you set the parameter saveCurrentState to true.
-    Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is
-    at stage 4 or 5.
-
-    :param volume_id: [required] VolumeID for the volume. 
-    :type volume_id: int
-
-    :param snapshot_id: [required] The ID of a previously created snapshot on the given volume. 
-    :type snapshot_id: int
-
-    :param save_current_state: [required] Specifies whether to save an active volume image or delete it. Values are: true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. 
-    :type save_current_state: bool
-
-    :param name:  Name for the snapshot. If unspecified, the name of the snapshot being rolled back to is used with "- copy" appended to the end of the name. 
-    :type name: str
-
-    :param attributes:  List of name-value pairs in JSON object format. 
-    :type attributes: dict
+class EnableLdapAuthenticationResult(data_model.DataObject):
+    """EnableLdapAuthenticationResult  
 
     """
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=False,
-        documentation="""VolumeID for the volume. """,
-        dictionaryType=None
-    )
-    snapshot_id = data_model.property(
-        "snapshotID", int,
-        array=False, optional=False,
-        documentation="""The ID of a previously created snapshot on the given volume. """,
-        dictionaryType=None
-    )
-    save_current_state = data_model.property(
-        "saveCurrentState", bool,
-        array=False, optional=False,
-        documentation="""Specifies whether to save an active volume image or delete it. Values are: true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. """,
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=True,
-        documentation="""Name for the snapshot. If unspecified, the name of the snapshot being rolled back to is used with "- copy" appended to the end of the name. """,
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="""List of name-value pairs in JSON object format. """,
-        dictionaryType=None
-    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
