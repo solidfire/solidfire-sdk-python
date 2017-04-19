@@ -370,7 +370,7 @@ class ApiSchedule(data_model.DataObject):
 
     weekdays = data_model.property(
         "weekdays", ApiWeekday,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="\
         Indicates the days of the week that a snapshot will be made.\
         "
