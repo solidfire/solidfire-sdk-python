@@ -284,7 +284,7 @@ class ApiSchedule(data_model.DataObject):
 
     monthdays = data_model.property(
         "monthdays", int,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="\
         Shows the days of the month that the next snapshot will be created on.\
         Valid values are: 0 - 31\
