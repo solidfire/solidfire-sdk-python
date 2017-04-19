@@ -715,23 +715,6 @@ class Element(ServiceBase):
             params
         )
 
-    def snmp_send_test_traps(
-            self,):
-        """
-        SnmpSendTestTraps enables you to test SNMP functionality for a cluster. This method instructs the cluster to send test SNMP traps to the currently configured SNMP manager.        """
-
-        self._check_connection_type("snmp_send_test_traps", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SnmpSendTestTraps',
-            SnmpSendTestTrapsResult,
-            params
-        )
-
     def add_cluster_admin(
             self,
             username,
