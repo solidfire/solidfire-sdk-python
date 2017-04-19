@@ -196,10 +196,10 @@ class ScheduleAdaptor:
 
         volume_ids = []
         if api.volume_id is not None:
-            volume_ids.append(api.volume_id)
+            volume_ids.append(int(api.volume_id))
         if api.volumes is not None:
             # noinspection PyTypeChecker
-            volume_ids.extend(api.volumes)
+            volume_ids.extend([int(vol) for vol in api.volumes])
 
         info = ScheduleInfo(
             enable_remote_replication=api.enable_remote_replication,
