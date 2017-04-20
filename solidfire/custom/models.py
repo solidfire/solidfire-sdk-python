@@ -101,6 +101,22 @@ class Frequency(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
+    # We implement this function so that the user doesn't have to provide weekdays and
+    # monthdays. To make the command work, if one of them is set, the other must be set
+    # to none.
+    def to_json(self):
+        """
+        Converts DataObject to json.
+
+        :return: the DataObject as a json structure.
+        """
+        out = super(Frequency, self).to_json()
+        if "hours" not in out:
+            out["hours"] = 0
+        if "monthdays" not in out:
+            out["minutes"] = 0
+        return out
+
 
 class TimeIntervalFrequency(Frequency):
     """
