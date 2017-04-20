@@ -99,6 +99,10 @@ class Frequency(data_model.DataObject):
     """
 
     def __init__(self, **kwargs):
+        if "minutes" not in kwargs.keys():
+            kwargs["minutes"] = 0
+        if "hours" not in kwargs.keys():
+            kwargs["hours"] = 0
         data_model.DataObject.__init__(self, **kwargs)
 
     # We implement this function so that the user doesn't have to provide weekdays and
