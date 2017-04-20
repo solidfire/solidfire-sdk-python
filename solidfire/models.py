@@ -6758,7 +6758,7 @@ class AddressBlock(data_model.DataObject):
     :param size: [required] Number of IP addresses to include in the block. 
     :type size: int
 
-    :param available: [required] Nuber of available blocks 
+    :param available:  Nuber of available blocks 
     :type available: str
 
     """
@@ -6776,7 +6776,7 @@ class AddressBlock(data_model.DataObject):
     )
     available = data_model.property(
         "available", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="""Nuber of available blocks """,
         dictionaryType=None
     )
@@ -7355,7 +7355,7 @@ class AddressBlockParams(data_model.DataObject):
     :param size: [required] Number of IP addresses to include in the block. 
     :type size: int
 
-    :param available:  Nuber of available blocks 
+    :param available: [required] Nuber of available blocks 
     :type available: str
 
     """
@@ -7373,7 +7373,7 @@ class AddressBlockParams(data_model.DataObject):
     )
     available = data_model.property(
         "available", str,
-        array=False, optional=True,
+        array=False, optional=False,
         documentation="""Nuber of available blocks """,
         dictionaryType=None
     )
