@@ -6758,7 +6758,7 @@ class AddressBlock(data_model.DataObject):
     :param size: [required] Number of IP addresses to include in the block. 
     :type size: int
 
-    :param available: [required] Nuber of available blocks 
+    :param available:  Nuber of available blocks 
     :type available: str
 
     """
@@ -6776,7 +6776,7 @@ class AddressBlock(data_model.DataObject):
     )
     available = data_model.property(
         "available", str,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="""Nuber of available blocks """,
         dictionaryType=None
     )
@@ -7363,7 +7363,7 @@ class AddVirtualNetworkRequest(data_model.DataObject):
     :type name: str
 
     :param address_blocks: [required] Unique range of IP addresses to include in the virtual network. Attributes for this parameter are: start: The start of the IP address range. (String) size: The number of IP addresses to include in the block. (Integer) 
-    :type address_blocks: AddressBlock
+    :type address_blocks: AddressBlockParams
 
     :param netmask: [required] Unique network mask for the virtual network being created. 
     :type netmask: str
@@ -7394,7 +7394,7 @@ class AddVirtualNetworkRequest(data_model.DataObject):
         dictionaryType=None
     )
     address_blocks = data_model.property(
-        "addressBlocks", AddressBlock,
+        "addressBlocks", AddressBlockParams,
         array=True, optional=False,
         documentation="""Unique range of IP addresses to include in the virtual network. Attributes for this parameter are: start: The start of the IP address range. (String) size: The number of IP addresses to include in the block. (Integer) """,
         dictionaryType=None
@@ -11324,7 +11324,7 @@ class ModifyVirtualNetworkRequest(data_model.DataObject):
     :type name: str
 
     :param address_blocks:  The new addressBlock to set for this virtual network. This might contain new address blocks to add to the existing object or omit unused address blocks that need to be removed. Alternatively, you can extend or reduce the size of existing address blocks. You can only increase the size of the starting addressBlocks for a virtual network object; you can never decrease it. Attributes for this parameter are: start: The start of the IP address range. (String) size: The number of IP addresses to include in the block. (Integer) 
-    :type address_blocks: AddressBlock
+    :type address_blocks: AddressBlockParams
 
     :param netmask:  New network mask for this virtual network. 
     :type netmask: str
@@ -11361,7 +11361,7 @@ class ModifyVirtualNetworkRequest(data_model.DataObject):
         dictionaryType=None
     )
     address_blocks = data_model.property(
-        "addressBlocks", AddressBlock,
+        "addressBlocks", AddressBlockParams,
         array=True, optional=True,
         documentation="""The new addressBlock to set for this virtual network. This might contain new address blocks to add to the existing object or omit unused address blocks that need to be removed. Alternatively, you can extend or reduce the size of existing address blocks. You can only increase the size of the starting addressBlocks for a virtual network object; you can never decrease it. Attributes for this parameter are: start: The start of the IP address range. (String) size: The number of IP addresses to include in the block. (Integer) """,
         dictionaryType=None

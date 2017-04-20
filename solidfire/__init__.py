@@ -3665,7 +3665,7 @@ class Element(ServiceBase):
         :type name: str
 
         :param addressBlocks: [required] Unique range of IP addresses to include in the virtual network. Attributes for this parameter are: start: The start of the IP address range. (String) size: The number of IP addresses to include in the block. (Integer) 
-        :type addressBlocks: AddressBlock
+        :type addressBlocks: AddressBlockParams
 
         :param netmask: [required] Unique network mask for the virtual network being created. 
         :type netmask: str
@@ -3735,7 +3735,7 @@ class Element(ServiceBase):
         :type name: str
 
         :param addressBlocks:  The new addressBlock to set for this virtual network. This might contain new address blocks to add to the existing object or omit unused address blocks that need to be removed. Alternatively, you can extend or reduce the size of existing address blocks. You can only increase the size of the starting addressBlocks for a virtual network object; you can never decrease it. Attributes for this parameter are: start: The start of the IP address range. (String) size: The number of IP addresses to include in the block. (Integer) 
-        :type addressBlocks: AddressBlock
+        :type addressBlocks: AddressBlockParams
 
         :param netmask:  New network mask for this virtual network. 
         :type netmask: str
