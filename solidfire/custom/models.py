@@ -99,27 +99,12 @@ class Frequency(data_model.DataObject):
     """
 
     def __init__(self, **kwargs):
-        if "minutes" not in kwargs.keys():
+        # Set up these guys to default to 0.
+        if "minutes" not in kwargs.keys() or kwargs["minutes"] is None:
             kwargs["minutes"] = 0
-        if "hours" not in kwargs.keys():
+        if "hours" not in kwargs.keys() or kwargs["minutes"] is None:
             kwargs["hours"] = 0
         data_model.DataObject.__init__(self, **kwargs)
-
-    # We implement this function so that the user doesn't have to provide weekdays and
-    # monthdays. To make the command work, if one of them is set, the other must be set
-    # to none.
-    def to_json(self):
-        """
-        Converts DataObject to json.
-
-        :return: the DataObject as a json structure.
-        """
-        out = super(Frequency, self).to_json()
-        if "hours" not in out:
-            out["hours"] = 0
-        if "monthdays" not in out:
-            out["minutes"] = 0
-        return out
 
 
 class TimeIntervalFrequency(Frequency):
