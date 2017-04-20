@@ -60,3 +60,6 @@ target/
 # Personal Tests
 solidfire/mytest.py
 .DS_Store
+
+/descriptor_version.json
+/generator_version.json
