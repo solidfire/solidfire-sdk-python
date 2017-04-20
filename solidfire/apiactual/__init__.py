@@ -376,6 +376,22 @@ class ApiSchedule(data_model.DataObject):
         "
     )
 
+    # We implement this function so that the user doesn't have to provide weekdays and
+    # monthdays. To make the command work, if one of them is set, the other must be set
+    # to none.
+    def to_json(self):
+        """
+        Converts DataObject to json.
+
+        :return: the DataObject as a json structure.
+        """
+        out = super(ApiSchedule, self).to_json()
+        if "weekdays" not in out:
+            out["weekdays"] = None
+        if "monthdays" not in out:
+            out["monthdays"] = None
+        return out
+
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
