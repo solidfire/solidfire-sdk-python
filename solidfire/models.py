@@ -6758,7 +6758,7 @@ class AddressBlock(data_model.DataObject):
     :param size: [required] Number of IP addresses to include in the block. 
     :type size: int
 
-    :param available:  Nuber of available blocks 
+    :param available: [required] Nuber of available blocks 
     :type available: str
 
     """
@@ -6776,7 +6776,7 @@ class AddressBlock(data_model.DataObject):
     )
     available = data_model.property(
         "available", str,
-        array=False, optional=True,
+        array=False, optional=False,
         documentation="""Nuber of available blocks """,
         dictionaryType=None
     )
@@ -7339,6 +7339,42 @@ class SetNetworkConfigResult(data_model.DataObject):
         "network", Network,
         array=False, optional=False,
         documentation=""" """,
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class AddressBlockParams(data_model.DataObject):
+    """AddressBlockParams  
+    Unique Range of IP addresses to include in the virtual network.
+
+    :param start: [required] Start of the IP address range. 
+    :type start: str
+
+    :param size: [required] Number of IP addresses to include in the block. 
+    :type size: int
+
+    :param available:  Nuber of available blocks 
+    :type available: str
+
+    """
+    start = data_model.property(
+        "start", str,
+        array=False, optional=False,
+        documentation="""Start of the IP address range. """,
+        dictionaryType=None
+    )
+    size = data_model.property(
+        "size", int,
+        array=False, optional=False,
+        documentation="""Number of IP addresses to include in the block. """,
+        dictionaryType=None
+    )
+    available = data_model.property(
+        "available", str,
+        array=False, optional=True,
+        documentation="""Nuber of available blocks """,
         dictionaryType=None
     )
 
