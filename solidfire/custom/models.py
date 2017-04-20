@@ -102,7 +102,7 @@ class Frequency(data_model.DataObject):
         # Set up these guys to default to 0.
         if "minutes" not in kwargs.keys() or kwargs["minutes"] is None:
             kwargs["minutes"] = 0
-        if "hours" not in kwargs.keys() or kwargs["minutes"] is None:
+        if "hours" not in kwargs.keys() or kwargs["hours"] is None:
             kwargs["hours"] = 0
         data_model.DataObject.__init__(self, **kwargs)
 
