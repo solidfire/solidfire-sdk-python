@@ -3259,148 +3259,6 @@ class Element(ServiceBase):
             params
         )
 
-    def create_storage_container(
-            self,
-            name,
-            initiator_secret=OPTIONAL,
-            target_secret=OPTIONAL,
-            account_id=OPTIONAL,):
-        """
-        CreateStorageContainer enables you to create a Virtual Volume (VVol) storage container. Storage containers are associated with a SolidFire storage system account, and are used for reporting and resource allocation. Storage containers can only be associated with virtual volumes. You need at least one storage container to use the Virtual Volumes feature.
-        :param name: [required] The name of the storage container. Follows SolidFire account naming restrictions. 
-        :type name: str
-
-        :param initiatorSecret:  The secret for CHAP authentication for the initiator. 
-        :type initiatorSecret: str
-
-        :param targetSecret:  The secret for CHAP authentication for the target. 
-        :type targetSecret: str
-
-        :param accountID:  Non-storage container account that will become a storage container. 
-        :type accountID: int
-        """
-
-        self._check_connection_type("create_storage_container", "Cluster")
-
-        params = { 
-            "name": name,
-        }
-        if initiator_secret is not None:
-            params["initiatorSecret"] = initiator_secret
-        if target_secret is not None:
-            params["targetSecret"] = target_secret
-        if account_id is not None:
-            params["accountID"] = account_id
-        
-        # There is no adaptor.
-        return self.send_request(
-            'CreateStorageContainer',
-            CreateStorageContainerResult,
-            params
-        )
-
-    def delete_storage_containers(
-            self,
-            storage_container_ids,):
-        """
-        DeleteStorageContainers enables you to remove up to 2000 Virtual Volume (VVol) storage containers from the system at one time.
-        The storage containers you remove must not contain any VVols.
-        :param storageContainerIDs: [required] A list of IDs of the storage containers to delete. You can specify up to 2000 IDs in the list. 
-        :type storageContainerIDs: UUID
-        """
-
-        self._check_connection_type("delete_storage_containers", "Cluster")
-
-        params = { 
-            "storageContainerIDs": storage_container_ids,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'DeleteStorageContainers',
-            DeleteStorageContainerResult,
-            params
-        )
-
-    def get_storage_container_efficiency(
-            self,
-            storage_container_id,):
-        """
-        GetStorageContainerEfficiency enables you to retrieve efficiency information about a virtual volume storage container.
-        :param storageContainerID: [required] The ID of the storage container for which to retrieve efficiency information. 
-        :type storageContainerID: UUID
-        """
-
-        self._check_connection_type("get_storage_container_efficiency", "Cluster")
-
-        params = { 
-            "storageContainerID": storage_container_id,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetStorageContainerEfficiency',
-            GetStorageContainerEfficiencyResult,
-            params
-        )
-
-    def list_storage_containers(
-            self,
-            storage_container_ids=OPTIONAL,):
-        """
-        ListStorageContainers enables you to retrieve information about all virtual volume storage containers known to the system.
-        :param storageContainerIDs:  A list of storage container IDs for which to retrieve information. If you omit this parameter, the method returns information about all storage containers in the system. 
-        :type storageContainerIDs: UUID
-        """
-
-        self._check_connection_type("list_storage_containers", "Cluster")
-
-        params = { 
-        }
-        if storage_container_ids is not None:
-            params["storageContainerIDs"] = storage_container_ids
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListStorageContainers',
-            ListStorageContainersResult,
-            params
-        )
-
-    def modify_storage_container(
-            self,
-            storage_container_id,
-            initiator_secret=OPTIONAL,
-            target_secret=OPTIONAL,):
-        """
-        ModifyStorageContainer enables you to make changes to an existing virtual volume storage container.
-        :param storageContainerID: [required] The unique ID of the virtual volume storage container to modify. 
-        :type storageContainerID: UUID
-
-        :param initiatorSecret:  The new secret for CHAP authentication for the initiator. 
-        :type initiatorSecret: str
-
-        :param targetSecret:  The new secret for CHAP authentication for the target. 
-        :type targetSecret: str
-        """
-
-        self._check_connection_type("modify_storage_container", "Cluster")
-
-        params = { 
-            "storageContainerID": storage_container_id,
-        }
-        if initiator_secret is not None:
-            params["initiatorSecret"] = initiator_secret
-        if target_secret is not None:
-            params["targetSecret"] = target_secret
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ModifyStorageContainer',
-            ModifyStorageContainerResult,
-            params
-        )
-
     def list_tests(
             self,):
         """
@@ -5665,6 +5523,148 @@ class Element(ServiceBase):
         return self.send_request(
             'SnmpSendTestTraps',
             SnmpSendTestTrapsResult,
+            params
+        )
+
+    def create_storage_container(
+            self,
+            name,
+            initiator_secret=OPTIONAL,
+            target_secret=OPTIONAL,
+            account_id=OPTIONAL,):
+        """
+        CreateStorageContainer enables you to create a Virtual Volume (VVol) storage container. Storage containers are associated with a SolidFire storage system account, and are used for reporting and resource allocation. Storage containers can only be associated with virtual volumes. You need at least one storage container to use the Virtual Volumes feature.
+        :param name: [required] The name of the storage container. Follows SolidFire account naming restrictions. 
+        :type name: str
+
+        :param initiatorSecret:  The secret for CHAP authentication for the initiator. 
+        :type initiatorSecret: str
+
+        :param targetSecret:  The secret for CHAP authentication for the target. 
+        :type targetSecret: str
+
+        :param accountID:  Non-storage container account that will become a storage container. 
+        :type accountID: int
+        """
+
+        self._check_connection_type("create_storage_container", "Cluster")
+
+        params = { 
+            "name": name,
+        }
+        if initiator_secret is not None:
+            params["initiatorSecret"] = initiator_secret
+        if target_secret is not None:
+            params["targetSecret"] = target_secret
+        if account_id is not None:
+            params["accountID"] = account_id
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateStorageContainer',
+            CreateStorageContainerResult,
+            params
+        )
+
+    def delete_storage_containers(
+            self,
+            storage_container_ids,):
+        """
+        DeleteStorageContainers enables you to remove up to 2000 Virtual Volume (VVol) storage containers from the system at one time.
+        The storage containers you remove must not contain any VVols.
+        :param storageContainerIDs: [required] A list of IDs of the storage containers to delete. You can specify up to 2000 IDs in the list. 
+        :type storageContainerIDs: UUID
+        """
+
+        self._check_connection_type("delete_storage_containers", "Cluster")
+
+        params = { 
+            "storageContainerIDs": storage_container_ids,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DeleteStorageContainers',
+            DeleteStorageContainerResult,
+            params
+        )
+
+    def get_storage_container_efficiency(
+            self,
+            storage_container_id,):
+        """
+        GetStorageContainerEfficiency enables you to retrieve efficiency information about a virtual volume storage container.
+        :param storageContainerID: [required] The ID of the storage container for which to retrieve efficiency information. 
+        :type storageContainerID: UUID
+        """
+
+        self._check_connection_type("get_storage_container_efficiency", "Cluster")
+
+        params = { 
+            "storageContainerID": storage_container_id,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetStorageContainerEfficiency',
+            GetStorageContainerEfficiencyResult,
+            params
+        )
+
+    def list_storage_containers(
+            self,
+            storage_container_ids=OPTIONAL,):
+        """
+        ListStorageContainers enables you to retrieve information about all virtual volume storage containers known to the system.
+        :param storageContainerIDs:  A list of storage container IDs for which to retrieve information. If you omit this parameter, the method returns information about all storage containers in the system. 
+        :type storageContainerIDs: UUID
+        """
+
+        self._check_connection_type("list_storage_containers", "Cluster")
+
+        params = { 
+        }
+        if storage_container_ids is not None:
+            params["storageContainerIDs"] = storage_container_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListStorageContainers',
+            ListStorageContainersResult,
+            params
+        )
+
+    def modify_storage_container(
+            self,
+            storage_container_id,
+            initiator_secret=OPTIONAL,
+            target_secret=OPTIONAL,):
+        """
+        ModifyStorageContainer enables you to make changes to an existing virtual volume storage container.
+        :param storageContainerID: [required] The unique ID of the virtual volume storage container to modify. 
+        :type storageContainerID: UUID
+
+        :param initiatorSecret:  The new secret for CHAP authentication for the initiator. 
+        :type initiatorSecret: str
+
+        :param targetSecret:  The new secret for CHAP authentication for the target. 
+        :type targetSecret: str
+        """
+
+        self._check_connection_type("modify_storage_container", "Cluster")
+
+        params = { 
+            "storageContainerID": storage_container_id,
+        }
+        if initiator_secret is not None:
+            params["initiatorSecret"] = initiator_secret
+        if target_secret is not None:
+            params["targetSecret"] = target_secret
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyStorageContainer',
+            ModifyStorageContainerResult,
             params
         )
 

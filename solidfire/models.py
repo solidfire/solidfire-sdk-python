@@ -5876,97 +5876,88 @@ class GetDriveHardwareInfoRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class StorageContainer(data_model.DataObject):
-    """StorageContainer  
+class VirtualVolumeBinding(data_model.DataObject):
+    """VirtualVolumeBinding  
 
-    :param name: [required]  
-    :type name: str
+    :param protocol_endpoint_id: [required] The unique ID of the protocol endpoint. 
+    :type protocol_endpoint_id: UUID
 
-    :param storage_container_id: [required]  
-    :type storage_container_id: UUID
+    :param protocol_endpoint_in_band_id: [required] The scsiNAADeviceID of the protocol endpoint. For more information, see protocolEndpoint. 
+    :type protocol_endpoint_in_band_id: str
 
-    :param account_id: [required]  
-    :type account_id: int
-
-    :param protocol_endpoint_type: [required]  
+    :param protocol_endpoint_type: [required] The type of protocol endpoint. SCSI is the only value returned for the protocol endpoint type. 
     :type protocol_endpoint_type: str
 
-    :param initiator_secret: [required]  
-    :type initiator_secret: str
+    :param virtual_volume_binding_id: [required] The unique ID of the virtual volume binding object. 
+    :type virtual_volume_binding_id: int
 
-    :param target_secret: [required]  
-    :type target_secret: str
+    :param virtual_volume_host_id: [required] The unique ID of the virtual volume host. 
+    :type virtual_volume_host_id: UUID
 
-    :param status: [required]  
-    :type status: str
+    :param virtual_volume_id: [required] The unique ID of the virtual volume. 
+    :type virtual_volume_id: UUID
 
-    :param virtual_volumes:   
-    :type virtual_volumes: UUID
+    :param virtual_volume_secondary_id: [required] The secondary ID of the virtual volume. 
+    :type virtual_volume_secondary_id: str
 
     """
-    name = data_model.property(
-        "name", str,
+    protocol_endpoint_id = data_model.property(
+        "protocolEndpointID", UUID,
         array=False, optional=False,
-        documentation=""" """,
+        documentation="""The unique ID of the protocol endpoint. """,
         dictionaryType=None
     )
-    storage_container_id = data_model.property(
-        "storageContainerID", UUID,
+    protocol_endpoint_in_band_id = data_model.property(
+        "protocolEndpointInBandID", str,
         array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    account_id = data_model.property(
-        "accountID", int,
-        array=False, optional=False,
-        documentation=""" """,
+        documentation="""The scsiNAADeviceID of the protocol endpoint. For more information, see protocolEndpoint. """,
         dictionaryType=None
     )
     protocol_endpoint_type = data_model.property(
         "protocolEndpointType", str,
         array=False, optional=False,
-        documentation=""" """,
+        documentation="""The type of protocol endpoint. SCSI is the only value returned for the protocol endpoint type. """,
         dictionaryType=None
     )
-    initiator_secret = data_model.property(
-        "initiatorSecret", str,
+    virtual_volume_binding_id = data_model.property(
+        "virtualVolumeBindingID", int,
         array=False, optional=False,
-        documentation=""" """,
+        documentation="""The unique ID of the virtual volume binding object. """,
         dictionaryType=None
     )
-    target_secret = data_model.property(
-        "targetSecret", str,
+    virtual_volume_host_id = data_model.property(
+        "virtualVolumeHostID", UUID,
         array=False, optional=False,
-        documentation=""" """,
+        documentation="""The unique ID of the virtual volume host. """,
         dictionaryType=None
     )
-    status = data_model.property(
-        "status", str,
+    virtual_volume_id = data_model.property(
+        "virtualVolumeID", UUID,
         array=False, optional=False,
-        documentation=""" """,
+        documentation="""The unique ID of the virtual volume. """,
         dictionaryType=None
     )
-    virtual_volumes = data_model.property(
-        "virtualVolumes", UUID,
-        array=True, optional=True,
-        documentation=""" """,
+    virtual_volume_secondary_id = data_model.property(
+        "virtualVolumeSecondaryID", str,
+        array=False, optional=False,
+        documentation="""The secondary ID of the virtual volume. """,
         dictionaryType=None
     )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ModifyStorageContainerResult(data_model.DataObject):
-    """ModifyStorageContainerResult  
+class ListVirtualVolumeBindingsResult(data_model.DataObject):
+    """ListVirtualVolumeBindingsResult  
 
-    :param storage_container: [required]  
-    :type storage_container: StorageContainer
+    :param bindings: [required] Describes the VVol <-> Host binding. 
+    :type bindings: VirtualVolumeBinding
 
     """
-    storage_container = data_model.property(
-        "storageContainer", StorageContainer,
-        array=False, optional=False,
-        documentation=""" """,
+    bindings = data_model.property(
+        "bindings", VirtualVolumeBinding,
+        array=True, optional=False,
+        documentation="""Describes the VVol <-> Host binding. """,
         dictionaryType=None
     )
 
@@ -6377,6 +6368,86 @@ class ListDeletedVolumesRequest(data_model.DataObject):
         "includeVirtualVolumes", bool,
         array=False, optional=True,
         documentation="""Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. """,
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class StorageContainer(data_model.DataObject):
+    """StorageContainer  
+
+    :param name: [required]  
+    :type name: str
+
+    :param storage_container_id: [required]  
+    :type storage_container_id: UUID
+
+    :param account_id: [required]  
+    :type account_id: int
+
+    :param protocol_endpoint_type: [required]  
+    :type protocol_endpoint_type: str
+
+    :param initiator_secret: [required]  
+    :type initiator_secret: str
+
+    :param target_secret: [required]  
+    :type target_secret: str
+
+    :param status: [required]  
+    :type status: str
+
+    :param virtual_volumes:   
+    :type virtual_volumes: UUID
+
+    """
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    storage_container_id = data_model.property(
+        "storageContainerID", UUID,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    account_id = data_model.property(
+        "accountID", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    protocol_endpoint_type = data_model.property(
+        "protocolEndpointType", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    initiator_secret = data_model.property(
+        "initiatorSecret", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    target_secret = data_model.property(
+        "targetSecret", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    virtual_volumes = data_model.property(
+        "virtualVolumes", UUID,
+        array=True, optional=True,
+        documentation=""" """,
         dictionaryType=None
     )
 
@@ -11902,88 +11973,17 @@ class ListDrivesResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class VirtualVolumeBinding(data_model.DataObject):
-    """VirtualVolumeBinding  
+class ModifyStorageContainerResult(data_model.DataObject):
+    """ModifyStorageContainerResult  
 
-    :param protocol_endpoint_id: [required] The unique ID of the protocol endpoint. 
-    :type protocol_endpoint_id: UUID
-
-    :param protocol_endpoint_in_band_id: [required] The scsiNAADeviceID of the protocol endpoint. For more information, see protocolEndpoint. 
-    :type protocol_endpoint_in_band_id: str
-
-    :param protocol_endpoint_type: [required] The type of protocol endpoint. SCSI is the only value returned for the protocol endpoint type. 
-    :type protocol_endpoint_type: str
-
-    :param virtual_volume_binding_id: [required] The unique ID of the virtual volume binding object. 
-    :type virtual_volume_binding_id: int
-
-    :param virtual_volume_host_id: [required] The unique ID of the virtual volume host. 
-    :type virtual_volume_host_id: UUID
-
-    :param virtual_volume_id: [required] The unique ID of the virtual volume. 
-    :type virtual_volume_id: UUID
-
-    :param virtual_volume_secondary_id: [required] The secondary ID of the virtual volume. 
-    :type virtual_volume_secondary_id: str
+    :param storage_container: [required]  
+    :type storage_container: StorageContainer
 
     """
-    protocol_endpoint_id = data_model.property(
-        "protocolEndpointID", UUID,
+    storage_container = data_model.property(
+        "storageContainer", StorageContainer,
         array=False, optional=False,
-        documentation="""The unique ID of the protocol endpoint. """,
-        dictionaryType=None
-    )
-    protocol_endpoint_in_band_id = data_model.property(
-        "protocolEndpointInBandID", str,
-        array=False, optional=False,
-        documentation="""The scsiNAADeviceID of the protocol endpoint. For more information, see protocolEndpoint. """,
-        dictionaryType=None
-    )
-    protocol_endpoint_type = data_model.property(
-        "protocolEndpointType", str,
-        array=False, optional=False,
-        documentation="""The type of protocol endpoint. SCSI is the only value returned for the protocol endpoint type. """,
-        dictionaryType=None
-    )
-    virtual_volume_binding_id = data_model.property(
-        "virtualVolumeBindingID", int,
-        array=False, optional=False,
-        documentation="""The unique ID of the virtual volume binding object. """,
-        dictionaryType=None
-    )
-    virtual_volume_host_id = data_model.property(
-        "virtualVolumeHostID", UUID,
-        array=False, optional=False,
-        documentation="""The unique ID of the virtual volume host. """,
-        dictionaryType=None
-    )
-    virtual_volume_id = data_model.property(
-        "virtualVolumeID", UUID,
-        array=False, optional=False,
-        documentation="""The unique ID of the virtual volume. """,
-        dictionaryType=None
-    )
-    virtual_volume_secondary_id = data_model.property(
-        "virtualVolumeSecondaryID", str,
-        array=False, optional=False,
-        documentation="""The secondary ID of the virtual volume. """,
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListVirtualVolumeBindingsResult(data_model.DataObject):
-    """ListVirtualVolumeBindingsResult  
-
-    :param bindings: [required] Describes the VVol <-> Host binding. 
-    :type bindings: VirtualVolumeBinding
-
-    """
-    bindings = data_model.property(
-        "bindings", VirtualVolumeBinding,
-        array=True, optional=False,
-        documentation="""Describes the VVol <-> Host binding. """,
+        documentation=""" """,
         dictionaryType=None
     )
 
