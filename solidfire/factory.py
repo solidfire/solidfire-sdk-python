@@ -16,7 +16,7 @@ import logging
 LOG = logging.getLogger('solidfire.Element')
 
 min_sdk_version = 7.0
-max_sdk_version = 9.0
+max_sdk_version = 9.1
 
 
 class ElementFactory:
