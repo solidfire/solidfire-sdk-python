@@ -2459,51 +2459,6 @@ class Element(ServiceBase):
             params
         )
 
-    def reset_node(
-            self,
-            build,
-            force,
-            options=OPTIONAL,
-            reboot=OPTIONAL,):
-        """
-        The ResetNode API method enables you to reset a node to the factory settings. All data, packages (software upgrades, and so on),
-        configurations, and log files are deleted from the node when you call this method. However, network settings for the node are
-        preserved during this operation. Nodes that are participating in a cluster cannot be reset to the factory settings.
-        The ResetNode API can only be used on nodes that are in an "Available" state. It cannot be used on nodes that are "Active" in a
-        cluster, or in a "Pending" state.
-        Caution: This method clears any data that is on the node. Exercise caution when using this method.
-        Note: This method is available only through the per-node API endpoint 5.0 or later.
-        :param build: [required] Specifies the URL to a remote Element software image to which the node will be reset. 
-        :type build: str
-
-        :param force: [required] Required parameter to successfully reset the node. 
-        :type force: bool
-
-        :param options:  Specifications for running the reset operation. 
-        :type options: str
-
-        :param reboot:  Should it be rebooted? 
-        :type reboot: bool
-        """
-
-        self._check_connection_type("reset_node", "Node")
-
-        params = { 
-            "build": build,
-            "force": force,
-        }
-        if options is not None:
-            params["options"] = options
-        if reboot is not None:
-            params["reboot"] = reboot
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ResetNode',
-            ResetNodeResult,
-            params
-        )
-
     def restart_networking(
             self,
             force,):
@@ -2591,6 +2546,39 @@ class Element(ServiceBase):
         return self.send_request(
             'Shutdown',
             ShutdownResult,
+            params
+        )
+
+    def reset_node(
+            self,
+            build,
+            force,):
+        """
+        The ResetNode API method enables you to reset a node to the factory settings. All data, packages (software upgrades, and so on),
+        configurations, and log files are deleted from the node when you call this method. However, network settings for the node are
+        preserved during this operation. Nodes that are participating in a cluster cannot be reset to the factory settings.
+        The ResetNode API can only be used on nodes that are in an "Available" state. It cannot be used on nodes that are "Active" in a
+        cluster, or in a "Pending" state.
+        Caution: This method clears any data that is on the node. Exercise caution when using this method.
+        Note: This method is available only through the per-node API endpoint 5.0 or later.
+        :param build: [required] Specifies the URL to a remote Element software image to which the node will be reset. 
+        :type build: str
+
+        :param force: [required] Required parameter to successfully reset the node. 
+        :type force: bool
+        """
+
+        self._check_connection_type("reset_node", "Node")
+
+        params = { 
+            "build": build,
+            "force": force,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ResetNode',
+            ResetNodeResult,
             params
         )
 

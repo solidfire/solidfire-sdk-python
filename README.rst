@@ -8,7 +8,7 @@ Python SDK library for interacting with SolidFire Element API
 Current Release
 ---------------
 
-Version 1.4.0.220
+Version 1.4.0.221
 
 Description
 -----------

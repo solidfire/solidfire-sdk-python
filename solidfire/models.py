@@ -9225,12 +9225,6 @@ class ResetNodeRequest(data_model.DataObject):
     :param force: [required] Required parameter to successfully reset the node. 
     :type force: bool
 
-    :param options:  Specifications for running the reset operation. 
-    :type options: str
-
-    :param reboot:  Should it be rebooted? 
-    :type reboot: bool
-
     """
     build = data_model.property(
         "build", str,
@@ -9242,18 +9236,6 @@ class ResetNodeRequest(data_model.DataObject):
         "force", bool,
         array=False, optional=False,
         documentation="""Required parameter to successfully reset the node. """,
-        dictionaryType=None
-    )
-    options = data_model.property(
-        "options", str,
-        array=False, optional=True,
-        documentation="""Specifications for running the reset operation. """,
-        dictionaryType=None
-    )
-    reboot = data_model.property(
-        "reboot", bool,
-        array=False, optional=True,
-        documentation="""Should it be rebooted? """,
         dictionaryType=None
     )
 
