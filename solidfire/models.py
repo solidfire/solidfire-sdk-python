@@ -1573,8 +1573,14 @@ class VolumeStats(data_model.DataObject):
     :param latency_usec:  The observed latency time, in microseconds, to complete operations to a volume. A "0" (zero) value means there is no I/O to the volume. 
     :type latency_usec: int
 
+    :param async_delay:  
+    :type async_delay: int
+
     :param metadata_hosts:  The volume services on which the volume metadata resides. 
     :type metadata_hosts: MetadataHosts
+
+    :param desired_metadata_hosts:  
+    :type desired_metadata_hosts: MetadataHosts
 
     :param non_zero_blocks: [required] The number of 4KiB blocks with data after the last garbage collection operation has completed. 
     :type non_zero_blocks: int
@@ -1679,10 +1685,22 @@ class VolumeStats(data_model.DataObject):
         documentation="""The observed latency time, in microseconds, to complete operations to a volume. A "0" (zero) value means there is no I/O to the volume. """,
         dictionaryType=None
     )
+    async_delay = data_model.property(
+        "asyncDelay", int,
+        array=False, optional=True,
+        documentation="""""",
+        dictionaryType=None
+    )
     metadata_hosts = data_model.property(
         "metadataHosts", MetadataHosts,
         array=False, optional=True,
         documentation="""The volume services on which the volume metadata resides. """,
+        dictionaryType=None
+    )
+    desired_metadata_hosts = data_model.property(
+        "desiredMetadataHosts", MetadataHosts,
+        array=False, optional=True,
+        documentation="""""",
         dictionaryType=None
     )
     non_zero_blocks = data_model.property(
