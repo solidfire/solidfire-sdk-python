@@ -433,8 +433,8 @@ class PhysicalAdapter(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class NetworkConfigParams(data_model.DataObject):
-    """NetworkConfigParams  
+class NetworkConfig(data_model.DataObject):
+    """NetworkConfig  
 
     :param _default:   
     :type _default: bool
@@ -519,6 +519,12 @@ class NetworkConfigParams(data_model.DataObject):
 
     :param up_and_running:   
     :type up_and_running: bool
+
+    :param bond_xmit_hash_policy:   
+    :type bond_xmit_hash_policy: str
+
+    :param bond_ad_num_ports:   
+    :type bond_ad_num_ports: str
 
     """
     _default = data_model.property(
@@ -689,73 +695,85 @@ class NetworkConfigParams(data_model.DataObject):
         documentation=""" """,
         dictionaryType=None
     )
+    bond_xmit_hash_policy = data_model.property(
+        "bond-xmit_hash_policy", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    bond_ad_num_ports = data_model.property(
+        "bond-ad_num_ports", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class NetworkParams(data_model.DataObject):
-    """NetworkParams  
+class Network(data_model.DataObject):
+    """Network  
 
     :param bond10_g:   
-    :type bond10_g: NetworkConfigParams
+    :type bond10_g: NetworkConfig
 
     :param bond1_g:   
-    :type bond1_g: NetworkConfigParams
+    :type bond1_g: NetworkConfig
 
     :param eth0:   
-    :type eth0: NetworkConfigParams
+    :type eth0: NetworkConfig
 
     :param eth1:   
-    :type eth1: NetworkConfigParams
+    :type eth1: NetworkConfig
 
     :param eth2:   
-    :type eth2: NetworkConfigParams
+    :type eth2: NetworkConfig
 
     :param eth3:   
-    :type eth3: NetworkConfigParams
+    :type eth3: NetworkConfig
 
     :param lo:   
-    :type lo: NetworkConfigParams
+    :type lo: NetworkConfig
 
     """
     bond10_g = data_model.property(
-        "Bond10G", NetworkConfigParams,
+        "Bond10G", NetworkConfig,
         array=False, optional=True,
         documentation=""" """,
         dictionaryType=None
     )
     bond1_g = data_model.property(
-        "Bond1G", NetworkConfigParams,
+        "Bond1G", NetworkConfig,
         array=False, optional=True,
         documentation=""" """,
         dictionaryType=None
     )
     eth0 = data_model.property(
-        "eth0", NetworkConfigParams,
+        "eth0", NetworkConfig,
         array=False, optional=True,
         documentation=""" """,
         dictionaryType=None
     )
     eth1 = data_model.property(
-        "eth1", NetworkConfigParams,
+        "eth1", NetworkConfig,
         array=False, optional=True,
         documentation=""" """,
         dictionaryType=None
     )
     eth2 = data_model.property(
-        "eth2", NetworkConfigParams,
+        "eth2", NetworkConfig,
         array=False, optional=True,
         documentation=""" """,
         dictionaryType=None
     )
     eth3 = data_model.property(
-        "eth3", NetworkConfigParams,
+        "eth3", NetworkConfig,
         array=False, optional=True,
         documentation=""" """,
         dictionaryType=None
     )
     lo = data_model.property(
-        "lo", NetworkConfigParams,
+        "lo", NetworkConfig,
         array=False, optional=True,
         documentation=""" """,
         dictionaryType=None
@@ -771,7 +789,7 @@ class Config(data_model.DataObject):
     :type cluster: ClusterConfig
 
     :param network: [required]  
-    :type network: NetworkParams
+    :type network: Network
 
     """
     cluster = data_model.property(
@@ -781,7 +799,7 @@ class Config(data_model.DataObject):
         dictionaryType=None
     )
     network = data_model.property(
-        "network", NetworkParams,
+        "network", Network,
         array=False, optional=False,
         documentation=""" """,
         dictionaryType=None
@@ -7068,355 +7086,6 @@ class QoS(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class NetworkConfig(data_model.DataObject):
-    """NetworkConfig  
-
-    :param _default:   
-    :type _default: bool
-
-    :param bond_master:   
-    :type bond_master: str
-
-    :param virtual_network_tag:   
-    :type virtual_network_tag: str
-
-    :param address:   
-    :type address: str
-
-    :param auto:   
-    :type auto: bool
-
-    :param bond_downdelay:   
-    :type bond_downdelay: str
-
-    :param bond_fail_over_mac:   
-    :type bond_fail_over_mac: str
-
-    :param bond_primary_reselect:   
-    :type bond_primary_reselect: str
-
-    :param bond_lacp_rate:   
-    :type bond_lacp_rate: str
-
-    :param bond_miimon:   
-    :type bond_miimon: str
-
-    :param bond_mode:   
-    :type bond_mode: str
-
-    :param bond_slaves:   
-    :type bond_slaves: str
-
-    :param bond_updelay:   
-    :type bond_updelay: str
-
-    :param dns_nameservers:   
-    :type dns_nameservers: str
-
-    :param dns_search:   
-    :type dns_search: str
-
-    :param family:   
-    :type family: str
-
-    :param gateway:   
-    :type gateway: str
-
-    :param mac_address:   
-    :type mac_address: str
-
-    :param mac_address_permanent:   
-    :type mac_address_permanent: str
-
-    :param method:   
-    :type method: str
-
-    :param mtu:   
-    :type mtu: str
-
-    :param netmask:   
-    :type netmask: str
-
-    :param network:   
-    :type network: str
-
-    :param physical:   
-    :type physical: PhysicalAdapter
-
-    :param routes:   
-    :type routes: dict
-
-    :param status:   
-    :type status: str
-
-    :param symmetric_route_rules:   
-    :type symmetric_route_rules: str
-
-    :param up_and_running:   
-    :type up_and_running: bool
-
-    :param bond_xmit_hash_policy:   
-    :type bond_xmit_hash_policy: str
-
-    :param bond_ad_num_ports:   
-    :type bond_ad_num_ports: str
-
-    """
-    _default = data_model.property(
-        "#default", bool,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    bond_master = data_model.property(
-        "bond-master", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    virtual_network_tag = data_model.property(
-        "virtualNetworkTag", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    address = data_model.property(
-        "address", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    auto = data_model.property(
-        "auto", bool,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    bond_downdelay = data_model.property(
-        "bond-downdelay", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    bond_fail_over_mac = data_model.property(
-        "bond-fail_over_mac", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    bond_primary_reselect = data_model.property(
-        "bond-primary_reselect", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    bond_lacp_rate = data_model.property(
-        "bond-lacp_rate", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    bond_miimon = data_model.property(
-        "bond-miimon", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    bond_mode = data_model.property(
-        "bond-mode", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    bond_slaves = data_model.property(
-        "bond-slaves", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    bond_updelay = data_model.property(
-        "bond-updelay", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    dns_nameservers = data_model.property(
-        "dns-nameservers", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    dns_search = data_model.property(
-        "dns-search", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    family = data_model.property(
-        "family", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    gateway = data_model.property(
-        "gateway", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    mac_address = data_model.property(
-        "macAddress", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    mac_address_permanent = data_model.property(
-        "macAddressPermanent", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    method = data_model.property(
-        "method", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    mtu = data_model.property(
-        "mtu", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    netmask = data_model.property(
-        "netmask", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    network = data_model.property(
-        "network", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    physical = data_model.property(
-        "physical", PhysicalAdapter,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    routes = data_model.property(
-        "routes", dict,
-        array=True, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    status = data_model.property(
-        "status", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    symmetric_route_rules = data_model.property(
-        "symmetricRouteRules", str,
-        array=True, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    up_and_running = data_model.property(
-        "upAndRunning", bool,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    bond_xmit_hash_policy = data_model.property(
-        "bond-xmit_hash_policy", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    bond_ad_num_ports = data_model.property(
-        "bond-ad_num_ports", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class Network(data_model.DataObject):
-    """Network  
-
-    :param bond10_g:   
-    :type bond10_g: NetworkConfig
-
-    :param bond1_g:   
-    :type bond1_g: NetworkConfig
-
-    :param eth0:   
-    :type eth0: NetworkConfig
-
-    :param eth1:   
-    :type eth1: NetworkConfig
-
-    :param eth2:   
-    :type eth2: NetworkConfig
-
-    :param eth3:   
-    :type eth3: NetworkConfig
-
-    :param lo:   
-    :type lo: NetworkConfig
-
-    """
-    bond10_g = data_model.property(
-        "Bond10G", NetworkConfig,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    bond1_g = data_model.property(
-        "Bond1G", NetworkConfig,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    eth0 = data_model.property(
-        "eth0", NetworkConfig,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    eth1 = data_model.property(
-        "eth1", NetworkConfig,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    eth2 = data_model.property(
-        "eth2", NetworkConfig,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    eth3 = data_model.property(
-        "eth3", NetworkConfig,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    lo = data_model.property(
-        "lo", NetworkConfig,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
 class SetNetworkConfigResult(data_model.DataObject):
     """SetNetworkConfigResult  
 
@@ -8802,6 +8471,337 @@ class ListSchedulesResult(data_model.DataObject):
         "schedules", Schedule,
         array=True, optional=False,
         documentation="""The list of schedules currently on the cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class NetworkConfigParams(data_model.DataObject):
+    """NetworkConfigParams  
+
+    :param _default:   
+    :type _default: bool
+
+    :param bond_master:   
+    :type bond_master: str
+
+    :param virtual_network_tag:   
+    :type virtual_network_tag: str
+
+    :param address:   
+    :type address: str
+
+    :param auto:   
+    :type auto: bool
+
+    :param bond_downdelay:   
+    :type bond_downdelay: str
+
+    :param bond_fail_over_mac:   
+    :type bond_fail_over_mac: str
+
+    :param bond_primary_reselect:   
+    :type bond_primary_reselect: str
+
+    :param bond_lacp_rate:   
+    :type bond_lacp_rate: str
+
+    :param bond_miimon:   
+    :type bond_miimon: str
+
+    :param bond_mode:   
+    :type bond_mode: str
+
+    :param bond_slaves:   
+    :type bond_slaves: str
+
+    :param bond_updelay:   
+    :type bond_updelay: str
+
+    :param dns_nameservers:   
+    :type dns_nameservers: str
+
+    :param dns_search:   
+    :type dns_search: str
+
+    :param family:   
+    :type family: str
+
+    :param gateway:   
+    :type gateway: str
+
+    :param mac_address:   
+    :type mac_address: str
+
+    :param mac_address_permanent:   
+    :type mac_address_permanent: str
+
+    :param method:   
+    :type method: str
+
+    :param mtu:   
+    :type mtu: str
+
+    :param netmask:   
+    :type netmask: str
+
+    :param network:   
+    :type network: str
+
+    :param physical:   
+    :type physical: PhysicalAdapter
+
+    :param routes:   
+    :type routes: dict
+
+    :param status:   
+    :type status: str
+
+    :param symmetric_route_rules:   
+    :type symmetric_route_rules: str
+
+    :param up_and_running:   
+    :type up_and_running: bool
+
+    """
+    _default = data_model.property(
+        "#default", bool,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    bond_master = data_model.property(
+        "bond-master", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    virtual_network_tag = data_model.property(
+        "virtualNetworkTag", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    address = data_model.property(
+        "address", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    auto = data_model.property(
+        "auto", bool,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    bond_downdelay = data_model.property(
+        "bond-downdelay", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    bond_fail_over_mac = data_model.property(
+        "bond-fail_over_mac", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    bond_primary_reselect = data_model.property(
+        "bond-primary_reselect", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    bond_lacp_rate = data_model.property(
+        "bond-lacp_rate", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    bond_miimon = data_model.property(
+        "bond-miimon", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    bond_mode = data_model.property(
+        "bond-mode", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    bond_slaves = data_model.property(
+        "bond-slaves", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    bond_updelay = data_model.property(
+        "bond-updelay", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    dns_nameservers = data_model.property(
+        "dns-nameservers", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    dns_search = data_model.property(
+        "dns-search", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    family = data_model.property(
+        "family", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    gateway = data_model.property(
+        "gateway", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    mac_address = data_model.property(
+        "macAddress", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    mac_address_permanent = data_model.property(
+        "macAddressPermanent", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    method = data_model.property(
+        "method", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    mtu = data_model.property(
+        "mtu", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    netmask = data_model.property(
+        "netmask", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    network = data_model.property(
+        "network", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    physical = data_model.property(
+        "physical", PhysicalAdapter,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    routes = data_model.property(
+        "routes", dict,
+        array=True, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    status = data_model.property(
+        "status", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    symmetric_route_rules = data_model.property(
+        "symmetricRouteRules", str,
+        array=True, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    up_and_running = data_model.property(
+        "upAndRunning", bool,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class NetworkParams(data_model.DataObject):
+    """NetworkParams  
+
+    :param bond10_g:   
+    :type bond10_g: NetworkConfigParams
+
+    :param bond1_g:   
+    :type bond1_g: NetworkConfigParams
+
+    :param eth0:   
+    :type eth0: NetworkConfigParams
+
+    :param eth1:   
+    :type eth1: NetworkConfigParams
+
+    :param eth2:   
+    :type eth2: NetworkConfigParams
+
+    :param eth3:   
+    :type eth3: NetworkConfigParams
+
+    :param lo:   
+    :type lo: NetworkConfigParams
+
+    """
+    bond10_g = data_model.property(
+        "Bond10G", NetworkConfigParams,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    bond1_g = data_model.property(
+        "Bond1G", NetworkConfigParams,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    eth0 = data_model.property(
+        "eth0", NetworkConfigParams,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    eth1 = data_model.property(
+        "eth1", NetworkConfigParams,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    eth2 = data_model.property(
+        "eth2", NetworkConfigParams,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    eth3 = data_model.property(
+        "eth3", NetworkConfigParams,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    lo = data_model.property(
+        "lo", NetworkConfigParams,
+        array=False, optional=True,
+        documentation=""" """,
         dictionaryType=None
     )
 
