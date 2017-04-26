@@ -14713,11 +14713,20 @@ class TestDrivesRequest(data_model.DataObject):
     :param minutes:  Specifies the number of minutes to run the test. 
     :type minutes: int
 
+    :param force:  Required parameter to successfully test the drives on the node. 
+    :type force: bool
+
     """
     minutes = data_model.property(
         "minutes", int,
         array=False, optional=True,
         documentation="""Specifies the number of minutes to run the test. """,
+        dictionaryType=None
+    )
+    force = data_model.property(
+        "force", bool,
+        array=False, optional=True,
+        documentation="""Required parameter to successfully test the drives on the node. """,
         dictionaryType=None
     )
 

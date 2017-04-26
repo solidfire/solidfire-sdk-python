@@ -1340,7 +1340,8 @@ class Element(ServiceBase):
 
     def test_drives(
             self,
-            minutes=OPTIONAL,):
+            minutes=OPTIONAL,
+            force=OPTIONAL,):
         """
         You can use the TestDrives API method to run a hardware validation on all drives on the node. This method detects hardware
         failures on the drives (if present) and reports them in the results of the validation tests.
@@ -1349,6 +1350,9 @@ class Element(ServiceBase):
         Note: This method is available only through the per-node API endpoint 5.0 or later.
         :param minutes:  Specifies the number of minutes to run the test. 
         :type minutes: int
+
+        :param force:  Required parameter to successfully test the drives on the node. 
+        :type force: bool
         """
 
         self._check_connection_type("test_drives", "Node")
@@ -1357,6 +1361,8 @@ class Element(ServiceBase):
         }
         if minutes is not None:
             params["minutes"] = minutes
+        if force is not None:
+            params["force"] = force
         
         # There is no adaptor.
         return self.send_request(
