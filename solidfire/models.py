@@ -10146,9 +10146,6 @@ class ResetNodeResult(data_model.DataObject):
     :param result:   
     :type result: str
 
-    :param rtfi_info:   
-    :type rtfi_info: RtfiInfo
-
     """
     details = data_model.property(
         "details", ResetNodeDetails,
@@ -10164,12 +10161,6 @@ class ResetNodeResult(data_model.DataObject):
     )
     result = data_model.property(
         "result", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    rtfi_info = data_model.property(
-        "rtfiInfo", RtfiInfo,
         array=False, optional=True,
         documentation=""" """,
         dictionaryType=None
