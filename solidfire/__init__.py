@@ -2144,30 +2144,6 @@ class Element(ServiceBase):
             params
         )
 
-    def set_config(
-            self,
-            config,):
-        """
-        The SetConfig API method enables you to set all the configuration information for the node. This includes the same information available via calls to SetClusterConfig and SetNetworkConfig in one API method. 
-        Note: This method is available only through the per-node API endpoint 5.0 or later.
-        Caution: Changing the "bond-mode" on a node can cause a temporary loss of network connectivity. Exercise caution when using this method.
-        :param config: [required] Objects that you want changed for the cluster interface settings. 
-        :type config: Config
-        """
-
-        self._check_connection_type("set_config", "Node")
-
-        params = { 
-            "config": config,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SetConfig',
-            SetConfigResult,
-            params
-        )
-
     def set_network_config(
             self,
             network,):
@@ -2206,6 +2182,30 @@ class Element(ServiceBase):
         return self.send_request(
             'GetOrigin',
             GetOriginResult,
+            params
+        )
+
+    def set_config(
+            self,
+            config,):
+        """
+        The SetConfig API method enables you to set all the configuration information for the node. This includes the same information available via calls to SetClusterConfig and SetNetworkConfig in one API method. 
+        Note: This method is available only through the per-node API endpoint 5.0 or later.
+        Caution: Changing the "bond-mode" on a node can cause a temporary loss of network connectivity. Exercise caution when using this method.
+        :param config: [required] Objects that you want changed for the cluster interface settings. 
+        :type config: ConfigParams
+        """
+
+        self._check_connection_type("set_config", "Node")
+
+        params = { 
+            "config": config,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetConfig',
+            SetConfigResult,
             params
         )
 
