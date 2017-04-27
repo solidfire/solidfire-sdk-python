@@ -63,3 +63,4 @@ solidfire/mytest.py
 
 /descriptor_version.json
 /generator_version.json
+/test.py
