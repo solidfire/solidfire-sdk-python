@@ -3850,18 +3850,17 @@ class GetVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVolumeStatsRequest(data_model.DataObject):
-    """ListVolumeStatsRequest  
-    ListVolumeStats returns high-level activity measurements for a single volume, list of volumes, or all volumes (if you omit the volumeIDs parameter). Measurement values are cumulative from the creation of the volume.
+class ListVolumeStatsByVolumeResult(data_model.DataObject):
+    """ListVolumeStatsByVolumeResult  
 
-    :param volume_ids:  A list of volume IDs of volumes from which to retrieve activity information. 
-    :type volume_ids: int
+    :param volume_stats: [required] List of account activity information. 
+    :type volume_stats: VolumeStats
 
     """
-    volume_ids = data_model.property(
-        "volumeIDs", int,
-        array=True, optional=True,
-        documentation="""A list of volume IDs of volumes from which to retrieve activity information. """,
+    volume_stats = data_model.property(
+        "volumeStats", VolumeStats,
+        array=True, optional=False,
+        documentation="""List of account activity information. """,
         dictionaryType=None
     )
 
@@ -12834,17 +12833,18 @@ class TestConnectSvipResult(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVolumeStatsByVolumeResult(data_model.DataObject):
-    """ListVolumeStatsByVolumeResult  
+class ListVolumeStatsRequest(data_model.DataObject):
+    """ListVolumeStatsRequest  
+    ListVolumeStats returns high-level activity measurements for a single volume, list of volumes, or all volumes (if you omit the volumeIDs parameter). Measurement values are cumulative from the creation of the volume.
 
-    :param volume_stats: [required] List of account activity information. 
-    :type volume_stats: VolumeStats
+    :param volume_ids:  A list of volume IDs of volumes from which to retrieve activity information. 
+    :type volume_ids: int
 
     """
-    volume_stats = data_model.property(
-        "volumeStats", VolumeStats,
-        array=True, optional=False,
-        documentation="""List of account activity information. """,
+    volume_ids = data_model.property(
+        "volumeIDs", int,
+        array=True, optional=True,
+        documentation="""A list of volume IDs of volumes from which to retrieve activity information. """,
         dictionaryType=None
     )
 
