@@ -394,8 +394,8 @@ class CurlDispatcher(object):
         :type verify_ssl: bool
         """
         self._endpoint = endpoint
-        self._credentials = str.format('{u}:{p}', u=username, p=password) \
-            if (username or password) else None
+        self._username = username
+        self._password = password
         self._verify_ssl = verify_ssl
         self._timeout = 300
         self._connect_timeout = 30
@@ -445,9 +445,10 @@ class CurlDispatcher(object):
         :type data: str or json
         """
         auth = None
-        if self._credentials is not None:
-            (usr, pwd) = self._credentials.split(':')
-            auth = HTTPBasicAuth(usr, pwd)
+        if self._username is None or self._password is None:
+            raise ValueError("Username or Password is not set")
+        else:
+            auth = HTTPBasicAuth(self._username, self._password)
         resp = requests.post(self._endpoint, data=data, json=None,
                              verify=self._verify_ssl, timeout=self._timeout,
                              auth=auth)
