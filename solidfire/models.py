@@ -12383,79 +12383,26 @@ class ListVolumeAccessGroupsRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class ProtocolEndpoint(data_model.DataObject):
-    """ProtocolEndpoint  
+class GetSnmpStateResult(data_model.DataObject):
+    """GetSnmpStateResult  
 
-    :param protocol_endpoint_id: [required]  
-    :type protocol_endpoint_id: UUID
+    :param enabled: [required] If the nodes in the cluster are configured for SNMP. 
+    :type enabled: bool
 
-    :param protocol_endpoint_state: [required]  
-    :type protocol_endpoint_state: str
-
-    :param provider_type: [required]  
-    :type provider_type: str
-
-    :param primary_provider_id: [required]  
-    :type primary_provider_id: int
-
-    :param secondary_provider_id: [required]  
-    :type secondary_provider_id: int
-
-    :param scsi_naadevice_id: [required]  
-    :type scsi_naadevice_id: str
+    :param snmp_v3_enabled: [required] If the node in the cluster is configured for SNMP v3. 
+    :type snmp_v3_enabled: bool
 
     """
-    protocol_endpoint_id = data_model.property(
-        "protocolEndpointID", UUID,
+    enabled = data_model.property(
+        "enabled", bool,
         array=False, optional=False,
-        documentation=""" """,
+        documentation="""If the nodes in the cluster are configured for SNMP. """,
         dictionaryType=None
     )
-    protocol_endpoint_state = data_model.property(
-        "protocolEndpointState", str,
+    snmp_v3_enabled = data_model.property(
+        "snmpV3Enabled", bool,
         array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    provider_type = data_model.property(
-        "providerType", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    primary_provider_id = data_model.property(
-        "primaryProviderID", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    secondary_provider_id = data_model.property(
-        "secondaryProviderID", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    scsi_naadevice_id = data_model.property(
-        "scsiNAADeviceID", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListProtocolEndpointsResult(data_model.DataObject):
-    """ListProtocolEndpointsResult  
-
-    :param protocol_endpoints: [required]  
-    :type protocol_endpoints: ProtocolEndpoint
-
-    """
-    protocol_endpoints = data_model.property(
-        "protocolEndpoints", ProtocolEndpoint,
-        array=True, optional=False,
-        documentation=""" """,
+        documentation="""If the node in the cluster is configured for SNMP v3. """,
         dictionaryType=None
     )
 
@@ -16429,26 +16376,79 @@ class TestConnectMvipRequest(data_model.DataObject):
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetSnmpStateResult(data_model.DataObject):
-    """GetSnmpStateResult  
+class ProtocolEndpoint(data_model.DataObject):
+    """ProtocolEndpoint  
 
-    :param enabled: [required] If the nodes in the cluster are configured for SNMP. 
-    :type enabled: bool
+    :param protocol_endpoint_id: [required]  
+    :type protocol_endpoint_id: UUID
 
-    :param snmp_v3_enabled: [required] If the node in the cluster is configured for SNMP v3. 
-    :type snmp_v3_enabled: bool
+    :param protocol_endpoint_state: [required]  
+    :type protocol_endpoint_state: str
+
+    :param provider_type: [required]  
+    :type provider_type: str
+
+    :param primary_provider_id: [required]  
+    :type primary_provider_id: int
+
+    :param secondary_provider_id: [required]  
+    :type secondary_provider_id: int
+
+    :param scsi_naadevice_id: [required]  
+    :type scsi_naadevice_id: str
 
     """
-    enabled = data_model.property(
-        "enabled", bool,
+    protocol_endpoint_id = data_model.property(
+        "protocolEndpointID", UUID,
         array=False, optional=False,
-        documentation="""If the nodes in the cluster are configured for SNMP. """,
+        documentation=""" """,
         dictionaryType=None
     )
-    snmp_v3_enabled = data_model.property(
-        "snmpV3Enabled", bool,
+    protocol_endpoint_state = data_model.property(
+        "protocolEndpointState", str,
         array=False, optional=False,
-        documentation="""If the node in the cluster is configured for SNMP v3. """,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    provider_type = data_model.property(
+        "providerType", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    primary_provider_id = data_model.property(
+        "primaryProviderID", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    secondary_provider_id = data_model.property(
+        "secondaryProviderID", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    scsi_naadevice_id = data_model.property(
+        "scsiNAADeviceID", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+
+    def __init__(self, **kwargs):
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListProtocolEndpointsResult(data_model.DataObject):
+    """ListProtocolEndpointsResult  
+
+    :param protocol_endpoints: [required]  
+    :type protocol_endpoints: ProtocolEndpoint
+
+    """
+    protocol_endpoints = data_model.property(
+        "protocolEndpoints", ProtocolEndpoint,
+        array=True, optional=False,
+        documentation=""" """,
         dictionaryType=None
     )
 

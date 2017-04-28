@@ -715,6 +715,42 @@ class Element(ServiceBase):
             params
         )
 
+    def get_complete_stats(
+            self,):
+        """
+        NetApp engineering uses the GetCompleteStats API method to troubleshoot new features. The data returned from GetCompleteStats is not documented, changes frequently, and is not guaranteed to be accurate. NetApp does not recommend using GetCompleteStats for collecting performance data or any other
+        management integration with a SolidFire cluster.        """
+
+        self._check_connection_type("get_complete_stats", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetCompleteStats',
+            dict,
+            params
+        )
+
+    def get_raw_stats(
+            self,):
+        """
+        NetApp engineering uses the GetRawStats API method to troubleshoot new features. The data returned from GetRawStats is not documented, changes frequently, and is not guaranteed to be accurate. NetApp does not recommend using GetCompleteStats for collecting performance data or any other
+        management integration with a SolidFire cluster.        """
+
+        self._check_connection_type("get_raw_stats", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetRawStats',
+            dict,
+            params
+        )
+
     def add_cluster_admin(
             self,
             username,
@@ -1371,6 +1407,29 @@ class Element(ServiceBase):
             params
         )
 
+    def list_drive_stats(
+            self,
+            drives=OPTIONAL,):
+        """
+        ListDriveStats enables you to retrieve high-level activity measurements for multiple drives in the cluster. By default, this method returns statistics for all drives in the cluster, and these measurements are cumulative from the addition of the drive to the cluster. Some values this method returns are specific to block drives, and some are specific to metadata drives.
+        :param drives:  Optional list of DriveIDs for which to return drive statistics. If you omit this parameter, measurements for all drives are returned. 
+        :type drives: int
+        """
+
+        self._check_connection_type("list_drive_stats", "Cluster")
+
+        params = { 
+        }
+        if drives is not None:
+            params["drives"] = drives
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListDriveStats',
+            ListDriveStatsResult,
+            params
+        )
+
     def get_cluster_hardware_info(
             self,
             type=OPTIONAL,):
@@ -1457,6 +1516,23 @@ class Element(ServiceBase):
         return self.send_request(
             'GetNvramInfo',
             GetNvramInfoResult,
+            params
+        )
+
+    def get_hardware_info(
+            self,):
+        """
+        The GetHardwareInfo API method enables you to return hardware information and status for a single node. This generally includes details about manufacturers, vendors, versions, drives, and other associated hardware identification information.        """
+
+        self._check_connection_type("get_hardware_info", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetHardwareInfo',
+            GetHardwareInfoResult,
             params
         )
 
@@ -1568,6 +1644,69 @@ class Element(ServiceBase):
         return self.send_request(
             'ModifyInitiators',
             ModifyInitiatorsResult,
+            params
+        )
+
+    def add_initiators_to_volume_access_group(
+            self,
+            volume_access_group_id,
+            initiators,):
+        """
+        AddInitiatorsToVolumeAccessGroup enables you
+        to add initiators to a specified volume access group.
+        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
+        :type volumeAccessGroupID: int
+
+        :param initiators: [required] The list of initiators to add to the volume access group. 
+        :type initiators: str
+        """
+
+        self._check_connection_type("add_initiators_to_volume_access_group", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+            "initiators": initiators,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'AddInitiatorsToVolumeAccessGroup',
+            ModifyVolumeAccessGroupResult,
+            params
+        )
+
+    def remove_initiators_from_volume_access_group(
+            self,
+            volume_access_group_id,
+            initiators,
+            delete_orphan_initiators=OPTIONAL,):
+        """
+        RemoveInitiatorsFromVolumeAccessGroup enables
+        you to remove initiators from a specified volume access
+        group.
+        :param volumeAccessGroupID: [required] The ID of the volume access group from which the initiators are removed. 
+        :type volumeAccessGroupID: int
+
+        :param initiators: [required] The list of initiators to remove from the volume access group. 
+        :type initiators: str
+
+        :param deleteOrphanInitiators:  true: Delete initiator objects after they are removed from a volume access group. false: Do not delete initiator objects after they are removed from a volume access group. 
+        :type deleteOrphanInitiators: bool
+        """
+
+        self._check_connection_type("remove_initiators_from_volume_access_group", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+            "initiators": initiators,
+        }
+        if delete_orphan_initiators is not None:
+            params["deleteOrphanInitiators"] = delete_orphan_initiators
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RemoveInitiatorsFromVolumeAccessGroup',
+            ModifyVolumeAccessGroupResult,
             params
         )
 
@@ -1754,84 +1893,6 @@ class Element(ServiceBase):
         return self.send_request(
             'TestLdapAuthentication',
             TestLdapAuthenticationResult,
-            params
-        )
-
-    def get_login_session_info(
-            self,):
-        """
-        GetLoginSessionInfo enables you to return the period of time a log in authentication session is valid for both log in shells and the TUI.        """
-
-        self._check_connection_type("get_login_session_info", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetLoginSessionInfo',
-            GetLoginSessionInfoResult,
-            params
-        )
-
-    def get_remote_logging_hosts(
-            self,):
-        """
-        GetRemoteLoggingHosts enables you to retrieve the current list of log servers.        """
-
-        self._check_connection_type("get_remote_logging_hosts", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetRemoteLoggingHosts',
-            GetRemoteLoggingHostsResult,
-            params
-        )
-
-    def set_login_session_info(
-            self,
-            timeout,):
-        """
-        You can use SetLoginSessionInfo to set the period of time that a session's login authentication is valid. After the log in period elapses without activity on the system, the authentication expires. New login credentials are required for continued access to the cluster after the timeout period has elapsed.
-        :param timeout: [required] Cluster authentication expiration period. Formatted in HH:mm:ss. For example, 01:30:00, 00:90:00, and 00:00:5400 can be used to equal a 90 minute timeout period. The default value is 30 minutes. 
-        :type timeout: str
-        """
-
-        self._check_connection_type("set_login_session_info", "Cluster")
-
-        params = { 
-            "timeout": timeout,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SetLoginSessionInfo',
-            SetLoginSessionInfoResult,
-            params
-        )
-
-    def set_remote_logging_hosts(
-            self,
-            remote_hosts,):
-        """
-        SetRemoteLoggingHosts enables you to configure remote logging from the nodes in the storage cluster to a centralized log server or servers. Remote logging is performed over TCP using the default port 514. This API does not add to the existing logging hosts. Rather, it replaces what currently exists with new values specified by this API method. You can use GetRemoteLoggingHosts to determine what the current logging hosts are, and then use SetRemoteLoggingHosts to set the desired list of current and new logging hosts.
-        :param remoteHosts: [required] A list of hosts to send log messages to. 
-        :type remoteHosts: LoggingServer
-        """
-
-        self._check_connection_type("set_remote_logging_hosts", "Cluster")
-
-        params = { 
-            "remoteHosts": remote_hosts,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SetRemoteLoggingHosts',
-            SetRemoteLoggingHostsResult,
             params
         )
 
@@ -2441,30 +2502,6 @@ class Element(ServiceBase):
             params
         )
 
-    def list_protocol_endpoints(
-            self,
-            protocol_endpoint_ids=OPTIONAL,):
-        """
-        ListProtocolEndpoints enables you to retrieve information about all protocol endpoints in the cluster. Protocol endpoints govern
-        access to their associated virtual volume storage containers.
-        :param protocolEndpointIDs:  A list of protocol endpoint IDs for which to retrieve information. If you omit this parameter, the method returns information about all protocol endpoints. 
-        :type protocolEndpointIDs: UUID
-        """
-
-        self._check_connection_type("list_protocol_endpoints", "Cluster")
-
-        params = { 
-        }
-        if protocol_endpoint_ids is not None:
-            params["protocolEndpointIDs"] = protocol_endpoint_ids
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListProtocolEndpoints',
-            ListProtocolEndpointsResult,
-            params
-        )
-
     def restart_networking(
             self,
             force,):
@@ -2937,33 +2974,6 @@ class Element(ServiceBase):
             params
         )
 
-    def create_schedule(
-            self,
-            schedule,):
-        """
-        CreateSchedule enables you to schedule an automatic snapshot of a volume at a defined interval.
-        You can use the created snapshot later as a backup or rollback to ensure the data on a volume or group of volumes is consistent for
-        the point in time in which the snapshot was created.
-        If you schedule a snapshot to run at a time period that is not divisible by 5 minutes, the snapshot runs at the next time period
-        that is divisible by 5 minutes. For example, if you schedule a snapshot to run at 12:42:00 UTC, it runs at 12:45:00 UTC.
-        Note: You can create snapshots if cluster fullness is at stage 1, 2 or 3. You cannot create snapshots after cluster fullness reaches stage 4 or 5.
-        :param schedule: [required] The "Schedule" object will be used to create a new schedule. Do not set ScheduleID property, it will be ignored. Frequency property must be of type that inherits from Frequency. Valid types are: DaysOfMonthFrequency DaysOrWeekFrequency TimeIntervalFrequency 
-        :type schedule: Schedule
-        """
-
-        self._check_connection_type("create_schedule", "Cluster")
-
-        params = { 
-            "schedule": schedule,
-        }
-        
-        # There is an adaptor!
-        since = None
-        deprecated = None
-
-        return ElementServiceAdaptor.create_schedule(self, params,
-                                                  since, deprecated)
-
     def create_snapshot(
             self,
             volume_id,
@@ -3065,191 +3075,6 @@ class Element(ServiceBase):
         return self.send_request(
             'DeleteSnapshot',
             DeleteSnapshotResult,
-            params
-        )
-
-    def get_schedule(
-            self,
-            schedule_id,):
-        """
-        You can use the GetSchedule method to retrieve information about a scheduled snapshot. You can see information about a specific
-        schedule if there are many snapshot schedules in the system. You also retrieve information about more than one schedule with this
-        method by specifying additional scheduleIDs in the parameter.
-        :param scheduleID: [required] Specifies the unique ID of the schedule or multiple schedules to display. 
-        :type scheduleID: int
-        """
-
-        self._check_connection_type("get_schedule", "Cluster")
-
-        params = { 
-            "scheduleID": schedule_id,
-        }
-        
-        # There is an adaptor!
-        since = None
-        deprecated = None
-
-        return ElementServiceAdaptor.get_schedule(self, params,
-                                                  since, deprecated)
-
-    def list_schedules(
-            self,):
-        """
-        ListSchedule enables you to retrieve information about all scheduled snapshots that have been created.        """
-
-        self._check_connection_type("list_schedules", "Cluster")
-
-        params = { 
-        }
-        
-        # There is an adaptor!
-        since = None
-        deprecated = None
-
-        return ElementServiceAdaptor.list_schedules(self, params,
-                                                  since, deprecated)
-
-    def modify_schedule(
-            self,
-            schedule,):
-        """
-        ModifySchedule enables you to change the intervals at which a scheduled snapshot occurs. This allows for adjustment to the snapshot frequency and retention.
-        :param schedule: [required] The "Schedule" object will be used to modify an existing schedule. The ScheduleID property is required. Frequency property must be of type that inherits from Frequency. Valid types are: DaysOfMonthFrequency DaysOrWeekFrequency TimeIntervalFrequency 
-        :type schedule: Schedule
-        """
-
-        self._check_connection_type("modify_schedule", "Cluster")
-
-        params = { 
-            "schedule": schedule,
-        }
-        
-        # There is an adaptor!
-        since = None
-        deprecated = None
-
-        return ElementServiceAdaptor.modify_schedule(self, params,
-                                                  since, deprecated)
-
-    def get_complete_stats(
-            self,):
-        """
-        NetApp engineering uses the GetCompleteStats API method to troubleshoot new features. The data returned from GetCompleteStats is not documented, changes frequently, and is not guaranteed to be accurate. NetApp does not recommend using GetCompleteStats for collecting performance data or any other
-        management integration with a SolidFire cluster.        """
-
-        self._check_connection_type("get_complete_stats", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetCompleteStats',
-            dict,
-            params
-        )
-
-    def get_hardware_info(
-            self,):
-        """
-        The GetHardwareInfo API method enables you to return hardware information and status for a single node. This generally includes details about manufacturers, vendors, versions, drives, and other associated hardware identification information.        """
-
-        self._check_connection_type("get_hardware_info", "Node")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetHardwareInfo',
-            GetHardwareInfoResult,
-            params
-        )
-
-    def get_raw_stats(
-            self,):
-        """
-        NetApp engineering uses the GetRawStats API method to troubleshoot new features. The data returned from GetRawStats is not documented, changes frequently, and is not guaranteed to be accurate. NetApp does not recommend using GetCompleteStats for collecting performance data or any other
-        management integration with a SolidFire cluster.        """
-
-        self._check_connection_type("get_raw_stats", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetRawStats',
-            dict,
-            params
-        )
-
-    def list_drive_stats(
-            self,
-            drives=OPTIONAL,):
-        """
-        ListDriveStats enables you to retrieve high-level activity measurements for multiple drives in the cluster. By default, this method returns statistics for all drives in the cluster, and these measurements are cumulative from the addition of the drive to the cluster. Some values this method returns are specific to block drives, and some are specific to metadata drives.
-        :param drives:  Optional list of DriveIDs for which to return drive statistics. If you omit this parameter, measurements for all drives are returned. 
-        :type drives: int
-        """
-
-        self._check_connection_type("list_drive_stats", "Cluster")
-
-        params = { 
-        }
-        if drives is not None:
-            params["drives"] = drives
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListDriveStats',
-            ListDriveStatsResult,
-            params
-        )
-
-    def list_volume_stats_by_virtual_volume(
-            self,
-            virtual_volume_ids=OPTIONAL,):
-        """
-        ListVolumeStatsByVirtualVolume enables you to list volume statistics for any volumes in the system that are associated with virtual volumes. Statistics are cumulative from the creation of the volume.
-        :param virtualVolumeIDs:  A list of one or more virtual volume IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
-        :type virtualVolumeIDs: UUID
-        """
-
-        self._check_connection_type("list_volume_stats_by_virtual_volume", "Cluster")
-
-        params = { 
-        }
-        if virtual_volume_ids is not None:
-            params["virtualVolumeIDs"] = virtual_volume_ids
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVolumeStatsByVirtualVolume',
-            ListVolumeStatsByVirtualVolumeResult,
-            params
-        )
-
-    def list_volume_stats(
-            self,
-            volume_ids=OPTIONAL,):
-        """
-        ListVolumeStats returns high-level activity measurements for a single volume, list of volumes, or all volumes (if you omit the volumeIDs parameter). Measurement values are cumulative from the creation of the volume.
-        :param volumeIDs:  A list of volume IDs of volumes from which to retrieve activity information. 
-        :type volumeIDs: int
-        """
-
-        self._check_connection_type("list_volume_stats", "Cluster")
-
-        params = { 
-        }
-        if volume_ids is not None:
-            params["volumeIDs"] = volume_ids
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ListVolumeStats',
-            ListVolumeStatsResult,
             params
         )
 
@@ -3675,6 +3500,30 @@ class Element(ServiceBase):
             params
         )
 
+    def list_protocol_endpoints(
+            self,
+            protocol_endpoint_ids=OPTIONAL,):
+        """
+        ListProtocolEndpoints enables you to retrieve information about all protocol endpoints in the cluster. Protocol endpoints govern
+        access to their associated virtual volume storage containers.
+        :param protocolEndpointIDs:  A list of protocol endpoint IDs for which to retrieve information. If you omit this parameter, the method returns information about all protocol endpoints. 
+        :type protocolEndpointIDs: UUID
+        """
+
+        self._check_connection_type("list_protocol_endpoints", "Cluster")
+
+        params = { 
+        }
+        if protocol_endpoint_ids is not None:
+            params["protocolEndpointIDs"] = protocol_endpoint_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListProtocolEndpoints',
+            ListProtocolEndpointsResult,
+            params
+        )
+
     def enable_feature(
             self,
             feature,):
@@ -3741,6 +3590,29 @@ class Element(ServiceBase):
         return self.send_request(
             'ListVirtualVolumeHosts',
             ListVirtualVolumeHostsResult,
+            params
+        )
+
+    def list_volume_stats_by_virtual_volume(
+            self,
+            virtual_volume_ids=OPTIONAL,):
+        """
+        ListVolumeStatsByVirtualVolume enables you to list volume statistics for any volumes in the system that are associated with virtual volumes. Statistics are cumulative from the creation of the volume.
+        :param virtualVolumeIDs:  A list of one or more virtual volume IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
+        :type virtualVolumeIDs: UUID
+        """
+
+        self._check_connection_type("list_volume_stats_by_virtual_volume", "Cluster")
+
+        params = { 
+        }
+        if virtual_volume_ids is not None:
+            params["virtualVolumeIDs"] = virtual_volume_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVolumeStatsByVirtualVolume',
+            ListVolumeStatsByVirtualVolumeResult,
             params
         )
 
@@ -3942,6 +3814,34 @@ class Element(ServiceBase):
         return self.send_request(
             'ListVolumes',
             ListVolumesResult,
+            params
+        )
+
+    def add_volumes_to_volume_access_group(
+            self,
+            volume_access_group_id,
+            volumes,):
+        """
+        AddVolumesToVolumeAccessGroup enables you to add
+        volumes to a specified volume access group.
+        :param volumeAccessGroupID: [required] The ID of the volume access group to which volumes are added. 
+        :type volumeAccessGroupID: int
+
+        :param volumes: [required] The list of volumes to add to the volume access group. 
+        :type volumes: int
+        """
+
+        self._check_connection_type("add_volumes_to_volume_access_group", "Cluster")
+
+        params = { 
+            "volumeAccessGroupID": volume_access_group_id,
+            "volumes": volumes,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'AddVolumesToVolumeAccessGroup',
+            ModifyVolumeAccessGroupResult,
             params
         )
 
@@ -4515,6 +4415,29 @@ class Element(ServiceBase):
             params
         )
 
+    def list_volume_stats(
+            self,
+            volume_ids=OPTIONAL,):
+        """
+        ListVolumeStats returns high-level activity measurements for a single volume, list of volumes, or all volumes (if you omit the volumeIDs parameter). Measurement values are cumulative from the creation of the volume.
+        :param volumeIDs:  A list of volume IDs of volumes from which to retrieve activity information. 
+        :type volumeIDs: int
+        """
+
+        self._check_connection_type("list_volume_stats", "Cluster")
+
+        params = { 
+        }
+        if volume_ids is not None:
+            params["volumeIDs"] = volume_ids
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListVolumeStats',
+            ListVolumeStatsResult,
+            params
+        )
+
     def clone_volume(
             self,
             volume_id,
@@ -4848,84 +4771,20 @@ class Element(ServiceBase):
             params
         )
 
-    def remove_initiators_from_volume_access_group(
-            self,
-            volume_access_group_id,
-            initiators,
-            delete_orphan_initiators=OPTIONAL,):
-        """
-        RemoveInitiatorsFromVolumeAccessGroup enables
-        you to remove initiators from a specified volume access
-        group.
-        :param volumeAccessGroupID: [required] The ID of the volume access group from which the initiators are removed. 
-        :type volumeAccessGroupID: int
-
-        :param initiators: [required] The list of initiators to remove from the volume access group. 
-        :type initiators: str
-
-        :param deleteOrphanInitiators:  true: Delete initiator objects after they are removed from a volume access group. false: Do not delete initiator objects after they are removed from a volume access group. 
-        :type deleteOrphanInitiators: bool
-        """
-
-        self._check_connection_type("remove_initiators_from_volume_access_group", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-            "initiators": initiators,
-        }
-        if delete_orphan_initiators is not None:
-            params["deleteOrphanInitiators"] = delete_orphan_initiators
-        
-        # There is no adaptor.
-        return self.send_request(
-            'RemoveInitiatorsFromVolumeAccessGroup',
-            ModifyVolumeAccessGroupResult,
-            params
-        )
-
-    def add_initiators_to_volume_access_group(
-            self,
-            volume_access_group_id,
-            initiators,):
-        """
-        AddInitiatorsToVolumeAccessGroup enables you
-        to add initiators to a specified volume access group.
-        :param volumeAccessGroupID: [required] The ID of the volume access group to modify. 
-        :type volumeAccessGroupID: int
-
-        :param initiators: [required] The list of initiators to add to the volume access group. 
-        :type initiators: str
-        """
-
-        self._check_connection_type("add_initiators_to_volume_access_group", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-            "initiators": initiators,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'AddInitiatorsToVolumeAccessGroup',
-            ModifyVolumeAccessGroupResult,
-            params
-        )
-
-    def add_volumes_to_volume_access_group(
+    def remove_volumes_from_volume_access_group(
             self,
             volume_access_group_id,
             volumes,):
         """
-        AddVolumesToVolumeAccessGroup enables you to add
-        volumes to a specified volume access group.
-        :param volumeAccessGroupID: [required] The ID of the volume access group to which volumes are added. 
+        The RemoveVolumeFromVolumeAccessGroup method enables you to remove volumes from a volume access group.
+        :param volumeAccessGroupID: [required] The ID of the volume access group to remove volumes from. 
         :type volumeAccessGroupID: int
 
-        :param volumes: [required] The list of volumes to add to the volume access group. 
+        :param volumes: [required] The ID of the volume access group to remove volumes from. 
         :type volumes: int
         """
 
-        self._check_connection_type("add_volumes_to_volume_access_group", "Cluster")
+        self._check_connection_type("remove_volumes_from_volume_access_group", "Cluster")
 
         params = { 
             "volumeAccessGroupID": volume_access_group_id,
@@ -4934,7 +4793,7 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
-            'AddVolumesToVolumeAccessGroup',
+            'RemoveVolumesFromVolumeAccessGroup',
             ModifyVolumeAccessGroupResult,
             params
         )
@@ -5159,33 +5018,6 @@ class Element(ServiceBase):
         return self.send_request(
             'ModifyVolumeAccessGroupLunAssignments',
             ModifyVolumeAccessGroupLunAssignmentsResult,
-            params
-        )
-
-    def remove_volumes_from_volume_access_group(
-            self,
-            volume_access_group_id,
-            volumes,):
-        """
-        The RemoveVolumeFromVolumeAccessGroup method enables you to remove volumes from a volume access group.
-        :param volumeAccessGroupID: [required] The ID of the volume access group to remove volumes from. 
-        :type volumeAccessGroupID: int
-
-        :param volumes: [required] The ID of the volume access group to remove volumes from. 
-        :type volumes: int
-        """
-
-        self._check_connection_type("remove_volumes_from_volume_access_group", "Cluster")
-
-        params = { 
-            "volumeAccessGroupID": volume_access_group_id,
-            "volumes": volumes,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'RemoveVolumesFromVolumeAccessGroup',
-            ModifyVolumeAccessGroupResult,
             params
         )
 
@@ -5661,4 +5493,172 @@ class Element(ServiceBase):
             ListAsyncResultsResult,
             params
         )
+
+    def get_login_session_info(
+            self,):
+        """
+        GetLoginSessionInfo enables you to return the period of time a log in authentication session is valid for both log in shells and the TUI.        """
+
+        self._check_connection_type("get_login_session_info", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetLoginSessionInfo',
+            GetLoginSessionInfoResult,
+            params
+        )
+
+    def get_remote_logging_hosts(
+            self,):
+        """
+        GetRemoteLoggingHosts enables you to retrieve the current list of log servers.        """
+
+        self._check_connection_type("get_remote_logging_hosts", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetRemoteLoggingHosts',
+            GetRemoteLoggingHostsResult,
+            params
+        )
+
+    def set_login_session_info(
+            self,
+            timeout,):
+        """
+        You can use SetLoginSessionInfo to set the period of time that a session's login authentication is valid. After the log in period elapses without activity on the system, the authentication expires. New login credentials are required for continued access to the cluster after the timeout period has elapsed.
+        :param timeout: [required] Cluster authentication expiration period. Formatted in HH:mm:ss. For example, 01:30:00, 00:90:00, and 00:00:5400 can be used to equal a 90 minute timeout period. The default value is 30 minutes. 
+        :type timeout: str
+        """
+
+        self._check_connection_type("set_login_session_info", "Cluster")
+
+        params = { 
+            "timeout": timeout,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetLoginSessionInfo',
+            SetLoginSessionInfoResult,
+            params
+        )
+
+    def set_remote_logging_hosts(
+            self,
+            remote_hosts,):
+        """
+        SetRemoteLoggingHosts enables you to configure remote logging from the nodes in the storage cluster to a centralized log server or servers. Remote logging is performed over TCP using the default port 514. This API does not add to the existing logging hosts. Rather, it replaces what currently exists with new values specified by this API method. You can use GetRemoteLoggingHosts to determine what the current logging hosts are, and then use SetRemoteLoggingHosts to set the desired list of current and new logging hosts.
+        :param remoteHosts: [required] A list of hosts to send log messages to. 
+        :type remoteHosts: LoggingServer
+        """
+
+        self._check_connection_type("set_remote_logging_hosts", "Cluster")
+
+        params = { 
+            "remoteHosts": remote_hosts,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetRemoteLoggingHosts',
+            SetRemoteLoggingHostsResult,
+            params
+        )
+
+    def create_schedule(
+            self,
+            schedule,):
+        """
+        CreateSchedule enables you to schedule an automatic snapshot of a volume at a defined interval.
+        You can use the created snapshot later as a backup or rollback to ensure the data on a volume or group of volumes is consistent for
+        the point in time in which the snapshot was created.
+        If you schedule a snapshot to run at a time period that is not divisible by 5 minutes, the snapshot runs at the next time period
+        that is divisible by 5 minutes. For example, if you schedule a snapshot to run at 12:42:00 UTC, it runs at 12:45:00 UTC.
+        Note: You can create snapshots if cluster fullness is at stage 1, 2 or 3. You cannot create snapshots after cluster fullness reaches stage 4 or 5.
+        :param schedule: [required] The "Schedule" object will be used to create a new schedule. Do not set ScheduleID property, it will be ignored. Frequency property must be of type that inherits from Frequency. Valid types are: DaysOfMonthFrequency DaysOrWeekFrequency TimeIntervalFrequency 
+        :type schedule: Schedule
+        """
+
+        self._check_connection_type("create_schedule", "Cluster")
+
+        params = { 
+            "schedule": schedule,
+        }
+        
+        # There is an adaptor!
+        since = None
+        deprecated = None
+
+        return ElementServiceAdaptor.create_schedule(self, params,
+                                                  since, deprecated)
+
+    def get_schedule(
+            self,
+            schedule_id,):
+        """
+        You can use the GetSchedule method to retrieve information about a scheduled snapshot. You can see information about a specific
+        schedule if there are many snapshot schedules in the system. You also retrieve information about more than one schedule with this
+        method by specifying additional scheduleIDs in the parameter.
+        :param scheduleID: [required] Specifies the unique ID of the schedule or multiple schedules to display. 
+        :type scheduleID: int
+        """
+
+        self._check_connection_type("get_schedule", "Cluster")
+
+        params = { 
+            "scheduleID": schedule_id,
+        }
+        
+        # There is an adaptor!
+        since = None
+        deprecated = None
+
+        return ElementServiceAdaptor.get_schedule(self, params,
+                                                  since, deprecated)
+
+    def list_schedules(
+            self,):
+        """
+        ListSchedule enables you to retrieve information about all scheduled snapshots that have been created.        """
+
+        self._check_connection_type("list_schedules", "Cluster")
+
+        params = { 
+        }
+        
+        # There is an adaptor!
+        since = None
+        deprecated = None
+
+        return ElementServiceAdaptor.list_schedules(self, params,
+                                                  since, deprecated)
+
+    def modify_schedule(
+            self,
+            schedule,):
+        """
+        ModifySchedule enables you to change the intervals at which a scheduled snapshot occurs. This allows for adjustment to the snapshot frequency and retention.
+        :param schedule: [required] The "Schedule" object will be used to modify an existing schedule. The ScheduleID property is required. Frequency property must be of type that inherits from Frequency. Valid types are: DaysOfMonthFrequency DaysOrWeekFrequency TimeIntervalFrequency 
+        :type schedule: Schedule
+        """
+
+        self._check_connection_type("modify_schedule", "Cluster")
+
+        params = { 
+            "schedule": schedule,
+        }
+        
+        # There is an adaptor!
+        since = None
+        deprecated = None
+
+        return ElementServiceAdaptor.modify_schedule(self, params,
+                                                  since, deprecated)
 
