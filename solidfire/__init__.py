@@ -751,6 +751,62 @@ class Element(ServiceBase):
             params
         )
 
+    def get_login_session_info(
+            self,):
+        """
+        GetLoginSessionInfo enables you to return the period of time a log in authentication session is valid for both log in shells and the TUI.        """
+
+        self._check_connection_type("get_login_session_info", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetLoginSessionInfo',
+            GetLoginSessionInfoResult,
+            params
+        )
+
+    def get_remote_logging_hosts(
+            self,):
+        """
+        GetRemoteLoggingHosts enables you to retrieve the current list of log servers.        """
+
+        self._check_connection_type("get_remote_logging_hosts", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetRemoteLoggingHosts',
+            GetRemoteLoggingHostsResult,
+            params
+        )
+
+    def set_remote_logging_hosts(
+            self,
+            remote_hosts,):
+        """
+        SetRemoteLoggingHosts enables you to configure remote logging from the nodes in the storage cluster to a centralized log server or servers. Remote logging is performed over TCP using the default port 514. This API does not add to the existing logging hosts. Rather, it replaces what currently exists with new values specified by this API method. You can use GetRemoteLoggingHosts to determine what the current logging hosts are, and then use SetRemoteLoggingHosts to set the desired list of current and new logging hosts.
+        :param remoteHosts: [required] A list of hosts to send log messages to. 
+        :type remoteHosts: LoggingServer
+        """
+
+        self._check_connection_type("set_remote_logging_hosts", "Cluster")
+
+        params = { 
+            "remoteHosts": remote_hosts,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetRemoteLoggingHosts',
+            SetRemoteLoggingHostsResult,
+            params
+        )
+
     def add_cluster_admin(
             self,
             username,
@@ -1017,6 +1073,28 @@ class Element(ServiceBase):
         return self.send_request(
             'ListClusterFaults',
             ListClusterFaultsResult,
+            params
+        )
+
+    def set_login_session_info(
+            self,
+            timeout,):
+        """
+        You can use SetLoginSessionInfo to set the period of time that a session's login authentication is valid. After the log in period elapses without activity on the system, the authentication expires. New login credentials are required for continued access to the cluster after the timeout period has elapsed.
+        :param timeout: [required] Cluster authentication expiration period. Formatted in HH:mm:ss. For example, 01:30:00, 00:90:00, and 00:00:5400 can be used to equal a 90 minute timeout period. The default value is 30 minutes. 
+        :type timeout: str
+        """
+
+        self._check_connection_type("set_login_session_info", "Cluster")
+
+        params = { 
+            "timeout": timeout,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetLoginSessionInfo',
+            SetLoginSessionInfoResult,
             params
         )
 
@@ -2527,42 +2605,6 @@ class Element(ServiceBase):
             params
         )
 
-    def restart_services(
-            self,
-            force,
-            service=OPTIONAL,
-            action=OPTIONAL,):
-        """
-        The RestartServices API method enables you to restart the services on a node.
-        Caution: This method causes temporary node services interruption. Exercise caution when using this method.
-        Note: This method is available only through the per-node API endpoint 5.0 or later.
-        :param force: [required] Required parameter to successfully restart services on a node. 
-        :type force: bool
-
-        :param service:  Service name to be restarted. 
-        :type service: str
-
-        :param action:  Action to perform on the service (start, stop, restart). 
-        :type action: str
-        """
-
-        self._check_connection_type("restart_services", "Node")
-
-        params = { 
-            "force": force,
-        }
-        if service is not None:
-            params["service"] = service
-        if action is not None:
-            params["action"] = action
-        
-        # There is no adaptor.
-        return self.send_request(
-            'RestartServices',
-            dict,
-            params
-        )
-
     def shutdown(
             self,
             nodes,
@@ -2708,6 +2750,42 @@ class Element(ServiceBase):
         return self.send_request(
             'ListServices',
             ListServicesResult,
+            params
+        )
+
+    def restart_services(
+            self,
+            force,
+            service=OPTIONAL,
+            action=OPTIONAL,):
+        """
+        The RestartServices API method enables you to restart the services on a node.
+        Caution: This method causes temporary node services interruption. Exercise caution when using this method.
+        Note: This method is available only through the per-node API endpoint 5.0 or later.
+        :param force: [required] Required parameter to successfully restart services on a node. 
+        :type force: bool
+
+        :param service:  Service name to be restarted. 
+        :type service: str
+
+        :param action:  Action to perform on the service (start, stop, restart). 
+        :type action: str
+        """
+
+        self._check_connection_type("restart_services", "Node")
+
+        params = { 
+            "force": force,
+        }
+        if service is not None:
+            params["service"] = service
+        if action is not None:
+            params["action"] = action
+        
+        # There is no adaptor.
+        return self.send_request(
+            'RestartServices',
+            dict,
             params
         )
 
@@ -5491,84 +5569,6 @@ class Element(ServiceBase):
         return self.send_request(
             'ListAsyncResults',
             ListAsyncResultsResult,
-            params
-        )
-
-    def get_login_session_info(
-            self,):
-        """
-        GetLoginSessionInfo enables you to return the period of time a log in authentication session is valid for both log in shells and the TUI.        """
-
-        self._check_connection_type("get_login_session_info", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetLoginSessionInfo',
-            GetLoginSessionInfoResult,
-            params
-        )
-
-    def get_remote_logging_hosts(
-            self,):
-        """
-        GetRemoteLoggingHosts enables you to retrieve the current list of log servers.        """
-
-        self._check_connection_type("get_remote_logging_hosts", "Cluster")
-
-        params = { 
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'GetRemoteLoggingHosts',
-            GetRemoteLoggingHostsResult,
-            params
-        )
-
-    def set_login_session_info(
-            self,
-            timeout,):
-        """
-        You can use SetLoginSessionInfo to set the period of time that a session's login authentication is valid. After the log in period elapses without activity on the system, the authentication expires. New login credentials are required for continued access to the cluster after the timeout period has elapsed.
-        :param timeout: [required] Cluster authentication expiration period. Formatted in HH:mm:ss. For example, 01:30:00, 00:90:00, and 00:00:5400 can be used to equal a 90 minute timeout period. The default value is 30 minutes. 
-        :type timeout: str
-        """
-
-        self._check_connection_type("set_login_session_info", "Cluster")
-
-        params = { 
-            "timeout": timeout,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SetLoginSessionInfo',
-            SetLoginSessionInfoResult,
-            params
-        )
-
-    def set_remote_logging_hosts(
-            self,
-            remote_hosts,):
-        """
-        SetRemoteLoggingHosts enables you to configure remote logging from the nodes in the storage cluster to a centralized log server or servers. Remote logging is performed over TCP using the default port 514. This API does not add to the existing logging hosts. Rather, it replaces what currently exists with new values specified by this API method. You can use GetRemoteLoggingHosts to determine what the current logging hosts are, and then use SetRemoteLoggingHosts to set the desired list of current and new logging hosts.
-        :param remoteHosts: [required] A list of hosts to send log messages to. 
-        :type remoteHosts: LoggingServer
-        """
-
-        self._check_connection_type("set_remote_logging_hosts", "Cluster")
-
-        params = { 
-            "remoteHosts": remote_hosts,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SetRemoteLoggingHosts',
-            SetRemoteLoggingHostsResult,
             params
         )
 
