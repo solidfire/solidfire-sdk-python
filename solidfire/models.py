@@ -36,7 +36,10 @@ class RemoveClusterAdminRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster_admin_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestDrivesResult(data_model.DataObject):
@@ -71,7 +74,12 @@ class TestDrivesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            details,
+            duration,
+            result):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class VirtualVolumeHost(data_model.DataObject):
@@ -133,7 +141,15 @@ class VirtualVolumeHost(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            virtual_volume_host_id,
+            cluster_id,
+            visible_protocol_endpoint_ids,
+            bindings,
+            initiator_names,
+            host_address):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVirtualVolumeHostsResult(data_model.DataObject):
@@ -150,7 +166,10 @@ class ListVirtualVolumeHostsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            hosts):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddVolumesToVolumeAccessGroupRequest(data_model.DataObject):
@@ -178,7 +197,11 @@ class AddVolumesToVolumeAccessGroupRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_access_group_id,
+            volumes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateGroupSnapshotRequest(data_model.DataObject):
@@ -233,7 +256,14 @@ class CreateGroupSnapshotRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volumes,
+            name=None,
+            enable_remote_replication=None,
+            retention=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ClusterConfig(data_model.DataObject):
@@ -359,7 +389,22 @@ class ClusterConfig(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cipi=None,
+            cluster=None,
+            ensemble=None,
+            mipi=None,
+            name=None,
+            node_id=None,
+            pending_node_id=None,
+            role=None,
+            sipi=None,
+            state=None,
+            encryption_capable=None,
+            has_local_admin=None,
+            version=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class PhysicalAdapter(data_model.DataObject):
@@ -430,7 +475,16 @@ class PhysicalAdapter(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            address=None,
+            mac_address=None,
+            mac_address_permanent=None,
+            mtu=None,
+            netmask=None,
+            network=None,
+            up_and_running=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class NetworkConfig(data_model.DataObject):
@@ -708,7 +762,39 @@ class NetworkConfig(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            _default=None,
+            bond_master=None,
+            virtual_network_tag=None,
+            address=None,
+            auto=None,
+            bond_downdelay=None,
+            bond_fail_over_mac=None,
+            bond_primary_reselect=None,
+            bond_lacp_rate=None,
+            bond_miimon=None,
+            bond_mode=None,
+            bond_slaves=None,
+            bond_updelay=None,
+            dns_nameservers=None,
+            dns_search=None,
+            family=None,
+            gateway=None,
+            mac_address=None,
+            mac_address_permanent=None,
+            method=None,
+            mtu=None,
+            netmask=None,
+            network=None,
+            physical=None,
+            routes=None,
+            status=None,
+            symmetric_route_rules=None,
+            up_and_running=None,
+            bond_xmit_hash_policy=None,
+            bond_ad_num_ports=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class Network(data_model.DataObject):
@@ -779,7 +865,16 @@ class Network(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            bond10_g=None,
+            bond1_g=None,
+            eth0=None,
+            eth1=None,
+            eth2=None,
+            eth3=None,
+            lo=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class Config(data_model.DataObject):
@@ -805,7 +900,11 @@ class Config(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster,
+            network):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetConfigResult(data_model.DataObject):
@@ -822,7 +921,10 @@ class GetConfigResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            config):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class StartVolumePairingResult(data_model.DataObject):
@@ -839,7 +941,10 @@ class StartVolumePairingResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_pairing_key):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class UpdateBulkVolumeStatusRequest(data_model.DataObject):
@@ -894,7 +999,14 @@ class UpdateBulkVolumeStatusRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            key,
+            status,
+            percent_complete=None,
+            message=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetAccountEfficiencyRequest(data_model.DataObject):
@@ -913,7 +1025,10 @@ class GetAccountEfficiencyRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            account_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class Platform(data_model.DataObject):
@@ -966,7 +1081,14 @@ class Platform(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            node_type,
+            chassis_type,
+            cpu_model,
+            node_memory_gb,
+            platform_config_version=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class VirtualNetworkAddress(data_model.DataObject):
@@ -992,7 +1114,11 @@ class VirtualNetworkAddress(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            virtual_network_id,
+            address):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class Node(data_model.DataObject):
@@ -1147,7 +1273,25 @@ class Node(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            node_id,
+            associated_master_service_id,
+            associated_fservice_id,
+            name,
+            platform_info,
+            software_version,
+            cip,
+            cipi,
+            mip,
+            mipi,
+            sip,
+            sipi,
+            uuid,
+            virtual_networks,
+            attributes,
+            fibre_channel_target_port_group=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class PendingNode(data_model.DataObject):
@@ -1274,7 +1418,22 @@ class PendingNode(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            pending_node_id,
+            assigned_node_id,
+            name,
+            compatible,
+            platform_info,
+            cip,
+            cipi,
+            mip,
+            mipi,
+            sip,
+            sipi,
+            software_version,
+            uuid):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class PendingActiveNode(data_model.DataObject):
@@ -1363,7 +1522,18 @@ class PendingActiveNode(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            active_node_key,
+            assigned_node_id,
+            async_handle,
+            cip,
+            mip,
+            pending_node_id,
+            platform_info,
+            sip,
+            software_version):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListAllNodesResult(data_model.DataObject):
@@ -1398,7 +1568,12 @@ class ListAllNodesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            nodes,
+            pending_nodes,
+            pending_active_nodes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ShutdownResult(data_model.DataObject):
@@ -1424,7 +1599,11 @@ class ShutdownResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            failed,
+            successful):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetAPIResult(data_model.DataObject):
@@ -1450,7 +1629,11 @@ class GetAPIResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            supported_versions,
+            current_version):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class LunAssignment(data_model.DataObject):
@@ -1477,7 +1660,11 @@ class LunAssignment(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_id,
+            lun):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class VolumeAccessGroupLunAssignments(data_model.DataObject):
@@ -1513,7 +1700,12 @@ class VolumeAccessGroupLunAssignments(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_access_group_id,
+            lun_assignments,
+            deleted_lun_assignments):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetVolumeAccessGroupLunAssignmentsResult(data_model.DataObject):
@@ -1530,7 +1722,10 @@ class GetVolumeAccessGroupLunAssignmentsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_access_group_lun_assignments):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class MetadataHosts(data_model.DataObject):
@@ -1566,7 +1761,12 @@ class MetadataHosts(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            dead_secondaries,
+            live_secondaries,
+            primary):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class VolumeStats(data_model.DataObject):
@@ -1854,7 +2054,40 @@ class VolumeStats(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            account_id,
+            non_zero_blocks,
+            read_bytes,
+            read_ops,
+            timestamp,
+            unaligned_reads,
+            unaligned_writes,
+            volume_access_groups,
+            volume_id,
+            volume_size,
+            write_bytes,
+            write_ops,
+            zero_blocks,
+            actual_iops=None,
+            average_iopsize=None,
+            burst_iopscredit=None,
+            client_queue_depth=None,
+            latency_usec=None,
+            async_delay=None,
+            metadata_hosts=None,
+            desired_metadata_hosts=None,
+            read_latency_usec=None,
+            throttle=None,
+            total_latency_usec=None,
+            volume_utilization=None,
+            write_latency_usec=None,
+            write_bytes_last_sample=None,
+            sample_period_msec=None,
+            read_bytes_last_sample=None,
+            read_ops_last_sample=None,
+            write_ops_last_sample=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumeStatsByAccountResult(data_model.DataObject):
@@ -1871,7 +2104,10 @@ class ListVolumeStatsByAccountResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_stats):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyGroupSnapshotRequest(data_model.DataObject):
@@ -1907,7 +2143,12 @@ class ModifyGroupSnapshotRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            group_snapshot_id,
+            expiration_time=None,
+            enable_remote_replication=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteSnapshotRequest(data_model.DataObject):
@@ -1926,7 +2167,10 @@ class DeleteSnapshotRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            snapshot_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ScheduleInfo(data_model.DataObject):
@@ -1970,7 +2214,13 @@ class ScheduleInfo(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            snapshot_name=None,
+            enable_remote_replication=None,
+            volume_ids=None,
+            retention=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class Schedule(data_model.DataObject):
@@ -2087,7 +2337,21 @@ class Schedule(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            schedule_info,
+            name,
+            frequency,
+            last_run_time_started=None,
+            has_error=None,
+            run_next_interval=None,
+            last_run_status=None,
+            schedule_id=None,
+            paused=None,
+            to_be_deleted=None,
+            starting_date=None,
+            recurring=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetScheduleResult(data_model.DataObject):
@@ -2104,7 +2368,10 @@ class GetScheduleResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            schedule):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumesRequest(data_model.DataObject):
@@ -2186,7 +2453,17 @@ class ListVolumesRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            start_volume_id=None,
+            limit=None,
+            volume_status=None,
+            accounts=None,
+            is_paired=None,
+            volume_ids=None,
+            volume_name=None,
+            include_virtual_volumes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class NetworkConfigParams(data_model.DataObject):
@@ -2446,7 +2723,37 @@ class NetworkConfigParams(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            _default=None,
+            bond_master=None,
+            virtual_network_tag=None,
+            address=None,
+            auto=None,
+            bond_downdelay=None,
+            bond_fail_over_mac=None,
+            bond_primary_reselect=None,
+            bond_lacp_rate=None,
+            bond_miimon=None,
+            bond_mode=None,
+            bond_slaves=None,
+            bond_updelay=None,
+            dns_nameservers=None,
+            dns_search=None,
+            family=None,
+            gateway=None,
+            mac_address=None,
+            mac_address_permanent=None,
+            method=None,
+            mtu=None,
+            netmask=None,
+            network=None,
+            physical=None,
+            routes=None,
+            status=None,
+            symmetric_route_rules=None,
+            up_and_running=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class NetworkParams(data_model.DataObject):
@@ -2517,7 +2824,16 @@ class NetworkParams(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            bond10_g=None,
+            bond1_g=None,
+            eth0=None,
+            eth1=None,
+            eth2=None,
+            eth3=None,
+            lo=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ConfigParams(data_model.DataObject):
@@ -2543,7 +2859,11 @@ class ConfigParams(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster,
+            network):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyScheduleResult(data_model.DataObject):
@@ -2560,7 +2880,10 @@ class ModifyScheduleResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            schedule=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ClearClusterFaultsRequest(data_model.DataObject):
@@ -2579,7 +2902,10 @@ class ClearClusterFaultsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            fault_types=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveClusterAdminResult(data_model.DataObject):
@@ -2587,7 +2913,9 @@ class RemoveClusterAdminResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class AsyncHandle(data_model.DataObject):
@@ -2658,7 +2986,16 @@ class AsyncHandle(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            async_result_id,
+            completed,
+            create_time,
+            last_update_time,
+            result_type,
+            success,
+            data):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListAsyncResultsResult(data_model.DataObject):
@@ -2675,7 +3012,10 @@ class ListAsyncResultsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            async_handles):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class Account(data_model.DataObject):
@@ -2757,7 +3097,17 @@ class Account(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            account_id,
+            username,
+            status,
+            volumes,
+            initiator_secret=None,
+            target_secret=None,
+            storage_container_id=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddAccountResult(data_model.DataObject):
@@ -2783,7 +3133,11 @@ class AddAccountResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            account_id,
+            account=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetFeatureStatusRequest(data_model.DataObject):
@@ -2801,7 +3155,10 @@ class GetFeatureStatusRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            feature=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetIpmiConfigRequest(data_model.DataObject):
@@ -2819,7 +3176,10 @@ class GetIpmiConfigRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            chassis_type=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifySnapshotRequest(data_model.DataObject):
@@ -2856,7 +3216,12 @@ class ModifySnapshotRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            snapshot_id,
+            expiration_time=None,
+            enable_remote_replication=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyClusterFullThresholdResult(data_model.DataObject):
@@ -3017,7 +3382,26 @@ class ModifyClusterFullThresholdResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            block_fullness,
+            fullness,
+            max_metadata_over_provision_factor,
+            metadata_fullness,
+            slice_reserve_used_threshold_pct,
+            stage2_aware_threshold,
+            stage2_block_threshold_bytes,
+            stage3_block_threshold_bytes,
+            stage3_block_threshold_percent,
+            stage3_low_threshold,
+            stage4_critical_threshold,
+            stage4_block_threshold_bytes,
+            stage5_block_threshold_bytes,
+            sum_total_cluster_bytes,
+            sum_total_metadata_cluster_bytes,
+            sum_used_cluster_bytes,
+            sum_used_metadata_cluster_bytes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyScheduleRequest(data_model.DataObject):
@@ -3035,7 +3419,10 @@ class ModifyScheduleRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            schedule):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class NewDrive(data_model.DataObject):
@@ -3061,7 +3448,11 @@ class NewDrive(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            drive_id,
+            type=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveBackupTargetRequest(data_model.DataObject):
@@ -3079,7 +3470,10 @@ class RemoveBackupTargetRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            backup_target_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVolumeAccessGroupRequest(data_model.DataObject):
@@ -3160,7 +3554,17 @@ class ModifyVolumeAccessGroupRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_access_group_id,
+            virtual_network_id=None,
+            virtual_network_tags=None,
+            name=None,
+            initiators=None,
+            volumes=None,
+            delete_orphan_initiators=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class VolumeQOS(data_model.DataObject):
@@ -3214,7 +3618,14 @@ class VolumeQOS(data_model.DataObject):
         dictionaryType=int
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            min_iops,
+            max_iops,
+            burst_iops,
+            burst_time,
+            curve):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SnapshotReplication(data_model.DataObject):
@@ -3240,7 +3651,11 @@ class SnapshotReplication(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            state,
+            state_details):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoteReplication(data_model.DataObject):
@@ -3312,7 +3727,16 @@ class RemoteReplication(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            mode,
+            pause_limit,
+            remote_service_id,
+            resume_details,
+            snapshot_replication,
+            state,
+            state_details):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class VolumePair(data_model.DataObject):
@@ -3376,7 +3800,15 @@ class VolumePair(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster_pair_id,
+            remote_volume_id,
+            remote_slice_id,
+            remote_volume_name,
+            volume_pair_uuid,
+            remote_replication):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class Volume(data_model.DataObject):
@@ -3567,7 +3999,29 @@ class Volume(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_id,
+            name,
+            account_id,
+            create_time,
+            status,
+            access,
+            enable512e,
+            scsi_euidevice_id,
+            scsi_naadevice_id,
+            qos,
+            volume_access_groups,
+            volume_pairs,
+            slice_count,
+            total_size,
+            block_size,
+            attributes,
+            iqn=None,
+            delete_time=None,
+            purge_time=None,
+            virtual_volume_id=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CloneVolumeResult(data_model.DataObject):
@@ -3611,7 +4065,13 @@ class CloneVolumeResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            clone_id,
+            volume_id,
+            async_handle,
+            volume=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetVolumeStatsRequest(data_model.DataObject):
@@ -3629,7 +4089,10 @@ class GetVolumeStatsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetDriveStatsRequest(data_model.DataObject):
@@ -3649,7 +4112,10 @@ class GetDriveStatsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            drive_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
@@ -3669,7 +4135,10 @@ class GetVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_access_group_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumeStatsRequest(data_model.DataObject):
@@ -3687,7 +4156,10 @@ class ListVolumeStatsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_ids=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddAccountRequest(data_model.DataObject):
@@ -3732,7 +4204,13 @@ class AddAccountRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            username,
+            initiator_secret=None,
+            target_secret=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetAccountByNameRequest(data_model.DataObject):
@@ -3750,7 +4228,10 @@ class GetAccountByNameRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            username):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumeStatsByVolumeAccessGroupResult(data_model.DataObject):
@@ -3767,7 +4248,10 @@ class ListVolumeStatsByVolumeAccessGroupResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_stats):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateBackupTargetResult(data_model.DataObject):
@@ -3784,7 +4268,10 @@ class CreateBackupTargetResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            backup_target_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVirtualVolumeHostsRequest(data_model.DataObject):
@@ -3803,7 +4290,10 @@ class ListVirtualVolumeHostsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            virtual_volume_host_ids=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveDrivesRequest(data_model.DataObject):
@@ -3839,7 +4329,11 @@ class RemoveDrivesRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            drives,
+            force_during_upgrade=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CancelCloneResult(data_model.DataObject):
@@ -3847,7 +4341,9 @@ class CancelCloneResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class LdapConfiguration(data_model.DataObject):
@@ -3946,7 +4442,19 @@ class LdapConfiguration(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            auth_type,
+            enabled,
+            group_search_base_dn,
+            group_search_custom_filter,
+            group_search_type,
+            search_bind_dn,
+            server_uris,
+            user_dntemplate,
+            user_search_base_dn,
+            user_search_filter):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestLdapAuthenticationRequest(data_model.DataObject):
@@ -3983,7 +4491,12 @@ class TestLdapAuthenticationRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            username,
+            password,
+            ldap_configuration=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DriveConfigInfo(data_model.DataObject):
@@ -4198,7 +4711,32 @@ class DriveConfigInfo(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            canonical_name,
+            connected,
+            dev,
+            dev_path,
+            drive_type,
+            product,
+            name,
+            path,
+            path_link,
+            scsi_compat_id,
+            security_enabled,
+            security_frozen,
+            security_locked,
+            security_supported,
+            size,
+            slot,
+            uuid,
+            vendor,
+            version,
+            security_at_maximum,
+            serial,
+            scsi_state,
+            smart_ssd_write_capable=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DrivesConfigInfo(data_model.DataObject):
@@ -4269,7 +4807,16 @@ class DrivesConfigInfo(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            drives,
+            num_block_actual,
+            num_block_expected,
+            num_slice_actual,
+            num_slice_expected,
+            num_total_actual,
+            num_total_expected):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetDriveConfigResult(data_model.DataObject):
@@ -4286,7 +4833,10 @@ class GetDriveConfigResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            drive_config):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetNodeStatsRequest(data_model.DataObject):
@@ -4304,7 +4854,10 @@ class GetNodeStatsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            node_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ResetDrivesRequest(data_model.DataObject):
@@ -4332,7 +4885,11 @@ class ResetDrivesRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            drives,
+            force):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class EventInfo(data_model.DataObject):
@@ -4439,7 +4996,20 @@ class EventInfo(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            event_id,
+            severity,
+            event_info_type,
+            message,
+            service_id,
+            node_id,
+            drive_id,
+            drive_ids,
+            time_of_report,
+            time_of_publish,
+            details=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListEventsResult(data_model.DataObject):
@@ -4465,7 +5035,11 @@ class ListEventsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            event_queue_type,
+            events):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyBackupTargetRequest(data_model.DataObject):
@@ -4501,7 +5075,12 @@ class ModifyBackupTargetRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            backup_target_id,
+            name=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class PairedCluster(data_model.DataObject):
@@ -4572,7 +5151,16 @@ class PairedCluster(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster_name,
+            cluster_pair_id,
+            cluster_pair_uuid,
+            latency,
+            mvip,
+            status,
+            version):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListClusterPairsResult(data_model.DataObject):
@@ -4589,7 +5177,10 @@ class ListClusterPairsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster_pairs):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ClusterVersionInfo(data_model.DataObject):
@@ -4625,7 +5216,12 @@ class ClusterVersionInfo(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            node_id,
+            node_version,
+            node_internal_revision):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SoftwareVersionInfo(data_model.DataObject):
@@ -4678,7 +5274,14 @@ class SoftwareVersionInfo(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            current_version,
+            node_id,
+            package_name,
+            pending_version,
+            start_time):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetClusterVersionInfoResult(data_model.DataObject):
@@ -4722,7 +5325,13 @@ class GetClusterVersionInfoResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster_apiversion,
+            cluster_version,
+            cluster_version_info,
+            software_version_info):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CopyVolumeRequest(data_model.DataObject):
@@ -4764,7 +5373,12 @@ class CopyVolumeRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_id,
+            dst_volume_id,
+            snapshot_id=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class NetworkInterface(data_model.DataObject):
@@ -4862,7 +5476,19 @@ class NetworkInterface(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            address,
+            broadcast,
+            mac_address,
+            mtu,
+            name,
+            netmask,
+            status,
+            type,
+            virtual_network_tag,
+            namespace=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListNetworkInterfacesResult(data_model.DataObject):
@@ -4879,7 +5505,10 @@ class ListNetworkInterfacesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            interfaces):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateVolumeAccessGroupRequest(data_model.DataObject):
@@ -4942,7 +5571,15 @@ class CreateVolumeAccessGroupRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            name,
+            initiators=None,
+            volumes=None,
+            virtual_network_id=None,
+            virtual_network_tags=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateSnapshotRequest(data_model.DataObject):
@@ -5007,7 +5644,15 @@ class CreateSnapshotRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_id,
+            snapshot_id=None,
+            name=None,
+            enable_remote_replication=None,
+            retention=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteVolumesRequest(data_model.DataObject):
@@ -5043,7 +5688,12 @@ class DeleteVolumesRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            account_ids=None,
+            volume_access_group_ids=None,
+            volume_ids=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CopyVolumeResult(data_model.DataObject):
@@ -5069,7 +5719,11 @@ class CopyVolumeResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            clone_id,
+            async_handle):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RestartServicesRequest(data_model.DataObject):
@@ -5107,7 +5761,12 @@ class RestartServicesRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            force,
+            service=None,
+            action=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetNvramInfoResult(data_model.DataObject):
@@ -5124,7 +5783,10 @@ class GetNvramInfoResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            nvram_info):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetClusterMasterNodeIDResult(data_model.DataObject):
@@ -5141,7 +5803,10 @@ class GetClusterMasterNodeIDResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            node_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListDriveHardwareRequest(data_model.DataObject):
@@ -5163,7 +5828,10 @@ class ListDriveHardwareRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            force):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteVolumeResult(data_model.DataObject):
@@ -5180,7 +5848,10 @@ class DeleteVolumeResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class NodeWaitingToJoin(data_model.DataObject):
@@ -5287,7 +5958,20 @@ class NodeWaitingToJoin(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            version,
+            compatible,
+            name=None,
+            node_id=None,
+            pending_node_id=None,
+            mip=None,
+            cip=None,
+            sip=None,
+            chassis_type=None,
+            hostname=None,
+            node_type=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetBootstrapConfigResult(data_model.DataObject):
@@ -5331,7 +6015,13 @@ class GetBootstrapConfigResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster_name,
+            node_name,
+            nodes,
+            version):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListTestsResult(data_model.DataObject):
@@ -5348,7 +6038,10 @@ class ListTestsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            tests):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class LoggingServer(data_model.DataObject):
@@ -5374,7 +6067,11 @@ class LoggingServer(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            host,
+            port):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetRemoteLoggingHostsRequest(data_model.DataObject):
@@ -5392,7 +6089,10 @@ class SetRemoteLoggingHostsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            remote_hosts):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetIpmiConfigNodesResult(data_model.DataObject):
@@ -5418,7 +6118,11 @@ class GetIpmiConfigNodesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            node_id,
+            result):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetIpmiConfigResult(data_model.DataObject):
@@ -5435,7 +6139,10 @@ class GetIpmiConfigResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            nodes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetScheduleRequest(data_model.DataObject):
@@ -5455,7 +6162,10 @@ class GetScheduleRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            schedule_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddLdapClusterAdminResult(data_model.DataObject):
@@ -5472,7 +6182,10 @@ class AddLdapClusterAdminResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster_admin_id=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddedNode(data_model.DataObject):
@@ -5570,7 +6283,19 @@ class AddedNode(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            pending_node_id,
+            node_id=None,
+            active_node_key=None,
+            assigned_node_id=None,
+            async_handle=None,
+            cip=None,
+            mip=None,
+            platform_info=None,
+            sip=None,
+            software_version=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddNodesResult(data_model.DataObject):
@@ -5596,7 +6321,11 @@ class AddNodesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            nodes,
+            auto_install=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SnmpTrapRecipient(data_model.DataObject):
@@ -5632,7 +6361,12 @@ class SnmpTrapRecipient(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            host,
+            community,
+            port):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddClusterAdminResult(data_model.DataObject):
@@ -5649,7 +6383,10 @@ class AddClusterAdminResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster_admin_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CompleteClusterPairingRequest(data_model.DataObject):
@@ -5667,7 +6404,10 @@ class CompleteClusterPairingRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster_pairing_key):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DriveHardwareInfo(data_model.DataObject):
@@ -5810,7 +6550,24 @@ class DriveHardwareInfo(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            description,
+            dev,
+            devpath,
+            drive_security_at_maximum,
+            drive_security_frozen,
+            drive_security_locked,
+            logicalname,
+            product,
+            scsi_compat_id,
+            security_feature_enabled,
+            security_feature_supported,
+            serial,
+            size,
+            uuid,
+            version):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetDriveHardwareInfoResult(data_model.DataObject):
@@ -5827,7 +6584,10 @@ class GetDriveHardwareInfoResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            drive_hardware_info):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteInitiatorsRequest(data_model.DataObject):
@@ -5848,7 +6608,10 @@ class DeleteInitiatorsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            initiators):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetSnmpTrapInfoRequest(data_model.DataObject):
@@ -5893,7 +6656,13 @@ class SetSnmpTrapInfoRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            trap_recipients,
+            cluster_fault_traps_enabled,
+            cluster_fault_resolved_traps_enabled,
+            cluster_event_traps_enabled):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveVirtualNetworkRequest(data_model.DataObject):
@@ -5921,7 +6690,11 @@ class RemoveVirtualNetworkRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            virtual_network_id=None,
+            virtual_network_tag=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumeStatsResult(data_model.DataObject):
@@ -5938,7 +6711,10 @@ class ListVolumeStatsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_stats):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetClusterConfigResult(data_model.DataObject):
@@ -5955,7 +6731,10 @@ class SetClusterConfigResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CancelGroupCloneRequest(data_model.DataObject):
@@ -5974,7 +6753,10 @@ class CancelGroupCloneRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            group_clone_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListActiveVolumesRequest(data_model.DataObject):
@@ -6011,7 +6793,12 @@ class ListActiveVolumesRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            start_volume_id=None,
+            limit=None,
+            include_virtual_volumes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateScheduleRequest(data_model.DataObject):
@@ -6034,7 +6821,10 @@ class CreateScheduleRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            schedule):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteAllSupportBundlesResult(data_model.DataObject):
@@ -6069,7 +6859,12 @@ class DeleteAllSupportBundlesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            duration,
+            details,
+            result):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetDriveHardwareInfoRequest(data_model.DataObject):
@@ -6088,7 +6883,10 @@ class GetDriveHardwareInfoRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            drive_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class StorageContainer(data_model.DataObject):
@@ -6168,7 +6966,17 @@ class StorageContainer(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            name,
+            storage_container_id,
+            account_id,
+            protocol_endpoint_type,
+            initiator_secret,
+            target_secret,
+            status,
+            virtual_volumes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyStorageContainerResult(data_model.DataObject):
@@ -6185,7 +6993,10 @@ class ModifyStorageContainerResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            storage_container):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class InvokeSFApiRequest(data_model.DataObject):
@@ -6213,7 +7024,11 @@ class InvokeSFApiRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            method,
+            parameters=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveNodesResult(data_model.DataObject):
@@ -6221,7 +7036,9 @@ class RemoveNodesResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveAccountResult(data_model.DataObject):
@@ -6229,7 +7046,9 @@ class RemoveAccountResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetVolumeCountResult(data_model.DataObject):
@@ -6246,7 +7065,10 @@ class GetVolumeCountResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            count):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetStorageContainerEfficiencyRequest(data_model.DataObject):
@@ -6264,7 +7086,10 @@ class GetStorageContainerEfficiencyRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            storage_container_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class Initiator(data_model.DataObject):
@@ -6318,7 +7143,14 @@ class Initiator(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            alias,
+            initiator_id,
+            initiator_name,
+            volume_access_groups,
+            attributes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ISCSISession(data_model.DataObject):
@@ -6497,7 +7329,28 @@ class ISCSISession(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            account_id,
+            account_name,
+            drive_id,
+            initiator_ip,
+            initiator_port_name,
+            target_port_name,
+            initiator_name,
+            node_id,
+            service_id,
+            session_id,
+            target_name,
+            target_ip,
+            virtual_network_id,
+            volume_id,
+            create_time,
+            volume_instance,
+            initiator_session_id,
+            drive_ids=None,
+            initiator=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListISCSISessionsResult(data_model.DataObject):
@@ -6514,7 +7367,10 @@ class ListISCSISessionsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            sessions):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVirtualVolumesRequest(data_model.DataObject):
@@ -6569,7 +7425,14 @@ class ListVirtualVolumesRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            details=None,
+            limit=None,
+            recursive=None,
+            start_virtual_volume_id=None,
+            virtual_volume_ids=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CompleteVolumePairingResult(data_model.DataObject):
@@ -6577,7 +7440,9 @@ class CompleteVolumePairingResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListDeletedVolumesRequest(data_model.DataObject):
@@ -6595,7 +7460,10 @@ class ListDeletedVolumesRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            include_virtual_volumes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListStorageContainersResult(data_model.DataObject):
@@ -6612,7 +7480,10 @@ class ListStorageContainersResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            storage_containers):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetLdapConfigurationResult(data_model.DataObject):
@@ -6629,7 +7500,10 @@ class GetLdapConfigurationResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            ldap_configuration):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GroupSnapshotMembers(data_model.DataObject):
@@ -6800,7 +7674,27 @@ class GroupSnapshotMembers(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_id,
+            snapshot_id,
+            snapshot_uuid,
+            checksum,
+            attributes=None,
+            create_time=None,
+            enable_remote_replication=None,
+            expiration_reason=None,
+            expiration_time=None,
+            group_id=None,
+            group_snapshot_uuid=None,
+            name=None,
+            remote_status=None,
+            remote_statuses=None,
+            status=None,
+            total_size=None,
+            virtual_volume_id=None,
+            volume_pair_uuid=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GroupSnapshot(data_model.DataObject):
@@ -6872,7 +7766,16 @@ class GroupSnapshot(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            group_snapshot_id,
+            group_snapshot_uuid,
+            members,
+            name,
+            create_time,
+            status,
+            attributes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyGroupSnapshotResult(data_model.DataObject):
@@ -6889,7 +7792,10 @@ class ModifyGroupSnapshotResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            group_snapshot):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListDriveStatsRequest(data_model.DataObject):
@@ -6907,7 +7813,10 @@ class ListDriveStatsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            drives=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListInitiatorsRequest(data_model.DataObject):
@@ -6943,7 +7852,12 @@ class ListInitiatorsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            start_initiator_id=None,
+            limit=None,
+            initiators=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListInitiatorsResult(data_model.DataObject):
@@ -6960,7 +7874,10 @@ class ListInitiatorsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            initiators):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddressBlock(data_model.DataObject):
@@ -6996,7 +7913,12 @@ class AddressBlock(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            start,
+            size,
+            available):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class VirtualNetwork(data_model.DataObject):
@@ -7085,7 +8007,18 @@ class VirtualNetwork(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            virtual_network_id,
+            virtual_network_tag,
+            address_blocks,
+            name,
+            netmask,
+            svip,
+            gateway=None,
+            namespace=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVirtualNetworksResult(data_model.DataObject):
@@ -7102,7 +8035,10 @@ class ListVirtualNetworksResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            virtual_networks):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class StartVolumePairingRequest(data_model.DataObject):
@@ -7130,7 +8066,11 @@ class StartVolumePairingRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_id,
+            mode=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DisableSnmpResult(data_model.DataObject):
@@ -7138,7 +8078,9 @@ class DisableSnmpResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class QoS(data_model.DataObject):
@@ -7191,7 +8133,13 @@ class QoS(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            min_iops=None,
+            max_iops=None,
+            burst_iops=None,
+            burst_time=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetNetworkConfigResult(data_model.DataObject):
@@ -7208,7 +8156,10 @@ class SetNetworkConfigResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            network):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddressBlockParams(data_model.DataObject):
@@ -7244,7 +8195,12 @@ class AddressBlockParams(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            start,
+            size,
+            available=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddVirtualNetworkRequest(data_model.DataObject):
@@ -7332,7 +8288,17 @@ class AddVirtualNetworkRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            virtual_network_tag,
+            name,
+            address_blocks,
+            netmask,
+            svip,
+            gateway=None,
+            namespace=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListClusterFaultsRequest(data_model.DataObject):
@@ -7359,7 +8325,11 @@ class ListClusterFaultsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            best_practices=None,
+            fault_types=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestPingResult(data_model.DataObject):
@@ -7394,7 +8364,12 @@ class TestPingResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            result,
+            duration,
+            details):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class BackupTarget(data_model.DataObject):
@@ -7430,7 +8405,12 @@ class BackupTarget(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            name,
+            backup_target_id,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetBackupTargetResult(data_model.DataObject):
@@ -7447,7 +8427,10 @@ class GetBackupTargetResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            backup_target):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddDrivesResult(data_model.DataObject):
@@ -7464,7 +8447,10 @@ class AddDrivesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            async_handle=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumeStatsByVirtualVolumeRequest(data_model.DataObject):
@@ -7482,7 +8468,10 @@ class ListVolumeStatsByVirtualVolumeRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            virtual_volume_ids=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetConfigResult(data_model.DataObject):
@@ -7499,7 +8488,10 @@ class SetConfigResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            config):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class StartBulkVolumeWriteRequest(data_model.DataObject):
@@ -7554,7 +8546,14 @@ class StartBulkVolumeWriteRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_id,
+            format,
+            script=None,
+            script_parameters=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVolumeResult(data_model.DataObject):
@@ -7571,7 +8570,10 @@ class ModifyVolumeResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class PurgeDeletedVolumeResult(data_model.DataObject):
@@ -7579,7 +8581,9 @@ class PurgeDeletedVolumeResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SnapshotRemoteStatus(data_model.DataObject):
@@ -7605,7 +8609,11 @@ class SnapshotRemoteStatus(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            remote_status,
+            volume_pair_uuid):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class Snapshot(data_model.DataObject):
@@ -7759,7 +8767,25 @@ class Snapshot(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            snapshot_id,
+            volume_id,
+            name,
+            checksum,
+            enable_remote_replication,
+            expiration_reason,
+            status,
+            snapshot_uuid,
+            total_size,
+            group_snapshot_uuid,
+            create_time,
+            attributes,
+            expiration_time=None,
+            remote_statuses=None,
+            group_id=None,
+            virtual_volume_id=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class VirtualVolumeInfo(data_model.DataObject):
@@ -7884,7 +8910,22 @@ class VirtualVolumeInfo(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            virtual_volume_id,
+            parent_virtual_volume_id,
+            storage_container,
+            volume_id,
+            snapshot_id,
+            virtual_volume_type,
+            status,
+            bindings,
+            children,
+            metadata,
+            snapshot_info=None,
+            volume_info=None,
+            descendants=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVirtualVolumesResult(data_model.DataObject):
@@ -7910,7 +8951,11 @@ class ListVirtualVolumesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            virtual_volumes,
+            next_virtual_volume_id=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteVolumesResult(data_model.DataObject):
@@ -7927,7 +8972,10 @@ class DeleteVolumesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volumes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ClusterCapacity(data_model.DataObject):
@@ -8143,7 +9191,32 @@ class ClusterCapacity(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            active_block_space,
+            active_sessions,
+            average_iops,
+            cluster_recent_iosize,
+            current_iops,
+            max_iops,
+            max_over_provisionable_space,
+            max_provisioned_space,
+            max_used_metadata_space,
+            max_used_space,
+            non_zero_blocks,
+            peak_active_sessions,
+            peak_iops,
+            provisioned_space,
+            snapshot_non_zero_blocks,
+            timestamp,
+            total_ops,
+            unique_blocks,
+            unique_blocks_used_space,
+            used_metadata_space,
+            used_metadata_space_in_snapshots,
+            used_space,
+            zero_blocks):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetClusterCapacityResult(data_model.DataObject):
@@ -8160,7 +9233,10 @@ class GetClusterCapacityResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster_capacity):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetHardwareConfigResult(data_model.DataObject):
@@ -8177,7 +9253,10 @@ class GetHardwareConfigResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            hardware_config):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestConnectSvipRequest(data_model.DataObject):
@@ -8196,7 +9275,10 @@ class TestConnectSvipRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            svip=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestPingRequest(data_model.DataObject):
@@ -8261,7 +9343,15 @@ class TestPingRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            attempts=None,
+            hosts=None,
+            total_timeout_sec=None,
+            packet_size=None,
+            ping_timeout_msec=None,
+            prohibit_fragmentation=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class NodeStatsInfo(data_model.DataObject):
@@ -8377,7 +9467,21 @@ class NodeStatsInfo(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            c_bytes_in,
+            c_bytes_out,
+            cpu,
+            m_bytes_in,
+            m_bytes_out,
+            network_utilization_cluster,
+            network_utilization_storage,
+            node_id,
+            s_bytes_in,
+            s_bytes_out,
+            timestamp,
+            used_memory):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class NodeStatsNodes(data_model.DataObject):
@@ -8394,7 +9498,10 @@ class NodeStatsNodes(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            nodes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListNodeStatsResult(data_model.DataObject):
@@ -8411,7 +9518,10 @@ class ListNodeStatsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            node_stats):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteVolumeAccessGroupResult(data_model.DataObject):
@@ -8419,7 +9529,9 @@ class DeleteVolumeAccessGroupResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteInitiatorsResult(data_model.DataObject):
@@ -8427,7 +9539,9 @@ class DeleteInitiatorsResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddInitiatorsToVolumeAccessGroupRequest(data_model.DataObject):
@@ -8455,7 +9569,11 @@ class AddInitiatorsToVolumeAccessGroupRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_access_group_id,
+            initiators):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteVolumeAccessGroupRequest(data_model.DataObject):
@@ -8474,7 +9592,10 @@ class DeleteVolumeAccessGroupRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_access_group_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class FeatureObject(data_model.DataObject):
@@ -8500,7 +9621,11 @@ class FeatureObject(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            enabled,
+            feature):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetFeatureStatusResult(data_model.DataObject):
@@ -8517,7 +9642,10 @@ class GetFeatureStatusResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            features):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVirtualNetworksRequest(data_model.DataObject):
@@ -8565,7 +9693,13 @@ class ListVirtualNetworksRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            virtual_network_id=None,
+            virtual_network_tag=None,
+            virtual_network_ids=None,
+            virtual_network_tags=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListSchedulesResult(data_model.DataObject):
@@ -8582,7 +9716,10 @@ class ListSchedulesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            schedules):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetNetworkConfigRequest(data_model.DataObject):
@@ -8602,7 +9739,10 @@ class SetNetworkConfigRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            network):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class StartBulkVolumeReadRequest(data_model.DataObject):
@@ -8672,7 +9812,15 @@ class StartBulkVolumeReadRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_id,
+            format,
+            snapshot_id=None,
+            script=None,
+            script_parameters=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddDrivesRequest(data_model.DataObject):
@@ -8708,7 +9856,11 @@ class AddDrivesRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            drives,
+            force_during_upgrade=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteVolumeRequest(data_model.DataObject):
@@ -8735,7 +9887,10 @@ class DeleteVolumeRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateScheduleResult(data_model.DataObject):
@@ -8752,7 +9907,10 @@ class CreateScheduleResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            schedule_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ShutdownRequest(data_model.DataObject):
@@ -8780,7 +9938,11 @@ class ShutdownRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            nodes,
+            option=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetAsyncResultRequest(data_model.DataObject):
@@ -8811,7 +9973,11 @@ class GetAsyncResultRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            async_handle,
+            keep_result=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateVolumeResult(data_model.DataObject):
@@ -8846,7 +10012,12 @@ class CreateVolumeResult(data_model.DataObject):
         dictionaryType=int
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_id,
+            curve,
+            volume=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyAccountRequest(data_model.DataObject):
@@ -8913,7 +10084,15 @@ class ModifyAccountRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            account_id,
+            username=None,
+            status=None,
+            initiator_secret=None,
+            target_secret=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ClusterAdmin(data_model.DataObject):
@@ -8966,7 +10145,14 @@ class ClusterAdmin(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            auth_method,
+            access,
+            cluster_admin_id,
+            username,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetCurrentClusterAdminResult(data_model.DataObject):
@@ -8983,7 +10169,10 @@ class GetCurrentClusterAdminResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster_admin):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ResetNodeRequest(data_model.DataObject):
@@ -9016,7 +10205,11 @@ class ResetNodeRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            build,
+            force):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetLoginSessionInfoRequest(data_model.DataObject):
@@ -9034,7 +10227,10 @@ class SetLoginSessionInfoRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            timeout):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateSnapshotResult(data_model.DataObject):
@@ -9069,7 +10265,12 @@ class CreateSnapshotResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            snapshot,
+            snapshot_id,
+            checksum):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class FibreChannelPortInfo(data_model.DataObject):
@@ -9177,7 +10378,20 @@ class FibreChannelPortInfo(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            firmware,
+            hba_port,
+            model,
+            n_port_id,
+            pci_slot,
+            serial,
+            speed,
+            state,
+            switch_wwn,
+            wwnn,
+            wwpn):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class FibreChannelPortList(data_model.DataObject):
@@ -9195,7 +10409,10 @@ class FibreChannelPortList(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            fibre_channel_ports):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class FibreChannelPortInfoResult(data_model.DataObject):
@@ -9213,7 +10430,10 @@ class FibreChannelPortInfoResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            result):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListFibreChannelPortInfoResult(data_model.DataObject):
@@ -9231,7 +10451,10 @@ class ListFibreChannelPortInfoResult(data_model.DataObject):
         dictionaryType=FibreChannelPortInfoResult
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            fibre_channel_port_info):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RollbackToSnapshotRequest(data_model.DataObject):
@@ -9289,7 +10512,14 @@ class RollbackToSnapshotRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_id,
+            snapshot_id,
+            save_current_state,
+            name=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RestoreDeletedVolumeResult(data_model.DataObject):
@@ -9297,7 +10527,9 @@ class RestoreDeletedVolumeResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListDeletedVolumesResult(data_model.DataObject):
@@ -9314,7 +10546,10 @@ class ListDeletedVolumesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volumes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListSnapshotsRequest(data_model.DataObject):
@@ -9341,7 +10576,11 @@ class ListSnapshotsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_id=None,
+            snapshot_id=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListActiveVolumesResult(data_model.DataObject):
@@ -9358,7 +10597,10 @@ class ListActiveVolumesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volumes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetNtpInfoResult(data_model.DataObject):
@@ -9384,7 +10626,11 @@ class GetNtpInfoResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            broadcastclient,
+            servers):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListAsyncResultsRequest(data_model.DataObject):
@@ -9404,7 +10650,10 @@ class ListAsyncResultsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            async_result_types=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyAccountResult(data_model.DataObject):
@@ -9421,7 +10670,10 @@ class ModifyAccountResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            account):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyInitiator(data_model.DataObject):
@@ -9466,7 +10718,13 @@ class ModifyInitiator(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            initiator_id,
+            alias=None,
+            volume_access_group_id=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyInitiatorsRequest(data_model.DataObject):
@@ -9488,7 +10746,10 @@ class ModifyInitiatorsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            initiators):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListUtilitiesResult(data_model.DataObject):
@@ -9505,7 +10766,10 @@ class ListUtilitiesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            utilities):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveInitiatorsFromVolumeAccessGroupRequest(data_model.DataObject):
@@ -9543,7 +10807,12 @@ class RemoveInitiatorsFromVolumeAccessGroupRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_access_group_id,
+            initiators,
+            delete_orphan_initiators=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetDefaultQoSRequest(data_model.DataObject):
@@ -9580,7 +10849,12 @@ class SetDefaultQoSRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            min_iops=None,
+            max_iops=None,
+            burst_iops=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetSnmpTrapInfoResult(data_model.DataObject):
@@ -9588,7 +10862,9 @@ class SetSnmpTrapInfoResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteStorageContainersRequest(data_model.DataObject):
@@ -9607,7 +10883,10 @@ class DeleteStorageContainersRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            storage_container_ids):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class VolumeAccessGroup(data_model.DataObject):
@@ -9686,7 +10965,16 @@ class VolumeAccessGroup(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            deleted_volumes,
+            volume_access_group_id,
+            name,
+            initiator_ids,
+            initiators,
+            volumes,
+            attributes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateVolumeAccessGroupResult(data_model.DataObject):
@@ -9712,7 +11000,11 @@ class CreateVolumeAccessGroupResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_access_group_id,
+            volume_access_group=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateStorageContainerRequest(data_model.DataObject):
@@ -9757,7 +11049,13 @@ class CreateStorageContainerRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            name,
+            initiator_secret=None,
+            target_secret=None,
+            account_id=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddVirtualNetworkResult(data_model.DataObject):
@@ -9774,7 +11072,10 @@ class AddVirtualNetworkResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            virtual_network_id=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddNodesRequest(data_model.DataObject):
@@ -9802,7 +11103,11 @@ class AddNodesRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            pending_nodes,
+            auto_install=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RtfiInfo(data_model.DataObject):
@@ -9891,7 +11196,18 @@ class RtfiInfo(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            generation,
+            build,
+            status_url_all,
+            status_url_current,
+            mipi=None,
+            status_url_logfile=None,
+            generation_next=None,
+            mip=None,
+            options=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ResetNodeDetails(data_model.DataObject):
@@ -9908,7 +11224,10 @@ class ResetNodeDetails(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            rtfi_info):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ResetNodeResult(data_model.DataObject):
@@ -9943,7 +11262,12 @@ class ResetNodeResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            details=None,
+            duration=None,
+            result=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class EnableLdapAuthenticationRequest(data_model.DataObject):
@@ -10042,7 +11366,19 @@ class EnableLdapAuthenticationRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            server_uris,
+            auth_type=None,
+            group_search_base_dn=None,
+            group_search_custom_filter=None,
+            group_search_type=None,
+            search_bind_dn=None,
+            search_bind_password=None,
+            user_dntemplate=None,
+            user_search_base_dn=None,
+            user_search_filter=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class NodeStateInfo(data_model.DataObject):
@@ -10068,7 +11404,11 @@ class NodeStateInfo(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster,
+            state):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class NodeStateResult(data_model.DataObject):
@@ -10094,7 +11434,11 @@ class NodeStateResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            node_id,
+            result=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetClusterStateResult(data_model.DataObject):
@@ -10129,7 +11473,12 @@ class GetClusterStateResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            nodes=None,
+            cluster=None,
+            state=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class EnableEncryptionAtRestResult(data_model.DataObject):
@@ -10137,7 +11486,9 @@ class EnableEncryptionAtRestResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyBackupTargetResult(data_model.DataObject):
@@ -10145,7 +11496,9 @@ class ModifyBackupTargetResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CancelCloneRequest(data_model.DataObject):
@@ -10164,7 +11517,10 @@ class CancelCloneRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            clone_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetAccountResult(data_model.DataObject):
@@ -10181,7 +11537,10 @@ class GetAccountResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            account):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetAccountByIDRequest(data_model.DataObject):
@@ -10199,7 +11558,10 @@ class GetAccountByIDRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            account_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestConnectEnsembleRequest(data_model.DataObject):
@@ -10218,7 +11580,10 @@ class TestConnectEnsembleRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            ensemble=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RollbackToSnapshotResult(data_model.DataObject):
@@ -10253,7 +11618,12 @@ class RollbackToSnapshotResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            snapshot=None,
+            snapshot_id=None,
+            checksum=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetSystemStatusResult(data_model.DataObject):
@@ -10270,7 +11640,10 @@ class GetSystemStatusResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            reboot_required):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetClusterHardwareInfoRequest(data_model.DataObject):
@@ -10290,7 +11663,10 @@ class GetClusterHardwareInfoRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            type=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ClusterStats(data_model.DataObject):
@@ -10469,7 +11845,28 @@ class ClusterStats(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster_utilization,
+            client_queue_depth,
+            read_bytes,
+            read_ops,
+            timestamp,
+            write_bytes,
+            write_ops,
+            actual_iops=None,
+            average_iopsize=None,
+            latency_usec=None,
+            read_bytes_last_sample=None,
+            read_latency_usec=None,
+            read_ops_last_sample=None,
+            sample_period_msec=None,
+            unaligned_reads=None,
+            unaligned_writes=None,
+            write_bytes_last_sample=None,
+            write_latency_usec=None,
+            write_ops_last_sample=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetClusterStatsResult(data_model.DataObject):
@@ -10486,7 +11883,10 @@ class GetClusterStatsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster_stats):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateVolumeRequest(data_model.DataObject):
@@ -10550,7 +11950,15 @@ class CreateVolumeRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            name,
+            account_id,
+            total_size,
+            enable512e,
+            qos=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateClusterResult(data_model.DataObject):
@@ -10558,7 +11966,9 @@ class CreateClusterResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetConfigRequest(data_model.DataObject):
@@ -10578,7 +11988,10 @@ class SetConfigRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            config):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVolumesRequest(data_model.DataObject):
@@ -10641,7 +12054,15 @@ class ModifyVolumesRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_ids,
+            account_id=None,
+            access=None,
+            qos=None,
+            total_size=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListPendingNodesResult(data_model.DataObject):
@@ -10658,7 +12079,10 @@ class ListPendingNodesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            pending_nodes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CancelGroupCloneResult(data_model.DataObject):
@@ -10666,7 +12090,9 @@ class CancelGroupCloneResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListActivePairedVolumesResult(data_model.DataObject):
@@ -10683,7 +12109,10 @@ class ListActivePairedVolumesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volumes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RestoreDeletedVolumeRequest(data_model.DataObject):
@@ -10701,7 +12130,10 @@ class RestoreDeletedVolumeRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetNtpInfoRequest(data_model.DataObject):
@@ -10729,7 +12161,11 @@ class SetNtpInfoRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            servers,
+            broadcastclient=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class StartClusterPairingResult(data_model.DataObject):
@@ -10755,7 +12191,11 @@ class StartClusterPairingResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster_pairing_key,
+            cluster_pair_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveVolumePairResult(data_model.DataObject):
@@ -10763,7 +12203,9 @@ class RemoveVolumePairResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveAccountRequest(data_model.DataObject):
@@ -10783,7 +12225,10 @@ class RemoveAccountRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            account_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateStorageContainerResult(data_model.DataObject):
@@ -10800,7 +12245,10 @@ class CreateStorageContainerResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            storage_container):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteGroupSnapshotResult(data_model.DataObject):
@@ -10808,7 +12256,9 @@ class DeleteGroupSnapshotResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetVirtualVolumeCountResult(data_model.DataObject):
@@ -10825,7 +12275,10 @@ class GetVirtualVolumeCountResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            count):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListGroupSnapshotsResult(data_model.DataObject):
@@ -10842,7 +12295,10 @@ class ListGroupSnapshotsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            group_snapshots):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetNvramInfoRequest(data_model.DataObject):
@@ -10860,7 +12316,10 @@ class GetNvramInfoRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            force=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetVolumeEfficiencyResult(data_model.DataObject):
@@ -10913,7 +12372,14 @@ class GetVolumeEfficiencyResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            deduplication,
+            missing_volumes,
+            thin_provisioning,
+            timestamp,
+            compression=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class PendingOperation(data_model.DataObject):
@@ -10939,7 +12405,11 @@ class PendingOperation(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            pending,
+            operation):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetPendingOperationResult(data_model.DataObject):
@@ -10956,7 +12426,10 @@ class GetPendingOperationResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            pending_operation):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CloneMultipleVolumeParams(data_model.DataObject):
@@ -11018,7 +12491,15 @@ class CloneMultipleVolumeParams(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_id,
+            access=None,
+            name=None,
+            new_account_id=None,
+            new_size=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetNtpInfoResult(data_model.DataObject):
@@ -11026,7 +12507,9 @@ class SetNtpInfoResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetVolumeAccessGroupEfficiencyRequest(data_model.DataObject):
@@ -11048,7 +12531,10 @@ class GetVolumeAccessGroupEfficiencyRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_access_group_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVolumePairResult(data_model.DataObject):
@@ -11056,7 +12542,9 @@ class ModifyVolumePairResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateInitiator(data_model.DataObject):
@@ -11101,7 +12589,13 @@ class CreateInitiator(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            name,
+            alias=None,
+            volume_access_group_id=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateInitiatorsRequest(data_model.DataObject):
@@ -11122,7 +12616,10 @@ class CreateInitiatorsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            initiators):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetClusterFullThresholdResult(data_model.DataObject):
@@ -11283,7 +12780,26 @@ class GetClusterFullThresholdResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            block_fullness,
+            fullness,
+            max_metadata_over_provision_factor,
+            metadata_fullness,
+            slice_reserve_used_threshold_pct,
+            stage2_aware_threshold,
+            stage2_block_threshold_bytes,
+            stage3_block_threshold_bytes,
+            stage3_block_threshold_percent,
+            stage3_low_threshold,
+            stage4_critical_threshold,
+            stage4_block_threshold_bytes,
+            stage5_block_threshold_bytes,
+            sum_total_cluster_bytes,
+            sum_total_metadata_cluster_bytes,
+            sum_used_cluster_bytes,
+            sum_used_metadata_cluster_bytes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumesForAccountRequest(data_model.DataObject):
@@ -11328,7 +12844,13 @@ class ListVolumesForAccountRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            account_id,
+            start_volume_id=None,
+            limit=None,
+            include_virtual_volumes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DisableEncryptionAtRestResult(data_model.DataObject):
@@ -11336,7 +12858,9 @@ class DisableEncryptionAtRestResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetVolumeEfficiencyRequest(data_model.DataObject):
@@ -11354,7 +12878,10 @@ class GetVolumeEfficiencyRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVirtualNetworkRequest(data_model.DataObject):
@@ -11450,7 +12977,18 @@ class ModifyVirtualNetworkRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            virtual_network_id=None,
+            virtual_network_tag=None,
+            name=None,
+            address_blocks=None,
+            netmask=None,
+            svip=None,
+            gateway=None,
+            namespace=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class VirtualVolumeStats(data_model.DataObject):
@@ -11747,7 +13285,41 @@ class VirtualVolumeStats(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            account_id,
+            non_zero_blocks,
+            read_bytes,
+            read_ops,
+            timestamp,
+            unaligned_reads,
+            unaligned_writes,
+            volume_access_groups,
+            volume_id,
+            volume_size,
+            write_bytes,
+            write_ops,
+            zero_blocks,
+            actual_iops=None,
+            async_delay=None,
+            average_iopsize=None,
+            burst_iopscredit=None,
+            client_queue_depth=None,
+            desired_metadata_hosts=None,
+            latency_usec=None,
+            metadata_hosts=None,
+            read_latency_usec=None,
+            throttle=None,
+            total_latency_usec=None,
+            volume_utilization=None,
+            write_latency_usec=None,
+            write_bytes_last_sample=None,
+            sample_period_msec=None,
+            read_bytes_last_sample=None,
+            read_ops_last_sample=None,
+            write_ops_last_sample=None,
+            virtual_volume_id=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumeStatsByVirtualVolumeResult(data_model.DataObject):
@@ -11764,7 +13336,10 @@ class ListVolumeStatsByVirtualVolumeResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_stats):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumesForAccountResult(data_model.DataObject):
@@ -11781,7 +13356,10 @@ class ListVolumesForAccountResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volumes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetNodeHardwareInfoRequest(data_model.DataObject):
@@ -11800,7 +13378,10 @@ class GetNodeHardwareInfoRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            node_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SecureEraseDrivesRequest(data_model.DataObject):
@@ -11819,7 +13400,10 @@ class SecureEraseDrivesRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            drives):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DriveInfo(data_model.DataObject):
@@ -11899,7 +13483,17 @@ class DriveInfo(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            capacity,
+            drive_id,
+            node_id,
+            serial,
+            slot,
+            status,
+            type,
+            attributes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListDrivesResult(data_model.DataObject):
@@ -11916,7 +13510,10 @@ class ListDrivesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            drives):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class VirtualVolumeBinding(data_model.DataObject):
@@ -11987,7 +13584,16 @@ class VirtualVolumeBinding(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            protocol_endpoint_id,
+            protocol_endpoint_in_band_id,
+            protocol_endpoint_type,
+            virtual_volume_binding_id,
+            virtual_volume_host_id,
+            virtual_volume_id,
+            virtual_volume_secondary_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVirtualVolumeBindingsResult(data_model.DataObject):
@@ -12004,7 +13610,10 @@ class ListVirtualVolumeBindingsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            bindings):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyClusterAdminResult(data_model.DataObject):
@@ -12012,7 +13621,9 @@ class ModifyClusterAdminResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class EnableLdapAuthenticationResult(data_model.DataObject):
@@ -12020,7 +13631,9 @@ class EnableLdapAuthenticationResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumeStatsByVolumeRequest(data_model.DataObject):
@@ -12039,7 +13652,10 @@ class ListVolumeStatsByVolumeRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            include_virtual_volumes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ClusterFaultInfo(data_model.DataObject):
@@ -12182,7 +13798,24 @@ class ClusterFaultInfo(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            severity,
+            type,
+            code,
+            details,
+            node_hardware_fault_id,
+            node_id,
+            service_id,
+            drive_id,
+            resolved,
+            cluster_fault_id,
+            date,
+            resolved_date,
+            drive_ids=None,
+            network_interface=None,
+            data=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListClusterFaultsResult(data_model.DataObject):
@@ -12199,7 +13832,10 @@ class ListClusterFaultsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            faults):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddLdapClusterAdminRequest(data_model.DataObject):
@@ -12247,7 +13883,13 @@ class AddLdapClusterAdminRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            username,
+            access,
+            accept_eula=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVolumePairRequest(data_model.DataObject):
@@ -12292,7 +13934,13 @@ class ModifyVolumePairRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_id,
+            paused_manual=None,
+            mode=None,
+            pause_limit=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CloneMultipleVolumesRequest(data_model.DataObject):
@@ -12342,7 +13990,13 @@ class CloneMultipleVolumesRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volumes,
+            access=None,
+            group_snapshot_id=None,
+            new_account_id=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumeAccessGroupsRequest(data_model.DataObject):
@@ -12380,7 +14034,12 @@ class ListVolumeAccessGroupsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            start_volume_access_group_id=None,
+            limit=None,
+            volume_access_groups=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetSnmpStateResult(data_model.DataObject):
@@ -12406,7 +14065,11 @@ class GetSnmpStateResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            enabled,
+            snmp_v3_enabled):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetSnmpACLResult(data_model.DataObject):
@@ -12414,7 +14077,9 @@ class SetSnmpACLResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListGroupSnapshotsRequest(data_model.DataObject):
@@ -12441,7 +14106,11 @@ class ListGroupSnapshotsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volumes=None,
+            group_snapshot_id=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class EnableFeatureRequest(data_model.DataObject):
@@ -12459,7 +14128,10 @@ class EnableFeatureRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            feature):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SnmpNetwork(data_model.DataObject):
@@ -12504,7 +14176,13 @@ class SnmpNetwork(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            access,
+            cidr,
+            community,
+            network):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveNodesRequest(data_model.DataObject):
@@ -12523,7 +14201,10 @@ class RemoveNodesRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            nodes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteGroupSnapshotRequest(data_model.DataObject):
@@ -12550,7 +14231,11 @@ class DeleteGroupSnapshotRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            group_snapshot_id,
+            save_members):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifySnapshotResult(data_model.DataObject):
@@ -12567,7 +14252,10 @@ class ModifySnapshotResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            snapshot=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveVolumesFromVolumeAccessGroupRequest(data_model.DataObject):
@@ -12594,7 +14282,11 @@ class RemoveVolumesFromVolumeAccessGroupRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_access_group_id,
+            volumes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyStorageContainerRequest(data_model.DataObject):
@@ -12630,7 +14322,12 @@ class ModifyStorageContainerRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            storage_container_id,
+            initiator_secret=None,
+            target_secret=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestConnectMvipDetails(data_model.DataObject):
@@ -12665,7 +14362,12 @@ class TestConnectMvipDetails(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            ping_bytes,
+            mvip,
+            connected):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestConnectMvipResult(data_model.DataObject):
@@ -12700,7 +14402,12 @@ class TestConnectMvipResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            details,
+            duration,
+            result):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ClearClusterFaultsResult(data_model.DataObject):
@@ -12708,7 +14415,9 @@ class ClearClusterFaultsResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestConnectSvipDetails(data_model.DataObject):
@@ -12743,7 +14452,12 @@ class TestConnectSvipDetails(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            ping_bytes,
+            svip,
+            connected):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestConnectSvipResult(data_model.DataObject):
@@ -12778,7 +14492,12 @@ class TestConnectSvipResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            details,
+            duration,
+            result):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumeStatsByVolumeResult(data_model.DataObject):
@@ -12795,7 +14514,10 @@ class ListVolumeStatsByVolumeResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_stats):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SnmpV3UsmUser(data_model.DataObject):
@@ -12849,7 +14571,14 @@ class SnmpV3UsmUser(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            access,
+            name,
+            password,
+            passphrase,
+            sec_level):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetSnmpInfoResult(data_model.DataObject):
@@ -12893,7 +14622,13 @@ class GetSnmpInfoResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            enabled,
+            snmp_v3_enabled,
+            networks=None,
+            usm_users=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVolumesResult(data_model.DataObject):
@@ -12919,7 +14654,11 @@ class ModifyVolumesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volumes,
+            qos=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RestartNetworkingRequest(data_model.DataObject):
@@ -12940,7 +14679,10 @@ class RestartNetworkingRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            force):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListNodeFibreChannelPortInfoResult(data_model.DataObject):
@@ -12958,7 +14700,10 @@ class ListNodeFibreChannelPortInfoResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            fibre_channel_ports):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateSupportBundleRequest(data_model.DataObject):
@@ -12994,7 +14739,12 @@ class CreateSupportBundleRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            bundle_name=None,
+            extra_args=None,
+            timeout_sec=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DriveStats(data_model.DataObject):
@@ -13155,7 +14905,26 @@ class DriveStats(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            failed_die_count,
+            life_remaining_percent,
+            lifetime_read_bytes,
+            lifetime_write_bytes,
+            power_on_hours,
+            read_bytes,
+            read_ops,
+            reallocated_sectors,
+            reserve_capacity_percent,
+            timestamp,
+            total_capacity,
+            used_memory,
+            write_bytes,
+            write_ops,
+            active_sessions=None,
+            drive_id=None,
+            used_capacity=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetDriveStatsResult(data_model.DataObject):
@@ -13172,7 +14941,10 @@ class GetDriveStatsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            drive_stats):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
@@ -13206,7 +14978,11 @@ class ModifyVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_access_group_id,
+            lun_assignments):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class StartBulkVolumeReadResult(data_model.DataObject):
@@ -13241,7 +15017,12 @@ class StartBulkVolumeReadResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            async_handle,
+            key,
+            url):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetNetworkConfigResult(data_model.DataObject):
@@ -13258,7 +15039,10 @@ class GetNetworkConfigResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            network):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumeStatsByVolumeAccessGroupRequest(data_model.DataObject):
@@ -13286,7 +15070,11 @@ class ListVolumeStatsByVolumeAccessGroupRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_access_groups=None,
+            include_virtual_volumes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class UpdateBulkVolumeStatusResult(data_model.DataObject):
@@ -13321,7 +15109,12 @@ class UpdateBulkVolumeStatusResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            status,
+            url,
+            attributes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class EnableSnmpResult(data_model.DataObject):
@@ -13329,7 +15122,9 @@ class EnableSnmpResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class FibreChannelSession(data_model.DataObject):
@@ -13383,7 +15178,14 @@ class FibreChannelSession(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            initiator_wwpn,
+            node_id,
+            service_id,
+            target_wwpn,
+            volume_access_group_id=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListFibreChannelSessionsResult(data_model.DataObject):
@@ -13401,7 +15203,10 @@ class ListFibreChannelSessionsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            sessions):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class VirtualVolumeTask(data_model.DataObject):
@@ -13499,7 +15304,19 @@ class VirtualVolumeTask(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            virtual_volume_task_id,
+            virtualvolume_id,
+            clone_virtual_volume_id,
+            status,
+            operation,
+            virtual_volume_host_id,
+            parent_metadata,
+            parent_total_size,
+            parent_used_size,
+            cancelled):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVirtualVolumeTasksResult(data_model.DataObject):
@@ -13516,7 +15333,10 @@ class ListVirtualVolumeTasksResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            tasks):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class PurgeDeletedVolumesRequest(data_model.DataObject):
@@ -13552,7 +15372,12 @@ class PurgeDeletedVolumesRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_ids=None,
+            account_ids=None,
+            volume_access_group_ids=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetClusterConfigResult(data_model.DataObject):
@@ -13569,7 +15394,10 @@ class GetClusterConfigResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetVolumeStatsResult(data_model.DataObject):
@@ -13586,7 +15414,10 @@ class GetVolumeStatsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_stats):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ClusterHardwareInfo(data_model.DataObject):
@@ -13612,7 +15443,11 @@ class ClusterHardwareInfo(data_model.DataObject):
         dictionaryType=dict
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            drives,
+            nodes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetClusterHardwareInfoResult(data_model.DataObject):
@@ -13629,7 +15464,10 @@ class GetClusterHardwareInfoResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster_hardware_info):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SupportBundleDetails(data_model.DataObject):
@@ -13691,7 +15529,15 @@ class SupportBundleDetails(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            bundle_name,
+            extra_args,
+            files,
+            url,
+            output,
+            timeout_sec):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateSupportBundleResult(data_model.DataObject):
@@ -13726,7 +15572,12 @@ class CreateSupportBundleResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            details,
+            duration,
+            result):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetDefaultQoSResult(data_model.DataObject):
@@ -13761,7 +15612,12 @@ class SetDefaultQoSResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            min_iops,
+            max_iops,
+            burst_iops):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetSnmpInfoRequest(data_model.DataObject):
@@ -13808,7 +15664,13 @@ class SetSnmpInfoRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            networks=None,
+            enabled=None,
+            snmp_v3_enabled=None,
+            usm_users=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListStorageContainersRequest(data_model.DataObject):
@@ -13826,7 +15688,10 @@ class ListStorageContainersRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            storage_container_ids=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetHardwareInfoResult(data_model.DataObject):
@@ -13843,7 +15708,10 @@ class GetHardwareInfoResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            hardware_info):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListDriveStatsResult(data_model.DataObject):
@@ -13869,7 +15737,11 @@ class ListDriveStatsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            drive_stats,
+            errors):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVolumeAccessGroupResult(data_model.DataObject):
@@ -13886,7 +15758,10 @@ class ModifyVolumeAccessGroupResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_access_group):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class LoginSessionInfo(data_model.DataObject):
@@ -13903,7 +15778,10 @@ class LoginSessionInfo(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            timeout):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetLoginSessionInfoResult(data_model.DataObject):
@@ -13920,7 +15798,10 @@ class GetLoginSessionInfoResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            login_session_info):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListClusterAdminsResult(data_model.DataObject):
@@ -13937,7 +15818,10 @@ class ListClusterAdminsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster_admins):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetNodeStatsResult(data_model.DataObject):
@@ -13954,7 +15838,10 @@ class GetNodeStatsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            node_stats):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateInitiatorsResult(data_model.DataObject):
@@ -13971,7 +15858,10 @@ class CreateInitiatorsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            initiators):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetRemoteLoggingHostsResult(data_model.DataObject):
@@ -13988,7 +15878,10 @@ class GetRemoteLoggingHostsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            remote_hosts):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveClusterPairResult(data_model.DataObject):
@@ -13996,7 +15889,9 @@ class RemoveClusterPairResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumesResult(data_model.DataObject):
@@ -14013,7 +15908,10 @@ class ListVolumesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volumes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetEfficiencyResult(data_model.DataObject):
@@ -14066,7 +15964,14 @@ class GetEfficiencyResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            timestamp,
+            missing_volumes,
+            compression=None,
+            deduplication=None,
+            thin_provisioning=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetLimitsResult(data_model.DataObject):
@@ -14435,7 +16340,49 @@ class GetLimitsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            account_count_max,
+            account_name_length_max,
+            account_name_length_min,
+            bulk_volume_jobs_per_node_max,
+            bulk_volume_jobs_per_volume_max,
+            clone_jobs_per_volume_max,
+            cluster_pairs_count_max,
+            initiator_name_length_max,
+            initiator_count_max,
+            initiators_per_volume_access_group_count_max,
+            iscsi_sessions_from_fibre_channel_nodes_max,
+            secret_length_max,
+            secret_length_min,
+            snapshot_name_length_max,
+            snapshots_per_volume_max,
+            volume_access_group_count_max,
+            volume_access_group_lun_max,
+            volume_access_group_name_length_max,
+            volume_access_group_name_length_min,
+            volume_access_groups_per_initiator_count_max,
+            volume_access_groups_per_volume_count_max,
+            initiator_alias_length_max,
+            volume_burst_iopsmax,
+            volume_burst_iopsmin,
+            volume_count_max,
+            volume_max_iopsmax,
+            volume_max_iopsmin,
+            volume_min_iopsmax,
+            volume_min_iopsmin,
+            volume_name_length_max,
+            volume_name_length_min,
+            volume_size_max,
+            volume_size_min,
+            volumes_per_account_count_max,
+            volumes_per_group_snapshot_max,
+            volumes_per_volume_access_group_count_max,
+            cluster_admin_account_max=None,
+            fibre_channel_volume_access_max=None,
+            virtual_volumes_per_account_count_max=None,
+            virtual_volume_count_max=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RollbackToGroupSnapshotRequest(data_model.DataObject):
@@ -14482,7 +16429,13 @@ class RollbackToGroupSnapshotRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            group_snapshot_id,
+            save_current_state,
+            name=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetBackupTargetRequest(data_model.DataObject):
@@ -14500,7 +16453,10 @@ class GetBackupTargetRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            backup_target_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RollbackToGroupSnapshotResult(data_model.DataObject):
@@ -14535,7 +16491,12 @@ class RollbackToGroupSnapshotResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            group_snapshot=None,
+            group_snapshot_id=None,
+            members=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteSnapshotResult(data_model.DataObject):
@@ -14543,7 +16504,9 @@ class DeleteSnapshotResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class IpmiInfo(data_model.DataObject):
@@ -14560,7 +16523,10 @@ class IpmiInfo(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            sensors):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetIpmiInfoNodesResultObject(data_model.DataObject):
@@ -14577,7 +16543,10 @@ class GetIpmiInfoNodesResultObject(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            ipmi_info):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetIpmiInfoNodesResult(data_model.DataObject):
@@ -14603,7 +16572,11 @@ class GetIpmiInfoNodesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            node_id,
+            result):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetIpmiInfoResult(data_model.DataObject):
@@ -14620,7 +16593,10 @@ class GetIpmiInfoResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            nodes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DeleteStorageContainerResult(data_model.DataObject):
@@ -14628,7 +16604,9 @@ class DeleteStorageContainerResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVirtualVolumeTasksRequest(data_model.DataObject):
@@ -14646,7 +16624,10 @@ class ListVirtualVolumeTasksRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            virtual_volume_task_ids=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestDrivesRequest(data_model.DataObject):
@@ -14677,7 +16658,11 @@ class TestDrivesRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            minutes=None,
+            force=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVolumeAccessGroupLunAssignmentsResult(data_model.DataObject):
@@ -14694,7 +16679,10 @@ class ModifyVolumeAccessGroupLunAssignmentsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_access_group_lun_assignments):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class Signature(data_model.DataObject):
@@ -14729,7 +16717,12 @@ class Signature(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            data,
+            pubkey,
+            version):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class Origin(data_model.DataObject):
@@ -14818,7 +16811,18 @@ class Origin(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            signature,
+            contract_date,
+            contract_name,
+            contract_quantity,
+            contract_type,
+            integrator,
+            location,
+            organization,
+            type):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetOriginNodeResult(data_model.DataObject):
@@ -14835,7 +16839,10 @@ class GetOriginNodeResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            origin=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetOriginNode(data_model.DataObject):
@@ -14861,7 +16868,11 @@ class GetOriginNode(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            node_id,
+            result):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetOriginResult(data_model.DataObject):
@@ -14878,7 +16889,10 @@ class GetOriginResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            nodes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ClusterInfo(data_model.DataObject):
@@ -15022,7 +17036,24 @@ class ClusterInfo(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            encryption_at_rest_state,
+            ensemble,
+            mvip,
+            mvip_node_id,
+            name,
+            rep_count,
+            svip,
+            svip_node_id,
+            unique_id,
+            uuid,
+            attributes,
+            mvip_interface=None,
+            mvip_vlan_tag=None,
+            svip_interface=None,
+            svip_vlan_tag=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetClusterInfoResult(data_model.DataObject):
@@ -15039,7 +17070,10 @@ class GetClusterInfoResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster_info):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListActivePairedVolumesRequest(data_model.DataObject):
@@ -15066,7 +17100,11 @@ class ListActivePairedVolumesRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            start_volume_id=None,
+            limit=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class StartBulkVolumeWriteResult(data_model.DataObject):
@@ -15101,7 +17139,12 @@ class StartBulkVolumeWriteResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            async_handle,
+            key,
+            url):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class Service(data_model.DataObject):
@@ -15235,7 +17278,23 @@ class Service(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            service_id,
+            service_type,
+            node_id,
+            async_result_ids,
+            first_time_startup,
+            ipc_port,
+            iscsi_port,
+            status,
+            started_drive_ids,
+            drive_ids,
+            associated_bv=None,
+            associated_ts=None,
+            associated_vs=None,
+            drive_id=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class Drive(data_model.DataObject):
@@ -15351,7 +17410,21 @@ class Drive(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            drive_id,
+            node_id,
+            async_result_ids,
+            capacity,
+            serial,
+            drive_status,
+            drive_type,
+            attributes,
+            assigned_service=None,
+            slot=None,
+            reserved_slice_file_capacity=None,
+            customer_slice_file_capacity=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DetailedService(data_model.DataObject):
@@ -15395,7 +17468,13 @@ class DetailedService(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            service,
+            node,
+            drives,
+            drive=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListServicesResult(data_model.DataObject):
@@ -15412,7 +17491,10 @@ class ListServicesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            services):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListActiveNodesResult(data_model.DataObject):
@@ -15429,7 +17511,10 @@ class ListActiveNodesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            nodes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListBackupTargetsResult(data_model.DataObject):
@@ -15446,7 +17531,10 @@ class ListBackupTargetsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            backup_targets):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SnmpSendTestTrapsResult(data_model.DataObject):
@@ -15463,7 +17551,10 @@ class SnmpSendTestTrapsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            status):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVirtualVolumeBindingsRequest(data_model.DataObject):
@@ -15481,7 +17572,10 @@ class ListVirtualVolumeBindingsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            virtual_volume_binding_ids=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumeStatsByAccountRequest(data_model.DataObject):
@@ -15508,7 +17602,11 @@ class ListVolumeStatsByAccountRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            accounts=None,
+            include_virtual_volumes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetSnmpACLResult(data_model.DataObject):
@@ -15534,7 +17632,11 @@ class GetSnmpACLResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            networks=None,
+            usm_users=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveVirtualNetworkResult(data_model.DataObject):
@@ -15542,7 +17644,9 @@ class RemoveVirtualNetworkResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class EnableSnmpRequest(data_model.DataObject):
@@ -15561,7 +17665,10 @@ class EnableSnmpRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            snmp_v3_enabled):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetSnmpInfoResult(data_model.DataObject):
@@ -15569,7 +17676,9 @@ class SetSnmpInfoResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DisableLdapAuthenticationResult(data_model.DataObject):
@@ -15577,7 +17686,9 @@ class DisableLdapAuthenticationResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListSnapshotsResult(data_model.DataObject):
@@ -15594,7 +17705,10 @@ class ListSnapshotsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            snapshots):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyInitiatorsResult(data_model.DataObject):
@@ -15611,7 +17725,10 @@ class ModifyInitiatorsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            initiators):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateClusterRequest(data_model.DataObject):
@@ -15694,7 +17811,17 @@ class CreateClusterRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            mvip,
+            svip,
+            rep_count,
+            username,
+            password,
+            nodes,
+            accept_eula=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListEventsRequest(data_model.DataObject):
@@ -15730,7 +17857,12 @@ class ListEventsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            max_events=None,
+            start_event_id=None,
+            end_event_id=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class PurgeDeletedVolumesResult(data_model.DataObject):
@@ -15738,7 +17870,9 @@ class PurgeDeletedVolumesResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListProtocolEndpointsRequest(data_model.DataObject):
@@ -15757,7 +17891,10 @@ class ListProtocolEndpointsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            protocol_endpoint_ids=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListVolumeAccessGroupsResult(data_model.DataObject):
@@ -15783,7 +17920,11 @@ class ListVolumeAccessGroupsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_access_groups,
+            volume_access_groups_not_found=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestLdapAuthenticationResult(data_model.DataObject):
@@ -15809,7 +17950,11 @@ class TestLdapAuthenticationResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            groups,
+            user_dn):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListAccountsResult(data_model.DataObject):
@@ -15826,7 +17971,10 @@ class ListAccountsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            accounts):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetSnmpACLRequest(data_model.DataObject):
@@ -15855,7 +18003,11 @@ class SetSnmpACLRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            networks,
+            usm_users):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GroupCloneVolumeMember(data_model.DataObject):
@@ -15882,7 +18034,11 @@ class GroupCloneVolumeMember(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_id,
+            src_volume_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CloneMultipleVolumesResult(data_model.DataObject):
@@ -15917,7 +18073,12 @@ class CloneMultipleVolumesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            async_handle,
+            group_clone_id,
+            members):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveVolumePairRequest(data_model.DataObject):
@@ -15935,7 +18096,10 @@ class RemoveVolumePairRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetStorageContainerEfficiencyResult(data_model.DataObject):
@@ -15988,7 +18152,14 @@ class GetStorageContainerEfficiencyResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            compression,
+            deduplication,
+            missing_volumes,
+            thin_provisioning,
+            timestamp):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetLoginSessionInfoResult(data_model.DataObject):
@@ -15996,7 +18167,9 @@ class SetLoginSessionInfoResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class AsyncHandleResult(data_model.DataObject):
@@ -16013,7 +18186,10 @@ class AsyncHandleResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            async_handle):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class PurgeDeletedVolumeRequest(data_model.DataObject):
@@ -16033,7 +18209,10 @@ class PurgeDeletedVolumeRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SyncJob(data_model.DataObject):
@@ -16194,7 +18373,26 @@ class SyncJob(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            bytes_per_second,
+            current_bytes,
+            dst_service_id,
+            elapsed_time,
+            percent_complete,
+            remaining_time,
+            slice_id,
+            src_service_id,
+            total_bytes,
+            type,
+            clone_id,
+            dst_volume_id,
+            node_id,
+            snapshot_id,
+            src_volume_id,
+            blocks_per_second,
+            stage):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListSyncJobsResult(data_model.DataObject):
@@ -16211,7 +18409,10 @@ class ListSyncJobsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            sync_jobs):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class BulkVolumeJob(data_model.DataObject):
@@ -16336,7 +18537,22 @@ class BulkVolumeJob(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            bulk_volume_id,
+            create_time,
+            elapsed_time,
+            format,
+            key,
+            percent_complete,
+            remaining_time,
+            src_volume_id,
+            status,
+            type,
+            attributes,
+            script=None,
+            snapshot_id=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListBulkVolumeJobsResult(data_model.DataObject):
@@ -16353,7 +18569,10 @@ class ListBulkVolumeJobsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            bulk_volume_jobs):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestConnectMvipRequest(data_model.DataObject):
@@ -16373,7 +18592,10 @@ class TestConnectMvipRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            mvip=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ProtocolEndpoint(data_model.DataObject):
@@ -16435,7 +18657,15 @@ class ProtocolEndpoint(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            protocol_endpoint_id,
+            protocol_endpoint_state,
+            provider_type,
+            primary_provider_id,
+            secondary_provider_id,
+            scsi_naadevice_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListProtocolEndpointsResult(data_model.DataObject):
@@ -16452,7 +18682,10 @@ class ListProtocolEndpointsResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            protocol_endpoints):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListPendingActiveNodesResult(data_model.DataObject):
@@ -16469,7 +18702,10 @@ class ListPendingActiveNodesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            pending_active_nodes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CompleteVolumePairingRequest(data_model.DataObject):
@@ -16496,7 +18732,11 @@ class CompleteVolumePairingRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_pairing_key,
+            volume_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetClusterStateRequest(data_model.DataObject):
@@ -16519,7 +18759,10 @@ class GetClusterStateRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            force):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DriveHardware(data_model.DataObject):
@@ -16788,7 +19031,38 @@ class DriveHardware(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            canonical_name,
+            connected,
+            dev,
+            dev_path,
+            drive_type,
+            life_remaining_percent,
+            lifetime_read_bytes,
+            lifetime_write_bytes,
+            name,
+            path,
+            path_link,
+            power_on_hours,
+            product,
+            reallocated_sectors,
+            reserve_capacity_percent,
+            scsi_compat_id,
+            scsi_state,
+            security_at_maximum,
+            security_enabled,
+            security_frozen,
+            security_locked,
+            security_supported,
+            serial,
+            size,
+            slot,
+            uuid,
+            vendor,
+            version,
+            smart_ssd_write_capable=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class DrivesHardware(data_model.DataObject):
@@ -16805,7 +19079,10 @@ class DrivesHardware(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            drive_hardware):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class NodeDriveHardware(data_model.DataObject):
@@ -16831,7 +19108,11 @@ class NodeDriveHardware(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            node_id,
+            result):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListDriveHardwareResult(data_model.DataObject):
@@ -16848,7 +19129,10 @@ class ListDriveHardwareResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            nodes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetNodeHardwareInfoResult(data_model.DataObject):
@@ -16865,7 +19149,10 @@ class GetNodeHardwareInfoResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            node_hardware_info):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class GetSnmpTrapInfoResult(data_model.DataObject):
@@ -16909,7 +19196,13 @@ class GetSnmpTrapInfoResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            trap_recipients,
+            cluster_fault_traps_enabled,
+            cluster_fault_resolved_traps_enabled,
+            cluster_event_traps_enabled):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetRemoteLoggingHostsResult(data_model.DataObject):
@@ -16917,7 +19210,9 @@ class SetRemoteLoggingHostsResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class SetClusterConfigRequest(data_model.DataObject):
@@ -16937,7 +19232,10 @@ class SetClusterConfigRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ResetDriveDetails(data_model.DataObject):
@@ -16981,7 +19279,13 @@ class ResetDriveDetails(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            drive,
+            return_code,
+            stderr,
+            stdout):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ResetDrivesDetails(data_model.DataObject):
@@ -16998,7 +19302,10 @@ class ResetDrivesDetails(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            drives):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ResetDrivesResult(data_model.DataObject):
@@ -17015,7 +19322,10 @@ class ResetDrivesResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            details):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ListAccountsRequest(data_model.DataObject):
@@ -17051,7 +19361,12 @@ class ListAccountsRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            start_account_id=None,
+            limit=None,
+            include_storage_containers=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyClusterFullThresholdRequest(data_model.DataObject):
@@ -17087,7 +19402,12 @@ class ModifyClusterFullThresholdRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            stage2_aware_threshold=None,
+            stage3_block_threshold_percent=None,
+            max_metadata_over_provision_factor=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class AddClusterAdminRequest(data_model.DataObject):
@@ -17143,7 +19463,14 @@ class AddClusterAdminRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            username,
+            password,
+            access,
+            accept_eula=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class EnableFeatureResult(data_model.DataObject):
@@ -17151,7 +19478,9 @@ class EnableFeatureResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveBackupTargetResult(data_model.DataObject):
@@ -17159,7 +19488,9 @@ class RemoveBackupTargetResult(data_model.DataObject):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CloneVolumeRequest(data_model.DataObject):
@@ -17242,7 +19573,17 @@ class CloneVolumeRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_id,
+            name,
+            new_account_id=None,
+            new_size=None,
+            access=None,
+            snapshot_id=None,
+            attributes=None,
+            enable512e=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateBackupTargetRequest(data_model.DataObject):
@@ -17269,7 +19610,11 @@ class CreateBackupTargetRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            name,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyVolumeRequest(data_model.DataObject):
@@ -17339,7 +19684,15 @@ class ModifyVolumeRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            volume_id,
+            account_id=None,
+            access=None,
+            qos=None,
+            total_size=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CreateGroupSnapshotResult(data_model.DataObject):
@@ -17374,7 +19727,12 @@ class CreateGroupSnapshotResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            group_snapshot,
+            group_snapshot_id,
+            members):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class ModifyClusterAdminRequest(data_model.DataObject):
@@ -17419,7 +19777,13 @@ class ModifyClusterAdminRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster_admin_id,
+            password=None,
+            access=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class RemoveClusterPairRequest(data_model.DataObject):
@@ -17438,7 +19802,10 @@ class RemoveClusterPairRequest(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster_pair_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class CompleteClusterPairingResult(data_model.DataObject):
@@ -17455,7 +19822,10 @@ class CompleteClusterPairingResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            cluster_pair_id):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestConnectEnsembleDetails(data_model.DataObject):
@@ -17472,7 +19842,10 @@ class TestConnectEnsembleDetails(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            nodes):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
 class TestConnectEnsembleResult(data_model.DataObject):
@@ -17507,5 +19880,10 @@ class TestConnectEnsembleResult(data_model.DataObject):
         dictionaryType=None
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self,
+            details,
+            duration,
+            result):
+        kwargs = locals()
+        del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
