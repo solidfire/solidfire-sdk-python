@@ -442,24 +442,12 @@ class ApiModifyScheduleResult(data_model.DataObject):
     The object returned by the \"modify_schedule\" API Service call.
 
     """
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ApiCreateScheduleResult(data_model.DataObject):
-    """
-    The object returned by the \"modify_schedule\" API Service call.
-
-    :param schedule: [required] Schedule attributes with modifications.
-    :type schedule: Schedule
-    """
-
     schedule = data_model.property(
         "schedule", ApiSchedule,
         array=False, optional=False,
         documentation="\
-        Schedule attributes with modifications.\
-        "
+            Schedule attributes with modifications.\
+            "
     )
 
     def __init__(self, **kwargs):

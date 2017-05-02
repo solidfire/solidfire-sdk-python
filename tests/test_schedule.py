@@ -294,6 +294,19 @@ class TestSchedule(SolidFireBaseTest):
 
         modified_sched = sf.get_schedule(new_sched_id).schedule
 
+    def test_modify(self):
+        sf = ElementFactory.create(self.cluster, self.user, self.pwd)
+
+        ti = TimeIntervalFrequency(days=5)
+
+        info = ScheduleInfo()
+        info.volume_ids = [910]
+
+        sched = Schedule(name="anewname", schedule_info=info, frequency=ti)
+        sched.schedule_id = 194
+
+        result = sf.modify_schedule(sched)
+        i = 1
 
 
 
