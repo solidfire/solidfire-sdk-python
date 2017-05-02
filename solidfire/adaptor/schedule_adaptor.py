@@ -8,8 +8,7 @@
 # EXPRESS WRITTEN PERMISSION OF NETAPP, INC.
 """Module implements Schedule Simplification conversion logic."""
 from solidfire.apiactual import ApiSchedule, ApiScheduleInfo, ApiWeekday, \
-    ApiGetScheduleResult, ApiListSchedulesResult, ApiModifyScheduleResult, \
-    ApiCreateScheduleResult
+    ApiGetScheduleResult, ApiListSchedulesResult, ApiModifyScheduleResult
 from solidfire.custom.models import Weekday, DaysOfMonthFrequency, \
     DaysOfWeekFrequency, TimeIntervalFrequency
 from solidfire.models import Schedule, Frequency, ScheduleInfo, GetScheduleResult, ListSchedulesResult, \
@@ -83,11 +82,14 @@ class ScheduleAdaptor:
 
         api_schedule = ScheduleAdaptor.to_api_schedule(params['schedule'])
 
-        element.send_request("ModifySchedule",
+        api_result = element.send_request("ModifySchedule",
                              ApiModifyScheduleResult, api_schedule.to_json(),
                              since, deprecated)
 
-        return ModifyScheduleResult()
+        if api_result.schedule is not None:
+            return ModifyScheduleResult(schedule=ScheduleAdaptor.to_schedule(api_result.schedule))
+        else:
+            return ModifyScheduleResult()
 
     @staticmethod
     def create_schedule(element, params, since, deprecated):
