@@ -62,19 +62,17 @@ class ScheduleAdaptor:
         directly. Documentation here is intentionally brief.
         """
 
-        if hasattr(params['schedule'].schedule_id, '_member_type') or \
-                params['schedule'].schedule_id is None:
+        if params['schedule'].schedule_id is None:
             raise AttributeError("ScheduleID is missing. Cannot modify a "
                                  "schedule without a ScheduleID")
 
-        if hasattr(params['schedule'].frequency, '_member_type') or \
-                params['schedule'].frequency is None:
+        if params['schedule'].frequency is None:
             raise AttributeError("Frequency is not present. Make sure the "
                                  "schedule object has a value in the "
                                  "frequency property before attempting to "
-                                 "modify a Schedule.")
+                                 "create a Schedule.")
 
-        if hasattr(params['schedule'].schedule_info, '_member_type'):
+        if params['schedule'].schedule_info is None:
             raise AttributeError("Schedule_info is not present. Make sure the "
                                  "schedule object has a value in the "
                                  "schedule_info property before attempting to "
@@ -98,27 +96,26 @@ class ScheduleAdaptor:
         create_schedules method in the Element class. DO NOT CALL THIS
         directly. Documentation here is intentionally brief.
         """
-        if not hasattr(params['schedule'].schedule_id, '_member_type'):
+        if params['schedule'].schedule_id is not None:
             raise AttributeError("ScheduleID should not be present. Do "
                                  "not specify ScheduleID when creating a "
                                  "Schedule. One will be assigned upon "
                                  "creation.")
 
-        if hasattr(params['schedule'].frequency, '_member_type') or \
-                params['schedule'].frequency is None:
+        if params['schedule'].frequency is None:
             raise AttributeError("Frequency is not present. Make sure the "
                                  "schedule object has a value in the "
                                  "frequency property before attempting to "
                                  "create a Schedule.")
 
-        if hasattr(params['schedule'].schedule_info, '_member_type'):
+        if params['schedule'].schedule_info is None:
             raise AttributeError("Schedule_info is not present. Make sure the "
                                  "schedule object has a value in the "
                                  "schedule_info property before attempting to "
                                  "modify a Schedule.")
-        if(params["schedule"].frequency.minutes is None):
+        if params["schedule"].frequency.minutes is None:
             params.setdefault("frequency", {})["minutes"] = 0
-        if(params["schedule"].frequency.hours is None):
+        if params["schedule"].frequency.hours is None:
             params.setdefault("frequency", {})["hours"] = 0
 
         api_schedule = ScheduleAdaptor.to_api_schedule(params['schedule'])

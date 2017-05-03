@@ -3,7 +3,6 @@
 
 import unittest
 from solidfire.factory import ElementFactory
-from solidfire import Schedule
 
 
 class SolidFireBaseTest(unittest.TestCase):
