@@ -36,7 +36,7 @@ class Clean(_clean):
 setup(
     name='solidfire-sdk-python',
 
-    version='1.4.0.265',
+    version='1.4.0.266',
 
     description='SolidFire Python SDK',
     long_description=long_description,
