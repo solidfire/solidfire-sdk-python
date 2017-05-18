@@ -234,3 +234,4 @@ limitations under the License.
    :target: https://pypi.python.org/pypi/solidfire-sdk-python/
 .. |build| image:: https://img.shields.io/travis/solidfire/solidfire-sdk-python/release/1.0.0.svg
    :target: https://pypi.python.org/pypi/solidfire-sdk-python/
+
