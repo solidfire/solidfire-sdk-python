@@ -57,10 +57,6 @@ Installation
 [virtualenv](https://github.com/pypa/virtualenv) for isolating the
 python environment to only the required libraries.
 
-To install the latest version of the SDK:
-
-    pip install -e git+https://github.com/solidfire/solidfire-sdk-python.git@develop#egg=solidfire-sdk-python
-
 Alternatively, for development purposes or to inspect the source, the
 following will work:
 
