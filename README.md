@@ -84,8 +84,6 @@ SDK. You will see how install the SDK, connect to a SolidFire cluster,
 and use it to perform simple operations like retrieving and modifying
 accounts and volumes.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/3g028LYmiN4" frameborder="0" allowfullscreen></iframe>
-
 Examples
 --------
 
