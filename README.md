@@ -25,7 +25,7 @@ Compatibility
 
 |  Component               | Version       |
 |:-------------------------|:--------------|
-| SolidFire Element OS     | 7.0 - 9.0     |
+| SolidFire Element OS     | 7.0 - 9.1     |
 
 Getting Help
 ------------
@@ -42,7 +42,7 @@ Documentation
 [Latest Docs](https://pythonhosted.org/solidfire-sdk-python/)
 
 [Release
-Notes](https://github.com/solidfire/solidfire-sdk-python/blob/master/NetApp_SolidFire_Python_SDK_v1.4_Release_Notes.pdf)
+Notes](https://github.com/solidfire/solidfire-sdk-python/blob/master/NetApp_SolidFire_Python_SDK_Release_Notes.pdf)
 
 Installation
 ------------

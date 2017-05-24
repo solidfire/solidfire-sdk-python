@@ -1,5 +1,5 @@
-|sf-python-logo| SolidFire Python SDK v1.2
-==========================================
+|sf-python-logo| SolidFire Python SDK
+=====================================
 
 Python SDK library for interacting with SolidFire Element API
 
@@ -26,7 +26,7 @@ Compatibility
 +------------------------+---------------+
 | Component              | Version       |
 +========================+===============+
-| SolidFire Element OS   | 7.0 - 9.0     |
+| SolidFire Element OS   | 7.0 - 9.1     |
 +------------------------+---------------+
 
 Getting Help
@@ -43,7 +43,7 @@ Documentation
 `Latest Docs <https://pythonhosted.org/solidfire-sdk-python/>`__
 
 `Release
-Notes <https://github.com/solidfire/solidfire-sdk-python/blob/gh-pages/SolidFire_Python_SDK_Release_Notes_v1.2.pdf>`__
+Notes <https://github.com/solidfire/solidfire-sdk-python/blob/master/NetApp_SolidFire_Python_SDK_Release_Notes.pdf>`__
 
 Installation
 ------------
@@ -159,7 +159,7 @@ More examples using the Python SDK
 More Examples
 -------------
 
-More specific examples are available `here <https://github.com/solidfire/solidfire-sdk-python/blob/v1.2/examples/examples.rst>`__
+More specific examples are available `here <https://github.com/solidfire/solidfire-sdk-python/blob/master/examples/examples.rst>`__
 
 Logging
 -------
