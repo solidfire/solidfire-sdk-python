@@ -1,16 +1,10 @@
 import unittest
-from unittest.case import TestCase
 
-from hamcrest import \
-    assert_that, equal_to, is_, greater_than
-
-from solidfire.adaptor import ScheduleAdaptor
-from solidfire.custom.models import *
-from solidfire.models import *
 from solidfire.factory import ElementFactory
+from tests.base_test import SolidFireBaseTest
 
 
-class TestSchedule(TestCase):
+class TestSchedule(SolidFireBaseTest):
 
     @unittest.skip
     def test_create_and_delete_schedule(self):

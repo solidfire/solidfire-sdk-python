@@ -8,12 +8,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>solidfire.apiactual package &mdash; SolidFire Python SDK v1.2</title>
+  <title>solidfire.apiactual package &mdash; SolidFire Python SDK v1.4.0.271</title>
   
 
   
   
     <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
   
 
   
@@ -34,7 +36,10 @@
   
 
   
-    <link rel="top" title="SolidFire Python SDK v1.2" href="index.html"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="SolidFire Python SDK v1.4.0.271" href="index.html"/>
         <link rel="up" title="SolidFire Python SDK v1.2" href="solidfire.html"/>
         <link rel="next" title="solidfire.common package" href="solidfire.common.html"/>
         <link rel="prev" title="solidfire.adaptor package" href="solidfire.adaptor.html"/> 
@@ -46,6 +51,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -68,7 +74,7 @@
             
             
               <div class="version">
-                1.2.0.103
+                1.4.0.271
               </div>
             
           
@@ -89,14 +95,17 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="solidfire.html"> SolidFire Python SDK v1.2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="solidfire.html#account-management-examples">Account Management Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="solidfire.html#snapshot-scheduling-examples">Snapshot Scheduling Examples</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="solidfire.html#solidfire-package">solidfire package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="solidfire.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="solidfire.adaptor.html">solidfire.adaptor package</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="">solidfire.apiactual package</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">solidfire.apiactual package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#module-solidfire.apiactual">Module contents</a></li>
 </ul>
 </li>
@@ -108,7 +117,7 @@
 <li class="toctree-l2"><a class="reference internal" href="solidfire.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.factory">solidfire.factory module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.models">solidfire.models module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.results">solidfire.results module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#solidfire-results-module">solidfire.results module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire">Module contents</a></li>
 </ul>
 </li>
@@ -124,8 +133,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">solidfire-sdk-python</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">solidfire-sdk-python</a>
+        
       </nav>
 
 
@@ -134,25 +145,42 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
           <li><a href="solidfire.html"> SolidFire Python SDK v1.2</a> &raquo;</li>
-      
-    <li>solidfire.apiactual package</li>
+        
+      <li>solidfire.apiactual package</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="_sources/solidfire.apiactual.txt" rel="nofollow"> View page source</a>
+            
+            <a href="_sources/solidfire.apiactual.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -166,26 +194,6 @@
 generated and then moved here before the API is regenerated with changes.
 Adaptors are used to transform actual API object into custom object and
 vice-versa.</p>
-<dl class="class">
-<dt id="solidfire.apiactual.ApiCreateScheduleResult">
-<em class="property">class </em><code class="descclassname">solidfire.apiactual.</code><code class="descname">ApiCreateScheduleResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/apiactual.html#ApiCreateScheduleResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.apiactual.ApiCreateScheduleResult" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
-<p>The object returned by the &#8220;modify_schedule&#8221; API Service call.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>schedule</strong> (<a class="reference internal" href="solidfire.html#solidfire.models.Schedule" title="solidfire.models.Schedule"><em>Schedule</em></a>) &#8211; [required] Schedule attributes with modifications.</td>
-</tr>
-</tbody>
-</table>
-<dl class="attribute">
-<dt id="solidfire.apiactual.ApiCreateScheduleResult.schedule">
-<code class="descname">schedule</code><em class="property"> = &lt;class 'solidfire.apiactual.ApiSchedule'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiCreateScheduleResult.schedule" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 <dl class="class">
 <dt id="solidfire.apiactual.ApiGetScheduleResult">
 <em class="property">class </em><code class="descclassname">solidfire.apiactual.</code><code class="descname">ApiGetScheduleResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/apiactual.html#ApiGetScheduleResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.apiactual.ApiGetScheduleResult" title="Permalink to this definition">¶</a></dt>
@@ -232,6 +240,11 @@ cluster.</td>
 <em class="property">class </em><code class="descclassname">solidfire.apiactual.</code><code class="descname">ApiModifyScheduleResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/apiactual.html#ApiModifyScheduleResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.apiactual.ApiModifyScheduleResult" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="solidfire.common.html#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><code class="xref py py-class docutils literal"><span class="pre">solidfire.common.model.DataObject</span></code></a></p>
 <p>The object returned by the &#8220;modify_schedule&#8221; API Service call.</p>
+<dl class="attribute">
+<dt id="solidfire.apiactual.ApiModifyScheduleResult.schedule">
+<code class="descname">schedule</code><em class="property"> = &lt;class 'solidfire.apiactual.ApiSchedule'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiModifyScheduleResult.schedule" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -304,57 +317,57 @@ will be made.</li>
 </table>
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiSchedule.attributes">
-<code class="descname">attributes</code><em class="property"> = &lt;type 'dict'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.attributes" title="Permalink to this definition">¶</a></dt>
+<code class="descname">attributes</code><em class="property"> = &lt;class 'dict'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.attributes" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiSchedule.has_error">
-<code class="descname">has_error</code><em class="property"> = &lt;type 'bool'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.has_error" title="Permalink to this definition">¶</a></dt>
+<code class="descname">has_error</code><em class="property"> = &lt;class 'bool'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.has_error" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiSchedule.hours">
-<code class="descname">hours</code><em class="property"> = &lt;type 'int'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.hours" title="Permalink to this definition">¶</a></dt>
+<code class="descname">hours</code><em class="property"> = &lt;class 'int'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.hours" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiSchedule.last_run_status">
-<code class="descname">last_run_status</code><em class="property"> = &lt;type 'str'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.last_run_status" title="Permalink to this definition">¶</a></dt>
+<code class="descname">last_run_status</code><em class="property"> = &lt;class 'str'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.last_run_status" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiSchedule.last_run_time_started">
-<code class="descname">last_run_time_started</code><em class="property"> = &lt;type 'str'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.last_run_time_started" title="Permalink to this definition">¶</a></dt>
+<code class="descname">last_run_time_started</code><em class="property"> = &lt;class 'str'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.last_run_time_started" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiSchedule.minutes">
-<code class="descname">minutes</code><em class="property"> = &lt;type 'int'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.minutes" title="Permalink to this definition">¶</a></dt>
+<code class="descname">minutes</code><em class="property"> = &lt;class 'int'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.minutes" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiSchedule.monthdays">
-<code class="descname">monthdays</code><em class="property"> = &lt;type 'int[]'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.monthdays" title="Permalink to this definition">¶</a></dt>
+<code class="descname">monthdays</code><em class="property"> = &lt;class 'int[]'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.monthdays" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiSchedule.paused">
-<code class="descname">paused</code><em class="property"> = &lt;type 'bool'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.paused" title="Permalink to this definition">¶</a></dt>
+<code class="descname">paused</code><em class="property"> = &lt;class 'bool'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.paused" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiSchedule.recurring">
-<code class="descname">recurring</code><em class="property"> = &lt;type 'bool'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.recurring" title="Permalink to this definition">¶</a></dt>
+<code class="descname">recurring</code><em class="property"> = &lt;class 'bool'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.recurring" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiSchedule.run_next_interval">
-<code class="descname">run_next_interval</code><em class="property"> = &lt;type 'bool'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.run_next_interval" title="Permalink to this definition">¶</a></dt>
+<code class="descname">run_next_interval</code><em class="property"> = &lt;class 'bool'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.run_next_interval" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiSchedule.schedule_id">
-<code class="descname">schedule_id</code><em class="property"> = &lt;type 'int'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.schedule_id" title="Permalink to this definition">¶</a></dt>
+<code class="descname">schedule_id</code><em class="property"> = &lt;class 'int'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.schedule_id" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -364,23 +377,37 @@ will be made.</li>
 
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiSchedule.schedule_name">
-<code class="descname">schedule_name</code><em class="property"> = &lt;type 'str'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.schedule_name" title="Permalink to this definition">¶</a></dt>
+<code class="descname">schedule_name</code><em class="property"> = &lt;class 'str'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.schedule_name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiSchedule.schedule_type">
-<code class="descname">schedule_type</code><em class="property"> = &lt;type 'str'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.schedule_type" title="Permalink to this definition">¶</a></dt>
+<code class="descname">schedule_type</code><em class="property"> = &lt;class 'str'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.schedule_type" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiSchedule.starting_date">
-<code class="descname">starting_date</code><em class="property"> = &lt;type 'str'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.starting_date" title="Permalink to this definition">¶</a></dt>
+<code class="descname">starting_date</code><em class="property"> = &lt;class 'str'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.starting_date" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiSchedule.to_be_deleted">
-<code class="descname">to_be_deleted</code><em class="property"> = &lt;type 'bool'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.to_be_deleted" title="Permalink to this definition">¶</a></dt>
+<code class="descname">to_be_deleted</code><em class="property"> = &lt;class 'bool'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.to_be_deleted" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="method">
+<dt id="solidfire.apiactual.ApiSchedule.to_json">
+<code class="descname">to_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/apiactual.html#ApiSchedule.to_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.apiactual.ApiSchedule.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts DataObject to json.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the DataObject as a json structure.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiSchedule.weekdays">
@@ -419,27 +446,27 @@ retained in HH:mm:ss.</li>
 </table>
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiScheduleInfo.enable_remote_replication">
-<code class="descname">enable_remote_replication</code><em class="property"> = &lt;type 'bool'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiScheduleInfo.enable_remote_replication" title="Permalink to this definition">¶</a></dt>
+<code class="descname">enable_remote_replication</code><em class="property"> = &lt;class 'bool'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiScheduleInfo.enable_remote_replication" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiScheduleInfo.name">
-<code class="descname">name</code><em class="property"> = &lt;type 'str'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiScheduleInfo.name" title="Permalink to this definition">¶</a></dt>
+<code class="descname">name</code><em class="property"> = &lt;class 'str'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiScheduleInfo.name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiScheduleInfo.retention">
-<code class="descname">retention</code><em class="property"> = &lt;type 'str'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiScheduleInfo.retention" title="Permalink to this definition">¶</a></dt>
+<code class="descname">retention</code><em class="property"> = &lt;class 'str'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiScheduleInfo.retention" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiScheduleInfo.volume_id">
-<code class="descname">volume_id</code><em class="property"> = &lt;type 'int'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiScheduleInfo.volume_id" title="Permalink to this definition">¶</a></dt>
+<code class="descname">volume_id</code><em class="property"> = &lt;class 'int'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiScheduleInfo.volume_id" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiScheduleInfo.volumes">
-<code class="descname">volumes</code><em class="property"> = &lt;type 'int[]'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiScheduleInfo.volumes" title="Permalink to this definition">¶</a></dt>
+<code class="descname">volumes</code><em class="property"> = &lt;class 'int[]'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiScheduleInfo.volumes" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -467,12 +494,12 @@ and Weekday for more information.</p>
 </table>
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiWeekday.day">
-<code class="descname">day</code><em class="property"> = &lt;type 'int'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiWeekday.day" title="Permalink to this definition">¶</a></dt>
+<code class="descname">day</code><em class="property"> = &lt;class 'int'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiWeekday.day" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="solidfire.apiactual.ApiWeekday.offset">
-<code class="descname">offset</code><em class="property"> = &lt;type 'int'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiWeekday.offset" title="Permalink to this definition">¶</a></dt>
+<code class="descname">offset</code><em class="property"> = &lt;class 'int'&gt;</em><a class="headerlink" href="#solidfire.apiactual.ApiWeekday.offset" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -482,15 +509,18 @@ and Weekday for more information.</p>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="solidfire.common.html" class="btn btn-neutral float-right" title="solidfire.common package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="solidfire.common.html" class="btn btn-neutral float-right" title="solidfire.common package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="solidfire.adaptor.html" class="btn btn-neutral" title="solidfire.adaptor package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="solidfire.adaptor.html" class="btn btn-neutral" title="solidfire.adaptor package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -499,7 +529,7 @@ and Weekday for more information.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014-2017, NetApp, Inc.  All Rights Reserved..
+        &copy; Copyright 2014-2016, NetApp, Inc.  All Rights Reserved..
 
     </p>
   </div>
@@ -521,10 +551,11 @@ and Weekday for more information.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.2',
+            VERSION:'1.4.0.271',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>

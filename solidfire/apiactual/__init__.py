@@ -284,7 +284,7 @@ class ApiSchedule(data_model.DataObject):
 
     monthdays = data_model.property(
         "monthdays", int,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="\
         Shows the days of the month that the next snapshot will be created on.\
         Valid values are: 0 - 31\
@@ -370,11 +370,27 @@ class ApiSchedule(data_model.DataObject):
 
     weekdays = data_model.property(
         "weekdays", ApiWeekday,
-        array=True, optional=False,
+        array=True, optional=True,
         documentation="\
         Indicates the days of the week that a snapshot will be made.\
         "
     )
+
+    # We implement this function so that the user doesn't have to provide weekdays and
+    # monthdays. To make the command work, if one of them is set, the other must be set
+    # to none.
+    def to_json(self):
+        """
+        Converts DataObject to json.
+
+        :return: the DataObject as a json structure.
+        """
+        out = super(ApiSchedule, self).to_json()
+        if "weekdays" not in out:
+            out["weekdays"] = None
+        if "monthdays" not in out:
+            out["monthdays"] = None
+        return out
 
     def __init__(self, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
@@ -426,24 +442,12 @@ class ApiModifyScheduleResult(data_model.DataObject):
     The object returned by the \"modify_schedule\" API Service call.
 
     """
-
-    def __init__(self, **kwargs):
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ApiCreateScheduleResult(data_model.DataObject):
-    """
-    The object returned by the \"modify_schedule\" API Service call.
-
-    :param schedule: [required] Schedule attributes with modifications.
-    :type schedule: Schedule
-    """
-
     schedule = data_model.property(
         "schedule", ApiSchedule,
         array=False, optional=False,
         documentation="\
-        Schedule attributes with modifications.\
-        "
+            Schedule attributes with modifications.\
+            "
     )
 
     def __init__(self, **kwargs):

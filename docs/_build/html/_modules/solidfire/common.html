@@ -8,12 +8,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>solidfire.common &mdash; SolidFire Python SDK v1.2</title>
+  <title>solidfire.common &mdash; SolidFire Python SDK v1.4.0.271</title>
   
 
   
   
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
   
 
   
@@ -34,7 +36,10 @@
   
 
   
-    <link rel="top" title="SolidFire Python SDK v1.2" href="../../index.html"/>
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="SolidFire Python SDK v1.4.0.271" href="../../index.html"/>
         <link rel="up" title="solidfire" href="../solidfire.html"/> 
 
   
@@ -44,6 +49,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -66,7 +72,7 @@
             
             
               <div class="version">
-                1.2.0.103
+                1.4.0.271
               </div>
             
           
@@ -87,7 +93,10 @@
           
             
             
-                <ul>
+              
+            
+            
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../solidfire.html"> SolidFire Python SDK v1.2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../solidfire.html#account-management-examples">Account Management Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../solidfire.html#snapshot-scheduling-examples">Snapshot Scheduling Examples</a></li>
@@ -104,8 +113,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../index.html">solidfire-sdk-python</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">solidfire-sdk-python</a>
+        
       </nav>
 
 
@@ -118,21 +129,38 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../index.html">Module code</a> &raquo;</li>
-      
+        
           <li><a href="../solidfire.html">solidfire</a> &raquo;</li>
-      
-    <li>solidfire.common</li>
+        
+      <li>solidfire.common</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -154,11 +182,11 @@
 <span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">from</span> <span class="nn">requests.auth</span> <span class="kn">import</span> <span class="n">HTTPBasicAuth</span>
-<span class="kn">from</span> <span class="nn">requests.packages.urllib3.exceptions</span> <span class="kn">import</span> <span class="n">InsecureRequestWarning</span>
+<span class="kn">from</span> <span class="nn">requests.auth</span> <span class="k">import</span> <span class="n">HTTPBasicAuth</span>
+<span class="kn">from</span> <span class="nn">requests.packages.urllib3.exceptions</span> <span class="k">import</span> <span class="n">InsecureRequestWarning</span>
 <span class="n">requests</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">urllib3</span><span class="o">.</span><span class="n">disable_warnings</span><span class="p">(</span><span class="n">InsecureRequestWarning</span><span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">solidfire.common</span> <span class="kn">import</span> <span class="n">model</span>
+<span class="kn">from</span> <span class="nn">solidfire.common</span> <span class="k">import</span> <span class="n">model</span>
 
 <span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;solidfire.Element&#39;</span><span class="p">)</span>
 <span class="n">LOG</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
@@ -190,7 +218,7 @@
 
 <div class="viewcode-block" id="SdkOperationError"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.SdkOperationError">[docs]</a><span class="k">class</span> <span class="nc">SdkOperationError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="ne">Exception</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ApiServerError"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.ApiServerError">[docs]</a><span class="k">class</span> <span class="nc">ApiServerError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
@@ -210,15 +238,15 @@
 <span class="sd">        :type err_json: str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">err_json</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">err_json</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
-            <span class="n">err_json</span> <span class="o">=</span> <span class="s1">&#39;{}&#39;</span>
+            <span class="n">err_json</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_method_name</span> <span class="o">=</span> <span class="n">method_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_err_json</span> <span class="o">=</span> <span class="n">err_json</span>
-        <span class="ne">Exception</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">(method_name=&quot;</span><span class="si">%s</span><span class="s1">&quot;, err_json=</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_method_name</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_err_json</span>
         <span class="p">)</span>
@@ -246,7 +274,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">message</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;A user-friendly message returned from the server.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_err_json</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_err_json</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ApiMethodVersionError"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.ApiMethodVersionError">[docs]</a><span class="k">class</span> <span class="nc">ApiMethodVersionError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
@@ -259,7 +287,7 @@
                  <span class="n">method_name</span><span class="p">,</span>
                  <span class="n">api_version</span><span class="p">,</span>
                  <span class="n">since</span><span class="p">,</span>
-                 <span class="n">deprecated</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+                 <span class="n">deprecated</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        ApiMethodVersionError constructor.</span>
 
@@ -281,17 +309,17 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_method_name</span> <span class="o">=</span> <span class="n">method_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">api_version</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_since</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">since</span><span class="p">)</span> <span class="k">if</span> <span class="n">since</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">since</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_since</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">since</span><span class="p">)</span> <span class="k">if</span> <span class="n">since</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">since</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_deprecated</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">deprecated</span><span class="p">)</span> \
-            <span class="k">if</span> <span class="n">deprecated</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">deprecated</span>
-        <span class="ne">Exception</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">deprecated</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">deprecated</span>
+        <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">(method_name=&quot;</span><span class="si">%s</span><span class="s1">&quot;, &#39;</span> \
                <span class="s1">&#39;api_version=</span><span class="si">%s</span><span class="s1">, &#39;</span> \
                <span class="s1">&#39;since=</span><span class="si">%s</span><span class="s1">, &#39;</span> \
                <span class="s1">&#39;deprecated=</span><span class="si">%s</span><span class="s1">) &#39;</span> <span class="o">%</span> <span class="p">(</span>
-                   <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
                    <span class="bp">self</span><span class="o">.</span><span class="n">_method_name</span><span class="p">,</span>
                    <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span><span class="p">,</span>
                    <span class="bp">self</span><span class="o">.</span><span class="n">_since</span><span class="p">,</span>
@@ -301,11 +329,11 @@
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">    Invalid Method:</span><span class="se">\n</span><span class="s1">&#39;</span>
-            <span class="s1">&#39;    Method Name: {_method_name}</span><span class="se">\n</span><span class="s1">&#39;</span>
-            <span class="s1">&#39;    Service Api Version: {_api_version}</span><span class="se">\n</span><span class="s1">&#39;</span>
-            <span class="s1">&#39;    Method Exists Since: {_since}</span><span class="se">\n</span><span class="s1">&#39;</span>
-            <span class="s1">&#39;    Method Deprecated: {_deprecated}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
-            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span>
+            <span class="s1">&#39;    Method Name: </span><span class="si">{_method_name}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="s1">&#39;    Service Api Version: </span><span class="si">{_api_version}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="s1">&#39;    Method Exists Since: </span><span class="si">{_since}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="s1">&#39;    Method Deprecated: </span><span class="si">{_deprecated}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
         <span class="p">)</span>
 
     <span class="nd">@property</span>
@@ -359,18 +387,18 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">api_version</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_params</span> <span class="o">=</span> <span class="n">params</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_violations</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">if</span> <span class="n">params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">for</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">)</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_violations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                     <span class="n">name</span> <span class="o">+</span> <span class="s1">&#39; (version: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">since</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
                 <span class="p">)</span>
-        <span class="ne">Exception</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">(method_name=&quot;</span><span class="si">%s</span><span class="s1">&quot;, &#39;</span> \
                <span class="s1">&#39;api_version=</span><span class="si">%s</span><span class="s1">, &#39;</span> \
                <span class="s1">&#39;params=</span><span class="si">%s</span><span class="s1">) &#39;</span> <span class="o">%</span> <span class="p">(</span>
-                   <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
                    <span class="bp">self</span><span class="o">.</span><span class="n">_method_name</span><span class="p">,</span>
                    <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span><span class="p">,</span>
                    <span class="bp">self</span><span class="o">.</span><span class="n">_params</span><span class="p">,</span>
@@ -379,10 +407,10 @@
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">    Invalid Parameter:</span><span class="se">\n</span><span class="s1">&#39;</span>
-            <span class="s1">&#39;    Method: {_method_name}</span><span class="se">\n</span><span class="s1">&#39;</span>
-            <span class="s1">&#39;    Api Version: {_api_version}</span><span class="se">\n</span><span class="s1">&#39;</span>
-            <span class="s1">&#39;    Invalid Parameters: {_violations}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
-            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span>
+            <span class="s1">&#39;    Method: </span><span class="si">{_method_name}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="s1">&#39;    Api Version: </span><span class="si">{_api_version}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="s1">&#39;    Invalid Parameters: </span><span class="si">{_violations}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
         <span class="p">)</span>
 
     <span class="nd">@property</span>
@@ -427,12 +455,12 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">api_version</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_current_version</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">current_version</span><span class="p">)</span>
-        <span class="ne">Exception</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">(api_version=</span><span class="si">%s</span><span class="s1">, &#39;</span> \
                <span class="s1">&#39;current_version=</span><span class="si">%s</span><span class="s1">) &#39;</span> <span class="o">%</span> <span class="p">(</span>
-                   <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
                    <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span><span class="p">,</span>
                    <span class="bp">self</span><span class="o">.</span><span class="n">_current_version</span>
                <span class="p">)</span>
@@ -440,10 +468,10 @@
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">    Version Exceeded:</span><span class="se">\n</span><span class="s1">&#39;</span>
-            <span class="s1">&#39;    Provided Api Version: {_api_version}</span><span class="se">\n</span><span class="s1">&#39;</span>
-            <span class="s1">&#39;    Max Version: {current_version}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;    Provided Api Version: </span><span class="si">{_api_version}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="s1">&#39;    Max Version: </span><span class="si">{current_version}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
             <span class="n">current_version</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_version</span><span class="p">,</span>
-            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span>
+            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
         <span class="p">)</span>
 
     <span class="nd">@property</span>
@@ -479,12 +507,12 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">api_version</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_supported_versions</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">supported_versions</span><span class="p">]</span>
-        <span class="ne">Exception</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">(api_version=</span><span class="si">%s</span><span class="s1">, &#39;</span> \
                <span class="s1">&#39;supported_versions=</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span>
-                   <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
                    <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span><span class="p">,</span>
                    <span class="bp">self</span><span class="o">.</span><span class="n">_supported_versions</span>
                <span class="p">)</span>
@@ -492,9 +520,9 @@
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">    Version Unsupported:</span><span class="se">\n</span><span class="s1">&#39;</span>
-            <span class="s1">&#39;    Provided Api Version: {_api_version}</span><span class="se">\n</span><span class="s1">&#39;</span>
-            <span class="s1">&#39;    Supported Version: {_supported_versions}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
-            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span>
+            <span class="s1">&#39;    Provided Api Version: </span><span class="si">{_api_version}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="s1">&#39;    Supported Version: </span><span class="si">{_supported_versions}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
         <span class="p">)</span>
 
     <span class="nd">@property</span>
@@ -509,7 +537,7 @@
 
 <div class="viewcode-block" id="ApiConnectionError"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.ApiConnectionError">[docs]</a><span class="k">class</span> <span class="nc">ApiConnectionError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">ApiConnectionError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ApiConnectionError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="CurlDispatcher"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.CurlDispatcher">[docs]</a><span class="k">class</span> <span class="nc">CurlDispatcher</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -535,8 +563,8 @@
 <span class="sd">        :type verify_ssl: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_endpoint</span> <span class="o">=</span> <span class="n">endpoint</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_credentials</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;{u}:{p}&#39;</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">password</span><span class="p">)</span> \
-            <span class="k">if</span> <span class="p">(</span><span class="n">username</span> <span class="ow">or</span> <span class="n">password</span><span class="p">)</span> <span class="k">else</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_username</span> <span class="o">=</span> <span class="n">username</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="n">password</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_verify_ssl</span> <span class="o">=</span> <span class="n">verify_ssl</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="o">=</span> <span class="mi">300</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_connect_timeout</span> <span class="o">=</span> <span class="mi">30</span>
@@ -585,11 +613,12 @@
 <span class="sd">        :param data: the data to be posted.</span>
 <span class="sd">        :type data: str or json</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">auth</span> <span class="o">=</span> <span class="bp">None</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_credentials</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="p">(</span><span class="n">usr</span><span class="p">,</span> <span class="n">pwd</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_credentials</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
-            <span class="n">auth</span> <span class="o">=</span> <span class="n">HTTPBasicAuth</span><span class="p">(</span><span class="n">usr</span><span class="p">,</span> <span class="n">pwd</span><span class="p">)</span>
-        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_endpoint</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">auth</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_username</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_password</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Username or Password is not set&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">auth</span> <span class="o">=</span> <span class="n">HTTPBasicAuth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_username</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_password</span><span class="p">)</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_endpoint</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                              <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_verify_ssl</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span><span class="p">,</span>
                              <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">resp</span><span class="o">.</span><span class="n">text</span></div></div>
@@ -601,8 +630,8 @@
 <span class="sd">    This performs the sending, encoding and decoding of requests.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mvip</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">api_version</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">verify_ssl</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">dispatcher</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mvip</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">api_version</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">verify_ssl</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dispatcher</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor for initializing a connection to an instance of Element OS</span>
 
@@ -628,7 +657,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">api_version</span><span class="p">)</span>
-        <span class="n">endpoint</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;https://{mvip}/json-rpc/{api_version}&#39;</span><span class="p">,</span>
+        <span class="n">endpoint</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;https://</span><span class="si">{mvip}</span><span class="s1">/json-rpc/</span><span class="si">{api_version}</span><span class="s1">&#39;</span><span class="p">,</span>
                               <span class="n">mvip</span><span class="o">=</span><span class="n">mvip</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span><span class="p">)</span>
         <span class="k">if</span> <span class="s1">&#39;https&#39;</span> <span class="ow">in</span> <span class="n">endpoint</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_port</span> <span class="o">=</span> <span class="mi">443</span>
@@ -640,7 +669,7 @@
                                         <span class="n">verify_ssl</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_dispatcher</span> <span class="o">=</span> <span class="n">dispatcher</span>
 
-        <span class="k">if</span> <span class="n">mvip</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">mvip</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">mvipArr</span> <span class="o">=</span> <span class="n">mvip</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mvipArr</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_port</span> <span class="o">=</span> <span class="n">mvipArr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -686,9 +715,10 @@
 
 <div class="viewcode-block" id="ServiceBase.send_request"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.ServiceBase.send_request">[docs]</a>    <span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span>
                      <span class="n">result_type</span><span class="p">,</span>
-                     <span class="n">params</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                     <span class="n">since</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                     <span class="n">deprecated</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+                     <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                     <span class="n">since</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                     <span class="n">deprecated</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                     <span class="n">return_response_raw</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :param method_name: the name of the API method to call</span>
 <span class="sd">        :type method_name: str</span>
@@ -712,14 +742,14 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_method_version</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">params</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="k">global</span> <span class="n">ATOMIC_COUNTER</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ATOMIC_COUNTER</span><span class="p">,</span> <span class="s1">&#39;next&#39;</span><span class="p">):</span>
             <span class="n">atomic_id</span> <span class="o">=</span> <span class="n">ATOMIC_COUNTER</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">atomic_id</span> <span class="o">=</span> <span class="n">ATOMIC_COUNTER</span><span class="o">.</span><span class="n">__next__</span><span class="p">()</span>
+            <span class="n">atomic_id</span> <span class="o">=</span> <span class="n">ATOMIC_COUNTER</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>
 
         <span class="n">encoded</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
             <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="n">method_name</span><span class="p">,</span>
@@ -737,17 +767,31 @@
             <span class="k">raise</span> <span class="n">ApiConnectionError</span><span class="p">(</span><span class="s2">&quot;Was not able to connect to the specified target as a result of timing out.&quot;</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">ReadTimeout</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ApiConnectionError</span><span class="p">(</span><span class="s2">&quot;Read timed out.&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ChunkedEncodingError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ApiConnectionError</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-            <span class="n">json_err</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
-                <span class="p">{</span>
-                    <span class="s1">&#39;error&#39;</span><span class="p">:</span>
-                        <span class="p">{</span>
-                            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">__class__</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span>
-                            <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
-                            <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">error</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                        <span class="p">}</span>
-                <span class="p">}</span>
-            <span class="p">)</span>
+            <span class="k">if</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">args</span><span class="p">):</span>
+                <span class="n">json_err</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+                    <span class="p">{</span>
+                        <span class="s1">&#39;error&#39;</span><span class="p">:</span>
+                            <span class="p">{</span>
+                                <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span>
+                                <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+                                <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">error</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
+                            <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">json_err</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+                    <span class="p">{</span>
+                        <span class="s1">&#39;error&#39;</span><span class="p">:</span>
+                            <span class="p">{</span>
+                                <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span>
+                                <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+                                <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">error</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
+                            <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">)</span>
             <span class="k">raise</span> <span class="n">ApiServerError</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="n">json_err</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="s2">&quot;401 Unauthorized.&quot;</span> <span class="ow">in</span> <span class="n">response_raw</span><span class="p">:</span>
@@ -761,12 +805,28 @@
                         <span class="p">}</span>
                 <span class="p">}</span>
             <span class="p">)</span>
-            <span class="k">raise</span> <span class="n">ApiServerError</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">,</span> <span class="n">json_err</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">ApiConnectionError</span><span class="p">(</span><span class="n">json_err</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">&quot;404 Not Found&quot;</span> <span class="ow">in</span> <span class="n">response_raw</span><span class="p">:</span>
+            <span class="n">json_err</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s1">&#39;error&#39;</span><span class="p">:</span>
+                        <span class="p">{</span>
+                            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;NotFoundError&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="mi">404</span><span class="p">,</span>
+                            <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;The connection was not found.&#39;</span>
+                        <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+            <span class="k">raise</span> <span class="n">ApiConnectionError</span><span class="p">(</span><span class="n">json_err</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">return_response_raw</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">response_raw</span>
 
         <span class="c1"># noinspection PyBroadException</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">response</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response_raw</span><span class="p">)</span>
-            <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="n">response_raw</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
             <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="n">response_raw</span><span class="p">)</span>
             <span class="n">response</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
@@ -781,7 +841,7 @@
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="s1">&#39;error&#39;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">ApiServerError</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">])</span>
+            <span class="k">raise</span> <span class="n">ApiServerError</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">result_type</span><span class="p">,</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">])</span></div>
 
@@ -804,7 +864,7 @@
     <span class="k">def</span> <span class="nf">_check_method_version</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                               <span class="n">method_name</span><span class="p">,</span>
                               <span class="n">since</span><span class="p">,</span>
-                              <span class="n">deprecated</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+                              <span class="n">deprecated</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check method version against the initialized api_version of the</span>
 <span class="sd">        service.</span>
@@ -823,7 +883,7 @@
 <span class="sd">            not currently checked.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">if</span> <span class="n">since</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="nb">float</span><span class="p">(</span><span class="n">since</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">since</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">float</span><span class="p">(</span><span class="n">since</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ApiMethodVersionError</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span>
                                         <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span><span class="p">,</span>
                                         <span class="n">since</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">since</span><span class="p">),</span>
@@ -847,10 +907,10 @@
 <span class="sd">            Deprecation is not currently checked.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">invalid</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">if</span> <span class="n">params</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">params</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">)</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="nb">float</span><span class="p">(</span><span class="n">since</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">float</span><span class="p">(</span><span class="n">since</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span><span class="p">:</span>
                 <span class="n">invalid</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">since</span><span class="p">),</span> <span class="n">deprecated</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">invalid</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -860,6 +920,9 @@
 </pre></div>
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -868,7 +931,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014-2017, NetApp, Inc.  All Rights Reserved..
+        &copy; Copyright 2014-2016, NetApp, Inc.  All Rights Reserved..
 
     </p>
   </div>
@@ -890,10 +953,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'1.2',
+            VERSION:'1.4.0.271',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../_static/jquery.js"></script>

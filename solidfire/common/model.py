@@ -131,7 +131,10 @@ class ModelProperty(object):
         """
         if data is None or hasattr(data, '_member_type'):  # HACK ALERT
             if not self._optional:
-                out[self._member_name] = None
+                # We want to catch this error.
+                raise ValueError(self._member_name+" is a required parameter.")
+                # THE OLD WAY!
+                #out[self._member_name] = None
         elif self._array:
             out[self._member_name] = [serialize(x) for x in data]
         elif self._optional:
@@ -241,13 +244,16 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
                 cls._properties[name] = prop
 
     def __init__(self, **kwargs):
-        for key, value in kwargs.items():
-            if key not in type(self)._properties:
-                msg_fmt = 'Key "{key}" is not a valid property'
-                msg = msg_fmt.format(key)
-                raise TypeError(msg)
-            else:
-                setattr(self, key, value)
+        # Iterate through available properties and start removing them
+        # from kwargs
+        for name, property in type(self)._properties.items():
+            if not property.optional() and name not in kwargs.keys() and name != "secret":
+                raise ValueError(name+" is a required parameter.")
+            if name in kwargs:
+                setattr(self, name, kwargs[name])
+                del kwargs[name]
+        if(len(kwargs.keys()) != 0):
+            raise ValueError("The following params are invalid: "+str(kwargs.keys()))
 
     def get_properties(self):
         """

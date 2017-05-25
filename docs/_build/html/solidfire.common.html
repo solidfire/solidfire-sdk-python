@@ -8,12 +8,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>solidfire.common package &mdash; SolidFire Python SDK v1.2</title>
+  <title>solidfire.common package &mdash; SolidFire Python SDK v1.4.0.271</title>
   
 
   
   
     <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
   
 
   
@@ -34,7 +36,10 @@
   
 
   
-    <link rel="top" title="SolidFire Python SDK v1.2" href="index.html"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="SolidFire Python SDK v1.4.0.271" href="index.html"/>
         <link rel="up" title="SolidFire Python SDK v1.2" href="solidfire.html"/>
         <link rel="next" title="solidfire.custom package" href="solidfire.custom.html"/>
         <link rel="prev" title="solidfire.apiactual package" href="solidfire.apiactual.html"/> 
@@ -46,6 +51,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -68,7 +74,7 @@
             
             
               <div class="version">
-                1.2.0.103
+                1.4.0.271
               </div>
             
           
@@ -89,7 +95,10 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="solidfire.html"> SolidFire Python SDK v1.2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="solidfire.html#account-management-examples">Account Management Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="solidfire.html#snapshot-scheduling-examples">Snapshot Scheduling Examples</a></li>
@@ -97,7 +106,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="solidfire.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="solidfire.adaptor.html">solidfire.adaptor package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="solidfire.apiactual.html">solidfire.apiactual package</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="">solidfire.common package</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">solidfire.common package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-solidfire.common.model">solidfire.common.model module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-solidfire.common">Module contents</a></li>
@@ -110,7 +119,7 @@
 <li class="toctree-l2"><a class="reference internal" href="solidfire.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.factory">solidfire.factory module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.models">solidfire.models module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.results">solidfire.results module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#solidfire-results-module">solidfire.results module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire">Module contents</a></li>
 </ul>
 </li>
@@ -126,8 +135,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">solidfire-sdk-python</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">solidfire-sdk-python</a>
+        
       </nav>
 
 
@@ -136,25 +147,42 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
           <li><a href="solidfire.html"> SolidFire Python SDK v1.2</a> &raquo;</li>
-      
-    <li>solidfire.common package</li>
+        
+      <li>solidfire.common package</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="_sources/solidfire.common.txt" rel="nofollow"> View page source</a>
+            
+            <a href="_sources/solidfire.common.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -405,7 +433,7 @@ original version is returned.</p>
 <li><strong>member_type</strong> (<a class="reference internal" href="solidfire.html#solidfire.models.BulkVolumeJob.type" title="solidfire.models.BulkVolumeJob.type"><em>type</em></a>) &#8211; the type of the property.</li>
 <li><strong>array</strong> (<em>bool</em>) &#8211; is the property an array.</li>
 <li><strong>optional</strong> (<em>bool</em>) &#8211; is the property optional.</li>
-<li><strong>documentation</strong> (<em>str or NoneType</em>) &#8211; documentation for the property.</li>
+<li><strong>documentation</strong> (<em>str</em><em> or </em><em>NoneType</em>) &#8211; documentation for the property.</li>
 </ul>
 </td>
 </tr>
@@ -439,13 +467,13 @@ original version is returned.</p>
 <dl class="exception">
 <dt id="solidfire.common.ApiConnectionError">
 <em class="property">exception </em><code class="descclassname">solidfire.common.</code><code class="descname">ApiConnectionError</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#ApiConnectionError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.ApiConnectionError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="solidfire.common.ApiMethodVersionError">
 <em class="property">exception </em><code class="descclassname">solidfire.common.</code><code class="descname">ApiMethodVersionError</code><span class="sig-paren">(</span><em>method_name</em>, <em>api_version</em>, <em>since</em>, <em>deprecated=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#ApiMethodVersionError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.ApiMethodVersionError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>An ApiMethodVersionError occurs when a service method is not compatible
 with the version of the connected server.</p>
 <p>ApiMethodVersionError constructor.</p>
@@ -456,11 +484,11 @@ with the version of the connected server.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>method_name</strong> (<em>str</em>) &#8211; name of the service method where the error
 occurred.</li>
-<li><strong>api_version</strong> (<em>str or float</em>) &#8211; the version of API used to instantiate the
+<li><strong>api_version</strong> (<em>str</em><em> or </em><em>float</em>) &#8211; the version of API used to instantiate the
 connection to the server.</li>
-<li><strong>since</strong> (<em>str or float</em>) &#8211; the earliest version of the API a service method is
+<li><strong>since</strong> (<em>str</em><em> or </em><em>float</em>) &#8211; the earliest version of the API a service method is
 compatible.</li>
-<li><strong>deprecated</strong> (<em>str or float</em>) &#8211; the latest version of the API that a method is
+<li><strong>deprecated</strong> (<em>str</em><em> or </em><em>float</em>) &#8211; the latest version of the API that a method is
 compatible.</li>
 </ul>
 </td>
@@ -496,7 +524,7 @@ compatible.</li>
 <dl class="exception">
 <dt id="solidfire.common.ApiParameterVersionError">
 <em class="property">exception </em><code class="descclassname">solidfire.common.</code><code class="descname">ApiParameterVersionError</code><span class="sig-paren">(</span><em>method_name</em>, <em>api_version</em>, <em>params</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#ApiParameterVersionError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.ApiParameterVersionError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>An ApiParameterVersionError occurs when a parameter supplied to a service
 method is not compatible with the version of the connected server.</p>
 <p>ApiParameterVersionError constructor.</p>
@@ -507,7 +535,7 @@ method is not compatible with the version of the connected server.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>method_name</strong> (<em>str</em>) &#8211; name of the service method where the error
 occurred.</li>
-<li><strong>api_version</strong> (<em>str or float</em>) &#8211; the version of API used to instantiate the
+<li><strong>api_version</strong> (<em>str</em><em> or </em><em>float</em>) &#8211; the version of API used to instantiate the
 connection to the server.</li>
 <li><strong>params</strong> (<em>list of tuple</em>) &#8211; the list of incompatible parameters provided to a
 service method call.  This tuple should include name, value, since,
@@ -546,7 +574,7 @@ and deprecated values for each offending parameter.</li>
 <dl class="exception">
 <dt id="solidfire.common.ApiServerError">
 <em class="property">exception </em><code class="descclassname">solidfire.common.</code><code class="descname">ApiServerError</code><span class="sig-paren">(</span><em>method_name</em>, <em>err_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#ApiServerError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.ApiServerError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>ApiServerError is an exception that occurs on the server and is passes as a
 response back to the sdk.</p>
 <p>ApiServerError constructor.</p>
@@ -592,7 +620,7 @@ occurred.</li>
 <dl class="exception">
 <dt id="solidfire.common.ApiVersionExceededError">
 <em class="property">exception </em><code class="descclassname">solidfire.common.</code><code class="descname">ApiVersionExceededError</code><span class="sig-paren">(</span><em>api_version</em>, <em>current_version</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#ApiVersionExceededError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.ApiVersionExceededError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>An ApiVersionExceededError occurs when connecting to a server with a
 version lower then the provided api_version.</p>
 <p>ApiVersionExceededError constructor.</p>
@@ -601,7 +629,7 @@ version lower then the provided api_version.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>api_version</strong> (<em>str or float</em>) &#8211; the version of API used to instantiate the
+<li><strong>api_version</strong> (<em>str</em><em> or </em><em>float</em>) &#8211; the version of API used to instantiate the
 connection to the server.</li>
 <li><strong>current_version</strong> (<em>float</em>) &#8211; the current version of the server.</li>
 </ul>
@@ -626,7 +654,7 @@ connection to the server.</li>
 <dl class="exception">
 <dt id="solidfire.common.ApiVersionUnsupportedError">
 <em class="property">exception </em><code class="descclassname">solidfire.common.</code><code class="descname">ApiVersionUnsupportedError</code><span class="sig-paren">(</span><em>api_version</em>, <em>supported_versions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#ApiVersionUnsupportedError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.ApiVersionUnsupportedError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>An ApiVersionUnsupportedError occurs when connecting to a server unable
 to support the provided api_version.</p>
 <p>ApiVersionUnsupportedError constructor.</p>
@@ -635,9 +663,9 @@ to support the provided api_version.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>api_version</strong> (<em>str or float</em>) &#8211; the version of API used to instantiate the
+<li><strong>api_version</strong> (<em>str</em><em> or </em><em>float</em>) &#8211; the version of API used to instantiate the
 connection to the server.</li>
-<li><strong>supported_versions</strong> (<em>float[]</em>) &#8211; the list of supported versions provided by
+<li><strong>supported_versions</strong> (<em>float</em><em>[</em><em></em><em>]</em><em></em>) &#8211; the list of supported versions provided by
 a server.</li>
 </ul>
 </td>
@@ -704,7 +732,7 @@ raised, otherwise, if False, they are ignored.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>str or json</em>) &#8211; the data to be posted.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>str</em><em> or </em><em>json</em>) &#8211; the data to be posted.</td>
 </tr>
 </tbody>
 </table>
@@ -739,7 +767,7 @@ timeout.</p>
 <dl class="exception">
 <dt id="solidfire.common.SdkOperationError">
 <em class="property">exception </em><code class="descclassname">solidfire.common.</code><code class="descname">SdkOperationError</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#SdkOperationError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.SdkOperationError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 <dl class="class">
@@ -810,7 +838,7 @@ when using an IP instead of a hostname</li>
 
 <dl class="method">
 <dt id="solidfire.common.ServiceBase.send_request">
-<code class="descname">send_request</code><span class="sig-paren">(</span><em>method_name</em>, <em>result_type</em>, <em>params=None</em>, <em>since=None</em>, <em>deprecated=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#ServiceBase.send_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.ServiceBase.send_request" title="Permalink to this definition">¶</a></dt>
+<code class="descname">send_request</code><span class="sig-paren">(</span><em>method_name</em>, <em>result_type</em>, <em>params=None</em>, <em>since=None</em>, <em>deprecated=None</em>, <em>return_response_raw=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#ServiceBase.send_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.ServiceBase.send_request" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -820,8 +848,8 @@ when using an IP instead of a hostname</li>
 <li><strong>result_type</strong> (<a class="reference internal" href="#solidfire.common.model.DataObject" title="solidfire.common.model.DataObject"><em>DataObject</em></a>) &#8211; the type of the result object returned from the API
 method called.</li>
 <li><strong>params</strong> (<em>dict</em>) &#8211; the parameters supplied to the API call.</li>
-<li><strong>since</strong> (<em>str or float</em>) &#8211; the first version this service was available</li>
-<li><strong>deprecated</strong> (<em>str or float</em>) &#8211; the final version this service was available</li>
+<li><strong>since</strong> (<em>str</em><em> or </em><em>float</em>) &#8211; the first version this service was available</li>
+<li><strong>deprecated</strong> (<em>str</em><em> or </em><em>float</em>) &#8211; the final version this service was available</li>
 </ul>
 </td>
 </tr>
@@ -857,8 +885,8 @@ method called.</li>
 <dt id="solidfire.common.setLogLevel">
 <code class="descclassname">solidfire.common.</code><code class="descname">setLogLevel</code><span class="sig-paren">(</span><em>level</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/common.html#setLogLevel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.common.setLogLevel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the logging level of Element logger and all handlers.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">logging</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">solidfire</span> <span class="kn">import</span> <span class="n">common</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">logging</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">solidfire</span> <span class="k">import</span> <span class="n">common</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">common</span><span class="o">.</span><span class="n">setLogLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -877,15 +905,18 @@ method called.</li>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="solidfire.custom.html" class="btn btn-neutral float-right" title="solidfire.custom package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="solidfire.custom.html" class="btn btn-neutral float-right" title="solidfire.custom package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="solidfire.apiactual.html" class="btn btn-neutral" title="solidfire.apiactual package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="solidfire.apiactual.html" class="btn btn-neutral" title="solidfire.apiactual package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -894,7 +925,7 @@ method called.</li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014-2017, NetApp, Inc.  All Rights Reserved..
+        &copy; Copyright 2014-2016, NetApp, Inc.  All Rights Reserved..
 
     </p>
   </div>
@@ -916,10 +947,11 @@ method called.</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.2',
+            VERSION:'1.4.0.271',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>

@@ -394,8 +394,8 @@ class CurlDispatcher(object):
         :type verify_ssl: bool
         """
         self._endpoint = endpoint
-        self._credentials = str.format('{u}:{p}', u=username, p=password) \
-            if (username or password) else None
+        self._username = username
+        self._password = password
         self._verify_ssl = verify_ssl
         self._timeout = 300
         self._connect_timeout = 30
@@ -445,9 +445,10 @@ class CurlDispatcher(object):
         :type data: str or json
         """
         auth = None
-        if self._credentials is not None:
-            (usr, pwd) = self._credentials.split(':')
-            auth = HTTPBasicAuth(usr, pwd)
+        if self._username is None or self._password is None:
+            raise ValueError("Username or Password is not set")
+        else:
+            auth = HTTPBasicAuth(self._username, self._password)
         resp = requests.post(self._endpoint, data=data, json=None,
                              verify=self._verify_ssl, timeout=self._timeout,
                              auth=auth)
@@ -547,7 +548,8 @@ class ServiceBase(object):
                      result_type,
                      params=None,
                      since=None,
-                     deprecated=None):
+                     deprecated=None,
+                     return_response_raw=False):
         """
         :param method_name: the name of the API method to call
         :type method_name: str
@@ -596,17 +598,31 @@ class ServiceBase(object):
             raise ApiConnectionError("Was not able to connect to the specified target as a result of timing out.")
         except requests.ReadTimeout:
             raise ApiConnectionError("Read timed out.")
+        except requests.exceptions.ChunkedEncodingError as error:
+            raise ApiConnectionError(error.args)
         except Exception as error:
-            json_err = json.dumps(
-                {
-                    'error':
-                        {
-                            'name': str(error.__class__).split('\'')[1],
-                            'code': 500,
-                            'message': error.args[1]
-                        }
-                }
-            )
+            if 2 <= len(error.args):
+                json_err = json.dumps(
+                    {
+                        'error':
+                            {
+                                'name': str(error.__class__).split('\'')[1],
+                                'code': 500,
+                                'message': error.args[1].__str__()
+                            }
+                    }
+                )
+            else:
+                json_err = json.dumps(
+                    {
+                        'error':
+                            {
+                                'name': str(error.__class__).split('\'')[1],
+                                'code': 500,
+                                'message': error.args.__str__()
+                            }
+                    }
+                )
             raise ApiServerError(method_name, json_err)
 
         if "401 Unauthorized." in response_raw:
@@ -622,10 +638,26 @@ class ServiceBase(object):
             )
             raise ApiConnectionError(json_err)
 
+        if "404 Not Found" in response_raw:
+            json_err = json.dumps(
+                {
+                    'error':
+                        {
+                            'name': 'NotFoundError',
+                            'code': 404,
+                            'message': 'The connection was not found.'
+                        }
+                }
+            )
+            raise ApiConnectionError(json_err)
+
+        if return_response_raw:
+            return response_raw
+
         # noinspection PyBroadException
         try:
             response = json.loads(response_raw)
-            LOG.debug(msg=response)
+            LOG.debug(msg=response_raw)
         except Exception as error:
             LOG.error(msg=response_raw)
             response = json.dumps(

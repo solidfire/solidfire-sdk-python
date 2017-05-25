@@ -8,8 +8,7 @@
 # EXPRESS WRITTEN PERMISSION OF NETAPP, INC.
 """Module implements Schedule Simplification conversion logic."""
 from solidfire.apiactual import ApiSchedule, ApiScheduleInfo, ApiWeekday, \
-    ApiGetScheduleResult, ApiListSchedulesResult, ApiModifyScheduleResult, \
-    ApiCreateScheduleResult
+    ApiGetScheduleResult, ApiListSchedulesResult, ApiModifyScheduleResult
 from solidfire.custom.models import Weekday, DaysOfMonthFrequency, \
     DaysOfWeekFrequency, TimeIntervalFrequency
 from solidfire.models import Schedule, Frequency, ScheduleInfo, GetScheduleResult, ListSchedulesResult, \
@@ -36,11 +35,7 @@ class ScheduleAdaptor:
                                           ApiGetScheduleResult, params,
                                           since, deprecated)
 
-        result = GetScheduleResult()
-
-        result.schedule = ScheduleAdaptor.to_schedule(api_result.schedule)
-
-        return result
+        return GetScheduleResult(schedule=ScheduleAdaptor.to_schedule(api_result.schedule))
 
     @staticmethod
     def list_schedules(element, params, since, deprecated):
@@ -53,16 +48,11 @@ class ScheduleAdaptor:
         api_result = element.send_request("ListSchedules",
                                           ApiListSchedulesResult, params,
                                           since, deprecated)
-
-        result = ListSchedulesResult()
-
         schedules = []
         for schedule in api_result.schedules:
             schedules.append(ScheduleAdaptor.to_schedule(schedule))
 
-        result.schedules = schedules
-
-        return result
+        return ListSchedulesResult(schedules=schedules)
 
     @staticmethod
     def modify_schedule(element, params, since, deprecated):
@@ -72,19 +62,17 @@ class ScheduleAdaptor:
         directly. Documentation here is intentionally brief.
         """
 
-        if hasattr(params['schedule'].schedule_id, '_member_type') or \
-                params['schedule'].schedule_id is None:
+        if params['schedule'].schedule_id is None:
             raise AttributeError("ScheduleID is missing. Cannot modify a "
                                  "schedule without a ScheduleID")
 
-        if hasattr(params['schedule'].frequency, '_member_type') or \
-                params['schedule'].frequency is None:
+        if params['schedule'].frequency is None:
             raise AttributeError("Frequency is not present. Make sure the "
                                  "schedule object has a value in the "
                                  "frequency property before attempting to "
-                                 "modify a Schedule.")
+                                 "create a Schedule.")
 
-        if hasattr(params['schedule'].schedule_info, '_member_type'):
+        if params['schedule'].schedule_info is None:
             raise AttributeError("Schedule_info is not present. Make sure the "
                                  "schedule object has a value in the "
                                  "schedule_info property before attempting to "
@@ -92,11 +80,14 @@ class ScheduleAdaptor:
 
         api_schedule = ScheduleAdaptor.to_api_schedule(params['schedule'])
 
-        element.send_request("ModifySchedule",
+        api_result = element.send_request("ModifySchedule",
                              ApiModifyScheduleResult, api_schedule.to_json(),
                              since, deprecated)
 
-        return ModifyScheduleResult()
+        if api_result.schedule is not None:
+            return ModifyScheduleResult(schedule=ScheduleAdaptor.to_schedule(api_result.schedule))
+        else:
+            return ModifyScheduleResult()
 
     @staticmethod
     def create_schedule(element, params, since, deprecated):
@@ -105,27 +96,29 @@ class ScheduleAdaptor:
         create_schedules method in the Element class. DO NOT CALL THIS
         directly. Documentation here is intentionally brief.
         """
-        if not hasattr(params['schedule'].schedule_id, '_member_type'):
+        if params['schedule'].schedule_id is not None:
             raise AttributeError("ScheduleID should not be present. Do "
                                  "not specify ScheduleID when creating a "
                                  "Schedule. One will be assigned upon "
                                  "creation.")
 
-        if hasattr(params['schedule'].frequency, '_member_type') or \
-                params['schedule'].frequency is None:
+        if params['schedule'].frequency is None:
             raise AttributeError("Frequency is not present. Make sure the "
                                  "schedule object has a value in the "
                                  "frequency property before attempting to "
                                  "create a Schedule.")
 
-        if hasattr(params['schedule'].schedule_info, '_member_type'):
+        if params['schedule'].schedule_info is None:
             raise AttributeError("Schedule_info is not present. Make sure the "
                                  "schedule object has a value in the "
                                  "schedule_info property before attempting to "
                                  "modify a Schedule.")
+        if params["schedule"].frequency.minutes is None:
+            params.setdefault("frequency", {})["minutes"] = 0
+        if params["schedule"].frequency.hours is None:
+            params.setdefault("frequency", {})["hours"] = 0
 
         api_schedule = ScheduleAdaptor.to_api_schedule(params['schedule'])
-
         api_result = element.send_request("CreateSchedule",
                                           CreateScheduleResult,
                                           api_schedule.to_json(),
@@ -143,53 +136,51 @@ class ScheduleAdaptor:
 
         :return: solidfire.models.Schedule
         """
-        schedule = Schedule()
-
-        schedule.has_error = api.has_error
-        schedule.last_run_status = api.last_run_status
-        schedule.last_run_time_started = api.last_run_time_started
-        schedule.name = api.schedule_name
-        schedule.paused = api.paused
-        schedule.recurring = api.recurring
-        schedule.run_next_interval = api.run_next_interval
-        schedule.schedule_id = api.schedule_id
-        schedule.starting_date = api.starting_date
-        schedule.to_be_deleted = api.to_be_deleted
-
-        schedule.schedule_info = ScheduleAdaptor.to_schedule_info(
+        schedule_info = ScheduleAdaptor.to_schedule_info(
             api.schedule_info)
 
+        frequency = None
         try:
             freq = api.attributes["frequency"]
 
             if freq == "Time Interval":
-                schedule.frequency = TimeIntervalFrequency()
-                schedule.frequency.days = int(api.hours / 24)
-                schedule.frequency.hours = int(api.hours % 24)
-                schedule.frequency.minutes = api.minutes
-                schedule.frequency.weekdays = None
-                schedule.frequency.monthdays = None
+                frequency = TimeIntervalFrequency(
+                    days=int(api.hours/24),
+                    hours=int(api.hours%24),
+                    minutes=api.minutes
+                )
             elif freq == "Days Of Month":
-                schedule.frequency = DaysOfMonthFrequency()
-                schedule.frequency.hours = api.hours
-                schedule.frequency.minutes = api.minutes
-                schedule.frequency.monthdays = api.monthdays
-                schedule.frequency.weekdays = None
+                frequency = DaysOfMonthFrequency(
+                    hours=api.hours,
+                    minutes=api.minutes,
+                    monthdays=api.monthdays,
+                )
             elif freq == "Days Of Week":
-                schedule.frequency = DaysOfWeekFrequency()
-                schedule.frequency.hours = api.hours
-                schedule.frequency.minutes = api.minutes
-                schedule.frequency.weekdays = ScheduleAdaptor \
-                    .to_weekdays(api.weekdays)
-                schedule.frequency.monthdays = None
+                frequency = DaysOfWeekFrequency(
+                    hours=api.hours,
+                    minutes=api.minutes,
+                    weekdays=ScheduleAdaptor.to_weekdays(api.weekdays),
+                )
             else:
                 raise Exception("Cannot determine frequency")
         except:
             LOG.error("Cannot deserialize Schedule {0}. The frequency "
-                      "property has an unknown value.".format(
-                schedule.name))
+                      "property has an unknown value.".format(api.schedule_name))
 
-        return schedule
+        return Schedule(
+            has_error=api.has_error,
+            last_run_status=api.last_run_status,
+            last_run_time_started=api.last_run_time_started,
+            name=api.schedule_name,
+            paused=api.paused,
+            recurring=api.recurring,
+            run_next_interval=api.run_next_interval,
+            schedule_id=api.schedule_id,
+            starting_date=api.starting_date,
+            to_be_deleted=api.to_be_deleted,
+            schedule_info=schedule_info,
+            frequency=frequency
+        )
 
     @staticmethod
     def to_schedule_info(api):
@@ -201,20 +192,20 @@ class ScheduleAdaptor:
 
         :return: solidfire.models.ScheduleInfo
         """
-        info = ScheduleInfo()
-        info.enable_remote_replication = api.enable_remote_replication
-        info.snapshot_name = api.name
-        info.retention = api.retention
 
         volume_ids = []
         if api.volume_id is not None:
-            volume_ids.append(api.volume_id)
+            volume_ids.append(int(api.volume_id))
         if api.volumes is not None:
             # noinspection PyTypeChecker
-            volume_ids.extend(api.volumes)
+            volume_ids.extend([int(vol) for vol in api.volumes])
 
-        info.volume_ids = volume_ids
-
+        info = ScheduleInfo(
+            enable_remote_replication=api.enable_remote_replication,
+            snapshot_name=api.name,
+            retention=api.retention,
+            volume_ids=volume_ids
+        )
         return info
 
     @staticmethod
@@ -241,24 +232,12 @@ class ScheduleAdaptor:
 
         :return: solidfire.apiactual.ApiSchedule
         """
-        api = ApiSchedule()
-        api.has_error = schedule.has_error
-        api.last_run_status = schedule.last_run_status
-        api.last_run_time_started = schedule.last_run_time_started
-        api.schedule_name = schedule.name
-        api.paused = schedule.paused
-        api.recurring = schedule.recurring
-        api.run_next_interval = schedule.run_next_interval
-        api.schedule_id = schedule.schedule_id
-        api.starting_date = schedule.starting_date
-        api.to_be_deleted = schedule.to_be_deleted
-        api.schedule_type = 'Snapshot'
 
-        api.schedule_info = ScheduleAdaptor \
+        schedule_info = ScheduleAdaptor \
             .to_api_schedule_info(schedule.schedule_info)
 
         frequency = schedule.frequency
-        api.attributes = {}
+        attributes = {}
 
         if type(frequency) is TimeIntervalFrequency:
             if hasattr(frequency.days, '_member_type') or frequency.days is \
@@ -270,29 +249,47 @@ class ScheduleAdaptor:
             if hasattr(frequency.minutes, '_member_type') or \
                             frequency.minutes is None:
                 frequency.minutes = 0
-            api.minutes = frequency.minutes
-            api.hours = frequency.days * 24 + frequency.hours
-            api.attributes["frequency"] = "Time Interval"
-            api.weekdays = None
-            api.monthdays = None
+            minutes = frequency.minutes
+            hours = frequency.days * 24 + frequency.hours
+            attributes["frequency"] = "Time Interval"
+            weekdays = None
+            monthdays = None
         if type(frequency) is DaysOfMonthFrequency:
-            api.minutes = frequency.minutes
-            api.hours = frequency.hours
-            api.monthdays = frequency.monthdays
-            api.weekdays = None
-            api.attributes["frequency"] = "Days Of Month"
+            minutes = frequency.minutes
+            hours = frequency.hours
+            monthdays = frequency.monthdays
+            weekdays = None
+            attributes["frequency"] = "Days Of Month"
         if type(frequency) is DaysOfWeekFrequency:
-            api.minutes = frequency.minutes
-            api.hours = frequency.hours
+            minutes = frequency.minutes
+            hours = frequency.hours
             api_weekdays = []
             for weekday in frequency.weekdays:
-                api_weekday = ApiWeekday()
-                api_weekday.day = weekday[1]
-                api_weekday.offset = 1
+                api_weekday = ApiWeekday(day=weekday[1],
+                                         offset=1)
                 api_weekdays.append(api_weekday)
-            api.weekdays = api_weekdays
-            api.monthdays = None
-            api.attributes["frequency"] = "Days Of Week"
+            weekdays = api_weekdays
+            monthdays = None
+            attributes["frequency"] = "Days Of Week"
+
+
+        api = ApiSchedule(has_error=schedule.has_error,
+                          last_run_status=schedule.last_run_status,
+                          last_run_time_started=schedule.last_run_time_started,
+                          schedule_name=schedule.name,
+                          paused=schedule.paused,
+                          recurring=schedule.recurring,
+                          run_next_interval=schedule.run_next_interval,
+                          schedule_id=schedule.schedule_id,
+                          starting_date=schedule.starting_date,
+                          to_be_deleted=schedule.to_be_deleted,
+                          schedule_type='Snapshot',
+                          attributes=attributes,
+                          minutes=minutes,
+                          hours=hours,
+                          monthdays=monthdays,
+                          weekdays=weekdays,
+                          schedule_info=schedule_info)
         return api
 
     @staticmethod
@@ -305,11 +302,8 @@ class ScheduleAdaptor:
 
         :return: solidfire.apiactual.ApiScheduleInfo
         """
-        api = ApiScheduleInfo()
-        api.enable_remote_replication = info.enable_remote_replication
-        api.name = info.snapshot_name
-        api.retention = info.retention
 
+        volumes=None
         # noinspection PyTypeChecker
         if hasattr(info.volume_ids, '_member_type') or info.volume_ids \
                 is None or len(info.volume_ids) == 0:
@@ -319,6 +313,10 @@ class ScheduleAdaptor:
 
 
         else:
-            api.volumes = info.volume_ids
+            volumes = info.volume_ids
 
+        api = ApiScheduleInfo(enable_remote_replication=info.enable_remote_replication,
+                              name=info.snapshot_name,
+                              retention=info.retention,
+                              volumes=volumes)
         return api

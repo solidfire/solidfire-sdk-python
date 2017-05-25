@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Copyright (c) NetApp Inc. 2016."""
 
-from solidfire.common import ApiServerError
+from solidfire.common import ApiServerError, ApiConnectionError
 from solidfire.factory import ElementFactory
 from tests.base_test import SolidFireBaseTest
 
@@ -13,7 +13,7 @@ class TestRequestsMod(SolidFireBaseTest):
         self.assertIsNotNone(res)
 
     def test_bad_login(self):
-        with self.assertRaises(ApiServerError) as context:
+        with self.assertRaises(ApiConnectionError) as context:
             ElementFactory.create(self.cluster, "foo", self.pwd)
         self.assertTrue('AuthorizationError' in str(context.exception))
 

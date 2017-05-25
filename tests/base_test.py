@@ -2,6 +2,7 @@
 """Copyright (c) NetApp Inc. 2016."""
 
 import unittest
+from solidfire.factory import ElementFactory
 
 
 class SolidFireBaseTest(unittest.TestCase):

@@ -99,6 +99,11 @@ class Frequency(data_model.DataObject):
     """
 
     def __init__(self, **kwargs):
+        # Set up these guys to default to 0.
+        if "minutes" not in kwargs.keys() or kwargs["minutes"] is None:
+            kwargs["minutes"] = 0
+        if "hours" not in kwargs.keys() or kwargs["hours"] is None:
+            kwargs["hours"] = 0
         data_model.DataObject.__init__(self, **kwargs)
 
 
@@ -124,14 +129,14 @@ class TimeIntervalFrequency(Frequency):
     """
     minutes = data_model.property(
         "minutes", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="Number of minutes between snapshots. "
                       "Valid values are: 0 - 59"
     )
 
     hours = data_model.property(
         "hours", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="Number of hours between snapshots. "
                       "Valid values are: 0 - 24"
     )
@@ -162,14 +167,14 @@ class DaysOfWeekFrequency(Frequency):
     """
     minutes = data_model.property(
         "minutes", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="Minute of hour the snapshot is to be created. "
                       "Valid values are: 0 - 59"
     )
 
     hours = data_model.property(
         "hours", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="Hour of day the snapshot is to be created. "
                       "Valid values are: 0 - 24"
     )
@@ -204,14 +209,14 @@ class DaysOfMonthFrequency(Frequency):
     """
     minutes = data_model.property(
         "minutes", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="Minute of hour the snapshot is to be created. "
                       "Valid values are: 0 - 59"
     )
 
     hours = data_model.property(
         "hours", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="Hour of day the snapshot is to be created. "
                       "Valid values are: 0 - 24"
     )
