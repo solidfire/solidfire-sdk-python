@@ -8,12 +8,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>solidfire.util &mdash; SolidFire Python SDK v1.1.0.91</title>
+  <title>solidfire.util &mdash; SolidFire Python SDK v1.4.0.271</title>
   
 
   
   
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
   
 
   
@@ -34,7 +36,10 @@
   
 
   
-    <link rel="top" title="SolidFire Python SDK v1.1.0.91" href="../../index.html"/>
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="SolidFire Python SDK v1.4.0.271" href="../../index.html"/>
         <link rel="up" title="solidfire" href="../solidfire.html"/> 
 
   
@@ -44,6 +49,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -66,7 +72,7 @@
             
             
               <div class="version">
-                1.1.0.91
+                1.4.0.271
               </div>
             
           
@@ -87,8 +93,11 @@
           
             
             
-                <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html"> SolidFire Python SDK</a></li>
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html"> SolidFire Python SDK v1.2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../solidfire.html#account-management-examples">Account Management Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../solidfire.html#snapshot-scheduling-examples">Snapshot Scheduling Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../solidfire.html#solidfire-package">solidfire package</a></li>
@@ -104,8 +113,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../index.html">solidfire-sdk-python</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">solidfire-sdk-python</a>
+        
       </nav>
 
 
@@ -118,21 +129,38 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../index.html">Module code</a> &raquo;</li>
-      
+        
           <li><a href="../solidfire.html">solidfire</a> &raquo;</li>
-      
-    <li>solidfire.util</li>
+        
+      <li>solidfire.util</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -158,20 +186,40 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">art</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
-    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                                             </span><span class="se">\n</span><span class="s2">&quot;</span>
-    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                ______________            ___</span><span class="se">\n</span><span class="s2">&quot;</span>
-    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;               /__/__\__\__\__\       ___/__/</span><span class="se">\n</span><span class="s2">&quot;</span>
-    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;              /_ /__/_\__\__\__\  ___/__/__/ </span><span class="se">\n</span><span class="s2">&quot;</span>
-    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;             /__/__/__/\__\__\__\/__/__/__/  </span><span class="se">\n</span><span class="s2">&quot;</span>
-    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;            /__/__/__/  \__\__\__\_/__/__/   </span><span class="se">\n</span><span class="s2">&quot;</span>
-    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;           /__/__/       \__\__\__\__/__/    </span><span class="se">\n</span><span class="s2">&quot;</span>
-    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;          /__/            \__\__\__\/__/     </span><span class="se">\n</span><span class="s2">&quot;</span>
-    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                                             </span><span class="se">\n</span><span class="s2">&quot;</span>
-    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;             NetApp SolidFire Version </span><span class="si">{0}</span><span class="s2">    </span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                                               77               </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                                              7777              </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                                               77               </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                                               ==               </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                             77IIIIIIIIIIIIIIIIII777            </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                           =7                       7=          </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                           7                         7          </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                          =7                         7=         </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                          =7                         7=         </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                         =77   7777777777777777777   77=        </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                        7777  777777777777777777777  7777       </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                        7777   7777777777777777777   7777       </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                         =77                         77=        </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                          =7                         7=         </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                           7                         7          </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                           7=                       =7          </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                            77=                   =77           </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                              =7777777777777777777=             </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                                                                </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                               ====IIIIIIIIII=====              </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                         =77777=                 =77777=        </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                     =777=                             =777=    </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                 =777=                                     =777=</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                                                                </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                           NetApp SolidFire Version </span><span class="si">{0}</span><span class="s2">    &quot;</span> \
+           <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
     <span class="n">art</span> <span class="o">+=</span> <span class="s2">&quot;                                             </span><span class="se">\n</span><span class="s2">&quot;</span>
     <span class="k">return</span> <span class="n">art</span></div>
 </pre></div>
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
@@ -203,10 +251,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'1.1.0.91',
+            VERSION:'1.4.0.271',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../_static/jquery.js"></script>

@@ -8,12 +8,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>solidfire.adaptor package &mdash; SolidFire Python SDK v1.2.0.4</title>
+  <title>solidfire.adaptor package &mdash; SolidFire Python SDK v1.4.0.271</title>
   
 
   
   
     <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
   
 
   
@@ -34,10 +36,13 @@
   
 
   
-    <link rel="top" title="SolidFire Python SDK v1.2.0.4" href="index.html"/>
-        <link rel="up" title="SolidFire Python SDK v1.1" href="solidfire.html"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="SolidFire Python SDK v1.4.0.271" href="index.html"/>
+        <link rel="up" title="SolidFire Python SDK v1.2" href="solidfire.html"/>
         <link rel="next" title="solidfire.apiactual package" href="solidfire.apiactual.html"/>
-        <link rel="prev" title="SolidFire Python SDK v1.1" href="solidfire.html"/> 
+        <link rel="prev" title="SolidFire Python SDK v1.2" href="solidfire.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -46,6 +51,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -68,7 +74,7 @@
             
             
               <div class="version">
-                1.2.0.4
+                1.4.0.271
               </div>
             
           
@@ -89,13 +95,16 @@
           
             
             
-                <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="solidfire.html"> SolidFire Python SDK v1.1</a></li>
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="solidfire.html"> SolidFire Python SDK v1.2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="solidfire.html#account-management-examples">Account Management Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="solidfire.html#snapshot-scheduling-examples">Snapshot Scheduling Examples</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="solidfire.html#solidfire-package">solidfire package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="solidfire.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="">solidfire.adaptor package</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">solidfire.adaptor package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-solidfire.adaptor.schedule_adaptor">solidfire.adaptor.schedule_adaptor module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-solidfire.adaptor">Module contents</a></li>
@@ -110,7 +119,7 @@
 <li class="toctree-l2"><a class="reference internal" href="solidfire.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.factory">solidfire.factory module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.models">solidfire.models module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.results">solidfire.results module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#solidfire-results-module">solidfire.results module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire">Module contents</a></li>
 </ul>
 </li>
@@ -126,8 +135,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">solidfire-sdk-python</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">solidfire-sdk-python</a>
+        
       </nav>
 
 
@@ -140,21 +151,38 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-          <li><a href="solidfire.html"> SolidFire Python SDK v1.1</a> &raquo;</li>
-      
-    <li>solidfire.adaptor package</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="solidfire.html"> SolidFire Python SDK v1.2</a> &raquo;</li>
+        
+      <li>solidfire.adaptor package</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="_sources/solidfire.adaptor.txt" rel="nofollow"> View page source</a>
+            
+            <a href="_sources/solidfire.adaptor.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -170,12 +198,13 @@
 <p>Module implements Schedule Simplification conversion logic.</p>
 <dl class="class">
 <dt id="solidfire.adaptor.schedule_adaptor.ScheduleAdaptor">
-<em class="property">class </em><code class="descclassname">solidfire.adaptor.schedule_adaptor.</code><code class="descname">ScheduleAdaptor</code><a class="headerlink" href="#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor" title="Permalink to this definition">¶</a></dt>
-<dd><p>This class contains the implementation of the schedule specific adaptor
+<em class="property">class </em><code class="descclassname">solidfire.adaptor.schedule_adaptor.</code><code class="descname">ScheduleAdaptor</code><a class="reference internal" href="_modules/solidfire/adaptor/schedule_adaptor.html#ScheduleAdaptor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>This class contains the implementation of the schedule specific adaptor
 calls for simplifying Snapshot Scheduling.</p>
 <dl class="staticmethod">
 <dt id="solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.create_schedule">
-<em class="property">static </em><code class="descname">create_schedule</code><span class="sig-paren">(</span><em>element</em>, <em>params</em>, <em>since</em>, <em>deprecated</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.create_schedule" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">create_schedule</code><span class="sig-paren">(</span><em>element</em>, <em>params</em>, <em>since</em>, <em>deprecated</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/adaptor/schedule_adaptor.html#ScheduleAdaptor.create_schedule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.create_schedule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls to this static method should ONLY originate from the
 create_schedules method in the Element class. DO NOT CALL THIS
 directly. Documentation here is intentionally brief.</p>
@@ -183,7 +212,7 @@ directly. Documentation here is intentionally brief.</p>
 
 <dl class="staticmethod">
 <dt id="solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.get_schedule">
-<em class="property">static </em><code class="descname">get_schedule</code><span class="sig-paren">(</span><em>element</em>, <em>params</em>, <em>since</em>, <em>deprecated</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.get_schedule" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">get_schedule</code><span class="sig-paren">(</span><em>element</em>, <em>params</em>, <em>since</em>, <em>deprecated</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/adaptor/schedule_adaptor.html#ScheduleAdaptor.get_schedule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.get_schedule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls to this static method should ONLY originate from the
 get_schedule method in the Element class. DO NOT CALL THIS directly.
 Documentation here is intentionally brief.</p>
@@ -191,7 +220,7 @@ Documentation here is intentionally brief.</p>
 
 <dl class="staticmethod">
 <dt id="solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.list_schedules">
-<em class="property">static </em><code class="descname">list_schedules</code><span class="sig-paren">(</span><em>element</em>, <em>params</em>, <em>since</em>, <em>deprecated</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.list_schedules" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">list_schedules</code><span class="sig-paren">(</span><em>element</em>, <em>params</em>, <em>since</em>, <em>deprecated</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/adaptor/schedule_adaptor.html#ScheduleAdaptor.list_schedules"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.list_schedules" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls to this static method should ONLY originate from the
 list_schedules method in the Element class. DO NOT CALL THIS directly.
 Documentation here is intentionally brief.</p>
@@ -199,7 +228,7 @@ Documentation here is intentionally brief.</p>
 
 <dl class="staticmethod">
 <dt id="solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.modify_schedule">
-<em class="property">static </em><code class="descname">modify_schedule</code><span class="sig-paren">(</span><em>element</em>, <em>params</em>, <em>since</em>, <em>deprecated</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.modify_schedule" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">modify_schedule</code><span class="sig-paren">(</span><em>element</em>, <em>params</em>, <em>since</em>, <em>deprecated</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/adaptor/schedule_adaptor.html#ScheduleAdaptor.modify_schedule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.modify_schedule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls to this static method should ONLY originate from the
 modify_schedules method in the Element class. DO NOT CALL THIS
 directly. Documentation here is intentionally brief.</p>
@@ -207,7 +236,7 @@ directly. Documentation here is intentionally brief.</p>
 
 <dl class="staticmethod">
 <dt id="solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_api_schedule">
-<em class="property">static </em><code class="descname">to_api_schedule</code><span class="sig-paren">(</span><em>schedule</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_api_schedule" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">to_api_schedule</code><span class="sig-paren">(</span><em>schedule</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/adaptor/schedule_adaptor.html#ScheduleAdaptor.to_api_schedule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_api_schedule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts a Schedule object into an ApiSchedule object
 :param schedule: the Schedule object
 :type schedule: Schedule</p>
@@ -223,7 +252,7 @@ directly. Documentation here is intentionally brief.</p>
 
 <dl class="staticmethod">
 <dt id="solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_api_schedule_info">
-<em class="property">static </em><code class="descname">to_api_schedule_info</code><span class="sig-paren">(</span><em>info</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_api_schedule_info" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">to_api_schedule_info</code><span class="sig-paren">(</span><em>info</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/adaptor/schedule_adaptor.html#ScheduleAdaptor.to_api_schedule_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_api_schedule_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts a ScheduleInfo object into an ApiScheduleInfo object</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -239,7 +268,7 @@ directly. Documentation here is intentionally brief.</p>
 
 <dl class="staticmethod">
 <dt id="solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_schedule">
-<em class="property">static </em><code class="descname">to_schedule</code><span class="sig-paren">(</span><em>api</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_schedule" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">to_schedule</code><span class="sig-paren">(</span><em>api</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/adaptor/schedule_adaptor.html#ScheduleAdaptor.to_schedule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_schedule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts an ApiSchedule object into a Schedule object</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -255,7 +284,7 @@ directly. Documentation here is intentionally brief.</p>
 
 <dl class="staticmethod">
 <dt id="solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_schedule_info">
-<em class="property">static </em><code class="descname">to_schedule_info</code><span class="sig-paren">(</span><em>api</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_schedule_info" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">to_schedule_info</code><span class="sig-paren">(</span><em>api</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/adaptor/schedule_adaptor.html#ScheduleAdaptor.to_schedule_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_schedule_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert an ApiScheduleInfo object into a ScheduleInfo object</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -271,13 +300,13 @@ directly. Documentation here is intentionally brief.</p>
 
 <dl class="staticmethod">
 <dt id="solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_weekdays">
-<em class="property">static </em><code class="descname">to_weekdays</code><span class="sig-paren">(</span><em>api</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_weekdays" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">to_weekdays</code><span class="sig-paren">(</span><em>api</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/adaptor/schedule_adaptor.html#ScheduleAdaptor.to_weekdays"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.adaptor.schedule_adaptor.ScheduleAdaptor.to_weekdays" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts an ApiWeekday object array into a Weekday object array</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>api</strong> (<em>solidfire.apiactual.ApiWeekday[]</em>) &#8211; array of ApiWeekday objects</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>api</strong> (<a class="reference internal" href="solidfire.apiactual.html#solidfire.apiactual.ApiWeekday" title="solidfire.apiactual.ApiWeekday"><em>solidfire.apiactual.ApiWeekday</em></a><em>[</em><em></em><em>]</em><em></em>) &#8211; array of ApiWeekday objects</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">solidfire.custom.models.Weekday[]</td>
 </tr>
@@ -293,13 +322,13 @@ directly. Documentation here is intentionally brief.</p>
 <p>Module implements the generated adaptor calls from solidfire.Element</p>
 <dl class="class">
 <dt id="solidfire.adaptor.ElementServiceAdaptor">
-<em class="property">class </em><code class="descclassname">solidfire.adaptor.</code><code class="descname">ElementServiceAdaptor</code><a class="headerlink" href="#solidfire.adaptor.ElementServiceAdaptor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">solidfire.adaptor.</code><code class="descname">ElementServiceAdaptor</code><a class="reference internal" href="_modules/solidfire/adaptor.html#ElementServiceAdaptor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.adaptor.ElementServiceAdaptor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>This class contains the implementation of the generated adaptor calls from
 solidfire.Element.</p>
 <dl class="staticmethod">
 <dt id="solidfire.adaptor.ElementServiceAdaptor.create_schedule">
-<em class="property">static </em><code class="descname">create_schedule</code><span class="sig-paren">(</span><em>element</em>, <em>params</em>, <em>since</em>, <em>deprecated</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.adaptor.ElementServiceAdaptor.create_schedule" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">create_schedule</code><span class="sig-paren">(</span><em>element</em>, <em>params</em>, <em>since</em>, <em>deprecated</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/adaptor.html#ElementServiceAdaptor.create_schedule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.adaptor.ElementServiceAdaptor.create_schedule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls to this static method should ONLY originate from the
 create_schedules method in the Element class. DO NOT CALL THIS
 directly. Documentation here is intentionally brief.</p>
@@ -307,7 +336,7 @@ directly. Documentation here is intentionally brief.</p>
 
 <dl class="staticmethod">
 <dt id="solidfire.adaptor.ElementServiceAdaptor.get_node_stats">
-<em class="property">static </em><code class="descname">get_node_stats</code><span class="sig-paren">(</span><em>element</em>, <em>params</em>, <em>since</em>, <em>deprecated</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.adaptor.ElementServiceAdaptor.get_node_stats" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">get_node_stats</code><span class="sig-paren">(</span><em>element</em>, <em>params</em>, <em>since</em>, <em>deprecated</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/adaptor.html#ElementServiceAdaptor.get_node_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.adaptor.ElementServiceAdaptor.get_node_stats" title="Permalink to this definition">¶</a></dt>
 <dd><p>This adaptor includes the original Node ID from the request in the
 response object. It is returned as null from the original API call.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -317,15 +346,15 @@ response object. It is returned as null from the original API call.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>element</strong> (<a class="reference internal" href="solidfire.html#solidfire.Element" title="solidfire.Element"><em>Element</em></a>) &#8211; an instance of Element</li>
 <li><strong>params</strong> (<em>dict</em>) &#8211; the parameters supplied to the get_node_stats call</li>
-<li><strong>since</strong> (<em>float or str or None</em>) &#8211; service method inception version</li>
-<li><strong>deprecated</strong> (<em>float or str or None</em>) &#8211; service method deprecation version</li>
+<li><strong>since</strong> (<em>float</em><em> or </em><em>str</em><em> or </em><em>None</em>) &#8211; service method inception version</li>
+<li><strong>deprecated</strong> (<em>float</em><em> or </em><em>str</em><em> or </em><em>None</em>) &#8211; service method deprecation version</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a response</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="solidfire.html#solidfire.results.GetNodeStatsResult" title="solidfire.results.GetNodeStatsResult">GetNodeStatsResult</a></p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="solidfire.html#solidfire.models.GetNodeStatsResult" title="solidfire.models.GetNodeStatsResult">GetNodeStatsResult</a></p>
 </td>
 </tr>
 </tbody>
@@ -334,7 +363,7 @@ response object. It is returned as null from the original API call.</p>
 
 <dl class="staticmethod">
 <dt id="solidfire.adaptor.ElementServiceAdaptor.get_schedule">
-<em class="property">static </em><code class="descname">get_schedule</code><span class="sig-paren">(</span><em>element</em>, <em>params</em>, <em>since</em>, <em>deprecated</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.adaptor.ElementServiceAdaptor.get_schedule" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">get_schedule</code><span class="sig-paren">(</span><em>element</em>, <em>params</em>, <em>since</em>, <em>deprecated</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/adaptor.html#ElementServiceAdaptor.get_schedule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.adaptor.ElementServiceAdaptor.get_schedule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls to this static method should ONLY originate from the
 get_schedule method in the Element class. DO NOT CALL THIS directly.
 Documentation here is intentionally brief.</p>
@@ -342,12 +371,12 @@ Documentation here is intentionally brief.</p>
 
 <dl class="staticmethod">
 <dt id="solidfire.adaptor.ElementServiceAdaptor.invoke_sfapi">
-<em class="property">static </em><code class="descname">invoke_sfapi</code><span class="sig-paren">(</span><em>element</em>, <em>params</em>, <em>since</em>, <em>deprecated</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.adaptor.ElementServiceAdaptor.invoke_sfapi" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">invoke_sfapi</code><span class="sig-paren">(</span><em>element</em>, <em>params</em>, <em>since</em>, <em>deprecated</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/adaptor.html#ElementServiceAdaptor.invoke_sfapi"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.adaptor.ElementServiceAdaptor.invoke_sfapi" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="staticmethod">
 <dt id="solidfire.adaptor.ElementServiceAdaptor.list_schedules">
-<em class="property">static </em><code class="descname">list_schedules</code><span class="sig-paren">(</span><em>element</em>, <em>params</em>, <em>since</em>, <em>deprecated</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.adaptor.ElementServiceAdaptor.list_schedules" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">list_schedules</code><span class="sig-paren">(</span><em>element</em>, <em>params</em>, <em>since</em>, <em>deprecated</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/adaptor.html#ElementServiceAdaptor.list_schedules"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.adaptor.ElementServiceAdaptor.list_schedules" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls to this static method should ONLY originate from the
 list_schedules method in the Element class. DO NOT CALL THIS directly.
 Documentation here is intentionally brief.</p>
@@ -355,7 +384,7 @@ Documentation here is intentionally brief.</p>
 
 <dl class="staticmethod">
 <dt id="solidfire.adaptor.ElementServiceAdaptor.modify_schedule">
-<em class="property">static </em><code class="descname">modify_schedule</code><span class="sig-paren">(</span><em>element</em>, <em>params</em>, <em>since</em>, <em>deprecated</em><span class="sig-paren">)</span><a class="headerlink" href="#solidfire.adaptor.ElementServiceAdaptor.modify_schedule" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">modify_schedule</code><span class="sig-paren">(</span><em>element</em>, <em>params</em>, <em>since</em>, <em>deprecated</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solidfire/adaptor.html#ElementServiceAdaptor.modify_schedule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solidfire.adaptor.ElementServiceAdaptor.modify_schedule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls to this static method should ONLY originate from the
 modify_schedules method in the Element class. DO NOT CALL THIS
 directly. Documentation here is intentionally brief.</p>
@@ -368,15 +397,18 @@ directly. Documentation here is intentionally brief.</p>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="solidfire.apiactual.html" class="btn btn-neutral float-right" title="solidfire.apiactual package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="solidfire.apiactual.html" class="btn btn-neutral float-right" title="solidfire.apiactual package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="solidfire.html" class="btn btn-neutral" title="SolidFire Python SDK v1.1" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="solidfire.html" class="btn btn-neutral" title="SolidFire Python SDK v1.2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -407,10 +439,11 @@ directly. Documentation here is intentionally brief.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.2.0.4',
+            VERSION:'1.4.0.271',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>
