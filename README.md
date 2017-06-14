@@ -1,7 +1,5 @@
 ![sf-python-logo](https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/master/img/python-50.png) SolidFire Python SDK v1.4
 
-======================================================================================================================================
-
 Python SDK library for interacting with SolidFire Element API
 
 [![pypy](https://img.shields.io/pypi/v/solidfire-sdk-python.svg)](https://badge.fury.io/py/solidfire-sdk-python)
