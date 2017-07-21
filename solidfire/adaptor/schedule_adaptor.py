@@ -96,6 +96,9 @@ class ScheduleAdaptor:
         create_schedules method in the Element class. DO NOT CALL THIS
         directly. Documentation here is intentionally brief.
         """
+        if params['schedule'] is None:
+            raise AttributeError("Please provide a valid schedule object "
+                                 "instead of None.")
         if params['schedule'].schedule_id is not None:
             raise AttributeError("ScheduleID should not be present. Do "
                                  "not specify ScheduleID when creating a "
