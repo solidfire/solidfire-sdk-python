@@ -1,5 +1,4 @@
-![sf-python-logo](https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/master/img/python-50.png) SolidFire Python SDK v{{shortVersion}}
-======================================================================================================================================
+![sf-python-logo](https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/master/img/python-50.png) SolidFire Python SDK v1.4
 
 Python SDK library for interacting with SolidFire Element API
 
@@ -25,7 +24,7 @@ Compatibility
 
 |  Component               | Version       |
 |:-------------------------|:--------------|
-| SolidFire Element OS     | 7.0 - 9.0     |
+| SolidFire Element OS     | 7.0 - 9.1     |
 
 Getting Help
 ------------
@@ -42,7 +41,8 @@ Documentation
 [Latest Docs](https://pythonhosted.org/solidfire-sdk-python/)
 
 [Release
-Notes](https://github.com/solidfire/solidfire-sdk-python/blob/master/NetApp_SolidFire_Python_SDK_v{{shortVersion}}_Release_Notes.pdf)
+Notes](https://github.com/solidfire/solidfire-sdk-python/blob/master/NetApp_SolidFire_Python_SDK_Release_Notes.pdf)
+
 
 Installation
 ------------
@@ -56,10 +56,6 @@ Installation
 *Note*: It is recommended using
 [virtualenv](https://github.com/pypa/virtualenv) for isolating the
 python environment to only the required libraries.
-
-To install the latest version of the SDK:
-
-    pip install -e git+https://github.com/solidfire/solidfire-sdk-python.git@develop#egg=solidfire-sdk-python
 
 Alternatively, for development purposes or to inspect the source, the
 following will work:
@@ -83,12 +79,10 @@ Videos
 
 **Getting Started**
 
-[This video](https://www.youtube.com/3g028LYmiN4) is a walkthrough of getting started with the SolidFire Python
+[This video](https://www.youtube.com/watch?v=3g028LYmiN4) is a walkthrough of getting started with the SolidFire Python
 SDK. You will see how install the SDK, connect to a SolidFire cluster,
 and use it to perform simple operations like retrieving and modifying
 accounts and volumes.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/3g028LYmiN4" frameborder="0" allowfullscreen></iframe>
 
 Examples
 --------
