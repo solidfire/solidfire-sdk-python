@@ -16,8 +16,6 @@ import logging
 LOG = logging.getLogger('solidfire.Element')
 
 min_sdk_version = 7.0
-max_sdk_version = 10
-
 
 class ElementFactory:
     """
@@ -86,13 +84,8 @@ class ElementFactory:
         api = element.get_api()
 
         if version is None:
-            # cluster's version is greater than max supported version
-            if float(api.current_version) > max_sdk_version:
-                element = Element(target, username, password, max_sdk_version,
-                                  verify_ssl)
-            else:
-                element = Element(target, username, password,
-                                  api.current_version, verify_ssl)
+            element = Element(target, username, password,
+                              api.current_version, verify_ssl)
         else:
             try:
                 version_actual = float(version)
