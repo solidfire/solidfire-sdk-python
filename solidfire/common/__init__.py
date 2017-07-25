@@ -657,7 +657,9 @@ class ServiceBase(object):
         # noinspection PyBroadException
         try:
             response = json.loads(response_raw)
-            LOG.debug(msg=response_raw)
+            secret_keys = ["clusterPairingKey", "volumePairingKey", "password", "initiatorSecret", "scriptParameters", "targetSecret", "searchBindPassword"]
+            obfuscated_response_raw = json.dumps(self._obfuscate_keys(secret_keys, response), indent=4)
+            LOG.debug(msg=obfuscated_response_raw)
         except Exception as error:
             LOG.error(msg=response_raw)
             response = json.dumps(
@@ -675,6 +677,24 @@ class ServiceBase(object):
             raise ApiServerError(method_name, json.dumps(response))
         else:
             return model.extract(result_type, response['result'])
+
+    # For logging purposes, there are a set of keys we don't want to be in plain text.
+    # This goes through the response and obfuscates the secret keys.
+    def _obfuscate_keys(self, private_keys, response, obfuscate = False):
+        if type(response) == dict:
+            private_dict = dict()
+            for key in response:
+                if key in private_keys:
+                    private_dict[key] = self._obfuscate_keys(private_keys, response[key], True)
+                else:
+                    private_dict[key] = self._obfuscate_keys(private_keys, response[key], False)
+            return private_dict
+        if type(response) == list:
+            return [self._obfuscate_keys(private_keys, item) for item in response]
+        if obfuscate:
+            return "*****"
+        else:
+            return response
 
     def _check_connection_type(self, method_name,
                                connection_type):
