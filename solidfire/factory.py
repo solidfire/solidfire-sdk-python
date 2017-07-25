@@ -115,11 +115,6 @@ class ElementFactory:
             else:
                 element = Element(target, username, password, version_actual,
                                   verify_ssl)
-                if version_actual > max_sdk_version:
-                    LOG.warning(
-                        "You have connected to a version that is higher than "
-                        "supported by this SDK. Some functionality may not "
-                        "work.")
 
         LOG.info("Connected to {0} using API version {1}"
                  .format(target, element.api_version))
