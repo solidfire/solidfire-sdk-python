@@ -488,6 +488,8 @@ class ServiceBase(object):
         """
 
         self._api_version = float(api_version)
+        self._private_keys = ["clusterPairingKey", "volumePairingKey", "password", "initiatorSecret", "scriptParameters", "targetSecret", "searchBindPassword"]
+
         endpoint = str.format('https://{mvip}/json-rpc/{api_version}',
                               mvip=mvip, api_version=self._api_version)
         if 'https' in endpoint:
@@ -582,17 +584,19 @@ class ServiceBase(object):
         else:
             atomic_id = ATOMIC_COUNTER.__next__()
 
-        encoded = json.dumps({
+        request_dict = {
             'method': method_name,
             'id': atomic_id if atomic_id > 0 else 0,
             'params': dict(
                  (name, model.serialize(val))
                  for name, val in params.items()
              ),
-        })
+        }
+        obfuscated_request_raw = json.dumps(request_dict)
+        encoded = json.dumps(request_dict)
 
         try:
-            LOG.info(msg=encoded)
+            LOG.info(msg=obfuscated_request_raw)
             response_raw = self._dispatcher.post(encoded)
         except requests.ConnectionError:
             raise ApiConnectionError("Was not able to connect to the specified target as a result of timing out.")
@@ -657,8 +661,7 @@ class ServiceBase(object):
         # noinspection PyBroadException
         try:
             response = json.loads(response_raw)
-            secret_keys = ["clusterPairingKey", "volumePairingKey", "password", "initiatorSecret", "scriptParameters", "targetSecret", "searchBindPassword"]
-            obfuscated_response_raw = json.dumps(self._obfuscate_keys(secret_keys, response), indent=4)
+            obfuscated_response_raw = json.dumps(self._obfuscate_keys(response), indent=4)
             LOG.debug(msg=obfuscated_response_raw)
         except Exception as error:
             LOG.error(msg=response_raw)
@@ -680,17 +683,17 @@ class ServiceBase(object):
 
     # For logging purposes, there are a set of keys we don't want to be in plain text.
     # This goes through the response and obfuscates the secret keys.
-    def _obfuscate_keys(self, private_keys, response, obfuscate = False):
+    def _obfuscate_keys(self, response, obfuscate = False):
         if type(response) == dict:
             private_dict = dict()
             for key in response:
-                if key in private_keys:
-                    private_dict[key] = self._obfuscate_keys(private_keys, response[key], True)
+                if key in self._private_keys:
+                    private_dict[key] = self._obfuscate_keys(response[key], True)
                 else:
-                    private_dict[key] = self._obfuscate_keys(private_keys, response[key], False)
+                    private_dict[key] = self._obfuscate_keys(response[key])
             return private_dict
         if type(response) == list:
-            return [self._obfuscate_keys(private_keys, item) for item in response]
+            return [self._obfuscate_keys(item) for item in response]
         if obfuscate:
             return "*****"
         else:
