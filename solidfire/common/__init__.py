@@ -655,9 +655,6 @@ class ServiceBase(object):
             )
             raise ApiConnectionError(json_err)
 
-        if return_response_raw:
-            return response_raw
-
         # noinspection PyBroadException
         try:
             response = json.loads(response_raw)
@@ -675,6 +672,10 @@ class ServiceBase(object):
                         }
                 }
             )
+
+        # If we want the raw json response instead of the python object...
+        if return_response_raw:
+            return response_raw
 
         if 'error' in response:
             raise ApiServerError(method_name, json.dumps(response))
