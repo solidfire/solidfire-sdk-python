@@ -592,7 +592,7 @@ class ServiceBase(object):
                  for name, val in params.items()
              ),
         }
-        obfuscated_request_raw = json.dumps(request_dict)
+        obfuscated_request_raw = json.dumps(self._obfuscate_keys(request_dict))
         encoded = json.dumps(request_dict)
 
         try:
