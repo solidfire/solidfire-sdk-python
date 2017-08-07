@@ -68,8 +68,8 @@ class ApiServerError(Exception):
         :param err_json: the json formatted error received from the service.
         :type err_json: str
         """
-        if isinstance(err_json, str) and not err_json.strip():
-            err_json = '{}'
+        #if isinstance(err_json, str):
+        #    err_json = '{}'
 
         self._method_name = method_name
         self._err_json = err_json
@@ -93,14 +93,18 @@ class ApiServerError(Exception):
     @property
     def error_name(self):
         """The name of the error."""
-        return json.loads(self._err_json) \
-            .get('error', {}).get('name', 'Unknown')
+        maybeDict = json.loads(self._err_json)
+        if isinstance(maybeDict, str):
+            maybeDict = json.loads(maybeDict)
+        return maybeDict.get('error', {}).get('name', 'Unknown')
 
     @property
     def error_code(self):
         """The numeric code for this error."""
-        return int(json.loads(self._err_json)
-                   .get('error', {}).get('code', 500))
+        maybeDict = json.loads(self._err_json)
+        if isinstance(maybeDict, str):
+            maybeDict = json.loads(maybeDict)
+        return int(maybeDict.get('error', {}).get('code', 500))
 
     @property
     def message(self):
@@ -329,7 +333,7 @@ class ApiVersionUnsupportedError(Exception):
         ApiVersionUnsupportedError constructor.
 
         :param api_version: the version of API used to instantiate the
-            connection to the server.
+            connection to the server
         :type api_version: str or float
 
         :param supported_versions: the list of supported versions provided by
@@ -367,8 +371,9 @@ class ApiVersionUnsupportedError(Exception):
         return self._supported_versions
 
 class ApiConnectionError(Exception):
-    def __init__(self, message):
+    def __init__(self, message, ex = None):
         super(ApiConnectionError, self).__init__(message)
+        self.inner_exception = ex;
 
 class CurlDispatcher(object):
     """
@@ -394,8 +399,8 @@ class CurlDispatcher(object):
         :type verify_ssl: bool
         """
         self._endpoint = endpoint
-        self._username = username
-        self._password = password
+        self._credentials = str.format('{u}:{p}', u=username, p=password) \
+            if (username or password) else None
         self._verify_ssl = verify_ssl
         self._timeout = 300
         self._connect_timeout = 30
@@ -445,13 +450,14 @@ class CurlDispatcher(object):
         :type data: str or json
         """
         auth = None
-        if self._username is None or self._password is None:
-            raise ValueError("Username or Password is not set")
-        else:
-            auth = HTTPBasicAuth(self._username, self._password)
+        if self._credentials is not None:
+            (usr, pwd) = self._credentials.split(':')
+            auth = HTTPBasicAuth(usr, pwd)
         resp = requests.post(self._endpoint, data=data, json=None,
                              verify=self._verify_ssl, timeout=self._timeout,
                              auth=auth)
+        if resp.text == '':
+             return {"code": resp.status_code, "name":  resp.reason, "message": ""}
         return resp.text
 
 
@@ -488,8 +494,6 @@ class ServiceBase(object):
         """
 
         self._api_version = float(api_version)
-        self._private_keys = ["clusterPairingKey", "volumePairingKey", "password", "initiatorSecret", "scriptParameters", "targetSecret", "searchBindPassword"]
-
         endpoint = str.format('https://{mvip}/json-rpc/{api_version}',
                               mvip=mvip, api_version=self._api_version)
         if 'https' in endpoint:
@@ -550,8 +554,7 @@ class ServiceBase(object):
                      result_type,
                      params=None,
                      since=None,
-                     deprecated=None,
-                     return_response_raw=False):
+                     deprecated=None):
         """
         :param method_name: the name of the API method to call
         :type method_name: str
@@ -584,121 +587,105 @@ class ServiceBase(object):
         else:
             atomic_id = ATOMIC_COUNTER.__next__()
 
-        request_dict = {
+        encoded = json.dumps({
             'method': method_name,
             'id': atomic_id if atomic_id > 0 else 0,
             'params': dict(
                  (name, model.serialize(val))
                  for name, val in params.items()
              ),
-        }
-        obfuscated_request_raw = json.dumps(self._obfuscate_keys(request_dict))
-        encoded = json.dumps(request_dict)
-
+        })
+        #response_raw = self._dispatcher.post(encoded)
         try:
-            LOG.info(msg=obfuscated_request_raw)
+            LOG.info(msg=encoded)
             response_raw = self._dispatcher.post(encoded)
-        except requests.ConnectionError:
-            raise ApiConnectionError("Was not able to connect to the specified target as a result of timing out.")
-        except requests.ReadTimeout:
-            raise ApiConnectionError("Read timed out.")
+        except requests.ConnectionError as e:
+            if ("Errno 8" in str(e)):
+                raise ApiConnectionError("Unknown host based on target.")
+            elif ("Errno 60" in str(e)):
+                raise ApiConnectionError("Connection timed out.")
+            elif ("Errno 61" in str(e)):
+                raise ApiConnectionError("Connection Refused. Confirm your target is a SolidFire cluster or node.")
+            elif ("Errno 51" in str(e)):
+                raise ApiConnectionError("Network is unreachable")
+            raise ApiConnectionError(e)
         except requests.exceptions.ChunkedEncodingError as error:
             raise ApiConnectionError(error.args)
         except Exception as error:
-            if 2 <= len(error.args):
-                json_err = json.dumps(
-                    {
-                        'error':
-                            {
-                                'name': str(error.__class__).split('\'')[1],
-                                'code': 500,
-                                'message': error.args[1].__str__()
-                            }
-                    }
-                )
-            else:
-                json_err = json.dumps(
-                    {
-                        'error':
-                            {
-                                'name': str(error.__class__).split('\'')[1],
-                                'code': 500,
-                                'message': error.args.__str__()
-                            }
-                    }
-                )
-            raise ApiServerError(method_name, json_err)
+            # if 2 <= len(error.args):
+            #     json_err = json.dumps(
+            #         {
+            #             'error':
+            #                 {
+            #                     'name': str(error.__class__).split('\'')[1],
+            #                     'code': 500,
+            #                     'message': error.args[1].__str__()
+            #                 }
+            #         }
+            #     )
+            # else:
+            #     json_err = json.dumps(
+            #         {
+            #             'error':
+            #                 {
+            #                     'name': str(error.__class__).split('\'')[1],
+            #                     'code': 500,
+            #                     'message': error.args.__str__()
+            #                 }
+            #         }
+            #     )
+            raise ApiServerError(method_name, error)
 
-        if "401 Unauthorized." in response_raw:
-            json_err = json.dumps(
-                {
-                    'error':
-                        {
-                            'name': 'AuthorizationError',
-                            'code': 401,
-                            'message': 'Username or password incorrect.'
-                        }
-                }
-            )
-            raise ApiConnectionError(json_err)
-
-        if "404 Not Found" in response_raw:
-            json_err = json.dumps(
-                {
-                    'error':
-                        {
-                            'name': 'NotFoundError',
-                            'code': 404,
-                            'message': 'The connection was not found.'
-                        }
-                }
-            )
-            raise ApiConnectionError(json_err)
 
         # noinspection PyBroadException
-        try:
-            response = json.loads(response_raw)
-            obfuscated_response_raw = json.dumps(self._obfuscate_keys(response), indent=4)
-            LOG.debug(msg=obfuscated_response_raw)
-        except Exception as error:
-            LOG.error(msg=response_raw)
-            response = json.dumps(
-                {
-                    'error':
-                        {
-                            'name': 'JSONDecodeError',
-                            'code': 500,
-                            'message': str(error)
-                        }
+        LOG.debug(msg=response_raw)
+        if isinstance(response_raw, dict): #if isinstance(response_raw, dict) and "name" in response_raw and "code" in response_raw:
+            response = {
+                    'error': response_raw
                 }
-            )
+        else:
+            try:
+                response = json.loads(response_raw)
+            except Exception as error:
+                LOG.error(msg=response_raw)
+                if "401 Unauthorized." in response_raw:
+                    # json_err = {
+                    #         'error':
+                    #             {
+                    #                 'name': 'AuthorizationError',
+                    #                 'code': 401,
+                    #                 'message': 'Username or password incorrect.'
+                    #             }
+                    #     }
+                    #raise ApiConnectionError(json_err)
+                    raise ApiConnectionError("Bad Credentials")
 
-        # If we want the raw json response instead of the python object...
-        if return_response_raw:
-            return response_raw
+
+                if "404 Not Found" in response_raw:
+                    # json_err = {
+                    #         'error':
+                    #             {
+                    #                 'name': 'NotFoundError',
+                    #                 'code': 404,
+                    #                 'message': 'The connection was not found.'
+                    #             }
+                    #     }
+                    # raise ApiConnectionError(json_err)
+                    raise ApiConnectionError("404 Not Found")
+                response =  {
+                        'error':
+                            {
+                                'name': 'JSONDecodeError',
+                                'code': 400,
+                                'message': str(error)
+                            }
+                    }
+
 
         if 'error' in response:
-            raise ApiServerError(method_name, json.dumps(response))
+            raise requests.HTTPError(str(response["error"]["code"]) + " " + response["error"]["name"] + " " + response["error"]["message"])
         else:
             return model.extract(result_type, response['result'])
-
-    # For logging purposes, there are a set of keys we don't want to be in plain text.
-    # This goes through the response and obfuscates the secret keys.
-    def _obfuscate_keys(self, response, obfuscate = False):
-        if type(response) == dict:
-            private_dict = dict()
-            for key in response:
-                if key in self._private_keys:
-                    private_dict[key] = self._obfuscate_keys(response[key], True)
-                else:
-                    private_dict[key] = self._obfuscate_keys(response[key])
-            return private_dict
-        if type(response) == list:
-            return [self._obfuscate_keys(item) for item in response]
-        if obfuscate:
-            return "*****"
-        else:
-            return response
 
     def _check_connection_type(self, method_name,
                                connection_type):
