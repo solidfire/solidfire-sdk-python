@@ -694,7 +694,7 @@ class ServiceBase(object):
 
     # For logging purposes, there are a set of keys we don't want to be in plain text.
     # This goes through the response and obfuscates the secret keys.
-    def _obfuscate_keys(self, response, obfuscate=False):
+    def _obfuscate_keys(self, response, obfuscate = False):
         if type(response) == dict:
             private_dict = dict()
             for key in response:
