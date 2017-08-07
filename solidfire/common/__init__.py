@@ -651,6 +651,7 @@ class ServiceBase(object):
         else:
             try:
                 response = json.loads(response_raw)
+                LOG.debug(msg=response_raw)
             except Exception as error:
                 LOG.error(msg=response_raw)
                 if "401 Unauthorized." in response_raw:
@@ -686,6 +687,8 @@ class ServiceBase(object):
                             }
                     }
 
+        if return_response_raw:
+            return response_raw
 
         if 'error' in response:
             raise requests.HTTPError(str(response["error"]["code"]) + " " + response["error"]["name"] + " " + response["error"]["message"])
