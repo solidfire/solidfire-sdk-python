@@ -333,7 +333,7 @@ class ApiVersionUnsupportedError(Exception):
         ApiVersionUnsupportedError constructor.
 
         :param api_version: the version of API used to instantiate the
-            connection to the server
+            connection to the server.
         :type api_version: str or float
 
         :param supported_versions: the list of supported versions provided by
@@ -494,9 +494,7 @@ class ServiceBase(object):
         """
 
         self._api_version = float(api_version)
-        self._private_keys = ["clusterPairingKey", "volumePairingKey", "password",
-                              "initiatorSecret", "scriptParameters", "targetSecret", "searchBindPassword"]
-
+        self._private_keys = ["clusterPairingKey", "volumePairingKey", "password", "initiatorSecret", "scriptParameters", "targetSecret", "searchBindPassword"]
 
         endpoint = str.format('https://{mvip}/json-rpc/{api_version}',
                               mvip=mvip, api_version=self._api_version)
@@ -592,7 +590,7 @@ class ServiceBase(object):
         else:
             atomic_id = ATOMIC_COUNTER.__next__()
 
-            request_dict = {
+        request_dict = {
             'method': method_name,
             'id': atomic_id if atomic_id > 0 else 0,
             'params': dict(
@@ -694,9 +692,8 @@ class ServiceBase(object):
         else:
             return model.extract(result_type, response['result'])
 
-            # For logging purposes, there are a set of keys we don't want to be in plain text.
-            # This goes through the response and obfuscates the secret keys.
-
+    # For logging purposes, there are a set of keys we don't want to be in plain text.
+    # This goes through the response and obfuscates the secret keys.
     def _obfuscate_keys(self, response, obfuscate=False):
         if type(response) == dict:
             private_dict = dict()
