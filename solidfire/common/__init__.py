@@ -371,9 +371,8 @@ class ApiVersionUnsupportedError(Exception):
         return self._supported_versions
 
 class ApiConnectionError(Exception):
-    def __init__(self, message, ex = None):
+    def __init__(self, message):
         super(ApiConnectionError, self).__init__(message)
-        self.inner_exception = ex;
 
 class CurlDispatcher(object):
     """
@@ -399,8 +398,8 @@ class CurlDispatcher(object):
         :type verify_ssl: bool
         """
         self._endpoint = endpoint
-        self._credentials = str.format('{u}:{p}', u=username, p=password) \
-            if (username or password) else None
+        self._username = username
+        self._password = password
         self._verify_ssl = verify_ssl
         self._timeout = 300
         self._connect_timeout = 30
@@ -450,9 +449,10 @@ class CurlDispatcher(object):
         :type data: str or json
         """
         auth = None
-        if self._credentials is not None:
-            (usr, pwd) = self._credentials.split(':')
-            auth = HTTPBasicAuth(usr, pwd)
+        if self._username is None or self._password is None:
+            raise ValueError("Username or Password is not set")
+        else:
+            auth = HTTPBasicAuth(self._username, self._password)
         resp = requests.post(self._endpoint, data=data, json=None,
                              verify=self._verify_ssl, timeout=self._timeout,
                              auth=auth)
@@ -494,6 +494,10 @@ class ServiceBase(object):
         """
 
         self._api_version = float(api_version)
+        self._private_keys = ["clusterPairingKey", "volumePairingKey", "password",
+                              "initiatorSecret", "scriptParameters", "targetSecret", "searchBindPassword"]
+
+
         endpoint = str.format('https://{mvip}/json-rpc/{api_version}',
                               mvip=mvip, api_version=self._api_version)
         if 'https' in endpoint:
@@ -554,7 +558,8 @@ class ServiceBase(object):
                      result_type,
                      params=None,
                      since=None,
-                     deprecated=None):
+                     deprecated=None,
+                     return_response_raw=False):
         """
         :param method_name: the name of the API method to call
         :type method_name: str
@@ -587,17 +592,19 @@ class ServiceBase(object):
         else:
             atomic_id = ATOMIC_COUNTER.__next__()
 
-        encoded = json.dumps({
+            request_dict = {
             'method': method_name,
             'id': atomic_id if atomic_id > 0 else 0,
             'params': dict(
                  (name, model.serialize(val))
                  for name, val in params.items()
              ),
-        })
-        #response_raw = self._dispatcher.post(encoded)
+        }
+        obfuscated_request_raw = json.dumps(self._obfuscate_keys(request_dict))
+        encoded = json.dumps(request_dict)
+
         try:
-            LOG.info(msg=encoded)
+            LOG.info(msg=obfuscated_request_raw)
             response_raw = self._dispatcher.post(encoded)
         except requests.ConnectionError as e:
             if ("Errno 8" in str(e)):
@@ -686,6 +693,25 @@ class ServiceBase(object):
             raise requests.HTTPError(str(response["error"]["code"]) + " " + response["error"]["name"] + " " + response["error"]["message"])
         else:
             return model.extract(result_type, response['result'])
+
+            # For logging purposes, there are a set of keys we don't want to be in plain text.
+            # This goes through the response and obfuscates the secret keys.
+
+    def _obfuscate_keys(self, response, obfuscate=False):
+        if type(response) == dict:
+            private_dict = dict()
+            for key in response:
+                if key in self._private_keys:
+                    private_dict[key] = self._obfuscate_keys(response[key], True)
+                else:
+                    private_dict[key] = self._obfuscate_keys(response[key])
+            return private_dict
+        if type(response) == list:
+            return [self._obfuscate_keys(item) for item in response]
+        if obfuscate:
+            return "*****"
+        else:
+            return response
 
     def _check_connection_type(self, method_name,
                                connection_type):
