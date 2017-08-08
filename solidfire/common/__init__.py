@@ -68,8 +68,8 @@ class ApiServerError(Exception):
         :param err_json: the json formatted error received from the service.
         :type err_json: str
         """
-        if isinstance(err_json, str) and not err_json.strip():
-            err_json = '{}'
+        #if isinstance(err_json, str):
+        #    err_json = '{}'
 
         self._method_name = method_name
         self._err_json = err_json
@@ -93,14 +93,18 @@ class ApiServerError(Exception):
     @property
     def error_name(self):
         """The name of the error."""
-        return json.loads(self._err_json) \
-            .get('error', {}).get('name', 'Unknown')
+        maybeDict = json.loads(self._err_json)
+        if isinstance(maybeDict, str):
+            maybeDict = json.loads(maybeDict)
+        return maybeDict.get('error', {}).get('name', 'Unknown')
 
     @property
     def error_code(self):
         """The numeric code for this error."""
-        return int(json.loads(self._err_json)
-                   .get('error', {}).get('code', 500))
+        maybeDict = json.loads(self._err_json)
+        if isinstance(maybeDict, str):
+            maybeDict = json.loads(maybeDict)
+        return int(maybeDict.get('error', {}).get('code', 500))
 
     @property
     def message(self):
@@ -452,6 +456,8 @@ class CurlDispatcher(object):
         resp = requests.post(self._endpoint, data=data, json=None,
                              verify=self._verify_ssl, timeout=self._timeout,
                              auth=auth)
+        if resp.text == '':
+             return {"code": resp.status_code, "name":  resp.reason, "message": ""}
         return resp.text
 
 
@@ -598,87 +604,94 @@ class ServiceBase(object):
         try:
             LOG.info(msg=obfuscated_request_raw)
             response_raw = self._dispatcher.post(encoded)
-        except requests.ConnectionError:
-            raise ApiConnectionError("Was not able to connect to the specified target as a result of timing out.")
-        except requests.ReadTimeout:
-            raise ApiConnectionError("Read timed out.")
+        except requests.ConnectionError as e:
+            if ("Errno 8" in str(e)):
+                raise ApiConnectionError("Unknown host based on target.")
+            elif ("Errno 60" in str(e)):
+                raise ApiConnectionError("Connection timed out.")
+            elif ("Errno 61" in str(e)):
+                raise ApiConnectionError("Connection Refused. Confirm your target is a SolidFire cluster or node.")
+            elif ("Errno 51" in str(e)):
+                raise ApiConnectionError("Network is unreachable")
+            raise ApiConnectionError(e)
         except requests.exceptions.ChunkedEncodingError as error:
             raise ApiConnectionError(error.args)
         except Exception as error:
-            if 2 <= len(error.args):
-                json_err = json.dumps(
-                    {
-                        'error':
-                            {
-                                'name': str(error.__class__).split('\'')[1],
-                                'code': 500,
-                                'message': error.args[1].__str__()
-                            }
-                    }
-                )
-            else:
-                json_err = json.dumps(
-                    {
-                        'error':
-                            {
-                                'name': str(error.__class__).split('\'')[1],
-                                'code': 500,
-                                'message': error.args.__str__()
-                            }
-                    }
-                )
-            raise ApiServerError(method_name, json_err)
+            # if 2 <= len(error.args):
+            #     json_err = json.dumps(
+            #         {
+            #             'error':
+            #                 {
+            #                     'name': str(error.__class__).split('\'')[1],
+            #                     'code': 500,
+            #                     'message': error.args[1].__str__()
+            #                 }
+            #         }
+            #     )
+            # else:
+            #     json_err = json.dumps(
+            #         {
+            #             'error':
+            #                 {
+            #                     'name': str(error.__class__).split('\'')[1],
+            #                     'code': 500,
+            #                     'message': error.args.__str__()
+            #                 }
+            #         }
+            #     )
+            raise ApiServerError(method_name, error)
 
-        if "401 Unauthorized." in response_raw:
-            json_err = json.dumps(
-                {
-                    'error':
-                        {
-                            'name': 'AuthorizationError',
-                            'code': 401,
-                            'message': 'Username or password incorrect.'
-                        }
-                }
-            )
-            raise ApiConnectionError(json_err)
-
-        if "404 Not Found" in response_raw:
-            json_err = json.dumps(
-                {
-                    'error':
-                        {
-                            'name': 'NotFoundError',
-                            'code': 404,
-                            'message': 'The connection was not found.'
-                        }
-                }
-            )
-            raise ApiConnectionError(json_err)
 
         # noinspection PyBroadException
-        try:
-            response = json.loads(response_raw)
-            obfuscated_response_raw = json.dumps(self._obfuscate_keys(response), indent=4)
-            LOG.debug(msg=obfuscated_response_raw)
-        except Exception as error:
-            LOG.error(msg=response_raw)
-            response = json.dumps(
-                {
-                    'error':
-                        {
-                            'name': 'JSONDecodeError',
-                            'code': 500,
-                            'message': str(error)
-                        }
+        LOG.debug(msg=response_raw)
+        if isinstance(response_raw, dict): #if isinstance(response_raw, dict) and "name" in response_raw and "code" in response_raw:
+            response = {
+                    'error': response_raw
                 }
-            )
+        else:
+            try:
+                response = json.loads(response_raw)
+                LOG.debug(msg=response_raw)
+            except Exception as error:
+                LOG.error(msg=response_raw)
+                if "401 Unauthorized." in response_raw:
+                    # json_err = {
+                    #         'error':
+                    #             {
+                    #                 'name': 'AuthorizationError',
+                    #                 'code': 401,
+                    #                 'message': 'Username or password incorrect.'
+                    #             }
+                    #     }
+                    #raise ApiConnectionError(json_err)
+                    raise ApiConnectionError("Bad Credentials")
 
-        # If we want the raw json response instead of the python object...
+
+                if "404 Not Found" in response_raw:
+                    # json_err = {
+                    #         'error':
+                    #             {
+                    #                 'name': 'NotFoundError',
+                    #                 'code': 404,
+                    #                 'message': 'The connection was not found.'
+                    #             }
+                    #     }
+                    # raise ApiConnectionError(json_err)
+                    raise ApiConnectionError("404 Not Found")
+                response =  {
+                        'error':
+                            {
+                                'name': 'JSONDecodeError',
+                                'code': 400,
+                                'message': str(error)
+                            }
+                    }
+
         if return_response_raw:
             return response_raw
 
         if 'error' in response:
-            raise ApiServerError(method_name, json.dumps(response))
+            raise requests.HTTPError(str(response["error"]["code"]) + " " + response["error"]["name"] + " " + response["error"]["message"])
         else:
             return model.extract(result_type, response['result'])
 
