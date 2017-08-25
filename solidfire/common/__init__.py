@@ -691,7 +691,13 @@ class ServiceBase(object):
             return response_raw
 
         if 'error' in response:
-            raise requests.HTTPError(str(response["error"]["code"]) + " " + response["error"]["name"] + " " + response["error"]["message"])
+            if response["error"]["code"] == 400:
+                raise requests.HTTPError(str(response["error"]["code"]) + " " + response["error"]["name"] + " " +
+                                         response["error"]["message"])
+            else:
+                raise ApiServerError(method_name,
+                                     str(response["error"]["code"]) + " " + response["error"]["name"] + " " +
+                                     response["error"]["message"])
         else:
             return model.extract(result_type, response['result'])
 
