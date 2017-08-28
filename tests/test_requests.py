@@ -17,6 +17,11 @@ class TestRequestsMod(SolidFireBaseTest):
             ElementFactory.create(self.cluster, "foo", self.pwd)
         self.assertTrue('AuthorizationError' in str(context.exception))
 
+    def test_timeout(self):
+        with self.assertRaises(ApiConnectionError) as context:
+            ElementFactory.create("10.117.61.132", self.user, self.pwd, timeout=5)
+        self.assertTrue('ConnectTimeout' in str(context.exception))
+
     def test_exception_handler(self):
         with self.assertRaises(ApiServerError) as context:
             sf = ElementFactory.create(self.cluster, self.user, self.pwd)

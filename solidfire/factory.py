@@ -24,7 +24,7 @@ class ElementFactory:
 
     @staticmethod
     def create(target, username, password, version=None,
-               verify_ssl=False, port=443, print_ascii_art=True):
+               verify_ssl=False, port=443, print_ascii_art=True, timeout=30):
         """
         Factory method to create a Element object which is used to call
          the SolidFire API. This method runs multiple checks and logic
@@ -53,6 +53,8 @@ class ElementFactory:
         :param print_ascii_art: When True, print the SolidFire Robot to the
             log.  Production deployments might consider disabling this feature.
         :type print_ascii_art: bool
+        :param timeout: The number of seconds to wait before timing out a request.
+        :type timeout: int
         :return: a configured and tested instance of Element
         :raises:
             SdkOperationError: verify_ssl is true but target is an IP address
@@ -80,6 +82,7 @@ class ElementFactory:
 
         element = Element(target, username, password, min_sdk_version,
                           verify_ssl)
+        element.timeout(timeout)
 
         api = element.get_api()
 
