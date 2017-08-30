@@ -109,7 +109,11 @@ class ApiServerError(Exception):
     @property
     def message(self):
         """A user-friendly message returned from the server."""
-        return json.loads(self._err_json).get('error', {}).get('message', None)
+        try:
+            json_err = json.loads(self._err_json)
+            return json_err.get('error', {}).get('message', None)
+        except:
+            return self._err_json
 
 
 class ApiMethodVersionError(Exception):
