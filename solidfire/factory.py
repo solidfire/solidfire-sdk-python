@@ -89,6 +89,7 @@ class ElementFactory:
         if version is None:
             element = Element(target, username, password,
                               api.current_version, verify_ssl)
+            element.timeout(timeout)
         else:
             try:
                 version_actual = float(version)
@@ -118,6 +119,7 @@ class ElementFactory:
             else:
                 element = Element(target, username, password, version_actual,
                                   verify_ssl)
+                element.timeout(timeout)
 
         LOG.info("Connected to {0} using API version {1}"
                  .format(target, element.api_version))
