@@ -24,6 +24,9 @@ var/
 .installed.cfg
 *.egg
 
+blackduck/
+blackduck*
+
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
@@ -59,3 +62,8 @@ target/
 
 # Personal Tests
 solidfire/mytest.py
+.DS_Store
+
+/descriptor_version.json
+/generator_version.json
+/test.py

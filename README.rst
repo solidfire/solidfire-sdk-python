@@ -8,7 +8,7 @@ Python SDK library for interacting with SolidFire Element API
 Current Release
 ---------------
 
-Version 1.4.0.271
+Version 1.5.0.87
 
 Description
 -----------
@@ -26,7 +26,7 @@ Compatibility
 +------------------------+---------------+
 | Component              | Version       |
 +========================+===============+
-| SolidFire Element OS   | 7.0 - 9.1     |
+| SolidFire Element OS   | 7.0 - 10.0    |
 +------------------------+---------------+
 
 Getting Help
@@ -159,7 +159,9 @@ More examples using the Python SDK
 More Examples
 -------------
 
+
 More specific examples are available `here <https://github.com/solidfire/solidfire-sdk-python/blob/master/examples/examples.rst>`__
+
 
 Logging
 -------
