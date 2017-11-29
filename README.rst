@@ -26,7 +26,7 @@ Compatibility
 +------------------------+---------------+
 | Component              | Version       |
 +========================+===============+
-| SolidFire Element OS   | 7.0 - 9.1     |
+| SolidFire Element OS   | 7.0 - 10.0    |
 +------------------------+---------------+
 
 Getting Help
