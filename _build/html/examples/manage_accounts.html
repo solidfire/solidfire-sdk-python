@@ -1,0 +1,351 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Account Management Examples &mdash; SolidFire Python SDK v1.5.0.87</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/solidfire.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="SolidFire Python SDK v1.5.0.87" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> solidfire-sdk-python
+          
+
+          
+            
+            <img src="../_static/PythonSDK.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.5.0.87
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../solidfire.html">solidfire package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">solidfire-sdk-python</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Account Management Examples</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/examples/manage_accounts.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="account-management-examples">
+<h1>Account Management Examples<a class="headerlink" href="#account-management-examples" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="manage-accounts">
+<h2>Manage Accounts<a class="headerlink" href="#manage-accounts" title="Permalink to this headline">¶</a></h2>
+<p>These examples walk through all interactions with an Account on the
+SolidFire cluster.</p>
+<p>Examples for:</p>
+<ul class="simple">
+<li><a class="reference external" href="#list-all-accounts">List all Accounts</a></li>
+<li><a class="reference external" href="#get-one-account">Get one Account</a></li>
+<li><a class="reference external" href="#create-an-account">Create an Account</a></li>
+<li><a class="reference external" href="#modify-an-account">Modify an Account</a></li>
+</ul>
+<div class="section" id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
+<p>Further documentation for each method and type can be found in our PyPI
+documentation repository.</p>
+</div>
+<div class="section" id="list-all-accounts">
+<h3>List all Accounts<a class="headerlink" href="#list-all-accounts" title="Permalink to this headline">¶</a></h3>
+<p>To list all accounts on a cluster:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.factory</span> <span class="kn">import</span> <span class="n">ElementFactory</span>
+
+<span class="c1"># Create connection to SF Cluster</span>
+<span class="n">sfe</span> <span class="o">=</span> <span class="n">ElementFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;ip-address-of-cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+
+<span class="c1"># Send the request and gather the result</span>
+<span class="n">list_accounts_result</span> <span class="o">=</span> <span class="n">sfe</span><span class="o">.</span><span class="n">list_accounts</span><span class="p">()</span>
+
+<span class="c1"># iterate the accounts array on the result object and display each Account</span>
+<span class="k">for</span> <span class="n">account</span> <span class="ow">in</span> <span class="n">list_accounts_result</span><span class="o">.</span><span class="n">accounts</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-one-account">
+<h3>Get one Account<a class="headerlink" href="#get-one-account" title="Permalink to this headline">¶</a></h3>
+<p>To get a single account by ID:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.factory</span> <span class="kn">import</span> <span class="n">ElementFactory</span>
+
+<span class="c1"># Create connection to SF Cluster</span>
+<span class="n">sfe</span> <span class="o">=</span> <span class="n">ElementFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;ip-address-of-cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+
+<span class="c1"># Send the request with a specific account id and gather the result</span>
+<span class="n">get_account_result</span> <span class="o">=</span> <span class="n">sfe</span><span class="o">.</span><span class="n">get_account_by_id</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Display the account from the result object</span>
+<span class="k">print</span><span class="p">(</span><span class="n">get_account_result</span><span class="o">.</span><span class="n">account</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To get a single account by username:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.factory</span> <span class="kn">import</span> <span class="n">ElementFactory</span>
+
+<span class="c1"># Create connection to SF Cluster</span>
+<span class="n">sfe</span> <span class="o">=</span> <span class="n">ElementFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;ip-address-of-cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+
+<span class="c1"># Send the request with a specific account username and gather the result</span>
+<span class="n">get_account_result</span> <span class="o">=</span> <span class="n">sfe</span><span class="o">.</span><span class="n">get_account_by_name</span><span class="p">(</span><span class="s1">&#39;username-of-account&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display the account from the result object</span>
+<span class="k">print</span><span class="p">(</span><span class="n">get_account_result</span><span class="o">.</span><span class="n">account</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-an-account">
+<h3>Create an Account<a class="headerlink" href="#create-an-account" title="Permalink to this headline">¶</a></h3>
+<p>To create an account you must specify the <code class="docutils literal"><span class="pre">username</span></code>. Optionally, you
+can also specify the <code class="docutils literal"><span class="pre">initiator_secret</span></code> and <code class="docutils literal"><span class="pre">target_secret</span></code> which
+are <strong>CHAPSecret</strong> objects. If those secrets are not specified, they
+will be auto-generated.</p>
+<p>First, we create an account with only a username:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.factory</span> <span class="kn">import</span> <span class="n">ElementFactory</span>
+
+<span class="c1"># Create connection to SF Cluster</span>
+<span class="n">sfe</span> <span class="o">=</span> <span class="n">ElementFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;ip-address-of-cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+
+<span class="c1"># Send the request and gather the result</span>
+<span class="n">add_account_result</span> <span class="o">=</span> <span class="n">sfe</span><span class="o">.</span><span class="n">add_account</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s2">&quot;my-new-account&quot;</span><span class="p">)</span>
+
+<span class="c1"># Grab the account ID from the result object</span>
+<span class="n">new_account_id</span> <span class="o">=</span> <span class="n">add_account_result</span><span class="o">.</span><span class="n">account_id</span>
+</pre></div>
+</div>
+<p>Now we create an account and specify the <code class="docutils literal"><span class="pre">username</span></code> and
+<code class="docutils literal"><span class="pre">initiator_secret</span></code>. Notice we created a new <strong>CHAPSecret</strong> object and
+set the string value for the <code class="docutils literal"><span class="pre">intitiator_secret</span></code>. The
+<code class="docutils literal"><span class="pre">target_secret</span></code> will be auto-generated during the process on the
+cluster:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.factory</span> <span class="kn">import</span> <span class="n">ElementFactory</span>
+
+<span class="c1"># Create connection to SF Cluster</span>
+<span class="n">sfe</span> <span class="o">=</span> <span class="n">ElementFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;ip-address-of-cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+
+<span class="c1"># Send the request and gather the result</span>
+<span class="n">add_account_result</span> <span class="o">=</span> <span class="n">sfe</span><span class="o">.</span><span class="n">add_account</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s2">&quot;my-new-account&quot;</span><span class="p">,</span>
+                                     <span class="n">initiator_secret</span><span class="o">=</span><span class="n">CHAPSecret</span><span class="p">(</span>
+                                         <span class="s2">&quot;a12To16CharValue&quot;</span><span class="p">))</span>
+
+<span class="c1"># Grab the account ID from the result object</span>
+<span class="n">new_account_id</span> <span class="o">=</span> <span class="n">add_account_result</span><span class="o">.</span><span class="n">account_id</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="modify-an-account">
+<h3>Modify an Account<a class="headerlink" href="#modify-an-account" title="Permalink to this headline">¶</a></h3>
+<p>To modify an account, all you need is the <code class="docutils literal"><span class="pre">account_id</span></code> and the values
+you want to change. Any values you leave off will remain as they were
+before this call is made.</p>
+<p>In this example, we will instruct the API to autogenerate a new
+<code class="docutils literal"><span class="pre">target_secret</span></code> value for an account. In order to do so we need to
+call the static <code class="docutils literal"><span class="pre">auto_generate()</span></code> method on the <strong>CHAPSecret</strong> class.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">solidfire.factory</span> <span class="kn">import</span> <span class="n">ElementFactory</span>
+
+<span class="c1"># Create connection to SF Cluster</span>
+<span class="n">sfe</span> <span class="o">=</span> <span class="n">ElementFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;ip-address-of-cluster&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+
+<span class="c1"># Send the request with the account_id and gather the result</span>
+<span class="n">add_account_result</span> <span class="o">=</span> <span class="n">sfe</span><span class="o">.</span><span class="n">modify_account</span><span class="p">(</span><span class="n">account_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                        <span class="n">target_secret</span><span class="o">=</span><span class="n">CHAPSecret</span><span class="o">.</span><span class="n">auto_generate</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, NetApp, Inc.  All Rights Reserved..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.5.0.87',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

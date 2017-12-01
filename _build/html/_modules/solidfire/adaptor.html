@@ -1,0 +1,344 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>solidfire.adaptor &mdash; SolidFire Python SDK v1.5.0.87</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="SolidFire Python SDK v1.5.0.87" href="../../index.html"/>
+        <link rel="up" title="solidfire" href="../solidfire.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> solidfire-sdk-python
+          
+
+          
+            
+            <img src="../../_static/PythonSDK.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.5.0.87
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html"> SolidFire Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html#account-management-examples">Account Management Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html#snapshot-scheduling-examples">Snapshot Scheduling Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html#solidfire-package">solidfire package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">solidfire-sdk-python</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../solidfire.html">solidfire</a> &raquo;</li>
+        
+      <li>solidfire.adaptor</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for solidfire.adaptor</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright &amp;copy; 2014-2016 NetApp, Inc. All Rights Reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># CONFIDENTIALITY NOTICE: THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION OF</span>
+<span class="c1"># NETAPP, INC. USE, DISCLOSURE OR REPRODUCTION IS PROHIBITED WITHOUT THE PRIOR</span>
+<span class="c1"># EXPRESS WRITTEN PERMISSION OF NETAPP, INC.</span>
+<span class="sd">&quot;&quot;&quot;Module implements the generated adaptor calls from solidfire.Element&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">solidfire.adaptor.schedule_adaptor</span> <span class="k">import</span> <span class="n">ScheduleAdaptor</span>
+<span class="kn">from</span> <span class="nn">solidfire.models</span> <span class="k">import</span> <span class="n">GetNodeStatsResult</span>
+
+<div class="viewcode-block" id="ElementServiceAdaptor"><a class="viewcode-back" href="../../solidfire.adaptor.html#solidfire.adaptor.ElementServiceAdaptor">[docs]</a><span class="k">class</span> <span class="nc">ElementServiceAdaptor</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class contains the implementation of the generated adaptor calls from</span>
+<span class="sd">    solidfire.Element.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ElementServiceAdaptor.get_node_stats"><a class="viewcode-back" href="../../solidfire.adaptor.html#solidfire.adaptor.ElementServiceAdaptor.get_node_stats">[docs]</a>    <span class="k">def</span> <span class="nf">get_node_stats</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This adaptor includes the original Node ID from the request in the</span>
+<span class="sd">        response object. It is returned as null from the original API call.</span>
+
+<span class="sd">        :param element: an instance of Element</span>
+<span class="sd">        :type element: Element</span>
+
+<span class="sd">        :param params: the parameters supplied to the get_node_stats call</span>
+<span class="sd">        :type params: dict</span>
+
+<span class="sd">        :param since: service method inception version</span>
+<span class="sd">        :type since: float or str or None</span>
+
+<span class="sd">        :param deprecated: service method deprecation version</span>
+<span class="sd">        :type deprecated: float or str or None</span>
+
+<span class="sd">        :returns: a response</span>
+<span class="sd">        :rtype: GetNodeStatsResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">send_request</span><span class="p">(</span>
+            <span class="s1">&#39;GetNodeStats&#39;</span><span class="p">,</span>
+            <span class="n">GetNodeStatsResult</span><span class="p">,</span>
+            <span class="n">params</span><span class="p">,</span>
+            <span class="n">since</span><span class="p">,</span>
+            <span class="n">deprecated</span>
+        <span class="p">)</span>
+
+        <span class="n">result</span><span class="o">.</span><span class="n">node_stats</span><span class="o">.</span><span class="n">node_id</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;nodeID&quot;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">result</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ElementServiceAdaptor.invoke_sfapi"><a class="viewcode-back" href="../../solidfire.adaptor.html#solidfire.adaptor.ElementServiceAdaptor.invoke_sfapi">[docs]</a>    <span class="k">def</span> <span class="nf">invoke_sfapi</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s2">&quot;parameters&quot;</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">element</span><span class="o">.</span><span class="n">send_request</span><span class="p">(</span>
+                <span class="n">params</span><span class="p">[</span><span class="s2">&quot;method&quot;</span><span class="p">],</span>
+                <span class="nb">dict</span><span class="p">,</span>
+                <span class="n">params</span><span class="p">[</span><span class="s2">&quot;parameters&quot;</span><span class="p">],</span>
+                <span class="n">since</span><span class="p">,</span>
+                <span class="n">deprecated</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">element</span><span class="o">.</span><span class="n">send_request</span><span class="p">(</span>
+                <span class="n">params</span><span class="p">[</span><span class="s2">&quot;method&quot;</span><span class="p">],</span>
+                <span class="nb">dict</span><span class="p">,</span>
+                <span class="n">since</span><span class="o">=</span><span class="n">since</span><span class="p">,</span>
+                <span class="n">deprecated</span><span class="o">=</span><span class="n">deprecated</span>
+            <span class="p">)</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ElementServiceAdaptor.get_schedule"><a class="viewcode-back" href="../../solidfire.adaptor.html#solidfire.adaptor.ElementServiceAdaptor.get_schedule">[docs]</a>    <span class="k">def</span> <span class="nf">get_schedule</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calls to this static method should ONLY originate from the</span>
+<span class="sd">        get_schedule method in the Element class. DO NOT CALL THIS directly.</span>
+<span class="sd">        Documentation here is intentionally brief.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">ScheduleAdaptor</span><span class="o">.</span><span class="n">get_schedule</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span>
+                                            <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">)</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ElementServiceAdaptor.list_schedules"><a class="viewcode-back" href="../../solidfire.adaptor.html#solidfire.adaptor.ElementServiceAdaptor.list_schedules">[docs]</a>    <span class="k">def</span> <span class="nf">list_schedules</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calls to this static method should ONLY originate from the</span>
+<span class="sd">        list_schedules method in the Element class. DO NOT CALL THIS directly.</span>
+<span class="sd">        Documentation here is intentionally brief.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">ScheduleAdaptor</span><span class="o">.</span><span class="n">list_schedules</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span>
+                                              <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">)</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ElementServiceAdaptor.modify_schedule"><a class="viewcode-back" href="../../solidfire.adaptor.html#solidfire.adaptor.ElementServiceAdaptor.modify_schedule">[docs]</a>    <span class="k">def</span> <span class="nf">modify_schedule</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calls to this static method should ONLY originate from the</span>
+<span class="sd">        modify_schedules method in the Element class. DO NOT CALL THIS</span>
+<span class="sd">        directly. Documentation here is intentionally brief.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">ScheduleAdaptor</span><span class="o">.</span><span class="n">modify_schedule</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span>
+                                               <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">)</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ElementServiceAdaptor.create_schedule"><a class="viewcode-back" href="../../solidfire.adaptor.html#solidfire.adaptor.ElementServiceAdaptor.create_schedule">[docs]</a>    <span class="k">def</span> <span class="nf">create_schedule</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calls to this static method should ONLY originate from the</span>
+<span class="sd">        create_schedules method in the Element class. DO NOT CALL THIS</span>
+<span class="sd">        directly. Documentation here is intentionally brief.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">ScheduleAdaptor</span><span class="o">.</span><span class="n">create_schedule</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span>
+                                               <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, NetApp, Inc.  All Rights Reserved..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.5.0.87',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
