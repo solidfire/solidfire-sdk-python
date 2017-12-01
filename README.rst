@@ -8,7 +8,7 @@ Python SDK library for interacting with SolidFire Element API
 Current Release
 ---------------
 
-Version 1.5.0.91
+Version 1.5.0.87
 
 Description
 -----------
@@ -85,7 +85,7 @@ Examples
 --------
 
 Step 1 - Build an `Element <http://solidfire-sdk-python.readthedocs.io/en/latest/solidfire.html#solidfire.Element>`__ object using the factory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This is the preferred way to construct the
 `Element <http://solidfire-sdk-python.readthedocs.io/en/latest/solidfire.html#solidfire.Element>`__
