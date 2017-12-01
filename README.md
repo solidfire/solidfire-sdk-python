@@ -5,9 +5,8 @@ Python SDK library for interacting with SolidFire Element API
 [![pypy](https://img.shields.io/pypi/v/solidfire-sdk-python.svg)](https://badge.fury.io/py/solidfire-sdk-python)
 [![python](https://img.shields.io/pypi/pyversions/solidfire-sdk-python.svg)](https://pypi.python.org/pypi/solidfire-sdk-python/)
 [![format](https://img.shields.io/pypi/format/solidfire-sdk-python.svg)](https://pypi.python.org/pypi/solidfire-sdk-python/)
-[![downloads](https://img.shields.io/pypi/dm/solidfire-sdk-python.svg)](https://pypi.python.org/pypi/solidfire-sdk-python/)
+[![downloads](https://img.shields.io/pypi/dm/solidfire-sdk-python.svg)](https://pypi.python.org/pypi/solidfire-sdk-python/#downloads)
 [![license](https://img.shields.io/pypi/l/solidfire-sdk-python.svg)](https://pypi.python.org/pypi/solidfire-sdk-python/)
-[![build](https://img.shields.io/travis/solidfire/solidfire-sdk-python/release/1.0.0.svg)](https://pypi.python.org/pypi/solidfire-sdk-python/)
 
 Description
 -----------
@@ -38,7 +37,7 @@ new features and capabilities.
 Documentation
 -------------
 
-[Latest Docs](https://pythonhosted.org/solidfire-sdk-python/)
+[Latest Docs](http://solidfire-sdk-python.readthedocs.io)
 
 [Release
 Notes](https://github.com/solidfire/solidfire-sdk-python/blob/master/NetApp_SolidFire_Python_SDK_Release_Notes.pdf)
@@ -87,16 +86,16 @@ accounts and volumes.
 Examples
 --------
 
-### Step 1 - Build an [Element](https://pythonhosted.org/solidfire-sdk-python/solidfire.html#solidfire.Element) object using the factory
+### Step 1 - Build an [Element](http://solidfire-sdk-python.readthedocs.io/en/latest/solidfire.html#solidfire.Element) object using the factory
 
 This is the preferred way to construct the
-[Element](https://pythonhosted.org/solidfire-sdk-python/solidfire.html#solidfire.Element)
+[Element](http://solidfire-sdk-python.readthedocs.io/en/latest/solidfire.html#solidfire.Element)
 object. The factory will make a call to the SolidFire cluster using the
 credentials supplied to test the connection. It will also set the
 version to communicate with based on the highest number supported by the
 SDK and Element OS. Optionally, you can choose to set the version
 manually and whether or not to verify SSL. Read more about it in the
-[ElementFactory](https://pythonhosted.org/solidfire-sdk-python/solidfire.html#solidfire.factory.ElementFactory)
+[ElementFactory](http://solidfire-sdk-python.readthedocs.io/en/latest/solidfire.html#solidfire.factory.ElementFactory)
 documentation.
 
 	from solidfire.factory import ElementFactory
