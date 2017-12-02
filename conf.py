@@ -3,7 +3,8 @@
 import sphinx_rtd_theme
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__name__), '..'))
+
+sys.path.insert(0, '../..')
 
 extensions = [
     'sphinx.ext.autodoc',
@@ -26,10 +27,6 @@ pygments_style = 'sphinx'
 todo_include_todos = True
 autoclass_content = 'both'
 seen_element = False
-
-
-def setup(app):
-    app.add_stylesheet("solidfire.css")
 
 
 html_theme = "sphinx_rtd_theme"

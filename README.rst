@@ -3,7 +3,7 @@
 
 Python SDK library for interacting with SolidFire Element API
 
-|pypy| |python| |format| |downloads| |license| |build|
+|pypy| |python| |format| |downloads| |license|
 
 Current Release
 ---------------
@@ -40,7 +40,7 @@ helps us focus our efforts on new features and capabilities.
 Documentation
 -------------
 
-`Latest Docs <https://pythonhosted.org/solidfire-sdk-python/>`__
+`Latest Docs <http://solidfire-sdk-python.readthedocs.io/>`__
 
 `Release
 Notes <https://github.com/solidfire/solidfire-sdk-python/blob/master/NetApp_SolidFire_Python_SDK_Release_Notes.pdf>`__
@@ -84,17 +84,17 @@ cluster using Python!
 Examples
 --------
 
-Step 1 - Build an `Element <https://pythonhosted.org/solidfire-sdk-python/solidfire.html#solidfire.Element>`__ object using the factory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Step 1 - Build an `Element <http://solidfire-sdk-python.readthedocs.io/en/latest/solidfire.html#solidfire.Element>`__ object using the factory
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This is the preferred way to construct the
-`Element <https://pythonhosted.org/solidfire-sdk-python/solidfire.html#solidfire.Element>`__
+`Element <http://solidfire-sdk-python.readthedocs.io/en/latest/solidfire.html#solidfire.Element>`__
 object. The factory will make a call to the SolidFire cluster using the
 credentials supplied to test the connection. It will also set the
 version to communicate with based on the highest number supported by the
 SDK and Element OS. Optionally, you can choose to set the version
 manually and whether or not to verify SSL. Read more about it in the
-`ElementFactory <https://pythonhosted.org/solidfire-sdk-python/solidfire.html#solidfire.factory.ElementFactory>`__ documentation.
+`ElementFactory <http://solidfire-sdk-python.readthedocs.io/en/latest/solidfire.html#solidfire.factory.ElementFactory>`__ documentation.
 
 .. code-block:: python
 
@@ -217,7 +217,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-.. |sf-python-logo| image:: https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/release1.1/img/python-50.png
+.. |sf-python-logo| image:: https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/master/img/python-50.png
 .. |pypy| image:: https://img.shields.io/pypi/v/solidfire-sdk-python.svg
    :target: https://badge.fury.io/py/solidfire-sdk-python
 .. |python| image:: https://img.shields.io/pypi/pyversions/solidfire-sdk-python.svg
@@ -227,7 +227,5 @@ limitations under the License.
 .. |downloads| image:: https://img.shields.io/pypi/dm/solidfire-sdk-python.svg
    :target: https://pypi.python.org/pypi/solidfire-sdk-python/
 .. |license| image:: https://img.shields.io/pypi/l/solidfire-sdk-python.svg
-   :target: https://pypi.python.org/pypi/solidfire-sdk-python/
-.. |build| image:: https://img.shields.io/travis/solidfire/solidfire-sdk-python/release/1.0.0.svg
    :target: https://pypi.python.org/pypi/solidfire-sdk-python/
 
