@@ -104,6 +104,7 @@ cluster:
 .. code-block:: python
 
     from solidfire.factory import ElementFactory
+    from solidfire import CHAPSecret
 
     # Create connection to SF Cluster
     sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
@@ -141,6 +142,7 @@ call the static ``auto_generate()`` method on the **CHAPSecret** class.
 .. code-block:: python
 
     from solidfire.factory import ElementFactory
+    from solidfire import CHAPSecret
 
     # Create connection to SF Cluster
     sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
