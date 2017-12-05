@@ -122,13 +122,15 @@ account from the add\_account\_result object.
 ### More examples using the Python SDK
 
 	from solidfire.factory import ElementFactory
+	from solidfire.models import *
 
 	# Create connection to SF Cluster
 	sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
 
 	# --------- EXAMPLE 1 - CREATE AN ACCOUNT -----------
 	# Send the request with required parameters and gather the result
-	add_account_result = sfe.add_account(username="example-account")
+	add_account_result = sfe.add_account(username="example-account",
+	                                     initiator_secret=CHAPSecret(secret="asdfghjkl"))
 	# Pull the account ID from the result object
 	account_id = add_account_result.account_id
 
