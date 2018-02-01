@@ -1912,7 +1912,7 @@ class VolumeStats(data_model.DataObject):
     :type latency_usec: int
 
     :param async_delay:  
-    :type async_delay: int
+    :type async_delay: str
 
     :param metadata_hosts:  The volume services on which the volume metadata resides. 
     :type metadata_hosts: MetadataHosts
@@ -2024,7 +2024,7 @@ class VolumeStats(data_model.DataObject):
         dictionaryType=None
     )
     async_delay = data_model.property(
-        "asyncDelay", int,
+        "asyncDelay", str,
         array=False, optional=True,
         documentation="""""",
         dictionaryType=None
