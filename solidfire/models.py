@@ -1037,6 +1037,16 @@ class StartVolumePairingResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class ListSnapMirrorAggregatesResult(data_model.DataObject):
+    """ListSnapMirrorAggregatesResult  
+
+    """
+
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class SetSSLCertificateResult(data_model.DataObject):
     """SetSSLCertificateResult  
 
@@ -3148,6 +3158,37 @@ class ListAsyncResultsResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class RemoveVolumesFromVolumeAccessGroupRequest(data_model.DataObject):
+    """RemoveVolumesFromVolumeAccessGroupRequest  
+    The RemoveVolumeFromVolumeAccessGroup method enables you to remove volumes from a volume access group.
+
+    :param volume_access_group_id: [required] The ID of the volume access group to remove volumes from. 
+    :type volume_access_group_id: int
+
+    :param volumes: [required] The ID of the volume access group to remove volumes from. 
+    :type volumes: int
+
+    """
+    volume_access_group_id = data_model.property(
+        "volumeAccessGroupID", int,
+        array=False, optional=False,
+        documentation="""The ID of the volume access group to remove volumes from. """,
+        dictionaryType=None
+    )
+    volumes = data_model.property(
+        "volumes", int,
+        array=True, optional=False,
+        documentation="""The ID of the volume access group to remove volumes from. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            volume_access_group_id,
+            volumes):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class Account(data_model.DataObject):
     """Account  
     The object containing information about an account.
@@ -3994,6 +4035,16 @@ class ModifyVolumeAccessGroupRequest(data_model.DataObject):
             volumes=None,
             delete_orphan_initiators=None,
             attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class PurgeDeletedVolumeResult(data_model.DataObject):
+    """PurgeDeletedVolumeResult  
+
+    """
+
+    def __init__(self):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -6090,6 +6141,16 @@ class ListNetworkInterfacesResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class ListSnapMirrorVolumesResult(data_model.DataObject):
+    """ListSnapMirrorVolumesResult  
+
+    """
+
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class CreateVolumeAccessGroupRequest(data_model.DataObject):
     """CreateVolumeAccessGroupRequest  
     You can use CreateVolumeAccessGroup to create a new volume access group. When you create the volume access group, you need to give it a name, and you can optionally enter initiators and volumes. After you create the group, you can add volumes and initiator IQNs. Any initiator IQN that you add to the volume access group is able to access any volume in the group without CHAP authentication.
@@ -6299,6 +6360,26 @@ class DeleteVolumesRequest(data_model.DataObject):
             account_ids=None,
             volume_access_group_ids=None,
             volume_ids=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetOntapVersionInfoResult(data_model.DataObject):
+    """GetOntapVersionInfoResult  
+
+    """
+
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class UpdateSnapMirrorRelationshipResult(data_model.DataObject):
+    """UpdateSnapMirrorRelationshipResult  
+
+    """
+
+    def __init__(self):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -6529,6 +6610,16 @@ class DeleteVolumeResult(data_model.DataObject):
 
     def __init__(self,
             volume=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class DeleteSnapMirrorRelationshipsResult(data_model.DataObject):
+    """DeleteSnapMirrorRelationshipsResult  
+
+    """
+
+    def __init__(self):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -6897,162 +6988,68 @@ class GetLoginBannerResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class AddLdapClusterAdminResult(data_model.DataObject):
-    """AddLdapClusterAdminResult  
+class ListVolumeStatsByAccountRequest(data_model.DataObject):
+    """ListVolumeStatsByAccountRequest  
+    ListVolumeStatsByAccount returns high-level activity measurements for every account. Values are summed from all the volumes owned by the account.
 
-    :param cluster_admin_id:   
-    :type cluster_admin_id: int
+    :param accounts:  One or more account ids by which to filter the result. 
+    :type accounts: int
+
+    :param include_virtual_volumes:  Includes virtual volumes in the response by default. To exclude virtual volumes, set to false. 
+    :type include_virtual_volumes: bool
 
     """
-    cluster_admin_id = data_model.property(
-        "clusterAdminID", int,
+    accounts = data_model.property(
+        "accounts", int,
+        array=True, optional=True,
+        documentation="""One or more account ids by which to filter the result. """,
+        dictionaryType=None
+    )
+    include_virtual_volumes = data_model.property(
+        "includeVirtualVolumes", bool,
         array=False, optional=True,
-        documentation=""" """,
+        documentation="""Includes virtual volumes in the response by default. To exclude virtual volumes, set to false. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            cluster_admin_id=None):
+            accounts=None,
+            include_virtual_volumes=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class AddedNode(data_model.DataObject):
-    """AddedNode  
+class GetAsyncResultRequest(data_model.DataObject):
+    """GetAsyncResultRequest  
+    You can use GetAsyncResult to retrieve the result of asynchronous method calls. Some method calls require some time to run, and
+    might not be finished when the system sends the initial response. To obtain the status or result of the method call, use
+    GetAsyncResult to poll the asyncHandle value returned by the method.
+    GetAsyncResult returns the overall status of the operation (in progress, completed, or error) in a standard fashion, but the actual
+    data returned for the operation depends on the original method call and the return data is documented with each method.
 
-    :param node_id:   
-    :type node_id: int
-
-    :param pending_node_id: [required]  
-    :type pending_node_id: int
-
-    :param active_node_key:   
-    :type active_node_key: str
-
-    :param assigned_node_id:   
-    :type assigned_node_id: int
-
-    :param async_handle:   
+    :param async_handle: [required] A value that was returned from the original asynchronous method call. 
     :type async_handle: int
 
-    :param cip:   
-    :type cip: str
-
-    :param mip:   
-    :type mip: str
-
-    :param platform_info:   
-    :type platform_info: Platform
-
-    :param sip:   
-    :type sip: str
-
-    :param software_version:   
-    :type software_version: str
+    :param keep_result:  If true, GetAsyncResult does not remove the asynchronous result upon returning it, enabling future queries to that asyncHandle. 
+    :type keep_result: bool
 
     """
-    node_id = data_model.property(
-        "nodeID", int,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    pending_node_id = data_model.property(
-        "pendingNodeID", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    active_node_key = data_model.property(
-        "activeNodeKey", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    assigned_node_id = data_model.property(
-        "assignedNodeID", int,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
     async_handle = data_model.property(
         "asyncHandle", int,
-        array=False, optional=True,
-        documentation=""" """,
+        array=False, optional=False,
+        documentation="""A value that was returned from the original asynchronous method call. """,
         dictionaryType=None
     )
-    cip = data_model.property(
-        "cip", str,
+    keep_result = data_model.property(
+        "keepResult", bool,
         array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    mip = data_model.property(
-        "mip", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    platform_info = data_model.property(
-        "platformInfo", Platform,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    sip = data_model.property(
-        "sip", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    software_version = data_model.property(
-        "softwareVersion", str,
-        array=False, optional=True,
-        documentation=""" """,
+        documentation="""If true, GetAsyncResult does not remove the asynchronous result upon returning it, enabling future queries to that asyncHandle. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            pending_node_id,
-            node_id=None,
-            active_node_key=None,
-            assigned_node_id=None,
-            async_handle=None,
-            cip=None,
-            mip=None,
-            platform_info=None,
-            sip=None,
-            software_version=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class AddNodesResult(data_model.DataObject):
-    """AddNodesResult  
-
-    :param auto_install:   
-    :type auto_install: bool
-
-    :param nodes: [required] An array of objects mapping the previous "pendingNodeID" to the "nodeID". 
-    :type nodes: AddedNode
-
-    """
-    auto_install = data_model.property(
-        "autoInstall", bool,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    nodes = data_model.property(
-        "nodes", AddedNode,
-        array=True, optional=False,
-        documentation="""An array of objects mapping the previous "pendingNodeID" to the "nodeID". """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            nodes,
-            auto_install=None):
+            async_handle,
+            keep_result=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -7526,6 +7523,16 @@ class RemoveVirtualNetworkRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class CreateSnapMirrorEndpointResult(data_model.DataObject):
+    """CreateSnapMirrorEndpointResult  
+
+    """
+
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListVolumeStatsResult(data_model.DataObject):
     """ListVolumeStatsResult  
 
@@ -7866,6 +7873,60 @@ class RemoveNodesResult(data_model.DataObject):
     """
 
     def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetSnapMirrorClusterIdentityResult(data_model.DataObject):
+    """GetSnapMirrorClusterIdentityResult  
+
+    """
+
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class PurgeDeletedVolumesRequest(data_model.DataObject):
+    """PurgeDeletedVolumesRequest  
+    PurgeDeletedVolumes immediately and permanently purges volumes that have been deleted.
+    You can use this method to purge up to 500 volumes at one time.
+    You must delete volumes using DeleteVolumes before they can be purged.
+    Volumes are purged by the system automatically after a period of time, so usage of this method is not typically required.
+
+    :param volume_ids:  A list of volumeIDs of volumes to be purged from the system. 
+    :type volume_ids: int
+
+    :param account_ids:  A list of accountIDs. All of the volumes from all of the specified accounts are purged from the system. 
+    :type account_ids: int
+
+    :param volume_access_group_ids:  A list of volumeAccessGroupIDs. All of the volumes from all of the specified Volume Access Groups are purged from the system. 
+    :type volume_access_group_ids: int
+
+    """
+    volume_ids = data_model.property(
+        "volumeIDs", int,
+        array=True, optional=True,
+        documentation="""A list of volumeIDs of volumes to be purged from the system. """,
+        dictionaryType=None
+    )
+    account_ids = data_model.property(
+        "accountIDs", int,
+        array=True, optional=True,
+        documentation="""A list of accountIDs. All of the volumes from all of the specified accounts are purged from the system. """,
+        dictionaryType=None
+    )
+    volume_access_group_ids = data_model.property(
+        "volumeAccessGroupIDs", int,
+        array=True, optional=True,
+        documentation="""A list of volumeAccessGroupIDs. All of the volumes from all of the specified Volume Access Groups are purged from the system. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            volume_ids=None,
+            account_ids=None,
+            volume_access_group_ids=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -8311,6 +8372,16 @@ class ListDeletedVolumesRequest(data_model.DataObject):
 
     def __init__(self,
             include_virtual_volumes=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class CreateSnapMirrorVolumeResult(data_model.DataObject):
+    """CreateSnapMirrorVolumeResult  
+
+    """
+
+    def __init__(self):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -9029,10 +9100,10 @@ class AddVirtualNetworkRequest(data_model.DataObject):
     :param svip: [required] Unique storage IP address for the virtual network being created. 
     :type svip: str
 
-    :param gateway:  The IP address of a gateway of the virtual network. This parameter is only valid if the "namespace" parameter is set to true. 
+    :param gateway:  The IP address of a gateway of the virtual network. This parameter is valid only if the namespace parameter is set to true (meaning VRF is enabled). 
     :type gateway: str
 
-    :param namespace:  When set to true, enables the Routable Storage VLANs functionality by creating and configuring a namespace and the virtual network contained by it. 
+    :param namespace:  When set to true, enables the Routable Storage VLANs functionality by recreating the virtual network and configuring a namespace to contain it. When set to false, disables the VRF functionality for the virtual network. Changing this value disrupts traffic running through this virtual network. 
     :type namespace: bool
 
     :param attributes:  List of name-value pairs in JSON object format. 
@@ -9072,13 +9143,13 @@ class AddVirtualNetworkRequest(data_model.DataObject):
     gateway = data_model.property(
         "gateway", str,
         array=False, optional=True,
-        documentation="""The IP address of a gateway of the virtual network. This parameter is only valid if the "namespace" parameter is set to true. """,
+        documentation="""The IP address of a gateway of the virtual network. This parameter is valid only if the namespace parameter is set to true (meaning VRF is enabled). """,
         dictionaryType=None
     )
     namespace = data_model.property(
         "namespace", bool,
         array=False, optional=True,
-        documentation="""When set to true, enables the Routable Storage VLANs functionality by creating and configuring a namespace and the virtual network contained by it. """,
+        documentation="""When set to true, enables the Routable Storage VLANs functionality by recreating the virtual network and configuring a namespace to contain it. When set to false, disables the VRF functionality for the virtual network. Changing this value disrupts traffic running through this virtual network. """,
         dictionaryType=None
     )
     attributes = data_model.property(
@@ -9376,12 +9447,53 @@ class ModifyVolumeResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class PurgeDeletedVolumeResult(data_model.DataObject):
-    """PurgeDeletedVolumeResult  
+class ModifyClusterAdminRequest(data_model.DataObject):
+    """ModifyClusterAdminRequest  
+    You can use ModifyClusterAdmin to change the settings for a cluster admin or LDAP cluster admin. You cannot change access for the administrator cluster admin account.
+
+    :param cluster_admin_id: [required] ClusterAdminID for the cluster admin or LDAP cluster admin to modify. 
+    :type cluster_admin_id: int
+
+    :param password:  Password used to authenticate this cluster admin. 
+    :type password: str
+
+    :param access:  Controls which methods this cluster admin can use. For more details, see Access Control in the Element API Reference Guide. 
+    :type access: str
+
+    :param attributes:  List of name-value pairs in JSON object format. 
+    :type attributes: dict
 
     """
+    cluster_admin_id = data_model.property(
+        "clusterAdminID", int,
+        array=False, optional=False,
+        documentation="""ClusterAdminID for the cluster admin or LDAP cluster admin to modify. """,
+        dictionaryType=None
+    )
+    password = data_model.property(
+        "password", str,
+        array=False, optional=True,
+        documentation="""Password used to authenticate this cluster admin. """,
+        dictionaryType=None
+    )
+    access = data_model.property(
+        "access", str,
+        array=True, optional=True,
+        documentation="""Controls which methods this cluster admin can use. For more details, see Access Control in the Element API Reference Guide. """,
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="""List of name-value pairs in JSON object format. """,
+        dictionaryType=None
+    )
 
-    def __init__(self):
+    def __init__(self,
+            cluster_admin_id,
+            password=None,
+            access=None,
+            attributes=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -9814,267 +9926,6 @@ class DeleteVolumesResult(data_model.DataObject):
 
     def __init__(self,
             volumes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ClusterCapacity(data_model.DataObject):
-    """ClusterCapacity  
-    High level capacity measurements for the entire cluster.
-
-    :param active_block_space: [required] The amount of space on the block drives. This includes additional information such as metadata entries and space which can be cleaned up. 
-    :type active_block_space: int
-
-    :param active_sessions: [required] Number of active iSCSI sessions communicating with the cluster 
-    :type active_sessions: int
-
-    :param average_iops: [required] Average IPS for the cluster since midnight Coordinated Universal Time (UTC). 
-    :type average_iops: int
-
-    :param cluster_recent_iosize: [required] The average size of IOPS to all volumes in the cluster. 
-    :type cluster_recent_iosize: int
-
-    :param current_iops: [required] Average IOPS for all volumes in the cluster over the last 5 seconds. 
-    :type current_iops: int
-
-    :param max_iops: [required] Estimated maximum IOPS capability of the current cluster. 
-    :type max_iops: int
-
-    :param max_over_provisionable_space: [required] The maximum amount of provisionable space. This is a computed value. You cannot create new volumes if the current provisioned space plus the new volume size would exceed this number: maxOverProvisionableSpace = maxProvisionedSpace * GetClusterFull 
-    :type max_over_provisionable_space: int
-
-    :param max_provisioned_space: [required] The total amount of provisionable space if all volumes are 100% filled (no thin provisioned metadata). 
-    :type max_provisioned_space: int
-
-    :param max_used_metadata_space: [required] The amount of bytes on volume drives used to store metadata. 
-    :type max_used_metadata_space: int
-
-    :param max_used_space: [required] The total amount of space on all active block drives. 
-    :type max_used_space: int
-
-    :param non_zero_blocks: [required] Total number of 4KiB blocks with data after the last garbage collection operation has completed. 
-    :type non_zero_blocks: int
-
-    :param peak_active_sessions: [required] Peak number of iSCSI connections since midnight UTC. 
-    :type peak_active_sessions: int
-
-    :param peak_iops: [required] The highest value for currentIOPS since midnight UTC. 
-    :type peak_iops: int
-
-    :param provisioned_space: [required] Total amount of space provisioned in all volumes on the cluster. 
-    :type provisioned_space: int
-
-    :param snapshot_non_zero_blocks: [required] Total number of 4KiB blocks in snapshots with data. 
-    :type snapshot_non_zero_blocks: int
-
-    :param timestamp: [required] The date and time this cluster capacity sample was taken. 
-    :type timestamp: str
-
-    :param total_ops: [required] The total number of I/O operations performed throughout the lifetime of the cluster 
-    :type total_ops: int
-
-    :param unique_blocks: [required] The total number of blocks stored on the block drives. The value includes replicated blocks. 
-    :type unique_blocks: int
-
-    :param unique_blocks_used_space: [required] The total amount of data the uniqueBlocks take up on the block drives. This number is always consistent with the uniqueBlocks value. 
-    :type unique_blocks_used_space: int
-
-    :param used_metadata_space: [required] The total amount of bytes on volume drives used to store metadata 
-    :type used_metadata_space: int
-
-    :param used_metadata_space_in_snapshots: [required] The amount of bytes on volume drives used for storing unique data in snapshots. This number provides an estimate of how much metadata space would be regained by deleting all snapshots on the system. 
-    :type used_metadata_space_in_snapshots: int
-
-    :param used_space: [required] Total amount of space used by all block drives in the system. 
-    :type used_space: int
-
-    :param zero_blocks: [required] Total number of 4KiB blocks without data after the last round of garabage collection operation has completed. 
-    :type zero_blocks: int
-
-    """
-    active_block_space = data_model.property(
-        "activeBlockSpace", int,
-        array=False, optional=False,
-        documentation="""The amount of space on the block drives. This includes additional information such as metadata entries and space which can be cleaned up. """,
-        dictionaryType=None
-    )
-    active_sessions = data_model.property(
-        "activeSessions", int,
-        array=False, optional=False,
-        documentation="""Number of active iSCSI sessions communicating with the cluster """,
-        dictionaryType=None
-    )
-    average_iops = data_model.property(
-        "averageIOPS", int,
-        array=False, optional=False,
-        documentation="""Average IPS for the cluster since midnight Coordinated Universal Time (UTC). """,
-        dictionaryType=None
-    )
-    cluster_recent_iosize = data_model.property(
-        "clusterRecentIOSize", int,
-        array=False, optional=False,
-        documentation="""The average size of IOPS to all volumes in the cluster. """,
-        dictionaryType=None
-    )
-    current_iops = data_model.property(
-        "currentIOPS", int,
-        array=False, optional=False,
-        documentation="""Average IOPS for all volumes in the cluster over the last 5 seconds. """,
-        dictionaryType=None
-    )
-    max_iops = data_model.property(
-        "maxIOPS", int,
-        array=False, optional=False,
-        documentation="""Estimated maximum IOPS capability of the current cluster. """,
-        dictionaryType=None
-    )
-    max_over_provisionable_space = data_model.property(
-        "maxOverProvisionableSpace", int,
-        array=False, optional=False,
-        documentation="""The maximum amount of provisionable space. This is a computed value. You cannot create new volumes if the current provisioned space plus the new volume size would exceed this number: maxOverProvisionableSpace = maxProvisionedSpace * GetClusterFull """,
-        dictionaryType=None
-    )
-    max_provisioned_space = data_model.property(
-        "maxProvisionedSpace", int,
-        array=False, optional=False,
-        documentation="""The total amount of provisionable space if all volumes are 100% filled (no thin provisioned metadata). """,
-        dictionaryType=None
-    )
-    max_used_metadata_space = data_model.property(
-        "maxUsedMetadataSpace", int,
-        array=False, optional=False,
-        documentation="""The amount of bytes on volume drives used to store metadata. """,
-        dictionaryType=None
-    )
-    max_used_space = data_model.property(
-        "maxUsedSpace", int,
-        array=False, optional=False,
-        documentation="""The total amount of space on all active block drives. """,
-        dictionaryType=None
-    )
-    non_zero_blocks = data_model.property(
-        "nonZeroBlocks", int,
-        array=False, optional=False,
-        documentation="""Total number of 4KiB blocks with data after the last garbage collection operation has completed. """,
-        dictionaryType=None
-    )
-    peak_active_sessions = data_model.property(
-        "peakActiveSessions", int,
-        array=False, optional=False,
-        documentation="""Peak number of iSCSI connections since midnight UTC. """,
-        dictionaryType=None
-    )
-    peak_iops = data_model.property(
-        "peakIOPS", int,
-        array=False, optional=False,
-        documentation="""The highest value for currentIOPS since midnight UTC. """,
-        dictionaryType=None
-    )
-    provisioned_space = data_model.property(
-        "provisionedSpace", int,
-        array=False, optional=False,
-        documentation="""Total amount of space provisioned in all volumes on the cluster. """,
-        dictionaryType=None
-    )
-    snapshot_non_zero_blocks = data_model.property(
-        "snapshotNonZeroBlocks", int,
-        array=False, optional=False,
-        documentation="""Total number of 4KiB blocks in snapshots with data. """,
-        dictionaryType=None
-    )
-    timestamp = data_model.property(
-        "timestamp", str,
-        array=False, optional=False,
-        documentation="""The date and time this cluster capacity sample was taken. """,
-        dictionaryType=None
-    )
-    total_ops = data_model.property(
-        "totalOps", int,
-        array=False, optional=False,
-        documentation="""The total number of I/O operations performed throughout the lifetime of the cluster """,
-        dictionaryType=None
-    )
-    unique_blocks = data_model.property(
-        "uniqueBlocks", int,
-        array=False, optional=False,
-        documentation="""The total number of blocks stored on the block drives. The value includes replicated blocks. """,
-        dictionaryType=None
-    )
-    unique_blocks_used_space = data_model.property(
-        "uniqueBlocksUsedSpace", int,
-        array=False, optional=False,
-        documentation="""The total amount of data the uniqueBlocks take up on the block drives. This number is always consistent with the uniqueBlocks value. """,
-        dictionaryType=None
-    )
-    used_metadata_space = data_model.property(
-        "usedMetadataSpace", int,
-        array=False, optional=False,
-        documentation="""The total amount of bytes on volume drives used to store metadata """,
-        dictionaryType=None
-    )
-    used_metadata_space_in_snapshots = data_model.property(
-        "usedMetadataSpaceInSnapshots", int,
-        array=False, optional=False,
-        documentation="""The amount of bytes on volume drives used for storing unique data in snapshots. This number provides an estimate of how much metadata space would be regained by deleting all snapshots on the system. """,
-        dictionaryType=None
-    )
-    used_space = data_model.property(
-        "usedSpace", int,
-        array=False, optional=False,
-        documentation="""Total amount of space used by all block drives in the system. """,
-        dictionaryType=None
-    )
-    zero_blocks = data_model.property(
-        "zeroBlocks", int,
-        array=False, optional=False,
-        documentation="""Total number of 4KiB blocks without data after the last round of garabage collection operation has completed. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            active_block_space,
-            active_sessions,
-            average_iops,
-            cluster_recent_iosize,
-            current_iops,
-            max_iops,
-            max_over_provisionable_space,
-            max_provisioned_space,
-            max_used_metadata_space,
-            max_used_space,
-            non_zero_blocks,
-            peak_active_sessions,
-            peak_iops,
-            provisioned_space,
-            snapshot_non_zero_blocks,
-            timestamp,
-            total_ops,
-            unique_blocks,
-            unique_blocks_used_space,
-            used_metadata_space,
-            used_metadata_space_in_snapshots,
-            used_space,
-            zero_blocks):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetClusterCapacityResult(data_model.DataObject):
-    """GetClusterCapacityResult  
-
-    :param cluster_capacity: [required]  
-    :type cluster_capacity: ClusterCapacity
-
-    """
-    cluster_capacity = data_model.property(
-        "clusterCapacity", ClusterCapacity,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            cluster_capacity):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -10871,41 +10722,6 @@ class ShutdownRequest(data_model.DataObject):
     def __init__(self,
             nodes,
             option=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetAsyncResultRequest(data_model.DataObject):
-    """GetAsyncResultRequest  
-    You can use GetAsyncResult to retrieve the result of asynchronous method calls. Some method calls require some time to run, and
-    might not be finished when the system sends the initial response. To obtain the status or result of the method call, use
-    GetAsyncResult to poll the asyncHandle value returned by the method.
-    GetAsyncResult returns the overall status of the operation (in progress, completed, or error) in a standard fashion, but the actual
-    data returned for the operation depends on the original method call and the return data is documented with each method.
-
-    :param async_handle: [required] A value that was returned from the original asynchronous method call. 
-    :type async_handle: int
-
-    :param keep_result:  If true, GetAsyncResult does not remove the asynchronous result upon returning it, enabling future queries to that asyncHandle. 
-    :type keep_result: bool
-
-    """
-    async_handle = data_model.property(
-        "asyncHandle", int,
-        array=False, optional=False,
-        documentation="""A value that was returned from the original asynchronous method call. """,
-        dictionaryType=None
-    )
-    keep_result = data_model.property(
-        "keepResult", bool,
-        array=False, optional=True,
-        documentation="""If true, GetAsyncResult does not remove the asynchronous result upon returning it, enabling future queries to that asyncHandle. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            async_handle,
-            keep_result=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -12268,6 +12084,16 @@ class ResetNodeResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class BreakSnapMirrorRelationshipResult(data_model.DataObject):
+    """BreakSnapMirrorRelationshipResult  
+
+    """
+
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class EnableLdapAuthenticationRequest(data_model.DataObject):
     """EnableLdapAuthenticationRequest  
     The EnableLdapAuthentication method enables you to configure an LDAP directory connection to use for LDAP authentication to a cluster. Users that are members of the LDAP directory can then log in to the storage system using their LDAP credentials.
@@ -12489,8 +12315,8 @@ class EnableEncryptionAtRestResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class ModifyBackupTargetResult(data_model.DataObject):
-    """ModifyBackupTargetResult  
+class QuiesceSnapMirrorRelationshipResult(data_model.DataObject):
+    """QuiesceSnapMirrorRelationshipResult  
 
     """
 
@@ -12580,6 +12406,16 @@ class TestConnectEnsembleRequest(data_model.DataObject):
 
     def __init__(self,
             ensemble=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListSnapMirrorPoliciesResult(data_model.DataObject):
+    """ListSnapMirrorPoliciesResult  
+
+    """
+
+    def __init__(self):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -12913,6 +12749,27 @@ class ModifyVolumesRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class RestoreDeletedVolumeRequest(data_model.DataObject):
+    """RestoreDeletedVolumeRequest  
+    RestoreDeletedVolume marks a deleted volume as active again. This action makes the volume immediately available for iSCSI connection.
+
+    :param volume_id: [required] VolumeID of the deleted volume to be restored. 
+    :type volume_id: int
+
+    """
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="""VolumeID of the deleted volume to be restored. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            volume_id):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListPendingNodesResult(data_model.DataObject):
     """ListPendingNodesResult  
 
@@ -12963,23 +12820,142 @@ class ListActivePairedVolumesResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class RestoreDeletedVolumeRequest(data_model.DataObject):
-    """RestoreDeletedVolumeRequest  
-    RestoreDeletedVolume marks a deleted volume as active again. This action makes the volume immediately available for iSCSI connection.
+class AddedNode(data_model.DataObject):
+    """AddedNode  
 
-    :param volume_id: [required] VolumeID of the deleted volume to be restored. 
-    :type volume_id: int
+    :param node_id:   
+    :type node_id: int
+
+    :param pending_node_id: [required]  
+    :type pending_node_id: int
+
+    :param active_node_key:   
+    :type active_node_key: str
+
+    :param assigned_node_id:   
+    :type assigned_node_id: int
+
+    :param async_handle:   
+    :type async_handle: int
+
+    :param cip:   
+    :type cip: str
+
+    :param mip:   
+    :type mip: str
+
+    :param platform_info:   
+    :type platform_info: Platform
+
+    :param sip:   
+    :type sip: str
+
+    :param software_version:   
+    :type software_version: str
 
     """
-    volume_id = data_model.property(
-        "volumeID", int,
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    pending_node_id = data_model.property(
+        "pendingNodeID", int,
         array=False, optional=False,
-        documentation="""VolumeID of the deleted volume to be restored. """,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    active_node_key = data_model.property(
+        "activeNodeKey", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    assigned_node_id = data_model.property(
+        "assignedNodeID", int,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    async_handle = data_model.property(
+        "asyncHandle", int,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    cip = data_model.property(
+        "cip", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    mip = data_model.property(
+        "mip", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    platform_info = data_model.property(
+        "platformInfo", Platform,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    sip = data_model.property(
+        "sip", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    software_version = data_model.property(
+        "softwareVersion", str,
+        array=False, optional=True,
+        documentation=""" """,
         dictionaryType=None
     )
 
     def __init__(self,
-            volume_id):
+            pending_node_id,
+            node_id=None,
+            active_node_key=None,
+            assigned_node_id=None,
+            async_handle=None,
+            cip=None,
+            mip=None,
+            platform_info=None,
+            sip=None,
+            software_version=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class AddNodesResult(data_model.DataObject):
+    """AddNodesResult  
+
+    :param auto_install:   
+    :type auto_install: bool
+
+    :param nodes: [required] An array of objects mapping the previous "pendingNodeID" to the "nodeID". 
+    :type nodes: AddedNode
+
+    """
+    auto_install = data_model.property(
+        "autoInstall", bool,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    nodes = data_model.property(
+        "nodes", AddedNode,
+        array=True, optional=False,
+        documentation="""An array of objects mapping the previous "pendingNodeID" to the "nodeID". """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            nodes,
+            auto_install=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -13129,6 +13105,26 @@ class GetVirtualVolumeCountResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class ListVolumeStatsByVolumeResult(data_model.DataObject):
+    """ListVolumeStatsByVolumeResult  
+
+    :param volume_stats: [required] List of account activity information. 
+    :type volume_stats: VolumeStats
+
+    """
+    volume_stats = data_model.property(
+        "volumeStats", VolumeStats,
+        array=True, optional=False,
+        documentation="""List of account activity information. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            volume_stats):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListGroupSnapshotsResult(data_model.DataObject):
     """ListGroupSnapshotsResult  
 
@@ -13226,6 +13222,16 @@ class GetVolumeEfficiencyResult(data_model.DataObject):
             thin_provisioning,
             timestamp,
             compression=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ModifySnapMirrorEndpointResult(data_model.DataObject):
+    """ModifySnapMirrorEndpointResult  
+
+    """
+
+    def __init__(self):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -13732,6 +13738,16 @@ class GetVolumeEfficiencyRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class ModifySnapMirrorRelationshipResult(data_model.DataObject):
+    """ModifySnapMirrorRelationshipResult  
+
+    """
+
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ModifyVirtualNetworkRequest(data_model.DataObject):
     """ModifyVirtualNetworkRequest  
     You can use ModifyVirtualNetwork to change the attributes of an existing virtual network. This method enables you to add or remove
@@ -13760,10 +13776,10 @@ class ModifyVirtualNetworkRequest(data_model.DataObject):
     :param svip:  The storage virtual IP address for this virtual network. The svip for a virtual network cannot be changed. You must create a new virtual network to use a different svip address. 
     :type svip: str
 
-    :param gateway:  The IP address of a gateway of the virtual network. This parameter is only valid if the "namespace" parameter is set to true. 
+    :param gateway:  The IP address of a gateway of the virtual network. This parameter is valid only if the namespace parameter is set to true (meaning VRF is enabled). 
     :type gateway: str
 
-    :param namespace:  When set to true, enables Routable Storage VLANs functionality by recreating the virtual network and configuring a namespace to contain it. When set to false, disables the VRF functionality for the virtual network. Changing this value disrupts traffic running through this virtual network. 
+    :param namespace:  When set to true, enables the Routable Storage VLANs functionality by recreating the virtual network and configuring a namespace to contain it. When set to false, disables the VRF functionality for the virtual network. Changing this value disrupts traffic running through this virtual network. 
     :type namespace: bool
 
     :param attributes:  A new list of name-value pairs in JSON object format. 
@@ -13809,13 +13825,13 @@ class ModifyVirtualNetworkRequest(data_model.DataObject):
     gateway = data_model.property(
         "gateway", str,
         array=False, optional=True,
-        documentation="""The IP address of a gateway of the virtual network. This parameter is only valid if the "namespace" parameter is set to true. """,
+        documentation="""The IP address of a gateway of the virtual network. This parameter is valid only if the namespace parameter is set to true (meaning VRF is enabled). """,
         dictionaryType=None
     )
     namespace = data_model.property(
         "namespace", bool,
         array=False, optional=True,
-        documentation="""When set to true, enables Routable Storage VLANs functionality by recreating the virtual network and configuring a namespace to contain it. When set to false, disables the VRF functionality for the virtual network. Changing this value disrupts traffic running through this virtual network. """,
+        documentation="""When set to true, enables the Routable Storage VLANs functionality by recreating the virtual network and configuring a namespace to contain it. When set to false, disables the VRF functionality for the virtual network. Changing this value disrupts traffic running through this virtual network. """,
         dictionaryType=None
     )
     attributes = data_model.property(
@@ -14228,6 +14244,26 @@ class GetNodeHardwareInfoRequest(data_model.DataObject):
 
     def __init__(self,
             node_id):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class BreakSnapMirrorVolumeResult(data_model.DataObject):
+    """BreakSnapMirrorVolumeResult  
+
+    """
+
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class CreateSnapMirrorRelationshipResult(data_model.DataObject):
+    """CreateSnapMirrorRelationshipResult  
+
+    """
+
+    def __init__(self):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -14923,6 +14959,16 @@ class ListVolumeAccessGroupsRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class ResyncSnapMirrorRelationshipResult(data_model.DataObject):
+    """ResyncSnapMirrorRelationshipResult  
+
+    """
+
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class DeleteQoSPolicyRequest(data_model.DataObject):
     """DeleteQoSPolicyRequest  
     You can use the DeleteQoSPolicy method to delete a QoS policy from the system.
@@ -15172,33 +15218,12 @@ class ModifySnapshotResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class RemoveVolumesFromVolumeAccessGroupRequest(data_model.DataObject):
-    """RemoveVolumesFromVolumeAccessGroupRequest  
-    The RemoveVolumeFromVolumeAccessGroup method enables you to remove volumes from a volume access group.
-
-    :param volume_access_group_id: [required] The ID of the volume access group to remove volumes from. 
-    :type volume_access_group_id: int
-
-    :param volumes: [required] The ID of the volume access group to remove volumes from. 
-    :type volumes: int
+class InitializeSnapMirrorRelationshipResult(data_model.DataObject):
+    """InitializeSnapMirrorRelationshipResult  
 
     """
-    volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
-        array=False, optional=False,
-        documentation="""The ID of the volume access group to remove volumes from. """,
-        dictionaryType=None
-    )
-    volumes = data_model.property(
-        "volumes", int,
-        array=True, optional=False,
-        documentation="""The ID of the volume access group to remove volumes from. """,
-        dictionaryType=None
-    )
 
-    def __init__(self,
-            volume_access_group_id,
-            volumes):
+    def __init__(self):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -15414,22 +15439,263 @@ class TestConnectSvipResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVolumeStatsByVolumeResult(data_model.DataObject):
-    """ListVolumeStatsByVolumeResult  
+class ClusterCapacity(data_model.DataObject):
+    """ClusterCapacity  
+    High level capacity measurements for the entire cluster.
 
-    :param volume_stats: [required] List of account activity information. 
-    :type volume_stats: VolumeStats
+    :param active_block_space: [required] The amount of space on the block drives. This includes additional information such as metadata entries and space which can be cleaned up. 
+    :type active_block_space: int
+
+    :param active_sessions: [required] Number of active iSCSI sessions communicating with the cluster 
+    :type active_sessions: int
+
+    :param average_iops: [required] Average IPS for the cluster since midnight Coordinated Universal Time (UTC). 
+    :type average_iops: int
+
+    :param cluster_recent_iosize: [required] The average size of IOPS to all volumes in the cluster. 
+    :type cluster_recent_iosize: int
+
+    :param current_iops: [required] Average IOPS for all volumes in the cluster over the last 5 seconds. 
+    :type current_iops: int
+
+    :param max_iops: [required] Estimated maximum IOPS capability of the current cluster. 
+    :type max_iops: int
+
+    :param max_over_provisionable_space: [required] The maximum amount of provisionable space. This is a computed value. You cannot create new volumes if the current provisioned space plus the new volume size would exceed this number: maxOverProvisionableSpace = maxProvisionedSpace * GetClusterFull 
+    :type max_over_provisionable_space: int
+
+    :param max_provisioned_space: [required] The total amount of provisionable space if all volumes are 100% filled (no thin provisioned metadata). 
+    :type max_provisioned_space: int
+
+    :param max_used_metadata_space: [required] The amount of bytes on volume drives used to store metadata. 
+    :type max_used_metadata_space: int
+
+    :param max_used_space: [required] The total amount of space on all active block drives. 
+    :type max_used_space: int
+
+    :param non_zero_blocks: [required] Total number of 4KiB blocks with data after the last garbage collection operation has completed. 
+    :type non_zero_blocks: int
+
+    :param peak_active_sessions: [required] Peak number of iSCSI connections since midnight UTC. 
+    :type peak_active_sessions: int
+
+    :param peak_iops: [required] The highest value for currentIOPS since midnight UTC. 
+    :type peak_iops: int
+
+    :param provisioned_space: [required] Total amount of space provisioned in all volumes on the cluster. 
+    :type provisioned_space: int
+
+    :param snapshot_non_zero_blocks: [required] Total number of 4KiB blocks in snapshots with data. 
+    :type snapshot_non_zero_blocks: int
+
+    :param timestamp: [required] The date and time this cluster capacity sample was taken. 
+    :type timestamp: str
+
+    :param total_ops: [required] The total number of I/O operations performed throughout the lifetime of the cluster 
+    :type total_ops: int
+
+    :param unique_blocks: [required] The total number of blocks stored on the block drives. The value includes replicated blocks. 
+    :type unique_blocks: int
+
+    :param unique_blocks_used_space: [required] The total amount of data the uniqueBlocks take up on the block drives. This number is always consistent with the uniqueBlocks value. 
+    :type unique_blocks_used_space: int
+
+    :param used_metadata_space: [required] The total amount of bytes on volume drives used to store metadata 
+    :type used_metadata_space: int
+
+    :param used_metadata_space_in_snapshots: [required] The amount of bytes on volume drives used for storing unique data in snapshots. This number provides an estimate of how much metadata space would be regained by deleting all snapshots on the system. 
+    :type used_metadata_space_in_snapshots: int
+
+    :param used_space: [required] Total amount of space used by all block drives in the system. 
+    :type used_space: int
+
+    :param zero_blocks: [required] Total number of 4KiB blocks without data after the last round of garabage collection operation has completed. 
+    :type zero_blocks: int
 
     """
-    volume_stats = data_model.property(
-        "volumeStats", VolumeStats,
-        array=True, optional=False,
-        documentation="""List of account activity information. """,
+    active_block_space = data_model.property(
+        "activeBlockSpace", int,
+        array=False, optional=False,
+        documentation="""The amount of space on the block drives. This includes additional information such as metadata entries and space which can be cleaned up. """,
+        dictionaryType=None
+    )
+    active_sessions = data_model.property(
+        "activeSessions", int,
+        array=False, optional=False,
+        documentation="""Number of active iSCSI sessions communicating with the cluster """,
+        dictionaryType=None
+    )
+    average_iops = data_model.property(
+        "averageIOPS", int,
+        array=False, optional=False,
+        documentation="""Average IPS for the cluster since midnight Coordinated Universal Time (UTC). """,
+        dictionaryType=None
+    )
+    cluster_recent_iosize = data_model.property(
+        "clusterRecentIOSize", int,
+        array=False, optional=False,
+        documentation="""The average size of IOPS to all volumes in the cluster. """,
+        dictionaryType=None
+    )
+    current_iops = data_model.property(
+        "currentIOPS", int,
+        array=False, optional=False,
+        documentation="""Average IOPS for all volumes in the cluster over the last 5 seconds. """,
+        dictionaryType=None
+    )
+    max_iops = data_model.property(
+        "maxIOPS", int,
+        array=False, optional=False,
+        documentation="""Estimated maximum IOPS capability of the current cluster. """,
+        dictionaryType=None
+    )
+    max_over_provisionable_space = data_model.property(
+        "maxOverProvisionableSpace", int,
+        array=False, optional=False,
+        documentation="""The maximum amount of provisionable space. This is a computed value. You cannot create new volumes if the current provisioned space plus the new volume size would exceed this number: maxOverProvisionableSpace = maxProvisionedSpace * GetClusterFull """,
+        dictionaryType=None
+    )
+    max_provisioned_space = data_model.property(
+        "maxProvisionedSpace", int,
+        array=False, optional=False,
+        documentation="""The total amount of provisionable space if all volumes are 100% filled (no thin provisioned metadata). """,
+        dictionaryType=None
+    )
+    max_used_metadata_space = data_model.property(
+        "maxUsedMetadataSpace", int,
+        array=False, optional=False,
+        documentation="""The amount of bytes on volume drives used to store metadata. """,
+        dictionaryType=None
+    )
+    max_used_space = data_model.property(
+        "maxUsedSpace", int,
+        array=False, optional=False,
+        documentation="""The total amount of space on all active block drives. """,
+        dictionaryType=None
+    )
+    non_zero_blocks = data_model.property(
+        "nonZeroBlocks", int,
+        array=False, optional=False,
+        documentation="""Total number of 4KiB blocks with data after the last garbage collection operation has completed. """,
+        dictionaryType=None
+    )
+    peak_active_sessions = data_model.property(
+        "peakActiveSessions", int,
+        array=False, optional=False,
+        documentation="""Peak number of iSCSI connections since midnight UTC. """,
+        dictionaryType=None
+    )
+    peak_iops = data_model.property(
+        "peakIOPS", int,
+        array=False, optional=False,
+        documentation="""The highest value for currentIOPS since midnight UTC. """,
+        dictionaryType=None
+    )
+    provisioned_space = data_model.property(
+        "provisionedSpace", int,
+        array=False, optional=False,
+        documentation="""Total amount of space provisioned in all volumes on the cluster. """,
+        dictionaryType=None
+    )
+    snapshot_non_zero_blocks = data_model.property(
+        "snapshotNonZeroBlocks", int,
+        array=False, optional=False,
+        documentation="""Total number of 4KiB blocks in snapshots with data. """,
+        dictionaryType=None
+    )
+    timestamp = data_model.property(
+        "timestamp", str,
+        array=False, optional=False,
+        documentation="""The date and time this cluster capacity sample was taken. """,
+        dictionaryType=None
+    )
+    total_ops = data_model.property(
+        "totalOps", int,
+        array=False, optional=False,
+        documentation="""The total number of I/O operations performed throughout the lifetime of the cluster """,
+        dictionaryType=None
+    )
+    unique_blocks = data_model.property(
+        "uniqueBlocks", int,
+        array=False, optional=False,
+        documentation="""The total number of blocks stored on the block drives. The value includes replicated blocks. """,
+        dictionaryType=None
+    )
+    unique_blocks_used_space = data_model.property(
+        "uniqueBlocksUsedSpace", int,
+        array=False, optional=False,
+        documentation="""The total amount of data the uniqueBlocks take up on the block drives. This number is always consistent with the uniqueBlocks value. """,
+        dictionaryType=None
+    )
+    used_metadata_space = data_model.property(
+        "usedMetadataSpace", int,
+        array=False, optional=False,
+        documentation="""The total amount of bytes on volume drives used to store metadata """,
+        dictionaryType=None
+    )
+    used_metadata_space_in_snapshots = data_model.property(
+        "usedMetadataSpaceInSnapshots", int,
+        array=False, optional=False,
+        documentation="""The amount of bytes on volume drives used for storing unique data in snapshots. This number provides an estimate of how much metadata space would be regained by deleting all snapshots on the system. """,
+        dictionaryType=None
+    )
+    used_space = data_model.property(
+        "usedSpace", int,
+        array=False, optional=False,
+        documentation="""Total amount of space used by all block drives in the system. """,
+        dictionaryType=None
+    )
+    zero_blocks = data_model.property(
+        "zeroBlocks", int,
+        array=False, optional=False,
+        documentation="""Total number of 4KiB blocks without data after the last round of garabage collection operation has completed. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            volume_stats):
+            active_block_space,
+            active_sessions,
+            average_iops,
+            cluster_recent_iosize,
+            current_iops,
+            max_iops,
+            max_over_provisionable_space,
+            max_provisioned_space,
+            max_used_metadata_space,
+            max_used_space,
+            non_zero_blocks,
+            peak_active_sessions,
+            peak_iops,
+            provisioned_space,
+            snapshot_non_zero_blocks,
+            timestamp,
+            total_ops,
+            unique_blocks,
+            unique_blocks_used_space,
+            used_metadata_space,
+            used_metadata_space_in_snapshots,
+            used_space,
+            zero_blocks):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetClusterCapacityResult(data_model.DataObject):
+    """GetClusterCapacityResult  
+
+    :param cluster_capacity: [required]  
+    :type cluster_capacity: ClusterCapacity
+
+    """
+    cluster_capacity = data_model.property(
+        "clusterCapacity", ClusterCapacity,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            cluster_capacity):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -15616,6 +15882,16 @@ class ListNodeFibreChannelPortInfoResult(data_model.DataObject):
 
     def __init__(self,
             fibre_channel_ports):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class DeleteSnapMirrorEndpointsResult(data_model.DataObject):
+    """DeleteSnapMirrorEndpointsResult  
+
+    """
+
+    def __init__(self):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -15861,6 +16137,16 @@ class GetDriveStatsResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class ListSnapMirrorNetworkInterfacesResult(data_model.DataObject):
+    """ListSnapMirrorNetworkInterfacesResult  
+
+    """
+
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ModifyVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
     """ModifyVolumeAccessGroupLunAssignmentsRequest  
     The ModifyVolumeAccessGroupLunAssignments
@@ -15987,6 +16273,16 @@ class ListVolumeStatsByVolumeAccessGroupRequest(data_model.DataObject):
     def __init__(self,
             volume_access_groups=None,
             include_virtual_volumes=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class AbortSnapMirrorRelationshipResult(data_model.DataObject):
+    """AbortSnapMirrorRelationshipResult  
+
+    """
+
+    def __init__(self):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -16294,46 +16590,22 @@ class ModifyQoSPolicyRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class PurgeDeletedVolumesRequest(data_model.DataObject):
-    """PurgeDeletedVolumesRequest  
-    PurgeDeletedVolumes immediately and permanently purges volumes that have been deleted.
-    You can use this method to purge up to 500 volumes at one time.
-    You must delete volumes using DeleteVolumes before they can be purged.
-    Volumes are purged by the system automatically after a period of time, so usage of this method is not typically required.
+class GetHardwareConfigResult(data_model.DataObject):
+    """GetHardwareConfigResult  
 
-    :param volume_ids:  A list of volumeIDs of volumes to be purged from the system. 
-    :type volume_ids: int
-
-    :param account_ids:  A list of accountIDs. All of the volumes from all of the specified accounts are purged from the system. 
-    :type account_ids: int
-
-    :param volume_access_group_ids:  A list of volumeAccessGroupIDs. All of the volumes from all of the specified Volume Access Groups are purged from the system. 
-    :type volume_access_group_ids: int
+    :param hardware_config: [required] List of hardware information and current settings. 
+    :type hardware_config: dict
 
     """
-    volume_ids = data_model.property(
-        "volumeIDs", int,
-        array=True, optional=True,
-        documentation="""A list of volumeIDs of volumes to be purged from the system. """,
-        dictionaryType=None
-    )
-    account_ids = data_model.property(
-        "accountIDs", int,
-        array=True, optional=True,
-        documentation="""A list of accountIDs. All of the volumes from all of the specified accounts are purged from the system. """,
-        dictionaryType=None
-    )
-    volume_access_group_ids = data_model.property(
-        "volumeAccessGroupIDs", int,
-        array=True, optional=True,
-        documentation="""A list of volumeAccessGroupIDs. All of the volumes from all of the specified Volume Access Groups are purged from the system. """,
+    hardware_config = data_model.property(
+        "hardwareConfig", dict,
+        array=False, optional=False,
+        documentation="""List of hardware information and current settings. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            volume_ids=None,
-            account_ids=None,
-            volume_access_group_ids=None):
+            hardware_config):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -16932,26 +17204,6 @@ class ListVolumesResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetHardwareConfigResult(data_model.DataObject):
-    """GetHardwareConfigResult  
-
-    :param hardware_config: [required] List of hardware information and current settings. 
-    :type hardware_config: dict
-
-    """
-    hardware_config = data_model.property(
-        "hardwareConfig", dict,
-        array=False, optional=False,
-        documentation="""List of hardware information and current settings. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            hardware_config):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
 class GetQoSPolicyRequest(data_model.DataObject):
     """GetQoSPolicyRequest  
     You can use the GetQoSPolicy method to get details about a specific QoSPolicy from the system.
@@ -17478,6 +17730,16 @@ class GetBackupTargetRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class ListSnapMirrorSchedulesResult(data_model.DataObject):
+    """ListSnapMirrorSchedulesResult  
+
+    """
+
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class RollbackToGroupSnapshotResult(data_model.DataObject):
     """RollbackToGroupSnapshotResult  
 
@@ -17680,6 +17942,16 @@ class TestDrivesRequest(data_model.DataObject):
     def __init__(self,
             minutes=None,
             force=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ResumeSnapMirrorRelationshipResult(data_model.DataObject):
+    """ResumeSnapMirrorRelationshipResult  
+
+    """
+
+    def __init__(self):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -18637,33 +18909,22 @@ class ListVirtualVolumeBindingsRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class ListVolumeStatsByAccountRequest(data_model.DataObject):
-    """ListVolumeStatsByAccountRequest  
-    ListVolumeStatsByAccount returns high-level activity measurements for every account. Values are summed from all the volumes owned by the account.
+class AddLdapClusterAdminResult(data_model.DataObject):
+    """AddLdapClusterAdminResult  
 
-    :param accounts:  One or more account ids by which to filter the result. 
-    :type accounts: int
-
-    :param include_virtual_volumes:  Includes virtual volumes in the response by default. To exclude virtual volumes, set to false. 
-    :type include_virtual_volumes: bool
+    :param cluster_admin_id:   
+    :type cluster_admin_id: int
 
     """
-    accounts = data_model.property(
-        "accounts", int,
-        array=True, optional=True,
-        documentation="""One or more account ids by which to filter the result. """,
-        dictionaryType=None
-    )
-    include_virtual_volumes = data_model.property(
-        "includeVirtualVolumes", bool,
+    cluster_admin_id = data_model.property(
+        "clusterAdminID", int,
         array=False, optional=True,
-        documentation="""Includes virtual volumes in the response by default. To exclude virtual volumes, set to false. """,
+        documentation=""" """,
         dictionaryType=None
     )
 
     def __init__(self,
-            accounts=None,
-            include_virtual_volumes=None):
+            cluster_admin_id=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -18750,6 +19011,16 @@ class DisableLdapAuthenticationResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class ListSnapMirrorEndpointsResult(data_model.DataObject):
+    """ListSnapMirrorEndpointsResult  
+
+    """
+
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListSnapshotsResult(data_model.DataObject):
     """ListSnapshotsResult  
 
@@ -18766,6 +19037,16 @@ class ListSnapshotsResult(data_model.DataObject):
 
     def __init__(self,
             snapshots):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListSnapMirrorVserversResult(data_model.DataObject):
+    """ListSnapMirrorVserversResult  
+
+    """
+
+    def __init__(self):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -19284,6 +19565,16 @@ class PurgeDeletedVolumeRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class ListSnapMirrorLunsResult(data_model.DataObject):
+    """ListSnapMirrorLunsResult  
+
+    """
+
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class SyncJob(data_model.DataObject):
     """SyncJob  
 
@@ -19673,6 +19964,16 @@ class TestConnectMvipRequest(data_model.DataObject):
 
     def __init__(self,
             mvip=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ModifyBackupTargetResult(data_model.DataObject):
+    """ModifyBackupTargetResult  
+
+    """
+
+    def __init__(self):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -20234,6 +20535,16 @@ class SetRemoteLoggingHostsResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class ListSnapMirrorRelationshipsResult(data_model.DataObject):
+    """ListSnapMirrorRelationshipsResult  
+
+    """
+
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class SetClusterConfigRequest(data_model.DataObject):
     """SetClusterConfigRequest  
     The SetClusterConfig API method enables you to set the configuration this node uses to communicate with the cluster it is associated with. To see the states in which these objects can be modified, see Cluster Object Attributes. To display the current cluster
@@ -20253,6 +20564,16 @@ class SetClusterConfigRequest(data_model.DataObject):
 
     def __init__(self,
             cluster):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListSnapMirrorNodesResult(data_model.DataObject):
+    """ListSnapMirrorNodesResult  
+
+    """
+
+    def __init__(self):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -20464,7 +20785,7 @@ class AddClusterAdminRequest(data_model.DataObject):
     :param access: [required] Controls which methods this cluster admin can use. For more details on the levels of access, see Access Control in the Element API Reference Guide. 
     :type access: str
 
-    :param accept_eula:  Required to indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. 
+    :param accept_eula: [required] Required to indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. 
     :type accept_eula: bool
 
     :param attributes:  List of name-value pairs in JSON object format. 
@@ -20491,7 +20812,7 @@ class AddClusterAdminRequest(data_model.DataObject):
     )
     accept_eula = data_model.property(
         "acceptEula", bool,
-        array=False, optional=True,
+        array=False, optional=False,
         documentation="""Required to indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. """,
         dictionaryType=None
     )
@@ -20506,7 +20827,7 @@ class AddClusterAdminRequest(data_model.DataObject):
             username,
             password,
             access,
-            accept_eula=None,
+            accept_eula,
             attributes=None):
         kwargs = locals()
         del kwargs["self"]
@@ -20790,57 +21111,6 @@ class CreateGroupSnapshotResult(data_model.DataObject):
             group_snapshot,
             group_snapshot_id,
             members):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ModifyClusterAdminRequest(data_model.DataObject):
-    """ModifyClusterAdminRequest  
-    You can use ModifyClusterAdmin to change the settings for a cluster admin or LDAP cluster admin. You cannot change access for the administrator cluster admin account.
-
-    :param cluster_admin_id: [required] ClusterAdminID for the cluster admin or LDAP cluster admin to modify. 
-    :type cluster_admin_id: int
-
-    :param password:  Password used to authenticate this cluster admin. 
-    :type password: str
-
-    :param access:  Controls which methods this cluster admin can use. For more details, see Access Control in the Element API Reference Guide. 
-    :type access: str
-
-    :param attributes:  List of name-value pairs in JSON object format. 
-    :type attributes: dict
-
-    """
-    cluster_admin_id = data_model.property(
-        "clusterAdminID", int,
-        array=False, optional=False,
-        documentation="""ClusterAdminID for the cluster admin or LDAP cluster admin to modify. """,
-        dictionaryType=None
-    )
-    password = data_model.property(
-        "password", str,
-        array=False, optional=True,
-        documentation="""Password used to authenticate this cluster admin. """,
-        dictionaryType=None
-    )
-    access = data_model.property(
-        "access", str,
-        array=True, optional=True,
-        documentation="""Controls which methods this cluster admin can use. For more details, see Access Control in the Element API Reference Guide. """,
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="""List of name-value pairs in JSON object format. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            cluster_admin_id,
-            password=None,
-            access=None,
-            attributes=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)

@@ -1181,7 +1181,7 @@ class Element(ServiceBase):
             username,
             password,
             access,
-            accept_eula=OPTIONAL,
+            accept_eula,
             attributes=OPTIONAL,):
         """
         You can use AddClusterAdmin to add a new cluster admin account. A cluster ddmin can manage the cluster using the API and management tools. Cluster admins are completely separate and unrelated to standard tenant accounts.
@@ -1196,7 +1196,7 @@ class Element(ServiceBase):
         :param access: [required] Controls which methods this cluster admin can use. For more details on the levels of access, see Access Control in the Element API Reference Guide. 
         :type access: str
 
-        :param acceptEula:  Required to indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. 
+        :param acceptEula: [required] Required to indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. 
         :type acceptEula: bool
 
         :param attributes:  List of name-value pairs in JSON object format. 
@@ -1209,9 +1209,8 @@ class Element(ServiceBase):
             "username": username,
             "password": password,
             "access": access,
+            "acceptEula": accept_eula,
         }
-        if accept_eula is not None:
-            params["acceptEula"] = accept_eula
         if attributes is not None:
             params["attributes"] = attributes
         
@@ -3289,6 +3288,492 @@ class Element(ServiceBase):
             since=5.0
         )
 
+    def abort_snap_mirror_relationship(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the AbortSnapMirrorRelationship method to stop SnapMirror transfers that have started but are not yet complete.        """
+
+        self._check_connection_type("abort_snap_mirror_relationship", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'AbortSnapMirrorRelationship',
+            AbortSnapMirrorRelationshipResult,
+            params,
+            since=10.1
+        )
+
+    def break_snap_mirror_relationship(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the BreakSnapMirrorRelationship method to break a SnapMirror relationship. When a SnapMirror relationship is broken, the destination volume is made read-write and independent, and can then diverge from the source. You can reestablish the relationship with the ResyncSnapMirrorRelationship API method. This method requires the ONTAP cluster to be available.        """
+
+        self._check_connection_type("break_snap_mirror_relationship", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'BreakSnapMirrorRelationship',
+            BreakSnapMirrorRelationshipResult,
+            params,
+            since=10.1
+        )
+
+    def break_snap_mirror_volume(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the BreakSnapMirrorVolume method to break the SnapMirror relationship between an ONTAP source container and SolidFire target volume. Breaking a SolidFire SnapMirror volume is useful if an ONTAP system becomes unavailable while replicating data to a SolidFire volume. This feature enables a storage administrator to take control of a SolidFire SnapMirror volume, break its relationship with the remote ONTAP system, and revert the volume to a previous snapshot.        """
+
+        self._check_connection_type("break_snap_mirror_volume", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'BreakSnapMirrorVolume',
+            BreakSnapMirrorVolumeResult,
+            params,
+            since=10.1
+        )
+
+    def create_snap_mirror_endpoint(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the CreateSnapMirrorEndpoint method to create a relationship with a remote SnapMirror endpoint.        """
+
+        self._check_connection_type("create_snap_mirror_endpoint", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateSnapMirrorEndpoint',
+            CreateSnapMirrorEndpointResult,
+            params,
+            since=10.1
+        )
+
+    def create_snap_mirror_relationship(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the CreateSnapMirrorRelationship method to create a SnapMirror extended data protection relationship between a source and destination endpoint.        """
+
+        self._check_connection_type("create_snap_mirror_relationship", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateSnapMirrorRelationship',
+            CreateSnapMirrorRelationshipResult,
+            params,
+            since=10.1
+        )
+
+    def create_snap_mirror_volume(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the CreateSnapMirrorVolume method to create a volume on the remote ONTAP system.        """
+
+        self._check_connection_type("create_snap_mirror_volume", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateSnapMirrorVolume',
+            CreateSnapMirrorVolumeResult,
+            params,
+            since=10.1
+        )
+
+    def delete_snap_mirror_endpoints(
+            self,):
+        """
+        The SolidFire Element OS web UI uses DeleteSnapMirrorEndpoints to delete one or more SnapMirror endpoints from the system.        """
+
+        self._check_connection_type("delete_snap_mirror_endpoints", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DeleteSnapMirrorEndpoints',
+            DeleteSnapMirrorEndpointsResult,
+            params,
+            since=10.1
+        )
+
+    def delete_snap_mirror_relationships(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the DeleteSnapMirrorRelationships method to remove a SnapMirror relationship between a source and destination endpoint.        """
+
+        self._check_connection_type("delete_snap_mirror_relationships", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DeleteSnapMirrorRelationships',
+            DeleteSnapMirrorRelationshipsResult,
+            params,
+            since=10.1
+        )
+
+    def get_ontap_version_info(
+            self,):
+        """
+        The SolidFire Element OS web UI uses GetOntapVersionInfo to get information about API version support from the ONTAP cluster in a SnapMirror relationship.        """
+
+        self._check_connection_type("get_ontap_version_info", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetOntapVersionInfo',
+            GetOntapVersionInfoResult,
+            params,
+            since=10.1
+        )
+
+    def get_snap_mirror_cluster_identity(
+            self,):
+        """
+        The SolidFire Element OS web UI uses GetSnapMirrorClusterIdentity to get identity information about the ONTAP cluster.        """
+
+        self._check_connection_type("get_snap_mirror_cluster_identity", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetSnapMirrorClusterIdentity',
+            GetSnapMirrorClusterIdentityResult,
+            params,
+            since=10.1
+        )
+
+    def initialize_snap_mirror_relationship(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the InitializeSnapMirrorRelationship method to initialize the destination volume in a SnapMirror relationship by performing an initial baseline transfer between clusters.        """
+
+        self._check_connection_type("initialize_snap_mirror_relationship", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'InitializeSnapMirrorRelationship',
+            InitializeSnapMirrorRelationshipResult,
+            params,
+            since=10.1
+        )
+
+    def list_snap_mirror_aggregates(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the ListSnapMirrorAggregates method to list all SnapMirror aggregates that are available on the remote ONTAP system. An aggregate describes a set of physical storage resources.        """
+
+        self._check_connection_type("list_snap_mirror_aggregates", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListSnapMirrorAggregates',
+            ListSnapMirrorAggregatesResult,
+            params,
+            since=10.1
+        )
+
+    def list_snap_mirror_endpoints(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the ListSnapMirrorEndpoints method to list all SnapMirror endpoints that the SolidFire cluster is communicating with.        """
+
+        self._check_connection_type("list_snap_mirror_endpoints", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListSnapMirrorEndpoints',
+            ListSnapMirrorEndpointsResult,
+            params,
+            since=10.1
+        )
+
+    def list_snap_mirror_luns(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the ListSnapMirrorLuns method to list the LUN information for the SnapMirror relationship from the remote ONTAP cluster.        """
+
+        self._check_connection_type("list_snap_mirror_luns", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListSnapMirrorLuns',
+            ListSnapMirrorLunsResult,
+            params,
+            since=10.1
+        )
+
+    def list_snap_mirror_network_interfaces(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the ListSnapMirrorNetworkInterfaces method to list all available SnapMirror interfaces on a remote ONTAP system        """
+
+        self._check_connection_type("list_snap_mirror_network_interfaces", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListSnapMirrorNetworkInterfaces',
+            ListSnapMirrorNetworkInterfacesResult,
+            params,
+            since=10.1
+        )
+
+    def list_snap_mirror_nodes(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the ListSnapMirrorNodes method to get a list of nodes in a remote ONTAP cluster.        """
+
+        self._check_connection_type("list_snap_mirror_nodes", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListSnapMirrorNodes',
+            ListSnapMirrorNodesResult,
+            params,
+            since=10.1
+        )
+
+    def list_snap_mirror_policies(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the ListSnapMirrorPolicies method to list all SnapMirror policies on a remote ONTAP system.        """
+
+        self._check_connection_type("list_snap_mirror_policies", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListSnapMirrorPolicies',
+            ListSnapMirrorPoliciesResult,
+            params,
+            since=10.1
+        )
+
+    def list_snap_mirror_relationships(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the ListSnapMirrorRelationships method to list one or all SnapMirror relationships on a SolidFire cluster        """
+
+        self._check_connection_type("list_snap_mirror_relationships", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListSnapMirrorRelationships',
+            ListSnapMirrorRelationshipsResult,
+            params,
+            since=10.1
+        )
+
+    def list_snap_mirror_schedules(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the ListSnapMirrorSchedules method to get a list of schedules that are available on a remote ONTAP cluster.        """
+
+        self._check_connection_type("list_snap_mirror_schedules", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListSnapMirrorSchedules',
+            ListSnapMirrorSchedulesResult,
+            params,
+            since=10.1
+        )
+
+    def list_snap_mirror_volumes(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the ListSnapMirrorVolumes method to list all SnapMirror volumes available on a remote ONTAP system.        """
+
+        self._check_connection_type("list_snap_mirror_volumes", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListSnapMirrorVolumes',
+            ListSnapMirrorVolumesResult,
+            params,
+            since=10.1
+        )
+
+    def list_snap_mirror_vservers(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the ListSnapMirrorVservers method to list all SnapMirror Vservers available on a remote ONTAP system.        """
+
+        self._check_connection_type("list_snap_mirror_vservers", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListSnapMirrorVservers',
+            ListSnapMirrorVserversResult,
+            params,
+            since=10.1
+        )
+
+    def modify_snap_mirror_endpoint(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the ModifySnapMirrorEndpoint method to change the name and management attributes for a SnapMirror endpoint.        """
+
+        self._check_connection_type("modify_snap_mirror_endpoint", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifySnapMirrorEndpoint',
+            ModifySnapMirrorEndpointResult,
+            params,
+            since=10.1
+        )
+
+    def modify_snap_mirror_relationship(
+            self,):
+        """
+        You can use ModifySnapMirrorRelationship to change the intervals at which a scheduled snapshot occurs. You can also delete or pause a schedule by using this method.        """
+
+        self._check_connection_type("modify_snap_mirror_relationship", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifySnapMirrorRelationship',
+            ModifySnapMirrorRelationshipResult,
+            params,
+            since=10.1
+        )
+
+    def quiesce_snap_mirror_relationship(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the QuiesceSnapMirrorRelationship method to disable future data transfers for a SnapMirror relationship. If a transfer is in progress, the relationship status becomes "quiescing" until the transfer is complete. If the current transfer is aborted, it will not restart. You can reenable data transfers for the relationship using the ResumeSnapMirrorRelationship API method.        """
+
+        self._check_connection_type("quiesce_snap_mirror_relationship", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'QuiesceSnapMirrorRelationship',
+            QuiesceSnapMirrorRelationshipResult,
+            params,
+            since=10.1
+        )
+
+    def resume_snap_mirror_relationship(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the ResumeSnapMirrorRelationship method to enable future transfers for a quiesced SnapMirror relationship.        """
+
+        self._check_connection_type("resume_snap_mirror_relationship", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ResumeSnapMirrorRelationship',
+            ResumeSnapMirrorRelationshipResult,
+            params,
+            since=10.1
+        )
+
+    def resync_snap_mirror_relationship(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the ResyncSnapMirrorRelationship method to establish or reestablish a mirror relationship between a source and destination endpoint. When you resync a relationship, the system removes snapshots on the destination volume that are newer than the common snapshot copy, and then mounts the destination volume as a data protection volume with the common snapshot copy as the exported snapshot copy.        """
+
+        self._check_connection_type("resync_snap_mirror_relationship", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ResyncSnapMirrorRelationship',
+            ResyncSnapMirrorRelationshipResult,
+            params,
+            since=10.1
+        )
+
+    def update_snap_mirror_relationship(
+            self,):
+        """
+        The SolidFire Element OS web UI uses the UpdateSnapMirrorRelationship method to make the destination volume in a SnapMirror relationship an up-to-date mirror of the source volume.        """
+
+        self._check_connection_type("update_snap_mirror_relationship", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'UpdateSnapMirrorRelationship',
+            UpdateSnapMirrorRelationshipResult,
+            params,
+            since=10.1
+        )
+
     def create_group_snapshot(
             self,
             volumes,
@@ -4324,10 +4809,10 @@ class Element(ServiceBase):
         :param svip: [required] Unique storage IP address for the virtual network being created. 
         :type svip: str
 
-        :param gateway:  The IP address of a gateway of the virtual network. This parameter is only valid if the "namespace" parameter is set to true. 
+        :param gateway:  The IP address of a gateway of the virtual network. This parameter is valid only if the namespace parameter is set to true (meaning VRF is enabled). 
         :type gateway: str
 
-        :param namespace:  When set to true, enables the Routable Storage VLANs functionality by creating and configuring a namespace and the virtual network contained by it. 
+        :param namespace:  When set to true, enables the Routable Storage VLANs functionality by recreating the virtual network and configuring a namespace to contain it. When set to false, disables the VRF functionality for the virtual network. Changing this value disrupts traffic running through this virtual network. 
         :type namespace: bool
 
         :param attributes:  List of name-value pairs in JSON object format. 
@@ -4448,10 +4933,10 @@ class Element(ServiceBase):
         :param svip:  The storage virtual IP address for this virtual network. The svip for a virtual network cannot be changed. You must create a new virtual network to use a different svip address. 
         :type svip: str
 
-        :param gateway:  The IP address of a gateway of the virtual network. This parameter is only valid if the "namespace" parameter is set to true. 
+        :param gateway:  The IP address of a gateway of the virtual network. This parameter is valid only if the namespace parameter is set to true (meaning VRF is enabled). 
         :type gateway: str
 
-        :param namespace:  When set to true, enables Routable Storage VLANs functionality by recreating the virtual network and configuring a namespace to contain it. When set to false, disables the VRF functionality for the virtual network. Changing this value disrupts traffic running through this virtual network. 
+        :param namespace:  When set to true, enables the Routable Storage VLANs functionality by recreating the virtual network and configuring a namespace to contain it. When set to false, disables the VRF functionality for the virtual network. Changing this value disrupts traffic running through this virtual network. 
         :type namespace: bool
 
         :param attributes:  A new list of name-value pairs in JSON object format. 
