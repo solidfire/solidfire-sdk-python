@@ -181,13 +181,13 @@ unreachable):
 
 	from solidfire.factory import ElementFactory
 	sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
-	sfe.timeout(600)
+	sfe.connect_timeout(600)
 
 Read timeout (useful for extending time for a service call to return):
 
 	from solidfire.factory import ElementFactory
 	sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
-	sfe.read_timeout(600)
+	sfe.timeout(600)
 
 **License**
 -----------
