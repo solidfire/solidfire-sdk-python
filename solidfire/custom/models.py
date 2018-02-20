@@ -24,8 +24,10 @@ class CHAPSecret(data_model.DataObject):
         documentation="A 12 - 16 character string."
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self, secretInput = None, **kwargs):
         data_model.DataObject.__init__(self, **kwargs)
+        if (secretInput != None):
+            self.secret = secretInput
 
     @staticmethod
     def auto_generate():
