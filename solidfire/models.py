@@ -1037,12 +1037,103 @@ class StartVolumePairingResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class SnapMirrorAggregate(data_model.DataObject):
+    """SnapMirrorAggregate  
+    The snapMirrorAggregate object contains information about the available ONTAP aggregates, which are collections of disks made available to volumes as storage. You can get this information using the ListSnapMirrorAggregates API method.
+
+    :param snap_mirror_endpoint_id: [required] The ID of the destination ONTAP system. 
+    :type snap_mirror_endpoint_id: int
+
+    :param aggregate_name: [required] The name of the aggregate. 
+    :type aggregate_name: str
+
+    :param node_name: [required] The name of the ONTAP node that owns this aggregate. 
+    :type node_name: str
+
+    :param size_available: [required] The number of available bytes remaining in the aggregate. 
+    :type size_available: int
+
+    :param size_total: [required] The total size (int bytes) of the aggregate. 
+    :type size_total: int
+
+    :param percent_used_capacity: [required] The percentage of disk space currently in use. 
+    :type percent_used_capacity: int
+
+    :param volume_count: [required] The number of volumes in the aggregate. 
+    :type volume_count: int
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The ID of the destination ONTAP system. """,
+        dictionaryType=None
+    )
+    aggregate_name = data_model.property(
+        "aggregateName", str,
+        array=False, optional=False,
+        documentation="""The name of the aggregate. """,
+        dictionaryType=None
+    )
+    node_name = data_model.property(
+        "nodeName", str,
+        array=False, optional=False,
+        documentation="""The name of the ONTAP node that owns this aggregate. """,
+        dictionaryType=None
+    )
+    size_available = data_model.property(
+        "sizeAvailable", int,
+        array=False, optional=False,
+        documentation="""The number of available bytes remaining in the aggregate. """,
+        dictionaryType=None
+    )
+    size_total = data_model.property(
+        "sizeTotal", int,
+        array=False, optional=False,
+        documentation="""The total size (int bytes) of the aggregate. """,
+        dictionaryType=None
+    )
+    percent_used_capacity = data_model.property(
+        "percentUsedCapacity", int,
+        array=False, optional=False,
+        documentation="""The percentage of disk space currently in use. """,
+        dictionaryType=None
+    )
+    volume_count = data_model.property(
+        "volumeCount", int,
+        array=False, optional=False,
+        documentation="""The number of volumes in the aggregate. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            aggregate_name,
+            node_name,
+            size_available,
+            size_total,
+            percent_used_capacity,
+            volume_count):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListSnapMirrorAggregatesResult(data_model.DataObject):
     """ListSnapMirrorAggregatesResult  
 
-    """
+    :param snap_mirror_aggregates: [required] A list of the aggregates available on the ONTAP storage system. 
+    :type snap_mirror_aggregates: SnapMirrorAggregate
 
-    def __init__(self):
+    """
+    snap_mirror_aggregates = data_model.property(
+        "snapMirrorAggregates", SnapMirrorAggregate,
+        array=True, optional=False,
+        documentation="""A list of the aggregates available on the ONTAP storage system. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_aggregates):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -1137,571 +1228,6 @@ class GetAccountEfficiencyRequest(data_model.DataObject):
 
     def __init__(self,
             account_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class Platform(data_model.DataObject):
-    """Platform  
-
-    :param node_type: [required] SolidFire's name for this platform. 
-    :type node_type: str
-
-    :param chassis_type: [required] Name of the chassis (example: "R620"). 
-    :type chassis_type: str
-
-    :param cpu_model: [required] The model of CPU used on this platform. 
-    :type cpu_model: str
-
-    :param node_memory_gb: [required] The amount of memory on this platform in GiB. 
-    :type node_memory_gb: int
-
-    :param platform_config_version:   
-    :type platform_config_version: str
-
-    """
-    node_type = data_model.property(
-        "nodeType", str,
-        array=False, optional=False,
-        documentation="""SolidFire's name for this platform. """,
-        dictionaryType=None
-    )
-    chassis_type = data_model.property(
-        "chassisType", str,
-        array=False, optional=False,
-        documentation="""Name of the chassis (example: "R620"). """,
-        dictionaryType=None
-    )
-    cpu_model = data_model.property(
-        "cpuModel", str,
-        array=False, optional=False,
-        documentation="""The model of CPU used on this platform. """,
-        dictionaryType=None
-    )
-    node_memory_gb = data_model.property(
-        "nodeMemoryGB", int,
-        array=False, optional=False,
-        documentation="""The amount of memory on this platform in GiB. """,
-        dictionaryType=None
-    )
-    platform_config_version = data_model.property(
-        "platformConfigVersion", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            node_type,
-            chassis_type,
-            cpu_model,
-            node_memory_gb,
-            platform_config_version=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class VirtualNetworkAddress(data_model.DataObject):
-    """VirtualNetworkAddress  
-
-    :param virtual_network_id: [required] SolidFire unique identifier for a virtual network. 
-    :type virtual_network_id: int
-
-    :param address: [required] Virtual Network Address. 
-    :type address: str
-
-    """
-    virtual_network_id = data_model.property(
-        "virtualNetworkID", int,
-        array=False, optional=False,
-        documentation="""SolidFire unique identifier for a virtual network. """,
-        dictionaryType=None
-    )
-    address = data_model.property(
-        "address", str,
-        array=False, optional=False,
-        documentation="""Virtual Network Address. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            virtual_network_id,
-            address):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class Node(data_model.DataObject):
-    """Node  
-    A node refers to an individual machine in a cluster.
-    Each active node hosts a master service, which is responsible for managing the drives and other services on its node.
-    After a node is made active, its drives will become available for addition to the cluster.
-
-    :param node_id: [required] The unique identifier for this node. 
-    :type node_id: int
-
-    :param associated_master_service_id: [required] The master service responsible for controlling other services on this node. 
-    :type associated_master_service_id: int
-
-    :param associated_fservice_id: [required]  
-    :type associated_fservice_id: int
-
-    :param fibre_channel_target_port_group:   
-    :type fibre_channel_target_port_group: int
-
-    :param name: [required]  
-    :type name: str
-
-    :param platform_info: [required] Information about the platform this node is. 
-    :type platform_info: Platform
-
-    :param software_version: [required] The version of SolidFire software this node is currently running. 
-    :type software_version: str
-
-    :param cip: [required] IP address used for both intra- and inter-cluster communication. 
-    :type cip: str
-
-    :param cipi: [required] The machine's name for the "cip" interface. 
-    :type cipi: str
-
-    :param mip: [required] IP address used for cluster management (hosting the API and web site). 
-    :type mip: str
-
-    :param mipi: [required] The machine's name for the "mip" interface. 
-    :type mipi: str
-
-    :param sip: [required] IP address used for iSCSI traffic. 
-    :type sip: str
-
-    :param sipi: [required] The machine's name for the "sip" interface. 
-    :type sipi: str
-
-    :param uuid: [required] UUID of node. 
-    :type uuid: UUID
-
-    :param virtual_networks: [required]  
-    :type virtual_networks: VirtualNetworkAddress
-
-    :param attributes: [required]  
-    :type attributes: dict
-
-    :param node_slot:   
-    :type node_slot: str
-
-    """
-    node_id = data_model.property(
-        "nodeID", int,
-        array=False, optional=False,
-        documentation="""The unique identifier for this node. """,
-        dictionaryType=None
-    )
-    associated_master_service_id = data_model.property(
-        "associatedMasterServiceID", int,
-        array=False, optional=False,
-        documentation="""The master service responsible for controlling other services on this node. """,
-        dictionaryType=None
-    )
-    associated_fservice_id = data_model.property(
-        "associatedFServiceID", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    fibre_channel_target_port_group = data_model.property(
-        "fibreChannelTargetPortGroup", int,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    platform_info = data_model.property(
-        "platformInfo", Platform,
-        array=False, optional=False,
-        documentation="""Information about the platform this node is. """,
-        dictionaryType=None
-    )
-    software_version = data_model.property(
-        "softwareVersion", str,
-        array=False, optional=False,
-        documentation="""The version of SolidFire software this node is currently running. """,
-        dictionaryType=None
-    )
-    cip = data_model.property(
-        "cip", str,
-        array=False, optional=False,
-        documentation="""IP address used for both intra- and inter-cluster communication. """,
-        dictionaryType=None
-    )
-    cipi = data_model.property(
-        "cipi", str,
-        array=False, optional=False,
-        documentation="""The machine's name for the "cip" interface. """,
-        dictionaryType=None
-    )
-    mip = data_model.property(
-        "mip", str,
-        array=False, optional=False,
-        documentation="""IP address used for cluster management (hosting the API and web site). """,
-        dictionaryType=None
-    )
-    mipi = data_model.property(
-        "mipi", str,
-        array=False, optional=False,
-        documentation="""The machine's name for the "mip" interface. """,
-        dictionaryType=None
-    )
-    sip = data_model.property(
-        "sip", str,
-        array=False, optional=False,
-        documentation="""IP address used for iSCSI traffic. """,
-        dictionaryType=None
-    )
-    sipi = data_model.property(
-        "sipi", str,
-        array=False, optional=False,
-        documentation="""The machine's name for the "sip" interface. """,
-        dictionaryType=None
-    )
-    uuid = data_model.property(
-        "uuid", UUID,
-        array=False, optional=False,
-        documentation="""UUID of node. """,
-        dictionaryType=None
-    )
-    virtual_networks = data_model.property(
-        "virtualNetworks", VirtualNetworkAddress,
-        array=True, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    node_slot = data_model.property(
-        "nodeSlot", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            node_id,
-            associated_master_service_id,
-            associated_fservice_id,
-            name,
-            platform_info,
-            software_version,
-            cip,
-            cipi,
-            mip,
-            mipi,
-            sip,
-            sipi,
-            uuid,
-            virtual_networks,
-            attributes,
-            fibre_channel_target_port_group=None,
-            node_slot=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class PendingNode(data_model.DataObject):
-    """PendingNode  
-    A "pending node" is one that has not yet joined the cluster.
-    It can be added to a cluster using the AddNode method.
-
-    :param pending_node_id: [required]  
-    :type pending_node_id: int
-
-    :param assigned_node_id: [required]  
-    :type assigned_node_id: int
-
-    :param name: [required] The host name for this node. 
-    :type name: str
-
-    :param compatible: [required]  
-    :type compatible: bool
-
-    :param platform_info: [required] Information about the platform this node is. 
-    :type platform_info: Platform
-
-    :param cip: [required] IP address used for both intra- and inter-cluster communication. 
-    :type cip: str
-
-    :param cipi: [required] The machine's name for the "cip" interface. 
-    :type cipi: str
-
-    :param mip: [required] IP address used for cluster management (hosting the API and web site). 
-    :type mip: str
-
-    :param mipi: [required] The machine's name for the "mip" interface. 
-    :type mipi: str
-
-    :param sip: [required] IP address used for iSCSI traffic. 
-    :type sip: str
-
-    :param sipi: [required] The machine's name for the "sip" interface. 
-    :type sipi: str
-
-    :param software_version: [required] The version of SolidFire software this node is currently running. 
-    :type software_version: str
-
-    :param uuid: [required] UUID of node. 
-    :type uuid: UUID
-
-    :param node_slot:  UUID of node. 
-    :type node_slot: str
-
-    """
-    pending_node_id = data_model.property(
-        "pendingNodeID", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    assigned_node_id = data_model.property(
-        "assignedNodeID", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation="""The host name for this node. """,
-        dictionaryType=None
-    )
-    compatible = data_model.property(
-        "compatible", bool,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    platform_info = data_model.property(
-        "platformInfo", Platform,
-        array=False, optional=False,
-        documentation="""Information about the platform this node is. """,
-        dictionaryType=None
-    )
-    cip = data_model.property(
-        "cip", str,
-        array=False, optional=False,
-        documentation="""IP address used for both intra- and inter-cluster communication. """,
-        dictionaryType=None
-    )
-    cipi = data_model.property(
-        "cipi", str,
-        array=False, optional=False,
-        documentation="""The machine's name for the "cip" interface. """,
-        dictionaryType=None
-    )
-    mip = data_model.property(
-        "mip", str,
-        array=False, optional=False,
-        documentation="""IP address used for cluster management (hosting the API and web site). """,
-        dictionaryType=None
-    )
-    mipi = data_model.property(
-        "mipi", str,
-        array=False, optional=False,
-        documentation="""The machine's name for the "mip" interface. """,
-        dictionaryType=None
-    )
-    sip = data_model.property(
-        "sip", str,
-        array=False, optional=False,
-        documentation="""IP address used for iSCSI traffic. """,
-        dictionaryType=None
-    )
-    sipi = data_model.property(
-        "sipi", str,
-        array=False, optional=False,
-        documentation="""The machine's name for the "sip" interface. """,
-        dictionaryType=None
-    )
-    software_version = data_model.property(
-        "softwareVersion", str,
-        array=False, optional=False,
-        documentation="""The version of SolidFire software this node is currently running. """,
-        dictionaryType=None
-    )
-    uuid = data_model.property(
-        "uuid", UUID,
-        array=False, optional=False,
-        documentation="""UUID of node. """,
-        dictionaryType=None
-    )
-    node_slot = data_model.property(
-        "nodeSlot", str,
-        array=False, optional=True,
-        documentation="""UUID of node. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            pending_node_id,
-            assigned_node_id,
-            name,
-            compatible,
-            platform_info,
-            cip,
-            cipi,
-            mip,
-            mipi,
-            sip,
-            sipi,
-            software_version,
-            uuid,
-            node_slot=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class PendingActiveNode(data_model.DataObject):
-    """PendingActiveNode  
-
-    :param active_node_key: [required]  
-    :type active_node_key: str
-
-    :param assigned_node_id: [required]  
-    :type assigned_node_id: int
-
-    :param async_handle: [required]  
-    :type async_handle: int
-
-    :param cip: [required]  
-    :type cip: str
-
-    :param mip: [required]  
-    :type mip: str
-
-    :param pending_node_id: [required]  
-    :type pending_node_id: int
-
-    :param platform_info: [required]  
-    :type platform_info: Platform
-
-    :param sip: [required]  
-    :type sip: str
-
-    :param software_version: [required]  
-    :type software_version: str
-
-    """
-    active_node_key = data_model.property(
-        "activeNodeKey", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    assigned_node_id = data_model.property(
-        "assignedNodeID", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    async_handle = data_model.property(
-        "asyncHandle", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    cip = data_model.property(
-        "cip", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    mip = data_model.property(
-        "mip", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    pending_node_id = data_model.property(
-        "pendingNodeID", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    platform_info = data_model.property(
-        "platformInfo", Platform,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    sip = data_model.property(
-        "sip", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    software_version = data_model.property(
-        "softwareVersion", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            active_node_key,
-            assigned_node_id,
-            async_handle,
-            cip,
-            mip,
-            pending_node_id,
-            platform_info,
-            sip,
-            software_version):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListAllNodesResult(data_model.DataObject):
-    """ListAllNodesResult  
-
-    :param nodes: [required]  
-    :type nodes: Node
-
-    :param pending_nodes: [required]  
-    :type pending_nodes: PendingNode
-
-    :param pending_active_nodes:  List of objects detailing information about all PendingActive nodes in the system. 
-    :type pending_active_nodes: PendingActiveNode
-
-    """
-    nodes = data_model.property(
-        "nodes", Node,
-        array=True, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    pending_nodes = data_model.property(
-        "pendingNodes", PendingNode,
-        array=True, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    pending_active_nodes = data_model.property(
-        "pendingActiveNodes", PendingActiveNode,
-        array=True, optional=True,
-        documentation="""List of objects detailing information about all PendingActive nodes in the system. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            nodes,
-            pending_nodes,
-            pending_active_nodes=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -1854,6 +1380,77 @@ class GetVolumeAccessGroupLunAssignmentsResult(data_model.DataObject):
 
     def __init__(self,
             volume_access_group_lun_assignments):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ModifySnapMirrorEndpointRequest(data_model.DataObject):
+    """ModifySnapMirrorEndpointRequest  
+    The SolidFire Element OS web UI uses the ModifySnapMirrorEndpoint method to change the name and management attributes for a SnapMirror endpoint.
+
+    :param snap_mirror_endpoint_id: [required] The SnapMirror endpoint to modify. 
+    :type snap_mirror_endpoint_id: int
+
+    :param management_ip:  The new management IP Address for the ONTAP system. 
+    :type management_ip: str
+
+    :param username:  The new management username for the ONTAP system. 
+    :type username: str
+
+    :param password:  The new management password for the ONTAP system. 
+    :type password: str
+
+    :param cluster_name:  The new name of the endpoint. 
+    :type cluster_name: str
+
+    :param ip_address:  The new management password for the ONTAP system. 
+    :type ip_address: str
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The SnapMirror endpoint to modify. """,
+        dictionaryType=None
+    )
+    management_ip = data_model.property(
+        "managementIP", str,
+        array=False, optional=True,
+        documentation="""The new management IP Address for the ONTAP system. """,
+        dictionaryType=None
+    )
+    username = data_model.property(
+        "username", str,
+        array=False, optional=True,
+        documentation="""The new management username for the ONTAP system. """,
+        dictionaryType=None
+    )
+    password = data_model.property(
+        "password", str,
+        array=False, optional=True,
+        documentation="""The new management password for the ONTAP system. """,
+        dictionaryType=None
+    )
+    cluster_name = data_model.property(
+        "clusterName", str,
+        array=False, optional=True,
+        documentation="""The new name of the endpoint. """,
+        dictionaryType=None
+    )
+    ip_address = data_model.property(
+        "ipAddress", str,
+        array=True, optional=True,
+        documentation="""The new management password for the ONTAP system. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            management_ip=None,
+            username=None,
+            password=None,
+            cluster_name=None,
+            ip_address=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -2510,6 +2107,88 @@ class GetScheduleResult(data_model.DataObject):
 
     def __init__(self,
             schedule):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class SnapMirrorVolumeInfo(data_model.DataObject):
+    """SnapMirrorVolumeInfo  
+    The snapMirrorVolumeInfo object contains information about a volume location in a SnapMirror relationship, such as its name and type.
+
+    :param type: [required] The type of volume. Possible values: solidfire: The volume resides on a SolidFire cluster. ontap:     The volume resides on a remote ONTAP cluster. 
+    :type type: str
+
+    :param volume_id: [required] The ID of the volume. Only valid if "type" is solidfire. 
+    :type volume_id: int
+
+    :param vserver: [required] The name of the Vserver that owns this volume. Only valid if "type" is ONTAP. 
+    :type vserver: str
+
+    :param name: [required] The name of the volume. 
+    :type name: str
+
+    """
+    type = data_model.property(
+        "type", str,
+        array=False, optional=False,
+        documentation="""The type of volume. Possible values: solidfire: The volume resides on a SolidFire cluster. ontap:     The volume resides on a remote ONTAP cluster. """,
+        dictionaryType=None
+    )
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="""The ID of the volume. Only valid if "type" is solidfire. """,
+        dictionaryType=None
+    )
+    vserver = data_model.property(
+        "vserver", str,
+        array=False, optional=False,
+        documentation="""The name of the Vserver that owns this volume. Only valid if "type" is ONTAP. """,
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="""The name of the volume. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            type,
+            volume_id,
+            vserver,
+            name):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class DeleteSnapMirrorRelationshipsRequest(data_model.DataObject):
+    """DeleteSnapMirrorRelationshipsRequest  
+    The SolidFire Element OS web UI uses the DeleteSnapMirrorRelationships method to remove a SnapMirror relationship between a source and destination endpoint.
+
+    :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
+    :type snap_mirror_endpoint_id: int
+
+    :param destination_volume: [required] The destination volume in the SnapMirror relationship. 
+    :type destination_volume: SnapMirrorVolumeInfo
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. """,
+        dictionaryType=None
+    )
+    destination_volume = data_model.property(
+        "destinationVolume", SnapMirrorVolumeInfo,
+        array=False, optional=False,
+        documentation="""The destination volume in the SnapMirror relationship. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            destination_volume):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -3311,6 +2990,67 @@ class AddAccountResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class ListSnapMirrorRelationshipsRequest(data_model.DataObject):
+    """ListSnapMirrorRelationshipsRequest  
+    The SolidFire Element OS web UI uses the ListSnapMirrorRelationships method to list one or all SnapMirror relationships on a SolidFire cluster
+
+    :param snap_mirror_endpoint_id:  List only the relationships associated with the specified endpoint ID. If no endpoint ID is provided, the system lists relationships from all known SnapMirror endpoints. 
+    :type snap_mirror_endpoint_id: int
+
+    :param destination_volume:  List relationships associated with the specified destination volume. 
+    :type destination_volume: SnapMirrorVolumeInfo
+
+    :param source_volume:  List relationships associated with the specified source volume. 
+    :type source_volume: SnapMirrorVolumeInfo
+
+    :param vserver:  List relationships on the specified Vserver. 
+    :type vserver: str
+
+    :param relationship_id:  List relationships associated with the specified relationshipID. 
+    :type relationship_id: str
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=True,
+        documentation="""List only the relationships associated with the specified endpoint ID. If no endpoint ID is provided, the system lists relationships from all known SnapMirror endpoints. """,
+        dictionaryType=None
+    )
+    destination_volume = data_model.property(
+        "destinationVolume", SnapMirrorVolumeInfo,
+        array=False, optional=True,
+        documentation="""List relationships associated with the specified destination volume. """,
+        dictionaryType=None
+    )
+    source_volume = data_model.property(
+        "sourceVolume", SnapMirrorVolumeInfo,
+        array=False, optional=True,
+        documentation="""List relationships associated with the specified source volume. """,
+        dictionaryType=None
+    )
+    vserver = data_model.property(
+        "vserver", str,
+        array=False, optional=True,
+        documentation="""List relationships on the specified Vserver. """,
+        dictionaryType=None
+    )
+    relationship_id = data_model.property(
+        "relationshipID", str,
+        array=False, optional=True,
+        documentation="""List relationships associated with the specified relationshipID. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id=None,
+            destination_volume=None,
+            source_volume=None,
+            vserver=None,
+            relationship_id=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class GetFeatureStatusRequest(data_model.DataObject):
     """GetFeatureStatusRequest  
     GetFeatureStatus enables you to retrieve the status of a cluster feature.
@@ -3332,6 +3072,47 @@ class GetFeatureStatusRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class AbortSnapMirrorRelationshipRequest(data_model.DataObject):
+    """AbortSnapMirrorRelationshipRequest  
+    The SolidFire Element OS web UI uses the AbortSnapMirrorRelationship method to stop SnapMirror transfers that have started but are not yet complete.
+
+    :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
+    :type snap_mirror_endpoint_id: int
+
+    :param destination_volume: [required] The destination volume in the SnapMirror relationship. 
+    :type destination_volume: SnapMirrorVolumeInfo
+
+    :param clear_checkpoint:  Determines whether ornot to clear the restart checkpoint. 
+    :type clear_checkpoint: bool
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. """,
+        dictionaryType=None
+    )
+    destination_volume = data_model.property(
+        "destinationVolume", SnapMirrorVolumeInfo,
+        array=False, optional=False,
+        documentation="""The destination volume in the SnapMirror relationship. """,
+        dictionaryType=None
+    )
+    clear_checkpoint = data_model.property(
+        "clearCheckpoint", bool,
+        array=False, optional=True,
+        documentation="""Determines whether ornot to clear the restart checkpoint. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            destination_volume,
+            clear_checkpoint=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class GetIpmiConfigRequest(data_model.DataObject):
     """GetIpmiConfigRequest  
     GetIpmiConfig enables you to retrieve hardware sensor information from sensors that are in your node.
@@ -3349,6 +3130,37 @@ class GetIpmiConfigRequest(data_model.DataObject):
 
     def __init__(self,
             chassis_type=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class BreakSnapMirrorRelationshipRequest(data_model.DataObject):
+    """BreakSnapMirrorRelationshipRequest  
+    The SolidFire Element OS web UI uses the BreakSnapMirrorRelationship method to break a SnapMirror relationship. When a SnapMirror relationship is broken, the destination volume is made read-write and independent, and can then diverge from the source. You can reestablish the relationship with the ResyncSnapMirrorRelationship API method. This method requires the ONTAP cluster to be available.
+
+    :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
+    :type snap_mirror_endpoint_id: int
+
+    :param destination_volume: [required] The destination volume in the SnapMirror relationship. 
+    :type destination_volume: SnapMirrorVolumeInfo
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. """,
+        dictionaryType=None
+    )
+    destination_volume = data_model.property(
+        "destinationVolume", SnapMirrorVolumeInfo,
+        array=False, optional=False,
+        documentation="""The destination volume in the SnapMirror relationship. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            destination_volume):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -4637,73 +4449,25 @@ class GetVolumeStatsRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class QoSPolicy(data_model.DataObject):
-    """QoSPolicy  
-    The QoSPolicy object contains information about a QoS policy on the cluster.
+class GetDriveStatsRequest(data_model.DataObject):
+    """GetDriveStatsRequest  
+    GetDriveStats returns high-level activity measurements for a single drive. Values are cumulative from the addition of the drive to the
+    cluster. Some values are specific to block drives. You might not obtain statistical data for both block and metadata drives when you
+    run this method. 
 
-    :param qos_policy_id: [required] A unique integer identifier for the QoSPolicy auto-assigned by the SolidFire cluster. 
-    :type qos_policy_id: int
-
-    :param name: [required] The name of the QoS policy. For example: gold, platinum, or silver. 
-    :type name: str
-
-    :param volume_ids: [required] A list of volumes associated with this policy. 
-    :type volume_ids: int
-
-    :param qos: [required] Quality of service settings for this volume. 
-    :type qos: VolumeQOS
+    :param drive_id: [required] Specifies the drive for which statistics are gathered. 
+    :type drive_id: int
 
     """
-    qos_policy_id = data_model.property(
-        "qosPolicyID", int,
+    drive_id = data_model.property(
+        "driveID", int,
         array=False, optional=False,
-        documentation="""A unique integer identifier for the QoSPolicy auto-assigned by the SolidFire cluster. """,
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation="""The name of the QoS policy. For example: gold, platinum, or silver. """,
-        dictionaryType=None
-    )
-    volume_ids = data_model.property(
-        "volumeIDs", int,
-        array=True, optional=False,
-        documentation="""A list of volumes associated with this policy. """,
-        dictionaryType=None
-    )
-    qos = data_model.property(
-        "qos", VolumeQOS,
-        array=False, optional=False,
-        documentation="""Quality of service settings for this volume. """,
+        documentation="""Specifies the drive for which statistics are gathered. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            qos_policy_id,
-            name,
-            volume_ids,
-            qos):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetQoSPolicyResult(data_model.DataObject):
-    """GetQoSPolicyResult  
-
-    :param qos_policy: [required] Details of the requested QoS policy. 
-    :type qos_policy: QoSPolicy
-
-    """
-    qos_policy = data_model.property(
-        "qosPolicy", QoSPolicy,
-        array=False, optional=False,
-        documentation="""Details of the requested QoS policy. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            qos_policy):
+            drive_id):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -4748,6 +4512,27 @@ class ListVolumeStatsRequest(data_model.DataObject):
 
     def __init__(self,
             volume_ids=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListSnapMirrorSchedulesRequest(data_model.DataObject):
+    """ListSnapMirrorSchedulesRequest  
+    The SolidFire Element OS web UI uses the ListSnapMirrorSchedules method to get a list of schedules that are available on a remote ONTAP cluster.
+
+    :param snap_mirror_endpoint_id:  If provided, the system lists the schedules of the endpoint with the specified SnapMirror endpoint ID. If not provided, the system lists the schedules of all known SnapMirror endpoints. 
+    :type snap_mirror_endpoint_id: int
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=True,
+        documentation="""If provided, the system lists the schedules of the endpoint with the specified SnapMirror endpoint ID. If not provided, the system lists the schedules of all known SnapMirror endpoints. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -4886,12 +4671,53 @@ class ListVirtualVolumeHostsRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class SetNodeSSLCertificateResult(data_model.DataObject):
-    """SetNodeSSLCertificateResult  
+class ResyncSnapMirrorRelationshipRequest(data_model.DataObject):
+    """ResyncSnapMirrorRelationshipRequest  
+    The SolidFire Element OS web UI uses the ResyncSnapMirrorRelationship method to establish or reestablish a mirror relationship between a source and destination endpoint. When you resync a relationship, the system removes snapshots on the destination volume that are newer than the common snapshot copy, and then mounts the destination volume as a data protection volume with the common snapshot copy as the exported snapshot copy.
+
+    :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster, 
+    :type snap_mirror_endpoint_id: int
+
+    :param destination_volume: [required] The destinationVolume in the SnapMirror relationship. 
+    :type destination_volume: SnapMirrorVolumeInfo
+
+    :param max_transfer_rate:  Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. 
+    :type max_transfer_rate: int
+
+    :param source_volume:  The source volume in the SnapMirror relationship. 
+    :type source_volume: SnapMirrorVolumeInfo
 
     """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster, """,
+        dictionaryType=None
+    )
+    destination_volume = data_model.property(
+        "destinationVolume", SnapMirrorVolumeInfo,
+        array=False, optional=False,
+        documentation="""The destinationVolume in the SnapMirror relationship. """,
+        dictionaryType=None
+    )
+    max_transfer_rate = data_model.property(
+        "maxTransferRate", int,
+        array=False, optional=True,
+        documentation="""Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. """,
+        dictionaryType=None
+    )
+    source_volume = data_model.property(
+        "sourceVolume", SnapMirrorVolumeInfo,
+        array=False, optional=True,
+        documentation="""The source volume in the SnapMirror relationship. """,
+        dictionaryType=None
+    )
 
-    def __init__(self):
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            destination_volume,
+            max_transfer_rate=None,
+            source_volume=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -5095,6 +4921,16 @@ class TestLdapAuthenticationRequest(data_model.DataObject):
             username,
             password,
             ldap_configuration=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ClearClusterFaultsResult(data_model.DataObject):
+    """ClearClusterFaultsResult  
+
+    """
+
+    def __init__(self):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -5991,6 +5827,57 @@ class CopyVolumeRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class QoSPolicy(data_model.DataObject):
+    """QoSPolicy  
+    The QoSPolicy object contains information about a QoS policy on the cluster.
+
+    :param qos_policy_id: [required] A unique integer identifier for the QoSPolicy auto-assigned by the SolidFire cluster. 
+    :type qos_policy_id: int
+
+    :param name: [required] The name of the QoS policy. For example: gold, platinum, or silver. 
+    :type name: str
+
+    :param volume_ids: [required] A list of volumes associated with this policy. 
+    :type volume_ids: int
+
+    :param qos: [required] Quality of service settings for this volume. 
+    :type qos: VolumeQOS
+
+    """
+    qos_policy_id = data_model.property(
+        "qosPolicyID", int,
+        array=False, optional=False,
+        documentation="""A unique integer identifier for the QoSPolicy auto-assigned by the SolidFire cluster. """,
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="""The name of the QoS policy. For example: gold, platinum, or silver. """,
+        dictionaryType=None
+    )
+    volume_ids = data_model.property(
+        "volumeIDs", int,
+        array=True, optional=False,
+        documentation="""A list of volumes associated with this policy. """,
+        dictionaryType=None
+    )
+    qos = data_model.property(
+        "qos", VolumeQOS,
+        array=False, optional=False,
+        documentation="""Quality of service settings for this volume. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            qos_policy_id,
+            name,
+            volume_ids,
+            qos):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class CreateQoSPolicyResult(data_model.DataObject):
     """CreateQoSPolicyResult  
 
@@ -6141,12 +6028,113 @@ class ListNetworkInterfacesResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class SnapMirrorVolume(data_model.DataObject):
+    """SnapMirrorVolume  
+    The snapMirrorVolume object contains information about an ONTAP volume.
+
+    :param snap_mirror_endpoint_id: [required] The ID of the destination ONTAP system. 
+    :type snap_mirror_endpoint_id: int
+
+    :param name: [required] The name of the volume. 
+    :type name: str
+
+    :param type: [required] The type of the volume. Possible values: rw: Read-write volume ls: Loadsharing-volume dp: Data protection volume 
+    :type type: str
+
+    :param vserver: [required] The name of the Vserver that owns this volume. 
+    :type vserver: str
+
+    :param aggr_name: [required] The containing aggregate name. 
+    :type aggr_name: str
+
+    :param state: [required] The state of volume. Possible values: online restricted offline mixed 
+    :type state: str
+
+    :param size: [required] The total filesystem size (in bytes) of the volume. 
+    :type size: str
+
+    :param avail_size: [required] The size (in bytes) of the available space in the volume. 
+    :type avail_size: str
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The ID of the destination ONTAP system. """,
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="""The name of the volume. """,
+        dictionaryType=None
+    )
+    type = data_model.property(
+        "type", str,
+        array=False, optional=False,
+        documentation="""The type of the volume. Possible values: rw: Read-write volume ls: Loadsharing-volume dp: Data protection volume """,
+        dictionaryType=None
+    )
+    vserver = data_model.property(
+        "vserver", str,
+        array=False, optional=False,
+        documentation="""The name of the Vserver that owns this volume. """,
+        dictionaryType=None
+    )
+    aggr_name = data_model.property(
+        "aggrName", str,
+        array=False, optional=False,
+        documentation="""The containing aggregate name. """,
+        dictionaryType=None
+    )
+    state = data_model.property(
+        "state", str,
+        array=False, optional=False,
+        documentation="""The state of volume. Possible values: online restricted offline mixed """,
+        dictionaryType=None
+    )
+    size = data_model.property(
+        "size", str,
+        array=False, optional=False,
+        documentation="""The total filesystem size (in bytes) of the volume. """,
+        dictionaryType=None
+    )
+    avail_size = data_model.property(
+        "availSize", str,
+        array=False, optional=False,
+        documentation="""The size (in bytes) of the available space in the volume. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            name,
+            type,
+            vserver,
+            aggr_name,
+            state,
+            size,
+            avail_size):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListSnapMirrorVolumesResult(data_model.DataObject):
     """ListSnapMirrorVolumesResult  
 
-    """
+    :param snap_mirror_volumes: [required] A list of the SnapMirror volumes available on the ONTAP storage system. 
+    :type snap_mirror_volumes: SnapMirrorVolume
 
-    def __init__(self):
+    """
+    snap_mirror_volumes = data_model.property(
+        "snapMirrorVolumes", SnapMirrorVolume,
+        array=True, optional=False,
+        documentation="""A list of the SnapMirror volumes available on the ONTAP storage system. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_volumes):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -6364,12 +6352,324 @@ class DeleteVolumesRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class OntapVersionInfo(data_model.DataObject):
+    """OntapVersionInfo  
+    The ontapVersionInfo object contains information about the API version of the ONTAP cluster in a SnapMirror relationship. The SolidFire Element OS web UI uses the GetOntapVersionInfo API methods to get this information.
+
+    :param snap_mirror_endpoint_id: [required] The ID of the destination ONTAP system. 
+    :type snap_mirror_endpoint_id: int
+
+    :param client_apimajor_version: [required] The ONTAP API major version in use by the SolidFire API client. 
+    :type client_apimajor_version: str
+
+    :param client_apiminor_version: [required] The ONTAP API minor version in use by the SolidFire API client. 
+    :type client_apiminor_version: str
+
+    :param ontap_apimajor_version: [required] The current API major version supported by the ONTAP system. 
+    :type ontap_apimajor_version: str
+
+    :param ontap_apiminor_version: [required] The current API minor version supported by the ONTAP system. 
+    :type ontap_apiminor_version: str
+
+    :param ontap_version: [required] The current software version running on the ONTAP cluster. 
+    :type ontap_version: str
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The ID of the destination ONTAP system. """,
+        dictionaryType=None
+    )
+    client_apimajor_version = data_model.property(
+        "clientAPIMajorVersion", str,
+        array=False, optional=False,
+        documentation="""The ONTAP API major version in use by the SolidFire API client. """,
+        dictionaryType=None
+    )
+    client_apiminor_version = data_model.property(
+        "clientAPIMinorVersion", str,
+        array=False, optional=False,
+        documentation="""The ONTAP API minor version in use by the SolidFire API client. """,
+        dictionaryType=None
+    )
+    ontap_apimajor_version = data_model.property(
+        "ontapAPIMajorVersion", str,
+        array=False, optional=False,
+        documentation="""The current API major version supported by the ONTAP system. """,
+        dictionaryType=None
+    )
+    ontap_apiminor_version = data_model.property(
+        "ontapAPIMinorVersion", str,
+        array=False, optional=False,
+        documentation="""The current API minor version supported by the ONTAP system. """,
+        dictionaryType=None
+    )
+    ontap_version = data_model.property(
+        "ontapVersion", str,
+        array=False, optional=False,
+        documentation="""The current software version running on the ONTAP cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            client_apimajor_version,
+            client_apiminor_version,
+            ontap_apimajor_version,
+            ontap_apiminor_version,
+            ontap_version):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class GetOntapVersionInfoResult(data_model.DataObject):
     """GetOntapVersionInfoResult  
 
-    """
+    :param ontap_version_info: [required] The software version information of the ONTAP endpoint. 
+    :type ontap_version_info: OntapVersionInfo
 
-    def __init__(self):
+    """
+    ontap_version_info = data_model.property(
+        "ontapVersionInfo", OntapVersionInfo,
+        array=True, optional=False,
+        documentation="""The software version information of the ONTAP endpoint. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            ontap_version_info):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class SnapMirrorRelationship(data_model.DataObject):
+    """SnapMirrorRelationship  
+    The snapMirrorRelationship object contains information about a SnapMirror relationship between a SolidFire volume and an ONTAP volume.
+
+    :param snap_mirror_endpoint_id: [required] The ID of the destination ONTAP system. 
+    :type snap_mirror_endpoint_id: int
+
+    :param cluster_name: [required] The name of the destination ONTAP cluster. 
+    :type cluster_name: str
+
+    :param snap_mirror_relationship_id: [required] The unique identifier for each snapMirrorRelationship object in an array as would be returned in ListSnapMirrorRelationships. This UUID is created and returned from the ONTAP system. 
+    :type snap_mirror_relationship_id: str
+
+    :param source_volume: [required] An object describing the source volume. 
+    :type source_volume: SnapMirrorVolumeInfo
+
+    :param destination_volume: [required] An object describing the destination volume. 
+    :type destination_volume: SnapMirrorVolumeInfo
+
+    :param current_max_transfer_rate: [required] The current maximum transfer rate between the source and destination volumes, in kilobytes per second. 
+    :type current_max_transfer_rate: int
+
+    :param is_healthy: [required] Whether the relationship is healthy or not. Possible values: true:  The relationship is healthy. false: The relationship is not healthy. This can be caused by a manual or        scheduled update failing or being aborted, or by the last scheduled        update being delayed. 
+    :type is_healthy: bool
+
+    :param lagtime: [required] The amount of time in seconds by which the data on the destination volume lags behind the data on the source volume. 
+    :type lagtime: int
+
+    :param last_transfer_duration: [required] The amount of time in seconds it took for the last transfer to complete. 
+    :type last_transfer_duration: int
+
+    :param last_transfer_error: [required] A message describing the cause of the last transfer failure. 
+    :type last_transfer_error: str
+
+    :param last_transfer_size: [required] The total number of bytes transferred during the last transfer. 
+    :type last_transfer_size: int
+
+    :param last_transfer_end_timestamp: [required] The timestamp of the end of the last transfer. 
+    :type last_transfer_end_timestamp: str
+
+    :param last_transfer_type: [required] The type of the previous transfer in the relationship. 
+    :type last_transfer_type: str
+
+    :param max_transfer_rate: [required] Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. 
+    :type max_transfer_rate: int
+
+    :param mirror_state: [required] The mirror state of the SnapMirror relationship. Possible values: uninitialized: The destination volume has not been initialized. snapmirrored:  The destination volume has been initialized and is ready to recieve SnapMirror updates. broken-off:    The destination volume is read-write and snapshots are present. 
+    :type mirror_state: str
+
+    :param newest_snapshot: [required] The name of the newest Snapshot copy on the destination volume. 
+    :type newest_snapshot: str
+
+    :param policy_name: [required] Specifies the name of the ONTAP SnapMirror policy for the relationship. A list of available policies can be retrieved with ListSnapMirrorPolicies. Example values are "MirrorLatest" and "MirrorAndVault". 
+    :type policy_name: str
+
+    :param policy_type: [required] The type of the ONTAP SnapMirror policy for the relationship. See ListSnapMirrorPolicies. Examples are: "async_mirror" or "mirror_vault" 
+    :type policy_type: str
+
+    :param relationship_status: [required] The status of the SnapMirror relationship. Possible values: idle transferring checking quiescing quiesced queued preparing finalizing aborting breaking 
+    :type relationship_status: str
+
+    :param releationship_type: [required] The type of the SnapMirror relationship. On SolidFire systems, this value is always "extended_data_protection". 
+    :type releationship_type: str
+
+    :param schedule_name: [required] The name of the pre-existing cron schedule on the ONTAP system that is used to update the SnapMirror relationship. A list of available schedules can be retrieved with ListSnapMirrorSchedules. 
+    :type schedule_name: str
+
+    :param unhealthy_reason: [required] The reason the relationship is not healthy. 
+    :type unhealthy_reason: str
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The ID of the destination ONTAP system. """,
+        dictionaryType=None
+    )
+    cluster_name = data_model.property(
+        "clusterName", str,
+        array=False, optional=False,
+        documentation="""The name of the destination ONTAP cluster. """,
+        dictionaryType=None
+    )
+    snap_mirror_relationship_id = data_model.property(
+        "snapMirrorRelationshipID", str,
+        array=False, optional=False,
+        documentation="""The unique identifier for each snapMirrorRelationship object in an array as would be returned in ListSnapMirrorRelationships. This UUID is created and returned from the ONTAP system. """,
+        dictionaryType=None
+    )
+    source_volume = data_model.property(
+        "sourceVolume", SnapMirrorVolumeInfo,
+        array=False, optional=False,
+        documentation="""An object describing the source volume. """,
+        dictionaryType=None
+    )
+    destination_volume = data_model.property(
+        "destinationVolume", SnapMirrorVolumeInfo,
+        array=False, optional=False,
+        documentation="""An object describing the destination volume. """,
+        dictionaryType=None
+    )
+    current_max_transfer_rate = data_model.property(
+        "currentMaxTransferRate", int,
+        array=False, optional=False,
+        documentation="""The current maximum transfer rate between the source and destination volumes, in kilobytes per second. """,
+        dictionaryType=None
+    )
+    is_healthy = data_model.property(
+        "isHealthy", bool,
+        array=False, optional=False,
+        documentation="""Whether the relationship is healthy or not. Possible values: true:  The relationship is healthy. false: The relationship is not healthy. This can be caused by a manual or        scheduled update failing or being aborted, or by the last scheduled        update being delayed. """,
+        dictionaryType=None
+    )
+    lagtime = data_model.property(
+        "lagtime", int,
+        array=False, optional=False,
+        documentation="""The amount of time in seconds by which the data on the destination volume lags behind the data on the source volume. """,
+        dictionaryType=None
+    )
+    last_transfer_duration = data_model.property(
+        "lastTransferDuration", int,
+        array=False, optional=False,
+        documentation="""The amount of time in seconds it took for the last transfer to complete. """,
+        dictionaryType=None
+    )
+    last_transfer_error = data_model.property(
+        "lastTransferError", str,
+        array=False, optional=False,
+        documentation="""A message describing the cause of the last transfer failure. """,
+        dictionaryType=None
+    )
+    last_transfer_size = data_model.property(
+        "lastTransferSize", int,
+        array=False, optional=False,
+        documentation="""The total number of bytes transferred during the last transfer. """,
+        dictionaryType=None
+    )
+    last_transfer_end_timestamp = data_model.property(
+        "lastTransferEndTimestamp", str,
+        array=False, optional=False,
+        documentation="""The timestamp of the end of the last transfer. """,
+        dictionaryType=None
+    )
+    last_transfer_type = data_model.property(
+        "lastTransferType", str,
+        array=False, optional=False,
+        documentation="""The type of the previous transfer in the relationship. """,
+        dictionaryType=None
+    )
+    max_transfer_rate = data_model.property(
+        "maxTransferRate", int,
+        array=False, optional=False,
+        documentation="""Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. """,
+        dictionaryType=None
+    )
+    mirror_state = data_model.property(
+        "mirrorState", str,
+        array=False, optional=False,
+        documentation="""The mirror state of the SnapMirror relationship. Possible values: uninitialized: The destination volume has not been initialized. snapmirrored:  The destination volume has been initialized and is ready to recieve SnapMirror updates. broken-off:    The destination volume is read-write and snapshots are present. """,
+        dictionaryType=None
+    )
+    newest_snapshot = data_model.property(
+        "newestSnapshot", str,
+        array=False, optional=False,
+        documentation="""The name of the newest Snapshot copy on the destination volume. """,
+        dictionaryType=None
+    )
+    policy_name = data_model.property(
+        "policyName", str,
+        array=False, optional=False,
+        documentation="""Specifies the name of the ONTAP SnapMirror policy for the relationship. A list of available policies can be retrieved with ListSnapMirrorPolicies. Example values are "MirrorLatest" and "MirrorAndVault". """,
+        dictionaryType=None
+    )
+    policy_type = data_model.property(
+        "policyType", str,
+        array=False, optional=False,
+        documentation="""The type of the ONTAP SnapMirror policy for the relationship. See ListSnapMirrorPolicies. Examples are: "async_mirror" or "mirror_vault" """,
+        dictionaryType=None
+    )
+    relationship_status = data_model.property(
+        "relationshipStatus", str,
+        array=False, optional=False,
+        documentation="""The status of the SnapMirror relationship. Possible values: idle transferring checking quiescing quiesced queued preparing finalizing aborting breaking """,
+        dictionaryType=None
+    )
+    releationship_type = data_model.property(
+        "releationshipType", str,
+        array=False, optional=False,
+        documentation="""The type of the SnapMirror relationship. On SolidFire systems, this value is always "extended_data_protection". """,
+        dictionaryType=None
+    )
+    schedule_name = data_model.property(
+        "scheduleName", str,
+        array=False, optional=False,
+        documentation="""The name of the pre-existing cron schedule on the ONTAP system that is used to update the SnapMirror relationship. A list of available schedules can be retrieved with ListSnapMirrorSchedules. """,
+        dictionaryType=None
+    )
+    unhealthy_reason = data_model.property(
+        "unhealthyReason", str,
+        array=False, optional=False,
+        documentation="""The reason the relationship is not healthy. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            cluster_name,
+            snap_mirror_relationship_id,
+            source_volume,
+            destination_volume,
+            current_max_transfer_rate,
+            is_healthy,
+            lagtime,
+            last_transfer_duration,
+            last_transfer_error,
+            last_transfer_size,
+            last_transfer_end_timestamp,
+            last_transfer_type,
+            max_transfer_rate,
+            mirror_state,
+            newest_snapshot,
+            policy_name,
+            policy_type,
+            relationship_status,
+            releationship_type,
+            schedule_name,
+            unhealthy_reason):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -6377,9 +6677,19 @@ class GetOntapVersionInfoResult(data_model.DataObject):
 class UpdateSnapMirrorRelationshipResult(data_model.DataObject):
     """UpdateSnapMirrorRelationshipResult  
 
-    """
+    :param snap_mirror_relationship: [required] An object containg information about the updated SnapMirror relationship. 
+    :type snap_mirror_relationship: SnapMirrorRelationship
 
-    def __init__(self):
+    """
+    snap_mirror_relationship = data_model.property(
+        "snapMirrorRelationship", SnapMirrorRelationship,
+        array=False, optional=False,
+        documentation="""An object containg information about the updated SnapMirror relationship. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_relationship):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -6617,9 +6927,19 @@ class DeleteVolumeResult(data_model.DataObject):
 class DeleteSnapMirrorRelationshipsResult(data_model.DataObject):
     """DeleteSnapMirrorRelationshipsResult  
 
-    """
+    :param result: [required] If the delete action succeeded, this object contains a success message. If the action failed, it contains an error message. 
+    :type result: str
 
-    def __init__(self):
+    """
+    result = data_model.property(
+        "result", str,
+        array=False, optional=False,
+        documentation="""If the delete action succeeded, this object contains a success message. If the action failed, it contains an error message. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            result):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -7136,6 +7456,47 @@ class CompleteClusterPairingRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class ListSnapMirrorVserversRequest(data_model.DataObject):
+    """ListSnapMirrorVserversRequest  
+    The SolidFire Element OS web UI uses the ListSnapMirrorVservers method to list all SnapMirror Vservers available on a remote ONTAP system.
+
+    :param snap_mirror_endpoint_id:  List only the Vservers associated with the specified endpoint ID. If no endpoint ID is provided, the system lists Vservers from all known SnapMirror endpoints. 
+    :type snap_mirror_endpoint_id: int
+
+    :param vserver_type:  List only Vservers of the specified type. Possible values: admin data node system 
+    :type vserver_type: str
+
+    :param vserver_name:  List only Vservers with the specified name. 
+    :type vserver_name: str
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=True,
+        documentation="""List only the Vservers associated with the specified endpoint ID. If no endpoint ID is provided, the system lists Vservers from all known SnapMirror endpoints. """,
+        dictionaryType=None
+    )
+    vserver_type = data_model.property(
+        "vserverType", str,
+        array=False, optional=True,
+        documentation="""List only Vservers of the specified type. Possible values: admin data node system """,
+        dictionaryType=None
+    )
+    vserver_name = data_model.property(
+        "vserverName", str,
+        array=False, optional=True,
+        documentation="""List only Vservers with the specified name. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id=None,
+            vserver_type=None,
+            vserver_name=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class DriveHardwareInfo(data_model.DataObject):
     """DriveHardwareInfo  
 
@@ -7523,12 +7884,103 @@ class RemoveVirtualNetworkRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class SnapMirrorEndpoint(data_model.DataObject):
+    """SnapMirrorEndpoint  
+    The snapMirrorEndpoint object contains information about the remote SnapMirror storage systems communicating with the SolidFire cluster. You can retrieve this information with the ListSnapMirrorEndpoints API method.
+
+    :param snap_mirror_endpoint_id: [required] The unique identifier for the object in the local cluster. 
+    :type snap_mirror_endpoint_id: int
+
+    :param management_ip: [required] The cluster management IP address of the endpoint. 
+    :type management_ip: str
+
+    :param cluster_name: [required] The ONTAP cluster name. This value is automatically populated with the value of "clusterName" from the snapMirrorClusterIdentity object. 
+    :type cluster_name: str
+
+    :param username: [required] The management username for the ONTAP system. 
+    :type username: str
+
+    :param password: [required] The management password for the ONTAP system. 
+    :type password: str
+
+    :param ip_addresses: [required] List of the inter-cluster storage IP addresses for all nodes in the cluster. You can get these IP addresses with the ListSnapMirrorNetworkInterfaces method. 
+    :type ip_addresses: str
+
+    :param is_connected: [required] The connectivity status of the control link to the ONTAP cluster. 
+    :type is_connected: bool
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The unique identifier for the object in the local cluster. """,
+        dictionaryType=None
+    )
+    management_ip = data_model.property(
+        "managementIP", str,
+        array=False, optional=False,
+        documentation="""The cluster management IP address of the endpoint. """,
+        dictionaryType=None
+    )
+    cluster_name = data_model.property(
+        "clusterName", str,
+        array=False, optional=False,
+        documentation="""The ONTAP cluster name. This value is automatically populated with the value of "clusterName" from the snapMirrorClusterIdentity object. """,
+        dictionaryType=None
+    )
+    username = data_model.property(
+        "username", str,
+        array=False, optional=False,
+        documentation="""The management username for the ONTAP system. """,
+        dictionaryType=None
+    )
+    password = data_model.property(
+        "password", str,
+        array=False, optional=False,
+        documentation="""The management password for the ONTAP system. """,
+        dictionaryType=None
+    )
+    ip_addresses = data_model.property(
+        "ipAddresses", str,
+        array=True, optional=False,
+        documentation="""List of the inter-cluster storage IP addresses for all nodes in the cluster. You can get these IP addresses with the ListSnapMirrorNetworkInterfaces method. """,
+        dictionaryType=None
+    )
+    is_connected = data_model.property(
+        "isConnected", bool,
+        array=False, optional=False,
+        documentation="""The connectivity status of the control link to the ONTAP cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            management_ip,
+            cluster_name,
+            username,
+            password,
+            ip_addresses,
+            is_connected):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class CreateSnapMirrorEndpointResult(data_model.DataObject):
     """CreateSnapMirrorEndpointResult  
 
-    """
+    :param snap_mirror_endpoint: [required] The newly created SnapMirror endpoint. 
+    :type snap_mirror_endpoint: SnapMirrorEndpoint
 
-    def __init__(self):
+    """
+    snap_mirror_endpoint = data_model.property(
+        "snapMirrorEndpoint", SnapMirrorEndpoint,
+        array=False, optional=False,
+        documentation="""The newly created SnapMirror endpoint. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -7877,12 +8329,73 @@ class RemoveNodesResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class SnapMirrorClusterIdentity(data_model.DataObject):
+    """SnapMirrorClusterIdentity  
+    The snapMirrorClusterIdentity object contains identification information about the remote ONTAP cluster in a SnapMirror relationship.
+
+    :param snap_mirror_endpoint_id: [required] The ID of the destination ONTAP system. 
+    :type snap_mirror_endpoint_id: int
+
+    :param cluster_name: [required] The name of the destination ONTAP cluster. 
+    :type cluster_name: str
+
+    :param cluster_uuid: [required] The 128-bit universally-unique identifier of the destination ONTAP cluster. 
+    :type cluster_uuid: str
+
+    :param cluster_serial_number: [required] The serial number of the destination ONTAP cluster. 
+    :type cluster_serial_number: str
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The ID of the destination ONTAP system. """,
+        dictionaryType=None
+    )
+    cluster_name = data_model.property(
+        "clusterName", str,
+        array=False, optional=False,
+        documentation="""The name of the destination ONTAP cluster. """,
+        dictionaryType=None
+    )
+    cluster_uuid = data_model.property(
+        "clusterUUID", str,
+        array=False, optional=False,
+        documentation="""The 128-bit universally-unique identifier of the destination ONTAP cluster. """,
+        dictionaryType=None
+    )
+    cluster_serial_number = data_model.property(
+        "clusterSerialNumber", str,
+        array=False, optional=False,
+        documentation="""The serial number of the destination ONTAP cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            cluster_name,
+            cluster_uuid,
+            cluster_serial_number):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class GetSnapMirrorClusterIdentityResult(data_model.DataObject):
     """GetSnapMirrorClusterIdentityResult  
 
-    """
+    :param snap_mirror_cluster_identity: [required] A list of cluster identities of SnapMirror endpoints. 
+    :type snap_mirror_cluster_identity: SnapMirrorClusterIdentity
 
-    def __init__(self):
+    """
+    snap_mirror_cluster_identity = data_model.property(
+        "snapMirrorClusterIdentity", SnapMirrorClusterIdentity,
+        array=True, optional=False,
+        documentation="""A list of cluster identities of SnapMirror endpoints. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_cluster_identity):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -8379,9 +8892,19 @@ class ListDeletedVolumesRequest(data_model.DataObject):
 class CreateSnapMirrorVolumeResult(data_model.DataObject):
     """CreateSnapMirrorVolumeResult  
 
-    """
+    :param snap_mirror_volume: [required] Information about a SnapMirror volume. 
+    :type snap_mirror_volume: SnapMirrorVolume
 
-    def __init__(self):
+    """
+    snap_mirror_volume = data_model.property(
+        "snapMirrorVolume", SnapMirrorVolume,
+        array=False, optional=False,
+        documentation="""Information about a SnapMirror volume. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_volume):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -10694,6 +11217,27 @@ class CreateScheduleResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class GetSnapMirrorClusterIdentityRequest(data_model.DataObject):
+    """GetSnapMirrorClusterIdentityRequest  
+    The SolidFire Element OS web UI uses GetSnapMirrorClusterIdentity to get identity information about the ONTAP cluster.
+
+    :param snap_mirror_endpoint_id:  If provided, the system lists the cluster identity of the endpoint with the specified snapMirrorEndpointID. If not provided, the system lists the cluster identity of all known SnapMirror endpoints. 
+    :type snap_mirror_endpoint_id: int
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=True,
+        documentation="""If provided, the system lists the cluster identity of the endpoint with the specified snapMirrorEndpointID. If not provided, the system lists the cluster identity of all known SnapMirror endpoints. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ShutdownRequest(data_model.DataObject):
     """ShutdownRequest  
     The Shutdown API method enables you to restart or shutdown a node that has not yet been added to a cluster. To use this method,
@@ -10726,42 +11270,567 @@ class ShutdownRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class CreateVolumeResult(data_model.DataObject):
-    """CreateVolumeResult  
+class Platform(data_model.DataObject):
+    """Platform  
 
-    :param volume:   
-    :type volume: Volume
+    :param node_type: [required] SolidFire's name for this platform. 
+    :type node_type: str
 
-    :param volume_id: [required] VolumeID for the newly created volume. 
-    :type volume_id: int
+    :param chassis_type: [required] Name of the chassis (example: "R620"). 
+    :type chassis_type: str
 
-    :param curve: [required] The curve is a set of key-value pairs. The keys are I/O sizes in bytes. The values represent the cost performing an IOP at a specific I/O size. The curve is calculated relative to a 4096 byte operation set at 100 IOPS. 
-    :type curve: dict
+    :param cpu_model: [required] The model of CPU used on this platform. 
+    :type cpu_model: str
+
+    :param node_memory_gb: [required] The amount of memory on this platform in GiB. 
+    :type node_memory_gb: int
+
+    :param platform_config_version:   
+    :type platform_config_version: str
 
     """
-    volume = data_model.property(
-        "volume", Volume,
+    node_type = data_model.property(
+        "nodeType", str,
+        array=False, optional=False,
+        documentation="""SolidFire's name for this platform. """,
+        dictionaryType=None
+    )
+    chassis_type = data_model.property(
+        "chassisType", str,
+        array=False, optional=False,
+        documentation="""Name of the chassis (example: "R620"). """,
+        dictionaryType=None
+    )
+    cpu_model = data_model.property(
+        "cpuModel", str,
+        array=False, optional=False,
+        documentation="""The model of CPU used on this platform. """,
+        dictionaryType=None
+    )
+    node_memory_gb = data_model.property(
+        "nodeMemoryGB", int,
+        array=False, optional=False,
+        documentation="""The amount of memory on this platform in GiB. """,
+        dictionaryType=None
+    )
+    platform_config_version = data_model.property(
+        "platformConfigVersion", str,
         array=False, optional=True,
         documentation=""" """,
         dictionaryType=None
     )
-    volume_id = data_model.property(
-        "volumeID", int,
+
+    def __init__(self,
+            node_type,
+            chassis_type,
+            cpu_model,
+            node_memory_gb,
+            platform_config_version=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class VirtualNetworkAddress(data_model.DataObject):
+    """VirtualNetworkAddress  
+
+    :param virtual_network_id: [required] SolidFire unique identifier for a virtual network. 
+    :type virtual_network_id: int
+
+    :param address: [required] Virtual Network Address. 
+    :type address: str
+
+    """
+    virtual_network_id = data_model.property(
+        "virtualNetworkID", int,
         array=False, optional=False,
-        documentation="""VolumeID for the newly created volume. """,
+        documentation="""SolidFire unique identifier for a virtual network. """,
         dictionaryType=None
     )
-    curve = data_model.property(
-        "curve", dict,
+    address = data_model.property(
+        "address", str,
         array=False, optional=False,
-        documentation="""The curve is a set of key-value pairs. The keys are I/O sizes in bytes. The values represent the cost performing an IOP at a specific I/O size. The curve is calculated relative to a 4096 byte operation set at 100 IOPS. """,
-        dictionaryType=int
+        documentation="""Virtual Network Address. """,
+        dictionaryType=None
     )
 
     def __init__(self,
-            volume_id,
-            curve,
-            volume=None):
+            virtual_network_id,
+            address):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class Node(data_model.DataObject):
+    """Node  
+    A node refers to an individual machine in a cluster.
+    Each active node hosts a master service, which is responsible for managing the drives and other services on its node.
+    After a node is made active, its drives will become available for addition to the cluster.
+
+    :param node_id: [required] The unique identifier for this node. 
+    :type node_id: int
+
+    :param associated_master_service_id: [required] The master service responsible for controlling other services on this node. 
+    :type associated_master_service_id: int
+
+    :param associated_fservice_id: [required]  
+    :type associated_fservice_id: int
+
+    :param fibre_channel_target_port_group:   
+    :type fibre_channel_target_port_group: int
+
+    :param name: [required]  
+    :type name: str
+
+    :param platform_info: [required] Information about the platform this node is. 
+    :type platform_info: Platform
+
+    :param software_version: [required] The version of SolidFire software this node is currently running. 
+    :type software_version: str
+
+    :param cip: [required] IP address used for both intra- and inter-cluster communication. 
+    :type cip: str
+
+    :param cipi: [required] The machine's name for the "cip" interface. 
+    :type cipi: str
+
+    :param mip: [required] IP address used for cluster management (hosting the API and web site). 
+    :type mip: str
+
+    :param mipi: [required] The machine's name for the "mip" interface. 
+    :type mipi: str
+
+    :param sip: [required] IP address used for iSCSI traffic. 
+    :type sip: str
+
+    :param sipi: [required] The machine's name for the "sip" interface. 
+    :type sipi: str
+
+    :param uuid: [required] UUID of node. 
+    :type uuid: UUID
+
+    :param virtual_networks: [required]  
+    :type virtual_networks: VirtualNetworkAddress
+
+    :param attributes: [required]  
+    :type attributes: dict
+
+    :param node_slot:   
+    :type node_slot: str
+
+    """
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation="""The unique identifier for this node. """,
+        dictionaryType=None
+    )
+    associated_master_service_id = data_model.property(
+        "associatedMasterServiceID", int,
+        array=False, optional=False,
+        documentation="""The master service responsible for controlling other services on this node. """,
+        dictionaryType=None
+    )
+    associated_fservice_id = data_model.property(
+        "associatedFServiceID", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    fibre_channel_target_port_group = data_model.property(
+        "fibreChannelTargetPortGroup", int,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    platform_info = data_model.property(
+        "platformInfo", Platform,
+        array=False, optional=False,
+        documentation="""Information about the platform this node is. """,
+        dictionaryType=None
+    )
+    software_version = data_model.property(
+        "softwareVersion", str,
+        array=False, optional=False,
+        documentation="""The version of SolidFire software this node is currently running. """,
+        dictionaryType=None
+    )
+    cip = data_model.property(
+        "cip", str,
+        array=False, optional=False,
+        documentation="""IP address used for both intra- and inter-cluster communication. """,
+        dictionaryType=None
+    )
+    cipi = data_model.property(
+        "cipi", str,
+        array=False, optional=False,
+        documentation="""The machine's name for the "cip" interface. """,
+        dictionaryType=None
+    )
+    mip = data_model.property(
+        "mip", str,
+        array=False, optional=False,
+        documentation="""IP address used for cluster management (hosting the API and web site). """,
+        dictionaryType=None
+    )
+    mipi = data_model.property(
+        "mipi", str,
+        array=False, optional=False,
+        documentation="""The machine's name for the "mip" interface. """,
+        dictionaryType=None
+    )
+    sip = data_model.property(
+        "sip", str,
+        array=False, optional=False,
+        documentation="""IP address used for iSCSI traffic. """,
+        dictionaryType=None
+    )
+    sipi = data_model.property(
+        "sipi", str,
+        array=False, optional=False,
+        documentation="""The machine's name for the "sip" interface. """,
+        dictionaryType=None
+    )
+    uuid = data_model.property(
+        "uuid", UUID,
+        array=False, optional=False,
+        documentation="""UUID of node. """,
+        dictionaryType=None
+    )
+    virtual_networks = data_model.property(
+        "virtualNetworks", VirtualNetworkAddress,
+        array=True, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    node_slot = data_model.property(
+        "nodeSlot", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            node_id,
+            associated_master_service_id,
+            associated_fservice_id,
+            name,
+            platform_info,
+            software_version,
+            cip,
+            cipi,
+            mip,
+            mipi,
+            sip,
+            sipi,
+            uuid,
+            virtual_networks,
+            attributes,
+            fibre_channel_target_port_group=None,
+            node_slot=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class PendingNode(data_model.DataObject):
+    """PendingNode  
+    A "pending node" is one that has not yet joined the cluster.
+    It can be added to a cluster using the AddNode method.
+
+    :param pending_node_id: [required]  
+    :type pending_node_id: int
+
+    :param assigned_node_id: [required]  
+    :type assigned_node_id: int
+
+    :param name: [required] The host name for this node. 
+    :type name: str
+
+    :param compatible: [required]  
+    :type compatible: bool
+
+    :param platform_info: [required] Information about the platform this node is. 
+    :type platform_info: Platform
+
+    :param cip: [required] IP address used for both intra- and inter-cluster communication. 
+    :type cip: str
+
+    :param cipi: [required] The machine's name for the "cip" interface. 
+    :type cipi: str
+
+    :param mip: [required] IP address used for cluster management (hosting the API and web site). 
+    :type mip: str
+
+    :param mipi: [required] The machine's name for the "mip" interface. 
+    :type mipi: str
+
+    :param sip: [required] IP address used for iSCSI traffic. 
+    :type sip: str
+
+    :param sipi: [required] The machine's name for the "sip" interface. 
+    :type sipi: str
+
+    :param software_version: [required] The version of SolidFire software this node is currently running. 
+    :type software_version: str
+
+    :param uuid: [required] UUID of node. 
+    :type uuid: UUID
+
+    :param node_slot:  UUID of node. 
+    :type node_slot: str
+
+    """
+    pending_node_id = data_model.property(
+        "pendingNodeID", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    assigned_node_id = data_model.property(
+        "assignedNodeID", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="""The host name for this node. """,
+        dictionaryType=None
+    )
+    compatible = data_model.property(
+        "compatible", bool,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    platform_info = data_model.property(
+        "platformInfo", Platform,
+        array=False, optional=False,
+        documentation="""Information about the platform this node is. """,
+        dictionaryType=None
+    )
+    cip = data_model.property(
+        "cip", str,
+        array=False, optional=False,
+        documentation="""IP address used for both intra- and inter-cluster communication. """,
+        dictionaryType=None
+    )
+    cipi = data_model.property(
+        "cipi", str,
+        array=False, optional=False,
+        documentation="""The machine's name for the "cip" interface. """,
+        dictionaryType=None
+    )
+    mip = data_model.property(
+        "mip", str,
+        array=False, optional=False,
+        documentation="""IP address used for cluster management (hosting the API and web site). """,
+        dictionaryType=None
+    )
+    mipi = data_model.property(
+        "mipi", str,
+        array=False, optional=False,
+        documentation="""The machine's name for the "mip" interface. """,
+        dictionaryType=None
+    )
+    sip = data_model.property(
+        "sip", str,
+        array=False, optional=False,
+        documentation="""IP address used for iSCSI traffic. """,
+        dictionaryType=None
+    )
+    sipi = data_model.property(
+        "sipi", str,
+        array=False, optional=False,
+        documentation="""The machine's name for the "sip" interface. """,
+        dictionaryType=None
+    )
+    software_version = data_model.property(
+        "softwareVersion", str,
+        array=False, optional=False,
+        documentation="""The version of SolidFire software this node is currently running. """,
+        dictionaryType=None
+    )
+    uuid = data_model.property(
+        "uuid", UUID,
+        array=False, optional=False,
+        documentation="""UUID of node. """,
+        dictionaryType=None
+    )
+    node_slot = data_model.property(
+        "nodeSlot", str,
+        array=False, optional=True,
+        documentation="""UUID of node. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            pending_node_id,
+            assigned_node_id,
+            name,
+            compatible,
+            platform_info,
+            cip,
+            cipi,
+            mip,
+            mipi,
+            sip,
+            sipi,
+            software_version,
+            uuid,
+            node_slot=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class PendingActiveNode(data_model.DataObject):
+    """PendingActiveNode  
+
+    :param active_node_key: [required]  
+    :type active_node_key: str
+
+    :param assigned_node_id: [required]  
+    :type assigned_node_id: int
+
+    :param async_handle: [required]  
+    :type async_handle: int
+
+    :param cip: [required]  
+    :type cip: str
+
+    :param mip: [required]  
+    :type mip: str
+
+    :param pending_node_id: [required]  
+    :type pending_node_id: int
+
+    :param platform_info: [required]  
+    :type platform_info: Platform
+
+    :param sip: [required]  
+    :type sip: str
+
+    :param software_version: [required]  
+    :type software_version: str
+
+    """
+    active_node_key = data_model.property(
+        "activeNodeKey", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    assigned_node_id = data_model.property(
+        "assignedNodeID", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    async_handle = data_model.property(
+        "asyncHandle", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    cip = data_model.property(
+        "cip", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    mip = data_model.property(
+        "mip", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    pending_node_id = data_model.property(
+        "pendingNodeID", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    platform_info = data_model.property(
+        "platformInfo", Platform,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    sip = data_model.property(
+        "sip", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    software_version = data_model.property(
+        "softwareVersion", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            active_node_key,
+            assigned_node_id,
+            async_handle,
+            cip,
+            mip,
+            pending_node_id,
+            platform_info,
+            sip,
+            software_version):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListAllNodesResult(data_model.DataObject):
+    """ListAllNodesResult  
+
+    :param nodes: [required]  
+    :type nodes: Node
+
+    :param pending_nodes: [required]  
+    :type pending_nodes: PendingNode
+
+    :param pending_active_nodes:  List of objects detailing information about all PendingActive nodes in the system. 
+    :type pending_active_nodes: PendingActiveNode
+
+    """
+    nodes = data_model.property(
+        "nodes", Node,
+        array=True, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    pending_nodes = data_model.property(
+        "pendingNodes", PendingNode,
+        array=True, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    pending_active_nodes = data_model.property(
+        "pendingActiveNodes", PendingActiveNode,
+        array=True, optional=True,
+        documentation="""List of objects detailing information about all PendingActive nodes in the system. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            nodes,
+            pending_nodes,
+            pending_active_nodes=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -10837,6 +11906,26 @@ class ModifyAccountRequest(data_model.DataObject):
             initiator_secret=None,
             target_secret=None,
             attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ModifySnapMirrorEndpointResult(data_model.DataObject):
+    """ModifySnapMirrorEndpointResult  
+
+    :param snap_mirror_volumes: [required] Information about the modified SnapMirror endpoint. 
+    :type snap_mirror_volumes: SnapMirrorEndpoint
+
+    """
+    snap_mirror_volumes = data_model.property(
+        "snapMirrorVolumes", SnapMirrorEndpoint,
+        array=False, optional=False,
+        documentation="""Information about the modified SnapMirror endpoint. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_volumes):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -10974,6 +12063,47 @@ class ResetNodeRequest(data_model.DataObject):
             force,
             reboot=None,
             options=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class UpdateSnapMirrorRelationshipRequest(data_model.DataObject):
+    """UpdateSnapMirrorRelationshipRequest  
+    The SolidFire Element OS web UI uses the UpdateSnapMirrorRelationship method to make the destination volume in a SnapMirror relationship an up-to-date mirror of the source volume.
+
+    :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
+    :type snap_mirror_endpoint_id: int
+
+    :param destination_volume: [required] The destination volume in the SnapMirror relationship. 
+    :type destination_volume: SnapMirrorVolumeInfo
+
+    :param max_transfer_rate:  Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. 
+    :type max_transfer_rate: int
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. """,
+        dictionaryType=None
+    )
+    destination_volume = data_model.property(
+        "destinationVolume", SnapMirrorVolumeInfo,
+        array=False, optional=False,
+        documentation="""The destination volume in the SnapMirror relationship. """,
+        dictionaryType=None
+    )
+    max_transfer_rate = data_model.property(
+        "maxTransferRate", int,
+        array=False, optional=True,
+        documentation="""Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            destination_volume,
+            max_transfer_rate=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -11671,6 +12801,27 @@ class ListProtocolEndpointsResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class ListSnapMirrorNodesRequest(data_model.DataObject):
+    """ListSnapMirrorNodesRequest  
+    The SolidFire Element OS web UI uses the ListSnapMirrorNodes method to get a list of nodes in a remote ONTAP cluster.
+
+    :param snap_mirror_endpoint_id:  If provided, the system lists the nodes of the endpoint with the specified snapMirrorEndpointID. If not provided, the system lists the nodes of all known SnapMirror endpoints. 
+    :type snap_mirror_endpoint_id: int
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=True,
+        documentation="""If provided, the system lists the nodes of the endpoint with the specified snapMirrorEndpointID. If not provided, the system lists the nodes of all known SnapMirror endpoints. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class SetSnmpTrapInfoResult(data_model.DataObject):
     """SetSnmpTrapInfoResult  
 
@@ -12084,12 +13235,73 @@ class ResetNodeResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class BreakSnapMirrorVolumeRequest(data_model.DataObject):
+    """BreakSnapMirrorVolumeRequest  
+    The SolidFire Element OS web UI uses the BreakSnapMirrorVolume method to break the SnapMirror relationship between an ONTAP source container and SolidFire target volume. Breaking a SolidFire SnapMirror volume is useful if an ONTAP system becomes unavailable while replicating data to a SolidFire volume. This feature enables a storage administrator to take control of a SolidFire SnapMirror volume, break its relationship with the remote ONTAP system, and revert the volume to a previous snapshot.
+
+    :param volume_id: [required] The volume on which to perform the break operation. The volume access mode must be snapMirrorTarget. 
+    :type volume_id: int
+
+    :param snapshot_id:  Roll back the volume to the snapshot identified by this ID. The default behavior is to roll back to the most recent snapshot. 
+    :type snapshot_id: int
+
+    :param preserve:  Preserve any snapshots newer than the snapshot identified by snapshotID. Possible values: true: Preserve snapshots newer than snapshotID. false: Do not preserve snapshots newer than snapshotID. If false, any snapshots newer than snapshotID are deleted. 
+    :type preserve: bool
+
+    :param access:  Resulting volume access mode. Possible values: readWrite readOnly locked 
+    :type access: str
+
+    """
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="""The volume on which to perform the break operation. The volume access mode must be snapMirrorTarget. """,
+        dictionaryType=None
+    )
+    snapshot_id = data_model.property(
+        "snapshotID", int,
+        array=False, optional=True,
+        documentation="""Roll back the volume to the snapshot identified by this ID. The default behavior is to roll back to the most recent snapshot. """,
+        dictionaryType=None
+    )
+    preserve = data_model.property(
+        "preserve", bool,
+        array=False, optional=True,
+        documentation="""Preserve any snapshots newer than the snapshot identified by snapshotID. Possible values: true: Preserve snapshots newer than snapshotID. false: Do not preserve snapshots newer than snapshotID. If false, any snapshots newer than snapshotID are deleted. """,
+        dictionaryType=None
+    )
+    access = data_model.property(
+        "access", str,
+        array=False, optional=True,
+        documentation="""Resulting volume access mode. Possible values: readWrite readOnly locked """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            volume_id,
+            snapshot_id=None,
+            preserve=None,
+            access=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class BreakSnapMirrorRelationshipResult(data_model.DataObject):
     """BreakSnapMirrorRelationshipResult  
 
-    """
+    :param snap_mirror_relationship: [required] An object containing information about the broken SnapMirror relationship. 
+    :type snap_mirror_relationship: SnapMirrorRelationship
 
-    def __init__(self):
+    """
+    snap_mirror_relationship = data_model.property(
+        "snapMirrorRelationship", SnapMirrorRelationship,
+        array=False, optional=False,
+        documentation="""An object containing information about the broken SnapMirror relationship. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_relationship):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -12318,9 +13530,19 @@ class EnableEncryptionAtRestResult(data_model.DataObject):
 class QuiesceSnapMirrorRelationshipResult(data_model.DataObject):
     """QuiesceSnapMirrorRelationshipResult  
 
-    """
+    :param snap_mirror_relationship: [required] An object containg information about the quiesced SnapMirror relationship. 
+    :type snap_mirror_relationship: SnapMirrorRelationship
 
-    def __init__(self):
+    """
+    snap_mirror_relationship = data_model.property(
+        "snapMirrorRelationship", SnapMirrorRelationship,
+        array=False, optional=False,
+        documentation="""An object containg information about the quiesced SnapMirror relationship. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_relationship):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -12367,23 +13589,33 @@ class GetAccountResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetAccountByIDRequest(data_model.DataObject):
-    """GetAccountByIDRequest  
-    GetAccountByID enables you to return details about a specific account, given its accountID.
+class ListSnapMirrorLunsRequest(data_model.DataObject):
+    """ListSnapMirrorLunsRequest  
+    The SolidFire Element OS web UI uses the ListSnapMirrorLuns method to list the LUN information for the SnapMirror relationship from the remote ONTAP cluster.
 
-    :param account_id: [required] Specifies the account for which details are gathered. 
-    :type account_id: int
+    :param snap_mirror_endpoint_id: [required] List only the LUN information associated with the specified endpoint ID. 
+    :type snap_mirror_endpoint_id: int
+
+    :param destination_volume: [required] The destination volume in the SnapMirror relationship. 
+    :type destination_volume: SnapMirrorVolumeInfo
 
     """
-    account_id = data_model.property(
-        "accountID", int,
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
         array=False, optional=False,
-        documentation="""Specifies the account for which details are gathered. """,
+        documentation="""List only the LUN information associated with the specified endpoint ID. """,
+        dictionaryType=None
+    )
+    destination_volume = data_model.property(
+        "destinationVolume", SnapMirrorVolumeInfo,
+        array=False, optional=False,
+        documentation="""The destination volume in the SnapMirror relationship. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            account_id):
+            snap_mirror_endpoint_id,
+            destination_volume):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -12410,12 +13642,164 @@ class TestConnectEnsembleRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class SnapMirrorPolicyRule(data_model.DataObject):
+    """SnapMirrorPolicyRule  
+    The snapMirrorPolicyRule object contains information about the rules in a SnapMirror policy.
+
+    :param snap_mirror_endpoint_id: [required] The ID of the destination ONTAP system. 
+    :type snap_mirror_endpoint_id: int
+
+    :param snap_mirror_label: [required] The snapshot copy label, used for snapshot copy selection in extended data protection relationships. 
+    :type snap_mirror_label: str
+
+    :param keep_count: [required] Specifies the maximum number of snapshot copies that are retained on the SnapMirror destination volume for a rule. 
+    :type keep_count: str
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The ID of the destination ONTAP system. """,
+        dictionaryType=None
+    )
+    snap_mirror_label = data_model.property(
+        "snapMirrorLabel", str,
+        array=False, optional=False,
+        documentation="""The snapshot copy label, used for snapshot copy selection in extended data protection relationships. """,
+        dictionaryType=None
+    )
+    keep_count = data_model.property(
+        "keepCount", str,
+        array=False, optional=False,
+        documentation="""Specifies the maximum number of snapshot copies that are retained on the SnapMirror destination volume for a rule. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            snap_mirror_label,
+            keep_count):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class SnapMirrorPolicy(data_model.DataObject):
+    """SnapMirrorPolicy  
+    The snapMirrorPolicy object contains information about a SnapMirror policy that is stored on an ONTAP system.
+
+    :param snap_mirror_endpoint_id: [required] The ID of the destination ONTAP system. 
+    :type snap_mirror_endpoint_id: int
+
+    :param policy_name: [required] The unique name assigned to the policy. 
+    :type policy_name: str
+
+    :param policy_type: [required] The type of policy. Possible values: async_mirror mirror_vault 
+    :type policy_type: str
+
+    :param comment: [required] A human-readable description associated with the SnapMirror policy. 
+    :type comment: str
+
+    :param transfer_priority: [required] The priority at which a SnapMirror transfer runs. Possible values: normal: The default priority. These transfers are         scheduled before most low priority transfers. low:    These transfers have the lowest priority and         are scheduled after most normal priority transfers. 
+    :type transfer_priority: str
+
+    :param policy_rules: [required] A list of objects describing the policy rules. 
+    :type policy_rules: SnapMirrorPolicyRule
+
+    :param total_keep_count: [required] The total retention count for all rules in the policy. 
+    :type total_keep_count: int
+
+    :param total_rules: [required] The total number of rules in the policy. 
+    :type total_rules: int
+
+    :param vserver_name: [required] The name of the Vserver for the SnapMirror policy. 
+    :type vserver_name: str
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The ID of the destination ONTAP system. """,
+        dictionaryType=None
+    )
+    policy_name = data_model.property(
+        "policyName", str,
+        array=False, optional=False,
+        documentation="""The unique name assigned to the policy. """,
+        dictionaryType=None
+    )
+    policy_type = data_model.property(
+        "policyType", str,
+        array=False, optional=False,
+        documentation="""The type of policy. Possible values: async_mirror mirror_vault """,
+        dictionaryType=None
+    )
+    comment = data_model.property(
+        "comment", str,
+        array=False, optional=False,
+        documentation="""A human-readable description associated with the SnapMirror policy. """,
+        dictionaryType=None
+    )
+    transfer_priority = data_model.property(
+        "transferPriority", str,
+        array=False, optional=False,
+        documentation="""The priority at which a SnapMirror transfer runs. Possible values: normal: The default priority. These transfers are         scheduled before most low priority transfers. low:    These transfers have the lowest priority and         are scheduled after most normal priority transfers. """,
+        dictionaryType=None
+    )
+    policy_rules = data_model.property(
+        "policyRules", SnapMirrorPolicyRule,
+        array=True, optional=False,
+        documentation="""A list of objects describing the policy rules. """,
+        dictionaryType=None
+    )
+    total_keep_count = data_model.property(
+        "totalKeepCount", int,
+        array=False, optional=False,
+        documentation="""The total retention count for all rules in the policy. """,
+        dictionaryType=None
+    )
+    total_rules = data_model.property(
+        "totalRules", int,
+        array=False, optional=False,
+        documentation="""The total number of rules in the policy. """,
+        dictionaryType=None
+    )
+    vserver_name = data_model.property(
+        "vserverName", str,
+        array=False, optional=False,
+        documentation="""The name of the Vserver for the SnapMirror policy. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            policy_name,
+            policy_type,
+            comment,
+            transfer_priority,
+            policy_rules,
+            total_keep_count,
+            total_rules,
+            vserver_name):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListSnapMirrorPoliciesResult(data_model.DataObject):
     """ListSnapMirrorPoliciesResult  
 
-    """
+    :param snap_mirror_policies: [required] A list of the SnapMirror policies on the ONTAP storage system. 
+    :type snap_mirror_policies: SnapMirrorPolicy
 
-    def __init__(self):
+    """
+    snap_mirror_policies = data_model.property(
+        "snapMirrorPolicies", SnapMirrorPolicy,
+        array=True, optional=False,
+        documentation="""A list of the SnapMirror policies on the ONTAP storage system. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_policies):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -12649,6 +14033,47 @@ class SetConfigRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class CreateSnapMirrorEndpointRequest(data_model.DataObject):
+    """CreateSnapMirrorEndpointRequest  
+    The SolidFire Element OS web UI uses the CreateSnapMirrorEndpoint method to create a relationship with a remote SnapMirror endpoint.
+
+    :param management_ip: [required] The management IP address of the remote SnapMirror endpoint. 
+    :type management_ip: str
+
+    :param username: [required] The management user name forthe ONTAP system. 
+    :type username: str
+
+    :param password: [required] The management password for the ONTAP system. 
+    :type password: str
+
+    """
+    management_ip = data_model.property(
+        "managementIP", str,
+        array=False, optional=False,
+        documentation="""The management IP address of the remote SnapMirror endpoint. """,
+        dictionaryType=None
+    )
+    username = data_model.property(
+        "username", str,
+        array=False, optional=False,
+        documentation="""The management user name forthe ONTAP system. """,
+        dictionaryType=None
+    )
+    password = data_model.property(
+        "password", str,
+        array=False, optional=False,
+        documentation="""The management password for the ONTAP system. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            management_ip,
+            username,
+            password):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ModifyVolumesRequest(data_model.DataObject):
     """ModifyVolumesRequest  
     ModifyVolumes allows you to configure up to 500 existing volumes at one time. Changes take place immediately.
@@ -12685,6 +14110,9 @@ class ModifyVolumesRequest(data_model.DataObject):
 
     :param attributes:  List of name/value pairs in JSON object format. 
     :type attributes: dict
+
+    :param enable_snap_mirror_replication:  Determines whether the volume can be used for replication with SnapMirror endpoints. Possible values: true false 
+    :type enable_snap_mirror_replication: bool
 
     """
     volume_ids = data_model.property(
@@ -12735,6 +14163,12 @@ class ModifyVolumesRequest(data_model.DataObject):
         documentation="""List of name/value pairs in JSON object format. """,
         dictionaryType=None
     )
+    enable_snap_mirror_replication = data_model.property(
+        "enableSnapMirrorReplication", bool,
+        array=False, optional=True,
+        documentation="""Determines whether the volume can be used for replication with SnapMirror endpoints. Possible values: true false """,
+        dictionaryType=None
+    )
 
     def __init__(self,
             volume_ids,
@@ -12744,7 +14178,8 @@ class ModifyVolumesRequest(data_model.DataObject):
             total_size=None,
             associate_with_qos_policy=None,
             qos_policy_id=None,
-            attributes=None):
+            attributes=None,
+            enable_snap_mirror_replication=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -13085,6 +14520,57 @@ class DeleteGroupSnapshotResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class ListSnapMirrorVolumesRequest(data_model.DataObject):
+    """ListSnapMirrorVolumesRequest  
+    The SolidFire Element OS web UI uses the ListSnapMirrorVolumes method to list all SnapMirror volumes available on a remote ONTAP system.
+
+    :param snap_mirror_endpoint_id:  List only the volumes associated with the specified endpoint ID. If no endpoint ID is provided, the system lists volumes from all known SnapMirror endpoints. 
+    :type snap_mirror_endpoint_id: int
+
+    :param vserver:  List volumes hosted on the specified Vserver. The Vserver must be of type "data". 
+    :type vserver: str
+
+    :param name:  List only ONTAP volumes with the specified name. 
+    :type name: str
+
+    :param type:  List only ONTAP volumes of the specified type. Possible values: rw: Read-write volumes ls: Load-sharing volumes dp: Data protection volumes 
+    :type type: str
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=True,
+        documentation="""List only the volumes associated with the specified endpoint ID. If no endpoint ID is provided, the system lists volumes from all known SnapMirror endpoints. """,
+        dictionaryType=None
+    )
+    vserver = data_model.property(
+        "vserver", str,
+        array=False, optional=True,
+        documentation="""List volumes hosted on the specified Vserver. The Vserver must be of type "data". """,
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=True,
+        documentation="""List only ONTAP volumes with the specified name. """,
+        dictionaryType=None
+    )
+    type = data_model.property(
+        "type", str,
+        array=False, optional=True,
+        documentation="""List only ONTAP volumes of the specified type. Possible values: rw: Read-write volumes ls: Load-sharing volumes dp: Data protection volumes """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id=None,
+            vserver=None,
+            name=None,
+            type=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class GetVirtualVolumeCountResult(data_model.DataObject):
     """GetVirtualVolumeCountResult  
 
@@ -13121,6 +14607,37 @@ class ListVolumeStatsByVolumeResult(data_model.DataObject):
 
     def __init__(self,
             volume_stats):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListSnapMirrorNetworkInterfacesRequest(data_model.DataObject):
+    """ListSnapMirrorNetworkInterfacesRequest  
+    The SolidFire Element OS web UI uses the ListSnapMirrorNetworkInterfaces method to list all available SnapMirror interfaces on a remote ONTAP system
+
+    :param snap_mirror_endpoint_id:  Return only the network interfaces associated with the specified endpoint ID. If no endpoint ID is provided, the system lists interfaces from all known SnapMirror endpoints. 
+    :type snap_mirror_endpoint_id: int
+
+    :param interface_role:  List only the network interface serving the specified role. 
+    :type interface_role: str
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=True,
+        documentation="""Return only the network interfaces associated with the specified endpoint ID. If no endpoint ID is provided, the system lists interfaces from all known SnapMirror endpoints. """,
+        dictionaryType=None
+    )
+    interface_role = data_model.property(
+        "interfaceRole", str,
+        array=False, optional=True,
+        documentation="""List only the network interface serving the specified role. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id=None,
+            interface_role=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -13226,12 +14743,83 @@ class GetVolumeEfficiencyResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class ModifySnapMirrorEndpointResult(data_model.DataObject):
-    """ModifySnapMirrorEndpointResult  
+class CreateSnapMirrorRelationshipRequest(data_model.DataObject):
+    """CreateSnapMirrorRelationshipRequest  
+    The SolidFire Element OS web UI uses the CreateSnapMirrorRelationship method to create a SnapMirror extended data protection relationship between a source and destination endpoint.
+
+    :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
+    :type snap_mirror_endpoint_id: int
+
+    :param source_volume: [required] The source volume in the relationship. 
+    :type source_volume: SnapMirrorVolumeInfo
+
+    :param destination_volume: [required] The destination volume in the relationship. 
+    :type destination_volume: SnapMirrorVolumeInfo
+
+    :param relationship_type:  The type of relationship. On SolidFire systems, this value is always "extended_data_protection". 
+    :type relationship_type: str
+
+    :param policy_name:  Specifies the name of the ONTAP SnapMirror policy for the relationship. If not specified, the default policy name is MirrorLatest. 
+    :type policy_name: str
+
+    :param schedule_name:  The name of the preexisting cron schedule on the ONTAP system that is used to update the SnapMirror relationship. If no schedule is designated, snapMirror updates are not scheduled and must be updated manually. 
+    :type schedule_name: str
+
+    :param max_transfer_rate:  Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. 
+    :type max_transfer_rate: int
 
     """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. """,
+        dictionaryType=None
+    )
+    source_volume = data_model.property(
+        "sourceVolume", SnapMirrorVolumeInfo,
+        array=False, optional=False,
+        documentation="""The source volume in the relationship. """,
+        dictionaryType=None
+    )
+    destination_volume = data_model.property(
+        "destinationVolume", SnapMirrorVolumeInfo,
+        array=False, optional=False,
+        documentation="""The destination volume in the relationship. """,
+        dictionaryType=None
+    )
+    relationship_type = data_model.property(
+        "relationshipType", str,
+        array=False, optional=True,
+        documentation="""The type of relationship. On SolidFire systems, this value is always "extended_data_protection". """,
+        dictionaryType=None
+    )
+    policy_name = data_model.property(
+        "policyName", str,
+        array=False, optional=True,
+        documentation="""Specifies the name of the ONTAP SnapMirror policy for the relationship. If not specified, the default policy name is MirrorLatest. """,
+        dictionaryType=None
+    )
+    schedule_name = data_model.property(
+        "scheduleName", str,
+        array=False, optional=True,
+        documentation="""The name of the preexisting cron schedule on the ONTAP system that is used to update the SnapMirror relationship. If no schedule is designated, snapMirror updates are not scheduled and must be updated manually. """,
+        dictionaryType=None
+    )
+    max_transfer_rate = data_model.property(
+        "maxTransferRate", int,
+        array=False, optional=True,
+        documentation="""Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. """,
+        dictionaryType=None
+    )
 
-    def __init__(self):
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            source_volume,
+            destination_volume,
+            relationship_type=None,
+            policy_name=None,
+            schedule_name=None,
+            max_transfer_rate=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -13738,12 +15326,62 @@ class GetVolumeEfficiencyRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class CreateVolumeResult(data_model.DataObject):
+    """CreateVolumeResult  
+
+    :param volume:   
+    :type volume: Volume
+
+    :param volume_id: [required] VolumeID for the newly created volume. 
+    :type volume_id: int
+
+    :param curve: [required] The curve is a set of key-value pairs. The keys are I/O sizes in bytes. The values represent the cost performing an IOP at a specific I/O size. The curve is calculated relative to a 4096 byte operation set at 100 IOPS. 
+    :type curve: dict
+
+    """
+    volume = data_model.property(
+        "volume", Volume,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="""VolumeID for the newly created volume. """,
+        dictionaryType=None
+    )
+    curve = data_model.property(
+        "curve", dict,
+        array=False, optional=False,
+        documentation="""The curve is a set of key-value pairs. The keys are I/O sizes in bytes. The values represent the cost performing an IOP at a specific I/O size. The curve is calculated relative to a 4096 byte operation set at 100 IOPS. """,
+        dictionaryType=int
+    )
+
+    def __init__(self,
+            volume_id,
+            curve,
+            volume=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ModifySnapMirrorRelationshipResult(data_model.DataObject):
     """ModifySnapMirrorRelationshipResult  
 
-    """
+    :param snap_mirror_relationship: [required] An object containg the modified SnapMirror relationship attributes. 
+    :type snap_mirror_relationship: SnapMirrorRelationship
 
-    def __init__(self):
+    """
+    snap_mirror_relationship = data_model.property(
+        "snapMirrorRelationship", SnapMirrorRelationship,
+        array=True, optional=False,
+        documentation="""An object containg the modified SnapMirror relationship attributes. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_relationship):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -14261,9 +15899,19 @@ class BreakSnapMirrorVolumeResult(data_model.DataObject):
 class CreateSnapMirrorRelationshipResult(data_model.DataObject):
     """CreateSnapMirrorRelationshipResult  
 
-    """
+    :param snap_mirror_relationship: [required] Information about the newly created SnapMirror relationship. 
+    :type snap_mirror_relationship: SnapMirrorRelationship
 
-    def __init__(self):
+    """
+    snap_mirror_relationship = data_model.property(
+        "snapMirrorRelationship", SnapMirrorRelationship,
+        array=False, optional=False,
+        documentation="""Information about the newly created SnapMirror relationship. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_relationship):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -14510,25 +16158,22 @@ class ListVirtualVolumeBindingsResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetDriveStatsRequest(data_model.DataObject):
-    """GetDriveStatsRequest  
-    GetDriveStats returns high-level activity measurements for a single drive. Values are cumulative from the addition of the drive to the
-    cluster. Some values are specific to block drives. You might not obtain statistical data for both block and metadata drives when you
-    run this method. 
+class GetQoSPolicyResult(data_model.DataObject):
+    """GetQoSPolicyResult  
 
-    :param drive_id: [required] Specifies the drive for which statistics are gathered. 
-    :type drive_id: int
+    :param qos_policy: [required] Details of the requested QoS policy. 
+    :type qos_policy: QoSPolicy
 
     """
-    drive_id = data_model.property(
-        "driveID", int,
+    qos_policy = data_model.property(
+        "qosPolicy", QoSPolicy,
         array=False, optional=False,
-        documentation="""Specifies the drive for which statistics are gathered. """,
+        documentation="""Details of the requested QoS policy. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            drive_id):
+            qos_policy):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -14549,6 +16194,27 @@ class EnableLdapAuthenticationResult(data_model.DataObject):
     """
 
     def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListSnapMirrorAggregatesRequest(data_model.DataObject):
+    """ListSnapMirrorAggregatesRequest  
+    The SolidFire Element OS web UI uses the ListSnapMirrorAggregates method to list all SnapMirror aggregates that are available on the remote ONTAP system. An aggregate describes a set of physical storage resources.
+
+    :param snap_mirror_endpoint_id:  Return only the aggregates associated with the specified endpoint ID. If no endpoint ID is provided, the system lists aggregates from all known SnapMirror endpoints. 
+    :type snap_mirror_endpoint_id: int
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=True,
+        documentation="""Return only the aggregates associated with the specified endpoint ID. If no endpoint ID is provided, the system lists aggregates from all known SnapMirror endpoints. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -14622,6 +16288,9 @@ class ClusterFaultInfo(data_model.DataObject):
 
     :param data:   
     :type data: dict
+
+    :param external_source:   
+    :type external_source: str
 
     """
     drive_ids = data_model.property(
@@ -14714,6 +16383,12 @@ class ClusterFaultInfo(data_model.DataObject):
         documentation=""" """,
         dictionaryType=None
     )
+    external_source = data_model.property(
+        "externalSource", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
 
     def __init__(self,
             severity,
@@ -14730,7 +16405,8 @@ class ClusterFaultInfo(data_model.DataObject):
             resolved_date,
             drive_ids=None,
             network_interface=None,
-            data=None):
+            data=None,
+            external_source=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -14962,9 +16638,19 @@ class ListVolumeAccessGroupsRequest(data_model.DataObject):
 class ResyncSnapMirrorRelationshipResult(data_model.DataObject):
     """ResyncSnapMirrorRelationshipResult  
 
-    """
+    :param snap_mirror_relationship: [required] An object containing information about the resynced SnapMirror relationship. 
+    :type snap_mirror_relationship: SnapMirrorRelationship
 
-    def __init__(self):
+    """
+    snap_mirror_relationship = data_model.property(
+        "snapMirrorRelationship", SnapMirrorRelationship,
+        array=False, optional=False,
+        documentation="""An object containing information about the resynced SnapMirror relationship. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_relationship):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -15069,6 +16755,47 @@ class ListGroupSnapshotsRequest(data_model.DataObject):
     def __init__(self,
             volumes=None,
             group_snapshot_id=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class InitializeSnapMirrorRelationshipRequest(data_model.DataObject):
+    """InitializeSnapMirrorRelationshipRequest  
+    The SolidFire Element OS web UI uses the InitializeSnapMirrorRelationship method to initialize the destination volume in a SnapMirror relationship by performing an initial baseline transfer between clusters.
+
+    :param snap_mirror_endpoint_id: [required] The ID of the remote ONTAP system. 
+    :type snap_mirror_endpoint_id: int
+
+    :param destination_volume: [required] The destination volume in the SnapMirror relationship. 
+    :type destination_volume: SnapMirrorVolumeInfo
+
+    :param max_transfer_rate:  Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. 
+    :type max_transfer_rate: int
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The ID of the remote ONTAP system. """,
+        dictionaryType=None
+    )
+    destination_volume = data_model.property(
+        "destinationVolume", SnapMirrorVolumeInfo,
+        array=False, optional=False,
+        documentation="""The destination volume in the SnapMirror relationship. """,
+        dictionaryType=None
+    )
+    max_transfer_rate = data_model.property(
+        "maxTransferRate", int,
+        array=False, optional=True,
+        documentation="""Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            destination_volume,
+            max_transfer_rate=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -15221,9 +16948,19 @@ class ModifySnapshotResult(data_model.DataObject):
 class InitializeSnapMirrorRelationshipResult(data_model.DataObject):
     """InitializeSnapMirrorRelationshipResult  
 
-    """
+    :param snap_mirror_relationship: [required] Information about the initialized SnapMirror relationship. 
+    :type snap_mirror_relationship: SnapMirrorRelationship
 
-    def __init__(self):
+    """
+    snap_mirror_relationship = data_model.property(
+        "snapMirrorRelationship", SnapMirrorRelationship,
+        array=False, optional=False,
+        documentation="""Information about the initialized SnapMirror relationship. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_relationship):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -15345,16 +17082,6 @@ class TestConnectMvipResult(data_model.DataObject):
             details,
             duration,
             result):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ClearClusterFaultsResult(data_model.DataObject):
-    """ClearClusterFaultsResult  
-
-    """
-
-    def __init__(self):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -16137,12 +17864,113 @@ class GetDriveStatsResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class SnapMirrorNetworkInterface(data_model.DataObject):
+    """SnapMirrorNetworkInterface  
+    The snapMirrorNetworkInterface object contains information about the intercluster Logical Interface (LIF) names.
+
+    :param snap_mirror_endpoint_id: [required] The ID of the destination ONTAP system. 
+    :type snap_mirror_endpoint_id: int
+
+    :param interface_name: [required] The logical interface (LIF) name. 
+    :type interface_name: str
+
+    :param network_address: [required] The IP address of the LIF. 
+    :type network_address: str
+
+    :param network_mask: [required] The network mask of the LIF. 
+    :type network_mask: str
+
+    :param interface_role: [required] The role of the LIF. Possible values: undef cluster data node_mgmt intercluster cluster_mgmt 
+    :type interface_role: str
+
+    :param operational_status: [required] Specifies the operational status of the LIF. Possible values: up down 
+    :type operational_status: str
+
+    :param administrative_status: [required] Specifies the administrative status of the LIF. The administrative status can differ from the operational status. For instance, if you specify the status as up but a network problem prevents the interface from functioning, the operational status remains as down. Possible values: up down 
+    :type administrative_status: str
+
+    :param vserver_name: [required] The name of the Vserver. 
+    :type vserver_name: str
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The ID of the destination ONTAP system. """,
+        dictionaryType=None
+    )
+    interface_name = data_model.property(
+        "interfaceName", str,
+        array=False, optional=False,
+        documentation="""The logical interface (LIF) name. """,
+        dictionaryType=None
+    )
+    network_address = data_model.property(
+        "networkAddress", str,
+        array=False, optional=False,
+        documentation="""The IP address of the LIF. """,
+        dictionaryType=None
+    )
+    network_mask = data_model.property(
+        "networkMask", str,
+        array=False, optional=False,
+        documentation="""The network mask of the LIF. """,
+        dictionaryType=None
+    )
+    interface_role = data_model.property(
+        "interfaceRole", str,
+        array=False, optional=False,
+        documentation="""The role of the LIF. Possible values: undef cluster data node_mgmt intercluster cluster_mgmt """,
+        dictionaryType=None
+    )
+    operational_status = data_model.property(
+        "operationalStatus", str,
+        array=False, optional=False,
+        documentation="""Specifies the operational status of the LIF. Possible values: up down """,
+        dictionaryType=None
+    )
+    administrative_status = data_model.property(
+        "administrativeStatus", str,
+        array=False, optional=False,
+        documentation="""Specifies the administrative status of the LIF. The administrative status can differ from the operational status. For instance, if you specify the status as up but a network problem prevents the interface from functioning, the operational status remains as down. Possible values: up down """,
+        dictionaryType=None
+    )
+    vserver_name = data_model.property(
+        "vserverName", str,
+        array=False, optional=False,
+        documentation="""The name of the Vserver. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            interface_name,
+            network_address,
+            network_mask,
+            interface_role,
+            operational_status,
+            administrative_status,
+            vserver_name):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListSnapMirrorNetworkInterfacesResult(data_model.DataObject):
     """ListSnapMirrorNetworkInterfacesResult  
 
-    """
+    :param snap_mirror_network_interfaces: [required] A list of the SnapMirror network interfaces available on the remote ONTAP storage system. 
+    :type snap_mirror_network_interfaces: SnapMirrorNetworkInterface
 
-    def __init__(self):
+    """
+    snap_mirror_network_interfaces = data_model.property(
+        "snapMirrorNetworkInterfaces", SnapMirrorNetworkInterface,
+        array=True, optional=False,
+        documentation="""A list of the SnapMirror network interfaces available on the remote ONTAP storage system. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_network_interfaces):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -16181,6 +18009,27 @@ class ModifyVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
     def __init__(self,
             volume_access_group_id,
             lun_assignments):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListSnapMirrorEndpointsRequest(data_model.DataObject):
+    """ListSnapMirrorEndpointsRequest  
+    The SolidFire Element OS web UI uses the ListSnapMirrorEndpoints method to list all SnapMirror endpoints that the SolidFire cluster is communicating with.
+
+    :param snap_mirror_endpoint_ids:  Return only the objects associated with these IDs. If no IDs are provided or the array is empty, the method returns all SnapMirror endpoint IDs. 
+    :type snap_mirror_endpoint_ids: int
+
+    """
+    snap_mirror_endpoint_ids = data_model.property(
+        "snapMirrorEndpointIDs", int,
+        array=True, optional=True,
+        documentation="""Return only the objects associated with these IDs. If no IDs are provided or the array is empty, the method returns all SnapMirror endpoint IDs. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_ids=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -16280,9 +18129,19 @@ class ListVolumeStatsByVolumeAccessGroupRequest(data_model.DataObject):
 class AbortSnapMirrorRelationshipResult(data_model.DataObject):
     """AbortSnapMirrorRelationshipResult  
 
-    """
+    :param snap_mirror_relationship: [required] An object containing information about the aborted SnapMirror relationship. 
+    :type snap_mirror_relationship: SnapMirrorRelationship
 
-    def __init__(self):
+    """
+    snap_mirror_relationship = data_model.property(
+        "snapMirrorRelationship", SnapMirrorRelationship,
+        array=False, optional=False,
+        documentation="""An object containing information about the aborted SnapMirror relationship. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_relationship):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -16610,62 +18469,23 @@ class GetHardwareConfigResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetEfficiencyResult(data_model.DataObject):
-    """GetEfficiencyResult  
+class GetQoSPolicyRequest(data_model.DataObject):
+    """GetQoSPolicyRequest  
+    You can use the GetQoSPolicy method to get details about a specific QoSPolicy from the system.
 
-    :param compression:  The amount of space being saved by compressing data on a single volume. Stated as a ratio where "1" means data has been stored without being compressed. 
-    :type compression: float
-
-    :param deduplication:  The amount of space being saved on a single volume by not duplicating data. Stated as a ratio. 
-    :type deduplication: float
-
-    :param thin_provisioning:  The ratio of space used to the amount of space allocated for storing data. Stated as a ratio. 
-    :type thin_provisioning: float
-
-    :param timestamp: [required] The last time efficiency data was collected after Garbage Collection (GC). ISO 8601 data string. 
-    :type timestamp: str
-
-    :param missing_volumes: [required] The volumes that could not be queried for efficiency data. Missing volumes can be caused by GC being less than hour old, temporary network loss or restarted services since the GC cycle. 
-    :type missing_volumes: int
+    :param qos_policy_id: [required] The ID of the policy to be retrieved. 
+    :type qos_policy_id: int
 
     """
-    compression = data_model.property(
-        "compression", float,
-        array=False, optional=True,
-        documentation="""The amount of space being saved by compressing data on a single volume. Stated as a ratio where "1" means data has been stored without being compressed. """,
-        dictionaryType=None
-    )
-    deduplication = data_model.property(
-        "deduplication", float,
-        array=False, optional=True,
-        documentation="""The amount of space being saved on a single volume by not duplicating data. Stated as a ratio. """,
-        dictionaryType=None
-    )
-    thin_provisioning = data_model.property(
-        "thinProvisioning", float,
-        array=False, optional=True,
-        documentation="""The ratio of space used to the amount of space allocated for storing data. Stated as a ratio. """,
-        dictionaryType=None
-    )
-    timestamp = data_model.property(
-        "timestamp", str,
+    qos_policy_id = data_model.property(
+        "qosPolicyID", int,
         array=False, optional=False,
-        documentation="""The last time efficiency data was collected after Garbage Collection (GC). ISO 8601 data string. """,
-        dictionaryType=None
-    )
-    missing_volumes = data_model.property(
-        "missingVolumes", int,
-        array=True, optional=False,
-        documentation="""The volumes that could not be queried for efficiency data. Missing volumes can be caused by GC being less than hour old, temporary network loss or restarted services since the GC cycle. """,
+        documentation="""The ID of the policy to be retrieved. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            timestamp,
-            missing_volumes,
-            compression=None,
-            deduplication=None,
-            thin_provisioning=None):
+            qos_policy_id):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -16984,6 +18804,77 @@ class ListStorageContainersRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class CreateSnapMirrorVolumeRequest(data_model.DataObject):
+    """CreateSnapMirrorVolumeRequest  
+    The SolidFire Element OS web UI uses the CreateSnapMirrorVolume method to create a volume on the remote ONTAP system.
+
+    :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
+    :type snap_mirror_endpoint_id: int
+
+    :param vserver: [required] The name of the Vserver. 
+    :type vserver: str
+
+    :param name: [required] The destination ONTAP volume name. 
+    :type name: str
+
+    :param type:  The volume type. Possible values: rw: Read-write volume ls: Load-sharing volume dp: Data protection volume If no type is provided the default type is dp. 
+    :type type: str
+
+    :param aggregate: [required] The containing ONTAP aggregate in which to create the volume. You can use ListSnapMirrorAggregates to get information about available ONTAP aggregates. 
+    :type aggregate: str
+
+    :param size: [required] The size of the volume in bytes. 
+    :type size: int
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. """,
+        dictionaryType=None
+    )
+    vserver = data_model.property(
+        "vserver", str,
+        array=False, optional=False,
+        documentation="""The name of the Vserver. """,
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="""The destination ONTAP volume name. """,
+        dictionaryType=None
+    )
+    type = data_model.property(
+        "type", str,
+        array=False, optional=True,
+        documentation="""The volume type. Possible values: rw: Read-write volume ls: Load-sharing volume dp: Data protection volume If no type is provided the default type is dp. """,
+        dictionaryType=None
+    )
+    aggregate = data_model.property(
+        "aggregate", str,
+        array=False, optional=False,
+        documentation="""The containing ONTAP aggregate in which to create the volume. You can use ListSnapMirrorAggregates to get information about available ONTAP aggregates. """,
+        dictionaryType=None
+    )
+    size = data_model.property(
+        "size", int,
+        array=False, optional=False,
+        documentation="""The size of the volume in bytes. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            vserver,
+            name,
+            aggregate,
+            size,
+            type=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class GetHardwareInfoResult(data_model.DataObject):
     """GetHardwareInfoResult  
 
@@ -17090,6 +18981,67 @@ class GetLoginSessionInfoResult(data_model.DataObject):
 
     def __init__(self,
             login_session_info):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ModifySnapMirrorRelationshipRequest(data_model.DataObject):
+    """ModifySnapMirrorRelationshipRequest  
+    You can use ModifySnapMirrorRelationship to change the intervals at which a scheduled snapshot occurs. You can also delete or pause a schedule by using this method.
+
+    :param destination_volume: [required] The destinationVolume in the SnapMirror relationship. 
+    :type destination_volume: SnapMirrorVolumeInfo
+
+    :param max_transfer_rate:  Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. 
+    :type max_transfer_rate: int
+
+    :param policy_name:  Specifies the name of the ONTAP SnapMirror policy for the relationship. 
+    :type policy_name: str
+
+    :param schedule_name:  The name of the pre-existing cron schedule on the ONTAP system that is used to update the SnapMirror relationship. 
+    :type schedule_name: str
+
+    :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster, 
+    :type snap_mirror_endpoint_id: int
+
+    """
+    destination_volume = data_model.property(
+        "destinationVolume", SnapMirrorVolumeInfo,
+        array=False, optional=False,
+        documentation="""The destinationVolume in the SnapMirror relationship. """,
+        dictionaryType=None
+    )
+    max_transfer_rate = data_model.property(
+        "maxTransferRate", int,
+        array=False, optional=True,
+        documentation="""Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. """,
+        dictionaryType=None
+    )
+    policy_name = data_model.property(
+        "policyName", str,
+        array=False, optional=True,
+        documentation="""Specifies the name of the ONTAP SnapMirror policy for the relationship. """,
+        dictionaryType=None
+    )
+    schedule_name = data_model.property(
+        "scheduleName", str,
+        array=False, optional=True,
+        documentation="""The name of the pre-existing cron schedule on the ONTAP system that is used to update the SnapMirror relationship. """,
+        dictionaryType=None
+    )
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster, """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            destination_volume,
+            snap_mirror_endpoint_id,
+            max_transfer_rate=None,
+            policy_name=None,
+            schedule_name=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -17204,23 +19156,62 @@ class ListVolumesResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetQoSPolicyRequest(data_model.DataObject):
-    """GetQoSPolicyRequest  
-    You can use the GetQoSPolicy method to get details about a specific QoSPolicy from the system.
+class GetEfficiencyResult(data_model.DataObject):
+    """GetEfficiencyResult  
 
-    :param qos_policy_id: [required] The ID of the policy to be retrieved. 
-    :type qos_policy_id: int
+    :param compression:  The amount of space being saved by compressing data on a single volume. Stated as a ratio where "1" means data has been stored without being compressed. 
+    :type compression: float
+
+    :param deduplication:  The amount of space being saved on a single volume by not duplicating data. Stated as a ratio. 
+    :type deduplication: float
+
+    :param thin_provisioning:  The ratio of space used to the amount of space allocated for storing data. Stated as a ratio. 
+    :type thin_provisioning: float
+
+    :param timestamp: [required] The last time efficiency data was collected after Garbage Collection (GC). ISO 8601 data string. 
+    :type timestamp: str
+
+    :param missing_volumes: [required] The volumes that could not be queried for efficiency data. Missing volumes can be caused by GC being less than hour old, temporary network loss or restarted services since the GC cycle. 
+    :type missing_volumes: int
 
     """
-    qos_policy_id = data_model.property(
-        "qosPolicyID", int,
+    compression = data_model.property(
+        "compression", float,
+        array=False, optional=True,
+        documentation="""The amount of space being saved by compressing data on a single volume. Stated as a ratio where "1" means data has been stored without being compressed. """,
+        dictionaryType=None
+    )
+    deduplication = data_model.property(
+        "deduplication", float,
+        array=False, optional=True,
+        documentation="""The amount of space being saved on a single volume by not duplicating data. Stated as a ratio. """,
+        dictionaryType=None
+    )
+    thin_provisioning = data_model.property(
+        "thinProvisioning", float,
+        array=False, optional=True,
+        documentation="""The ratio of space used to the amount of space allocated for storing data. Stated as a ratio. """,
+        dictionaryType=None
+    )
+    timestamp = data_model.property(
+        "timestamp", str,
         array=False, optional=False,
-        documentation="""The ID of the policy to be retrieved. """,
+        documentation="""The last time efficiency data was collected after Garbage Collection (GC). ISO 8601 data string. """,
+        dictionaryType=None
+    )
+    missing_volumes = data_model.property(
+        "missingVolumes", int,
+        array=True, optional=False,
+        documentation="""The volumes that could not be queried for efficiency data. Missing volumes can be caused by GC being less than hour old, temporary network loss or restarted services since the GC cycle. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            qos_policy_id):
+            timestamp,
+            missing_volumes,
+            compression=None,
+            deduplication=None,
+            thin_provisioning=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -17709,6 +19700,16 @@ class RollbackToGroupSnapshotRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class SetNodeSSLCertificateResult(data_model.DataObject):
+    """SetNodeSSLCertificateResult  
+
+    """
+
+    def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class GetBackupTargetRequest(data_model.DataObject):
     """GetBackupTargetRequest  
     GetBackupTarget enables you to return information about a specific backup target that you have created.
@@ -17730,12 +19731,63 @@ class GetBackupTargetRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class SnapMirrorJobScheduleCronInfo(data_model.DataObject):
+    """SnapMirrorJobScheduleCronInfo  
+    The snapMirrorJobScheduleCronInfo object contains information about a cron job schedule on the ONTAP system.
+
+    :param snap_mirror_endpoint_id: [required] The ID of the destination ONTAP system. 
+    :type snap_mirror_endpoint_id: int
+
+    :param job_schedule_name: [required] The name of the job schedule. 
+    :type job_schedule_name: str
+
+    :param job_schedule_description: [required] An automatically-generated human-readable summary of the schedule. 
+    :type job_schedule_description: str
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The ID of the destination ONTAP system. """,
+        dictionaryType=None
+    )
+    job_schedule_name = data_model.property(
+        "jobScheduleName", str,
+        array=False, optional=False,
+        documentation="""The name of the job schedule. """,
+        dictionaryType=None
+    )
+    job_schedule_description = data_model.property(
+        "jobScheduleDescription", str,
+        array=False, optional=False,
+        documentation="""An automatically-generated human-readable summary of the schedule. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            job_schedule_name,
+            job_schedule_description):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListSnapMirrorSchedulesResult(data_model.DataObject):
     """ListSnapMirrorSchedulesResult  
 
-    """
+    :param snap_mirror_schedules: [required] A list of the SnapMirror schedules on the remote ONTAP cluster. 
+    :type snap_mirror_schedules: SnapMirrorJobScheduleCronInfo
 
-    def __init__(self):
+    """
+    snap_mirror_schedules = data_model.property(
+        "snapMirrorSchedules", SnapMirrorJobScheduleCronInfo,
+        array=True, optional=False,
+        documentation="""A list of the SnapMirror schedules on the remote ONTAP cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_schedules):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -17946,12 +19998,53 @@ class TestDrivesRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class ResumeSnapMirrorRelationshipRequest(data_model.DataObject):
+    """ResumeSnapMirrorRelationshipRequest  
+    The SolidFire Element OS web UI uses the ResumeSnapMirrorRelationship method to enable future transfers for a quiesced SnapMirror relationship.
+
+    :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
+    :type snap_mirror_endpoint_id: int
+
+    :param destination_volume: [required] The destination volume in the SnapMirror relationship. 
+    :type destination_volume: SnapMirrorVolumeInfo
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. """,
+        dictionaryType=None
+    )
+    destination_volume = data_model.property(
+        "destinationVolume", SnapMirrorVolumeInfo,
+        array=False, optional=False,
+        documentation="""The destination volume in the SnapMirror relationship. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            destination_volume):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ResumeSnapMirrorRelationshipResult(data_model.DataObject):
     """ResumeSnapMirrorRelationshipResult  
 
-    """
+    :param snap_mirror_relationship: [required] An object containg information about the resumed SnapMirror relationship. 
+    :type snap_mirror_relationship: SnapMirrorRelationship
 
-    def __init__(self):
+    """
+    snap_mirror_relationship = data_model.property(
+        "snapMirrorRelationship", SnapMirrorRelationship,
+        array=False, optional=False,
+        documentation="""An object containg information about the resumed SnapMirror relationship. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_relationship):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -18888,6 +20981,37 @@ class SnmpSendTestTrapsResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class QuiesceSnapMirrorRelationshipRequest(data_model.DataObject):
+    """QuiesceSnapMirrorRelationshipRequest  
+    The SolidFire Element OS web UI uses the QuiesceSnapMirrorRelationship method to disable future data transfers for a SnapMirror relationship. If a transfer is in progress, the relationship status becomes "quiescing" until the transfer is complete. If the current transfer is aborted, it will not restart. You can reenable data transfers for the relationship using the ResumeSnapMirrorRelationship API method.
+
+    :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
+    :type snap_mirror_endpoint_id: int
+
+    :param destination_volume: [required] The destination volume in the SnapMrror relationship. 
+    :type destination_volume: SnapMirrorVolumeInfo
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. """,
+        dictionaryType=None
+    )
+    destination_volume = data_model.property(
+        "destinationVolume", SnapMirrorVolumeInfo,
+        array=False, optional=False,
+        documentation="""The destination volume in the SnapMrror relationship. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            destination_volume):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListVirtualVolumeBindingsRequest(data_model.DataObject):
     """ListVirtualVolumeBindingsRequest  
     ListVirtualVolumeBindings returns a list of all virtual volumes in the cluster that are bound to protocol endpoints.
@@ -19014,9 +21138,19 @@ class DisableLdapAuthenticationResult(data_model.DataObject):
 class ListSnapMirrorEndpointsResult(data_model.DataObject):
     """ListSnapMirrorEndpointsResult  
 
-    """
+    :param snap_mirror_endpoints: [required] A list of existing SnapMirror endpoints. 
+    :type snap_mirror_endpoints: SnapMirrorEndpoint
 
-    def __init__(self):
+    """
+    snap_mirror_endpoints = data_model.property(
+        "snapMirrorEndpoints", SnapMirrorEndpoint,
+        array=True, optional=False,
+        documentation="""A list of existing SnapMirror endpoints. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoints):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -19041,12 +21175,154 @@ class ListSnapshotsResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class SnapMirrorVserverAggregateInfo(data_model.DataObject):
+    """SnapMirrorVserverAggregateInfo  
+    The snapMirrorVserverAggregateInfo object contains information about the available data Storage Virtual Machines (also called Vservers) at the destination ONTAP cluster.
+
+    :param aggr_name: [required] The name of the aggregate assigned to a Vserver. 
+    :type aggr_name: str
+
+    :param aggr_avail_size: [required] The assigned aggregate's available size. 
+    :type aggr_avail_size: int
+
+    """
+    aggr_name = data_model.property(
+        "aggrName", str,
+        array=False, optional=False,
+        documentation="""The name of the aggregate assigned to a Vserver. """,
+        dictionaryType=None
+    )
+    aggr_avail_size = data_model.property(
+        "aggrAvailSize", int,
+        array=False, optional=False,
+        documentation="""The assigned aggregate's available size. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            aggr_name,
+            aggr_avail_size):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class SnapMirrorVserver(data_model.DataObject):
+    """SnapMirrorVserver  
+    The snapMirrorVserver object contains information about the Storage Virtual Machines (or Vservers) at the destination ONTAP cluster.
+
+    :param snap_mirror_endpoint_id: [required] The ID of the destination ONTAP system. 
+    :type snap_mirror_endpoint_id: int
+
+    :param vserver_name: [required] The name of the Vserver. 
+    :type vserver_name: str
+
+    :param vserver_type: [required] The type of the Vserver. Possible values: data admin system node 
+    :type vserver_type: str
+
+    :param vserver_subtype: [required] The subtype of the Vserver. Possible values: default dp_destination data sync_source sync_destination 
+    :type vserver_subtype: str
+
+    :param root_volume: [required] The root volume of the Vserver. 
+    :type root_volume: str
+
+    :param root_volume_aggregate: [required] The aggregate on which the root volume will be created. 
+    :type root_volume_aggregate: str
+
+    :param vserver_aggregate_info: [required] An array of SnapMirrorVserverAggregateInfo objects. 
+    :type vserver_aggregate_info: SnapMirrorVserverAggregateInfo
+
+    :param admin_state: [required] The detailed administrative state of the Vserver. Possible values: running stopped starting stopping initialized deleting 
+    :type admin_state: str
+
+    :param operational_state: [required] The basic operational state of the Vserver. Possible values: running stopped 
+    :type operational_state: str
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The ID of the destination ONTAP system. """,
+        dictionaryType=None
+    )
+    vserver_name = data_model.property(
+        "vserverName", str,
+        array=False, optional=False,
+        documentation="""The name of the Vserver. """,
+        dictionaryType=None
+    )
+    vserver_type = data_model.property(
+        "vserverType", str,
+        array=False, optional=False,
+        documentation="""The type of the Vserver. Possible values: data admin system node """,
+        dictionaryType=None
+    )
+    vserver_subtype = data_model.property(
+        "vserverSubtype", str,
+        array=False, optional=False,
+        documentation="""The subtype of the Vserver. Possible values: default dp_destination data sync_source sync_destination """,
+        dictionaryType=None
+    )
+    root_volume = data_model.property(
+        "rootVolume", str,
+        array=False, optional=False,
+        documentation="""The root volume of the Vserver. """,
+        dictionaryType=None
+    )
+    root_volume_aggregate = data_model.property(
+        "rootVolumeAggregate", str,
+        array=False, optional=False,
+        documentation="""The aggregate on which the root volume will be created. """,
+        dictionaryType=None
+    )
+    vserver_aggregate_info = data_model.property(
+        "vserverAggregateInfo", SnapMirrorVserverAggregateInfo,
+        array=True, optional=False,
+        documentation="""An array of SnapMirrorVserverAggregateInfo objects. """,
+        dictionaryType=None
+    )
+    admin_state = data_model.property(
+        "adminState", str,
+        array=False, optional=False,
+        documentation="""The detailed administrative state of the Vserver. Possible values: running stopped starting stopping initialized deleting """,
+        dictionaryType=None
+    )
+    operational_state = data_model.property(
+        "operationalState", str,
+        array=False, optional=False,
+        documentation="""The basic operational state of the Vserver. Possible values: running stopped """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            vserver_name,
+            vserver_type,
+            vserver_subtype,
+            root_volume,
+            root_volume_aggregate,
+            vserver_aggregate_info,
+            admin_state,
+            operational_state):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListSnapMirrorVserversResult(data_model.DataObject):
     """ListSnapMirrorVserversResult  
 
-    """
+    :param snap_mirror_vservers: [required] A list of the SnapMirror Vservers available on the ONTAP storage system. 
+    :type snap_mirror_vservers: SnapMirrorVserver
 
-    def __init__(self):
+    """
+    snap_mirror_vservers = data_model.property(
+        "snapMirrorVservers", SnapMirrorVserver,
+        array=True, optional=False,
+        documentation="""A list of the SnapMirror Vservers available on the ONTAP storage system. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_vservers):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -19565,12 +21841,144 @@ class PurgeDeletedVolumeRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class DeleteSnapMirrorEndpointsRequest(data_model.DataObject):
+    """DeleteSnapMirrorEndpointsRequest  
+    The SolidFire Element OS web UI uses DeleteSnapMirrorEndpoints to delete one or more SnapMirror endpoints from the system.
+
+    :param snap_mirror_endpoint_ids: [required] An array of IDs of SnapMirror endpoints to delete. 
+    :type snap_mirror_endpoint_ids: int
+
+    """
+    snap_mirror_endpoint_ids = data_model.property(
+        "snapMirrorEndpointIDs", int,
+        array=True, optional=False,
+        documentation="""An array of IDs of SnapMirror endpoints to delete. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_ids):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class SnapMirrorLunInfo(data_model.DataObject):
+    """SnapMirrorLunInfo  
+    The snapMirrorLunInfo object contains information about the ONTAP LUN object.
+
+    :param snap_mirror_endpoint_id: [required] The ID of the destination ONTAP system. 
+    :type snap_mirror_endpoint_id: int
+
+    :param creation_timestamp: [required] The creation time of the LUN. 
+    :type creation_timestamp: str
+
+    :param lun_name: [required] The name of the LUN. 
+    :type lun_name: str
+
+    :param path: [required] The path of the LUN. 
+    :type path: str
+
+    :param size: [required] The size of the LUN in bytes. 
+    :type size: int
+
+    :param size_used: [required] The number of bytes used by the LUN. 
+    :type size_used: int
+
+    :param state: [required] The current access state of the LUN. Possible values: online offline foreign_lun_error nvfail space_error 
+    :type state: str
+
+    :param volume: [required] The name of the volume that contains the LUN. 
+    :type volume: str
+
+    :param vserver: [required] The Vserver that contains the LUN. 
+    :type vserver: str
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The ID of the destination ONTAP system. """,
+        dictionaryType=None
+    )
+    creation_timestamp = data_model.property(
+        "creationTimestamp", str,
+        array=False, optional=False,
+        documentation="""The creation time of the LUN. """,
+        dictionaryType=None
+    )
+    lun_name = data_model.property(
+        "lunName", str,
+        array=False, optional=False,
+        documentation="""The name of the LUN. """,
+        dictionaryType=None
+    )
+    path = data_model.property(
+        "path", str,
+        array=False, optional=False,
+        documentation="""The path of the LUN. """,
+        dictionaryType=None
+    )
+    size = data_model.property(
+        "size", int,
+        array=False, optional=False,
+        documentation="""The size of the LUN in bytes. """,
+        dictionaryType=None
+    )
+    size_used = data_model.property(
+        "sizeUsed", int,
+        array=False, optional=False,
+        documentation="""The number of bytes used by the LUN. """,
+        dictionaryType=None
+    )
+    state = data_model.property(
+        "state", str,
+        array=False, optional=False,
+        documentation="""The current access state of the LUN. Possible values: online offline foreign_lun_error nvfail space_error """,
+        dictionaryType=None
+    )
+    volume = data_model.property(
+        "volume", str,
+        array=False, optional=False,
+        documentation="""The name of the volume that contains the LUN. """,
+        dictionaryType=None
+    )
+    vserver = data_model.property(
+        "vserver", str,
+        array=False, optional=False,
+        documentation="""The Vserver that contains the LUN. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            creation_timestamp,
+            lun_name,
+            path,
+            size,
+            size_used,
+            state,
+            volume,
+            vserver):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListSnapMirrorLunsResult(data_model.DataObject):
     """ListSnapMirrorLunsResult  
 
-    """
+    :param snap_mirror_lun_infos: [required] A list of objects containing information about SnapMirror LUNs. 
+    :type snap_mirror_lun_infos: SnapMirrorLunInfo
 
-    def __init__(self):
+    """
+    snap_mirror_lun_infos = data_model.property(
+        "snapMirrorLunInfos", SnapMirrorLunInfo,
+        array=True, optional=False,
+        documentation="""A list of objects containing information about SnapMirror LUNs. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_lun_infos):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -20535,12 +22943,43 @@ class SetRemoteLoggingHostsResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class GetAccountByIDRequest(data_model.DataObject):
+    """GetAccountByIDRequest  
+    GetAccountByID enables you to return details about a specific account, given its accountID.
+
+    :param account_id: [required] Specifies the account for which details are gathered. 
+    :type account_id: int
+
+    """
+    account_id = data_model.property(
+        "accountID", int,
+        array=False, optional=False,
+        documentation="""Specifies the account for which details are gathered. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            account_id):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListSnapMirrorRelationshipsResult(data_model.DataObject):
     """ListSnapMirrorRelationshipsResult  
 
-    """
+    :param snap_mirror_relationships: [required] A list of objects containing information about SnapMirror relationships. 
+    :type snap_mirror_relationships: SnapMirrorRelationship
 
-    def __init__(self):
+    """
+    snap_mirror_relationships = data_model.property(
+        "snapMirrorRelationships", SnapMirrorRelationship,
+        array=True, optional=False,
+        documentation="""A list of objects containing information about SnapMirror relationships. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_relationships):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -20568,12 +23007,103 @@ class SetClusterConfigRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class SnapMirrorNode(data_model.DataObject):
+    """SnapMirrorNode  
+    The snapMirrorNode object contains information about the nodes of the destination ONTAP cluster in a SnapMirror relationship.
+
+    :param snap_mirror_endpoint_id: [required] The ID of the destination ONTAP system. 
+    :type snap_mirror_endpoint_id: int
+
+    :param name: [required] The name of the ONTAP node. 
+    :type name: str
+
+    :param model: [required] The model of the ONTAP node. 
+    :type model: str
+
+    :param serial_number: [required] The serial number of the ONTAP node. 
+    :type serial_number: str
+
+    :param product_version: [required] The ONTAP product version. 
+    :type product_version: str
+
+    :param is_node_healthy: [required] The health of a node in the ONTAP cluster. Possible values: true false 
+    :type is_node_healthy: str
+
+    :param is_node_eligible: [required] Whether or not the node is eligible to participate in a ONTAP cluster. Possible values: true false 
+    :type is_node_eligible: str
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The ID of the destination ONTAP system. """,
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="""The name of the ONTAP node. """,
+        dictionaryType=None
+    )
+    model = data_model.property(
+        "model", str,
+        array=False, optional=False,
+        documentation="""The model of the ONTAP node. """,
+        dictionaryType=None
+    )
+    serial_number = data_model.property(
+        "serialNumber", str,
+        array=False, optional=False,
+        documentation="""The serial number of the ONTAP node. """,
+        dictionaryType=None
+    )
+    product_version = data_model.property(
+        "productVersion", str,
+        array=False, optional=False,
+        documentation="""The ONTAP product version. """,
+        dictionaryType=None
+    )
+    is_node_healthy = data_model.property(
+        "isNodeHealthy", str,
+        array=False, optional=False,
+        documentation="""The health of a node in the ONTAP cluster. Possible values: true false """,
+        dictionaryType=None
+    )
+    is_node_eligible = data_model.property(
+        "isNodeEligible", str,
+        array=False, optional=False,
+        documentation="""Whether or not the node is eligible to participate in a ONTAP cluster. Possible values: true false """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            name,
+            model,
+            serial_number,
+            product_version,
+            is_node_healthy,
+            is_node_eligible):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListSnapMirrorNodesResult(data_model.DataObject):
     """ListSnapMirrorNodesResult  
 
-    """
+    :param snap_mirror_nodes: [required] A list of the nodes on the ONTAP cluster. 
+    :type snap_mirror_nodes: SnapMirrorNode
 
-    def __init__(self):
+    """
+    snap_mirror_nodes = data_model.property(
+        "snapMirrorNodes", SnapMirrorNode,
+        array=True, optional=False,
+        documentation="""A list of the nodes on the ONTAP cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_nodes):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -20725,6 +23255,27 @@ class ListAccountsRequest(data_model.DataObject):
             start_account_id=None,
             limit=None,
             include_storage_containers=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetOntapVersionInfoRequest(data_model.DataObject):
+    """GetOntapVersionInfoRequest  
+    The SolidFire Element OS web UI uses GetOntapVersionInfo to get information about API version support from the ONTAP cluster in a SnapMirror relationship.
+
+    :param snap_mirror_endpoint_id:  If provided, the system lists the version information from the endpoint with the specified snapMirrorEndpointID. If not provided, the system lists the version information of all known SnapMirror endpoints. 
+    :type snap_mirror_endpoint_id: int
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=True,
+        documentation="""If provided, the system lists the version information from the endpoint with the specified snapMirrorEndpointID. If not provided, the system lists the version information of all known SnapMirror endpoints. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -21012,6 +23563,9 @@ class ModifyVolumeRequest(data_model.DataObject):
     :param qos_policy_id:  The ID for the policy whose QoS settings should be applied to the specified volumes. The volume will not maintain any association with the policy; this is an alternate way to apply QoS settings to the volume. This parameter and the qos parameter cannot be specified at the same time. 
     :type qos_policy_id: int
 
+    :param enable_snap_mirror_replication:  Determines whether the volume can be used for replication with SnapMirror endpoints. Possible values: true false 
+    :type enable_snap_mirror_replication: bool
+
     """
     volume_id = data_model.property(
         "volumeID", int,
@@ -21061,6 +23615,12 @@ class ModifyVolumeRequest(data_model.DataObject):
         documentation="""The ID for the policy whose QoS settings should be applied to the specified volumes. The volume will not maintain any association with the policy; this is an alternate way to apply QoS settings to the volume. This parameter and the qos parameter cannot be specified at the same time. """,
         dictionaryType=None
     )
+    enable_snap_mirror_replication = data_model.property(
+        "enableSnapMirrorReplication", bool,
+        array=False, optional=True,
+        documentation="""Determines whether the volume can be used for replication with SnapMirror endpoints. Possible values: true false """,
+        dictionaryType=None
+    )
 
     def __init__(self,
             volume_id,
@@ -21070,7 +23630,8 @@ class ModifyVolumeRequest(data_model.DataObject):
             total_size=None,
             attributes=None,
             associate_with_qos_policy=None,
-            qos_policy_id=None):
+            qos_policy_id=None,
+            enable_snap_mirror_replication=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -21121,6 +23682,27 @@ class RemoveSSLCertificateResult(data_model.DataObject):
     """
 
     def __init__(self):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ListSnapMirrorPoliciesRequest(data_model.DataObject):
+    """ListSnapMirrorPoliciesRequest  
+    The SolidFire Element OS web UI uses the ListSnapMirrorPolicies method to list all SnapMirror policies on a remote ONTAP system.
+
+    :param snap_mirror_endpoint_id:  List only the policies associated with the specified endpoint ID. If no endpoint ID is provided, the system lists policies from all known SnapMirror endpoints. 
+    :type snap_mirror_endpoint_id: int
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=True,
+        documentation="""List only the policies associated with the specified endpoint ID. If no endpoint ID is provided, the system lists policies from all known SnapMirror endpoints. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
