@@ -3301,7 +3301,7 @@ class Element(ServiceBase):
         :param destinationVolume: [required] The destination volume in the SnapMirror relationship. 
         :type destinationVolume: SnapMirrorVolumeInfo
 
-        :param clearCheckpoint:  Determines whether ornot to clear the restart checkpoint. 
+        :param clearCheckpoint:  Determines whether or not to clear the restart checkpoint. 
         :type clearCheckpoint: bool
         """
 
@@ -3417,7 +3417,7 @@ class Element(ServiceBase):
         :param managementIP: [required] The management IP address of the remote SnapMirror endpoint. 
         :type managementIP: str
 
-        :param username: [required] The management user name forthe ONTAP system. 
+        :param username: [required] The management username for the ONTAP system. 
         :type username: str
 
         :param password: [required] The management password for the ONTAP system. 
@@ -3683,7 +3683,7 @@ class Element(ServiceBase):
         :param snapMirrorEndpointID: [required] The ID of the remote ONTAP system. 
         :type snapMirrorEndpointID: int
 
-        :param destinationVolume: [required] The destination volume in the SnapMirror relationship. 
+        :param destinationVolume: [required] The destination volume's name in the SnapMirror relationship. 
         :type destinationVolume: SnapMirrorVolumeInfo
 
         :param maxTransferRate:  Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. 
@@ -4096,9 +4096,7 @@ class Element(ServiceBase):
             snap_mirror_endpoint_id,
             management_ip=OPTIONAL,
             username=OPTIONAL,
-            password=OPTIONAL,
-            cluster_name=OPTIONAL,
-            ip_address=OPTIONAL,):
+            password=OPTIONAL,):
         """
         The SolidFire Element OS web UI uses the ModifySnapMirrorEndpoint method to change the name and management attributes for a SnapMirror endpoint.
         :param snapMirrorEndpointID: [required] The SnapMirror endpoint to modify. 
@@ -4112,12 +4110,6 @@ class Element(ServiceBase):
 
         :param password:  The new management password for the ONTAP system. 
         :type password: str
-
-        :param clusterName:  The new name of the endpoint. 
-        :type clusterName: str
-
-        :param ipAddress:  The new management password for the ONTAP system. 
-        :type ipAddress: str
         """
 
         self._check_connection_type("modify_snap_mirror_endpoint", "Cluster")
@@ -4143,18 +4135,6 @@ class Element(ServiceBase):
                     [("password", password, 10.1, False)])
             else:
                 params["password"] = password
-        if cluster_name is not None:
-            if self.api_version < 10.1:
-                raise ApiParameterVersionError("modify_snap_mirror_endpoint", 10.1,
-                    [("cluster_name", cluster_name, 10.1, False)])
-            else:
-                params["clusterName"] = cluster_name
-        if ip_address is not None:
-            if self.api_version < 10.1:
-                raise ApiParameterVersionError("modify_snap_mirror_endpoint", 10.1,
-                    [("ip_address", ip_address, 10.1, False)])
-            else:
-                params["ipAddress"] = ip_address
         
         # There is no adaptor.
         return self.send_request(
@@ -4173,7 +4153,7 @@ class Element(ServiceBase):
             schedule_name=OPTIONAL,):
         """
         You can use ModifySnapMirrorRelationship to change the intervals at which a scheduled snapshot occurs. You can also delete or pause a schedule by using this method.
-        :param destinationVolume: [required] The destinationVolume in the SnapMirror relationship. 
+        :param destinationVolume: [required] The destination volume in the SnapMirror relationship. 
         :type destinationVolume: SnapMirrorVolumeInfo
 
         :param maxTransferRate:  Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. 
@@ -4185,7 +4165,7 @@ class Element(ServiceBase):
         :param scheduleName:  The name of the pre-existing cron schedule on the ONTAP system that is used to update the SnapMirror relationship. 
         :type scheduleName: str
 
-        :param snapMirrorEndpointID: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster, 
+        :param snapMirrorEndpointID: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
         :type snapMirrorEndpointID: int
         """
 
@@ -4231,7 +4211,7 @@ class Element(ServiceBase):
         :param snapMirrorEndpointID: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
         :type snapMirrorEndpointID: int
 
-        :param destinationVolume: [required] The destination volume in the SnapMrror relationship. 
+        :param destinationVolume: [required] The destination volume in the SnapMirror relationship. 
         :type destinationVolume: SnapMirrorVolumeInfo
         """
 
@@ -4286,10 +4266,10 @@ class Element(ServiceBase):
             source_volume=OPTIONAL,):
         """
         The SolidFire Element OS web UI uses the ResyncSnapMirrorRelationship method to establish or reestablish a mirror relationship between a source and destination endpoint. When you resync a relationship, the system removes snapshots on the destination volume that are newer than the common snapshot copy, and then mounts the destination volume as a data protection volume with the common snapshot copy as the exported snapshot copy.
-        :param snapMirrorEndpointID: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster, 
+        :param snapMirrorEndpointID: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
         :type snapMirrorEndpointID: int
 
-        :param destinationVolume: [required] The destinationVolume in the SnapMirror relationship. 
+        :param destinationVolume: [required] The destination volume in the SnapMirror relationship. 
         :type destinationVolume: SnapMirrorVolumeInfo
 
         :param maxTransferRate:  Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. 

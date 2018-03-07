@@ -1400,12 +1400,6 @@ class ModifySnapMirrorEndpointRequest(data_model.DataObject):
     :param password:  The new management password for the ONTAP system. 
     :type password: str
 
-    :param cluster_name:  The new name of the endpoint. 
-    :type cluster_name: str
-
-    :param ip_address:  The new management password for the ONTAP system. 
-    :type ip_address: str
-
     """
     snap_mirror_endpoint_id = data_model.property(
         "snapMirrorEndpointID", int,
@@ -1431,26 +1425,12 @@ class ModifySnapMirrorEndpointRequest(data_model.DataObject):
         documentation="""The new management password for the ONTAP system. """,
         dictionaryType=None
     )
-    cluster_name = data_model.property(
-        "clusterName", str,
-        array=False, optional=True,
-        documentation="""The new name of the endpoint. """,
-        dictionaryType=None
-    )
-    ip_address = data_model.property(
-        "ipAddress", str,
-        array=True, optional=True,
-        documentation="""The new management password for the ONTAP system. """,
-        dictionaryType=None
-    )
 
     def __init__(self,
             snap_mirror_endpoint_id,
             management_ip=None,
             username=None,
-            password=None,
-            cluster_name=None,
-            ip_address=None):
+            password=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -3082,7 +3062,7 @@ class AbortSnapMirrorRelationshipRequest(data_model.DataObject):
     :param destination_volume: [required] The destination volume in the SnapMirror relationship. 
     :type destination_volume: SnapMirrorVolumeInfo
 
-    :param clear_checkpoint:  Determines whether ornot to clear the restart checkpoint. 
+    :param clear_checkpoint:  Determines whether or not to clear the restart checkpoint. 
     :type clear_checkpoint: bool
 
     """
@@ -3101,7 +3081,7 @@ class AbortSnapMirrorRelationshipRequest(data_model.DataObject):
     clear_checkpoint = data_model.property(
         "clearCheckpoint", bool,
         array=False, optional=True,
-        documentation="""Determines whether ornot to clear the restart checkpoint. """,
+        documentation="""Determines whether or not to clear the restart checkpoint. """,
         dictionaryType=None
     )
 
@@ -4675,10 +4655,10 @@ class ResyncSnapMirrorRelationshipRequest(data_model.DataObject):
     """ResyncSnapMirrorRelationshipRequest  
     The SolidFire Element OS web UI uses the ResyncSnapMirrorRelationship method to establish or reestablish a mirror relationship between a source and destination endpoint. When you resync a relationship, the system removes snapshots on the destination volume that are newer than the common snapshot copy, and then mounts the destination volume as a data protection volume with the common snapshot copy as the exported snapshot copy.
 
-    :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster, 
+    :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
     :type snap_mirror_endpoint_id: int
 
-    :param destination_volume: [required] The destinationVolume in the SnapMirror relationship. 
+    :param destination_volume: [required] The destination volume in the SnapMirror relationship. 
     :type destination_volume: SnapMirrorVolumeInfo
 
     :param max_transfer_rate:  Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. 
@@ -4691,13 +4671,13 @@ class ResyncSnapMirrorRelationshipRequest(data_model.DataObject):
     snap_mirror_endpoint_id = data_model.property(
         "snapMirrorEndpointID", int,
         array=False, optional=False,
-        documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster, """,
+        documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. """,
         dictionaryType=None
     )
     destination_volume = data_model.property(
         "destinationVolume", SnapMirrorVolumeInfo,
         array=False, optional=False,
-        documentation="""The destinationVolume in the SnapMirror relationship. """,
+        documentation="""The destination volume in the SnapMirror relationship. """,
         dictionaryType=None
     )
     max_transfer_rate = data_model.property(
@@ -14040,7 +14020,7 @@ class CreateSnapMirrorEndpointRequest(data_model.DataObject):
     :param management_ip: [required] The management IP address of the remote SnapMirror endpoint. 
     :type management_ip: str
 
-    :param username: [required] The management user name forthe ONTAP system. 
+    :param username: [required] The management username for the ONTAP system. 
     :type username: str
 
     :param password: [required] The management password for the ONTAP system. 
@@ -14056,7 +14036,7 @@ class CreateSnapMirrorEndpointRequest(data_model.DataObject):
     username = data_model.property(
         "username", str,
         array=False, optional=False,
-        documentation="""The management user name forthe ONTAP system. """,
+        documentation="""The management username for the ONTAP system. """,
         dictionaryType=None
     )
     password = data_model.property(
@@ -16766,7 +16746,7 @@ class InitializeSnapMirrorRelationshipRequest(data_model.DataObject):
     :param snap_mirror_endpoint_id: [required] The ID of the remote ONTAP system. 
     :type snap_mirror_endpoint_id: int
 
-    :param destination_volume: [required] The destination volume in the SnapMirror relationship. 
+    :param destination_volume: [required] The destination volume's name in the SnapMirror relationship. 
     :type destination_volume: SnapMirrorVolumeInfo
 
     :param max_transfer_rate:  Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. 
@@ -16782,7 +16762,7 @@ class InitializeSnapMirrorRelationshipRequest(data_model.DataObject):
     destination_volume = data_model.property(
         "destinationVolume", SnapMirrorVolumeInfo,
         array=False, optional=False,
-        documentation="""The destination volume in the SnapMirror relationship. """,
+        documentation="""The destination volume's name in the SnapMirror relationship. """,
         dictionaryType=None
     )
     max_transfer_rate = data_model.property(
@@ -18989,7 +18969,7 @@ class ModifySnapMirrorRelationshipRequest(data_model.DataObject):
     """ModifySnapMirrorRelationshipRequest  
     You can use ModifySnapMirrorRelationship to change the intervals at which a scheduled snapshot occurs. You can also delete or pause a schedule by using this method.
 
-    :param destination_volume: [required] The destinationVolume in the SnapMirror relationship. 
+    :param destination_volume: [required] The destination volume in the SnapMirror relationship. 
     :type destination_volume: SnapMirrorVolumeInfo
 
     :param max_transfer_rate:  Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. 
@@ -19001,14 +18981,14 @@ class ModifySnapMirrorRelationshipRequest(data_model.DataObject):
     :param schedule_name:  The name of the pre-existing cron schedule on the ONTAP system that is used to update the SnapMirror relationship. 
     :type schedule_name: str
 
-    :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster, 
+    :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
     :type snap_mirror_endpoint_id: int
 
     """
     destination_volume = data_model.property(
         "destinationVolume", SnapMirrorVolumeInfo,
         array=False, optional=False,
-        documentation="""The destinationVolume in the SnapMirror relationship. """,
+        documentation="""The destination volume in the SnapMirror relationship. """,
         dictionaryType=None
     )
     max_transfer_rate = data_model.property(
@@ -19032,7 +19012,7 @@ class ModifySnapMirrorRelationshipRequest(data_model.DataObject):
     snap_mirror_endpoint_id = data_model.property(
         "snapMirrorEndpointID", int,
         array=False, optional=False,
-        documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster, """,
+        documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. """,
         dictionaryType=None
     )
 
@@ -20988,7 +20968,7 @@ class QuiesceSnapMirrorRelationshipRequest(data_model.DataObject):
     :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
     :type snap_mirror_endpoint_id: int
 
-    :param destination_volume: [required] The destination volume in the SnapMrror relationship. 
+    :param destination_volume: [required] The destination volume in the SnapMirror relationship. 
     :type destination_volume: SnapMirrorVolumeInfo
 
     """
@@ -21001,7 +20981,7 @@ class QuiesceSnapMirrorRelationshipRequest(data_model.DataObject):
     destination_volume = data_model.property(
         "destinationVolume", SnapMirrorVolumeInfo,
         array=False, optional=False,
-        documentation="""The destination volume in the SnapMrror relationship. """,
+        documentation="""The destination volume in the SnapMirror relationship. """,
         dictionaryType=None
     )
 
