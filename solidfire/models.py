@@ -11340,6 +11340,26 @@ class VirtualNetworkAddress(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class Membership(data_model.DataObject):
+    """Membership  
+
+    :param chassis: [required] The value of the member is a string identifying the chassis with which the node is associated. Nodes with matching values for this member are in the same physical chassis. 
+    :type chassis: str
+
+    """
+    chassis = data_model.property(
+        "chassis", str,
+        array=False, optional=False,
+        documentation="""The value of the member is a string identifying the chassis with which the node is associated. Nodes with matching values for this member are in the same physical chassis. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            chassis):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class Node(data_model.DataObject):
     """Node  
     A node refers to an individual machine in a cluster.
@@ -11396,6 +11416,9 @@ class Node(data_model.DataObject):
 
     :param node_slot:   
     :type node_slot: str
+
+    :param membership:  The value of the member is a string identifying the chassis with which the node is associated. Nodes with matching values for this member are in the same physical chassis. 
+    :type membership: Membership
 
     """
     node_id = data_model.property(
@@ -11500,6 +11523,12 @@ class Node(data_model.DataObject):
         documentation=""" """,
         dictionaryType=None
     )
+    membership = data_model.property(
+        "membership", Membership,
+        array=False, optional=True,
+        documentation="""The value of the member is a string identifying the chassis with which the node is associated. Nodes with matching values for this member are in the same physical chassis. """,
+        dictionaryType=None
+    )
 
     def __init__(self,
             node_id,
@@ -11518,7 +11547,8 @@ class Node(data_model.DataObject):
             virtual_networks,
             attributes,
             fibre_channel_target_port_group=None,
-            node_slot=None):
+            node_slot=None,
+            membership=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -11569,6 +11599,9 @@ class PendingNode(data_model.DataObject):
 
     :param node_slot:  UUID of node. 
     :type node_slot: str
+
+    :param membership:  The value of the member is a string identifying the chassis with which the node is associated. Nodes with matching values for this member are in the same physical chassis. 
+    :type membership: Membership
 
     """
     pending_node_id = data_model.property(
@@ -11655,6 +11688,12 @@ class PendingNode(data_model.DataObject):
         documentation="""UUID of node. """,
         dictionaryType=None
     )
+    membership = data_model.property(
+        "membership", Membership,
+        array=False, optional=True,
+        documentation="""The value of the member is a string identifying the chassis with which the node is associated. Nodes with matching values for this member are in the same physical chassis. """,
+        dictionaryType=None
+    )
 
     def __init__(self,
             pending_node_id,
@@ -11670,7 +11709,8 @@ class PendingNode(data_model.DataObject):
             sipi,
             software_version,
             uuid,
-            node_slot=None):
+            node_slot=None,
+            membership=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -11704,6 +11744,9 @@ class PendingActiveNode(data_model.DataObject):
 
     :param software_version: [required]  
     :type software_version: str
+
+    :param membership:  The value of the member is a string identifying the chassis with which the node is associated. Nodes with matching values for this member are in the same physical chassis. 
+    :type membership: Membership
 
     """
     active_node_key = data_model.property(
@@ -11760,6 +11803,12 @@ class PendingActiveNode(data_model.DataObject):
         documentation=""" """,
         dictionaryType=None
     )
+    membership = data_model.property(
+        "membership", Membership,
+        array=False, optional=True,
+        documentation="""The value of the member is a string identifying the chassis with which the node is associated. Nodes with matching values for this member are in the same physical chassis. """,
+        dictionaryType=None
+    )
 
     def __init__(self,
             active_node_key,
@@ -11770,7 +11819,8 @@ class PendingActiveNode(data_model.DataObject):
             pending_node_id,
             platform_info,
             sip,
-            software_version):
+            software_version,
+            membership=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -15044,6 +15094,36 @@ class CreateInitiatorsRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class LossAllowance(data_model.DataObject):
+    """LossAllowance  
+
+    :param chassis: [required]  
+    :type chassis: int
+
+    :param node: [required]  
+    :type node: int
+
+    """
+    chassis = data_model.property(
+        "chassis", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    node = data_model.property(
+        "node", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            chassis,
+            node):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class GetClusterFullThresholdResult(data_model.DataObject):
     """GetClusterFullThresholdResult  
 
@@ -15097,6 +15177,24 @@ class GetClusterFullThresholdResult(data_model.DataObject):
 
     :param sum_used_metadata_cluster_bytes: [required] Amount of space used on volume drives to store metadata. 
     :type sum_used_metadata_cluster_bytes: int
+
+    :param single_failure_block_threshold_bytes:  The maximum number of bytes that can be stored on the cluster before autohealing from a single failure will no longer be guaranteed. 
+    :type single_failure_block_threshold_bytes: LossAllowance
+
+    :param block_auto_heal_threshold_count:  The maximum number of nodes or chassis that can fail before block data autohealing is no longer guaranteed. 
+    :type block_auto_heal_threshold_count: LossAllowance
+
+    :param metadata_auto_heal_threshold_count:  The maximum number of nodes or chassis that can fail before metadata autohealing is no longer guaranteed. 
+    :type metadata_auto_heal_threshold_count: LossAllowance
+
+    :param stage3_block_alert_domain:  Either "node" or "chassis", signifying whether the stage3 alert based on blocks will be based on nodes or chassis. 
+    :type stage3_block_alert_domain: str
+
+    :param stage3_metadata_alert_domain:  Either "node" or "chassis", signifying whether the stage3 alert based on metadata will be based on nodes or chassis. 
+    :type stage3_metadata_alert_domain: str
+
+    :param stage3_metadata_threshold_percent:  Exactly the same as stage3BlockthresholdPercent except applies to stage3 metadata alerts. 
+    :type stage3_metadata_threshold_percent: int
 
     """
     block_fullness = data_model.property(
@@ -15201,6 +15299,42 @@ class GetClusterFullThresholdResult(data_model.DataObject):
         documentation="""Amount of space used on volume drives to store metadata. """,
         dictionaryType=None
     )
+    single_failure_block_threshold_bytes = data_model.property(
+        "singleFailureBlockThresholdBytes", LossAllowance,
+        array=False, optional=True,
+        documentation="""The maximum number of bytes that can be stored on the cluster before autohealing from a single failure will no longer be guaranteed. """,
+        dictionaryType=None
+    )
+    block_auto_heal_threshold_count = data_model.property(
+        "blockAutoHealThresholdCount", LossAllowance,
+        array=False, optional=True,
+        documentation="""The maximum number of nodes or chassis that can fail before block data autohealing is no longer guaranteed. """,
+        dictionaryType=None
+    )
+    metadata_auto_heal_threshold_count = data_model.property(
+        "metadataAutoHealThresholdCount", LossAllowance,
+        array=False, optional=True,
+        documentation="""The maximum number of nodes or chassis that can fail before metadata autohealing is no longer guaranteed. """,
+        dictionaryType=None
+    )
+    stage3_block_alert_domain = data_model.property(
+        "stage3BlockAlertDomain", str,
+        array=False, optional=True,
+        documentation="""Either "node" or "chassis", signifying whether the stage3 alert based on blocks will be based on nodes or chassis. """,
+        dictionaryType=None
+    )
+    stage3_metadata_alert_domain = data_model.property(
+        "stage3MetadataAlertDomain", str,
+        array=False, optional=True,
+        documentation="""Either "node" or "chassis", signifying whether the stage3 alert based on metadata will be based on nodes or chassis. """,
+        dictionaryType=None
+    )
+    stage3_metadata_threshold_percent = data_model.property(
+        "stage3MetadataThresholdPercent", int,
+        array=False, optional=True,
+        documentation="""Exactly the same as stage3BlockthresholdPercent except applies to stage3 metadata alerts. """,
+        dictionaryType=None
+    )
 
     def __init__(self,
             block_fullness,
@@ -15219,7 +15353,13 @@ class GetClusterFullThresholdResult(data_model.DataObject):
             sum_total_cluster_bytes,
             sum_total_metadata_cluster_bytes,
             sum_used_cluster_bytes,
-            sum_used_metadata_cluster_bytes):
+            sum_used_metadata_cluster_bytes,
+            single_failure_block_threshold_bytes=None,
+            block_auto_heal_threshold_count=None,
+            metadata_auto_heal_threshold_count=None,
+            stage3_block_alert_domain=None,
+            stage3_metadata_alert_domain=None,
+            stage3_metadata_threshold_percent=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -20279,6 +20419,26 @@ class SetLoginBannerResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class DataProtectionSchemeAvailability(data_model.DataObject):
+    """DataProtectionSchemeAvailability  
+
+    :param double_helix: [required] Shows current data protection schemes, and how many losses of each zone type can be sustained without losing data availability. In sodium, this will only be "DoubleHelix". 
+    :type double_helix: LossAllowance
+
+    """
+    double_helix = data_model.property(
+        "DoubleHelix", LossAllowance,
+        array=False, optional=False,
+        documentation="""Shows current data protection schemes, and how many losses of each zone type can be sustained without losing data availability. In sodium, this will only be "DoubleHelix". """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            double_helix):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ClusterInfo(data_model.DataObject):
     """ClusterInfo  
     Cluster Info object returns information the node uses to communicate with the cluster.
@@ -20327,6 +20487,9 @@ class ClusterInfo(data_model.DataObject):
 
     :param attributes: [required] List of Name/Value pairs in JSON object format. 
     :type attributes: dict
+
+    :param data_protection_scheme_availability:  Shows current data protection schemes, and how many losses of each zone type can be sustained without losing data availability. 
+    :type data_protection_scheme_availability: DataProtectionSchemeAvailability
 
     """
     mvip_interface = data_model.property(
@@ -20419,6 +20582,12 @@ class ClusterInfo(data_model.DataObject):
         documentation="""List of Name/Value pairs in JSON object format. """,
         dictionaryType=None
     )
+    data_protection_scheme_availability = data_model.property(
+        "dataProtectionSchemeAvailability", DataProtectionSchemeAvailability,
+        array=False, optional=True,
+        documentation="""Shows current data protection schemes, and how many losses of each zone type can be sustained without losing data availability. """,
+        dictionaryType=None
+    )
 
     def __init__(self,
             encryption_at_rest_state,
@@ -20435,7 +20604,8 @@ class ClusterInfo(data_model.DataObject):
             mvip_interface=None,
             mvip_vlan_tag=None,
             svip_interface=None,
-            svip_vlan_tag=None):
+            svip_vlan_tag=None,
+            data_protection_scheme_availability=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
