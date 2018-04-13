@@ -3101,6 +3101,124 @@ class Element(ServiceBase):
         return ElementServiceAdaptor.invoke_sfapi(self, params,
                                                   since, deprecated)
 
+    def disable_cluster_ssh(
+            self,):
+        """
+        Disables SSH on all nodes in the cluster.        """
+
+        self._check_connection_type("disable_cluster_ssh", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DisableClusterSSH',
+            DisableClusterSSHResult,
+            params,
+            since=11.0
+        )
+
+    def disable_ssh(
+            self,):
+        """
+        Disables SSH on the targeted node.
+        This does not effect the cluster-wide SSH timeout duration.
+        The node is not exempt from the SSH shut off by the global timeout.        """
+
+        self._check_connection_type("disable_ssh", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DisableSSH',
+            DisableSSHResult,
+            params,
+            since=11.0
+        )
+
+    def enable_cluster_ssh(
+            self,
+            duration,):
+        """
+        Enables SSH on all nodes in the cluster.
+        Overwrites previous duration.
+        :param duration: [required] The duration on how long SSH will be enable on the cluster. Follows format "HH:MM:SS.MS". 
+        :type duration: str
+        """
+
+        self._check_connection_type("enable_cluster_ssh", "Cluster")
+
+        params = { 
+            "duration": duration,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'EnableClusterSSH',
+            EnableClusterSSHResult,
+            params,
+            since=11.0
+        )
+
+    def enable_ssh(
+            self,):
+        """
+        Enables SSH on the targeted node.
+        This does not effect the cluster-wide SSH timeout duration.
+        The node is not exempt from the SSH shut off by the global timeout.        """
+
+        self._check_connection_type("enable_ssh", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'EnableSSH',
+            EnableSSHResult,
+            params,
+            since=11.0
+        )
+
+    def get_cluster_sshinfo(
+            self,):
+        """
+        Returns SSH status for the cluster.        """
+
+        self._check_connection_type("get_cluster_sshinfo", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetClusterSSHInfo',
+            GetClusterSSHInfoResult,
+            params,
+            since=11.0
+        )
+
+    def get_sshinfo(
+            self,):
+        """
+        Returns SSH status for the targeted node.        """
+
+        self._check_connection_type("get_sshinfo", "Node")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetSSHInfo',
+            GetSSHInfoResult,
+            params,
+            since=11.0
+        )
+
     def create_schedule(
             self,
             schedule,):

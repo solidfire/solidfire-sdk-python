@@ -1292,6 +1292,26 @@ class GetAPIResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class EnableSSHResult(data_model.DataObject):
+    """EnableSSHResult  
+
+    :param enabled: [required] Node SSH status. 
+    :type enabled: bool
+
+    """
+    enabled = data_model.property(
+        "enabled", bool,
+        array=False, optional=False,
+        documentation="""Node SSH status. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            enabled):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class LunAssignment(data_model.DataObject):
     """LunAssignment  
     VolumeID and Lun assignment.
@@ -2087,6 +2107,82 @@ class GetScheduleResult(data_model.DataObject):
 
     def __init__(self,
             schedule):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ModifyInitiator(data_model.DataObject):
+    """ModifyInitiator  
+    Object containing characteristics of each initiator to modify
+
+    :param initiator_id: [required] (Required) The numeric ID of the initiator to modify. (Integer) 
+    :type initiator_id: int
+
+    :param alias:  (Optional) A new friendly name to assign to the initiator. (String) 
+    :type alias: str
+
+    :param volume_access_group_id:  (Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
+    :type volume_access_group_id: int
+
+    :param attributes:  (Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) 
+    :type attributes: dict
+
+    """
+    initiator_id = data_model.property(
+        "initiatorID", int,
+        array=False, optional=False,
+        documentation="""(Required) The numeric ID of the initiator to modify. (Integer) """,
+        dictionaryType=None
+    )
+    alias = data_model.property(
+        "alias", str,
+        array=False, optional=True,
+        documentation="""(Optional) A new friendly name to assign to the initiator. (String) """,
+        dictionaryType=None
+    )
+    volume_access_group_id = data_model.property(
+        "volumeAccessGroupID", int,
+        array=False, optional=True,
+        documentation="""(Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) """,
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="""(Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            initiator_id,
+            alias=None,
+            volume_access_group_id=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ModifyInitiatorsRequest(data_model.DataObject):
+    """ModifyInitiatorsRequest  
+    ModifyInitiators enables you to change the attributes of one or more existing initiators. You cannot change the name of an existing
+    initiator. If you need to change the name of an initiator, delete it first with DeleteInitiators and create a new one with
+    CreateInitiators.
+    If ModifyInitiators fails to change one of the initiators provided in the parameter, the method returns an error and does not modify
+    any initiators (no partial completion is possible).
+
+    :param initiators: [required] A list of objects containing characteristics of each initiator to modify. Values are: initiatorID: (Required) The ID of the initiator to modify. (Integer) alias: (Optional) A new friendly name to assign to the initiator. (String) attributes: (Optional) A new set of JSON attributes to assign to the initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which the initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
+    :type initiators: ModifyInitiator
+
+    """
+    initiators = data_model.property(
+        "initiators", ModifyInitiator,
+        array=True, optional=False,
+        documentation="""A list of objects containing characteristics of each initiator to modify. Values are: initiatorID: (Required) The ID of the initiator to modify. (Integer) alias: (Optional) A new friendly name to assign to the initiator. (String) attributes: (Optional) A new set of JSON attributes to assign to the initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which the initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            initiators):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -12602,78 +12698,22 @@ class ModifyAccountResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class ModifyInitiator(data_model.DataObject):
-    """ModifyInitiator  
-    Object containing characteristics of each initiator to modify
+class GetVirtualVolumeCountResult(data_model.DataObject):
+    """GetVirtualVolumeCountResult  
 
-    :param initiator_id: [required] (Required) The numeric ID of the initiator to modify. (Integer) 
-    :type initiator_id: int
-
-    :param alias:  (Optional) A new friendly name to assign to the initiator. (String) 
-    :type alias: str
-
-    :param volume_access_group_id:  (Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
-    :type volume_access_group_id: int
-
-    :param attributes:  (Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) 
-    :type attributes: dict
+    :param count: [required] The number of virtual volumes currently in the system. 
+    :type count: int
 
     """
-    initiator_id = data_model.property(
-        "initiatorID", int,
+    count = data_model.property(
+        "count", int,
         array=False, optional=False,
-        documentation="""(Required) The numeric ID of the initiator to modify. (Integer) """,
-        dictionaryType=None
-    )
-    alias = data_model.property(
-        "alias", str,
-        array=False, optional=True,
-        documentation="""(Optional) A new friendly name to assign to the initiator. (String) """,
-        dictionaryType=None
-    )
-    volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
-        array=False, optional=True,
-        documentation="""(Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) """,
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="""(Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) """,
+        documentation="""The number of virtual volumes currently in the system. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            initiator_id,
-            alias=None,
-            volume_access_group_id=None,
-            attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ModifyInitiatorsRequest(data_model.DataObject):
-    """ModifyInitiatorsRequest  
-    ModifyInitiators enables you to change the attributes of one or more existing initiators. You cannot change the name of an existing
-    initiator. If you need to change the name of an initiator, delete it first with DeleteInitiators and create a new one with
-    CreateInitiators.
-    If ModifyInitiators fails to change one of the initiators provided in the parameter, the method returns an error and does not modify
-    any initiators (no partial completion is possible).
-
-    :param initiators: [required] A list of objects containing characteristics of each initiator to modify. Values are: initiatorID: (Required) The ID of the initiator to modify. (Integer) alias: (Optional) A new friendly name to assign to the initiator. (String) attributes: (Optional) A new set of JSON attributes to assign to the initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which the initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
-    :type initiators: ModifyInitiator
-
-    """
-    initiators = data_model.property(
-        "initiators", ModifyInitiator,
-        array=True, optional=False,
-        documentation="""A list of objects containing characteristics of each initiator to modify. Values are: initiatorID: (Required) The ID of the initiator to modify. (Integer) alias: (Optional) A new friendly name to assign to the initiator. (String) attributes: (Optional) A new set of JSON attributes to assign to the initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which the initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            initiators):
+            count):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -14030,6 +14070,26 @@ class CreateVolumeRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class EnableClusterSSHResult(data_model.DataObject):
+    """EnableClusterSSHResult  
+
+    :param cluster_sshinfo: [required] The SSH info for the cluster. 
+    :type cluster_sshinfo: ClusterSSHInfo
+
+    """
+    cluster_sshinfo = data_model.property(
+        "ClusterSSHInfo", ClusterSSHInfo,
+        array=False, optional=False,
+        documentation="""The SSH info for the cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            cluster_sshinfo):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class CreateClusterResult(data_model.DataObject):
     """CreateClusterResult  
 
@@ -14597,26 +14657,6 @@ class ListSnapMirrorVolumesRequest(data_model.DataObject):
             vserver=None,
             name=None,
             type=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetVirtualVolumeCountResult(data_model.DataObject):
-    """GetVirtualVolumeCountResult  
-
-    :param count: [required] The number of virtual volumes currently in the system. 
-    :type count: int
-
-    """
-    count = data_model.property(
-        "count", int,
-        array=False, optional=False,
-        documentation="""The number of virtual volumes currently in the system. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            count):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -16412,6 +16452,9 @@ class ClusterFaultInfo(data_model.DataObject):
     :param external_source:   
     :type external_source: str
 
+    :param ssh_enabled:   
+    :type ssh_enabled: str
+
     """
     drive_ids = data_model.property(
         "driveIDs", int,
@@ -16509,6 +16552,12 @@ class ClusterFaultInfo(data_model.DataObject):
         documentation=""" """,
         dictionaryType=None
     )
+    ssh_enabled = data_model.property(
+        "sshEnabled", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
 
     def __init__(self,
             severity,
@@ -16526,7 +16575,8 @@ class ClusterFaultInfo(data_model.DataObject):
             drive_ids=None,
             network_interface=None,
             data=None,
-            external_source=None):
+            external_source=None,
+            ssh_enabled=None):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -18266,6 +18316,28 @@ class AbortSnapMirrorRelationshipResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class EnableClusterSSHRequest(data_model.DataObject):
+    """EnableClusterSSHRequest  
+    Enables SSH on all nodes in the cluster.
+    Overwrites previous duration.
+
+    :param duration: [required] The duration on how long SSH will be enable on the cluster. Follows format "HH:MM:SS.MS". 
+    :type duration: str
+
+    """
+    duration = data_model.property(
+        "duration", str,
+        array=True, optional=False,
+        documentation="""The duration on how long SSH will be enable on the cluster. Follows format "HH:MM:SS.MS". """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            duration):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class UpdateBulkVolumeStatusResult(data_model.DataObject):
     """UpdateBulkVolumeStatusResult  
 
@@ -19166,6 +19238,26 @@ class ModifySnapMirrorRelationshipRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class DisableSSHResult(data_model.DataObject):
+    """DisableSSHResult  
+
+    :param enabled: [required] Node SSH status. 
+    :type enabled: bool
+
+    """
+    enabled = data_model.property(
+        "enabled", bool,
+        array=False, optional=False,
+        documentation="""Node SSH status. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            enabled):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListClusterAdminsResult(data_model.DataObject):
     """ListClusterAdminsResult  
 
@@ -19222,6 +19314,26 @@ class CreateInitiatorsResult(data_model.DataObject):
 
     def __init__(self,
             initiators):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetSSHInfoResult(data_model.DataObject):
+    """GetSSHInfoResult  
+
+    :param enabled: [required] Node SSH status. 
+    :type enabled: bool
+
+    """
+    enabled = data_model.property(
+        "enabled", bool,
+        array=False, optional=False,
+        documentation="""Node SSH status. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            enabled):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -22536,6 +22648,26 @@ class ModifyBackupTargetResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class DisableClusterSSHResult(data_model.DataObject):
+    """DisableClusterSSHResult  
+
+    :param cluster_sshinfo: [required] The SSH info for the cluster. 
+    :type cluster_sshinfo: ClusterSSHInfo
+
+    """
+    cluster_sshinfo = data_model.property(
+        "ClusterSSHInfo", ClusterSSHInfo,
+        array=False, optional=False,
+        documentation="""The SSH info for the cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            cluster_sshinfo):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class GetSnmpStateResult(data_model.DataObject):
     """GetSnmpStateResult  
 
@@ -22562,6 +22694,26 @@ class GetSnmpStateResult(data_model.DataObject):
     def __init__(self,
             enabled,
             snmp_v3_enabled):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetClusterSSHInfoResult(data_model.DataObject):
+    """GetClusterSSHInfoResult  
+
+    :param cluster_sshinfo: [required] The SSH info for the cluster. 
+    :type cluster_sshinfo: ClusterSSHInfo
+
+    """
+    cluster_sshinfo = data_model.property(
+        "ClusterSSHInfo", ClusterSSHInfo,
+        array=False, optional=False,
+        documentation="""The SSH info for the cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            cluster_sshinfo):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
