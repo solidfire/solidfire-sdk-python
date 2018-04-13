@@ -14070,6 +14070,86 @@ class CreateVolumeRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class NodeSSHInfo(data_model.DataObject):
+    """NodeSSHInfo  
+
+    :param node_id: [required] The node's ID. 
+    :type node_id: int
+
+    :param enabled: [required] The status of SSH on the node. 
+    :type enabled: bool
+
+    """
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation="""The node's ID. """,
+        dictionaryType=None
+    )
+    enabled = data_model.property(
+        "enabled", bool,
+        array=False, optional=False,
+        documentation="""The status of SSH on the node. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            node_id,
+            enabled):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ClusterSSHInfo(data_model.DataObject):
+    """ClusterSSHInfo  
+
+    :param enabled: [required] Status of SSH on the cluster. 
+    :type enabled: str
+
+    :param time_remaining: [required] Time remaining until SSH is disable on the cluster. 
+    :type time_remaining: str
+
+    :param disable_time:  The "disableTime" entry will not be included if SSH is disabled or if SSH has been turned on permanently. 
+    :type disable_time: str
+
+    :param nodes: [required] Time remaining until SSH is disable on the cluster. 
+    :type nodes: NodeSSHInfo
+
+    """
+    enabled = data_model.property(
+        "enabled", str,
+        array=False, optional=False,
+        documentation="""Status of SSH on the cluster. """,
+        dictionaryType=None
+    )
+    time_remaining = data_model.property(
+        "timeRemaining", str,
+        array=False, optional=False,
+        documentation="""Time remaining until SSH is disable on the cluster. """,
+        dictionaryType=None
+    )
+    disable_time = data_model.property(
+        "disableTime", str,
+        array=False, optional=True,
+        documentation="""The "disableTime" entry will not be included if SSH is disabled or if SSH has been turned on permanently. """,
+        dictionaryType=None
+    )
+    nodes = data_model.property(
+        "nodes", NodeSSHInfo,
+        array=True, optional=False,
+        documentation="""Time remaining until SSH is disable on the cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            enabled,
+            time_remaining,
+            nodes,
+            disable_time=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class EnableClusterSSHResult(data_model.DataObject):
     """EnableClusterSSHResult  
 
