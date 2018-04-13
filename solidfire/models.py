@@ -21969,11 +21969,11 @@ class DisableClusterSshResult(data_model.DataObject):
     """DisableClusterSshResult  
 
     :param cluster_ssh_info: [required] The SSH info for the cluster. 
-    :type cluster_ssh_info: ClusterSSHInfo
+    :type cluster_ssh_info: ClusterSshInfo
 
     """
     cluster_ssh_info = data_model.property(
-        "clusterSshInfo", ClusterSSHInfo,
+        "clusterSshInfo", ClusterSshInfo,
         array=False, optional=False,
         documentation="""The SSH info for the cluster. """,
         dictionaryType=None
