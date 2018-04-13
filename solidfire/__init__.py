@@ -3113,8 +3113,8 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
-            'DisableClusterSSH',
-            DisableClusterSSHResult,
+            'DisableClusterSsh',
+            DisableClusterSshResult,
             params,
             since=11.0
         )
@@ -3133,8 +3133,8 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
-            'DisableSSH',
-            DisableSSHResult,
+            'DisableSsh',
+            DisableSshResult,
             params,
             since=11.0
         )
@@ -3157,8 +3157,8 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
-            'EnableClusterSSH',
-            EnableClusterSSHResult,
+            'EnableClusterSsh',
+            EnableClusterSshResult,
             params,
             since=11.0
         )
@@ -3177,44 +3177,44 @@ class Element(ServiceBase):
         
         # There is no adaptor.
         return self.send_request(
-            'EnableSSH',
-            EnableSSHResult,
+            'EnableSsh',
+            EnableSshResult,
             params,
             since=11.0
         )
 
-    def get_cluster_sshinfo(
+    def get_cluster_ssh_info(
             self,):
         """
         Returns SSH status for the cluster.        """
 
-        self._check_connection_type("get_cluster_sshinfo", "Cluster")
+        self._check_connection_type("get_cluster_ssh_info", "Cluster")
 
         params = { 
         }
         
         # There is no adaptor.
         return self.send_request(
-            'GetClusterSSHInfo',
-            GetClusterSSHInfoResult,
+            'GetClusterSshInfo',
+            GetClusterSshInfoResult,
             params,
             since=11.0
         )
 
-    def get_sshinfo(
+    def get_ssh_info(
             self,):
         """
         Returns SSH status for the targeted node.        """
 
-        self._check_connection_type("get_sshinfo", "Node")
+        self._check_connection_type("get_ssh_info", "Node")
 
         params = { 
         }
         
         # There is no adaptor.
         return self.send_request(
-            'GetSSHInfo',
-            GetSSHInfoResult,
+            'GetSshInfo',
+            GetSshInfoResult,
             params,
             since=11.0
         )

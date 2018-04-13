@@ -1292,26 +1292,6 @@ class GetAPIResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class EnableSSHResult(data_model.DataObject):
-    """EnableSSHResult  
-
-    :param enabled: [required] Node SSH status. 
-    :type enabled: bool
-
-    """
-    enabled = data_model.property(
-        "enabled", bool,
-        array=False, optional=False,
-        documentation="""Node SSH status. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            enabled):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
 class LunAssignment(data_model.DataObject):
     """LunAssignment  
     VolumeID and Lun assignment.
@@ -2107,82 +2087,6 @@ class GetScheduleResult(data_model.DataObject):
 
     def __init__(self,
             schedule):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ModifyInitiator(data_model.DataObject):
-    """ModifyInitiator  
-    Object containing characteristics of each initiator to modify
-
-    :param initiator_id: [required] (Required) The numeric ID of the initiator to modify. (Integer) 
-    :type initiator_id: int
-
-    :param alias:  (Optional) A new friendly name to assign to the initiator. (String) 
-    :type alias: str
-
-    :param volume_access_group_id:  (Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
-    :type volume_access_group_id: int
-
-    :param attributes:  (Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) 
-    :type attributes: dict
-
-    """
-    initiator_id = data_model.property(
-        "initiatorID", int,
-        array=False, optional=False,
-        documentation="""(Required) The numeric ID of the initiator to modify. (Integer) """,
-        dictionaryType=None
-    )
-    alias = data_model.property(
-        "alias", str,
-        array=False, optional=True,
-        documentation="""(Optional) A new friendly name to assign to the initiator. (String) """,
-        dictionaryType=None
-    )
-    volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
-        array=False, optional=True,
-        documentation="""(Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) """,
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="""(Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            initiator_id,
-            alias=None,
-            volume_access_group_id=None,
-            attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ModifyInitiatorsRequest(data_model.DataObject):
-    """ModifyInitiatorsRequest  
-    ModifyInitiators enables you to change the attributes of one or more existing initiators. You cannot change the name of an existing
-    initiator. If you need to change the name of an initiator, delete it first with DeleteInitiators and create a new one with
-    CreateInitiators.
-    If ModifyInitiators fails to change one of the initiators provided in the parameter, the method returns an error and does not modify
-    any initiators (no partial completion is possible).
-
-    :param initiators: [required] A list of objects containing characteristics of each initiator to modify. Values are: initiatorID: (Required) The ID of the initiator to modify. (Integer) alias: (Optional) A new friendly name to assign to the initiator. (String) attributes: (Optional) A new set of JSON attributes to assign to the initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which the initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
-    :type initiators: ModifyInitiator
-
-    """
-    initiators = data_model.property(
-        "initiators", ModifyInitiator,
-        array=True, optional=False,
-        documentation="""A list of objects containing characteristics of each initiator to modify. Values are: initiatorID: (Required) The ID of the initiator to modify. (Integer) alias: (Optional) A new friendly name to assign to the initiator. (String) attributes: (Optional) A new set of JSON attributes to assign to the initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which the initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            initiators):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -10644,6 +10548,106 @@ class TestPingRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class NodeSshInfo(data_model.DataObject):
+    """NodeSshInfo  
+
+    :param node_id: [required] The node's ID. 
+    :type node_id: int
+
+    :param enabled: [required] The status of SSH on the node. 
+    :type enabled: bool
+
+    """
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation="""The node's ID. """,
+        dictionaryType=None
+    )
+    enabled = data_model.property(
+        "enabled", bool,
+        array=False, optional=False,
+        documentation="""The status of SSH on the node. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            node_id,
+            enabled):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ClusterSshInfo(data_model.DataObject):
+    """ClusterSshInfo  
+
+    :param enabled: [required] Status of SSH on the cluster. 
+    :type enabled: str
+
+    :param time_remaining: [required] Time remaining until SSH is disable on the cluster. 
+    :type time_remaining: str
+
+    :param disable_time:  The "disableTime" entry will not be included if SSH is disabled or if SSH has been turned on permanently. 
+    :type disable_time: str
+
+    :param nodes: [required] Time remaining until SSH is disable on the cluster. 
+    :type nodes: NodeSshInfo
+
+    """
+    enabled = data_model.property(
+        "enabled", str,
+        array=False, optional=False,
+        documentation="""Status of SSH on the cluster. """,
+        dictionaryType=None
+    )
+    time_remaining = data_model.property(
+        "timeRemaining", str,
+        array=False, optional=False,
+        documentation="""Time remaining until SSH is disable on the cluster. """,
+        dictionaryType=None
+    )
+    disable_time = data_model.property(
+        "disableTime", str,
+        array=False, optional=True,
+        documentation="""The "disableTime" entry will not be included if SSH is disabled or if SSH has been turned on permanently. """,
+        dictionaryType=None
+    )
+    nodes = data_model.property(
+        "nodes", NodeSshInfo,
+        array=True, optional=False,
+        documentation="""Time remaining until SSH is disable on the cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            enabled,
+            time_remaining,
+            nodes,
+            disable_time=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class GetClusterSshInfoResult(data_model.DataObject):
+    """GetClusterSshInfoResult  
+
+    :param cluster_ssh_info: [required] The SSH info for the cluster. 
+    :type cluster_ssh_info: ClusterSshInfo
+
+    """
+    cluster_ssh_info = data_model.property(
+        "clusterSshInfo", ClusterSshInfo,
+        array=False, optional=False,
+        documentation="""The SSH info for the cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            cluster_ssh_info):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class NodeStatsInfo(data_model.DataObject):
     """NodeStatsInfo  
 
@@ -11115,80 +11119,22 @@ class SetNetworkConfigRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class StartBulkVolumeReadRequest(data_model.DataObject):
-    """StartBulkVolumeReadRequest  
-    StartBulkVolumeRead enables you to initialize a bulk volume read session on a specified volume. Only two bulk volume processes
-    can run simultaneously on a volume. When you initialize the session, data is read from a SolidFire storage volume for the purposes
-    of storing the data on an external backup source. The external data is accessed by a web server running on an SF-series node.
-    Communications and server interaction information for external data access is passed by a script running on the storage system.
-    At the start of a bulk volume read operation, a snapshot of the volume is made and the snapshot is deleted when the read is complete. You can also read a snapshot of the volume by entering the ID of the snapshot as a parameter. When you read a
-    previous snapshot, the system does not create a new snapshot of the volume or delete the previous snapshot when the
-    read completes.
-    Note: This process creates a new snapshot if the ID of an existing snapshot is not provided. Snapshots can be created if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is at stage 4 or 5.
+class GetSshInfoResult(data_model.DataObject):
+    """GetSshInfoResult  
 
-    :param volume_id: [required] The ID of the volume to be read. 
-    :type volume_id: int
-
-    :param format: [required] The format of the volume data. It can be either of the following formats: uncompressed: Every byte of the volume is returned without any compression. native: Opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. 
-    :type format: str
-
-    :param snapshot_id:  The ID of a previously created snapshot used for bulk volume reads. If no ID is entered, a snapshot of the current active volume image is made. 
-    :type snapshot_id: int
-
-    :param script:  The executable name of a script. If unspecified, the key and URL is necessary to access SF-series nodes. The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted. 
-    :type script: str
-
-    :param script_parameters:  JSON parameters to pass to the script. 
-    :type script_parameters: dict
-
-    :param attributes:  JSON attributes for the bulk volume job. 
-    :type attributes: dict
+    :param enabled: [required] Node SSH status. 
+    :type enabled: bool
 
     """
-    volume_id = data_model.property(
-        "volumeID", int,
+    enabled = data_model.property(
+        "enabled", bool,
         array=False, optional=False,
-        documentation="""The ID of the volume to be read. """,
-        dictionaryType=None
-    )
-    format = data_model.property(
-        "format", str,
-        array=False, optional=False,
-        documentation="""The format of the volume data. It can be either of the following formats: uncompressed: Every byte of the volume is returned without any compression. native: Opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. """,
-        dictionaryType=None
-    )
-    snapshot_id = data_model.property(
-        "snapshotID", int,
-        array=False, optional=True,
-        documentation="""The ID of a previously created snapshot used for bulk volume reads. If no ID is entered, a snapshot of the current active volume image is made. """,
-        dictionaryType=None
-    )
-    script = data_model.property(
-        "script", str,
-        array=False, optional=True,
-        documentation="""The executable name of a script. If unspecified, the key and URL is necessary to access SF-series nodes. The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted. """,
-        dictionaryType=None
-    )
-    script_parameters = data_model.property(
-        "scriptParameters", dict,
-        array=False, optional=True,
-        documentation="""JSON parameters to pass to the script. """,
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="""JSON attributes for the bulk volume job. """,
+        documentation="""Node SSH status. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            volume_id,
-            format,
-            snapshot_id=None,
-            script=None,
-            script_parameters=None,
-            attributes=None):
+            enabled):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -12479,6 +12425,84 @@ class ListFibreChannelPortInfoResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class StartBulkVolumeReadRequest(data_model.DataObject):
+    """StartBulkVolumeReadRequest  
+    StartBulkVolumeRead enables you to initialize a bulk volume read session on a specified volume. Only two bulk volume processes
+    can run simultaneously on a volume. When you initialize the session, data is read from a SolidFire storage volume for the purposes
+    of storing the data on an external backup source. The external data is accessed by a web server running on an SF-series node.
+    Communications and server interaction information for external data access is passed by a script running on the storage system.
+    At the start of a bulk volume read operation, a snapshot of the volume is made and the snapshot is deleted when the read is complete. You can also read a snapshot of the volume by entering the ID of the snapshot as a parameter. When you read a
+    previous snapshot, the system does not create a new snapshot of the volume or delete the previous snapshot when the
+    read completes.
+    Note: This process creates a new snapshot if the ID of an existing snapshot is not provided. Snapshots can be created if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is at stage 4 or 5.
+
+    :param volume_id: [required] The ID of the volume to be read. 
+    :type volume_id: int
+
+    :param format: [required] The format of the volume data. It can be either of the following formats: uncompressed: Every byte of the volume is returned without any compression. native: Opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. 
+    :type format: str
+
+    :param snapshot_id:  The ID of a previously created snapshot used for bulk volume reads. If no ID is entered, a snapshot of the current active volume image is made. 
+    :type snapshot_id: int
+
+    :param script:  The executable name of a script. If unspecified, the key and URL is necessary to access SF-series nodes. The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted. 
+    :type script: str
+
+    :param script_parameters:  JSON parameters to pass to the script. 
+    :type script_parameters: dict
+
+    :param attributes:  JSON attributes for the bulk volume job. 
+    :type attributes: dict
+
+    """
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="""The ID of the volume to be read. """,
+        dictionaryType=None
+    )
+    format = data_model.property(
+        "format", str,
+        array=False, optional=False,
+        documentation="""The format of the volume data. It can be either of the following formats: uncompressed: Every byte of the volume is returned without any compression. native: Opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. """,
+        dictionaryType=None
+    )
+    snapshot_id = data_model.property(
+        "snapshotID", int,
+        array=False, optional=True,
+        documentation="""The ID of a previously created snapshot used for bulk volume reads. If no ID is entered, a snapshot of the current active volume image is made. """,
+        dictionaryType=None
+    )
+    script = data_model.property(
+        "script", str,
+        array=False, optional=True,
+        documentation="""The executable name of a script. If unspecified, the key and URL is necessary to access SF-series nodes. The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted. """,
+        dictionaryType=None
+    )
+    script_parameters = data_model.property(
+        "scriptParameters", dict,
+        array=False, optional=True,
+        documentation="""JSON parameters to pass to the script. """,
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="""JSON attributes for the bulk volume job. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            volume_id,
+            format,
+            snapshot_id=None,
+            script=None,
+            script_parameters=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class RollbackToSnapshotRequest(data_model.DataObject):
     """RollbackToSnapshotRequest  
     RollbackToSnapshot enables you to make an existing snapshot of the "active" volume image. This method creates a new snapshot
@@ -12698,22 +12722,98 @@ class ModifyAccountResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class GetVirtualVolumeCountResult(data_model.DataObject):
-    """GetVirtualVolumeCountResult  
+class EnableSshResult(data_model.DataObject):
+    """EnableSshResult  
 
-    :param count: [required] The number of virtual volumes currently in the system. 
-    :type count: int
+    :param enabled: [required] Node SSH status. 
+    :type enabled: bool
 
     """
-    count = data_model.property(
-        "count", int,
+    enabled = data_model.property(
+        "enabled", bool,
         array=False, optional=False,
-        documentation="""The number of virtual volumes currently in the system. """,
+        documentation="""Node SSH status. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            count):
+            enabled):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ModifyInitiator(data_model.DataObject):
+    """ModifyInitiator  
+    Object containing characteristics of each initiator to modify
+
+    :param initiator_id: [required] (Required) The numeric ID of the initiator to modify. (Integer) 
+    :type initiator_id: int
+
+    :param alias:  (Optional) A new friendly name to assign to the initiator. (String) 
+    :type alias: str
+
+    :param volume_access_group_id:  (Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
+    :type volume_access_group_id: int
+
+    :param attributes:  (Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) 
+    :type attributes: dict
+
+    """
+    initiator_id = data_model.property(
+        "initiatorID", int,
+        array=False, optional=False,
+        documentation="""(Required) The numeric ID of the initiator to modify. (Integer) """,
+        dictionaryType=None
+    )
+    alias = data_model.property(
+        "alias", str,
+        array=False, optional=True,
+        documentation="""(Optional) A new friendly name to assign to the initiator. (String) """,
+        dictionaryType=None
+    )
+    volume_access_group_id = data_model.property(
+        "volumeAccessGroupID", int,
+        array=False, optional=True,
+        documentation="""(Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) """,
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="""(Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            initiator_id,
+            alias=None,
+            volume_access_group_id=None,
+            attributes=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class ModifyInitiatorsRequest(data_model.DataObject):
+    """ModifyInitiatorsRequest  
+    ModifyInitiators enables you to change the attributes of one or more existing initiators. You cannot change the name of an existing
+    initiator. If you need to change the name of an initiator, delete it first with DeleteInitiators and create a new one with
+    CreateInitiators.
+    If ModifyInitiators fails to change one of the initiators provided in the parameter, the method returns an error and does not modify
+    any initiators (no partial completion is possible).
+
+    :param initiators: [required] A list of objects containing characteristics of each initiator to modify. Values are: initiatorID: (Required) The ID of the initiator to modify. (Integer) alias: (Optional) A new friendly name to assign to the initiator. (String) attributes: (Optional) A new set of JSON attributes to assign to the initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which the initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
+    :type initiators: ModifyInitiator
+
+    """
+    initiators = data_model.property(
+        "initiators", ModifyInitiator,
+        array=True, optional=False,
+        documentation="""A list of objects containing characteristics of each initiator to modify. Values are: initiatorID: (Required) The ID of the initiator to modify. (Integer) alias: (Optional) A new friendly name to assign to the initiator. (String) attributes: (Optional) A new set of JSON attributes to assign to the initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which the initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            initiators):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -14070,106 +14170,6 @@ class CreateVolumeRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class NodeSSHInfo(data_model.DataObject):
-    """NodeSSHInfo  
-
-    :param node_id: [required] The node's ID. 
-    :type node_id: int
-
-    :param enabled: [required] The status of SSH on the node. 
-    :type enabled: bool
-
-    """
-    node_id = data_model.property(
-        "nodeID", int,
-        array=False, optional=False,
-        documentation="""The node's ID. """,
-        dictionaryType=None
-    )
-    enabled = data_model.property(
-        "enabled", bool,
-        array=False, optional=False,
-        documentation="""The status of SSH on the node. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            node_id,
-            enabled):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ClusterSSHInfo(data_model.DataObject):
-    """ClusterSSHInfo  
-
-    :param enabled: [required] Status of SSH on the cluster. 
-    :type enabled: str
-
-    :param time_remaining: [required] Time remaining until SSH is disable on the cluster. 
-    :type time_remaining: str
-
-    :param disable_time:  The "disableTime" entry will not be included if SSH is disabled or if SSH has been turned on permanently. 
-    :type disable_time: str
-
-    :param nodes: [required] Time remaining until SSH is disable on the cluster. 
-    :type nodes: NodeSSHInfo
-
-    """
-    enabled = data_model.property(
-        "enabled", str,
-        array=False, optional=False,
-        documentation="""Status of SSH on the cluster. """,
-        dictionaryType=None
-    )
-    time_remaining = data_model.property(
-        "timeRemaining", str,
-        array=False, optional=False,
-        documentation="""Time remaining until SSH is disable on the cluster. """,
-        dictionaryType=None
-    )
-    disable_time = data_model.property(
-        "disableTime", str,
-        array=False, optional=True,
-        documentation="""The "disableTime" entry will not be included if SSH is disabled or if SSH has been turned on permanently. """,
-        dictionaryType=None
-    )
-    nodes = data_model.property(
-        "nodes", NodeSSHInfo,
-        array=True, optional=False,
-        documentation="""Time remaining until SSH is disable on the cluster. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            enabled,
-            time_remaining,
-            nodes,
-            disable_time=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class EnableClusterSSHResult(data_model.DataObject):
-    """EnableClusterSSHResult  
-
-    :param cluster_sshinfo: [required] The SSH info for the cluster. 
-    :type cluster_sshinfo: ClusterSSHInfo
-
-    """
-    cluster_sshinfo = data_model.property(
-        "ClusterSSHInfo", ClusterSSHInfo,
-        array=False, optional=False,
-        documentation="""The SSH info for the cluster. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            cluster_sshinfo):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
 class CreateClusterResult(data_model.DataObject):
     """CreateClusterResult  
 
@@ -14690,6 +14690,26 @@ class DeleteGroupSnapshotResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class DisableSshResult(data_model.DataObject):
+    """DisableSshResult  
+
+    :param enabled: [required] Node SSH status. 
+    :type enabled: bool
+
+    """
+    enabled = data_model.property(
+        "enabled", bool,
+        array=False, optional=False,
+        documentation="""Node SSH status. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            enabled):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListSnapMirrorVolumesRequest(data_model.DataObject):
     """ListSnapMirrorVolumesRequest  
     The SolidFire Element OS web UI uses the ListSnapMirrorVolumes method to list all SnapMirror volumes available on a remote ONTAP system.
@@ -14741,6 +14761,26 @@ class ListSnapMirrorVolumesRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class GetVirtualVolumeCountResult(data_model.DataObject):
+    """GetVirtualVolumeCountResult  
+
+    :param count: [required] The number of virtual volumes currently in the system. 
+    :type count: int
+
+    """
+    count = data_model.property(
+        "count", int,
+        array=False, optional=False,
+        documentation="""The number of virtual volumes currently in the system. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            count):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class ListVolumeStatsByVolumeResult(data_model.DataObject):
     """ListVolumeStatsByVolumeResult  
 
@@ -14788,6 +14828,28 @@ class ListSnapMirrorNetworkInterfacesRequest(data_model.DataObject):
     def __init__(self,
             snap_mirror_endpoint_id=None,
             interface_role=None):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class EnableClusterSshRequest(data_model.DataObject):
+    """EnableClusterSshRequest  
+    Enables SSH on all nodes in the cluster.
+    Overwrites previous duration.
+
+    :param duration: [required] The duration on how long SSH will be enable on the cluster. Follows format "HH:MM:SS.MS". 
+    :type duration: str
+
+    """
+    duration = data_model.property(
+        "duration", str,
+        array=True, optional=False,
+        documentation="""The duration on how long SSH will be enable on the cluster. Follows format "HH:MM:SS.MS". """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            duration):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -16294,6 +16356,26 @@ class ListDrivesResult(data_model.DataObject):
 
     def __init__(self,
             drives):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
+class EnableClusterSshResult(data_model.DataObject):
+    """EnableClusterSshResult  
+
+    :param cluster_ssh_info: [required] The SSH info for the cluster. 
+    :type cluster_ssh_info: ClusterSshInfo
+
+    """
+    cluster_ssh_info = data_model.property(
+        "clusterSshInfo", ClusterSshInfo,
+        array=False, optional=False,
+        documentation="""The SSH info for the cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            cluster_ssh_info):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -18396,28 +18478,6 @@ class AbortSnapMirrorRelationshipResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class EnableClusterSSHRequest(data_model.DataObject):
-    """EnableClusterSSHRequest  
-    Enables SSH on all nodes in the cluster.
-    Overwrites previous duration.
-
-    :param duration: [required] The duration on how long SSH will be enable on the cluster. Follows format "HH:MM:SS.MS". 
-    :type duration: str
-
-    """
-    duration = data_model.property(
-        "duration", str,
-        array=True, optional=False,
-        documentation="""The duration on how long SSH will be enable on the cluster. Follows format "HH:MM:SS.MS". """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            duration):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
 class UpdateBulkVolumeStatusResult(data_model.DataObject):
     """UpdateBulkVolumeStatusResult  
 
@@ -19318,26 +19378,6 @@ class ModifySnapMirrorRelationshipRequest(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class DisableSSHResult(data_model.DataObject):
-    """DisableSSHResult  
-
-    :param enabled: [required] Node SSH status. 
-    :type enabled: bool
-
-    """
-    enabled = data_model.property(
-        "enabled", bool,
-        array=False, optional=False,
-        documentation="""Node SSH status. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            enabled):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
 class ListClusterAdminsResult(data_model.DataObject):
     """ListClusterAdminsResult  
 
@@ -19394,26 +19434,6 @@ class CreateInitiatorsResult(data_model.DataObject):
 
     def __init__(self,
             initiators):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetSSHInfoResult(data_model.DataObject):
-    """GetSSHInfoResult  
-
-    :param enabled: [required] Node SSH status. 
-    :type enabled: bool
-
-    """
-    enabled = data_model.property(
-        "enabled", bool,
-        array=False, optional=False,
-        documentation="""Node SSH status. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            enabled):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
@@ -21945,6 +21965,26 @@ class ListAccountsResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
+class DisableClusterSshResult(data_model.DataObject):
+    """DisableClusterSshResult  
+
+    :param cluster_ssh_info: [required] The SSH info for the cluster. 
+    :type cluster_ssh_info: ClusterSSHInfo
+
+    """
+    cluster_ssh_info = data_model.property(
+        "clusterSshInfo", ClusterSSHInfo,
+        array=False, optional=False,
+        documentation="""The SSH info for the cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            cluster_ssh_info):
+        kwargs = locals()
+        del kwargs["self"]
+        data_model.DataObject.__init__(self, **kwargs)
+
 class SetSnmpACLRequest(data_model.DataObject):
     """SetSnmpACLRequest  
     SetSnmpACL enables you to configure SNMP access permissions on the cluster nodes. The values you set with this interface apply to all
@@ -22728,26 +22768,6 @@ class ModifyBackupTargetResult(data_model.DataObject):
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
 
-class DisableClusterSSHResult(data_model.DataObject):
-    """DisableClusterSSHResult  
-
-    :param cluster_sshinfo: [required] The SSH info for the cluster. 
-    :type cluster_sshinfo: ClusterSSHInfo
-
-    """
-    cluster_sshinfo = data_model.property(
-        "ClusterSSHInfo", ClusterSSHInfo,
-        array=False, optional=False,
-        documentation="""The SSH info for the cluster. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            cluster_sshinfo):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
 class GetSnmpStateResult(data_model.DataObject):
     """GetSnmpStateResult  
 
@@ -22774,26 +22794,6 @@ class GetSnmpStateResult(data_model.DataObject):
     def __init__(self,
             enabled,
             snmp_v3_enabled):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetClusterSSHInfoResult(data_model.DataObject):
-    """GetClusterSSHInfoResult  
-
-    :param cluster_sshinfo: [required] The SSH info for the cluster. 
-    :type cluster_sshinfo: ClusterSSHInfo
-
-    """
-    cluster_sshinfo = data_model.property(
-        "ClusterSSHInfo", ClusterSSHInfo,
-        array=False, optional=False,
-        documentation="""The SSH info for the cluster. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            cluster_sshinfo):
         kwargs = locals()
         del kwargs["self"]
         data_model.DataObject.__init__(self, **kwargs)
