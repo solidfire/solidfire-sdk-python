@@ -2962,6 +2962,42 @@ class Element(ServiceBase):
             since=6.0
         )
 
+    def list_protection_domain_awareness(
+            self,):
+        """
+        Awareness is our ability to continue reading and writing data through different numbers of different types of failures for different data protection schemes.        """
+
+        self._check_connection_type("list_protection_domain_awareness", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListProtectionDomainAwareness',
+            ListProtectionDomainAwarenessResult,
+            params,
+            since=11.0
+        )
+
+    def list_protection_domain_resiliency(
+            self,):
+        """
+        Resiliency is our ability to heal back into a state where the cluster will remain available through a single node failure for all enabled data protection schemes.        """
+
+        self._check_connection_type("list_protection_domain_resiliency", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListProtectionDomainResiliency',
+            ListProtectionDomainResiliencyResult,
+            params,
+            since=11.0
+        )
+
     def reset_node(
             self,
             build,
