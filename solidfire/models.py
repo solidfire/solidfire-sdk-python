@@ -3581,7 +3581,7 @@ class ClusterStats(data_model.DataObject):
     :param client_queue_depth: [required]  
     :type client_queue_depth: int
 
-    :param normalized_iops: [required]  
+    :param normalized_iops:   
     :type normalized_iops: int
 
     :param read_bytes: [required] Total bytes read by clients. 
@@ -3593,10 +3593,10 @@ class ClusterStats(data_model.DataObject):
     :param read_ops: [required] Total read operations. 
     :type read_ops: int
 
-    :param services_count: [required] Services count 
+    :param services_count:  Services count 
     :type services_count: int
 
-    :param services_total: [required] Total services. 
+    :param services_total:  Total services. 
     :type services_total: int
 
     :param timestamp: [required] Current time in UTC format. ISO 8601 date string. 
@@ -3605,7 +3605,7 @@ class ClusterStats(data_model.DataObject):
     :param write_bytes: [required] Total bytes written by clients. 
     :type write_bytes: int
 
-    :param write_latency_usec_total: [required]  
+    :param write_latency_usec_total:   
     :type write_latency_usec_total: int
 
     :param write_ops: [required] Total write operations. 
@@ -3662,7 +3662,7 @@ class ClusterStats(data_model.DataObject):
     )
     normalized_iops = data_model.property(
         "normalizedIOPS", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation=""" """,
         dictionaryType=None
     )
@@ -3686,13 +3686,13 @@ class ClusterStats(data_model.DataObject):
     )
     services_count = data_model.property(
         "servicesCount", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="""Services count """,
         dictionaryType=None
     )
     services_total = data_model.property(
         "servicesTotal", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="""Total services. """,
         dictionaryType=None
     )
@@ -3710,7 +3710,7 @@ class ClusterStats(data_model.DataObject):
     )
     write_latency_usec_total = data_model.property(
         "writeLatencyUSecTotal", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation=""" """,
         dictionaryType=None
     )
@@ -3796,16 +3796,16 @@ class ClusterStats(data_model.DataObject):
     def __init__(self,
             cluster_utilization,
             client_queue_depth,
-            normalized_iops,
             read_bytes,
             read_latency_usec_total,
             read_ops,
-            services_count,
-            services_total,
             timestamp,
             write_bytes,
-            write_latency_usec_total,
             write_ops,
+            normalized_iops=None,
+            services_count=None,
+            services_total=None,
+            write_latency_usec_total=None,
             actual_iops=None,
             average_iopsize=None,
             latency_usec=None,
