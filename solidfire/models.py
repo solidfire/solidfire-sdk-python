@@ -38,9 +38,10 @@ class RemoveClusterAdminRequest(data_model.DataObject):
 
     def __init__(self,
             cluster_admin_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RemoveClusterAdminRequest, self).__init__(**{ 
+            "cluster_admin_id": cluster_admin_id, })
+        
 
 class TestDrivesResult(data_model.DataObject):
     """TestDrivesResult  
@@ -78,9 +79,12 @@ class TestDrivesResult(data_model.DataObject):
             details,
             duration,
             result):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(TestDrivesResult, self).__init__(**{ 
+            "details": details,
+            "duration": duration,
+            "result": result, })
+        
 
 class VirtualVolumeHost(data_model.DataObject):
     """VirtualVolumeHost  
@@ -148,9 +152,15 @@ class VirtualVolumeHost(data_model.DataObject):
             bindings,
             initiator_names,
             host_address):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(VirtualVolumeHost, self).__init__(**{ 
+            "virtual_volume_host_id": virtual_volume_host_id,
+            "cluster_id": cluster_id,
+            "visible_protocol_endpoint_ids": visible_protocol_endpoint_ids,
+            "bindings": bindings,
+            "initiator_names": initiator_names,
+            "host_address": host_address, })
+        
 
 class ListVirtualVolumeHostsResult(data_model.DataObject):
     """ListVirtualVolumeHostsResult  
@@ -168,9 +178,10 @@ class ListVirtualVolumeHostsResult(data_model.DataObject):
 
     def __init__(self,
             hosts):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListVirtualVolumeHostsResult, self).__init__(**{ 
+            "hosts": hosts, })
+        
 
 class GetNodeSSLCertificateResult(data_model.DataObject):
     """GetNodeSSLCertificateResult  
@@ -198,9 +209,11 @@ class GetNodeSSLCertificateResult(data_model.DataObject):
     def __init__(self,
             certificate,
             details):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetNodeSSLCertificateResult, self).__init__(**{ 
+            "certificate": certificate,
+            "details": details, })
+        
 
 class AddVolumesToVolumeAccessGroupRequest(data_model.DataObject):
     """AddVolumesToVolumeAccessGroupRequest  
@@ -230,111 +243,11 @@ class AddVolumesToVolumeAccessGroupRequest(data_model.DataObject):
     def __init__(self,
             volume_access_group_id,
             volumes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class ProtectionSchemeAwareness(data_model.DataObject):
-    """ProtectionSchemeAwareness  
-    
-
-    :param data_protection_scheme: [required]  
-    :type data_protection_scheme: str
-
-    :param sustainable_failures_for_block_data: [required]  
-    :type sustainable_failures_for_block_data: int
-
-    :param sustainable_failures_for_metadata: [required]  
-    :type sustainable_failures_for_metadata: int
-
-    """
-    data_protection_scheme = data_model.property(
-        "dataProtectionScheme", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    sustainable_failures_for_block_data = data_model.property(
-        "sustainableFailuresForBlockData", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    sustainable_failures_for_metadata = data_model.property(
-        "sustainableFailuresForMetadata", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            data_protection_scheme,
-            sustainable_failures_for_block_data,
-            sustainable_failures_for_metadata):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ProtectionDomainAwareness(data_model.DataObject):
-    """ProtectionDomainAwareness  
-    
-
-    :param failure_type: [required] Currently can be node or chassis. 
-    :type failure_type: str
-
-    :param sustainable_failures_for_ensemble: [required]  
-    :type sustainable_failures_for_ensemble: int
-
-    :param protection_scheme_awareness: [required]  
-    :type protection_scheme_awareness: ProtectionSchemeAwareness
-
-    """
-    failure_type = data_model.property(
-        "failureType", str,
-        array=False, optional=False,
-        documentation="""Currently can be node or chassis. """,
-        dictionaryType=None
-    )
-    sustainable_failures_for_ensemble = data_model.property(
-        "sustainableFailuresForEnsemble", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    protection_scheme_awareness = data_model.property(
-        "protectionSchemeAwareness", ProtectionSchemeAwareness,
-        array=True, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            failure_type,
-            sustainable_failures_for_ensemble,
-            protection_scheme_awareness):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListProtectionDomainAwarenessResult(data_model.DataObject):
-    """ListProtectionDomainAwarenessResult  
-
-    :param awareness:   
-    :type awareness: ProtectionDomainAwareness
-
-    """
-    awareness = data_model.property(
-        "awareness", ProtectionDomainAwareness,
-        array=True, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            awareness=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+        super(AddVolumesToVolumeAccessGroupRequest, self).__init__(**{ 
+            "volume_access_group_id": volume_access_group_id,
+            "volumes": volumes, })
+        
 
 class CreateGroupSnapshotRequest(data_model.DataObject):
     """CreateGroupSnapshotRequest  
@@ -404,9 +317,15 @@ class CreateGroupSnapshotRequest(data_model.DataObject):
             retention=None,
             attributes=None,
             snap_mirror_label=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateGroupSnapshotRequest, self).__init__(**{ 
+            "volumes": volumes,
+            "name": name,
+            "enable_remote_replication": enable_remote_replication,
+            "retention": retention,
+            "attributes": attributes,
+            "snap_mirror_label": snap_mirror_label, })
+        
 
 class GetSSLCertificateResult(data_model.DataObject):
     """GetSSLCertificateResult  
@@ -434,9 +353,11 @@ class GetSSLCertificateResult(data_model.DataObject):
     def __init__(self,
             certificate,
             details):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetSSLCertificateResult, self).__init__(**{ 
+            "certificate": certificate,
+            "details": details, })
+        
 
 class ClusterConfig(data_model.DataObject):
     """ClusterConfig  
@@ -575,9 +496,22 @@ class ClusterConfig(data_model.DataObject):
             encryption_capable=None,
             has_local_admin=None,
             version=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ClusterConfig, self).__init__(**{ 
+            "cipi": cipi,
+            "cluster": cluster,
+            "ensemble": ensemble,
+            "mipi": mipi,
+            "name": name,
+            "node_id": node_id,
+            "pending_node_id": pending_node_id,
+            "role": role,
+            "sipi": sipi,
+            "state": state,
+            "encryption_capable": encryption_capable,
+            "has_local_admin": has_local_admin,
+            "version": version, })
+        
 
 class PhysicalAdapter(data_model.DataObject):
     """PhysicalAdapter  
@@ -655,9 +589,16 @@ class PhysicalAdapter(data_model.DataObject):
             netmask=None,
             network=None,
             up_and_running=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(PhysicalAdapter, self).__init__(**{ 
+            "address": address,
+            "mac_address": mac_address,
+            "mac_address_permanent": mac_address_permanent,
+            "mtu": mtu,
+            "netmask": netmask,
+            "network": network,
+            "up_and_running": up_and_running, })
+        
 
 class NetworkConfig(data_model.DataObject):
     """NetworkConfig  
@@ -965,9 +906,39 @@ class NetworkConfig(data_model.DataObject):
             up_and_running=None,
             bond_xmit_hash_policy=None,
             bond_ad_num_ports=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(NetworkConfig, self).__init__(**{ 
+            "_default": _default,
+            "bond_master": bond_master,
+            "virtual_network_tag": virtual_network_tag,
+            "address": address,
+            "auto": auto,
+            "bond_downdelay": bond_downdelay,
+            "bond_fail_over_mac": bond_fail_over_mac,
+            "bond_primary_reselect": bond_primary_reselect,
+            "bond_lacp_rate": bond_lacp_rate,
+            "bond_miimon": bond_miimon,
+            "bond_mode": bond_mode,
+            "bond_slaves": bond_slaves,
+            "bond_updelay": bond_updelay,
+            "dns_nameservers": dns_nameservers,
+            "dns_search": dns_search,
+            "family": family,
+            "gateway": gateway,
+            "mac_address": mac_address,
+            "mac_address_permanent": mac_address_permanent,
+            "method": method,
+            "mtu": mtu,
+            "netmask": netmask,
+            "network": network,
+            "physical": physical,
+            "routes": routes,
+            "status": status,
+            "symmetric_route_rules": symmetric_route_rules,
+            "up_and_running": up_and_running,
+            "bond_xmit_hash_policy": bond_xmit_hash_policy,
+            "bond_ad_num_ports": bond_ad_num_ports, })
+        
 
 class Network(data_model.DataObject):
     """Network  
@@ -1065,9 +1036,18 @@ class Network(data_model.DataObject):
             eth4=None,
             eth5=None,
             lo=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(Network, self).__init__(**{ 
+            "bond10_g": bond10_g,
+            "bond1_g": bond1_g,
+            "eth0": eth0,
+            "eth1": eth1,
+            "eth2": eth2,
+            "eth3": eth3,
+            "eth4": eth4,
+            "eth5": eth5,
+            "lo": lo, })
+        
 
 class Config(data_model.DataObject):
     """Config  
@@ -1095,9 +1075,11 @@ class Config(data_model.DataObject):
     def __init__(self,
             cluster,
             network):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(Config, self).__init__(**{ 
+            "cluster": cluster,
+            "network": network, })
+        
 
 class GetConfigResult(data_model.DataObject):
     """GetConfigResult  
@@ -1115,9 +1097,10 @@ class GetConfigResult(data_model.DataObject):
 
     def __init__(self,
             config):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetConfigResult, self).__init__(**{ 
+            "config": config, })
+        
 
 class StartVolumePairingResult(data_model.DataObject):
     """StartVolumePairingResult  
@@ -1135,9 +1118,10 @@ class StartVolumePairingResult(data_model.DataObject):
 
     def __init__(self,
             volume_pairing_key):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(StartVolumePairingResult, self).__init__(**{ 
+            "volume_pairing_key": volume_pairing_key, })
+        
 
 class SnapMirrorAggregate(data_model.DataObject):
     """SnapMirrorAggregate  
@@ -1216,9 +1200,16 @@ class SnapMirrorAggregate(data_model.DataObject):
             size_total,
             percent_used_capacity,
             volume_count):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SnapMirrorAggregate, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "aggregate_name": aggregate_name,
+            "node_name": node_name,
+            "size_available": size_available,
+            "size_total": size_total,
+            "percent_used_capacity": percent_used_capacity,
+            "volume_count": volume_count, })
+        
 
 class ListSnapMirrorAggregatesResult(data_model.DataObject):
     """ListSnapMirrorAggregatesResult  
@@ -1236,9 +1227,10 @@ class ListSnapMirrorAggregatesResult(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_aggregates):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListSnapMirrorAggregatesResult, self).__init__(**{ 
+            "snap_mirror_aggregates": snap_mirror_aggregates, })
+        
 
 class SetSSLCertificateResult(data_model.DataObject):
     """SetSSLCertificateResult  
@@ -1246,9 +1238,9 @@ class SetSSLCertificateResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetSSLCertificateResult, self).__init__(**{  })
+        
 
 class UpdateBulkVolumeStatusRequest(data_model.DataObject):
     """UpdateBulkVolumeStatusRequest  
@@ -1308,61 +1300,36 @@ class UpdateBulkVolumeStatusRequest(data_model.DataObject):
             percent_complete=None,
             message=None,
             attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class GetAccountEfficiencyRequest(data_model.DataObject):
-    """GetAccountEfficiencyRequest  
-    GetAccountEfficiency enables you to retrieve efficiency statistics about a volume account. This method returns efficiency information
-    only for the account you specify as a parameter.
+        super(UpdateBulkVolumeStatusRequest, self).__init__(**{ 
+            "key": key,
+            "status": status,
+            "percent_complete": percent_complete,
+            "message": message,
+            "attributes": attributes, })
+        
 
-    :param account_id: [required] Specifies the volume account for which efficiency statistics are returned. 
-    :type account_id: int
+class CompleteClusterPairingRequest(data_model.DataObject):
+    """CompleteClusterPairingRequest  
+    You can use the CompleteClusterPairing method with the encoded key received from the  StartClusterPairing method to complete the cluster pairing process. The CompleteClusterPairing method is the second step in the cluster pairing process. 
+
+    :param cluster_pairing_key: [required] A string of characters that is returned from the "StartClusterPairing" API method. 
+    :type cluster_pairing_key: str
 
     """
-    account_id = data_model.property(
-        "accountID", int,
+    cluster_pairing_key = data_model.property(
+        "clusterPairingKey", str,
         array=False, optional=False,
-        documentation="""Specifies the volume account for which efficiency statistics are returned. """,
+        documentation="""A string of characters that is returned from the "StartClusterPairing" API method. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            account_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+            cluster_pairing_key):
 
-class ShutdownResult(data_model.DataObject):
-    """ShutdownResult  
-
-    :param failed: [required]  
-    :type failed: int
-
-    :param successful: [required]  
-    :type successful: int
-
-    """
-    failed = data_model.property(
-        "failed", int,
-        array=True, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    successful = data_model.property(
-        "successful", int,
-        array=True, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            failed,
-            successful):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+        super(CompleteClusterPairingRequest, self).__init__(**{ 
+            "cluster_pairing_key": cluster_pairing_key, })
+        
 
 class GetAPIResult(data_model.DataObject):
     """GetAPIResult  
@@ -1390,9 +1357,11 @@ class GetAPIResult(data_model.DataObject):
     def __init__(self,
             supported_versions,
             current_version):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetAPIResult, self).__init__(**{ 
+            "supported_versions": supported_versions,
+            "current_version": current_version, })
+        
 
 class LunAssignment(data_model.DataObject):
     """LunAssignment  
@@ -1421,9 +1390,11 @@ class LunAssignment(data_model.DataObject):
     def __init__(self,
             volume_id,
             lun):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(LunAssignment, self).__init__(**{ 
+            "volume_id": volume_id,
+            "lun": lun, })
+        
 
 class VolumeAccessGroupLunAssignments(data_model.DataObject):
     """VolumeAccessGroupLunAssignments  
@@ -1462,9 +1433,12 @@ class VolumeAccessGroupLunAssignments(data_model.DataObject):
             volume_access_group_id,
             lun_assignments,
             deleted_lun_assignments):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(VolumeAccessGroupLunAssignments, self).__init__(**{ 
+            "volume_access_group_id": volume_access_group_id,
+            "lun_assignments": lun_assignments,
+            "deleted_lun_assignments": deleted_lun_assignments, })
+        
 
 class GetVolumeAccessGroupLunAssignmentsResult(data_model.DataObject):
     """GetVolumeAccessGroupLunAssignmentsResult  
@@ -1482,9 +1456,10 @@ class GetVolumeAccessGroupLunAssignmentsResult(data_model.DataObject):
 
     def __init__(self,
             volume_access_group_lun_assignments):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetVolumeAccessGroupLunAssignmentsResult, self).__init__(**{ 
+            "volume_access_group_lun_assignments": volume_access_group_lun_assignments, })
+        
 
 class ModifySnapMirrorEndpointRequest(data_model.DataObject):
     """ModifySnapMirrorEndpointRequest  
@@ -1533,9 +1508,13 @@ class ModifySnapMirrorEndpointRequest(data_model.DataObject):
             management_ip=None,
             username=None,
             password=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifySnapMirrorEndpointRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "management_ip": management_ip,
+            "username": username,
+            "password": password, })
+        
 
 class MetadataHosts(data_model.DataObject):
     """MetadataHosts  
@@ -1574,9 +1553,12 @@ class MetadataHosts(data_model.DataObject):
             dead_secondaries,
             live_secondaries,
             primary):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(MetadataHosts, self).__init__(**{ 
+            "dead_secondaries": dead_secondaries,
+            "live_secondaries": live_secondaries,
+            "primary": primary, })
+        
 
 class VolumeStats(data_model.DataObject):
     """VolumeStats  
@@ -1895,9 +1877,40 @@ class VolumeStats(data_model.DataObject):
             read_bytes_last_sample=None,
             read_ops_last_sample=None,
             write_ops_last_sample=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(VolumeStats, self).__init__(**{ 
+            "account_id": account_id,
+            "actual_iops": actual_iops,
+            "average_iopsize": average_iopsize,
+            "burst_iopscredit": burst_iopscredit,
+            "client_queue_depth": client_queue_depth,
+            "latency_usec": latency_usec,
+            "async_delay": async_delay,
+            "metadata_hosts": metadata_hosts,
+            "desired_metadata_hosts": desired_metadata_hosts,
+            "non_zero_blocks": non_zero_blocks,
+            "read_bytes": read_bytes,
+            "read_latency_usec": read_latency_usec,
+            "read_ops": read_ops,
+            "throttle": throttle,
+            "timestamp": timestamp,
+            "total_latency_usec": total_latency_usec,
+            "unaligned_reads": unaligned_reads,
+            "unaligned_writes": unaligned_writes,
+            "volume_access_groups": volume_access_groups,
+            "volume_id": volume_id,
+            "volume_size": volume_size,
+            "volume_utilization": volume_utilization,
+            "write_bytes": write_bytes,
+            "write_latency_usec": write_latency_usec,
+            "write_ops": write_ops,
+            "zero_blocks": zero_blocks,
+            "write_bytes_last_sample": write_bytes_last_sample,
+            "sample_period_msec": sample_period_msec,
+            "read_bytes_last_sample": read_bytes_last_sample,
+            "read_ops_last_sample": read_ops_last_sample,
+            "write_ops_last_sample": write_ops_last_sample, })
+        
 
 class ListVolumeStatsByAccountResult(data_model.DataObject):
     """ListVolumeStatsByAccountResult  
@@ -1915,9 +1928,10 @@ class ListVolumeStatsByAccountResult(data_model.DataObject):
 
     def __init__(self,
             volume_stats):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListVolumeStatsByAccountResult, self).__init__(**{ 
+            "volume_stats": volume_stats, })
+        
 
 class ModifyGroupSnapshotRequest(data_model.DataObject):
     """ModifyGroupSnapshotRequest  
@@ -1966,9 +1980,13 @@ class ModifyGroupSnapshotRequest(data_model.DataObject):
             expiration_time=None,
             enable_remote_replication=None,
             snap_mirror_label=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifyGroupSnapshotRequest, self).__init__(**{ 
+            "group_snapshot_id": group_snapshot_id,
+            "expiration_time": expiration_time,
+            "enable_remote_replication": enable_remote_replication,
+            "snap_mirror_label": snap_mirror_label, })
+        
 
 class DeleteSnapshotRequest(data_model.DataObject):
     """DeleteSnapshotRequest  
@@ -1988,9 +2006,10 @@ class DeleteSnapshotRequest(data_model.DataObject):
 
     def __init__(self,
             snapshot_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DeleteSnapshotRequest, self).__init__(**{ 
+            "snapshot_id": snapshot_id, })
+        
 
 class ScheduleInfo(data_model.DataObject):
     """ScheduleInfo  
@@ -2038,9 +2057,13 @@ class ScheduleInfo(data_model.DataObject):
             enable_remote_replication=None,
             volume_ids=None,
             retention=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ScheduleInfo, self).__init__(**{ 
+            "snapshot_name": snapshot_name,
+            "enable_remote_replication": enable_remote_replication,
+            "volume_ids": volume_ids,
+            "retention": retention, })
+        
 
 class Schedule(data_model.DataObject):
     """Schedule  
@@ -2169,9 +2192,21 @@ class Schedule(data_model.DataObject):
             to_be_deleted=None,
             starting_date=None,
             recurring=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(Schedule, self).__init__(**{ 
+            "last_run_time_started": last_run_time_started,
+            "has_error": has_error,
+            "schedule_info": schedule_info,
+            "run_next_interval": run_next_interval,
+            "name": name,
+            "last_run_status": last_run_status,
+            "schedule_id": schedule_id,
+            "paused": paused,
+            "to_be_deleted": to_be_deleted,
+            "frequency": frequency,
+            "starting_date": starting_date,
+            "recurring": recurring, })
+        
 
 class GetScheduleResult(data_model.DataObject):
     """GetScheduleResult  
@@ -2189,9 +2224,91 @@ class GetScheduleResult(data_model.DataObject):
 
     def __init__(self,
             schedule):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetScheduleResult, self).__init__(**{ 
+            "schedule": schedule, })
+        
+
+class ModifyInitiator(data_model.DataObject):
+    """ModifyInitiator  
+    Object containing characteristics of each initiator to modify
+
+    :param initiator_id: [required] (Required) The numeric ID of the initiator to modify. (Integer) 
+    :type initiator_id: int
+
+    :param alias:  (Optional) A new friendly name to assign to the initiator. (String) 
+    :type alias: str
+
+    :param volume_access_group_id:  (Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
+    :type volume_access_group_id: int
+
+    :param attributes:  (Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) 
+    :type attributes: dict
+
+    """
+    initiator_id = data_model.property(
+        "initiatorID", int,
+        array=False, optional=False,
+        documentation="""(Required) The numeric ID of the initiator to modify. (Integer) """,
+        dictionaryType=None
+    )
+    alias = data_model.property(
+        "alias", str,
+        array=False, optional=True,
+        documentation="""(Optional) A new friendly name to assign to the initiator. (String) """,
+        dictionaryType=None
+    )
+    volume_access_group_id = data_model.property(
+        "volumeAccessGroupID", int,
+        array=False, optional=True,
+        documentation="""(Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) """,
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="""(Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            initiator_id,
+            alias=None,
+            volume_access_group_id=None,
+            attributes=None):
+
+        super(ModifyInitiator, self).__init__(**{ 
+            "initiator_id": initiator_id,
+            "alias": alias,
+            "volume_access_group_id": volume_access_group_id,
+            "attributes": attributes, })
+        
+
+class ModifyInitiatorsRequest(data_model.DataObject):
+    """ModifyInitiatorsRequest  
+    ModifyInitiators enables you to change the attributes of one or more existing initiators. You cannot change the name of an existing
+    initiator. If you need to change the name of an initiator, delete it first with DeleteInitiators and create a new one with
+    CreateInitiators.
+    If ModifyInitiators fails to change one of the initiators provided in the parameter, the method returns an error and does not modify
+    any initiators (no partial completion is possible).
+
+    :param initiators: [required] A list of objects containing characteristics of each initiator to modify. Values are: initiatorID: (Required) The ID of the initiator to modify. (Integer) alias: (Optional) A new friendly name to assign to the initiator. (String) attributes: (Optional) A new set of JSON attributes to assign to the initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which the initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
+    :type initiators: ModifyInitiator
+
+    """
+    initiators = data_model.property(
+        "initiators", ModifyInitiator,
+        array=True, optional=False,
+        documentation="""A list of objects containing characteristics of each initiator to modify. Values are: initiatorID: (Required) The ID of the initiator to modify. (Integer) alias: (Optional) A new friendly name to assign to the initiator. (String) attributes: (Optional) A new set of JSON attributes to assign to the initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which the initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            initiators):
+
+        super(ModifyInitiatorsRequest, self).__init__(**{ 
+            "initiators": initiators, })
+        
 
 class SnapMirrorVolumeInfo(data_model.DataObject):
     """SnapMirrorVolumeInfo  
@@ -2240,9 +2357,13 @@ class SnapMirrorVolumeInfo(data_model.DataObject):
             volume_id,
             vserver,
             name):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SnapMirrorVolumeInfo, self).__init__(**{ 
+            "type": type,
+            "volume_id": volume_id,
+            "vserver": vserver,
+            "name": name, })
+        
 
 class DeleteSnapMirrorRelationshipsRequest(data_model.DataObject):
     """DeleteSnapMirrorRelationshipsRequest  
@@ -2271,9 +2392,11 @@ class DeleteSnapMirrorRelationshipsRequest(data_model.DataObject):
     def __init__(self,
             snap_mirror_endpoint_id,
             destination_volume):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DeleteSnapMirrorRelationshipsRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "destination_volume": destination_volume, })
+        
 
 class ListVolumesRequest(data_model.DataObject):
     """ListVolumesRequest  
@@ -2363,9 +2486,17 @@ class ListVolumesRequest(data_model.DataObject):
             volume_ids=None,
             volume_name=None,
             include_virtual_volumes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListVolumesRequest, self).__init__(**{ 
+            "start_volume_id": start_volume_id,
+            "limit": limit,
+            "volume_status": volume_status,
+            "accounts": accounts,
+            "is_paired": is_paired,
+            "volume_ids": volume_ids,
+            "volume_name": volume_name,
+            "include_virtual_volumes": include_virtual_volumes, })
+        
 
 class NetworkConfigParams(data_model.DataObject):
     """NetworkConfigParams  
@@ -2653,9 +2784,37 @@ class NetworkConfigParams(data_model.DataObject):
             status=None,
             symmetric_route_rules=None,
             up_and_running=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(NetworkConfigParams, self).__init__(**{ 
+            "_default": _default,
+            "bond_master": bond_master,
+            "virtual_network_tag": virtual_network_tag,
+            "address": address,
+            "auto": auto,
+            "bond_downdelay": bond_downdelay,
+            "bond_fail_over_mac": bond_fail_over_mac,
+            "bond_primary_reselect": bond_primary_reselect,
+            "bond_lacp_rate": bond_lacp_rate,
+            "bond_miimon": bond_miimon,
+            "bond_mode": bond_mode,
+            "bond_slaves": bond_slaves,
+            "bond_updelay": bond_updelay,
+            "dns_nameservers": dns_nameservers,
+            "dns_search": dns_search,
+            "family": family,
+            "gateway": gateway,
+            "mac_address": mac_address,
+            "mac_address_permanent": mac_address_permanent,
+            "method": method,
+            "mtu": mtu,
+            "netmask": netmask,
+            "network": network,
+            "physical": physical,
+            "routes": routes,
+            "status": status,
+            "symmetric_route_rules": symmetric_route_rules,
+            "up_and_running": up_and_running, })
+        
 
 class NetworkParams(data_model.DataObject):
     """NetworkParams  
@@ -2733,9 +2892,16 @@ class NetworkParams(data_model.DataObject):
             eth2=None,
             eth3=None,
             lo=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(NetworkParams, self).__init__(**{ 
+            "bond10_g": bond10_g,
+            "bond1_g": bond1_g,
+            "eth0": eth0,
+            "eth1": eth1,
+            "eth2": eth2,
+            "eth3": eth3,
+            "lo": lo, })
+        
 
 class ConfigParams(data_model.DataObject):
     """ConfigParams  
@@ -2763,9 +2929,11 @@ class ConfigParams(data_model.DataObject):
     def __init__(self,
             cluster,
             network):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ConfigParams, self).__init__(**{ 
+            "cluster": cluster,
+            "network": network, })
+        
 
 class ModifyScheduleResult(data_model.DataObject):
     """ModifyScheduleResult  
@@ -2783,9 +2951,10 @@ class ModifyScheduleResult(data_model.DataObject):
 
     def __init__(self,
             schedule=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifyScheduleResult, self).__init__(**{ 
+            "schedule": schedule, })
+        
 
 class ClearClusterFaultsRequest(data_model.DataObject):
     """ClearClusterFaultsRequest  
@@ -2805,9 +2974,10 @@ class ClearClusterFaultsRequest(data_model.DataObject):
 
     def __init__(self,
             fault_types=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ClearClusterFaultsRequest, self).__init__(**{ 
+            "fault_types": fault_types, })
+        
 
 class RemoveClusterAdminResult(data_model.DataObject):
     """RemoveClusterAdminResult  
@@ -2815,9 +2985,9 @@ class RemoveClusterAdminResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RemoveClusterAdminResult, self).__init__(**{  })
+        
 
 class AsyncHandle(data_model.DataObject):
     """AsyncHandle  
@@ -2895,9 +3065,16 @@ class AsyncHandle(data_model.DataObject):
             result_type,
             success,
             data):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(AsyncHandle, self).__init__(**{ 
+            "async_result_id": async_result_id,
+            "completed": completed,
+            "create_time": create_time,
+            "last_update_time": last_update_time,
+            "result_type": result_type,
+            "success": success,
+            "data": data, })
+        
 
 class ListAsyncResultsResult(data_model.DataObject):
     """ListAsyncResultsResult  
@@ -2915,9 +3092,10 @@ class ListAsyncResultsResult(data_model.DataObject):
 
     def __init__(self,
             async_handles):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListAsyncResultsResult, self).__init__(**{ 
+            "async_handles": async_handles, })
+        
 
 class RemoveVolumesFromVolumeAccessGroupRequest(data_model.DataObject):
     """RemoveVolumesFromVolumeAccessGroupRequest  
@@ -2946,9 +3124,11 @@ class RemoveVolumesFromVolumeAccessGroupRequest(data_model.DataObject):
     def __init__(self,
             volume_access_group_id,
             volumes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RemoveVolumesFromVolumeAccessGroupRequest, self).__init__(**{ 
+            "volume_access_group_id": volume_access_group_id,
+            "volumes": volumes, })
+        
 
 class Account(data_model.DataObject):
     """Account  
@@ -3038,9 +3218,17 @@ class Account(data_model.DataObject):
             target_secret=None,
             storage_container_id=None,
             attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(Account, self).__init__(**{ 
+            "account_id": account_id,
+            "username": username,
+            "status": status,
+            "volumes": volumes,
+            "initiator_secret": initiator_secret,
+            "target_secret": target_secret,
+            "storage_container_id": storage_container_id,
+            "attributes": attributes, })
+        
 
 class AddAccountResult(data_model.DataObject):
     """AddAccountResult  
@@ -3068,9 +3256,11 @@ class AddAccountResult(data_model.DataObject):
     def __init__(self,
             account_id,
             account=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(AddAccountResult, self).__init__(**{ 
+            "account_id": account_id,
+            "account": account, })
+        
 
 class ListSnapMirrorRelationshipsRequest(data_model.DataObject):
     """ListSnapMirrorRelationshipsRequest  
@@ -3129,9 +3319,14 @@ class ListSnapMirrorRelationshipsRequest(data_model.DataObject):
             source_volume=None,
             vserver=None,
             relationship_id=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListSnapMirrorRelationshipsRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "destination_volume": destination_volume,
+            "source_volume": source_volume,
+            "vserver": vserver,
+            "relationship_id": relationship_id, })
+        
 
 class GetFeatureStatusRequest(data_model.DataObject):
     """GetFeatureStatusRequest  
@@ -3150,9 +3345,10 @@ class GetFeatureStatusRequest(data_model.DataObject):
 
     def __init__(self,
             feature=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetFeatureStatusRequest, self).__init__(**{ 
+            "feature": feature, })
+        
 
 class AbortSnapMirrorRelationshipRequest(data_model.DataObject):
     """AbortSnapMirrorRelationshipRequest  
@@ -3191,9 +3387,12 @@ class AbortSnapMirrorRelationshipRequest(data_model.DataObject):
             snap_mirror_endpoint_id,
             destination_volume,
             clear_checkpoint=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(AbortSnapMirrorRelationshipRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "destination_volume": destination_volume,
+            "clear_checkpoint": clear_checkpoint, })
+        
 
 class GetIpmiConfigRequest(data_model.DataObject):
     """GetIpmiConfigRequest  
@@ -3212,9 +3411,10 @@ class GetIpmiConfigRequest(data_model.DataObject):
 
     def __init__(self,
             chassis_type=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetIpmiConfigRequest, self).__init__(**{ 
+            "chassis_type": chassis_type, })
+        
 
 class BreakSnapMirrorRelationshipRequest(data_model.DataObject):
     """BreakSnapMirrorRelationshipRequest  
@@ -3243,9 +3443,11 @@ class BreakSnapMirrorRelationshipRequest(data_model.DataObject):
     def __init__(self,
             snap_mirror_endpoint_id,
             destination_volume):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(BreakSnapMirrorRelationshipRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "destination_volume": destination_volume, })
+        
 
 class ModifySnapshotRequest(data_model.DataObject):
     """ModifySnapshotRequest  
@@ -3295,9 +3497,13 @@ class ModifySnapshotRequest(data_model.DataObject):
             expiration_time=None,
             enable_remote_replication=None,
             snap_mirror_label=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifySnapshotRequest, self).__init__(**{ 
+            "snapshot_id": snapshot_id,
+            "expiration_time": expiration_time,
+            "enable_remote_replication": enable_remote_replication,
+            "snap_mirror_label": snap_mirror_label, })
+        
 
 class ModifyClusterFullThresholdResult(data_model.DataObject):
     """ModifyClusterFullThresholdResult  
@@ -3475,9 +3681,26 @@ class ModifyClusterFullThresholdResult(data_model.DataObject):
             sum_total_metadata_cluster_bytes,
             sum_used_cluster_bytes,
             sum_used_metadata_cluster_bytes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifyClusterFullThresholdResult, self).__init__(**{ 
+            "block_fullness": block_fullness,
+            "fullness": fullness,
+            "max_metadata_over_provision_factor": max_metadata_over_provision_factor,
+            "metadata_fullness": metadata_fullness,
+            "slice_reserve_used_threshold_pct": slice_reserve_used_threshold_pct,
+            "stage2_aware_threshold": stage2_aware_threshold,
+            "stage2_block_threshold_bytes": stage2_block_threshold_bytes,
+            "stage3_block_threshold_bytes": stage3_block_threshold_bytes,
+            "stage3_block_threshold_percent": stage3_block_threshold_percent,
+            "stage3_low_threshold": stage3_low_threshold,
+            "stage4_critical_threshold": stage4_critical_threshold,
+            "stage4_block_threshold_bytes": stage4_block_threshold_bytes,
+            "stage5_block_threshold_bytes": stage5_block_threshold_bytes,
+            "sum_total_cluster_bytes": sum_total_cluster_bytes,
+            "sum_total_metadata_cluster_bytes": sum_total_metadata_cluster_bytes,
+            "sum_used_cluster_bytes": sum_used_cluster_bytes,
+            "sum_used_metadata_cluster_bytes": sum_used_metadata_cluster_bytes, })
+        
 
 class ModifyScheduleRequest(data_model.DataObject):
     """ModifyScheduleRequest  
@@ -3496,9 +3719,10 @@ class ModifyScheduleRequest(data_model.DataObject):
 
     def __init__(self,
             schedule):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifyScheduleRequest, self).__init__(**{ 
+            "schedule": schedule, })
+        
 
 class SetDefaultQoSRequest(data_model.DataObject):
     """SetDefaultQoSRequest  
@@ -3538,9 +3762,12 @@ class SetDefaultQoSRequest(data_model.DataObject):
             min_iops=None,
             max_iops=None,
             burst_iops=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetDefaultQoSRequest, self).__init__(**{ 
+            "min_iops": min_iops,
+            "max_iops": max_iops,
+            "burst_iops": burst_iops, })
+        
 
 class NewDrive(data_model.DataObject):
     """NewDrive  
@@ -3568,9 +3795,11 @@ class NewDrive(data_model.DataObject):
     def __init__(self,
             drive_id,
             type=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(NewDrive, self).__init__(**{ 
+            "drive_id": drive_id,
+            "type": type, })
+        
 
 class ClusterStats(data_model.DataObject):
     """ClusterStats  
@@ -3581,7 +3810,7 @@ class ClusterStats(data_model.DataObject):
     :param client_queue_depth: [required]  
     :type client_queue_depth: int
 
-    :param normalized_iops:   
+    :param normalized_iops: [required]  
     :type normalized_iops: int
 
     :param read_bytes: [required] Total bytes read by clients. 
@@ -3593,10 +3822,10 @@ class ClusterStats(data_model.DataObject):
     :param read_ops: [required] Total read operations. 
     :type read_ops: int
 
-    :param services_count:  Services count 
+    :param services_count: [required] Services count 
     :type services_count: int
 
-    :param services_total:  Total services. 
+    :param services_total: [required] Total services. 
     :type services_total: int
 
     :param timestamp: [required] Current time in UTC format. ISO 8601 date string. 
@@ -3605,7 +3834,7 @@ class ClusterStats(data_model.DataObject):
     :param write_bytes: [required] Total bytes written by clients. 
     :type write_bytes: int
 
-    :param write_latency_usec_total:   
+    :param write_latency_usec_total: [required]  
     :type write_latency_usec_total: int
 
     :param write_ops: [required] Total write operations. 
@@ -3662,7 +3891,7 @@ class ClusterStats(data_model.DataObject):
     )
     normalized_iops = data_model.property(
         "normalizedIOPS", int,
-        array=False, optional=True,
+        array=False, optional=False,
         documentation=""" """,
         dictionaryType=None
     )
@@ -3686,13 +3915,13 @@ class ClusterStats(data_model.DataObject):
     )
     services_count = data_model.property(
         "servicesCount", int,
-        array=False, optional=True,
+        array=False, optional=False,
         documentation="""Services count """,
         dictionaryType=None
     )
     services_total = data_model.property(
         "servicesTotal", int,
-        array=False, optional=True,
+        array=False, optional=False,
         documentation="""Total services. """,
         dictionaryType=None
     )
@@ -3710,7 +3939,7 @@ class ClusterStats(data_model.DataObject):
     )
     write_latency_usec_total = data_model.property(
         "writeLatencyUSecTotal", int,
-        array=False, optional=True,
+        array=False, optional=False,
         documentation=""" """,
         dictionaryType=None
     )
@@ -3796,16 +4025,16 @@ class ClusterStats(data_model.DataObject):
     def __init__(self,
             cluster_utilization,
             client_queue_depth,
+            normalized_iops,
             read_bytes,
             read_latency_usec_total,
             read_ops,
+            services_count,
+            services_total,
             timestamp,
             write_bytes,
+            write_latency_usec_total,
             write_ops,
-            normalized_iops=None,
-            services_count=None,
-            services_total=None,
-            write_latency_usec_total=None,
             actual_iops=None,
             average_iopsize=None,
             latency_usec=None,
@@ -3818,9 +4047,33 @@ class ClusterStats(data_model.DataObject):
             write_bytes_last_sample=None,
             write_latency_usec=None,
             write_ops_last_sample=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ClusterStats, self).__init__(**{ 
+            "cluster_utilization": cluster_utilization,
+            "client_queue_depth": client_queue_depth,
+            "normalized_iops": normalized_iops,
+            "read_bytes": read_bytes,
+            "read_latency_usec_total": read_latency_usec_total,
+            "read_ops": read_ops,
+            "services_count": services_count,
+            "services_total": services_total,
+            "timestamp": timestamp,
+            "write_bytes": write_bytes,
+            "write_latency_usec_total": write_latency_usec_total,
+            "write_ops": write_ops,
+            "actual_iops": actual_iops,
+            "average_iopsize": average_iopsize,
+            "latency_usec": latency_usec,
+            "read_bytes_last_sample": read_bytes_last_sample,
+            "read_latency_usec": read_latency_usec,
+            "read_ops_last_sample": read_ops_last_sample,
+            "sample_period_msec": sample_period_msec,
+            "unaligned_reads": unaligned_reads,
+            "unaligned_writes": unaligned_writes,
+            "write_bytes_last_sample": write_bytes_last_sample,
+            "write_latency_usec": write_latency_usec,
+            "write_ops_last_sample": write_ops_last_sample, })
+        
 
 class GetClusterStatsResult(data_model.DataObject):
     """GetClusterStatsResult  
@@ -3838,9 +4091,10 @@ class GetClusterStatsResult(data_model.DataObject):
 
     def __init__(self,
             cluster_stats):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetClusterStatsResult, self).__init__(**{ 
+            "cluster_stats": cluster_stats, })
+        
 
 class ModifyVolumeAccessGroupRequest(data_model.DataObject):
     """ModifyVolumeAccessGroupRequest  
@@ -3929,19 +4183,17 @@ class ModifyVolumeAccessGroupRequest(data_model.DataObject):
             volumes=None,
             delete_orphan_initiators=None,
             attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class PurgeDeletedVolumeResult(data_model.DataObject):
-    """PurgeDeletedVolumeResult  
-
-    """
-
-    def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+        super(ModifyVolumeAccessGroupRequest, self).__init__(**{ 
+            "volume_access_group_id": volume_access_group_id,
+            "virtual_network_id": virtual_network_id,
+            "virtual_network_tags": virtual_network_tags,
+            "name": name,
+            "initiators": initiators,
+            "volumes": volumes,
+            "delete_orphan_initiators": delete_orphan_initiators,
+            "attributes": attributes, })
+        
 
 class VolumeQOS(data_model.DataObject):
     """VolumeQOS  
@@ -4000,9 +4252,14 @@ class VolumeQOS(data_model.DataObject):
             burst_iops,
             burst_time,
             curve):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(VolumeQOS, self).__init__(**{ 
+            "min_iops": min_iops,
+            "max_iops": max_iops,
+            "burst_iops": burst_iops,
+            "burst_time": burst_time,
+            "curve": curve, })
+        
 
 class SnapshotReplication(data_model.DataObject):
     """SnapshotReplication  
@@ -4030,9 +4287,11 @@ class SnapshotReplication(data_model.DataObject):
     def __init__(self,
             state,
             state_details):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SnapshotReplication, self).__init__(**{ 
+            "state": state,
+            "state_details": state_details, })
+        
 
 class RemoteReplication(data_model.DataObject):
     """RemoteReplication  
@@ -4111,9 +4370,16 @@ class RemoteReplication(data_model.DataObject):
             snapshot_replication,
             state,
             state_details):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RemoteReplication, self).__init__(**{ 
+            "mode": mode,
+            "pause_limit": pause_limit,
+            "remote_service_id": remote_service_id,
+            "resume_details": resume_details,
+            "snapshot_replication": snapshot_replication,
+            "state": state,
+            "state_details": state_details, })
+        
 
 class VolumePair(data_model.DataObject):
     """VolumePair  
@@ -4183,9 +4449,15 @@ class VolumePair(data_model.DataObject):
             remote_volume_name,
             volume_pair_uuid,
             remote_replication):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(VolumePair, self).__init__(**{ 
+            "cluster_pair_id": cluster_pair_id,
+            "remote_volume_id": remote_volume_id,
+            "remote_slice_id": remote_slice_id,
+            "remote_volume_name": remote_volume_name,
+            "volume_pair_uuid": volume_pair_uuid,
+            "remote_replication": remote_replication, })
+        
 
 class Volume(data_model.DataObject):
     """Volume  
@@ -4456,9 +4728,35 @@ class Volume(data_model.DataObject):
             last_access_time=None,
             last_access_time_io=None,
             virtual_volume_id=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(Volume, self).__init__(**{ 
+            "volume_id": volume_id,
+            "name": name,
+            "account_id": account_id,
+            "create_time": create_time,
+            "volume_consistency_group_uuid": volume_consistency_group_uuid,
+            "volume_uuid": volume_uuid,
+            "enable_snap_mirror_replication": enable_snap_mirror_replication,
+            "status": status,
+            "access": access,
+            "enable512e": enable512e,
+            "iqn": iqn,
+            "scsi_euidevice_id": scsi_euidevice_id,
+            "scsi_naadevice_id": scsi_naadevice_id,
+            "qos": qos,
+            "qos_policy_id": qos_policy_id,
+            "volume_access_groups": volume_access_groups,
+            "volume_pairs": volume_pairs,
+            "delete_time": delete_time,
+            "purge_time": purge_time,
+            "last_access_time": last_access_time,
+            "last_access_time_io": last_access_time_io,
+            "slice_count": slice_count,
+            "total_size": total_size,
+            "block_size": block_size,
+            "virtual_volume_id": virtual_volume_id,
+            "attributes": attributes, })
+        
 
 class CloneVolumeResult(data_model.DataObject):
     """CloneVolumeResult  
@@ -4506,9 +4804,13 @@ class CloneVolumeResult(data_model.DataObject):
             volume_id,
             async_handle,
             volume=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CloneVolumeResult, self).__init__(**{ 
+            "volume": volume,
+            "clone_id": clone_id,
+            "volume_id": volume_id,
+            "async_handle": async_handle, })
+        
 
 class GetVolumeStatsRequest(data_model.DataObject):
     """GetVolumeStatsRequest  
@@ -4527,9 +4829,10 @@ class GetVolumeStatsRequest(data_model.DataObject):
 
     def __init__(self,
             volume_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetVolumeStatsRequest, self).__init__(**{ 
+            "volume_id": volume_id, })
+        
 
 class GetDriveStatsRequest(data_model.DataObject):
     """GetDriveStatsRequest  
@@ -4550,9 +4853,10 @@ class GetDriveStatsRequest(data_model.DataObject):
 
     def __init__(self,
             drive_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetDriveStatsRequest, self).__init__(**{ 
+            "drive_id": drive_id, })
+        
 
 class GetVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
     """GetVolumeAccessGroupLunAssignmentsRequest  
@@ -4573,30 +4877,31 @@ class GetVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
 
     def __init__(self,
             volume_access_group_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class ListVolumeStatsRequest(data_model.DataObject):
-    """ListVolumeStatsRequest  
-    ListVolumeStats returns high-level activity measurements for a single volume, list of volumes, or all volumes (if you omit the volumeIDs parameter). Measurement values are cumulative from the creation of the volume.
+        super(GetVolumeAccessGroupLunAssignmentsRequest, self).__init__(**{ 
+            "volume_access_group_id": volume_access_group_id, })
+        
 
-    :param volume_ids:  A list of volume IDs of volumes from which to retrieve activity information. 
-    :type volume_ids: int
+class ListVolumeStatsByVolumeResult(data_model.DataObject):
+    """ListVolumeStatsByVolumeResult  
+
+    :param volume_stats: [required] List of account activity information. 
+    :type volume_stats: VolumeStats
 
     """
-    volume_ids = data_model.property(
-        "volumeIDs", int,
-        array=True, optional=True,
-        documentation="""A list of volume IDs of volumes from which to retrieve activity information. """,
+    volume_stats = data_model.property(
+        "volumeStats", VolumeStats,
+        array=True, optional=False,
+        documentation="""List of account activity information. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            volume_ids=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+            volume_stats):
+
+        super(ListVolumeStatsByVolumeResult, self).__init__(**{ 
+            "volume_stats": volume_stats, })
+        
 
 class ListSnapMirrorSchedulesRequest(data_model.DataObject):
     """ListSnapMirrorSchedulesRequest  
@@ -4615,9 +4920,10 @@ class ListSnapMirrorSchedulesRequest(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_endpoint_id=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListSnapMirrorSchedulesRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id, })
+        
 
 class AddAccountRequest(data_model.DataObject):
     """AddAccountRequest  
@@ -4666,9 +4972,13 @@ class AddAccountRequest(data_model.DataObject):
             initiator_secret=None,
             target_secret=None,
             attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(AddAccountRequest, self).__init__(**{ 
+            "username": username,
+            "initiator_secret": initiator_secret,
+            "target_secret": target_secret,
+            "attributes": attributes, })
+        
 
 class GetAccountByNameRequest(data_model.DataObject):
     """GetAccountByNameRequest  
@@ -4687,9 +4997,10 @@ class GetAccountByNameRequest(data_model.DataObject):
 
     def __init__(self,
             username):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetAccountByNameRequest, self).__init__(**{ 
+            "username": username, })
+        
 
 class ListVolumeStatsByVolumeAccessGroupResult(data_model.DataObject):
     """ListVolumeStatsByVolumeAccessGroupResult  
@@ -4707,9 +5018,10 @@ class ListVolumeStatsByVolumeAccessGroupResult(data_model.DataObject):
 
     def __init__(self,
             volume_stats):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListVolumeStatsByVolumeAccessGroupResult, self).__init__(**{ 
+            "volume_stats": volume_stats, })
+        
 
 class CreateBackupTargetResult(data_model.DataObject):
     """CreateBackupTargetResult  
@@ -4727,9 +5039,10 @@ class CreateBackupTargetResult(data_model.DataObject):
 
     def __init__(self,
             backup_target_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateBackupTargetResult, self).__init__(**{ 
+            "backup_target_id": backup_target_id, })
+        
 
 class ListVirtualVolumeHostsRequest(data_model.DataObject):
     """ListVirtualVolumeHostsRequest  
@@ -4749,60 +5062,20 @@ class ListVirtualVolumeHostsRequest(data_model.DataObject):
 
     def __init__(self,
             virtual_volume_host_ids=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class ResyncSnapMirrorRelationshipRequest(data_model.DataObject):
-    """ResyncSnapMirrorRelationshipRequest  
-    The SolidFire Element OS web UI uses the ResyncSnapMirrorRelationship method to establish or reestablish a mirror relationship between a source and destination endpoint. When you resync a relationship, the system removes snapshots on the destination volume that are newer than the common snapshot copy, and then mounts the destination volume as a data protection volume with the common snapshot copy as the exported snapshot copy.
+        super(ListVirtualVolumeHostsRequest, self).__init__(**{ 
+            "virtual_volume_host_ids": virtual_volume_host_ids, })
+        
 
-    :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
-    :type snap_mirror_endpoint_id: int
-
-    :param destination_volume: [required] The destination volume in the SnapMirror relationship. 
-    :type destination_volume: SnapMirrorVolumeInfo
-
-    :param max_transfer_rate:  Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. 
-    :type max_transfer_rate: int
-
-    :param source_volume:  The source volume in the SnapMirror relationship. 
-    :type source_volume: SnapMirrorVolumeInfo
+class SetNodeSSLCertificateResult(data_model.DataObject):
+    """SetNodeSSLCertificateResult  
 
     """
-    snap_mirror_endpoint_id = data_model.property(
-        "snapMirrorEndpointID", int,
-        array=False, optional=False,
-        documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. """,
-        dictionaryType=None
-    )
-    destination_volume = data_model.property(
-        "destinationVolume", SnapMirrorVolumeInfo,
-        array=False, optional=False,
-        documentation="""The destination volume in the SnapMirror relationship. """,
-        dictionaryType=None
-    )
-    max_transfer_rate = data_model.property(
-        "maxTransferRate", int,
-        array=False, optional=True,
-        documentation="""Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. """,
-        dictionaryType=None
-    )
-    source_volume = data_model.property(
-        "sourceVolume", SnapMirrorVolumeInfo,
-        array=False, optional=True,
-        documentation="""The source volume in the SnapMirror relationship. """,
-        dictionaryType=None
-    )
 
-    def __init__(self,
-            snap_mirror_endpoint_id,
-            destination_volume,
-            max_transfer_rate=None,
-            source_volume=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+    def __init__(self):
+
+        super(SetNodeSSLCertificateResult, self).__init__(**{  })
+        
 
 class RemoveDrivesRequest(data_model.DataObject):
     """RemoveDrivesRequest  
@@ -4840,9 +5113,11 @@ class RemoveDrivesRequest(data_model.DataObject):
     def __init__(self,
             drives,
             force_during_upgrade=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RemoveDrivesRequest, self).__init__(**{ 
+            "drives": drives,
+            "force_during_upgrade": force_during_upgrade, })
+        
 
 class CancelCloneResult(data_model.DataObject):
     """CancelCloneResult  
@@ -4850,9 +5125,9 @@ class CancelCloneResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CancelCloneResult, self).__init__(**{  })
+        
 
 class LdapConfiguration(data_model.DataObject):
     """LdapConfiguration  
@@ -4961,9 +5236,19 @@ class LdapConfiguration(data_model.DataObject):
             user_dntemplate,
             user_search_base_dn,
             user_search_filter):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(LdapConfiguration, self).__init__(**{ 
+            "auth_type": auth_type,
+            "enabled": enabled,
+            "group_search_base_dn": group_search_base_dn,
+            "group_search_custom_filter": group_search_custom_filter,
+            "group_search_type": group_search_type,
+            "search_bind_dn": search_bind_dn,
+            "server_uris": server_uris,
+            "user_dntemplate": user_dntemplate,
+            "user_search_base_dn": user_search_base_dn,
+            "user_search_filter": user_search_filter, })
+        
 
 class TestLdapAuthenticationRequest(data_model.DataObject):
     """TestLdapAuthenticationRequest  
@@ -5003,9 +5288,12 @@ class TestLdapAuthenticationRequest(data_model.DataObject):
             username,
             password,
             ldap_configuration=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(TestLdapAuthenticationRequest, self).__init__(**{ 
+            "username": username,
+            "password": password,
+            "ldap_configuration": ldap_configuration, })
+        
 
 class ClearClusterFaultsResult(data_model.DataObject):
     """ClearClusterFaultsResult  
@@ -5013,9 +5301,9 @@ class ClearClusterFaultsResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ClearClusterFaultsResult, self).__init__(**{  })
+        
 
 class DriveConfigInfo(data_model.DataObject):
     """DriveConfigInfo  
@@ -5253,9 +5541,32 @@ class DriveConfigInfo(data_model.DataObject):
             serial,
             scsi_state,
             smart_ssd_write_capable=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DriveConfigInfo, self).__init__(**{ 
+            "canonical_name": canonical_name,
+            "connected": connected,
+            "dev": dev,
+            "dev_path": dev_path,
+            "drive_type": drive_type,
+            "product": product,
+            "name": name,
+            "path": path,
+            "path_link": path_link,
+            "scsi_compat_id": scsi_compat_id,
+            "smart_ssd_write_capable": smart_ssd_write_capable,
+            "security_enabled": security_enabled,
+            "security_frozen": security_frozen,
+            "security_locked": security_locked,
+            "security_supported": security_supported,
+            "size": size,
+            "slot": slot,
+            "uuid": uuid,
+            "vendor": vendor,
+            "version": version,
+            "security_at_maximum": security_at_maximum,
+            "serial": serial,
+            "scsi_state": scsi_state, })
+        
 
 class DrivesConfigInfo(data_model.DataObject):
     """DrivesConfigInfo  
@@ -5333,9 +5644,16 @@ class DrivesConfigInfo(data_model.DataObject):
             num_slice_expected,
             num_total_actual,
             num_total_expected):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DrivesConfigInfo, self).__init__(**{ 
+            "drives": drives,
+            "num_block_actual": num_block_actual,
+            "num_block_expected": num_block_expected,
+            "num_slice_actual": num_slice_actual,
+            "num_slice_expected": num_slice_expected,
+            "num_total_actual": num_total_actual,
+            "num_total_expected": num_total_expected, })
+        
 
 class GetDriveConfigResult(data_model.DataObject):
     """GetDriveConfigResult  
@@ -5353,9 +5671,10 @@ class GetDriveConfigResult(data_model.DataObject):
 
     def __init__(self,
             drive_config):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetDriveConfigResult, self).__init__(**{ 
+            "drive_config": drive_config, })
+        
 
 class GetNodeStatsRequest(data_model.DataObject):
     """GetNodeStatsRequest  
@@ -5374,9 +5693,10 @@ class GetNodeStatsRequest(data_model.DataObject):
 
     def __init__(self,
             node_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetNodeStatsRequest, self).__init__(**{ 
+            "node_id": node_id, })
+        
 
 class ResetDrivesRequest(data_model.DataObject):
     """ResetDrivesRequest  
@@ -5406,9 +5726,11 @@ class ResetDrivesRequest(data_model.DataObject):
     def __init__(self,
             drives,
             force):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ResetDrivesRequest, self).__init__(**{ 
+            "drives": drives,
+            "force": force, })
+        
 
 class EventInfo(data_model.DataObject):
     """EventInfo  
@@ -5526,9 +5848,20 @@ class EventInfo(data_model.DataObject):
             time_of_report,
             time_of_publish,
             details=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(EventInfo, self).__init__(**{ 
+            "event_id": event_id,
+            "severity": severity,
+            "event_info_type": event_info_type,
+            "message": message,
+            "service_id": service_id,
+            "node_id": node_id,
+            "drive_id": drive_id,
+            "drive_ids": drive_ids,
+            "time_of_report": time_of_report,
+            "time_of_publish": time_of_publish,
+            "details": details, })
+        
 
 class ListEventsResult(data_model.DataObject):
     """ListEventsResult  
@@ -5556,9 +5889,11 @@ class ListEventsResult(data_model.DataObject):
     def __init__(self,
             event_queue_type,
             events):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListEventsResult, self).__init__(**{ 
+            "event_queue_type": event_queue_type,
+            "events": events, })
+        
 
 class ModifyBackupTargetRequest(data_model.DataObject):
     """ModifyBackupTargetRequest  
@@ -5597,9 +5932,12 @@ class ModifyBackupTargetRequest(data_model.DataObject):
             backup_target_id,
             name=None,
             attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifyBackupTargetRequest, self).__init__(**{ 
+            "backup_target_id": backup_target_id,
+            "name": name,
+            "attributes": attributes, })
+        
 
 class PairedCluster(data_model.DataObject):
     """PairedCluster  
@@ -5687,9 +6025,17 @@ class PairedCluster(data_model.DataObject):
             status,
             version,
             cluster_uuid=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(PairedCluster, self).__init__(**{ 
+            "cluster_name": cluster_name,
+            "cluster_pair_id": cluster_pair_id,
+            "cluster_pair_uuid": cluster_pair_uuid,
+            "latency": latency,
+            "mvip": mvip,
+            "status": status,
+            "version": version,
+            "cluster_uuid": cluster_uuid, })
+        
 
 class ListClusterPairsResult(data_model.DataObject):
     """ListClusterPairsResult  
@@ -5707,9 +6053,10 @@ class ListClusterPairsResult(data_model.DataObject):
 
     def __init__(self,
             cluster_pairs):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListClusterPairsResult, self).__init__(**{ 
+            "cluster_pairs": cluster_pairs, })
+        
 
 class ClusterVersionInfo(data_model.DataObject):
     """ClusterVersionInfo  
@@ -5748,9 +6095,12 @@ class ClusterVersionInfo(data_model.DataObject):
             node_id,
             node_version,
             node_internal_revision):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ClusterVersionInfo, self).__init__(**{ 
+            "node_id": node_id,
+            "node_version": node_version,
+            "node_internal_revision": node_internal_revision, })
+        
 
 class SoftwareVersionInfo(data_model.DataObject):
     """SoftwareVersionInfo  
@@ -5808,9 +6158,14 @@ class SoftwareVersionInfo(data_model.DataObject):
             package_name,
             pending_version,
             start_time):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SoftwareVersionInfo, self).__init__(**{ 
+            "current_version": current_version,
+            "node_id": node_id,
+            "package_name": package_name,
+            "pending_version": pending_version,
+            "start_time": start_time, })
+        
 
 class GetClusterVersionInfoResult(data_model.DataObject):
     """GetClusterVersionInfoResult  
@@ -5858,9 +6213,13 @@ class GetClusterVersionInfoResult(data_model.DataObject):
             cluster_version,
             cluster_version_info,
             software_version_info):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetClusterVersionInfoResult, self).__init__(**{ 
+            "cluster_apiversion": cluster_apiversion,
+            "cluster_version": cluster_version,
+            "cluster_version_info": cluster_version_info,
+            "software_version_info": software_version_info, })
+        
 
 class CopyVolumeRequest(data_model.DataObject):
     """CopyVolumeRequest  
@@ -5905,9 +6264,12 @@ class CopyVolumeRequest(data_model.DataObject):
             volume_id,
             dst_volume_id,
             snapshot_id=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CopyVolumeRequest, self).__init__(**{ 
+            "volume_id": volume_id,
+            "dst_volume_id": dst_volume_id,
+            "snapshot_id": snapshot_id, })
+        
 
 class QoSPolicy(data_model.DataObject):
     """QoSPolicy  
@@ -5956,9 +6318,13 @@ class QoSPolicy(data_model.DataObject):
             name,
             volume_ids,
             qos):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(QoSPolicy, self).__init__(**{ 
+            "qos_policy_id": qos_policy_id,
+            "name": name,
+            "volume_ids": volume_ids,
+            "qos": qos, })
+        
 
 class CreateQoSPolicyResult(data_model.DataObject):
     """CreateQoSPolicyResult  
@@ -5976,9 +6342,10 @@ class CreateQoSPolicyResult(data_model.DataObject):
 
     def __init__(self,
             qos_policy):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateQoSPolicyResult, self).__init__(**{ 
+            "qos_policy": qos_policy, })
+        
 
 class NetworkInterface(data_model.DataObject):
     """NetworkInterface  
@@ -6086,9 +6453,19 @@ class NetworkInterface(data_model.DataObject):
             type,
             virtual_network_tag,
             namespace=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(NetworkInterface, self).__init__(**{ 
+            "address": address,
+            "broadcast": broadcast,
+            "mac_address": mac_address,
+            "mtu": mtu,
+            "name": name,
+            "netmask": netmask,
+            "status": status,
+            "type": type,
+            "virtual_network_tag": virtual_network_tag,
+            "namespace": namespace, })
+        
 
 class ListNetworkInterfacesResult(data_model.DataObject):
     """ListNetworkInterfacesResult  
@@ -6106,9 +6483,10 @@ class ListNetworkInterfacesResult(data_model.DataObject):
 
     def __init__(self,
             interfaces):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListNetworkInterfacesResult, self).__init__(**{ 
+            "interfaces": interfaces, })
+        
 
 class SnapMirrorVolume(data_model.DataObject):
     """SnapMirrorVolume  
@@ -6197,9 +6575,17 @@ class SnapMirrorVolume(data_model.DataObject):
             state,
             size,
             avail_size):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SnapMirrorVolume, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "name": name,
+            "type": type,
+            "vserver": vserver,
+            "aggr_name": aggr_name,
+            "state": state,
+            "size": size,
+            "avail_size": avail_size, })
+        
 
 class ListSnapMirrorVolumesResult(data_model.DataObject):
     """ListSnapMirrorVolumesResult  
@@ -6217,9 +6603,10 @@ class ListSnapMirrorVolumesResult(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_volumes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListSnapMirrorVolumesResult, self).__init__(**{ 
+            "snap_mirror_volumes": snap_mirror_volumes, })
+        
 
 class CreateVolumeAccessGroupRequest(data_model.DataObject):
     """CreateVolumeAccessGroupRequest  
@@ -6288,9 +6675,15 @@ class CreateVolumeAccessGroupRequest(data_model.DataObject):
             virtual_network_id=None,
             virtual_network_tags=None,
             attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateVolumeAccessGroupRequest, self).__init__(**{ 
+            "name": name,
+            "initiators": initiators,
+            "volumes": volumes,
+            "virtual_network_id": virtual_network_id,
+            "virtual_network_tags": virtual_network_tags,
+            "attributes": attributes, })
+        
 
 class CreateSnapshotRequest(data_model.DataObject):
     """CreateSnapshotRequest  
@@ -6371,9 +6764,16 @@ class CreateSnapshotRequest(data_model.DataObject):
             retention=None,
             attributes=None,
             snap_mirror_label=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateSnapshotRequest, self).__init__(**{ 
+            "volume_id": volume_id,
+            "snapshot_id": snapshot_id,
+            "name": name,
+            "enable_remote_replication": enable_remote_replication,
+            "retention": retention,
+            "attributes": attributes,
+            "snap_mirror_label": snap_mirror_label, })
+        
 
 class DeleteVolumesRequest(data_model.DataObject):
     """DeleteVolumesRequest  
@@ -6430,9 +6830,12 @@ class DeleteVolumesRequest(data_model.DataObject):
             account_ids=None,
             volume_access_group_ids=None,
             volume_ids=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DeleteVolumesRequest, self).__init__(**{ 
+            "account_ids": account_ids,
+            "volume_access_group_ids": volume_access_group_ids,
+            "volume_ids": volume_ids, })
+        
 
 class OntapVersionInfo(data_model.DataObject):
     """OntapVersionInfo  
@@ -6501,9 +6904,15 @@ class OntapVersionInfo(data_model.DataObject):
             ontap_apimajor_version,
             ontap_apiminor_version,
             ontap_version):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(OntapVersionInfo, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "client_apimajor_version": client_apimajor_version,
+            "client_apiminor_version": client_apiminor_version,
+            "ontap_apimajor_version": ontap_apimajor_version,
+            "ontap_apiminor_version": ontap_apiminor_version,
+            "ontap_version": ontap_version, })
+        
 
 class GetOntapVersionInfoResult(data_model.DataObject):
     """GetOntapVersionInfoResult  
@@ -6521,9 +6930,10 @@ class GetOntapVersionInfoResult(data_model.DataObject):
 
     def __init__(self,
             ontap_version_info):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetOntapVersionInfoResult, self).__init__(**{ 
+            "ontap_version_info": ontap_version_info, })
+        
 
 class SnapMirrorRelationship(data_model.DataObject):
     """SnapMirrorRelationship  
@@ -6752,9 +7162,31 @@ class SnapMirrorRelationship(data_model.DataObject):
             releationship_type,
             schedule_name,
             unhealthy_reason):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SnapMirrorRelationship, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "cluster_name": cluster_name,
+            "snap_mirror_relationship_id": snap_mirror_relationship_id,
+            "source_volume": source_volume,
+            "destination_volume": destination_volume,
+            "current_max_transfer_rate": current_max_transfer_rate,
+            "is_healthy": is_healthy,
+            "lagtime": lagtime,
+            "last_transfer_duration": last_transfer_duration,
+            "last_transfer_error": last_transfer_error,
+            "last_transfer_size": last_transfer_size,
+            "last_transfer_end_timestamp": last_transfer_end_timestamp,
+            "last_transfer_type": last_transfer_type,
+            "max_transfer_rate": max_transfer_rate,
+            "mirror_state": mirror_state,
+            "newest_snapshot": newest_snapshot,
+            "policy_name": policy_name,
+            "policy_type": policy_type,
+            "relationship_status": relationship_status,
+            "releationship_type": releationship_type,
+            "schedule_name": schedule_name,
+            "unhealthy_reason": unhealthy_reason, })
+        
 
 class UpdateSnapMirrorRelationshipResult(data_model.DataObject):
     """UpdateSnapMirrorRelationshipResult  
@@ -6772,9 +7204,10 @@ class UpdateSnapMirrorRelationshipResult(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_relationship):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(UpdateSnapMirrorRelationshipResult, self).__init__(**{ 
+            "snap_mirror_relationship": snap_mirror_relationship, })
+        
 
 class CopyVolumeResult(data_model.DataObject):
     """CopyVolumeResult  
@@ -6802,9 +7235,11 @@ class CopyVolumeResult(data_model.DataObject):
     def __init__(self,
             clone_id,
             async_handle):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CopyVolumeResult, self).__init__(**{ 
+            "clone_id": clone_id,
+            "async_handle": async_handle, })
+        
 
 class RestartServicesRequest(data_model.DataObject):
     """RestartServicesRequest  
@@ -6845,9 +7280,12 @@ class RestartServicesRequest(data_model.DataObject):
             force,
             service=None,
             action=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RestartServicesRequest, self).__init__(**{ 
+            "force": force,
+            "service": service,
+            "action": action, })
+        
 
 class SetNodeSSLCertificateRequest(data_model.DataObject):
     """SetNodeSSLCertificateRequest  
@@ -6876,9 +7314,11 @@ class SetNodeSSLCertificateRequest(data_model.DataObject):
     def __init__(self,
             certificate,
             private_key):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetNodeSSLCertificateRequest, self).__init__(**{ 
+            "certificate": certificate,
+            "private_key": private_key, })
+        
 
 class DeleteQoSPolicyResult(data_model.DataObject):
     """DeleteQoSPolicyResult  
@@ -6886,9 +7326,9 @@ class DeleteQoSPolicyResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DeleteQoSPolicyResult, self).__init__(**{  })
+        
 
 class SetSSLCertificateRequest(data_model.DataObject):
     """SetSSLCertificateRequest  
@@ -6917,9 +7357,11 @@ class SetSSLCertificateRequest(data_model.DataObject):
     def __init__(self,
             certificate,
             private_key):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetSSLCertificateRequest, self).__init__(**{ 
+            "certificate": certificate,
+            "private_key": private_key, })
+        
 
 class GetNvramInfoResult(data_model.DataObject):
     """GetNvramInfoResult  
@@ -6937,9 +7379,10 @@ class GetNvramInfoResult(data_model.DataObject):
 
     def __init__(self,
             nvram_info):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetNvramInfoResult, self).__init__(**{ 
+            "nvram_info": nvram_info, })
+        
 
 class GetClusterMasterNodeIDResult(data_model.DataObject):
     """GetClusterMasterNodeIDResult  
@@ -6957,9 +7400,10 @@ class GetClusterMasterNodeIDResult(data_model.DataObject):
 
     def __init__(self,
             node_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetClusterMasterNodeIDResult, self).__init__(**{ 
+            "node_id": node_id, })
+        
 
 class ListDriveHardwareRequest(data_model.DataObject):
     """ListDriveHardwareRequest  
@@ -6982,9 +7426,10 @@ class ListDriveHardwareRequest(data_model.DataObject):
 
     def __init__(self,
             force):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListDriveHardwareRequest, self).__init__(**{ 
+            "force": force, })
+        
 
 class DeleteVolumeResult(data_model.DataObject):
     """DeleteVolumeResult  
@@ -7002,9 +7447,10 @@ class DeleteVolumeResult(data_model.DataObject):
 
     def __init__(self,
             volume=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DeleteVolumeResult, self).__init__(**{ 
+            "volume": volume, })
+        
 
 class DeleteSnapMirrorRelationshipsResult(data_model.DataObject):
     """DeleteSnapMirrorRelationshipsResult  
@@ -7022,9 +7468,10 @@ class DeleteSnapMirrorRelationshipsResult(data_model.DataObject):
 
     def __init__(self,
             result):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DeleteSnapMirrorRelationshipsResult, self).__init__(**{ 
+            "result": result, })
+        
 
 class NodeWaitingToJoin(data_model.DataObject):
     """NodeWaitingToJoin  
@@ -7142,9 +7589,20 @@ class NodeWaitingToJoin(data_model.DataObject):
             chassis_type=None,
             hostname=None,
             node_type=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(NodeWaitingToJoin, self).__init__(**{ 
+            "name": name,
+            "version": version,
+            "node_id": node_id,
+            "pending_node_id": pending_node_id,
+            "mip": mip,
+            "cip": cip,
+            "sip": sip,
+            "compatible": compatible,
+            "chassis_type": chassis_type,
+            "hostname": hostname,
+            "node_type": node_type, })
+        
 
 class GetBootstrapConfigResult(data_model.DataObject):
     """GetBootstrapConfigResult  
@@ -7192,9 +7650,13 @@ class GetBootstrapConfigResult(data_model.DataObject):
             node_name,
             nodes,
             version):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetBootstrapConfigResult, self).__init__(**{ 
+            "cluster_name": cluster_name,
+            "node_name": node_name,
+            "nodes": nodes,
+            "version": version, })
+        
 
 class ListTestsResult(data_model.DataObject):
     """ListTestsResult  
@@ -7212,9 +7674,10 @@ class ListTestsResult(data_model.DataObject):
 
     def __init__(self,
             tests):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListTestsResult, self).__init__(**{ 
+            "tests": tests, })
+        
 
 class LoggingServer(data_model.DataObject):
     """LoggingServer  
@@ -7242,9 +7705,11 @@ class LoggingServer(data_model.DataObject):
     def __init__(self,
             host,
             port):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(LoggingServer, self).__init__(**{ 
+            "host": host,
+            "port": port, })
+        
 
 class SetRemoteLoggingHostsRequest(data_model.DataObject):
     """SetRemoteLoggingHostsRequest  
@@ -7263,9 +7728,10 @@ class SetRemoteLoggingHostsRequest(data_model.DataObject):
 
     def __init__(self,
             remote_hosts):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetRemoteLoggingHostsRequest, self).__init__(**{ 
+            "remote_hosts": remote_hosts, })
+        
 
 class GetIpmiConfigNodesResult(data_model.DataObject):
     """GetIpmiConfigNodesResult  
@@ -7293,9 +7759,11 @@ class GetIpmiConfigNodesResult(data_model.DataObject):
     def __init__(self,
             node_id,
             result):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetIpmiConfigNodesResult, self).__init__(**{ 
+            "node_id": node_id,
+            "result": result, })
+        
 
 class GetIpmiConfigResult(data_model.DataObject):
     """GetIpmiConfigResult  
@@ -7313,9 +7781,10 @@ class GetIpmiConfigResult(data_model.DataObject):
 
     def __init__(self,
             nodes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetIpmiConfigResult, self).__init__(**{ 
+            "nodes": nodes, })
+        
 
 class GetScheduleRequest(data_model.DataObject):
     """GetScheduleRequest  
@@ -7336,9 +7805,10 @@ class GetScheduleRequest(data_model.DataObject):
 
     def __init__(self,
             schedule_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetScheduleRequest, self).__init__(**{ 
+            "schedule_id": schedule_id, })
+        
 
 class LoginBanner(data_model.DataObject):
     """LoginBanner  
@@ -7366,9 +7836,11 @@ class LoginBanner(data_model.DataObject):
     def __init__(self,
             banner,
             enabled):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(LoginBanner, self).__init__(**{ 
+            "banner": banner,
+            "enabled": enabled, })
+        
 
 class GetLoginBannerResult(data_model.DataObject):
     """GetLoginBannerResult  
@@ -7386,9 +7858,10 @@ class GetLoginBannerResult(data_model.DataObject):
 
     def __init__(self,
             login_banner):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetLoginBannerResult, self).__init__(**{ 
+            "login_banner": login_banner, })
+        
 
 class ListVolumeStatsByAccountRequest(data_model.DataObject):
     """ListVolumeStatsByAccountRequest  
@@ -7417,9 +7890,11 @@ class ListVolumeStatsByAccountRequest(data_model.DataObject):
     def __init__(self,
             accounts=None,
             include_virtual_volumes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListVolumeStatsByAccountRequest, self).__init__(**{ 
+            "accounts": accounts,
+            "include_virtual_volumes": include_virtual_volumes, })
+        
 
 class GetAsyncResultRequest(data_model.DataObject):
     """GetAsyncResultRequest  
@@ -7452,9 +7927,11 @@ class GetAsyncResultRequest(data_model.DataObject):
     def __init__(self,
             async_handle,
             keep_result=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetAsyncResultRequest, self).__init__(**{ 
+            "async_handle": async_handle,
+            "keep_result": keep_result, })
+        
 
 class SnmpTrapRecipient(data_model.DataObject):
     """SnmpTrapRecipient  
@@ -7493,9 +7970,12 @@ class SnmpTrapRecipient(data_model.DataObject):
             host,
             community,
             port):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SnmpTrapRecipient, self).__init__(**{ 
+            "host": host,
+            "community": community,
+            "port": port, })
+        
 
 class AddClusterAdminResult(data_model.DataObject):
     """AddClusterAdminResult  
@@ -7513,30 +7993,42 @@ class AddClusterAdminResult(data_model.DataObject):
 
     def __init__(self,
             cluster_admin_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class CompleteClusterPairingRequest(data_model.DataObject):
-    """CompleteClusterPairingRequest  
-    You can use the CompleteClusterPairing method with the encoded key received from the  StartClusterPairing method to complete the cluster pairing process. The CompleteClusterPairing method is the second step in the cluster pairing process. 
+        super(AddClusterAdminResult, self).__init__(**{ 
+            "cluster_admin_id": cluster_admin_id, })
+        
 
-    :param cluster_pairing_key: [required] A string of characters that is returned from the "StartClusterPairing" API method. 
-    :type cluster_pairing_key: str
+class ShutdownResult(data_model.DataObject):
+    """ShutdownResult  
+
+    :param failed: [required]  
+    :type failed: int
+
+    :param successful: [required]  
+    :type successful: int
 
     """
-    cluster_pairing_key = data_model.property(
-        "clusterPairingKey", str,
-        array=False, optional=False,
-        documentation="""A string of characters that is returned from the "StartClusterPairing" API method. """,
+    failed = data_model.property(
+        "failed", int,
+        array=True, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    successful = data_model.property(
+        "successful", int,
+        array=True, optional=False,
+        documentation=""" """,
         dictionaryType=None
     )
 
     def __init__(self,
-            cluster_pairing_key):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+            failed,
+            successful):
+
+        super(ShutdownResult, self).__init__(**{ 
+            "failed": failed,
+            "successful": successful, })
+        
 
 class ListSnapMirrorVserversRequest(data_model.DataObject):
     """ListSnapMirrorVserversRequest  
@@ -7575,9 +8067,12 @@ class ListSnapMirrorVserversRequest(data_model.DataObject):
             snap_mirror_endpoint_id=None,
             vserver_type=None,
             vserver_name=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListSnapMirrorVserversRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "vserver_type": vserver_type,
+            "vserver_name": vserver_name, })
+        
 
 class DriveHardwareInfo(data_model.DataObject):
     """DriveHardwareInfo  
@@ -7735,9 +8230,24 @@ class DriveHardwareInfo(data_model.DataObject):
             size,
             uuid,
             version):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DriveHardwareInfo, self).__init__(**{ 
+            "description": description,
+            "dev": dev,
+            "devpath": devpath,
+            "drive_security_at_maximum": drive_security_at_maximum,
+            "drive_security_frozen": drive_security_frozen,
+            "drive_security_locked": drive_security_locked,
+            "logicalname": logicalname,
+            "product": product,
+            "scsi_compat_id": scsi_compat_id,
+            "security_feature_enabled": security_feature_enabled,
+            "security_feature_supported": security_feature_supported,
+            "serial": serial,
+            "size": size,
+            "uuid": uuid,
+            "version": version, })
+        
 
 class GetDriveHardwareInfoResult(data_model.DataObject):
     """GetDriveHardwareInfoResult  
@@ -7755,9 +8265,10 @@ class GetDriveHardwareInfoResult(data_model.DataObject):
 
     def __init__(self,
             drive_hardware_info):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetDriveHardwareInfoResult, self).__init__(**{ 
+            "drive_hardware_info": drive_hardware_info, })
+        
 
 class QoS(data_model.DataObject):
     """QoS  
@@ -7824,9 +8335,14 @@ class QoS(data_model.DataObject):
             burst_iops=None,
             burst_time=None,
             curve=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(QoS, self).__init__(**{ 
+            "min_iops": min_iops,
+            "max_iops": max_iops,
+            "burst_iops": burst_iops,
+            "burst_time": burst_time,
+            "curve": curve, })
+        
 
 class CreateQoSPolicyRequest(data_model.DataObject):
     """CreateQoSPolicyRequest  
@@ -7855,9 +8371,11 @@ class CreateQoSPolicyRequest(data_model.DataObject):
     def __init__(self,
             name,
             qos):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateQoSPolicyRequest, self).__init__(**{ 
+            "name": name,
+            "qos": qos, })
+        
 
 class DeleteInitiatorsRequest(data_model.DataObject):
     """DeleteInitiatorsRequest  
@@ -7879,9 +8397,10 @@ class DeleteInitiatorsRequest(data_model.DataObject):
 
     def __init__(self,
             initiators):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DeleteInitiatorsRequest, self).__init__(**{ 
+            "initiators": initiators, })
+        
 
 class SetSnmpTrapInfoRequest(data_model.DataObject):
     """SetSnmpTrapInfoRequest  
@@ -7930,9 +8449,13 @@ class SetSnmpTrapInfoRequest(data_model.DataObject):
             cluster_fault_traps_enabled,
             cluster_fault_resolved_traps_enabled,
             cluster_event_traps_enabled):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetSnmpTrapInfoRequest, self).__init__(**{ 
+            "trap_recipients": trap_recipients,
+            "cluster_fault_traps_enabled": cluster_fault_traps_enabled,
+            "cluster_fault_resolved_traps_enabled": cluster_fault_resolved_traps_enabled,
+            "cluster_event_traps_enabled": cluster_event_traps_enabled, })
+        
 
 class RemoveVirtualNetworkRequest(data_model.DataObject):
     """RemoveVirtualNetworkRequest  
@@ -7962,9 +8485,11 @@ class RemoveVirtualNetworkRequest(data_model.DataObject):
     def __init__(self,
             virtual_network_id=None,
             virtual_network_tag=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RemoveVirtualNetworkRequest, self).__init__(**{ 
+            "virtual_network_id": virtual_network_id,
+            "virtual_network_tag": virtual_network_tag, })
+        
 
 class SnapMirrorEndpoint(data_model.DataObject):
     """SnapMirrorEndpoint  
@@ -8043,9 +8568,16 @@ class SnapMirrorEndpoint(data_model.DataObject):
             password,
             ip_addresses,
             is_connected):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SnapMirrorEndpoint, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "management_ip": management_ip,
+            "cluster_name": cluster_name,
+            "username": username,
+            "password": password,
+            "ip_addresses": ip_addresses,
+            "is_connected": is_connected, })
+        
 
 class CreateSnapMirrorEndpointResult(data_model.DataObject):
     """CreateSnapMirrorEndpointResult  
@@ -8063,9 +8595,10 @@ class CreateSnapMirrorEndpointResult(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_endpoint):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateSnapMirrorEndpointResult, self).__init__(**{ 
+            "snap_mirror_endpoint": snap_mirror_endpoint, })
+        
 
 class ListVolumeStatsResult(data_model.DataObject):
     """ListVolumeStatsResult  
@@ -8083,9 +8616,10 @@ class ListVolumeStatsResult(data_model.DataObject):
 
     def __init__(self,
             volume_stats):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListVolumeStatsResult, self).__init__(**{ 
+            "volume_stats": volume_stats, })
+        
 
 class SetClusterConfigResult(data_model.DataObject):
     """SetClusterConfigResult  
@@ -8103,9 +8637,10 @@ class SetClusterConfigResult(data_model.DataObject):
 
     def __init__(self,
             cluster):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetClusterConfigResult, self).__init__(**{ 
+            "cluster": cluster, })
+        
 
 class CancelGroupCloneRequest(data_model.DataObject):
     """CancelGroupCloneRequest  
@@ -8125,9 +8660,10 @@ class CancelGroupCloneRequest(data_model.DataObject):
 
     def __init__(self,
             group_clone_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CancelGroupCloneRequest, self).__init__(**{ 
+            "group_clone_id": group_clone_id, })
+        
 
 class ListActiveVolumesRequest(data_model.DataObject):
     """ListActiveVolumesRequest  
@@ -8167,9 +8703,12 @@ class ListActiveVolumesRequest(data_model.DataObject):
             start_volume_id=None,
             limit=None,
             include_virtual_volumes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListActiveVolumesRequest, self).__init__(**{ 
+            "start_volume_id": start_volume_id,
+            "limit": limit,
+            "include_virtual_volumes": include_virtual_volumes, })
+        
 
 class CreateScheduleRequest(data_model.DataObject):
     """CreateScheduleRequest  
@@ -8193,49 +8732,31 @@ class CreateScheduleRequest(data_model.DataObject):
 
     def __init__(self,
             schedule):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class DeleteAllSupportBundlesResult(data_model.DataObject):
-    """DeleteAllSupportBundlesResult  
+        super(CreateScheduleRequest, self).__init__(**{ 
+            "schedule": schedule, })
+        
 
-    :param duration: [required]  
-    :type duration: str
+class ListActivePairedVolumesResult(data_model.DataObject):
+    """ListActivePairedVolumesResult  
 
-    :param details: [required]  
-    :type details: dict
-
-    :param result: [required]  
-    :type result: str
+    :param volumes: [required] Volume information for the paired volumes. 
+    :type volumes: Volume
 
     """
-    duration = data_model.property(
-        "duration", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    details = data_model.property(
-        "details", dict,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    result = data_model.property(
-        "result", str,
-        array=False, optional=False,
-        documentation=""" """,
+    volumes = data_model.property(
+        "volumes", Volume,
+        array=True, optional=False,
+        documentation="""Volume information for the paired volumes. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            duration,
-            details,
-            result):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+            volumes):
+
+        super(ListActivePairedVolumesResult, self).__init__(**{ 
+            "volumes": volumes, })
+        
 
 class GetDriveHardwareInfoRequest(data_model.DataObject):
     """GetDriveHardwareInfoRequest  
@@ -8255,9 +8776,10 @@ class GetDriveHardwareInfoRequest(data_model.DataObject):
 
     def __init__(self,
             drive_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetDriveHardwareInfoRequest, self).__init__(**{ 
+            "drive_id": drive_id, })
+        
 
 class StorageContainer(data_model.DataObject):
     """StorageContainer  
@@ -8345,9 +8867,17 @@ class StorageContainer(data_model.DataObject):
             target_secret,
             status,
             virtual_volumes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(StorageContainer, self).__init__(**{ 
+            "name": name,
+            "storage_container_id": storage_container_id,
+            "account_id": account_id,
+            "protocol_endpoint_type": protocol_endpoint_type,
+            "initiator_secret": initiator_secret,
+            "target_secret": target_secret,
+            "status": status,
+            "virtual_volumes": virtual_volumes, })
+        
 
 class ModifyStorageContainerResult(data_model.DataObject):
     """ModifyStorageContainerResult  
@@ -8365,51 +8895,341 @@ class ModifyStorageContainerResult(data_model.DataObject):
 
     def __init__(self,
             storage_container):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class InvokeSFApiRequest(data_model.DataObject):
-    """InvokeSFApiRequest  
-    This will invoke any API method supported by the SolidFire API for the version and port the connection is using.
-    Returns a nested hashtable of key/value pairs that contain the result of the invoked method.
+        super(ModifyStorageContainerResult, self).__init__(**{ 
+            "storage_container": storage_container, })
+        
 
-    :param method: [required] The name of the method to invoke. This is case sensitive. 
-    :type method: str
+class ListVolumeAccessGroupsRequest(data_model.DataObject):
+    """ListVolumeAccessGroupsRequest  
+    ListVolumeAccessGroups enables you to return
+    information about the volume access groups that are
+    currently in the system.
 
-    :param parameters:  An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked. 
-    :type parameters: str
+    :param start_volume_access_group_id:  The volume access group ID at which to begin the listing. If unspecified, there is no lower limit (implicitly 0). 
+    :type start_volume_access_group_id: int
+
+    :param limit:  The maximum number of results to return. This can be useful for paging. 
+    :type limit: int
+
+    :param volume_access_groups:  The list of ids of the volume access groups you wish to list 
+    :type volume_access_groups: int
 
     """
-    method = data_model.property(
-        "method", str,
-        array=False, optional=False,
-        documentation="""The name of the method to invoke. This is case sensitive. """,
+    start_volume_access_group_id = data_model.property(
+        "startVolumeAccessGroupID", int,
+        array=False, optional=True,
+        documentation="""The volume access group ID at which to begin the listing. If unspecified, there is no lower limit (implicitly 0). """,
         dictionaryType=None
     )
-    parameters = data_model.property(
-        "parameters", str,
+    limit = data_model.property(
+        "limit", int,
         array=False, optional=True,
-        documentation="""An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked. """,
+        documentation="""The maximum number of results to return. This can be useful for paging. """,
+        dictionaryType=None
+    )
+    volume_access_groups = data_model.property(
+        "volumeAccessGroups", int,
+        array=True, optional=True,
+        documentation="""The list of ids of the volume access groups you wish to list """,
         dictionaryType=None
     )
 
     def __init__(self,
-            method,
-            parameters=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+            start_volume_access_group_id=None,
+            limit=None,
+            volume_access_groups=None):
 
-class RemoveNodesResult(data_model.DataObject):
-    """RemoveNodesResult  
+        super(ListVolumeAccessGroupsRequest, self).__init__(**{ 
+            "start_volume_access_group_id": start_volume_access_group_id,
+            "limit": limit,
+            "volume_access_groups": volume_access_groups, })
+        
+
+class SnapshotRemoteStatus(data_model.DataObject):
+    """SnapshotRemoteStatus  
+
+    :param remote_status: [required]  
+    :type remote_status: str
+
+    :param volume_pair_uuid: [required] The snapshot is done and is writable (the active branch of the slice). 
+    :type volume_pair_uuid: UUID
 
     """
+    remote_status = data_model.property(
+        "remoteStatus", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    volume_pair_uuid = data_model.property(
+        "volumePairUUID", UUID,
+        array=False, optional=False,
+        documentation="""The snapshot is done and is writable (the active branch of the slice). """,
+        dictionaryType=None
+    )
 
-    def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+    def __init__(self,
+            remote_status,
+            volume_pair_uuid):
+
+        super(SnapshotRemoteStatus, self).__init__(**{ 
+            "remote_status": remote_status,
+            "volume_pair_uuid": volume_pair_uuid, })
+        
+
+class Snapshot(data_model.DataObject):
+    """Snapshot  
+    Snapshots is an object containing information about each snapshot made for a volume.
+    The return object includes information for the active snapshot as well as each snapshot created for the volume.
+
+    :param snapshot_id: [required] Unique ID for this snapshot. 
+    :type snapshot_id: int
+
+    :param volume_id: [required] The volume this snapshot was taken of. 
+    :type volume_id: int
+
+    :param name: [required] A name for this snapshot. It is not necessarily unique. 
+    :type name: str
+
+    :param checksum: [required] A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. 
+    :type checksum: str
+
+    :param enable_remote_replication: [required] Identifies if snapshot is enabled for remote replication. 
+    :type enable_remote_replication: bool
+
+    :param expiration_reason: [required] Indicates how the snapshot expiration was set. Possible values: api: expiration time was set by using the API. none: there is no expiration time set. test: expiration time was set for testing. 
+    :type expiration_reason: str
+
+    :param expiration_time:  The time at which this snapshot will expire and be purged from the cluster. 
+    :type expiration_time: str
+
+    :param remote_statuses:  Current remote status of the snapshot remoteStatus: Possible values: Present: Snapshot exists on a remote cluster Not Present: Snapshot does not exist on remote cluster Syncing: This is a target cluster and it is currently replicating the snapshot Deleted: This is a target cluster, the snapshot has been deleted, and it still exists on the source. volumePairUUID: universal identifier of the volume pair 
+    :type remote_statuses: SnapshotRemoteStatus
+
+    :param status: [required] Current status of the snapshot Preparing: A snapshot that is being prepared for use and is not yet writable. Done: A snapshot that has finished being prepared and is now usable. Active: This snapshot is the active branch. 
+    :type status: str
+
+    :param snapshot_uuid: [required] Universal Unique ID of an existing snapshot. 
+    :type snapshot_uuid: UUID
+
+    :param total_size: [required] Total size of this snapshot in bytes. It is equivalent to totalSize of the volume when this snapshot was taken. 
+    :type total_size: int
+
+    :param group_id:  If present, the ID of the group this snapshot is a part of. If not present, this snapshot is not part of a group. 
+    :type group_id: int
+
+    :param group_snapshot_uuid: [required] The current "members" results contains information about each snapshot in the group. Each of these members will have a "uuid" parameter for the snapshot's UUID. 
+    :type group_snapshot_uuid: UUID
+
+    :param create_time: [required] The time this snapshot was taken. 
+    :type create_time: str
+
+    :param instance_create_time: [required]  
+    :type instance_create_time: str
+
+    :param volume_name: [required]  
+    :type volume_name: str
+
+    :param instance_snapshot_uuid: [required]  
+    :type instance_snapshot_uuid: UUID
+
+    :param virtual_volume_id:  The ID of the virtual volume with which the snapshot is associated. 
+    :type virtual_volume_id: UUID
+
+    :param attributes: [required] List of Name/Value pairs in JSON object format. 
+    :type attributes: dict
+
+    :param snap_mirror_label:  Label used by SnapMirror software to specify snapshot retention policy on SnapMirror endpoint. 
+    :type snap_mirror_label: str
+
+    """
+    snapshot_id = data_model.property(
+        "snapshotID", int,
+        array=False, optional=False,
+        documentation="""Unique ID for this snapshot. """,
+        dictionaryType=None
+    )
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="""The volume this snapshot was taken of. """,
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="""A name for this snapshot. It is not necessarily unique. """,
+        dictionaryType=None
+    )
+    checksum = data_model.property(
+        "checksum", str,
+        array=False, optional=False,
+        documentation="""A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. """,
+        dictionaryType=None
+    )
+    enable_remote_replication = data_model.property(
+        "enableRemoteReplication", bool,
+        array=False, optional=False,
+        documentation="""Identifies if snapshot is enabled for remote replication. """,
+        dictionaryType=None
+    )
+    expiration_reason = data_model.property(
+        "expirationReason", str,
+        array=False, optional=False,
+        documentation="""Indicates how the snapshot expiration was set. Possible values: api: expiration time was set by using the API. none: there is no expiration time set. test: expiration time was set for testing. """,
+        dictionaryType=None
+    )
+    expiration_time = data_model.property(
+        "expirationTime", str,
+        array=False, optional=True,
+        documentation="""The time at which this snapshot will expire and be purged from the cluster. """,
+        dictionaryType=None
+    )
+    remote_statuses = data_model.property(
+        "remoteStatuses", SnapshotRemoteStatus,
+        array=True, optional=True,
+        documentation="""Current remote status of the snapshot remoteStatus: Possible values: Present: Snapshot exists on a remote cluster Not Present: Snapshot does not exist on remote cluster Syncing: This is a target cluster and it is currently replicating the snapshot Deleted: This is a target cluster, the snapshot has been deleted, and it still exists on the source. volumePairUUID: universal identifier of the volume pair """,
+        dictionaryType=None
+    )
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation="""Current status of the snapshot Preparing: A snapshot that is being prepared for use and is not yet writable. Done: A snapshot that has finished being prepared and is now usable. Active: This snapshot is the active branch. """,
+        dictionaryType=None
+    )
+    snapshot_uuid = data_model.property(
+        "snapshotUUID", UUID,
+        array=False, optional=False,
+        documentation="""Universal Unique ID of an existing snapshot. """,
+        dictionaryType=None
+    )
+    total_size = data_model.property(
+        "totalSize", int,
+        array=False, optional=False,
+        documentation="""Total size of this snapshot in bytes. It is equivalent to totalSize of the volume when this snapshot was taken. """,
+        dictionaryType=None
+    )
+    group_id = data_model.property(
+        "groupID", int,
+        array=False, optional=True,
+        documentation="""If present, the ID of the group this snapshot is a part of. If not present, this snapshot is not part of a group. """,
+        dictionaryType=None
+    )
+    group_snapshot_uuid = data_model.property(
+        "groupSnapshotUUID", UUID,
+        array=False, optional=False,
+        documentation="""The current "members" results contains information about each snapshot in the group. Each of these members will have a "uuid" parameter for the snapshot's UUID. """,
+        dictionaryType=None
+    )
+    create_time = data_model.property(
+        "createTime", str,
+        array=False, optional=False,
+        documentation="""The time this snapshot was taken. """,
+        dictionaryType=None
+    )
+    instance_create_time = data_model.property(
+        "instanceCreateTime", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    volume_name = data_model.property(
+        "volumeName", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    instance_snapshot_uuid = data_model.property(
+        "instanceSnapshotUUID", UUID,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    virtual_volume_id = data_model.property(
+        "virtualVolumeID", UUID,
+        array=False, optional=True,
+        documentation="""The ID of the virtual volume with which the snapshot is associated. """,
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=False,
+        documentation="""List of Name/Value pairs in JSON object format. """,
+        dictionaryType=None
+    )
+    snap_mirror_label = data_model.property(
+        "snapMirrorLabel", str,
+        array=False, optional=True,
+        documentation="""Label used by SnapMirror software to specify snapshot retention policy on SnapMirror endpoint. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snapshot_id,
+            volume_id,
+            name,
+            checksum,
+            enable_remote_replication,
+            expiration_reason,
+            status,
+            snapshot_uuid,
+            total_size,
+            group_snapshot_uuid,
+            create_time,
+            instance_create_time,
+            volume_name,
+            instance_snapshot_uuid,
+            attributes,
+            expiration_time=None,
+            remote_statuses=None,
+            group_id=None,
+            virtual_volume_id=None,
+            snap_mirror_label=None):
+
+        super(Snapshot, self).__init__(**{ 
+            "snapshot_id": snapshot_id,
+            "volume_id": volume_id,
+            "name": name,
+            "checksum": checksum,
+            "enable_remote_replication": enable_remote_replication,
+            "expiration_reason": expiration_reason,
+            "expiration_time": expiration_time,
+            "remote_statuses": remote_statuses,
+            "status": status,
+            "snapshot_uuid": snapshot_uuid,
+            "total_size": total_size,
+            "group_id": group_id,
+            "group_snapshot_uuid": group_snapshot_uuid,
+            "create_time": create_time,
+            "instance_create_time": instance_create_time,
+            "volume_name": volume_name,
+            "instance_snapshot_uuid": instance_snapshot_uuid,
+            "virtual_volume_id": virtual_volume_id,
+            "attributes": attributes,
+            "snap_mirror_label": snap_mirror_label, })
+        
+
+class ModifySnapshotResult(data_model.DataObject):
+    """ModifySnapshotResult  
+
+    :param snapshot:   
+    :type snapshot: Snapshot
+
+    """
+    snapshot = data_model.property(
+        "snapshot", Snapshot,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snapshot=None):
+
+        super(ModifySnapshotResult, self).__init__(**{ 
+            "snapshot": snapshot, })
+        
 
 class SnapMirrorClusterIdentity(data_model.DataObject):
     """SnapMirrorClusterIdentity  
@@ -8458,9 +9278,13 @@ class SnapMirrorClusterIdentity(data_model.DataObject):
             cluster_name,
             cluster_uuid,
             cluster_serial_number):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SnapMirrorClusterIdentity, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "cluster_name": cluster_name,
+            "cluster_uuid": cluster_uuid,
+            "cluster_serial_number": cluster_serial_number, })
+        
 
 class GetSnapMirrorClusterIdentityResult(data_model.DataObject):
     """GetSnapMirrorClusterIdentityResult  
@@ -8478,9 +9302,10 @@ class GetSnapMirrorClusterIdentityResult(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_cluster_identity):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetSnapMirrorClusterIdentityResult, self).__init__(**{ 
+            "snap_mirror_cluster_identity": snap_mirror_cluster_identity, })
+        
 
 class PurgeDeletedVolumesRequest(data_model.DataObject):
     """PurgeDeletedVolumesRequest  
@@ -8522,9 +9347,12 @@ class PurgeDeletedVolumesRequest(data_model.DataObject):
             volume_ids=None,
             account_ids=None,
             volume_access_group_ids=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(PurgeDeletedVolumesRequest, self).__init__(**{ 
+            "volume_ids": volume_ids,
+            "account_ids": account_ids,
+            "volume_access_group_ids": volume_access_group_ids, })
+        
 
 class RemoveAccountResult(data_model.DataObject):
     """RemoveAccountResult  
@@ -8532,9 +9360,9 @@ class RemoveAccountResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RemoveAccountResult, self).__init__(**{  })
+        
 
 class GetVolumeCountResult(data_model.DataObject):
     """GetVolumeCountResult  
@@ -8552,9 +9380,10 @@ class GetVolumeCountResult(data_model.DataObject):
 
     def __init__(self,
             count):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetVolumeCountResult, self).__init__(**{ 
+            "count": count, })
+        
 
 class GetStorageContainerEfficiencyRequest(data_model.DataObject):
     """GetStorageContainerEfficiencyRequest  
@@ -8573,9 +9402,10 @@ class GetStorageContainerEfficiencyRequest(data_model.DataObject):
 
     def __init__(self,
             storage_container_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetStorageContainerEfficiencyRequest, self).__init__(**{ 
+            "storage_container_id": storage_container_id, })
+        
 
 class Initiator(data_model.DataObject):
     """Initiator  
@@ -8634,9 +9464,14 @@ class Initiator(data_model.DataObject):
             initiator_name,
             volume_access_groups,
             attributes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(Initiator, self).__init__(**{ 
+            "alias": alias,
+            "initiator_id": initiator_id,
+            "initiator_name": initiator_name,
+            "volume_access_groups": volume_access_groups,
+            "attributes": attributes, })
+        
 
 class ISCSISession(data_model.DataObject):
     """ISCSISession  
@@ -8854,9 +9689,30 @@ class ISCSISession(data_model.DataObject):
             initiator=None,
             ms_since_last_scsi_command=None,
             ms_since_last_iscsi_pdu=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ISCSISession, self).__init__(**{ 
+            "drive_ids": drive_ids,
+            "account_id": account_id,
+            "initiator": initiator,
+            "account_name": account_name,
+            "drive_id": drive_id,
+            "initiator_ip": initiator_ip,
+            "initiator_port_name": initiator_port_name,
+            "target_port_name": target_port_name,
+            "initiator_name": initiator_name,
+            "node_id": node_id,
+            "service_id": service_id,
+            "session_id": session_id,
+            "target_name": target_name,
+            "target_ip": target_ip,
+            "virtual_network_id": virtual_network_id,
+            "volume_id": volume_id,
+            "create_time": create_time,
+            "volume_instance": volume_instance,
+            "initiator_session_id": initiator_session_id,
+            "ms_since_last_scsi_command": ms_since_last_scsi_command,
+            "ms_since_last_iscsi_pdu": ms_since_last_iscsi_pdu, })
+        
 
 class ListISCSISessionsResult(data_model.DataObject):
     """ListISCSISessionsResult  
@@ -8874,9 +9730,10 @@ class ListISCSISessionsResult(data_model.DataObject):
 
     def __init__(self,
             sessions):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListISCSISessionsResult, self).__init__(**{ 
+            "sessions": sessions, })
+        
 
 class ListVirtualVolumesRequest(data_model.DataObject):
     """ListVirtualVolumesRequest  
@@ -8936,9 +9793,14 @@ class ListVirtualVolumesRequest(data_model.DataObject):
             recursive=None,
             start_virtual_volume_id=None,
             virtual_volume_ids=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListVirtualVolumesRequest, self).__init__(**{ 
+            "details": details,
+            "limit": limit,
+            "recursive": recursive,
+            "start_virtual_volume_id": start_virtual_volume_id,
+            "virtual_volume_ids": virtual_volume_ids, })
+        
 
 class CompleteVolumePairingResult(data_model.DataObject):
     """CompleteVolumePairingResult  
@@ -8946,9 +9808,9 @@ class CompleteVolumePairingResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CompleteVolumePairingResult, self).__init__(**{  })
+        
 
 class ListDeletedVolumesRequest(data_model.DataObject):
     """ListDeletedVolumesRequest  
@@ -8967,9 +9829,10 @@ class ListDeletedVolumesRequest(data_model.DataObject):
 
     def __init__(self,
             include_virtual_volumes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListDeletedVolumesRequest, self).__init__(**{ 
+            "include_virtual_volumes": include_virtual_volumes, })
+        
 
 class CreateSnapMirrorVolumeResult(data_model.DataObject):
     """CreateSnapMirrorVolumeResult  
@@ -8987,9 +9850,10 @@ class CreateSnapMirrorVolumeResult(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_volume):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateSnapMirrorVolumeResult, self).__init__(**{ 
+            "snap_mirror_volume": snap_mirror_volume, })
+        
 
 class ListStorageContainersResult(data_model.DataObject):
     """ListStorageContainersResult  
@@ -9007,9 +9871,10 @@ class ListStorageContainersResult(data_model.DataObject):
 
     def __init__(self,
             storage_containers):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListStorageContainersResult, self).__init__(**{ 
+            "storage_containers": storage_containers, })
+        
 
 class GetLdapConfigurationResult(data_model.DataObject):
     """GetLdapConfigurationResult  
@@ -9027,9 +9892,10 @@ class GetLdapConfigurationResult(data_model.DataObject):
 
     def __init__(self,
             ldap_configuration):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetLdapConfigurationResult, self).__init__(**{ 
+            "ldap_configuration": ldap_configuration, })
+        
 
 class GroupSnapshotMembers(data_model.DataObject):
     """GroupSnapshotMembers  
@@ -9218,9 +10084,27 @@ class GroupSnapshotMembers(data_model.DataObject):
             total_size=None,
             virtual_volume_id=None,
             volume_pair_uuid=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GroupSnapshotMembers, self).__init__(**{ 
+            "volume_id": volume_id,
+            "snapshot_id": snapshot_id,
+            "snapshot_uuid": snapshot_uuid,
+            "checksum": checksum,
+            "attributes": attributes,
+            "create_time": create_time,
+            "enable_remote_replication": enable_remote_replication,
+            "expiration_reason": expiration_reason,
+            "expiration_time": expiration_time,
+            "group_id": group_id,
+            "group_snapshot_uuid": group_snapshot_uuid,
+            "name": name,
+            "remote_status": remote_status,
+            "remote_statuses": remote_statuses,
+            "status": status,
+            "total_size": total_size,
+            "virtual_volume_id": virtual_volume_id,
+            "volume_pair_uuid": volume_pair_uuid, })
+        
 
 class GroupSnapshot(data_model.DataObject):
     """GroupSnapshot  
@@ -9299,9 +10183,16 @@ class GroupSnapshot(data_model.DataObject):
             create_time,
             status,
             attributes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GroupSnapshot, self).__init__(**{ 
+            "group_snapshot_id": group_snapshot_id,
+            "group_snapshot_uuid": group_snapshot_uuid,
+            "members": members,
+            "name": name,
+            "create_time": create_time,
+            "status": status,
+            "attributes": attributes, })
+        
 
 class ModifyGroupSnapshotResult(data_model.DataObject):
     """ModifyGroupSnapshotResult  
@@ -9319,9 +10210,10 @@ class ModifyGroupSnapshotResult(data_model.DataObject):
 
     def __init__(self,
             group_snapshot):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifyGroupSnapshotResult, self).__init__(**{ 
+            "group_snapshot": group_snapshot, })
+        
 
 class ListDriveStatsRequest(data_model.DataObject):
     """ListDriveStatsRequest  
@@ -9340,9 +10232,10 @@ class ListDriveStatsRequest(data_model.DataObject):
 
     def __init__(self,
             drives=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListDriveStatsRequest, self).__init__(**{ 
+            "drives": drives, })
+        
 
 class ListInitiatorsRequest(data_model.DataObject):
     """ListInitiatorsRequest  
@@ -9381,9 +10274,12 @@ class ListInitiatorsRequest(data_model.DataObject):
             start_initiator_id=None,
             limit=None,
             initiators=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListInitiatorsRequest, self).__init__(**{ 
+            "start_initiator_id": start_initiator_id,
+            "limit": limit,
+            "initiators": initiators, })
+        
 
 class ListInitiatorsResult(data_model.DataObject):
     """ListInitiatorsResult  
@@ -9401,9 +10297,10 @@ class ListInitiatorsResult(data_model.DataObject):
 
     def __init__(self,
             initiators):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListInitiatorsResult, self).__init__(**{ 
+            "initiators": initiators, })
+        
 
 class AddressBlock(data_model.DataObject):
     """AddressBlock  
@@ -9442,9 +10339,12 @@ class AddressBlock(data_model.DataObject):
             start,
             size,
             available):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(AddressBlock, self).__init__(**{ 
+            "start": start,
+            "size": size,
+            "available": available, })
+        
 
 class VirtualNetwork(data_model.DataObject):
     """VirtualNetwork  
@@ -9542,9 +10442,18 @@ class VirtualNetwork(data_model.DataObject):
             gateway=None,
             namespace=None,
             attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(VirtualNetwork, self).__init__(**{ 
+            "virtual_network_id": virtual_network_id,
+            "virtual_network_tag": virtual_network_tag,
+            "address_blocks": address_blocks,
+            "name": name,
+            "netmask": netmask,
+            "svip": svip,
+            "gateway": gateway,
+            "namespace": namespace,
+            "attributes": attributes, })
+        
 
 class ListVirtualNetworksResult(data_model.DataObject):
     """ListVirtualNetworksResult  
@@ -9562,9 +10471,10 @@ class ListVirtualNetworksResult(data_model.DataObject):
 
     def __init__(self,
             virtual_networks):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListVirtualNetworksResult, self).__init__(**{ 
+            "virtual_networks": virtual_networks, })
+        
 
 class ListQoSPoliciesResult(data_model.DataObject):
     """ListQoSPoliciesResult  
@@ -9582,9 +10492,10 @@ class ListQoSPoliciesResult(data_model.DataObject):
 
     def __init__(self,
             qos_policies):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListQoSPoliciesResult, self).__init__(**{ 
+            "qos_policies": qos_policies, })
+        
 
 class StartVolumePairingRequest(data_model.DataObject):
     """StartVolumePairingRequest  
@@ -9614,9 +10525,11 @@ class StartVolumePairingRequest(data_model.DataObject):
     def __init__(self,
             volume_id,
             mode=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(StartVolumePairingRequest, self).__init__(**{ 
+            "volume_id": volume_id,
+            "mode": mode, })
+        
 
 class DisableSnmpResult(data_model.DataObject):
     """DisableSnmpResult  
@@ -9624,9 +10537,9 @@ class DisableSnmpResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DisableSnmpResult, self).__init__(**{  })
+        
 
 class SetNetworkConfigResult(data_model.DataObject):
     """SetNetworkConfigResult  
@@ -9644,9 +10557,10 @@ class SetNetworkConfigResult(data_model.DataObject):
 
     def __init__(self,
             network):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetNetworkConfigResult, self).__init__(**{ 
+            "network": network, })
+        
 
 class AddressBlockParams(data_model.DataObject):
     """AddressBlockParams  
@@ -9675,9 +10589,11 @@ class AddressBlockParams(data_model.DataObject):
     def __init__(self,
             start,
             size):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(AddressBlockParams, self).__init__(**{ 
+            "start": start,
+            "size": size, })
+        
 
 class AddVirtualNetworkRequest(data_model.DataObject):
     """AddVirtualNetworkRequest  
@@ -9773,9 +10689,17 @@ class AddVirtualNetworkRequest(data_model.DataObject):
             gateway=None,
             namespace=None,
             attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(AddVirtualNetworkRequest, self).__init__(**{ 
+            "virtual_network_tag": virtual_network_tag,
+            "name": name,
+            "address_blocks": address_blocks,
+            "netmask": netmask,
+            "svip": svip,
+            "gateway": gateway,
+            "namespace": namespace,
+            "attributes": attributes, })
+        
 
 class ListClusterFaultsRequest(data_model.DataObject):
     """ListClusterFaultsRequest  
@@ -9804,9 +10728,11 @@ class ListClusterFaultsRequest(data_model.DataObject):
     def __init__(self,
             best_practices=None,
             fault_types=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListClusterFaultsRequest, self).__init__(**{ 
+            "best_practices": best_practices,
+            "fault_types": fault_types, })
+        
 
 class TestPingResult(data_model.DataObject):
     """TestPingResult  
@@ -9844,9 +10770,12 @@ class TestPingResult(data_model.DataObject):
             result,
             duration,
             details):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(TestPingResult, self).__init__(**{ 
+            "result": result,
+            "duration": duration,
+            "details": details, })
+        
 
 class BackupTarget(data_model.DataObject):
     """BackupTarget  
@@ -9885,9 +10814,12 @@ class BackupTarget(data_model.DataObject):
             name,
             backup_target_id,
             attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(BackupTarget, self).__init__(**{ 
+            "name": name,
+            "backup_target_id": backup_target_id,
+            "attributes": attributes, })
+        
 
 class GetBackupTargetResult(data_model.DataObject):
     """GetBackupTargetResult  
@@ -9905,9 +10837,10 @@ class GetBackupTargetResult(data_model.DataObject):
 
     def __init__(self,
             backup_target):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetBackupTargetResult, self).__init__(**{ 
+            "backup_target": backup_target, })
+        
 
 class AddDrivesResult(data_model.DataObject):
     """AddDrivesResult  
@@ -9925,9 +10858,10 @@ class AddDrivesResult(data_model.DataObject):
 
     def __init__(self,
             async_handle=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(AddDrivesResult, self).__init__(**{ 
+            "async_handle": async_handle, })
+        
 
 class ListVolumeStatsByVirtualVolumeRequest(data_model.DataObject):
     """ListVolumeStatsByVirtualVolumeRequest  
@@ -9946,9 +10880,10 @@ class ListVolumeStatsByVirtualVolumeRequest(data_model.DataObject):
 
     def __init__(self,
             virtual_volume_ids=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListVolumeStatsByVirtualVolumeRequest, self).__init__(**{ 
+            "virtual_volume_ids": virtual_volume_ids, })
+        
 
 class SetConfigResult(data_model.DataObject):
     """SetConfigResult  
@@ -9966,9 +10901,10 @@ class SetConfigResult(data_model.DataObject):
 
     def __init__(self,
             config):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetConfigResult, self).__init__(**{ 
+            "config": config, })
+        
 
 class StartBulkVolumeWriteRequest(data_model.DataObject):
     """StartBulkVolumeWriteRequest  
@@ -10028,9 +10964,14 @@ class StartBulkVolumeWriteRequest(data_model.DataObject):
             script=None,
             script_parameters=None,
             attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(StartBulkVolumeWriteRequest, self).__init__(**{ 
+            "volume_id": volume_id,
+            "format": format,
+            "script": script,
+            "script_parameters": script_parameters,
+            "attributes": attributes, })
+        
 
 class ModifyVolumeResult(data_model.DataObject):
     """ModifyVolumeResult  
@@ -10048,9 +10989,10 @@ class ModifyVolumeResult(data_model.DataObject):
 
     def __init__(self,
             volume=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifyVolumeResult, self).__init__(**{ 
+            "volume": volume, })
+        
 
 class ModifyClusterAdminRequest(data_model.DataObject):
     """ModifyClusterAdminRequest  
@@ -10099,251 +11041,13 @@ class ModifyClusterAdminRequest(data_model.DataObject):
             password=None,
             access=None,
             attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class SnapshotRemoteStatus(data_model.DataObject):
-    """SnapshotRemoteStatus  
-
-    :param remote_status: [required]  
-    :type remote_status: str
-
-    :param volume_pair_uuid: [required] The snapshot is done and is writable (the active branch of the slice). 
-    :type volume_pair_uuid: UUID
-
-    """
-    remote_status = data_model.property(
-        "remoteStatus", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    volume_pair_uuid = data_model.property(
-        "volumePairUUID", UUID,
-        array=False, optional=False,
-        documentation="""The snapshot is done and is writable (the active branch of the slice). """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            remote_status,
-            volume_pair_uuid):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class Snapshot(data_model.DataObject):
-    """Snapshot  
-    Snapshots is an object containing information about each snapshot made for a volume.
-    The return object includes information for the active snapshot as well as each snapshot created for the volume.
-
-    :param snapshot_id: [required] Unique ID for this snapshot. 
-    :type snapshot_id: int
-
-    :param volume_id: [required] The volume this snapshot was taken of. 
-    :type volume_id: int
-
-    :param name: [required] A name for this snapshot. It is not necessarily unique. 
-    :type name: str
-
-    :param checksum: [required] A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. 
-    :type checksum: str
-
-    :param enable_remote_replication: [required] Identifies if snapshot is enabled for remote replication. 
-    :type enable_remote_replication: bool
-
-    :param expiration_reason: [required] Indicates how the snapshot expiration was set. Possible values: api: expiration time was set by using the API. none: there is no expiration time set. test: expiration time was set for testing. 
-    :type expiration_reason: str
-
-    :param expiration_time:  The time at which this snapshot will expire and be purged from the cluster. 
-    :type expiration_time: str
-
-    :param remote_statuses:  Current remote status of the snapshot remoteStatus: Possible values: Present: Snapshot exists on a remote cluster Not Present: Snapshot does not exist on remote cluster Syncing: This is a target cluster and it is currently replicating the snapshot Deleted: This is a target cluster, the snapshot has been deleted, and it still exists on the source. volumePairUUID: universal identifier of the volume pair 
-    :type remote_statuses: SnapshotRemoteStatus
-
-    :param status: [required] Current status of the snapshot Preparing: A snapshot that is being prepared for use and is not yet writable. Done: A snapshot that has finished being prepared and is now usable. Active: This snapshot is the active branch. 
-    :type status: str
-
-    :param snapshot_uuid: [required] Universal Unique ID of an existing snapshot. 
-    :type snapshot_uuid: UUID
-
-    :param total_size: [required] Total size of this snapshot in bytes. It is equivalent to totalSize of the volume when this snapshot was taken. 
-    :type total_size: int
-
-    :param group_id:  If present, the ID of the group this snapshot is a part of. If not present, this snapshot is not part of a group. 
-    :type group_id: int
-
-    :param group_snapshot_uuid: [required] The current "members" results contains information about each snapshot in the group. Each of these members will have a "uuid" parameter for the snapshot's UUID. 
-    :type group_snapshot_uuid: UUID
-
-    :param create_time: [required] The time this snapshot was taken. 
-    :type create_time: str
-
-    :param instance_create_time: [required]  
-    :type instance_create_time: str
-
-    :param volume_name: [required]  
-    :type volume_name: str
-
-    :param instance_snapshot_uuid: [required]  
-    :type instance_snapshot_uuid: UUID
-
-    :param virtual_volume_id:  The ID of the virtual volume with which the snapshot is associated. 
-    :type virtual_volume_id: UUID
-
-    :param attributes: [required] List of Name/Value pairs in JSON object format. 
-    :type attributes: dict
-
-    :param snap_mirror_label:  Label used by SnapMirror software to specify snapshot retention policy on SnapMirror endpoint. 
-    :type snap_mirror_label: str
-
-    """
-    snapshot_id = data_model.property(
-        "snapshotID", int,
-        array=False, optional=False,
-        documentation="""Unique ID for this snapshot. """,
-        dictionaryType=None
-    )
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=False,
-        documentation="""The volume this snapshot was taken of. """,
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation="""A name for this snapshot. It is not necessarily unique. """,
-        dictionaryType=None
-    )
-    checksum = data_model.property(
-        "checksum", str,
-        array=False, optional=False,
-        documentation="""A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. """,
-        dictionaryType=None
-    )
-    enable_remote_replication = data_model.property(
-        "enableRemoteReplication", bool,
-        array=False, optional=False,
-        documentation="""Identifies if snapshot is enabled for remote replication. """,
-        dictionaryType=None
-    )
-    expiration_reason = data_model.property(
-        "expirationReason", str,
-        array=False, optional=False,
-        documentation="""Indicates how the snapshot expiration was set. Possible values: api: expiration time was set by using the API. none: there is no expiration time set. test: expiration time was set for testing. """,
-        dictionaryType=None
-    )
-    expiration_time = data_model.property(
-        "expirationTime", str,
-        array=False, optional=True,
-        documentation="""The time at which this snapshot will expire and be purged from the cluster. """,
-        dictionaryType=None
-    )
-    remote_statuses = data_model.property(
-        "remoteStatuses", SnapshotRemoteStatus,
-        array=True, optional=True,
-        documentation="""Current remote status of the snapshot remoteStatus: Possible values: Present: Snapshot exists on a remote cluster Not Present: Snapshot does not exist on remote cluster Syncing: This is a target cluster and it is currently replicating the snapshot Deleted: This is a target cluster, the snapshot has been deleted, and it still exists on the source. volumePairUUID: universal identifier of the volume pair """,
-        dictionaryType=None
-    )
-    status = data_model.property(
-        "status", str,
-        array=False, optional=False,
-        documentation="""Current status of the snapshot Preparing: A snapshot that is being prepared for use and is not yet writable. Done: A snapshot that has finished being prepared and is now usable. Active: This snapshot is the active branch. """,
-        dictionaryType=None
-    )
-    snapshot_uuid = data_model.property(
-        "snapshotUUID", UUID,
-        array=False, optional=False,
-        documentation="""Universal Unique ID of an existing snapshot. """,
-        dictionaryType=None
-    )
-    total_size = data_model.property(
-        "totalSize", int,
-        array=False, optional=False,
-        documentation="""Total size of this snapshot in bytes. It is equivalent to totalSize of the volume when this snapshot was taken. """,
-        dictionaryType=None
-    )
-    group_id = data_model.property(
-        "groupID", int,
-        array=False, optional=True,
-        documentation="""If present, the ID of the group this snapshot is a part of. If not present, this snapshot is not part of a group. """,
-        dictionaryType=None
-    )
-    group_snapshot_uuid = data_model.property(
-        "groupSnapshotUUID", UUID,
-        array=False, optional=False,
-        documentation="""The current "members" results contains information about each snapshot in the group. Each of these members will have a "uuid" parameter for the snapshot's UUID. """,
-        dictionaryType=None
-    )
-    create_time = data_model.property(
-        "createTime", str,
-        array=False, optional=False,
-        documentation="""The time this snapshot was taken. """,
-        dictionaryType=None
-    )
-    instance_create_time = data_model.property(
-        "instanceCreateTime", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    volume_name = data_model.property(
-        "volumeName", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    instance_snapshot_uuid = data_model.property(
-        "instanceSnapshotUUID", UUID,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    virtual_volume_id = data_model.property(
-        "virtualVolumeID", UUID,
-        array=False, optional=True,
-        documentation="""The ID of the virtual volume with which the snapshot is associated. """,
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=False,
-        documentation="""List of Name/Value pairs in JSON object format. """,
-        dictionaryType=None
-    )
-    snap_mirror_label = data_model.property(
-        "snapMirrorLabel", str,
-        array=False, optional=True,
-        documentation="""Label used by SnapMirror software to specify snapshot retention policy on SnapMirror endpoint. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            snapshot_id,
-            volume_id,
-            name,
-            checksum,
-            enable_remote_replication,
-            expiration_reason,
-            status,
-            snapshot_uuid,
-            total_size,
-            group_snapshot_uuid,
-            create_time,
-            instance_create_time,
-            volume_name,
-            instance_snapshot_uuid,
-            attributes,
-            expiration_time=None,
-            remote_statuses=None,
-            group_id=None,
-            virtual_volume_id=None,
-            snap_mirror_label=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+        super(ModifyClusterAdminRequest, self).__init__(**{ 
+            "cluster_admin_id": cluster_admin_id,
+            "password": password,
+            "access": access,
+            "attributes": attributes, })
+        
 
 class VirtualVolumeInfo(data_model.DataObject):
     """VirtualVolumeInfo  
@@ -10481,9 +11185,22 @@ class VirtualVolumeInfo(data_model.DataObject):
             snapshot_info=None,
             volume_info=None,
             descendants=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(VirtualVolumeInfo, self).__init__(**{ 
+            "virtual_volume_id": virtual_volume_id,
+            "parent_virtual_volume_id": parent_virtual_volume_id,
+            "storage_container": storage_container,
+            "volume_id": volume_id,
+            "snapshot_id": snapshot_id,
+            "virtual_volume_type": virtual_volume_type,
+            "status": status,
+            "bindings": bindings,
+            "children": children,
+            "metadata": metadata,
+            "snapshot_info": snapshot_info,
+            "volume_info": volume_info,
+            "descendants": descendants, })
+        
 
 class ListVirtualVolumesResult(data_model.DataObject):
     """ListVirtualVolumesResult  
@@ -10511,9 +11228,11 @@ class ListVirtualVolumesResult(data_model.DataObject):
     def __init__(self,
             virtual_volumes,
             next_virtual_volume_id=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListVirtualVolumesResult, self).__init__(**{ 
+            "virtual_volumes": virtual_volumes,
+            "next_virtual_volume_id": next_virtual_volume_id, })
+        
 
 class DeleteVolumesResult(data_model.DataObject):
     """DeleteVolumesResult  
@@ -10531,9 +11250,10 @@ class DeleteVolumesResult(data_model.DataObject):
 
     def __init__(self,
             volumes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DeleteVolumesResult, self).__init__(**{ 
+            "volumes": volumes, })
+        
 
 class ModifyQoSPolicyResult(data_model.DataObject):
     """ModifyQoSPolicyResult  
@@ -10551,9 +11271,10 @@ class ModifyQoSPolicyResult(data_model.DataObject):
 
     def __init__(self,
             qos_policy):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifyQoSPolicyResult, self).__init__(**{ 
+            "qos_policy": qos_policy, })
+        
 
 class TestConnectSvipRequest(data_model.DataObject):
     """TestConnectSvipRequest  
@@ -10573,9 +11294,10 @@ class TestConnectSvipRequest(data_model.DataObject):
 
     def __init__(self,
             svip=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(TestConnectSvipRequest, self).__init__(**{ 
+            "svip": svip, })
+        
 
 class TestPingRequest(data_model.DataObject):
     """TestPingRequest  
@@ -10646,109 +11368,15 @@ class TestPingRequest(data_model.DataObject):
             packet_size=None,
             ping_timeout_msec=None,
             prohibit_fragmentation=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class NodeSshInfo(data_model.DataObject):
-    """NodeSshInfo  
-
-    :param node_id: [required] The node's ID. 
-    :type node_id: int
-
-    :param enabled: [required] The status of SSH on the node. 
-    :type enabled: bool
-
-    """
-    node_id = data_model.property(
-        "nodeID", int,
-        array=False, optional=False,
-        documentation="""The node's ID. """,
-        dictionaryType=None
-    )
-    enabled = data_model.property(
-        "enabled", bool,
-        array=False, optional=False,
-        documentation="""The status of SSH on the node. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            node_id,
-            enabled):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ClusterSshInfo(data_model.DataObject):
-    """ClusterSshInfo  
-
-    :param enabled: [required] Status of SSH on the cluster. 
-    :type enabled: str
-
-    :param time_remaining: [required] Time remaining until SSH is disable on the cluster. 
-    :type time_remaining: str
-
-    :param disable_time:  The "disableTime" entry will not be included if SSH is disabled or if SSH has been turned on permanently. 
-    :type disable_time: str
-
-    :param nodes: [required] Time remaining until SSH is disable on the cluster. 
-    :type nodes: NodeSshInfo
-
-    """
-    enabled = data_model.property(
-        "enabled", str,
-        array=False, optional=False,
-        documentation="""Status of SSH on the cluster. """,
-        dictionaryType=None
-    )
-    time_remaining = data_model.property(
-        "timeRemaining", str,
-        array=False, optional=False,
-        documentation="""Time remaining until SSH is disable on the cluster. """,
-        dictionaryType=None
-    )
-    disable_time = data_model.property(
-        "disableTime", str,
-        array=False, optional=True,
-        documentation="""The "disableTime" entry will not be included if SSH is disabled or if SSH has been turned on permanently. """,
-        dictionaryType=None
-    )
-    nodes = data_model.property(
-        "nodes", NodeSshInfo,
-        array=True, optional=False,
-        documentation="""Time remaining until SSH is disable on the cluster. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            enabled,
-            time_remaining,
-            nodes,
-            disable_time=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetClusterSshInfoResult(data_model.DataObject):
-    """GetClusterSshInfoResult  
-
-    :param cluster_ssh_info: [required] The SSH info for the cluster. 
-    :type cluster_ssh_info: ClusterSshInfo
-
-    """
-    cluster_ssh_info = data_model.property(
-        "clusterSshInfo", ClusterSshInfo,
-        array=False, optional=False,
-        documentation="""The SSH info for the cluster. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            cluster_ssh_info):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+        super(TestPingRequest, self).__init__(**{ 
+            "attempts": attempts,
+            "hosts": hosts,
+            "total_timeout_sec": total_timeout_sec,
+            "packet_size": packet_size,
+            "ping_timeout_msec": ping_timeout_msec,
+            "prohibit_fragmentation": prohibit_fragmentation, })
+        
 
 class NodeStatsInfo(data_model.DataObject):
     """NodeStatsInfo  
@@ -10936,9 +11564,27 @@ class NodeStatsInfo(data_model.DataObject):
             used_memory,
             write_latency_usec_total,
             write_ops):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(NodeStatsInfo, self).__init__(**{ 
+            "c_bytes_in": c_bytes_in,
+            "c_bytes_out": c_bytes_out,
+            "count": count,
+            "cpu": cpu,
+            "cpu_total": cpu_total,
+            "m_bytes_in": m_bytes_in,
+            "m_bytes_out": m_bytes_out,
+            "network_utilization_cluster": network_utilization_cluster,
+            "network_utilization_storage": network_utilization_storage,
+            "node_id": node_id,
+            "read_ops": read_ops,
+            "read_latency_usec_total": read_latency_usec_total,
+            "s_bytes_in": s_bytes_in,
+            "s_bytes_out": s_bytes_out,
+            "timestamp": timestamp,
+            "used_memory": used_memory,
+            "write_latency_usec_total": write_latency_usec_total,
+            "write_ops": write_ops, })
+        
 
 class NodeStatsNodes(data_model.DataObject):
     """NodeStatsNodes  
@@ -10956,9 +11602,10 @@ class NodeStatsNodes(data_model.DataObject):
 
     def __init__(self,
             nodes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(NodeStatsNodes, self).__init__(**{ 
+            "nodes": nodes, })
+        
 
 class ListNodeStatsResult(data_model.DataObject):
     """ListNodeStatsResult  
@@ -10976,9 +11623,10 @@ class ListNodeStatsResult(data_model.DataObject):
 
     def __init__(self,
             node_stats):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListNodeStatsResult, self).__init__(**{ 
+            "node_stats": node_stats, })
+        
 
 class DeleteVolumeAccessGroupResult(data_model.DataObject):
     """DeleteVolumeAccessGroupResult  
@@ -10986,9 +11634,9 @@ class DeleteVolumeAccessGroupResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DeleteVolumeAccessGroupResult, self).__init__(**{  })
+        
 
 class DeleteInitiatorsResult(data_model.DataObject):
     """DeleteInitiatorsResult  
@@ -10996,9 +11644,9 @@ class DeleteInitiatorsResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DeleteInitiatorsResult, self).__init__(**{  })
+        
 
 class AddInitiatorsToVolumeAccessGroupRequest(data_model.DataObject):
     """AddInitiatorsToVolumeAccessGroupRequest  
@@ -11028,9 +11676,11 @@ class AddInitiatorsToVolumeAccessGroupRequest(data_model.DataObject):
     def __init__(self,
             volume_access_group_id,
             initiators):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(AddInitiatorsToVolumeAccessGroupRequest, self).__init__(**{ 
+            "volume_access_group_id": volume_access_group_id,
+            "initiators": initiators, })
+        
 
 class DeleteVolumeAccessGroupRequest(data_model.DataObject):
     """DeleteVolumeAccessGroupRequest  
@@ -11070,9 +11720,12 @@ class DeleteVolumeAccessGroupRequest(data_model.DataObject):
             volume_access_group_id,
             delete_orphan_initiators=None,
             force=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DeleteVolumeAccessGroupRequest, self).__init__(**{ 
+            "volume_access_group_id": volume_access_group_id,
+            "delete_orphan_initiators": delete_orphan_initiators,
+            "force": force, })
+        
 
 class FeatureObject(data_model.DataObject):
     """FeatureObject  
@@ -11100,9 +11753,11 @@ class FeatureObject(data_model.DataObject):
     def __init__(self,
             enabled,
             feature):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(FeatureObject, self).__init__(**{ 
+            "enabled": enabled,
+            "feature": feature, })
+        
 
 class GetFeatureStatusResult(data_model.DataObject):
     """GetFeatureStatusResult  
@@ -11120,279 +11775,10 @@ class GetFeatureStatusResult(data_model.DataObject):
 
     def __init__(self,
             features):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class ListVirtualNetworksRequest(data_model.DataObject):
-    """ListVirtualNetworksRequest  
-    ListVirtualNetworks enables you to list all configured virtual networks for the cluster. You can use this method to verify the virtual
-    network settings in the cluster.
-    There are no required parameters for this method. However, to filter the results, you can pass one or more VirtualNetworkID or
-    VirtualNetworkTag values.
-
-    :param virtual_network_id:  Network ID to filter the list for a single virtual network. 
-    :type virtual_network_id: int
-
-    :param virtual_network_tag:  Network tag to filter the list for a single virtual network. 
-    :type virtual_network_tag: int
-
-    :param virtual_network_ids:  Network IDs to include in the list. 
-    :type virtual_network_ids: int
-
-    :param virtual_network_tags:  Network tag to include in the list. 
-    :type virtual_network_tags: int
-
-    """
-    virtual_network_id = data_model.property(
-        "virtualNetworkID", int,
-        array=False, optional=True,
-        documentation="""Network ID to filter the list for a single virtual network. """,
-        dictionaryType=None
-    )
-    virtual_network_tag = data_model.property(
-        "virtualNetworkTag", int,
-        array=False, optional=True,
-        documentation="""Network tag to filter the list for a single virtual network. """,
-        dictionaryType=None
-    )
-    virtual_network_ids = data_model.property(
-        "virtualNetworkIDs", int,
-        array=True, optional=True,
-        documentation="""Network IDs to include in the list. """,
-        dictionaryType=None
-    )
-    virtual_network_tags = data_model.property(
-        "virtualNetworkTags", int,
-        array=True, optional=True,
-        documentation="""Network tag to include in the list. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            virtual_network_id=None,
-            virtual_network_tag=None,
-            virtual_network_ids=None,
-            virtual_network_tags=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListSchedulesResult(data_model.DataObject):
-    """ListSchedulesResult  
-
-    :param schedules: [required] The list of schedules currently on the cluster. 
-    :type schedules: Schedule
-
-    """
-    schedules = data_model.property(
-        "schedules", Schedule,
-        array=True, optional=False,
-        documentation="""The list of schedules currently on the cluster. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            schedules):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class SetNetworkConfigRequest(data_model.DataObject):
-    """SetNetworkConfigRequest  
-    The SetNetworkConfig API method enables you to set the network configuration for a node. To display the current network settings for a node, run the GetNetworkConfig API method. 
-    Note: This method is available only through the per-node API endpoint 5.0 or later.
-    Changing the "bond-mode" on a node can cause a temporary loss of network connectivity. Exercise caution when using this method.
-
-    :param network: [required] An object containing node network settings to modify. 
-    :type network: NetworkParams
-
-    """
-    network = data_model.property(
-        "network", NetworkParams,
-        array=False, optional=False,
-        documentation="""An object containing node network settings to modify. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            network):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetSshInfoResult(data_model.DataObject):
-    """GetSshInfoResult  
-
-    :param enabled: [required] Node SSH status. 
-    :type enabled: bool
-
-    """
-    enabled = data_model.property(
-        "enabled", bool,
-        array=False, optional=False,
-        documentation="""Node SSH status. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            enabled):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class AddDrivesRequest(data_model.DataObject):
-    """AddDrivesRequest  
-    AddDrives enables you to add one or more available drives to the cluster, enabling the drives to host a portion of the cluster's data.
-    When you add a node to the cluster or install new drives in an existing node, the new drives are marked as "available" and must be
-    added via AddDrives before they can be utilized. Use the ListDrives method to display drives that are "available" to be added. When
-    you add multiple drives, it is more efficient to add them in a single AddDrives method call rather than multiple individual methods
-    with a single drive each. This reduces the amount of data balancing that must occur to stabilize the storage load on the cluster.
-    When you add a drive, the system automatically determines the "type" of drive it should be.
-    The method is asynchronous and returns immediately. However, it can take some time for the data in the cluster to be rebalanced
-    using the newly added drives. As the new drives are syncing on the system, you can use the ListSyncJobs method to see how the
-    drives are being rebalanced and the progress of adding the new drive. You can also use the GetAsyncResult method to query the
-    method's returned asyncHandle.
-
-    :param drives: [required] Returns information about each drive to be added to the cluster. Possible values are: driveID: The ID of the drive to add. (Integer) type: (Optional) The type of drive to add. Valid values are "slice" or "block". If omitted, the system assigns the correct type. (String) 
-    :type drives: NewDrive
-
-    :param force_during_upgrade:  Allows the user to force the addition of drives during an upgrade. 
-    :type force_during_upgrade: bool
-
-    :param force_during_bin_sync:  Allows the user to force the addition of drives during a bin sync operation. 
-    :type force_during_bin_sync: bool
-
-    """
-    drives = data_model.property(
-        "drives", NewDrive,
-        array=True, optional=False,
-        documentation="""Returns information about each drive to be added to the cluster. Possible values are: driveID: The ID of the drive to add. (Integer) type: (Optional) The type of drive to add. Valid values are "slice" or "block". If omitted, the system assigns the correct type. (String) """,
-        dictionaryType=None
-    )
-    force_during_upgrade = data_model.property(
-        "forceDuringUpgrade", bool,
-        array=False, optional=True,
-        documentation="""Allows the user to force the addition of drives during an upgrade. """,
-        dictionaryType=None
-    )
-    force_during_bin_sync = data_model.property(
-        "forceDuringBinSync", bool,
-        array=False, optional=True,
-        documentation="""Allows the user to force the addition of drives during a bin sync operation. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            drives,
-            force_during_upgrade=None,
-            force_during_bin_sync=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class DeleteVolumeRequest(data_model.DataObject):
-    """DeleteVolumeRequest  
-    DeleteVolume marks an active volume for deletion. When marked, the volume is purged (permanently deleted) after the cleanup
-    interval elapses. After making a request to delete a volume, any active iSCSI connections to the volume are immediately terminated
-    and no further connections are allowed while the volume is in this state. A marked volume is not returned in target discovery
-    requests.
-    Any snapshots of a volume that has been marked for deletion are not affected. Snapshots are kept until the volume is purged from
-    the system.
-    If a volume is marked for deletion and has a bulk volume read or bulk volume write operation in progress, the bulk volume read or
-    write operation is stopped.
-    If the volume you delete is paired with a volume, replication between the paired volumes is suspended and no data is transferred
-    to it or from it while in a deleted state. The remote volume that the deleted volume was paired with enters into a PausedMisconfigured state and data is no longer sent to it or from the deleted volume. Until the deleted volume is purged, it can be restored and data transfers resume. If the deleted volume gets purged from the system, the volume it was paired with enters into a StoppedMisconfigured state and the volume pairing status is removed. The purged volume becomes permanently unavailable.
-
-    :param volume_id: [required] The ID of the volume to be deleted. 
-    :type volume_id: int
-
-    """
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=False,
-        documentation="""The ID of the volume to be deleted. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            volume_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class CreateScheduleResult(data_model.DataObject):
-    """CreateScheduleResult  
-
-    :param schedule_id: [required]  
-    :type schedule_id: int
-
-    """
-    schedule_id = data_model.property(
-        "scheduleID", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            schedule_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class GetSnapMirrorClusterIdentityRequest(data_model.DataObject):
-    """GetSnapMirrorClusterIdentityRequest  
-    The SolidFire Element OS web UI uses GetSnapMirrorClusterIdentity to get identity information about the ONTAP cluster.
-
-    :param snap_mirror_endpoint_id:  If provided, the system lists the cluster identity of the endpoint with the specified snapMirrorEndpointID. If not provided, the system lists the cluster identity of all known SnapMirror endpoints. 
-    :type snap_mirror_endpoint_id: int
-
-    """
-    snap_mirror_endpoint_id = data_model.property(
-        "snapMirrorEndpointID", int,
-        array=False, optional=True,
-        documentation="""If provided, the system lists the cluster identity of the endpoint with the specified snapMirrorEndpointID. If not provided, the system lists the cluster identity of all known SnapMirror endpoints. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            snap_mirror_endpoint_id=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ShutdownRequest(data_model.DataObject):
-    """ShutdownRequest  
-    The Shutdown API method enables you to restart or shutdown a node that has not yet been added to a cluster. To use this method,
-    log in to the MIP for the pending node, and enter the "shutdown" method with either the "restart" or "halt" options.
-
-    :param nodes: [required] List of NodeIDs for the nodes to be shutdown. 
-    :type nodes: int
-
-    :param option:  Specifies the action to take for the node shutdown. Possible values are: restart: Restarts the node. halt: Shuts down the node. 
-    :type option: str
-
-    """
-    nodes = data_model.property(
-        "nodes", int,
-        array=True, optional=False,
-        documentation="""List of NodeIDs for the nodes to be shutdown. """,
-        dictionaryType=None
-    )
-    option = data_model.property(
-        "option", str,
-        array=False, optional=True,
-        documentation="""Specifies the action to take for the node shutdown. Possible values are: restart: Restarts the node. halt: Shuts down the node. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            nodes,
-            option=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+        super(GetFeatureStatusResult, self).__init__(**{ 
+            "features": features, })
+        
 
 class Platform(data_model.DataObject):
     """Platform  
@@ -11450,9 +11836,14 @@ class Platform(data_model.DataObject):
             cpu_model,
             node_memory_gb,
             platform_config_version=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(Platform, self).__init__(**{ 
+            "node_type": node_type,
+            "chassis_type": chassis_type,
+            "cpu_model": cpu_model,
+            "node_memory_gb": node_memory_gb,
+            "platform_config_version": platform_config_version, })
+        
 
 class VirtualNetworkAddress(data_model.DataObject):
     """VirtualNetworkAddress  
@@ -11480,9 +11871,11 @@ class VirtualNetworkAddress(data_model.DataObject):
     def __init__(self,
             virtual_network_id,
             address):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(VirtualNetworkAddress, self).__init__(**{ 
+            "virtual_network_id": virtual_network_id,
+            "address": address, })
+        
 
 class Node(data_model.DataObject):
     """Node  
@@ -11535,14 +11928,14 @@ class Node(data_model.DataObject):
     :param virtual_networks: [required]  
     :type virtual_networks: VirtualNetworkAddress
 
-    :param attributes: [required]  
+    :param attributes:   
     :type attributes: dict
 
-    :param node_slot:  For HCI platforms, the letter corresponding to the chassis slot this node is in ("A", "B", "C", or "D"). For storage platforms, this value is null. 
+    :param node_slot:   
     :type node_slot: str
 
-    :param chassis_name:  Name of the chassis the node is part of. 
-    :type chassis_name: str
+    :param zone_membership:  It is an object with members for each non-node zone type, where the associated value is the identifier for that zone. For sodium, it will only hold a "chassis" zone type, with its associated value being its chassis serial number (stripped of the parenthesized bit, so that all nodes in a single HCI chassis will have the same values). This information is used to see which zone each node is in. 
+    :type zone_membership: str
 
     """
     node_id = data_model.property(
@@ -11637,20 +12030,20 @@ class Node(data_model.DataObject):
     )
     attributes = data_model.property(
         "attributes", dict,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation=""" """,
         dictionaryType=None
     )
     node_slot = data_model.property(
         "nodeSlot", str,
         array=False, optional=True,
-        documentation="""For HCI platforms, the letter corresponding to the chassis slot this node is in ("A", "B", "C", or "D"). For storage platforms, this value is null. """,
+        documentation=""" """,
         dictionaryType=None
     )
-    chassis_name = data_model.property(
-        "chassisName", str,
+    zone_membership = data_model.property(
+        "zoneMembership", str,
         array=False, optional=True,
-        documentation="""Name of the chassis the node is part of. """,
+        documentation="""It is an object with members for each non-node zone type, where the associated value is the identifier for that zone. For sodium, it will only hold a "chassis" zone type, with its associated value being its chassis serial number (stripped of the parenthesized bit, so that all nodes in a single HCI chassis will have the same values). This information is used to see which zone each node is in. """,
         dictionaryType=None
     )
 
@@ -11669,13 +12062,31 @@ class Node(data_model.DataObject):
             sipi,
             uuid,
             virtual_networks,
-            attributes,
             fibre_channel_target_port_group=None,
+            attributes=None,
             node_slot=None,
-            chassis_name=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+            zone_membership=None):
+
+        super(Node, self).__init__(**{ 
+            "node_id": node_id,
+            "associated_master_service_id": associated_master_service_id,
+            "associated_fservice_id": associated_fservice_id,
+            "fibre_channel_target_port_group": fibre_channel_target_port_group,
+            "name": name,
+            "platform_info": platform_info,
+            "software_version": software_version,
+            "cip": cip,
+            "cipi": cipi,
+            "mip": mip,
+            "mipi": mipi,
+            "sip": sip,
+            "sipi": sipi,
+            "uuid": uuid,
+            "virtual_networks": virtual_networks,
+            "attributes": attributes,
+            "node_slot": node_slot,
+            "zone_membership": zone_membership, })
+        
 
 class PendingNode(data_model.DataObject):
     """PendingNode  
@@ -11721,11 +12132,8 @@ class PendingNode(data_model.DataObject):
     :param uuid: [required] UUID of node. 
     :type uuid: UUID
 
-    :param node_slot:  For HCI platforms, the letter corresponding to the chassis slot this node is in ("A", "B", "C", or "D"). For storage platforms, this value is null. 
+    :param node_slot:  UUID of node. 
     :type node_slot: str
-
-    :param chassis_name:  Name of the chassis the node is part of. 
-    :type chassis_name: str
 
     """
     pending_node_id = data_model.property(
@@ -11809,13 +12217,7 @@ class PendingNode(data_model.DataObject):
     node_slot = data_model.property(
         "nodeSlot", str,
         array=False, optional=True,
-        documentation="""For HCI platforms, the letter corresponding to the chassis slot this node is in ("A", "B", "C", or "D"). For storage platforms, this value is null. """,
-        dictionaryType=None
-    )
-    chassis_name = data_model.property(
-        "chassisName", str,
-        array=False, optional=True,
-        documentation="""Name of the chassis the node is part of. """,
+        documentation="""UUID of node. """,
         dictionaryType=None
     )
 
@@ -11833,11 +12235,24 @@ class PendingNode(data_model.DataObject):
             sipi,
             software_version,
             uuid,
-            node_slot=None,
-            chassis_name=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+            node_slot=None):
+
+        super(PendingNode, self).__init__(**{ 
+            "pending_node_id": pending_node_id,
+            "assigned_node_id": assigned_node_id,
+            "name": name,
+            "compatible": compatible,
+            "platform_info": platform_info,
+            "cip": cip,
+            "cipi": cipi,
+            "mip": mip,
+            "mipi": mipi,
+            "sip": sip,
+            "sipi": sipi,
+            "software_version": software_version,
+            "uuid": uuid,
+            "node_slot": node_slot, })
+        
 
 class PendingActiveNode(data_model.DataObject):
     """PendingActiveNode  
@@ -11935,9 +12350,18 @@ class PendingActiveNode(data_model.DataObject):
             platform_info,
             sip,
             software_version):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(PendingActiveNode, self).__init__(**{ 
+            "active_node_key": active_node_key,
+            "assigned_node_id": assigned_node_id,
+            "async_handle": async_handle,
+            "cip": cip,
+            "mip": mip,
+            "pending_node_id": pending_node_id,
+            "platform_info": platform_info,
+            "sip": sip,
+            "software_version": software_version, })
+        
 
 class ListAllNodesResult(data_model.DataObject):
     """ListAllNodesResult  
@@ -11975,9 +12399,360 @@ class ListAllNodesResult(data_model.DataObject):
             nodes,
             pending_nodes,
             pending_active_nodes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListAllNodesResult, self).__init__(**{ 
+            "nodes": nodes,
+            "pending_nodes": pending_nodes,
+            "pending_active_nodes": pending_active_nodes, })
+        
+
+class ListSchedulesResult(data_model.DataObject):
+    """ListSchedulesResult  
+
+    :param schedules: [required] The list of schedules currently on the cluster. 
+    :type schedules: Schedule
+
+    """
+    schedules = data_model.property(
+        "schedules", Schedule,
+        array=True, optional=False,
+        documentation="""The list of schedules currently on the cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            schedules):
+
+        super(ListSchedulesResult, self).__init__(**{ 
+            "schedules": schedules, })
+        
+
+class SetNetworkConfigRequest(data_model.DataObject):
+    """SetNetworkConfigRequest  
+    The SetNetworkConfig API method enables you to set the network configuration for a node. To display the current network settings for a node, run the GetNetworkConfig API method. 
+    Note: This method is available only through the per-node API endpoint 5.0 or later.
+    Changing the "bond-mode" on a node can cause a temporary loss of network connectivity. Exercise caution when using this method.
+
+    :param network: [required] An object containing node network settings to modify. 
+    :type network: NetworkParams
+
+    """
+    network = data_model.property(
+        "network", NetworkParams,
+        array=False, optional=False,
+        documentation="""An object containing node network settings to modify. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            network):
+
+        super(SetNetworkConfigRequest, self).__init__(**{ 
+            "network": network, })
+        
+
+class StartBulkVolumeReadRequest(data_model.DataObject):
+    """StartBulkVolumeReadRequest  
+    StartBulkVolumeRead enables you to initialize a bulk volume read session on a specified volume. Only two bulk volume processes
+    can run simultaneously on a volume. When you initialize the session, data is read from a SolidFire storage volume for the purposes
+    of storing the data on an external backup source. The external data is accessed by a web server running on an SF-series node.
+    Communications and server interaction information for external data access is passed by a script running on the storage system.
+    At the start of a bulk volume read operation, a snapshot of the volume is made and the snapshot is deleted when the read is complete. You can also read a snapshot of the volume by entering the ID of the snapshot as a parameter. When you read a
+    previous snapshot, the system does not create a new snapshot of the volume or delete the previous snapshot when the
+    read completes.
+    Note: This process creates a new snapshot if the ID of an existing snapshot is not provided. Snapshots can be created if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is at stage 4 or 5.
+
+    :param volume_id: [required] The ID of the volume to be read. 
+    :type volume_id: int
+
+    :param format: [required] The format of the volume data. It can be either of the following formats: uncompressed: Every byte of the volume is returned without any compression. native: Opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. 
+    :type format: str
+
+    :param snapshot_id:  The ID of a previously created snapshot used for bulk volume reads. If no ID is entered, a snapshot of the current active volume image is made. 
+    :type snapshot_id: int
+
+    :param script:  The executable name of a script. If unspecified, the key and URL is necessary to access SF-series nodes. The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted. 
+    :type script: str
+
+    :param script_parameters:  JSON parameters to pass to the script. 
+    :type script_parameters: dict
+
+    :param attributes:  JSON attributes for the bulk volume job. 
+    :type attributes: dict
+
+    """
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="""The ID of the volume to be read. """,
+        dictionaryType=None
+    )
+    format = data_model.property(
+        "format", str,
+        array=False, optional=False,
+        documentation="""The format of the volume data. It can be either of the following formats: uncompressed: Every byte of the volume is returned without any compression. native: Opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. """,
+        dictionaryType=None
+    )
+    snapshot_id = data_model.property(
+        "snapshotID", int,
+        array=False, optional=True,
+        documentation="""The ID of a previously created snapshot used for bulk volume reads. If no ID is entered, a snapshot of the current active volume image is made. """,
+        dictionaryType=None
+    )
+    script = data_model.property(
+        "script", str,
+        array=False, optional=True,
+        documentation="""The executable name of a script. If unspecified, the key and URL is necessary to access SF-series nodes. The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted. """,
+        dictionaryType=None
+    )
+    script_parameters = data_model.property(
+        "scriptParameters", dict,
+        array=False, optional=True,
+        documentation="""JSON parameters to pass to the script. """,
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="""JSON attributes for the bulk volume job. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            volume_id,
+            format,
+            snapshot_id=None,
+            script=None,
+            script_parameters=None,
+            attributes=None):
+
+        super(StartBulkVolumeReadRequest, self).__init__(**{ 
+            "volume_id": volume_id,
+            "format": format,
+            "snapshot_id": snapshot_id,
+            "script": script,
+            "script_parameters": script_parameters,
+            "attributes": attributes, })
+        
+
+class AddDrivesRequest(data_model.DataObject):
+    """AddDrivesRequest  
+    AddDrives enables you to add one or more available drives to the cluster, enabling the drives to host a portion of the cluster's data.
+    When you add a node to the cluster or install new drives in an existing node, the new drives are marked as "available" and must be
+    added via AddDrives before they can be utilized. Use the ListDrives method to display drives that are "available" to be added. When
+    you add multiple drives, it is more efficient to add them in a single AddDrives method call rather than multiple individual methods
+    with a single drive each. This reduces the amount of data balancing that must occur to stabilize the storage load on the cluster.
+    When you add a drive, the system automatically determines the "type" of drive it should be.
+    The method is asynchronous and returns immediately. However, it can take some time for the data in the cluster to be rebalanced
+    using the newly added drives. As the new drives are syncing on the system, you can use the ListSyncJobs method to see how the
+    drives are being rebalanced and the progress of adding the new drive. You can also use the GetAsyncResult method to query the
+    method's returned asyncHandle.
+
+    :param drives: [required] Returns information about each drive to be added to the cluster. Possible values are: driveID: The ID of the drive to add. (Integer) type: (Optional) The type of drive to add. Valid values are "slice" or "block". If omitted, the system assigns the correct type. (String) 
+    :type drives: NewDrive
+
+    :param force_during_upgrade:  Allows the user to force the addition of drives during an upgrade. 
+    :type force_during_upgrade: bool
+
+    :param force_during_bin_sync:  Allows the user to force the addition of drives during a bin sync operation. 
+    :type force_during_bin_sync: bool
+
+    """
+    drives = data_model.property(
+        "drives", NewDrive,
+        array=True, optional=False,
+        documentation="""Returns information about each drive to be added to the cluster. Possible values are: driveID: The ID of the drive to add. (Integer) type: (Optional) The type of drive to add. Valid values are "slice" or "block". If omitted, the system assigns the correct type. (String) """,
+        dictionaryType=None
+    )
+    force_during_upgrade = data_model.property(
+        "forceDuringUpgrade", bool,
+        array=False, optional=True,
+        documentation="""Allows the user to force the addition of drives during an upgrade. """,
+        dictionaryType=None
+    )
+    force_during_bin_sync = data_model.property(
+        "forceDuringBinSync", bool,
+        array=False, optional=True,
+        documentation="""Allows the user to force the addition of drives during a bin sync operation. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            drives,
+            force_during_upgrade=None,
+            force_during_bin_sync=None):
+
+        super(AddDrivesRequest, self).__init__(**{ 
+            "drives": drives,
+            "force_during_upgrade": force_during_upgrade,
+            "force_during_bin_sync": force_during_bin_sync, })
+        
+
+class DeleteVolumeRequest(data_model.DataObject):
+    """DeleteVolumeRequest  
+    DeleteVolume marks an active volume for deletion. When marked, the volume is purged (permanently deleted) after the cleanup
+    interval elapses. After making a request to delete a volume, any active iSCSI connections to the volume are immediately terminated
+    and no further connections are allowed while the volume is in this state. A marked volume is not returned in target discovery
+    requests.
+    Any snapshots of a volume that has been marked for deletion are not affected. Snapshots are kept until the volume is purged from
+    the system.
+    If a volume is marked for deletion and has a bulk volume read or bulk volume write operation in progress, the bulk volume read or
+    write operation is stopped.
+    If the volume you delete is paired with a volume, replication between the paired volumes is suspended and no data is transferred
+    to it or from it while in a deleted state. The remote volume that the deleted volume was paired with enters into a PausedMisconfigured state and data is no longer sent to it or from the deleted volume. Until the deleted volume is purged, it can be restored and data transfers resume. If the deleted volume gets purged from the system, the volume it was paired with enters into a StoppedMisconfigured state and the volume pairing status is removed. The purged volume becomes permanently unavailable.
+
+    :param volume_id: [required] The ID of the volume to be deleted. 
+    :type volume_id: int
+
+    """
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="""The ID of the volume to be deleted. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            volume_id):
+
+        super(DeleteVolumeRequest, self).__init__(**{ 
+            "volume_id": volume_id, })
+        
+
+class CreateScheduleResult(data_model.DataObject):
+    """CreateScheduleResult  
+
+    :param schedule_id: [required]  
+    :type schedule_id: int
+
+    """
+    schedule_id = data_model.property(
+        "scheduleID", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            schedule_id):
+
+        super(CreateScheduleResult, self).__init__(**{ 
+            "schedule_id": schedule_id, })
+        
+
+class GetSnapMirrorClusterIdentityRequest(data_model.DataObject):
+    """GetSnapMirrorClusterIdentityRequest  
+    The SolidFire Element OS web UI uses GetSnapMirrorClusterIdentity to get identity information about the ONTAP cluster.
+
+    :param snap_mirror_endpoint_id:  If provided, the system lists the cluster identity of the endpoint with the specified snapMirrorEndpointID. If not provided, the system lists the cluster identity of all known SnapMirror endpoints. 
+    :type snap_mirror_endpoint_id: int
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=True,
+        documentation="""If provided, the system lists the cluster identity of the endpoint with the specified snapMirrorEndpointID. If not provided, the system lists the cluster identity of all known SnapMirror endpoints. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id=None):
+
+        super(GetSnapMirrorClusterIdentityRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id, })
+        
+
+class ShutdownRequest(data_model.DataObject):
+    """ShutdownRequest  
+    The Shutdown API method enables you to restart or shutdown a node that has not yet been added to a cluster. To use this method,
+    log in to the MIP for the pending node, and enter the "shutdown" method with either the "restart" or "halt" options.
+
+    :param nodes: [required] List of NodeIDs for the nodes to be shutdown. 
+    :type nodes: int
+
+    :param option:  Specifies the action to take for the node shutdown. Possible values are: restart: Restarts the node. halt: Shuts down the node. 
+    :type option: str
+
+    """
+    nodes = data_model.property(
+        "nodes", int,
+        array=True, optional=False,
+        documentation="""List of NodeIDs for the nodes to be shutdown. """,
+        dictionaryType=None
+    )
+    option = data_model.property(
+        "option", str,
+        array=False, optional=True,
+        documentation="""Specifies the action to take for the node shutdown. Possible values are: restart: Restarts the node. halt: Shuts down the node. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            nodes,
+            option=None):
+
+        super(ShutdownRequest, self).__init__(**{ 
+            "nodes": nodes,
+            "option": option, })
+        
+
+class ListVirtualNetworksRequest(data_model.DataObject):
+    """ListVirtualNetworksRequest  
+    ListVirtualNetworks enables you to list all configured virtual networks for the cluster. You can use this method to verify the virtual
+    network settings in the cluster.
+    There are no required parameters for this method. However, to filter the results, you can pass one or more VirtualNetworkID or
+    VirtualNetworkTag values.
+
+    :param virtual_network_id:  Network ID to filter the list for a single virtual network. 
+    :type virtual_network_id: int
+
+    :param virtual_network_tag:  Network tag to filter the list for a single virtual network. 
+    :type virtual_network_tag: int
+
+    :param virtual_network_ids:  Network IDs to include in the list. 
+    :type virtual_network_ids: int
+
+    :param virtual_network_tags:  Network tag to include in the list. 
+    :type virtual_network_tags: int
+
+    """
+    virtual_network_id = data_model.property(
+        "virtualNetworkID", int,
+        array=False, optional=True,
+        documentation="""Network ID to filter the list for a single virtual network. """,
+        dictionaryType=None
+    )
+    virtual_network_tag = data_model.property(
+        "virtualNetworkTag", int,
+        array=False, optional=True,
+        documentation="""Network tag to filter the list for a single virtual network. """,
+        dictionaryType=None
+    )
+    virtual_network_ids = data_model.property(
+        "virtualNetworkIDs", int,
+        array=True, optional=True,
+        documentation="""Network IDs to include in the list. """,
+        dictionaryType=None
+    )
+    virtual_network_tags = data_model.property(
+        "virtualNetworkTags", int,
+        array=True, optional=True,
+        documentation="""Network tag to include in the list. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            virtual_network_id=None,
+            virtual_network_tag=None,
+            virtual_network_ids=None,
+            virtual_network_tags=None):
+
+        super(ListVirtualNetworksRequest, self).__init__(**{ 
+            "virtual_network_id": virtual_network_id,
+            "virtual_network_tag": virtual_network_tag,
+            "virtual_network_ids": virtual_network_ids,
+            "virtual_network_tags": virtual_network_tags, })
+        
 
 class ModifyAccountRequest(data_model.DataObject):
     """ModifyAccountRequest  
@@ -12050,29 +12825,103 @@ class ModifyAccountRequest(data_model.DataObject):
             initiator_secret=None,
             target_secret=None,
             attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class ModifySnapMirrorEndpointResult(data_model.DataObject):
-    """ModifySnapMirrorEndpointResult  
+        super(ModifyAccountRequest, self).__init__(**{ 
+            "account_id": account_id,
+            "username": username,
+            "status": status,
+            "initiator_secret": initiator_secret,
+            "target_secret": target_secret,
+            "attributes": attributes, })
+        
 
-    :param snap_mirror_volumes: [required] Information about the modified SnapMirror endpoint. 
-    :type snap_mirror_volumes: SnapMirrorEndpoint
+class CreateSnapMirrorRelationshipRequest(data_model.DataObject):
+    """CreateSnapMirrorRelationshipRequest  
+    The SolidFire Element OS web UI uses the CreateSnapMirrorRelationship method to create a SnapMirror extended data protection relationship between a source and destination endpoint.
+
+    :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
+    :type snap_mirror_endpoint_id: int
+
+    :param source_volume: [required] The source volume in the relationship. 
+    :type source_volume: SnapMirrorVolumeInfo
+
+    :param destination_volume: [required] The destination volume in the relationship. 
+    :type destination_volume: SnapMirrorVolumeInfo
+
+    :param relationship_type:  The type of relationship. On SolidFire systems, this value is always "extended_data_protection". 
+    :type relationship_type: str
+
+    :param policy_name:  Specifies the name of the ONTAP SnapMirror policy for the relationship. If not specified, the default policy name is MirrorLatest. 
+    :type policy_name: str
+
+    :param schedule_name:  The name of the preexisting cron schedule on the ONTAP system that is used to update the SnapMirror relationship. If no schedule is designated, snapMirror updates are not scheduled and must be updated manually. 
+    :type schedule_name: str
+
+    :param max_transfer_rate:  Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. 
+    :type max_transfer_rate: int
 
     """
-    snap_mirror_volumes = data_model.property(
-        "snapMirrorVolumes", SnapMirrorEndpoint,
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
         array=False, optional=False,
-        documentation="""Information about the modified SnapMirror endpoint. """,
+        documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. """,
+        dictionaryType=None
+    )
+    source_volume = data_model.property(
+        "sourceVolume", SnapMirrorVolumeInfo,
+        array=False, optional=False,
+        documentation="""The source volume in the relationship. """,
+        dictionaryType=None
+    )
+    destination_volume = data_model.property(
+        "destinationVolume", SnapMirrorVolumeInfo,
+        array=False, optional=False,
+        documentation="""The destination volume in the relationship. """,
+        dictionaryType=None
+    )
+    relationship_type = data_model.property(
+        "relationshipType", str,
+        array=False, optional=True,
+        documentation="""The type of relationship. On SolidFire systems, this value is always "extended_data_protection". """,
+        dictionaryType=None
+    )
+    policy_name = data_model.property(
+        "policyName", str,
+        array=False, optional=True,
+        documentation="""Specifies the name of the ONTAP SnapMirror policy for the relationship. If not specified, the default policy name is MirrorLatest. """,
+        dictionaryType=None
+    )
+    schedule_name = data_model.property(
+        "scheduleName", str,
+        array=False, optional=True,
+        documentation="""The name of the preexisting cron schedule on the ONTAP system that is used to update the SnapMirror relationship. If no schedule is designated, snapMirror updates are not scheduled and must be updated manually. """,
+        dictionaryType=None
+    )
+    max_transfer_rate = data_model.property(
+        "maxTransferRate", int,
+        array=False, optional=True,
+        documentation="""Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            snap_mirror_volumes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+            snap_mirror_endpoint_id,
+            source_volume,
+            destination_volume,
+            relationship_type=None,
+            policy_name=None,
+            schedule_name=None,
+            max_transfer_rate=None):
+
+        super(CreateSnapMirrorRelationshipRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "source_volume": source_volume,
+            "destination_volume": destination_volume,
+            "relationship_type": relationship_type,
+            "policy_name": policy_name,
+            "schedule_name": schedule_name,
+            "max_transfer_rate": max_transfer_rate, })
+        
 
 class ClusterAdmin(data_model.DataObject):
     """ClusterAdmin  
@@ -12130,9 +12979,14 @@ class ClusterAdmin(data_model.DataObject):
             cluster_admin_id,
             username,
             attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ClusterAdmin, self).__init__(**{ 
+            "auth_method": auth_method,
+            "access": access,
+            "cluster_admin_id": cluster_admin_id,
+            "username": username,
+            "attributes": attributes, })
+        
 
 class GetCurrentClusterAdminResult(data_model.DataObject):
     """GetCurrentClusterAdminResult  
@@ -12150,9 +13004,10 @@ class GetCurrentClusterAdminResult(data_model.DataObject):
 
     def __init__(self,
             cluster_admin):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetCurrentClusterAdminResult, self).__init__(**{ 
+            "cluster_admin": cluster_admin, })
+        
 
 class ResetNodeRequest(data_model.DataObject):
     """ResetNodeRequest  
@@ -12207,9 +13062,13 @@ class ResetNodeRequest(data_model.DataObject):
             force,
             reboot=None,
             options=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ResetNodeRequest, self).__init__(**{ 
+            "build": build,
+            "force": force,
+            "reboot": reboot,
+            "options": options, })
+        
 
 class UpdateSnapMirrorRelationshipRequest(data_model.DataObject):
     """UpdateSnapMirrorRelationshipRequest  
@@ -12248,9 +13107,12 @@ class UpdateSnapMirrorRelationshipRequest(data_model.DataObject):
             snap_mirror_endpoint_id,
             destination_volume,
             max_transfer_rate=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(UpdateSnapMirrorRelationshipRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "destination_volume": destination_volume,
+            "max_transfer_rate": max_transfer_rate, })
+        
 
 class SetLoginSessionInfoRequest(data_model.DataObject):
     """SetLoginSessionInfoRequest  
@@ -12269,9 +13131,10 @@ class SetLoginSessionInfoRequest(data_model.DataObject):
 
     def __init__(self,
             timeout):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetLoginSessionInfoRequest, self).__init__(**{ 
+            "timeout": timeout, })
+        
 
 class CreateSnapshotResult(data_model.DataObject):
     """CreateSnapshotResult  
@@ -12309,9 +13172,12 @@ class CreateSnapshotResult(data_model.DataObject):
             snapshot,
             snapshot_id,
             checksum):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateSnapshotResult, self).__init__(**{ 
+            "snapshot": snapshot,
+            "snapshot_id": snapshot_id,
+            "checksum": checksum, })
+        
 
 class FibreChannelPortInfo(data_model.DataObject):
     """FibreChannelPortInfo  
@@ -12430,9 +13296,20 @@ class FibreChannelPortInfo(data_model.DataObject):
             switch_wwn,
             wwnn,
             wwpn):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(FibreChannelPortInfo, self).__init__(**{ 
+            "firmware": firmware,
+            "hba_port": hba_port,
+            "model": model,
+            "n_port_id": n_port_id,
+            "pci_slot": pci_slot,
+            "serial": serial,
+            "speed": speed,
+            "state": state,
+            "switch_wwn": switch_wwn,
+            "wwnn": wwnn,
+            "wwpn": wwpn, })
+        
 
 class FibreChannelPortList(data_model.DataObject):
     """FibreChannelPortList  
@@ -12451,9 +13328,10 @@ class FibreChannelPortList(data_model.DataObject):
 
     def __init__(self,
             fibre_channel_ports):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(FibreChannelPortList, self).__init__(**{ 
+            "fibre_channel_ports": fibre_channel_ports, })
+        
 
 class FibreChannelPortInfoResult(data_model.DataObject):
     """FibreChannelPortInfoResult  
@@ -12472,9 +13350,10 @@ class FibreChannelPortInfoResult(data_model.DataObject):
 
     def __init__(self,
             result):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(FibreChannelPortInfoResult, self).__init__(**{ 
+            "result": result, })
+        
 
 class ListFibreChannelPortInfoResult(data_model.DataObject):
     """ListFibreChannelPortInfoResult  
@@ -12493,152 +13372,20 @@ class ListFibreChannelPortInfoResult(data_model.DataObject):
 
     def __init__(self,
             fibre_channel_port_info):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class StartBulkVolumeReadRequest(data_model.DataObject):
-    """StartBulkVolumeReadRequest  
-    StartBulkVolumeRead enables you to initialize a bulk volume read session on a specified volume. Only two bulk volume processes
-    can run simultaneously on a volume. When you initialize the session, data is read from a SolidFire storage volume for the purposes
-    of storing the data on an external backup source. The external data is accessed by a web server running on an SF-series node.
-    Communications and server interaction information for external data access is passed by a script running on the storage system.
-    At the start of a bulk volume read operation, a snapshot of the volume is made and the snapshot is deleted when the read is complete. You can also read a snapshot of the volume by entering the ID of the snapshot as a parameter. When you read a
-    previous snapshot, the system does not create a new snapshot of the volume or delete the previous snapshot when the
-    read completes.
-    Note: This process creates a new snapshot if the ID of an existing snapshot is not provided. Snapshots can be created if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is at stage 4 or 5.
+        super(ListFibreChannelPortInfoResult, self).__init__(**{ 
+            "fibre_channel_port_info": fibre_channel_port_info, })
+        
 
-    :param volume_id: [required] The ID of the volume to be read. 
-    :type volume_id: int
-
-    :param format: [required] The format of the volume data. It can be either of the following formats: uncompressed: Every byte of the volume is returned without any compression. native: Opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. 
-    :type format: str
-
-    :param snapshot_id:  The ID of a previously created snapshot used for bulk volume reads. If no ID is entered, a snapshot of the current active volume image is made. 
-    :type snapshot_id: int
-
-    :param script:  The executable name of a script. If unspecified, the key and URL is necessary to access SF-series nodes. The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted. 
-    :type script: str
-
-    :param script_parameters:  JSON parameters to pass to the script. 
-    :type script_parameters: dict
-
-    :param attributes:  JSON attributes for the bulk volume job. 
-    :type attributes: dict
+class EnableLdapAuthenticationResult(data_model.DataObject):
+    """EnableLdapAuthenticationResult  
 
     """
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=False,
-        documentation="""The ID of the volume to be read. """,
-        dictionaryType=None
-    )
-    format = data_model.property(
-        "format", str,
-        array=False, optional=False,
-        documentation="""The format of the volume data. It can be either of the following formats: uncompressed: Every byte of the volume is returned without any compression. native: Opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. """,
-        dictionaryType=None
-    )
-    snapshot_id = data_model.property(
-        "snapshotID", int,
-        array=False, optional=True,
-        documentation="""The ID of a previously created snapshot used for bulk volume reads. If no ID is entered, a snapshot of the current active volume image is made. """,
-        dictionaryType=None
-    )
-    script = data_model.property(
-        "script", str,
-        array=False, optional=True,
-        documentation="""The executable name of a script. If unspecified, the key and URL is necessary to access SF-series nodes. The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted. """,
-        dictionaryType=None
-    )
-    script_parameters = data_model.property(
-        "scriptParameters", dict,
-        array=False, optional=True,
-        documentation="""JSON parameters to pass to the script. """,
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="""JSON attributes for the bulk volume job. """,
-        dictionaryType=None
-    )
 
-    def __init__(self,
-            volume_id,
-            format,
-            snapshot_id=None,
-            script=None,
-            script_parameters=None,
-            attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+    def __init__(self):
 
-class RollbackToSnapshotRequest(data_model.DataObject):
-    """RollbackToSnapshotRequest  
-    RollbackToSnapshot enables you to make an existing snapshot of the "active" volume image. This method creates a new snapshot
-    from an existing snapshot. The new snapshot becomes "active" and the existing snapshot is preserved until you delete it.
-    The previously "active" snapshot is deleted unless you set the parameter saveCurrentState to true.
-    Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is
-    at stage 4 or 5.
-
-    :param volume_id: [required] VolumeID for the volume. 
-    :type volume_id: int
-
-    :param snapshot_id: [required] The ID of a previously created snapshot on the given volume. 
-    :type snapshot_id: int
-
-    :param save_current_state: [required] Specifies whether to save an active volume image or delete it. Values are: true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. 
-    :type save_current_state: bool
-
-    :param name:  Name for the snapshot. If unspecified, the name of the snapshot being rolled back to is used with "- copy" appended to the end of the name. 
-    :type name: str
-
-    :param attributes:  List of name-value pairs in JSON object format. 
-    :type attributes: dict
-
-    """
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=False,
-        documentation="""VolumeID for the volume. """,
-        dictionaryType=None
-    )
-    snapshot_id = data_model.property(
-        "snapshotID", int,
-        array=False, optional=False,
-        documentation="""The ID of a previously created snapshot on the given volume. """,
-        dictionaryType=None
-    )
-    save_current_state = data_model.property(
-        "saveCurrentState", bool,
-        array=False, optional=False,
-        documentation="""Specifies whether to save an active volume image or delete it. Values are: true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. """,
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=True,
-        documentation="""Name for the snapshot. If unspecified, the name of the snapshot being rolled back to is used with "- copy" appended to the end of the name. """,
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="""List of name-value pairs in JSON object format. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            volume_id,
-            snapshot_id,
-            save_current_state,
-            name=None,
-            attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+        super(EnableLdapAuthenticationResult, self).__init__(**{  })
+        
 
 class RestoreDeletedVolumeResult(data_model.DataObject):
     """RestoreDeletedVolumeResult  
@@ -12646,9 +13393,9 @@ class RestoreDeletedVolumeResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RestoreDeletedVolumeResult, self).__init__(**{  })
+        
 
 class ListDeletedVolumesResult(data_model.DataObject):
     """ListDeletedVolumesResult  
@@ -12666,9 +13413,10 @@ class ListDeletedVolumesResult(data_model.DataObject):
 
     def __init__(self,
             volumes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListDeletedVolumesResult, self).__init__(**{ 
+            "volumes": volumes, })
+        
 
 class ListSnapshotsRequest(data_model.DataObject):
     """ListSnapshotsRequest  
@@ -12697,9 +13445,11 @@ class ListSnapshotsRequest(data_model.DataObject):
     def __init__(self,
             volume_id=None,
             snapshot_id=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListSnapshotsRequest, self).__init__(**{ 
+            "volume_id": volume_id,
+            "snapshot_id": snapshot_id, })
+        
 
 class ListActiveVolumesResult(data_model.DataObject):
     """ListActiveVolumesResult  
@@ -12717,9 +13467,10 @@ class ListActiveVolumesResult(data_model.DataObject):
 
     def __init__(self,
             volumes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListActiveVolumesResult, self).__init__(**{ 
+            "volumes": volumes, })
+        
 
 class GetNtpInfoResult(data_model.DataObject):
     """GetNtpInfoResult  
@@ -12747,9 +13498,11 @@ class GetNtpInfoResult(data_model.DataObject):
     def __init__(self,
             broadcastclient,
             servers):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetNtpInfoResult, self).__init__(**{ 
+            "broadcastclient": broadcastclient,
+            "servers": servers, })
+        
 
 class ListAsyncResultsRequest(data_model.DataObject):
     """ListAsyncResultsRequest  
@@ -12770,9 +13523,10 @@ class ListAsyncResultsRequest(data_model.DataObject):
 
     def __init__(self,
             async_result_types=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListAsyncResultsRequest, self).__init__(**{ 
+            "async_result_types": async_result_types, })
+        
 
 class ModifyAccountResult(data_model.DataObject):
     """ModifyAccountResult  
@@ -12790,105 +13544,31 @@ class ModifyAccountResult(data_model.DataObject):
 
     def __init__(self,
             account):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class EnableSshResult(data_model.DataObject):
-    """EnableSshResult  
+        super(ModifyAccountResult, self).__init__(**{ 
+            "account": account, })
+        
 
-    :param enabled: [required] Node SSH status. 
-    :type enabled: bool
+class GetVirtualVolumeCountResult(data_model.DataObject):
+    """GetVirtualVolumeCountResult  
+
+    :param count: [required] The number of virtual volumes currently in the system. 
+    :type count: int
 
     """
-    enabled = data_model.property(
-        "enabled", bool,
+    count = data_model.property(
+        "count", int,
         array=False, optional=False,
-        documentation="""Node SSH status. """,
+        documentation="""The number of virtual volumes currently in the system. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            enabled):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+            count):
 
-class ModifyInitiator(data_model.DataObject):
-    """ModifyInitiator  
-    Object containing characteristics of each initiator to modify
-
-    :param initiator_id: [required] (Required) The numeric ID of the initiator to modify. (Integer) 
-    :type initiator_id: int
-
-    :param alias:  (Optional) A new friendly name to assign to the initiator. (String) 
-    :type alias: str
-
-    :param volume_access_group_id:  (Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
-    :type volume_access_group_id: int
-
-    :param attributes:  (Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) 
-    :type attributes: dict
-
-    """
-    initiator_id = data_model.property(
-        "initiatorID", int,
-        array=False, optional=False,
-        documentation="""(Required) The numeric ID of the initiator to modify. (Integer) """,
-        dictionaryType=None
-    )
-    alias = data_model.property(
-        "alias", str,
-        array=False, optional=True,
-        documentation="""(Optional) A new friendly name to assign to the initiator. (String) """,
-        dictionaryType=None
-    )
-    volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
-        array=False, optional=True,
-        documentation="""(Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) """,
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="""(Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            initiator_id,
-            alias=None,
-            volume_access_group_id=None,
-            attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ModifyInitiatorsRequest(data_model.DataObject):
-    """ModifyInitiatorsRequest  
-    ModifyInitiators enables you to change the attributes of one or more existing initiators. You cannot change the name of an existing
-    initiator. If you need to change the name of an initiator, delete it first with DeleteInitiators and create a new one with
-    CreateInitiators.
-    If ModifyInitiators fails to change one of the initiators provided in the parameter, the method returns an error and does not modify
-    any initiators (no partial completion is possible).
-
-    :param initiators: [required] A list of objects containing characteristics of each initiator to modify. Values are: initiatorID: (Required) The ID of the initiator to modify. (Integer) alias: (Optional) A new friendly name to assign to the initiator. (String) attributes: (Optional) A new set of JSON attributes to assign to the initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which the initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
-    :type initiators: ModifyInitiator
-
-    """
-    initiators = data_model.property(
-        "initiators", ModifyInitiator,
-        array=True, optional=False,
-        documentation="""A list of objects containing characteristics of each initiator to modify. Values are: initiatorID: (Required) The ID of the initiator to modify. (Integer) alias: (Optional) A new friendly name to assign to the initiator. (String) attributes: (Optional) A new set of JSON attributes to assign to the initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which the initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            initiators):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+        super(GetVirtualVolumeCountResult, self).__init__(**{ 
+            "count": count, })
+        
 
 class ListUtilitiesResult(data_model.DataObject):
     """ListUtilitiesResult  
@@ -12906,9 +13586,10 @@ class ListUtilitiesResult(data_model.DataObject):
 
     def __init__(self,
             utilities):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListUtilitiesResult, self).__init__(**{ 
+            "utilities": utilities, })
+        
 
 class RemoveInitiatorsFromVolumeAccessGroupRequest(data_model.DataObject):
     """RemoveInitiatorsFromVolumeAccessGroupRequest  
@@ -12949,9 +13630,12 @@ class RemoveInitiatorsFromVolumeAccessGroupRequest(data_model.DataObject):
             volume_access_group_id,
             initiators,
             delete_orphan_initiators=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RemoveInitiatorsFromVolumeAccessGroupRequest, self).__init__(**{ 
+            "volume_access_group_id": volume_access_group_id,
+            "initiators": initiators,
+            "delete_orphan_initiators": delete_orphan_initiators, })
+        
 
 class ProtocolEndpoint(data_model.DataObject):
     """ProtocolEndpoint  
@@ -13019,9 +13703,15 @@ class ProtocolEndpoint(data_model.DataObject):
             primary_provider_id,
             secondary_provider_id,
             scsi_naadevice_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ProtocolEndpoint, self).__init__(**{ 
+            "protocol_endpoint_id": protocol_endpoint_id,
+            "protocol_endpoint_state": protocol_endpoint_state,
+            "provider_type": provider_type,
+            "primary_provider_id": primary_provider_id,
+            "secondary_provider_id": secondary_provider_id,
+            "scsi_naadevice_id": scsi_naadevice_id, })
+        
 
 class ListProtocolEndpointsResult(data_model.DataObject):
     """ListProtocolEndpointsResult  
@@ -13039,9 +13729,10 @@ class ListProtocolEndpointsResult(data_model.DataObject):
 
     def __init__(self,
             protocol_endpoints):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListProtocolEndpointsResult, self).__init__(**{ 
+            "protocol_endpoints": protocol_endpoints, })
+        
 
 class ListSnapMirrorNodesRequest(data_model.DataObject):
     """ListSnapMirrorNodesRequest  
@@ -13060,9 +13751,10 @@ class ListSnapMirrorNodesRequest(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_endpoint_id=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListSnapMirrorNodesRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id, })
+        
 
 class SetSnmpTrapInfoResult(data_model.DataObject):
     """SetSnmpTrapInfoResult  
@@ -13070,9 +13762,9 @@ class SetSnmpTrapInfoResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetSnmpTrapInfoResult, self).__init__(**{  })
+        
 
 class DeleteStorageContainersRequest(data_model.DataObject):
     """DeleteStorageContainersRequest  
@@ -13092,9 +13784,10 @@ class DeleteStorageContainersRequest(data_model.DataObject):
 
     def __init__(self,
             storage_container_ids):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DeleteStorageContainersRequest, self).__init__(**{ 
+            "storage_container_ids": storage_container_ids, })
+        
 
 class VolumeAccessGroup(data_model.DataObject):
     """VolumeAccessGroup  
@@ -13180,9 +13873,16 @@ class VolumeAccessGroup(data_model.DataObject):
             initiators,
             volumes,
             attributes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(VolumeAccessGroup, self).__init__(**{ 
+            "deleted_volumes": deleted_volumes,
+            "volume_access_group_id": volume_access_group_id,
+            "name": name,
+            "initiator_ids": initiator_ids,
+            "initiators": initiators,
+            "volumes": volumes,
+            "attributes": attributes, })
+        
 
 class CreateVolumeAccessGroupResult(data_model.DataObject):
     """CreateVolumeAccessGroupResult  
@@ -13210,9 +13910,11 @@ class CreateVolumeAccessGroupResult(data_model.DataObject):
     def __init__(self,
             volume_access_group_id,
             volume_access_group=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateVolumeAccessGroupResult, self).__init__(**{ 
+            "volume_access_group_id": volume_access_group_id,
+            "volume_access_group": volume_access_group, })
+        
 
 class CreateStorageContainerRequest(data_model.DataObject):
     """CreateStorageContainerRequest  
@@ -13261,9 +13963,13 @@ class CreateStorageContainerRequest(data_model.DataObject):
             initiator_secret=None,
             target_secret=None,
             account_id=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateStorageContainerRequest, self).__init__(**{ 
+            "name": name,
+            "initiator_secret": initiator_secret,
+            "target_secret": target_secret,
+            "account_id": account_id, })
+        
 
 class AddVirtualNetworkResult(data_model.DataObject):
     """AddVirtualNetworkResult  
@@ -13281,9 +13987,10 @@ class AddVirtualNetworkResult(data_model.DataObject):
 
     def __init__(self,
             virtual_network_id=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(AddVirtualNetworkResult, self).__init__(**{ 
+            "virtual_network_id": virtual_network_id, })
+        
 
 class AddNodesRequest(data_model.DataObject):
     """AddNodesRequest  
@@ -13313,9 +14020,11 @@ class AddNodesRequest(data_model.DataObject):
     def __init__(self,
             pending_nodes,
             auto_install=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(AddNodesRequest, self).__init__(**{ 
+            "pending_nodes": pending_nodes,
+            "auto_install": auto_install, })
+        
 
 class RtfiInfo(data_model.DataObject):
     """RtfiInfo  
@@ -13413,9 +14122,18 @@ class RtfiInfo(data_model.DataObject):
             generation_next=None,
             mip=None,
             options=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RtfiInfo, self).__init__(**{ 
+            "mipi": mipi,
+            "generation": generation,
+            "status_url_logfile": status_url_logfile,
+            "build": build,
+            "status_url_all": status_url_all,
+            "generation_next": generation_next,
+            "mip": mip,
+            "status_url_current": status_url_current,
+            "options": options, })
+        
 
 class ResetNodeDetails(data_model.DataObject):
     """ResetNodeDetails  
@@ -13433,9 +14151,10 @@ class ResetNodeDetails(data_model.DataObject):
 
     def __init__(self,
             rtfi_info):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ResetNodeDetails, self).__init__(**{ 
+            "rtfi_info": rtfi_info, })
+        
 
 class ResetNodeResult(data_model.DataObject):
     """ResetNodeResult  
@@ -13473,9 +14192,12 @@ class ResetNodeResult(data_model.DataObject):
             details=None,
             duration=None,
             result=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ResetNodeResult, self).__init__(**{ 
+            "details": details,
+            "duration": duration,
+            "result": result, })
+        
 
 class BreakSnapMirrorVolumeRequest(data_model.DataObject):
     """BreakSnapMirrorVolumeRequest  
@@ -13524,9 +14246,13 @@ class BreakSnapMirrorVolumeRequest(data_model.DataObject):
             snapshot_id=None,
             preserve=None,
             access=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(BreakSnapMirrorVolumeRequest, self).__init__(**{ 
+            "volume_id": volume_id,
+            "snapshot_id": snapshot_id,
+            "preserve": preserve,
+            "access": access, })
+        
 
 class BreakSnapMirrorRelationshipResult(data_model.DataObject):
     """BreakSnapMirrorRelationshipResult  
@@ -13544,9 +14270,10 @@ class BreakSnapMirrorRelationshipResult(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_relationship):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(BreakSnapMirrorRelationshipResult, self).__init__(**{ 
+            "snap_mirror_relationship": snap_mirror_relationship, })
+        
 
 class EnableLdapAuthenticationRequest(data_model.DataObject):
     """EnableLdapAuthenticationRequest  
@@ -13655,9 +14382,19 @@ class EnableLdapAuthenticationRequest(data_model.DataObject):
             user_dntemplate=None,
             user_search_base_dn=None,
             user_search_filter=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(EnableLdapAuthenticationRequest, self).__init__(**{ 
+            "auth_type": auth_type,
+            "group_search_base_dn": group_search_base_dn,
+            "group_search_custom_filter": group_search_custom_filter,
+            "group_search_type": group_search_type,
+            "search_bind_dn": search_bind_dn,
+            "search_bind_password": search_bind_password,
+            "server_uris": server_uris,
+            "user_dntemplate": user_dntemplate,
+            "user_search_base_dn": user_search_base_dn,
+            "user_search_filter": user_search_filter, })
+        
 
 class NodeStateInfo(data_model.DataObject):
     """NodeStateInfo  
@@ -13685,9 +14422,11 @@ class NodeStateInfo(data_model.DataObject):
     def __init__(self,
             cluster,
             state):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(NodeStateInfo, self).__init__(**{ 
+            "cluster": cluster,
+            "state": state, })
+        
 
 class NodeStateResult(data_model.DataObject):
     """NodeStateResult  
@@ -13715,9 +14454,11 @@ class NodeStateResult(data_model.DataObject):
     def __init__(self,
             node_id,
             result=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(NodeStateResult, self).__init__(**{ 
+            "node_id": node_id,
+            "result": result, })
+        
 
 class GetClusterStateResult(data_model.DataObject):
     """GetClusterStateResult  
@@ -13755,9 +14496,12 @@ class GetClusterStateResult(data_model.DataObject):
             nodes=None,
             cluster=None,
             state=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetClusterStateResult, self).__init__(**{ 
+            "nodes": nodes,
+            "cluster": cluster,
+            "state": state, })
+        
 
 class EnableEncryptionAtRestResult(data_model.DataObject):
     """EnableEncryptionAtRestResult  
@@ -13765,9 +14509,9 @@ class EnableEncryptionAtRestResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(EnableEncryptionAtRestResult, self).__init__(**{  })
+        
 
 class QuiesceSnapMirrorRelationshipResult(data_model.DataObject):
     """QuiesceSnapMirrorRelationshipResult  
@@ -13785,104 +14529,109 @@ class QuiesceSnapMirrorRelationshipResult(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_relationship):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class CancelCloneRequest(data_model.DataObject):
-    """CancelCloneRequest  
-    CancelClone enables you to stop an ongoing CloneVolume or CopyVolume process. When you cancel a group clone operation, the
-    system completes and removes the operation's associated asyncHandle.
+        super(QuiesceSnapMirrorRelationshipResult, self).__init__(**{ 
+            "snap_mirror_relationship": snap_mirror_relationship, })
+        
 
-    :param clone_id: [required] The cloneID for the ongoing clone process. 
-    :type clone_id: int
+class PurgeDeletedVolumeResult(data_model.DataObject):
+    """PurgeDeletedVolumeResult  
 
     """
-    clone_id = data_model.property(
-        "cloneID", int,
+
+    def __init__(self):
+
+        super(PurgeDeletedVolumeResult, self).__init__(**{  })
+        
+
+class GetAccountEfficiencyRequest(data_model.DataObject):
+    """GetAccountEfficiencyRequest  
+    GetAccountEfficiency enables you to retrieve efficiency statistics about a volume account. This method returns efficiency information
+    only for the account you specify as a parameter.
+
+    :param account_id: [required] Specifies the volume account for which efficiency statistics are returned. 
+    :type account_id: int
+
+    """
+    account_id = data_model.property(
+        "accountID", int,
         array=False, optional=False,
-        documentation="""The cloneID for the ongoing clone process. """,
+        documentation="""Specifies the volume account for which efficiency statistics are returned. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            clone_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+            account_id):
 
-class GetAccountResult(data_model.DataObject):
-    """GetAccountResult  
+        super(GetAccountEfficiencyRequest, self).__init__(**{ 
+            "account_id": account_id, })
+        
 
-    :param account: [required] Account details. 
-    :type account: Account
+class GetAccountByIDRequest(data_model.DataObject):
+    """GetAccountByIDRequest  
+    GetAccountByID enables you to return details about a specific account, given its accountID.
+
+    :param account_id: [required] Specifies the account for which details are gathered. 
+    :type account_id: int
 
     """
-    account = data_model.property(
-        "account", Account,
+    account_id = data_model.property(
+        "accountID", int,
         array=False, optional=False,
-        documentation="""Account details. """,
+        documentation="""Specifies the account for which details are gathered. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            account):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+            account_id):
 
-class ListSnapMirrorLunsRequest(data_model.DataObject):
-    """ListSnapMirrorLunsRequest  
-    The SolidFire Element OS web UI uses the ListSnapMirrorLuns method to list the LUN information for the SnapMirror relationship from the remote ONTAP cluster.
+        super(GetAccountByIDRequest, self).__init__(**{ 
+            "account_id": account_id, })
+        
 
-    :param snap_mirror_endpoint_id: [required] List only the LUN information associated with the specified endpoint ID. 
-    :type snap_mirror_endpoint_id: int
+class ListAccountsRequest(data_model.DataObject):
+    """ListAccountsRequest  
+    ListAccounts returns the entire list of accounts, with optional paging support.
 
-    :param destination_volume: [required] The destination volume in the SnapMirror relationship. 
-    :type destination_volume: SnapMirrorVolumeInfo
+    :param start_account_id:  Starting AccountID to return. If no account exists with this AccountID, the next account by AccountID order is used as the start of the list. To page through the list, pass the AccountID of the last account in the previous response + 1. 
+    :type start_account_id: int
 
-    """
-    snap_mirror_endpoint_id = data_model.property(
-        "snapMirrorEndpointID", int,
-        array=False, optional=False,
-        documentation="""List only the LUN information associated with the specified endpoint ID. """,
-        dictionaryType=None
-    )
-    destination_volume = data_model.property(
-        "destinationVolume", SnapMirrorVolumeInfo,
-        array=False, optional=False,
-        documentation="""The destination volume in the SnapMirror relationship. """,
-        dictionaryType=None
-    )
+    :param limit:  Maximum number of AccountInfo objects to return. 
+    :type limit: int
 
-    def __init__(self,
-            snap_mirror_endpoint_id,
-            destination_volume):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class TestConnectEnsembleRequest(data_model.DataObject):
-    """TestConnectEnsembleRequest  
-    The TestConnectEnsemble API method enables you to verify connectivity with a specified database ensemble. By default, it uses the ensemble for the cluster that the node is associated with. Alternatively, you can provide a different ensemble to test connectivity with.
-    Note: This method is available only through the per-node API endpoint 5.0 or later.
-
-    :param ensemble:  Uses a comma-separated list of ensemble node cluster IP addresses to test connectivity. This parameter is optional. 
-    :type ensemble: str
+    :param include_storage_containers:  Includes storage containers in the response by default. To exclude storage containers, set to false. 
+    :type include_storage_containers: bool
 
     """
-    ensemble = data_model.property(
-        "ensemble", str,
+    start_account_id = data_model.property(
+        "startAccountID", int,
         array=False, optional=True,
-        documentation="""Uses a comma-separated list of ensemble node cluster IP addresses to test connectivity. This parameter is optional. """,
+        documentation="""Starting AccountID to return. If no account exists with this AccountID, the next account by AccountID order is used as the start of the list. To page through the list, pass the AccountID of the last account in the previous response + 1. """,
+        dictionaryType=None
+    )
+    limit = data_model.property(
+        "limit", int,
+        array=False, optional=True,
+        documentation="""Maximum number of AccountInfo objects to return. """,
+        dictionaryType=None
+    )
+    include_storage_containers = data_model.property(
+        "includeStorageContainers", bool,
+        array=False, optional=True,
+        documentation="""Includes storage containers in the response by default. To exclude storage containers, set to false. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            ensemble=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+            start_account_id=None,
+            limit=None,
+            include_storage_containers=None):
+
+        super(ListAccountsRequest, self).__init__(**{ 
+            "start_account_id": start_account_id,
+            "limit": limit,
+            "include_storage_containers": include_storage_containers, })
+        
 
 class SnapMirrorPolicyRule(data_model.DataObject):
     """SnapMirrorPolicyRule  
@@ -13921,9 +14670,12 @@ class SnapMirrorPolicyRule(data_model.DataObject):
             snap_mirror_endpoint_id,
             snap_mirror_label,
             keep_count):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SnapMirrorPolicyRule, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "snap_mirror_label": snap_mirror_label,
+            "keep_count": keep_count, })
+        
 
 class SnapMirrorPolicy(data_model.DataObject):
     """SnapMirrorPolicy  
@@ -14022,9 +14774,18 @@ class SnapMirrorPolicy(data_model.DataObject):
             total_keep_count,
             total_rules,
             vserver_name):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SnapMirrorPolicy, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "policy_name": policy_name,
+            "policy_type": policy_type,
+            "comment": comment,
+            "transfer_priority": transfer_priority,
+            "policy_rules": policy_rules,
+            "total_keep_count": total_keep_count,
+            "total_rules": total_rules,
+            "vserver_name": vserver_name, })
+        
 
 class ListSnapMirrorPoliciesResult(data_model.DataObject):
     """ListSnapMirrorPoliciesResult  
@@ -14042,9 +14803,10 @@ class ListSnapMirrorPoliciesResult(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_policies):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListSnapMirrorPoliciesResult, self).__init__(**{ 
+            "snap_mirror_policies": snap_mirror_policies, })
+        
 
 class RollbackToSnapshotResult(data_model.DataObject):
     """RollbackToSnapshotResult  
@@ -14082,9 +14844,12 @@ class RollbackToSnapshotResult(data_model.DataObject):
             snapshot=None,
             snapshot_id=None,
             checksum=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RollbackToSnapshotResult, self).__init__(**{ 
+            "snapshot": snapshot,
+            "snapshot_id": snapshot_id,
+            "checksum": checksum, })
+        
 
 class GetSystemStatusResult(data_model.DataObject):
     """GetSystemStatusResult  
@@ -14102,9 +14867,10 @@ class GetSystemStatusResult(data_model.DataObject):
 
     def __init__(self,
             reboot_required):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetSystemStatusResult, self).__init__(**{ 
+            "reboot_required": reboot_required, })
+        
 
 class GetClusterHardwareInfoRequest(data_model.DataObject):
     """GetClusterHardwareInfoRequest  
@@ -14125,9 +14891,10 @@ class GetClusterHardwareInfoRequest(data_model.DataObject):
 
     def __init__(self,
             type=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetClusterHardwareInfoRequest, self).__init__(**{ 
+            "type": type, })
+        
 
 class RemoveBackupTargetRequest(data_model.DataObject):
     """RemoveBackupTargetRequest  
@@ -14146,9 +14913,10 @@ class RemoveBackupTargetRequest(data_model.DataObject):
 
     def __init__(self,
             backup_target_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RemoveBackupTargetRequest, self).__init__(**{ 
+            "backup_target_id": backup_target_id, })
+        
 
 class CreateVolumeRequest(data_model.DataObject):
     """CreateVolumeRequest  
@@ -14238,9 +15006,17 @@ class CreateVolumeRequest(data_model.DataObject):
             attributes=None,
             associate_with_qos_policy=None,
             qos_policy_id=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateVolumeRequest, self).__init__(**{ 
+            "name": name,
+            "account_id": account_id,
+            "total_size": total_size,
+            "enable512e": enable512e,
+            "qos": qos,
+            "attributes": attributes,
+            "associate_with_qos_policy": associate_with_qos_policy,
+            "qos_policy_id": qos_policy_id, })
+        
 
 class CreateClusterResult(data_model.DataObject):
     """CreateClusterResult  
@@ -14248,9 +15024,9 @@ class CreateClusterResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateClusterResult, self).__init__(**{  })
+        
 
 class SetConfigRequest(data_model.DataObject):
     """SetConfigRequest  
@@ -14271,9 +15047,10 @@ class SetConfigRequest(data_model.DataObject):
 
     def __init__(self,
             config):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetConfigRequest, self).__init__(**{ 
+            "config": config, })
+        
 
 class CreateSnapMirrorEndpointRequest(data_model.DataObject):
     """CreateSnapMirrorEndpointRequest  
@@ -14312,9 +15089,12 @@ class CreateSnapMirrorEndpointRequest(data_model.DataObject):
             management_ip,
             username,
             password):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateSnapMirrorEndpointRequest, self).__init__(**{ 
+            "management_ip": management_ip,
+            "username": username,
+            "password": password, })
+        
 
 class ModifyVolumesRequest(data_model.DataObject):
     """ModifyVolumesRequest  
@@ -14422,9 +15202,18 @@ class ModifyVolumesRequest(data_model.DataObject):
             qos_policy_id=None,
             attributes=None,
             enable_snap_mirror_replication=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifyVolumesRequest, self).__init__(**{ 
+            "volume_ids": volume_ids,
+            "account_id": account_id,
+            "access": access,
+            "qos": qos,
+            "total_size": total_size,
+            "associate_with_qos_policy": associate_with_qos_policy,
+            "qos_policy_id": qos_policy_id,
+            "attributes": attributes,
+            "enable_snap_mirror_replication": enable_snap_mirror_replication, })
+        
 
 class RestoreDeletedVolumeRequest(data_model.DataObject):
     """RestoreDeletedVolumeRequest  
@@ -14443,9 +15232,10 @@ class RestoreDeletedVolumeRequest(data_model.DataObject):
 
     def __init__(self,
             volume_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RestoreDeletedVolumeRequest, self).__init__(**{ 
+            "volume_id": volume_id, })
+        
 
 class ListPendingNodesResult(data_model.DataObject):
     """ListPendingNodesResult  
@@ -14463,9 +15253,10 @@ class ListPendingNodesResult(data_model.DataObject):
 
     def __init__(self,
             pending_nodes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListPendingNodesResult, self).__init__(**{ 
+            "pending_nodes": pending_nodes, })
+        
 
 class CancelGroupCloneResult(data_model.DataObject):
     """CancelGroupCloneResult  
@@ -14473,29 +15264,52 @@ class CancelGroupCloneResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class ListActivePairedVolumesResult(data_model.DataObject):
-    """ListActivePairedVolumesResult  
+        super(CancelGroupCloneResult, self).__init__(**{  })
+        
 
-    :param volumes: [required] Volume information for the paired volumes. 
-    :type volumes: Volume
+class DeleteAllSupportBundlesResult(data_model.DataObject):
+    """DeleteAllSupportBundlesResult  
+
+    :param duration: [required]  
+    :type duration: str
+
+    :param details: [required]  
+    :type details: dict
+
+    :param result: [required]  
+    :type result: str
 
     """
-    volumes = data_model.property(
-        "volumes", Volume,
-        array=True, optional=False,
-        documentation="""Volume information for the paired volumes. """,
+    duration = data_model.property(
+        "duration", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    details = data_model.property(
+        "details", dict,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    result = data_model.property(
+        "result", str,
+        array=False, optional=False,
+        documentation=""" """,
         dictionaryType=None
     )
 
     def __init__(self,
-            volumes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+            duration,
+            details,
+            result):
+
+        super(DeleteAllSupportBundlesResult, self).__init__(**{ 
+            "duration": duration,
+            "details": details,
+            "result": result, })
+        
 
 class AddedNode(data_model.DataObject):
     """AddedNode  
@@ -14603,9 +15417,19 @@ class AddedNode(data_model.DataObject):
             platform_info=None,
             sip=None,
             software_version=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(AddedNode, self).__init__(**{ 
+            "node_id": node_id,
+            "pending_node_id": pending_node_id,
+            "active_node_key": active_node_key,
+            "assigned_node_id": assigned_node_id,
+            "async_handle": async_handle,
+            "cip": cip,
+            "mip": mip,
+            "platform_info": platform_info,
+            "sip": sip,
+            "software_version": software_version, })
+        
 
 class AddNodesResult(data_model.DataObject):
     """AddNodesResult  
@@ -14633,9 +15457,11 @@ class AddNodesResult(data_model.DataObject):
     def __init__(self,
             nodes,
             auto_install=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(AddNodesResult, self).__init__(**{ 
+            "auto_install": auto_install,
+            "nodes": nodes, })
+        
 
 class SetNtpInfoRequest(data_model.DataObject):
     """SetNtpInfoRequest  
@@ -14665,9 +15491,11 @@ class SetNtpInfoRequest(data_model.DataObject):
     def __init__(self,
             servers,
             broadcastclient=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetNtpInfoRequest, self).__init__(**{ 
+            "servers": servers,
+            "broadcastclient": broadcastclient, })
+        
 
 class StartClusterPairingResult(data_model.DataObject):
     """StartClusterPairingResult  
@@ -14695,9 +15523,11 @@ class StartClusterPairingResult(data_model.DataObject):
     def __init__(self,
             cluster_pairing_key,
             cluster_pair_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(StartClusterPairingResult, self).__init__(**{ 
+            "cluster_pairing_key": cluster_pairing_key,
+            "cluster_pair_id": cluster_pair_id, })
+        
 
 class RemoveVolumePairResult(data_model.DataObject):
     """RemoveVolumePairResult  
@@ -14705,9 +15535,9 @@ class RemoveVolumePairResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RemoveVolumePairResult, self).__init__(**{  })
+        
 
 class RemoveAccountRequest(data_model.DataObject):
     """RemoveAccountRequest  
@@ -14728,9 +15558,10 @@ class RemoveAccountRequest(data_model.DataObject):
 
     def __init__(self,
             account_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RemoveAccountRequest, self).__init__(**{ 
+            "account_id": account_id, })
+        
 
 class CreateStorageContainerResult(data_model.DataObject):
     """CreateStorageContainerResult  
@@ -14748,9 +15579,10 @@ class CreateStorageContainerResult(data_model.DataObject):
 
     def __init__(self,
             storage_container):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateStorageContainerResult, self).__init__(**{ 
+            "storage_container": storage_container, })
+        
 
 class DeleteGroupSnapshotResult(data_model.DataObject):
     """DeleteGroupSnapshotResult  
@@ -14758,29 +15590,9 @@ class DeleteGroupSnapshotResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class DisableSshResult(data_model.DataObject):
-    """DisableSshResult  
-
-    :param enabled: [required] Node SSH status. 
-    :type enabled: bool
-
-    """
-    enabled = data_model.property(
-        "enabled", bool,
-        array=False, optional=False,
-        documentation="""Node SSH status. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            enabled):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+        super(DeleteGroupSnapshotResult, self).__init__(**{  })
+        
 
 class ListSnapMirrorVolumesRequest(data_model.DataObject):
     """ListSnapMirrorVolumesRequest  
@@ -14829,49 +15641,13 @@ class ListSnapMirrorVolumesRequest(data_model.DataObject):
             vserver=None,
             name=None,
             type=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class GetVirtualVolumeCountResult(data_model.DataObject):
-    """GetVirtualVolumeCountResult  
-
-    :param count: [required] The number of virtual volumes currently in the system. 
-    :type count: int
-
-    """
-    count = data_model.property(
-        "count", int,
-        array=False, optional=False,
-        documentation="""The number of virtual volumes currently in the system. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            count):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListVolumeStatsByVolumeResult(data_model.DataObject):
-    """ListVolumeStatsByVolumeResult  
-
-    :param volume_stats: [required] List of account activity information. 
-    :type volume_stats: VolumeStats
-
-    """
-    volume_stats = data_model.property(
-        "volumeStats", VolumeStats,
-        array=True, optional=False,
-        documentation="""List of account activity information. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            volume_stats):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+        super(ListSnapMirrorVolumesRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "vserver": vserver,
+            "name": name,
+            "type": type, })
+        
 
 class ListSnapMirrorNetworkInterfacesRequest(data_model.DataObject):
     """ListSnapMirrorNetworkInterfacesRequest  
@@ -14900,31 +15676,11 @@ class ListSnapMirrorNetworkInterfacesRequest(data_model.DataObject):
     def __init__(self,
             snap_mirror_endpoint_id=None,
             interface_role=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class EnableClusterSshRequest(data_model.DataObject):
-    """EnableClusterSshRequest  
-    Enables SSH on all nodes in the cluster.
-    Overwrites previous duration.
-
-    :param duration: [required] The duration on how long SSH will be enable on the cluster. Follows format "HH:MM:SS.MS". 
-    :type duration: str
-
-    """
-    duration = data_model.property(
-        "duration", str,
-        array=True, optional=False,
-        documentation="""The duration on how long SSH will be enable on the cluster. Follows format "HH:MM:SS.MS". """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            duration):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+        super(ListSnapMirrorNetworkInterfacesRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "interface_role": interface_role, })
+        
 
 class ListGroupSnapshotsResult(data_model.DataObject):
     """ListGroupSnapshotsResult  
@@ -14942,9 +15698,10 @@ class ListGroupSnapshotsResult(data_model.DataObject):
 
     def __init__(self,
             group_snapshots):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListGroupSnapshotsResult, self).__init__(**{ 
+            "group_snapshots": group_snapshots, })
+        
 
 class GetNvramInfoRequest(data_model.DataObject):
     """GetNvramInfoRequest  
@@ -14963,9 +15720,10 @@ class GetNvramInfoRequest(data_model.DataObject):
 
     def __init__(self,
             force=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetNvramInfoRequest, self).__init__(**{ 
+            "force": force, })
+        
 
 class GetVolumeEfficiencyResult(data_model.DataObject):
     """GetVolumeEfficiencyResult  
@@ -15023,90 +15781,35 @@ class GetVolumeEfficiencyResult(data_model.DataObject):
             thin_provisioning,
             timestamp,
             compression=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class CreateSnapMirrorRelationshipRequest(data_model.DataObject):
-    """CreateSnapMirrorRelationshipRequest  
-    The SolidFire Element OS web UI uses the CreateSnapMirrorRelationship method to create a SnapMirror extended data protection relationship between a source and destination endpoint.
+        super(GetVolumeEfficiencyResult, self).__init__(**{ 
+            "compression": compression,
+            "deduplication": deduplication,
+            "missing_volumes": missing_volumes,
+            "thin_provisioning": thin_provisioning,
+            "timestamp": timestamp, })
+        
 
-    :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
-    :type snap_mirror_endpoint_id: int
+class ModifySnapMirrorEndpointResult(data_model.DataObject):
+    """ModifySnapMirrorEndpointResult  
 
-    :param source_volume: [required] The source volume in the relationship. 
-    :type source_volume: SnapMirrorVolumeInfo
-
-    :param destination_volume: [required] The destination volume in the relationship. 
-    :type destination_volume: SnapMirrorVolumeInfo
-
-    :param relationship_type:  The type of relationship. On SolidFire systems, this value is always "extended_data_protection". 
-    :type relationship_type: str
-
-    :param policy_name:  Specifies the name of the ONTAP SnapMirror policy for the relationship. If not specified, the default policy name is MirrorLatest. 
-    :type policy_name: str
-
-    :param schedule_name:  The name of the preexisting cron schedule on the ONTAP system that is used to update the SnapMirror relationship. If no schedule is designated, snapMirror updates are not scheduled and must be updated manually. 
-    :type schedule_name: str
-
-    :param max_transfer_rate:  Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. 
-    :type max_transfer_rate: int
+    :param snap_mirror_volumes: [required] Information about the modified SnapMirror endpoint. 
+    :type snap_mirror_volumes: SnapMirrorEndpoint
 
     """
-    snap_mirror_endpoint_id = data_model.property(
-        "snapMirrorEndpointID", int,
+    snap_mirror_volumes = data_model.property(
+        "snapMirrorVolumes", SnapMirrorEndpoint,
         array=False, optional=False,
-        documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. """,
-        dictionaryType=None
-    )
-    source_volume = data_model.property(
-        "sourceVolume", SnapMirrorVolumeInfo,
-        array=False, optional=False,
-        documentation="""The source volume in the relationship. """,
-        dictionaryType=None
-    )
-    destination_volume = data_model.property(
-        "destinationVolume", SnapMirrorVolumeInfo,
-        array=False, optional=False,
-        documentation="""The destination volume in the relationship. """,
-        dictionaryType=None
-    )
-    relationship_type = data_model.property(
-        "relationshipType", str,
-        array=False, optional=True,
-        documentation="""The type of relationship. On SolidFire systems, this value is always "extended_data_protection". """,
-        dictionaryType=None
-    )
-    policy_name = data_model.property(
-        "policyName", str,
-        array=False, optional=True,
-        documentation="""Specifies the name of the ONTAP SnapMirror policy for the relationship. If not specified, the default policy name is MirrorLatest. """,
-        dictionaryType=None
-    )
-    schedule_name = data_model.property(
-        "scheduleName", str,
-        array=False, optional=True,
-        documentation="""The name of the preexisting cron schedule on the ONTAP system that is used to update the SnapMirror relationship. If no schedule is designated, snapMirror updates are not scheduled and must be updated manually. """,
-        dictionaryType=None
-    )
-    max_transfer_rate = data_model.property(
-        "maxTransferRate", int,
-        array=False, optional=True,
-        documentation="""Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. """,
+        documentation="""Information about the modified SnapMirror endpoint. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            snap_mirror_endpoint_id,
-            source_volume,
-            destination_volume,
-            relationship_type=None,
-            policy_name=None,
-            schedule_name=None,
-            max_transfer_rate=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+            snap_mirror_volumes):
+
+        super(ModifySnapMirrorEndpointResult, self).__init__(**{ 
+            "snap_mirror_volumes": snap_mirror_volumes, })
+        
 
 class PendingOperation(data_model.DataObject):
     """PendingOperation  
@@ -15134,9 +15837,11 @@ class PendingOperation(data_model.DataObject):
     def __init__(self,
             pending,
             operation):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(PendingOperation, self).__init__(**{ 
+            "pending": pending,
+            "operation": operation, })
+        
 
 class GetPendingOperationResult(data_model.DataObject):
     """GetPendingOperationResult  
@@ -15154,9 +15859,10 @@ class GetPendingOperationResult(data_model.DataObject):
 
     def __init__(self,
             pending_operation):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetPendingOperationResult, self).__init__(**{ 
+            "pending_operation": pending_operation, })
+        
 
 class CloneMultipleVolumeParams(data_model.DataObject):
     """CloneMultipleVolumeParams  
@@ -15224,9 +15930,15 @@ class CloneMultipleVolumeParams(data_model.DataObject):
             new_account_id=None,
             new_size=None,
             attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CloneMultipleVolumeParams, self).__init__(**{ 
+            "volume_id": volume_id,
+            "access": access,
+            "name": name,
+            "new_account_id": new_account_id,
+            "new_size": new_size,
+            "attributes": attributes, })
+        
 
 class SetNtpInfoResult(data_model.DataObject):
     """SetNtpInfoResult  
@@ -15234,9 +15946,9 @@ class SetNtpInfoResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetNtpInfoResult, self).__init__(**{  })
+        
 
 class GetVolumeAccessGroupEfficiencyRequest(data_model.DataObject):
     """GetVolumeAccessGroupEfficiencyRequest  
@@ -15259,9 +15971,10 @@ class GetVolumeAccessGroupEfficiencyRequest(data_model.DataObject):
 
     def __init__(self,
             volume_access_group_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetVolumeAccessGroupEfficiencyRequest, self).__init__(**{ 
+            "volume_access_group_id": volume_access_group_id, })
+        
 
 class ModifyVolumePairResult(data_model.DataObject):
     """ModifyVolumePairResult  
@@ -15269,9 +15982,9 @@ class ModifyVolumePairResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifyVolumePairResult, self).__init__(**{  })
+        
 
 class CreateInitiator(data_model.DataObject):
     """CreateInitiator  
@@ -15320,9 +16033,13 @@ class CreateInitiator(data_model.DataObject):
             alias=None,
             volume_access_group_id=None,
             attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateInitiator, self).__init__(**{ 
+            "name": name,
+            "alias": alias,
+            "volume_access_group_id": volume_access_group_id,
+            "attributes": attributes, })
+        
 
 class CreateInitiatorsRequest(data_model.DataObject):
     """CreateInitiatorsRequest  
@@ -15344,9 +16061,10 @@ class CreateInitiatorsRequest(data_model.DataObject):
 
     def __init__(self,
             initiators):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateInitiatorsRequest, self).__init__(**{ 
+            "initiators": initiators, })
+        
 
 class GetClusterFullThresholdResult(data_model.DataObject):
     """GetClusterFullThresholdResult  
@@ -15401,6 +16119,9 @@ class GetClusterFullThresholdResult(data_model.DataObject):
 
     :param sum_used_metadata_cluster_bytes: [required] Amount of space used on volume drives to store metadata. 
     :type sum_used_metadata_cluster_bytes: int
+
+    :param zone_alert_level: [required] This controls whether the alerts apply to being able to heal from a node loss or a chassis loss. It will either be at "node" or at "chassis". It defaults to "node". 
+    :type zone_alert_level: str
 
     """
     block_fullness = data_model.property(
@@ -15505,6 +16226,12 @@ class GetClusterFullThresholdResult(data_model.DataObject):
         documentation="""Amount of space used on volume drives to store metadata. """,
         dictionaryType=None
     )
+    zone_alert_level = data_model.property(
+        "zoneAlertLevel", str,
+        array=False, optional=False,
+        documentation="""This controls whether the alerts apply to being able to heal from a node loss or a chassis loss. It will either be at "node" or at "chassis". It defaults to "node". """,
+        dictionaryType=None
+    )
 
     def __init__(self,
             block_fullness,
@@ -15523,10 +16250,29 @@ class GetClusterFullThresholdResult(data_model.DataObject):
             sum_total_cluster_bytes,
             sum_total_metadata_cluster_bytes,
             sum_used_cluster_bytes,
-            sum_used_metadata_cluster_bytes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+            sum_used_metadata_cluster_bytes,
+            zone_alert_level):
+
+        super(GetClusterFullThresholdResult, self).__init__(**{ 
+            "block_fullness": block_fullness,
+            "fullness": fullness,
+            "max_metadata_over_provision_factor": max_metadata_over_provision_factor,
+            "metadata_fullness": metadata_fullness,
+            "slice_reserve_used_threshold_pct": slice_reserve_used_threshold_pct,
+            "stage2_aware_threshold": stage2_aware_threshold,
+            "stage2_block_threshold_bytes": stage2_block_threshold_bytes,
+            "stage3_block_threshold_bytes": stage3_block_threshold_bytes,
+            "stage3_block_threshold_percent": stage3_block_threshold_percent,
+            "stage3_low_threshold": stage3_low_threshold,
+            "stage4_critical_threshold": stage4_critical_threshold,
+            "stage4_block_threshold_bytes": stage4_block_threshold_bytes,
+            "stage5_block_threshold_bytes": stage5_block_threshold_bytes,
+            "sum_total_cluster_bytes": sum_total_cluster_bytes,
+            "sum_total_metadata_cluster_bytes": sum_total_metadata_cluster_bytes,
+            "sum_used_cluster_bytes": sum_used_cluster_bytes,
+            "sum_used_metadata_cluster_bytes": sum_used_metadata_cluster_bytes,
+            "zone_alert_level": zone_alert_level, })
+        
 
 class ListVolumesForAccountRequest(data_model.DataObject):
     """ListVolumesForAccountRequest  
@@ -15575,9 +16321,13 @@ class ListVolumesForAccountRequest(data_model.DataObject):
             start_volume_id=None,
             limit=None,
             include_virtual_volumes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListVolumesForAccountRequest, self).__init__(**{ 
+            "account_id": account_id,
+            "start_volume_id": start_volume_id,
+            "limit": limit,
+            "include_virtual_volumes": include_virtual_volumes, })
+        
 
 class DisableEncryptionAtRestResult(data_model.DataObject):
     """DisableEncryptionAtRestResult  
@@ -15585,9 +16335,9 @@ class DisableEncryptionAtRestResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DisableEncryptionAtRestResult, self).__init__(**{  })
+        
 
 class GetVolumeEfficiencyRequest(data_model.DataObject):
     """GetVolumeEfficiencyRequest  
@@ -15606,9 +16356,10 @@ class GetVolumeEfficiencyRequest(data_model.DataObject):
 
     def __init__(self,
             volume_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetVolumeEfficiencyRequest, self).__init__(**{ 
+            "volume_id": volume_id, })
+        
 
 class CreateVolumeResult(data_model.DataObject):
     """CreateVolumeResult  
@@ -15646,9 +16397,12 @@ class CreateVolumeResult(data_model.DataObject):
             volume_id,
             curve,
             volume=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateVolumeResult, self).__init__(**{ 
+            "volume": volume,
+            "volume_id": volume_id,
+            "curve": curve, })
+        
 
 class ModifySnapMirrorRelationshipResult(data_model.DataObject):
     """ModifySnapMirrorRelationshipResult  
@@ -15666,9 +16420,10 @@ class ModifySnapMirrorRelationshipResult(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_relationship):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifySnapMirrorRelationshipResult, self).__init__(**{ 
+            "snap_mirror_relationship": snap_mirror_relationship, })
+        
 
 class ModifyVirtualNetworkRequest(data_model.DataObject):
     """ModifyVirtualNetworkRequest  
@@ -15773,9 +16528,18 @@ class ModifyVirtualNetworkRequest(data_model.DataObject):
             gateway=None,
             namespace=None,
             attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifyVirtualNetworkRequest, self).__init__(**{ 
+            "virtual_network_id": virtual_network_id,
+            "virtual_network_tag": virtual_network_tag,
+            "name": name,
+            "address_blocks": address_blocks,
+            "netmask": netmask,
+            "svip": svip,
+            "gateway": gateway,
+            "namespace": namespace,
+            "attributes": attributes, })
+        
 
 class VirtualVolumeStats(data_model.DataObject):
     """VirtualVolumeStats  
@@ -16104,9 +16868,41 @@ class VirtualVolumeStats(data_model.DataObject):
             read_ops_last_sample=None,
             write_ops_last_sample=None,
             virtual_volume_id=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(VirtualVolumeStats, self).__init__(**{ 
+            "account_id": account_id,
+            "actual_iops": actual_iops,
+            "async_delay": async_delay,
+            "average_iopsize": average_iopsize,
+            "burst_iopscredit": burst_iopscredit,
+            "client_queue_depth": client_queue_depth,
+            "desired_metadata_hosts": desired_metadata_hosts,
+            "latency_usec": latency_usec,
+            "metadata_hosts": metadata_hosts,
+            "non_zero_blocks": non_zero_blocks,
+            "read_bytes": read_bytes,
+            "read_latency_usec": read_latency_usec,
+            "read_ops": read_ops,
+            "throttle": throttle,
+            "timestamp": timestamp,
+            "total_latency_usec": total_latency_usec,
+            "unaligned_reads": unaligned_reads,
+            "unaligned_writes": unaligned_writes,
+            "volume_access_groups": volume_access_groups,
+            "volume_id": volume_id,
+            "volume_size": volume_size,
+            "volume_utilization": volume_utilization,
+            "write_bytes": write_bytes,
+            "write_latency_usec": write_latency_usec,
+            "write_ops": write_ops,
+            "zero_blocks": zero_blocks,
+            "write_bytes_last_sample": write_bytes_last_sample,
+            "sample_period_msec": sample_period_msec,
+            "read_bytes_last_sample": read_bytes_last_sample,
+            "read_ops_last_sample": read_ops_last_sample,
+            "write_ops_last_sample": write_ops_last_sample,
+            "virtual_volume_id": virtual_volume_id, })
+        
 
 class ListVolumeStatsByVirtualVolumeResult(data_model.DataObject):
     """ListVolumeStatsByVirtualVolumeResult  
@@ -16124,9 +16920,10 @@ class ListVolumeStatsByVirtualVolumeResult(data_model.DataObject):
 
     def __init__(self,
             volume_stats):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListVolumeStatsByVirtualVolumeResult, self).__init__(**{ 
+            "volume_stats": volume_stats, })
+        
 
 class ListVolumesForAccountResult(data_model.DataObject):
     """ListVolumesForAccountResult  
@@ -16144,9 +16941,10 @@ class ListVolumesForAccountResult(data_model.DataObject):
 
     def __init__(self,
             volumes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListVolumesForAccountResult, self).__init__(**{ 
+            "volumes": volumes, })
+        
 
 class GetNodeHardwareInfoRequest(data_model.DataObject):
     """GetNodeHardwareInfoRequest  
@@ -16166,9 +16964,10 @@ class GetNodeHardwareInfoRequest(data_model.DataObject):
 
     def __init__(self,
             node_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetNodeHardwareInfoRequest, self).__init__(**{ 
+            "node_id": node_id, })
+        
 
 class BreakSnapMirrorVolumeResult(data_model.DataObject):
     """BreakSnapMirrorVolumeResult  
@@ -16176,9 +16975,9 @@ class BreakSnapMirrorVolumeResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(BreakSnapMirrorVolumeResult, self).__init__(**{  })
+        
 
 class CreateSnapMirrorRelationshipResult(data_model.DataObject):
     """CreateSnapMirrorRelationshipResult  
@@ -16196,9 +16995,10 @@ class CreateSnapMirrorRelationshipResult(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_relationship):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateSnapMirrorRelationshipResult, self).__init__(**{ 
+            "snap_mirror_relationship": snap_mirror_relationship, })
+        
 
 class SecureEraseDrivesRequest(data_model.DataObject):
     """SecureEraseDrivesRequest  
@@ -16218,9 +17018,10 @@ class SecureEraseDrivesRequest(data_model.DataObject):
 
     def __init__(self,
             drives):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SecureEraseDrivesRequest, self).__init__(**{ 
+            "drives": drives, })
+        
 
 class DriveInfo(data_model.DataObject):
     """DriveInfo  
@@ -16318,9 +17119,18 @@ class DriveInfo(data_model.DataObject):
             status,
             type,
             attributes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DriveInfo, self).__init__(**{ 
+            "capacity": capacity,
+            "drive_id": drive_id,
+            "node_id": node_id,
+            "serial": serial,
+            "chassis_slot": chassis_slot,
+            "slot": slot,
+            "status": status,
+            "type": type,
+            "attributes": attributes, })
+        
 
 class ListDrivesResult(data_model.DataObject):
     """ListDrivesResult  
@@ -16338,29 +17148,32 @@ class ListDrivesResult(data_model.DataObject):
 
     def __init__(self,
             drives):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class EnableClusterSshResult(data_model.DataObject):
-    """EnableClusterSshResult  
+        super(ListDrivesResult, self).__init__(**{ 
+            "drives": drives, })
+        
 
-    :param cluster_ssh_info: [required] The SSH info for the cluster. 
-    :type cluster_ssh_info: ClusterSshInfo
+class ListVolumeStatsRequest(data_model.DataObject):
+    """ListVolumeStatsRequest  
+    ListVolumeStats returns high-level activity measurements for a single volume, list of volumes, or all volumes (if you omit the volumeIDs parameter). Measurement values are cumulative from the creation of the volume.
+
+    :param volume_ids:  A list of volume IDs of volumes from which to retrieve activity information. 
+    :type volume_ids: int
 
     """
-    cluster_ssh_info = data_model.property(
-        "clusterSshInfo", ClusterSshInfo,
-        array=False, optional=False,
-        documentation="""The SSH info for the cluster. """,
+    volume_ids = data_model.property(
+        "volumeIDs", int,
+        array=True, optional=True,
+        documentation="""A list of volume IDs of volumes from which to retrieve activity information. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            cluster_ssh_info):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+            volume_ids=None):
+
+        super(ListVolumeStatsRequest, self).__init__(**{ 
+            "volume_ids": volume_ids, })
+        
 
 class VirtualVolumeBinding(data_model.DataObject):
     """VirtualVolumeBinding  
@@ -16438,9 +17251,16 @@ class VirtualVolumeBinding(data_model.DataObject):
             virtual_volume_host_id,
             virtual_volume_id,
             virtual_volume_secondary_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(VirtualVolumeBinding, self).__init__(**{ 
+            "protocol_endpoint_id": protocol_endpoint_id,
+            "protocol_endpoint_in_band_id": protocol_endpoint_in_band_id,
+            "protocol_endpoint_type": protocol_endpoint_type,
+            "virtual_volume_binding_id": virtual_volume_binding_id,
+            "virtual_volume_host_id": virtual_volume_host_id,
+            "virtual_volume_id": virtual_volume_id,
+            "virtual_volume_secondary_id": virtual_volume_secondary_id, })
+        
 
 class ListVirtualVolumeBindingsResult(data_model.DataObject):
     """ListVirtualVolumeBindingsResult  
@@ -16458,9 +17278,10 @@ class ListVirtualVolumeBindingsResult(data_model.DataObject):
 
     def __init__(self,
             bindings):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListVirtualVolumeBindingsResult, self).__init__(**{ 
+            "bindings": bindings, })
+        
 
 class GetQoSPolicyResult(data_model.DataObject):
     """GetQoSPolicyResult  
@@ -16478,9 +17299,10 @@ class GetQoSPolicyResult(data_model.DataObject):
 
     def __init__(self,
             qos_policy):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetQoSPolicyResult, self).__init__(**{ 
+            "qos_policy": qos_policy, })
+        
 
 class ModifyClusterAdminResult(data_model.DataObject):
     """ModifyClusterAdminResult  
@@ -16488,19 +17310,102 @@ class ModifyClusterAdminResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class EnableLdapAuthenticationResult(data_model.DataObject):
-    """EnableLdapAuthenticationResult  
+        super(ModifyClusterAdminResult, self).__init__(**{  })
+        
+
+class RollbackToSnapshotRequest(data_model.DataObject):
+    """RollbackToSnapshotRequest  
+    RollbackToSnapshot enables you to make an existing snapshot of the "active" volume image. This method creates a new snapshot
+    from an existing snapshot. The new snapshot becomes "active" and the existing snapshot is preserved until you delete it.
+    The previously "active" snapshot is deleted unless you set the parameter saveCurrentState to true.
+    Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is
+    at stage 4 or 5.
+
+    :param volume_id: [required] VolumeID for the volume. 
+    :type volume_id: int
+
+    :param snapshot_id: [required] The ID of a previously created snapshot on the given volume. 
+    :type snapshot_id: int
+
+    :param save_current_state: [required] Specifies whether to save an active volume image or delete it. Values are: true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. 
+    :type save_current_state: bool
+
+    :param name:  Name for the snapshot. If unspecified, the name of the snapshot being rolled back to is used with "- copy" appended to the end of the name. 
+    :type name: str
+
+    :param attributes:  List of name-value pairs in JSON object format. 
+    :type attributes: dict
 
     """
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="""VolumeID for the volume. """,
+        dictionaryType=None
+    )
+    snapshot_id = data_model.property(
+        "snapshotID", int,
+        array=False, optional=False,
+        documentation="""The ID of a previously created snapshot on the given volume. """,
+        dictionaryType=None
+    )
+    save_current_state = data_model.property(
+        "saveCurrentState", bool,
+        array=False, optional=False,
+        documentation="""Specifies whether to save an active volume image or delete it. Values are: true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. """,
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=True,
+        documentation="""Name for the snapshot. If unspecified, the name of the snapshot being rolled back to is used with "- copy" appended to the end of the name. """,
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="""List of name-value pairs in JSON object format. """,
+        dictionaryType=None
+    )
 
-    def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+    def __init__(self,
+            volume_id,
+            snapshot_id,
+            save_current_state,
+            name=None,
+            attributes=None):
+
+        super(RollbackToSnapshotRequest, self).__init__(**{ 
+            "volume_id": volume_id,
+            "snapshot_id": snapshot_id,
+            "save_current_state": save_current_state,
+            "name": name,
+            "attributes": attributes, })
+        
+
+class CancelCloneRequest(data_model.DataObject):
+    """CancelCloneRequest  
+    CancelClone enables you to stop an ongoing CloneVolume or CopyVolume process. When you cancel a group clone operation, the
+    system completes and removes the operation's associated asyncHandle.
+
+    :param clone_id: [required] The cloneID for the ongoing clone process. 
+    :type clone_id: int
+
+    """
+    clone_id = data_model.property(
+        "cloneID", int,
+        array=False, optional=False,
+        documentation="""The cloneID for the ongoing clone process. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            clone_id):
+
+        super(CancelCloneRequest, self).__init__(**{ 
+            "clone_id": clone_id, })
+        
 
 class ListSnapMirrorAggregatesRequest(data_model.DataObject):
     """ListSnapMirrorAggregatesRequest  
@@ -16519,9 +17424,10 @@ class ListSnapMirrorAggregatesRequest(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_endpoint_id=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListSnapMirrorAggregatesRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id, })
+        
 
 class ListVolumeStatsByVolumeRequest(data_model.DataObject):
     """ListVolumeStatsByVolumeRequest  
@@ -16541,9 +17447,10 @@ class ListVolumeStatsByVolumeRequest(data_model.DataObject):
 
     def __init__(self,
             include_virtual_volumes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListVolumeStatsByVolumeRequest, self).__init__(**{ 
+            "include_virtual_volumes": include_virtual_volumes, })
+        
 
 class ClusterFaultInfo(data_model.DataObject):
     """ClusterFaultInfo  
@@ -16595,9 +17502,6 @@ class ClusterFaultInfo(data_model.DataObject):
 
     :param external_source:   
     :type external_source: str
-
-    :param ssh_enabled:   
-    :type ssh_enabled: str
 
     """
     drive_ids = data_model.property(
@@ -16696,12 +17600,6 @@ class ClusterFaultInfo(data_model.DataObject):
         documentation=""" """,
         dictionaryType=None
     )
-    ssh_enabled = data_model.property(
-        "sshEnabled", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
 
     def __init__(self,
             severity,
@@ -16719,11 +17617,26 @@ class ClusterFaultInfo(data_model.DataObject):
             drive_ids=None,
             network_interface=None,
             data=None,
-            external_source=None,
-            ssh_enabled=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+            external_source=None):
+
+        super(ClusterFaultInfo, self).__init__(**{ 
+            "drive_ids": drive_ids,
+            "network_interface": network_interface,
+            "severity": severity,
+            "type": type,
+            "code": code,
+            "details": details,
+            "node_hardware_fault_id": node_hardware_fault_id,
+            "node_id": node_id,
+            "service_id": service_id,
+            "drive_id": drive_id,
+            "resolved": resolved,
+            "cluster_fault_id": cluster_fault_id,
+            "date": date,
+            "resolved_date": resolved_date,
+            "data": data,
+            "external_source": external_source, })
+        
 
 class ListClusterFaultsResult(data_model.DataObject):
     """ListClusterFaultsResult  
@@ -16741,9 +17654,10 @@ class ListClusterFaultsResult(data_model.DataObject):
 
     def __init__(self,
             faults):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListClusterFaultsResult, self).__init__(**{ 
+            "faults": faults, })
+        
 
 class AddLdapClusterAdminRequest(data_model.DataObject):
     """AddLdapClusterAdminRequest  
@@ -16795,9 +17709,13 @@ class AddLdapClusterAdminRequest(data_model.DataObject):
             access,
             accept_eula=None,
             attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(AddLdapClusterAdminRequest, self).__init__(**{ 
+            "username": username,
+            "access": access,
+            "accept_eula": accept_eula,
+            "attributes": attributes, })
+        
 
 class ModifyVolumePairRequest(data_model.DataObject):
     """ModifyVolumePairRequest  
@@ -16846,9 +17764,13 @@ class ModifyVolumePairRequest(data_model.DataObject):
             paused_manual=None,
             mode=None,
             pause_limit=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifyVolumePairRequest, self).__init__(**{ 
+            "volume_id": volume_id,
+            "paused_manual": paused_manual,
+            "mode": mode,
+            "pause_limit": pause_limit, })
+        
 
 class CloneMultipleVolumesRequest(data_model.DataObject):
     """CloneMultipleVolumesRequest  
@@ -16902,72 +17824,68 @@ class CloneMultipleVolumesRequest(data_model.DataObject):
             access=None,
             group_snapshot_id=None,
             new_account_id=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class ListVolumeAccessGroupsRequest(data_model.DataObject):
-    """ListVolumeAccessGroupsRequest  
-    ListVolumeAccessGroups enables you to return
-    information about the volume access groups that are
-    currently in the system.
+        super(CloneMultipleVolumesRequest, self).__init__(**{ 
+            "volumes": volumes,
+            "access": access,
+            "group_snapshot_id": group_snapshot_id,
+            "new_account_id": new_account_id, })
+        
 
-    :param start_volume_access_group_id:  The volume access group ID at which to begin the listing. If unspecified, there is no lower limit (implicitly 0). 
-    :type start_volume_access_group_id: int
+class InvokeSFApiRequest(data_model.DataObject):
+    """InvokeSFApiRequest  
+    This will invoke any API method supported by the SolidFire API for the version and port the connection is using.
+    Returns a nested hashtable of key/value pairs that contain the result of the invoked method.
 
-    :param limit:  The maximum number of results to return. This can be useful for paging. 
-    :type limit: int
+    :param method: [required] The name of the method to invoke. This is case sensitive. 
+    :type method: str
 
-    :param volume_access_groups:  The list of ids of the volume access groups you wish to list 
-    :type volume_access_groups: int
-
-    """
-    start_volume_access_group_id = data_model.property(
-        "startVolumeAccessGroupID", int,
-        array=False, optional=True,
-        documentation="""The volume access group ID at which to begin the listing. If unspecified, there is no lower limit (implicitly 0). """,
-        dictionaryType=None
-    )
-    limit = data_model.property(
-        "limit", int,
-        array=False, optional=True,
-        documentation="""The maximum number of results to return. This can be useful for paging. """,
-        dictionaryType=None
-    )
-    volume_access_groups = data_model.property(
-        "volumeAccessGroups", int,
-        array=True, optional=True,
-        documentation="""The list of ids of the volume access groups you wish to list """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            start_volume_access_group_id=None,
-            limit=None,
-            volume_access_groups=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ResyncSnapMirrorRelationshipResult(data_model.DataObject):
-    """ResyncSnapMirrorRelationshipResult  
-
-    :param snap_mirror_relationship: [required] An object containing information about the resynced SnapMirror relationship. 
-    :type snap_mirror_relationship: SnapMirrorRelationship
+    :param parameters:  An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked. 
+    :type parameters: str
 
     """
-    snap_mirror_relationship = data_model.property(
-        "snapMirrorRelationship", SnapMirrorRelationship,
+    method = data_model.property(
+        "method", str,
         array=False, optional=False,
-        documentation="""An object containing information about the resynced SnapMirror relationship. """,
+        documentation="""The name of the method to invoke. This is case sensitive. """,
+        dictionaryType=None
+    )
+    parameters = data_model.property(
+        "parameters", str,
+        array=False, optional=True,
+        documentation="""An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            snap_mirror_relationship):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+            method,
+            parameters=None):
+
+        super(InvokeSFApiRequest, self).__init__(**{ 
+            "method": method,
+            "parameters": parameters, })
+        
+
+class GetNodeStatsResult(data_model.DataObject):
+    """GetNodeStatsResult  
+
+    :param node_stats: [required] Node activity information. 
+    :type node_stats: NodeStatsInfo
+
+    """
+    node_stats = data_model.property(
+        "nodeStats", NodeStatsInfo,
+        array=False, optional=False,
+        documentation="""Node activity information. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            node_stats):
+
+        super(GetNodeStatsResult, self).__init__(**{ 
+            "node_stats": node_stats, })
+        
 
 class DeleteQoSPolicyRequest(data_model.DataObject):
     """DeleteQoSPolicyRequest  
@@ -16987,9 +17905,10 @@ class DeleteQoSPolicyRequest(data_model.DataObject):
 
     def __init__(self,
             qos_policy_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DeleteQoSPolicyRequest, self).__init__(**{ 
+            "qos_policy_id": qos_policy_id, })
+        
 
 class SetLoginBannerRequest(data_model.DataObject):
     """SetLoginBannerRequest  
@@ -17018,9 +17937,11 @@ class SetLoginBannerRequest(data_model.DataObject):
     def __init__(self,
             banner=None,
             enabled=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetLoginBannerRequest, self).__init__(**{ 
+            "banner": banner,
+            "enabled": enabled, })
+        
 
 class RemoveNodeSSLCertificateResult(data_model.DataObject):
     """RemoveNodeSSLCertificateResult  
@@ -17028,9 +17949,9 @@ class RemoveNodeSSLCertificateResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RemoveNodeSSLCertificateResult, self).__init__(**{  })
+        
 
 class SetSnmpACLResult(data_model.DataObject):
     """SetSnmpACLResult  
@@ -17038,9 +17959,9 @@ class SetSnmpACLResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetSnmpACLResult, self).__init__(**{  })
+        
 
 class ListGroupSnapshotsRequest(data_model.DataObject):
     """ListGroupSnapshotsRequest  
@@ -17069,9 +17990,11 @@ class ListGroupSnapshotsRequest(data_model.DataObject):
     def __init__(self,
             volumes=None,
             group_snapshot_id=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListGroupSnapshotsRequest, self).__init__(**{ 
+            "volumes": volumes,
+            "group_snapshot_id": group_snapshot_id, })
+        
 
 class InitializeSnapMirrorRelationshipRequest(data_model.DataObject):
     """InitializeSnapMirrorRelationshipRequest  
@@ -17110,9 +18033,12 @@ class InitializeSnapMirrorRelationshipRequest(data_model.DataObject):
             snap_mirror_endpoint_id,
             destination_volume,
             max_transfer_rate=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(InitializeSnapMirrorRelationshipRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "destination_volume": destination_volume,
+            "max_transfer_rate": max_transfer_rate, })
+        
 
 class EnableFeatureRequest(data_model.DataObject):
     """EnableFeatureRequest  
@@ -17131,9 +18057,10 @@ class EnableFeatureRequest(data_model.DataObject):
 
     def __init__(self,
             feature):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(EnableFeatureRequest, self).__init__(**{ 
+            "feature": feature, })
+        
 
 class SnmpNetwork(data_model.DataObject):
     """SnmpNetwork  
@@ -17182,9 +18109,13 @@ class SnmpNetwork(data_model.DataObject):
             cidr,
             community,
             network):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SnmpNetwork, self).__init__(**{ 
+            "access": access,
+            "cidr": cidr,
+            "community": community,
+            "network": network, })
+        
 
 class RemoveNodesRequest(data_model.DataObject):
     """RemoveNodesRequest  
@@ -17204,9 +18135,10 @@ class RemoveNodesRequest(data_model.DataObject):
 
     def __init__(self,
             nodes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RemoveNodesRequest, self).__init__(**{ 
+            "nodes": nodes, })
+        
 
 class DeleteGroupSnapshotRequest(data_model.DataObject):
     """DeleteGroupSnapshotRequest  
@@ -17235,29 +18167,21 @@ class DeleteGroupSnapshotRequest(data_model.DataObject):
     def __init__(self,
             group_snapshot_id,
             save_members):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class ModifySnapshotResult(data_model.DataObject):
-    """ModifySnapshotResult  
+        super(DeleteGroupSnapshotRequest, self).__init__(**{ 
+            "group_snapshot_id": group_snapshot_id,
+            "save_members": save_members, })
+        
 
-    :param snapshot:   
-    :type snapshot: Snapshot
+class RemoveNodesResult(data_model.DataObject):
+    """RemoveNodesResult  
 
     """
-    snapshot = data_model.property(
-        "snapshot", Snapshot,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
 
-    def __init__(self,
-            snapshot=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+    def __init__(self):
+
+        super(RemoveNodesResult, self).__init__(**{  })
+        
 
 class InitializeSnapMirrorRelationshipResult(data_model.DataObject):
     """InitializeSnapMirrorRelationshipResult  
@@ -17275,9 +18199,10 @@ class InitializeSnapMirrorRelationshipResult(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_relationship):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(InitializeSnapMirrorRelationshipResult, self).__init__(**{ 
+            "snap_mirror_relationship": snap_mirror_relationship, })
+        
 
 class ModifyStorageContainerRequest(data_model.DataObject):
     """ModifyStorageContainerRequest  
@@ -17316,9 +18241,12 @@ class ModifyStorageContainerRequest(data_model.DataObject):
             storage_container_id,
             initiator_secret=None,
             target_secret=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifyStorageContainerRequest, self).__init__(**{ 
+            "storage_container_id": storage_container_id,
+            "initiator_secret": initiator_secret,
+            "target_secret": target_secret, })
+        
 
 class TestConnectMvipDetails(data_model.DataObject):
     """TestConnectMvipDetails  
@@ -17356,9 +18284,12 @@ class TestConnectMvipDetails(data_model.DataObject):
             ping_bytes,
             mvip,
             connected):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(TestConnectMvipDetails, self).__init__(**{ 
+            "ping_bytes": ping_bytes,
+            "mvip": mvip,
+            "connected": connected, })
+        
 
 class TestConnectMvipResult(data_model.DataObject):
     """TestConnectMvipResult  
@@ -17396,9 +18327,12 @@ class TestConnectMvipResult(data_model.DataObject):
             details,
             duration,
             result):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(TestConnectMvipResult, self).__init__(**{ 
+            "details": details,
+            "duration": duration,
+            "result": result, })
+        
 
 class TestConnectSvipDetails(data_model.DataObject):
     """TestConnectSvipDetails  
@@ -17436,9 +18370,12 @@ class TestConnectSvipDetails(data_model.DataObject):
             ping_bytes,
             svip,
             connected):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(TestConnectSvipDetails, self).__init__(**{ 
+            "ping_bytes": ping_bytes,
+            "svip": svip,
+            "connected": connected, })
+        
 
 class TestConnectSvipResult(data_model.DataObject):
     """TestConnectSvipResult  
@@ -17476,9 +18413,12 @@ class TestConnectSvipResult(data_model.DataObject):
             details,
             duration,
             result):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(TestConnectSvipResult, self).__init__(**{ 
+            "details": details,
+            "duration": duration,
+            "result": result, })
+        
 
 class ClusterCapacity(data_model.DataObject):
     """ClusterCapacity  
@@ -17717,9 +18657,32 @@ class ClusterCapacity(data_model.DataObject):
             used_metadata_space_in_snapshots,
             used_space,
             zero_blocks):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ClusterCapacity, self).__init__(**{ 
+            "active_block_space": active_block_space,
+            "active_sessions": active_sessions,
+            "average_iops": average_iops,
+            "cluster_recent_iosize": cluster_recent_iosize,
+            "current_iops": current_iops,
+            "max_iops": max_iops,
+            "max_over_provisionable_space": max_over_provisionable_space,
+            "max_provisioned_space": max_provisioned_space,
+            "max_used_metadata_space": max_used_metadata_space,
+            "max_used_space": max_used_space,
+            "non_zero_blocks": non_zero_blocks,
+            "peak_active_sessions": peak_active_sessions,
+            "peak_iops": peak_iops,
+            "provisioned_space": provisioned_space,
+            "snapshot_non_zero_blocks": snapshot_non_zero_blocks,
+            "timestamp": timestamp,
+            "total_ops": total_ops,
+            "unique_blocks": unique_blocks,
+            "unique_blocks_used_space": unique_blocks_used_space,
+            "used_metadata_space": used_metadata_space,
+            "used_metadata_space_in_snapshots": used_metadata_space_in_snapshots,
+            "used_space": used_space,
+            "zero_blocks": zero_blocks, })
+        
 
 class GetClusterCapacityResult(data_model.DataObject):
     """GetClusterCapacityResult  
@@ -17737,9 +18700,10 @@ class GetClusterCapacityResult(data_model.DataObject):
 
     def __init__(self,
             cluster_capacity):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetClusterCapacityResult, self).__init__(**{ 
+            "cluster_capacity": cluster_capacity, })
+        
 
 class SnmpV3UsmUser(data_model.DataObject):
     """SnmpV3UsmUser  
@@ -17798,9 +18762,14 @@ class SnmpV3UsmUser(data_model.DataObject):
             password,
             passphrase,
             sec_level):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SnmpV3UsmUser, self).__init__(**{ 
+            "access": access,
+            "name": name,
+            "password": password,
+            "passphrase": passphrase,
+            "sec_level": sec_level, })
+        
 
 class GetSnmpInfoResult(data_model.DataObject):
     """GetSnmpInfoResult  
@@ -17848,9 +18817,13 @@ class GetSnmpInfoResult(data_model.DataObject):
             snmp_v3_enabled,
             networks=None,
             usm_users=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetSnmpInfoResult, self).__init__(**{ 
+            "networks": networks,
+            "enabled": enabled,
+            "snmp_v3_enabled": snmp_v3_enabled,
+            "usm_users": usm_users, })
+        
 
 class ModifyVolumesResult(data_model.DataObject):
     """ModifyVolumesResult  
@@ -17878,9 +18851,11 @@ class ModifyVolumesResult(data_model.DataObject):
     def __init__(self,
             volumes,
             qos=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifyVolumesResult, self).__init__(**{ 
+            "volumes": volumes,
+            "qos": qos, })
+        
 
 class RestartNetworkingRequest(data_model.DataObject):
     """RestartNetworkingRequest  
@@ -17902,9 +18877,10 @@ class RestartNetworkingRequest(data_model.DataObject):
 
     def __init__(self,
             force):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RestartNetworkingRequest, self).__init__(**{ 
+            "force": force, })
+        
 
 class ListNodeFibreChannelPortInfoResult(data_model.DataObject):
     """ListNodeFibreChannelPortInfoResult  
@@ -17923,9 +18899,10 @@ class ListNodeFibreChannelPortInfoResult(data_model.DataObject):
 
     def __init__(self,
             fibre_channel_ports):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListNodeFibreChannelPortInfoResult, self).__init__(**{ 
+            "fibre_channel_ports": fibre_channel_ports, })
+        
 
 class DeleteSnapMirrorEndpointsResult(data_model.DataObject):
     """DeleteSnapMirrorEndpointsResult  
@@ -17933,9 +18910,9 @@ class DeleteSnapMirrorEndpointsResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DeleteSnapMirrorEndpointsResult, self).__init__(**{  })
+        
 
 class CreateSupportBundleRequest(data_model.DataObject):
     """CreateSupportBundleRequest  
@@ -17974,9 +18951,12 @@ class CreateSupportBundleRequest(data_model.DataObject):
             bundle_name=None,
             extra_args=None,
             timeout_sec=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateSupportBundleRequest, self).__init__(**{ 
+            "bundle_name": bundle_name,
+            "extra_args": extra_args,
+            "timeout_sec": timeout_sec, })
+        
 
 class DriveStats(data_model.DataObject):
     """DriveStats  
@@ -18154,9 +19134,26 @@ class DriveStats(data_model.DataObject):
             active_sessions=None,
             drive_id=None,
             used_capacity=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DriveStats, self).__init__(**{ 
+            "active_sessions": active_sessions,
+            "drive_id": drive_id,
+            "failed_die_count": failed_die_count,
+            "life_remaining_percent": life_remaining_percent,
+            "lifetime_read_bytes": lifetime_read_bytes,
+            "lifetime_write_bytes": lifetime_write_bytes,
+            "power_on_hours": power_on_hours,
+            "read_bytes": read_bytes,
+            "read_ops": read_ops,
+            "reallocated_sectors": reallocated_sectors,
+            "reserve_capacity_percent": reserve_capacity_percent,
+            "timestamp": timestamp,
+            "total_capacity": total_capacity,
+            "used_capacity": used_capacity,
+            "used_memory": used_memory,
+            "write_bytes": write_bytes,
+            "write_ops": write_ops, })
+        
 
 class GetDriveStatsResult(data_model.DataObject):
     """GetDriveStatsResult  
@@ -18174,9 +19171,10 @@ class GetDriveStatsResult(data_model.DataObject):
 
     def __init__(self,
             drive_stats):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetDriveStatsResult, self).__init__(**{ 
+            "drive_stats": drive_stats, })
+        
 
 class SnapMirrorNetworkInterface(data_model.DataObject):
     """SnapMirrorNetworkInterface  
@@ -18265,9 +19263,17 @@ class SnapMirrorNetworkInterface(data_model.DataObject):
             operational_status,
             administrative_status,
             vserver_name):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SnapMirrorNetworkInterface, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "interface_name": interface_name,
+            "network_address": network_address,
+            "network_mask": network_mask,
+            "interface_role": interface_role,
+            "operational_status": operational_status,
+            "administrative_status": administrative_status,
+            "vserver_name": vserver_name, })
+        
 
 class ListSnapMirrorNetworkInterfacesResult(data_model.DataObject):
     """ListSnapMirrorNetworkInterfacesResult  
@@ -18285,9 +19291,10 @@ class ListSnapMirrorNetworkInterfacesResult(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_network_interfaces):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListSnapMirrorNetworkInterfacesResult, self).__init__(**{ 
+            "snap_mirror_network_interfaces": snap_mirror_network_interfaces, })
+        
 
 class ModifyVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
     """ModifyVolumeAccessGroupLunAssignmentsRequest  
@@ -18323,9 +19330,11 @@ class ModifyVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
     def __init__(self,
             volume_access_group_id,
             lun_assignments):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifyVolumeAccessGroupLunAssignmentsRequest, self).__init__(**{ 
+            "volume_access_group_id": volume_access_group_id,
+            "lun_assignments": lun_assignments, })
+        
 
 class ListSnapMirrorEndpointsRequest(data_model.DataObject):
     """ListSnapMirrorEndpointsRequest  
@@ -18344,9 +19353,10 @@ class ListSnapMirrorEndpointsRequest(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_endpoint_ids=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListSnapMirrorEndpointsRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_ids": snap_mirror_endpoint_ids, })
+        
 
 class StartBulkVolumeReadResult(data_model.DataObject):
     """StartBulkVolumeReadResult  
@@ -18384,9 +19394,12 @@ class StartBulkVolumeReadResult(data_model.DataObject):
             async_handle,
             key,
             url):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(StartBulkVolumeReadResult, self).__init__(**{ 
+            "async_handle": async_handle,
+            "key": key,
+            "url": url, })
+        
 
 class GetNetworkConfigResult(data_model.DataObject):
     """GetNetworkConfigResult  
@@ -18404,9 +19417,10 @@ class GetNetworkConfigResult(data_model.DataObject):
 
     def __init__(self,
             network):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetNetworkConfigResult, self).__init__(**{ 
+            "network": network, })
+        
 
 class ListVolumeStatsByVolumeAccessGroupRequest(data_model.DataObject):
     """ListVolumeStatsByVolumeAccessGroupRequest  
@@ -18436,9 +19450,11 @@ class ListVolumeStatsByVolumeAccessGroupRequest(data_model.DataObject):
     def __init__(self,
             volume_access_groups=None,
             include_virtual_volumes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListVolumeStatsByVolumeAccessGroupRequest, self).__init__(**{ 
+            "volume_access_groups": volume_access_groups,
+            "include_virtual_volumes": include_virtual_volumes, })
+        
 
 class AbortSnapMirrorRelationshipResult(data_model.DataObject):
     """AbortSnapMirrorRelationshipResult  
@@ -18456,90 +19472,10 @@ class AbortSnapMirrorRelationshipResult(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_relationship):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class ProtectionDomainResiliency(data_model.DataObject):
-    """ProtectionDomainResiliency  
-    
-
-    :param failure_type: [required] Currently can be node or chassis. 
-    :type failure_type: str
-
-    :param sustainable_failures_for_ensemble: [required]  
-    :type sustainable_failures_for_ensemble: int
-
-    :param sustainable_failures_for_block_data: [required]  
-    :type sustainable_failures_for_block_data: int
-
-    :param sustainable_failures_for_metadata: [required]  
-    :type sustainable_failures_for_metadata: int
-
-    :param single_failure_block_resiliency_threshold_bytes: [required]  
-    :type single_failure_block_resiliency_threshold_bytes: int
-
-    """
-    failure_type = data_model.property(
-        "failureType", str,
-        array=False, optional=False,
-        documentation="""Currently can be node or chassis. """,
-        dictionaryType=None
-    )
-    sustainable_failures_for_ensemble = data_model.property(
-        "sustainableFailuresForEnsemble", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    sustainable_failures_for_block_data = data_model.property(
-        "sustainableFailuresForBlockData", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    sustainable_failures_for_metadata = data_model.property(
-        "sustainableFailuresForMetadata", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    single_failure_block_resiliency_threshold_bytes = data_model.property(
-        "singleFailureBlockResiliencyThresholdBytes", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            failure_type,
-            sustainable_failures_for_ensemble,
-            sustainable_failures_for_block_data,
-            sustainable_failures_for_metadata,
-            single_failure_block_resiliency_threshold_bytes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
-
-class ListProtectionDomainResiliencyResult(data_model.DataObject):
-    """ListProtectionDomainResiliencyResult  
-
-    :param resiliency:   
-    :type resiliency: ProtectionDomainResiliency
-
-    """
-    resiliency = data_model.property(
-        "resiliency", ProtectionDomainResiliency,
-        array=True, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            resiliency=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+        super(AbortSnapMirrorRelationshipResult, self).__init__(**{ 
+            "snap_mirror_relationship": snap_mirror_relationship, })
+        
 
 class UpdateBulkVolumeStatusResult(data_model.DataObject):
     """UpdateBulkVolumeStatusResult  
@@ -18577,9 +19513,12 @@ class UpdateBulkVolumeStatusResult(data_model.DataObject):
             status,
             url,
             attributes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(UpdateBulkVolumeStatusResult, self).__init__(**{ 
+            "status": status,
+            "url": url,
+            "attributes": attributes, })
+        
 
 class EnableSnmpResult(data_model.DataObject):
     """EnableSnmpResult  
@@ -18587,9 +19526,9 @@ class EnableSnmpResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(EnableSnmpResult, self).__init__(**{  })
+        
 
 class FibreChannelSession(data_model.DataObject):
     """FibreChannelSession  
@@ -18648,9 +19587,14 @@ class FibreChannelSession(data_model.DataObject):
             service_id,
             target_wwpn,
             volume_access_group_id=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(FibreChannelSession, self).__init__(**{ 
+            "initiator_wwpn": initiator_wwpn,
+            "node_id": node_id,
+            "service_id": service_id,
+            "target_wwpn": target_wwpn,
+            "volume_access_group_id": volume_access_group_id, })
+        
 
 class ListFibreChannelSessionsResult(data_model.DataObject):
     """ListFibreChannelSessionsResult  
@@ -18669,9 +19613,10 @@ class ListFibreChannelSessionsResult(data_model.DataObject):
 
     def __init__(self,
             sessions):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListFibreChannelSessionsResult, self).__init__(**{ 
+            "sessions": sessions, })
+        
 
 class VirtualVolumeTask(data_model.DataObject):
     """VirtualVolumeTask  
@@ -18779,9 +19724,19 @@ class VirtualVolumeTask(data_model.DataObject):
             parent_total_size,
             parent_used_size,
             cancelled):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(VirtualVolumeTask, self).__init__(**{ 
+            "virtual_volume_task_id": virtual_volume_task_id,
+            "virtualvolume_id": virtualvolume_id,
+            "clone_virtual_volume_id": clone_virtual_volume_id,
+            "status": status,
+            "operation": operation,
+            "virtual_volume_host_id": virtual_volume_host_id,
+            "parent_metadata": parent_metadata,
+            "parent_total_size": parent_total_size,
+            "parent_used_size": parent_used_size,
+            "cancelled": cancelled, })
+        
 
 class ListVirtualVolumeTasksResult(data_model.DataObject):
     """ListVirtualVolumeTasksResult  
@@ -18799,9 +19754,10 @@ class ListVirtualVolumeTasksResult(data_model.DataObject):
 
     def __init__(self,
             tasks):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListVirtualVolumeTasksResult, self).__init__(**{ 
+            "tasks": tasks, })
+        
 
 class ModifyQoSPolicyRequest(data_model.DataObject):
     """ModifyQoSPolicyRequest  
@@ -18840,9 +19796,12 @@ class ModifyQoSPolicyRequest(data_model.DataObject):
             qos_policy_id,
             name=None,
             qos=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifyQoSPolicyRequest, self).__init__(**{ 
+            "qos_policy_id": qos_policy_id,
+            "name": name,
+            "qos": qos, })
+        
 
 class GetHardwareConfigResult(data_model.DataObject):
     """GetHardwareConfigResult  
@@ -18860,9 +19819,10 @@ class GetHardwareConfigResult(data_model.DataObject):
 
     def __init__(self,
             hardware_config):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetHardwareConfigResult, self).__init__(**{ 
+            "hardware_config": hardware_config, })
+        
 
 class GetQoSPolicyRequest(data_model.DataObject):
     """GetQoSPolicyRequest  
@@ -18881,9 +19841,10 @@ class GetQoSPolicyRequest(data_model.DataObject):
 
     def __init__(self,
             qos_policy_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetQoSPolicyRequest, self).__init__(**{ 
+            "qos_policy_id": qos_policy_id, })
+        
 
 class GetClusterConfigResult(data_model.DataObject):
     """GetClusterConfigResult  
@@ -18901,9 +19862,10 @@ class GetClusterConfigResult(data_model.DataObject):
 
     def __init__(self,
             cluster):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetClusterConfigResult, self).__init__(**{ 
+            "cluster": cluster, })
+        
 
 class GetVolumeStatsResult(data_model.DataObject):
     """GetVolumeStatsResult  
@@ -18921,9 +19883,10 @@ class GetVolumeStatsResult(data_model.DataObject):
 
     def __init__(self,
             volume_stats):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetVolumeStatsResult, self).__init__(**{ 
+            "volume_stats": volume_stats, })
+        
 
 class ClusterHardwareInfo(data_model.DataObject):
     """ClusterHardwareInfo  
@@ -18951,9 +19914,11 @@ class ClusterHardwareInfo(data_model.DataObject):
     def __init__(self,
             drives,
             nodes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ClusterHardwareInfo, self).__init__(**{ 
+            "drives": drives,
+            "nodes": nodes, })
+        
 
 class GetClusterHardwareInfoResult(data_model.DataObject):
     """GetClusterHardwareInfoResult  
@@ -18971,9 +19936,10 @@ class GetClusterHardwareInfoResult(data_model.DataObject):
 
     def __init__(self,
             cluster_hardware_info):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetClusterHardwareInfoResult, self).__init__(**{ 
+            "cluster_hardware_info": cluster_hardware_info, })
+        
 
 class SupportBundleDetails(data_model.DataObject):
     """SupportBundleDetails  
@@ -19041,9 +20007,15 @@ class SupportBundleDetails(data_model.DataObject):
             url,
             output,
             timeout_sec):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SupportBundleDetails, self).__init__(**{ 
+            "bundle_name": bundle_name,
+            "extra_args": extra_args,
+            "files": files,
+            "url": url,
+            "output": output,
+            "timeout_sec": timeout_sec, })
+        
 
 class CreateSupportBundleResult(data_model.DataObject):
     """CreateSupportBundleResult  
@@ -19081,9 +20053,12 @@ class CreateSupportBundleResult(data_model.DataObject):
             details,
             duration,
             result):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateSupportBundleResult, self).__init__(**{ 
+            "details": details,
+            "duration": duration,
+            "result": result, })
+        
 
 class SetDefaultQoSResult(data_model.DataObject):
     """SetDefaultQoSResult  
@@ -19121,9 +20096,12 @@ class SetDefaultQoSResult(data_model.DataObject):
             min_iops,
             max_iops,
             burst_iops):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetDefaultQoSResult, self).__init__(**{ 
+            "min_iops": min_iops,
+            "max_iops": max_iops,
+            "burst_iops": burst_iops, })
+        
 
 class SetSnmpInfoRequest(data_model.DataObject):
     """SetSnmpInfoRequest  
@@ -19174,9 +20152,13 @@ class SetSnmpInfoRequest(data_model.DataObject):
             enabled=None,
             snmp_v3_enabled=None,
             usm_users=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetSnmpInfoRequest, self).__init__(**{ 
+            "networks": networks,
+            "enabled": enabled,
+            "snmp_v3_enabled": snmp_v3_enabled,
+            "usm_users": usm_users, })
+        
 
 class ListStorageContainersRequest(data_model.DataObject):
     """ListStorageContainersRequest  
@@ -19195,9 +20177,10 @@ class ListStorageContainersRequest(data_model.DataObject):
 
     def __init__(self,
             storage_container_ids=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListStorageContainersRequest, self).__init__(**{ 
+            "storage_container_ids": storage_container_ids, })
+        
 
 class CreateSnapMirrorVolumeRequest(data_model.DataObject):
     """CreateSnapMirrorVolumeRequest  
@@ -19266,9 +20249,15 @@ class CreateSnapMirrorVolumeRequest(data_model.DataObject):
             aggregate,
             size,
             type=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateSnapMirrorVolumeRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "vserver": vserver,
+            "name": name,
+            "type": type,
+            "aggregate": aggregate,
+            "size": size, })
+        
 
 class GetHardwareInfoResult(data_model.DataObject):
     """GetHardwareInfoResult  
@@ -19286,9 +20275,10 @@ class GetHardwareInfoResult(data_model.DataObject):
 
     def __init__(self,
             hardware_info):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetHardwareInfoResult, self).__init__(**{ 
+            "hardware_info": hardware_info, })
+        
 
 class ListDriveStatsResult(data_model.DataObject):
     """ListDriveStatsResult  
@@ -19316,9 +20306,11 @@ class ListDriveStatsResult(data_model.DataObject):
     def __init__(self,
             drive_stats,
             errors):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListDriveStatsResult, self).__init__(**{ 
+            "drive_stats": drive_stats,
+            "errors": errors, })
+        
 
 class ModifyVolumeAccessGroupResult(data_model.DataObject):
     """ModifyVolumeAccessGroupResult  
@@ -19336,9 +20328,10 @@ class ModifyVolumeAccessGroupResult(data_model.DataObject):
 
     def __init__(self,
             volume_access_group):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifyVolumeAccessGroupResult, self).__init__(**{ 
+            "volume_access_group": volume_access_group, })
+        
 
 class LoginSessionInfo(data_model.DataObject):
     """LoginSessionInfo  
@@ -19356,9 +20349,10 @@ class LoginSessionInfo(data_model.DataObject):
 
     def __init__(self,
             timeout):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(LoginSessionInfo, self).__init__(**{ 
+            "timeout": timeout, })
+        
 
 class GetLoginSessionInfoResult(data_model.DataObject):
     """GetLoginSessionInfoResult  
@@ -19376,9 +20370,10 @@ class GetLoginSessionInfoResult(data_model.DataObject):
 
     def __init__(self,
             login_session_info):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetLoginSessionInfoResult, self).__init__(**{ 
+            "login_session_info": login_session_info, })
+        
 
 class ModifySnapMirrorRelationshipRequest(data_model.DataObject):
     """ModifySnapMirrorRelationshipRequest  
@@ -19437,9 +20432,14 @@ class ModifySnapMirrorRelationshipRequest(data_model.DataObject):
             max_transfer_rate=None,
             policy_name=None,
             schedule_name=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifySnapMirrorRelationshipRequest, self).__init__(**{ 
+            "destination_volume": destination_volume,
+            "max_transfer_rate": max_transfer_rate,
+            "policy_name": policy_name,
+            "schedule_name": schedule_name,
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id, })
+        
 
 class ListClusterAdminsResult(data_model.DataObject):
     """ListClusterAdminsResult  
@@ -19457,29 +20457,31 @@ class ListClusterAdminsResult(data_model.DataObject):
 
     def __init__(self,
             cluster_admins):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class GetNodeStatsResult(data_model.DataObject):
-    """GetNodeStatsResult  
+        super(ListClusterAdminsResult, self).__init__(**{ 
+            "cluster_admins": cluster_admins, })
+        
 
-    :param node_stats: [required] Node activity information. 
-    :type node_stats: NodeStatsInfo
+class ResyncSnapMirrorRelationshipResult(data_model.DataObject):
+    """ResyncSnapMirrorRelationshipResult  
+
+    :param snap_mirror_relationship: [required] An object containing information about the resynced SnapMirror relationship. 
+    :type snap_mirror_relationship: SnapMirrorRelationship
 
     """
-    node_stats = data_model.property(
-        "nodeStats", NodeStatsInfo,
+    snap_mirror_relationship = data_model.property(
+        "snapMirrorRelationship", SnapMirrorRelationship,
         array=False, optional=False,
-        documentation="""Node activity information. """,
+        documentation="""An object containing information about the resynced SnapMirror relationship. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            node_stats):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+            snap_mirror_relationship):
+
+        super(ResyncSnapMirrorRelationshipResult, self).__init__(**{ 
+            "snap_mirror_relationship": snap_mirror_relationship, })
+        
 
 class CreateInitiatorsResult(data_model.DataObject):
     """CreateInitiatorsResult  
@@ -19497,9 +20499,10 @@ class CreateInitiatorsResult(data_model.DataObject):
 
     def __init__(self,
             initiators):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateInitiatorsResult, self).__init__(**{ 
+            "initiators": initiators, })
+        
 
 class GetRemoteLoggingHostsResult(data_model.DataObject):
     """GetRemoteLoggingHostsResult  
@@ -19517,9 +20520,10 @@ class GetRemoteLoggingHostsResult(data_model.DataObject):
 
     def __init__(self,
             remote_hosts):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetRemoteLoggingHostsResult, self).__init__(**{ 
+            "remote_hosts": remote_hosts, })
+        
 
 class RemoveClusterPairResult(data_model.DataObject):
     """RemoveClusterPairResult  
@@ -19527,9 +20531,9 @@ class RemoveClusterPairResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RemoveClusterPairResult, self).__init__(**{  })
+        
 
 class ListVolumesResult(data_model.DataObject):
     """ListVolumesResult  
@@ -19547,9 +20551,10 @@ class ListVolumesResult(data_model.DataObject):
 
     def __init__(self,
             volumes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListVolumesResult, self).__init__(**{ 
+            "volumes": volumes, })
+        
 
 class GetEfficiencyResult(data_model.DataObject):
     """GetEfficiencyResult  
@@ -19607,9 +20612,14 @@ class GetEfficiencyResult(data_model.DataObject):
             compression=None,
             deduplication=None,
             thin_provisioning=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetEfficiencyResult, self).__init__(**{ 
+            "compression": compression,
+            "deduplication": deduplication,
+            "thin_provisioning": thin_provisioning,
+            "timestamp": timestamp,
+            "missing_volumes": missing_volumes, })
+        
 
 class GetLimitsResult(data_model.DataObject):
     """GetLimitsResult  
@@ -20038,9 +21048,51 @@ class GetLimitsResult(data_model.DataObject):
             fibre_channel_volume_access_max=None,
             virtual_volumes_per_account_count_max=None,
             virtual_volume_count_max=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetLimitsResult, self).__init__(**{ 
+            "account_count_max": account_count_max,
+            "account_name_length_max": account_name_length_max,
+            "account_name_length_min": account_name_length_min,
+            "bulk_volume_jobs_per_node_max": bulk_volume_jobs_per_node_max,
+            "bulk_volume_jobs_per_volume_max": bulk_volume_jobs_per_volume_max,
+            "clone_jobs_per_volume_max": clone_jobs_per_volume_max,
+            "cluster_pairs_count_max": cluster_pairs_count_max,
+            "initiator_name_length_max": initiator_name_length_max,
+            "initiator_count_max": initiator_count_max,
+            "initiators_per_volume_access_group_count_max": initiators_per_volume_access_group_count_max,
+            "iscsi_sessions_from_fibre_channel_nodes_max": iscsi_sessions_from_fibre_channel_nodes_max,
+            "qos_policy_count_max": qos_policy_count_max,
+            "secret_length_max": secret_length_max,
+            "schedule_name_length_max": schedule_name_length_max,
+            "secret_length_min": secret_length_min,
+            "snapshot_name_length_max": snapshot_name_length_max,
+            "snapshots_per_volume_max": snapshots_per_volume_max,
+            "volume_access_group_count_max": volume_access_group_count_max,
+            "volume_access_group_lun_max": volume_access_group_lun_max,
+            "volume_access_group_name_length_max": volume_access_group_name_length_max,
+            "volume_access_group_name_length_min": volume_access_group_name_length_min,
+            "volume_access_groups_per_initiator_count_max": volume_access_groups_per_initiator_count_max,
+            "volume_access_groups_per_volume_count_max": volume_access_groups_per_volume_count_max,
+            "initiator_alias_length_max": initiator_alias_length_max,
+            "volume_burst_iopsmax": volume_burst_iopsmax,
+            "volume_burst_iopsmin": volume_burst_iopsmin,
+            "volume_count_max": volume_count_max,
+            "volume_max_iopsmax": volume_max_iopsmax,
+            "volume_max_iopsmin": volume_max_iopsmin,
+            "volume_min_iopsmax": volume_min_iopsmax,
+            "volume_min_iopsmin": volume_min_iopsmin,
+            "volume_name_length_max": volume_name_length_max,
+            "volume_name_length_min": volume_name_length_min,
+            "volume_size_max": volume_size_max,
+            "volume_size_min": volume_size_min,
+            "volumes_per_account_count_max": volumes_per_account_count_max,
+            "volumes_per_group_snapshot_max": volumes_per_group_snapshot_max,
+            "volumes_per_volume_access_group_count_max": volumes_per_volume_access_group_count_max,
+            "cluster_admin_account_max": cluster_admin_account_max,
+            "fibre_channel_volume_access_max": fibre_channel_volume_access_max,
+            "virtual_volumes_per_account_count_max": virtual_volumes_per_account_count_max,
+            "virtual_volume_count_max": virtual_volume_count_max, })
+        
 
 class RollbackToGroupSnapshotRequest(data_model.DataObject):
     """RollbackToGroupSnapshotRequest  
@@ -20091,19 +21143,68 @@ class RollbackToGroupSnapshotRequest(data_model.DataObject):
             save_current_state,
             name=None,
             attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class SetNodeSSLCertificateResult(data_model.DataObject):
-    """SetNodeSSLCertificateResult  
+        super(RollbackToGroupSnapshotRequest, self).__init__(**{ 
+            "group_snapshot_id": group_snapshot_id,
+            "save_current_state": save_current_state,
+            "name": name,
+            "attributes": attributes, })
+        
+
+class ResyncSnapMirrorRelationshipRequest(data_model.DataObject):
+    """ResyncSnapMirrorRelationshipRequest  
+    The SolidFire Element OS web UI uses the ResyncSnapMirrorRelationship method to establish or reestablish a mirror relationship between a source and destination endpoint. When you resync a relationship, the system removes snapshots on the destination volume that are newer than the common snapshot copy, and then mounts the destination volume as a data protection volume with the common snapshot copy as the exported snapshot copy.
+
+    :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
+    :type snap_mirror_endpoint_id: int
+
+    :param destination_volume: [required] The destination volume in the SnapMirror relationship. 
+    :type destination_volume: SnapMirrorVolumeInfo
+
+    :param max_transfer_rate:  Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. 
+    :type max_transfer_rate: int
+
+    :param source_volume:  The source volume in the SnapMirror relationship. 
+    :type source_volume: SnapMirrorVolumeInfo
 
     """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. """,
+        dictionaryType=None
+    )
+    destination_volume = data_model.property(
+        "destinationVolume", SnapMirrorVolumeInfo,
+        array=False, optional=False,
+        documentation="""The destination volume in the SnapMirror relationship. """,
+        dictionaryType=None
+    )
+    max_transfer_rate = data_model.property(
+        "maxTransferRate", int,
+        array=False, optional=True,
+        documentation="""Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. """,
+        dictionaryType=None
+    )
+    source_volume = data_model.property(
+        "sourceVolume", SnapMirrorVolumeInfo,
+        array=False, optional=True,
+        documentation="""The source volume in the SnapMirror relationship. """,
+        dictionaryType=None
+    )
 
-    def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            destination_volume,
+            max_transfer_rate=None,
+            source_volume=None):
+
+        super(ResyncSnapMirrorRelationshipRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "destination_volume": destination_volume,
+            "max_transfer_rate": max_transfer_rate,
+            "source_volume": source_volume, })
+        
 
 class GetBackupTargetRequest(data_model.DataObject):
     """GetBackupTargetRequest  
@@ -20122,9 +21223,10 @@ class GetBackupTargetRequest(data_model.DataObject):
 
     def __init__(self,
             backup_target_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetBackupTargetRequest, self).__init__(**{ 
+            "backup_target_id": backup_target_id, })
+        
 
 class SnapMirrorJobScheduleCronInfo(data_model.DataObject):
     """SnapMirrorJobScheduleCronInfo  
@@ -20163,9 +21265,12 @@ class SnapMirrorJobScheduleCronInfo(data_model.DataObject):
             snap_mirror_endpoint_id,
             job_schedule_name,
             job_schedule_description):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SnapMirrorJobScheduleCronInfo, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "job_schedule_name": job_schedule_name,
+            "job_schedule_description": job_schedule_description, })
+        
 
 class ListSnapMirrorSchedulesResult(data_model.DataObject):
     """ListSnapMirrorSchedulesResult  
@@ -20183,9 +21288,10 @@ class ListSnapMirrorSchedulesResult(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_schedules):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListSnapMirrorSchedulesResult, self).__init__(**{ 
+            "snap_mirror_schedules": snap_mirror_schedules, })
+        
 
 class RollbackToGroupSnapshotResult(data_model.DataObject):
     """RollbackToGroupSnapshotResult  
@@ -20223,9 +21329,12 @@ class RollbackToGroupSnapshotResult(data_model.DataObject):
             group_snapshot=None,
             group_snapshot_id=None,
             members=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RollbackToGroupSnapshotResult, self).__init__(**{ 
+            "group_snapshot": group_snapshot,
+            "group_snapshot_id": group_snapshot_id,
+            "members": members, })
+        
 
 class DeleteSnapshotResult(data_model.DataObject):
     """DeleteSnapshotResult  
@@ -20233,9 +21342,9 @@ class DeleteSnapshotResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DeleteSnapshotResult, self).__init__(**{  })
+        
 
 class IpmiInfo(data_model.DataObject):
     """IpmiInfo  
@@ -20253,9 +21362,10 @@ class IpmiInfo(data_model.DataObject):
 
     def __init__(self,
             sensors):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(IpmiInfo, self).__init__(**{ 
+            "sensors": sensors, })
+        
 
 class GetIpmiInfoNodesResultObject(data_model.DataObject):
     """GetIpmiInfoNodesResultObject  
@@ -20273,9 +21383,10 @@ class GetIpmiInfoNodesResultObject(data_model.DataObject):
 
     def __init__(self,
             ipmi_info):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetIpmiInfoNodesResultObject, self).__init__(**{ 
+            "ipmi_info": ipmi_info, })
+        
 
 class GetIpmiInfoNodesResult(data_model.DataObject):
     """GetIpmiInfoNodesResult  
@@ -20303,9 +21414,11 @@ class GetIpmiInfoNodesResult(data_model.DataObject):
     def __init__(self,
             node_id,
             result):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetIpmiInfoNodesResult, self).__init__(**{ 
+            "node_id": node_id,
+            "result": result, })
+        
 
 class GetIpmiInfoResult(data_model.DataObject):
     """GetIpmiInfoResult  
@@ -20323,9 +21436,10 @@ class GetIpmiInfoResult(data_model.DataObject):
 
     def __init__(self,
             nodes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetIpmiInfoResult, self).__init__(**{ 
+            "nodes": nodes, })
+        
 
 class DeleteStorageContainerResult(data_model.DataObject):
     """DeleteStorageContainerResult  
@@ -20333,9 +21447,9 @@ class DeleteStorageContainerResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DeleteStorageContainerResult, self).__init__(**{  })
+        
 
 class ListVirtualVolumeTasksRequest(data_model.DataObject):
     """ListVirtualVolumeTasksRequest  
@@ -20354,9 +21468,10 @@ class ListVirtualVolumeTasksRequest(data_model.DataObject):
 
     def __init__(self,
             virtual_volume_task_ids=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListVirtualVolumeTasksRequest, self).__init__(**{ 
+            "virtual_volume_task_ids": virtual_volume_task_ids, })
+        
 
 class TestDrivesRequest(data_model.DataObject):
     """TestDrivesRequest  
@@ -20389,9 +21504,11 @@ class TestDrivesRequest(data_model.DataObject):
     def __init__(self,
             minutes=None,
             force=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(TestDrivesRequest, self).__init__(**{ 
+            "minutes": minutes,
+            "force": force, })
+        
 
 class ResumeSnapMirrorRelationshipRequest(data_model.DataObject):
     """ResumeSnapMirrorRelationshipRequest  
@@ -20420,9 +21537,11 @@ class ResumeSnapMirrorRelationshipRequest(data_model.DataObject):
     def __init__(self,
             snap_mirror_endpoint_id,
             destination_volume):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ResumeSnapMirrorRelationshipRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "destination_volume": destination_volume, })
+        
 
 class ResumeSnapMirrorRelationshipResult(data_model.DataObject):
     """ResumeSnapMirrorRelationshipResult  
@@ -20440,9 +21559,10 @@ class ResumeSnapMirrorRelationshipResult(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_relationship):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ResumeSnapMirrorRelationshipResult, self).__init__(**{ 
+            "snap_mirror_relationship": snap_mirror_relationship, })
+        
 
 class ModifyVolumeAccessGroupLunAssignmentsResult(data_model.DataObject):
     """ModifyVolumeAccessGroupLunAssignmentsResult  
@@ -20460,9 +21580,10 @@ class ModifyVolumeAccessGroupLunAssignmentsResult(data_model.DataObject):
 
     def __init__(self,
             volume_access_group_lun_assignments):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifyVolumeAccessGroupLunAssignmentsResult, self).__init__(**{ 
+            "volume_access_group_lun_assignments": volume_access_group_lun_assignments, })
+        
 
 class Signature(data_model.DataObject):
     """Signature  
@@ -20500,9 +21621,12 @@ class Signature(data_model.DataObject):
             data,
             pubkey,
             version):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(Signature, self).__init__(**{ 
+            "data": data,
+            "pubkey": pubkey,
+            "version": version, })
+        
 
 class Origin(data_model.DataObject):
     """Origin  
@@ -20600,9 +21724,18 @@ class Origin(data_model.DataObject):
             location,
             organization,
             type):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(Origin, self).__init__(**{ 
+            "signature": signature,
+            "contract_date": contract_date,
+            "contract_name": contract_name,
+            "contract_quantity": contract_quantity,
+            "contract_type": contract_type,
+            "integrator": integrator,
+            "location": location,
+            "organization": organization,
+            "type": type, })
+        
 
 class GetOriginNodeResult(data_model.DataObject):
     """GetOriginNodeResult  
@@ -20620,9 +21753,10 @@ class GetOriginNodeResult(data_model.DataObject):
 
     def __init__(self,
             origin=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetOriginNodeResult, self).__init__(**{ 
+            "origin": origin, })
+        
 
 class GetOriginNode(data_model.DataObject):
     """GetOriginNode  
@@ -20650,9 +21784,11 @@ class GetOriginNode(data_model.DataObject):
     def __init__(self,
             node_id,
             result):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetOriginNode, self).__init__(**{ 
+            "node_id": node_id,
+            "result": result, })
+        
 
 class GetOriginResult(data_model.DataObject):
     """GetOriginResult  
@@ -20670,9 +21806,10 @@ class GetOriginResult(data_model.DataObject):
 
     def __init__(self,
             nodes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetOriginResult, self).__init__(**{ 
+            "nodes": nodes, })
+        
 
 class SetLoginBannerResult(data_model.DataObject):
     """SetLoginBannerResult  
@@ -20690,9 +21827,10 @@ class SetLoginBannerResult(data_model.DataObject):
 
     def __init__(self,
             login_banner):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetLoginBannerResult, self).__init__(**{ 
+            "login_banner": login_banner, })
+        
 
 class ClusterInfo(data_model.DataObject):
     """ClusterInfo  
@@ -20742,6 +21880,9 @@ class ClusterInfo(data_model.DataObject):
 
     :param attributes: [required] List of Name/Value pairs in JSON object format. 
     :type attributes: dict
+
+    :param data_protection_scheme_protection_levels: [required] This denotes the level at which the availability zones are applied to for each Data Protection Scheme. In Sodium, it will consist of only "DoubleHelix", and will be either at the "node" level or at the "chassis" level as well. 
+    :type data_protection_scheme_protection_levels: str
 
     """
     mvip_interface = data_model.property(
@@ -20834,6 +21975,12 @@ class ClusterInfo(data_model.DataObject):
         documentation="""List of Name/Value pairs in JSON object format. """,
         dictionaryType=None
     )
+    data_protection_scheme_protection_levels = data_model.property(
+        "dataProtectionSchemeProtectionLevels", str,
+        array=False, optional=False,
+        documentation="""This denotes the level at which the availability zones are applied to for each Data Protection Scheme. In Sodium, it will consist of only "DoubleHelix", and will be either at the "node" level or at the "chassis" level as well. """,
+        dictionaryType=None
+    )
 
     def __init__(self,
             encryption_at_rest_state,
@@ -20847,13 +21994,30 @@ class ClusterInfo(data_model.DataObject):
             unique_id,
             uuid,
             attributes,
+            data_protection_scheme_protection_levels,
             mvip_interface=None,
             mvip_vlan_tag=None,
             svip_interface=None,
             svip_vlan_tag=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ClusterInfo, self).__init__(**{ 
+            "mvip_interface": mvip_interface,
+            "mvip_vlan_tag": mvip_vlan_tag,
+            "svip_interface": svip_interface,
+            "svip_vlan_tag": svip_vlan_tag,
+            "encryption_at_rest_state": encryption_at_rest_state,
+            "ensemble": ensemble,
+            "mvip": mvip,
+            "mvip_node_id": mvip_node_id,
+            "name": name,
+            "rep_count": rep_count,
+            "svip": svip,
+            "svip_node_id": svip_node_id,
+            "unique_id": unique_id,
+            "uuid": uuid,
+            "attributes": attributes,
+            "data_protection_scheme_protection_levels": data_protection_scheme_protection_levels, })
+        
 
 class GetClusterInfoResult(data_model.DataObject):
     """GetClusterInfoResult  
@@ -20871,9 +22035,10 @@ class GetClusterInfoResult(data_model.DataObject):
 
     def __init__(self,
             cluster_info):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetClusterInfoResult, self).__init__(**{ 
+            "cluster_info": cluster_info, })
+        
 
 class ListActivePairedVolumesRequest(data_model.DataObject):
     """ListActivePairedVolumesRequest  
@@ -20902,9 +22067,11 @@ class ListActivePairedVolumesRequest(data_model.DataObject):
     def __init__(self,
             start_volume_id=None,
             limit=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListActivePairedVolumesRequest, self).__init__(**{ 
+            "start_volume_id": start_volume_id,
+            "limit": limit, })
+        
 
 class StartBulkVolumeWriteResult(data_model.DataObject):
     """StartBulkVolumeWriteResult  
@@ -20942,9 +22109,12 @@ class StartBulkVolumeWriteResult(data_model.DataObject):
             async_handle,
             key,
             url):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(StartBulkVolumeWriteResult, self).__init__(**{ 
+            "async_handle": async_handle,
+            "key": key,
+            "url": url, })
+        
 
 class Service(data_model.DataObject):
     """Service  
@@ -21102,9 +22272,24 @@ class Service(data_model.DataObject):
             associated_vs=None,
             drive_id=None,
             smart_ssd_write_enabled=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(Service, self).__init__(**{ 
+            "service_id": service_id,
+            "service_type": service_type,
+            "node_id": node_id,
+            "associated_bv": associated_bv,
+            "associated_ts": associated_ts,
+            "associated_vs": associated_vs,
+            "async_result_ids": async_result_ids,
+            "drive_id": drive_id,
+            "first_time_startup": first_time_startup,
+            "ipc_port": ipc_port,
+            "iscsi_port": iscsi_port,
+            "status": status,
+            "started_drive_ids": started_drive_ids,
+            "drive_ids": drive_ids,
+            "smart_ssd_write_enabled": smart_ssd_write_enabled, })
+        
 
 class Drive(data_model.DataObject):
     """Drive  
@@ -21242,9 +22427,22 @@ class Drive(data_model.DataObject):
             reserved_slice_file_capacity=None,
             customer_slice_file_capacity=None,
             smart_ssd_write_capable=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(Drive, self).__init__(**{ 
+            "drive_id": drive_id,
+            "node_id": node_id,
+            "assigned_service": assigned_service,
+            "async_result_ids": async_result_ids,
+            "capacity": capacity,
+            "serial": serial,
+            "slot": slot,
+            "drive_status": drive_status,
+            "drive_type": drive_type,
+            "reserved_slice_file_capacity": reserved_slice_file_capacity,
+            "customer_slice_file_capacity": customer_slice_file_capacity,
+            "smart_ssd_write_capable": smart_ssd_write_capable,
+            "attributes": attributes, })
+        
 
 class DetailedService(data_model.DataObject):
     """DetailedService  
@@ -21292,9 +22490,13 @@ class DetailedService(data_model.DataObject):
             node,
             drives,
             drive=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DetailedService, self).__init__(**{ 
+            "service": service,
+            "node": node,
+            "drive": drive,
+            "drives": drives, })
+        
 
 class ListServicesResult(data_model.DataObject):
     """ListServicesResult  
@@ -21312,9 +22514,10 @@ class ListServicesResult(data_model.DataObject):
 
     def __init__(self,
             services):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListServicesResult, self).__init__(**{ 
+            "services": services, })
+        
 
 class ListActiveNodesResult(data_model.DataObject):
     """ListActiveNodesResult  
@@ -21332,9 +22535,10 @@ class ListActiveNodesResult(data_model.DataObject):
 
     def __init__(self,
             nodes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListActiveNodesResult, self).__init__(**{ 
+            "nodes": nodes, })
+        
 
 class ListBackupTargetsResult(data_model.DataObject):
     """ListBackupTargetsResult  
@@ -21352,9 +22556,10 @@ class ListBackupTargetsResult(data_model.DataObject):
 
     def __init__(self,
             backup_targets):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListBackupTargetsResult, self).__init__(**{ 
+            "backup_targets": backup_targets, })
+        
 
 class SnmpSendTestTrapsResult(data_model.DataObject):
     """SnmpSendTestTrapsResult  
@@ -21372,9 +22577,10 @@ class SnmpSendTestTrapsResult(data_model.DataObject):
 
     def __init__(self,
             status):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SnmpSendTestTrapsResult, self).__init__(**{ 
+            "status": status, })
+        
 
 class QuiesceSnapMirrorRelationshipRequest(data_model.DataObject):
     """QuiesceSnapMirrorRelationshipRequest  
@@ -21403,9 +22609,11 @@ class QuiesceSnapMirrorRelationshipRequest(data_model.DataObject):
     def __init__(self,
             snap_mirror_endpoint_id,
             destination_volume):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(QuiesceSnapMirrorRelationshipRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "destination_volume": destination_volume, })
+        
 
 class ListVirtualVolumeBindingsRequest(data_model.DataObject):
     """ListVirtualVolumeBindingsRequest  
@@ -21424,9 +22632,10 @@ class ListVirtualVolumeBindingsRequest(data_model.DataObject):
 
     def __init__(self,
             virtual_volume_binding_ids=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListVirtualVolumeBindingsRequest, self).__init__(**{ 
+            "virtual_volume_binding_ids": virtual_volume_binding_ids, })
+        
 
 class AddLdapClusterAdminResult(data_model.DataObject):
     """AddLdapClusterAdminResult  
@@ -21444,9 +22653,10 @@ class AddLdapClusterAdminResult(data_model.DataObject):
 
     def __init__(self,
             cluster_admin_id=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(AddLdapClusterAdminResult, self).__init__(**{ 
+            "cluster_admin_id": cluster_admin_id, })
+        
 
 class GetSnmpACLResult(data_model.DataObject):
     """GetSnmpACLResult  
@@ -21474,9 +22684,11 @@ class GetSnmpACLResult(data_model.DataObject):
     def __init__(self,
             networks=None,
             usm_users=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetSnmpACLResult, self).__init__(**{ 
+            "networks": networks,
+            "usm_users": usm_users, })
+        
 
 class RemoveVirtualNetworkResult(data_model.DataObject):
     """RemoveVirtualNetworkResult  
@@ -21484,9 +22696,9 @@ class RemoveVirtualNetworkResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RemoveVirtualNetworkResult, self).__init__(**{  })
+        
 
 class EnableSnmpRequest(data_model.DataObject):
     """EnableSnmpRequest  
@@ -21506,9 +22718,10 @@ class EnableSnmpRequest(data_model.DataObject):
 
     def __init__(self,
             snmp_v3_enabled):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(EnableSnmpRequest, self).__init__(**{ 
+            "snmp_v3_enabled": snmp_v3_enabled, })
+        
 
 class SetSnmpInfoResult(data_model.DataObject):
     """SetSnmpInfoResult  
@@ -21516,9 +22729,9 @@ class SetSnmpInfoResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetSnmpInfoResult, self).__init__(**{  })
+        
 
 class DisableLdapAuthenticationResult(data_model.DataObject):
     """DisableLdapAuthenticationResult  
@@ -21526,9 +22739,9 @@ class DisableLdapAuthenticationResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DisableLdapAuthenticationResult, self).__init__(**{  })
+        
 
 class ListSnapMirrorEndpointsResult(data_model.DataObject):
     """ListSnapMirrorEndpointsResult  
@@ -21546,9 +22759,10 @@ class ListSnapMirrorEndpointsResult(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_endpoints):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListSnapMirrorEndpointsResult, self).__init__(**{ 
+            "snap_mirror_endpoints": snap_mirror_endpoints, })
+        
 
 class ListSnapshotsResult(data_model.DataObject):
     """ListSnapshotsResult  
@@ -21566,9 +22780,10 @@ class ListSnapshotsResult(data_model.DataObject):
 
     def __init__(self,
             snapshots):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListSnapshotsResult, self).__init__(**{ 
+            "snapshots": snapshots, })
+        
 
 class SnapMirrorVserverAggregateInfo(data_model.DataObject):
     """SnapMirrorVserverAggregateInfo  
@@ -21597,9 +22812,11 @@ class SnapMirrorVserverAggregateInfo(data_model.DataObject):
     def __init__(self,
             aggr_name,
             aggr_avail_size):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SnapMirrorVserverAggregateInfo, self).__init__(**{ 
+            "aggr_name": aggr_name,
+            "aggr_avail_size": aggr_avail_size, })
+        
 
 class SnapMirrorVserver(data_model.DataObject):
     """SnapMirrorVserver  
@@ -21698,9 +22915,18 @@ class SnapMirrorVserver(data_model.DataObject):
             vserver_aggregate_info,
             admin_state,
             operational_state):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SnapMirrorVserver, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "vserver_name": vserver_name,
+            "vserver_type": vserver_type,
+            "vserver_subtype": vserver_subtype,
+            "root_volume": root_volume,
+            "root_volume_aggregate": root_volume_aggregate,
+            "vserver_aggregate_info": vserver_aggregate_info,
+            "admin_state": admin_state,
+            "operational_state": operational_state, })
+        
 
 class ListSnapMirrorVserversResult(data_model.DataObject):
     """ListSnapMirrorVserversResult  
@@ -21718,9 +22944,10 @@ class ListSnapMirrorVserversResult(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_vservers):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListSnapMirrorVserversResult, self).__init__(**{ 
+            "snap_mirror_vservers": snap_mirror_vservers, })
+        
 
 class ModifyInitiatorsResult(data_model.DataObject):
     """ModifyInitiatorsResult  
@@ -21738,9 +22965,10 @@ class ModifyInitiatorsResult(data_model.DataObject):
 
     def __init__(self,
             initiators):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifyInitiatorsResult, self).__init__(**{ 
+            "initiators": initiators, })
+        
 
 class CreateClusterRequest(data_model.DataObject):
     """CreateClusterRequest  
@@ -21831,9 +23059,17 @@ class CreateClusterRequest(data_model.DataObject):
             nodes,
             accept_eula=None,
             attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateClusterRequest, self).__init__(**{ 
+            "accept_eula": accept_eula,
+            "mvip": mvip,
+            "svip": svip,
+            "rep_count": rep_count,
+            "username": username,
+            "password": password,
+            "nodes": nodes,
+            "attributes": attributes, })
+        
 
 class ListEventsRequest(data_model.DataObject):
     """ListEventsRequest  
@@ -21882,9 +23118,13 @@ class ListEventsRequest(data_model.DataObject):
             start_event_id=None,
             end_event_id=None,
             event_type=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListEventsRequest, self).__init__(**{ 
+            "max_events": max_events,
+            "start_event_id": start_event_id,
+            "end_event_id": end_event_id,
+            "event_type": event_type, })
+        
 
 class PurgeDeletedVolumesResult(data_model.DataObject):
     """PurgeDeletedVolumesResult  
@@ -21892,9 +23132,9 @@ class PurgeDeletedVolumesResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(PurgeDeletedVolumesResult, self).__init__(**{  })
+        
 
 class ListProtocolEndpointsRequest(data_model.DataObject):
     """ListProtocolEndpointsRequest  
@@ -21914,9 +23154,10 @@ class ListProtocolEndpointsRequest(data_model.DataObject):
 
     def __init__(self,
             protocol_endpoint_ids=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListProtocolEndpointsRequest, self).__init__(**{ 
+            "protocol_endpoint_ids": protocol_endpoint_ids, })
+        
 
 class ListVolumeAccessGroupsResult(data_model.DataObject):
     """ListVolumeAccessGroupsResult  
@@ -21944,9 +23185,11 @@ class ListVolumeAccessGroupsResult(data_model.DataObject):
     def __init__(self,
             volume_access_groups,
             volume_access_groups_not_found=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListVolumeAccessGroupsResult, self).__init__(**{ 
+            "volume_access_groups": volume_access_groups,
+            "volume_access_groups_not_found": volume_access_groups_not_found, })
+        
 
 class TestLdapAuthenticationResult(data_model.DataObject):
     """TestLdapAuthenticationResult  
@@ -21974,9 +23217,11 @@ class TestLdapAuthenticationResult(data_model.DataObject):
     def __init__(self,
             groups,
             user_dn):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(TestLdapAuthenticationResult, self).__init__(**{ 
+            "groups": groups,
+            "user_dn": user_dn, })
+        
 
 class ListAccountsResult(data_model.DataObject):
     """ListAccountsResult  
@@ -21994,29 +23239,10 @@ class ListAccountsResult(data_model.DataObject):
 
     def __init__(self,
             accounts):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class DisableClusterSshResult(data_model.DataObject):
-    """DisableClusterSshResult  
-
-    :param cluster_ssh_info: [required] The SSH info for the cluster. 
-    :type cluster_ssh_info: ClusterSshInfo
-
-    """
-    cluster_ssh_info = data_model.property(
-        "clusterSshInfo", ClusterSshInfo,
-        array=False, optional=False,
-        documentation="""The SSH info for the cluster. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            cluster_ssh_info):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+        super(ListAccountsResult, self).__init__(**{ 
+            "accounts": accounts, })
+        
 
 class SetSnmpACLRequest(data_model.DataObject):
     """SetSnmpACLRequest  
@@ -22047,9 +23273,11 @@ class SetSnmpACLRequest(data_model.DataObject):
     def __init__(self,
             networks,
             usm_users):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetSnmpACLRequest, self).__init__(**{ 
+            "networks": networks,
+            "usm_users": usm_users, })
+        
 
 class GroupCloneVolumeMember(data_model.DataObject):
     """GroupCloneVolumeMember  
@@ -22078,9 +23306,11 @@ class GroupCloneVolumeMember(data_model.DataObject):
     def __init__(self,
             volume_id,
             src_volume_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GroupCloneVolumeMember, self).__init__(**{ 
+            "volume_id": volume_id,
+            "src_volume_id": src_volume_id, })
+        
 
 class CloneMultipleVolumesResult(data_model.DataObject):
     """CloneMultipleVolumesResult  
@@ -22118,9 +23348,12 @@ class CloneMultipleVolumesResult(data_model.DataObject):
             async_handle,
             group_clone_id,
             members):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CloneMultipleVolumesResult, self).__init__(**{ 
+            "async_handle": async_handle,
+            "group_clone_id": group_clone_id,
+            "members": members, })
+        
 
 class RemoveVolumePairRequest(data_model.DataObject):
     """RemoveVolumePairRequest  
@@ -22139,9 +23372,10 @@ class RemoveVolumePairRequest(data_model.DataObject):
 
     def __init__(self,
             volume_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RemoveVolumePairRequest, self).__init__(**{ 
+            "volume_id": volume_id, })
+        
 
 class GetStorageContainerEfficiencyResult(data_model.DataObject):
     """GetStorageContainerEfficiencyResult  
@@ -22199,9 +23433,14 @@ class GetStorageContainerEfficiencyResult(data_model.DataObject):
             missing_volumes,
             thin_provisioning,
             timestamp):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetStorageContainerEfficiencyResult, self).__init__(**{ 
+            "compression": compression,
+            "deduplication": deduplication,
+            "missing_volumes": missing_volumes,
+            "thin_provisioning": thin_provisioning,
+            "timestamp": timestamp, })
+        
 
 class SetLoginSessionInfoResult(data_model.DataObject):
     """SetLoginSessionInfoResult  
@@ -22209,9 +23448,9 @@ class SetLoginSessionInfoResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetLoginSessionInfoResult, self).__init__(**{  })
+        
 
 class AsyncHandleResult(data_model.DataObject):
     """AsyncHandleResult  
@@ -22229,9 +23468,10 @@ class AsyncHandleResult(data_model.DataObject):
 
     def __init__(self,
             async_handle):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(AsyncHandleResult, self).__init__(**{ 
+            "async_handle": async_handle, })
+        
 
 class PurgeDeletedVolumeRequest(data_model.DataObject):
     """PurgeDeletedVolumeRequest  
@@ -22252,9 +23492,10 @@ class PurgeDeletedVolumeRequest(data_model.DataObject):
 
     def __init__(self,
             volume_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(PurgeDeletedVolumeRequest, self).__init__(**{ 
+            "volume_id": volume_id, })
+        
 
 class DeleteSnapMirrorEndpointsRequest(data_model.DataObject):
     """DeleteSnapMirrorEndpointsRequest  
@@ -22273,9 +23514,10 @@ class DeleteSnapMirrorEndpointsRequest(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_endpoint_ids):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DeleteSnapMirrorEndpointsRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_ids": snap_mirror_endpoint_ids, })
+        
 
 class SnapMirrorLunInfo(data_model.DataObject):
     """SnapMirrorLunInfo  
@@ -22374,9 +23616,18 @@ class SnapMirrorLunInfo(data_model.DataObject):
             state,
             volume,
             vserver):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SnapMirrorLunInfo, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "creation_timestamp": creation_timestamp,
+            "lun_name": lun_name,
+            "path": path,
+            "size": size,
+            "size_used": size_used,
+            "state": state,
+            "volume": volume,
+            "vserver": vserver, })
+        
 
 class ListSnapMirrorLunsResult(data_model.DataObject):
     """ListSnapMirrorLunsResult  
@@ -22394,9 +23645,10 @@ class ListSnapMirrorLunsResult(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_lun_infos):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListSnapMirrorLunsResult, self).__init__(**{ 
+            "snap_mirror_lun_infos": snap_mirror_lun_infos, })
+        
 
 class SyncJob(data_model.DataObject):
     """SyncJob  
@@ -22584,9 +23836,27 @@ class SyncJob(data_model.DataObject):
             stage,
             remaining_time=None,
             group_clone_id=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SyncJob, self).__init__(**{ 
+            "bytes_per_second": bytes_per_second,
+            "current_bytes": current_bytes,
+            "dst_service_id": dst_service_id,
+            "elapsed_time": elapsed_time,
+            "percent_complete": percent_complete,
+            "remaining_time": remaining_time,
+            "slice_id": slice_id,
+            "src_service_id": src_service_id,
+            "total_bytes": total_bytes,
+            "type": type,
+            "clone_id": clone_id,
+            "dst_volume_id": dst_volume_id,
+            "node_id": node_id,
+            "snapshot_id": snapshot_id,
+            "src_volume_id": src_volume_id,
+            "blocks_per_second": blocks_per_second,
+            "stage": stage,
+            "group_clone_id": group_clone_id, })
+        
 
 class ListSyncJobsResult(data_model.DataObject):
     """ListSyncJobsResult  
@@ -22604,9 +23874,10 @@ class ListSyncJobsResult(data_model.DataObject):
 
     def __init__(self,
             sync_jobs):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListSyncJobsResult, self).__init__(**{ 
+            "sync_jobs": sync_jobs, })
+        
 
 class BulkVolumeJob(data_model.DataObject):
     """BulkVolumeJob  
@@ -22744,9 +24015,22 @@ class BulkVolumeJob(data_model.DataObject):
             attributes,
             script=None,
             snapshot_id=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(BulkVolumeJob, self).__init__(**{ 
+            "bulk_volume_id": bulk_volume_id,
+            "create_time": create_time,
+            "elapsed_time": elapsed_time,
+            "format": format,
+            "key": key,
+            "percent_complete": percent_complete,
+            "remaining_time": remaining_time,
+            "src_volume_id": src_volume_id,
+            "status": status,
+            "script": script,
+            "snapshot_id": snapshot_id,
+            "type": type,
+            "attributes": attributes, })
+        
 
 class ListBulkVolumeJobsResult(data_model.DataObject):
     """ListBulkVolumeJobsResult  
@@ -22764,9 +24048,10 @@ class ListBulkVolumeJobsResult(data_model.DataObject):
 
     def __init__(self,
             bulk_volume_jobs):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListBulkVolumeJobsResult, self).__init__(**{ 
+            "bulk_volume_jobs": bulk_volume_jobs, })
+        
 
 class TestConnectMvipRequest(data_model.DataObject):
     """TestConnectMvipRequest  
@@ -22787,9 +24072,10 @@ class TestConnectMvipRequest(data_model.DataObject):
 
     def __init__(self,
             mvip=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(TestConnectMvipRequest, self).__init__(**{ 
+            "mvip": mvip, })
+        
 
 class ModifyBackupTargetResult(data_model.DataObject):
     """ModifyBackupTargetResult  
@@ -22797,9 +24083,9 @@ class ModifyBackupTargetResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifyBackupTargetResult, self).__init__(**{  })
+        
 
 class GetSnmpStateResult(data_model.DataObject):
     """GetSnmpStateResult  
@@ -22827,9 +24113,11 @@ class GetSnmpStateResult(data_model.DataObject):
     def __init__(self,
             enabled,
             snmp_v3_enabled):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetSnmpStateResult, self).__init__(**{ 
+            "enabled": enabled,
+            "snmp_v3_enabled": snmp_v3_enabled, })
+        
 
 class ListPendingActiveNodesResult(data_model.DataObject):
     """ListPendingActiveNodesResult  
@@ -22847,9 +24135,10 @@ class ListPendingActiveNodesResult(data_model.DataObject):
 
     def __init__(self,
             pending_active_nodes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListPendingActiveNodesResult, self).__init__(**{ 
+            "pending_active_nodes": pending_active_nodes, })
+        
 
 class CompleteVolumePairingRequest(data_model.DataObject):
     """CompleteVolumePairingRequest  
@@ -22878,9 +24167,11 @@ class CompleteVolumePairingRequest(data_model.DataObject):
     def __init__(self,
             volume_pairing_key,
             volume_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CompleteVolumePairingRequest, self).__init__(**{ 
+            "volume_pairing_key": volume_pairing_key,
+            "volume_id": volume_id, })
+        
 
 class GetClusterStateRequest(data_model.DataObject):
     """GetClusterStateRequest  
@@ -22904,9 +24195,10 @@ class GetClusterStateRequest(data_model.DataObject):
 
     def __init__(self,
             force):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetClusterStateRequest, self).__init__(**{ 
+            "force": force, })
+        
 
 class DriveHardware(data_model.DataObject):
     """DriveHardware  
@@ -23204,9 +24496,38 @@ class DriveHardware(data_model.DataObject):
             vendor,
             version,
             smart_ssd_write_capable=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DriveHardware, self).__init__(**{ 
+            "canonical_name": canonical_name,
+            "connected": connected,
+            "dev": dev,
+            "dev_path": dev_path,
+            "drive_type": drive_type,
+            "life_remaining_percent": life_remaining_percent,
+            "lifetime_read_bytes": lifetime_read_bytes,
+            "lifetime_write_bytes": lifetime_write_bytes,
+            "name": name,
+            "path": path,
+            "path_link": path_link,
+            "power_on_hours": power_on_hours,
+            "product": product,
+            "reallocated_sectors": reallocated_sectors,
+            "reserve_capacity_percent": reserve_capacity_percent,
+            "scsi_compat_id": scsi_compat_id,
+            "scsi_state": scsi_state,
+            "security_at_maximum": security_at_maximum,
+            "security_enabled": security_enabled,
+            "security_frozen": security_frozen,
+            "security_locked": security_locked,
+            "security_supported": security_supported,
+            "serial": serial,
+            "size": size,
+            "slot": slot,
+            "smart_ssd_write_capable": smart_ssd_write_capable,
+            "uuid": uuid,
+            "vendor": vendor,
+            "version": version, })
+        
 
 class DrivesHardware(data_model.DataObject):
     """DrivesHardware  
@@ -23224,9 +24545,10 @@ class DrivesHardware(data_model.DataObject):
 
     def __init__(self,
             drive_hardware):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(DrivesHardware, self).__init__(**{ 
+            "drive_hardware": drive_hardware, })
+        
 
 class NodeDriveHardware(data_model.DataObject):
     """NodeDriveHardware  
@@ -23254,9 +24576,11 @@ class NodeDriveHardware(data_model.DataObject):
     def __init__(self,
             node_id,
             result):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(NodeDriveHardware, self).__init__(**{ 
+            "node_id": node_id,
+            "result": result, })
+        
 
 class ListDriveHardwareResult(data_model.DataObject):
     """ListDriveHardwareResult  
@@ -23274,9 +24598,10 @@ class ListDriveHardwareResult(data_model.DataObject):
 
     def __init__(self,
             nodes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListDriveHardwareResult, self).__init__(**{ 
+            "nodes": nodes, })
+        
 
 class GetNodeHardwareInfoResult(data_model.DataObject):
     """GetNodeHardwareInfoResult  
@@ -23294,9 +24619,10 @@ class GetNodeHardwareInfoResult(data_model.DataObject):
 
     def __init__(self,
             node_hardware_info):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetNodeHardwareInfoResult, self).__init__(**{ 
+            "node_hardware_info": node_hardware_info, })
+        
 
 class GetSnmpTrapInfoResult(data_model.DataObject):
     """GetSnmpTrapInfoResult  
@@ -23344,9 +24670,13 @@ class GetSnmpTrapInfoResult(data_model.DataObject):
             cluster_fault_traps_enabled,
             cluster_fault_resolved_traps_enabled,
             cluster_event_traps_enabled):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetSnmpTrapInfoResult, self).__init__(**{ 
+            "trap_recipients": trap_recipients,
+            "cluster_fault_traps_enabled": cluster_fault_traps_enabled,
+            "cluster_fault_resolved_traps_enabled": cluster_fault_resolved_traps_enabled,
+            "cluster_event_traps_enabled": cluster_event_traps_enabled, })
+        
 
 class SetRemoteLoggingHostsResult(data_model.DataObject):
     """SetRemoteLoggingHostsResult  
@@ -23354,30 +24684,42 @@ class SetRemoteLoggingHostsResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class GetAccountByIDRequest(data_model.DataObject):
-    """GetAccountByIDRequest  
-    GetAccountByID enables you to return details about a specific account, given its accountID.
+        super(SetRemoteLoggingHostsResult, self).__init__(**{  })
+        
 
-    :param account_id: [required] Specifies the account for which details are gathered. 
-    :type account_id: int
+class ListSnapMirrorLunsRequest(data_model.DataObject):
+    """ListSnapMirrorLunsRequest  
+    The SolidFire Element OS web UI uses the ListSnapMirrorLuns method to list the LUN information for the SnapMirror relationship from the remote ONTAP cluster.
+
+    :param snap_mirror_endpoint_id: [required] List only the LUN information associated with the specified endpoint ID. 
+    :type snap_mirror_endpoint_id: int
+
+    :param destination_volume: [required] The destination volume in the SnapMirror relationship. 
+    :type destination_volume: SnapMirrorVolumeInfo
 
     """
-    account_id = data_model.property(
-        "accountID", int,
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
         array=False, optional=False,
-        documentation="""Specifies the account for which details are gathered. """,
+        documentation="""List only the LUN information associated with the specified endpoint ID. """,
+        dictionaryType=None
+    )
+    destination_volume = data_model.property(
+        "destinationVolume", SnapMirrorVolumeInfo,
+        array=False, optional=False,
+        documentation="""The destination volume in the SnapMirror relationship. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            account_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+            snap_mirror_endpoint_id,
+            destination_volume):
+
+        super(ListSnapMirrorLunsRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "destination_volume": destination_volume, })
+        
 
 class ListSnapMirrorRelationshipsResult(data_model.DataObject):
     """ListSnapMirrorRelationshipsResult  
@@ -23395,9 +24737,10 @@ class ListSnapMirrorRelationshipsResult(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_relationships):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListSnapMirrorRelationshipsResult, self).__init__(**{ 
+            "snap_mirror_relationships": snap_mirror_relationships, })
+        
 
 class SetClusterConfigRequest(data_model.DataObject):
     """SetClusterConfigRequest  
@@ -23418,9 +24761,10 @@ class SetClusterConfigRequest(data_model.DataObject):
 
     def __init__(self,
             cluster):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SetClusterConfigRequest, self).__init__(**{ 
+            "cluster": cluster, })
+        
 
 class SnapMirrorNode(data_model.DataObject):
     """SnapMirrorNode  
@@ -23499,9 +24843,16 @@ class SnapMirrorNode(data_model.DataObject):
             product_version,
             is_node_healthy,
             is_node_eligible):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(SnapMirrorNode, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "name": name,
+            "model": model,
+            "serial_number": serial_number,
+            "product_version": product_version,
+            "is_node_healthy": is_node_healthy,
+            "is_node_eligible": is_node_eligible, })
+        
 
 class ListSnapMirrorNodesResult(data_model.DataObject):
     """ListSnapMirrorNodesResult  
@@ -23519,9 +24870,10 @@ class ListSnapMirrorNodesResult(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_nodes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListSnapMirrorNodesResult, self).__init__(**{ 
+            "snap_mirror_nodes": snap_mirror_nodes, })
+        
 
 class ResetDriveDetails(data_model.DataObject):
     """ResetDriveDetails  
@@ -23569,9 +24921,13 @@ class ResetDriveDetails(data_model.DataObject):
             return_code,
             stderr,
             stdout):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ResetDriveDetails, self).__init__(**{ 
+            "drive": drive,
+            "return_code": return_code,
+            "stderr": stderr,
+            "stdout": stdout, })
+        
 
 class ResetDrivesDetails(data_model.DataObject):
     """ResetDrivesDetails  
@@ -23589,9 +24945,10 @@ class ResetDrivesDetails(data_model.DataObject):
 
     def __init__(self,
             drives):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ResetDrivesDetails, self).__init__(**{ 
+            "drives": drives, })
+        
 
 class ResetDrivesResult(data_model.DataObject):
     """ResetDrivesResult  
@@ -23629,50 +24986,35 @@ class ResetDrivesResult(data_model.DataObject):
             details,
             duration=None,
             result=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
 
-class ListAccountsRequest(data_model.DataObject):
-    """ListAccountsRequest  
-    ListAccounts returns the entire list of accounts, with optional paging support.
+        super(ResetDrivesResult, self).__init__(**{ 
+            "details": details,
+            "duration": duration,
+            "result": result, })
+        
 
-    :param start_account_id:  Starting AccountID to return. If no account exists with this AccountID, the next account by AccountID order is used as the start of the list. To page through the list, pass the AccountID of the last account in the previous response + 1. 
-    :type start_account_id: int
+class TestConnectEnsembleRequest(data_model.DataObject):
+    """TestConnectEnsembleRequest  
+    The TestConnectEnsemble API method enables you to verify connectivity with a specified database ensemble. By default, it uses the ensemble for the cluster that the node is associated with. Alternatively, you can provide a different ensemble to test connectivity with.
+    Note: This method is available only through the per-node API endpoint 5.0 or later.
 
-    :param limit:  Maximum number of AccountInfo objects to return. 
-    :type limit: int
-
-    :param include_storage_containers:  Includes storage containers in the response by default. To exclude storage containers, set to false. 
-    :type include_storage_containers: bool
+    :param ensemble:  Uses a comma-separated list of ensemble node cluster IP addresses to test connectivity. This parameter is optional. 
+    :type ensemble: str
 
     """
-    start_account_id = data_model.property(
-        "startAccountID", int,
+    ensemble = data_model.property(
+        "ensemble", str,
         array=False, optional=True,
-        documentation="""Starting AccountID to return. If no account exists with this AccountID, the next account by AccountID order is used as the start of the list. To page through the list, pass the AccountID of the last account in the previous response + 1. """,
-        dictionaryType=None
-    )
-    limit = data_model.property(
-        "limit", int,
-        array=False, optional=True,
-        documentation="""Maximum number of AccountInfo objects to return. """,
-        dictionaryType=None
-    )
-    include_storage_containers = data_model.property(
-        "includeStorageContainers", bool,
-        array=False, optional=True,
-        documentation="""Includes storage containers in the response by default. To exclude storage containers, set to false. """,
+        documentation="""Uses a comma-separated list of ensemble node cluster IP addresses to test connectivity. This parameter is optional. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            start_account_id=None,
-            limit=None,
-            include_storage_containers=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+            ensemble=None):
+
+        super(TestConnectEnsembleRequest, self).__init__(**{ 
+            "ensemble": ensemble, })
+        
 
 class GetOntapVersionInfoRequest(data_model.DataObject):
     """GetOntapVersionInfoRequest  
@@ -23691,9 +25033,31 @@ class GetOntapVersionInfoRequest(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_endpoint_id=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(GetOntapVersionInfoRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id, })
+        
+
+class GetAccountResult(data_model.DataObject):
+    """GetAccountResult  
+
+    :param account: [required] Account details. 
+    :type account: Account
+
+    """
+    account = data_model.property(
+        "account", Account,
+        array=False, optional=False,
+        documentation="""Account details. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            account):
+
+        super(GetAccountResult, self).__init__(**{ 
+            "account": account, })
+        
 
 class ModifyClusterFullThresholdRequest(data_model.DataObject):
     """ModifyClusterFullThresholdRequest  
@@ -23732,9 +25096,12 @@ class ModifyClusterFullThresholdRequest(data_model.DataObject):
             stage2_aware_threshold=None,
             stage3_block_threshold_percent=None,
             max_metadata_over_provision_factor=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifyClusterFullThresholdRequest, self).__init__(**{ 
+            "stage2_aware_threshold": stage2_aware_threshold,
+            "stage3_block_threshold_percent": stage3_block_threshold_percent,
+            "max_metadata_over_provision_factor": max_metadata_over_provision_factor, })
+        
 
 class AddClusterAdminRequest(data_model.DataObject):
     """AddClusterAdminRequest  
@@ -23795,9 +25162,14 @@ class AddClusterAdminRequest(data_model.DataObject):
             access,
             accept_eula,
             attributes=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(AddClusterAdminRequest, self).__init__(**{ 
+            "username": username,
+            "password": password,
+            "access": access,
+            "accept_eula": accept_eula,
+            "attributes": attributes, })
+        
 
 class EnableFeatureResult(data_model.DataObject):
     """EnableFeatureResult  
@@ -23805,9 +25177,9 @@ class EnableFeatureResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(EnableFeatureResult, self).__init__(**{  })
+        
 
 class RemoveBackupTargetResult(data_model.DataObject):
     """RemoveBackupTargetResult  
@@ -23815,9 +25187,9 @@ class RemoveBackupTargetResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RemoveBackupTargetResult, self).__init__(**{  })
+        
 
 class CloneVolumeRequest(data_model.DataObject):
     """CloneVolumeRequest  
@@ -23908,9 +25280,17 @@ class CloneVolumeRequest(data_model.DataObject):
             snapshot_id=None,
             attributes=None,
             enable512e=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CloneVolumeRequest, self).__init__(**{ 
+            "volume_id": volume_id,
+            "name": name,
+            "new_account_id": new_account_id,
+            "new_size": new_size,
+            "access": access,
+            "snapshot_id": snapshot_id,
+            "attributes": attributes,
+            "enable512e": enable512e, })
+        
 
 class CreateBackupTargetRequest(data_model.DataObject):
     """CreateBackupTargetRequest  
@@ -23939,9 +25319,11 @@ class CreateBackupTargetRequest(data_model.DataObject):
     def __init__(self,
             name,
             attributes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateBackupTargetRequest, self).__init__(**{ 
+            "name": name,
+            "attributes": attributes, })
+        
 
 class ModifyVolumeRequest(data_model.DataObject):
     """ModifyVolumeRequest  
@@ -24047,9 +25429,18 @@ class ModifyVolumeRequest(data_model.DataObject):
             associate_with_qos_policy=None,
             qos_policy_id=None,
             enable_snap_mirror_replication=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ModifyVolumeRequest, self).__init__(**{ 
+            "volume_id": volume_id,
+            "account_id": account_id,
+            "access": access,
+            "qos": qos,
+            "total_size": total_size,
+            "attributes": attributes,
+            "associate_with_qos_policy": associate_with_qos_policy,
+            "qos_policy_id": qos_policy_id,
+            "enable_snap_mirror_replication": enable_snap_mirror_replication, })
+        
 
 class CreateGroupSnapshotResult(data_model.DataObject):
     """CreateGroupSnapshotResult  
@@ -24087,9 +25478,12 @@ class CreateGroupSnapshotResult(data_model.DataObject):
             group_snapshot,
             group_snapshot_id,
             members):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CreateGroupSnapshotResult, self).__init__(**{ 
+            "group_snapshot": group_snapshot,
+            "group_snapshot_id": group_snapshot_id,
+            "members": members, })
+        
 
 class RemoveSSLCertificateResult(data_model.DataObject):
     """RemoveSSLCertificateResult  
@@ -24097,9 +25491,9 @@ class RemoveSSLCertificateResult(data_model.DataObject):
     """
 
     def __init__(self):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RemoveSSLCertificateResult, self).__init__(**{  })
+        
 
 class ListSnapMirrorPoliciesRequest(data_model.DataObject):
     """ListSnapMirrorPoliciesRequest  
@@ -24118,9 +25512,10 @@ class ListSnapMirrorPoliciesRequest(data_model.DataObject):
 
     def __init__(self,
             snap_mirror_endpoint_id=None):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(ListSnapMirrorPoliciesRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id, })
+        
 
 class RemoveClusterPairRequest(data_model.DataObject):
     """RemoveClusterPairRequest  
@@ -24140,9 +25535,10 @@ class RemoveClusterPairRequest(data_model.DataObject):
 
     def __init__(self,
             cluster_pair_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(RemoveClusterPairRequest, self).__init__(**{ 
+            "cluster_pair_id": cluster_pair_id, })
+        
 
 class CompleteClusterPairingResult(data_model.DataObject):
     """CompleteClusterPairingResult  
@@ -24160,9 +25556,10 @@ class CompleteClusterPairingResult(data_model.DataObject):
 
     def __init__(self,
             cluster_pair_id):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(CompleteClusterPairingResult, self).__init__(**{ 
+            "cluster_pair_id": cluster_pair_id, })
+        
 
 class TestConnectEnsembleDetails(data_model.DataObject):
     """TestConnectEnsembleDetails  
@@ -24180,9 +25577,10 @@ class TestConnectEnsembleDetails(data_model.DataObject):
 
     def __init__(self,
             nodes):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(TestConnectEnsembleDetails, self).__init__(**{ 
+            "nodes": nodes, })
+        
 
 class TestConnectEnsembleResult(data_model.DataObject):
     """TestConnectEnsembleResult  
@@ -24220,6 +25618,9 @@ class TestConnectEnsembleResult(data_model.DataObject):
             details,
             duration,
             result):
-        kwargs = locals()
-        del kwargs["self"]
-        data_model.DataObject.__init__(self, **kwargs)
+
+        super(TestConnectEnsembleResult, self).__init__(**{ 
+            "details": details,
+            "duration": duration,
+            "result": result, })
+        
