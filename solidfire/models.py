@@ -249,6 +249,115 @@ class AddVolumesToVolumeAccessGroupRequest(data_model.DataObject):
             "volumes": volumes, })
         
 
+class ProtectionSchemeAwareness(data_model.DataObject):
+    """ProtectionSchemeAwareness  
+    
+
+    :param data_protection_scheme: [required]  
+    :type data_protection_scheme: str
+
+    :param sustainable_failures_for_block_data: [required]  
+    :type sustainable_failures_for_block_data: int
+
+    :param sustainable_failures_for_metadata: [required]  
+    :type sustainable_failures_for_metadata: int
+
+    """
+    data_protection_scheme = data_model.property(
+        "dataProtectionScheme", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    sustainable_failures_for_block_data = data_model.property(
+        "sustainableFailuresForBlockData", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    sustainable_failures_for_metadata = data_model.property(
+        "sustainableFailuresForMetadata", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            data_protection_scheme,
+            sustainable_failures_for_block_data,
+            sustainable_failures_for_metadata):
+
+        super(ProtectionSchemeAwareness, self).__init__(**{ 
+            "data_protection_scheme": data_protection_scheme,
+            "sustainable_failures_for_block_data": sustainable_failures_for_block_data,
+            "sustainable_failures_for_metadata": sustainable_failures_for_metadata, })
+        
+
+class ProtectionDomainAwareness(data_model.DataObject):
+    """ProtectionDomainAwareness  
+    
+
+    :param failure_type: [required] Currently can be node or chassis. 
+    :type failure_type: str
+
+    :param sustainable_failures_for_ensemble: [required]  
+    :type sustainable_failures_for_ensemble: int
+
+    :param protection_scheme_awareness: [required]  
+    :type protection_scheme_awareness: ProtectionSchemeAwareness
+
+    """
+    failure_type = data_model.property(
+        "failureType", str,
+        array=False, optional=False,
+        documentation="""Currently can be node or chassis. """,
+        dictionaryType=None
+    )
+    sustainable_failures_for_ensemble = data_model.property(
+        "sustainableFailuresForEnsemble", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    protection_scheme_awareness = data_model.property(
+        "protectionSchemeAwareness", ProtectionSchemeAwareness,
+        array=True, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            failure_type,
+            sustainable_failures_for_ensemble,
+            protection_scheme_awareness):
+
+        super(ProtectionDomainAwareness, self).__init__(**{ 
+            "failure_type": failure_type,
+            "sustainable_failures_for_ensemble": sustainable_failures_for_ensemble,
+            "protection_scheme_awareness": protection_scheme_awareness, })
+        
+
+class ListProtectionDomainAwarenessResult(data_model.DataObject):
+    """ListProtectionDomainAwarenessResult  
+
+    :param awareness:   
+    :type awareness: ProtectionDomainAwareness
+
+    """
+    awareness = data_model.property(
+        "awareness", ProtectionDomainAwareness,
+        array=True, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            awareness=None):
+
+        super(ListProtectionDomainAwarenessResult, self).__init__(**{ 
+            "awareness": awareness, })
+        
+
 class CreateGroupSnapshotRequest(data_model.DataObject):
     """CreateGroupSnapshotRequest  
     CreateGroupSnapshot enables you to create a point-in-time copy of a group of volumes. You can use this snapshot later as a backup or rollback to ensure the data on the group of volumes is consistent for the point in time that you created the snapshot.
@@ -1309,26 +1418,59 @@ class UpdateBulkVolumeStatusRequest(data_model.DataObject):
             "attributes": attributes, })
         
 
-class CompleteClusterPairingRequest(data_model.DataObject):
-    """CompleteClusterPairingRequest  
-    You can use the CompleteClusterPairing method with the encoded key received from the  StartClusterPairing method to complete the cluster pairing process. The CompleteClusterPairing method is the second step in the cluster pairing process. 
+class GetAccountEfficiencyRequest(data_model.DataObject):
+    """GetAccountEfficiencyRequest  
+    GetAccountEfficiency enables you to retrieve efficiency statistics about a volume account. This method returns efficiency information
+    only for the account you specify as a parameter.
 
-    :param cluster_pairing_key: [required] A string of characters that is returned from the "StartClusterPairing" API method. 
-    :type cluster_pairing_key: str
+    :param account_id: [required] Specifies the volume account for which efficiency statistics are returned. 
+    :type account_id: int
 
     """
-    cluster_pairing_key = data_model.property(
-        "clusterPairingKey", str,
+    account_id = data_model.property(
+        "accountID", int,
         array=False, optional=False,
-        documentation="""A string of characters that is returned from the "StartClusterPairing" API method. """,
+        documentation="""Specifies the volume account for which efficiency statistics are returned. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            cluster_pairing_key):
+            account_id):
 
-        super(CompleteClusterPairingRequest, self).__init__(**{ 
-            "cluster_pairing_key": cluster_pairing_key, })
+        super(GetAccountEfficiencyRequest, self).__init__(**{ 
+            "account_id": account_id, })
+        
+
+class ShutdownResult(data_model.DataObject):
+    """ShutdownResult  
+
+    :param failed: [required]  
+    :type failed: int
+
+    :param successful: [required]  
+    :type successful: int
+
+    """
+    failed = data_model.property(
+        "failed", int,
+        array=True, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    successful = data_model.property(
+        "successful", int,
+        array=True, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            failed,
+            successful):
+
+        super(ShutdownResult, self).__init__(**{ 
+            "failed": failed,
+            "successful": successful, })
         
 
 class GetAPIResult(data_model.DataObject):
@@ -2227,87 +2369,6 @@ class GetScheduleResult(data_model.DataObject):
 
         super(GetScheduleResult, self).__init__(**{ 
             "schedule": schedule, })
-        
-
-class ModifyInitiator(data_model.DataObject):
-    """ModifyInitiator  
-    Object containing characteristics of each initiator to modify
-
-    :param initiator_id: [required] (Required) The numeric ID of the initiator to modify. (Integer) 
-    :type initiator_id: int
-
-    :param alias:  (Optional) A new friendly name to assign to the initiator. (String) 
-    :type alias: str
-
-    :param volume_access_group_id:  (Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
-    :type volume_access_group_id: int
-
-    :param attributes:  (Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) 
-    :type attributes: dict
-
-    """
-    initiator_id = data_model.property(
-        "initiatorID", int,
-        array=False, optional=False,
-        documentation="""(Required) The numeric ID of the initiator to modify. (Integer) """,
-        dictionaryType=None
-    )
-    alias = data_model.property(
-        "alias", str,
-        array=False, optional=True,
-        documentation="""(Optional) A new friendly name to assign to the initiator. (String) """,
-        dictionaryType=None
-    )
-    volume_access_group_id = data_model.property(
-        "volumeAccessGroupID", int,
-        array=False, optional=True,
-        documentation="""(Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) """,
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="""(Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            initiator_id,
-            alias=None,
-            volume_access_group_id=None,
-            attributes=None):
-
-        super(ModifyInitiator, self).__init__(**{ 
-            "initiator_id": initiator_id,
-            "alias": alias,
-            "volume_access_group_id": volume_access_group_id,
-            "attributes": attributes, })
-        
-
-class ModifyInitiatorsRequest(data_model.DataObject):
-    """ModifyInitiatorsRequest  
-    ModifyInitiators enables you to change the attributes of one or more existing initiators. You cannot change the name of an existing
-    initiator. If you need to change the name of an initiator, delete it first with DeleteInitiators and create a new one with
-    CreateInitiators.
-    If ModifyInitiators fails to change one of the initiators provided in the parameter, the method returns an error and does not modify
-    any initiators (no partial completion is possible).
-
-    :param initiators: [required] A list of objects containing characteristics of each initiator to modify. Values are: initiatorID: (Required) The ID of the initiator to modify. (Integer) alias: (Optional) A new friendly name to assign to the initiator. (String) attributes: (Optional) A new set of JSON attributes to assign to the initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which the initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
-    :type initiators: ModifyInitiator
-
-    """
-    initiators = data_model.property(
-        "initiators", ModifyInitiator,
-        array=True, optional=False,
-        documentation="""A list of objects containing characteristics of each initiator to modify. Values are: initiatorID: (Required) The ID of the initiator to modify. (Integer) alias: (Optional) A new friendly name to assign to the initiator. (String) attributes: (Optional) A new set of JSON attributes to assign to the initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which the initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            initiators):
-
-        super(ModifyInitiatorsRequest, self).__init__(**{ 
-            "initiators": initiators, })
         
 
 class SnapMirrorVolumeInfo(data_model.DataObject):
@@ -3810,7 +3871,7 @@ class ClusterStats(data_model.DataObject):
     :param client_queue_depth: [required]  
     :type client_queue_depth: int
 
-    :param normalized_iops: [required]  
+    :param normalized_iops:   
     :type normalized_iops: int
 
     :param read_bytes: [required] Total bytes read by clients. 
@@ -3822,10 +3883,10 @@ class ClusterStats(data_model.DataObject):
     :param read_ops: [required] Total read operations. 
     :type read_ops: int
 
-    :param services_count: [required] Services count 
+    :param services_count:  Services count 
     :type services_count: int
 
-    :param services_total: [required] Total services. 
+    :param services_total:  Total services. 
     :type services_total: int
 
     :param timestamp: [required] Current time in UTC format. ISO 8601 date string. 
@@ -3834,7 +3895,7 @@ class ClusterStats(data_model.DataObject):
     :param write_bytes: [required] Total bytes written by clients. 
     :type write_bytes: int
 
-    :param write_latency_usec_total: [required]  
+    :param write_latency_usec_total:   
     :type write_latency_usec_total: int
 
     :param write_ops: [required] Total write operations. 
@@ -3891,7 +3952,7 @@ class ClusterStats(data_model.DataObject):
     )
     normalized_iops = data_model.property(
         "normalizedIOPS", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation=""" """,
         dictionaryType=None
     )
@@ -3915,13 +3976,13 @@ class ClusterStats(data_model.DataObject):
     )
     services_count = data_model.property(
         "servicesCount", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="""Services count """,
         dictionaryType=None
     )
     services_total = data_model.property(
         "servicesTotal", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="""Total services. """,
         dictionaryType=None
     )
@@ -3939,7 +4000,7 @@ class ClusterStats(data_model.DataObject):
     )
     write_latency_usec_total = data_model.property(
         "writeLatencyUSecTotal", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation=""" """,
         dictionaryType=None
     )
@@ -4025,16 +4086,16 @@ class ClusterStats(data_model.DataObject):
     def __init__(self,
             cluster_utilization,
             client_queue_depth,
-            normalized_iops,
             read_bytes,
             read_latency_usec_total,
             read_ops,
-            services_count,
-            services_total,
             timestamp,
             write_bytes,
-            write_latency_usec_total,
             write_ops,
+            normalized_iops=None,
+            services_count=None,
+            services_total=None,
+            write_latency_usec_total=None,
             actual_iops=None,
             average_iopsize=None,
             latency_usec=None,
@@ -4193,6 +4254,16 @@ class ModifyVolumeAccessGroupRequest(data_model.DataObject):
             "volumes": volumes,
             "delete_orphan_initiators": delete_orphan_initiators,
             "attributes": attributes, })
+        
+
+class PurgeDeletedVolumeResult(data_model.DataObject):
+    """PurgeDeletedVolumeResult  
+
+    """
+
+    def __init__(self):
+
+        super(PurgeDeletedVolumeResult, self).__init__(**{  })
         
 
 class VolumeQOS(data_model.DataObject):
@@ -4882,25 +4953,26 @@ class GetVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
             "volume_access_group_id": volume_access_group_id, })
         
 
-class ListVolumeStatsByVolumeResult(data_model.DataObject):
-    """ListVolumeStatsByVolumeResult  
+class ListVolumeStatsRequest(data_model.DataObject):
+    """ListVolumeStatsRequest  
+    ListVolumeStats returns high-level activity measurements for a single volume, list of volumes, or all volumes (if you omit the volumeIDs parameter). Measurement values are cumulative from the creation of the volume.
 
-    :param volume_stats: [required] List of account activity information. 
-    :type volume_stats: VolumeStats
+    :param volume_ids:  A list of volume IDs of volumes from which to retrieve activity information. 
+    :type volume_ids: int
 
     """
-    volume_stats = data_model.property(
-        "volumeStats", VolumeStats,
-        array=True, optional=False,
-        documentation="""List of account activity information. """,
+    volume_ids = data_model.property(
+        "volumeIDs", int,
+        array=True, optional=True,
+        documentation="""A list of volume IDs of volumes from which to retrieve activity information. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            volume_stats):
+            volume_ids=None):
 
-        super(ListVolumeStatsByVolumeResult, self).__init__(**{ 
-            "volume_stats": volume_stats, })
+        super(ListVolumeStatsRequest, self).__init__(**{ 
+            "volume_ids": volume_ids, })
         
 
 class ListSnapMirrorSchedulesRequest(data_model.DataObject):
@@ -5067,14 +5139,59 @@ class ListVirtualVolumeHostsRequest(data_model.DataObject):
             "virtual_volume_host_ids": virtual_volume_host_ids, })
         
 
-class SetNodeSSLCertificateResult(data_model.DataObject):
-    """SetNodeSSLCertificateResult  
+class ResyncSnapMirrorRelationshipRequest(data_model.DataObject):
+    """ResyncSnapMirrorRelationshipRequest  
+    The SolidFire Element OS web UI uses the ResyncSnapMirrorRelationship method to establish or reestablish a mirror relationship between a source and destination endpoint. When you resync a relationship, the system removes snapshots on the destination volume that are newer than the common snapshot copy, and then mounts the destination volume as a data protection volume with the common snapshot copy as the exported snapshot copy.
+
+    :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
+    :type snap_mirror_endpoint_id: int
+
+    :param destination_volume: [required] The destination volume in the SnapMirror relationship. 
+    :type destination_volume: SnapMirrorVolumeInfo
+
+    :param max_transfer_rate:  Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. 
+    :type max_transfer_rate: int
+
+    :param source_volume:  The source volume in the SnapMirror relationship. 
+    :type source_volume: SnapMirrorVolumeInfo
 
     """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. """,
+        dictionaryType=None
+    )
+    destination_volume = data_model.property(
+        "destinationVolume", SnapMirrorVolumeInfo,
+        array=False, optional=False,
+        documentation="""The destination volume in the SnapMirror relationship. """,
+        dictionaryType=None
+    )
+    max_transfer_rate = data_model.property(
+        "maxTransferRate", int,
+        array=False, optional=True,
+        documentation="""Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. """,
+        dictionaryType=None
+    )
+    source_volume = data_model.property(
+        "sourceVolume", SnapMirrorVolumeInfo,
+        array=False, optional=True,
+        documentation="""The source volume in the SnapMirror relationship. """,
+        dictionaryType=None
+    )
 
-    def __init__(self):
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            destination_volume,
+            max_transfer_rate=None,
+            source_volume=None):
 
-        super(SetNodeSSLCertificateResult, self).__init__(**{  })
+        super(ResyncSnapMirrorRelationshipRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "destination_volume": destination_volume,
+            "max_transfer_rate": max_transfer_rate,
+            "source_volume": source_volume, })
         
 
 class RemoveDrivesRequest(data_model.DataObject):
@@ -7998,36 +8115,26 @@ class AddClusterAdminResult(data_model.DataObject):
             "cluster_admin_id": cluster_admin_id, })
         
 
-class ShutdownResult(data_model.DataObject):
-    """ShutdownResult  
+class CompleteClusterPairingRequest(data_model.DataObject):
+    """CompleteClusterPairingRequest  
+    You can use the CompleteClusterPairing method with the encoded key received from the  StartClusterPairing method to complete the cluster pairing process. The CompleteClusterPairing method is the second step in the cluster pairing process. 
 
-    :param failed: [required]  
-    :type failed: int
-
-    :param successful: [required]  
-    :type successful: int
+    :param cluster_pairing_key: [required] A string of characters that is returned from the "StartClusterPairing" API method. 
+    :type cluster_pairing_key: str
 
     """
-    failed = data_model.property(
-        "failed", int,
-        array=True, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    successful = data_model.property(
-        "successful", int,
-        array=True, optional=False,
-        documentation=""" """,
+    cluster_pairing_key = data_model.property(
+        "clusterPairingKey", str,
+        array=False, optional=False,
+        documentation="""A string of characters that is returned from the "StartClusterPairing" API method. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            failed,
-            successful):
+            cluster_pairing_key):
 
-        super(ShutdownResult, self).__init__(**{ 
-            "failed": failed,
-            "successful": successful, })
+        super(CompleteClusterPairingRequest, self).__init__(**{ 
+            "cluster_pairing_key": cluster_pairing_key, })
         
 
 class ListSnapMirrorVserversRequest(data_model.DataObject):
@@ -8737,25 +8844,47 @@ class CreateScheduleRequest(data_model.DataObject):
             "schedule": schedule, })
         
 
-class ListActivePairedVolumesResult(data_model.DataObject):
-    """ListActivePairedVolumesResult  
+class DeleteAllSupportBundlesResult(data_model.DataObject):
+    """DeleteAllSupportBundlesResult  
 
-    :param volumes: [required] Volume information for the paired volumes. 
-    :type volumes: Volume
+    :param duration: [required]  
+    :type duration: str
+
+    :param details: [required]  
+    :type details: dict
+
+    :param result: [required]  
+    :type result: str
 
     """
-    volumes = data_model.property(
-        "volumes", Volume,
-        array=True, optional=False,
-        documentation="""Volume information for the paired volumes. """,
+    duration = data_model.property(
+        "duration", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    details = data_model.property(
+        "details", dict,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    result = data_model.property(
+        "result", str,
+        array=False, optional=False,
+        documentation=""" """,
         dictionaryType=None
     )
 
     def __init__(self,
-            volumes):
+            duration,
+            details,
+            result):
 
-        super(ListActivePairedVolumesResult, self).__init__(**{ 
-            "volumes": volumes, })
+        super(DeleteAllSupportBundlesResult, self).__init__(**{ 
+            "duration": duration,
+            "details": details,
+            "result": result, })
         
 
 class GetDriveHardwareInfoRequest(data_model.DataObject):
@@ -8900,335 +9029,48 @@ class ModifyStorageContainerResult(data_model.DataObject):
             "storage_container": storage_container, })
         
 
-class ListVolumeAccessGroupsRequest(data_model.DataObject):
-    """ListVolumeAccessGroupsRequest  
-    ListVolumeAccessGroups enables you to return
-    information about the volume access groups that are
-    currently in the system.
+class InvokeSFApiRequest(data_model.DataObject):
+    """InvokeSFApiRequest  
+    This will invoke any API method supported by the SolidFire API for the version and port the connection is using.
+    Returns a nested hashtable of key/value pairs that contain the result of the invoked method.
 
-    :param start_volume_access_group_id:  The volume access group ID at which to begin the listing. If unspecified, there is no lower limit (implicitly 0). 
-    :type start_volume_access_group_id: int
+    :param method: [required] The name of the method to invoke. This is case sensitive. 
+    :type method: str
 
-    :param limit:  The maximum number of results to return. This can be useful for paging. 
-    :type limit: int
-
-    :param volume_access_groups:  The list of ids of the volume access groups you wish to list 
-    :type volume_access_groups: int
+    :param parameters:  An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked. 
+    :type parameters: str
 
     """
-    start_volume_access_group_id = data_model.property(
-        "startVolumeAccessGroupID", int,
-        array=False, optional=True,
-        documentation="""The volume access group ID at which to begin the listing. If unspecified, there is no lower limit (implicitly 0). """,
+    method = data_model.property(
+        "method", str,
+        array=False, optional=False,
+        documentation="""The name of the method to invoke. This is case sensitive. """,
         dictionaryType=None
     )
-    limit = data_model.property(
-        "limit", int,
+    parameters = data_model.property(
+        "parameters", str,
         array=False, optional=True,
-        documentation="""The maximum number of results to return. This can be useful for paging. """,
-        dictionaryType=None
-    )
-    volume_access_groups = data_model.property(
-        "volumeAccessGroups", int,
-        array=True, optional=True,
-        documentation="""The list of ids of the volume access groups you wish to list """,
+        documentation="""An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            start_volume_access_group_id=None,
-            limit=None,
-            volume_access_groups=None):
+            method,
+            parameters=None):
 
-        super(ListVolumeAccessGroupsRequest, self).__init__(**{ 
-            "start_volume_access_group_id": start_volume_access_group_id,
-            "limit": limit,
-            "volume_access_groups": volume_access_groups, })
+        super(InvokeSFApiRequest, self).__init__(**{ 
+            "method": method,
+            "parameters": parameters, })
         
 
-class SnapshotRemoteStatus(data_model.DataObject):
-    """SnapshotRemoteStatus  
-
-    :param remote_status: [required]  
-    :type remote_status: str
-
-    :param volume_pair_uuid: [required] The snapshot is done and is writable (the active branch of the slice). 
-    :type volume_pair_uuid: UUID
+class RemoveNodesResult(data_model.DataObject):
+    """RemoveNodesResult  
 
     """
-    remote_status = data_model.property(
-        "remoteStatus", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    volume_pair_uuid = data_model.property(
-        "volumePairUUID", UUID,
-        array=False, optional=False,
-        documentation="""The snapshot is done and is writable (the active branch of the slice). """,
-        dictionaryType=None
-    )
 
-    def __init__(self,
-            remote_status,
-            volume_pair_uuid):
+    def __init__(self):
 
-        super(SnapshotRemoteStatus, self).__init__(**{ 
-            "remote_status": remote_status,
-            "volume_pair_uuid": volume_pair_uuid, })
-        
-
-class Snapshot(data_model.DataObject):
-    """Snapshot  
-    Snapshots is an object containing information about each snapshot made for a volume.
-    The return object includes information for the active snapshot as well as each snapshot created for the volume.
-
-    :param snapshot_id: [required] Unique ID for this snapshot. 
-    :type snapshot_id: int
-
-    :param volume_id: [required] The volume this snapshot was taken of. 
-    :type volume_id: int
-
-    :param name: [required] A name for this snapshot. It is not necessarily unique. 
-    :type name: str
-
-    :param checksum: [required] A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. 
-    :type checksum: str
-
-    :param enable_remote_replication: [required] Identifies if snapshot is enabled for remote replication. 
-    :type enable_remote_replication: bool
-
-    :param expiration_reason: [required] Indicates how the snapshot expiration was set. Possible values: api: expiration time was set by using the API. none: there is no expiration time set. test: expiration time was set for testing. 
-    :type expiration_reason: str
-
-    :param expiration_time:  The time at which this snapshot will expire and be purged from the cluster. 
-    :type expiration_time: str
-
-    :param remote_statuses:  Current remote status of the snapshot remoteStatus: Possible values: Present: Snapshot exists on a remote cluster Not Present: Snapshot does not exist on remote cluster Syncing: This is a target cluster and it is currently replicating the snapshot Deleted: This is a target cluster, the snapshot has been deleted, and it still exists on the source. volumePairUUID: universal identifier of the volume pair 
-    :type remote_statuses: SnapshotRemoteStatus
-
-    :param status: [required] Current status of the snapshot Preparing: A snapshot that is being prepared for use and is not yet writable. Done: A snapshot that has finished being prepared and is now usable. Active: This snapshot is the active branch. 
-    :type status: str
-
-    :param snapshot_uuid: [required] Universal Unique ID of an existing snapshot. 
-    :type snapshot_uuid: UUID
-
-    :param total_size: [required] Total size of this snapshot in bytes. It is equivalent to totalSize of the volume when this snapshot was taken. 
-    :type total_size: int
-
-    :param group_id:  If present, the ID of the group this snapshot is a part of. If not present, this snapshot is not part of a group. 
-    :type group_id: int
-
-    :param group_snapshot_uuid: [required] The current "members" results contains information about each snapshot in the group. Each of these members will have a "uuid" parameter for the snapshot's UUID. 
-    :type group_snapshot_uuid: UUID
-
-    :param create_time: [required] The time this snapshot was taken. 
-    :type create_time: str
-
-    :param instance_create_time: [required]  
-    :type instance_create_time: str
-
-    :param volume_name: [required]  
-    :type volume_name: str
-
-    :param instance_snapshot_uuid: [required]  
-    :type instance_snapshot_uuid: UUID
-
-    :param virtual_volume_id:  The ID of the virtual volume with which the snapshot is associated. 
-    :type virtual_volume_id: UUID
-
-    :param attributes: [required] List of Name/Value pairs in JSON object format. 
-    :type attributes: dict
-
-    :param snap_mirror_label:  Label used by SnapMirror software to specify snapshot retention policy on SnapMirror endpoint. 
-    :type snap_mirror_label: str
-
-    """
-    snapshot_id = data_model.property(
-        "snapshotID", int,
-        array=False, optional=False,
-        documentation="""Unique ID for this snapshot. """,
-        dictionaryType=None
-    )
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=False,
-        documentation="""The volume this snapshot was taken of. """,
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation="""A name for this snapshot. It is not necessarily unique. """,
-        dictionaryType=None
-    )
-    checksum = data_model.property(
-        "checksum", str,
-        array=False, optional=False,
-        documentation="""A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. """,
-        dictionaryType=None
-    )
-    enable_remote_replication = data_model.property(
-        "enableRemoteReplication", bool,
-        array=False, optional=False,
-        documentation="""Identifies if snapshot is enabled for remote replication. """,
-        dictionaryType=None
-    )
-    expiration_reason = data_model.property(
-        "expirationReason", str,
-        array=False, optional=False,
-        documentation="""Indicates how the snapshot expiration was set. Possible values: api: expiration time was set by using the API. none: there is no expiration time set. test: expiration time was set for testing. """,
-        dictionaryType=None
-    )
-    expiration_time = data_model.property(
-        "expirationTime", str,
-        array=False, optional=True,
-        documentation="""The time at which this snapshot will expire and be purged from the cluster. """,
-        dictionaryType=None
-    )
-    remote_statuses = data_model.property(
-        "remoteStatuses", SnapshotRemoteStatus,
-        array=True, optional=True,
-        documentation="""Current remote status of the snapshot remoteStatus: Possible values: Present: Snapshot exists on a remote cluster Not Present: Snapshot does not exist on remote cluster Syncing: This is a target cluster and it is currently replicating the snapshot Deleted: This is a target cluster, the snapshot has been deleted, and it still exists on the source. volumePairUUID: universal identifier of the volume pair """,
-        dictionaryType=None
-    )
-    status = data_model.property(
-        "status", str,
-        array=False, optional=False,
-        documentation="""Current status of the snapshot Preparing: A snapshot that is being prepared for use and is not yet writable. Done: A snapshot that has finished being prepared and is now usable. Active: This snapshot is the active branch. """,
-        dictionaryType=None
-    )
-    snapshot_uuid = data_model.property(
-        "snapshotUUID", UUID,
-        array=False, optional=False,
-        documentation="""Universal Unique ID of an existing snapshot. """,
-        dictionaryType=None
-    )
-    total_size = data_model.property(
-        "totalSize", int,
-        array=False, optional=False,
-        documentation="""Total size of this snapshot in bytes. It is equivalent to totalSize of the volume when this snapshot was taken. """,
-        dictionaryType=None
-    )
-    group_id = data_model.property(
-        "groupID", int,
-        array=False, optional=True,
-        documentation="""If present, the ID of the group this snapshot is a part of. If not present, this snapshot is not part of a group. """,
-        dictionaryType=None
-    )
-    group_snapshot_uuid = data_model.property(
-        "groupSnapshotUUID", UUID,
-        array=False, optional=False,
-        documentation="""The current "members" results contains information about each snapshot in the group. Each of these members will have a "uuid" parameter for the snapshot's UUID. """,
-        dictionaryType=None
-    )
-    create_time = data_model.property(
-        "createTime", str,
-        array=False, optional=False,
-        documentation="""The time this snapshot was taken. """,
-        dictionaryType=None
-    )
-    instance_create_time = data_model.property(
-        "instanceCreateTime", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    volume_name = data_model.property(
-        "volumeName", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    instance_snapshot_uuid = data_model.property(
-        "instanceSnapshotUUID", UUID,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    virtual_volume_id = data_model.property(
-        "virtualVolumeID", UUID,
-        array=False, optional=True,
-        documentation="""The ID of the virtual volume with which the snapshot is associated. """,
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=False,
-        documentation="""List of Name/Value pairs in JSON object format. """,
-        dictionaryType=None
-    )
-    snap_mirror_label = data_model.property(
-        "snapMirrorLabel", str,
-        array=False, optional=True,
-        documentation="""Label used by SnapMirror software to specify snapshot retention policy on SnapMirror endpoint. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            snapshot_id,
-            volume_id,
-            name,
-            checksum,
-            enable_remote_replication,
-            expiration_reason,
-            status,
-            snapshot_uuid,
-            total_size,
-            group_snapshot_uuid,
-            create_time,
-            instance_create_time,
-            volume_name,
-            instance_snapshot_uuid,
-            attributes,
-            expiration_time=None,
-            remote_statuses=None,
-            group_id=None,
-            virtual_volume_id=None,
-            snap_mirror_label=None):
-
-        super(Snapshot, self).__init__(**{ 
-            "snapshot_id": snapshot_id,
-            "volume_id": volume_id,
-            "name": name,
-            "checksum": checksum,
-            "enable_remote_replication": enable_remote_replication,
-            "expiration_reason": expiration_reason,
-            "expiration_time": expiration_time,
-            "remote_statuses": remote_statuses,
-            "status": status,
-            "snapshot_uuid": snapshot_uuid,
-            "total_size": total_size,
-            "group_id": group_id,
-            "group_snapshot_uuid": group_snapshot_uuid,
-            "create_time": create_time,
-            "instance_create_time": instance_create_time,
-            "volume_name": volume_name,
-            "instance_snapshot_uuid": instance_snapshot_uuid,
-            "virtual_volume_id": virtual_volume_id,
-            "attributes": attributes,
-            "snap_mirror_label": snap_mirror_label, })
-        
-
-class ModifySnapshotResult(data_model.DataObject):
-    """ModifySnapshotResult  
-
-    :param snapshot:   
-    :type snapshot: Snapshot
-
-    """
-    snapshot = data_model.property(
-        "snapshot", Snapshot,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            snapshot=None):
-
-        super(ModifySnapshotResult, self).__init__(**{ 
-            "snapshot": snapshot, })
+        super(RemoveNodesResult, self).__init__(**{  })
         
 
 class SnapMirrorClusterIdentity(data_model.DataObject):
@@ -11049,6 +10891,270 @@ class ModifyClusterAdminRequest(data_model.DataObject):
             "attributes": attributes, })
         
 
+class SnapshotRemoteStatus(data_model.DataObject):
+    """SnapshotRemoteStatus  
+
+    :param remote_status: [required]  
+    :type remote_status: str
+
+    :param volume_pair_uuid: [required] The snapshot is done and is writable (the active branch of the slice). 
+    :type volume_pair_uuid: UUID
+
+    """
+    remote_status = data_model.property(
+        "remoteStatus", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    volume_pair_uuid = data_model.property(
+        "volumePairUUID", UUID,
+        array=False, optional=False,
+        documentation="""The snapshot is done and is writable (the active branch of the slice). """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            remote_status,
+            volume_pair_uuid):
+
+        super(SnapshotRemoteStatus, self).__init__(**{ 
+            "remote_status": remote_status,
+            "volume_pair_uuid": volume_pair_uuid, })
+        
+
+class Snapshot(data_model.DataObject):
+    """Snapshot  
+    Snapshots is an object containing information about each snapshot made for a volume.
+    The return object includes information for the active snapshot as well as each snapshot created for the volume.
+
+    :param snapshot_id: [required] Unique ID for this snapshot. 
+    :type snapshot_id: int
+
+    :param volume_id: [required] The volume this snapshot was taken of. 
+    :type volume_id: int
+
+    :param name: [required] A name for this snapshot. It is not necessarily unique. 
+    :type name: str
+
+    :param checksum: [required] A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. 
+    :type checksum: str
+
+    :param enable_remote_replication: [required] Identifies if snapshot is enabled for remote replication. 
+    :type enable_remote_replication: bool
+
+    :param expiration_reason: [required] Indicates how the snapshot expiration was set. Possible values: api: expiration time was set by using the API. none: there is no expiration time set. test: expiration time was set for testing. 
+    :type expiration_reason: str
+
+    :param expiration_time:  The time at which this snapshot will expire and be purged from the cluster. 
+    :type expiration_time: str
+
+    :param remote_statuses:  Current remote status of the snapshot remoteStatus: Possible values: Present: Snapshot exists on a remote cluster Not Present: Snapshot does not exist on remote cluster Syncing: This is a target cluster and it is currently replicating the snapshot Deleted: This is a target cluster, the snapshot has been deleted, and it still exists on the source. volumePairUUID: universal identifier of the volume pair 
+    :type remote_statuses: SnapshotRemoteStatus
+
+    :param status: [required] Current status of the snapshot Preparing: A snapshot that is being prepared for use and is not yet writable. Done: A snapshot that has finished being prepared and is now usable. Active: This snapshot is the active branch. 
+    :type status: str
+
+    :param snapshot_uuid: [required] Universal Unique ID of an existing snapshot. 
+    :type snapshot_uuid: UUID
+
+    :param total_size: [required] Total size of this snapshot in bytes. It is equivalent to totalSize of the volume when this snapshot was taken. 
+    :type total_size: int
+
+    :param group_id:  If present, the ID of the group this snapshot is a part of. If not present, this snapshot is not part of a group. 
+    :type group_id: int
+
+    :param group_snapshot_uuid: [required] The current "members" results contains information about each snapshot in the group. Each of these members will have a "uuid" parameter for the snapshot's UUID. 
+    :type group_snapshot_uuid: UUID
+
+    :param create_time: [required] The time this snapshot was taken. 
+    :type create_time: str
+
+    :param instance_create_time: [required]  
+    :type instance_create_time: str
+
+    :param volume_name: [required]  
+    :type volume_name: str
+
+    :param instance_snapshot_uuid: [required]  
+    :type instance_snapshot_uuid: UUID
+
+    :param virtual_volume_id:  The ID of the virtual volume with which the snapshot is associated. 
+    :type virtual_volume_id: UUID
+
+    :param attributes: [required] List of Name/Value pairs in JSON object format. 
+    :type attributes: dict
+
+    :param snap_mirror_label:  Label used by SnapMirror software to specify snapshot retention policy on SnapMirror endpoint. 
+    :type snap_mirror_label: str
+
+    """
+    snapshot_id = data_model.property(
+        "snapshotID", int,
+        array=False, optional=False,
+        documentation="""Unique ID for this snapshot. """,
+        dictionaryType=None
+    )
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="""The volume this snapshot was taken of. """,
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="""A name for this snapshot. It is not necessarily unique. """,
+        dictionaryType=None
+    )
+    checksum = data_model.property(
+        "checksum", str,
+        array=False, optional=False,
+        documentation="""A string that represents the correct digits in the stored snapshot. This checksum can be used later to compare other snapshots to detect errors in the data. """,
+        dictionaryType=None
+    )
+    enable_remote_replication = data_model.property(
+        "enableRemoteReplication", bool,
+        array=False, optional=False,
+        documentation="""Identifies if snapshot is enabled for remote replication. """,
+        dictionaryType=None
+    )
+    expiration_reason = data_model.property(
+        "expirationReason", str,
+        array=False, optional=False,
+        documentation="""Indicates how the snapshot expiration was set. Possible values: api: expiration time was set by using the API. none: there is no expiration time set. test: expiration time was set for testing. """,
+        dictionaryType=None
+    )
+    expiration_time = data_model.property(
+        "expirationTime", str,
+        array=False, optional=True,
+        documentation="""The time at which this snapshot will expire and be purged from the cluster. """,
+        dictionaryType=None
+    )
+    remote_statuses = data_model.property(
+        "remoteStatuses", SnapshotRemoteStatus,
+        array=True, optional=True,
+        documentation="""Current remote status of the snapshot remoteStatus: Possible values: Present: Snapshot exists on a remote cluster Not Present: Snapshot does not exist on remote cluster Syncing: This is a target cluster and it is currently replicating the snapshot Deleted: This is a target cluster, the snapshot has been deleted, and it still exists on the source. volumePairUUID: universal identifier of the volume pair """,
+        dictionaryType=None
+    )
+    status = data_model.property(
+        "status", str,
+        array=False, optional=False,
+        documentation="""Current status of the snapshot Preparing: A snapshot that is being prepared for use and is not yet writable. Done: A snapshot that has finished being prepared and is now usable. Active: This snapshot is the active branch. """,
+        dictionaryType=None
+    )
+    snapshot_uuid = data_model.property(
+        "snapshotUUID", UUID,
+        array=False, optional=False,
+        documentation="""Universal Unique ID of an existing snapshot. """,
+        dictionaryType=None
+    )
+    total_size = data_model.property(
+        "totalSize", int,
+        array=False, optional=False,
+        documentation="""Total size of this snapshot in bytes. It is equivalent to totalSize of the volume when this snapshot was taken. """,
+        dictionaryType=None
+    )
+    group_id = data_model.property(
+        "groupID", int,
+        array=False, optional=True,
+        documentation="""If present, the ID of the group this snapshot is a part of. If not present, this snapshot is not part of a group. """,
+        dictionaryType=None
+    )
+    group_snapshot_uuid = data_model.property(
+        "groupSnapshotUUID", UUID,
+        array=False, optional=False,
+        documentation="""The current "members" results contains information about each snapshot in the group. Each of these members will have a "uuid" parameter for the snapshot's UUID. """,
+        dictionaryType=None
+    )
+    create_time = data_model.property(
+        "createTime", str,
+        array=False, optional=False,
+        documentation="""The time this snapshot was taken. """,
+        dictionaryType=None
+    )
+    instance_create_time = data_model.property(
+        "instanceCreateTime", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    volume_name = data_model.property(
+        "volumeName", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    instance_snapshot_uuid = data_model.property(
+        "instanceSnapshotUUID", UUID,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    virtual_volume_id = data_model.property(
+        "virtualVolumeID", UUID,
+        array=False, optional=True,
+        documentation="""The ID of the virtual volume with which the snapshot is associated. """,
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=False,
+        documentation="""List of Name/Value pairs in JSON object format. """,
+        dictionaryType=None
+    )
+    snap_mirror_label = data_model.property(
+        "snapMirrorLabel", str,
+        array=False, optional=True,
+        documentation="""Label used by SnapMirror software to specify snapshot retention policy on SnapMirror endpoint. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snapshot_id,
+            volume_id,
+            name,
+            checksum,
+            enable_remote_replication,
+            expiration_reason,
+            status,
+            snapshot_uuid,
+            total_size,
+            group_snapshot_uuid,
+            create_time,
+            instance_create_time,
+            volume_name,
+            instance_snapshot_uuid,
+            attributes,
+            expiration_time=None,
+            remote_statuses=None,
+            group_id=None,
+            virtual_volume_id=None,
+            snap_mirror_label=None):
+
+        super(Snapshot, self).__init__(**{ 
+            "snapshot_id": snapshot_id,
+            "volume_id": volume_id,
+            "name": name,
+            "checksum": checksum,
+            "enable_remote_replication": enable_remote_replication,
+            "expiration_reason": expiration_reason,
+            "expiration_time": expiration_time,
+            "remote_statuses": remote_statuses,
+            "status": status,
+            "snapshot_uuid": snapshot_uuid,
+            "total_size": total_size,
+            "group_id": group_id,
+            "group_snapshot_uuid": group_snapshot_uuid,
+            "create_time": create_time,
+            "instance_create_time": instance_create_time,
+            "volume_name": volume_name,
+            "instance_snapshot_uuid": instance_snapshot_uuid,
+            "virtual_volume_id": virtual_volume_id,
+            "attributes": attributes,
+            "snap_mirror_label": snap_mirror_label, })
+        
+
 class VirtualVolumeInfo(data_model.DataObject):
     """VirtualVolumeInfo  
 
@@ -11376,6 +11482,113 @@ class TestPingRequest(data_model.DataObject):
             "packet_size": packet_size,
             "ping_timeout_msec": ping_timeout_msec,
             "prohibit_fragmentation": prohibit_fragmentation, })
+        
+
+class NodeSshInfo(data_model.DataObject):
+    """NodeSshInfo  
+
+    :param node_id: [required] The node's ID. 
+    :type node_id: int
+
+    :param enabled: [required] The status of SSH on the node. 
+    :type enabled: bool
+
+    """
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation="""The node's ID. """,
+        dictionaryType=None
+    )
+    enabled = data_model.property(
+        "enabled", bool,
+        array=False, optional=False,
+        documentation="""The status of SSH on the node. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            node_id,
+            enabled):
+
+        super(NodeSshInfo, self).__init__(**{ 
+            "node_id": node_id,
+            "enabled": enabled, })
+        
+
+class ClusterSshInfo(data_model.DataObject):
+    """ClusterSshInfo  
+
+    :param enabled: [required] Status of SSH on the cluster. 
+    :type enabled: str
+
+    :param time_remaining: [required] Time remaining until SSH is disable on the cluster. 
+    :type time_remaining: str
+
+    :param disable_time:  The "disableTime" entry will not be included if SSH is disabled or if SSH has been turned on permanently. 
+    :type disable_time: str
+
+    :param nodes: [required] Time remaining until SSH is disable on the cluster. 
+    :type nodes: NodeSshInfo
+
+    """
+    enabled = data_model.property(
+        "enabled", str,
+        array=False, optional=False,
+        documentation="""Status of SSH on the cluster. """,
+        dictionaryType=None
+    )
+    time_remaining = data_model.property(
+        "timeRemaining", str,
+        array=False, optional=False,
+        documentation="""Time remaining until SSH is disable on the cluster. """,
+        dictionaryType=None
+    )
+    disable_time = data_model.property(
+        "disableTime", str,
+        array=False, optional=True,
+        documentation="""The "disableTime" entry will not be included if SSH is disabled or if SSH has been turned on permanently. """,
+        dictionaryType=None
+    )
+    nodes = data_model.property(
+        "nodes", NodeSshInfo,
+        array=True, optional=False,
+        documentation="""Time remaining until SSH is disable on the cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            enabled,
+            time_remaining,
+            nodes,
+            disable_time=None):
+
+        super(ClusterSshInfo, self).__init__(**{ 
+            "enabled": enabled,
+            "time_remaining": time_remaining,
+            "disable_time": disable_time,
+            "nodes": nodes, })
+        
+
+class GetClusterSshInfoResult(data_model.DataObject):
+    """GetClusterSshInfoResult  
+
+    :param cluster_ssh_info: [required] The SSH info for the cluster. 
+    :type cluster_ssh_info: ClusterSshInfo
+
+    """
+    cluster_ssh_info = data_model.property(
+        "clusterSshInfo", ClusterSshInfo,
+        array=False, optional=False,
+        documentation="""The SSH info for the cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            cluster_ssh_info):
+
+        super(GetClusterSshInfoResult, self).__init__(**{ 
+            "cluster_ssh_info": cluster_ssh_info, })
         
 
 class NodeStatsInfo(data_model.DataObject):
@@ -11780,630 +11993,62 @@ class GetFeatureStatusResult(data_model.DataObject):
             "features": features, })
         
 
-class Platform(data_model.DataObject):
-    """Platform  
+class ListVirtualNetworksRequest(data_model.DataObject):
+    """ListVirtualNetworksRequest  
+    ListVirtualNetworks enables you to list all configured virtual networks for the cluster. You can use this method to verify the virtual
+    network settings in the cluster.
+    There are no required parameters for this method. However, to filter the results, you can pass one or more VirtualNetworkID or
+    VirtualNetworkTag values.
 
-    :param node_type: [required] SolidFire's name for this platform. 
-    :type node_type: str
-
-    :param chassis_type: [required] Name of the chassis (example: "R620"). 
-    :type chassis_type: str
-
-    :param cpu_model: [required] The model of CPU used on this platform. 
-    :type cpu_model: str
-
-    :param node_memory_gb: [required] The amount of memory on this platform in GiB. 
-    :type node_memory_gb: int
-
-    :param platform_config_version:   
-    :type platform_config_version: str
-
-    """
-    node_type = data_model.property(
-        "nodeType", str,
-        array=False, optional=False,
-        documentation="""SolidFire's name for this platform. """,
-        dictionaryType=None
-    )
-    chassis_type = data_model.property(
-        "chassisType", str,
-        array=False, optional=False,
-        documentation="""Name of the chassis (example: "R620"). """,
-        dictionaryType=None
-    )
-    cpu_model = data_model.property(
-        "cpuModel", str,
-        array=False, optional=False,
-        documentation="""The model of CPU used on this platform. """,
-        dictionaryType=None
-    )
-    node_memory_gb = data_model.property(
-        "nodeMemoryGB", int,
-        array=False, optional=False,
-        documentation="""The amount of memory on this platform in GiB. """,
-        dictionaryType=None
-    )
-    platform_config_version = data_model.property(
-        "platformConfigVersion", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            node_type,
-            chassis_type,
-            cpu_model,
-            node_memory_gb,
-            platform_config_version=None):
-
-        super(Platform, self).__init__(**{ 
-            "node_type": node_type,
-            "chassis_type": chassis_type,
-            "cpu_model": cpu_model,
-            "node_memory_gb": node_memory_gb,
-            "platform_config_version": platform_config_version, })
-        
-
-class VirtualNetworkAddress(data_model.DataObject):
-    """VirtualNetworkAddress  
-
-    :param virtual_network_id: [required] SolidFire unique identifier for a virtual network. 
+    :param virtual_network_id:  Network ID to filter the list for a single virtual network. 
     :type virtual_network_id: int
 
-    :param address: [required] Virtual Network Address. 
-    :type address: str
+    :param virtual_network_tag:  Network tag to filter the list for a single virtual network. 
+    :type virtual_network_tag: int
+
+    :param virtual_network_ids:  Network IDs to include in the list. 
+    :type virtual_network_ids: int
+
+    :param virtual_network_tags:  Network tag to include in the list. 
+    :type virtual_network_tags: int
 
     """
     virtual_network_id = data_model.property(
         "virtualNetworkID", int,
-        array=False, optional=False,
-        documentation="""SolidFire unique identifier for a virtual network. """,
-        dictionaryType=None
-    )
-    address = data_model.property(
-        "address", str,
-        array=False, optional=False,
-        documentation="""Virtual Network Address. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            virtual_network_id,
-            address):
-
-        super(VirtualNetworkAddress, self).__init__(**{ 
-            "virtual_network_id": virtual_network_id,
-            "address": address, })
-        
-
-class Node(data_model.DataObject):
-    """Node  
-    A node refers to an individual machine in a cluster.
-    Each active node hosts a master service, which is responsible for managing the drives and other services on its node.
-    After a node is made active, its drives will become available for addition to the cluster.
-
-    :param node_id: [required] The unique identifier for this node. 
-    :type node_id: int
-
-    :param associated_master_service_id: [required] The master service responsible for controlling other services on this node. 
-    :type associated_master_service_id: int
-
-    :param associated_fservice_id: [required]  
-    :type associated_fservice_id: int
-
-    :param fibre_channel_target_port_group:   
-    :type fibre_channel_target_port_group: int
-
-    :param name: [required]  
-    :type name: str
-
-    :param platform_info: [required] Information about the platform this node is. 
-    :type platform_info: Platform
-
-    :param software_version: [required] The version of SolidFire software this node is currently running. 
-    :type software_version: str
-
-    :param cip: [required] IP address used for both intra- and inter-cluster communication. 
-    :type cip: str
-
-    :param cipi: [required] The machine's name for the "cip" interface. 
-    :type cipi: str
-
-    :param mip: [required] IP address used for cluster management (hosting the API and web site). 
-    :type mip: str
-
-    :param mipi: [required] The machine's name for the "mip" interface. 
-    :type mipi: str
-
-    :param sip: [required] IP address used for iSCSI traffic. 
-    :type sip: str
-
-    :param sipi: [required] The machine's name for the "sip" interface. 
-    :type sipi: str
-
-    :param uuid: [required] UUID of node. 
-    :type uuid: UUID
-
-    :param virtual_networks: [required]  
-    :type virtual_networks: VirtualNetworkAddress
-
-    :param attributes:   
-    :type attributes: dict
-
-    :param node_slot:   
-    :type node_slot: str
-
-    :param zone_membership:  It is an object with members for each non-node zone type, where the associated value is the identifier for that zone. For sodium, it will only hold a "chassis" zone type, with its associated value being its chassis serial number (stripped of the parenthesized bit, so that all nodes in a single HCI chassis will have the same values). This information is used to see which zone each node is in. 
-    :type zone_membership: str
-
-    """
-    node_id = data_model.property(
-        "nodeID", int,
-        array=False, optional=False,
-        documentation="""The unique identifier for this node. """,
-        dictionaryType=None
-    )
-    associated_master_service_id = data_model.property(
-        "associatedMasterServiceID", int,
-        array=False, optional=False,
-        documentation="""The master service responsible for controlling other services on this node. """,
-        dictionaryType=None
-    )
-    associated_fservice_id = data_model.property(
-        "associatedFServiceID", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    fibre_channel_target_port_group = data_model.property(
-        "fibreChannelTargetPortGroup", int,
         array=False, optional=True,
-        documentation=""" """,
+        documentation="""Network ID to filter the list for a single virtual network. """,
         dictionaryType=None
     )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    platform_info = data_model.property(
-        "platformInfo", Platform,
-        array=False, optional=False,
-        documentation="""Information about the platform this node is. """,
-        dictionaryType=None
-    )
-    software_version = data_model.property(
-        "softwareVersion", str,
-        array=False, optional=False,
-        documentation="""The version of SolidFire software this node is currently running. """,
-        dictionaryType=None
-    )
-    cip = data_model.property(
-        "cip", str,
-        array=False, optional=False,
-        documentation="""IP address used for both intra- and inter-cluster communication. """,
-        dictionaryType=None
-    )
-    cipi = data_model.property(
-        "cipi", str,
-        array=False, optional=False,
-        documentation="""The machine's name for the "cip" interface. """,
-        dictionaryType=None
-    )
-    mip = data_model.property(
-        "mip", str,
-        array=False, optional=False,
-        documentation="""IP address used for cluster management (hosting the API and web site). """,
-        dictionaryType=None
-    )
-    mipi = data_model.property(
-        "mipi", str,
-        array=False, optional=False,
-        documentation="""The machine's name for the "mip" interface. """,
-        dictionaryType=None
-    )
-    sip = data_model.property(
-        "sip", str,
-        array=False, optional=False,
-        documentation="""IP address used for iSCSI traffic. """,
-        dictionaryType=None
-    )
-    sipi = data_model.property(
-        "sipi", str,
-        array=False, optional=False,
-        documentation="""The machine's name for the "sip" interface. """,
-        dictionaryType=None
-    )
-    uuid = data_model.property(
-        "uuid", UUID,
-        array=False, optional=False,
-        documentation="""UUID of node. """,
-        dictionaryType=None
-    )
-    virtual_networks = data_model.property(
-        "virtualNetworks", VirtualNetworkAddress,
-        array=True, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
+    virtual_network_tag = data_model.property(
+        "virtualNetworkTag", int,
         array=False, optional=True,
-        documentation=""" """,
+        documentation="""Network tag to filter the list for a single virtual network. """,
         dictionaryType=None
     )
-    node_slot = data_model.property(
-        "nodeSlot", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    zone_membership = data_model.property(
-        "zoneMembership", str,
-        array=False, optional=True,
-        documentation="""It is an object with members for each non-node zone type, where the associated value is the identifier for that zone. For sodium, it will only hold a "chassis" zone type, with its associated value being its chassis serial number (stripped of the parenthesized bit, so that all nodes in a single HCI chassis will have the same values). This information is used to see which zone each node is in. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            node_id,
-            associated_master_service_id,
-            associated_fservice_id,
-            name,
-            platform_info,
-            software_version,
-            cip,
-            cipi,
-            mip,
-            mipi,
-            sip,
-            sipi,
-            uuid,
-            virtual_networks,
-            fibre_channel_target_port_group=None,
-            attributes=None,
-            node_slot=None,
-            zone_membership=None):
-
-        super(Node, self).__init__(**{ 
-            "node_id": node_id,
-            "associated_master_service_id": associated_master_service_id,
-            "associated_fservice_id": associated_fservice_id,
-            "fibre_channel_target_port_group": fibre_channel_target_port_group,
-            "name": name,
-            "platform_info": platform_info,
-            "software_version": software_version,
-            "cip": cip,
-            "cipi": cipi,
-            "mip": mip,
-            "mipi": mipi,
-            "sip": sip,
-            "sipi": sipi,
-            "uuid": uuid,
-            "virtual_networks": virtual_networks,
-            "attributes": attributes,
-            "node_slot": node_slot,
-            "zone_membership": zone_membership, })
-        
-
-class PendingNode(data_model.DataObject):
-    """PendingNode  
-    A "pending node" is one that has not yet joined the cluster.
-    It can be added to a cluster using the AddNode method.
-
-    :param pending_node_id: [required]  
-    :type pending_node_id: int
-
-    :param assigned_node_id: [required]  
-    :type assigned_node_id: int
-
-    :param name: [required] The host name for this node. 
-    :type name: str
-
-    :param compatible: [required]  
-    :type compatible: bool
-
-    :param platform_info: [required] Information about the platform this node is. 
-    :type platform_info: Platform
-
-    :param cip: [required] IP address used for both intra- and inter-cluster communication. 
-    :type cip: str
-
-    :param cipi: [required] The machine's name for the "cip" interface. 
-    :type cipi: str
-
-    :param mip: [required] IP address used for cluster management (hosting the API and web site). 
-    :type mip: str
-
-    :param mipi: [required] The machine's name for the "mip" interface. 
-    :type mipi: str
-
-    :param sip: [required] IP address used for iSCSI traffic. 
-    :type sip: str
-
-    :param sipi: [required] The machine's name for the "sip" interface. 
-    :type sipi: str
-
-    :param software_version: [required] The version of SolidFire software this node is currently running. 
-    :type software_version: str
-
-    :param uuid: [required] UUID of node. 
-    :type uuid: UUID
-
-    :param node_slot:  UUID of node. 
-    :type node_slot: str
-
-    """
-    pending_node_id = data_model.property(
-        "pendingNodeID", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    assigned_node_id = data_model.property(
-        "assignedNodeID", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation="""The host name for this node. """,
-        dictionaryType=None
-    )
-    compatible = data_model.property(
-        "compatible", bool,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    platform_info = data_model.property(
-        "platformInfo", Platform,
-        array=False, optional=False,
-        documentation="""Information about the platform this node is. """,
-        dictionaryType=None
-    )
-    cip = data_model.property(
-        "cip", str,
-        array=False, optional=False,
-        documentation="""IP address used for both intra- and inter-cluster communication. """,
-        dictionaryType=None
-    )
-    cipi = data_model.property(
-        "cipi", str,
-        array=False, optional=False,
-        documentation="""The machine's name for the "cip" interface. """,
-        dictionaryType=None
-    )
-    mip = data_model.property(
-        "mip", str,
-        array=False, optional=False,
-        documentation="""IP address used for cluster management (hosting the API and web site). """,
-        dictionaryType=None
-    )
-    mipi = data_model.property(
-        "mipi", str,
-        array=False, optional=False,
-        documentation="""The machine's name for the "mip" interface. """,
-        dictionaryType=None
-    )
-    sip = data_model.property(
-        "sip", str,
-        array=False, optional=False,
-        documentation="""IP address used for iSCSI traffic. """,
-        dictionaryType=None
-    )
-    sipi = data_model.property(
-        "sipi", str,
-        array=False, optional=False,
-        documentation="""The machine's name for the "sip" interface. """,
-        dictionaryType=None
-    )
-    software_version = data_model.property(
-        "softwareVersion", str,
-        array=False, optional=False,
-        documentation="""The version of SolidFire software this node is currently running. """,
-        dictionaryType=None
-    )
-    uuid = data_model.property(
-        "uuid", UUID,
-        array=False, optional=False,
-        documentation="""UUID of node. """,
-        dictionaryType=None
-    )
-    node_slot = data_model.property(
-        "nodeSlot", str,
-        array=False, optional=True,
-        documentation="""UUID of node. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            pending_node_id,
-            assigned_node_id,
-            name,
-            compatible,
-            platform_info,
-            cip,
-            cipi,
-            mip,
-            mipi,
-            sip,
-            sipi,
-            software_version,
-            uuid,
-            node_slot=None):
-
-        super(PendingNode, self).__init__(**{ 
-            "pending_node_id": pending_node_id,
-            "assigned_node_id": assigned_node_id,
-            "name": name,
-            "compatible": compatible,
-            "platform_info": platform_info,
-            "cip": cip,
-            "cipi": cipi,
-            "mip": mip,
-            "mipi": mipi,
-            "sip": sip,
-            "sipi": sipi,
-            "software_version": software_version,
-            "uuid": uuid,
-            "node_slot": node_slot, })
-        
-
-class PendingActiveNode(data_model.DataObject):
-    """PendingActiveNode  
-
-    :param active_node_key: [required]  
-    :type active_node_key: str
-
-    :param assigned_node_id: [required]  
-    :type assigned_node_id: int
-
-    :param async_handle: [required]  
-    :type async_handle: int
-
-    :param cip: [required]  
-    :type cip: str
-
-    :param mip: [required]  
-    :type mip: str
-
-    :param pending_node_id: [required]  
-    :type pending_node_id: int
-
-    :param platform_info: [required]  
-    :type platform_info: Platform
-
-    :param sip: [required]  
-    :type sip: str
-
-    :param software_version: [required]  
-    :type software_version: str
-
-    """
-    active_node_key = data_model.property(
-        "activeNodeKey", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    assigned_node_id = data_model.property(
-        "assignedNodeID", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    async_handle = data_model.property(
-        "asyncHandle", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    cip = data_model.property(
-        "cip", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    mip = data_model.property(
-        "mip", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    pending_node_id = data_model.property(
-        "pendingNodeID", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    platform_info = data_model.property(
-        "platformInfo", Platform,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    sip = data_model.property(
-        "sip", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    software_version = data_model.property(
-        "softwareVersion", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            active_node_key,
-            assigned_node_id,
-            async_handle,
-            cip,
-            mip,
-            pending_node_id,
-            platform_info,
-            sip,
-            software_version):
-
-        super(PendingActiveNode, self).__init__(**{ 
-            "active_node_key": active_node_key,
-            "assigned_node_id": assigned_node_id,
-            "async_handle": async_handle,
-            "cip": cip,
-            "mip": mip,
-            "pending_node_id": pending_node_id,
-            "platform_info": platform_info,
-            "sip": sip,
-            "software_version": software_version, })
-        
-
-class ListAllNodesResult(data_model.DataObject):
-    """ListAllNodesResult  
-
-    :param nodes: [required]  
-    :type nodes: Node
-
-    :param pending_nodes: [required]  
-    :type pending_nodes: PendingNode
-
-    :param pending_active_nodes:  List of objects detailing information about all PendingActive nodes in the system. 
-    :type pending_active_nodes: PendingActiveNode
-
-    """
-    nodes = data_model.property(
-        "nodes", Node,
-        array=True, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    pending_nodes = data_model.property(
-        "pendingNodes", PendingNode,
-        array=True, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    pending_active_nodes = data_model.property(
-        "pendingActiveNodes", PendingActiveNode,
+    virtual_network_ids = data_model.property(
+        "virtualNetworkIDs", int,
         array=True, optional=True,
-        documentation="""List of objects detailing information about all PendingActive nodes in the system. """,
+        documentation="""Network IDs to include in the list. """,
+        dictionaryType=None
+    )
+    virtual_network_tags = data_model.property(
+        "virtualNetworkTags", int,
+        array=True, optional=True,
+        documentation="""Network tag to include in the list. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            nodes,
-            pending_nodes,
-            pending_active_nodes=None):
+            virtual_network_id=None,
+            virtual_network_tag=None,
+            virtual_network_ids=None,
+            virtual_network_tags=None):
 
-        super(ListAllNodesResult, self).__init__(**{ 
-            "nodes": nodes,
-            "pending_nodes": pending_nodes,
-            "pending_active_nodes": pending_active_nodes, })
+        super(ListVirtualNetworksRequest, self).__init__(**{ 
+            "virtual_network_id": virtual_network_id,
+            "virtual_network_tag": virtual_network_tag,
+            "virtual_network_ids": virtual_network_ids,
+            "virtual_network_tags": virtual_network_tags, })
         
 
 class ListSchedulesResult(data_model.DataObject):
@@ -12451,88 +12096,25 @@ class SetNetworkConfigRequest(data_model.DataObject):
             "network": network, })
         
 
-class StartBulkVolumeReadRequest(data_model.DataObject):
-    """StartBulkVolumeReadRequest  
-    StartBulkVolumeRead enables you to initialize a bulk volume read session on a specified volume. Only two bulk volume processes
-    can run simultaneously on a volume. When you initialize the session, data is read from a SolidFire storage volume for the purposes
-    of storing the data on an external backup source. The external data is accessed by a web server running on an SF-series node.
-    Communications and server interaction information for external data access is passed by a script running on the storage system.
-    At the start of a bulk volume read operation, a snapshot of the volume is made and the snapshot is deleted when the read is complete. You can also read a snapshot of the volume by entering the ID of the snapshot as a parameter. When you read a
-    previous snapshot, the system does not create a new snapshot of the volume or delete the previous snapshot when the
-    read completes.
-    Note: This process creates a new snapshot if the ID of an existing snapshot is not provided. Snapshots can be created if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is at stage 4 or 5.
+class GetSshInfoResult(data_model.DataObject):
+    """GetSshInfoResult  
 
-    :param volume_id: [required] The ID of the volume to be read. 
-    :type volume_id: int
-
-    :param format: [required] The format of the volume data. It can be either of the following formats: uncompressed: Every byte of the volume is returned without any compression. native: Opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. 
-    :type format: str
-
-    :param snapshot_id:  The ID of a previously created snapshot used for bulk volume reads. If no ID is entered, a snapshot of the current active volume image is made. 
-    :type snapshot_id: int
-
-    :param script:  The executable name of a script. If unspecified, the key and URL is necessary to access SF-series nodes. The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted. 
-    :type script: str
-
-    :param script_parameters:  JSON parameters to pass to the script. 
-    :type script_parameters: dict
-
-    :param attributes:  JSON attributes for the bulk volume job. 
-    :type attributes: dict
+    :param enabled: [required] Node SSH status. 
+    :type enabled: bool
 
     """
-    volume_id = data_model.property(
-        "volumeID", int,
+    enabled = data_model.property(
+        "enabled", bool,
         array=False, optional=False,
-        documentation="""The ID of the volume to be read. """,
-        dictionaryType=None
-    )
-    format = data_model.property(
-        "format", str,
-        array=False, optional=False,
-        documentation="""The format of the volume data. It can be either of the following formats: uncompressed: Every byte of the volume is returned without any compression. native: Opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. """,
-        dictionaryType=None
-    )
-    snapshot_id = data_model.property(
-        "snapshotID", int,
-        array=False, optional=True,
-        documentation="""The ID of a previously created snapshot used for bulk volume reads. If no ID is entered, a snapshot of the current active volume image is made. """,
-        dictionaryType=None
-    )
-    script = data_model.property(
-        "script", str,
-        array=False, optional=True,
-        documentation="""The executable name of a script. If unspecified, the key and URL is necessary to access SF-series nodes. The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted. """,
-        dictionaryType=None
-    )
-    script_parameters = data_model.property(
-        "scriptParameters", dict,
-        array=False, optional=True,
-        documentation="""JSON parameters to pass to the script. """,
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="""JSON attributes for the bulk volume job. """,
+        documentation="""Node SSH status. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            volume_id,
-            format,
-            snapshot_id=None,
-            script=None,
-            script_parameters=None,
-            attributes=None):
+            enabled):
 
-        super(StartBulkVolumeReadRequest, self).__init__(**{ 
-            "volume_id": volume_id,
-            "format": format,
-            "snapshot_id": snapshot_id,
-            "script": script,
-            "script_parameters": script_parameters,
-            "attributes": attributes, })
+        super(GetSshInfoResult, self).__init__(**{ 
+            "enabled": enabled, })
         
 
 class AddDrivesRequest(data_model.DataObject):
@@ -12696,62 +12278,641 @@ class ShutdownRequest(data_model.DataObject):
             "option": option, })
         
 
-class ListVirtualNetworksRequest(data_model.DataObject):
-    """ListVirtualNetworksRequest  
-    ListVirtualNetworks enables you to list all configured virtual networks for the cluster. You can use this method to verify the virtual
-    network settings in the cluster.
-    There are no required parameters for this method. However, to filter the results, you can pass one or more VirtualNetworkID or
-    VirtualNetworkTag values.
+class Platform(data_model.DataObject):
+    """Platform  
 
-    :param virtual_network_id:  Network ID to filter the list for a single virtual network. 
-    :type virtual_network_id: int
+    :param node_type: [required] SolidFire's name for this platform. 
+    :type node_type: str
 
-    :param virtual_network_tag:  Network tag to filter the list for a single virtual network. 
-    :type virtual_network_tag: int
+    :param chassis_type: [required] Name of the chassis (example: "R620"). 
+    :type chassis_type: str
 
-    :param virtual_network_ids:  Network IDs to include in the list. 
-    :type virtual_network_ids: int
+    :param cpu_model: [required] The model of CPU used on this platform. 
+    :type cpu_model: str
 
-    :param virtual_network_tags:  Network tag to include in the list. 
-    :type virtual_network_tags: int
+    :param node_memory_gb: [required] The amount of memory on this platform in GiB. 
+    :type node_memory_gb: int
+
+    :param platform_config_version:   
+    :type platform_config_version: str
 
     """
-    virtual_network_id = data_model.property(
-        "virtualNetworkID", int,
+    node_type = data_model.property(
+        "nodeType", str,
+        array=False, optional=False,
+        documentation="""SolidFire's name for this platform. """,
+        dictionaryType=None
+    )
+    chassis_type = data_model.property(
+        "chassisType", str,
+        array=False, optional=False,
+        documentation="""Name of the chassis (example: "R620"). """,
+        dictionaryType=None
+    )
+    cpu_model = data_model.property(
+        "cpuModel", str,
+        array=False, optional=False,
+        documentation="""The model of CPU used on this platform. """,
+        dictionaryType=None
+    )
+    node_memory_gb = data_model.property(
+        "nodeMemoryGB", int,
+        array=False, optional=False,
+        documentation="""The amount of memory on this platform in GiB. """,
+        dictionaryType=None
+    )
+    platform_config_version = data_model.property(
+        "platformConfigVersion", str,
         array=False, optional=True,
-        documentation="""Network ID to filter the list for a single virtual network. """,
-        dictionaryType=None
-    )
-    virtual_network_tag = data_model.property(
-        "virtualNetworkTag", int,
-        array=False, optional=True,
-        documentation="""Network tag to filter the list for a single virtual network. """,
-        dictionaryType=None
-    )
-    virtual_network_ids = data_model.property(
-        "virtualNetworkIDs", int,
-        array=True, optional=True,
-        documentation="""Network IDs to include in the list. """,
-        dictionaryType=None
-    )
-    virtual_network_tags = data_model.property(
-        "virtualNetworkTags", int,
-        array=True, optional=True,
-        documentation="""Network tag to include in the list. """,
+        documentation=""" """,
         dictionaryType=None
     )
 
     def __init__(self,
-            virtual_network_id=None,
-            virtual_network_tag=None,
-            virtual_network_ids=None,
-            virtual_network_tags=None):
+            node_type,
+            chassis_type,
+            cpu_model,
+            node_memory_gb,
+            platform_config_version=None):
 
-        super(ListVirtualNetworksRequest, self).__init__(**{ 
+        super(Platform, self).__init__(**{ 
+            "node_type": node_type,
+            "chassis_type": chassis_type,
+            "cpu_model": cpu_model,
+            "node_memory_gb": node_memory_gb,
+            "platform_config_version": platform_config_version, })
+        
+
+class VirtualNetworkAddress(data_model.DataObject):
+    """VirtualNetworkAddress  
+
+    :param virtual_network_id: [required] SolidFire unique identifier for a virtual network. 
+    :type virtual_network_id: int
+
+    :param address: [required] Virtual Network Address. 
+    :type address: str
+
+    """
+    virtual_network_id = data_model.property(
+        "virtualNetworkID", int,
+        array=False, optional=False,
+        documentation="""SolidFire unique identifier for a virtual network. """,
+        dictionaryType=None
+    )
+    address = data_model.property(
+        "address", str,
+        array=False, optional=False,
+        documentation="""Virtual Network Address. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            virtual_network_id,
+            address):
+
+        super(VirtualNetworkAddress, self).__init__(**{ 
             "virtual_network_id": virtual_network_id,
-            "virtual_network_tag": virtual_network_tag,
-            "virtual_network_ids": virtual_network_ids,
-            "virtual_network_tags": virtual_network_tags, })
+            "address": address, })
+        
+
+class Node(data_model.DataObject):
+    """Node  
+    A node refers to an individual machine in a cluster.
+    Each active node hosts a master service, which is responsible for managing the drives and other services on its node.
+    After a node is made active, its drives will become available for addition to the cluster.
+
+    :param node_id: [required] The unique identifier for this node. 
+    :type node_id: int
+
+    :param associated_master_service_id: [required] The master service responsible for controlling other services on this node. 
+    :type associated_master_service_id: int
+
+    :param associated_fservice_id: [required]  
+    :type associated_fservice_id: int
+
+    :param fibre_channel_target_port_group:   
+    :type fibre_channel_target_port_group: int
+
+    :param name: [required]  
+    :type name: str
+
+    :param platform_info: [required] Information about the platform this node is. 
+    :type platform_info: Platform
+
+    :param software_version: [required] The version of SolidFire software this node is currently running. 
+    :type software_version: str
+
+    :param cip: [required] IP address used for both intra- and inter-cluster communication. 
+    :type cip: str
+
+    :param cipi: [required] The machine's name for the "cip" interface. 
+    :type cipi: str
+
+    :param mip: [required] IP address used for cluster management (hosting the API and web site). 
+    :type mip: str
+
+    :param mipi: [required] The machine's name for the "mip" interface. 
+    :type mipi: str
+
+    :param sip: [required] IP address used for iSCSI traffic. 
+    :type sip: str
+
+    :param sipi: [required] The machine's name for the "sip" interface. 
+    :type sipi: str
+
+    :param uuid: [required] UUID of node. 
+    :type uuid: UUID
+
+    :param virtual_networks: [required]  
+    :type virtual_networks: VirtualNetworkAddress
+
+    :param attributes: [required]  
+    :type attributes: dict
+
+    :param node_slot:  For HCI platforms, the letter corresponding to the chassis slot this node is in ("A", "B", "C", or "D"). For storage platforms, this value is null. 
+    :type node_slot: str
+
+    :param chassis_name:  Name of the chassis the node is part of. 
+    :type chassis_name: str
+
+    """
+    node_id = data_model.property(
+        "nodeID", int,
+        array=False, optional=False,
+        documentation="""The unique identifier for this node. """,
+        dictionaryType=None
+    )
+    associated_master_service_id = data_model.property(
+        "associatedMasterServiceID", int,
+        array=False, optional=False,
+        documentation="""The master service responsible for controlling other services on this node. """,
+        dictionaryType=None
+    )
+    associated_fservice_id = data_model.property(
+        "associatedFServiceID", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    fibre_channel_target_port_group = data_model.property(
+        "fibreChannelTargetPortGroup", int,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    platform_info = data_model.property(
+        "platformInfo", Platform,
+        array=False, optional=False,
+        documentation="""Information about the platform this node is. """,
+        dictionaryType=None
+    )
+    software_version = data_model.property(
+        "softwareVersion", str,
+        array=False, optional=False,
+        documentation="""The version of SolidFire software this node is currently running. """,
+        dictionaryType=None
+    )
+    cip = data_model.property(
+        "cip", str,
+        array=False, optional=False,
+        documentation="""IP address used for both intra- and inter-cluster communication. """,
+        dictionaryType=None
+    )
+    cipi = data_model.property(
+        "cipi", str,
+        array=False, optional=False,
+        documentation="""The machine's name for the "cip" interface. """,
+        dictionaryType=None
+    )
+    mip = data_model.property(
+        "mip", str,
+        array=False, optional=False,
+        documentation="""IP address used for cluster management (hosting the API and web site). """,
+        dictionaryType=None
+    )
+    mipi = data_model.property(
+        "mipi", str,
+        array=False, optional=False,
+        documentation="""The machine's name for the "mip" interface. """,
+        dictionaryType=None
+    )
+    sip = data_model.property(
+        "sip", str,
+        array=False, optional=False,
+        documentation="""IP address used for iSCSI traffic. """,
+        dictionaryType=None
+    )
+    sipi = data_model.property(
+        "sipi", str,
+        array=False, optional=False,
+        documentation="""The machine's name for the "sip" interface. """,
+        dictionaryType=None
+    )
+    uuid = data_model.property(
+        "uuid", UUID,
+        array=False, optional=False,
+        documentation="""UUID of node. """,
+        dictionaryType=None
+    )
+    virtual_networks = data_model.property(
+        "virtualNetworks", VirtualNetworkAddress,
+        array=True, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    node_slot = data_model.property(
+        "nodeSlot", str,
+        array=False, optional=True,
+        documentation="""For HCI platforms, the letter corresponding to the chassis slot this node is in ("A", "B", "C", or "D"). For storage platforms, this value is null. """,
+        dictionaryType=None
+    )
+    chassis_name = data_model.property(
+        "chassisName", str,
+        array=False, optional=True,
+        documentation="""Name of the chassis the node is part of. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            node_id,
+            associated_master_service_id,
+            associated_fservice_id,
+            name,
+            platform_info,
+            software_version,
+            cip,
+            cipi,
+            mip,
+            mipi,
+            sip,
+            sipi,
+            uuid,
+            virtual_networks,
+            attributes,
+            fibre_channel_target_port_group=None,
+            node_slot=None,
+            chassis_name=None):
+
+        super(Node, self).__init__(**{ 
+            "node_id": node_id,
+            "associated_master_service_id": associated_master_service_id,
+            "associated_fservice_id": associated_fservice_id,
+            "fibre_channel_target_port_group": fibre_channel_target_port_group,
+            "name": name,
+            "platform_info": platform_info,
+            "software_version": software_version,
+            "cip": cip,
+            "cipi": cipi,
+            "mip": mip,
+            "mipi": mipi,
+            "sip": sip,
+            "sipi": sipi,
+            "uuid": uuid,
+            "virtual_networks": virtual_networks,
+            "attributes": attributes,
+            "node_slot": node_slot,
+            "chassis_name": chassis_name, })
+        
+
+class PendingNode(data_model.DataObject):
+    """PendingNode  
+    A "pending node" is one that has not yet joined the cluster.
+    It can be added to a cluster using the AddNode method.
+
+    :param pending_node_id: [required]  
+    :type pending_node_id: int
+
+    :param assigned_node_id: [required]  
+    :type assigned_node_id: int
+
+    :param name: [required] The host name for this node. 
+    :type name: str
+
+    :param compatible: [required]  
+    :type compatible: bool
+
+    :param platform_info: [required] Information about the platform this node is. 
+    :type platform_info: Platform
+
+    :param cip: [required] IP address used for both intra- and inter-cluster communication. 
+    :type cip: str
+
+    :param cipi: [required] The machine's name for the "cip" interface. 
+    :type cipi: str
+
+    :param mip: [required] IP address used for cluster management (hosting the API and web site). 
+    :type mip: str
+
+    :param mipi: [required] The machine's name for the "mip" interface. 
+    :type mipi: str
+
+    :param sip: [required] IP address used for iSCSI traffic. 
+    :type sip: str
+
+    :param sipi: [required] The machine's name for the "sip" interface. 
+    :type sipi: str
+
+    :param software_version: [required] The version of SolidFire software this node is currently running. 
+    :type software_version: str
+
+    :param uuid: [required] UUID of node. 
+    :type uuid: UUID
+
+    :param node_slot:  For HCI platforms, the letter corresponding to the chassis slot this node is in ("A", "B", "C", or "D"). For storage platforms, this value is null. 
+    :type node_slot: str
+
+    :param chassis_name:  Name of the chassis the node is part of. 
+    :type chassis_name: str
+
+    """
+    pending_node_id = data_model.property(
+        "pendingNodeID", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    assigned_node_id = data_model.property(
+        "assignedNodeID", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="""The host name for this node. """,
+        dictionaryType=None
+    )
+    compatible = data_model.property(
+        "compatible", bool,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    platform_info = data_model.property(
+        "platformInfo", Platform,
+        array=False, optional=False,
+        documentation="""Information about the platform this node is. """,
+        dictionaryType=None
+    )
+    cip = data_model.property(
+        "cip", str,
+        array=False, optional=False,
+        documentation="""IP address used for both intra- and inter-cluster communication. """,
+        dictionaryType=None
+    )
+    cipi = data_model.property(
+        "cipi", str,
+        array=False, optional=False,
+        documentation="""The machine's name for the "cip" interface. """,
+        dictionaryType=None
+    )
+    mip = data_model.property(
+        "mip", str,
+        array=False, optional=False,
+        documentation="""IP address used for cluster management (hosting the API and web site). """,
+        dictionaryType=None
+    )
+    mipi = data_model.property(
+        "mipi", str,
+        array=False, optional=False,
+        documentation="""The machine's name for the "mip" interface. """,
+        dictionaryType=None
+    )
+    sip = data_model.property(
+        "sip", str,
+        array=False, optional=False,
+        documentation="""IP address used for iSCSI traffic. """,
+        dictionaryType=None
+    )
+    sipi = data_model.property(
+        "sipi", str,
+        array=False, optional=False,
+        documentation="""The machine's name for the "sip" interface. """,
+        dictionaryType=None
+    )
+    software_version = data_model.property(
+        "softwareVersion", str,
+        array=False, optional=False,
+        documentation="""The version of SolidFire software this node is currently running. """,
+        dictionaryType=None
+    )
+    uuid = data_model.property(
+        "uuid", UUID,
+        array=False, optional=False,
+        documentation="""UUID of node. """,
+        dictionaryType=None
+    )
+    node_slot = data_model.property(
+        "nodeSlot", str,
+        array=False, optional=True,
+        documentation="""For HCI platforms, the letter corresponding to the chassis slot this node is in ("A", "B", "C", or "D"). For storage platforms, this value is null. """,
+        dictionaryType=None
+    )
+    chassis_name = data_model.property(
+        "chassisName", str,
+        array=False, optional=True,
+        documentation="""Name of the chassis the node is part of. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            pending_node_id,
+            assigned_node_id,
+            name,
+            compatible,
+            platform_info,
+            cip,
+            cipi,
+            mip,
+            mipi,
+            sip,
+            sipi,
+            software_version,
+            uuid,
+            node_slot=None,
+            chassis_name=None):
+
+        super(PendingNode, self).__init__(**{ 
+            "pending_node_id": pending_node_id,
+            "assigned_node_id": assigned_node_id,
+            "name": name,
+            "compatible": compatible,
+            "platform_info": platform_info,
+            "cip": cip,
+            "cipi": cipi,
+            "mip": mip,
+            "mipi": mipi,
+            "sip": sip,
+            "sipi": sipi,
+            "software_version": software_version,
+            "uuid": uuid,
+            "node_slot": node_slot,
+            "chassis_name": chassis_name, })
+        
+
+class PendingActiveNode(data_model.DataObject):
+    """PendingActiveNode  
+
+    :param active_node_key: [required]  
+    :type active_node_key: str
+
+    :param assigned_node_id: [required]  
+    :type assigned_node_id: int
+
+    :param async_handle: [required]  
+    :type async_handle: int
+
+    :param cip: [required]  
+    :type cip: str
+
+    :param mip: [required]  
+    :type mip: str
+
+    :param pending_node_id: [required]  
+    :type pending_node_id: int
+
+    :param platform_info: [required]  
+    :type platform_info: Platform
+
+    :param sip: [required]  
+    :type sip: str
+
+    :param software_version: [required]  
+    :type software_version: str
+
+    """
+    active_node_key = data_model.property(
+        "activeNodeKey", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    assigned_node_id = data_model.property(
+        "assignedNodeID", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    async_handle = data_model.property(
+        "asyncHandle", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    cip = data_model.property(
+        "cip", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    mip = data_model.property(
+        "mip", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    pending_node_id = data_model.property(
+        "pendingNodeID", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    platform_info = data_model.property(
+        "platformInfo", Platform,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    sip = data_model.property(
+        "sip", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    software_version = data_model.property(
+        "softwareVersion", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            active_node_key,
+            assigned_node_id,
+            async_handle,
+            cip,
+            mip,
+            pending_node_id,
+            platform_info,
+            sip,
+            software_version):
+
+        super(PendingActiveNode, self).__init__(**{ 
+            "active_node_key": active_node_key,
+            "assigned_node_id": assigned_node_id,
+            "async_handle": async_handle,
+            "cip": cip,
+            "mip": mip,
+            "pending_node_id": pending_node_id,
+            "platform_info": platform_info,
+            "sip": sip,
+            "software_version": software_version, })
+        
+
+class ListAllNodesResult(data_model.DataObject):
+    """ListAllNodesResult  
+
+    :param nodes: [required]  
+    :type nodes: Node
+
+    :param pending_nodes: [required]  
+    :type pending_nodes: PendingNode
+
+    :param pending_active_nodes:  List of objects detailing information about all PendingActive nodes in the system. 
+    :type pending_active_nodes: PendingActiveNode
+
+    """
+    nodes = data_model.property(
+        "nodes", Node,
+        array=True, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    pending_nodes = data_model.property(
+        "pendingNodes", PendingNode,
+        array=True, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    pending_active_nodes = data_model.property(
+        "pendingActiveNodes", PendingActiveNode,
+        array=True, optional=True,
+        documentation="""List of objects detailing information about all PendingActive nodes in the system. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            nodes,
+            pending_nodes,
+            pending_active_nodes=None):
+
+        super(ListAllNodesResult, self).__init__(**{ 
+            "nodes": nodes,
+            "pending_nodes": pending_nodes,
+            "pending_active_nodes": pending_active_nodes, })
         
 
 class ModifyAccountRequest(data_model.DataObject):
@@ -12835,92 +12996,25 @@ class ModifyAccountRequest(data_model.DataObject):
             "attributes": attributes, })
         
 
-class CreateSnapMirrorRelationshipRequest(data_model.DataObject):
-    """CreateSnapMirrorRelationshipRequest  
-    The SolidFire Element OS web UI uses the CreateSnapMirrorRelationship method to create a SnapMirror extended data protection relationship between a source and destination endpoint.
+class ModifySnapMirrorEndpointResult(data_model.DataObject):
+    """ModifySnapMirrorEndpointResult  
 
-    :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
-    :type snap_mirror_endpoint_id: int
-
-    :param source_volume: [required] The source volume in the relationship. 
-    :type source_volume: SnapMirrorVolumeInfo
-
-    :param destination_volume: [required] The destination volume in the relationship. 
-    :type destination_volume: SnapMirrorVolumeInfo
-
-    :param relationship_type:  The type of relationship. On SolidFire systems, this value is always "extended_data_protection". 
-    :type relationship_type: str
-
-    :param policy_name:  Specifies the name of the ONTAP SnapMirror policy for the relationship. If not specified, the default policy name is MirrorLatest. 
-    :type policy_name: str
-
-    :param schedule_name:  The name of the preexisting cron schedule on the ONTAP system that is used to update the SnapMirror relationship. If no schedule is designated, snapMirror updates are not scheduled and must be updated manually. 
-    :type schedule_name: str
-
-    :param max_transfer_rate:  Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. 
-    :type max_transfer_rate: int
+    :param snap_mirror_volumes: [required] Information about the modified SnapMirror endpoint. 
+    :type snap_mirror_volumes: SnapMirrorEndpoint
 
     """
-    snap_mirror_endpoint_id = data_model.property(
-        "snapMirrorEndpointID", int,
+    snap_mirror_volumes = data_model.property(
+        "snapMirrorVolumes", SnapMirrorEndpoint,
         array=False, optional=False,
-        documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. """,
-        dictionaryType=None
-    )
-    source_volume = data_model.property(
-        "sourceVolume", SnapMirrorVolumeInfo,
-        array=False, optional=False,
-        documentation="""The source volume in the relationship. """,
-        dictionaryType=None
-    )
-    destination_volume = data_model.property(
-        "destinationVolume", SnapMirrorVolumeInfo,
-        array=False, optional=False,
-        documentation="""The destination volume in the relationship. """,
-        dictionaryType=None
-    )
-    relationship_type = data_model.property(
-        "relationshipType", str,
-        array=False, optional=True,
-        documentation="""The type of relationship. On SolidFire systems, this value is always "extended_data_protection". """,
-        dictionaryType=None
-    )
-    policy_name = data_model.property(
-        "policyName", str,
-        array=False, optional=True,
-        documentation="""Specifies the name of the ONTAP SnapMirror policy for the relationship. If not specified, the default policy name is MirrorLatest. """,
-        dictionaryType=None
-    )
-    schedule_name = data_model.property(
-        "scheduleName", str,
-        array=False, optional=True,
-        documentation="""The name of the preexisting cron schedule on the ONTAP system that is used to update the SnapMirror relationship. If no schedule is designated, snapMirror updates are not scheduled and must be updated manually. """,
-        dictionaryType=None
-    )
-    max_transfer_rate = data_model.property(
-        "maxTransferRate", int,
-        array=False, optional=True,
-        documentation="""Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. """,
+        documentation="""Information about the modified SnapMirror endpoint. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            snap_mirror_endpoint_id,
-            source_volume,
-            destination_volume,
-            relationship_type=None,
-            policy_name=None,
-            schedule_name=None,
-            max_transfer_rate=None):
+            snap_mirror_volumes):
 
-        super(CreateSnapMirrorRelationshipRequest, self).__init__(**{ 
-            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
-            "source_volume": source_volume,
-            "destination_volume": destination_volume,
-            "relationship_type": relationship_type,
-            "policy_name": policy_name,
-            "schedule_name": schedule_name,
-            "max_transfer_rate": max_transfer_rate, })
+        super(ModifySnapMirrorEndpointResult, self).__init__(**{ 
+            "snap_mirror_volumes": snap_mirror_volumes, })
         
 
 class ClusterAdmin(data_model.DataObject):
@@ -13377,14 +13471,158 @@ class ListFibreChannelPortInfoResult(data_model.DataObject):
             "fibre_channel_port_info": fibre_channel_port_info, })
         
 
-class EnableLdapAuthenticationResult(data_model.DataObject):
-    """EnableLdapAuthenticationResult  
+class StartBulkVolumeReadRequest(data_model.DataObject):
+    """StartBulkVolumeReadRequest  
+    StartBulkVolumeRead enables you to initialize a bulk volume read session on a specified volume. Only two bulk volume processes
+    can run simultaneously on a volume. When you initialize the session, data is read from a SolidFire storage volume for the purposes
+    of storing the data on an external backup source. The external data is accessed by a web server running on an SF-series node.
+    Communications and server interaction information for external data access is passed by a script running on the storage system.
+    At the start of a bulk volume read operation, a snapshot of the volume is made and the snapshot is deleted when the read is complete. You can also read a snapshot of the volume by entering the ID of the snapshot as a parameter. When you read a
+    previous snapshot, the system does not create a new snapshot of the volume or delete the previous snapshot when the
+    read completes.
+    Note: This process creates a new snapshot if the ID of an existing snapshot is not provided. Snapshots can be created if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is at stage 4 or 5.
+
+    :param volume_id: [required] The ID of the volume to be read. 
+    :type volume_id: int
+
+    :param format: [required] The format of the volume data. It can be either of the following formats: uncompressed: Every byte of the volume is returned without any compression. native: Opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. 
+    :type format: str
+
+    :param snapshot_id:  The ID of a previously created snapshot used for bulk volume reads. If no ID is entered, a snapshot of the current active volume image is made. 
+    :type snapshot_id: int
+
+    :param script:  The executable name of a script. If unspecified, the key and URL is necessary to access SF-series nodes. The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted. 
+    :type script: str
+
+    :param script_parameters:  JSON parameters to pass to the script. 
+    :type script_parameters: dict
+
+    :param attributes:  JSON attributes for the bulk volume job. 
+    :type attributes: dict
 
     """
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="""The ID of the volume to be read. """,
+        dictionaryType=None
+    )
+    format = data_model.property(
+        "format", str,
+        array=False, optional=False,
+        documentation="""The format of the volume data. It can be either of the following formats: uncompressed: Every byte of the volume is returned without any compression. native: Opaque data is returned that is smaller and more efficiently stored and written on a subsequent bulk volume write. """,
+        dictionaryType=None
+    )
+    snapshot_id = data_model.property(
+        "snapshotID", int,
+        array=False, optional=True,
+        documentation="""The ID of a previously created snapshot used for bulk volume reads. If no ID is entered, a snapshot of the current active volume image is made. """,
+        dictionaryType=None
+    )
+    script = data_model.property(
+        "script", str,
+        array=False, optional=True,
+        documentation="""The executable name of a script. If unspecified, the key and URL is necessary to access SF-series nodes. The script is run on the primary node and the key and URL is returned to the script so the local web server can be contacted. """,
+        dictionaryType=None
+    )
+    script_parameters = data_model.property(
+        "scriptParameters", dict,
+        array=False, optional=True,
+        documentation="""JSON parameters to pass to the script. """,
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="""JSON attributes for the bulk volume job. """,
+        dictionaryType=None
+    )
 
-    def __init__(self):
+    def __init__(self,
+            volume_id,
+            format,
+            snapshot_id=None,
+            script=None,
+            script_parameters=None,
+            attributes=None):
 
-        super(EnableLdapAuthenticationResult, self).__init__(**{  })
+        super(StartBulkVolumeReadRequest, self).__init__(**{ 
+            "volume_id": volume_id,
+            "format": format,
+            "snapshot_id": snapshot_id,
+            "script": script,
+            "script_parameters": script_parameters,
+            "attributes": attributes, })
+        
+
+class RollbackToSnapshotRequest(data_model.DataObject):
+    """RollbackToSnapshotRequest  
+    RollbackToSnapshot enables you to make an existing snapshot of the "active" volume image. This method creates a new snapshot
+    from an existing snapshot. The new snapshot becomes "active" and the existing snapshot is preserved until you delete it.
+    The previously "active" snapshot is deleted unless you set the parameter saveCurrentState to true.
+    Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is
+    at stage 4 or 5.
+
+    :param volume_id: [required] VolumeID for the volume. 
+    :type volume_id: int
+
+    :param snapshot_id: [required] The ID of a previously created snapshot on the given volume. 
+    :type snapshot_id: int
+
+    :param save_current_state: [required] Specifies whether to save an active volume image or delete it. Values are: true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. 
+    :type save_current_state: bool
+
+    :param name:  Name for the snapshot. If unspecified, the name of the snapshot being rolled back to is used with "- copy" appended to the end of the name. 
+    :type name: str
+
+    :param attributes:  List of name-value pairs in JSON object format. 
+    :type attributes: dict
+
+    """
+    volume_id = data_model.property(
+        "volumeID", int,
+        array=False, optional=False,
+        documentation="""VolumeID for the volume. """,
+        dictionaryType=None
+    )
+    snapshot_id = data_model.property(
+        "snapshotID", int,
+        array=False, optional=False,
+        documentation="""The ID of a previously created snapshot on the given volume. """,
+        dictionaryType=None
+    )
+    save_current_state = data_model.property(
+        "saveCurrentState", bool,
+        array=False, optional=False,
+        documentation="""Specifies whether to save an active volume image or delete it. Values are: true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. """,
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=True,
+        documentation="""Name for the snapshot. If unspecified, the name of the snapshot being rolled back to is used with "- copy" appended to the end of the name. """,
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="""List of name-value pairs in JSON object format. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            volume_id,
+            snapshot_id,
+            save_current_state,
+            name=None,
+            attributes=None):
+
+        super(RollbackToSnapshotRequest, self).__init__(**{ 
+            "volume_id": volume_id,
+            "snapshot_id": snapshot_id,
+            "save_current_state": save_current_state,
+            "name": name,
+            "attributes": attributes, })
         
 
 class RestoreDeletedVolumeResult(data_model.DataObject):
@@ -13549,25 +13787,106 @@ class ModifyAccountResult(data_model.DataObject):
             "account": account, })
         
 
-class GetVirtualVolumeCountResult(data_model.DataObject):
-    """GetVirtualVolumeCountResult  
+class EnableSshResult(data_model.DataObject):
+    """EnableSshResult  
 
-    :param count: [required] The number of virtual volumes currently in the system. 
-    :type count: int
+    :param enabled: [required] Node SSH status. 
+    :type enabled: bool
 
     """
-    count = data_model.property(
-        "count", int,
+    enabled = data_model.property(
+        "enabled", bool,
         array=False, optional=False,
-        documentation="""The number of virtual volumes currently in the system. """,
+        documentation="""Node SSH status. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            count):
+            enabled):
 
-        super(GetVirtualVolumeCountResult, self).__init__(**{ 
-            "count": count, })
+        super(EnableSshResult, self).__init__(**{ 
+            "enabled": enabled, })
+        
+
+class ModifyInitiator(data_model.DataObject):
+    """ModifyInitiator  
+    Object containing characteristics of each initiator to modify
+
+    :param initiator_id: [required] (Required) The numeric ID of the initiator to modify. (Integer) 
+    :type initiator_id: int
+
+    :param alias:  (Optional) A new friendly name to assign to the initiator. (String) 
+    :type alias: str
+
+    :param volume_access_group_id:  (Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
+    :type volume_access_group_id: int
+
+    :param attributes:  (Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) 
+    :type attributes: dict
+
+    """
+    initiator_id = data_model.property(
+        "initiatorID", int,
+        array=False, optional=False,
+        documentation="""(Required) The numeric ID of the initiator to modify. (Integer) """,
+        dictionaryType=None
+    )
+    alias = data_model.property(
+        "alias", str,
+        array=False, optional=True,
+        documentation="""(Optional) A new friendly name to assign to the initiator. (String) """,
+        dictionaryType=None
+    )
+    volume_access_group_id = data_model.property(
+        "volumeAccessGroupID", int,
+        array=False, optional=True,
+        documentation="""(Optional) The ID of the volume access group to which the newly created initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) """,
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="""(Optional) A new set of JSON attributes assigned to this initiator. (JSON Object) """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            initiator_id,
+            alias=None,
+            volume_access_group_id=None,
+            attributes=None):
+
+        super(ModifyInitiator, self).__init__(**{ 
+            "initiator_id": initiator_id,
+            "alias": alias,
+            "volume_access_group_id": volume_access_group_id,
+            "attributes": attributes, })
+        
+
+class ModifyInitiatorsRequest(data_model.DataObject):
+    """ModifyInitiatorsRequest  
+    ModifyInitiators enables you to change the attributes of one or more existing initiators. You cannot change the name of an existing
+    initiator. If you need to change the name of an initiator, delete it first with DeleteInitiators and create a new one with
+    CreateInitiators.
+    If ModifyInitiators fails to change one of the initiators provided in the parameter, the method returns an error and does not modify
+    any initiators (no partial completion is possible).
+
+    :param initiators: [required] A list of objects containing characteristics of each initiator to modify. Values are: initiatorID: (Required) The ID of the initiator to modify. (Integer) alias: (Optional) A new friendly name to assign to the initiator. (String) attributes: (Optional) A new set of JSON attributes to assign to the initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which the initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) 
+    :type initiators: ModifyInitiator
+
+    """
+    initiators = data_model.property(
+        "initiators", ModifyInitiator,
+        array=True, optional=False,
+        documentation="""A list of objects containing characteristics of each initiator to modify. Values are: initiatorID: (Required) The ID of the initiator to modify. (Integer) alias: (Optional) A new friendly name to assign to the initiator. (String) attributes: (Optional) A new set of JSON attributes to assign to the initiator. (JSON Object) volumeAccessGroupID: (Optional) The ID of the volume access group into to which the initiator should be added. If the initiator was previously in a different volume access group, it is removed from the old volume access group. If this key is present but null, the initiator is removed from its current volume access group, but not placed in any new volume access group. (Integer) """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            initiators):
+
+        super(ModifyInitiatorsRequest, self).__init__(**{ 
+            "initiators": initiators, })
         
 
 class ListUtilitiesResult(data_model.DataObject):
@@ -14534,103 +14853,104 @@ class QuiesceSnapMirrorRelationshipResult(data_model.DataObject):
             "snap_mirror_relationship": snap_mirror_relationship, })
         
 
-class PurgeDeletedVolumeResult(data_model.DataObject):
-    """PurgeDeletedVolumeResult  
+class CancelCloneRequest(data_model.DataObject):
+    """CancelCloneRequest  
+    CancelClone enables you to stop an ongoing CloneVolume or CopyVolume process. When you cancel a group clone operation, the
+    system completes and removes the operation's associated asyncHandle.
+
+    :param clone_id: [required] The cloneID for the ongoing clone process. 
+    :type clone_id: int
 
     """
-
-    def __init__(self):
-
-        super(PurgeDeletedVolumeResult, self).__init__(**{  })
-        
-
-class GetAccountEfficiencyRequest(data_model.DataObject):
-    """GetAccountEfficiencyRequest  
-    GetAccountEfficiency enables you to retrieve efficiency statistics about a volume account. This method returns efficiency information
-    only for the account you specify as a parameter.
-
-    :param account_id: [required] Specifies the volume account for which efficiency statistics are returned. 
-    :type account_id: int
-
-    """
-    account_id = data_model.property(
-        "accountID", int,
+    clone_id = data_model.property(
+        "cloneID", int,
         array=False, optional=False,
-        documentation="""Specifies the volume account for which efficiency statistics are returned. """,
+        documentation="""The cloneID for the ongoing clone process. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            account_id):
+            clone_id):
 
-        super(GetAccountEfficiencyRequest, self).__init__(**{ 
-            "account_id": account_id, })
+        super(CancelCloneRequest, self).__init__(**{ 
+            "clone_id": clone_id, })
         
 
-class GetAccountByIDRequest(data_model.DataObject):
-    """GetAccountByIDRequest  
-    GetAccountByID enables you to return details about a specific account, given its accountID.
+class GetAccountResult(data_model.DataObject):
+    """GetAccountResult  
 
-    :param account_id: [required] Specifies the account for which details are gathered. 
-    :type account_id: int
+    :param account: [required] Account details. 
+    :type account: Account
 
     """
-    account_id = data_model.property(
-        "accountID", int,
+    account = data_model.property(
+        "account", Account,
         array=False, optional=False,
-        documentation="""Specifies the account for which details are gathered. """,
+        documentation="""Account details. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            account_id):
+            account):
 
-        super(GetAccountByIDRequest, self).__init__(**{ 
-            "account_id": account_id, })
+        super(GetAccountResult, self).__init__(**{ 
+            "account": account, })
         
 
-class ListAccountsRequest(data_model.DataObject):
-    """ListAccountsRequest  
-    ListAccounts returns the entire list of accounts, with optional paging support.
+class ListSnapMirrorLunsRequest(data_model.DataObject):
+    """ListSnapMirrorLunsRequest  
+    The SolidFire Element OS web UI uses the ListSnapMirrorLuns method to list the LUN information for the SnapMirror relationship from the remote ONTAP cluster.
 
-    :param start_account_id:  Starting AccountID to return. If no account exists with this AccountID, the next account by AccountID order is used as the start of the list. To page through the list, pass the AccountID of the last account in the previous response + 1. 
-    :type start_account_id: int
+    :param snap_mirror_endpoint_id: [required] List only the LUN information associated with the specified endpoint ID. 
+    :type snap_mirror_endpoint_id: int
 
-    :param limit:  Maximum number of AccountInfo objects to return. 
-    :type limit: int
-
-    :param include_storage_containers:  Includes storage containers in the response by default. To exclude storage containers, set to false. 
-    :type include_storage_containers: bool
+    :param destination_volume: [required] The destination volume in the SnapMirror relationship. 
+    :type destination_volume: SnapMirrorVolumeInfo
 
     """
-    start_account_id = data_model.property(
-        "startAccountID", int,
-        array=False, optional=True,
-        documentation="""Starting AccountID to return. If no account exists with this AccountID, the next account by AccountID order is used as the start of the list. To page through the list, pass the AccountID of the last account in the previous response + 1. """,
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""List only the LUN information associated with the specified endpoint ID. """,
         dictionaryType=None
     )
-    limit = data_model.property(
-        "limit", int,
-        array=False, optional=True,
-        documentation="""Maximum number of AccountInfo objects to return. """,
-        dictionaryType=None
-    )
-    include_storage_containers = data_model.property(
-        "includeStorageContainers", bool,
-        array=False, optional=True,
-        documentation="""Includes storage containers in the response by default. To exclude storage containers, set to false. """,
+    destination_volume = data_model.property(
+        "destinationVolume", SnapMirrorVolumeInfo,
+        array=False, optional=False,
+        documentation="""The destination volume in the SnapMirror relationship. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            start_account_id=None,
-            limit=None,
-            include_storage_containers=None):
+            snap_mirror_endpoint_id,
+            destination_volume):
 
-        super(ListAccountsRequest, self).__init__(**{ 
-            "start_account_id": start_account_id,
-            "limit": limit,
-            "include_storage_containers": include_storage_containers, })
+        super(ListSnapMirrorLunsRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "destination_volume": destination_volume, })
+        
+
+class TestConnectEnsembleRequest(data_model.DataObject):
+    """TestConnectEnsembleRequest  
+    The TestConnectEnsemble API method enables you to verify connectivity with a specified database ensemble. By default, it uses the ensemble for the cluster that the node is associated with. Alternatively, you can provide a different ensemble to test connectivity with.
+    Note: This method is available only through the per-node API endpoint 5.0 or later.
+
+    :param ensemble:  Uses a comma-separated list of ensemble node cluster IP addresses to test connectivity. This parameter is optional. 
+    :type ensemble: str
+
+    """
+    ensemble = data_model.property(
+        "ensemble", str,
+        array=False, optional=True,
+        documentation="""Uses a comma-separated list of ensemble node cluster IP addresses to test connectivity. This parameter is optional. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            ensemble=None):
+
+        super(TestConnectEnsembleRequest, self).__init__(**{ 
+            "ensemble": ensemble, })
         
 
 class SnapMirrorPolicyRule(data_model.DataObject):
@@ -15268,47 +15588,25 @@ class CancelGroupCloneResult(data_model.DataObject):
         super(CancelGroupCloneResult, self).__init__(**{  })
         
 
-class DeleteAllSupportBundlesResult(data_model.DataObject):
-    """DeleteAllSupportBundlesResult  
+class ListActivePairedVolumesResult(data_model.DataObject):
+    """ListActivePairedVolumesResult  
 
-    :param duration: [required]  
-    :type duration: str
-
-    :param details: [required]  
-    :type details: dict
-
-    :param result: [required]  
-    :type result: str
+    :param volumes: [required] Volume information for the paired volumes. 
+    :type volumes: Volume
 
     """
-    duration = data_model.property(
-        "duration", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    details = data_model.property(
-        "details", dict,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    result = data_model.property(
-        "result", str,
-        array=False, optional=False,
-        documentation=""" """,
+    volumes = data_model.property(
+        "volumes", Volume,
+        array=True, optional=False,
+        documentation="""Volume information for the paired volumes. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            duration,
-            details,
-            result):
+            volumes):
 
-        super(DeleteAllSupportBundlesResult, self).__init__(**{ 
-            "duration": duration,
-            "details": details,
-            "result": result, })
+        super(ListActivePairedVolumesResult, self).__init__(**{ 
+            "volumes": volumes, })
         
 
 class AddedNode(data_model.DataObject):
@@ -15594,6 +15892,27 @@ class DeleteGroupSnapshotResult(data_model.DataObject):
         super(DeleteGroupSnapshotResult, self).__init__(**{  })
         
 
+class DisableSshResult(data_model.DataObject):
+    """DisableSshResult  
+
+    :param enabled: [required] Node SSH status. 
+    :type enabled: bool
+
+    """
+    enabled = data_model.property(
+        "enabled", bool,
+        array=False, optional=False,
+        documentation="""Node SSH status. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            enabled):
+
+        super(DisableSshResult, self).__init__(**{ 
+            "enabled": enabled, })
+        
+
 class ListSnapMirrorVolumesRequest(data_model.DataObject):
     """ListSnapMirrorVolumesRequest  
     The SolidFire Element OS web UI uses the ListSnapMirrorVolumes method to list all SnapMirror volumes available on a remote ONTAP system.
@@ -15649,6 +15968,48 @@ class ListSnapMirrorVolumesRequest(data_model.DataObject):
             "type": type, })
         
 
+class GetVirtualVolumeCountResult(data_model.DataObject):
+    """GetVirtualVolumeCountResult  
+
+    :param count: [required] The number of virtual volumes currently in the system. 
+    :type count: int
+
+    """
+    count = data_model.property(
+        "count", int,
+        array=False, optional=False,
+        documentation="""The number of virtual volumes currently in the system. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            count):
+
+        super(GetVirtualVolumeCountResult, self).__init__(**{ 
+            "count": count, })
+        
+
+class ListVolumeStatsByVolumeResult(data_model.DataObject):
+    """ListVolumeStatsByVolumeResult  
+
+    :param volume_stats: [required] List of account activity information. 
+    :type volume_stats: VolumeStats
+
+    """
+    volume_stats = data_model.property(
+        "volumeStats", VolumeStats,
+        array=True, optional=False,
+        documentation="""List of account activity information. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            volume_stats):
+
+        super(ListVolumeStatsByVolumeResult, self).__init__(**{ 
+            "volume_stats": volume_stats, })
+        
+
 class ListSnapMirrorNetworkInterfacesRequest(data_model.DataObject):
     """ListSnapMirrorNetworkInterfacesRequest  
     The SolidFire Element OS web UI uses the ListSnapMirrorNetworkInterfaces method to list all available SnapMirror interfaces on a remote ONTAP system
@@ -15680,6 +16041,29 @@ class ListSnapMirrorNetworkInterfacesRequest(data_model.DataObject):
         super(ListSnapMirrorNetworkInterfacesRequest, self).__init__(**{ 
             "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
             "interface_role": interface_role, })
+        
+
+class EnableClusterSshRequest(data_model.DataObject):
+    """EnableClusterSshRequest  
+    Enables SSH on all nodes in the cluster.
+    Overwrites previous duration.
+
+    :param duration: [required] The duration on how long SSH will be enable on the cluster. Follows format "HH:MM:SS.MS". 
+    :type duration: str
+
+    """
+    duration = data_model.property(
+        "duration", str,
+        array=True, optional=False,
+        documentation="""The duration on how long SSH will be enable on the cluster. Follows format "HH:MM:SS.MS". """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            duration):
+
+        super(EnableClusterSshRequest, self).__init__(**{ 
+            "duration": duration, })
         
 
 class ListGroupSnapshotsResult(data_model.DataObject):
@@ -15790,25 +16174,92 @@ class GetVolumeEfficiencyResult(data_model.DataObject):
             "timestamp": timestamp, })
         
 
-class ModifySnapMirrorEndpointResult(data_model.DataObject):
-    """ModifySnapMirrorEndpointResult  
+class CreateSnapMirrorRelationshipRequest(data_model.DataObject):
+    """CreateSnapMirrorRelationshipRequest  
+    The SolidFire Element OS web UI uses the CreateSnapMirrorRelationship method to create a SnapMirror extended data protection relationship between a source and destination endpoint.
 
-    :param snap_mirror_volumes: [required] Information about the modified SnapMirror endpoint. 
-    :type snap_mirror_volumes: SnapMirrorEndpoint
+    :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
+    :type snap_mirror_endpoint_id: int
+
+    :param source_volume: [required] The source volume in the relationship. 
+    :type source_volume: SnapMirrorVolumeInfo
+
+    :param destination_volume: [required] The destination volume in the relationship. 
+    :type destination_volume: SnapMirrorVolumeInfo
+
+    :param relationship_type:  The type of relationship. On SolidFire systems, this value is always "extended_data_protection". 
+    :type relationship_type: str
+
+    :param policy_name:  Specifies the name of the ONTAP SnapMirror policy for the relationship. If not specified, the default policy name is MirrorLatest. 
+    :type policy_name: str
+
+    :param schedule_name:  The name of the preexisting cron schedule on the ONTAP system that is used to update the SnapMirror relationship. If no schedule is designated, snapMirror updates are not scheduled and must be updated manually. 
+    :type schedule_name: str
+
+    :param max_transfer_rate:  Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. 
+    :type max_transfer_rate: int
 
     """
-    snap_mirror_volumes = data_model.property(
-        "snapMirrorVolumes", SnapMirrorEndpoint,
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
         array=False, optional=False,
-        documentation="""Information about the modified SnapMirror endpoint. """,
+        documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. """,
+        dictionaryType=None
+    )
+    source_volume = data_model.property(
+        "sourceVolume", SnapMirrorVolumeInfo,
+        array=False, optional=False,
+        documentation="""The source volume in the relationship. """,
+        dictionaryType=None
+    )
+    destination_volume = data_model.property(
+        "destinationVolume", SnapMirrorVolumeInfo,
+        array=False, optional=False,
+        documentation="""The destination volume in the relationship. """,
+        dictionaryType=None
+    )
+    relationship_type = data_model.property(
+        "relationshipType", str,
+        array=False, optional=True,
+        documentation="""The type of relationship. On SolidFire systems, this value is always "extended_data_protection". """,
+        dictionaryType=None
+    )
+    policy_name = data_model.property(
+        "policyName", str,
+        array=False, optional=True,
+        documentation="""Specifies the name of the ONTAP SnapMirror policy for the relationship. If not specified, the default policy name is MirrorLatest. """,
+        dictionaryType=None
+    )
+    schedule_name = data_model.property(
+        "scheduleName", str,
+        array=False, optional=True,
+        documentation="""The name of the preexisting cron schedule on the ONTAP system that is used to update the SnapMirror relationship. If no schedule is designated, snapMirror updates are not scheduled and must be updated manually. """,
+        dictionaryType=None
+    )
+    max_transfer_rate = data_model.property(
+        "maxTransferRate", int,
+        array=False, optional=True,
+        documentation="""Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            snap_mirror_volumes):
+            snap_mirror_endpoint_id,
+            source_volume,
+            destination_volume,
+            relationship_type=None,
+            policy_name=None,
+            schedule_name=None,
+            max_transfer_rate=None):
 
-        super(ModifySnapMirrorEndpointResult, self).__init__(**{ 
-            "snap_mirror_volumes": snap_mirror_volumes, })
+        super(CreateSnapMirrorRelationshipRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "source_volume": source_volume,
+            "destination_volume": destination_volume,
+            "relationship_type": relationship_type,
+            "policy_name": policy_name,
+            "schedule_name": schedule_name,
+            "max_transfer_rate": max_transfer_rate, })
         
 
 class PendingOperation(data_model.DataObject):
@@ -16120,9 +16571,6 @@ class GetClusterFullThresholdResult(data_model.DataObject):
     :param sum_used_metadata_cluster_bytes: [required] Amount of space used on volume drives to store metadata. 
     :type sum_used_metadata_cluster_bytes: int
 
-    :param zone_alert_level: [required] This controls whether the alerts apply to being able to heal from a node loss or a chassis loss. It will either be at "node" or at "chassis". It defaults to "node". 
-    :type zone_alert_level: str
-
     """
     block_fullness = data_model.property(
         "blockFullness", str,
@@ -16226,12 +16674,6 @@ class GetClusterFullThresholdResult(data_model.DataObject):
         documentation="""Amount of space used on volume drives to store metadata. """,
         dictionaryType=None
     )
-    zone_alert_level = data_model.property(
-        "zoneAlertLevel", str,
-        array=False, optional=False,
-        documentation="""This controls whether the alerts apply to being able to heal from a node loss or a chassis loss. It will either be at "node" or at "chassis". It defaults to "node". """,
-        dictionaryType=None
-    )
 
     def __init__(self,
             block_fullness,
@@ -16250,8 +16692,7 @@ class GetClusterFullThresholdResult(data_model.DataObject):
             sum_total_cluster_bytes,
             sum_total_metadata_cluster_bytes,
             sum_used_cluster_bytes,
-            sum_used_metadata_cluster_bytes,
-            zone_alert_level):
+            sum_used_metadata_cluster_bytes):
 
         super(GetClusterFullThresholdResult, self).__init__(**{ 
             "block_fullness": block_fullness,
@@ -16270,8 +16711,7 @@ class GetClusterFullThresholdResult(data_model.DataObject):
             "sum_total_cluster_bytes": sum_total_cluster_bytes,
             "sum_total_metadata_cluster_bytes": sum_total_metadata_cluster_bytes,
             "sum_used_cluster_bytes": sum_used_cluster_bytes,
-            "sum_used_metadata_cluster_bytes": sum_used_metadata_cluster_bytes,
-            "zone_alert_level": zone_alert_level, })
+            "sum_used_metadata_cluster_bytes": sum_used_metadata_cluster_bytes, })
         
 
 class ListVolumesForAccountRequest(data_model.DataObject):
@@ -17153,26 +17593,25 @@ class ListDrivesResult(data_model.DataObject):
             "drives": drives, })
         
 
-class ListVolumeStatsRequest(data_model.DataObject):
-    """ListVolumeStatsRequest  
-    ListVolumeStats returns high-level activity measurements for a single volume, list of volumes, or all volumes (if you omit the volumeIDs parameter). Measurement values are cumulative from the creation of the volume.
+class EnableClusterSshResult(data_model.DataObject):
+    """EnableClusterSshResult  
 
-    :param volume_ids:  A list of volume IDs of volumes from which to retrieve activity information. 
-    :type volume_ids: int
+    :param cluster_ssh_info: [required] The SSH info for the cluster. 
+    :type cluster_ssh_info: ClusterSshInfo
 
     """
-    volume_ids = data_model.property(
-        "volumeIDs", int,
-        array=True, optional=True,
-        documentation="""A list of volume IDs of volumes from which to retrieve activity information. """,
+    cluster_ssh_info = data_model.property(
+        "clusterSshInfo", ClusterSshInfo,
+        array=False, optional=False,
+        documentation="""The SSH info for the cluster. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            volume_ids=None):
+            cluster_ssh_info):
 
-        super(ListVolumeStatsRequest, self).__init__(**{ 
-            "volume_ids": volume_ids, })
+        super(EnableClusterSshResult, self).__init__(**{ 
+            "cluster_ssh_info": cluster_ssh_info, })
         
 
 class VirtualVolumeBinding(data_model.DataObject):
@@ -17314,97 +17753,14 @@ class ModifyClusterAdminResult(data_model.DataObject):
         super(ModifyClusterAdminResult, self).__init__(**{  })
         
 
-class RollbackToSnapshotRequest(data_model.DataObject):
-    """RollbackToSnapshotRequest  
-    RollbackToSnapshot enables you to make an existing snapshot of the "active" volume image. This method creates a new snapshot
-    from an existing snapshot. The new snapshot becomes "active" and the existing snapshot is preserved until you delete it.
-    The previously "active" snapshot is deleted unless you set the parameter saveCurrentState to true.
-    Note: Creating a snapshot is allowed if cluster fullness is at stage 2 or 3. Snapshots are not created when cluster fullness is
-    at stage 4 or 5.
-
-    :param volume_id: [required] VolumeID for the volume. 
-    :type volume_id: int
-
-    :param snapshot_id: [required] The ID of a previously created snapshot on the given volume. 
-    :type snapshot_id: int
-
-    :param save_current_state: [required] Specifies whether to save an active volume image or delete it. Values are: true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. 
-    :type save_current_state: bool
-
-    :param name:  Name for the snapshot. If unspecified, the name of the snapshot being rolled back to is used with "- copy" appended to the end of the name. 
-    :type name: str
-
-    :param attributes:  List of name-value pairs in JSON object format. 
-    :type attributes: dict
+class EnableLdapAuthenticationResult(data_model.DataObject):
+    """EnableLdapAuthenticationResult  
 
     """
-    volume_id = data_model.property(
-        "volumeID", int,
-        array=False, optional=False,
-        documentation="""VolumeID for the volume. """,
-        dictionaryType=None
-    )
-    snapshot_id = data_model.property(
-        "snapshotID", int,
-        array=False, optional=False,
-        documentation="""The ID of a previously created snapshot on the given volume. """,
-        dictionaryType=None
-    )
-    save_current_state = data_model.property(
-        "saveCurrentState", bool,
-        array=False, optional=False,
-        documentation="""Specifies whether to save an active volume image or delete it. Values are: true: The previous active volume image is kept. false: (default) The previous active volume image is deleted. """,
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=True,
-        documentation="""Name for the snapshot. If unspecified, the name of the snapshot being rolled back to is used with "- copy" appended to the end of the name. """,
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="""List of name-value pairs in JSON object format. """,
-        dictionaryType=None
-    )
 
-    def __init__(self,
-            volume_id,
-            snapshot_id,
-            save_current_state,
-            name=None,
-            attributes=None):
+    def __init__(self):
 
-        super(RollbackToSnapshotRequest, self).__init__(**{ 
-            "volume_id": volume_id,
-            "snapshot_id": snapshot_id,
-            "save_current_state": save_current_state,
-            "name": name,
-            "attributes": attributes, })
-        
-
-class CancelCloneRequest(data_model.DataObject):
-    """CancelCloneRequest  
-    CancelClone enables you to stop an ongoing CloneVolume or CopyVolume process. When you cancel a group clone operation, the
-    system completes and removes the operation's associated asyncHandle.
-
-    :param clone_id: [required] The cloneID for the ongoing clone process. 
-    :type clone_id: int
-
-    """
-    clone_id = data_model.property(
-        "cloneID", int,
-        array=False, optional=False,
-        documentation="""The cloneID for the ongoing clone process. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            clone_id):
-
-        super(CancelCloneRequest, self).__init__(**{ 
-            "clone_id": clone_id, })
+        super(EnableLdapAuthenticationResult, self).__init__(**{  })
         
 
 class ListSnapMirrorAggregatesRequest(data_model.DataObject):
@@ -17503,6 +17859,9 @@ class ClusterFaultInfo(data_model.DataObject):
     :param external_source:   
     :type external_source: str
 
+    :param ssh_enabled:   
+    :type ssh_enabled: str
+
     """
     drive_ids = data_model.property(
         "driveIDs", int,
@@ -17600,6 +17959,12 @@ class ClusterFaultInfo(data_model.DataObject):
         documentation=""" """,
         dictionaryType=None
     )
+    ssh_enabled = data_model.property(
+        "sshEnabled", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
 
     def __init__(self,
             severity,
@@ -17617,7 +17982,8 @@ class ClusterFaultInfo(data_model.DataObject):
             drive_ids=None,
             network_interface=None,
             data=None,
-            external_source=None):
+            external_source=None,
+            ssh_enabled=None):
 
         super(ClusterFaultInfo, self).__init__(**{ 
             "drive_ids": drive_ids,
@@ -17635,7 +18001,8 @@ class ClusterFaultInfo(data_model.DataObject):
             "date": date,
             "resolved_date": resolved_date,
             "data": data,
-            "external_source": external_source, })
+            "external_source": external_source,
+            "ssh_enabled": ssh_enabled, })
         
 
 class ListClusterFaultsResult(data_model.DataObject):
@@ -17832,59 +18199,71 @@ class CloneMultipleVolumesRequest(data_model.DataObject):
             "new_account_id": new_account_id, })
         
 
-class InvokeSFApiRequest(data_model.DataObject):
-    """InvokeSFApiRequest  
-    This will invoke any API method supported by the SolidFire API for the version and port the connection is using.
-    Returns a nested hashtable of key/value pairs that contain the result of the invoked method.
+class ListVolumeAccessGroupsRequest(data_model.DataObject):
+    """ListVolumeAccessGroupsRequest  
+    ListVolumeAccessGroups enables you to return
+    information about the volume access groups that are
+    currently in the system.
 
-    :param method: [required] The name of the method to invoke. This is case sensitive. 
-    :type method: str
+    :param start_volume_access_group_id:  The volume access group ID at which to begin the listing. If unspecified, there is no lower limit (implicitly 0). 
+    :type start_volume_access_group_id: int
 
-    :param parameters:  An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked. 
-    :type parameters: str
+    :param limit:  The maximum number of results to return. This can be useful for paging. 
+    :type limit: int
+
+    :param volume_access_groups:  The list of ids of the volume access groups you wish to list 
+    :type volume_access_groups: int
 
     """
-    method = data_model.property(
-        "method", str,
-        array=False, optional=False,
-        documentation="""The name of the method to invoke. This is case sensitive. """,
+    start_volume_access_group_id = data_model.property(
+        "startVolumeAccessGroupID", int,
+        array=False, optional=True,
+        documentation="""The volume access group ID at which to begin the listing. If unspecified, there is no lower limit (implicitly 0). """,
         dictionaryType=None
     )
-    parameters = data_model.property(
-        "parameters", str,
+    limit = data_model.property(
+        "limit", int,
         array=False, optional=True,
-        documentation="""An object, normally a dictionary or hashtable of the key/value pairs, to be passed as the params for the method being invoked. """,
+        documentation="""The maximum number of results to return. This can be useful for paging. """,
+        dictionaryType=None
+    )
+    volume_access_groups = data_model.property(
+        "volumeAccessGroups", int,
+        array=True, optional=True,
+        documentation="""The list of ids of the volume access groups you wish to list """,
         dictionaryType=None
     )
 
     def __init__(self,
-            method,
-            parameters=None):
+            start_volume_access_group_id=None,
+            limit=None,
+            volume_access_groups=None):
 
-        super(InvokeSFApiRequest, self).__init__(**{ 
-            "method": method,
-            "parameters": parameters, })
+        super(ListVolumeAccessGroupsRequest, self).__init__(**{ 
+            "start_volume_access_group_id": start_volume_access_group_id,
+            "limit": limit,
+            "volume_access_groups": volume_access_groups, })
         
 
-class GetNodeStatsResult(data_model.DataObject):
-    """GetNodeStatsResult  
+class ResyncSnapMirrorRelationshipResult(data_model.DataObject):
+    """ResyncSnapMirrorRelationshipResult  
 
-    :param node_stats: [required] Node activity information. 
-    :type node_stats: NodeStatsInfo
+    :param snap_mirror_relationship: [required] An object containing information about the resynced SnapMirror relationship. 
+    :type snap_mirror_relationship: SnapMirrorRelationship
 
     """
-    node_stats = data_model.property(
-        "nodeStats", NodeStatsInfo,
+    snap_mirror_relationship = data_model.property(
+        "snapMirrorRelationship", SnapMirrorRelationship,
         array=False, optional=False,
-        documentation="""Node activity information. """,
+        documentation="""An object containing information about the resynced SnapMirror relationship. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            node_stats):
+            snap_mirror_relationship):
 
-        super(GetNodeStatsResult, self).__init__(**{ 
-            "node_stats": node_stats, })
+        super(ResyncSnapMirrorRelationshipResult, self).__init__(**{ 
+            "snap_mirror_relationship": snap_mirror_relationship, })
         
 
 class DeleteQoSPolicyRequest(data_model.DataObject):
@@ -18173,14 +18552,25 @@ class DeleteGroupSnapshotRequest(data_model.DataObject):
             "save_members": save_members, })
         
 
-class RemoveNodesResult(data_model.DataObject):
-    """RemoveNodesResult  
+class ModifySnapshotResult(data_model.DataObject):
+    """ModifySnapshotResult  
+
+    :param snapshot:   
+    :type snapshot: Snapshot
 
     """
+    snapshot = data_model.property(
+        "snapshot", Snapshot,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
 
-    def __init__(self):
+    def __init__(self,
+            snapshot=None):
 
-        super(RemoveNodesResult, self).__init__(**{  })
+        super(ModifySnapshotResult, self).__init__(**{ 
+            "snapshot": snapshot, })
         
 
 class InitializeSnapMirrorRelationshipResult(data_model.DataObject):
@@ -19477,6 +19867,93 @@ class AbortSnapMirrorRelationshipResult(data_model.DataObject):
             "snap_mirror_relationship": snap_mirror_relationship, })
         
 
+class ProtectionDomainResiliency(data_model.DataObject):
+    """ProtectionDomainResiliency  
+    
+
+    :param failure_type: [required] Currently can be node or chassis. 
+    :type failure_type: str
+
+    :param sustainable_failures_for_ensemble: [required]  
+    :type sustainable_failures_for_ensemble: int
+
+    :param sustainable_failures_for_block_data: [required]  
+    :type sustainable_failures_for_block_data: int
+
+    :param sustainable_failures_for_metadata: [required]  
+    :type sustainable_failures_for_metadata: int
+
+    :param single_failure_block_resiliency_threshold_bytes: [required]  
+    :type single_failure_block_resiliency_threshold_bytes: int
+
+    """
+    failure_type = data_model.property(
+        "failureType", str,
+        array=False, optional=False,
+        documentation="""Currently can be node or chassis. """,
+        dictionaryType=None
+    )
+    sustainable_failures_for_ensemble = data_model.property(
+        "sustainableFailuresForEnsemble", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    sustainable_failures_for_block_data = data_model.property(
+        "sustainableFailuresForBlockData", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    sustainable_failures_for_metadata = data_model.property(
+        "sustainableFailuresForMetadata", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    single_failure_block_resiliency_threshold_bytes = data_model.property(
+        "singleFailureBlockResiliencyThresholdBytes", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            failure_type,
+            sustainable_failures_for_ensemble,
+            sustainable_failures_for_block_data,
+            sustainable_failures_for_metadata,
+            single_failure_block_resiliency_threshold_bytes):
+
+        super(ProtectionDomainResiliency, self).__init__(**{ 
+            "failure_type": failure_type,
+            "sustainable_failures_for_ensemble": sustainable_failures_for_ensemble,
+            "sustainable_failures_for_block_data": sustainable_failures_for_block_data,
+            "sustainable_failures_for_metadata": sustainable_failures_for_metadata,
+            "single_failure_block_resiliency_threshold_bytes": single_failure_block_resiliency_threshold_bytes, })
+        
+
+class ListProtectionDomainResiliencyResult(data_model.DataObject):
+    """ListProtectionDomainResiliencyResult  
+
+    :param resiliency:   
+    :type resiliency: ProtectionDomainResiliency
+
+    """
+    resiliency = data_model.property(
+        "resiliency", ProtectionDomainResiliency,
+        array=True, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            resiliency=None):
+
+        super(ListProtectionDomainResiliencyResult, self).__init__(**{ 
+            "resiliency": resiliency, })
+        
+
 class UpdateBulkVolumeStatusResult(data_model.DataObject):
     """UpdateBulkVolumeStatusResult  
 
@@ -20462,25 +20939,25 @@ class ListClusterAdminsResult(data_model.DataObject):
             "cluster_admins": cluster_admins, })
         
 
-class ResyncSnapMirrorRelationshipResult(data_model.DataObject):
-    """ResyncSnapMirrorRelationshipResult  
+class GetNodeStatsResult(data_model.DataObject):
+    """GetNodeStatsResult  
 
-    :param snap_mirror_relationship: [required] An object containing information about the resynced SnapMirror relationship. 
-    :type snap_mirror_relationship: SnapMirrorRelationship
+    :param node_stats: [required] Node activity information. 
+    :type node_stats: NodeStatsInfo
 
     """
-    snap_mirror_relationship = data_model.property(
-        "snapMirrorRelationship", SnapMirrorRelationship,
+    node_stats = data_model.property(
+        "nodeStats", NodeStatsInfo,
         array=False, optional=False,
-        documentation="""An object containing information about the resynced SnapMirror relationship. """,
+        documentation="""Node activity information. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            snap_mirror_relationship):
+            node_stats):
 
-        super(ResyncSnapMirrorRelationshipResult, self).__init__(**{ 
-            "snap_mirror_relationship": snap_mirror_relationship, })
+        super(GetNodeStatsResult, self).__init__(**{ 
+            "node_stats": node_stats, })
         
 
 class CreateInitiatorsResult(data_model.DataObject):
@@ -21151,59 +21628,14 @@ class RollbackToGroupSnapshotRequest(data_model.DataObject):
             "attributes": attributes, })
         
 
-class ResyncSnapMirrorRelationshipRequest(data_model.DataObject):
-    """ResyncSnapMirrorRelationshipRequest  
-    The SolidFire Element OS web UI uses the ResyncSnapMirrorRelationship method to establish or reestablish a mirror relationship between a source and destination endpoint. When you resync a relationship, the system removes snapshots on the destination volume that are newer than the common snapshot copy, and then mounts the destination volume as a data protection volume with the common snapshot copy as the exported snapshot copy.
-
-    :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
-    :type snap_mirror_endpoint_id: int
-
-    :param destination_volume: [required] The destination volume in the SnapMirror relationship. 
-    :type destination_volume: SnapMirrorVolumeInfo
-
-    :param max_transfer_rate:  Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. 
-    :type max_transfer_rate: int
-
-    :param source_volume:  The source volume in the SnapMirror relationship. 
-    :type source_volume: SnapMirrorVolumeInfo
+class SetNodeSSLCertificateResult(data_model.DataObject):
+    """SetNodeSSLCertificateResult  
 
     """
-    snap_mirror_endpoint_id = data_model.property(
-        "snapMirrorEndpointID", int,
-        array=False, optional=False,
-        documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. """,
-        dictionaryType=None
-    )
-    destination_volume = data_model.property(
-        "destinationVolume", SnapMirrorVolumeInfo,
-        array=False, optional=False,
-        documentation="""The destination volume in the SnapMirror relationship. """,
-        dictionaryType=None
-    )
-    max_transfer_rate = data_model.property(
-        "maxTransferRate", int,
-        array=False, optional=True,
-        documentation="""Specifies the maximum data transfer rate between the volumes in kilobytes per second. The default value, 0, is unlimited and permits the SnapMirror relationship to fully utilize the available network bandwidth. """,
-        dictionaryType=None
-    )
-    source_volume = data_model.property(
-        "sourceVolume", SnapMirrorVolumeInfo,
-        array=False, optional=True,
-        documentation="""The source volume in the SnapMirror relationship. """,
-        dictionaryType=None
-    )
 
-    def __init__(self,
-            snap_mirror_endpoint_id,
-            destination_volume,
-            max_transfer_rate=None,
-            source_volume=None):
+    def __init__(self):
 
-        super(ResyncSnapMirrorRelationshipRequest, self).__init__(**{ 
-            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
-            "destination_volume": destination_volume,
-            "max_transfer_rate": max_transfer_rate,
-            "source_volume": source_volume, })
+        super(SetNodeSSLCertificateResult, self).__init__(**{  })
         
 
 class GetBackupTargetRequest(data_model.DataObject):
@@ -21881,9 +22313,6 @@ class ClusterInfo(data_model.DataObject):
     :param attributes: [required] List of Name/Value pairs in JSON object format. 
     :type attributes: dict
 
-    :param data_protection_scheme_protection_levels: [required] This denotes the level at which the availability zones are applied to for each Data Protection Scheme. In Sodium, it will consist of only "DoubleHelix", and will be either at the "node" level or at the "chassis" level as well. 
-    :type data_protection_scheme_protection_levels: str
-
     """
     mvip_interface = data_model.property(
         "mvipInterface", str,
@@ -21975,12 +22404,6 @@ class ClusterInfo(data_model.DataObject):
         documentation="""List of Name/Value pairs in JSON object format. """,
         dictionaryType=None
     )
-    data_protection_scheme_protection_levels = data_model.property(
-        "dataProtectionSchemeProtectionLevels", str,
-        array=False, optional=False,
-        documentation="""This denotes the level at which the availability zones are applied to for each Data Protection Scheme. In Sodium, it will consist of only "DoubleHelix", and will be either at the "node" level or at the "chassis" level as well. """,
-        dictionaryType=None
-    )
 
     def __init__(self,
             encryption_at_rest_state,
@@ -21994,7 +22417,6 @@ class ClusterInfo(data_model.DataObject):
             unique_id,
             uuid,
             attributes,
-            data_protection_scheme_protection_levels,
             mvip_interface=None,
             mvip_vlan_tag=None,
             svip_interface=None,
@@ -22015,8 +22437,7 @@ class ClusterInfo(data_model.DataObject):
             "svip_node_id": svip_node_id,
             "unique_id": unique_id,
             "uuid": uuid,
-            "attributes": attributes,
-            "data_protection_scheme_protection_levels": data_protection_scheme_protection_levels, })
+            "attributes": attributes, })
         
 
 class GetClusterInfoResult(data_model.DataObject):
@@ -23242,6 +23663,27 @@ class ListAccountsResult(data_model.DataObject):
 
         super(ListAccountsResult, self).__init__(**{ 
             "accounts": accounts, })
+        
+
+class DisableClusterSshResult(data_model.DataObject):
+    """DisableClusterSshResult  
+
+    :param cluster_ssh_info: [required] The SSH info for the cluster. 
+    :type cluster_ssh_info: ClusterSshInfo
+
+    """
+    cluster_ssh_info = data_model.property(
+        "clusterSshInfo", ClusterSshInfo,
+        array=False, optional=False,
+        documentation="""The SSH info for the cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            cluster_ssh_info):
+
+        super(DisableClusterSshResult, self).__init__(**{ 
+            "cluster_ssh_info": cluster_ssh_info, })
         
 
 class SetSnmpACLRequest(data_model.DataObject):
@@ -24688,37 +25130,26 @@ class SetRemoteLoggingHostsResult(data_model.DataObject):
         super(SetRemoteLoggingHostsResult, self).__init__(**{  })
         
 
-class ListSnapMirrorLunsRequest(data_model.DataObject):
-    """ListSnapMirrorLunsRequest  
-    The SolidFire Element OS web UI uses the ListSnapMirrorLuns method to list the LUN information for the SnapMirror relationship from the remote ONTAP cluster.
+class GetAccountByIDRequest(data_model.DataObject):
+    """GetAccountByIDRequest  
+    GetAccountByID enables you to return details about a specific account, given its accountID.
 
-    :param snap_mirror_endpoint_id: [required] List only the LUN information associated with the specified endpoint ID. 
-    :type snap_mirror_endpoint_id: int
-
-    :param destination_volume: [required] The destination volume in the SnapMirror relationship. 
-    :type destination_volume: SnapMirrorVolumeInfo
+    :param account_id: [required] Specifies the account for which details are gathered. 
+    :type account_id: int
 
     """
-    snap_mirror_endpoint_id = data_model.property(
-        "snapMirrorEndpointID", int,
+    account_id = data_model.property(
+        "accountID", int,
         array=False, optional=False,
-        documentation="""List only the LUN information associated with the specified endpoint ID. """,
-        dictionaryType=None
-    )
-    destination_volume = data_model.property(
-        "destinationVolume", SnapMirrorVolumeInfo,
-        array=False, optional=False,
-        documentation="""The destination volume in the SnapMirror relationship. """,
+        documentation="""Specifies the account for which details are gathered. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            snap_mirror_endpoint_id,
-            destination_volume):
+            account_id):
 
-        super(ListSnapMirrorLunsRequest, self).__init__(**{ 
-            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
-            "destination_volume": destination_volume, })
+        super(GetAccountByIDRequest, self).__init__(**{ 
+            "account_id": account_id, })
         
 
 class ListSnapMirrorRelationshipsResult(data_model.DataObject):
@@ -24993,27 +25424,48 @@ class ResetDrivesResult(data_model.DataObject):
             "result": result, })
         
 
-class TestConnectEnsembleRequest(data_model.DataObject):
-    """TestConnectEnsembleRequest  
-    The TestConnectEnsemble API method enables you to verify connectivity with a specified database ensemble. By default, it uses the ensemble for the cluster that the node is associated with. Alternatively, you can provide a different ensemble to test connectivity with.
-    Note: This method is available only through the per-node API endpoint 5.0 or later.
+class ListAccountsRequest(data_model.DataObject):
+    """ListAccountsRequest  
+    ListAccounts returns the entire list of accounts, with optional paging support.
 
-    :param ensemble:  Uses a comma-separated list of ensemble node cluster IP addresses to test connectivity. This parameter is optional. 
-    :type ensemble: str
+    :param start_account_id:  Starting AccountID to return. If no account exists with this AccountID, the next account by AccountID order is used as the start of the list. To page through the list, pass the AccountID of the last account in the previous response + 1. 
+    :type start_account_id: int
+
+    :param limit:  Maximum number of AccountInfo objects to return. 
+    :type limit: int
+
+    :param include_storage_containers:  Includes storage containers in the response by default. To exclude storage containers, set to false. 
+    :type include_storage_containers: bool
 
     """
-    ensemble = data_model.property(
-        "ensemble", str,
+    start_account_id = data_model.property(
+        "startAccountID", int,
         array=False, optional=True,
-        documentation="""Uses a comma-separated list of ensemble node cluster IP addresses to test connectivity. This parameter is optional. """,
+        documentation="""Starting AccountID to return. If no account exists with this AccountID, the next account by AccountID order is used as the start of the list. To page through the list, pass the AccountID of the last account in the previous response + 1. """,
+        dictionaryType=None
+    )
+    limit = data_model.property(
+        "limit", int,
+        array=False, optional=True,
+        documentation="""Maximum number of AccountInfo objects to return. """,
+        dictionaryType=None
+    )
+    include_storage_containers = data_model.property(
+        "includeStorageContainers", bool,
+        array=False, optional=True,
+        documentation="""Includes storage containers in the response by default. To exclude storage containers, set to false. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            ensemble=None):
+            start_account_id=None,
+            limit=None,
+            include_storage_containers=None):
 
-        super(TestConnectEnsembleRequest, self).__init__(**{ 
-            "ensemble": ensemble, })
+        super(ListAccountsRequest, self).__init__(**{ 
+            "start_account_id": start_account_id,
+            "limit": limit,
+            "include_storage_containers": include_storage_containers, })
         
 
 class GetOntapVersionInfoRequest(data_model.DataObject):
@@ -25036,27 +25488,6 @@ class GetOntapVersionInfoRequest(data_model.DataObject):
 
         super(GetOntapVersionInfoRequest, self).__init__(**{ 
             "snap_mirror_endpoint_id": snap_mirror_endpoint_id, })
-        
-
-class GetAccountResult(data_model.DataObject):
-    """GetAccountResult  
-
-    :param account: [required] Account details. 
-    :type account: Account
-
-    """
-    account = data_model.property(
-        "account", Account,
-        array=False, optional=False,
-        documentation="""Account details. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            account):
-
-        super(GetAccountResult, self).__init__(**{ 
-            "account": account, })
         
 
 class ModifyClusterFullThresholdRequest(data_model.DataObject):
