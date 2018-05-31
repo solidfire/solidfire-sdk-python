@@ -359,6 +359,115 @@ class GetSSLCertificateResult(data_model.DataObject):
             "details": details, })
         
 
+class SnapMirrorEndpoint(data_model.DataObject):
+    """SnapMirrorEndpoint  
+    The snapMirrorEndpoint object contains information about the remote SnapMirror storage systems communicating with the SolidFire cluster. You can retrieve this information with the ListSnapMirrorEndpoints API method.
+
+    :param snap_mirror_endpoint_id: [required] The unique identifier for the object in the local cluster. 
+    :type snap_mirror_endpoint_id: int
+
+    :param management_ip: [required] The cluster management IP address of the endpoint. 
+    :type management_ip: str
+
+    :param cluster_name: [required] The ONTAP cluster name. This value is automatically populated with the value of "clusterName" from the snapMirrorClusterIdentity object. 
+    :type cluster_name: str
+
+    :param username: [required] The management username for the ONTAP system. 
+    :type username: str
+
+    :param password: [required] The management password for the ONTAP system. 
+    :type password: str
+
+    :param ip_addresses: [required] List of the inter-cluster storage IP addresses for all nodes in the cluster. You can get these IP addresses with the ListSnapMirrorNetworkInterfaces method. 
+    :type ip_addresses: str
+
+    :param is_connected: [required] The connectivity status of the control link to the ONTAP cluster. 
+    :type is_connected: bool
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The unique identifier for the object in the local cluster. """,
+        dictionaryType=None
+    )
+    management_ip = data_model.property(
+        "managementIP", str,
+        array=False, optional=False,
+        documentation="""The cluster management IP address of the endpoint. """,
+        dictionaryType=None
+    )
+    cluster_name = data_model.property(
+        "clusterName", str,
+        array=False, optional=False,
+        documentation="""The ONTAP cluster name. This value is automatically populated with the value of "clusterName" from the snapMirrorClusterIdentity object. """,
+        dictionaryType=None
+    )
+    username = data_model.property(
+        "username", str,
+        array=False, optional=False,
+        documentation="""The management username for the ONTAP system. """,
+        dictionaryType=None
+    )
+    password = data_model.property(
+        "password", str,
+        array=False, optional=False,
+        documentation="""The management password for the ONTAP system. """,
+        dictionaryType=None
+    )
+    ip_addresses = data_model.property(
+        "ipAddresses", str,
+        array=True, optional=False,
+        documentation="""List of the inter-cluster storage IP addresses for all nodes in the cluster. You can get these IP addresses with the ListSnapMirrorNetworkInterfaces method. """,
+        dictionaryType=None
+    )
+    is_connected = data_model.property(
+        "isConnected", bool,
+        array=False, optional=False,
+        documentation="""The connectivity status of the control link to the ONTAP cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            management_ip,
+            cluster_name,
+            username,
+            password,
+            ip_addresses,
+            is_connected):
+
+        super(SnapMirrorEndpoint, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "management_ip": management_ip,
+            "cluster_name": cluster_name,
+            "username": username,
+            "password": password,
+            "ip_addresses": ip_addresses,
+            "is_connected": is_connected, })
+        
+
+class CreateSnapMirrorEndpointUnmanagedResult(data_model.DataObject):
+    """CreateSnapMirrorEndpointUnmanagedResult  
+
+    :param snap_mirror_endpoint: [required] The newly created SnapMirror endpoint. 
+    :type snap_mirror_endpoint: SnapMirrorEndpoint
+
+    """
+    snap_mirror_endpoint = data_model.property(
+        "snapMirrorEndpoint", SnapMirrorEndpoint,
+        array=False, optional=False,
+        documentation="""The newly created SnapMirror endpoint. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint):
+
+        super(CreateSnapMirrorEndpointUnmanagedResult, self).__init__(**{ 
+            "snap_mirror_endpoint": snap_mirror_endpoint, })
+        
+
 class ClusterConfig(data_model.DataObject):
     """ClusterConfig  
     Cluster Config object returns information the node uses to communicate with the cluster.
@@ -6496,6 +6605,40 @@ class ListNetworkInterfacesResult(data_model.DataObject):
             "interfaces": interfaces, })
         
 
+class CreateSnapMirrorEndpointUnmanagedRequest(data_model.DataObject):
+    """CreateSnapMirrorEndpointUnmanagedRequest  
+    The SolidFire system uses the CreateSnapMirrorEndpointUnmanaged method to enable remote, unmanaged SnapMirror endpoints to communicate with a SolidFire cluster.
+    Unmanaged endpoints cannot be administered using the SolidFire SnapMirror APIs. They must be managed with ONTAP management software or APIs.
+
+    :param cluster_name: [required] The name of the endpoint. 
+    :type cluster_name: str
+
+    :param ip_addresses: [required] The list of IP addresses for a cluster of ONTAP storage systems that should communicate with this SolidFire cluster. 
+    :type ip_addresses: str
+
+    """
+    cluster_name = data_model.property(
+        "clusterName", str,
+        array=False, optional=False,
+        documentation="""The name of the endpoint. """,
+        dictionaryType=None
+    )
+    ip_addresses = data_model.property(
+        "ipAddresses", str,
+        array=True, optional=False,
+        documentation="""The list of IP addresses for a cluster of ONTAP storage systems that should communicate with this SolidFire cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            cluster_name,
+            ip_addresses):
+
+        super(CreateSnapMirrorEndpointUnmanagedRequest, self).__init__(**{ 
+            "cluster_name": cluster_name,
+            "ip_addresses": ip_addresses, })
+        
+
 class SnapMirrorVolume(data_model.DataObject):
     """SnapMirrorVolume  
     The snapMirrorVolume object contains information about an ONTAP volume.
@@ -8487,94 +8630,6 @@ class RemoveVirtualNetworkRequest(data_model.DataObject):
         super(RemoveVirtualNetworkRequest, self).__init__(**{ 
             "virtual_network_id": virtual_network_id,
             "virtual_network_tag": virtual_network_tag, })
-        
-
-class SnapMirrorEndpoint(data_model.DataObject):
-    """SnapMirrorEndpoint  
-    The snapMirrorEndpoint object contains information about the remote SnapMirror storage systems communicating with the SolidFire cluster. You can retrieve this information with the ListSnapMirrorEndpoints API method.
-
-    :param snap_mirror_endpoint_id: [required] The unique identifier for the object in the local cluster. 
-    :type snap_mirror_endpoint_id: int
-
-    :param management_ip: [required] The cluster management IP address of the endpoint. 
-    :type management_ip: str
-
-    :param cluster_name: [required] The ONTAP cluster name. This value is automatically populated with the value of "clusterName" from the snapMirrorClusterIdentity object. 
-    :type cluster_name: str
-
-    :param username: [required] The management username for the ONTAP system. 
-    :type username: str
-
-    :param password: [required] The management password for the ONTAP system. 
-    :type password: str
-
-    :param ip_addresses: [required] List of the inter-cluster storage IP addresses for all nodes in the cluster. You can get these IP addresses with the ListSnapMirrorNetworkInterfaces method. 
-    :type ip_addresses: str
-
-    :param is_connected: [required] The connectivity status of the control link to the ONTAP cluster. 
-    :type is_connected: bool
-
-    """
-    snap_mirror_endpoint_id = data_model.property(
-        "snapMirrorEndpointID", int,
-        array=False, optional=False,
-        documentation="""The unique identifier for the object in the local cluster. """,
-        dictionaryType=None
-    )
-    management_ip = data_model.property(
-        "managementIP", str,
-        array=False, optional=False,
-        documentation="""The cluster management IP address of the endpoint. """,
-        dictionaryType=None
-    )
-    cluster_name = data_model.property(
-        "clusterName", str,
-        array=False, optional=False,
-        documentation="""The ONTAP cluster name. This value is automatically populated with the value of "clusterName" from the snapMirrorClusterIdentity object. """,
-        dictionaryType=None
-    )
-    username = data_model.property(
-        "username", str,
-        array=False, optional=False,
-        documentation="""The management username for the ONTAP system. """,
-        dictionaryType=None
-    )
-    password = data_model.property(
-        "password", str,
-        array=False, optional=False,
-        documentation="""The management password for the ONTAP system. """,
-        dictionaryType=None
-    )
-    ip_addresses = data_model.property(
-        "ipAddresses", str,
-        array=True, optional=False,
-        documentation="""List of the inter-cluster storage IP addresses for all nodes in the cluster. You can get these IP addresses with the ListSnapMirrorNetworkInterfaces method. """,
-        dictionaryType=None
-    )
-    is_connected = data_model.property(
-        "isConnected", bool,
-        array=False, optional=False,
-        documentation="""The connectivity status of the control link to the ONTAP cluster. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            snap_mirror_endpoint_id,
-            management_ip,
-            cluster_name,
-            username,
-            password,
-            ip_addresses,
-            is_connected):
-
-        super(SnapMirrorEndpoint, self).__init__(**{ 
-            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
-            "management_ip": management_ip,
-            "cluster_name": cluster_name,
-            "username": username,
-            "password": password,
-            "ip_addresses": ip_addresses,
-            "is_connected": is_connected, })
         
 
 class CreateSnapMirrorEndpointResult(data_model.DataObject):
@@ -11407,24 +11462,21 @@ class NodeSshInfo(data_model.DataObject):
             "enabled": enabled, })
         
 
-class ClusterSshInfo(data_model.DataObject):
-    """ClusterSshInfo  
+class GetClusterSshInfoResult(data_model.DataObject):
+    """GetClusterSshInfoResult  
 
     :param enabled: [required] Status of SSH on the cluster. 
-    :type enabled: str
+    :type enabled: bool
 
     :param time_remaining: [required] Time remaining until SSH is disable on the cluster. 
     :type time_remaining: str
-
-    :param disable_time:  The "disableTime" entry will not be included if SSH is disabled or if SSH has been turned on permanently. 
-    :type disable_time: str
 
     :param nodes: [required] Time remaining until SSH is disable on the cluster. 
     :type nodes: NodeSshInfo
 
     """
     enabled = data_model.property(
-        "enabled", str,
+        "enabled", bool,
         array=False, optional=False,
         documentation="""Status of SSH on the cluster. """,
         dictionaryType=None
@@ -11433,12 +11485,6 @@ class ClusterSshInfo(data_model.DataObject):
         "timeRemaining", str,
         array=False, optional=False,
         documentation="""Time remaining until SSH is disable on the cluster. """,
-        dictionaryType=None
-    )
-    disable_time = data_model.property(
-        "disableTime", str,
-        array=False, optional=True,
-        documentation="""The "disableTime" entry will not be included if SSH is disabled or if SSH has been turned on permanently. """,
         dictionaryType=None
     )
     nodes = data_model.property(
@@ -11451,35 +11497,12 @@ class ClusterSshInfo(data_model.DataObject):
     def __init__(self,
             enabled,
             time_remaining,
-            nodes,
-            disable_time=None):
-
-        super(ClusterSshInfo, self).__init__(**{ 
-            "enabled": enabled,
-            "time_remaining": time_remaining,
-            "disable_time": disable_time,
-            "nodes": nodes, })
-        
-
-class GetClusterSshInfoResult(data_model.DataObject):
-    """GetClusterSshInfoResult  
-
-    :param cluster_ssh_info: [required] The SSH info for the cluster. 
-    :type cluster_ssh_info: ClusterSshInfo
-
-    """
-    cluster_ssh_info = data_model.property(
-        "clusterSshInfo", ClusterSshInfo,
-        array=False, optional=False,
-        documentation="""The SSH info for the cluster. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            cluster_ssh_info):
+            nodes):
 
         super(GetClusterSshInfoResult, self).__init__(**{ 
-            "cluster_ssh_info": cluster_ssh_info, })
+            "enabled": enabled,
+            "time_remaining": time_remaining,
+            "nodes": nodes, })
         
 
 class NodeStatsInfo(data_model.DataObject):
@@ -13681,14 +13704,14 @@ class ModifyAccountResult(data_model.DataObject):
 class EnableSshResult(data_model.DataObject):
     """EnableSshResult  
 
-    :param enabled: [required] Node SSH status. 
+    :param enabled: [required] The status of the SSH service for this node. 
     :type enabled: bool
 
     """
     enabled = data_model.property(
         "enabled", bool,
         array=False, optional=False,
-        documentation="""Node SSH status. """,
+        documentation="""The status of the SSH service for this node. """,
         dictionaryType=None
     )
 
@@ -15979,14 +16002,14 @@ class DeleteGroupSnapshotResult(data_model.DataObject):
 class DisableSshResult(data_model.DataObject):
     """DisableSshResult  
 
-    :param enabled: [required] Node SSH status. 
+    :param enabled: [required] The status of the SSH service for this node. 
     :type enabled: bool
 
     """
     enabled = data_model.property(
         "enabled", bool,
         array=False, optional=False,
-        documentation="""Node SSH status. """,
+        documentation="""The status of the SSH service for this node. """,
         dictionaryType=None
     )
 
@@ -17065,6 +17088,27 @@ class ModifyVirtualNetworkRequest(data_model.DataObject):
             "attributes": attributes, })
         
 
+class ModifySnapMirrorEndpointUnmanagedResult(data_model.DataObject):
+    """ModifySnapMirrorEndpointUnmanagedResult  
+
+    :param snap_mirror_endpoint: [required] Information about the modified SnapMirror endpoint. 
+    :type snap_mirror_endpoint: SnapMirrorEndpoint
+
+    """
+    snap_mirror_endpoint = data_model.property(
+        "snapMirrorEndpoint", SnapMirrorEndpoint,
+        array=False, optional=False,
+        documentation="""Information about the modified SnapMirror endpoint. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint):
+
+        super(ModifySnapMirrorEndpointUnmanagedResult, self).__init__(**{ 
+            "snap_mirror_endpoint": snap_mirror_endpoint, })
+        
+
 class VirtualVolumeStats(data_model.DataObject):
     """VirtualVolumeStats  
     Contains statistical data for an individual volume.
@@ -17680,22 +17724,44 @@ class ListDrivesResult(data_model.DataObject):
 class EnableClusterSshResult(data_model.DataObject):
     """EnableClusterSshResult  
 
-    :param cluster_ssh_info: [required] The SSH info for the cluster. 
-    :type cluster_ssh_info: ClusterSshInfo
+    :param enabled: [required] Status of SSH on the cluster. 
+    :type enabled: bool
+
+    :param time_remaining: [required] Time remaining until SSH is disable on the cluster. 
+    :type time_remaining: str
+
+    :param nodes: [required] Time remaining until SSH is disable on the cluster. 
+    :type nodes: NodeSshInfo
 
     """
-    cluster_ssh_info = data_model.property(
-        "clusterSshInfo", ClusterSshInfo,
+    enabled = data_model.property(
+        "enabled", bool,
         array=False, optional=False,
-        documentation="""The SSH info for the cluster. """,
+        documentation="""Status of SSH on the cluster. """,
+        dictionaryType=None
+    )
+    time_remaining = data_model.property(
+        "timeRemaining", str,
+        array=False, optional=False,
+        documentation="""Time remaining until SSH is disable on the cluster. """,
+        dictionaryType=None
+    )
+    nodes = data_model.property(
+        "nodes", NodeSshInfo,
+        array=True, optional=False,
+        documentation="""Time remaining until SSH is disable on the cluster. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            cluster_ssh_info):
+            enabled,
+            time_remaining,
+            nodes):
 
         super(EnableClusterSshResult, self).__init__(**{ 
-            "cluster_ssh_info": cluster_ssh_info, })
+            "enabled": enabled,
+            "time_remaining": time_remaining,
+            "nodes": nodes, })
         
 
 class VirtualVolumeBinding(data_model.DataObject):
@@ -23665,22 +23731,44 @@ class ListAccountsResult(data_model.DataObject):
 class DisableClusterSshResult(data_model.DataObject):
     """DisableClusterSshResult  
 
-    :param cluster_ssh_info: [required] The SSH info for the cluster. 
-    :type cluster_ssh_info: ClusterSshInfo
+    :param enabled: [required] Status of SSH on the cluster. 
+    :type enabled: bool
+
+    :param time_remaining: [required] Time remaining until SSH is disable on the cluster. 
+    :type time_remaining: str
+
+    :param nodes: [required] Time remaining until SSH is disable on the cluster. 
+    :type nodes: NodeSshInfo
 
     """
-    cluster_ssh_info = data_model.property(
-        "clusterSshInfo", ClusterSshInfo,
+    enabled = data_model.property(
+        "enabled", bool,
         array=False, optional=False,
-        documentation="""The SSH info for the cluster. """,
+        documentation="""Status of SSH on the cluster. """,
+        dictionaryType=None
+    )
+    time_remaining = data_model.property(
+        "timeRemaining", str,
+        array=False, optional=False,
+        documentation="""Time remaining until SSH is disable on the cluster. """,
+        dictionaryType=None
+    )
+    nodes = data_model.property(
+        "nodes", NodeSshInfo,
+        array=True, optional=False,
+        documentation="""Time remaining until SSH is disable on the cluster. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            cluster_ssh_info):
+            enabled,
+            time_remaining,
+            nodes):
 
         super(DisableClusterSshResult, self).__init__(**{ 
-            "cluster_ssh_info": cluster_ssh_info, })
+            "enabled": enabled,
+            "time_remaining": time_remaining,
+            "nodes": nodes, })
         
 
 class SetSnmpACLRequest(data_model.DataObject):
@@ -25485,6 +25573,50 @@ class GetOntapVersionInfoRequest(data_model.DataObject):
 
         super(GetOntapVersionInfoRequest, self).__init__(**{ 
             "snap_mirror_endpoint_id": snap_mirror_endpoint_id, })
+        
+
+class ModifySnapMirrorEndpointUnmanagedRequest(data_model.DataObject):
+    """ModifySnapMirrorEndpointUnmanagedRequest  
+    The SolidFire Element OS web UI uses the ModifySnapMirrorEndpoint method to change the name and management attributes for a SnapMirror endpoint.
+
+    :param snap_mirror_endpoint_id: [required] The SnapMirror endpoint to modify. 
+    :type snap_mirror_endpoint_id: int
+
+    :param cluster_name:  The new name of the endpoint. 
+    :type cluster_name: str
+
+    :param ip_addresses:  The new list of IP addresses for a cluster of ONTAP storage systems that should communicate with this SolidFire cluster. 
+    :type ip_addresses: str
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The SnapMirror endpoint to modify. """,
+        dictionaryType=None
+    )
+    cluster_name = data_model.property(
+        "clusterName", str,
+        array=False, optional=True,
+        documentation="""The new name of the endpoint. """,
+        dictionaryType=None
+    )
+    ip_addresses = data_model.property(
+        "ipAddresses", str,
+        array=True, optional=True,
+        documentation="""The new list of IP addresses for a cluster of ONTAP storage systems that should communicate with this SolidFire cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            cluster_name=None,
+            ip_addresses=None):
+
+        super(ModifySnapMirrorEndpointUnmanagedRequest, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "cluster_name": cluster_name,
+            "ip_addresses": ip_addresses, })
         
 
 class ModifyClusterFullThresholdRequest(data_model.DataObject):

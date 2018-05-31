@@ -3576,6 +3576,35 @@ class Element(ServiceBase):
             since=10.1
         )
 
+    def create_snap_mirror_endpoint_unmanaged(
+            self,
+            cluster_name,
+            ip_addresses,):
+        """
+        The SolidFire system uses the CreateSnapMirrorEndpointUnmanaged method to enable remote, unmanaged SnapMirror endpoints to communicate with a SolidFire cluster.
+        Unmanaged endpoints cannot be administered using the SolidFire SnapMirror APIs. They must be managed with ONTAP management software or APIs.
+        :param clusterName: [required] The name of the endpoint. 
+        :type clusterName: str
+
+        :param ipAddresses: [required] The list of IP addresses for a cluster of ONTAP storage systems that should communicate with this SolidFire cluster. 
+        :type ipAddresses: str
+        """
+
+        self._check_connection_type("create_snap_mirror_endpoint_unmanaged", "Cluster")
+
+        params = { 
+            "clusterName": cluster_name,
+            "ipAddresses": ip_addresses,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateSnapMirrorEndpointUnmanaged',
+            CreateSnapMirrorEndpointUnmanagedResult,
+            params,
+            since=10.3
+        )
+
     def create_snap_mirror_relationship(
             self,
             snap_mirror_endpoint_id,
@@ -4278,6 +4307,49 @@ class Element(ServiceBase):
             ModifySnapMirrorEndpointResult,
             params,
             since=10.1
+        )
+
+    def modify_snap_mirror_endpoint_unmanaged(
+            self,
+            snap_mirror_endpoint_id,
+            cluster_name=OPTIONAL,
+            ip_addresses=OPTIONAL,):
+        """
+        The SolidFire Element OS web UI uses the ModifySnapMirrorEndpoint method to change the name and management attributes for a SnapMirror endpoint.
+        :param snapMirrorEndpointID: [required] The SnapMirror endpoint to modify. 
+        :type snapMirrorEndpointID: int
+
+        :param clusterName:  The new name of the endpoint. 
+        :type clusterName: str
+
+        :param ipAddresses:  The new list of IP addresses for a cluster of ONTAP storage systems that should communicate with this SolidFire cluster. 
+        :type ipAddresses: str
+        """
+
+        self._check_connection_type("modify_snap_mirror_endpoint_unmanaged", "Cluster")
+
+        params = { 
+            "snapMirrorEndpointID": snap_mirror_endpoint_id,
+        }
+        if cluster_name is not None:
+            if self.api_version < 10.3:
+                raise ApiParameterVersionError("modify_snap_mirror_endpoint_unmanaged", 10.3,
+                    [("cluster_name", cluster_name, 10.3, False)])
+            else:
+                params["clusterName"] = cluster_name
+        if ip_addresses is not None:
+            if self.api_version < 10.3:
+                raise ApiParameterVersionError("modify_snap_mirror_endpoint_unmanaged", 10.3,
+                    [("ip_addresses", ip_addresses, 10.3, False)])
+            else:
+                params["ipAddresses"] = ip_addresses
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifySnapMirrorEndpointUnmanaged',
+            ModifySnapMirrorEndpointUnmanagedResult,
+            params,
+            since=10.3
         )
 
     def modify_snap_mirror_relationship(
