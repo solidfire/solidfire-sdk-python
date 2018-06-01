@@ -15085,6 +15085,135 @@ class RollbackToSnapshotResult(data_model.DataObject):
             "checksum": checksum, })
         
 
+class ProtectionDomainResiliency(data_model.DataObject):
+    """ProtectionDomainResiliency  
+
+    :param single_failure_threshold_bytes_for_block_data: [required] The maximum number of bytes that can be stored on the cluster before losing the ability to automatically heal to the state of being able to maintain data availability through the loss of a single node. 
+    :type single_failure_threshold_bytes_for_block_data: int
+
+    :param sustainable_failures_for_block_data: [required] The predicted number of failures which may occur simultaneously without losing the ability to automatically heal to the state of being able to maintain data availability through the loss of a single node. 
+    :type sustainable_failures_for_block_data: int
+
+    :param sustainable_failures_for_ensemble: [required] The predicted number of failures which may occur simultaneously without losing the ability to automatically heal to the state of being able to maintain the ensemble quorum through the loss of a single node. 
+    :type sustainable_failures_for_ensemble: int
+
+    :param sustainabel_failures_for_metadata: [required] The predicted number of failures which may occur simultaneously without losing the ability to automatically heal to the state of being able to maintain metadata availability through the loss of a single node. 
+    :type sustainabel_failures_for_metadata: int
+
+    """
+    single_failure_threshold_bytes_for_block_data = data_model.property(
+        "singleFailureThresholdBytesForBlockData", int,
+        array=False, optional=False,
+        documentation="""The maximum number of bytes that can be stored on the cluster before losing the ability to automatically heal to the state of being able to maintain data availability through the loss of a single node. """,
+        dictionaryType=None
+    )
+    sustainable_failures_for_block_data = data_model.property(
+        "sustainableFailuresForBlockData", int,
+        array=False, optional=False,
+        documentation="""The predicted number of failures which may occur simultaneously without losing the ability to automatically heal to the state of being able to maintain data availability through the loss of a single node. """,
+        dictionaryType=None
+    )
+    sustainable_failures_for_ensemble = data_model.property(
+        "sustainableFailuresForEnsemble", int,
+        array=False, optional=False,
+        documentation="""The predicted number of failures which may occur simultaneously without losing the ability to automatically heal to the state of being able to maintain the ensemble quorum through the loss of a single node. """,
+        dictionaryType=None
+    )
+    sustainabel_failures_for_metadata = data_model.property(
+        "sustainabelFailuresForMetadata", int,
+        array=False, optional=False,
+        documentation="""The predicted number of failures which may occur simultaneously without losing the ability to automatically heal to the state of being able to maintain metadata availability through the loss of a single node. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            single_failure_threshold_bytes_for_block_data,
+            sustainable_failures_for_block_data,
+            sustainable_failures_for_ensemble,
+            sustainabel_failures_for_metadata):
+
+        super(ProtectionDomainResiliency, self).__init__(**{ 
+            "single_failure_threshold_bytes_for_block_data": single_failure_threshold_bytes_for_block_data,
+            "sustainable_failures_for_block_data": sustainable_failures_for_block_data,
+            "sustainable_failures_for_ensemble": sustainable_failures_for_ensemble,
+            "sustainabel_failures_for_metadata": sustainabel_failures_for_metadata, })
+        
+
+class ProtectionSchemeTolerance(data_model.DataObject):
+    """ProtectionSchemeTolerance  
+
+    :param protection_scheme: [required] The Protection Scheme. 
+    :type protection_scheme: str
+
+    :param sustainable_failures_for_block_data: [required] The number of simultaneous failures which can occur without losing block data availability for the Protection Scheme. 
+    :type sustainable_failures_for_block_data: int
+
+    :param sustainabel_failures_for_metadata: [required] The number of simultaneous failures which can occur without losing metadata availability for the Protection Scheme. 
+    :type sustainabel_failures_for_metadata: int
+
+    """
+    protection_scheme = data_model.property(
+        "protectionScheme", str,
+        array=False, optional=False,
+        documentation="""The Protection Scheme. """,
+        dictionaryType=None
+    )
+    sustainable_failures_for_block_data = data_model.property(
+        "sustainableFailuresForBlockData", int,
+        array=False, optional=False,
+        documentation="""The number of simultaneous failures which can occur without losing block data availability for the Protection Scheme. """,
+        dictionaryType=None
+    )
+    sustainabel_failures_for_metadata = data_model.property(
+        "sustainabelFailuresForMetadata", int,
+        array=False, optional=False,
+        documentation="""The number of simultaneous failures which can occur without losing metadata availability for the Protection Scheme. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            protection_scheme,
+            sustainable_failures_for_block_data,
+            sustainabel_failures_for_metadata):
+
+        super(ProtectionSchemeTolerance, self).__init__(**{ 
+            "protection_scheme": protection_scheme,
+            "sustainable_failures_for_block_data": sustainable_failures_for_block_data,
+            "sustainabel_failures_for_metadata": sustainabel_failures_for_metadata, })
+        
+
+class ProtectionDomainTolerance(data_model.DataObject):
+    """ProtectionDomainTolerance  
+
+    :param protection_scheme_tolerances: [required] List of objects detailing failure tolerance information for this Protection Domain Type, one for each Protection Scheme. 
+    :type protection_scheme_tolerances: ProtectionSchemeTolerance
+
+    :param sustainable_failures_for_ensemble: [required] The number of simultaneous failures of this Protection Domain type which can occur without losing ensemble quorum. 
+    :type sustainable_failures_for_ensemble: int
+
+    """
+    protection_scheme_tolerances = data_model.property(
+        "protectionSchemeTolerances", ProtectionSchemeTolerance,
+        array=True, optional=False,
+        documentation="""List of objects detailing failure tolerance information for this Protection Domain Type, one for each Protection Scheme. """,
+        dictionaryType=None
+    )
+    sustainable_failures_for_ensemble = data_model.property(
+        "sustainableFailuresForEnsemble", int,
+        array=False, optional=False,
+        documentation="""The number of simultaneous failures of this Protection Domain type which can occur without losing ensemble quorum. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            protection_scheme_tolerances,
+            sustainable_failures_for_ensemble):
+
+        super(ProtectionDomainTolerance, self).__init__(**{ 
+            "protection_scheme_tolerances": protection_scheme_tolerances,
+            "sustainable_failures_for_ensemble": sustainable_failures_for_ensemble, })
+        
+
 class ProtectionDomainLevel(data_model.DataObject):
     """ProtectionDomainLevel  
 
@@ -15092,10 +15221,10 @@ class ProtectionDomainLevel(data_model.DataObject):
     :type protection_domain_type: str
 
     :param resiliency: [required] The current Resiliency of this chassis from the perspective of this Protection Domain Type. 
-    :type resiliency: Resiliency
+    :type resiliency: ProtectionDomainResiliency
 
     :param tolerance: [required] The current Tolerance of this chassis from the perspective of this Protection Domain Type. 
-    :type tolerance: Tolerance
+    :type tolerance: ProtectionDomainTolerance
 
     """
     protection_domain_type = data_model.property(
@@ -15105,13 +15234,13 @@ class ProtectionDomainLevel(data_model.DataObject):
         dictionaryType=None
     )
     resiliency = data_model.property(
-        "resiliency", Resiliency,
+        "resiliency", ProtectionDomainResiliency,
         array=False, optional=False,
         documentation="""The current Resiliency of this chassis from the perspective of this Protection Domain Type. """,
         dictionaryType=None
     )
     tolerance = data_model.property(
-        "tolerance", Tolerance,
+        "tolerance", ProtectionDomainTolerance,
         array=False, optional=False,
         documentation="""The current Tolerance of this chassis from the perspective of this Protection Domain Type. """,
         dictionaryType=None
