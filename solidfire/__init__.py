@@ -2962,20 +2962,20 @@ class Element(ServiceBase):
             since=6.0
         )
 
-    def get_protection_domain_status(
+    def list_protection_domain_levels(
             self,):
         """
-        Gets the status of the protection domain for the cluster.        """
+        ListProtectionDomainLevels returns the Tolerance and Resiliencty of the cluster from the perspective of each of the supported ProtectionDomainTypes.        """
 
-        self._check_connection_type("get_protection_domain_status", "Cluster")
+        self._check_connection_type("list_protection_domain_levels", "Cluster")
 
         params = { 
         }
         
         # There is no adaptor.
         return self.send_request(
-            'GetProtectionDomainStatus',
-            GetProtectionDomainStatusResult,
+            'ListProtectionDomainLevels',
+            ListProtectionDomainLevelsResult,
             params,
             since=11.0
         )

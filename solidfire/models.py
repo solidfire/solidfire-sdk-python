@@ -15085,6 +15085,70 @@ class RollbackToSnapshotResult(data_model.DataObject):
             "checksum": checksum, })
         
 
+class ProtectionDomainLevel(data_model.DataObject):
+    """ProtectionDomainLevel  
+
+    :param protection_domain_type: [required] The type of the Protection Domain which has the associated Tolerance and Resiliency. 
+    :type protection_domain_type: str
+
+    :param resiliency: [required] The current Resiliency of this chassis from the perspective of this Protection Domain Type. 
+    :type resiliency: Resiliency
+
+    :param tolerance: [required] The current Tolerance of this chassis from the perspective of this Protection Domain Type. 
+    :type tolerance: Tolerance
+
+    """
+    protection_domain_type = data_model.property(
+        "protectionDomainType", str,
+        array=False, optional=False,
+        documentation="""The type of the Protection Domain which has the associated Tolerance and Resiliency. """,
+        dictionaryType=None
+    )
+    resiliency = data_model.property(
+        "resiliency", Resiliency,
+        array=False, optional=False,
+        documentation="""The current Resiliency of this chassis from the perspective of this Protection Domain Type. """,
+        dictionaryType=None
+    )
+    tolerance = data_model.property(
+        "tolerance", Tolerance,
+        array=False, optional=False,
+        documentation="""The current Tolerance of this chassis from the perspective of this Protection Domain Type. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            protection_domain_type,
+            resiliency,
+            tolerance):
+
+        super(ProtectionDomainLevel, self).__init__(**{ 
+            "protection_domain_type": protection_domain_type,
+            "resiliency": resiliency,
+            "tolerance": tolerance, })
+        
+
+class ListProtectionDomainLevelsResult(data_model.DataObject):
+    """ListProtectionDomainLevelsResult  
+
+    :param protection_domain_levels: [required] A list of the different Protection Domain Levels, where each supplies the cluster's Tolerance and Resiliency information from its own perspective. 
+    :type protection_domain_levels: ProtectionDomainLevel
+
+    """
+    protection_domain_levels = data_model.property(
+        "protectionDomainLevels", ProtectionDomainLevel,
+        array=True, optional=False,
+        documentation="""A list of the different Protection Domain Levels, where each supplies the cluster's Tolerance and Resiliency information from its own perspective. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            protection_domain_levels):
+
+        super(ListProtectionDomainLevelsResult, self).__init__(**{ 
+            "protection_domain_levels": protection_domain_levels, })
+        
+
 class GetSystemStatusResult(data_model.DataObject):
     """GetSystemStatusResult  
 
@@ -15749,199 +15813,6 @@ class RemoveVolumePairResult(data_model.DataObject):
     def __init__(self):
 
         super(RemoveVolumePairResult, self).__init__(**{  })
-        
-
-class ProtectionSchemeTolerance(data_model.DataObject):
-    """ProtectionSchemeTolerance  
-
-    :param protection_scheme: [required] The scheme used for data protection. 
-    :type protection_scheme: str
-
-    :param sustainable_failures_for_block_data: [required] The number of sustainable failures in block data. 
-    :type sustainable_failures_for_block_data: int
-
-    :param sustainabel_failures_for_metadata: [required] The number of sustainable failures in meta data. 
-    :type sustainabel_failures_for_metadata: int
-
-    """
-    protection_scheme = data_model.property(
-        "protectionScheme", str,
-        array=False, optional=False,
-        documentation="""The scheme used for data protection. """,
-        dictionaryType=None
-    )
-    sustainable_failures_for_block_data = data_model.property(
-        "sustainableFailuresForBlockData", int,
-        array=False, optional=False,
-        documentation="""The number of sustainable failures in block data. """,
-        dictionaryType=None
-    )
-    sustainabel_failures_for_metadata = data_model.property(
-        "sustainabelFailuresForMetadata", int,
-        array=False, optional=False,
-        documentation="""The number of sustainable failures in meta data. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            protection_scheme,
-            sustainable_failures_for_block_data,
-            sustainabel_failures_for_metadata):
-
-        super(ProtectionSchemeTolerance, self).__init__(**{ 
-            "protection_scheme": protection_scheme,
-            "sustainable_failures_for_block_data": sustainable_failures_for_block_data,
-            "sustainabel_failures_for_metadata": sustainabel_failures_for_metadata, })
-        
-
-class Tolerance(data_model.DataObject):
-    """Tolerance  
-
-    :param sustainable_failures_for_ensemble: [required] The number of failures the ensemble can sustain. 
-    :type sustainable_failures_for_ensemble: int
-
-    :param protection_scheme_tolerances: [required] Protection Scheme Tolerance information. 
-    :type protection_scheme_tolerances: ProtectionSchemeTolerance
-
-    """
-    sustainable_failures_for_ensemble = data_model.property(
-        "sustainableFailuresForEnsemble", int,
-        array=False, optional=False,
-        documentation="""The number of failures the ensemble can sustain. """,
-        dictionaryType=None
-    )
-    protection_scheme_tolerances = data_model.property(
-        "protectionSchemeTolerances", ProtectionSchemeTolerance,
-        array=True, optional=False,
-        documentation="""Protection Scheme Tolerance information. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            sustainable_failures_for_ensemble,
-            protection_scheme_tolerances):
-
-        super(Tolerance, self).__init__(**{ 
-            "sustainable_failures_for_ensemble": sustainable_failures_for_ensemble,
-            "protection_scheme_tolerances": protection_scheme_tolerances, })
-        
-
-class Resiliency(data_model.DataObject):
-    """Resiliency  
-
-    :param sustainable_failures_for_ensemble: [required] The number of sustainable failures for the Ensemble. 
-    :type sustainable_failures_for_ensemble: int
-
-    :param sustainable_failures_for_block_data: [required] The number of sustainable failures in block data. 
-    :type sustainable_failures_for_block_data: int
-
-    :param sustainabel_failures_for_metadata: [required] The number of sustainable failures in meta data. 
-    :type sustainabel_failures_for_metadata: int
-
-    :param single_failure_threshold_bytes_for_block_data: [required] The single failure threshold for block data in bytes. 
-    :type single_failure_threshold_bytes_for_block_data: int
-
-    """
-    sustainable_failures_for_ensemble = data_model.property(
-        "sustainableFailuresForEnsemble", int,
-        array=False, optional=False,
-        documentation="""The number of sustainable failures for the Ensemble. """,
-        dictionaryType=None
-    )
-    sustainable_failures_for_block_data = data_model.property(
-        "sustainableFailuresForBlockData", int,
-        array=False, optional=False,
-        documentation="""The number of sustainable failures in block data. """,
-        dictionaryType=None
-    )
-    sustainabel_failures_for_metadata = data_model.property(
-        "sustainabelFailuresForMetadata", int,
-        array=False, optional=False,
-        documentation="""The number of sustainable failures in meta data. """,
-        dictionaryType=None
-    )
-    single_failure_threshold_bytes_for_block_data = data_model.property(
-        "singleFailureThresholdBytesForBlockData", int,
-        array=False, optional=False,
-        documentation="""The single failure threshold for block data in bytes. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            sustainable_failures_for_ensemble,
-            sustainable_failures_for_block_data,
-            sustainabel_failures_for_metadata,
-            single_failure_threshold_bytes_for_block_data):
-
-        super(Resiliency, self).__init__(**{ 
-            "sustainable_failures_for_ensemble": sustainable_failures_for_ensemble,
-            "sustainable_failures_for_block_data": sustainable_failures_for_block_data,
-            "sustainabel_failures_for_metadata": sustainabel_failures_for_metadata,
-            "single_failure_threshold_bytes_for_block_data": single_failure_threshold_bytes_for_block_data, })
-        
-
-class ProtectionDomainStatus(data_model.DataObject):
-    """ProtectionDomainStatus  
-
-    :param protection_domain_type: [required] The type of protection domain. 
-    :type protection_domain_type: str
-
-    :param tolerance: [required] Tolerance information. 
-    :type tolerance: Tolerance
-
-    :param resiliency: [required] Resiliency information. 
-    :type resiliency: Resiliency
-
-    """
-    protection_domain_type = data_model.property(
-        "protectionDomainType", str,
-        array=False, optional=False,
-        documentation="""The type of protection domain. """,
-        dictionaryType=None
-    )
-    tolerance = data_model.property(
-        "tolerance", Tolerance,
-        array=False, optional=False,
-        documentation="""Tolerance information. """,
-        dictionaryType=None
-    )
-    resiliency = data_model.property(
-        "resiliency", Resiliency,
-        array=False, optional=False,
-        documentation="""Resiliency information. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            protection_domain_type,
-            tolerance,
-            resiliency):
-
-        super(ProtectionDomainStatus, self).__init__(**{ 
-            "protection_domain_type": protection_domain_type,
-            "tolerance": tolerance,
-            "resiliency": resiliency, })
-        
-
-class GetProtectionDomainStatusResult(data_model.DataObject):
-    """GetProtectionDomainStatusResult  
-
-    :param protection_domain_statuses: [required] A list of the protection domain statuses. 
-    :type protection_domain_statuses: ProtectionDomainStatus
-
-    """
-    protection_domain_statuses = data_model.property(
-        "protectionDomainStatuses", ProtectionDomainStatus,
-        array=True, optional=False,
-        documentation="""A list of the protection domain statuses. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            protection_domain_statuses):
-
-        super(GetProtectionDomainStatusResult, self).__init__(**{ 
-            "protection_domain_statuses": protection_domain_statuses, })
         
 
 class RemoveAccountRequest(data_model.DataObject):
