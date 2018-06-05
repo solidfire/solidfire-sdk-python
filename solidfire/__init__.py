@@ -1568,7 +1568,8 @@ class Element(ServiceBase):
     def remove_drives(
             self,
             drives,
-            force_during_upgrade=OPTIONAL,):
+            force_during_upgrade=OPTIONAL,
+            force_during_bin_sync=OPTIONAL,):
         """
         You can use RemoveDrives to proactively remove drives that are part of the cluster. You might want to use this method when
         reducing cluster capacity or preparing to replace drives nearing the end of their service life. Any data on the drives is removed and
@@ -1585,6 +1586,9 @@ class Element(ServiceBase):
 
         :param forceDuringUpgrade:  If you want to remove a drive during upgrade, this must be set to true. 
         :type forceDuringUpgrade: bool
+
+        :param forceDuringBinSync:  If you want to remove a drive during a Bin Sync, this must be set to true. 
+        :type forceDuringBinSync: bool
         """
 
         self._check_connection_type("remove_drives", "Cluster")
@@ -1598,6 +1602,12 @@ class Element(ServiceBase):
                     [("force_during_upgrade", force_during_upgrade, 10.0, False)])
             else:
                 params["forceDuringUpgrade"] = force_during_upgrade
+        if force_during_bin_sync is not None:
+            if self.api_version < 10.3:
+                raise ApiParameterVersionError("remove_drives", 10.3,
+                    [("force_during_bin_sync", force_during_bin_sync, 10.3, False)])
+            else:
+                params["forceDuringBinSync"] = force_during_bin_sync
         
         # There is no adaptor.
         return self.send_request(

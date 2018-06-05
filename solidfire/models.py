@@ -5213,6 +5213,9 @@ class RemoveDrivesRequest(data_model.DataObject):
     :param force_during_upgrade:  If you want to remove a drive during upgrade, this must be set to true. 
     :type force_during_upgrade: bool
 
+    :param force_during_bin_sync:  If you want to remove a drive during a Bin Sync, this must be set to true. 
+    :type force_during_bin_sync: bool
+
     """
     drives = data_model.property(
         "drives", int,
@@ -5226,14 +5229,22 @@ class RemoveDrivesRequest(data_model.DataObject):
         documentation="""If you want to remove a drive during upgrade, this must be set to true. """,
         dictionaryType=None
     )
+    force_during_bin_sync = data_model.property(
+        "forceDuringBinSync", bool,
+        array=False, optional=True,
+        documentation="""If you want to remove a drive during a Bin Sync, this must be set to true. """,
+        dictionaryType=None
+    )
 
     def __init__(self,
             drives,
-            force_during_upgrade=None):
+            force_during_upgrade=None,
+            force_during_bin_sync=None):
 
         super(RemoveDrivesRequest, self).__init__(**{ 
             "drives": drives,
-            "force_during_upgrade": force_during_upgrade, })
+            "force_during_upgrade": force_during_upgrade,
+            "force_during_bin_sync": force_during_bin_sync, })
         
 
 class CancelCloneResult(data_model.DataObject):
@@ -19552,6 +19563,9 @@ class DriveStats(data_model.DataObject):
     :param write_ops: [required]  
     :type write_ops: int
 
+    :param uncorrectable_errors:   
+    :type uncorrectable_errors: int
+
     """
     active_sessions = data_model.property(
         "activeSessions", int,
@@ -19655,6 +19669,12 @@ class DriveStats(data_model.DataObject):
         documentation=""" """,
         dictionaryType=None
     )
+    uncorrectable_errors = data_model.property(
+        "uncorrectableErrors", int,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
 
     def __init__(self,
             failed_die_count,
@@ -19673,7 +19693,8 @@ class DriveStats(data_model.DataObject):
             write_ops,
             active_sessions=None,
             drive_id=None,
-            used_capacity=None):
+            used_capacity=None,
+            uncorrectable_errors=None):
 
         super(DriveStats, self).__init__(**{ 
             "active_sessions": active_sessions,
@@ -19692,7 +19713,8 @@ class DriveStats(data_model.DataObject):
             "used_capacity": used_capacity,
             "used_memory": used_memory,
             "write_bytes": write_bytes,
-            "write_ops": write_ops, })
+            "write_ops": write_ops,
+            "uncorrectable_errors": uncorrectable_errors, })
         
 
 class GetDriveStatsResult(data_model.DataObject):
