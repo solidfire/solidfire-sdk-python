@@ -12351,7 +12351,7 @@ class Node(data_model.DataObject):
     :param virtual_networks: [required]  
     :type virtual_networks: VirtualNetworkAddress
 
-    :param attributes: [required]  
+    :param attributes:   
     :type attributes: dict
 
     :param node_slot:  For HCI platforms, the letter corresponding to the chassis slot this node is in ("A", "B", "C", or "D"). For storage platforms, this value is null. 
@@ -12453,7 +12453,7 @@ class Node(data_model.DataObject):
     )
     attributes = data_model.property(
         "attributes", dict,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation=""" """,
         dictionaryType=None
     )
@@ -12485,8 +12485,8 @@ class Node(data_model.DataObject):
             sipi,
             uuid,
             virtual_networks,
-            attributes,
             fibre_channel_target_port_group=None,
+            attributes=None,
             node_slot=None,
             chassis_name=None):
 
