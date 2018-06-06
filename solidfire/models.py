@@ -9754,6 +9754,18 @@ class GroupSnapshotMembers(data_model.DataObject):
     :param volume_pair_uuid:   
     :type volume_pair_uuid: UUID
 
+    :param snap_mirror_label:  The label used by SnapMirror software to specify snapshot retention policy on SnapMirror endpoints. If not set, this value is null. 
+    :type snap_mirror_label: str
+
+    :param instance_snapshot_uuid:  The universally unique ID of the snapshot on the local cluster. This ID does not get replicated to other clusters. 
+    :type instance_snapshot_uuid: str
+
+    :param volume_name:  The name of the volume at the time the snapshot was created. 
+    :type volume_name: str
+
+    :param instance_create_time:  The time that the snapshot was created on the local cluster. Format: ISO 8601 date string. 
+    :type instance_create_time: str
+
     """
     volume_id = data_model.property(
         "volumeID", int,
@@ -9863,6 +9875,30 @@ class GroupSnapshotMembers(data_model.DataObject):
         documentation=""" """,
         dictionaryType=None
     )
+    snap_mirror_label = data_model.property(
+        "snapMirrorLabel", str,
+        array=False, optional=True,
+        documentation="""The label used by SnapMirror software to specify snapshot retention policy on SnapMirror endpoints. If not set, this value is null. """,
+        dictionaryType=None
+    )
+    instance_snapshot_uuid = data_model.property(
+        "instanceSnapshotUUID", str,
+        array=False, optional=True,
+        documentation="""The universally unique ID of the snapshot on the local cluster. This ID does not get replicated to other clusters. """,
+        dictionaryType=None
+    )
+    volume_name = data_model.property(
+        "volumeName", str,
+        array=False, optional=True,
+        documentation="""The name of the volume at the time the snapshot was created. """,
+        dictionaryType=None
+    )
+    instance_create_time = data_model.property(
+        "instanceCreateTime", str,
+        array=False, optional=True,
+        documentation="""The time that the snapshot was created on the local cluster. Format: ISO 8601 date string. """,
+        dictionaryType=None
+    )
 
     def __init__(self,
             volume_id,
@@ -9882,7 +9918,11 @@ class GroupSnapshotMembers(data_model.DataObject):
             status=None,
             total_size=None,
             virtual_volume_id=None,
-            volume_pair_uuid=None):
+            volume_pair_uuid=None,
+            snap_mirror_label=None,
+            instance_snapshot_uuid=None,
+            volume_name=None,
+            instance_create_time=None):
 
         super(GroupSnapshotMembers, self).__init__(**{ 
             "volume_id": volume_id,
@@ -9902,7 +9942,11 @@ class GroupSnapshotMembers(data_model.DataObject):
             "status": status,
             "total_size": total_size,
             "virtual_volume_id": virtual_volume_id,
-            "volume_pair_uuid": volume_pair_uuid, })
+            "volume_pair_uuid": volume_pair_uuid,
+            "snap_mirror_label": snap_mirror_label,
+            "instance_snapshot_uuid": instance_snapshot_uuid,
+            "volume_name": volume_name,
+            "instance_create_time": instance_create_time, })
         
 
 class GroupSnapshot(data_model.DataObject):
