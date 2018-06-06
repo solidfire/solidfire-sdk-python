@@ -3144,7 +3144,7 @@ class Element(ServiceBase):
             'DisableClusterSsh',
             DisableClusterSshResult,
             params,
-            since=11.0
+            since=10.3
         )
 
     def disable_ssh(
@@ -3188,7 +3188,7 @@ class Element(ServiceBase):
             'EnableClusterSsh',
             EnableClusterSshResult,
             params,
-            since=11.0
+            since=10.3
         )
 
     def enable_ssh(

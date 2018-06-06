@@ -16216,7 +16216,7 @@ class EnableClusterSshRequest(data_model.DataObject):
     """
     duration = data_model.property(
         "duration", str,
-        array=True, optional=False,
+        array=False, optional=False,
         documentation="""The duration on how long SSH will be enable on the cluster. Follows format "HH:MM:SS.MS". """,
         dictionaryType=None
     )
