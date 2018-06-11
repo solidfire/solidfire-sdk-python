@@ -2975,7 +2975,7 @@ class Element(ServiceBase):
     def list_protection_domain_levels(
             self,):
         """
-        ListProtectionDomainLevels returns the Tolerance and Resiliencty of the cluster from the perspective of each of the supported ProtectionDomainTypes.        """
+        ListProtectionDomainLevels returns the Tolerance and Resiliency of the cluster from the perspective of each of the supported ProtectionDomainTypes.        """
 
         self._check_connection_type("list_protection_domain_levels", "Cluster")
 
