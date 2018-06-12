@@ -3164,7 +3164,7 @@ class Element(ServiceBase):
             'DisableSsh',
             DisableSshResult,
             params,
-            since=11.0
+            since=10.3
         )
 
     def enable_cluster_ssh(
@@ -3208,7 +3208,7 @@ class Element(ServiceBase):
             'EnableSsh',
             EnableSshResult,
             params,
-            since=11.0
+            since=10.3
         )
 
     def get_cluster_ssh_info(
@@ -3226,7 +3226,7 @@ class Element(ServiceBase):
             'GetClusterSshInfo',
             GetClusterSshInfoResult,
             params,
-            since=11.0
+            since=10.3
         )
 
     def get_ssh_info(
@@ -3244,7 +3244,7 @@ class Element(ServiceBase):
             'GetSshInfo',
             GetSshInfoResult,
             params,
-            since=11.0
+            since=10.3
         )
 
     def create_schedule(
