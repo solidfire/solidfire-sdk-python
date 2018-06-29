@@ -15203,8 +15203,8 @@ class ProtectionSchemeTolerance(data_model.DataObject):
     :param sustainable_failures_for_block_data: [required] The number of simultaneous failures which can occur without losing block data availability for the Protection Scheme. 
     :type sustainable_failures_for_block_data: int
 
-    :param sustainabel_failures_for_metadata: [required] The number of simultaneous failures which can occur without losing metadata availability for the Protection Scheme. 
-    :type sustainabel_failures_for_metadata: int
+    :param sustainable_failures_for_metadata: [required] The number of simultaneous failures which can occur without losing metadata availability for the Protection Scheme. 
+    :type sustainable_failures_for_metadata: int
 
     """
     protection_scheme = data_model.property(
@@ -15219,8 +15219,8 @@ class ProtectionSchemeTolerance(data_model.DataObject):
         documentation="""The number of simultaneous failures which can occur without losing block data availability for the Protection Scheme. """,
         dictionaryType=None
     )
-    sustainabel_failures_for_metadata = data_model.property(
-        "sustainabelFailuresForMetadata", int,
+    sustainable_failures_for_metadata = data_model.property(
+        "sustainableFailuresForMetadata", int,
         array=False, optional=False,
         documentation="""The number of simultaneous failures which can occur without losing metadata availability for the Protection Scheme. """,
         dictionaryType=None
@@ -15229,12 +15229,12 @@ class ProtectionSchemeTolerance(data_model.DataObject):
     def __init__(self,
             protection_scheme,
             sustainable_failures_for_block_data,
-            sustainabel_failures_for_metadata):
+            sustainable_failures_for_metadata):
 
         super(ProtectionSchemeTolerance, self).__init__(**{ 
             "protection_scheme": protection_scheme,
             "sustainable_failures_for_block_data": sustainable_failures_for_block_data,
-            "sustainabel_failures_for_metadata": sustainabel_failures_for_metadata, })
+            "sustainable_failures_for_metadata": sustainable_failures_for_metadata, })
         
 
 class ProtectionDomainTolerance(data_model.DataObject):
