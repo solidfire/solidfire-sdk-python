@@ -2371,6 +2371,28 @@ class GetScheduleResult(data_model.DataObject):
             "schedule": schedule, })
         
 
+class DeleteClusterInterfacePreferenceRequest(data_model.DataObject):
+    """DeleteClusterInterfacePreferenceRequest  
+    Deletes an existing cluster interface preference.
+
+    :param name: [required] Name of the cluster interface preference. 
+    :type name: str
+
+    """
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="""Name of the cluster interface preference. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            name):
+
+        super(DeleteClusterInterfacePreferenceRequest, self).__init__(**{ 
+            "name": name, })
+        
+
 class SnapMirrorVolumeInfo(data_model.DataObject):
     """SnapMirrorVolumeInfo  
     The snapMirrorVolumeInfo object contains information about a volume location in a SnapMirror relationship, such as its name and type.
@@ -9708,6 +9730,28 @@ class ListInitiatorsResult(data_model.DataObject):
             "initiators": initiators, })
         
 
+class GetClusterInterfacePreferenceRequest(data_model.DataObject):
+    """GetClusterInterfacePreferenceRequest  
+    Retrieves an existing cluster interface preference.
+
+    :param name: [required] Name of the cluster interface preference. 
+    :type name: str
+
+    """
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="""Name of the cluster interface preference. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            name):
+
+        super(GetClusterInterfacePreferenceRequest, self).__init__(**{ 
+            "name": name, })
+        
+
 class AddressBlock(data_model.DataObject):
     """AddressBlock  
     Unique Range of IP addresses to include in the virtual network.
@@ -12852,6 +12896,59 @@ class ListAllNodesResult(data_model.DataObject):
             "pending_active_nodes": pending_active_nodes, })
         
 
+class ClusterInterfacePreference(data_model.DataObject):
+    """ClusterInterfacePreference  
+
+    :param name: [required] Name of the cluster interface preference. 
+    :type name: str
+
+    :param value: [required] Value of the cluster interface preference. 
+    :type value: str
+
+    """
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="""Name of the cluster interface preference. """,
+        dictionaryType=None
+    )
+    value = data_model.property(
+        "value", str,
+        array=False, optional=False,
+        documentation="""Value of the cluster interface preference. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            name,
+            value):
+
+        super(ClusterInterfacePreference, self).__init__(**{ 
+            "name": name,
+            "value": value, })
+        
+
+class ListClusterInterfacePreferencesResult(data_model.DataObject):
+    """ListClusterInterfacePreferencesResult  
+
+    :param preferences: [required] The cluster interface preferences. 
+    :type preferences: ClusterInterfacePreference
+
+    """
+    preferences = data_model.property(
+        "preferences", ClusterInterfacePreference,
+        array=True, optional=False,
+        documentation="""The cluster interface preferences. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            preferences):
+
+        super(ListClusterInterfacePreferencesResult, self).__init__(**{ 
+            "preferences": preferences, })
+        
+
 class ModifyAccountRequest(data_model.DataObject):
     """ModifyAccountRequest  
     ModifyAccount enables you to modify an existing account.
@@ -13560,6 +13657,41 @@ class RollbackToSnapshotRequest(data_model.DataObject):
             "save_current_state": save_current_state,
             "name": name,
             "attributes": attributes, })
+        
+
+class CreateClusterInterfacePreferenceRequest(data_model.DataObject):
+    """CreateClusterInterfacePreferenceRequest  
+    Creates a new cluster preference and stores it on the storage cluster.
+    The ClusterInterfacePreference related APIs can be used by internal interfaces to the storage cluster such as HCI and UI to store arbitrary 
+    information in the cluster. Since the API calls in the UI are visible to customers, these APIs are made public.
+
+    :param name: [required] Name of the cluster interface preference. 
+    :type name: str
+
+    :param value: [required] Value of the cluster interface preference. 
+    :type value: str
+
+    """
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="""Name of the cluster interface preference. """,
+        dictionaryType=None
+    )
+    value = data_model.property(
+        "value", str,
+        array=False, optional=False,
+        documentation="""Value of the cluster interface preference. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            name,
+            value):
+
+        super(CreateClusterInterfacePreferenceRequest, self).__init__(**{ 
+            "name": name,
+            "value": value, })
         
 
 class RestoreDeletedVolumeResult(data_model.DataObject):
@@ -15498,6 +15630,27 @@ class CreateVolumeRequest(data_model.DataObject):
             "attributes": attributes,
             "associate_with_qos_policy": associate_with_qos_policy,
             "qos_policy_id": qos_policy_id, })
+        
+
+class GetClusterInterfacePreferenceResult(data_model.DataObject):
+    """GetClusterInterfacePreferenceResult  
+
+    :param preference: [required] The cluster interface preference for the given name. 
+    :type preference: ClusterInterfacePreference
+
+    """
+    preference = data_model.property(
+        "preference", ClusterInterfacePreference,
+        array=False, optional=False,
+        documentation="""The cluster interface preference for the given name. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            preference):
+
+        super(GetClusterInterfacePreferenceResult, self).__init__(**{ 
+            "preference": preference, })
         
 
 class CreateClusterResult(data_model.DataObject):
@@ -18242,6 +18395,16 @@ class ListClusterFaultsResult(data_model.DataObject):
             "faults": faults, })
         
 
+class DeleteClusterInterfacePreferenceResult(data_model.DataObject):
+    """DeleteClusterInterfacePreferenceResult  
+
+    """
+
+    def __init__(self):
+
+        super(DeleteClusterInterfacePreferenceResult, self).__init__(**{  })
+        
+
 class AddLdapClusterAdminRequest(data_model.DataObject):
     """AddLdapClusterAdminRequest  
     AddLdapClusterAdmin enables you to add a new LDAP cluster administrator user. An LDAP cluster administrator can manage the
@@ -20135,6 +20298,16 @@ class UpdateBulkVolumeStatusResult(data_model.DataObject):
             "status": status,
             "url": url,
             "attributes": attributes, })
+        
+
+class CreateClusterInterfacePreferenceResult(data_model.DataObject):
+    """CreateClusterInterfacePreferenceResult  
+
+    """
+
+    def __init__(self):
+
+        super(CreateClusterInterfacePreferenceResult, self).__init__(**{  })
         
 
 class EnableSnmpResult(data_model.DataObject):
@@ -25826,6 +25999,39 @@ class RemoveBackupTargetResult(data_model.DataObject):
     def __init__(self):
 
         super(RemoveBackupTargetResult, self).__init__(**{  })
+        
+
+class ModifyClusterInterfacePreferenceRequest(data_model.DataObject):
+    """ModifyClusterInterfacePreferenceRequest  
+    Modifies an existing cluster interface preference.
+
+    :param name: [required] Name of the cluster interface preference. 
+    :type name: str
+
+    :param value: [required] Value of the cluster interface preference. 
+    :type value: str
+
+    """
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="""Name of the cluster interface preference. """,
+        dictionaryType=None
+    )
+    value = data_model.property(
+        "value", str,
+        array=False, optional=False,
+        documentation="""Value of the cluster interface preference. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            name,
+            value):
+
+        super(ModifyClusterInterfacePreferenceRequest, self).__init__(**{ 
+            "name": name,
+            "value": value, })
         
 
 class CloneVolumeRequest(data_model.DataObject):

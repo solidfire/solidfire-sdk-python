@@ -1378,6 +1378,128 @@ class Element(ServiceBase):
             since=10.0
         )
 
+    def create_cluster_interface_preference(
+            self,
+            name,
+            value,):
+        """
+        Creates a new cluster preference and stores it on the storage cluster.
+        The ClusterInterfacePreference related APIs can be used by internal interfaces to the storage cluster such as HCI and UI to store arbitrary 
+        information in the cluster. Since the API calls in the UI are visible to customers, these APIs are made public.
+        :param name: [required] Name of the cluster interface preference. 
+        :type name: str
+
+        :param value: [required] Value of the cluster interface preference. 
+        :type value: str
+        """
+
+        self._check_connection_type("create_cluster_interface_preference", "Cluster")
+
+        params = { 
+            "name": name,
+            "value": value,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'CreateClusterInterfacePreference',
+            CreateClusterInterfacePreferenceResult,
+            params,
+            since=11.0
+        )
+
+    def delete_cluster_interface_preference(
+            self,
+            name,):
+        """
+        Deletes an existing cluster interface preference.
+        :param name: [required] Name of the cluster interface preference. 
+        :type name: str
+        """
+
+        self._check_connection_type("delete_cluster_interface_preference", "Cluster")
+
+        params = { 
+            "name": name,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DeleteClusterInterfacePreference',
+            DeleteClusterInterfacePreferenceResult,
+            params,
+            since=11.0
+        )
+
+    def get_cluster_interface_preference(
+            self,
+            name,):
+        """
+        Retrieves an existing cluster interface preference.
+        :param name: [required] Name of the cluster interface preference. 
+        :type name: str
+        """
+
+        self._check_connection_type("get_cluster_interface_preference", "Cluster")
+
+        params = { 
+            "name": name,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'GetClusterInterfacePreference',
+            GetClusterInterfacePreferenceResult,
+            params,
+            since=11.0
+        )
+
+    def list_cluster_interface_preferences(
+            self,):
+        """
+        Lists all the existing cluster interface preferences.        """
+
+        self._check_connection_type("list_cluster_interface_preferences", "Cluster")
+
+        params = { 
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ListClusterInterfacePreferences',
+            ListClusterInterfacePreferencesResult,
+            params,
+            since=11.0
+        )
+
+    def modify_cluster_interface_preference(
+            self,
+            name,
+            value,):
+        """
+        Modifies an existing cluster interface preference.
+        :param name: [required] Name of the cluster interface preference. 
+        :type name: str
+
+        :param value: [required] Value of the cluster interface preference. 
+        :type value: str
+        """
+
+        self._check_connection_type("modify_cluster_interface_preference", "Cluster")
+
+        params = { 
+            "name": name,
+            "value": value,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ModifyClusterInterfacePreference',
+            ModifyClusterInterfacePreferenceResult,
+            params,
+            since=11.0
+        )
+
     def add_drives(
             self,
             drives,
