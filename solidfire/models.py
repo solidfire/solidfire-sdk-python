@@ -10444,59 +10444,57 @@ class ModifyVolumeResult(data_model.DataObject):
             "volume": volume, })
         
 
-class ModifyClusterAdminRequest(data_model.DataObject):
-    """ModifyClusterAdminRequest  
-    You can use ModifyClusterAdmin to change the settings for a cluster admin or LDAP cluster admin. You cannot change access for the administrator cluster admin account.
+class FeatureObject(data_model.DataObject):
+    """FeatureObject  
 
-    :param cluster_admin_id: [required] ClusterAdminID for the cluster admin or LDAP cluster admin to modify. 
-    :type cluster_admin_id: int
+    :param enabled: [required] True if the feature is enabled, otherwise false. 
+    :type enabled: bool
 
-    :param password:  Password used to authenticate this cluster admin. 
-    :type password: str
-
-    :param access:  Controls which methods this cluster admin can use. For more details, see Access Control in the Element API Reference Guide. 
-    :type access: str
-
-    :param attributes:  List of name-value pairs in JSON object format. 
-    :type attributes: dict
+    :param feature: [required] The name of the feature. 
+    :type feature: str
 
     """
-    cluster_admin_id = data_model.property(
-        "clusterAdminID", int,
+    enabled = data_model.property(
+        "enabled", bool,
         array=False, optional=False,
-        documentation="""ClusterAdminID for the cluster admin or LDAP cluster admin to modify. """,
+        documentation="""True if the feature is enabled, otherwise false. """,
         dictionaryType=None
     )
-    password = data_model.property(
-        "password", str,
-        array=False, optional=True,
-        documentation="""Password used to authenticate this cluster admin. """,
-        dictionaryType=None
-    )
-    access = data_model.property(
-        "access", str,
-        array=True, optional=True,
-        documentation="""Controls which methods this cluster admin can use. For more details, see Access Control in the Element API Reference Guide. """,
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="""List of name-value pairs in JSON object format. """,
+    feature = data_model.property(
+        "feature", str,
+        array=False, optional=False,
+        documentation="""The name of the feature. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            cluster_admin_id,
-            password=None,
-            access=None,
-            attributes=None):
+            enabled,
+            feature):
 
-        super(ModifyClusterAdminRequest, self).__init__(**{ 
-            "cluster_admin_id": cluster_admin_id,
-            "password": password,
-            "access": access,
-            "attributes": attributes, })
+        super(FeatureObject, self).__init__(**{ 
+            "enabled": enabled,
+            "feature": feature, })
+        
+
+class GetFeatureStatusResult(data_model.DataObject):
+    """GetFeatureStatusResult  
+
+    :param features: [required] An array of feature objects indicating the feature name and its status. 
+    :type features: FeatureObject
+
+    """
+    features = data_model.property(
+        "features", FeatureObject,
+        array=True, optional=False,
+        documentation="""An array of feature objects indicating the feature name and its status. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            features):
+
+        super(GetFeatureStatusResult, self).__init__(**{ 
+            "features": features, })
         
 
 class SnapshotRemoteStatus(data_model.DataObject):
@@ -11516,57 +11514,59 @@ class DeleteVolumeAccessGroupRequest(data_model.DataObject):
             "force": force, })
         
 
-class FeatureObject(data_model.DataObject):
-    """FeatureObject  
+class ModifyClusterAdminRequest(data_model.DataObject):
+    """ModifyClusterAdminRequest  
+    You can use ModifyClusterAdmin to change the settings for a cluster admin or LDAP cluster admin. You cannot change access for the administrator cluster admin account.
 
-    :param enabled: [required] True if the feature is enabled, otherwise false. 
-    :type enabled: bool
+    :param cluster_admin_id: [required] ClusterAdminID for the cluster admin or LDAP cluster admin to modify. 
+    :type cluster_admin_id: int
 
-    :param feature: [required] The name of the feature. 
-    :type feature: str
+    :param password:  Password used to authenticate this cluster admin. 
+    :type password: str
+
+    :param access:  Controls which methods this cluster admin can use. For more details, see Access Control in the Element API Reference Guide. 
+    :type access: str
+
+    :param attributes:  List of name-value pairs in JSON object format. 
+    :type attributes: dict
 
     """
-    enabled = data_model.property(
-        "enabled", bool,
+    cluster_admin_id = data_model.property(
+        "clusterAdminID", int,
         array=False, optional=False,
-        documentation="""True if the feature is enabled, otherwise false. """,
+        documentation="""ClusterAdminID for the cluster admin or LDAP cluster admin to modify. """,
         dictionaryType=None
     )
-    feature = data_model.property(
-        "feature", str,
-        array=False, optional=False,
-        documentation="""The name of the feature. """,
+    password = data_model.property(
+        "password", str,
+        array=False, optional=True,
+        documentation="""Password used to authenticate this cluster admin. """,
+        dictionaryType=None
+    )
+    access = data_model.property(
+        "access", str,
+        array=True, optional=True,
+        documentation="""Controls which methods this cluster admin can use. For more details, see Access Control in the Element API Reference Guide. """,
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="""List of name-value pairs in JSON object format. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            enabled,
-            feature):
+            cluster_admin_id,
+            password=None,
+            access=None,
+            attributes=None):
 
-        super(FeatureObject, self).__init__(**{ 
-            "enabled": enabled,
-            "feature": feature, })
-        
-
-class GetFeatureStatusResult(data_model.DataObject):
-    """GetFeatureStatusResult  
-
-    :param features: [required] An array of feature objects indicating the feature name and its status. 
-    :type features: FeatureObject
-
-    """
-    features = data_model.property(
-        "features", FeatureObject,
-        array=True, optional=False,
-        documentation="""An array of feature objects indicating the feature name and its status. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            features):
-
-        super(GetFeatureStatusResult, self).__init__(**{ 
-            "features": features, })
+        super(ModifyClusterAdminRequest, self).__init__(**{ 
+            "cluster_admin_id": cluster_admin_id,
+            "password": password,
+            "access": access,
+            "attributes": attributes, })
         
 
 class ListVirtualNetworksRequest(data_model.DataObject):
@@ -26133,6 +26133,16 @@ class CloneVolumeRequest(data_model.DataObject):
             "snapshot_id": snapshot_id,
             "attributes": attributes,
             "enable512e": enable512e, })
+        
+
+class ModifyClusterInterfacePreferenceResult(data_model.DataObject):
+    """ModifyClusterInterfacePreferenceResult  
+
+    """
+
+    def __init__(self):
+
+        super(ModifyClusterInterfacePreferenceResult, self).__init__(**{  })
         
 
 class CreateBackupTargetRequest(data_model.DataObject):
