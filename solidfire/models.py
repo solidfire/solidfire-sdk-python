@@ -9291,28 +9291,6 @@ class CompleteVolumePairingResult(data_model.DataObject):
         super(CompleteVolumePairingResult, self).__init__(**{  })
         
 
-class ChangeDefaultProtectionSchemeRequest(data_model.DataObject):
-    """ChangeDefaultProtectionSchemeRequest  
-    Changes the default protection scheme stored in the cluster info.
-
-    :param default_protection_scheme: [required] If a protection scheme is not specified when a volume is created, this will be used. Valid values: singleHelix, doubleHelix, tripleHelix 
-    :type default_protection_scheme: str
-
-    """
-    default_protection_scheme = data_model.property(
-        "defaultProtectionScheme", str,
-        array=False, optional=False,
-        documentation="""If a protection scheme is not specified when a volume is created, this will be used. Valid values: singleHelix, doubleHelix, tripleHelix """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            default_protection_scheme):
-
-        super(ChangeDefaultProtectionSchemeRequest, self).__init__(**{ 
-            "default_protection_scheme": default_protection_scheme, })
-        
-
 class ListDeletedVolumesRequest(data_model.DataObject):
     """ListDeletedVolumesRequest  
     ListDeletedVolumes enables you to retrieve the list of volumes that have been marked for deletion and purged from the system.
@@ -15948,6 +15926,27 @@ class ModifyVolumesRequest(data_model.DataObject):
             "enable_snap_mirror_replication": enable_snap_mirror_replication, })
         
 
+class SetDefaultProtectionSchemeResult(data_model.DataObject):
+    """SetDefaultProtectionSchemeResult  
+
+    :param default_protection_scheme: [required] The default protection scheme for the cluster 
+    :type default_protection_scheme: str
+
+    """
+    default_protection_scheme = data_model.property(
+        "defaultProtectionScheme", str,
+        array=False, optional=False,
+        documentation="""The default protection scheme for the cluster """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            default_protection_scheme):
+
+        super(SetDefaultProtectionSchemeResult, self).__init__(**{ 
+            "default_protection_scheme": default_protection_scheme, })
+        
+
 class RestoreDeletedVolumeRequest(data_model.DataObject):
     """RestoreDeletedVolumeRequest  
     RestoreDeletedVolume marks a deleted volume as active again. This action makes the volume immediately available for iSCSI connection.
@@ -18025,16 +18024,6 @@ class ListDrivesResult(data_model.DataObject):
 
         super(ListDrivesResult, self).__init__(**{ 
             "drives": drives, })
-        
-
-class ChangeDefaultProtectionSchemeResult(data_model.DataObject):
-    """ChangeDefaultProtectionSchemeResult  
-
-    """
-
-    def __init__(self):
-
-        super(ChangeDefaultProtectionSchemeResult, self).__init__(**{  })
         
 
 class EnableClusterSshResult(data_model.DataObject):
@@ -20988,6 +20977,28 @@ class CreateSupportBundleResult(data_model.DataObject):
             "details": details,
             "duration": duration,
             "result": result, })
+        
+
+class SetDefaultProtectionSchemeRequest(data_model.DataObject):
+    """SetDefaultProtectionSchemeRequest  
+    Sets the default protection scheme stored in the cluster info.
+
+    :param default_protection_scheme: [required] If a protection scheme is not specified when a volume is created, this will be used. Valid values: singleHelix, doubleHelix, tripleHelix 
+    :type default_protection_scheme: str
+
+    """
+    default_protection_scheme = data_model.property(
+        "defaultProtectionScheme", str,
+        array=False, optional=False,
+        documentation="""If a protection scheme is not specified when a volume is created, this will be used. Valid values: singleHelix, doubleHelix, tripleHelix """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            default_protection_scheme):
+
+        super(SetDefaultProtectionSchemeRequest, self).__init__(**{ 
+            "default_protection_scheme": default_protection_scheme, })
         
 
 class SetDefaultQoSResult(data_model.DataObject):

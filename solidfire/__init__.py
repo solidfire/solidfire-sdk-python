@@ -3121,29 +3121,6 @@ class Element(ServiceBase):
             since=6.0
         )
 
-    def change_default_protection_scheme(
-            self,
-            default_protection_scheme,):
-        """
-        Changes the default protection scheme stored in the cluster info.
-        :param defaultProtectionScheme: [required] If a protection scheme is not specified when a volume is created, this will be used. Valid values: singleHelix, doubleHelix, tripleHelix 
-        :type defaultProtectionScheme: str
-        """
-
-        self._check_connection_type("change_default_protection_scheme", "Cluster")
-
-        params = { 
-            "defaultProtectionScheme": default_protection_scheme,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'ChangeDefaultProtectionScheme',
-            ChangeDefaultProtectionSchemeResult,
-            params,
-            since=11.0
-        )
-
     def disable_protection_schemes(
             self,
             protection_schemes=OPTIONAL,):
@@ -3214,6 +3191,29 @@ class Element(ServiceBase):
         return self.send_request(
             'ListProtectionDomainLevels',
             ListProtectionDomainLevelsResult,
+            params,
+            since=11.0
+        )
+
+    def set_default_protection_scheme(
+            self,
+            default_protection_scheme,):
+        """
+        Sets the default protection scheme stored in the cluster info.
+        :param defaultProtectionScheme: [required] If a protection scheme is not specified when a volume is created, this will be used. Valid values: singleHelix, doubleHelix, tripleHelix 
+        :type defaultProtectionScheme: str
+        """
+
+        self._check_connection_type("set_default_protection_scheme", "Cluster")
+
+        params = { 
+            "defaultProtectionScheme": default_protection_scheme,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'SetDefaultProtectionScheme',
+            SetDefaultProtectionSchemeResult,
             params,
             since=11.0
         )
