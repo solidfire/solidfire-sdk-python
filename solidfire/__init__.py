@@ -502,7 +502,9 @@ class Element(ServiceBase):
             password,
             nodes,
             accept_eula=OPTIONAL,
-            attributes=OPTIONAL,):
+            attributes=OPTIONAL,
+            default_protection_scheme=OPTIONAL,
+            disabled_protection_schemes=OPTIONAL,):
         """
         The CreateCluster method enables you to initialize the node in a cluster that has ownership of the "mvip" and "svip" addresses. Each new cluster is initialized using the management IP (MIP) of the first node in the cluster. This method also automatically adds all the nodes being configured into the cluster. You only need to use this method once each time a new cluster is initialized.
         Note: You need to log in to the node that is used as the master node for the cluster. After you log in, run the GetBootstrapConfig method on the node to get the IP addresses for the rest of the nodes that you want to include in the
@@ -530,6 +532,12 @@ class Element(ServiceBase):
 
         :param attributes:  List of name-value pairs in JSON object format. 
         :type attributes: dict
+
+        :param defaultProtectionScheme:  If a protection scheme is not specified when a volume is created, this will be used. Valid values: singleHelix, doubleHelix, tripleHelix 
+        :type defaultProtectionScheme: str
+
+        :param disabledProtectionSchemes:  The set of protection schemes that should not be enabled when the cluster is created. By default, all protection schemes supported by the software will be enabled. Valid values: singleHelix, doubleHelix, tripleHelix 
+        :type disabledProtectionSchemes: str
         """
 
         self._check_connection_type("create_cluster", "Both")
@@ -546,6 +554,18 @@ class Element(ServiceBase):
             params["acceptEula"] = accept_eula
         if attributes is not None:
             params["attributes"] = attributes
+        if default_protection_scheme is not None:
+            if self.api_version < 11.0:
+                raise ApiParameterVersionError("create_cluster", 11.0,
+                    [("default_protection_scheme", default_protection_scheme, 11.0, False)])
+            else:
+                params["defaultProtectionScheme"] = default_protection_scheme
+        if disabled_protection_schemes is not None:
+            if self.api_version < 11.0:
+                raise ApiParameterVersionError("create_cluster", 11.0,
+                    [("disabled_protection_schemes", disabled_protection_schemes, 11.0, False)])
+            else:
+                params["disabledProtectionSchemes"] = disabled_protection_schemes
         
         # There is no adaptor.
         return self.send_request(
@@ -3099,6 +3119,85 @@ class Element(ServiceBase):
             StartVolumePairingResult,
             params,
             since=6.0
+        )
+
+    def change_default_protection_scheme(
+            self,
+            default_protection_scheme,):
+        """
+        Changes the default protection scheme stored in the cluster info.
+        :param defaultProtectionScheme: [required] If a protection scheme is not specified when a volume is created, this will be used. Valid values: singleHelix, doubleHelix, tripleHelix 
+        :type defaultProtectionScheme: str
+        """
+
+        self._check_connection_type("change_default_protection_scheme", "Cluster")
+
+        params = { 
+            "defaultProtectionScheme": default_protection_scheme,
+        }
+        
+        # There is no adaptor.
+        return self.send_request(
+            'ChangeDefaultProtectionScheme',
+            ChangeDefaultProtectionSchemeResult,
+            params,
+            since=11.0
+        )
+
+    def disable_protection_schemes(
+            self,
+            protection_schemes=OPTIONAL,):
+        """
+        Disables all of the provided protection schemes.
+        :param protectionSchemes:  The protection schemes that should be disabled. Valid values: singleHelix, doubleHelix, tripleHelix 
+        :type protectionSchemes: str
+        """
+
+        self._check_connection_type("disable_protection_schemes", "Cluster")
+
+        params = { 
+        }
+        if protection_schemes is not None:
+            if self.api_version < 11.0:
+                raise ApiParameterVersionError("disable_protection_schemes", 11.0,
+                    [("protection_schemes", protection_schemes, 11.0, False)])
+            else:
+                params["protectionSchemes"] = protection_schemes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'DisableProtectionSchemes',
+            DisableProtectionSchemesResult,
+            params,
+            since=11.0
+        )
+
+    def enable_protection_schemes(
+            self,
+            protection_schemes=OPTIONAL,):
+        """
+        Enables all of the provided protection schemes.
+        :param protectionSchemes:  The protection schemes that should be enabled. Valid values: singleHelix, doubleHelix, tripleHelix 
+        :type protectionSchemes: str
+        """
+
+        self._check_connection_type("enable_protection_schemes", "Cluster")
+
+        params = { 
+        }
+        if protection_schemes is not None:
+            if self.api_version < 11.0:
+                raise ApiParameterVersionError("enable_protection_schemes", 11.0,
+                    [("protection_schemes", protection_schemes, 11.0, False)])
+            else:
+                params["protectionSchemes"] = protection_schemes
+        
+        # There is no adaptor.
+        return self.send_request(
+            'EnableProtectionSchemes',
+            EnableProtectionSchemesResult,
+            params,
+            since=11.0
         )
 
     def list_protection_domain_levels(
@@ -6099,7 +6198,8 @@ class Element(ServiceBase):
             limit=OPTIONAL,
             recursive=OPTIONAL,
             start_virtual_volume_id=OPTIONAL,
-            virtual_volume_ids=OPTIONAL,):
+            virtual_volume_ids=OPTIONAL,
+            protection_schemes=OPTIONAL,):
         """
         ListVirtualVolumes enables you to list the virtual volumes currently in the system. You can use this method to list all virtual volumes,
         or only list a subset.
@@ -6117,6 +6217,9 @@ class Element(ServiceBase):
 
         :param virtualVolumeIDs:  A list of virtual volume IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
         :type virtualVolumeIDs: UUID
+
+        :param protectionSchemes:  Only volumes that are using one of the protection schemes in this set are returned. Valid values: singleHelix, doubleHelix, tripleHelix 
+        :type protectionSchemes: str
         """
 
         self._check_connection_type("list_virtual_volumes", "Cluster")
@@ -6133,6 +6236,12 @@ class Element(ServiceBase):
             params["startVirtualVolumeID"] = start_virtual_volume_id
         if virtual_volume_ids is not None:
             params["virtualVolumeIDs"] = virtual_volume_ids
+        if protection_schemes is not None:
+            if self.api_version < 11.0:
+                raise ApiParameterVersionError("list_virtual_volumes", 11.0,
+                    [("protection_schemes", protection_schemes, 11.0, False)])
+            else:
+                params["protectionSchemes"] = protection_schemes
         
         # There is no adaptor.
         return self.send_request(
@@ -6432,7 +6541,9 @@ class Element(ServiceBase):
             qos=OPTIONAL,
             attributes=OPTIONAL,
             associate_with_qos_policy=OPTIONAL,
-            qos_policy_id=OPTIONAL,):
+            qos_policy_id=OPTIONAL,
+            enable_snap_mirror_replication=OPTIONAL,
+            protection_scheme=OPTIONAL,):
         """
         CreateVolume enables you to create a new (empty) volume on the cluster. As soon as the volume creation is complete, the volume is
         available for connection via iSCSI.
@@ -6459,6 +6570,12 @@ class Element(ServiceBase):
 
         :param qosPolicyID:  The ID for the policy whose QoS settings should be applied to the specified volumes. This parameter is mutually exclusive with the qos parameter. 
         :type qosPolicyID: int
+
+        :param enableSnapMirrorReplication:  Specifies whether SnapMirror replication is enabled or not. 
+        :type enableSnapMirrorReplication: bool
+
+        :param protectionScheme:  Protection scheme that should be used for this volume. The default value is the defaultProtectionScheme stored in the ClusterInfo object. Valid values: singleHelix, doubleHelix, tripleHelix 
+        :type protectionScheme: str
         """
 
         self._check_connection_type("create_volume", "Cluster")
@@ -6485,6 +6602,18 @@ class Element(ServiceBase):
                     [("qos_policy_id", qos_policy_id, 10.0, False)])
             else:
                 params["qosPolicyID"] = qos_policy_id
+        if enable_snap_mirror_replication is not None:
+            if self.api_version < 10.1:
+                raise ApiParameterVersionError("create_volume", 10.1,
+                    [("enable_snap_mirror_replication", enable_snap_mirror_replication, 10.1, False)])
+            else:
+                params["enableSnapMirrorReplication"] = enable_snap_mirror_replication
+        if protection_scheme is not None:
+            if self.api_version < 11.0:
+                raise ApiParameterVersionError("create_volume", 11.0,
+                    [("protection_scheme", protection_scheme, 11.0, False)])
+            else:
+                params["protectionScheme"] = protection_scheme
         
         # There is no adaptor.
         return self.send_request(
@@ -6946,7 +7075,8 @@ class Element(ServiceBase):
             is_paired=OPTIONAL,
             volume_ids=OPTIONAL,
             volume_name=OPTIONAL,
-            include_virtual_volumes=OPTIONAL,):
+            include_virtual_volumes=OPTIONAL,
+            protection_schemes=OPTIONAL,):
         """
         The ListVolumes method enables you to retrieve a list of volumes that are in a cluster. You can specify the volumes you want to
         return in the list by using the available parameters.
@@ -6973,6 +7103,9 @@ class Element(ServiceBase):
 
         :param includeVirtualVolumes:  Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. 
         :type includeVirtualVolumes: bool
+
+        :param protectionSchemes:  Only volumes that are using one of the protection schemes in this set are returned. Valid values: singleHelix, doubleHelix, tripleHelix 
+        :type protectionSchemes: str
         """
 
         self._check_connection_type("list_volumes", "Cluster")
@@ -7003,6 +7136,12 @@ class Element(ServiceBase):
                     [("include_virtual_volumes", include_virtual_volumes, 9.0, False)])
             else:
                 params["includeVirtualVolumes"] = include_virtual_volumes
+        if protection_schemes is not None:
+            if self.api_version < 11.0:
+                raise ApiParameterVersionError("list_volumes", 11.0,
+                    [("protection_schemes", protection_schemes, 11.0, False)])
+            else:
+                params["protectionSchemes"] = protection_schemes
         
         # There is no adaptor.
         return self.send_request(
@@ -7110,7 +7249,8 @@ class Element(ServiceBase):
             attributes=OPTIONAL,
             associate_with_qos_policy=OPTIONAL,
             qos_policy_id=OPTIONAL,
-            enable_snap_mirror_replication=OPTIONAL,):
+            enable_snap_mirror_replication=OPTIONAL,
+            protection_scheme=OPTIONAL,):
         """
         ModifyVolume enables you to modify settings on an existing volume. You can make modifications to one volume at a time and
         changes take place immediately. If you do not specify QoS values when you modify a volume, they remain the same as before the modification. You can retrieve
@@ -7144,8 +7284,11 @@ class Element(ServiceBase):
         :param qosPolicyID:  The ID for the policy whose QoS settings should be applied to the specified volumes. The volume will not maintain any association with the policy; this is an alternate way to apply QoS settings to the volume. This parameter and the qos parameter cannot be specified at the same time. 
         :type qosPolicyID: int
 
-        :param enableSnapMirrorReplication:  Determines whether the volume can be used for replication with SnapMirror endpoints. Possible values: true false 
+        :param enableSnapMirrorReplication:  Determines whether the volume can be used for replication with SnapMirror endpoints. 
         :type enableSnapMirrorReplication: bool
+
+        :param protectionScheme:  Protection scheme that should be used for this volume. The default value is the defaultProtectionScheme stored in the ClusterInfo object. Valid values: singleHelix, doubleHelix, tripleHelix 
+        :type protectionScheme: str
         """
 
         self._check_connection_type("modify_volume", "Cluster")
@@ -7181,6 +7324,12 @@ class Element(ServiceBase):
                     [("enable_snap_mirror_replication", enable_snap_mirror_replication, 10.1, False)])
             else:
                 params["enableSnapMirrorReplication"] = enable_snap_mirror_replication
+        if protection_scheme is not None:
+            if self.api_version < 11.0:
+                raise ApiParameterVersionError("modify_volume", 11.0,
+                    [("protection_scheme", protection_scheme, 11.0, False)])
+            else:
+                params["protectionScheme"] = protection_scheme
         
         # There is no adaptor.
         return self.send_request(

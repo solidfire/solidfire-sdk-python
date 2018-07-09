@@ -2510,6 +2510,9 @@ class ListVolumesRequest(data_model.DataObject):
     :param include_virtual_volumes:  Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. 
     :type include_virtual_volumes: bool
 
+    :param protection_schemes:  Only volumes that are using one of the protection schemes in this set are returned. Valid values: singleHelix, doubleHelix, tripleHelix 
+    :type protection_schemes: str
+
     """
     start_volume_id = data_model.property(
         "startVolumeID", int,
@@ -2559,6 +2562,12 @@ class ListVolumesRequest(data_model.DataObject):
         documentation="""Specifies that virtual volumes are included in the response by default. To exclude virtual volumes, set to false. """,
         dictionaryType=None
     )
+    protection_schemes = data_model.property(
+        "protectionSchemes", str,
+        array=True, optional=True,
+        documentation="""Only volumes that are using one of the protection schemes in this set are returned. Valid values: singleHelix, doubleHelix, tripleHelix """,
+        dictionaryType=None
+    )
 
     def __init__(self,
             start_volume_id=None,
@@ -2568,7 +2577,8 @@ class ListVolumesRequest(data_model.DataObject):
             is_paired=None,
             volume_ids=None,
             volume_name=None,
-            include_virtual_volumes=None):
+            include_virtual_volumes=None,
+            protection_schemes=None):
 
         super(ListVolumesRequest, self).__init__(**{ 
             "start_volume_id": start_volume_id,
@@ -2578,7 +2588,8 @@ class ListVolumesRequest(data_model.DataObject):
             "is_paired": is_paired,
             "volume_ids": volume_ids,
             "volume_name": volume_name,
-            "include_virtual_volumes": include_virtual_volumes, })
+            "include_virtual_volumes": include_virtual_volumes,
+            "protection_schemes": protection_schemes, })
         
 
 class ModifyScheduleResult(data_model.DataObject):
@@ -4512,6 +4523,38 @@ class GetDriveStatsRequest(data_model.DataObject):
 
         super(GetDriveStatsRequest, self).__init__(**{ 
             "drive_id": drive_id, })
+        
+
+class CopyVolumeResult(data_model.DataObject):
+    """CopyVolumeResult  
+
+    :param clone_id: [required]  
+    :type clone_id: int
+
+    :param async_handle: [required] Handle value used to track the progress of the volume copy. 
+    :type async_handle: int
+
+    """
+    clone_id = data_model.property(
+        "cloneID", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    async_handle = data_model.property(
+        "asyncHandle", int,
+        array=False, optional=False,
+        documentation="""Handle value used to track the progress of the volume copy. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            clone_id,
+            async_handle):
+
+        super(CopyVolumeResult, self).__init__(**{ 
+            "clone_id": clone_id,
+            "async_handle": async_handle, })
         
 
 class GetVolumeAccessGroupLunAssignmentsRequest(data_model.DataObject):
@@ -6956,36 +6999,25 @@ class UpdateSnapMirrorRelationshipResult(data_model.DataObject):
             "snap_mirror_relationship": snap_mirror_relationship, })
         
 
-class CopyVolumeResult(data_model.DataObject):
-    """CopyVolumeResult  
+class EnableProtectionSchemesResult(data_model.DataObject):
+    """EnableProtectionSchemesResult  
 
-    :param clone_id: [required]  
-    :type clone_id: int
-
-    :param async_handle: [required] Handle value used to track the progress of the volume copy. 
-    :type async_handle: int
+    :param enabled_protection_schemes: [required] The protection schemes that are enabled on the cluster. 
+    :type enabled_protection_schemes: str
 
     """
-    clone_id = data_model.property(
-        "cloneID", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    async_handle = data_model.property(
-        "asyncHandle", int,
-        array=False, optional=False,
-        documentation="""Handle value used to track the progress of the volume copy. """,
+    enabled_protection_schemes = data_model.property(
+        "enabledProtectionSchemes", str,
+        array=True, optional=False,
+        documentation="""The protection schemes that are enabled on the cluster. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            clone_id,
-            async_handle):
+            enabled_protection_schemes):
 
-        super(CopyVolumeResult, self).__init__(**{ 
-            "clone_id": clone_id,
-            "async_handle": async_handle, })
+        super(EnableProtectionSchemesResult, self).__init__(**{ 
+            "enabled_protection_schemes": enabled_protection_schemes, })
         
 
 class RestartServicesRequest(data_model.DataObject):
@@ -8194,38 +8226,90 @@ class SetSnmpTrapInfoRequest(data_model.DataObject):
             "cluster_event_traps_enabled": cluster_event_traps_enabled, })
         
 
-class RemoveVirtualNetworkRequest(data_model.DataObject):
-    """RemoveVirtualNetworkRequest  
-    RemoveVirtualNetwork enables you to remove a previously added virtual network.
-    Note: This method requires either the virtualNetworkID or the virtualNetworkTag as a parameter, but not both.
+class ClusterAdmin(data_model.DataObject):
+    """ClusterAdmin  
 
-    :param virtual_network_id:  Network ID that identifies the virtual network to remove. 
-    :type virtual_network_id: int
+    :param auth_method: [required]  
+    :type auth_method: str
 
-    :param virtual_network_tag:  Network tag that identifies the virtual network to remove. 
-    :type virtual_network_tag: int
+    :param access: [required]  
+    :type access: str
+
+    :param cluster_admin_id: [required]  
+    :type cluster_admin_id: int
+
+    :param username: [required]  
+    :type username: str
+
+    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :type attributes: dict
 
     """
-    virtual_network_id = data_model.property(
-        "virtualNetworkID", int,
-        array=False, optional=True,
-        documentation="""Network ID that identifies the virtual network to remove. """,
+    auth_method = data_model.property(
+        "authMethod", str,
+        array=False, optional=False,
+        documentation=""" """,
         dictionaryType=None
     )
-    virtual_network_tag = data_model.property(
-        "virtualNetworkTag", int,
+    access = data_model.property(
+        "access", str,
+        array=True, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    cluster_admin_id = data_model.property(
+        "clusterAdminID", int,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    username = data_model.property(
+        "username", str,
+        array=False, optional=False,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
         array=False, optional=True,
-        documentation="""Network tag that identifies the virtual network to remove. """,
+        documentation="""List of Name/Value pairs in JSON object format. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            virtual_network_id=None,
-            virtual_network_tag=None):
+            auth_method,
+            access,
+            cluster_admin_id,
+            username,
+            attributes=None):
 
-        super(RemoveVirtualNetworkRequest, self).__init__(**{ 
-            "virtual_network_id": virtual_network_id,
-            "virtual_network_tag": virtual_network_tag, })
+        super(ClusterAdmin, self).__init__(**{ 
+            "auth_method": auth_method,
+            "access": access,
+            "cluster_admin_id": cluster_admin_id,
+            "username": username,
+            "attributes": attributes, })
+        
+
+class GetCurrentClusterAdminResult(data_model.DataObject):
+    """GetCurrentClusterAdminResult  
+
+    :param cluster_admin: [required] Information about all cluster and LDAP administrators that exist for a cluster. 
+    :type cluster_admin: ClusterAdmin
+
+    """
+    cluster_admin = data_model.property(
+        "clusterAdmin", ClusterAdmin,
+        array=False, optional=False,
+        documentation="""Information about all cluster and LDAP administrators that exist for a cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            cluster_admin):
+
+        super(GetCurrentClusterAdminResult, self).__init__(**{ 
+            "cluster_admin": cluster_admin, })
         
 
 class CreateSnapMirrorEndpointResult(data_model.DataObject):
@@ -9139,6 +9223,9 @@ class ListVirtualVolumesRequest(data_model.DataObject):
     :param virtual_volume_ids:  A list of virtual volume IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
     :type virtual_volume_ids: UUID
 
+    :param protection_schemes:  Only volumes that are using one of the protection schemes in this set are returned. Valid values: singleHelix, doubleHelix, tripleHelix 
+    :type protection_schemes: str
+
     """
     details = data_model.property(
         "details", bool,
@@ -9170,20 +9257,28 @@ class ListVirtualVolumesRequest(data_model.DataObject):
         documentation="""A list of virtual volume IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. """,
         dictionaryType=None
     )
+    protection_schemes = data_model.property(
+        "protectionSchemes", str,
+        array=True, optional=True,
+        documentation="""Only volumes that are using one of the protection schemes in this set are returned. Valid values: singleHelix, doubleHelix, tripleHelix """,
+        dictionaryType=None
+    )
 
     def __init__(self,
             details=None,
             limit=None,
             recursive=None,
             start_virtual_volume_id=None,
-            virtual_volume_ids=None):
+            virtual_volume_ids=None,
+            protection_schemes=None):
 
         super(ListVirtualVolumesRequest, self).__init__(**{ 
             "details": details,
             "limit": limit,
             "recursive": recursive,
             "start_virtual_volume_id": start_virtual_volume_id,
-            "virtual_volume_ids": virtual_volume_ids, })
+            "virtual_volume_ids": virtual_volume_ids,
+            "protection_schemes": protection_schemes, })
         
 
 class CompleteVolumePairingResult(data_model.DataObject):
@@ -9194,6 +9289,28 @@ class CompleteVolumePairingResult(data_model.DataObject):
     def __init__(self):
 
         super(CompleteVolumePairingResult, self).__init__(**{  })
+        
+
+class ChangeDefaultProtectionSchemeRequest(data_model.DataObject):
+    """ChangeDefaultProtectionSchemeRequest  
+    Changes the default protection scheme stored in the cluster info.
+
+    :param default_protection_scheme: [required] If a protection scheme is not specified when a volume is created, this will be used. Valid values: singleHelix, doubleHelix, tripleHelix 
+    :type default_protection_scheme: str
+
+    """
+    default_protection_scheme = data_model.property(
+        "defaultProtectionScheme", str,
+        array=False, optional=False,
+        documentation="""If a protection scheme is not specified when a volume is created, this will be used. Valid values: singleHelix, doubleHelix, tripleHelix """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            default_protection_scheme):
+
+        super(ChangeDefaultProtectionSchemeRequest, self).__init__(**{ 
+            "default_protection_scheme": default_protection_scheme, })
         
 
 class ListDeletedVolumesRequest(data_model.DataObject):
@@ -13051,90 +13168,38 @@ class ModifySnapMirrorEndpointResult(data_model.DataObject):
             "snap_mirror_volumes": snap_mirror_volumes, })
         
 
-class ClusterAdmin(data_model.DataObject):
-    """ClusterAdmin  
+class RemoveVirtualNetworkRequest(data_model.DataObject):
+    """RemoveVirtualNetworkRequest  
+    RemoveVirtualNetwork enables you to remove a previously added virtual network.
+    Note: This method requires either the virtualNetworkID or the virtualNetworkTag as a parameter, but not both.
 
-    :param auth_method: [required]  
-    :type auth_method: str
+    :param virtual_network_id:  Network ID that identifies the virtual network to remove. 
+    :type virtual_network_id: int
 
-    :param access: [required]  
-    :type access: str
-
-    :param cluster_admin_id: [required]  
-    :type cluster_admin_id: int
-
-    :param username: [required]  
-    :type username: str
-
-    :param attributes:  List of Name/Value pairs in JSON object format. 
-    :type attributes: dict
+    :param virtual_network_tag:  Network tag that identifies the virtual network to remove. 
+    :type virtual_network_tag: int
 
     """
-    auth_method = data_model.property(
-        "authMethod", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    access = data_model.property(
-        "access", str,
-        array=True, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    cluster_admin_id = data_model.property(
-        "clusterAdminID", int,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    username = data_model.property(
-        "username", str,
-        array=False, optional=False,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
+    virtual_network_id = data_model.property(
+        "virtualNetworkID", int,
         array=False, optional=True,
-        documentation="""List of Name/Value pairs in JSON object format. """,
+        documentation="""Network ID that identifies the virtual network to remove. """,
+        dictionaryType=None
+    )
+    virtual_network_tag = data_model.property(
+        "virtualNetworkTag", int,
+        array=False, optional=True,
+        documentation="""Network tag that identifies the virtual network to remove. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            auth_method,
-            access,
-            cluster_admin_id,
-            username,
-            attributes=None):
+            virtual_network_id=None,
+            virtual_network_tag=None):
 
-        super(ClusterAdmin, self).__init__(**{ 
-            "auth_method": auth_method,
-            "access": access,
-            "cluster_admin_id": cluster_admin_id,
-            "username": username,
-            "attributes": attributes, })
-        
-
-class GetCurrentClusterAdminResult(data_model.DataObject):
-    """GetCurrentClusterAdminResult  
-
-    :param cluster_admin: [required] Information about all cluster and LDAP administrators that exist for a cluster. 
-    :type cluster_admin: ClusterAdmin
-
-    """
-    cluster_admin = data_model.property(
-        "clusterAdmin", ClusterAdmin,
-        array=False, optional=False,
-        documentation="""Information about all cluster and LDAP administrators that exist for a cluster. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            cluster_admin):
-
-        super(GetCurrentClusterAdminResult, self).__init__(**{ 
-            "cluster_admin": cluster_admin, })
+        super(RemoveVirtualNetworkRequest, self).__init__(**{ 
+            "virtual_network_id": virtual_network_id,
+            "virtual_network_tag": virtual_network_tag, })
         
 
 class ResetNodeRequest(data_model.DataObject):
@@ -15561,6 +15626,12 @@ class CreateVolumeRequest(data_model.DataObject):
     :param qos_policy_id:  The ID for the policy whose QoS settings should be applied to the specified volumes. This parameter is mutually exclusive with the qos parameter. 
     :type qos_policy_id: int
 
+    :param enable_snap_mirror_replication:  Specifies whether SnapMirror replication is enabled or not. 
+    :type enable_snap_mirror_replication: bool
+
+    :param protection_scheme:  Protection scheme that should be used for this volume. The default value is the defaultProtectionScheme stored in the ClusterInfo object. Valid values: singleHelix, doubleHelix, tripleHelix 
+    :type protection_scheme: str
+
     """
     name = data_model.property(
         "name", str,
@@ -15610,6 +15681,18 @@ class CreateVolumeRequest(data_model.DataObject):
         documentation="""The ID for the policy whose QoS settings should be applied to the specified volumes. This parameter is mutually exclusive with the qos parameter. """,
         dictionaryType=None
     )
+    enable_snap_mirror_replication = data_model.property(
+        "enableSnapMirrorReplication", bool,
+        array=False, optional=True,
+        documentation="""Specifies whether SnapMirror replication is enabled or not. """,
+        dictionaryType=None
+    )
+    protection_scheme = data_model.property(
+        "protectionScheme", str,
+        array=False, optional=True,
+        documentation="""Protection scheme that should be used for this volume. The default value is the defaultProtectionScheme stored in the ClusterInfo object. Valid values: singleHelix, doubleHelix, tripleHelix """,
+        dictionaryType=None
+    )
 
     def __init__(self,
             name,
@@ -15619,7 +15702,9 @@ class CreateVolumeRequest(data_model.DataObject):
             qos=None,
             attributes=None,
             associate_with_qos_policy=None,
-            qos_policy_id=None):
+            qos_policy_id=None,
+            enable_snap_mirror_replication=None,
+            protection_scheme=None):
 
         super(CreateVolumeRequest, self).__init__(**{ 
             "name": name,
@@ -15629,7 +15714,9 @@ class CreateVolumeRequest(data_model.DataObject):
             "qos": qos,
             "attributes": attributes,
             "associate_with_qos_policy": associate_with_qos_policy,
-            "qos_policy_id": qos_policy_id, })
+            "qos_policy_id": qos_policy_id,
+            "enable_snap_mirror_replication": enable_snap_mirror_replication,
+            "protection_scheme": protection_scheme, })
         
 
 class GetClusterInterfacePreferenceResult(data_model.DataObject):
@@ -17940,6 +18027,16 @@ class ListDrivesResult(data_model.DataObject):
             "drives": drives, })
         
 
+class ChangeDefaultProtectionSchemeResult(data_model.DataObject):
+    """ChangeDefaultProtectionSchemeResult  
+
+    """
+
+    def __init__(self):
+
+        super(ChangeDefaultProtectionSchemeResult, self).__init__(**{  })
+        
+
 class EnableClusterSshResult(data_model.DataObject):
     """EnableClusterSshResult  
 
@@ -18152,6 +18249,28 @@ class ListSnapMirrorAggregatesRequest(data_model.DataObject):
 
         super(ListSnapMirrorAggregatesRequest, self).__init__(**{ 
             "snap_mirror_endpoint_id": snap_mirror_endpoint_id, })
+        
+
+class DisableProtectionSchemesRequest(data_model.DataObject):
+    """DisableProtectionSchemesRequest  
+    Disables all of the provided protection schemes.
+
+    :param protection_schemes:  The protection schemes that should be disabled. Valid values: singleHelix, doubleHelix, tripleHelix 
+    :type protection_schemes: str
+
+    """
+    protection_schemes = data_model.property(
+        "protectionSchemes", str,
+        array=True, optional=True,
+        documentation="""The protection schemes that should be disabled. Valid values: singleHelix, doubleHelix, tripleHelix """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            protection_schemes=None):
+
+        super(DisableProtectionSchemesRequest, self).__init__(**{ 
+            "protection_schemes": protection_schemes, })
         
 
 class ListVolumeStatsByVolumeRequest(data_model.DataObject):
@@ -18796,6 +18915,27 @@ class InitializeSnapMirrorRelationshipRequest(data_model.DataObject):
             "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
             "destination_volume": destination_volume,
             "max_transfer_rate": max_transfer_rate, })
+        
+
+class DisableProtectionSchemesResult(data_model.DataObject):
+    """DisableProtectionSchemesResult  
+
+    :param enabled_protection_schemes: [required] The protection schemes that are enabled on the cluster. 
+    :type enabled_protection_schemes: str
+
+    """
+    enabled_protection_schemes = data_model.property(
+        "enabledProtectionSchemes", str,
+        array=True, optional=False,
+        documentation="""The protection schemes that are enabled on the cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            enabled_protection_schemes):
+
+        super(DisableProtectionSchemesResult, self).__init__(**{ 
+            "enabled_protection_schemes": enabled_protection_schemes, })
         
 
 class EnableFeatureRequest(data_model.DataObject):
@@ -21294,6 +21434,28 @@ class CreateInitiatorsResult(data_model.DataObject):
             "initiators": initiators, })
         
 
+class EnableProtectionSchemesRequest(data_model.DataObject):
+    """EnableProtectionSchemesRequest  
+    Enables all of the provided protection schemes.
+
+    :param protection_schemes:  The protection schemes that should be enabled. Valid values: singleHelix, doubleHelix, tripleHelix 
+    :type protection_schemes: str
+
+    """
+    protection_schemes = data_model.property(
+        "protectionSchemes", str,
+        array=True, optional=True,
+        documentation="""The protection schemes that should be enabled. Valid values: singleHelix, doubleHelix, tripleHelix """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            protection_schemes=None):
+
+        super(EnableProtectionSchemesRequest, self).__init__(**{ 
+            "protection_schemes": protection_schemes, })
+        
+
 class GetRemoteLoggingHostsResult(data_model.DataObject):
     """GetRemoteLoggingHostsResult  
 
@@ -23734,6 +23896,12 @@ class CreateClusterRequest(data_model.DataObject):
     :param attributes:  List of name-value pairs in JSON object format. 
     :type attributes: dict
 
+    :param default_protection_scheme:  If a protection scheme is not specified when a volume is created, this will be used. Valid values: singleHelix, doubleHelix, tripleHelix 
+    :type default_protection_scheme: str
+
+    :param disabled_protection_schemes:  The set of protection schemes that should not be enabled when the cluster is created. By default, all protection schemes supported by the software will be enabled. Valid values: singleHelix, doubleHelix, tripleHelix 
+    :type disabled_protection_schemes: str
+
     """
     accept_eula = data_model.property(
         "acceptEula", bool,
@@ -23783,6 +23951,18 @@ class CreateClusterRequest(data_model.DataObject):
         documentation="""List of name-value pairs in JSON object format. """,
         dictionaryType=None
     )
+    default_protection_scheme = data_model.property(
+        "defaultProtectionScheme", str,
+        array=False, optional=True,
+        documentation="""If a protection scheme is not specified when a volume is created, this will be used. Valid values: singleHelix, doubleHelix, tripleHelix """,
+        dictionaryType=None
+    )
+    disabled_protection_schemes = data_model.property(
+        "disabledProtectionSchemes", str,
+        array=True, optional=True,
+        documentation="""The set of protection schemes that should not be enabled when the cluster is created. By default, all protection schemes supported by the software will be enabled. Valid values: singleHelix, doubleHelix, tripleHelix """,
+        dictionaryType=None
+    )
 
     def __init__(self,
             mvip,
@@ -23792,7 +23972,9 @@ class CreateClusterRequest(data_model.DataObject):
             password,
             nodes,
             accept_eula=None,
-            attributes=None):
+            attributes=None,
+            default_protection_scheme=None,
+            disabled_protection_schemes=None):
 
         super(CreateClusterRequest, self).__init__(**{ 
             "accept_eula": accept_eula,
@@ -23802,7 +23984,9 @@ class CreateClusterRequest(data_model.DataObject):
             "username": username,
             "password": password,
             "nodes": nodes,
-            "attributes": attributes, })
+            "attributes": attributes,
+            "default_protection_scheme": default_protection_scheme,
+            "disabled_protection_schemes": disabled_protection_schemes, })
         
 
 class ListEventsRequest(data_model.DataObject):
@@ -26213,8 +26397,11 @@ class ModifyVolumeRequest(data_model.DataObject):
     :param qos_policy_id:  The ID for the policy whose QoS settings should be applied to the specified volumes. The volume will not maintain any association with the policy; this is an alternate way to apply QoS settings to the volume. This parameter and the qos parameter cannot be specified at the same time. 
     :type qos_policy_id: int
 
-    :param enable_snap_mirror_replication:  Determines whether the volume can be used for replication with SnapMirror endpoints. Possible values: true false 
+    :param enable_snap_mirror_replication:  Determines whether the volume can be used for replication with SnapMirror endpoints. 
     :type enable_snap_mirror_replication: bool
+
+    :param protection_scheme:  Protection scheme that should be used for this volume. The default value is the defaultProtectionScheme stored in the ClusterInfo object. Valid values: singleHelix, doubleHelix, tripleHelix 
+    :type protection_scheme: str
 
     """
     volume_id = data_model.property(
@@ -26268,7 +26455,13 @@ class ModifyVolumeRequest(data_model.DataObject):
     enable_snap_mirror_replication = data_model.property(
         "enableSnapMirrorReplication", bool,
         array=False, optional=True,
-        documentation="""Determines whether the volume can be used for replication with SnapMirror endpoints. Possible values: true false """,
+        documentation="""Determines whether the volume can be used for replication with SnapMirror endpoints. """,
+        dictionaryType=None
+    )
+    protection_scheme = data_model.property(
+        "protectionScheme", str,
+        array=False, optional=True,
+        documentation="""Protection scheme that should be used for this volume. The default value is the defaultProtectionScheme stored in the ClusterInfo object. Valid values: singleHelix, doubleHelix, tripleHelix """,
         dictionaryType=None
     )
 
@@ -26281,7 +26474,8 @@ class ModifyVolumeRequest(data_model.DataObject):
             attributes=None,
             associate_with_qos_policy=None,
             qos_policy_id=None,
-            enable_snap_mirror_replication=None):
+            enable_snap_mirror_replication=None,
+            protection_scheme=None):
 
         super(ModifyVolumeRequest, self).__init__(**{ 
             "volume_id": volume_id,
@@ -26292,7 +26486,8 @@ class ModifyVolumeRequest(data_model.DataObject):
             "attributes": attributes,
             "associate_with_qos_policy": associate_with_qos_policy,
             "qos_policy_id": qos_policy_id,
-            "enable_snap_mirror_replication": enable_snap_mirror_replication, })
+            "enable_snap_mirror_replication": enable_snap_mirror_replication,
+            "protection_scheme": protection_scheme, })
         
 
 class CreateGroupSnapshotResult(data_model.DataObject):
