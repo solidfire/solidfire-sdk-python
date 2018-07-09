@@ -2400,7 +2400,7 @@ class SnapMirrorVolumeInfo(data_model.DataObject):
     :param type: [required] The type of volume. Possible values: solidfire: The volume resides on a SolidFire cluster. ontap:     The volume resides on a remote ONTAP cluster. 
     :type type: str
 
-    :param volume_id: [required] The ID of the volume. Only valid if "type" is solidfire. 
+    :param volume_id:  The ID of the volume. Only valid if "type" is solidfire. 
     :type volume_id: int
 
     :param vserver: [required] The name of the Vserver that owns this volume. Only valid if "type" is ONTAP. 
@@ -2418,7 +2418,7 @@ class SnapMirrorVolumeInfo(data_model.DataObject):
     )
     volume_id = data_model.property(
         "volumeID", int,
-        array=False, optional=False,
+        array=False, optional=True,
         documentation="""The ID of the volume. Only valid if "type" is solidfire. """,
         dictionaryType=None
     )
@@ -2437,9 +2437,9 @@ class SnapMirrorVolumeInfo(data_model.DataObject):
 
     def __init__(self,
             type,
-            volume_id,
             vserver,
-            name):
+            name,
+            volume_id=None):
 
         super(SnapMirrorVolumeInfo, self).__init__(**{ 
             "type": type,
