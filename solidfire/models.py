@@ -13128,22 +13128,22 @@ class ModifyAccountRequest(data_model.DataObject):
 class ModifySnapMirrorEndpointResult(data_model.DataObject):
     """ModifySnapMirrorEndpointResult  
 
-    :param snap_mirror_volumes: [required] Information about the modified SnapMirror endpoint. 
-    :type snap_mirror_volumes: SnapMirrorEndpoint
+    :param snap_mirror_endpoint: [required] Information about the modified SnapMirror endpoint. 
+    :type snap_mirror_endpoint: SnapMirrorEndpoint
 
     """
-    snap_mirror_volumes = data_model.property(
-        "snapMirrorVolumes", SnapMirrorEndpoint,
+    snap_mirror_endpoint = data_model.property(
+        "snapMirrorEndpoint", SnapMirrorEndpoint,
         array=False, optional=False,
         documentation="""Information about the modified SnapMirror endpoint. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            snap_mirror_volumes):
+            snap_mirror_endpoint):
 
         super(ModifySnapMirrorEndpointResult, self).__init__(**{ 
-            "snap_mirror_volumes": snap_mirror_volumes, })
+            "snap_mirror_endpoint": snap_mirror_endpoint, })
         
 
 class RemoveVirtualNetworkRequest(data_model.DataObject):
