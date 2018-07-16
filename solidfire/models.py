@@ -2450,13 +2450,13 @@ class SnapMirrorVolumeInfo(data_model.DataObject):
 
 class DeleteSnapMirrorRelationshipsRequest(data_model.DataObject):
     """DeleteSnapMirrorRelationshipsRequest  
-    The SolidFire Element OS web UI uses the DeleteSnapMirrorRelationships method to remove a SnapMirror relationship between a source and destination endpoint.
+    The SolidFire Element OS web UI uses the DeleteSnapMirrorRelationships method to remove SnapMirror relationships.
 
     :param snap_mirror_endpoint_id: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
     :type snap_mirror_endpoint_id: int
 
-    :param destination_volume: [required] The destination volume in the SnapMirror relationship. 
-    :type destination_volume: SnapMirrorVolumeInfo
+    :param destination_volumes: [required] The destination volumes to delete. 
+    :type destination_volumes: SnapMirrorVolumeInfo
 
     """
     snap_mirror_endpoint_id = data_model.property(
@@ -2465,20 +2465,20 @@ class DeleteSnapMirrorRelationshipsRequest(data_model.DataObject):
         documentation="""The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. """,
         dictionaryType=None
     )
-    destination_volume = data_model.property(
-        "destinationVolume", SnapMirrorVolumeInfo,
-        array=False, optional=False,
-        documentation="""The destination volume in the SnapMirror relationship. """,
+    destination_volumes = data_model.property(
+        "destinationVolumes", SnapMirrorVolumeInfo,
+        array=True, optional=False,
+        documentation="""The destination volumes to delete. """,
         dictionaryType=None
     )
 
     def __init__(self,
             snap_mirror_endpoint_id,
-            destination_volume):
+            destination_volumes):
 
         super(DeleteSnapMirrorRelationshipsRequest, self).__init__(**{ 
             "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
-            "destination_volume": destination_volume, })
+            "destination_volumes": destination_volumes, })
         
 
 class ListVolumesRequest(data_model.DataObject):

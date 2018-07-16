@@ -3995,21 +3995,21 @@ class Element(ServiceBase):
     def delete_snap_mirror_relationships(
             self,
             snap_mirror_endpoint_id,
-            destination_volume,):
+            destination_volumes,):
         """
-        The SolidFire Element OS web UI uses the DeleteSnapMirrorRelationships method to remove a SnapMirror relationship between a source and destination endpoint.
+        The SolidFire Element OS web UI uses the DeleteSnapMirrorRelationships method to remove SnapMirror relationships.
         :param snapMirrorEndpointID: [required] The endpoint ID of the remote ONTAP storage system communicating with the SolidFire cluster. 
         :type snapMirrorEndpointID: int
 
-        :param destinationVolume: [required] The destination volume in the SnapMirror relationship. 
-        :type destinationVolume: SnapMirrorVolumeInfo
+        :param destinationVolumes: [required] The destination volumes to delete. 
+        :type destinationVolumes: SnapMirrorVolumeInfo
         """
 
         self._check_connection_type("delete_snap_mirror_relationships", "Cluster")
 
         params = { 
             "snapMirrorEndpointID": snap_mirror_endpoint_id,
-            "destinationVolume": destination_volume,
+            "destinationVolumes": destination_volumes,
         }
         
         # There is no adaptor.
