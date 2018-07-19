@@ -4210,6 +4210,12 @@ class Volume(data_model.DataObject):
     :param attributes: [required] List of Name/Value pairs in JSON object format. 
     :type attributes: dict
 
+    :param current_protection_scheme:  Protection scheme that is being used for this volume. If a volume is converting from one protection scheme to another,  this field will be set to the protection scheme that the volume is converting to. 
+    :type current_protection_scheme: str
+
+    :param previous_protection_scheme:  If a volume is converting from one protection scheme to another, this field will be set to the protection scheme the volume is converting from. This field will not change until another conversion is started. If a volume has never been converted, this field will be null. 
+    :type previous_protection_scheme: str
+
     """
     volume_id = data_model.property(
         "volumeID", int,
@@ -4367,6 +4373,18 @@ class Volume(data_model.DataObject):
         documentation="""List of Name/Value pairs in JSON object format. """,
         dictionaryType=None
     )
+    current_protection_scheme = data_model.property(
+        "currentProtectionScheme", str,
+        array=False, optional=True,
+        documentation="""Protection scheme that is being used for this volume. If a volume is converting from one protection scheme to another,  this field will be set to the protection scheme that the volume is converting to. """,
+        dictionaryType=None
+    )
+    previous_protection_scheme = data_model.property(
+        "previousProtectionScheme", str,
+        array=False, optional=True,
+        documentation="""If a volume is converting from one protection scheme to another, this field will be set to the protection scheme the volume is converting from. This field will not change until another conversion is started. If a volume has never been converted, this field will be null. """,
+        dictionaryType=None
+    )
 
     def __init__(self,
             volume_id,
@@ -4394,7 +4412,9 @@ class Volume(data_model.DataObject):
             purge_time=None,
             last_access_time=None,
             last_access_time_io=None,
-            virtual_volume_id=None):
+            virtual_volume_id=None,
+            current_protection_scheme=None,
+            previous_protection_scheme=None):
 
         super(Volume, self).__init__(**{ 
             "volume_id": volume_id,
@@ -4422,7 +4442,9 @@ class Volume(data_model.DataObject):
             "total_size": total_size,
             "block_size": block_size,
             "virtual_volume_id": virtual_volume_id,
-            "attributes": attributes, })
+            "attributes": attributes,
+            "current_protection_scheme": current_protection_scheme,
+            "previous_protection_scheme": previous_protection_scheme, })
         
 
 class CloneVolumeResult(data_model.DataObject):
@@ -22799,6 +22821,15 @@ class ClusterInfo(data_model.DataObject):
     :param attributes: [required] List of Name/Value pairs in JSON object format. 
     :type attributes: dict
 
+    :param default_protection_scheme:  If a protection scheme is not provided to the CreateVolume call, this protection scheme will be used for the new volume. This protection scheme must always be in the set of enabled protection schemes. 
+    :type default_protection_scheme: str
+
+    :param enabled_protection_schemes:  A list of all of the protection schemes that have been enabled on this cluster. 
+    :type enabled_protection_schemes: str
+
+    :param supported_protection_schemes:  A list of all of the protection schemes that are supported on this cluster. 
+    :type supported_protection_schemes: str
+
     """
     mvip_interface = data_model.property(
         "mvipInterface", str,
@@ -22890,6 +22921,24 @@ class ClusterInfo(data_model.DataObject):
         documentation="""List of Name/Value pairs in JSON object format. """,
         dictionaryType=None
     )
+    default_protection_scheme = data_model.property(
+        "defaultProtectionScheme", str,
+        array=False, optional=True,
+        documentation="""If a protection scheme is not provided to the CreateVolume call, this protection scheme will be used for the new volume. This protection scheme must always be in the set of enabled protection schemes. """,
+        dictionaryType=None
+    )
+    enabled_protection_schemes = data_model.property(
+        "enabledProtectionSchemes", str,
+        array=True, optional=True,
+        documentation="""A list of all of the protection schemes that have been enabled on this cluster. """,
+        dictionaryType=None
+    )
+    supported_protection_schemes = data_model.property(
+        "supportedProtectionSchemes", str,
+        array=True, optional=True,
+        documentation="""A list of all of the protection schemes that are supported on this cluster. """,
+        dictionaryType=None
+    )
 
     def __init__(self,
             encryption_at_rest_state,
@@ -22906,7 +22955,10 @@ class ClusterInfo(data_model.DataObject):
             mvip_interface=None,
             mvip_vlan_tag=None,
             svip_interface=None,
-            svip_vlan_tag=None):
+            svip_vlan_tag=None,
+            default_protection_scheme=None,
+            enabled_protection_schemes=None,
+            supported_protection_schemes=None):
 
         super(ClusterInfo, self).__init__(**{ 
             "mvip_interface": mvip_interface,
@@ -22923,7 +22975,10 @@ class ClusterInfo(data_model.DataObject):
             "svip_node_id": svip_node_id,
             "unique_id": unique_id,
             "uuid": uuid,
-            "attributes": attributes, })
+            "attributes": attributes,
+            "default_protection_scheme": default_protection_scheme,
+            "enabled_protection_schemes": enabled_protection_schemes,
+            "supported_protection_schemes": supported_protection_schemes, })
         
 
 class GetClusterInfoResult(data_model.DataObject):
