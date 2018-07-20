@@ -359,113 +359,178 @@ class GetSSLCertificateResult(data_model.DataObject):
             "details": details, })
         
 
-class SnapMirrorEndpoint(data_model.DataObject):
-    """SnapMirrorEndpoint  
-    The snapMirrorEndpoint object contains information about the remote SnapMirror storage systems communicating with the SolidFire cluster. You can retrieve this information with the ListSnapMirrorEndpoints API method.
+class AddressBlock(data_model.DataObject):
+    """AddressBlock  
+    Unique Range of IP addresses to include in the virtual network.
 
-    :param snap_mirror_endpoint_id: [required] The unique identifier for the object in the local cluster. 
-    :type snap_mirror_endpoint_id: int
+    :param start: [required] Start of the IP address range. 
+    :type start: str
 
-    :param management_ip: [required] The cluster management IP address of the endpoint. 
-    :type management_ip: str
+    :param size: [required] Number of IP addresses to include in the block. 
+    :type size: int
 
-    :param cluster_name: [required] The ONTAP cluster name. This value is automatically populated with the value of "clusterName" from the snapMirrorClusterIdentity object. 
-    :type cluster_name: str
-
-    :param username: [required] The management username for the ONTAP system. 
-    :type username: str
-
-    :param password: [required] The management password for the ONTAP system. 
-    :type password: str
-
-    :param ip_addresses: [required] List of the inter-cluster storage IP addresses for all nodes in the cluster. You can get these IP addresses with the ListSnapMirrorNetworkInterfaces method. 
-    :type ip_addresses: str
-
-    :param is_connected: [required] The connectivity status of the control link to the ONTAP cluster. 
-    :type is_connected: bool
+    :param available: [required] Nuber of available blocks 
+    :type available: str
 
     """
-    snap_mirror_endpoint_id = data_model.property(
-        "snapMirrorEndpointID", int,
+    start = data_model.property(
+        "start", str,
         array=False, optional=False,
-        documentation="""The unique identifier for the object in the local cluster. """,
+        documentation="""Start of the IP address range. """,
         dictionaryType=None
     )
-    management_ip = data_model.property(
-        "managementIP", str,
+    size = data_model.property(
+        "size", int,
         array=False, optional=False,
-        documentation="""The cluster management IP address of the endpoint. """,
+        documentation="""Number of IP addresses to include in the block. """,
         dictionaryType=None
     )
-    cluster_name = data_model.property(
-        "clusterName", str,
+    available = data_model.property(
+        "available", str,
         array=False, optional=False,
-        documentation="""The ONTAP cluster name. This value is automatically populated with the value of "clusterName" from the snapMirrorClusterIdentity object. """,
-        dictionaryType=None
-    )
-    username = data_model.property(
-        "username", str,
-        array=False, optional=False,
-        documentation="""The management username for the ONTAP system. """,
-        dictionaryType=None
-    )
-    password = data_model.property(
-        "password", str,
-        array=False, optional=False,
-        documentation="""The management password for the ONTAP system. """,
-        dictionaryType=None
-    )
-    ip_addresses = data_model.property(
-        "ipAddresses", str,
-        array=True, optional=False,
-        documentation="""List of the inter-cluster storage IP addresses for all nodes in the cluster. You can get these IP addresses with the ListSnapMirrorNetworkInterfaces method. """,
-        dictionaryType=None
-    )
-    is_connected = data_model.property(
-        "isConnected", bool,
-        array=False, optional=False,
-        documentation="""The connectivity status of the control link to the ONTAP cluster. """,
+        documentation="""Nuber of available blocks """,
         dictionaryType=None
     )
 
     def __init__(self,
-            snap_mirror_endpoint_id,
-            management_ip,
-            cluster_name,
-            username,
-            password,
-            ip_addresses,
-            is_connected):
+            start,
+            size,
+            available):
 
-        super(SnapMirrorEndpoint, self).__init__(**{ 
-            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
-            "management_ip": management_ip,
-            "cluster_name": cluster_name,
-            "username": username,
-            "password": password,
-            "ip_addresses": ip_addresses,
-            "is_connected": is_connected, })
+        super(AddressBlock, self).__init__(**{ 
+            "start": start,
+            "size": size,
+            "available": available, })
         
 
-class CreateSnapMirrorEndpointUnmanagedResult(data_model.DataObject):
-    """CreateSnapMirrorEndpointUnmanagedResult  
+class VirtualNetwork(data_model.DataObject):
+    """VirtualNetwork  
 
-    :param snap_mirror_endpoint: [required] The newly created SnapMirror endpoint. 
-    :type snap_mirror_endpoint: SnapMirrorEndpoint
+    :param virtual_network_id: [required] SolidFire unique identifier for a virtual network. 
+    :type virtual_network_id: int
+
+    :param virtual_network_tag: [required] VLAN Tag identifier. 
+    :type virtual_network_tag: int
+
+    :param address_blocks: [required] Range of address blocks currently assigned to the virtual network. available: Binary string in "1"s and "0"s. 1 equals the IP is available and 0 equals the IP is not available. The string is read from right to left with the digit to the far right being the first IP address in the list of addressBlocks. size: the size of this block of addresses. start: first IP address in the block. 
+    :type address_blocks: AddressBlock
+
+    :param name: [required] The name assigned to the virtual network. 
+    :type name: str
+
+    :param netmask: [required] IP address of the netmask for the virtual network. 
+    :type netmask: str
+
+    :param svip: [required] Storage IP address for the virtual network. 
+    :type svip: str
+
+    :param gateway:   
+    :type gateway: str
+
+    :param namespace:   
+    :type namespace: bool
+
+    :param attributes:  List of Name/Value pairs in JSON object format. 
+    :type attributes: dict
 
     """
-    snap_mirror_endpoint = data_model.property(
-        "snapMirrorEndpoint", SnapMirrorEndpoint,
+    virtual_network_id = data_model.property(
+        "virtualNetworkID", int,
         array=False, optional=False,
-        documentation="""The newly created SnapMirror endpoint. """,
+        documentation="""SolidFire unique identifier for a virtual network. """,
+        dictionaryType=None
+    )
+    virtual_network_tag = data_model.property(
+        "virtualNetworkTag", int,
+        array=False, optional=False,
+        documentation="""VLAN Tag identifier. """,
+        dictionaryType=None
+    )
+    address_blocks = data_model.property(
+        "addressBlocks", AddressBlock,
+        array=True, optional=False,
+        documentation="""Range of address blocks currently assigned to the virtual network. available: Binary string in "1"s and "0"s. 1 equals the IP is available and 0 equals the IP is not available. The string is read from right to left with the digit to the far right being the first IP address in the list of addressBlocks. size: the size of this block of addresses. start: first IP address in the block. """,
+        dictionaryType=None
+    )
+    name = data_model.property(
+        "name", str,
+        array=False, optional=False,
+        documentation="""The name assigned to the virtual network. """,
+        dictionaryType=None
+    )
+    netmask = data_model.property(
+        "netmask", str,
+        array=False, optional=False,
+        documentation="""IP address of the netmask for the virtual network. """,
+        dictionaryType=None
+    )
+    svip = data_model.property(
+        "svip", str,
+        array=False, optional=False,
+        documentation="""Storage IP address for the virtual network. """,
+        dictionaryType=None
+    )
+    gateway = data_model.property(
+        "gateway", str,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    namespace = data_model.property(
+        "namespace", bool,
+        array=False, optional=True,
+        documentation=""" """,
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="""List of Name/Value pairs in JSON object format. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            snap_mirror_endpoint):
+            virtual_network_id,
+            virtual_network_tag,
+            address_blocks,
+            name,
+            netmask,
+            svip,
+            gateway=None,
+            namespace=None,
+            attributes=None):
 
-        super(CreateSnapMirrorEndpointUnmanagedResult, self).__init__(**{ 
-            "snap_mirror_endpoint": snap_mirror_endpoint, })
+        super(VirtualNetwork, self).__init__(**{ 
+            "virtual_network_id": virtual_network_id,
+            "virtual_network_tag": virtual_network_tag,
+            "address_blocks": address_blocks,
+            "name": name,
+            "netmask": netmask,
+            "svip": svip,
+            "gateway": gateway,
+            "namespace": namespace,
+            "attributes": attributes, })
+        
+
+class ListVirtualNetworksResult(data_model.DataObject):
+    """ListVirtualNetworksResult  
+
+    :param virtual_networks: [required] Object containing virtual network IP addresses. 
+    :type virtual_networks: VirtualNetwork
+
+    """
+    virtual_networks = data_model.property(
+        "virtualNetworks", VirtualNetwork,
+        array=True, optional=False,
+        documentation="""Object containing virtual network IP addresses. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            virtual_networks):
+
+        super(ListVirtualNetworksResult, self).__init__(**{ 
+            "virtual_networks": virtual_networks, })
         
 
 class ClusterConfig(data_model.DataObject):
@@ -8334,6 +8399,94 @@ class GetCurrentClusterAdminResult(data_model.DataObject):
             "cluster_admin": cluster_admin, })
         
 
+class SnapMirrorEndpoint(data_model.DataObject):
+    """SnapMirrorEndpoint  
+    The snapMirrorEndpoint object contains information about the remote SnapMirror storage systems communicating with the SolidFire cluster. You can retrieve this information with the ListSnapMirrorEndpoints API method.
+
+    :param snap_mirror_endpoint_id: [required] The unique identifier for the object in the local cluster. 
+    :type snap_mirror_endpoint_id: int
+
+    :param management_ip: [required] The cluster management IP address of the endpoint. 
+    :type management_ip: str
+
+    :param cluster_name: [required] The ONTAP cluster name. This value is automatically populated with the value of "clusterName" from the snapMirrorClusterIdentity object. 
+    :type cluster_name: str
+
+    :param username: [required] The management username for the ONTAP system. 
+    :type username: str
+
+    :param password: [required] The management password for the ONTAP system. 
+    :type password: str
+
+    :param ip_addresses: [required] List of the inter-cluster storage IP addresses for all nodes in the cluster. You can get these IP addresses with the ListSnapMirrorNetworkInterfaces method. 
+    :type ip_addresses: str
+
+    :param is_connected: [required] The connectivity status of the control link to the ONTAP cluster. 
+    :type is_connected: bool
+
+    """
+    snap_mirror_endpoint_id = data_model.property(
+        "snapMirrorEndpointID", int,
+        array=False, optional=False,
+        documentation="""The unique identifier for the object in the local cluster. """,
+        dictionaryType=None
+    )
+    management_ip = data_model.property(
+        "managementIP", str,
+        array=False, optional=False,
+        documentation="""The cluster management IP address of the endpoint. """,
+        dictionaryType=None
+    )
+    cluster_name = data_model.property(
+        "clusterName", str,
+        array=False, optional=False,
+        documentation="""The ONTAP cluster name. This value is automatically populated with the value of "clusterName" from the snapMirrorClusterIdentity object. """,
+        dictionaryType=None
+    )
+    username = data_model.property(
+        "username", str,
+        array=False, optional=False,
+        documentation="""The management username for the ONTAP system. """,
+        dictionaryType=None
+    )
+    password = data_model.property(
+        "password", str,
+        array=False, optional=False,
+        documentation="""The management password for the ONTAP system. """,
+        dictionaryType=None
+    )
+    ip_addresses = data_model.property(
+        "ipAddresses", str,
+        array=True, optional=False,
+        documentation="""List of the inter-cluster storage IP addresses for all nodes in the cluster. You can get these IP addresses with the ListSnapMirrorNetworkInterfaces method. """,
+        dictionaryType=None
+    )
+    is_connected = data_model.property(
+        "isConnected", bool,
+        array=False, optional=False,
+        documentation="""The connectivity status of the control link to the ONTAP cluster. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            snap_mirror_endpoint_id,
+            management_ip,
+            cluster_name,
+            username,
+            password,
+            ip_addresses,
+            is_connected):
+
+        super(SnapMirrorEndpoint, self).__init__(**{ 
+            "snap_mirror_endpoint_id": snap_mirror_endpoint_id,
+            "management_ip": management_ip,
+            "cluster_name": cluster_name,
+            "username": username,
+            "password": password,
+            "ip_addresses": ip_addresses,
+            "is_connected": is_connected, })
+        
+
 class CreateSnapMirrorEndpointResult(data_model.DataObject):
     """CreateSnapMirrorEndpointResult  
 
@@ -9869,178 +10022,25 @@ class GetClusterInterfacePreferenceRequest(data_model.DataObject):
             "name": name, })
         
 
-class AddressBlock(data_model.DataObject):
-    """AddressBlock  
-    Unique Range of IP addresses to include in the virtual network.
+class CreateSnapMirrorEndpointUnmanagedResult(data_model.DataObject):
+    """CreateSnapMirrorEndpointUnmanagedResult  
 
-    :param start: [required] Start of the IP address range. 
-    :type start: str
-
-    :param size: [required] Number of IP addresses to include in the block. 
-    :type size: int
-
-    :param available: [required] Nuber of available blocks 
-    :type available: str
+    :param snap_mirror_endpoint: [required] The newly created SnapMirror endpoint. 
+    :type snap_mirror_endpoint: SnapMirrorEndpoint
 
     """
-    start = data_model.property(
-        "start", str,
+    snap_mirror_endpoint = data_model.property(
+        "snapMirrorEndpoint", SnapMirrorEndpoint,
         array=False, optional=False,
-        documentation="""Start of the IP address range. """,
-        dictionaryType=None
-    )
-    size = data_model.property(
-        "size", int,
-        array=False, optional=False,
-        documentation="""Number of IP addresses to include in the block. """,
-        dictionaryType=None
-    )
-    available = data_model.property(
-        "available", str,
-        array=False, optional=False,
-        documentation="""Nuber of available blocks """,
+        documentation="""The newly created SnapMirror endpoint. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            start,
-            size,
-            available):
+            snap_mirror_endpoint):
 
-        super(AddressBlock, self).__init__(**{ 
-            "start": start,
-            "size": size,
-            "available": available, })
-        
-
-class VirtualNetwork(data_model.DataObject):
-    """VirtualNetwork  
-
-    :param virtual_network_id: [required] SolidFire unique identifier for a virtual network. 
-    :type virtual_network_id: int
-
-    :param virtual_network_tag: [required] VLAN Tag identifier. 
-    :type virtual_network_tag: int
-
-    :param address_blocks: [required] Range of address blocks currently assigned to the virtual network. available: Binary string in "1"s and "0"s. 1 equals the IP is available and 0 equals the IP is not available. The string is read from right to left with the digit to the far right being the first IP address in the list of addressBlocks. size: the size of this block of addresses. start: first IP address in the block. 
-    :type address_blocks: AddressBlock
-
-    :param name: [required] The name assigned to the virtual network. 
-    :type name: str
-
-    :param netmask: [required] IP address of the netmask for the virtual network. 
-    :type netmask: str
-
-    :param svip: [required] Storage IP address for the virtual network. 
-    :type svip: str
-
-    :param gateway:   
-    :type gateway: str
-
-    :param namespace:   
-    :type namespace: bool
-
-    :param attributes:  List of Name/Value pairs in JSON object format. 
-    :type attributes: dict
-
-    """
-    virtual_network_id = data_model.property(
-        "virtualNetworkID", int,
-        array=False, optional=False,
-        documentation="""SolidFire unique identifier for a virtual network. """,
-        dictionaryType=None
-    )
-    virtual_network_tag = data_model.property(
-        "virtualNetworkTag", int,
-        array=False, optional=False,
-        documentation="""VLAN Tag identifier. """,
-        dictionaryType=None
-    )
-    address_blocks = data_model.property(
-        "addressBlocks", AddressBlock,
-        array=True, optional=False,
-        documentation="""Range of address blocks currently assigned to the virtual network. available: Binary string in "1"s and "0"s. 1 equals the IP is available and 0 equals the IP is not available. The string is read from right to left with the digit to the far right being the first IP address in the list of addressBlocks. size: the size of this block of addresses. start: first IP address in the block. """,
-        dictionaryType=None
-    )
-    name = data_model.property(
-        "name", str,
-        array=False, optional=False,
-        documentation="""The name assigned to the virtual network. """,
-        dictionaryType=None
-    )
-    netmask = data_model.property(
-        "netmask", str,
-        array=False, optional=False,
-        documentation="""IP address of the netmask for the virtual network. """,
-        dictionaryType=None
-    )
-    svip = data_model.property(
-        "svip", str,
-        array=False, optional=False,
-        documentation="""Storage IP address for the virtual network. """,
-        dictionaryType=None
-    )
-    gateway = data_model.property(
-        "gateway", str,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    namespace = data_model.property(
-        "namespace", bool,
-        array=False, optional=True,
-        documentation=""" """,
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="""List of Name/Value pairs in JSON object format. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            virtual_network_id,
-            virtual_network_tag,
-            address_blocks,
-            name,
-            netmask,
-            svip,
-            gateway=None,
-            namespace=None,
-            attributes=None):
-
-        super(VirtualNetwork, self).__init__(**{ 
-            "virtual_network_id": virtual_network_id,
-            "virtual_network_tag": virtual_network_tag,
-            "address_blocks": address_blocks,
-            "name": name,
-            "netmask": netmask,
-            "svip": svip,
-            "gateway": gateway,
-            "namespace": namespace,
-            "attributes": attributes, })
-        
-
-class ListVirtualNetworksResult(data_model.DataObject):
-    """ListVirtualNetworksResult  
-
-    :param virtual_networks: [required] Object containing virtual network IP addresses. 
-    :type virtual_networks: VirtualNetwork
-
-    """
-    virtual_networks = data_model.property(
-        "virtualNetworks", VirtualNetwork,
-        array=True, optional=False,
-        documentation="""Object containing virtual network IP addresses. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            virtual_networks):
-
-        super(ListVirtualNetworksResult, self).__init__(**{ 
-            "virtual_networks": virtual_networks, })
+        super(CreateSnapMirrorEndpointUnmanagedResult, self).__init__(**{ 
+            "snap_mirror_endpoint": snap_mirror_endpoint, })
         
 
 class ListQoSPoliciesResult(data_model.DataObject):
@@ -25649,6 +25649,28 @@ class GetNodeHardwareInfoResult(data_model.DataObject):
 
         super(GetNodeHardwareInfoResult, self).__init__(**{ 
             "node_hardware_info": node_hardware_info, })
+        
+
+class GetIpmiInfoRequest(data_model.DataObject):
+    """GetIpmiInfoRequest  
+    GetIpmiInfo enables you to display a detailed reporting of sensors (objects) for node fans, intake and exhaust temperatures, and power supplies that are monitored by the system.
+
+    :param force:  Force this method to run on all nodes. Only needed when issuing the API to a cluster instead of a single node. 
+    :type force: bool
+
+    """
+    force = data_model.property(
+        "force", bool,
+        array=False, optional=True,
+        documentation="""Force this method to run on all nodes. Only needed when issuing the API to a cluster instead of a single node. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            force=None):
+
+        super(GetIpmiInfoRequest, self).__init__(**{ 
+            "force": force, })
         
 
 class GetSnmpTrapInfoResult(data_model.DataObject):

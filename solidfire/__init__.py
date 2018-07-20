@@ -3590,14 +3590,20 @@ class Element(ServiceBase):
         )
 
     def get_ipmi_info(
-            self,):
+            self,
+            force=OPTIONAL,):
         """
-        GetIpmiInfo enables you to display a detailed reporting of sensors (objects) for node fans, intake and exhaust temperatures, and power supplies that are monitored by the system.        """
+        GetIpmiInfo enables you to display a detailed reporting of sensors (objects) for node fans, intake and exhaust temperatures, and power supplies that are monitored by the system.
+        :param force:  Force this method to run on all nodes. Only needed when issuing the API to a cluster instead of a single node. 
+        :type force: bool
+        """
 
-        self._check_connection_type("get_ipmi_info", "Cluster")
+        self._check_connection_type("get_ipmi_info", "Both")
 
         params = { 
         }
+        if force is not None:
+            params["force"] = force
         
         # There is no adaptor.
         return self.send_request(
