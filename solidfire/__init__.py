@@ -493,86 +493,29 @@ class Element(ServiceBase):
             since=1.0
         )
 
-    def create_cluster(
+    def clear_cluster_faults(
             self,
-            mvip,
-            svip,
-            rep_count,
-            username,
-            password,
-            nodes,
-            accept_eula=OPTIONAL,
-            attributes=OPTIONAL,
-            default_protection_scheme=OPTIONAL,
-            disabled_protection_schemes=OPTIONAL,):
+            fault_types=OPTIONAL,):
         """
-        The CreateCluster method enables you to initialize the node in a cluster that has ownership of the "mvip" and "svip" addresses. Each new cluster is initialized using the management IP (MIP) of the first node in the cluster. This method also automatically adds all the nodes being configured into the cluster. You only need to use this method once each time a new cluster is initialized.
-        Note: You need to log in to the node that is used as the master node for the cluster. After you log in, run the GetBootstrapConfig method on the node to get the IP addresses for the rest of the nodes that you want to include in the
-        cluster. Then, run the CreateCluster method.
-        :param acceptEula:  Required to indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. 
-        :type acceptEula: bool
-
-        :param mvip: [required] Floating (virtual) IP address for the cluster on the management network. 
-        :type mvip: str
-
-        :param svip: [required] Floating (virtual) IP address for the cluster on the storage (iSCSI) network. 
-        :type svip: str
-
-        :param repCount: [required] Number of replicas of each piece of data to store in the cluster. Valid value is "2". 
-        :type repCount: int
-
-        :param username: [required] Username for the cluster admin. 
-        :type username: str
-
-        :param password: [required] Initial password for the cluster admin account. 
-        :type password: str
-
-        :param nodes: [required] CIP/SIP addresses of the initial set of nodes making up the cluster. This node's IP must be in the list. 
-        :type nodes: str
-
-        :param attributes:  List of name-value pairs in JSON object format. 
-        :type attributes: dict
-
-        :param defaultProtectionScheme:  If a protection scheme is not specified when a volume is created, this will be used. Valid values: singleHelix, doubleHelix, tripleHelix 
-        :type defaultProtectionScheme: str
-
-        :param disabledProtectionSchemes:  The set of protection schemes that should not be enabled when the cluster is created. By default, all protection schemes supported by the software will be enabled. Valid values: singleHelix, doubleHelix, tripleHelix 
-        :type disabledProtectionSchemes: str
+        You can use the ClearClusterFaults method to clear information about both current and previously detected faults. Both resolved
+        and unresolved faults can be cleared.
+        :param faultTypes:  Determines the types of faults cleared. Possible values are: current: Faults that are currently detected and have not been resolved. resolved: (Default) Faults that were previously detected and resolved. all: Both current and resolved faults are cleared. The fault status can be determined by the resolved field of the fault object. 
+        :type faultTypes: str
         """
 
-        self._check_connection_type("create_cluster", "Both")
+        self._check_connection_type("clear_cluster_faults", "Cluster")
 
         params = { 
-            "mvip": mvip,
-            "svip": svip,
-            "repCount": rep_count,
-            "username": username,
-            "password": password,
-            "nodes": nodes,
         }
-        if accept_eula is not None:
-            params["acceptEula"] = accept_eula
-        if attributes is not None:
-            params["attributes"] = attributes
-        if default_protection_scheme is not None:
-            if self.api_version < 11.0:
-                raise ApiParameterVersionError("create_cluster", 11.0,
-                    [("default_protection_scheme", default_protection_scheme, 11.0, False)])
-            else:
-                params["defaultProtectionScheme"] = default_protection_scheme
-        if disabled_protection_schemes is not None:
-            if self.api_version < 11.0:
-                raise ApiParameterVersionError("create_cluster", 11.0,
-                    [("disabled_protection_schemes", disabled_protection_schemes, 11.0, False)])
-            else:
-                params["disabledProtectionSchemes"] = disabled_protection_schemes
+        if fault_types is not None:
+            params["faultTypes"] = fault_types
         
         # There is no adaptor.
         return self.send_request(
-            'CreateCluster',
-            CreateClusterResult,
+            'ClearClusterFaults',
+            ClearClusterFaultsResult,
             params,
-            since=None
+            since=1.0
         )
 
     def create_support_bundle(
@@ -3121,62 +3064,6 @@ class Element(ServiceBase):
             since=6.0
         )
 
-    def disable_protection_schemes(
-            self,
-            protection_schemes=OPTIONAL,):
-        """
-        Disables all of the provided protection schemes.
-        :param protectionSchemes:  The protection schemes that should be disabled. Valid values: singleHelix, doubleHelix, tripleHelix 
-        :type protectionSchemes: str
-        """
-
-        self._check_connection_type("disable_protection_schemes", "Cluster")
-
-        params = { 
-        }
-        if protection_schemes is not None:
-            if self.api_version < 11.0:
-                raise ApiParameterVersionError("disable_protection_schemes", 11.0,
-                    [("protection_schemes", protection_schemes, 11.0, False)])
-            else:
-                params["protectionSchemes"] = protection_schemes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'DisableProtectionSchemes',
-            DisableProtectionSchemesResult,
-            params,
-            since=11.0
-        )
-
-    def enable_protection_schemes(
-            self,
-            protection_schemes=OPTIONAL,):
-        """
-        Enables all of the provided protection schemes.
-        :param protectionSchemes:  The protection schemes that should be enabled. Valid values: singleHelix, doubleHelix, tripleHelix 
-        :type protectionSchemes: str
-        """
-
-        self._check_connection_type("enable_protection_schemes", "Cluster")
-
-        params = { 
-        }
-        if protection_schemes is not None:
-            if self.api_version < 11.0:
-                raise ApiParameterVersionError("enable_protection_schemes", 11.0,
-                    [("protection_schemes", protection_schemes, 11.0, False)])
-            else:
-                params["protectionSchemes"] = protection_schemes
-        
-        # There is no adaptor.
-        return self.send_request(
-            'EnableProtectionSchemes',
-            EnableProtectionSchemesResult,
-            params,
-            since=11.0
-        )
-
     def list_protection_domain_levels(
             self,):
         """
@@ -3191,29 +3078,6 @@ class Element(ServiceBase):
         return self.send_request(
             'ListProtectionDomainLevels',
             ListProtectionDomainLevelsResult,
-            params,
-            since=11.0
-        )
-
-    def set_default_protection_scheme(
-            self,
-            default_protection_scheme,):
-        """
-        Sets the default protection scheme stored in the cluster info.
-        :param defaultProtectionScheme: [required] If a protection scheme is not specified when a volume is created, this will be used. Valid values: singleHelix, doubleHelix, tripleHelix 
-        :type defaultProtectionScheme: str
-        """
-
-        self._check_connection_type("set_default_protection_scheme", "Cluster")
-
-        params = { 
-            "defaultProtectionScheme": default_protection_scheme,
-        }
-        
-        # There is no adaptor.
-        return self.send_request(
-            'SetDefaultProtectionScheme',
-            SetDefaultProtectionSchemeResult,
             params,
             since=11.0
         )
@@ -6204,8 +6068,7 @@ class Element(ServiceBase):
             limit=OPTIONAL,
             recursive=OPTIONAL,
             start_virtual_volume_id=OPTIONAL,
-            virtual_volume_ids=OPTIONAL,
-            protection_schemes=OPTIONAL,):
+            virtual_volume_ids=OPTIONAL,):
         """
         ListVirtualVolumes enables you to list the virtual volumes currently in the system. You can use this method to list all virtual volumes,
         or only list a subset.
@@ -6223,9 +6086,6 @@ class Element(ServiceBase):
 
         :param virtualVolumeIDs:  A list of virtual volume IDs for which to retrieve information. If you specify this parameter, the method returns information about only these virtual volumes. 
         :type virtualVolumeIDs: UUID
-
-        :param protectionSchemes:  Only volumes that are using one of the protection schemes in this set are returned. Valid values: singleHelix, doubleHelix, tripleHelix 
-        :type protectionSchemes: str
         """
 
         self._check_connection_type("list_virtual_volumes", "Cluster")
@@ -6242,12 +6102,6 @@ class Element(ServiceBase):
             params["startVirtualVolumeID"] = start_virtual_volume_id
         if virtual_volume_ids is not None:
             params["virtualVolumeIDs"] = virtual_volume_ids
-        if protection_schemes is not None:
-            if self.api_version < 11.0:
-                raise ApiParameterVersionError("list_virtual_volumes", 11.0,
-                    [("protection_schemes", protection_schemes, 11.0, False)])
-            else:
-                params["protectionSchemes"] = protection_schemes
         
         # There is no adaptor.
         return self.send_request(
