@@ -10477,59 +10477,57 @@ class ModifyVolumeResult(data_model.DataObject):
             "volume": volume, })
         
 
-class ModifyClusterAdminRequest(data_model.DataObject):
-    """ModifyClusterAdminRequest  
-    You can use ModifyClusterAdmin to change the settings for a cluster admin or LDAP cluster admin. You cannot change access for the administrator cluster admin account.
+class FeatureObject(data_model.DataObject):
+    """FeatureObject  
 
-    :param cluster_admin_id: [required] ClusterAdminID for the cluster admin or LDAP cluster admin to modify. 
-    :type cluster_admin_id: int
+    :param enabled: [required] True if the feature is enabled, otherwise false. 
+    :type enabled: bool
 
-    :param password:  Password used to authenticate this cluster admin. 
-    :type password: str
-
-    :param access:  Controls which methods this cluster admin can use. For more details, see Access Control in the Element API Reference Guide. 
-    :type access: str
-
-    :param attributes:  List of name-value pairs in JSON object format. 
-    :type attributes: dict
+    :param feature: [required] The name of the feature. 
+    :type feature: str
 
     """
-    cluster_admin_id = data_model.property(
-        "clusterAdminID", int,
+    enabled = data_model.property(
+        "enabled", bool,
         array=False, optional=False,
-        documentation="""ClusterAdminID for the cluster admin or LDAP cluster admin to modify. """,
+        documentation="""True if the feature is enabled, otherwise false. """,
         dictionaryType=None
     )
-    password = data_model.property(
-        "password", str,
-        array=False, optional=True,
-        documentation="""Password used to authenticate this cluster admin. """,
-        dictionaryType=None
-    )
-    access = data_model.property(
-        "access", str,
-        array=True, optional=True,
-        documentation="""Controls which methods this cluster admin can use. For more details, see Access Control in the Element API Reference Guide. """,
-        dictionaryType=None
-    )
-    attributes = data_model.property(
-        "attributes", dict,
-        array=False, optional=True,
-        documentation="""List of name-value pairs in JSON object format. """,
+    feature = data_model.property(
+        "feature", str,
+        array=False, optional=False,
+        documentation="""The name of the feature. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            cluster_admin_id,
-            password=None,
-            access=None,
-            attributes=None):
+            enabled,
+            feature):
 
-        super(ModifyClusterAdminRequest, self).__init__(**{ 
-            "cluster_admin_id": cluster_admin_id,
-            "password": password,
-            "access": access,
-            "attributes": attributes, })
+        super(FeatureObject, self).__init__(**{ 
+            "enabled": enabled,
+            "feature": feature, })
+        
+
+class GetFeatureStatusResult(data_model.DataObject):
+    """GetFeatureStatusResult  
+
+    :param features: [required] An array of feature objects indicating the feature name and its status. 
+    :type features: FeatureObject
+
+    """
+    features = data_model.property(
+        "features", FeatureObject,
+        array=True, optional=False,
+        documentation="""An array of feature objects indicating the feature name and its status. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            features):
+
+        super(GetFeatureStatusResult, self).__init__(**{ 
+            "features": features, })
         
 
 class SnapshotRemoteStatus(data_model.DataObject):
@@ -11549,57 +11547,59 @@ class DeleteVolumeAccessGroupRequest(data_model.DataObject):
             "force": force, })
         
 
-class FeatureObject(data_model.DataObject):
-    """FeatureObject  
+class ModifyClusterAdminRequest(data_model.DataObject):
+    """ModifyClusterAdminRequest  
+    You can use ModifyClusterAdmin to change the settings for a cluster admin or LDAP cluster admin. You cannot change access for the administrator cluster admin account.
 
-    :param enabled: [required] True if the feature is enabled, otherwise false. 
-    :type enabled: bool
+    :param cluster_admin_id: [required] ClusterAdminID for the cluster admin or LDAP cluster admin to modify. 
+    :type cluster_admin_id: int
 
-    :param feature: [required] The name of the feature. 
-    :type feature: str
+    :param password:  Password used to authenticate this cluster admin. 
+    :type password: str
+
+    :param access:  Controls which methods this cluster admin can use. For more details, see Access Control in the Element API Reference Guide. 
+    :type access: str
+
+    :param attributes:  List of name-value pairs in JSON object format. 
+    :type attributes: dict
 
     """
-    enabled = data_model.property(
-        "enabled", bool,
+    cluster_admin_id = data_model.property(
+        "clusterAdminID", int,
         array=False, optional=False,
-        documentation="""True if the feature is enabled, otherwise false. """,
+        documentation="""ClusterAdminID for the cluster admin or LDAP cluster admin to modify. """,
         dictionaryType=None
     )
-    feature = data_model.property(
-        "feature", str,
-        array=False, optional=False,
-        documentation="""The name of the feature. """,
+    password = data_model.property(
+        "password", str,
+        array=False, optional=True,
+        documentation="""Password used to authenticate this cluster admin. """,
+        dictionaryType=None
+    )
+    access = data_model.property(
+        "access", str,
+        array=True, optional=True,
+        documentation="""Controls which methods this cluster admin can use. For more details, see Access Control in the Element API Reference Guide. """,
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="""List of name-value pairs in JSON object format. """,
         dictionaryType=None
     )
 
     def __init__(self,
-            enabled,
-            feature):
+            cluster_admin_id,
+            password=None,
+            access=None,
+            attributes=None):
 
-        super(FeatureObject, self).__init__(**{ 
-            "enabled": enabled,
-            "feature": feature, })
-        
-
-class GetFeatureStatusResult(data_model.DataObject):
-    """GetFeatureStatusResult  
-
-    :param features: [required] An array of feature objects indicating the feature name and its status. 
-    :type features: FeatureObject
-
-    """
-    features = data_model.property(
-        "features", FeatureObject,
-        array=True, optional=False,
-        documentation="""An array of feature objects indicating the feature name and its status. """,
-        dictionaryType=None
-    )
-
-    def __init__(self,
-            features):
-
-        super(GetFeatureStatusResult, self).__init__(**{ 
-            "features": features, })
+        super(ModifyClusterAdminRequest, self).__init__(**{ 
+            "cluster_admin_id": cluster_admin_id,
+            "password": password,
+            "access": access,
+            "attributes": attributes, })
         
 
 class ListVirtualNetworksRequest(data_model.DataObject):
@@ -15708,6 +15708,16 @@ class GetClusterInterfacePreferenceResult(data_model.DataObject):
             "preference": preference, })
         
 
+class CreateClusterResult(data_model.DataObject):
+    """CreateClusterResult  
+
+    """
+
+    def __init__(self):
+
+        super(CreateClusterResult, self).__init__(**{  })
+        
+
 class SetConfigRequest(data_model.DataObject):
     """SetConfigRequest  
     The SetConfig API method enables you to set all the configuration information for the node. This includes the same information available via calls to SetClusterConfig and SetNetworkConfig in one API method. 
@@ -17224,7 +17234,7 @@ class ModifySnapMirrorRelationshipResult(data_model.DataObject):
     """
     snap_mirror_relationship = data_model.property(
         "snapMirrorRelationship", SnapMirrorRelationship,
-        array=True, optional=False,
+        array=False, optional=False,
         documentation="""An object containg the modified SnapMirror relationship attributes. """,
         dictionaryType=None
     )
@@ -23780,6 +23790,107 @@ class ModifyInitiatorsResult(data_model.DataObject):
 
         super(ModifyInitiatorsResult, self).__init__(**{ 
             "initiators": initiators, })
+        
+
+class CreateClusterRequest(data_model.DataObject):
+    """CreateClusterRequest  
+    The CreateCluster method enables you to initialize the node in a cluster that has ownership of the "mvip" and "svip" addresses. Each new cluster is initialized using the management IP (MIP) of the first node in the cluster. This method also automatically adds all the nodes being configured into the cluster. You only need to use this method once each time a new cluster is initialized.
+    Note: You need to log in to the node that is used as the master node for the cluster. After you log in, run the GetBootstrapConfig method on the node to get the IP addresses for the rest of the nodes that you want to include in the
+    cluster. Then, run the CreateCluster method.
+
+    :param accept_eula:  Required to indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. 
+    :type accept_eula: bool
+
+    :param mvip: [required] Floating (virtual) IP address for the cluster on the management network. 
+    :type mvip: str
+
+    :param svip: [required] Floating (virtual) IP address for the cluster on the storage (iSCSI) network. 
+    :type svip: str
+
+    :param rep_count: [required] Number of replicas of each piece of data to store in the cluster. Valid value is "2". 
+    :type rep_count: int
+
+    :param username: [required] Username for the cluster admin. 
+    :type username: str
+
+    :param password: [required] Initial password for the cluster admin account. 
+    :type password: str
+
+    :param nodes: [required] CIP/SIP addresses of the initial set of nodes making up the cluster. This node's IP must be in the list. 
+    :type nodes: str
+
+    :param attributes:  List of name-value pairs in JSON object format. 
+    :type attributes: dict
+
+    """
+    accept_eula = data_model.property(
+        "acceptEula", bool,
+        array=False, optional=True,
+        documentation="""Required to indicate your acceptance of the End User License Agreement when creating this cluster. To accept the EULA, set this parameter to true. """,
+        dictionaryType=None
+    )
+    mvip = data_model.property(
+        "mvip", str,
+        array=False, optional=False,
+        documentation="""Floating (virtual) IP address for the cluster on the management network. """,
+        dictionaryType=None
+    )
+    svip = data_model.property(
+        "svip", str,
+        array=False, optional=False,
+        documentation="""Floating (virtual) IP address for the cluster on the storage (iSCSI) network. """,
+        dictionaryType=None
+    )
+    rep_count = data_model.property(
+        "repCount", int,
+        array=False, optional=False,
+        documentation="""Number of replicas of each piece of data to store in the cluster. Valid value is "2". """,
+        dictionaryType=None
+    )
+    username = data_model.property(
+        "username", str,
+        array=False, optional=False,
+        documentation="""Username for the cluster admin. """,
+        dictionaryType=None
+    )
+    password = data_model.property(
+        "password", str,
+        array=False, optional=False,
+        documentation="""Initial password for the cluster admin account. """,
+        dictionaryType=None
+    )
+    nodes = data_model.property(
+        "nodes", str,
+        array=True, optional=False,
+        documentation="""CIP/SIP addresses of the initial set of nodes making up the cluster. This node's IP must be in the list. """,
+        dictionaryType=None
+    )
+    attributes = data_model.property(
+        "attributes", dict,
+        array=False, optional=True,
+        documentation="""List of name-value pairs in JSON object format. """,
+        dictionaryType=None
+    )
+
+    def __init__(self,
+            mvip,
+            svip,
+            rep_count,
+            username,
+            password,
+            nodes,
+            accept_eula=None,
+            attributes=None):
+
+        super(CreateClusterRequest, self).__init__(**{ 
+            "accept_eula": accept_eula,
+            "mvip": mvip,
+            "svip": svip,
+            "rep_count": rep_count,
+            "username": username,
+            "password": password,
+            "nodes": nodes,
+            "attributes": attributes, })
         
 
 class ListEventsRequest(data_model.DataObject):
