@@ -26,7 +26,7 @@ Compatibility
 +------------------------+---------------+
 | Component              | Version       |
 +========================+===============+
-| SolidFire Element OS   | 7.0 - 10.0    |
+| SolidFire Element OS   | 7.0 - 11.0    |
 +------------------------+---------------+
 
 Getting Help
@@ -203,7 +203,7 @@ Read timeout (useful for extending time for a service call to return):
 **License**
 -----------
 
-Copyright © 2016, 2017 NetApp, Inc. All rights reserved.
+Copyright © 2016 - 2018 NetApp, Inc. All rights reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may
 not use this file except in compliance with the License. You may obtain
