@@ -76,7 +76,7 @@ setup(
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 
     install_requires=['setuptools>=19.2',
-                      'future>=0.15.2', 'enum34>=1.1.6', 'requests>=2.9.1'],
+                      'future>=0.15.2', 'enum-compat==0.0.2', 'requests>=2.9.1'],
 
     # $> pip install -e ".[dev,test, docs, release]"
     extras_require={
