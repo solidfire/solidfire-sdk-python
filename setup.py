@@ -14,11 +14,18 @@ from codecs import open
 import os
 from distutils import dir_util
 from distutils.command.clean import clean as _clean
+import sys
 
 here = os.path.abspath(os.path.dirname(__file__))
 
 with open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
+
+install_requires = ['setuptools>=19.2', 'future>=0.15.2', 'requests>=2.9.1']
+
+# enum introduced in Python 3.4 so not required on 3.4+
+if sys.version_info < (3, 4):
+    install_requires.append('enum34>=1.1.6')
 
 
 class Clean(_clean):
@@ -75,8 +82,7 @@ setup(
 
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 
-    install_requires=['setuptools>=19.2',
-                      'future>=0.15.2', 'enum34>=1.1.6', 'requests>=2.9.1'],
+    install_requires=install_requires,
 
     # $> pip install -e ".[dev,test, docs, release]"
     extras_require={
