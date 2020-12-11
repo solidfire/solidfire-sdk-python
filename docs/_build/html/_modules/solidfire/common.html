@@ -1,0 +1,972 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>solidfire.common &mdash; SolidFire Python SDK v1.7.0.0</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/solidfire.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> solidfire-sdk-python
+          
+
+          
+            
+            <img src="../../_static/PythonSDK.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html"> SolidFire Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html#account-management-examples">Account Management Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html#snapshot-scheduling-examples">Snapshot Scheduling Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html#enum-support-examples">Enum Support Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solidfire.html#solidfire-package">solidfire package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">solidfire-sdk-python</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../solidfire.html">solidfire</a> &raquo;</li>
+        
+      <li>solidfire.common</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for solidfire.common</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright &amp;copy; 2014-2016 NetApp, Inc. All Rights Reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># CONFIDENTIALITY NOTICE: THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION OF</span>
+<span class="c1"># NETAPP, INC. USE, DISCLOSURE OR REPRODUCTION IS PROHIBITED WITHOUT THE PRIOR</span>
+<span class="c1"># EXPRESS WRITTEN PERMISSION OF NETAPP, INC.</span>
+<span class="sd">&quot;&quot;&quot;API Common Library&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">requests.auth</span> <span class="kn">import</span> <span class="n">HTTPBasicAuth</span>
+<span class="kn">from</span> <span class="nn">requests.packages.urllib3.exceptions</span> <span class="kn">import</span> <span class="n">InsecureRequestWarning</span>
+<span class="n">requests</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">urllib3</span><span class="o">.</span><span class="n">disable_warnings</span><span class="p">(</span><span class="n">InsecureRequestWarning</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">solidfire.common</span> <span class="kn">import</span> <span class="n">model</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;solidfire.Element&#39;</span><span class="p">)</span>
+<span class="n">LOG</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<span class="n">CH</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+<span class="n">CH</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<span class="n">FORMATTER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span>
+    <span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(name)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span>
+<span class="p">)</span>
+<span class="n">CH</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">FORMATTER</span><span class="p">)</span>
+<span class="n">LOG</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">CH</span><span class="p">)</span>
+
+<span class="n">ATOMIC_COUNTER</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="setLogLevel"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.setLogLevel">[docs]</a><span class="k">def</span> <span class="nf">setLogLevel</span><span class="p">(</span><span class="n">level</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Set the logging level of Element logger and all handlers.</span>
+
+<span class="sd">    &gt;&gt;&gt; from logging</span>
+<span class="sd">    &gt;&gt;&gt; from solidfire import common</span>
+<span class="sd">    &gt;&gt;&gt; common.setLogLevel(logging.DEBUG)</span>
+
+<span class="sd">    :param level: level must be an int or a str.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="n">LOG</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SdkOperationError"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.SdkOperationError">[docs]</a><span class="k">class</span> <span class="nc">SdkOperationError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ApiServerError"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.ApiServerError">[docs]</a><span class="k">class</span> <span class="nc">ApiServerError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ApiServerError is an exception that occurs on the server and is passes as a</span>
+<span class="sd">    response back to the sdk.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span> <span class="n">err_json</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ApiServerError constructor.</span>
+
+<span class="sd">        :param method_name: name of the service method where the error</span>
+<span class="sd">            occurred.</span>
+<span class="sd">        :type method_name: str</span>
+<span class="sd">        :param err_json: the json formatted error received from the service.</span>
+<span class="sd">        :type err_json: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">err_json</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">err_json</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_method_name</span> <span class="o">=</span> <span class="n">method_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_err_json</span> <span class="o">=</span> <span class="n">err_json</span>
+        <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">(method_name=&quot;</span><span class="si">%s</span><span class="s1">&quot;, err_json=</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_method_name</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_err_json</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">method_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The name of the service method causing the error.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_method_name</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">error_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The name of the error.&quot;&quot;&quot;</span>
+        <span class="n">maybeDict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_err_json</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">maybeDict</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">maybeDict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">maybeDict</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">maybeDict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;Unknown&#39;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">error_code</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The numeric code for this error.&quot;&quot;&quot;</span>
+        <span class="n">maybeDict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_err_json</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">maybeDict</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">maybeDict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">maybeDict</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">maybeDict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;code&#39;</span><span class="p">,</span> <span class="mi">500</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">message</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A user-friendly message returned from the server.&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">json_err</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_err_json</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">json_err</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_err_json</span></div>
+
+
+<div class="viewcode-block" id="ApiMethodVersionError"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.ApiMethodVersionError">[docs]</a><span class="k">class</span> <span class="nc">ApiMethodVersionError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An ApiMethodVersionError occurs when a service method is not compatible</span>
+<span class="sd">    with the version of the connected server.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">method_name</span><span class="p">,</span>
+                 <span class="n">api_version</span><span class="p">,</span>
+                 <span class="n">since</span><span class="p">,</span>
+                 <span class="n">deprecated</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ApiMethodVersionError constructor.</span>
+
+<span class="sd">        :param method_name: name of the service method where the error</span>
+<span class="sd">            occurred.</span>
+<span class="sd">        :type method_name: str</span>
+
+<span class="sd">        :param api_version: the version of API used to instantiate the</span>
+<span class="sd">            connection to the server.</span>
+<span class="sd">        :type api_version: str or float</span>
+
+<span class="sd">        :param since: the earliest version of the API a service method is</span>
+<span class="sd">            compatible.</span>
+<span class="sd">        :type since: str or float</span>
+
+<span class="sd">        :param deprecated:  the latest version of the API that a method is</span>
+<span class="sd">            compatible.</span>
+<span class="sd">        :type deprecated: str or float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_method_name</span> <span class="o">=</span> <span class="n">method_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">api_version</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_since</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">since</span><span class="p">)</span> <span class="k">if</span> <span class="n">since</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">since</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_deprecated</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">deprecated</span><span class="p">)</span> \
+            <span class="k">if</span> <span class="n">deprecated</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">deprecated</span>
+        <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">(method_name=&quot;</span><span class="si">%s</span><span class="s1">&quot;, &#39;</span> \
+               <span class="s1">&#39;api_version=</span><span class="si">%s</span><span class="s1">, &#39;</span> \
+               <span class="s1">&#39;since=</span><span class="si">%s</span><span class="s1">, &#39;</span> \
+               <span class="s1">&#39;deprecated=</span><span class="si">%s</span><span class="s1">) &#39;</span> <span class="o">%</span> <span class="p">(</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="n">_method_name</span><span class="p">,</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span><span class="p">,</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="n">_since</span><span class="p">,</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="n">_deprecated</span>
+               <span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">    Invalid Method:</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="s1">&#39;    Method Name: </span><span class="si">{_method_name}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="s1">&#39;    Service Api Version: </span><span class="si">{_api_version}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="s1">&#39;    Method Exists Since: </span><span class="si">{_since}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="s1">&#39;    Method Deprecated: </span><span class="si">{_deprecated}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">method_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The name of the service method causing the error.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_method_name</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">api_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The version of the Element API Service&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">since</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The version a service was introduced&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_since</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">deprecated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The version a service was deprecated&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deprecated</span></div>
+
+
+<div class="viewcode-block" id="ApiParameterVersionError"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.ApiParameterVersionError">[docs]</a><span class="k">class</span> <span class="nc">ApiParameterVersionError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An ApiParameterVersionError occurs when a parameter supplied to a service</span>
+<span class="sd">    method is not compatible with the version of the connected server.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">method_name</span><span class="p">,</span>
+                 <span class="n">api_version</span><span class="p">,</span>
+                 <span class="n">params</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ApiParameterVersionError constructor.</span>
+
+<span class="sd">        :param method_name: name of the service method where the error</span>
+<span class="sd">            occurred.</span>
+<span class="sd">        :type method_name: str</span>
+
+<span class="sd">        :param api_version: the version of API used to instantiate the</span>
+<span class="sd">            connection to the server.</span>
+<span class="sd">        :type api_version: str or float</span>
+
+<span class="sd">        :param params: the list of incompatible parameters provided to a</span>
+<span class="sd">            service method call.  This tuple should include name, value, since,</span>
+<span class="sd">            and deprecated values for each offending parameter.</span>
+<span class="sd">        :type params: list of tuple</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_method_name</span> <span class="o">=</span> <span class="n">method_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">api_version</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_params</span> <span class="o">=</span> <span class="n">params</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_violations</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">)</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_violations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">name</span> <span class="o">+</span> <span class="s1">&#39; (version: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">since</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
+                <span class="p">)</span>
+        <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">(method_name=&quot;</span><span class="si">%s</span><span class="s1">&quot;, &#39;</span> \
+               <span class="s1">&#39;api_version=</span><span class="si">%s</span><span class="s1">, &#39;</span> \
+               <span class="s1">&#39;params=</span><span class="si">%s</span><span class="s1">) &#39;</span> <span class="o">%</span> <span class="p">(</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="n">_method_name</span><span class="p">,</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span><span class="p">,</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="n">_params</span><span class="p">,</span>
+               <span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">    Invalid Parameter:</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="s1">&#39;    Method: </span><span class="si">{_method_name}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="s1">&#39;    Api Version: </span><span class="si">{_api_version}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="s1">&#39;    Invalid Parameters: </span><span class="si">{_violations}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">method_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The name of the service method causing the error.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_method_name</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">api_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The version of the Element API Service&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The parameters checked with a service call&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_params</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">violations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The parameters violated with the service call&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_violations</span></div>
+
+
+<div class="viewcode-block" id="ApiVersionExceededError"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.ApiVersionExceededError">[docs]</a><span class="k">class</span> <span class="nc">ApiVersionExceededError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An ApiVersionExceededError occurs when connecting to a server with a</span>
+<span class="sd">    version lower then the provided api_version.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">api_version</span><span class="p">,</span>
+                 <span class="n">current_version</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ApiVersionExceededError constructor.</span>
+
+<span class="sd">        :param api_version: the version of API used to instantiate the</span>
+<span class="sd">            connection to the server.</span>
+<span class="sd">        :type api_version: str or float</span>
+
+<span class="sd">        :param current_version: the current version of the server.</span>
+<span class="sd">        :type current_version: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">api_version</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_current_version</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">current_version</span><span class="p">)</span>
+        <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">(api_version=</span><span class="si">%s</span><span class="s1">, &#39;</span> \
+               <span class="s1">&#39;current_version=</span><span class="si">%s</span><span class="s1">) &#39;</span> <span class="o">%</span> <span class="p">(</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span><span class="p">,</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="n">_current_version</span>
+               <span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">    Version Exceeded:</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="s1">&#39;    Provided Api Version: </span><span class="si">{_api_version}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="s1">&#39;    Max Version: </span><span class="si">{current_version}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="n">current_version</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_version</span><span class="p">,</span>
+            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">api_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The version of the Element API Service&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">current_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The current version of the connected Element OS&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_version</span></div>
+
+
+<div class="viewcode-block" id="ApiVersionUnsupportedError"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.ApiVersionUnsupportedError">[docs]</a><span class="k">class</span> <span class="nc">ApiVersionUnsupportedError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An ApiVersionUnsupportedError occurs when connecting to a server unable</span>
+<span class="sd">    to support the provided api_version.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">api_version</span><span class="p">,</span>
+                 <span class="n">supported_versions</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ApiVersionUnsupportedError constructor.</span>
+
+<span class="sd">        :param api_version: the version of API used to instantiate the</span>
+<span class="sd">            connection to the server.</span>
+<span class="sd">        :type api_version: str or float</span>
+
+<span class="sd">        :param supported_versions: the list of supported versions provided by</span>
+<span class="sd">            a server.</span>
+<span class="sd">        :type supported_versions: float[]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">api_version</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_supported_versions</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">supported_versions</span><span class="p">]</span>
+        <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">(api_version=</span><span class="si">%s</span><span class="s1">, &#39;</span> \
+               <span class="s1">&#39;supported_versions=</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span><span class="p">,</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="n">_supported_versions</span>
+               <span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">    Version Unsupported:</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="s1">&#39;    Provided Api Version: </span><span class="si">{_api_version}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="s1">&#39;    Supported Version: </span><span class="si">{_supported_versions}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">api_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The version of the Element API Service&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">supported_versions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The versions supported by the connected Element OS&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_supported_versions</span></div>
+
+<div class="viewcode-block" id="ApiConnectionError"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.ApiConnectionError">[docs]</a><span class="k">class</span> <span class="nc">ApiConnectionError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ApiConnectionError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CurlDispatcher"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.CurlDispatcher">[docs]</a><span class="k">class</span> <span class="nc">CurlDispatcher</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The CurlDispatcher is responsible for connecting, sending, and receiving</span>
+<span class="sd">    data to a server.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">verify_ssl</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The CurlDispatcher constructor.</span>
+
+<span class="sd">        :param endpoint: the server URL</span>
+<span class="sd">        :type endpoint: str</span>
+
+<span class="sd">        :param username: the username for authentication</span>
+<span class="sd">        :type username: str</span>
+
+<span class="sd">        :param password: the password for authentication</span>
+<span class="sd">        :type password: str</span>
+
+<span class="sd">        :param verify_ssl: If True, ssl errors will cause an exception to be</span>
+<span class="sd">            raised, otherwise, if False, they are ignored.</span>
+<span class="sd">        :type verify_ssl: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_endpoint</span> <span class="o">=</span> <span class="n">endpoint</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_username</span> <span class="o">=</span> <span class="n">username</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_password</span> <span class="o">=</span> <span class="n">password</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_verify_ssl</span> <span class="o">=</span> <span class="n">verify_ssl</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="o">=</span> <span class="mi">300</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connect_timeout</span> <span class="o">=</span> <span class="mi">30</span>
+
+<div class="viewcode-block" id="CurlDispatcher.timeout"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.CurlDispatcher.timeout">[docs]</a>    <span class="k">def</span> <span class="nf">timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout_in_sec</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the time to wait for a response before timeout.</span>
+
+<span class="sd">        :param timeout_in_sec: the read timeout in seconds.</span>
+<span class="sd">        :type timeout_in_sec: int</span>
+
+<span class="sd">        :raise ValueError: if timeout_in_sec is less than 0</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">temp_timeout</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">timeout_in_sec</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">temp_timeout</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Read Timeout less than 0&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="o">=</span> <span class="n">temp_timeout</span></div>
+
+<div class="viewcode-block" id="CurlDispatcher.connect_timeout"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.CurlDispatcher.connect_timeout">[docs]</a>    <span class="k">def</span> <span class="nf">connect_timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout_in_sec</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the time to wait for a connection to be established before timeout.</span>
+
+<span class="sd">        :param timeout_in_sec: the connection timeout in seconds.</span>
+<span class="sd">        :type timeout_in_sec: int</span>
+
+<span class="sd">        :raise ValueError: if timeout_in_sec is less than 0</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">temp_timeout</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">timeout_in_sec</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">temp_timeout</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Connection Timeout less than 0&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connect_timeout</span> <span class="o">=</span> <span class="n">temp_timeout</span></div>
+
+<div class="viewcode-block" id="CurlDispatcher.restore_timeout_defaults"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.CurlDispatcher.restore_timeout_defaults">[docs]</a>    <span class="k">def</span> <span class="nf">restore_timeout_defaults</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Restores the Connection and Read Timeout to their original durations of</span>
+<span class="sd">        30 seconds for connection timeout and 300 seconds (5 minutes) for read</span>
+<span class="sd">        timeout.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="o">=</span> <span class="mi">300</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connect_timeout</span> <span class="o">=</span> <span class="mi">30</span></div>
+
+<div class="viewcode-block" id="CurlDispatcher.post"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.CurlDispatcher.post">[docs]</a>    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Post data to the associated endpoint and await the server&#39;s response.</span>
+
+<span class="sd">        :param data: the data to be posted.</span>
+<span class="sd">        :type data: str or json</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">auth</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_username</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_password</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Username or Password is not set&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">auth</span> <span class="o">=</span> <span class="n">HTTPBasicAuth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_username</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_password</span><span class="p">)</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_endpoint</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                             <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_verify_ssl</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span><span class="p">,</span>
+                             <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">text</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+             <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;code&quot;</span><span class="p">:</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span>  <span class="n">resp</span><span class="o">.</span><span class="n">reason</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">resp</span><span class="o">.</span><span class="n">text</span></div></div>
+
+
+<div class="viewcode-block" id="ServiceBase"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.ServiceBase">[docs]</a><span class="k">class</span> <span class="nc">ServiceBase</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The base type for API services.</span>
+<span class="sd">    This performs the sending, encoding and decoding of requests.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mvip</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">api_version</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">verify_ssl</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dispatcher</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor for initializing a connection to an instance of Element OS</span>
+
+<span class="sd">        :param mvip: the management IP (IP or hostname)</span>
+<span class="sd">        :type mvip: str</span>
+
+<span class="sd">        :param username: username use to connect to the Element OS instance.</span>
+<span class="sd">        :type username: str</span>
+
+<span class="sd">        :param password: authentication for username</span>
+<span class="sd">        :type password: str</span>
+
+<span class="sd">        :param api_version: specific version of Element OS to connect.</span>
+<span class="sd">        :type api_version: float</span>
+
+<span class="sd">        :param verify_ssl: disable to avoid ssl connection errors especially</span>
+<span class="sd">            when using an IP instead of a hostname</span>
+<span class="sd">        :type verify_ssl: bool</span>
+
+<span class="sd">        :param dispatcher: a prebuilt or custom http dispatcher</span>
+
+<span class="sd">        :return: a configured connection to an Element OS instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">api_version</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_private_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;clusterPairingKey&quot;</span><span class="p">,</span> <span class="s2">&quot;volumePairingKey&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;initiatorSecret&quot;</span><span class="p">,</span> <span class="s2">&quot;scriptParameters&quot;</span><span class="p">,</span> <span class="s2">&quot;targetSecret&quot;</span><span class="p">,</span> <span class="s2">&quot;searchBindPassword&quot;</span><span class="p">]</span>
+
+        <span class="n">endpoint</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;https://</span><span class="si">{mvip}</span><span class="s1">/json-rpc/</span><span class="si">{api_version}</span><span class="s1">&#39;</span><span class="p">,</span>
+                              <span class="n">mvip</span><span class="o">=</span><span class="n">mvip</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;https&#39;</span> <span class="ow">in</span> <span class="n">endpoint</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_port</span> <span class="o">=</span> <span class="mi">443</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_port</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">dispatcher</span><span class="p">:</span>
+            <span class="n">dispatcher</span> <span class="o">=</span> <span class="n">CurlDispatcher</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span>
+                                        <span class="n">verify_ssl</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dispatcher</span> <span class="o">=</span> <span class="n">dispatcher</span>
+
+        <span class="k">if</span> <span class="n">mvip</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">mvipArr</span> <span class="o">=</span> <span class="n">mvip</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mvipArr</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_port</span> <span class="o">=</span> <span class="n">mvipArr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<div class="viewcode-block" id="ServiceBase.timeout"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.ServiceBase.timeout">[docs]</a>    <span class="k">def</span> <span class="nf">timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout_in_sec</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the time to wait for a response before timeout.</span>
+
+<span class="sd">        :param timeout_in_sec: the read timeout in seconds.</span>
+<span class="sd">        :type timeout_in_sec: int</span>
+
+<span class="sd">        :raise ValueError: if timeout_in_sec is less than 0</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dispatcher</span><span class="o">.</span><span class="n">timeout</span><span class="p">(</span><span class="n">timeout_in_sec</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ServiceBase.connect_timeout"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.ServiceBase.connect_timeout">[docs]</a>    <span class="k">def</span> <span class="nf">connect_timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout_in_sec</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the time to wait for a connection to be established before timeout.</span>
+
+<span class="sd">        :param timeout_in_sec: the connection timeout in seconds.</span>
+<span class="sd">        :type timeout_in_sec: int</span>
+
+<span class="sd">        :raise ValueError: if timeout_in_sec is less than 0</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dispatcher</span><span class="o">.</span><span class="n">connect_timeout</span><span class="p">(</span><span class="n">timeout_in_sec</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ServiceBase.restore_timeout_defaults"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.ServiceBase.restore_timeout_defaults">[docs]</a>    <span class="k">def</span> <span class="nf">restore_timeout_defaults</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Restores the Connection and Read Timeout to their original durations of</span>
+<span class="sd">        300 seconds (5 minutes) each.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dispatcher</span><span class="o">.</span><span class="n">restore_timeout_defaults</span><span class="p">()</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">api_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the version of the Element API</span>
+
+<span class="sd">        :return: the version of the Element API</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span>
+
+<div class="viewcode-block" id="ServiceBase.send_request"><a class="viewcode-back" href="../../solidfire.common.html#solidfire.common.ServiceBase.send_request">[docs]</a>    <span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span>
+                     <span class="n">result_type</span><span class="p">,</span>
+                     <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                     <span class="n">since</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                     <span class="n">deprecated</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                     <span class="n">return_response_raw</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param method_name: the name of the API method to call</span>
+<span class="sd">        :type method_name: str</span>
+
+<span class="sd">        :param result_type: the type of the result object returned from the API</span>
+<span class="sd">            method called.</span>
+<span class="sd">        :type result_type: DataObject</span>
+
+<span class="sd">        :param params: the parameters supplied to the API call.</span>
+<span class="sd">        :type params: dict</span>
+
+<span class="sd">        :param since: the first version this service was available</span>
+<span class="sd">        :type since: str or float</span>
+
+<span class="sd">        :param deprecated: the final version this service was available</span>
+<span class="sd">        :type deprecated: str or float</span>
+
+<span class="sd">        :return: the result of the API service call</span>
+<span class="sd">        :rtype: DataObject</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_method_version</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">global</span> <span class="n">ATOMIC_COUNTER</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ATOMIC_COUNTER</span><span class="p">,</span> <span class="s1">&#39;next&#39;</span><span class="p">):</span>
+            <span class="n">atomic_id</span> <span class="o">=</span> <span class="n">ATOMIC_COUNTER</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">atomic_id</span> <span class="o">=</span> <span class="n">ATOMIC_COUNTER</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>
+
+        <span class="n">request_dict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="n">method_name</span><span class="p">,</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">atomic_id</span> <span class="k">if</span> <span class="n">atomic_id</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span>
+                 <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+                 <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+             <span class="p">),</span>
+        <span class="p">}</span>
+        <span class="n">obfuscated_request_raw</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_obfuscate_keys</span><span class="p">(</span><span class="n">request_dict</span><span class="p">))</span>
+        <span class="n">encoded</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">request_dict</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="n">obfuscated_request_raw</span><span class="p">)</span>
+            <span class="n">response_raw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dispatcher</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">encoded</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">ConnectionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;Errno 8&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)):</span>
+                <span class="k">raise</span> <span class="n">ApiConnectionError</span><span class="p">(</span><span class="s2">&quot;Unknown host based on target.&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="s2">&quot;Errno 60&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)):</span>
+                <span class="k">raise</span> <span class="n">ApiConnectionError</span><span class="p">(</span><span class="s2">&quot;Connection timed out.&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="s2">&quot;Errno 61&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)):</span>
+                <span class="k">raise</span> <span class="n">ApiConnectionError</span><span class="p">(</span><span class="s2">&quot;Connection Refused. Confirm your target is a SolidFire cluster or node.&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="s2">&quot;Errno 51&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)):</span>
+                <span class="k">raise</span> <span class="n">ApiConnectionError</span><span class="p">(</span><span class="s2">&quot;Network is unreachable&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">ApiConnectionError</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ChunkedEncodingError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ApiConnectionError</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ApiServerError</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+
+
+        <span class="c1"># noinspection PyBroadException</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="n">response_raw</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">response_raw</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span> <span class="c1">#if isinstance(response_raw, dict) and &quot;name&quot; in response_raw and &quot;code&quot; in response_raw:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="n">response_raw</span>
+                <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response_raw</span><span class="p">)</span>
+                <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="n">response_raw</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="n">response_raw</span><span class="p">)</span>
+                <span class="k">if</span> <span class="s2">&quot;401 Unauthorized.&quot;</span> <span class="ow">in</span> <span class="n">response_raw</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">ApiConnectionError</span><span class="p">(</span><span class="s2">&quot;Bad Credentials&quot;</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="s2">&quot;404 Not Found&quot;</span> <span class="ow">in</span> <span class="n">response_raw</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">ApiConnectionError</span><span class="p">(</span><span class="s2">&quot;404 Not Found&quot;</span><span class="p">)</span>
+
+                <span class="n">response</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="s1">&#39;error&#39;</span><span class="p">:</span>
+                            <span class="p">{</span>
+                                <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;JSONDecodeError&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>
+                                <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                            <span class="p">}</span>
+                    <span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">return_response_raw</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">response_raw</span>
+
+        <span class="k">if</span> <span class="s1">&#39;error&#39;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;error&quot;</span><span class="p">][</span><span class="s2">&quot;code&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">requests</span><span class="o">.</span><span class="n">HTTPError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;error&quot;</span><span class="p">][</span><span class="s2">&quot;code&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;error&quot;</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span>
+                                         <span class="n">response</span><span class="p">[</span><span class="s2">&quot;error&quot;</span><span class="p">][</span><span class="s2">&quot;message&quot;</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">ApiServerError</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span>
+                                     <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">result_type</span><span class="p">,</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">])</span></div>
+
+    <span class="c1"># For logging purposes, there are a set of keys we don&#39;t want to be in plain text.</span>
+    <span class="c1"># This goes through the response and obfuscates the secret keys.</span>
+    <span class="k">def</span> <span class="nf">_obfuscate_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">obfuscate</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="o">==</span> <span class="nb">dict</span><span class="p">:</span>
+            <span class="n">private_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_private_keys</span><span class="p">:</span>
+                    <span class="n">private_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obfuscate_keys</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="kc">True</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">private_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obfuscate_keys</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+            <span class="k">return</span> <span class="n">private_dict</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_obfuscate_keys</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">response</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">obfuscate</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;*****&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">response</span>
+
+    <span class="k">def</span> <span class="nf">_check_connection_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span>
+                               <span class="n">connection_type</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check the connection type to verify that it is right.</span>
+
+<span class="sd">        :param connection_type: connection type the method expects.</span>
+<span class="sd">        :type connection_type: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">connection_type</span> <span class="o">==</span> <span class="s2">&quot;Cluster&quot;</span> <span class="ow">and</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_port</span><span class="p">)</span> <span class="o">==</span> <span class="mi">442</span><span class="p">):</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="n">method_name</span><span class="o">+</span><span class="s2">&quot; cannot be called on a node connection. It is a cluster-only method.&quot;</span>
+            <span class="k">raise</span> <span class="n">ApiConnectionError</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+        <span class="k">elif</span><span class="p">(</span><span class="n">connection_type</span> <span class="o">==</span> <span class="s2">&quot;Node&quot;</span> <span class="ow">and</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_port</span><span class="p">)</span> <span class="o">==</span> <span class="mi">443</span><span class="p">):</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="n">method_name</span><span class="o">+</span><span class="s2">&quot; cannot be called on a cluster connection. It is a node-only method.&quot;</span>
+            <span class="k">raise</span> <span class="n">ApiConnectionError</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_check_method_version</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                              <span class="n">method_name</span><span class="p">,</span>
+                              <span class="n">since</span><span class="p">,</span>
+                              <span class="n">deprecated</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check method version against the initialized api_version of the</span>
+<span class="sd">        service.</span>
+
+<span class="sd">        :param method_name: service method name performing the check.</span>
+<span class="sd">        :type method_name: str</span>
+
+<span class="sd">        :param since: service method inception version</span>
+<span class="sd">        :type since: float or str</span>
+
+<span class="sd">        :param deprecated: service method deprecation version</span>
+<span class="sd">        :type deprecated: float or str</span>
+
+<span class="sd">        :raise ApiMethodVersionError: if the configured version of the</span>
+<span class="sd">            ServiceBase is less then the inception version.  Deprecation is</span>
+<span class="sd">            not currently checked.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">since</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">float</span><span class="p">(</span><span class="n">since</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ApiMethodVersionError</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span>
+                                        <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span><span class="p">,</span>
+                                        <span class="n">since</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">since</span><span class="p">),</span>
+                                        <span class="n">deprecated</span><span class="o">=</span><span class="n">deprecated</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_check_param_versions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                              <span class="n">method_name</span><span class="p">,</span>
+                              <span class="n">params</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks parameters against the initialized api_version of the service.</span>
+
+<span class="sd">        :param method_name: service method name performing the check.</span>
+<span class="sd">        :type method_name: str</span>
+
+<span class="sd">        :param params: the list of versioned parameters, their value, inception</span>
+<span class="sd">            version, and optionally, their deprecation version as a tuple</span>
+<span class="sd">        :type params: list of tuple</span>
+
+<span class="sd">        :raise ApiParameterVersionError: if the configured version of the</span>
+<span class="sd">            ServiceBase is less then the inception version of the parameter.</span>
+<span class="sd">            Deprecation is not currently checked.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">invalid</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">params</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">since</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">)</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">float</span><span class="p">(</span><span class="n">since</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span><span class="p">:</span>
+                <span class="n">invalid</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">since</span><span class="p">),</span> <span class="n">deprecated</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">invalid</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ApiParameterVersionError</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span>
+                                           <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span><span class="p">,</span>
+                                           <span class="n">invalid</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2014-2020, NetApp, Inc.  All Rights Reserved.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
