@@ -6,6 +6,8 @@
 
 .. include:: ../examples/snapshot_scheduling.rst
 
+.. include:: ../examples/Enum_Support.rst
+
 solidfire package
 =================
 
@@ -19,6 +21,7 @@ Subpackages
     solidfire.common
     solidfire.custom
     solidfire.util
+
 
 Submodules
 ----------
@@ -35,6 +38,14 @@ solidfire.models module
 -----------------------
 
 .. automodule:: solidfire.models
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+solidfire.results module
+------------------------
+
+.. automodule:: solidfire.results
     :members:
     :undoc-members:
     :show-inheritance:

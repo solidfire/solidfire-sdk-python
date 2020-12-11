@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import sphinx_rtd_theme
-import os
 import sys
+import os
+import json
 
-sys.path.insert(0, '../..')
+sys.path.insert(0, os.path.abspath('..'))
 
 extensions = [
     'sphinx.ext.autodoc',
@@ -16,17 +17,22 @@ templates_path = ['_templates']
 source_suffix = '.rst'
 master_doc = 'index'
 project = 'solidfire-sdk-python'
-copyright = '2014-2017, NetApp, Inc.  All Rights Reserved.'
-author = 'Adam Haid'
-version = '1.5.0.87'
-release = '1.5.0.87'
+copyright = '2014-2020, NetApp, Inc.  All Rights Reserved.'
 language = 'en'
+author = 'NetApp'
 
 exclude_patterns = ['_build']
 pygments_style = 'sphinx'
 todo_include_todos = True
 autoclass_content = 'both'
 seen_element = False
+
+with open('../python_version.json') as versionfile:
+    versioninfo = json.load(versionfile)
+    version = release = versioninfo['version']
+
+def setup(app):
+    app.add_stylesheet("solidfire.css")
 
 
 html_theme = "sphinx_rtd_theme"

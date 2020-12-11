@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright &copy; 2014-2016 NetApp, Inc. All Rights Reserved.
+# Copyright &copy; 2014-2020 NetApp, Inc. All Rights Reserved.
 #
 # CONFIDENTIALITY NOTICE: THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION OF
 # NETAPP, INC. USE, DISCLOSURE OR REPRODUCTION IS PROHIBITED WITHOUT THE PRIOR
@@ -14,12 +14,17 @@ from codecs import open
 import os
 from distutils import dir_util
 from distutils.command.clean import clean as _clean
+import json
 
 here = os.path.abspath(os.path.dirname(__file__))
 
 with open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
+pythonsdkversion = ''
+with open('python_version.json') as versionfile:
+    versioninfo = json.load(versionfile)
+    pythonsdkversion = versioninfo['version']
 
 class Clean(_clean):
     def remove_dir(self, dir_to_del):
@@ -36,15 +41,10 @@ class Clean(_clean):
 setup(
     name='solidfire-sdk-python',
 
-    version='1.5.0.87',
+    version=pythonsdkversion,
 
     description='SolidFire Python SDK',
     long_description=long_description,
-
-    url='https://github.com/solidfire/solidfire-sdk-python',
-
-    author='Adam Haid, Ariel Hoffman, Joel Arthur',
-    author_email='adam.haid@netapp.com, ariel.hoffman@netapp.com, joel.arthur@netapp.com',
 
     license='Apache2',
 

@@ -104,6 +104,7 @@ cluster:
 .. code-block:: python
 
     from solidfire.factory import ElementFactory
+    from solidfire import CHAPSecret
 
     # Create connection to SF Cluster
     sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
@@ -112,6 +113,17 @@ cluster:
     add_account_result = sfe.add_account(username="my-new-account", 
                                          initiator_secret=CHAPSecret(
                                              "a12To16CharValue"))
+    # The initiator and target secrets can be set many different ways
+    # Below are more examples
+    # Passing strings into add account.
+    add_account_result = sfe.add_account("my-new-account", "a12To16CharValue")
+    # Passing string into CHAPSecret() as a parameter
+    add_account_result = sfe.add_account("my-new-account", CHAPSecret("a12To16CharValue"))
+    # Explicitly setting 'secret' in CHAPSecret()
+    add_account_result = sfe.add_account("my-new-account", CHAPSecret(secret="a12To16CharValue"))
+    # Creating a kwarg for secret and passing it in
+    kwarg = {"secret":"a12To16CharValue"}
+    add_account_result = sfe.add_account("my-new-account", CHAPSecret(**kwarg))
 
     # Grab the account ID from the result object
     new_account_id = add_account_result.account_id
@@ -130,6 +142,7 @@ call the static ``auto_generate()`` method on the **CHAPSecret** class.
 .. code-block:: python
 
     from solidfire.factory import ElementFactory
+    from solidfire import CHAPSecret
 
     # Create connection to SF Cluster
     sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")

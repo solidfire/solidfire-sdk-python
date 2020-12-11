@@ -12,12 +12,16 @@ import json
 from uuid import UUID
 from future.utils import with_metaclass
 
+VER3 = False
+try:
+    unicode
+except:
+    VER3 = True 
+
 KNOWN_CONVERSIONS = {
     type(set): list,
     UUID: str
 }
-
-
 def _as_ascii(val):
     """
     Helper method for enforcing ascii encoding.
@@ -132,9 +136,9 @@ class ModelProperty(object):
         if data is None or hasattr(data, '_member_type'):  # HACK ALERT
             if not self._optional:
                 # We want to catch this error.
-                raise ValueError(self._member_name+" is a required parameter.")
+                #raise ValueError(self._member_name+" is a required parameter.")
                 # THE OLD WAY!
-                #out[self._member_name] = None
+                out[self._member_name] = None
         elif self._array:
             out[self._member_name] = [serialize(x) for x in data]
         elif self._optional:
@@ -306,7 +310,7 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
         return out
 
     @classmethod
-    def extract(cls, data, strict=True):
+    def extract(cls, data, strict=False):
         """
         Converts json to a DataObject.
 
@@ -320,16 +324,26 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
         :return: a class deserialized from the data provided.
         """
         ctor_dict = {}
+        if not cls._properties:
+            if VER3:
+                if type(data) == str:
+                    ctor_dict['value'] = data
+            else:
+                if type(data) in [str, unicode]:
+                    ctor_dict['value'] = data    
+
         for name, prop in cls._properties.items():
             # If it has data
-            if data is None:
+            if data is None and strict:
                 pass
+            if data is None and not strict:
+                ctor_dict[name] = None
             # If it is a chap secret
             elif hasattr(prop.member_type(), 'custom_extract'):
                 ctor_dict[name] = prop.member_type().custom_extract(
                     data[prop.member_name()])
             # If it has the right data which matches the data we need, set it
-            elif prop.member_name() in data:
+            elif prop.member_name() in data and type(data) == dict:
                 data_val = data[prop.member_name()]
                 ctor_dict[name] = prop.extract_from(data_val)
             # If we're dealing with an optional property which hasn't been provided
@@ -340,6 +354,7 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
                 ctor_dict[name] = []
             elif not strict:
                 ctor_dict[name] = None
+            
             else:
                 msg_fmt = 'Can not create {typ}: ' \
                           'missing required property "{name}" in {data}'
@@ -348,6 +363,7 @@ class DataObject(with_metaclass(MetaDataObject, ModelProperty)):
                                      data=json.dumps(data)
                                      )
                 raise TypeError(msg)
+        
         return cls(**ctor_dict)
 
 

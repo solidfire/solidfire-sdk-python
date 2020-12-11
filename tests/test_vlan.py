@@ -3,12 +3,11 @@ import unittest
 from solidfire.factory import ElementFactory
 from tests.base_test import SolidFireBaseTest
 
-
 class TestSchedule(SolidFireBaseTest):
 
     @unittest.skip
     def test_create_and_delete_schedule(self):
-        sf = ElementFactory.create("172.26.64.48", "admin", "admin")
+        sf = ElementFactory.create(self.cluster, self.user, self.password)
 
         vlans = sf.list_virtual_networks().virtual_networks
 

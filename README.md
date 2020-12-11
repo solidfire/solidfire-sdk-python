@@ -1,4 +1,4 @@
-![sf-python-logo](https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/master/img/python-50.png) SolidFire Python SDK v1.5
+![sf-python-logo](https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/master/img/python-50.png) SolidFire Python SDK v1.7
 
 Python SDK library for interacting with SolidFire Element API
 
@@ -23,7 +23,7 @@ Compatibility
 
 |  Component               | Version       |
 |:-------------------------|:--------------|
-| SolidFire Element OS     | 7.0 - 10.0    |
+| SolidFire Element OS     | 10.0 - 12.2   |
 
 Getting Help
 ------------
@@ -37,11 +37,8 @@ new features and capabilities.
 Documentation
 -------------
 
-[Latest Docs](http://solidfire-sdk-python.readthedocs.io)
-
 [Release
-Notes](https://github.com/solidfire/solidfire-sdk-python/blob/master/NetApp_SolidFire_Python_SDK_Release_Notes.pdf)
-
+Notes](NetAppElementPythonSDKReleaseNotes1_7.pdf)
 
 Installation
 ------------
@@ -122,13 +119,15 @@ account from the add\_account\_result object.
 ### More examples using the Python SDK
 
 	from solidfire.factory import ElementFactory
+	from solidfire.models import *
 
 	# Create connection to SF Cluster
 	sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
 
 	# --------- EXAMPLE 1 - CREATE AN ACCOUNT -----------
 	# Send the request with required parameters and gather the result
-	add_account_result = sfe.add_account(username="example-account")
+	add_account_result = sfe.add_account(username="example-account",
+	                                     initiator_secret=CHAPSecret(secret="asdfghjkl"))
 	# Pull the account ID from the result object
 	account_id = add_account_result.account_id
 
@@ -179,18 +178,18 @@ unreachable):
 
 	from solidfire.factory import ElementFactory
 	sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
-	sfe.timeout(600)
+	sfe.connect_timeout(600)
 
 Read timeout (useful for extending time for a service call to return):
 
 	from solidfire.factory import ElementFactory
 	sfe = ElementFactory.create("ip-address-of-cluster", "username", "password")
-	sfe.read_timeout(600)
+	sfe.timeout(600)
 
 **License**
 -----------
 
-Copyright © 2016, 2017 NetApp, Inc. All rights reserved.
+Copyright © 2020, 2021 NetApp, Inc. All rights reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may
 not use this file except in compliance with the License. You may obtain

@@ -68,8 +68,11 @@ class ApiServerError(Exception):
         :param err_json: the json formatted error received from the service.
         :type err_json: str
         """
-        #if isinstance(err_json, str):
-        #    err_json = '{}'
+
+        try:
+            json.loads(err_json)
+        except:
+            err_json = '{}'
 
         self._method_name = method_name
         self._err_json = err_json
@@ -621,28 +624,6 @@ class ServiceBase(object):
         except requests.exceptions.ChunkedEncodingError as error:
             raise ApiConnectionError(error.args)
         except Exception as error:
-            # if 2 <= len(error.args):
-            #     json_err = json.dumps(
-            #         {
-            #             'error':
-            #                 {
-            #                     'name': str(error.__class__).split('\'')[1],
-            #                     'code': 500,
-            #                     'message': error.args[1].__str__()
-            #                 }
-            #         }
-            #     )
-            # else:
-            #     json_err = json.dumps(
-            #         {
-            #             'error':
-            #                 {
-            #                     'name': str(error.__class__).split('\'')[1],
-            #                     'code': 500,
-            #                     'message': error.args.__str__()
-            #                 }
-            #         }
-            #     )
             raise ApiServerError(method_name, error)
 
 
@@ -659,30 +640,12 @@ class ServiceBase(object):
             except Exception as error:
                 LOG.error(msg=response_raw)
                 if "401 Unauthorized." in response_raw:
-                    # json_err = {
-                    #         'error':
-                    #             {
-                    #                 'name': 'AuthorizationError',
-                    #                 'code': 401,
-                    #                 'message': 'Username or password incorrect.'
-                    #             }
-                    #     }
-                    #raise ApiConnectionError(json_err)
                     raise ApiConnectionError("Bad Credentials")
 
-
                 if "404 Not Found" in response_raw:
-                    # json_err = {
-                    #         'error':
-                    #             {
-                    #                 'name': 'NotFoundError',
-                    #                 'code': 404,
-                    #                 'message': 'The connection was not found.'
-                    #             }
-                    #     }
-                    # raise ApiConnectionError(json_err)
                     raise ApiConnectionError("404 Not Found")
-                response =  {
+
+                response = {
                         'error':
                             {
                                 'name': 'JSONDecodeError',
@@ -700,8 +663,7 @@ class ServiceBase(object):
                                          response["error"]["message"])
             else:
                 raise ApiServerError(method_name,
-                                     str(response["error"]["code"]) + " " + response["error"]["name"] + " " +
-                                     response["error"]["message"])
+                                     json.dumps(response))
         else:
             return model.extract(result_type, response['result'])
 
