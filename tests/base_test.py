@@ -8,4 +8,4 @@ from solidfire.factory import ElementFactory
 class SolidFireBaseTest(unittest.TestCase):
     cluster = "10.117.61.42"
     user = "admin"
-    pwd = "admin"
+    password = "admin"

@@ -24,8 +24,11 @@ class CHAPSecret(data_model.DataObject):
         documentation="A 12 - 16 character string."
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs):#changed parameters number @subansu
+        secretInput = kwargs.pop('secretInput',None)#@subansu
         data_model.DataObject.__init__(self, **kwargs)
+        if (secretInput != None):
+            self.secret = secretInput
 
     @staticmethod
     def auto_generate():
