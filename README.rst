@@ -40,10 +40,8 @@ helps us focus our efforts on new features and capabilities.
 Documentation
 -------------
 
-`Latest Docs <http://solidfire-sdk-python.readthedocs.io/>`__
-
 `Release
-Notes <https://github.com/solidfire/solidfire-sdk-python/blob/master/NetApp_SolidFire_Python_SDK_Release_Notes.pdf>`__
+Notes <NetAppElementPythonSDKReleaseNotes1_7.pdf>`__
 
 Installation
 ------------
