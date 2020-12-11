@@ -37,6 +37,8 @@ new features and capabilities.
 Documentation
 -------------
 
+[Latest Docs](http://solidfire-sdk-python.readthedocs.io)
+
 [Release
 Notes](NetAppElementPythonSDKReleaseNotes1_7.pdf)
 
