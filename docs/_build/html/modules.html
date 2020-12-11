@@ -1,0 +1,254 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>solidfire &mdash; SolidFire Python SDK v1.7.0.0</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/solidfire.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> solidfire-sdk-python
+          
+
+          
+            
+            <img src="_static/PythonSDK.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.html"> SolidFire Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.html#account-management-examples">Account Management Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.html#snapshot-scheduling-examples">Snapshot Scheduling Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.html#enum-support-examples">Enum Support Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.html#solidfire-package">solidfire package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">solidfire-sdk-python</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>solidfire</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/modules.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="solidfire">
+<h1>solidfire<a class="headerlink" href="#solidfire" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.html"> SolidFire Python SDK</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#current-release">Current Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#compatibility">Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#more-examples">More Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#logging">Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#timeouts">Timeouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#license"><strong>License</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.html#account-management-examples">Account Management Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#manage-accounts">Manage Accounts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.html#snapshot-scheduling-examples">Snapshot Scheduling Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#snapshot-scheduling">Snapshot Scheduling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.html#enum-support-examples">Enum Support Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#enum-support">Enum Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="solidfire.html#solidfire-package">solidfire package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.factory">solidfire.factory module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire.models">solidfire.models module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#solidfire-results-module">solidfire.results module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solidfire.html#module-solidfire">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2014-2020, NetApp, Inc.  All Rights Reserved.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
