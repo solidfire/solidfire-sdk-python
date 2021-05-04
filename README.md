@@ -1,4 +1,4 @@
-![sf-python-logo](https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/master/img/python-50.png) SolidFire Python SDK v1.7
+![sf-python-logo](https://raw.githubusercontent.com/solidfire/solidfire-sdk-python/master/img/python-50.png) SolidFire Python SDK v12.3
 
 Python SDK library for interacting with SolidFire Element API
 
@@ -23,7 +23,7 @@ Compatibility
 
 |  Component               | Version       |
 |:-------------------------|:--------------|
-| SolidFire Element OS     | 10.0 - 12.2   |
+| SolidFire Element OS     | 11.8 - 12.3   |
 
 Getting Help
 ------------
@@ -40,7 +40,7 @@ Documentation
 [Latest Docs](http://solidfire-sdk-python.readthedocs.io)
 
 [Release
-Notes](NetAppElementPythonSDKReleaseNotes1_7.pdf)
+Notes](NetAppElementPythonSDKReleaseNotes12_3.pdf)
 
 Installation
 ------------
@@ -58,9 +58,9 @@ python environment to only the required libraries.
 Alternatively, for development purposes or to inspect the source, the
 following will work:
 
-    git clone git@github.com:solidfire/solidfire-sdk-python.git  
+    git clone git@github.com:solidfire/solidfire-sdk-python.git
     cd solidfire-sdk-python
-    git checkout develop
+	git checkout develop
     pip install -e ".[dev, test, docs, release]"
     python setup.py install
 
@@ -157,7 +157,7 @@ More Examples
 -------------
 
 More specific examples are available
-[here](https://github.com/solidfire/solidfire-sdk-python/blob/master/examples/examples.rst)
+[here](examples/examples.rst)
 
 Logging
 -------
@@ -191,7 +191,7 @@ Read timeout (useful for extending time for a service call to return):
 **License**
 -----------
 
-Copyright © 2020, 2021 NetApp, Inc. All rights reserved.
+Copyright © 2021 NetApp, Inc. All rights reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may
 not use this file except in compliance with the License. You may obtain

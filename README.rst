@@ -8,7 +8,7 @@ Python SDK library for interacting with SolidFire Element API
 Current Release
 ---------------
 
-Version 1.7.0.124
+Version 12.3.0.196
 
 Description
 -----------
@@ -26,7 +26,7 @@ Compatibility
 +------------------------+---------------+
 | Component              | Version       |
 +========================+===============+
-| SolidFire Element OS   | 10.0 - 12.2   |
+| SolidFire Element OS   | 11.8 - 12.3   |
 +------------------------+---------------+
 
 Getting Help
@@ -41,7 +41,7 @@ Documentation
 -------------
 
 `Release
-Notes <NetAppElementPythonSDKReleaseNotes1_7.pdf>`__
+Notes <NetAppElementPythonSDKReleaseNotes12_3.pdf>`__
 
 Installation
 ------------
@@ -63,7 +63,7 @@ following will work:
 
 ::
 
-    git clone git@github.com:solidfire/solidfire-sdk-python.git  
+    git clone git@github.com:solidfire/solidfire-sdk-python.git
     cd solidfire-sdk-python
     git checkout develop
     pip install -e ".[dev, test, docs, release]"
@@ -158,7 +158,7 @@ More Examples
 -------------
 
 
-More specific examples are available `here <https://github.com/solidfire/solidfire-sdk-python/blob/master/examples/examples.rst>`__
+More specific examples are available `here <examples/examples.rst>`__
 
 
 Logging
@@ -201,7 +201,7 @@ Read timeout (useful for extending time for a service call to return):
 **License**
 -----------
 
-Copyright © 2020, 2021 NetApp, Inc. All rights reserved.
+Copyright © 2021 NetApp, Inc. All rights reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may
 not use this file except in compliance with the License. You may obtain
