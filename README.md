@@ -23,7 +23,7 @@ Compatibility
 
 |  Component               | Version       |
 |:-------------------------|:--------------|
-| SolidFire Element OS     | 11.8 - 12.3   |
+| SolidFire Element OS     | 11.0 - 12.3   |
 
 Getting Help
 ------------
