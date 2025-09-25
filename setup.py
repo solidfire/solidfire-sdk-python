@@ -61,8 +61,6 @@ setup(
         'Topic :: System :: Systems Administration',
         'Topic :: Software Development :: Libraries :: Application Frameworks',
 
-        'License :: OSI Approved :: Apache Software License',
-
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
