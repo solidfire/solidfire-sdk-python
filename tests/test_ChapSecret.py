@@ -16,7 +16,7 @@ class TestChapCreation(SolidFireBaseTest):
         username2 = "username2"
         username3 = "username6"
         username4 = "username4"
-        initiatorSecret = "abcde1245678"
+        initiatorSecret = "************"
 
         chap2 = CHAPSecret(secretInput = initiatorSecret)
         chap3 = CHAPSecret(secret=initiatorSecret)
@@ -56,7 +56,7 @@ class TestChapCreation(SolidFireBaseTest):
         username2 = "username2"
         username3 = "username6"
         username4 = "username4"
-        targetSecret = "abcde1245678"
+        targetSecret =  "**************"
 
         chap2 = CHAPSecret(secretInput = targetSecret)
         chap3 = CHAPSecret(secret=targetSecret)
